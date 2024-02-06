@@ -32,19 +32,17 @@ use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ListClientConnectorServic
 /**
  * Lists ClientConnectorServices in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Parent value for ListClientConnectorServicesRequest. Please see
+ *                                {@see ClientConnectorServicesServiceClient::locationName()} for help formatting this field.
  */
-function list_client_connector_services_sample(): void
+function list_client_connector_services_sample(string $formattedParent): void
 {
     // Create a client.
     $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
 
     // Prepare the request message.
-    $request = new ListClientConnectorServicesRequest();
+    $request = (new ListClientConnectorServicesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +56,21 @@ function list_client_connector_services_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ClientConnectorServicesServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_client_connector_services_sample($formattedParent);
 }
 // [END beyondcorp_v1_generated_ClientConnectorServicesService_ListClientConnectorServices_sync]

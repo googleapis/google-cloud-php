@@ -47,19 +47,22 @@ use Google\Cloud\Channel\V1\ListEntitlementChangesRequest;
  * Return value:
  * List of [EntitlementChange][google.cloud.channel.v1.EntitlementChange]s.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the entitlement for which to list
+ *                                entitlement changes. The `-` wildcard may be used to match entitlements
+ *                                across a customer. Formats:
+ *
+ *                                * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+ *                                * accounts/{account_id}/customers/{customer_id}/entitlements/-
+ *                                Please see {@see CloudChannelServiceClient::entitlementName()} for help formatting this field.
  */
-function list_entitlement_changes_sample(): void
+function list_entitlement_changes_sample(string $formattedParent): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new ListEntitlementChangesRequest();
+    $request = (new ListEntitlementChangesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -73,5 +76,25 @@ function list_entitlement_changes_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CloudChannelServiceClient::entitlementName(
+        '[ACCOUNT]',
+        '[CUSTOMER]',
+        '[ENTITLEMENT]'
+    );
+
+    list_entitlement_changes_sample($formattedParent);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListEntitlementChanges_sync]

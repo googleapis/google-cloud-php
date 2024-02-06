@@ -41,7 +41,8 @@ class CreateDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                                   $parent       Required. The parent resource path of the data exchange.
-     *                                                                               e.g. `projects/myproject/locations/US`.
+     *                                                                               e.g. `projects/myproject/locations/US`. Please see
+     *                                                                               {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange $dataExchange Required. The data exchange to create.
      *
      * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\CreateDataExchangeRequest

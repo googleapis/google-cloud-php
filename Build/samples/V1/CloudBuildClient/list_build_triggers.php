@@ -33,13 +33,9 @@ use Google\Cloud\Build\V1\CloudBuildClient;
  *
  * This API is experimental.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $projectId ID of the project for which to list BuildTriggers.
  */
-function list_build_triggers_sample(): void
+function list_build_triggers_sample(string $projectId): void
 {
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
@@ -47,7 +43,7 @@ function list_build_triggers_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudBuildClient->listBuildTriggers();
+        $response = $cloudBuildClient->listBuildTriggers($projectId);
 
         /** @var BuildTrigger $element */
         foreach ($response as $element) {
@@ -56,5 +52,21 @@ function list_build_triggers_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $projectId = '[PROJECT_ID]';
+
+    list_build_triggers_sample($projectId);
 }
 // [END cloudbuild_v1_generated_CloudBuild_ListBuildTriggers_sync]

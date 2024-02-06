@@ -49,19 +49,20 @@ use Google\Cloud\BigQuery\Storage\V1\ReadSession;
  * Read sessions automatically expire 6 hours after they are created and do
  * not require manual clean-up by the caller.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The request project that owns the session, in the form of
+ *                                `projects/{project_id}`. Please see
+ *                                {@see BigQueryReadClient::projectName()} for help formatting this field.
  */
-function create_read_session_sample(): void
+function create_read_session_sample(string $formattedParent): void
 {
     // Create a client.
     $bigQueryReadClient = new BigQueryReadClient();
 
     // Prepare the request message.
-    $request = new CreateReadSessionRequest();
+    $readSession = new ReadSession();
+    $request = (new CreateReadSessionRequest())
+        ->setParent($formattedParent)
+        ->setReadSession($readSession);
 
     // Call the API and handle any network failures.
     try {
@@ -71,5 +72,21 @@ function create_read_session_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BigQueryReadClient::projectName('[PROJECT]');
+
+    create_read_session_sample($formattedParent);
 }
 // [END bigquerystorage_v1_generated_BigQueryRead_CreateReadSession_sync]

@@ -31,19 +31,18 @@ use Google\Cloud\BinaryAuthorization\V1\Policy;
 /**
  * Gets the current system policy in the specified location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name, in the format `locations/&#42;/policy`.
+ *                              Note that the system policy is not associated with a project. Please see
+ *                              {@see SystemPolicyV1Client::policyName()} for help formatting this field.
  */
-function get_system_policy_sample(): void
+function get_system_policy_sample(string $formattedName): void
 {
     // Create a client.
     $systemPolicyV1Client = new SystemPolicyV1Client();
 
     // Prepare the request message.
-    $request = new GetSystemPolicyRequest();
+    $request = (new GetSystemPolicyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,21 @@ function get_system_policy_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = SystemPolicyV1Client::policyName('[PROJECT]');
+
+    get_system_policy_sample($formattedName);
 }
 // [END binaryauthorization_v1_generated_SystemPolicyV1_GetSystemPolicy_sync]

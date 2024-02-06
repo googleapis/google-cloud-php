@@ -82,7 +82,10 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
  * try {
- *     $response = $analyticsHubServiceClient->createDataExchange();
+ *     $formattedParent = $analyticsHubServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $dataExchangeId = 'data_exchange_id';
+ *     $dataExchange = new DataExchange();
+ *     $response = $analyticsHubServiceClient->createDataExchange($formattedParent, $dataExchangeId, $dataExchange);
  * } finally {
  *     $analyticsHubServiceClient->close();
  * }
@@ -427,26 +430,26 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $response = $analyticsHubServiceClient->createDataExchange();
+     *     $formattedParent = $analyticsHubServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $dataExchangeId = 'data_exchange_id';
+     *     $dataExchange = new DataExchange();
+     *     $response = $analyticsHubServiceClient->createDataExchange($formattedParent, $dataExchangeId, $dataExchange);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string       $parent         Required. The parent resource path of the data exchange.
+     *                                     e.g. `projects/myproject/locations/US`.
+     * @param string       $dataExchangeId Required. The ID of the data exchange.
+     *                                     Must contain only Unicode letters, numbers (0-9), underscores (_).
+     *                                     Should not use characters that require URL-escaping, or characters
+     *                                     outside of ASCII, spaces.
+     *                                     Max length: 100 bytes.
+     * @param DataExchange $dataExchange   Required. The data exchange to create.
+     * @param array        $optionalArgs   {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource path of the data exchange.
-     *           e.g. `projects/myproject/locations/US`.
-     *     @type string $dataExchangeId
-     *           Required. The ID of the data exchange.
-     *           Must contain only Unicode letters, numbers (0-9), underscores (_).
-     *           Should not use characters that require URL-escaping, or characters
-     *           outside of ASCII, spaces.
-     *           Max length: 100 bytes.
-     *     @type DataExchange $dataExchange
-     *           Required. The data exchange to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -459,23 +462,18 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function createDataExchange(array $optionalArgs = [])
-    {
+    public function createDataExchange(
+        $parent,
+        $dataExchangeId,
+        $dataExchange,
+        array $optionalArgs = []
+    ) {
         $request = new CreateDataExchangeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['dataExchangeId'])) {
-            $request->setDataExchangeId($optionalArgs['dataExchangeId']);
-        }
-
-        if (isset($optionalArgs['dataExchange'])) {
-            $request->setDataExchange($optionalArgs['dataExchange']);
-        }
-
+        $request->setParent($parent);
+        $request->setDataExchangeId($dataExchangeId);
+        $request->setDataExchange($dataExchange);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -497,26 +495,26 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $response = $analyticsHubServiceClient->createListing();
+     *     $formattedParent = $analyticsHubServiceClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+     *     $listingId = 'listing_id';
+     *     $listing = new Listing();
+     *     $response = $analyticsHubServiceClient->createListing($formattedParent, $listingId, $listing);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The parent resource path of the listing.
+     *                              e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * @param string  $listingId    Required. The ID of the listing to create.
+     *                              Must contain only Unicode letters, numbers (0-9), underscores (_).
+     *                              Should not use characters that require URL-escaping, or characters
+     *                              outside of ASCII, spaces.
+     *                              Max length: 100 bytes.
+     * @param Listing $listing      Required. The listing to create.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource path of the listing.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
-     *     @type string $listingId
-     *           Required. The ID of the listing to create.
-     *           Must contain only Unicode letters, numbers (0-9), underscores (_).
-     *           Should not use characters that require URL-escaping, or characters
-     *           outside of ASCII, spaces.
-     *           Max length: 100 bytes.
-     *     @type Listing $listing
-     *           Required. The listing to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -529,23 +527,18 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function createListing(array $optionalArgs = [])
-    {
+    public function createListing(
+        $parent,
+        $listingId,
+        $listing,
+        array $optionalArgs = []
+    ) {
         $request = new CreateListingRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['listingId'])) {
-            $request->setListingId($optionalArgs['listingId']);
-        }
-
-        if (isset($optionalArgs['listing'])) {
-            $request->setListing($optionalArgs['listing']);
-        }
-
+        $request->setParent($parent);
+        $request->setListingId($listingId);
+        $request->setListing($listing);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -567,18 +560,18 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $analyticsHubServiceClient->deleteDataExchange();
+     *     $formattedName = $analyticsHubServiceClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+     *     $analyticsHubServiceClient->deleteDataExchange($formattedName);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The full name of the data exchange resource that you want to delete.
+     *                             For example, `projects/myproject/locations/US/dataExchanges/123`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The full name of the data exchange resource that you want to delete.
-     *           For example, `projects/myproject/locations/US/dataExchanges/123`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -589,15 +582,12 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function deleteDataExchange(array $optionalArgs = [])
+    public function deleteDataExchange($name, array $optionalArgs = [])
     {
         $request = new DeleteDataExchangeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -619,18 +609,18 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $analyticsHubServiceClient->deleteListing();
+     *     $formattedName = $analyticsHubServiceClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+     *     $analyticsHubServiceClient->deleteListing($formattedName);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name of the listing to delete.
+     *                             e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Resource name of the listing to delete.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -641,15 +631,12 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function deleteListing(array $optionalArgs = [])
+    public function deleteListing($name, array $optionalArgs = [])
     {
         $request = new DeleteListingRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -671,18 +658,18 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $response = $analyticsHubServiceClient->getDataExchange();
+     *     $formattedName = $analyticsHubServiceClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+     *     $response = $analyticsHubServiceClient->getDataExchange($formattedName);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the data exchange.
+     *                             e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the data exchange.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -695,15 +682,12 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function getDataExchange(array $optionalArgs = [])
+    public function getDataExchange($name, array $optionalArgs = [])
     {
         $request = new GetDataExchangeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -783,18 +767,18 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $response = $analyticsHubServiceClient->getListing();
+     *     $formattedName = $analyticsHubServiceClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+     *     $response = $analyticsHubServiceClient->getListing($formattedName);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the listing.
+     *                             e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the listing.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -807,15 +791,12 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function getListing(array $optionalArgs = [])
+    public function getListing($name, array $optionalArgs = [])
     {
         $request = new GetListingRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -837,8 +818,9 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
+     *     $formattedParent = $analyticsHubServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsHubServiceClient->listDataExchanges();
+     *     $pagedResponse = $analyticsHubServiceClient->listDataExchanges($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -846,7 +828,7 @@ class AnalyticsHubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsHubServiceClient->listDataExchanges();
+     *     $pagedResponse = $analyticsHubServiceClient->listDataExchanges($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -855,12 +837,11 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent resource path of the data exchanges.
+     *                             e.g. `projects/myproject/locations/US`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource path of the data exchanges.
-     *           e.g. `projects/myproject/locations/US`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -882,15 +863,12 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function listDataExchanges(array $optionalArgs = [])
+    public function listDataExchanges($parent, array $optionalArgs = [])
     {
         $request = new ListDataExchangesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -920,8 +898,9 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
+     *     $formattedParent = $analyticsHubServiceClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsHubServiceClient->listListings();
+     *     $pagedResponse = $analyticsHubServiceClient->listListings($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -929,7 +908,7 @@ class AnalyticsHubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsHubServiceClient->listListings();
+     *     $pagedResponse = $analyticsHubServiceClient->listListings($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -938,12 +917,11 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent resource path of the listing.
+     *                             e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource path of the listing.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -965,15 +943,12 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function listListings(array $optionalArgs = [])
+    public function listListings($parent, array $optionalArgs = [])
     {
         $request = new ListListingsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1004,8 +979,9 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
+     *     $organization = 'organization';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $analyticsHubServiceClient->listOrgDataExchanges();
+     *     $pagedResponse = $analyticsHubServiceClient->listOrgDataExchanges($organization);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1013,7 +989,7 @@ class AnalyticsHubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $analyticsHubServiceClient->listOrgDataExchanges();
+     *     $pagedResponse = $analyticsHubServiceClient->listOrgDataExchanges($organization);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1022,12 +998,11 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $organization Required. The organization resource path of the projects containing DataExchanges.
+     *                             e.g. `organizations/myorg/locations/US`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $organization
-     *           Required. The organization resource path of the projects containing DataExchanges.
-     *           e.g. `organizations/myorg/locations/US`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1049,16 +1024,14 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function listOrgDataExchanges(array $optionalArgs = [])
-    {
+    public function listOrgDataExchanges(
+        $organization,
+        array $optionalArgs = []
+    ) {
         $request = new ListOrgDataExchangesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['organization'])) {
-            $request->setOrganization($optionalArgs['organization']);
-            $requestParamHeaders['organization'] =
-                $optionalArgs['organization'];
-        }
-
+        $request->setOrganization($organization);
+        $requestParamHeaders['organization'] = $organization;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1160,20 +1133,20 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $response = $analyticsHubServiceClient->subscribeListing();
+     *     $formattedName = $analyticsHubServiceClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+     *     $response = $analyticsHubServiceClient->subscribeListing($formattedName);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name of the listing that you want to subscribe to.
+     *                             e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type DestinationDataset $destinationDataset
      *           BigQuery destination dataset to create for the subscriber.
-     *     @type string $name
-     *           Required. Resource name of the listing that you want to subscribe to.
-     *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1186,19 +1159,16 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function subscribeListing(array $optionalArgs = [])
+    public function subscribeListing($name, array $optionalArgs = [])
     {
         $request = new SubscribeListingRequest();
         $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['destinationDataset'])) {
             $request->setDestinationDataset(
                 $optionalArgs['destinationDataset']
             );
-        }
-
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1282,21 +1252,21 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $response = $analyticsHubServiceClient->updateDataExchange();
+     *     $updateMask = new FieldMask();
+     *     $dataExchange = new DataExchange();
+     *     $response = $analyticsHubServiceClient->updateDataExchange($updateMask, $dataExchange);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FieldMask    $updateMask   Required. Field mask specifies the fields to update in the data exchange
+     *                                   resource. The fields specified in the
+     *                                   `updateMask` are relative to the resource and are not a full request.
+     * @param DataExchange $dataExchange Required. The data exchange to update.
+     * @param array        $optionalArgs {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           Required. Field mask specifies the fields to update in the data exchange
-     *           resource. The fields specified in the
-     *           `updateMask` are relative to the resource and are not a full request.
-     *     @type DataExchange $dataExchange
-     *           Required. The data exchange to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1309,18 +1279,16 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function updateDataExchange(array $optionalArgs = [])
-    {
+    public function updateDataExchange(
+        $updateMask,
+        $dataExchange,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateDataExchangeRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['dataExchange'])) {
-            $request->setDataExchange($optionalArgs['dataExchange']);
-        }
-
+        $request->setUpdateMask($updateMask);
+        $request->setDataExchange($dataExchange);
+        $requestParamHeaders['data_exchange.name'] = $dataExchange->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1342,21 +1310,21 @@ class AnalyticsHubServiceGapicClient
      * ```
      * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
      * try {
-     *     $response = $analyticsHubServiceClient->updateListing();
+     *     $updateMask = new FieldMask();
+     *     $listing = new Listing();
+     *     $response = $analyticsHubServiceClient->updateListing($updateMask, $listing);
      * } finally {
      *     $analyticsHubServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param FieldMask $updateMask   Required. Field mask specifies the fields to update in the listing resource. The
+     *                                fields specified in the `updateMask` are relative to the resource and are
+     *                                not a full request.
+     * @param Listing   $listing      Required. The listing to update.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           Required. Field mask specifies the fields to update in the listing resource. The
-     *           fields specified in the `updateMask` are relative to the resource and are
-     *           not a full request.
-     *     @type Listing $listing
-     *           Required. The listing to update.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1369,18 +1337,16 @@ class AnalyticsHubServiceGapicClient
      *
      * @experimental
      */
-    public function updateListing(array $optionalArgs = [])
-    {
+    public function updateListing(
+        $updateMask,
+        $listing,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateListingRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
-        if (isset($optionalArgs['listing'])) {
-            $request->setListing($optionalArgs['listing']);
-        }
-
+        $request->setUpdateMask($updateMask);
+        $request->setListing($listing);
+        $requestParamHeaders['listing.name'] = $listing->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

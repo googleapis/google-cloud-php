@@ -26,24 +26,32 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateListingRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates an existing listing.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $listingDisplayName Human-readable display name of the listing. The display name must
+ *                                   contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+ *                                   spaces ( ), ampersands (&) and can't start or end with spaces. Default
+ *                                   value is an empty string. Max length: 63 bytes.
  */
-function update_listing_sample(): void
+function update_listing_sample(string $listingDisplayName): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateListingRequest();
+    $updateMask = new FieldMask();
+    $listingBigqueryDataset = new BigQueryDatasetSource();
+    $listing = (new Listing())
+        ->setBigqueryDataset($listingBigqueryDataset)
+        ->setDisplayName($listingDisplayName);
+    $request = (new UpdateListingRequest())
+        ->setUpdateMask($updateMask)
+        ->setListing($listing);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +61,21 @@ function update_listing_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $listingDisplayName = '[DISPLAY_NAME]';
+
+    update_listing_sample($listingDisplayName);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_UpdateListing_sync]

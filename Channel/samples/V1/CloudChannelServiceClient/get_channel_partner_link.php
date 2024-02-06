@@ -45,19 +45,18 @@ use Google\Cloud\Channel\V1\GetChannelPartnerLinkRequest;
  * The [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
  * resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name The resource name of the channel partner link to retrieve.
+ *                     Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
+ *                     where {id} is the Cloud Identity ID of the partner.
  */
-function get_channel_partner_link_sample(): void
+function get_channel_partner_link_sample(string $name): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new GetChannelPartnerLinkRequest();
+    $request = (new GetChannelPartnerLinkRequest())
+        ->setName($name);
 
     // Call the API and handle any network failures.
     try {
@@ -67,5 +66,21 @@ function get_channel_partner_link_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+
+    get_channel_partner_link_sample($name);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_GetChannelPartnerLink_sync]

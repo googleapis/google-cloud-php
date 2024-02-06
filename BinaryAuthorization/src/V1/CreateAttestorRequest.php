@@ -37,7 +37,8 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
     private $attestor = null;
 
     /**
-     * @param string                                        $parent     Required. The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor].
+     * @param string                                        $parent     Required. The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor]. Please see
+     *                                                                  {@see BinauthzManagementServiceV1Client::projectName()} for help formatting this field.
      * @param string                                        $attestorId Required. The [attestors][google.cloud.binaryauthorization.v1.Attestor] ID.
      * @param \Google\Cloud\BinaryAuthorization\V1\Attestor $attestor   Required. The initial [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service will
      *                                                                  overwrite the [attestor name][google.cloud.binaryauthorization.v1.Attestor.name] field with the resource name,

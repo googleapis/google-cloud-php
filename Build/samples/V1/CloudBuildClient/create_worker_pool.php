@@ -32,21 +32,27 @@ use Google\Rpc\Status;
 /**
  * Creates a `WorkerPool`.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent resource where this worker pool will be created.
+ *                                Format: `projects/{project}/locations/{location}`. Please see
+ *                                {@see CloudBuildClient::locationName()} for help formatting this field.
+ * @param string $workerPoolId    Immutable. The ID to use for the `WorkerPool`, which will become
+ *                                the final component of the resource name.
+ *
+ *                                This value should be 1-63 characters, and valid characters
+ *                                are /[a-z][0-9]-/.
  */
-function create_worker_pool_sample(): void
+function create_worker_pool_sample(string $formattedParent, string $workerPoolId): void
 {
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $workerPool = new WorkerPool();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudBuildClient->createWorkerPool();
+        $response = $cloudBuildClient->createWorkerPool($formattedParent, $workerPool, $workerPoolId);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -61,5 +67,22 @@ function create_worker_pool_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CloudBuildClient::locationName('[PROJECT]', '[LOCATION]');
+    $workerPoolId = '[WORKER_POOL_ID]';
+
+    create_worker_pool_sample($formattedParent, $workerPoolId);
 }
 // [END cloudbuild_v1_generated_CloudBuild_CreateWorkerPool_sync]

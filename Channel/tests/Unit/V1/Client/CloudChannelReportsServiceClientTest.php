@@ -88,7 +88,10 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRows($rows);
         $transport->addResponse($expectedResponse);
-        $request = new FetchReportResultsRequest();
+        // Mock request
+        $formattedReportJob = $gapicClient->reportJobName('[ACCOUNT]', '[REPORT_JOB]');
+        $request = (new FetchReportResultsRequest())
+            ->setReportJob($formattedReportJob);
         $response = $gapicClient->fetchReportResults($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -99,6 +102,8 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelReportsService/FetchReportResults', $actualFuncCall);
+        $actualValue = $actualRequestObject->getReportJob();
+        $this->assertProtobufEquals($formattedReportJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -120,7 +125,10 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new FetchReportResultsRequest();
+        // Mock request
+        $formattedReportJob = $gapicClient->reportJobName('[ACCOUNT]', '[REPORT_JOB]');
+        $request = (new FetchReportResultsRequest())
+            ->setReportJob($formattedReportJob);
         try {
             $gapicClient->fetchReportResults($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -152,7 +160,10 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReports($reports);
         $transport->addResponse($expectedResponse);
-        $request = new ListReportsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListReportsRequest())
+            ->setParent($parent);
         $response = $gapicClient->listReports($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -163,6 +174,8 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelReportsService/ListReports', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -184,7 +197,10 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListReportsRequest();
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new ListReportsRequest())
+            ->setParent($parent);
         try {
             $gapicClient->listReports($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -227,7 +243,10 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RunReportJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->reportName('[ACCOUNT]', '[REPORT]');
+        $request = (new RunReportJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->runReportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -238,6 +257,8 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelReportsService/RunReportJob', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/runReportJobTest');
         $response->pollUntilComplete([
@@ -288,7 +309,10 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RunReportJobRequest();
+        // Mock request
+        $formattedName = $gapicClient->reportName('[ACCOUNT]', '[REPORT]');
+        $request = (new RunReportJobRequest())
+            ->setName($formattedName);
         $response = $gapicClient->runReportJob($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -329,7 +353,10 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRows($rows);
         $transport->addResponse($expectedResponse);
-        $request = new FetchReportResultsRequest();
+        // Mock request
+        $formattedReportJob = $gapicClient->reportJobName('[ACCOUNT]', '[REPORT_JOB]');
+        $request = (new FetchReportResultsRequest())
+            ->setReportJob($formattedReportJob);
         $response = $gapicClient->fetchReportResultsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -340,6 +367,8 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.channel.v1.CloudChannelReportsService/FetchReportResults', $actualFuncCall);
+        $actualValue = $actualRequestObject->getReportJob();
+        $this->assertProtobufEquals($formattedReportJob, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

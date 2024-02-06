@@ -66,7 +66,9 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -112,7 +114,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse = new CheckConsistencyResponse();
         $expectedResponse->setConsistent($consistent);
         $transport->addResponse($expectedResponse);
-        $request = new CheckConsistencyRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $consistencyToken = 'consistencyToken-1090516718';
+        $request = (new CheckConsistencyRequest())
+            ->setName($formattedName)
+            ->setConsistencyToken($consistencyToken);
         $response = $gapicClient->checkConsistency($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -120,6 +127,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CheckConsistency', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getConsistencyToken();
+        $this->assertProtobufEquals($consistencyToken, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -141,7 +152,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CheckConsistencyRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $consistencyToken = 'consistencyToken-1090516718';
+        $request = (new CheckConsistencyRequest())
+            ->setName($formattedName)
+            ->setConsistencyToken($consistencyToken);
         try {
             $gapicClient->checkConsistency($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -192,7 +208,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CopyBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $backupId = 'backupId1355353272';
+        $formattedSourceBackup = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+        $expireTime = new Timestamp();
+        $request = (new CopyBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setSourceBackup($formattedSourceBackup)
+            ->setExpireTime($expireTime);
         $response = $gapicClient->copyBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -203,6 +228,14 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CopyBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupId();
+        $this->assertProtobufEquals($backupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSourceBackup();
+        $this->assertProtobufEquals($formattedSourceBackup, $actualValue);
+        $actualValue = $actualApiRequestObject->getExpireTime();
+        $this->assertProtobufEquals($expireTime, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/copyBackupTest');
         $response->pollUntilComplete([
@@ -253,7 +286,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CopyBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $backupId = 'backupId1355353272';
+        $formattedSourceBackup = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+        $expireTime = new Timestamp();
+        $request = (new CopyBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setSourceBackup($formattedSourceBackup)
+            ->setExpireTime($expireTime);
         $response = $gapicClient->copyBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -313,7 +355,18 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $backupId = 'backupId1355353272';
+        $backup = new Backup();
+        $backupSourceTable = 'backupSourceTable1043210577';
+        $backup->setSourceTable($backupSourceTable);
+        $backupExpireTime = new Timestamp();
+        $backup->setExpireTime($backupExpireTime);
+        $request = (new CreateBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setBackup($backup);
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -324,6 +377,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CreateBackup', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackupId();
+        $this->assertProtobufEquals($backupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackup();
+        $this->assertProtobufEquals($backup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createBackupTest');
         $response->pollUntilComplete([
@@ -374,7 +433,18 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateBackupRequest();
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $backupId = 'backupId1355353272';
+        $backup = new Backup();
+        $backupSourceTable = 'backupSourceTable1043210577';
+        $backup->setSourceTable($backupSourceTable);
+        $backupExpireTime = new Timestamp();
+        $backup->setExpireTime($backupExpireTime);
+        $request = (new CreateBackupRequest())
+            ->setParent($formattedParent)
+            ->setBackupId($backupId)
+            ->setBackup($backup);
         $response = $gapicClient->createBackup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -412,7 +482,14 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDeletionProtection($deletionProtection);
         $transport->addResponse($expectedResponse);
-        $request = new CreateTableRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $tableId = 'tableId-895419604';
+        $table = new Table();
+        $request = (new CreateTableRequest())
+            ->setParent($formattedParent)
+            ->setTableId($tableId)
+            ->setTable($table);
         $response = $gapicClient->createTable($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -420,6 +497,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CreateTable', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTableId();
+        $this->assertProtobufEquals($tableId, $actualValue);
+        $actualValue = $actualRequestObject->getTable();
+        $this->assertProtobufEquals($table, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -441,7 +524,14 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateTableRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $tableId = 'tableId-895419604';
+        $table = new Table();
+        $request = (new CreateTableRequest())
+            ->setParent($formattedParent)
+            ->setTableId($tableId)
+            ->setTable($table);
         try {
             $gapicClient->createTable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -488,7 +578,14 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateTableFromSnapshotRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $tableId = 'tableId-895419604';
+        $formattedSourceSnapshot = $gapicClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
+        $request = (new CreateTableFromSnapshotRequest())
+            ->setParent($formattedParent)
+            ->setTableId($tableId)
+            ->setSourceSnapshot($formattedSourceSnapshot);
         $response = $gapicClient->createTableFromSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -499,6 +596,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CreateTableFromSnapshot', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getTableId();
+        $this->assertProtobufEquals($tableId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSourceSnapshot();
+        $this->assertProtobufEquals($formattedSourceSnapshot, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createTableFromSnapshotTest');
         $response->pollUntilComplete([
@@ -549,7 +652,14 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateTableFromSnapshotRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $tableId = 'tableId-895419604';
+        $formattedSourceSnapshot = $gapicClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
+        $request = (new CreateTableFromSnapshotRequest())
+            ->setParent($formattedParent)
+            ->setTableId($tableId)
+            ->setSourceSnapshot($formattedSourceSnapshot);
         $response = $gapicClient->createTableFromSnapshot($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -583,13 +693,18 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+        $request = (new DeleteBackupRequest())
+            ->setName($formattedName);
         $gapicClient->deleteBackup($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteBackup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -611,7 +726,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+        $request = (new DeleteBackupRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -636,13 +754,18 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteSnapshotRequest();
+        // Mock request
+        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
+        $request = (new DeleteSnapshotRequest())
+            ->setName($formattedName);
         $gapicClient->deleteSnapshot($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteSnapshot', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -664,7 +787,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteSnapshotRequest();
+        // Mock request
+        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
+        $request = (new DeleteSnapshotRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -689,13 +815,18 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteTableRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new DeleteTableRequest())
+            ->setName($formattedName);
         $gapicClient->deleteTable($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteTable', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -717,7 +848,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteTableRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new DeleteTableRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteTable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -742,13 +876,18 @@ class BigtableTableAdminClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DropRowRangeRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new DropRowRangeRequest())
+            ->setName($formattedName);
         $gapicClient->dropRowRange($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DropRowRange', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -770,7 +909,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DropRowRangeRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new DropRowRangeRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->dropRowRange($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -797,7 +939,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse = new GenerateConsistencyTokenResponse();
         $expectedResponse->setConsistencyToken($consistencyToken);
         $transport->addResponse($expectedResponse);
-        $request = new GenerateConsistencyTokenRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new GenerateConsistencyTokenRequest())
+            ->setName($formattedName);
         $response = $gapicClient->generateConsistencyToken($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -805,6 +950,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GenerateConsistencyToken', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -826,7 +973,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GenerateConsistencyTokenRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new GenerateConsistencyTokenRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->generateConsistencyToken($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -859,7 +1009,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setSourceBackup($sourceBackup);
         $expectedResponse->setSizeBytes($sizeBytes);
         $transport->addResponse($expectedResponse);
-        $request = new GetBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+        $request = (new GetBackupRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -867,6 +1020,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GetBackup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -888,7 +1043,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetBackupRequest();
+        // Mock request
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[BACKUP]');
+        $request = (new GetBackupRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -985,7 +1143,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setDataSizeBytes($dataSizeBytes);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $request = new GetSnapshotRequest();
+        // Mock request
+        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
+        $request = (new GetSnapshotRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getSnapshot($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -993,6 +1154,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GetSnapshot', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1014,7 +1177,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSnapshotRequest();
+        // Mock request
+        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[INSTANCE]', '[CLUSTER]', '[SNAPSHOT]');
+        $request = (new GetSnapshotRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getSnapshot($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1043,7 +1209,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDeletionProtection($deletionProtection);
         $transport->addResponse($expectedResponse);
-        $request = new GetTableRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new GetTableRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getTable($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1051,6 +1220,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GetTable', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1072,7 +1243,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetTableRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new GetTableRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getTable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1104,7 +1278,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
-        $request = new ListBackupsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $request = (new ListBackupsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1115,6 +1292,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ListBackups', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1136,7 +1315,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListBackupsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $request = (new ListBackupsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1168,7 +1350,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
-        $request = new ListSnapshotsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $request = (new ListSnapshotsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSnapshots($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1179,6 +1364,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ListSnapshots', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1200,7 +1387,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSnapshotsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $request = (new ListSnapshotsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSnapshots($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1232,7 +1422,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTables($tables);
         $transport->addResponse($expectedResponse);
-        $request = new ListTablesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListTablesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listTables($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1243,6 +1436,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ListTables', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1264,7 +1459,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListTablesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListTablesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listTables($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1293,7 +1491,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDeletionProtection($deletionProtection);
         $transport->addResponse($expectedResponse);
-        $request = new ModifyColumnFamiliesRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $modifications = [];
+        $request = (new ModifyColumnFamiliesRequest())
+            ->setName($formattedName)
+            ->setModifications($modifications);
         $response = $gapicClient->modifyColumnFamilies($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1301,6 +1504,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ModifyColumnFamilies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getModifications();
+        $this->assertProtobufEquals($modifications, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1322,7 +1529,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ModifyColumnFamiliesRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $modifications = [];
+        $request = (new ModifyColumnFamiliesRequest())
+            ->setName($formattedName)
+            ->setModifications($modifications);
         try {
             $gapicClient->modifyColumnFamilies($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1369,7 +1581,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RestoreTableRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $tableId = 'tableId-895419604';
+        $request = (new RestoreTableRequest())
+            ->setParent($formattedParent)
+            ->setTableId($tableId);
         $response = $gapicClient->restoreTable($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1380,6 +1597,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/RestoreTable', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getTableId();
+        $this->assertProtobufEquals($tableId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/restoreTableTest');
         $response->pollUntilComplete([
@@ -1430,7 +1651,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RestoreTableRequest();
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $tableId = 'tableId-895419604';
+        $request = (new RestoreTableRequest())
+            ->setParent($formattedParent)
+            ->setTableId($tableId);
         $response = $gapicClient->restoreTable($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1560,7 +1786,14 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SnapshotTableRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $formattedCluster = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $snapshotId = 'snapshotId-168585866';
+        $request = (new SnapshotTableRequest())
+            ->setName($formattedName)
+            ->setCluster($formattedCluster)
+            ->setSnapshotId($snapshotId);
         $response = $gapicClient->snapshotTable($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1571,6 +1804,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/SnapshotTable', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getCluster();
+        $this->assertProtobufEquals($formattedCluster, $actualValue);
+        $actualValue = $actualApiRequestObject->getSnapshotId();
+        $this->assertProtobufEquals($snapshotId, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/snapshotTableTest');
         $response->pollUntilComplete([
@@ -1621,7 +1860,14 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SnapshotTableRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $formattedCluster = $gapicClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+        $snapshotId = 'snapshotId-168585866';
+        $request = (new SnapshotTableRequest())
+            ->setName($formattedName)
+            ->setCluster($formattedCluster)
+            ->setSnapshotId($snapshotId);
         $response = $gapicClient->snapshotTable($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1745,7 +1991,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UndeleteTableRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new UndeleteTableRequest())
+            ->setName($formattedName);
         $response = $gapicClient->undeleteTable($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1756,6 +2005,8 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/UndeleteTable', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeleteTableTest');
         $response->pollUntilComplete([
@@ -1806,7 +2057,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UndeleteTableRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new UndeleteTableRequest())
+            ->setName($formattedName);
         $response = $gapicClient->undeleteTable($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1848,7 +2102,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse->setSourceBackup($sourceBackup);
         $expectedResponse->setSizeBytes($sizeBytes);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateBackupRequest();
+        // Mock request
+        $backup = new Backup();
+        $backupSourceTable = 'backupSourceTable1043210577';
+        $backup->setSourceTable($backupSourceTable);
+        $backupExpireTime = new Timestamp();
+        $backup->setExpireTime($backupExpireTime);
+        $updateMask = new FieldMask();
+        $request = (new UpdateBackupRequest())
+            ->setBackup($backup)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1856,6 +2119,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/UpdateBackup', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBackup();
+        $this->assertProtobufEquals($backup, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1877,7 +2144,16 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateBackupRequest();
+        // Mock request
+        $backup = new Backup();
+        $backupSourceTable = 'backupSourceTable1043210577';
+        $backup->setSourceTable($backupSourceTable);
+        $backupExpireTime = new Timestamp();
+        $backup->setExpireTime($backupExpireTime);
+        $updateMask = new FieldMask();
+        $request = (new UpdateBackupRequest())
+            ->setBackup($backup)
+            ->setUpdateMask($updateMask);
         try {
             $gapicClient->updateBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1924,7 +2200,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new UpdateTableRequest();
+        // Mock request
+        $table = new Table();
+        $updateMask = new FieldMask();
+        $request = (new UpdateTableRequest())
+            ->setTable($table)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateTable($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1935,6 +2216,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/UpdateTable', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getTable();
+        $this->assertProtobufEquals($table, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateTableTest');
         $response->pollUntilComplete([
@@ -1985,7 +2270,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new UpdateTableRequest();
+        // Mock request
+        $table = new Table();
+        $updateMask = new FieldMask();
+        $request = (new UpdateTableRequest())
+            ->setTable($table)
+            ->setUpdateMask($updateMask);
         $response = $gapicClient->updateTable($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2021,7 +2311,12 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $expectedResponse = new CheckConsistencyResponse();
         $expectedResponse->setConsistent($consistent);
         $transport->addResponse($expectedResponse);
-        $request = new CheckConsistencyRequest();
+        // Mock request
+        $formattedName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $consistencyToken = 'consistencyToken-1090516718';
+        $request = (new CheckConsistencyRequest())
+            ->setName($formattedName)
+            ->setConsistencyToken($consistencyToken);
         $response = $gapicClient->checkConsistencyAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2029,6 +2324,10 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CheckConsistency', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getConsistencyToken();
+        $this->assertProtobufEquals($consistencyToken, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

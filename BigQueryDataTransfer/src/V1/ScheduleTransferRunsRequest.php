@@ -41,7 +41,8 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                     $parent    Required. Transfer configuration name in the form:
      *                                              `projects/{project_id}/transferConfigs/{config_id}` or
-     *                                              `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *                                              `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`. Please see
+     *                                              {@see DataTransferServiceClient::transferConfigName()} for help formatting this field.
      * @param \Google\Protobuf\Timestamp $startTime Required. Start time of the range of transfer runs. For example,
      *                                              `"2017-05-25T00:00:00+00:00"`.
      * @param \Google\Protobuf\Timestamp $endTime   Required. End time of the range of transfer runs. For example,

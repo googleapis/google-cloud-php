@@ -31,19 +31,18 @@ use Google\Cloud\CertificateManager\V1\GetCertificateIssuanceConfigRequest;
 /**
  * Gets details of a single CertificateIssuanceConfig.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName A name of the certificate issuance config to describe. Must be in
+ *                              the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`. Please see
+ *                              {@see CertificateManagerClient::certificateIssuanceConfigName()} for help formatting this field.
  */
-function get_certificate_issuance_config_sample(): void
+function get_certificate_issuance_config_sample(string $formattedName): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = new GetCertificateIssuanceConfigRequest();
+    $request = (new GetCertificateIssuanceConfigRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,25 @@ function get_certificate_issuance_config_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = CertificateManagerClient::certificateIssuanceConfigName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[CERTIFICATE_ISSUANCE_CONFIG]'
+    );
+
+    get_certificate_issuance_config_sample($formattedName);
 }
 // [END certificatemanager_v1_generated_CertificateManager_GetCertificateIssuanceConfig_sync]

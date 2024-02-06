@@ -39,7 +39,8 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the Repository to delete.
-     *                     Format: `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     *                     Format: `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`. Please see
+     *                     {@see RepositoryManagerClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\Build\V2\DeleteRepositoryRequest
      *

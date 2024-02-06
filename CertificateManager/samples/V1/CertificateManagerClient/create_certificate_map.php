@@ -33,19 +33,22 @@ use Google\Rpc\Status;
 /**
  * Creates a new CertificateMap in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent  The parent resource of the certificate map. Must be in the format
+ *                                 `projects/&#42;/locations/*`. Please see
+ *                                 {@see CertificateManagerClient::locationName()} for help formatting this field.
+ * @param string $certificateMapId A user-provided name of the certificate map.
  */
-function create_certificate_map_sample(): void
+function create_certificate_map_sample(string $formattedParent, string $certificateMapId): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = new CreateCertificateMapRequest();
+    $certificateMap = new CertificateMap();
+    $request = (new CreateCertificateMapRequest())
+        ->setParent($formattedParent)
+        ->setCertificateMapId($certificateMapId)
+        ->setCertificateMap($certificateMap);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +68,22 @@ function create_certificate_map_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CertificateManagerClient::locationName('[PROJECT]', '[LOCATION]');
+    $certificateMapId = '[CERTIFICATE_MAP_ID]';
+
+    create_certificate_map_sample($formattedParent, $certificateMapId);
 }
 // [END certificatemanager_v1_generated_CertificateManager_CreateCertificateMap_sync]

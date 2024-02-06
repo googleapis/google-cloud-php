@@ -30,6 +30,7 @@ class DeleteTransferRunRequest extends \Google\Protobuf\Internal\Message
      *                     example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      *                     or
      *                     `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *                     Please see {@see DataTransferServiceClient::runName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferRunRequest
      *

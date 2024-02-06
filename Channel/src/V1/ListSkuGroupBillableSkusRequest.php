@@ -43,7 +43,8 @@ class ListSkuGroupBillableSkusRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Resource name of the SKU group.
-     *                       Format: accounts/{account}/skuGroups/{sku_group}.
+     *                       Format: accounts/{account}/skuGroups/{sku_group}. Please see
+     *                       {@see CloudChannelServiceClient::skuGroupName()} for help formatting this field.
      *
      * @return \Google\Cloud\Channel\V1\ListSkuGroupBillableSkusRequest
      *

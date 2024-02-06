@@ -40,7 +40,9 @@ use Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -85,13 +87,17 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse = new CheckValidCredsResponse();
         $expectedResponse->setHasValidCreds($hasValidCreds);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->checkValidCreds();
+        // Mock request
+        $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
+        $response = $gapicClient->checkValidCreds($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/CheckValidCreds', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -113,8 +119,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
         try {
-            $gapicClient->checkValidCreds();
+            $gapicClient->checkValidCreds($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -157,13 +165,20 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDatasetRegion($datasetRegion);
         $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createTransferConfig();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $transferConfig = new TransferConfig();
+        $response = $gapicClient->createTransferConfig($formattedParent, $transferConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/CreateTransferConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getTransferConfig();
+        $this->assertProtobufEquals($transferConfig, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -185,8 +200,11 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $transferConfig = new TransferConfig();
         try {
-            $gapicClient->createTransferConfig();
+            $gapicClient->createTransferConfig($formattedParent, $transferConfig);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -209,12 +227,16 @@ class DataTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteTransferConfig();
+        // Mock request
+        $formattedName = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $gapicClient->deleteTransferConfig($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/DeleteTransferConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -236,8 +258,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
         try {
-            $gapicClient->deleteTransferConfig();
+            $gapicClient->deleteTransferConfig($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -260,12 +284,16 @@ class DataTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteTransferRun();
+        // Mock request
+        $formattedName = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $gapicClient->deleteTransferRun($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/DeleteTransferRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -287,8 +315,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
         try {
-            $gapicClient->deleteTransferRun();
+            $gapicClient->deleteTransferRun($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -386,13 +416,17 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDefaultDataRefreshWindowDays($defaultDataRefreshWindowDays);
         $expectedResponse->setManualRunsDisabled($manualRunsDisabled);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getDataSource();
+        // Mock request
+        $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
+        $response = $gapicClient->getDataSource($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetDataSource', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -414,8 +448,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
         try {
-            $gapicClient->getDataSource();
+            $gapicClient->getDataSource($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -458,13 +494,17 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDatasetRegion($datasetRegion);
         $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getTransferConfig();
+        // Mock request
+        $formattedName = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $response = $gapicClient->getTransferConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetTransferConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -486,8 +526,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
         try {
-            $gapicClient->getTransferConfig();
+            $gapicClient->getTransferConfig($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -522,13 +564,17 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setSchedule($schedule);
         $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getTransferRun();
+        // Mock request
+        $formattedName = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $response = $gapicClient->getTransferRun($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/GetTransferRun', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -550,8 +596,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
         try {
-            $gapicClient->getTransferRun();
+            $gapicClient->getTransferRun($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -581,7 +629,9 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataSources($dataSources);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listDataSources();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listDataSources($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -591,6 +641,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListDataSources', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -612,8 +664,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listDataSources();
+            $gapicClient->listDataSources($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -643,7 +697,9 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferConfigs($transferConfigs);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listTransferConfigs();
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listTransferConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -653,6 +709,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -674,8 +732,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $gapicClient->listTransferConfigs();
+            $gapicClient->listTransferConfigs($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -705,7 +765,9 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferMessages($transferMessages);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listTransferLogs();
+        // Mock request
+        $formattedParent = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $response = $gapicClient->listTransferLogs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -715,6 +777,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferLogs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -736,8 +800,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
         try {
-            $gapicClient->listTransferLogs();
+            $gapicClient->listTransferLogs($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -767,7 +833,9 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTransferRuns($transferRuns);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listTransferRuns();
+        // Mock request
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $response = $gapicClient->listTransferRuns($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -777,6 +845,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/ListTransferRuns', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -798,8 +868,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
         try {
-            $gapicClient->listTransferRuns();
+            $gapicClient->listTransferRuns($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -822,13 +894,23 @@ class DataTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ScheduleTransferRunsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->scheduleTransferRuns();
+        // Mock request
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $startTime = new Timestamp();
+        $endTime = new Timestamp();
+        $response = $gapicClient->scheduleTransferRuns($formattedParent, $startTime, $endTime);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/ScheduleTransferRuns', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getStartTime();
+        $this->assertProtobufEquals($startTime, $actualValue);
+        $actualValue = $actualRequestObject->getEndTime();
+        $this->assertProtobufEquals($endTime, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -850,8 +932,12 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $startTime = new Timestamp();
+        $endTime = new Timestamp();
         try {
-            $gapicClient->scheduleTransferRuns();
+            $gapicClient->scheduleTransferRuns($formattedParent, $startTime, $endTime);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -946,13 +1032,20 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDatasetRegion($datasetRegion);
         $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateTransferConfig();
+        // Mock request
+        $transferConfig = new TransferConfig();
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateTransferConfig($transferConfig, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/UpdateTransferConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTransferConfig();
+        $this->assertProtobufEquals($transferConfig, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -974,8 +1067,11 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $transferConfig = new TransferConfig();
+        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateTransferConfig();
+            $gapicClient->updateTransferConfig($transferConfig, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

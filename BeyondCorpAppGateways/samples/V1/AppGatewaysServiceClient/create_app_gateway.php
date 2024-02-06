@@ -26,6 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway;
+use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\HostType;
+use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\Type;
 use Google\Cloud\BeyondCorp\AppGateways\V1\Client\AppGatewaysServiceClient;
 use Google\Cloud\BeyondCorp\AppGateways\V1\CreateAppGatewayRequest;
 use Google\Rpc\Status;
@@ -33,19 +35,31 @@ use Google\Rpc\Status;
 /**
  * Creates a new AppGateway in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent    The resource project name of the AppGateway location using the
+ *                                   form: `projects/{project_id}/locations/{location_id}`
+ *                                   Please see {@see AppGatewaysServiceClient::locationName()} for help formatting this field.
+ * @param string $appGatewayName     Unique resource name of the AppGateway.
+ *                                   The name is ignored when creating an AppGateway.
+ * @param int    $appGatewayType     The type of network connectivity used by the AppGateway.
+ * @param int    $appGatewayHostType The type of hosting used by the AppGateway.
  */
-function create_app_gateway_sample(): void
-{
+function create_app_gateway_sample(
+    string $formattedParent,
+    string $appGatewayName,
+    int $appGatewayType,
+    int $appGatewayHostType
+): void {
     // Create a client.
     $appGatewaysServiceClient = new AppGatewaysServiceClient();
 
     // Prepare the request message.
-    $request = new CreateAppGatewayRequest();
+    $appGateway = (new AppGateway())
+        ->setName($appGatewayName)
+        ->setType($appGatewayType)
+        ->setHostType($appGatewayHostType);
+    $request = (new CreateAppGatewayRequest())
+        ->setParent($formattedParent)
+        ->setAppGateway($appGateway);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +79,24 @@ function create_app_gateway_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AppGatewaysServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $appGatewayName = '[NAME]';
+    $appGatewayType = Type::TYPE_UNSPECIFIED;
+    $appGatewayHostType = HostType::HOST_TYPE_UNSPECIFIED;
+
+    create_app_gateway_sample($formattedParent, $appGatewayName, $appGatewayType, $appGatewayHostType);
 }
 // [END beyondcorp_v1_generated_AppGatewaysService_CreateAppGateway_sync]

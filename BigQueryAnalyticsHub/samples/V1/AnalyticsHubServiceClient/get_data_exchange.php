@@ -31,19 +31,18 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest;
 /**
  * Gets the details of a data exchange.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the data exchange.
+ *                              e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+ *                              {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
  */
-function get_data_exchange_sample(): void
+function get_data_exchange_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = new GetDataExchangeRequest();
+    $request = (new GetDataExchangeRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,25 @@ function get_data_exchange_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsHubServiceClient::dataExchangeName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DATA_EXCHANGE]'
+    );
+
+    get_data_exchange_sample($formattedName);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_GetDataExchange_sync]

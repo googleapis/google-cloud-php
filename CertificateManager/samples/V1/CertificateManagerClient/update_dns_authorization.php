@@ -28,24 +28,29 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\CertificateManager\V1\Client\CertificateManagerClient;
 use Google\Cloud\CertificateManager\V1\DnsAuthorization;
 use Google\Cloud\CertificateManager\V1\UpdateDnsAuthorizationRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates a DnsAuthorization.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $dnsAuthorizationDomain Immutable. A domain that is being authorized. A DnsAuthorization
+ *                                       resource covers a single domain and its wildcard, e.g. authorization for
+ *                                       `example.com` can be used to issue certificates for `example.com` and
+ *                                       `*.example.com`.
  */
-function update_dns_authorization_sample(): void
+function update_dns_authorization_sample(string $dnsAuthorizationDomain): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = new UpdateDnsAuthorizationRequest();
+    $dnsAuthorization = (new DnsAuthorization())
+        ->setDomain($dnsAuthorizationDomain);
+    $updateMask = new FieldMask();
+    $request = (new UpdateDnsAuthorizationRequest())
+        ->setDnsAuthorization($dnsAuthorization)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +70,21 @@ function update_dns_authorization_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $dnsAuthorizationDomain = '[DOMAIN]';
+
+    update_dns_authorization_sample($dnsAuthorizationDomain);
 }
 // [END certificatemanager_v1_generated_CertificateManager_UpdateDnsAuthorization_sync]

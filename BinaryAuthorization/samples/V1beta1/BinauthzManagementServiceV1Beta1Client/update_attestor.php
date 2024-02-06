@@ -31,24 +31,41 @@ use Google\Cloud\BinaryAuthorization\V1beta1\BinauthzManagementServiceV1Beta1Cli
  * Updates an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
  * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not exist.
  *
+ * @param string $attestorName The resource name, in the format:
+ *                             `projects/&#42;/attestors/*`. This field may not be updated.
+ */
+function update_attestor_sample(string $attestorName): void
+{
+    // Create a client.
+    $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $attestor = (new Attestor())
+        ->setName($attestorName);
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var Attestor $response */
+        $response = $binauthzManagementServiceV1Beta1Client->updateAttestor($attestor);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function update_attestor_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
+    $attestorName = '[NAME]';
 
-    // Call the API and handle any network failures.
-    try {
-        /** @var Attestor $response */
-        $response = $binauthzManagementServiceV1Beta1Client->updateAttestor();
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    update_attestor_sample($attestorName);
 }
 // [END binaryauthorization_v1beta1_generated_BinauthzManagementServiceV1Beta1_UpdateAttestor_sync]

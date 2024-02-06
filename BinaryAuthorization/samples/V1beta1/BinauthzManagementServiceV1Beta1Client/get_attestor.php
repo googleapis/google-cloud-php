@@ -31,13 +31,11 @@ use Google\Cloud\BinaryAuthorization\V1beta1\BinauthzManagementServiceV1Beta1Cli
  * Gets an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
  * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not exist.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The name of the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve, in the format
+ *                              `projects/&#42;/attestors/*`. Please see
+ *                              {@see BinauthzManagementServiceV1Beta1Client::attestorName()} for help formatting this field.
  */
-function get_attestor_sample(): void
+function get_attestor_sample(string $formattedName): void
 {
     // Create a client.
     $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
@@ -45,10 +43,26 @@ function get_attestor_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Attestor $response */
-        $response = $binauthzManagementServiceV1Beta1Client->getAttestor();
+        $response = $binauthzManagementServiceV1Beta1Client->getAttestor($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BinauthzManagementServiceV1Beta1Client::attestorName('[PROJECT]', '[ATTESTOR]');
+
+    get_attestor_sample($formattedName);
 }
 // [END binaryauthorization_v1beta1_generated_BinauthzManagementServiceV1Beta1_GetAttestor_sync]

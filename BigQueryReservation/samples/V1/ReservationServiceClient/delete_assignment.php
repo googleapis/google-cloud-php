@@ -44,19 +44,18 @@ use Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest;
  * queries from `project1` will still use `res1` while queries from
  * `project2` will switch to use on-demand mode.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of the resource, e.g.
+ *                              `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+ *                              Please see {@see ReservationServiceClient::assignmentName()} for help formatting this field.
  */
-function delete_assignment_sample(): void
+function delete_assignment_sample(string $formattedName): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteAssignmentRequest();
+    $request = (new DeleteAssignmentRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +64,26 @@ function delete_assignment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ReservationServiceClient::assignmentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[RESERVATION]',
+        '[ASSIGNMENT]'
+    );
+
+    delete_assignment_sample($formattedName);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_DeleteAssignment_sync]

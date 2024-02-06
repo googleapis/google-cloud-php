@@ -66,7 +66,8 @@ class ListChannelPartnerRepricingConfigsRequest extends \Google\Protobuf\Interna
      *                       uses the format:
      *                       accounts/{account_id}/channelPartnerLinks/{channel_partner_id}.
      *                       Supports accounts/{account_id}/channelPartnerLinks/- to retrieve configs
-     *                       for all channel partners.
+     *                       for all channel partners. Please see
+     *                       {@see CloudChannelServiceClient::channelPartnerLinkName()} for help formatting this field.
      *
      * @return \Google\Cloud\Channel\V1\ListChannelPartnerRepricingConfigsRequest
      *

@@ -25,7 +25,8 @@ class FetchReadTokenRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $repository Required. The resource name of the repository in the format
-     *                           `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     *                           `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`. Please see
+     *                           {@see RepositoryManagerClient::repositoryName()} for help formatting this field.
      *
      * @return \Google\Cloud\Build\V2\FetchReadTokenRequest
      *

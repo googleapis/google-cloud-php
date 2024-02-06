@@ -32,19 +32,19 @@ use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
  * Warm up associated instance metadata for this connection.
  * This call is not required but may be useful for connection keep-alive.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The unique name of the instance to check permissions for as well
+ *                              as respond. Values are of the form
+ *                              `projects/<project>/instances/<instance>`. Please see
+ *                              {@see BigtableClient::instanceName()} for help formatting this field.
  */
-function ping_and_warm_sample(): void
+function ping_and_warm_sample(string $formattedName): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
 
     // Prepare the request message.
-    $request = new PingAndWarmRequest();
+    $request = (new PingAndWarmRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -54,5 +54,21 @@ function ping_and_warm_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BigtableClient::instanceName('[PROJECT]', '[INSTANCE]');
+
+    ping_and_warm_sample($formattedName);
 }
 // [END bigtable_v2_generated_Bigtable_PingAndWarm_sync]

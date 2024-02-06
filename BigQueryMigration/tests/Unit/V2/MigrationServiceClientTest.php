@@ -78,13 +78,20 @@ class MigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createMigrationWorkflow();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $migrationWorkflow = new MigrationWorkflow();
+        $response = $gapicClient->createMigrationWorkflow($formattedParent, $migrationWorkflow);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/CreateMigrationWorkflow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getMigrationWorkflow();
+        $this->assertProtobufEquals($migrationWorkflow, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -106,8 +113,11 @@ class MigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $migrationWorkflow = new MigrationWorkflow();
         try {
-            $gapicClient->createMigrationWorkflow();
+            $gapicClient->createMigrationWorkflow($formattedParent, $migrationWorkflow);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -130,12 +140,16 @@ class MigrationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteMigrationWorkflow();
+        // Mock request
+        $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $gapicClient->deleteMigrationWorkflow($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/DeleteMigrationWorkflow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -157,8 +171,10 @@ class MigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
         try {
-            $gapicClient->deleteMigrationWorkflow();
+            $gapicClient->deleteMigrationWorkflow($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -189,13 +205,17 @@ class MigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setType($type);
         $expectedResponse->setResourceErrorCount($resourceErrorCount);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getMigrationSubtask();
+        // Mock request
+        $formattedName = $gapicClient->migrationSubtaskName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[SUBTASK]');
+        $response = $gapicClient->getMigrationSubtask($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/GetMigrationSubtask', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -217,8 +237,10 @@ class MigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->migrationSubtaskName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[SUBTASK]');
         try {
-            $gapicClient->getMigrationSubtask();
+            $gapicClient->getMigrationSubtask($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -245,13 +267,17 @@ class MigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getMigrationWorkflow();
+        // Mock request
+        $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $response = $gapicClient->getMigrationWorkflow($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/GetMigrationWorkflow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -273,8 +299,10 @@ class MigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
         try {
-            $gapicClient->getMigrationWorkflow();
+            $gapicClient->getMigrationWorkflow($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -304,7 +332,9 @@ class MigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMigrationSubtasks($migrationSubtasks);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listMigrationSubtasks();
+        // Mock request
+        $formattedParent = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $response = $gapicClient->listMigrationSubtasks($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -314,6 +344,8 @@ class MigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/ListMigrationSubtasks', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -335,8 +367,10 @@ class MigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
         try {
-            $gapicClient->listMigrationSubtasks();
+            $gapicClient->listMigrationSubtasks($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -366,7 +400,9 @@ class MigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMigrationWorkflows($migrationWorkflows);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listMigrationWorkflows();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listMigrationWorkflows($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -376,6 +412,8 @@ class MigrationServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/ListMigrationWorkflows', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -397,8 +435,10 @@ class MigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listMigrationWorkflows();
+            $gapicClient->listMigrationWorkflows($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -421,12 +461,16 @@ class MigrationServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->startMigrationWorkflow();
+        // Mock request
+        $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $gapicClient->startMigrationWorkflow($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.migration.v2.MigrationService/StartMigrationWorkflow', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -448,8 +492,10 @@ class MigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
         try {
-            $gapicClient->startMigrationWorkflow();
+            $gapicClient->startMigrationWorkflow($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

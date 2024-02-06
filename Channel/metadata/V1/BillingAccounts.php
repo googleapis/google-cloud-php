@@ -19,14 +19,14 @@ class BillingAccounts
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-é
-.google/cloud/channel/v1/billing_accounts.protogoogle.cloud.channel.v1google/api/resource.protogoogle/protobuf/timestamp.proto"ê
-BillingAccount
-name (	B‚A
-display_name (	5
-create_time (2.google.protobuf.TimestampB‚A
-currency_code (	B‚A
-region_code (	B‚A:eÍAb
+ä
+.google/cloud/channel/v1/billing_accounts.protogoogle.cloud.channel.v1google/api/resource.protogoogle/protobuf/timestamp.proto"å
+BillingAccount
+name (	B‡A
+display_name (	4
+create_time (2.google.protobuf.TimestampB‡A
+currency_code (	B‡A
+region_code (	B‡A:eÍAb
 *cloudchannel.googleapis.com/BillingAccount4accounts/{account}/billingAccounts/{billing_account}Bl
 com.google.cloud.channel.v1BBillingAccountsProtoPZ5cloud.google.com/go/channel/apiv1/channelpb;channelpbbproto3'
         , true);

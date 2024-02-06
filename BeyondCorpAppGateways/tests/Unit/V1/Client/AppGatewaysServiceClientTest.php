@@ -28,6 +28,8 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway;
+use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\HostType;
+use Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway\Type;
 use Google\Cloud\BeyondCorp\AppGateways\V1\Client\AppGatewaysServiceClient;
 use Google\Cloud\BeyondCorp\AppGateways\V1\CreateAppGatewayRequest;
 use Google\Cloud\BeyondCorp\AppGateways\V1\DeleteAppGatewayRequest;
@@ -115,7 +117,18 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateAppGatewayRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $appGateway = new AppGateway();
+        $appGatewayName = 'appGatewayName-1786203634';
+        $appGateway->setName($appGatewayName);
+        $appGatewayType = Type::TYPE_UNSPECIFIED;
+        $appGateway->setType($appGatewayType);
+        $appGatewayHostType = HostType::HOST_TYPE_UNSPECIFIED;
+        $appGateway->setHostType($appGatewayHostType);
+        $request = (new CreateAppGatewayRequest())
+            ->setParent($formattedParent)
+            ->setAppGateway($appGateway);
         $response = $gapicClient->createAppGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -126,6 +139,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/CreateAppGateway', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAppGateway();
+        $this->assertProtobufEquals($appGateway, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAppGatewayTest');
         $response->pollUntilComplete([
@@ -176,7 +193,18 @@ class AppGatewaysServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new CreateAppGatewayRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $appGateway = new AppGateway();
+        $appGatewayName = 'appGatewayName-1786203634';
+        $appGateway->setName($appGatewayName);
+        $appGatewayType = Type::TYPE_UNSPECIFIED;
+        $appGateway->setType($appGatewayType);
+        $appGatewayHostType = HostType::HOST_TYPE_UNSPECIFIED;
+        $appGateway->setHostType($appGatewayHostType);
+        $request = (new CreateAppGatewayRequest())
+            ->setParent($formattedParent)
+            ->setAppGateway($appGateway);
         $response = $gapicClient->createAppGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -228,7 +256,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteAppGatewayRequest();
+        // Mock request
+        $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
+        $request = (new DeleteAppGatewayRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteAppGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -239,6 +270,8 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/DeleteAppGateway', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteAppGatewayTest');
         $response->pollUntilComplete([
@@ -289,7 +322,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteAppGatewayRequest();
+        // Mock request
+        $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
+        $request = (new DeleteAppGatewayRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteAppGateway($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -331,7 +367,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
-        $request = new GetAppGatewayRequest();
+        // Mock request
+        $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
+        $request = (new GetAppGatewayRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getAppGateway($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -339,6 +378,8 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/GetAppGateway', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -360,7 +401,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetAppGatewayRequest();
+        // Mock request
+        $formattedName = $gapicClient->appGatewayName('[PROJECT]', '[LOCATION]', '[APP_GATEWAY]');
+        $request = (new GetAppGatewayRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getAppGateway($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -392,7 +436,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAppGateways($appGateways);
         $transport->addResponse($expectedResponse);
-        $request = new ListAppGatewaysRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAppGatewaysRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listAppGateways($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -403,6 +450,8 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/ListAppGateways', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -424,7 +473,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListAppGatewaysRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListAppGatewaysRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listAppGateways($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -577,7 +629,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -585,6 +640,8 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -606,7 +663,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyRequest())
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -635,7 +695,12 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -643,6 +708,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -664,7 +733,12 @@ class AppGatewaysServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SetIamPolicyRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $request = (new SetIamPolicyRequest())
+            ->setResource($resource)
+            ->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -689,7 +763,12 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new TestIamPermissionsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -697,6 +776,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -718,7 +801,12 @@ class AppGatewaysServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new TestIamPermissionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $request = (new TestIamPermissionsRequest())
+            ->setResource($resource)
+            ->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -769,7 +857,18 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new CreateAppGatewayRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $appGateway = new AppGateway();
+        $appGatewayName = 'appGatewayName-1786203634';
+        $appGateway->setName($appGatewayName);
+        $appGatewayType = Type::TYPE_UNSPECIFIED;
+        $appGateway->setType($appGatewayType);
+        $appGatewayHostType = HostType::HOST_TYPE_UNSPECIFIED;
+        $appGateway->setHostType($appGatewayHostType);
+        $request = (new CreateAppGatewayRequest())
+            ->setParent($formattedParent)
+            ->setAppGateway($appGateway);
         $response = $gapicClient->createAppGatewayAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -780,6 +879,10 @@ class AppGatewaysServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.beyondcorp.appgateways.v1.AppGatewaysService/CreateAppGateway', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAppGateway();
+        $this->assertProtobufEquals($appGateway, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createAppGatewayTest');
         $response->pollUntilComplete([

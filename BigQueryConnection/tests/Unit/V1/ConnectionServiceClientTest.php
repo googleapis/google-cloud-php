@@ -31,6 +31,7 @@ use Google\Cloud\BigQuery\Connection\V1\ConnectionServiceClient;
 use Google\Cloud\BigQuery\Connection\V1\ListConnectionsResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -86,13 +87,20 @@ class ConnectionServiceClientTest extends GeneratedTest
         $expectedResponse->setLastModifiedTime($lastModifiedTime);
         $expectedResponse->setHasCredential($hasCredential);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createConnection();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $connection = new Connection();
+        $response = $gapicClient->createConnection($formattedParent, $connection);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.connection.v1.ConnectionService/CreateConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getConnection();
+        $this->assertProtobufEquals($connection, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -114,8 +122,11 @@ class ConnectionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $connection = new Connection();
         try {
-            $gapicClient->createConnection();
+            $gapicClient->createConnection($formattedParent, $connection);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -138,12 +149,16 @@ class ConnectionServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteConnection();
+        // Mock request
+        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $gapicClient->deleteConnection($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.connection.v1.ConnectionService/DeleteConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -165,8 +180,10 @@ class ConnectionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
         try {
-            $gapicClient->deleteConnection();
+            $gapicClient->deleteConnection($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -201,13 +218,17 @@ class ConnectionServiceClientTest extends GeneratedTest
         $expectedResponse->setLastModifiedTime($lastModifiedTime);
         $expectedResponse->setHasCredential($hasCredential);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getConnection();
+        // Mock request
+        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $response = $gapicClient->getConnection($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.connection.v1.ConnectionService/GetConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -229,8 +250,10 @@ class ConnectionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
         try {
-            $gapicClient->getConnection();
+            $gapicClient->getConnection($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -322,7 +345,10 @@ class ConnectionServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setConnections($connections);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listConnections();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $pageSize = 883849137;
+        $response = $gapicClient->listConnections($formattedParent, $pageSize);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -332,6 +358,10 @@ class ConnectionServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.connection.v1.ConnectionService/ListConnections', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getPageSize();
+        $this->assertProtobufEquals($pageSize, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -353,8 +383,11 @@ class ConnectionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $pageSize = 883849137;
         try {
-            $gapicClient->listConnections();
+            $gapicClient->listConnections($formattedParent, $pageSize);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -517,13 +550,23 @@ class ConnectionServiceClientTest extends GeneratedTest
         $expectedResponse->setLastModifiedTime($lastModifiedTime);
         $expectedResponse->setHasCredential($hasCredential);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateConnection();
+        // Mock request
+        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $connection = new Connection();
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateConnection($formattedName, $connection, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.connection.v1.ConnectionService/UpdateConnection', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getConnection();
+        $this->assertProtobufEquals($connection, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -545,8 +588,12 @@ class ConnectionServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+        $connection = new Connection();
+        $updateMask = new FieldMask();
         try {
-            $gapicClient->updateConnection();
+            $gapicClient->updateConnection($formattedName, $connection, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

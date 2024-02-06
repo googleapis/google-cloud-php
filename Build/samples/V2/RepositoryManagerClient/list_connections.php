@@ -32,19 +32,18 @@ use Google\Cloud\Build\V2\ListConnectionsRequest;
 /**
  * Lists Connections in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent, which owns this collection of Connections.
+ *                                Format: `projects/&#42;/locations/*`. Please see
+ *                                {@see RepositoryManagerClient::locationName()} for help formatting this field.
  */
-function list_connections_sample(): void
+function list_connections_sample(string $formattedParent): void
 {
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
     // Prepare the request message.
-    $request = new ListConnectionsRequest();
+    $request = (new ListConnectionsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_connections_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = RepositoryManagerClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_connections_sample($formattedParent);
 }
 // [END cloudbuild_v2_generated_RepositoryManager_ListConnections_sync]

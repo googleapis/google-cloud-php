@@ -40,7 +40,8 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                  $parent    Required. The unique name of the instance in which to create the new
-     *                                                           cluster. Values are of the form `projects/{project}/instances/{instance}`.
+     *                                                           cluster. Values are of the form `projects/{project}/instances/{instance}`. Please see
+     *                                                           {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
      * @param string                                  $clusterId Required. The ID to be used when referring to the new cluster within its
      *                                                           instance, e.g., just `mycluster` rather than
      *                                                           `projects/myproject/instances/myinstance/clusters/mycluster`.

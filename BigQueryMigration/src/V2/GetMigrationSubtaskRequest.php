@@ -32,6 +32,7 @@ class GetMigrationSubtaskRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The unique identifier for the migration subtask.
      *                     Example: `projects/123/locations/us/workflows/1234/subtasks/543`
+     *                     Please see {@see MigrationServiceClient::migrationSubtaskName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Migration\V2\GetMigrationSubtaskRequest
      *

@@ -27,23 +27,28 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateDataExchangeRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates an existing data exchange.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $dataExchangeDisplayName Human-readable display name of the data exchange. The display
+ *                                        name must contain only Unicode letters, numbers (0-9), underscores (_),
+ *                                        dashes (-), spaces ( ), ampersands (&) and must not start or end with
+ *                                        spaces. Default value is an empty string. Max length: 63 bytes.
  */
-function update_data_exchange_sample(): void
+function update_data_exchange_sample(string $dataExchangeDisplayName): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateDataExchangeRequest();
+    $updateMask = new FieldMask();
+    $dataExchange = (new DataExchange())
+        ->setDisplayName($dataExchangeDisplayName);
+    $request = (new UpdateDataExchangeRequest())
+        ->setUpdateMask($updateMask)
+        ->setDataExchange($dataExchange);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +58,21 @@ function update_data_exchange_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $dataExchangeDisplayName = '[DISPLAY_NAME]';
+
+    update_data_exchange_sample($dataExchangeDisplayName);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_UpdateDataExchange_sync]

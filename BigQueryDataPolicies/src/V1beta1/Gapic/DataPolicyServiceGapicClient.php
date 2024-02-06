@@ -60,7 +60,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $dataPolicyServiceClient = new DataPolicyServiceClient();
  * try {
- *     $response = $dataPolicyServiceClient->createDataPolicy();
+ *     $formattedParent = $dataPolicyServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $dataPolicy = new DataPolicy();
+ *     $response = $dataPolicyServiceClient->createDataPolicy($formattedParent, $dataPolicy);
  * } finally {
  *     $dataPolicyServiceClient->close();
  * }
@@ -329,21 +331,21 @@ class DataPolicyServiceGapicClient
      * ```
      * $dataPolicyServiceClient = new DataPolicyServiceClient();
      * try {
-     *     $response = $dataPolicyServiceClient->createDataPolicy();
+     *     $formattedParent = $dataPolicyServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $dataPolicy = new DataPolicy();
+     *     $response = $dataPolicyServiceClient->createDataPolicy($formattedParent, $dataPolicy);
      * } finally {
      *     $dataPolicyServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $parent       Required. Resource name of the project that the data policy will belong to. The
+     *                                 format is `projects/{project_number}/locations/{location_id}`.
+     * @param DataPolicy $dataPolicy   Required. The data policy to create. The `name` field does not need to be
+     *                                 provided for the data policy creation.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Resource name of the project that the data policy will belong to. The
-     *           format is `projects/{project_number}/locations/{location_id}`.
-     *     @type DataPolicy $dataPolicy
-     *           Required. The data policy to create. The `name` field does not need to be
-     *           provided for the data policy creation.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -356,19 +358,16 @@ class DataPolicyServiceGapicClient
      *
      * @experimental
      */
-    public function createDataPolicy(array $optionalArgs = [])
-    {
+    public function createDataPolicy(
+        $parent,
+        $dataPolicy,
+        array $optionalArgs = []
+    ) {
         $request = new CreateDataPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['dataPolicy'])) {
-            $request->setDataPolicy($optionalArgs['dataPolicy']);
-        }
-
+        $request->setParent($parent);
+        $request->setDataPolicy($dataPolicy);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -390,18 +389,18 @@ class DataPolicyServiceGapicClient
      * ```
      * $dataPolicyServiceClient = new DataPolicyServiceClient();
      * try {
-     *     $dataPolicyServiceClient->deleteDataPolicy();
+     *     $formattedName = $dataPolicyServiceClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
+     *     $dataPolicyServiceClient->deleteDataPolicy($formattedName);
      * } finally {
      *     $dataPolicyServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name of the data policy to delete. Format is
+     *                             `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Resource name of the data policy to delete. Format is
-     *           `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -412,15 +411,12 @@ class DataPolicyServiceGapicClient
      *
      * @experimental
      */
-    public function deleteDataPolicy(array $optionalArgs = [])
+    public function deleteDataPolicy($name, array $optionalArgs = [])
     {
         $request = new DeleteDataPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -442,18 +438,18 @@ class DataPolicyServiceGapicClient
      * ```
      * $dataPolicyServiceClient = new DataPolicyServiceClient();
      * try {
-     *     $response = $dataPolicyServiceClient->getDataPolicy();
+     *     $formattedName = $dataPolicyServiceClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
+     *     $response = $dataPolicyServiceClient->getDataPolicy($formattedName);
      * } finally {
      *     $dataPolicyServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Resource name of the requested data policy. Format is
+     *                             `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Resource name of the requested data policy. Format is
-     *           `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -466,15 +462,12 @@ class DataPolicyServiceGapicClient
      *
      * @experimental
      */
-    public function getDataPolicy(array $optionalArgs = [])
+    public function getDataPolicy($name, array $optionalArgs = [])
     {
         $request = new GetDataPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -554,8 +547,9 @@ class DataPolicyServiceGapicClient
      * ```
      * $dataPolicyServiceClient = new DataPolicyServiceClient();
      * try {
+     *     $formattedParent = $dataPolicyServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataPolicyServiceClient->listDataPolicies();
+     *     $pagedResponse = $dataPolicyServiceClient->listDataPolicies($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -563,7 +557,7 @@ class DataPolicyServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $dataPolicyServiceClient->listDataPolicies();
+     *     $pagedResponse = $dataPolicyServiceClient->listDataPolicies($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -572,12 +566,11 @@ class DataPolicyServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Resource name of the project for which to list data policies. Format is
+     *                             `projects/{project_number}/locations/{location_id}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Resource name of the project for which to list data policies. Format is
-     *           `projects/{project_number}/locations/{location_id}`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -599,15 +592,12 @@ class DataPolicyServiceGapicClient
      *
      * @experimental
      */
-    public function listDataPolicies(array $optionalArgs = [])
+    public function listDataPolicies($parent, array $optionalArgs = [])
     {
         $request = new ListDataPoliciesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -765,20 +755,20 @@ class DataPolicyServiceGapicClient
      * ```
      * $dataPolicyServiceClient = new DataPolicyServiceClient();
      * try {
-     *     $response = $dataPolicyServiceClient->updateDataPolicy();
+     *     $dataPolicy = new DataPolicy();
+     *     $response = $dataPolicyServiceClient->updateDataPolicy($dataPolicy);
      * } finally {
      *     $dataPolicyServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param DataPolicy $dataPolicy   Required. Update the data policy's metadata.
+     *
+     *                                 The target data policy is determined by the `name` field.
+     *                                 Other fields are updated to the specified values based on the field masks.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type DataPolicy $dataPolicy
-     *           Required. Update the data policy's metadata.
-     *
-     *           The target data policy is determined by the `name` field.
-     *           Other fields are updated to the specified values based on the field masks.
      *     @type FieldMask $updateMask
      *           The update mask applies to the resource. For the `FieldMask` definition,
      *           see
@@ -798,14 +788,12 @@ class DataPolicyServiceGapicClient
      *
      * @experimental
      */
-    public function updateDataPolicy(array $optionalArgs = [])
+    public function updateDataPolicy($dataPolicy, array $optionalArgs = [])
     {
         $request = new UpdateDataPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['dataPolicy'])) {
-            $request->setDataPolicy($optionalArgs['dataPolicy']);
-        }
-
+        $request->setDataPolicy($dataPolicy);
+        $requestParamHeaders['data_policy.name'] = $dataPolicy->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

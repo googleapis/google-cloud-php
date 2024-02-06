@@ -59,7 +59,8 @@ class ListCertificateMapEntriesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The project, location and certificate map from which the
      *                       certificate map entries should be listed, specified in the format
-     *                       `projects/&#42;/locations/&#42;/certificateMaps/*`.
+     *                       `projects/&#42;/locations/&#42;/certificateMaps/*`. Please see
+     *                       {@see CertificateManagerClient::certificateMapName()} for help formatting this field.
      *
      * @return \Google\Cloud\CertificateManager\V1\ListCertificateMapEntriesRequest
      *

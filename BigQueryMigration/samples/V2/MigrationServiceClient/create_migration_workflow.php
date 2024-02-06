@@ -31,19 +31,20 @@ use Google\Cloud\BigQuery\Migration\V2\MigrationWorkflow;
 /**
  * Creates a migration workflow.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The name of the project to which this migration workflow belongs.
+ *                                Example: `projects/foo/locations/bar`
+ *                                Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
  */
-function create_migration_workflow_sample(): void
+function create_migration_workflow_sample(string $formattedParent): void
 {
     // Create a client.
     $migrationServiceClient = new MigrationServiceClient();
 
     // Prepare the request message.
-    $request = new CreateMigrationWorkflowRequest();
+    $migrationWorkflow = new MigrationWorkflow();
+    $request = (new CreateMigrationWorkflowRequest())
+        ->setParent($formattedParent)
+        ->setMigrationWorkflow($migrationWorkflow);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +54,21 @@ function create_migration_workflow_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = MigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    create_migration_workflow_sample($formattedParent);
 }
 // [END bigquerymigration_v2_generated_MigrationService_CreateMigrationWorkflow_sync]

@@ -23,18 +23,18 @@ class MigrationService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-·
-:google/cloud/bigquery/migration/v2/migration_service.proto"google.cloud.bigquery.migration.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto;google/cloud/bigquery/migration/v2/migration_entities.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"µ
-CreateMigrationWorkflowRequest:
-parent (	B*‚A˙A#
-!locations.googleapis.com/LocationW
-migration_workflow (25.google.cloud.bigquery.migration.v2.MigrationWorkflowB‚A"ó
-GetMigrationWorkflowRequestI
-name (	B;‚A˙A4
+‘
+:google/cloud/bigquery/migration/v2/migration_service.proto"google.cloud.bigquery.migration.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto;google/cloud/bigquery/migration/v2/migration_entities.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"≥
+CreateMigrationWorkflowRequest9
+parent (	B)‡A˙A#
+!locations.googleapis.com/LocationV
+migration_workflow (25.google.cloud.bigquery.migration.v2.MigrationWorkflowB‡A"ñ
+GetMigrationWorkflowRequestH
+name (	B:‡A˙A4
 2bigquerymigration.googleapis.com/MigrationWorkflow-
-	read_mask (2.google.protobuf.FieldMask"±
-ListMigrationWorkflowsRequest:
-parent (	B*‚A˙A#
+	read_mask (2.google.protobuf.FieldMask"∞
+ListMigrationWorkflowsRequest9
+parent (	B)‡A˙A#
 !locations.googleapis.com/Location-
 	read_mask (2.google.protobuf.FieldMask
 	page_size (
@@ -42,25 +42,25 @@ class MigrationService
 page_token (	"ç
 ListMigrationWorkflowsResponseR
 migration_workflows (25.google.cloud.bigquery.migration.v2.MigrationWorkflow
-next_page_token (	"k
-DeleteMigrationWorkflowRequestI
-name (	B;‚A˙A4
-2bigquerymigration.googleapis.com/MigrationWorkflow"j
-StartMigrationWorkflowRequestI
-name (	B;‚A˙A4
-2bigquerymigration.googleapis.com/MigrationWorkflow"õ
-GetMigrationSubtaskRequestH
-name (	B:‚A˙A3
-1bigquerymigration.googleapis.com/MigrationSubtask3
-	read_mask (2.google.protobuf.FieldMaskB‚A"È
-ListMigrationSubtasksRequestK
-parent (	B;‚A˙A4
-2bigquerymigration.googleapis.com/MigrationWorkflow3
-	read_mask (2.google.protobuf.FieldMaskB‚A
-	page_size (B‚A
+next_page_token (	"j
+DeleteMigrationWorkflowRequestH
+name (	B:‡A˙A4
+2bigquerymigration.googleapis.com/MigrationWorkflow"i
+StartMigrationWorkflowRequestH
+name (	B:‡A˙A4
+2bigquerymigration.googleapis.com/MigrationWorkflow"ô
+GetMigrationSubtaskRequestG
+name (	B9‡A˙A3
+1bigquerymigration.googleapis.com/MigrationSubtask2
+	read_mask (2.google.protobuf.FieldMaskB‡A"‰
+ListMigrationSubtasksRequestJ
+parent (	B:‡A˙A4
+2bigquerymigration.googleapis.com/MigrationWorkflow2
+	read_mask (2.google.protobuf.FieldMaskB‡A
+	page_size (B‡A
 
-page_token (	B‚A
-filter (	B‚A"ä
+page_token (	B‡A
+filter (	B‡A"ä
 ListMigrationSubtasksResponseP
 migration_subtasks (24.google.cloud.bigquery.migration.v2.MigrationSubtask
 next_page_token (	2À

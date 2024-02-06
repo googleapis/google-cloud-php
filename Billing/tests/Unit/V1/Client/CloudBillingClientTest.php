@@ -96,7 +96,10 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent2);
         $transport->addResponse($expectedResponse);
-        $request = new CreateBillingAccountRequest();
+        // Mock request
+        $billingAccount = new BillingAccount();
+        $request = (new CreateBillingAccountRequest())
+            ->setBillingAccount($billingAccount);
         $response = $gapicClient->createBillingAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -104,6 +107,8 @@ class CloudBillingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/CreateBillingAccount', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBillingAccount();
+        $this->assertProtobufEquals($billingAccount, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -125,7 +130,10 @@ class CloudBillingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateBillingAccountRequest();
+        // Mock request
+        $billingAccount = new BillingAccount();
+        $request = (new CreateBillingAccountRequest())
+            ->setBillingAccount($billingAccount);
         try {
             $gapicClient->createBillingAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -160,7 +168,10 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent);
         $transport->addResponse($expectedResponse);
-        $request = new GetBillingAccountRequest();
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $request = (new GetBillingAccountRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getBillingAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -168,6 +179,8 @@ class CloudBillingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/GetBillingAccount', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -189,7 +202,10 @@ class CloudBillingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetBillingAccountRequest();
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $request = (new GetBillingAccountRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getBillingAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -288,7 +304,10 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setBillingAccountName($billingAccountName);
         $expectedResponse->setBillingEnabled($billingEnabled);
         $transport->addResponse($expectedResponse);
-        $request = new GetProjectBillingInfoRequest();
+        // Mock request
+        $formattedName = $gapicClient->projectName('[PROJECT]');
+        $request = (new GetProjectBillingInfoRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getProjectBillingInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -296,6 +315,8 @@ class CloudBillingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/GetProjectBillingInfo', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -317,7 +338,10 @@ class CloudBillingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetProjectBillingInfoRequest();
+        // Mock request
+        $formattedName = $gapicClient->projectName('[PROJECT]');
+        $request = (new GetProjectBillingInfoRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getProjectBillingInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -413,7 +437,10 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setProjectBillingInfo($projectBillingInfo);
         $transport->addResponse($expectedResponse);
-        $request = new ListProjectBillingInfoRequest();
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $request = (new ListProjectBillingInfoRequest())
+            ->setName($formattedName);
         $response = $gapicClient->listProjectBillingInfo($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -424,6 +451,8 @@ class CloudBillingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/ListProjectBillingInfo', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -445,7 +474,10 @@ class CloudBillingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListProjectBillingInfoRequest();
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $request = (new ListProjectBillingInfoRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->listProjectBillingInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -480,7 +512,12 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent);
         $transport->addResponse($expectedResponse);
-        $request = new MoveBillingAccountRequest();
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $formattedDestinationParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $request = (new MoveBillingAccountRequest())
+            ->setName($formattedName)
+            ->setDestinationParent($formattedDestinationParent);
         $response = $gapicClient->moveBillingAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -488,6 +525,10 @@ class CloudBillingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/MoveBillingAccount', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getDestinationParent();
+        $this->assertProtobufEquals($formattedDestinationParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -509,7 +550,12 @@ class CloudBillingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new MoveBillingAccountRequest();
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $formattedDestinationParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $request = (new MoveBillingAccountRequest())
+            ->setName($formattedName)
+            ->setDestinationParent($formattedDestinationParent);
         try {
             $gapicClient->moveBillingAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -684,7 +730,12 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateBillingAccountRequest();
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $account = new BillingAccount();
+        $request = (new UpdateBillingAccountRequest())
+            ->setName($formattedName)
+            ->setAccount($account);
         $response = $gapicClient->updateBillingAccount($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -692,6 +743,10 @@ class CloudBillingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/UpdateBillingAccount', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getAccount();
+        $this->assertProtobufEquals($account, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -713,7 +768,12 @@ class CloudBillingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateBillingAccountRequest();
+        // Mock request
+        $formattedName = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $account = new BillingAccount();
+        $request = (new UpdateBillingAccountRequest())
+            ->setName($formattedName)
+            ->setAccount($account);
         try {
             $gapicClient->updateBillingAccount($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -746,7 +806,10 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setBillingAccountName($billingAccountName);
         $expectedResponse->setBillingEnabled($billingEnabled);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateProjectBillingInfoRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new UpdateProjectBillingInfoRequest())
+            ->setName($name);
         $response = $gapicClient->updateProjectBillingInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -754,6 +817,8 @@ class CloudBillingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/UpdateProjectBillingInfo', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -775,7 +840,10 @@ class CloudBillingClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateProjectBillingInfoRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new UpdateProjectBillingInfoRequest())
+            ->setName($name);
         try {
             $gapicClient->updateProjectBillingInfo($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -810,7 +878,10 @@ class CloudBillingClientTest extends GeneratedTest
         $expectedResponse->setMasterBillingAccount($masterBillingAccount);
         $expectedResponse->setParent($parent2);
         $transport->addResponse($expectedResponse);
-        $request = new CreateBillingAccountRequest();
+        // Mock request
+        $billingAccount = new BillingAccount();
+        $request = (new CreateBillingAccountRequest())
+            ->setBillingAccount($billingAccount);
         $response = $gapicClient->createBillingAccountAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -818,6 +889,8 @@ class CloudBillingClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudBilling/CreateBillingAccount', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBillingAccount();
+        $this->assertProtobufEquals($billingAccount, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

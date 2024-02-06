@@ -23,28 +23,28 @@ class BudgetService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ç
-9google/cloud/billing/budgets/v1beta1/budget_service.proto$google.cloud.billing.budgets.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/billing/budgets/v1beta1/budget_model.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ò
-CreateBudgetRequest=
-parent (	B-‚A˙A&$billingbudgets.googleapis.com/BudgetB
-budget (2,.google.cloud.billing.budgets.v1beta1.BudgetB‚A"ê
-UpdateBudgetRequestB
-budget (2,.google.cloud.billing.budgets.v1beta1.BudgetB‚A5
-update_mask (2.google.protobuf.FieldMaskB‚A"O
-GetBudgetRequest;
-name (	B-‚A˙A&
-$billingbudgets.googleapis.com/Budget"õ
-ListBudgetsRequest=
-parent (	B-‚A˙A&$billingbudgets.googleapis.com/Budget
-scope (	B‚A
-	page_size (B‚A
+¯
+9google/cloud/billing/budgets/v1beta1/budget_service.proto$google.cloud.billing.budgets.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/billing/budgets/v1beta1/budget_model.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ñ
+CreateBudgetRequest<
+parent (	B,‡A˙A&$billingbudgets.googleapis.com/BudgetA
+budget (2,.google.cloud.billing.budgets.v1beta1.BudgetB‡A"é
+UpdateBudgetRequestA
+budget (2,.google.cloud.billing.budgets.v1beta1.BudgetB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"N
+GetBudgetRequest:
+name (	B,‡A˙A&
+$billingbudgets.googleapis.com/Budget"ó
+ListBudgetsRequest<
+parent (	B,‡A˙A&$billingbudgets.googleapis.com/Budget
+scope (	B‡A
+	page_size (B‡A
 
-page_token (	B‚A"m
+page_token (	B‡A"m
 ListBudgetsResponse=
 budgets (2,.google.cloud.billing.budgets.v1beta1.Budget
-next_page_token (	"R
-DeleteBudgetRequest;
-name (	B-‚A˙A&
+next_page_token (	"Q
+DeleteBudgetRequest:
+name (	B,‡A˙A&
 $billingbudgets.googleapis.com/Budget2˜
 BudgetServiceØ
 CreateBudget9.google.cloud.billing.budgets.v1beta1.CreateBudgetRequest,.google.cloud.billing.budgets.v1beta1.Budget"6Ç”‰ì0"+/v1beta1/{parent=billingAccounts/*}/budgets:*∂

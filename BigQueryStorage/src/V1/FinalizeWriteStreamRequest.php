@@ -25,7 +25,8 @@ class FinalizeWriteStreamRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the stream to finalize, in the form of
-     *                     `projects/{project}/datasets/{dataset}/tables/{table}/streams/{stream}`.
+     *                     `projects/{project}/datasets/{dataset}/tables/{table}/streams/{stream}`. Please see
+     *                     {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Storage\V1\FinalizeWriteStreamRequest
      *

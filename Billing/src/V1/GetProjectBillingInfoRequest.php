@@ -25,7 +25,8 @@ class GetProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the project for which billing information is
-     *                     retrieved. For example, `projects/tokyo-rain-123`.
+     *                     retrieved. For example, `projects/tokyo-rain-123`. Please see
+     *                     {@see CloudBillingClient::projectName()} for help formatting this field.
      *
      * @return \Google\Cloud\Billing\V1\GetProjectBillingInfoRequest
      *

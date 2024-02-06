@@ -31,19 +31,35 @@ use Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange;
 /**
  * Creates a new data exchange.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent         The parent resource path of the data exchange.
+ *                                        e.g. `projects/myproject/locations/US`. Please see
+ *                                        {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
+ * @param string $dataExchangeId          The ID of the data exchange.
+ *                                        Must contain only Unicode letters, numbers (0-9), underscores (_).
+ *                                        Should not use characters that require URL-escaping, or characters
+ *                                        outside of ASCII, spaces.
+ *                                        Max length: 100 bytes.
+ * @param string $dataExchangeDisplayName Human-readable display name of the data exchange. The display name must
+ *                                        contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+ *                                        spaces ( ), ampersands (&) and must not start or end with spaces.
+ *                                        Default value is an empty string.
+ *                                        Max length: 63 bytes.
  */
-function create_data_exchange_sample(): void
-{
+function create_data_exchange_sample(
+    string $formattedParent,
+    string $dataExchangeId,
+    string $dataExchangeDisplayName
+): void {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = new CreateDataExchangeRequest();
+    $dataExchange = (new DataExchange())
+        ->setDisplayName($dataExchangeDisplayName);
+    $request = (new CreateDataExchangeRequest())
+        ->setParent($formattedParent)
+        ->setDataExchangeId($dataExchangeId)
+        ->setDataExchange($dataExchange);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +69,23 @@ function create_data_exchange_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnalyticsHubServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $dataExchangeId = '[DATA_EXCHANGE_ID]';
+    $dataExchangeDisplayName = '[DISPLAY_NAME]';
+
+    create_data_exchange_sample($formattedParent, $dataExchangeId, $dataExchangeDisplayName);
 }
 // [END analyticshub_v1beta1_generated_AnalyticsHubService_CreateDataExchange_sync]

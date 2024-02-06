@@ -38,6 +38,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'backup_id',
+                ],
             ],
             'CreateTable' => [
                 'method' => 'post',
@@ -303,6 +306,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateTable' => [
                 'method' => 'patch',
@@ -315,6 +321,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

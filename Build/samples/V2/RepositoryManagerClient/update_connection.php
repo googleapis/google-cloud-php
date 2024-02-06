@@ -45,7 +45,9 @@ function update_connection_sample(): void
     $repositoryManagerClient = new RepositoryManagerClient();
 
     // Prepare the request message.
-    $request = new UpdateConnectionRequest();
+    $connection = new Connection();
+    $request = (new UpdateConnectionRequest())
+        ->setConnection($connection);
 
     // Call the API and handle any network failures.
     try {

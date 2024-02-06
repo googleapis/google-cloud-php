@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Billing\Budgets\V1\Budget;
+use Google\Cloud\Billing\Budgets\V1\BudgetAmount;
 use Google\Cloud\Billing\Budgets\V1\Client\BudgetServiceClient;
 use Google\Cloud\Billing\Budgets\V1\CreateBudgetRequest;
 use Google\Cloud\Billing\Budgets\V1\DeleteBudgetRequest;
@@ -83,7 +84,14 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new CreateBudgetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $budget = new Budget();
+        $budgetAmount = new BudgetAmount();
+        $budget->setAmount($budgetAmount);
+        $request = (new CreateBudgetRequest())
+            ->setParent($formattedParent)
+            ->setBudget($budget);
         $response = $gapicClient->createBudget($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -91,6 +99,10 @@ class BudgetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.budgets.v1.BudgetService/CreateBudget', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getBudget();
+        $this->assertProtobufEquals($budget, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -112,7 +124,14 @@ class BudgetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateBudgetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $budget = new Budget();
+        $budgetAmount = new BudgetAmount();
+        $budget->setAmount($budgetAmount);
+        $request = (new CreateBudgetRequest())
+            ->setParent($formattedParent)
+            ->setBudget($budget);
         try {
             $gapicClient->createBudget($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -137,13 +156,18 @@ class BudgetServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteBudgetRequest();
+        // Mock request
+        $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+        $request = (new DeleteBudgetRequest())
+            ->setName($formattedName);
         $gapicClient->deleteBudget($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.budgets.v1.BudgetService/DeleteBudget', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -165,7 +189,10 @@ class BudgetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteBudgetRequest();
+        // Mock request
+        $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+        $request = (new DeleteBudgetRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteBudget($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -196,7 +223,10 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new GetBudgetRequest();
+        // Mock request
+        $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+        $request = (new GetBudgetRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getBudget($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -204,6 +234,8 @@ class BudgetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.budgets.v1.BudgetService/GetBudget', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -225,7 +257,10 @@ class BudgetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetBudgetRequest();
+        // Mock request
+        $formattedName = $gapicClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+        $request = (new GetBudgetRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getBudget($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -257,7 +292,10 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBudgets($budgets);
         $transport->addResponse($expectedResponse);
-        $request = new ListBudgetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $request = (new ListBudgetsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listBudgets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -268,6 +306,8 @@ class BudgetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.budgets.v1.BudgetService/ListBudgets', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -289,7 +329,10 @@ class BudgetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListBudgetsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $request = (new ListBudgetsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listBudgets($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -320,7 +363,12 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateBudgetRequest();
+        // Mock request
+        $budget = new Budget();
+        $budgetAmount = new BudgetAmount();
+        $budget->setAmount($budgetAmount);
+        $request = (new UpdateBudgetRequest())
+            ->setBudget($budget);
         $response = $gapicClient->updateBudget($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -328,6 +376,8 @@ class BudgetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.budgets.v1.BudgetService/UpdateBudget', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBudget();
+        $this->assertProtobufEquals($budget, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -349,7 +399,12 @@ class BudgetServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateBudgetRequest();
+        // Mock request
+        $budget = new Budget();
+        $budgetAmount = new BudgetAmount();
+        $budget->setAmount($budgetAmount);
+        $request = (new UpdateBudgetRequest())
+            ->setBudget($budget);
         try {
             $gapicClient->updateBudget($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -380,7 +435,14 @@ class BudgetServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
-        $request = new CreateBudgetRequest();
+        // Mock request
+        $formattedParent = $gapicClient->billingAccountName('[BILLING_ACCOUNT]');
+        $budget = new Budget();
+        $budgetAmount = new BudgetAmount();
+        $budget->setAmount($budgetAmount);
+        $request = (new CreateBudgetRequest())
+            ->setParent($formattedParent)
+            ->setBudget($budget);
         $response = $gapicClient->createBudgetAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -388,6 +450,10 @@ class BudgetServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.budgets.v1.BudgetService/CreateBudget', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getBudget();
+        $this->assertProtobufEquals($budget, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

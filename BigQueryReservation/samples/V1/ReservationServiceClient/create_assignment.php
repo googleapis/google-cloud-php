@@ -65,19 +65,18 @@ use Google\Cloud\BigQuery\Reservation\V1\CreateAssignmentRequest;
  * Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment
  * does not match location of the reservation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent resource name of the assignment
+ *                                E.g. `projects/myproject/locations/US/reservations/team1-prod`
+ *                                Please see {@see ReservationServiceClient::reservationName()} for help formatting this field.
  */
-function create_assignment_sample(): void
+function create_assignment_sample(string $formattedParent): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = new CreateAssignmentRequest();
+    $request = (new CreateAssignmentRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -87,5 +86,25 @@ function create_assignment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ReservationServiceClient::reservationName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[RESERVATION]'
+    );
+
+    create_assignment_sample($formattedParent);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_CreateAssignment_sync]

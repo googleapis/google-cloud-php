@@ -32,19 +32,18 @@ use Google\Cloud\BigQuery\DataExchange\V1beta1\Listing;
 /**
  * Lists all listings in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent resource path of the listing.
+ *                                e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+ *                                {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
  */
-function list_listings_sample(): void
+function list_listings_sample(string $formattedParent): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = new ListListingsRequest();
+    $request = (new ListListingsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,25 @@ function list_listings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnalyticsHubServiceClient::dataExchangeName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DATA_EXCHANGE]'
+    );
+
+    list_listings_sample($formattedParent);
 }
 // [END analyticshub_v1beta1_generated_AnalyticsHubService_ListListings_sync]

@@ -53,7 +53,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $budgetServiceClient = new BudgetServiceClient();
  * try {
- *     $response = $budgetServiceClient->createBudget();
+ *     $formattedParent = $budgetServiceClient->billingAccountName('[BILLING_ACCOUNT]');
+ *     $budget = new Budget();
+ *     $response = $budgetServiceClient->createBudget($formattedParent, $budget);
  * } finally {
  *     $budgetServiceClient->close();
  * }
@@ -293,20 +295,20 @@ class BudgetServiceGapicClient
      * ```
      * $budgetServiceClient = new BudgetServiceClient();
      * try {
-     *     $response = $budgetServiceClient->createBudget();
+     *     $formattedParent = $budgetServiceClient->billingAccountName('[BILLING_ACCOUNT]');
+     *     $budget = new Budget();
+     *     $response = $budgetServiceClient->createBudget($formattedParent, $budget);
      * } finally {
      *     $budgetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the billing account to create the budget in. Values
+     *                             are of the form `billingAccounts/{billingAccountId}`.
+     * @param Budget $budget       Required. Budget to create.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the billing account to create the budget in. Values
-     *           are of the form `billingAccounts/{billingAccountId}`.
-     *     @type Budget $budget
-     *           Required. Budget to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -317,19 +319,13 @@ class BudgetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBudget(array $optionalArgs = [])
+    public function createBudget($parent, $budget, array $optionalArgs = [])
     {
         $request = new CreateBudgetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['budget'])) {
-            $request->setBudget($optionalArgs['budget']);
-        }
-
+        $request->setParent($parent);
+        $request->setBudget($budget);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateBudget', Budget::class, $optionalArgs, $request)->wait();
@@ -342,18 +338,18 @@ class BudgetServiceGapicClient
      * ```
      * $budgetServiceClient = new BudgetServiceClient();
      * try {
-     *     $budgetServiceClient->deleteBudget();
+     *     $formattedName = $budgetServiceClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+     *     $budgetServiceClient->deleteBudget($formattedName);
      * } finally {
      *     $budgetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the budget to delete. Values are of the form
+     *                             `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the budget to delete. Values are of the form
-     *           `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -362,15 +358,12 @@ class BudgetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBudget(array $optionalArgs = [])
+    public function deleteBudget($name, array $optionalArgs = [])
     {
         $request = new DeleteBudgetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteBudget', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -388,18 +381,18 @@ class BudgetServiceGapicClient
      * ```
      * $budgetServiceClient = new BudgetServiceClient();
      * try {
-     *     $response = $budgetServiceClient->getBudget();
+     *     $formattedName = $budgetServiceClient->budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+     *     $response = $budgetServiceClient->getBudget($formattedName);
      * } finally {
      *     $budgetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of budget to get. Values are of the form
+     *                             `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of budget to get. Values are of the form
-     *           `billingAccounts/{billingAccountId}/budgets/{budgetId}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -410,15 +403,12 @@ class BudgetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBudget(array $optionalArgs = [])
+    public function getBudget($name, array $optionalArgs = [])
     {
         $request = new GetBudgetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetBudget', Budget::class, $optionalArgs, $request)->wait();
@@ -436,8 +426,9 @@ class BudgetServiceGapicClient
      * ```
      * $budgetServiceClient = new BudgetServiceClient();
      * try {
+     *     $formattedParent = $budgetServiceClient->billingAccountName('[BILLING_ACCOUNT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $budgetServiceClient->listBudgets();
+     *     $pagedResponse = $budgetServiceClient->listBudgets($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -445,7 +436,7 @@ class BudgetServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $budgetServiceClient->listBudgets();
+     *     $pagedResponse = $budgetServiceClient->listBudgets($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -454,12 +445,11 @@ class BudgetServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Name of billing account to list budgets under. Values
+     *                             are of the form `billingAccounts/{billingAccountId}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Name of billing account to list budgets under. Values
-     *           are of the form `billingAccounts/{billingAccountId}`.
      *     @type string $scope
      *           Optional. Set the scope of the budgets to be returned, in the format of the
      *           resource name. The scope of a budget is the cost that it tracks, such as
@@ -486,15 +476,12 @@ class BudgetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBudgets(array $optionalArgs = [])
+    public function listBudgets($parent, array $optionalArgs = [])
     {
         $request = new ListBudgetsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['scope'])) {
             $request->setScope($optionalArgs['scope']);
         }
@@ -523,18 +510,18 @@ class BudgetServiceGapicClient
      * ```
      * $budgetServiceClient = new BudgetServiceClient();
      * try {
-     *     $response = $budgetServiceClient->updateBudget();
+     *     $budget = new Budget();
+     *     $response = $budgetServiceClient->updateBudget($budget);
      * } finally {
      *     $budgetServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Budget $budget       Required. The updated budget object.
+     *                             The budget to update is specified by the budget name in the budget.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type Budget $budget
-     *           Required. The updated budget object.
-     *           The budget to update is specified by the budget name in the budget.
      *     @type FieldMask $updateMask
      *           Optional. Indicates which fields in the provided budget to update.
      *           Read-only fields (such as `name`) cannot be changed. If this is not
@@ -552,14 +539,12 @@ class BudgetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBudget(array $optionalArgs = [])
+    public function updateBudget($budget, array $optionalArgs = [])
     {
         $request = new UpdateBudgetRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['budget'])) {
-            $request->setBudget($optionalArgs['budget']);
-        }
-
+        $request->setBudget($budget);
+        $requestParamHeaders['budget.name'] = $budget->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }

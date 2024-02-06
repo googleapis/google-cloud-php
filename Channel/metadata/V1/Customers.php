@@ -21,31 +21,31 @@ class Customers
         \GPBMetadata\Google\Type\PostalAddress::initOnce();
         $pool->internalAddGeneratedFile(
             '
-·
-\'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"ø
-Customer
-name (	BâA
-org_display_name (	BâA<
-org_postal_address (2.google.type.PostalAddressBâAB
+«
+\'google/cloud/channel/v1/customers.protogoogle.cloud.channel.v1google/api/resource.proto$google/cloud/channel/v1/common.protogoogle/protobuf/timestamp.proto google/type/postal_address.proto"î
+Customer
+name (	BàA
+org_display_name (	BàA;
+org_postal_address (2.google.type.PostalAddressBàAB
 primary_contact_info (2$.google.cloud.channel.v1.ContactInfo
-alternate_email (	
-domain (	BâA5
-create_time (2.google.protobuf.TimestampBâA5
-update_time (2.google.protobuf.TimestampBâA
-cloud_identity_id	 (	BâA
+alternate_email (	
+domain (	BàA4
+create_time (2.google.protobuf.TimestampBàA4
+update_time (2.google.protobuf.TimestampBàA
+cloud_identity_id	 (	BàA
 language_code
- (	BâAM
-cloud_identity_info (2*.google.cloud.channel.v1.CloudIdentityInfoBâA
-channel_partner_id (	
-correlation_id (	BâA:RêAO
-$cloudchannel.googleapis.com/Customer\'accounts/{account}/customers/{customer}"ƒ
+ (	BàAL
+cloud_identity_info (2*.google.cloud.channel.v1.CloudIdentityInfoBàA
+channel_partner_id (	
+correlation_id (	BàA:RêAO
+$cloudchannel.googleapis.com/Customer\'accounts/{account}/customers/{customer}"
 ContactInfo
 
 first_name (	
-	last_name (	
-display_name (	BâA
-email (	
-title (	BâA
+	last_name (	
+display_name (	BàA
+email (	
+title (	BàA
 phone (	Bf
 com.google.cloud.channel.v1BCustomersProtoPZ5cloud.google.com/go/channel/apiv1/channelpb;channelpbbproto3'
         , true);

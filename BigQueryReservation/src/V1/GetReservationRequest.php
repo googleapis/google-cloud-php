@@ -27,6 +27,7 @@ class GetReservationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the reservation to retrieve. E.g.,
      *                     `projects/myproject/locations/US/reservations/team1-prod`
+     *                     Please see {@see ReservationServiceClient::reservationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest
      *

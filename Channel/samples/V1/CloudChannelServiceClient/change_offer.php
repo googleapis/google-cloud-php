@@ -53,19 +53,22 @@ use Google\Rpc\Status;
  * CloudChannelOperationsService. The Operation metadata will contain an
  * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name           The resource name of the entitlement to update.
+ *                               Name uses the format:
+ *                               accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+ * @param string $formattedOffer New Offer.
+ *                               Format: accounts/{account_id}/offers/{offer_id}. Please see
+ *                               {@see CloudChannelServiceClient::offerName()} for help formatting this field.
  */
-function change_offer_sample(): void
+function change_offer_sample(string $name, string $formattedOffer): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new ChangeOfferRequest();
+    $request = (new ChangeOfferRequest())
+        ->setName($name)
+        ->setOffer($formattedOffer);
 
     // Call the API and handle any network failures.
     try {
@@ -85,5 +88,22 @@ function change_offer_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+    $formattedOffer = CloudChannelServiceClient::offerName('[ACCOUNT]', '[OFFER]');
+
+    change_offer_sample($name, $formattedOffer);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ChangeOffer_sync]

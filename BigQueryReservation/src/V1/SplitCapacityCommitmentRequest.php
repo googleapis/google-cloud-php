@@ -33,6 +33,7 @@ class SplitCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name      Required. The resource name e.g.,:
      *                          `projects/myproject/locations/US/capacityCommitments/123`
+     *                          Please see {@see ReservationServiceClient::capacityCommitmentName()} for help formatting this field.
      * @param int    $slotCount Number of slots in the capacity commitment after the split.
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest

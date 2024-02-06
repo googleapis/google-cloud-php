@@ -33,19 +33,30 @@ use Google\Rpc\Status;
 /**
  * Creates a new DnsAuthorization in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent        The parent resource of the dns authorization. Must be in the
+ *                                       format `projects/&#42;/locations/*`. Please see
+ *                                       {@see CertificateManagerClient::locationName()} for help formatting this field.
+ * @param string $dnsAuthorizationId     A user-provided name of the dns authorization.
+ * @param string $dnsAuthorizationDomain Immutable. A domain that is being authorized. A DnsAuthorization
+ *                                       resource covers a single domain and its wildcard, e.g. authorization for
+ *                                       `example.com` can be used to issue certificates for `example.com` and
+ *                                       `*.example.com`.
  */
-function create_dns_authorization_sample(): void
-{
+function create_dns_authorization_sample(
+    string $formattedParent,
+    string $dnsAuthorizationId,
+    string $dnsAuthorizationDomain
+): void {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = new CreateDnsAuthorizationRequest();
+    $dnsAuthorization = (new DnsAuthorization())
+        ->setDomain($dnsAuthorizationDomain);
+    $request = (new CreateDnsAuthorizationRequest())
+        ->setParent($formattedParent)
+        ->setDnsAuthorizationId($dnsAuthorizationId)
+        ->setDnsAuthorization($dnsAuthorization);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +76,23 @@ function create_dns_authorization_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CertificateManagerClient::locationName('[PROJECT]', '[LOCATION]');
+    $dnsAuthorizationId = '[DNS_AUTHORIZATION_ID]';
+    $dnsAuthorizationDomain = '[DOMAIN]';
+
+    create_dns_authorization_sample($formattedParent, $dnsAuthorizationId, $dnsAuthorizationDomain);
 }
 // [END certificatemanager_v1_generated_CertificateManager_CreateDnsAuthorization_sync]

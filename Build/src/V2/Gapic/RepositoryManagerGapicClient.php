@@ -76,7 +76,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $repositoryManagerClient = new RepositoryManagerClient();
  * try {
- *     $operationResponse = $repositoryManagerClient->batchCreateRepositories();
+ *     $formattedParent = $repositoryManagerClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+ *     $requests = [];
+ *     $operationResponse = $repositoryManagerClient->batchCreateRepositories($formattedParent, $requests);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -87,7 +89,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $repositoryManagerClient->batchCreateRepositories();
+ *     $operationResponse = $repositoryManagerClient->batchCreateRepositories($formattedParent, $requests);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $repositoryManagerClient->resumeOperation($operationName, 'batchCreateRepositories');
@@ -474,7 +476,9 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $operationResponse = $repositoryManagerClient->batchCreateRepositories();
+     *     $formattedParent = $repositoryManagerClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $requests = [];
+     *     $operationResponse = $repositoryManagerClient->batchCreateRepositories($formattedParent, $requests);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -485,7 +489,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $repositoryManagerClient->batchCreateRepositories();
+     *     $operationResponse = $repositoryManagerClient->batchCreateRepositories($formattedParent, $requests);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $repositoryManagerClient->resumeOperation($operationName, 'batchCreateRepositories');
@@ -505,16 +509,14 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                    $parent       Required. The connection to contain all the repositories being created.
+     *                                                Format: projects/&#42;/locations/&#42;/connections/*
+     *                                                The parent field in the CreateRepositoryRequest messages
+     *                                                must either be empty or match this field.
+     * @param CreateRepositoryRequest[] $requests     Required. The request messages specifying the repositories to create.
+     * @param array                     $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The connection to contain all the repositories being created.
-     *           Format: projects/&#42;/locations/&#42;/connections/*
-     *           The parent field in the CreateRepositoryRequest messages
-     *           must either be empty or match this field.
-     *     @type CreateRepositoryRequest[] $requests
-     *           Required. The request messages specifying the repositories to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -525,19 +527,13 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateRepositories(array $optionalArgs = [])
+    public function batchCreateRepositories($parent, $requests, array $optionalArgs = [])
     {
         $request = new BatchCreateRepositoriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['requests'])) {
-            $request->setRequests($optionalArgs['requests']);
-        }
-
+        $request->setParent($parent);
+        $request->setRequests($requests);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('BatchCreateRepositories', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -550,7 +546,10 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $operationResponse = $repositoryManagerClient->createConnection();
+     *     $formattedParent = $repositoryManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $connection = new Connection();
+     *     $connectionId = 'connection_id';
+     *     $operationResponse = $repositoryManagerClient->createConnection($formattedParent, $connection, $connectionId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -561,7 +560,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $repositoryManagerClient->createConnection();
+     *     $operationResponse = $repositoryManagerClient->createConnection($formattedParent, $connection, $connectionId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $repositoryManagerClient->resumeOperation($operationName, 'createConnection');
@@ -581,19 +580,16 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $parent       Required. Project and location where the connection will be created.
+     *                                 Format: `projects/&#42;/locations/*`.
+     * @param Connection $connection   Required. The Connection to create.
+     * @param string     $connectionId Required. The ID to use for the Connection, which will become the final
+     *                                 component of the Connection's resource name. Names must be unique
+     *                                 per-project per-location. Allows alphanumeric characters and any of
+     *                                 -._~%!$&'()*+,;=&#64;.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Project and location where the connection will be created.
-     *           Format: `projects/&#42;/locations/*`.
-     *     @type Connection $connection
-     *           Required. The Connection to create.
-     *     @type string $connectionId
-     *           Required. The ID to use for the Connection, which will become the final
-     *           component of the Connection's resource name. Names must be unique
-     *           per-project per-location. Allows alphanumeric characters and any of
-     *           -._~%!$&'()*+,;=&#64;.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -604,23 +600,14 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConnection(array $optionalArgs = [])
+    public function createConnection($parent, $connection, $connectionId, array $optionalArgs = [])
     {
         $request = new CreateConnectionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['connection'])) {
-            $request->setConnection($optionalArgs['connection']);
-        }
-
-        if (isset($optionalArgs['connectionId'])) {
-            $request->setConnectionId($optionalArgs['connectionId']);
-        }
-
+        $request->setParent($parent);
+        $request->setConnection($connection);
+        $request->setConnectionId($connectionId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateConnection', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -633,7 +620,10 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $operationResponse = $repositoryManagerClient->createRepository();
+     *     $formattedParent = $repositoryManagerClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $repository = new Repository();
+     *     $repositoryId = 'repository_id';
+     *     $operationResponse = $repositoryManagerClient->createRepository($formattedParent, $repository, $repositoryId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -644,7 +634,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $repositoryManagerClient->createRepository();
+     *     $operationResponse = $repositoryManagerClient->createRepository($formattedParent, $repository, $repositoryId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $repositoryManagerClient->resumeOperation($operationName, 'createRepository');
@@ -664,20 +654,17 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $parent       Required. The connection to contain the repository. If the request is part
+     *                                 of a BatchCreateRepositoriesRequest, this field should be empty or match
+     *                                 the parent specified there.
+     * @param Repository $repository   Required. The repository to create.
+     * @param string     $repositoryId Required. The ID to use for the repository, which will become the final
+     *                                 component of the repository's resource name. This ID should be unique in
+     *                                 the connection. Allows alphanumeric characters and any of
+     *                                 -._~%!$&'()*+,;=&#64;.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The connection to contain the repository. If the request is part
-     *           of a BatchCreateRepositoriesRequest, this field should be empty or match
-     *           the parent specified there.
-     *     @type Repository $repository
-     *           Required. The repository to create.
-     *     @type string $repositoryId
-     *           Required. The ID to use for the repository, which will become the final
-     *           component of the repository's resource name. This ID should be unique in
-     *           the connection. Allows alphanumeric characters and any of
-     *           -._~%!$&'()*+,;=&#64;.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -688,23 +675,14 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createRepository(array $optionalArgs = [])
+    public function createRepository($parent, $repository, $repositoryId, array $optionalArgs = [])
     {
         $request = new CreateRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['repository'])) {
-            $request->setRepository($optionalArgs['repository']);
-        }
-
-        if (isset($optionalArgs['repositoryId'])) {
-            $request->setRepositoryId($optionalArgs['repositoryId']);
-        }
-
+        $request->setParent($parent);
+        $request->setRepository($repository);
+        $request->setRepositoryId($repositoryId);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateRepository', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -717,7 +695,8 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $operationResponse = $repositoryManagerClient->deleteConnection();
+     *     $formattedName = $repositoryManagerClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $operationResponse = $repositoryManagerClient->deleteConnection($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -727,7 +706,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $repositoryManagerClient->deleteConnection();
+     *     $operationResponse = $repositoryManagerClient->deleteConnection($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $repositoryManagerClient->resumeOperation($operationName, 'deleteConnection');
@@ -746,12 +725,11 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Connection to delete.
+     *                             Format: `projects/&#42;/locations/&#42;/connections/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Connection to delete.
-     *           Format: `projects/&#42;/locations/&#42;/connections/*`.
      *     @type string $etag
      *           The current etag of the connection.
      *           If an etag is provided and does not match the current etag of the
@@ -768,15 +746,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteConnection(array $optionalArgs = [])
+    public function deleteConnection($name, array $optionalArgs = [])
     {
         $request = new DeleteConnectionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -797,7 +772,8 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $operationResponse = $repositoryManagerClient->deleteRepository();
+     *     $formattedName = $repositoryManagerClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+     *     $operationResponse = $repositoryManagerClient->deleteRepository($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -807,7 +783,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $repositoryManagerClient->deleteRepository();
+     *     $operationResponse = $repositoryManagerClient->deleteRepository($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $repositoryManagerClient->resumeOperation($operationName, 'deleteRepository');
@@ -826,12 +802,11 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Repository to delete.
+     *                             Format: `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Repository to delete.
-     *           Format: `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
      *     @type string $etag
      *           The current etag of the repository.
      *           If an etag is provided and does not match the current etag of the
@@ -848,15 +823,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteRepository(array $optionalArgs = [])
+    public function deleteRepository($name, array $optionalArgs = [])
     {
         $request = new DeleteRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
         }
@@ -877,18 +849,18 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $response = $repositoryManagerClient->fetchGitRefs();
+     *     $formattedRepository = $repositoryManagerClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+     *     $response = $repositoryManagerClient->fetchGitRefs($formattedRepository);
      * } finally {
      *     $repositoryManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $repository   Required. The resource name of the repository in the format
+     *                             `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $repository
-     *           Required. The resource name of the repository in the format
-     *           `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
      *     @type int $refType
      *           Type of refs to fetch
      *           For allowed values, use constants defined on {@see \Google\Cloud\Build\V2\FetchGitRefsRequest\RefType}
@@ -902,15 +874,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function fetchGitRefs(array $optionalArgs = [])
+    public function fetchGitRefs($repository, array $optionalArgs = [])
     {
         $request = new FetchGitRefsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['repository'])) {
-            $request->setRepository($optionalArgs['repository']);
-            $requestParamHeaders['repository'] = $optionalArgs['repository'];
-        }
-
+        $request->setRepository($repository);
+        $requestParamHeaders['repository'] = $repository;
         if (isset($optionalArgs['refType'])) {
             $request->setRefType($optionalArgs['refType']);
         }
@@ -928,8 +897,9 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
+     *     $formattedConnection = $repositoryManagerClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $repositoryManagerClient->fetchLinkableRepositories();
+     *     $pagedResponse = $repositoryManagerClient->fetchLinkableRepositories($formattedConnection);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -937,7 +907,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $repositoryManagerClient->fetchLinkableRepositories();
+     *     $pagedResponse = $repositoryManagerClient->fetchLinkableRepositories($formattedConnection);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -946,12 +916,11 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $connection   Required. The name of the Connection.
+     *                             Format: `projects/&#42;/locations/&#42;/connections/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $connection
-     *           Required. The name of the Connection.
-     *           Format: `projects/&#42;/locations/&#42;/connections/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -971,15 +940,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function fetchLinkableRepositories(array $optionalArgs = [])
+    public function fetchLinkableRepositories($connection, array $optionalArgs = [])
     {
         $request = new FetchLinkableRepositoriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['connection'])) {
-            $request->setConnection($optionalArgs['connection']);
-            $requestParamHeaders['connection'] = $optionalArgs['connection'];
-        }
-
+        $request->setConnection($connection);
+        $requestParamHeaders['connection'] = $connection;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1000,18 +966,18 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $response = $repositoryManagerClient->fetchReadToken();
+     *     $formattedRepository = $repositoryManagerClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+     *     $response = $repositoryManagerClient->fetchReadToken($formattedRepository);
      * } finally {
      *     $repositoryManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $repository   Required. The resource name of the repository in the format
+     *                             `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $repository
-     *           Required. The resource name of the repository in the format
-     *           `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1022,15 +988,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function fetchReadToken(array $optionalArgs = [])
+    public function fetchReadToken($repository, array $optionalArgs = [])
     {
         $request = new FetchReadTokenRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['repository'])) {
-            $request->setRepository($optionalArgs['repository']);
-            $requestParamHeaders['repository'] = $optionalArgs['repository'];
-        }
-
+        $request->setRepository($repository);
+        $requestParamHeaders['repository'] = $repository;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('FetchReadToken', FetchReadTokenResponse::class, $optionalArgs, $request)->wait();
@@ -1043,18 +1006,18 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $response = $repositoryManagerClient->fetchReadWriteToken();
+     *     $formattedRepository = $repositoryManagerClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+     *     $response = $repositoryManagerClient->fetchReadWriteToken($formattedRepository);
      * } finally {
      *     $repositoryManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $repository   Required. The resource name of the repository in the format
+     *                             `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $repository
-     *           Required. The resource name of the repository in the format
-     *           `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1065,15 +1028,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function fetchReadWriteToken(array $optionalArgs = [])
+    public function fetchReadWriteToken($repository, array $optionalArgs = [])
     {
         $request = new FetchReadWriteTokenRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['repository'])) {
-            $request->setRepository($optionalArgs['repository']);
-            $requestParamHeaders['repository'] = $optionalArgs['repository'];
-        }
-
+        $request->setRepository($repository);
+        $requestParamHeaders['repository'] = $repository;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('FetchReadWriteToken', FetchReadWriteTokenResponse::class, $optionalArgs, $request)->wait();
@@ -1086,18 +1046,18 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $response = $repositoryManagerClient->getConnection();
+     *     $formattedName = $repositoryManagerClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $response = $repositoryManagerClient->getConnection($formattedName);
      * } finally {
      *     $repositoryManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Connection to retrieve.
+     *                             Format: `projects/&#42;/locations/&#42;/connections/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Connection to retrieve.
-     *           Format: `projects/&#42;/locations/&#42;/connections/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1108,15 +1068,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConnection(array $optionalArgs = [])
+    public function getConnection($name, array $optionalArgs = [])
     {
         $request = new GetConnectionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetConnection', Connection::class, $optionalArgs, $request)->wait();
@@ -1129,18 +1086,18 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $response = $repositoryManagerClient->getRepository();
+     *     $formattedName = $repositoryManagerClient->repositoryName('[PROJECT]', '[LOCATION]', '[CONNECTION]', '[REPOSITORY]');
+     *     $response = $repositoryManagerClient->getRepository($formattedName);
      * } finally {
      *     $repositoryManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the Repository to retrieve.
+     *                             Format: `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the Repository to retrieve.
-     *           Format: `projects/&#42;/locations/&#42;/connections/&#42;/repositories/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1151,15 +1108,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getRepository(array $optionalArgs = [])
+    public function getRepository($name, array $optionalArgs = [])
     {
         $request = new GetRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRepository', Repository::class, $optionalArgs, $request)->wait();
@@ -1172,8 +1126,9 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
+     *     $formattedParent = $repositoryManagerClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $repositoryManagerClient->listConnections();
+     *     $pagedResponse = $repositoryManagerClient->listConnections($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1181,7 +1136,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $repositoryManagerClient->listConnections();
+     *     $pagedResponse = $repositoryManagerClient->listConnections($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1190,12 +1145,11 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent, which owns this collection of Connections.
+     *                             Format: `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent, which owns this collection of Connections.
-     *           Format: `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1215,15 +1169,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConnections(array $optionalArgs = [])
+    public function listConnections($parent, array $optionalArgs = [])
     {
         $request = new ListConnectionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1244,8 +1195,9 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
+     *     $formattedParent = $repositoryManagerClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $repositoryManagerClient->listRepositories();
+     *     $pagedResponse = $repositoryManagerClient->listRepositories($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1253,7 +1205,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $repositoryManagerClient->listRepositories();
+     *     $pagedResponse = $repositoryManagerClient->listRepositories($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1262,12 +1214,11 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The parent, which owns this collection of Repositories.
+     *                             Format: `projects/&#42;/locations/&#42;/connections/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent, which owns this collection of Repositories.
-     *           Format: `projects/&#42;/locations/&#42;/connections/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1292,15 +1243,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listRepositories(array $optionalArgs = [])
+    public function listRepositories($parent, array $optionalArgs = [])
     {
         $request = new ListRepositoriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1325,7 +1273,8 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $operationResponse = $repositoryManagerClient->updateConnection();
+     *     $connection = new Connection();
+     *     $operationResponse = $repositoryManagerClient->updateConnection($connection);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1336,7 +1285,7 @@ class RepositoryManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $repositoryManagerClient->updateConnection();
+     *     $operationResponse = $repositoryManagerClient->updateConnection($connection);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $repositoryManagerClient->resumeOperation($operationName, 'updateConnection');
@@ -1356,11 +1305,10 @@ class RepositoryManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Connection $connection   Required. The Connection to update.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type Connection $connection
-     *           Required. The Connection to update.
      *     @type FieldMask $updateMask
      *           The list of fields to be updated.
      *     @type bool $allowMissing
@@ -1383,14 +1331,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateConnection(array $optionalArgs = [])
+    public function updateConnection($connection, array $optionalArgs = [])
     {
         $request = new UpdateConnectionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['connection'])) {
-            $request->setConnection($optionalArgs['connection']);
-        }
-
+        $request->setConnection($connection);
+        $requestParamHeaders['connection.name'] = $connection->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1416,18 +1362,18 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $response = $repositoryManagerClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $repositoryManagerClient->getIamPolicy($resource);
      * } finally {
      *     $repositoryManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -1441,15 +1387,12 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -1470,23 +1413,23 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $response = $repositoryManagerClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $repositoryManagerClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $repositoryManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -1503,19 +1446,13 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1538,23 +1475,23 @@ class RepositoryManagerGapicClient
      * ```
      * $repositoryManagerClient = new RepositoryManagerClient();
      * try {
-     *     $response = $repositoryManagerClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $repositoryManagerClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $repositoryManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1565,19 +1502,13 @@ class RepositoryManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

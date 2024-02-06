@@ -31,19 +31,18 @@ use Google\Cloud\BigQuery\Storage\V1\WriteStream;
 /**
  * Gets information about a write stream.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of the stream to get, in the form of
+ *                              `projects/{project}/datasets/{dataset}/tables/{table}/streams/{stream}`. Please see
+ *                              {@see BigQueryWriteClient::writeStreamName()} for help formatting this field.
  */
-function get_write_stream_sample(): void
+function get_write_stream_sample(string $formattedName): void
 {
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
     // Prepare the request message.
-    $request = new GetWriteStreamRequest();
+    $request = (new GetWriteStreamRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,26 @@ function get_write_stream_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BigQueryWriteClient::writeStreamName(
+        '[PROJECT]',
+        '[DATASET]',
+        '[TABLE]',
+        '[STREAM]'
+    );
+
+    get_write_stream_sample($formattedName);
 }
 // [END bigquerystorage_v1_generated_BigQueryWrite_GetWriteStream_sync]

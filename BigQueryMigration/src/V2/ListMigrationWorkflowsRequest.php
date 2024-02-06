@@ -48,6 +48,7 @@ class ListMigrationWorkflowsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The project and location of the migration workflows to list.
      *                       Example: `projects/123/locations/us`
+     *                       Please see {@see MigrationServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Migration\V2\ListMigrationWorkflowsRequest
      *

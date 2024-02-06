@@ -52,7 +52,8 @@ class SearchAllAssignmentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The resource name with location (project name could be the
      *                       wildcard '-'), e.g.:
-     *                       `projects/-/locations/US`.
+     *                       `projects/-/locations/US`. Please see
+     *                       {@see ReservationServiceClient::locationName()} for help formatting this field.
      * @param string $query  Please specify resource name as assignee in the query.
      *
      *                       Examples:

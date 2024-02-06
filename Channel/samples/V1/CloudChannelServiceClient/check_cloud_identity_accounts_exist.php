@@ -49,19 +49,19 @@ use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
  * [CloudIdentityCustomerAccount][google.cloud.channel.v1.CloudIdentityCustomerAccount]
  * resources match the domain.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $parent The reseller account's resource name.
+ *                       Parent uses the format: accounts/{account_id}
+ * @param string $domain Domain to fetch for Cloud Identity account customer.
  */
-function check_cloud_identity_accounts_exist_sample(): void
+function check_cloud_identity_accounts_exist_sample(string $parent, string $domain): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new CheckCloudIdentityAccountsExistRequest();
+    $request = (new CheckCloudIdentityAccountsExistRequest())
+        ->setParent($parent)
+        ->setDomain($domain);
 
     // Call the API and handle any network failures.
     try {
@@ -71,5 +71,22 @@ function check_cloud_identity_accounts_exist_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $parent = '[PARENT]';
+    $domain = '[DOMAIN]';
+
+    check_cloud_identity_accounts_exist_sample($parent, $domain);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_CheckCloudIdentityAccountsExist_sync]

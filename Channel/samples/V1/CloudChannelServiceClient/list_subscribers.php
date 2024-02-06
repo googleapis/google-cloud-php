@@ -47,19 +47,16 @@ use Google\Cloud\Channel\V1\ListSubscribersRequest;
  * Return value:
  * A list of service email addresses.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $account Resource name of the account.
  */
-function list_subscribers_sample(): void
+function list_subscribers_sample(string $account): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new ListSubscribersRequest();
+    $request = (new ListSubscribersRequest())
+        ->setAccount($account);
 
     // Call the API and handle any network failures.
     try {
@@ -73,5 +70,21 @@ function list_subscribers_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $account = '[ACCOUNT]';
+
+    list_subscribers_sample($account);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListSubscribers_sync]

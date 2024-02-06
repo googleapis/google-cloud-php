@@ -30,6 +30,7 @@ use Google\Cloud\BinaryAuthorization\V1\Client\ValidationHelperV1Client;
 use Google\Cloud\BinaryAuthorization\V1\ValidateAttestationOccurrenceRequest;
 use Google\Cloud\BinaryAuthorization\V1\ValidateAttestationOccurrenceResponse;
 use Google\Rpc\Code;
+use Grafeas\V1\AttestationOccurrence;
 use stdClass;
 
 /**
@@ -73,7 +74,16 @@ class ValidationHelperV1ClientTest extends GeneratedTest
         $expectedResponse = new ValidateAttestationOccurrenceResponse();
         $expectedResponse->setDenialReason($denialReason);
         $transport->addResponse($expectedResponse);
-        $request = new ValidateAttestationOccurrenceRequest();
+        // Mock request
+        $attestor = 'attestor542920680';
+        $attestation = new AttestationOccurrence();
+        $occurrenceNote = 'occurrenceNote1860303264';
+        $occurrenceResourceUri = 'occurrenceResourceUri334806377';
+        $request = (new ValidateAttestationOccurrenceRequest())
+            ->setAttestor($attestor)
+            ->setAttestation($attestation)
+            ->setOccurrenceNote($occurrenceNote)
+            ->setOccurrenceResourceUri($occurrenceResourceUri);
         $response = $gapicClient->validateAttestationOccurrence($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -81,6 +91,14 @@ class ValidationHelperV1ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1.ValidationHelperV1/ValidateAttestationOccurrence', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAttestor();
+        $this->assertProtobufEquals($attestor, $actualValue);
+        $actualValue = $actualRequestObject->getAttestation();
+        $this->assertProtobufEquals($attestation, $actualValue);
+        $actualValue = $actualRequestObject->getOccurrenceNote();
+        $this->assertProtobufEquals($occurrenceNote, $actualValue);
+        $actualValue = $actualRequestObject->getOccurrenceResourceUri();
+        $this->assertProtobufEquals($occurrenceResourceUri, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -102,7 +120,16 @@ class ValidationHelperV1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ValidateAttestationOccurrenceRequest();
+        // Mock request
+        $attestor = 'attestor542920680';
+        $attestation = new AttestationOccurrence();
+        $occurrenceNote = 'occurrenceNote1860303264';
+        $occurrenceResourceUri = 'occurrenceResourceUri334806377';
+        $request = (new ValidateAttestationOccurrenceRequest())
+            ->setAttestor($attestor)
+            ->setAttestation($attestation)
+            ->setOccurrenceNote($occurrenceNote)
+            ->setOccurrenceResourceUri($occurrenceResourceUri);
         try {
             $gapicClient->validateAttestationOccurrence($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -129,7 +156,16 @@ class ValidationHelperV1ClientTest extends GeneratedTest
         $expectedResponse = new ValidateAttestationOccurrenceResponse();
         $expectedResponse->setDenialReason($denialReason);
         $transport->addResponse($expectedResponse);
-        $request = new ValidateAttestationOccurrenceRequest();
+        // Mock request
+        $attestor = 'attestor542920680';
+        $attestation = new AttestationOccurrence();
+        $occurrenceNote = 'occurrenceNote1860303264';
+        $occurrenceResourceUri = 'occurrenceResourceUri334806377';
+        $request = (new ValidateAttestationOccurrenceRequest())
+            ->setAttestor($attestor)
+            ->setAttestation($attestation)
+            ->setOccurrenceNote($occurrenceNote)
+            ->setOccurrenceResourceUri($occurrenceResourceUri);
         $response = $gapicClient->validateAttestationOccurrenceAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -137,6 +173,14 @@ class ValidationHelperV1ClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1.ValidationHelperV1/ValidateAttestationOccurrence', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAttestor();
+        $this->assertProtobufEquals($attestor, $actualValue);
+        $actualValue = $actualRequestObject->getAttestation();
+        $this->assertProtobufEquals($attestation, $actualValue);
+        $actualValue = $actualRequestObject->getOccurrenceNote();
+        $this->assertProtobufEquals($occurrenceNote, $actualValue);
+        $actualValue = $actualRequestObject->getOccurrenceResourceUri();
+        $this->assertProtobufEquals($occurrenceResourceUri, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

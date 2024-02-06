@@ -24,7 +24,8 @@ class DeleteCustomerRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The resource name of the customer to delete.
+     * @param string $name Required. The resource name of the customer to delete. Please see
+     *                     {@see CloudChannelServiceClient::customerName()} for help formatting this field.
      *
      * @return \Google\Cloud\Channel\V1\DeleteCustomerRequest
      *

@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Entitlement;
 use Google\Cloud\Channel\V1\TransferEntitlementsToGoogleRequest;
 use Google\Rpc\Status;
 
@@ -60,19 +61,27 @@ use Google\Rpc\Status;
  * google.protobuf.Empty on success. The Operation metadata will contain an
  * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $parent                     The resource name of the reseller's customer account where the
+ *                                           entitlements transfer from. Parent uses the format:
+ *                                           accounts/{account_id}/customers/{customer_id}
+ * @param string $formattedEntitlementsOffer The offer resource name for which the entitlement is to be
+ *                                           created. Takes the form: accounts/{account_id}/offers/{offer_id}. Please see
+ *                                           {@see CloudChannelServiceClient::offerName()} for help formatting this field.
  */
-function transfer_entitlements_to_google_sample(): void
-{
+function transfer_entitlements_to_google_sample(
+    string $parent,
+    string $formattedEntitlementsOffer
+): void {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new TransferEntitlementsToGoogleRequest();
+    $entitlement = (new Entitlement())
+        ->setOffer($formattedEntitlementsOffer);
+    $entitlements = [$entitlement,];
+    $request = (new TransferEntitlementsToGoogleRequest())
+        ->setParent($parent)
+        ->setEntitlements($entitlements);
 
     // Call the API and handle any network failures.
     try {
@@ -90,5 +99,22 @@ function transfer_entitlements_to_google_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $parent = '[PARENT]';
+    $formattedEntitlementsOffer = CloudChannelServiceClient::offerName('[ACCOUNT]', '[OFFER]');
+
+    transfer_entitlements_to_google_sample($parent, $formattedEntitlementsOffer);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_TransferEntitlementsToGoogle_sync]

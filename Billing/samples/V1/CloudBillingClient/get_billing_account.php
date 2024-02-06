@@ -33,19 +33,18 @@ use Google\Cloud\Billing\V1\GetBillingAccountRequest;
  * must be a [viewer of the billing
  * account](https://cloud.google.com/billing/docs/how-to/billing-access).
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the billing account to retrieve. For
+ *                              example, `billingAccounts/012345-567890-ABCDEF`. Please see
+ *                              {@see CloudBillingClient::billingAccountName()} for help formatting this field.
  */
-function get_billing_account_sample(): void
+function get_billing_account_sample(string $formattedName): void
 {
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
     // Prepare the request message.
-    $request = new GetBillingAccountRequest();
+    $request = (new GetBillingAccountRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -55,5 +54,21 @@ function get_billing_account_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = CloudBillingClient::billingAccountName('[BILLING_ACCOUNT]');
+
+    get_billing_account_sample($formattedName);
 }
 // [END cloudbilling_v1_generated_CloudBilling_GetBillingAccount_sync]

@@ -32,13 +32,11 @@ use Google\Cloud\BinaryAuthorization\V1beta1\BinauthzManagementServiceV1Beta1Cli
  * Lists [attestors][google.cloud.binaryauthorization.v1beta1.Attestor].
  * Returns INVALID_ARGUMENT if the project does not exist.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the project associated with the
+ *                                [attestors][google.cloud.binaryauthorization.v1beta1.Attestor], in the format `projects/*`. Please see
+ *                                {@see BinauthzManagementServiceV1Beta1Client::projectName()} for help formatting this field.
  */
-function list_attestors_sample(): void
+function list_attestors_sample(string $formattedParent): void
 {
     // Create a client.
     $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
@@ -46,7 +44,7 @@ function list_attestors_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $binauthzManagementServiceV1Beta1Client->listAttestors();
+        $response = $binauthzManagementServiceV1Beta1Client->listAttestors($formattedParent);
 
         /** @var Attestor $element */
         foreach ($response as $element) {
@@ -55,5 +53,21 @@ function list_attestors_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BinauthzManagementServiceV1Beta1Client::projectName('[PROJECT]');
+
+    list_attestors_sample($formattedParent);
 }
 // [END binaryauthorization_v1beta1_generated_BinauthzManagementServiceV1Beta1_ListAttestors_sync]

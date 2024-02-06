@@ -37,7 +37,8 @@ class ListClustersRequest extends \Google\Protobuf\Internal\Message
      *                       requested. Values are of the form
      *                       `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list
      *                       Clusters for all Instances in a project, e.g.,
-     *                       `projects/myproject/instances/-`.
+     *                       `projects/myproject/instances/-`. Please see
+     *                       {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListClustersRequest
      *

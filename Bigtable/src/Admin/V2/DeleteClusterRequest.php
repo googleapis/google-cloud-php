@@ -25,7 +25,8 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The unique name of the cluster to be deleted. Values are of the
-     *                     form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *                     form `projects/{project}/instances/{instance}/clusters/{cluster}`. Please see
+     *                     {@see BigtableInstanceAdminClient::clusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\DeleteClusterRequest
      *

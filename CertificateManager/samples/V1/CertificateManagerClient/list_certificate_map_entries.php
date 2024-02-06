@@ -32,19 +32,19 @@ use Google\Cloud\CertificateManager\V1\ListCertificateMapEntriesRequest;
 /**
  * Lists CertificateMapEntries in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The project, location and certificate map from which the
+ *                                certificate map entries should be listed, specified in the format
+ *                                `projects/&#42;/locations/&#42;/certificateMaps/*`. Please see
+ *                                {@see CertificateManagerClient::certificateMapName()} for help formatting this field.
  */
-function list_certificate_map_entries_sample(): void
+function list_certificate_map_entries_sample(string $formattedParent): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = new ListCertificateMapEntriesRequest();
+    $request = (new ListCertificateMapEntriesRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +58,25 @@ function list_certificate_map_entries_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CertificateManagerClient::certificateMapName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[CERTIFICATE_MAP]'
+    );
+
+    list_certificate_map_entries_sample($formattedParent);
 }
 // [END certificatemanager_v1_generated_CertificateManager_ListCertificateMapEntries_sync]

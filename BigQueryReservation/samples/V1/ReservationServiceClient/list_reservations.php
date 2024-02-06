@@ -32,19 +32,18 @@ use Google\Cloud\BigQuery\Reservation\V1\Reservation;
 /**
  * Lists all the reservations for the project in the specified location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent resource name containing project and location, e.g.:
+ *                                `projects/myproject/locations/US`
+ *                                Please see {@see ReservationServiceClient::locationName()} for help formatting this field.
  */
-function list_reservations_sample(): void
+function list_reservations_sample(string $formattedParent): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = new ListReservationsRequest();
+    $request = (new ListReservationsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_reservations_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ReservationServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_reservations_sample($formattedParent);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_ListReservations_sync]

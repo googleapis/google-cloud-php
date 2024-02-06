@@ -39,7 +39,8 @@ class DeleteConnectionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the Connection to delete.
-     *                     Format: `projects/&#42;/locations/&#42;/connections/*`.
+     *                     Format: `projects/&#42;/locations/&#42;/connections/*`. Please see
+     *                     {@see RepositoryManagerClient::connectionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Build\V2\DeleteConnectionRequest
      *

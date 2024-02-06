@@ -35,19 +35,19 @@ use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
  * which can be used to break up the data for distributed tasks like
  * mapreduces.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedTableName The unique name of the table from which to sample row keys.
+ *                                   Values are of the form
+ *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
+ *                                   {@see BigtableClient::tableName()} for help formatting this field.
  */
-function sample_row_keys_sample(): void
+function sample_row_keys_sample(string $formattedTableName): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
 
     // Prepare the request message.
-    $request = new SampleRowKeysRequest();
+    $request = (new SampleRowKeysRequest())
+        ->setTableName($formattedTableName);
 
     // Call the API and handle any network failures.
     try {
@@ -61,5 +61,21 @@ function sample_row_keys_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedTableName = BigtableClient::tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+
+    sample_row_keys_sample($formattedTableName);
 }
 // [END bigtable_v2_generated_Bigtable_SampleRowKeys_sync]

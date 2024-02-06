@@ -56,7 +56,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $migrationServiceClient = new MigrationServiceClient();
  * try {
- *     $response = $migrationServiceClient->createMigrationWorkflow();
+ *     $formattedParent = $migrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $migrationWorkflow = new MigrationWorkflow();
+ *     $response = $migrationServiceClient->createMigrationWorkflow($formattedParent, $migrationWorkflow);
  * } finally {
  *     $migrationServiceClient->close();
  * }
@@ -352,20 +354,20 @@ class MigrationServiceGapicClient
      * ```
      * $migrationServiceClient = new MigrationServiceClient();
      * try {
-     *     $response = $migrationServiceClient->createMigrationWorkflow();
+     *     $formattedParent = $migrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $migrationWorkflow = new MigrationWorkflow();
+     *     $response = $migrationServiceClient->createMigrationWorkflow($formattedParent, $migrationWorkflow);
      * } finally {
      *     $migrationServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string            $parent            Required. The name of the project to which this migration workflow belongs.
+     *                                             Example: `projects/foo/locations/bar`
+     * @param MigrationWorkflow $migrationWorkflow Required. The migration workflow to create.
+     * @param array             $optionalArgs      {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the project to which this migration workflow belongs.
-     *           Example: `projects/foo/locations/bar`
-     *     @type MigrationWorkflow $migrationWorkflow
-     *           Required. The migration workflow to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -376,19 +378,16 @@ class MigrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createMigrationWorkflow(array $optionalArgs = [])
-    {
+    public function createMigrationWorkflow(
+        $parent,
+        $migrationWorkflow,
+        array $optionalArgs = []
+    ) {
         $request = new CreateMigrationWorkflowRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['migrationWorkflow'])) {
-            $request->setMigrationWorkflow($optionalArgs['migrationWorkflow']);
-        }
-
+        $request->setParent($parent);
+        $request->setMigrationWorkflow($migrationWorkflow);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -410,18 +409,18 @@ class MigrationServiceGapicClient
      * ```
      * $migrationServiceClient = new MigrationServiceClient();
      * try {
-     *     $migrationServiceClient->deleteMigrationWorkflow();
+     *     $formattedName = $migrationServiceClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+     *     $migrationServiceClient->deleteMigrationWorkflow($formattedName);
      * } finally {
      *     $migrationServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique identifier for the migration workflow.
+     *                             Example: `projects/123/locations/us/workflows/1234`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique identifier for the migration workflow.
-     *           Example: `projects/123/locations/us/workflows/1234`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -430,15 +429,12 @@ class MigrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteMigrationWorkflow(array $optionalArgs = [])
+    public function deleteMigrationWorkflow($name, array $optionalArgs = [])
     {
         $request = new DeleteMigrationWorkflowRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -460,18 +456,18 @@ class MigrationServiceGapicClient
      * ```
      * $migrationServiceClient = new MigrationServiceClient();
      * try {
-     *     $response = $migrationServiceClient->getMigrationSubtask();
+     *     $formattedName = $migrationServiceClient->migrationSubtaskName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[SUBTASK]');
+     *     $response = $migrationServiceClient->getMigrationSubtask($formattedName);
      * } finally {
      *     $migrationServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique identifier for the migration subtask.
+     *                             Example: `projects/123/locations/us/workflows/1234/subtasks/543`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique identifier for the migration subtask.
-     *           Example: `projects/123/locations/us/workflows/1234/subtasks/543`
      *     @type FieldMask $readMask
      *           Optional. The list of fields to be retrieved.
      *     @type RetrySettings|array $retrySettings
@@ -484,15 +480,12 @@ class MigrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMigrationSubtask(array $optionalArgs = [])
+    public function getMigrationSubtask($name, array $optionalArgs = [])
     {
         $request = new GetMigrationSubtaskRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -518,18 +511,18 @@ class MigrationServiceGapicClient
      * ```
      * $migrationServiceClient = new MigrationServiceClient();
      * try {
-     *     $response = $migrationServiceClient->getMigrationWorkflow();
+     *     $formattedName = $migrationServiceClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+     *     $response = $migrationServiceClient->getMigrationWorkflow($formattedName);
      * } finally {
      *     $migrationServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique identifier for the migration workflow.
+     *                             Example: `projects/123/locations/us/workflows/1234`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique identifier for the migration workflow.
-     *           Example: `projects/123/locations/us/workflows/1234`
      *     @type FieldMask $readMask
      *           The list of fields to be retrieved.
      *     @type RetrySettings|array $retrySettings
@@ -542,15 +535,12 @@ class MigrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getMigrationWorkflow(array $optionalArgs = [])
+    public function getMigrationWorkflow($name, array $optionalArgs = [])
     {
         $request = new GetMigrationWorkflowRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -576,8 +566,9 @@ class MigrationServiceGapicClient
      * ```
      * $migrationServiceClient = new MigrationServiceClient();
      * try {
+     *     $formattedParent = $migrationServiceClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $migrationServiceClient->listMigrationSubtasks();
+     *     $pagedResponse = $migrationServiceClient->listMigrationSubtasks($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -585,7 +576,7 @@ class MigrationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $migrationServiceClient->listMigrationSubtasks();
+     *     $pagedResponse = $migrationServiceClient->listMigrationSubtasks($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -594,12 +585,11 @@ class MigrationServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The migration task of the subtasks to list.
+     *                             Example: `projects/123/locations/us/workflows/1234`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The migration task of the subtasks to list.
-     *           Example: `projects/123/locations/us/workflows/1234`
      *     @type FieldMask $readMask
      *           Optional. The list of fields to be retrieved.
      *     @type int $pageSize
@@ -625,15 +615,12 @@ class MigrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listMigrationSubtasks(array $optionalArgs = [])
+    public function listMigrationSubtasks($parent, array $optionalArgs = [])
     {
         $request = new ListMigrationSubtasksRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -671,8 +658,9 @@ class MigrationServiceGapicClient
      * ```
      * $migrationServiceClient = new MigrationServiceClient();
      * try {
+     *     $formattedParent = $migrationServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $migrationServiceClient->listMigrationWorkflows();
+     *     $pagedResponse = $migrationServiceClient->listMigrationWorkflows($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -680,7 +668,7 @@ class MigrationServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $migrationServiceClient->listMigrationWorkflows();
+     *     $pagedResponse = $migrationServiceClient->listMigrationWorkflows($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -689,12 +677,11 @@ class MigrationServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project and location of the migration workflows to list.
+     *                             Example: `projects/123/locations/us`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location of the migration workflows to list.
-     *           Example: `projects/123/locations/us`
      *     @type FieldMask $readMask
      *           The list of fields to be retrieved.
      *     @type int $pageSize
@@ -716,15 +703,12 @@ class MigrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listMigrationWorkflows(array $optionalArgs = [])
+    public function listMigrationWorkflows($parent, array $optionalArgs = [])
     {
         $request = new ListMigrationWorkflowsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['readMask'])) {
             $request->setReadMask($optionalArgs['readMask']);
         }
@@ -761,18 +745,18 @@ class MigrationServiceGapicClient
      * ```
      * $migrationServiceClient = new MigrationServiceClient();
      * try {
-     *     $migrationServiceClient->startMigrationWorkflow();
+     *     $formattedName = $migrationServiceClient->migrationWorkflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+     *     $migrationServiceClient->startMigrationWorkflow($formattedName);
      * } finally {
      *     $migrationServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique identifier for the migration workflow.
+     *                             Example: `projects/123/locations/us/workflows/1234`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique identifier for the migration workflow.
-     *           Example: `projects/123/locations/us/workflows/1234`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -781,15 +765,12 @@ class MigrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function startMigrationWorkflow(array $optionalArgs = [])
+    public function startMigrationWorkflow($name, array $optionalArgs = [])
     {
         $request = new StartMigrationWorkflowRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

@@ -46,6 +46,7 @@ class SubscribeDataExchangeRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Resource name of the Data Exchange.
      *                     e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     *                     Please see {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeRequest
      *

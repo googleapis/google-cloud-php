@@ -111,7 +111,10 @@ use Google\Protobuf\FieldMask;
  * ```
  * $certificateManagerClient = new CertificateManagerClient();
  * try {
- *     $operationResponse = $certificateManagerClient->createCertificate();
+ *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $certificateId = 'certificate_id';
+ *     $certificate = new Certificate();
+ *     $operationResponse = $certificateManagerClient->createCertificate($formattedParent, $certificateId, $certificate);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -122,7 +125,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $certificateManagerClient->createCertificate();
+ *     $operationResponse = $certificateManagerClient->createCertificate($formattedParent, $certificateId, $certificate);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'createCertificate');
@@ -616,7 +619,10 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->createCertificate();
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $certificateId = 'certificate_id';
+     *     $certificate = new Certificate();
+     *     $operationResponse = $certificateManagerClient->createCertificate($formattedParent, $certificateId, $certificate);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -627,7 +633,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->createCertificate();
+     *     $operationResponse = $certificateManagerClient->createCertificate($formattedParent, $certificateId, $certificate);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'createCertificate');
@@ -647,16 +653,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string      $parent        Required. The parent resource of the certificate. Must be in the format
+     *                                   `projects/&#42;/locations/*`.
+     * @param string      $certificateId Required. A user-provided name of the certificate.
+     * @param Certificate $certificate   Required. A definition of the certificate to create.
+     * @param array       $optionalArgs  {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource of the certificate. Must be in the format
-     *           `projects/&#42;/locations/*`.
-     *     @type string $certificateId
-     *           Required. A user-provided name of the certificate.
-     *     @type Certificate $certificate
-     *           Required. A definition of the certificate to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -667,23 +670,18 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCertificate(array $optionalArgs = [])
-    {
+    public function createCertificate(
+        $parent,
+        $certificateId,
+        $certificate,
+        array $optionalArgs = []
+    ) {
         $request = new CreateCertificateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['certificateId'])) {
-            $request->setCertificateId($optionalArgs['certificateId']);
-        }
-
-        if (isset($optionalArgs['certificate'])) {
-            $request->setCertificate($optionalArgs['certificate']);
-        }
-
+        $request->setParent($parent);
+        $request->setCertificateId($certificateId);
+        $request->setCertificate($certificate);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -705,7 +703,10 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->createCertificateIssuanceConfig();
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $certificateIssuanceConfigId = 'certificate_issuance_config_id';
+     *     $certificateIssuanceConfig = new CertificateIssuanceConfig();
+     *     $operationResponse = $certificateManagerClient->createCertificateIssuanceConfig($formattedParent, $certificateIssuanceConfigId, $certificateIssuanceConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -716,7 +717,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->createCertificateIssuanceConfig();
+     *     $operationResponse = $certificateManagerClient->createCertificateIssuanceConfig($formattedParent, $certificateIssuanceConfigId, $certificateIssuanceConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'createCertificateIssuanceConfig');
@@ -736,16 +737,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string                    $parent                      Required. The parent resource of the certificate issuance config. Must be
+     *                                                               in the format `projects/&#42;/locations/*`.
+     * @param string                    $certificateIssuanceConfigId Required. A user-provided name of the certificate config.
+     * @param CertificateIssuanceConfig $certificateIssuanceConfig   Required. A definition of the certificate issuance config to create.
+     * @param array                     $optionalArgs                {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource of the certificate issuance config. Must be
-     *           in the format `projects/&#42;/locations/*`.
-     *     @type string $certificateIssuanceConfigId
-     *           Required. A user-provided name of the certificate config.
-     *     @type CertificateIssuanceConfig $certificateIssuanceConfig
-     *           Required. A definition of the certificate issuance config to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -756,27 +754,18 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCertificateIssuanceConfig(array $optionalArgs = [])
-    {
+    public function createCertificateIssuanceConfig(
+        $parent,
+        $certificateIssuanceConfigId,
+        $certificateIssuanceConfig,
+        array $optionalArgs = []
+    ) {
         $request = new CreateCertificateIssuanceConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['certificateIssuanceConfigId'])) {
-            $request->setCertificateIssuanceConfigId(
-                $optionalArgs['certificateIssuanceConfigId']
-            );
-        }
-
-        if (isset($optionalArgs['certificateIssuanceConfig'])) {
-            $request->setCertificateIssuanceConfig(
-                $optionalArgs['certificateIssuanceConfig']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setCertificateIssuanceConfigId($certificateIssuanceConfigId);
+        $request->setCertificateIssuanceConfig($certificateIssuanceConfig);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -798,7 +787,10 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->createCertificateMap();
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $certificateMapId = 'certificate_map_id';
+     *     $certificateMap = new CertificateMap();
+     *     $operationResponse = $certificateManagerClient->createCertificateMap($formattedParent, $certificateMapId, $certificateMap);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -809,7 +801,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->createCertificateMap();
+     *     $operationResponse = $certificateManagerClient->createCertificateMap($formattedParent, $certificateMapId, $certificateMap);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'createCertificateMap');
@@ -829,16 +821,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string         $parent           Required. The parent resource of the certificate map. Must be in the format
+     *                                         `projects/&#42;/locations/*`.
+     * @param string         $certificateMapId Required. A user-provided name of the certificate map.
+     * @param CertificateMap $certificateMap   Required. A definition of the certificate map to create.
+     * @param array          $optionalArgs     {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource of the certificate map. Must be in the format
-     *           `projects/&#42;/locations/*`.
-     *     @type string $certificateMapId
-     *           Required. A user-provided name of the certificate map.
-     *     @type CertificateMap $certificateMap
-     *           Required. A definition of the certificate map to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -849,23 +838,18 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCertificateMap(array $optionalArgs = [])
-    {
+    public function createCertificateMap(
+        $parent,
+        $certificateMapId,
+        $certificateMap,
+        array $optionalArgs = []
+    ) {
         $request = new CreateCertificateMapRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['certificateMapId'])) {
-            $request->setCertificateMapId($optionalArgs['certificateMapId']);
-        }
-
-        if (isset($optionalArgs['certificateMap'])) {
-            $request->setCertificateMap($optionalArgs['certificateMap']);
-        }
-
+        $request->setParent($parent);
+        $request->setCertificateMapId($certificateMapId);
+        $request->setCertificateMap($certificateMap);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -887,7 +871,10 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->createCertificateMapEntry();
+     *     $formattedParent = $certificateManagerClient->certificateMapName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_MAP]');
+     *     $certificateMapEntryId = 'certificate_map_entry_id';
+     *     $certificateMapEntry = new CertificateMapEntry();
+     *     $operationResponse = $certificateManagerClient->createCertificateMapEntry($formattedParent, $certificateMapEntryId, $certificateMapEntry);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -898,7 +885,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->createCertificateMapEntry();
+     *     $operationResponse = $certificateManagerClient->createCertificateMapEntry($formattedParent, $certificateMapEntryId, $certificateMapEntry);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'createCertificateMapEntry');
@@ -918,16 +905,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string              $parent                Required. The parent resource of the certificate map entry. Must be in the
+     *                                                   format `projects/&#42;/locations/&#42;/certificateMaps/*`.
+     * @param string              $certificateMapEntryId Required. A user-provided name of the certificate map entry.
+     * @param CertificateMapEntry $certificateMapEntry   Required. A definition of the certificate map entry to create.
+     * @param array               $optionalArgs          {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource of the certificate map entry. Must be in the
-     *           format `projects/&#42;/locations/&#42;/certificateMaps/*`.
-     *     @type string $certificateMapEntryId
-     *           Required. A user-provided name of the certificate map entry.
-     *     @type CertificateMapEntry $certificateMapEntry
-     *           Required. A definition of the certificate map entry to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -938,27 +922,18 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCertificateMapEntry(array $optionalArgs = [])
-    {
+    public function createCertificateMapEntry(
+        $parent,
+        $certificateMapEntryId,
+        $certificateMapEntry,
+        array $optionalArgs = []
+    ) {
         $request = new CreateCertificateMapEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['certificateMapEntryId'])) {
-            $request->setCertificateMapEntryId(
-                $optionalArgs['certificateMapEntryId']
-            );
-        }
-
-        if (isset($optionalArgs['certificateMapEntry'])) {
-            $request->setCertificateMapEntry(
-                $optionalArgs['certificateMapEntry']
-            );
-        }
-
+        $request->setParent($parent);
+        $request->setCertificateMapEntryId($certificateMapEntryId);
+        $request->setCertificateMapEntry($certificateMapEntry);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -980,7 +955,10 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->createDnsAuthorization();
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $dnsAuthorizationId = 'dns_authorization_id';
+     *     $dnsAuthorization = new DnsAuthorization();
+     *     $operationResponse = $certificateManagerClient->createDnsAuthorization($formattedParent, $dnsAuthorizationId, $dnsAuthorization);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -991,7 +969,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->createDnsAuthorization();
+     *     $operationResponse = $certificateManagerClient->createDnsAuthorization($formattedParent, $dnsAuthorizationId, $dnsAuthorization);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'createDnsAuthorization');
@@ -1011,16 +989,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string           $parent             Required. The parent resource of the dns authorization. Must be in the
+     *                                             format `projects/&#42;/locations/*`.
+     * @param string           $dnsAuthorizationId Required. A user-provided name of the dns authorization.
+     * @param DnsAuthorization $dnsAuthorization   Required. A definition of the dns authorization to create.
+     * @param array            $optionalArgs       {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent resource of the dns authorization. Must be in the
-     *           format `projects/&#42;/locations/*`.
-     *     @type string $dnsAuthorizationId
-     *           Required. A user-provided name of the dns authorization.
-     *     @type DnsAuthorization $dnsAuthorization
-     *           Required. A definition of the dns authorization to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1031,25 +1006,18 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDnsAuthorization(array $optionalArgs = [])
-    {
+    public function createDnsAuthorization(
+        $parent,
+        $dnsAuthorizationId,
+        $dnsAuthorization,
+        array $optionalArgs = []
+    ) {
         $request = new CreateDnsAuthorizationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['dnsAuthorizationId'])) {
-            $request->setDnsAuthorizationId(
-                $optionalArgs['dnsAuthorizationId']
-            );
-        }
-
-        if (isset($optionalArgs['dnsAuthorization'])) {
-            $request->setDnsAuthorization($optionalArgs['dnsAuthorization']);
-        }
-
+        $request->setParent($parent);
+        $request->setDnsAuthorizationId($dnsAuthorizationId);
+        $request->setDnsAuthorization($dnsAuthorization);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1071,7 +1039,8 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->deleteCertificate();
+     *     $formattedName = $certificateManagerClient->certificateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE]');
+     *     $operationResponse = $certificateManagerClient->deleteCertificate($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1081,7 +1050,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->deleteCertificate();
+     *     $operationResponse = $certificateManagerClient->deleteCertificate($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'deleteCertificate');
@@ -1100,12 +1069,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the certificate to delete. Must be in the format
+     *                             `projects/&#42;/locations/&#42;/certificates/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the certificate to delete. Must be in the format
-     *           `projects/&#42;/locations/&#42;/certificates/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1116,15 +1084,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCertificate(array $optionalArgs = [])
+    public function deleteCertificate($name, array $optionalArgs = [])
     {
         $request = new DeleteCertificateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1146,7 +1111,8 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->deleteCertificateIssuanceConfig();
+     *     $formattedName = $certificateManagerClient->certificateIssuanceConfigName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_ISSUANCE_CONFIG]');
+     *     $operationResponse = $certificateManagerClient->deleteCertificateIssuanceConfig($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1156,7 +1122,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->deleteCertificateIssuanceConfig();
+     *     $operationResponse = $certificateManagerClient->deleteCertificateIssuanceConfig($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'deleteCertificateIssuanceConfig');
@@ -1175,12 +1141,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the certificate issuance config to delete. Must be in
+     *                             the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the certificate issuance config to delete. Must be in
-     *           the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1191,15 +1156,14 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCertificateIssuanceConfig(array $optionalArgs = [])
-    {
+    public function deleteCertificateIssuanceConfig(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new DeleteCertificateIssuanceConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1223,7 +1187,8 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->deleteCertificateMap();
+     *     $formattedName = $certificateManagerClient->certificateMapName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_MAP]');
+     *     $operationResponse = $certificateManagerClient->deleteCertificateMap($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1233,7 +1198,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->deleteCertificateMap();
+     *     $operationResponse = $certificateManagerClient->deleteCertificateMap($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'deleteCertificateMap');
@@ -1252,12 +1217,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the certificate map to delete. Must be in the format
+     *                             `projects/&#42;/locations/&#42;/certificateMaps/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the certificate map to delete. Must be in the format
-     *           `projects/&#42;/locations/&#42;/certificateMaps/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1268,15 +1232,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCertificateMap(array $optionalArgs = [])
+    public function deleteCertificateMap($name, array $optionalArgs = [])
     {
         $request = new DeleteCertificateMapRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1298,7 +1259,8 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->deleteCertificateMapEntry();
+     *     $formattedName = $certificateManagerClient->certificateMapEntryName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_MAP]', '[CERTIFICATE_MAP_ENTRY]');
+     *     $operationResponse = $certificateManagerClient->deleteCertificateMapEntry($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1308,7 +1270,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->deleteCertificateMapEntry();
+     *     $operationResponse = $certificateManagerClient->deleteCertificateMapEntry($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'deleteCertificateMapEntry');
@@ -1327,12 +1289,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the certificate map entry to delete. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/certificateMaps/&#42;/certificateMapEntries/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the certificate map entry to delete. Must be in the
-     *           format `projects/&#42;/locations/&#42;/certificateMaps/&#42;/certificateMapEntries/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1343,15 +1304,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCertificateMapEntry(array $optionalArgs = [])
+    public function deleteCertificateMapEntry($name, array $optionalArgs = [])
     {
         $request = new DeleteCertificateMapEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1373,7 +1331,8 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->deleteDnsAuthorization();
+     *     $formattedName = $certificateManagerClient->dnsAuthorizationName('[PROJECT]', '[LOCATION]', '[DNS_AUTHORIZATION]');
+     *     $operationResponse = $certificateManagerClient->deleteDnsAuthorization($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -1383,7 +1342,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->deleteDnsAuthorization();
+     *     $operationResponse = $certificateManagerClient->deleteDnsAuthorization($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'deleteDnsAuthorization');
@@ -1402,12 +1361,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the dns authorization to delete. Must be in the format
+     *                             `projects/&#42;/locations/&#42;/dnsAuthorizations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the dns authorization to delete. Must be in the format
-     *           `projects/&#42;/locations/&#42;/dnsAuthorizations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1418,15 +1376,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteDnsAuthorization(array $optionalArgs = [])
+    public function deleteDnsAuthorization($name, array $optionalArgs = [])
     {
         $request = new DeleteDnsAuthorizationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1448,18 +1403,18 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $response = $certificateManagerClient->getCertificate();
+     *     $formattedName = $certificateManagerClient->certificateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE]');
+     *     $response = $certificateManagerClient->getCertificate($formattedName);
      * } finally {
      *     $certificateManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the certificate to describe. Must be in the format
+     *                             `projects/&#42;/locations/&#42;/certificates/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the certificate to describe. Must be in the format
-     *           `projects/&#42;/locations/&#42;/certificates/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1470,15 +1425,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCertificate(array $optionalArgs = [])
+    public function getCertificate($name, array $optionalArgs = [])
     {
         $request = new GetCertificateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1500,18 +1452,18 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $response = $certificateManagerClient->getCertificateIssuanceConfig();
+     *     $formattedName = $certificateManagerClient->certificateIssuanceConfigName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_ISSUANCE_CONFIG]');
+     *     $response = $certificateManagerClient->getCertificateIssuanceConfig($formattedName);
      * } finally {
      *     $certificateManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the certificate issuance config to describe. Must be in
+     *                             the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the certificate issuance config to describe. Must be in
-     *           the format `projects/&#42;/locations/&#42;/certificateIssuanceConfigs/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1522,15 +1474,14 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCertificateIssuanceConfig(array $optionalArgs = [])
-    {
+    public function getCertificateIssuanceConfig(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new GetCertificateIssuanceConfigRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1552,18 +1503,18 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $response = $certificateManagerClient->getCertificateMap();
+     *     $formattedName = $certificateManagerClient->certificateMapName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_MAP]');
+     *     $response = $certificateManagerClient->getCertificateMap($formattedName);
      * } finally {
      *     $certificateManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the certificate map to describe. Must be in the format
+     *                             `projects/&#42;/locations/&#42;/certificateMaps/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the certificate map to describe. Must be in the format
-     *           `projects/&#42;/locations/&#42;/certificateMaps/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1574,15 +1525,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCertificateMap(array $optionalArgs = [])
+    public function getCertificateMap($name, array $optionalArgs = [])
     {
         $request = new GetCertificateMapRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1604,18 +1552,18 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $response = $certificateManagerClient->getCertificateMapEntry();
+     *     $formattedName = $certificateManagerClient->certificateMapEntryName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_MAP]', '[CERTIFICATE_MAP_ENTRY]');
+     *     $response = $certificateManagerClient->getCertificateMapEntry($formattedName);
      * } finally {
      *     $certificateManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the certificate map entry to describe. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/certificateMaps/&#42;/certificateMapEntries/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the certificate map entry to describe. Must be in the
-     *           format `projects/&#42;/locations/&#42;/certificateMaps/&#42;/certificateMapEntries/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1626,15 +1574,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCertificateMapEntry(array $optionalArgs = [])
+    public function getCertificateMapEntry($name, array $optionalArgs = [])
     {
         $request = new GetCertificateMapEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1656,18 +1601,18 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $response = $certificateManagerClient->getDnsAuthorization();
+     *     $formattedName = $certificateManagerClient->dnsAuthorizationName('[PROJECT]', '[LOCATION]', '[DNS_AUTHORIZATION]');
+     *     $response = $certificateManagerClient->getDnsAuthorization($formattedName);
      * } finally {
      *     $certificateManagerClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. A name of the dns authorization to describe. Must be in the
+     *                             format `projects/&#42;/locations/&#42;/dnsAuthorizations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. A name of the dns authorization to describe. Must be in the
-     *           format `projects/&#42;/locations/&#42;/dnsAuthorizations/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1678,15 +1623,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getDnsAuthorization(array $optionalArgs = [])
+    public function getDnsAuthorization($name, array $optionalArgs = [])
     {
         $request = new GetDnsAuthorizationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1708,8 +1650,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateManagerClient->listCertificateIssuanceConfigs();
+     *     $pagedResponse = $certificateManagerClient->listCertificateIssuanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1717,7 +1660,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateManagerClient->listCertificateIssuanceConfigs();
+     *     $pagedResponse = $certificateManagerClient->listCertificateIssuanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1726,12 +1669,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project and location from which the certificate should be
+     *                             listed, specified in the format `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location from which the certificate should be
-     *           listed, specified in the format `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1757,15 +1699,14 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCertificateIssuanceConfigs(array $optionalArgs = [])
-    {
+    public function listCertificateIssuanceConfigs(
+        $parent,
+        array $optionalArgs = []
+    ) {
         $request = new ListCertificateIssuanceConfigsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1803,8 +1744,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
+     *     $formattedParent = $certificateManagerClient->certificateMapName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_MAP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateManagerClient->listCertificateMapEntries();
+     *     $pagedResponse = $certificateManagerClient->listCertificateMapEntries($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1812,7 +1754,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateManagerClient->listCertificateMapEntries();
+     *     $pagedResponse = $certificateManagerClient->listCertificateMapEntries($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1821,13 +1763,12 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project, location and certificate map from which the
+     *                             certificate map entries should be listed, specified in the format
+     *                             `projects/&#42;/locations/&#42;/certificateMaps/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project, location and certificate map from which the
-     *           certificate map entries should be listed, specified in the format
-     *           `projects/&#42;/locations/&#42;/certificateMaps/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1853,15 +1794,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCertificateMapEntries(array $optionalArgs = [])
+    public function listCertificateMapEntries($parent, array $optionalArgs = [])
     {
         $request = new ListCertificateMapEntriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1899,8 +1837,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateManagerClient->listCertificateMaps();
+     *     $pagedResponse = $certificateManagerClient->listCertificateMaps($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1908,7 +1847,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateManagerClient->listCertificateMaps();
+     *     $pagedResponse = $certificateManagerClient->listCertificateMaps($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1917,12 +1856,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project and location from which the certificate maps should
+     *                             be listed, specified in the format `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location from which the certificate maps should
-     *           be listed, specified in the format `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1948,15 +1886,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCertificateMaps(array $optionalArgs = [])
+    public function listCertificateMaps($parent, array $optionalArgs = [])
     {
         $request = new ListCertificateMapsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1994,8 +1929,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateManagerClient->listCertificates();
+     *     $pagedResponse = $certificateManagerClient->listCertificates($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2003,7 +1939,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateManagerClient->listCertificates();
+     *     $pagedResponse = $certificateManagerClient->listCertificates($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2012,12 +1948,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project and location from which the certificate should be
+     *                             listed, specified in the format `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location from which the certificate should be
-     *           listed, specified in the format `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2043,15 +1978,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listCertificates(array $optionalArgs = [])
+    public function listCertificates($parent, array $optionalArgs = [])
     {
         $request = new ListCertificatesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2089,8 +2021,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
+     *     $formattedParent = $certificateManagerClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $certificateManagerClient->listDnsAuthorizations();
+     *     $pagedResponse = $certificateManagerClient->listDnsAuthorizations($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -2098,7 +2031,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $certificateManagerClient->listDnsAuthorizations();
+     *     $pagedResponse = $certificateManagerClient->listDnsAuthorizations($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -2107,12 +2040,11 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The project and location from which the dns authorizations should
+     *                             be listed, specified in the format `projects/&#42;/locations/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The project and location from which the dns authorizations should
-     *           be listed, specified in the format `projects/&#42;/locations/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -2138,15 +2070,12 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDnsAuthorizations(array $optionalArgs = [])
+    public function listDnsAuthorizations($parent, array $optionalArgs = [])
     {
         $request = new ListDnsAuthorizationsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -2184,7 +2113,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->updateCertificate();
+     *     $certificate = new Certificate();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $certificateManagerClient->updateCertificate($certificate, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2195,7 +2126,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->updateCertificate();
+     *     $operationResponse = $certificateManagerClient->updateCertificate($certificate, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'updateCertificate');
@@ -2215,15 +2146,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Certificate $certificate  Required. A definition of the certificate to update.
+     * @param FieldMask   $updateMask   Required. The update mask applies to the resource. For the `FieldMask`
+     *                                  definition, see
+     *                                  https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     * @param array       $optionalArgs {
      *     Optional.
      *
-     *     @type Certificate $certificate
-     *           Required. A definition of the certificate to update.
-     *     @type FieldMask $updateMask
-     *           Required. The update mask applies to the resource. For the `FieldMask`
-     *           definition, see
-     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2234,18 +2163,16 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCertificate(array $optionalArgs = [])
-    {
+    public function updateCertificate(
+        $certificate,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateCertificateRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['certificate'])) {
-            $request->setCertificate($optionalArgs['certificate']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setCertificate($certificate);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['certificate.name'] = $certificate->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2267,7 +2194,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->updateCertificateMap();
+     *     $certificateMap = new CertificateMap();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $certificateManagerClient->updateCertificateMap($certificateMap, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2278,7 +2207,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->updateCertificateMap();
+     *     $operationResponse = $certificateManagerClient->updateCertificateMap($certificateMap, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'updateCertificateMap');
@@ -2298,15 +2227,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param CertificateMap $certificateMap Required. A definition of the certificate map to update.
+     * @param FieldMask      $updateMask     Required. The update mask applies to the resource. For the `FieldMask`
+     *                                       definition, see
+     *                                       https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     * @param array          $optionalArgs   {
      *     Optional.
      *
-     *     @type CertificateMap $certificateMap
-     *           Required. A definition of the certificate map to update.
-     *     @type FieldMask $updateMask
-     *           Required. The update mask applies to the resource. For the `FieldMask`
-     *           definition, see
-     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2317,18 +2244,18 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCertificateMap(array $optionalArgs = [])
-    {
+    public function updateCertificateMap(
+        $certificateMap,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateCertificateMapRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['certificateMap'])) {
-            $request->setCertificateMap($optionalArgs['certificateMap']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setCertificateMap($certificateMap);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'certificate_map.name'
+        ] = $certificateMap->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2350,7 +2277,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->updateCertificateMapEntry();
+     *     $certificateMapEntry = new CertificateMapEntry();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $certificateManagerClient->updateCertificateMapEntry($certificateMapEntry, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2361,7 +2290,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->updateCertificateMapEntry();
+     *     $operationResponse = $certificateManagerClient->updateCertificateMapEntry($certificateMapEntry, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'updateCertificateMapEntry');
@@ -2381,15 +2310,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param CertificateMapEntry $certificateMapEntry Required. A definition of the certificate map entry to create map entry.
+     * @param FieldMask           $updateMask          Required. The update mask applies to the resource. For the `FieldMask`
+     *                                                 definition, see
+     *                                                 https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     * @param array               $optionalArgs        {
      *     Optional.
      *
-     *     @type CertificateMapEntry $certificateMapEntry
-     *           Required. A definition of the certificate map entry to create map entry.
-     *     @type FieldMask $updateMask
-     *           Required. The update mask applies to the resource. For the `FieldMask`
-     *           definition, see
-     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2400,20 +2327,18 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateCertificateMapEntry(array $optionalArgs = [])
-    {
+    public function updateCertificateMapEntry(
+        $certificateMapEntry,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateCertificateMapEntryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['certificateMapEntry'])) {
-            $request->setCertificateMapEntry(
-                $optionalArgs['certificateMapEntry']
-            );
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setCertificateMapEntry($certificateMapEntry);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'certificate_map_entry.name'
+        ] = $certificateMapEntry->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -2435,7 +2360,9 @@ class CertificateManagerGapicClient
      * ```
      * $certificateManagerClient = new CertificateManagerClient();
      * try {
-     *     $operationResponse = $certificateManagerClient->updateDnsAuthorization();
+     *     $dnsAuthorization = new DnsAuthorization();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $certificateManagerClient->updateDnsAuthorization($dnsAuthorization, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -2446,7 +2373,7 @@ class CertificateManagerGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $certificateManagerClient->updateDnsAuthorization();
+     *     $operationResponse = $certificateManagerClient->updateDnsAuthorization($dnsAuthorization, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $certificateManagerClient->resumeOperation($operationName, 'updateDnsAuthorization');
@@ -2466,15 +2393,13 @@ class CertificateManagerGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param DnsAuthorization $dnsAuthorization Required. A definition of the dns authorization to update.
+     * @param FieldMask        $updateMask       Required. The update mask applies to the resource. For the `FieldMask`
+     *                                           definition, see
+     *                                           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     * @param array            $optionalArgs     {
      *     Optional.
      *
-     *     @type DnsAuthorization $dnsAuthorization
-     *           Required. A definition of the dns authorization to update.
-     *     @type FieldMask $updateMask
-     *           Required. The update mask applies to the resource. For the `FieldMask`
-     *           definition, see
-     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2485,18 +2410,18 @@ class CertificateManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDnsAuthorization(array $optionalArgs = [])
-    {
+    public function updateDnsAuthorization(
+        $dnsAuthorization,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateDnsAuthorizationRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['dnsAuthorization'])) {
-            $request->setDnsAuthorization($optionalArgs['dnsAuthorization']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setDnsAuthorization($dnsAuthorization);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'dns_authorization.name'
+        ] = $dnsAuthorization->getName();
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

@@ -103,7 +103,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The cluster to list backups from.  Values are of the
      *                       form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *                       Use `{cluster} = '-'` to list backups for all clusters in an instance,
-     *                       e.g., `projects/{project}/instances/{instance}/clusters/-`.
+     *                       e.g., `projects/{project}/instances/{instance}/clusters/-`. Please see
+     *                       {@see BigtableTableAdminClient::clusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest
      *

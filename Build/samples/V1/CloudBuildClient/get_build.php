@@ -33,13 +33,10 @@ use Google\Cloud\Build\V1\CloudBuildClient;
  * The `Build` that is returned includes its status (such as `SUCCESS`,
  * `FAILURE`, or `WORKING`), and timing information.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $projectId ID of the project.
+ * @param string $id        ID of the build.
  */
-function get_build_sample(): void
+function get_build_sample(string $projectId, string $id): void
 {
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
@@ -47,10 +44,27 @@ function get_build_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Build $response */
-        $response = $cloudBuildClient->getBuild();
+        $response = $cloudBuildClient->getBuild($projectId, $id);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $projectId = '[PROJECT_ID]';
+    $id = '[ID]';
+
+    get_build_sample($projectId, $id);
 }
 // [END cloudbuild_v1_generated_CloudBuild_GetBuild_sync]

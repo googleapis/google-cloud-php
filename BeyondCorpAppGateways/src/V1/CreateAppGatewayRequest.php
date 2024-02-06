@@ -64,6 +64,7 @@ class CreateAppGatewayRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                             $parent       Required. The resource project name of the AppGateway location using the
      *                                                                         form: `projects/{project_id}/locations/{location_id}`
+     *                                                                         Please see {@see AppGatewaysServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway $appGateway   Required. A BeyondCorp AppGateway resource.
      * @param string                                             $appGatewayId Optional. User-settable AppGateway resource ID.
      *                                                                         * Must start with a letter.

@@ -30,13 +30,10 @@ use Google\Cloud\Build\V1\CloudBuildClient;
 /**
  * Cancels a build in progress.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $projectId ID of the project.
+ * @param string $id        ID of the build.
  */
-function cancel_build_sample(): void
+function cancel_build_sample(string $projectId, string $id): void
 {
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
@@ -44,10 +41,27 @@ function cancel_build_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Build $response */
-        $response = $cloudBuildClient->cancelBuild();
+        $response = $cloudBuildClient->cancelBuild($projectId, $id);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $projectId = '[PROJECT_ID]';
+    $id = '[ID]';
+
+    cancel_build_sample($projectId, $id);
 }
 // [END cloudbuild_v1_generated_CloudBuild_CancelBuild_sync]

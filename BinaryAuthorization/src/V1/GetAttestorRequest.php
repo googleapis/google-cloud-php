@@ -25,7 +25,8 @@ class GetAttestorRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the [attestor][google.cloud.binaryauthorization.v1.Attestor] to retrieve, in the format
-     *                     `projects/&#42;/attestors/*`.
+     *                     `projects/&#42;/attestors/*`. Please see
+     *                     {@see BinauthzManagementServiceV1Client::attestorName()} for help formatting this field.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\GetAttestorRequest
      *

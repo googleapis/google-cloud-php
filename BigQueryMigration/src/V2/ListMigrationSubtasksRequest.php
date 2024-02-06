@@ -56,6 +56,7 @@ class ListMigrationSubtasksRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The migration task of the subtasks to list.
      *                       Example: `projects/123/locations/us/workflows/1234`
+     *                       Please see {@see MigrationServiceClient::migrationWorkflowName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Migration\V2\ListMigrationSubtasksRequest
      *

@@ -42,19 +42,24 @@ use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse;
  * be purchased using the same billing account and the billing accounts
  * eligible to purchase each SKU group.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedCustomer The resource name of the customer to list eligible billing
+ *                                  accounts for. Format: accounts/{account_id}/customers/{customer_id}. Please see
+ *                                  {@see CloudChannelServiceClient::customerName()} for help formatting this field.
+ * @param string $skusElement       List of SKUs to list eligible billing accounts for. At least one
+ *                                  SKU is required. Format: products/{product_id}/skus/{sku_id}.
  */
-function query_eligible_billing_accounts_sample(): void
-{
+function query_eligible_billing_accounts_sample(
+    string $formattedCustomer,
+    string $skusElement
+): void {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new QueryEligibleBillingAccountsRequest();
+    $skus = [$skusElement,];
+    $request = (new QueryEligibleBillingAccountsRequest())
+        ->setCustomer($formattedCustomer)
+        ->setSkus($skus);
 
     // Call the API and handle any network failures.
     try {
@@ -64,5 +69,22 @@ function query_eligible_billing_accounts_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedCustomer = CloudChannelServiceClient::customerName('[ACCOUNT]', '[CUSTOMER]');
+    $skusElement = '[SKUS]';
+
+    query_eligible_billing_accounts_sample($formattedCustomer, $skusElement);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_QueryEligibleBillingAccounts_sync]

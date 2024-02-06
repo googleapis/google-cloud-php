@@ -91,7 +91,8 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      *                                                                              be created. Must be in the format
      *                                                                              projects/{project_id}/locations/{location_id} or projects/{project_id}. If
      *                                                                              specified location and location of the destination bigquery dataset do not
-     *                                                                              match - the request will fail.
+     *                                                                              match - the request will fail. Please see
+     *                                                                              {@see DataTransferServiceClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig $transferConfig Required. Data transfer configuration to create.
      *
      * @return \Google\Cloud\BigQuery\DataTransfer\V1\CreateTransferConfigRequest

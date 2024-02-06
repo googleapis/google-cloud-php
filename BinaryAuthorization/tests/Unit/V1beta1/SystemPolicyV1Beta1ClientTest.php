@@ -74,13 +74,17 @@ class SystemPolicyV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getSystemPolicy();
+        // Mock request
+        $formattedName = $gapicClient->policyName('[PROJECT]');
+        $response = $gapicClient->getSystemPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.binaryauthorization.v1beta1.SystemPolicyV1Beta1/GetSystemPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -102,8 +106,10 @@ class SystemPolicyV1Beta1ClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->policyName('[PROJECT]');
         try {
-            $gapicClient->getSystemPolicy();
+            $gapicClient->getSystemPolicy($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

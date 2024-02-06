@@ -39,19 +39,17 @@ use Google\Cloud\Channel\V1\DeleteCustomerRequest;
  * * NOT_FOUND: No [Customer][google.cloud.channel.v1.Customer] resource found
  * for the name in the request.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the customer to delete. Please see
+ *                              {@see CloudChannelServiceClient::customerName()} for help formatting this field.
  */
-function delete_customer_sample(): void
+function delete_customer_sample(string $formattedName): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteCustomerRequest();
+    $request = (new DeleteCustomerRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -60,5 +58,21 @@ function delete_customer_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = CloudChannelServiceClient::customerName('[ACCOUNT]', '[CUSTOMER]');
+
+    delete_customer_sample($formattedName);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_DeleteCustomer_sync]

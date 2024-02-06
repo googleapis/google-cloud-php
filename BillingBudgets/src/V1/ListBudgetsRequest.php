@@ -51,7 +51,8 @@ class ListBudgetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. Name of billing account to list budgets under. Values
-     *                       are of the form `billingAccounts/{billingAccountId}`.
+     *                       are of the form `billingAccounts/{billingAccountId}`. Please see
+     *                       {@see BudgetServiceClient::billingAccountName()} for help formatting this field.
      *
      * @return \Google\Cloud\Billing\Budgets\V1\ListBudgetsRequest
      *

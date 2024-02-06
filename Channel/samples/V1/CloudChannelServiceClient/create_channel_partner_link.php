@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_CreateChannelPartnerLink_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
+use Google\Cloud\Channel\V1\ChannelPartnerLinkState;
 use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\CreateChannelPartnerLinkRequest;
 
@@ -53,19 +54,27 @@ use Google\Cloud\Channel\V1\CreateChannelPartnerLinkRequest;
  * The new [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink]
  * resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $parent                                    Create a channel partner link for the provided reseller account's
+ *                                                          resource name.
+ *                                                          Parent uses the format: accounts/{account_id}
+ * @param string $channelPartnerLinkResellerCloudIdentityId Cloud Identity ID of the linked reseller.
+ * @param int    $channelPartnerLinkLinkState               State of the channel partner link.
  */
-function create_channel_partner_link_sample(): void
-{
+function create_channel_partner_link_sample(
+    string $parent,
+    string $channelPartnerLinkResellerCloudIdentityId,
+    int $channelPartnerLinkLinkState
+): void {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new CreateChannelPartnerLinkRequest();
+    $channelPartnerLink = (new ChannelPartnerLink())
+        ->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId)
+        ->setLinkState($channelPartnerLinkLinkState);
+    $request = (new CreateChannelPartnerLinkRequest())
+        ->setParent($parent)
+        ->setChannelPartnerLink($channelPartnerLink);
 
     // Call the API and handle any network failures.
     try {
@@ -75,5 +84,27 @@ function create_channel_partner_link_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $parent = '[PARENT]';
+    $channelPartnerLinkResellerCloudIdentityId = '[RESELLER_CLOUD_IDENTITY_ID]';
+    $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
+
+    create_channel_partner_link_sample(
+        $parent,
+        $channelPartnerLinkResellerCloudIdentityId,
+        $channelPartnerLinkLinkState
+    );
 }
 // [END cloudchannel_v1_generated_CloudChannelService_CreateChannelPartnerLink_sync]

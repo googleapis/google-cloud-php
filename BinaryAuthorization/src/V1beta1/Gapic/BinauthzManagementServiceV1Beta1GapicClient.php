@@ -62,7 +62,10 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
  * try {
- *     $response = $binauthzManagementServiceV1Beta1Client->createAttestor();
+ *     $formattedParent = $binauthzManagementServiceV1Beta1Client->projectName('[PROJECT]');
+ *     $attestorId = 'attestor_id';
+ *     $attestor = new Attestor();
+ *     $response = $binauthzManagementServiceV1Beta1Client->createAttestor($formattedParent, $attestorId, $attestor);
  * } finally {
  *     $binauthzManagementServiceV1Beta1Client->close();
  * }
@@ -402,23 +405,23 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * ```
      * $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
      * try {
-     *     $response = $binauthzManagementServiceV1Beta1Client->createAttestor();
+     *     $formattedParent = $binauthzManagementServiceV1Beta1Client->projectName('[PROJECT]');
+     *     $attestorId = 'attestor_id';
+     *     $attestor = new Attestor();
+     *     $response = $binauthzManagementServiceV1Beta1Client->createAttestor($formattedParent, $attestorId, $attestor);
      * } finally {
      *     $binauthzManagementServiceV1Beta1Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The parent of this [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
+     * @param string   $attestorId   Required. The [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] ID.
+     * @param Attestor $attestor     Required. The initial [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
+     *                               overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name,
+     *                               in the format `projects/&#42;/attestors/*`.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The parent of this [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
-     *     @type string $attestorId
-     *           Required. The [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] ID.
-     *     @type Attestor $attestor
-     *           Required. The initial [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
-     *           overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name,
-     *           in the format `projects/&#42;/attestors/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -431,23 +434,14 @@ class BinauthzManagementServiceV1Beta1GapicClient
      *
      * @experimental
      */
-    public function createAttestor(array $optionalArgs = [])
+    public function createAttestor($parent, $attestorId, $attestor, array $optionalArgs = [])
     {
         $request = new CreateAttestorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['attestorId'])) {
-            $request->setAttestorId($optionalArgs['attestorId']);
-        }
-
-        if (isset($optionalArgs['attestor'])) {
-            $request->setAttestor($optionalArgs['attestor']);
-        }
-
+        $request->setParent($parent);
+        $request->setAttestorId($attestorId);
+        $request->setAttestor($attestor);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateAttestor', Attestor::class, $optionalArgs, $request)->wait();
@@ -461,18 +455,18 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * ```
      * $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
      * try {
-     *     $binauthzManagementServiceV1Beta1Client->deleteAttestor();
+     *     $formattedName = $binauthzManagementServiceV1Beta1Client->attestorName('[PROJECT]', '[ATTESTOR]');
+     *     $binauthzManagementServiceV1Beta1Client->deleteAttestor($formattedName);
      * } finally {
      *     $binauthzManagementServiceV1Beta1Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] to delete, in the format
+     *                             `projects/&#42;/attestors/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] to delete, in the format
-     *           `projects/&#42;/attestors/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -483,15 +477,12 @@ class BinauthzManagementServiceV1Beta1GapicClient
      *
      * @experimental
      */
-    public function deleteAttestor(array $optionalArgs = [])
+    public function deleteAttestor($name, array $optionalArgs = [])
     {
         $request = new DeleteAttestorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAttestor', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -505,18 +496,18 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * ```
      * $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
      * try {
-     *     $response = $binauthzManagementServiceV1Beta1Client->getAttestor();
+     *     $formattedName = $binauthzManagementServiceV1Beta1Client->attestorName('[PROJECT]', '[ATTESTOR]');
+     *     $response = $binauthzManagementServiceV1Beta1Client->getAttestor($formattedName);
      * } finally {
      *     $binauthzManagementServiceV1Beta1Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve, in the format
+     *                             `projects/&#42;/attestors/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The name of the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve, in the format
-     *           `projects/&#42;/attestors/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -529,15 +520,12 @@ class BinauthzManagementServiceV1Beta1GapicClient
      *
      * @experimental
      */
-    public function getAttestor(array $optionalArgs = [])
+    public function getAttestor($name, array $optionalArgs = [])
     {
         $request = new GetAttestorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAttestor', Attestor::class, $optionalArgs, $request)->wait();
@@ -556,18 +544,18 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * ```
      * $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
      * try {
-     *     $response = $binauthzManagementServiceV1Beta1Client->getPolicy();
+     *     $formattedName = $binauthzManagementServiceV1Beta1Client->policyName('[PROJECT]');
+     *     $response = $binauthzManagementServiceV1Beta1Client->getPolicy($formattedName);
      * } finally {
      *     $binauthzManagementServiceV1Beta1Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name of the [policy][google.cloud.binaryauthorization.v1beta1.Policy] to retrieve,
+     *                             in the format `projects/&#42;/policy`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name of the [policy][google.cloud.binaryauthorization.v1beta1.Policy] to retrieve,
-     *           in the format `projects/&#42;/policy`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -580,15 +568,12 @@ class BinauthzManagementServiceV1Beta1GapicClient
      *
      * @experimental
      */
-    public function getPolicy(array $optionalArgs = [])
+    public function getPolicy($name, array $optionalArgs = [])
     {
         $request = new GetPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -602,8 +587,9 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * ```
      * $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
      * try {
+     *     $formattedParent = $binauthzManagementServiceV1Beta1Client->projectName('[PROJECT]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $binauthzManagementServiceV1Beta1Client->listAttestors();
+     *     $pagedResponse = $binauthzManagementServiceV1Beta1Client->listAttestors($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -611,7 +597,7 @@ class BinauthzManagementServiceV1Beta1GapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $binauthzManagementServiceV1Beta1Client->listAttestors();
+     *     $pagedResponse = $binauthzManagementServiceV1Beta1Client->listAttestors($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -620,12 +606,11 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The resource name of the project associated with the
+     *                             [attestors][google.cloud.binaryauthorization.v1beta1.Attestor], in the format `projects/*`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The resource name of the project associated with the
-     *           [attestors][google.cloud.binaryauthorization.v1beta1.Attestor], in the format `projects/*`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -647,15 +632,12 @@ class BinauthzManagementServiceV1Beta1GapicClient
      *
      * @experimental
      */
-    public function listAttestors(array $optionalArgs = [])
+    public function listAttestors($parent, array $optionalArgs = [])
     {
         $request = new ListAttestorsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -677,19 +659,19 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * ```
      * $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
      * try {
-     *     $response = $binauthzManagementServiceV1Beta1Client->updateAttestor();
+     *     $attestor = new Attestor();
+     *     $response = $binauthzManagementServiceV1Beta1Client->updateAttestor($attestor);
      * } finally {
      *     $binauthzManagementServiceV1Beta1Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Attestor $attestor     Required. The updated [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
+     *                               overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name
+     *                               in the request URL, in the format `projects/&#42;/attestors/*`.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type Attestor $attestor
-     *           Required. The updated [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
-     *           overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name
-     *           in the request URL, in the format `projects/&#42;/attestors/*`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -702,14 +684,12 @@ class BinauthzManagementServiceV1Beta1GapicClient
      *
      * @experimental
      */
-    public function updateAttestor(array $optionalArgs = [])
+    public function updateAttestor($attestor, array $optionalArgs = [])
     {
         $request = new UpdateAttestorRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['attestor'])) {
-            $request->setAttestor($optionalArgs['attestor']);
-        }
-
+        $request->setAttestor($attestor);
+        $requestParamHeaders['attestor.name'] = $attestor->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateAttestor', Attestor::class, $optionalArgs, $request)->wait();
@@ -726,19 +706,19 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * ```
      * $binauthzManagementServiceV1Beta1Client = new BinauthzManagementServiceV1Beta1Client();
      * try {
-     *     $response = $binauthzManagementServiceV1Beta1Client->updatePolicy();
+     *     $policy = new Policy();
+     *     $response = $binauthzManagementServiceV1Beta1Client->updatePolicy($policy);
      * } finally {
      *     $binauthzManagementServiceV1Beta1Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Policy $policy       Required. A new or updated [policy][google.cloud.binaryauthorization.v1beta1.Policy] value. The service will
+     *                             overwrite the [policy name][google.cloud.binaryauthorization.v1beta1.Policy.name] field with the resource name in
+     *                             the request URL, in the format `projects/&#42;/policy`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type Policy $policy
-     *           Required. A new or updated [policy][google.cloud.binaryauthorization.v1beta1.Policy] value. The service will
-     *           overwrite the [policy name][google.cloud.binaryauthorization.v1beta1.Policy.name] field with the resource name in
-     *           the request URL, in the format `projects/&#42;/policy`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -751,14 +731,12 @@ class BinauthzManagementServiceV1Beta1GapicClient
      *
      * @experimental
      */
-    public function updatePolicy(array $optionalArgs = [])
+    public function updatePolicy($policy, array $optionalArgs = [])
     {
         $request = new UpdatePolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setPolicy($policy);
+        $requestParamHeaders['policy.name'] = $policy->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdatePolicy', Policy::class, $optionalArgs, $request)->wait();

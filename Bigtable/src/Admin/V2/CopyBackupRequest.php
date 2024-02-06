@@ -61,7 +61,8 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                     $parent       Required. The name of the destination cluster that will contain the backup
      *                                                 copy. The cluster must already exists. Values are of the form:
-     *                                                 `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     *                                                 `projects/{project}/instances/{instance}/clusters/{cluster}`. Please see
+     *                                                 {@see BigtableTableAdminClient::clusterName()} for help formatting this field.
      * @param string                     $backupId     Required. The id of the new backup. The `backup_id` along with `parent`
      *                                                 are combined as {parent}/backups/{backup_id} to create the full backup
      *                                                 name, of the form:
@@ -74,7 +75,8 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *                                                 Once CopyBackup is in progress, the source backup cannot be deleted or
      *                                                 cleaned up on expiration until CopyBackup is finished.
      *                                                 Values are of the form:
-     *                                                 `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
+     *                                                 `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`. Please see
+     *                                                 {@see BigtableTableAdminClient::backupName()} for help formatting this field.
      * @param \Google\Protobuf\Timestamp $expireTime   Required. Required. The expiration time of the copied backup with
      *                                                 microsecond granularity that must be at least 6 hours and at most 30 days
      *                                                 from the time the request is received. Once the `expire_time` has

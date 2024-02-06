@@ -34,19 +34,27 @@ use Google\Cloud\BinaryAuthorization\V1\CreateAttestorRequest;
  * INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the
  * [attestor][google.cloud.binaryauthorization.v1.Attestor] already exists.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor]. Please see
+ *                                {@see BinauthzManagementServiceV1Client::projectName()} for help formatting this field.
+ * @param string $attestorId      The [attestors][google.cloud.binaryauthorization.v1.Attestor] ID.
+ * @param string $attestorName    The resource name, in the format:
+ *                                `projects/&#42;/attestors/*`. This field may not be updated.
  */
-function create_attestor_sample(): void
-{
+function create_attestor_sample(
+    string $formattedParent,
+    string $attestorId,
+    string $attestorName
+): void {
     // Create a client.
     $binauthzManagementServiceV1Client = new BinauthzManagementServiceV1Client();
 
     // Prepare the request message.
-    $request = new CreateAttestorRequest();
+    $attestor = (new Attestor())
+        ->setName($attestorName);
+    $request = (new CreateAttestorRequest())
+        ->setParent($formattedParent)
+        ->setAttestorId($attestorId)
+        ->setAttestor($attestor);
 
     // Call the API and handle any network failures.
     try {
@@ -56,5 +64,23 @@ function create_attestor_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BinauthzManagementServiceV1Client::projectName('[PROJECT]');
+    $attestorId = '[ATTESTOR_ID]';
+    $attestorName = '[NAME]';
+
+    create_attestor_sample($formattedParent, $attestorId, $attestorName);
 }
 // [END binaryauthorization_v1_generated_BinauthzManagementServiceV1_CreateAttestor_sync]

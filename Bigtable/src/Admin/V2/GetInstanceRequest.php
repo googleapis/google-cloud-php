@@ -25,7 +25,8 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The unique name of the requested instance. Values are of the form
-     *                     `projects/{project}/instances/{instance}`.
+     *                     `projects/{project}/instances/{instance}`. Please see
+     *                     {@see BigtableInstanceAdminClient::instanceName()} for help formatting this field.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest
      *

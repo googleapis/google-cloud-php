@@ -52,19 +52,23 @@ use Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsRequest;
  *
  * **Note** "-" cannot be used for projects nor locations.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The parent resource name e.g.:
+ *
+ *                                `projects/myproject/locations/US/reservations/team1-prod`
+ *
+ *                                Or:
+ *
+ *                                `projects/myproject/locations/US/reservations/-`
+ *                                Please see {@see ReservationServiceClient::reservationName()} for help formatting this field.
  */
-function list_assignments_sample(): void
+function list_assignments_sample(string $formattedParent): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = new ListAssignmentsRequest();
+    $request = (new ListAssignmentsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -78,5 +82,25 @@ function list_assignments_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ReservationServiceClient::reservationName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[RESERVATION]'
+    );
+
+    list_assignments_sample($formattedParent);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_ListAssignments_sync]

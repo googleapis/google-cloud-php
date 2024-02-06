@@ -26,6 +26,7 @@ class GetBiReservationRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. Name of the requested reservation, for example:
      *                     `projects/{project_id}/locations/{location_id}/biReservation`
+     *                     Please see {@see ReservationServiceClient::biReservationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest
      *

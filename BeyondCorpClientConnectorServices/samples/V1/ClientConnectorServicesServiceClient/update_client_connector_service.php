@@ -26,26 +26,34 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Egress;
+use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\Client\ClientConnectorServicesServiceClient;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\UpdateClientConnectorServiceRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
  * Updates the parameters of a single ClientConnectorService.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $clientConnectorServiceName Name of resource. The name is ignored during creation.
  */
-function update_client_connector_service_sample(): void
+function update_client_connector_service_sample(string $clientConnectorServiceName): void
 {
     // Create a client.
     $clientConnectorServicesServiceClient = new ClientConnectorServicesServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateClientConnectorServiceRequest();
+    $updateMask = new FieldMask();
+    $clientConnectorServiceIngress = new Ingress();
+    $clientConnectorServiceEgress = new Egress();
+    $clientConnectorService = (new ClientConnectorService())
+        ->setName($clientConnectorServiceName)
+        ->setIngress($clientConnectorServiceIngress)
+        ->setEgress($clientConnectorServiceEgress);
+    $request = (new UpdateClientConnectorServiceRequest())
+        ->setUpdateMask($updateMask)
+        ->setClientConnectorService($clientConnectorService);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +73,21 @@ function update_client_connector_service_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $clientConnectorServiceName = '[NAME]';
+
+    update_client_connector_service_sample($clientConnectorServiceName);
 }
 // [END beyondcorp_v1_generated_ClientConnectorServicesService_UpdateClientConnectorService_sync]

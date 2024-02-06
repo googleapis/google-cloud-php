@@ -46,7 +46,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent, which owns this collection of Repositories.
-     *                       Format: `projects/&#42;/locations/&#42;/connections/*`.
+     *                       Format: `projects/&#42;/locations/&#42;/connections/*`. Please see
+     *                       {@see RepositoryManagerClient::connectionName()} for help formatting this field.
      *
      * @return \Google\Cloud\Build\V2\ListRepositoriesRequest
      *

@@ -50,19 +50,18 @@ use Google\Cloud\Channel\V1\ListSkuGroupBillableSkusRequest;
  *
  * If unsuccessful, returns an error.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Resource name of the SKU group.
+ *                                Format: accounts/{account}/skuGroups/{sku_group}. Please see
+ *                                {@see CloudChannelServiceClient::skuGroupName()} for help formatting this field.
  */
-function list_sku_group_billable_skus_sample(): void
+function list_sku_group_billable_skus_sample(string $formattedParent): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new ListSkuGroupBillableSkusRequest();
+    $request = (new ListSkuGroupBillableSkusRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -76,5 +75,21 @@ function list_sku_group_billable_skus_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CloudChannelServiceClient::skuGroupName('[ACCOUNT]', '[SKU_GROUP]');
+
+    list_sku_group_billable_skus_sample($formattedParent);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListSkuGroupBillableSkus_sync]

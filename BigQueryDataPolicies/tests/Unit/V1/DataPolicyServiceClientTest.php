@@ -80,13 +80,20 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDataPolicyId($dataPolicyId);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->createDataPolicy();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataPolicy = new DataPolicy();
+        $response = $gapicClient->createDataPolicy($formattedParent, $dataPolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datapolicies.v1.DataPolicyService/CreateDataPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getDataPolicy();
+        $this->assertProtobufEquals($dataPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -108,8 +115,11 @@ class DataPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataPolicy = new DataPolicy();
         try {
-            $gapicClient->createDataPolicy();
+            $gapicClient->createDataPolicy($formattedParent, $dataPolicy);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -132,12 +142,16 @@ class DataPolicyServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $gapicClient->deleteDataPolicy();
+        // Mock request
+        $formattedName = $gapicClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
+        $gapicClient->deleteDataPolicy($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datapolicies.v1.DataPolicyService/DeleteDataPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -159,8 +173,10 @@ class DataPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
         try {
-            $gapicClient->deleteDataPolicy();
+            $gapicClient->deleteDataPolicy($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -189,13 +205,17 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDataPolicyId($dataPolicyId);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getDataPolicy();
+        // Mock request
+        $formattedName = $gapicClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
+        $response = $gapicClient->getDataPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datapolicies.v1.DataPolicyService/GetDataPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -217,8 +237,10 @@ class DataPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->dataPolicyName('[PROJECT]', '[LOCATION]', '[DATA_POLICY]');
         try {
-            $gapicClient->getDataPolicy();
+            $gapicClient->getDataPolicy($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -310,7 +332,9 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataPolicies($dataPolicies);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listDataPolicies();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDataPolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -320,6 +344,8 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datapolicies.v1.DataPolicyService/ListDataPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -341,8 +367,10 @@ class DataPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listDataPolicies();
+            $gapicClient->listDataPolicies($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -371,13 +399,20 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDataPolicyId($dataPolicyId);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->renameDataPolicy();
+        // Mock request
+        $name = 'name3373707';
+        $newDataPolicyId = 'newDataPolicyId-1742039694';
+        $response = $gapicClient->renameDataPolicy($name, $newDataPolicyId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datapolicies.v1.DataPolicyService/RenameDataPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getNewDataPolicyId();
+        $this->assertProtobufEquals($newDataPolicyId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -399,8 +434,11 @@ class DataPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $newDataPolicyId = 'newDataPolicyId-1742039694';
         try {
-            $gapicClient->renameDataPolicy();
+            $gapicClient->renameDataPolicy($name, $newDataPolicyId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -557,13 +595,17 @@ class DataPolicyServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setDataPolicyId($dataPolicyId);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->updateDataPolicy();
+        // Mock request
+        $dataPolicy = new DataPolicy();
+        $response = $gapicClient->updateDataPolicy($dataPolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datapolicies.v1.DataPolicyService/UpdateDataPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDataPolicy();
+        $this->assertProtobufEquals($dataPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -585,8 +627,10 @@ class DataPolicyServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        // Mock request
+        $dataPolicy = new DataPolicy();
         try {
-            $gapicClient->updateDataPolicy();
+            $gapicClient->updateDataPolicy($dataPolicy);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -74,7 +74,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
  * try {
- *     $operationResponse = $clientGatewaysServiceClient->createClientGateway();
+ *     $formattedParent = $clientGatewaysServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $clientGateway = new ClientGateway();
+ *     $operationResponse = $clientGatewaysServiceClient->createClientGateway($formattedParent, $clientGateway);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -85,7 +87,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $clientGatewaysServiceClient->createClientGateway();
+ *     $operationResponse = $clientGatewaysServiceClient->createClientGateway($formattedParent, $clientGateway);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $clientGatewaysServiceClient->resumeOperation($operationName, 'createClientGateway');
@@ -398,7 +400,9 @@ class ClientGatewaysServiceGapicClient
      * ```
      * $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
      * try {
-     *     $operationResponse = $clientGatewaysServiceClient->createClientGateway();
+     *     $formattedParent = $clientGatewaysServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $clientGateway = new ClientGateway();
+     *     $operationResponse = $clientGatewaysServiceClient->createClientGateway($formattedParent, $clientGateway);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -409,7 +413,7 @@ class ClientGatewaysServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clientGatewaysServiceClient->createClientGateway();
+     *     $operationResponse = $clientGatewaysServiceClient->createClientGateway($formattedParent, $clientGateway);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clientGatewaysServiceClient->resumeOperation($operationName, 'createClientGateway');
@@ -429,18 +433,16 @@ class ClientGatewaysServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string        $parent        Required. Value for parent.
+     * @param ClientGateway $clientGateway Required. The resource being created.
+     * @param array         $optionalArgs  {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Value for parent.
      *     @type string $clientGatewayId
      *           Optional. User-settable client gateway resource ID.
      *           * Must start with a letter.
      *           * Must contain between 4-63 characters from `/[a-z][0-9]-/`.
      *           * Must end with a number or a letter.
-     *     @type ClientGateway $clientGateway
-     *           Required. The resource being created.
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -468,21 +470,18 @@ class ClientGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createClientGateway(array $optionalArgs = [])
-    {
+    public function createClientGateway(
+        $parent,
+        $clientGateway,
+        array $optionalArgs = []
+    ) {
         $request = new CreateClientGatewayRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $request->setClientGateway($clientGateway);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['clientGatewayId'])) {
             $request->setClientGatewayId($optionalArgs['clientGatewayId']);
-        }
-
-        if (isset($optionalArgs['clientGateway'])) {
-            $request->setClientGateway($optionalArgs['clientGateway']);
         }
 
         if (isset($optionalArgs['requestId'])) {
@@ -514,7 +513,8 @@ class ClientGatewaysServiceGapicClient
      * ```
      * $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
      * try {
-     *     $operationResponse = $clientGatewaysServiceClient->deleteClientGateway();
+     *     $formattedName = $clientGatewaysServiceClient->clientGatewayName('[PROJECT]', '[LOCATION]', '[CLIENT_GATEWAY]');
+     *     $operationResponse = $clientGatewaysServiceClient->deleteClientGateway($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -524,7 +524,7 @@ class ClientGatewaysServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $clientGatewaysServiceClient->deleteClientGateway();
+     *     $operationResponse = $clientGatewaysServiceClient->deleteClientGateway($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $clientGatewaysServiceClient->resumeOperation($operationName, 'deleteClientGateway');
@@ -543,11 +543,10 @@ class ClientGatewaysServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource
      *     @type string $requestId
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -575,15 +574,12 @@ class ClientGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteClientGateway(array $optionalArgs = [])
+    public function deleteClientGateway($name, array $optionalArgs = [])
     {
         $request = new DeleteClientGatewayRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -613,17 +609,17 @@ class ClientGatewaysServiceGapicClient
      * ```
      * $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
      * try {
-     *     $response = $clientGatewaysServiceClient->getClientGateway();
+     *     $formattedName = $clientGatewaysServiceClient->clientGatewayName('[PROJECT]', '[LOCATION]', '[CLIENT_GATEWAY]');
+     *     $response = $clientGatewaysServiceClient->getClientGateway($formattedName);
      * } finally {
      *     $clientGatewaysServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the resource
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the resource
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -634,15 +630,12 @@ class ClientGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getClientGateway(array $optionalArgs = [])
+    public function getClientGateway($name, array $optionalArgs = [])
     {
         $request = new GetClientGatewayRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -664,8 +657,9 @@ class ClientGatewaysServiceGapicClient
      * ```
      * $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
      * try {
+     *     $formattedParent = $clientGatewaysServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $clientGatewaysServiceClient->listClientGateways();
+     *     $pagedResponse = $clientGatewaysServiceClient->listClientGateways($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -673,7 +667,7 @@ class ClientGatewaysServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $clientGatewaysServiceClient->listClientGateways();
+     *     $pagedResponse = $clientGatewaysServiceClient->listClientGateways($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -682,11 +676,10 @@ class ClientGatewaysServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent value for ListClientGatewaysRequest.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent value for ListClientGatewaysRequest.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -710,15 +703,12 @@ class ClientGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listClientGateways(array $optionalArgs = [])
+    public function listClientGateways($parent, array $optionalArgs = [])
     {
         $request = new ListClientGatewaysRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -897,18 +887,18 @@ class ClientGatewaysServiceGapicClient
      * ```
      * $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
      * try {
-     *     $response = $clientGatewaysServiceClient->getIamPolicy();
+     *     $resource = 'resource';
+     *     $response = $clientGatewaysServiceClient->getIamPolicy($resource);
      * } finally {
      *     $clientGatewaysServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being requested.
-     *           See the operation documentation for the appropriate value for this field.
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
@@ -922,15 +912,12 @@ class ClientGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getIamPolicy(array $optionalArgs = [])
+    public function getIamPolicy($resource, array $optionalArgs = [])
     {
         $request = new GetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['options'])) {
             $request->setOptions($optionalArgs['options']);
         }
@@ -962,23 +949,23 @@ class ClientGatewaysServiceGapicClient
      * ```
      * $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
      * try {
-     *     $response = $clientGatewaysServiceClient->setIamPolicy();
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $clientGatewaysServiceClient->setIamPolicy($resource, $policy);
      * } finally {
      *     $clientGatewaysServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy is being specified.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type Policy $policy
-     *           REQUIRED: The complete policy to be applied to the `resource`. The size of
-     *           the policy is limited to a few 10s of KB. An empty policy is a
-     *           valid policy but certain Cloud Platform services (such as Projects)
-     *           might reject them.
      *     @type FieldMask $updateMask
      *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
      *           the fields in the mask will be modified. If no mask is provided, the
@@ -995,19 +982,13 @@ class ClientGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setIamPolicy(array $optionalArgs = [])
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
     {
         $request = new SetIamPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['policy'])) {
-            $request->setPolicy($optionalArgs['policy']);
-        }
-
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
@@ -1041,23 +1022,23 @@ class ClientGatewaysServiceGapicClient
      * ```
      * $clientGatewaysServiceClient = new ClientGatewaysServiceClient();
      * try {
-     *     $response = $clientGatewaysServiceClient->testIamPermissions();
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $clientGatewaysServiceClient->testIamPermissions($resource, $permissions);
      * } finally {
      *     $clientGatewaysServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $resource
-     *           REQUIRED: The resource for which the policy detail is being requested.
-     *           See the operation documentation for the appropriate value for this field.
-     *     @type string[] $permissions
-     *           The set of permissions to check for the `resource`. Permissions with
-     *           wildcards (such as '*' or 'storage.*') are not allowed. For more
-     *           information see
-     *           [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1068,19 +1049,16 @@ class ClientGatewaysServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['resource'])) {
-            $request->setResource($optionalArgs['resource']);
-            $requestParamHeaders['resource'] = $optionalArgs['resource'];
-        }
-
-        if (isset($optionalArgs['permissions'])) {
-            $request->setPermissions($optionalArgs['permissions']);
-        }
-
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

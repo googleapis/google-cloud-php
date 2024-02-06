@@ -43,10 +43,13 @@ function update_worker_pool_sample(): void
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
 
+    // Prepare any non-scalar elements to be passed along with the request.
+    $workerPool = new WorkerPool();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudBuildClient->updateWorkerPool();
+        $response = $cloudBuildClient->updateWorkerPool($workerPool);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

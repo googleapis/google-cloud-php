@@ -57,7 +57,9 @@ function create_billing_account_sample(): void
     $cloudBillingClient = new CloudBillingClient();
 
     // Prepare the request message.
-    $request = new CreateBillingAccountRequest();
+    $billingAccount = new BillingAccount();
+    $request = (new CreateBillingAccountRequest())
+        ->setBillingAccount($billingAccount);
 
     // Call the API and handle any network failures.
     try {

@@ -22,37 +22,37 @@ class Service
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-½
-6google/cloud/binaryauthorization/v1beta1/service.proto(google.cloud.binaryauthorization.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/cloud/binaryauthorization/v1beta1/resources.protogoogle/protobuf/empty.proto"T
-GetPolicyRequest@
-name (	B2âAúA+
-)binaryauthorization.googleapis.com/Policy"]
-UpdatePolicyRequestF
-policy (20.google.cloud.binaryauthorization.v1beta1.PolicyBâA"Ä
-CreateAttestorRequestD
-parent (	B4âAúA-
-+cloudresourcemanager.googleapis.com/Project
-attestor_id (	BâAJ
-attestor (22.google.cloud.binaryauthorization.v1beta1.AttestorBâA"X
-GetAttestorRequestB
-name (	B4âAúA-
-+binaryauthorization.googleapis.com/Attestor"c
-UpdateAttestorRequestJ
-attestor (22.google.cloud.binaryauthorization.v1beta1.AttestorBâA"ƒ
-ListAttestorsRequestD
-parent (	B4âAúA-
+³
+6google/cloud/binaryauthorization/v1beta1/service.proto(google.cloud.binaryauthorization.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/cloud/binaryauthorization/v1beta1/resources.protogoogle/protobuf/empty.proto"S
+GetPolicyRequest?
+name (	B1àAúA+
+)binaryauthorization.googleapis.com/Policy"\\
+UpdatePolicyRequestE
+policy (20.google.cloud.binaryauthorization.v1beta1.PolicyBàA"Á
+CreateAttestorRequestC
+parent (	B3àAúA-
++cloudresourcemanager.googleapis.com/Project
+attestor_id (	BàAI
+attestor (22.google.cloud.binaryauthorization.v1beta1.AttestorBàA"W
+GetAttestorRequestA
+name (	B3àAúA-
++binaryauthorization.googleapis.com/Attestor"b
+UpdateAttestorRequestI
+attestor (22.google.cloud.binaryauthorization.v1beta1.AttestorBàA"‚
+ListAttestorsRequestC
+parent (	B3àAúA-
 +cloudresourcemanager.googleapis.com/Project
 	page_size (
 
 page_token (	"w
 ListAttestorsResponseE
 	attestors (22.google.cloud.binaryauthorization.v1beta1.Attestor
-next_page_token (	"[
-DeleteAttestorRequestB
-name (	B4âAúA-
-+binaryauthorization.googleapis.com/Attestor"Z
-GetSystemPolicyRequest@
-name (	B2âAúA+
+next_page_token (	"Z
+DeleteAttestorRequestA
+name (	B3àAúA-
++binaryauthorization.googleapis.com/Attestor"Y
+GetSystemPolicyRequest?
+name (	B1àAúA+
 )binaryauthorization.googleapis.com/Policy2Ë
  BinauthzManagementServiceV1Beta1«
 	GetPolicy:.google.cloud.binaryauthorization.v1beta1.GetPolicyRequest0.google.cloud.binaryauthorization.v1beta1.Policy"0ÚAname‚Óä“#!/v1beta1/{name=projects/*/policy}Â

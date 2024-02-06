@@ -31,13 +31,11 @@ use Google\Cloud\BigQuery\DataPolicies\V1beta1\DataPolicyServiceClient;
 /**
  * List all of the data policies in the specified parent project.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Resource name of the project for which to list data policies. Format is
+ *                                `projects/{project_number}/locations/{location_id}`. Please see
+ *                                {@see DataPolicyServiceClient::locationName()} for help formatting this field.
  */
-function list_data_policies_sample(): void
+function list_data_policies_sample(string $formattedParent): void
 {
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
@@ -45,7 +43,7 @@ function list_data_policies_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataPolicyServiceClient->listDataPolicies();
+        $response = $dataPolicyServiceClient->listDataPolicies($formattedParent);
 
         /** @var DataPolicy $element */
         foreach ($response as $element) {
@@ -54,5 +52,21 @@ function list_data_policies_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = DataPolicyServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_data_policies_sample($formattedParent);
 }
 // [END bigquerydatapolicy_v1beta1_generated_DataPolicyService_ListDataPolicies_sync]

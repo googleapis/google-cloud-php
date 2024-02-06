@@ -48,19 +48,19 @@ use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
  * Return value:
  * The topic name with the registered service email address.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $account        Resource name of the account.
+ * @param string $serviceAccount Service account that provides subscriber access to the registered
+ *                               topic.
  */
-function register_subscriber_sample(): void
+function register_subscriber_sample(string $account, string $serviceAccount): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new RegisterSubscriberRequest();
+    $request = (new RegisterSubscriberRequest())
+        ->setAccount($account)
+        ->setServiceAccount($serviceAccount);
 
     // Call the API and handle any network failures.
     try {
@@ -70,5 +70,22 @@ function register_subscriber_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $account = '[ACCOUNT]';
+    $serviceAccount = '[SERVICE_ACCOUNT]';
+
+    register_subscriber_sample($account, $serviceAccount);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_RegisterSubscriber_sync]

@@ -35,6 +35,7 @@ class CreateChannelPartnerRepricingConfigRequest extends \Google\Protobuf\Intern
      * @param string                                                 $parent                        Required. The resource name of the ChannelPartner that will receive the
      *                                                                                              repricing config. Parent uses the format:
      *                                                                                              accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
+     *                                                                                              Please see {@see CloudChannelServiceClient::channelPartnerLinkName()} for help formatting this field.
      * @param \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig $channelPartnerRepricingConfig Required. The ChannelPartnerRepricingConfig object to update.
      *
      * @return \Google\Cloud\Channel\V1\CreateChannelPartnerRepricingConfigRequest

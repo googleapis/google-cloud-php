@@ -32,19 +32,18 @@ use Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsRequest;
 /**
  * Lists CertificateIssuanceConfigs in a given project and location.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The project and location from which the certificate should be
+ *                                listed, specified in the format `projects/&#42;/locations/*`. Please see
+ *                                {@see CertificateManagerClient::locationName()} for help formatting this field.
  */
-function list_certificate_issuance_configs_sample(): void
+function list_certificate_issuance_configs_sample(string $formattedParent): void
 {
     // Create a client.
     $certificateManagerClient = new CertificateManagerClient();
 
     // Prepare the request message.
-    $request = new ListCertificateIssuanceConfigsRequest();
+    $request = (new ListCertificateIssuanceConfigsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -58,5 +57,21 @@ function list_certificate_issuance_configs_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CertificateManagerClient::locationName('[PROJECT]', '[LOCATION]');
+
+    list_certificate_issuance_configs_sample($formattedParent);
 }
 // [END certificatemanager_v1_generated_CertificateManager_ListCertificateIssuanceConfigs_sync]

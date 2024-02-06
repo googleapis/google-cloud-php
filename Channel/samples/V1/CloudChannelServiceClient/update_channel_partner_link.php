@@ -25,8 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_UpdateChannelPartnerLink_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
+use Google\Cloud\Channel\V1\ChannelPartnerLinkState;
 use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\UpdateChannelPartnerLinkRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Updates a channel partner link. Distributors call this method to change a
@@ -52,19 +54,29 @@ use Google\Cloud\Channel\V1\UpdateChannelPartnerLinkRequest;
  * The updated
  * [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name                                      The resource name of the channel partner link to cancel.
+ *                                                          Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
+ *                                                          where {id} is the Cloud Identity ID of the partner.
+ * @param string $channelPartnerLinkResellerCloudIdentityId Cloud Identity ID of the linked reseller.
+ * @param int    $channelPartnerLinkLinkState               State of the channel partner link.
  */
-function update_channel_partner_link_sample(): void
-{
+function update_channel_partner_link_sample(
+    string $name,
+    string $channelPartnerLinkResellerCloudIdentityId,
+    int $channelPartnerLinkLinkState
+): void {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateChannelPartnerLinkRequest();
+    $channelPartnerLink = (new ChannelPartnerLink())
+        ->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId)
+        ->setLinkState($channelPartnerLinkLinkState);
+    $updateMask = new FieldMask();
+    $request = (new UpdateChannelPartnerLinkRequest())
+        ->setName($name)
+        ->setChannelPartnerLink($channelPartnerLink)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
@@ -74,5 +86,27 @@ function update_channel_partner_link_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+    $channelPartnerLinkResellerCloudIdentityId = '[RESELLER_CLOUD_IDENTITY_ID]';
+    $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
+
+    update_channel_partner_link_sample(
+        $name,
+        $channelPartnerLinkResellerCloudIdentityId,
+        $channelPartnerLinkLinkState
+    );
 }
 // [END cloudchannel_v1_generated_CloudChannelService_UpdateChannelPartnerLink_sync]

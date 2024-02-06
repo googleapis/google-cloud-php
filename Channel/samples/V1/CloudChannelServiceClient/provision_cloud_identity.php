@@ -56,19 +56,18 @@ use Google\Rpc\Status;
  * CloudChannelOperationsService. The Operation metadata contains an
  * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedCustomer Resource name of the customer.
+ *                                  Format: accounts/{account_id}/customers/{customer_id}
+ *                                  Please see {@see CloudChannelServiceClient::customerName()} for help formatting this field.
  */
-function provision_cloud_identity_sample(): void
+function provision_cloud_identity_sample(string $formattedCustomer): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new ProvisionCloudIdentityRequest();
+    $request = (new ProvisionCloudIdentityRequest())
+        ->setCustomer($formattedCustomer);
 
     // Call the API and handle any network failures.
     try {
@@ -88,5 +87,21 @@ function provision_cloud_identity_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedCustomer = CloudChannelServiceClient::customerName('[ACCOUNT]', '[CUSTOMER]');
+
+    provision_cloud_identity_sample($formattedCustomer);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ProvisionCloudIdentity_sync]

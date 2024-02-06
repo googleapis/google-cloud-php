@@ -48,6 +48,7 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsRespons
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest;
@@ -67,6 +68,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -124,7 +126,16 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setListingCount($listingCount);
         $expectedResponse->setIcon($icon);
         $transport->addResponse($expectedResponse);
-        $request = new CreateDataExchangeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataExchangeId = 'dataExchangeId1402219426';
+        $dataExchange = new DataExchange();
+        $dataExchangeDisplayName = 'dataExchangeDisplayName-1195270080';
+        $dataExchange->setDisplayName($dataExchangeDisplayName);
+        $request = (new CreateDataExchangeRequest())
+            ->setParent($formattedParent)
+            ->setDataExchangeId($dataExchangeId)
+            ->setDataExchange($dataExchange);
         $response = $gapicClient->createDataExchange($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -132,6 +143,12 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/CreateDataExchange', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getDataExchangeId();
+        $this->assertProtobufEquals($dataExchangeId, $actualValue);
+        $actualValue = $actualRequestObject->getDataExchange();
+        $this->assertProtobufEquals($dataExchange, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -153,7 +170,16 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateDataExchangeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataExchangeId = 'dataExchangeId1402219426';
+        $dataExchange = new DataExchange();
+        $dataExchangeDisplayName = 'dataExchangeDisplayName-1195270080';
+        $dataExchange->setDisplayName($dataExchangeDisplayName);
+        $request = (new CreateDataExchangeRequest())
+            ->setParent($formattedParent)
+            ->setDataExchangeId($dataExchangeId)
+            ->setDataExchange($dataExchange);
         try {
             $gapicClient->createDataExchange($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -192,7 +218,18 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
         $transport->addResponse($expectedResponse);
-        $request = new CreateListingRequest();
+        // Mock request
+        $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $listingId = 'listingId988969142';
+        $listing = new Listing();
+        $listingDisplayName = 'listingDisplayName293456201';
+        $listing->setDisplayName($listingDisplayName);
+        $listingBigqueryDataset = new BigQueryDatasetSource();
+        $listing->setBigqueryDataset($listingBigqueryDataset);
+        $request = (new CreateListingRequest())
+            ->setParent($formattedParent)
+            ->setListingId($listingId)
+            ->setListing($listing);
         $response = $gapicClient->createListing($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -200,6 +237,12 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/CreateListing', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getListingId();
+        $this->assertProtobufEquals($listingId, $actualValue);
+        $actualValue = $actualRequestObject->getListing();
+        $this->assertProtobufEquals($listing, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -221,7 +264,18 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateListingRequest();
+        // Mock request
+        $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $listingId = 'listingId988969142';
+        $listing = new Listing();
+        $listingDisplayName = 'listingDisplayName293456201';
+        $listing->setDisplayName($listingDisplayName);
+        $listingBigqueryDataset = new BigQueryDatasetSource();
+        $listing->setBigqueryDataset($listingBigqueryDataset);
+        $request = (new CreateListingRequest())
+            ->setParent($formattedParent)
+            ->setListingId($listingId)
+            ->setListing($listing);
         try {
             $gapicClient->createListing($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -246,13 +300,18 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteDataExchangeRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $request = (new DeleteDataExchangeRequest())
+            ->setName($formattedName);
         $gapicClient->deleteDataExchange($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/DeleteDataExchange', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -274,7 +333,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteDataExchangeRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $request = (new DeleteDataExchangeRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteDataExchange($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -299,13 +361,18 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new DeleteListingRequest();
+        // Mock request
+        $formattedName = $gapicClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+        $request = (new DeleteListingRequest())
+            ->setName($formattedName);
         $gapicClient->deleteListing($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/DeleteListing', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -327,7 +394,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new DeleteListingRequest();
+        // Mock request
+        $formattedName = $gapicClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+        $request = (new DeleteListingRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->deleteListing($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -370,7 +440,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new DeleteSubscriptionRequest();
+        // Mock request
+        $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+        $request = (new DeleteSubscriptionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteSubscription($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -381,6 +454,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/DeleteSubscription', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSubscriptionTest');
         $response->pollUntilComplete([
@@ -431,7 +506,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new DeleteSubscriptionRequest();
+        // Mock request
+        $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+        $request = (new DeleteSubscriptionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteSubscription($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -479,7 +557,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setListingCount($listingCount);
         $expectedResponse->setIcon($icon);
         $transport->addResponse($expectedResponse);
-        $request = new GetDataExchangeRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $request = (new GetDataExchangeRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getDataExchange($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -487,6 +568,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/GetDataExchange', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -508,7 +591,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetDataExchangeRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $request = (new GetDataExchangeRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getDataExchange($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -613,7 +699,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
         $transport->addResponse($expectedResponse);
-        $request = new GetListingRequest();
+        // Mock request
+        $formattedName = $gapicClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+        $request = (new GetListingRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getListing($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -621,6 +710,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/GetListing', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -642,7 +733,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetListingRequest();
+        // Mock request
+        $formattedName = $gapicClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+        $request = (new GetListingRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getListing($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -677,7 +771,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setOrganizationDisplayName($organizationDisplayName);
         $expectedResponse->setSubscriberContact($subscriberContact);
         $transport->addResponse($expectedResponse);
-        $request = new GetSubscriptionRequest();
+        // Mock request
+        $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+        $request = (new GetSubscriptionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getSubscription($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -685,6 +782,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/GetSubscription', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -706,7 +805,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetSubscriptionRequest();
+        // Mock request
+        $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+        $request = (new GetSubscriptionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getSubscription($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -738,7 +840,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataExchanges($dataExchanges);
         $transport->addResponse($expectedResponse);
-        $request = new ListDataExchangesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDataExchangesRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listDataExchanges($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -749,6 +854,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/ListDataExchanges', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -770,7 +877,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListDataExchangesRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListDataExchangesRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listDataExchanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -802,7 +912,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setListings($listings);
         $transport->addResponse($expectedResponse);
-        $request = new ListListingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $request = (new ListListingsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listListings($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -813,6 +926,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/ListListings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -834,7 +949,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListListingsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $request = (new ListListingsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listListings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -866,7 +984,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataExchanges($dataExchanges);
         $transport->addResponse($expectedResponse);
-        $request = new ListOrgDataExchangesRequest();
+        // Mock request
+        $organization = 'organization1178922291';
+        $request = (new ListOrgDataExchangesRequest())
+            ->setOrganization($organization);
         $response = $gapicClient->listOrgDataExchanges($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -877,6 +998,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/ListOrgDataExchanges', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOrganization();
+        $this->assertProtobufEquals($organization, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -898,7 +1021,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListOrgDataExchangesRequest();
+        // Mock request
+        $organization = 'organization1178922291';
+        $request = (new ListOrgDataExchangesRequest())
+            ->setOrganization($organization);
         try {
             $gapicClient->listOrgDataExchanges($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -930,7 +1056,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSharedResourceSubscriptions($sharedResourceSubscriptions);
         $transport->addResponse($expectedResponse);
-        $request = new ListSharedResourceSubscriptionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new ListSharedResourceSubscriptionsRequest())
+            ->setResource($resource);
         $response = $gapicClient->listSharedResourceSubscriptions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -941,6 +1070,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/ListSharedResourceSubscriptions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -962,7 +1093,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSharedResourceSubscriptionsRequest();
+        // Mock request
+        $resource = 'resource-341064690';
+        $request = (new ListSharedResourceSubscriptionsRequest())
+            ->setResource($resource);
         try {
             $gapicClient->listSharedResourceSubscriptions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -994,7 +1128,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubscriptions($subscriptions);
         $transport->addResponse($expectedResponse);
-        $request = new ListSubscriptionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListSubscriptionsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSubscriptions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1005,6 +1142,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/ListSubscriptions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1026,7 +1165,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSubscriptionsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListSubscriptionsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSubscriptions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1069,7 +1211,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new RefreshSubscriptionRequest();
+        // Mock request
+        $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+        $request = (new RefreshSubscriptionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->refreshSubscription($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1080,6 +1225,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/RefreshSubscription', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/refreshSubscriptionTest');
         $response->pollUntilComplete([
@@ -1130,7 +1277,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new RefreshSubscriptionRequest();
+        // Mock request
+        $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+        $request = (new RefreshSubscriptionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->refreshSubscription($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1164,7 +1314,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new RevokeSubscriptionResponse();
         $transport->addResponse($expectedResponse);
-        $request = new RevokeSubscriptionRequest();
+        // Mock request
+        $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+        $request = (new RevokeSubscriptionRequest())
+            ->setName($formattedName);
         $response = $gapicClient->revokeSubscription($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1172,6 +1325,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/RevokeSubscription', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1193,7 +1348,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new RevokeSubscriptionRequest();
+        // Mock request
+        $formattedName = $gapicClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+        $request = (new RevokeSubscriptionRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->revokeSubscription($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1308,7 +1466,14 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $request = new SubscribeDataExchangeRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $formattedDestination = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $subscription = 'subscription341203229';
+        $request = (new SubscribeDataExchangeRequest())
+            ->setName($formattedName)
+            ->setDestination($formattedDestination)
+            ->setSubscription($subscription);
         $response = $gapicClient->subscribeDataExchange($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1319,6 +1484,12 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/SubscribeDataExchange', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getDestination();
+        $this->assertProtobufEquals($formattedDestination, $actualValue);
+        $actualValue = $actualApiRequestObject->getSubscription();
+        $this->assertProtobufEquals($subscription, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/subscribeDataExchangeTest');
         $response->pollUntilComplete([
@@ -1369,7 +1540,14 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $request = new SubscribeDataExchangeRequest();
+        // Mock request
+        $formattedName = $gapicClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+        $formattedDestination = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $subscription = 'subscription341203229';
+        $request = (new SubscribeDataExchangeRequest())
+            ->setName($formattedName)
+            ->setDestination($formattedDestination)
+            ->setSubscription($subscription);
         $response = $gapicClient->subscribeDataExchange($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1403,7 +1581,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new SubscribeListingResponse();
         $transport->addResponse($expectedResponse);
-        $request = new SubscribeListingRequest();
+        // Mock request
+        $formattedName = $gapicClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+        $request = (new SubscribeListingRequest())
+            ->setName($formattedName);
         $response = $gapicClient->subscribeListing($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1411,6 +1592,8 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/SubscribeListing', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1432,7 +1615,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new SubscribeListingRequest();
+        // Mock request
+        $formattedName = $gapicClient->listingName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]', '[LISTING]');
+        $request = (new SubscribeListingRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->subscribeListing($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1539,7 +1725,14 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setListingCount($listingCount);
         $expectedResponse->setIcon($icon);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateDataExchangeRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $dataExchange = new DataExchange();
+        $dataExchangeDisplayName = 'dataExchangeDisplayName-1195270080';
+        $dataExchange->setDisplayName($dataExchangeDisplayName);
+        $request = (new UpdateDataExchangeRequest())
+            ->setUpdateMask($updateMask)
+            ->setDataExchange($dataExchange);
         $response = $gapicClient->updateDataExchange($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1547,6 +1740,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/UpdateDataExchange', $actualFuncCall);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualRequestObject->getDataExchange();
+        $this->assertProtobufEquals($dataExchange, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1568,7 +1765,14 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateDataExchangeRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $dataExchange = new DataExchange();
+        $dataExchangeDisplayName = 'dataExchangeDisplayName-1195270080';
+        $dataExchange->setDisplayName($dataExchangeDisplayName);
+        $request = (new UpdateDataExchangeRequest())
+            ->setUpdateMask($updateMask)
+            ->setDataExchange($dataExchange);
         try {
             $gapicClient->updateDataExchange($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1607,7 +1811,16 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setIcon($icon);
         $expectedResponse->setRequestAccess($requestAccess);
         $transport->addResponse($expectedResponse);
-        $request = new UpdateListingRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $listing = new Listing();
+        $listingDisplayName = 'listingDisplayName293456201';
+        $listing->setDisplayName($listingDisplayName);
+        $listingBigqueryDataset = new BigQueryDatasetSource();
+        $listing->setBigqueryDataset($listingBigqueryDataset);
+        $request = (new UpdateListingRequest())
+            ->setUpdateMask($updateMask)
+            ->setListing($listing);
         $response = $gapicClient->updateListing($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1615,6 +1828,10 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/UpdateListing', $actualFuncCall);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $actualValue = $actualRequestObject->getListing();
+        $this->assertProtobufEquals($listing, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1636,7 +1853,16 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UpdateListingRequest();
+        // Mock request
+        $updateMask = new FieldMask();
+        $listing = new Listing();
+        $listingDisplayName = 'listingDisplayName293456201';
+        $listing->setDisplayName($listingDisplayName);
+        $listingBigqueryDataset = new BigQueryDatasetSource();
+        $listing->setBigqueryDataset($listingBigqueryDataset);
+        $request = (new UpdateListingRequest())
+            ->setUpdateMask($updateMask)
+            ->setListing($listing);
         try {
             $gapicClient->updateListing($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1675,7 +1901,16 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $expectedResponse->setListingCount($listingCount);
         $expectedResponse->setIcon($icon);
         $transport->addResponse($expectedResponse);
-        $request = new CreateDataExchangeRequest();
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $dataExchangeId = 'dataExchangeId1402219426';
+        $dataExchange = new DataExchange();
+        $dataExchangeDisplayName = 'dataExchangeDisplayName-1195270080';
+        $dataExchange->setDisplayName($dataExchangeDisplayName);
+        $request = (new CreateDataExchangeRequest())
+            ->setParent($formattedParent)
+            ->setDataExchangeId($dataExchangeId)
+            ->setDataExchange($dataExchange);
         $response = $gapicClient->createDataExchangeAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1683,6 +1918,12 @@ class AnalyticsHubServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.analyticshub.v1.AnalyticsHubService/CreateDataExchange', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getDataExchangeId();
+        $this->assertProtobufEquals($dataExchangeId, $actualValue);
+        $actualValue = $actualRequestObject->getDataExchange();
+        $this->assertProtobufEquals($dataExchange, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

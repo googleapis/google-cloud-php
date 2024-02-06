@@ -50,7 +50,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $parent     Required. The unique name of the project in which to create the new
-     *                                                             instance. Values are of the form `projects/{project}`.
+     *                                                             instance. Values are of the form `projects/{project}`. Please see
+     *                                                             {@see BigtableInstanceAdminClient::projectName()} for help formatting this field.
      * @param string                                   $instanceId Required. The ID to be used when referring to the new instance within its
      *                                                             project, e.g., just `myinstance` rather than
      *                                                             `projects/myproject/instances/myinstance`.

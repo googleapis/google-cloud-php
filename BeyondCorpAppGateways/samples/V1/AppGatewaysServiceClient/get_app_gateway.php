@@ -31,19 +31,18 @@ use Google\Cloud\BeyondCorp\AppGateways\V1\GetAppGatewayRequest;
 /**
  * Gets details of a single AppGateway.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName BeyondCorp AppGateway name using the form:
+ *                              `projects/{project_id}/locations/{location_id}/appGateways/{app_gateway_id}`
+ *                              Please see {@see AppGatewaysServiceClient::appGatewayName()} for help formatting this field.
  */
-function get_app_gateway_sample(): void
+function get_app_gateway_sample(string $formattedName): void
 {
     // Create a client.
     $appGatewaysServiceClient = new AppGatewaysServiceClient();
 
     // Prepare the request message.
-    $request = new GetAppGatewayRequest();
+    $request = (new GetAppGatewayRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,25 @@ function get_app_gateway_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AppGatewaysServiceClient::appGatewayName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[APP_GATEWAY]'
+    );
+
+    get_app_gateway_sample($formattedName);
 }
 // [END beyondcorp_v1_generated_AppGatewaysService_GetAppGateway_sync]

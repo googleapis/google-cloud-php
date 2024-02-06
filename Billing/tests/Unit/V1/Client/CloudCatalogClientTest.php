@@ -146,7 +146,10 @@ class CloudCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSkus($skus);
         $transport->addResponse($expectedResponse);
-        $request = new ListSkusRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[SERVICE]');
+        $request = (new ListSkusRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listSkus($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -157,6 +160,8 @@ class CloudCatalogClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudCatalog/ListSkus', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -178,7 +183,10 @@ class CloudCatalogClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new ListSkusRequest();
+        // Mock request
+        $formattedParent = $gapicClient->serviceName('[SERVICE]');
+        $request = (new ListSkusRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listSkus($request);
             // If the $gapicClient method call did not throw, fail the test

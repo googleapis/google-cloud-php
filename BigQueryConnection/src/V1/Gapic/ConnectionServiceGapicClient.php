@@ -58,7 +58,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $connectionServiceClient = new ConnectionServiceClient();
  * try {
- *     $response = $connectionServiceClient->createConnection();
+ *     $formattedParent = $connectionServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $connection = new Connection();
+ *     $response = $connectionServiceClient->createConnection($formattedParent, $connection);
  * } finally {
  *     $connectionServiceClient->close();
  * }
@@ -383,22 +385,22 @@ class ConnectionServiceGapicClient
      * ```
      * $connectionServiceClient = new ConnectionServiceClient();
      * try {
-     *     $response = $connectionServiceClient->createConnection();
+     *     $formattedParent = $connectionServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $connection = new Connection();
+     *     $response = $connectionServiceClient->createConnection($formattedParent, $connection);
      * } finally {
      *     $connectionServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $parent       Required. Parent resource name.
+     *                                 Must be in the format `projects/{project_id}/locations/{location_id}`
+     * @param Connection $connection   Required. Connection to create.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent resource name.
-     *           Must be in the format `projects/{project_id}/locations/{location_id}`
      *     @type string $connectionId
      *           Optional. Connection id that should be assigned to the created connection.
-     *     @type Connection $connection
-     *           Required. Connection to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -409,21 +411,18 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConnection(array $optionalArgs = [])
-    {
+    public function createConnection(
+        $parent,
+        $connection,
+        array $optionalArgs = []
+    ) {
         $request = new CreateConnectionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $request->setConnection($connection);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['connectionId'])) {
             $request->setConnectionId($optionalArgs['connectionId']);
-        }
-
-        if (isset($optionalArgs['connection'])) {
-            $request->setConnection($optionalArgs['connection']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -447,18 +446,18 @@ class ConnectionServiceGapicClient
      * ```
      * $connectionServiceClient = new ConnectionServiceClient();
      * try {
-     *     $connectionServiceClient->deleteConnection();
+     *     $formattedName = $connectionServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $connectionServiceClient->deleteConnection($formattedName);
      * } finally {
      *     $connectionServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the deleted connection, for example:
+     *                             `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the deleted connection, for example:
-     *           `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -467,15 +466,12 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteConnection(array $optionalArgs = [])
+    public function deleteConnection($name, array $optionalArgs = [])
     {
         $request = new DeleteConnectionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -497,18 +493,18 @@ class ConnectionServiceGapicClient
      * ```
      * $connectionServiceClient = new ConnectionServiceClient();
      * try {
-     *     $response = $connectionServiceClient->getConnection();
+     *     $formattedName = $connectionServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $response = $connectionServiceClient->getConnection($formattedName);
      * } finally {
      *     $connectionServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. Name of the requested connection, for example:
+     *                             `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the requested connection, for example:
-     *           `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -519,15 +515,12 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getConnection(array $optionalArgs = [])
+    public function getConnection($name, array $optionalArgs = [])
     {
         $request = new GetConnectionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -607,8 +600,10 @@ class ConnectionServiceGapicClient
      * ```
      * $connectionServiceClient = new ConnectionServiceClient();
      * try {
+     *     $formattedParent = $connectionServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $pageSize = 0;
      *     // Iterate over pages of elements
-     *     $pagedResponse = $connectionServiceClient->listConnections();
+     *     $pagedResponse = $connectionServiceClient->listConnections($formattedParent, $pageSize);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -616,7 +611,7 @@ class ConnectionServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $connectionServiceClient->listConnections();
+     *     $pagedResponse = $connectionServiceClient->listConnections($formattedParent, $pageSize);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -625,16 +620,14 @@ class ConnectionServiceGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. Parent resource name.
+     *                             Must be in the form: `projects/{project_id}/locations/{location_id}`
+     * @param int    $pageSize     The maximum number of resources contained in the underlying API
+     *                             response. The API may return fewer values in a page, even if
+     *                             there are additional values to be retrieved.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. Parent resource name.
-     *           Must be in the form: `projects/{project_id}/locations/{location_id}`
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
      *     @type string $pageToken
      *           A page token is used to specify a page of values to be returned.
      *           If no page token is specified (the default), the first page
@@ -650,19 +643,16 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConnections(array $optionalArgs = [])
-    {
+    public function listConnections(
+        $parent,
+        $pageSize,
+        array $optionalArgs = []
+    ) {
         $request = new ListConnectionsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
+        $request->setParent($parent);
+        $request->setPageSize($pageSize);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -821,22 +811,22 @@ class ConnectionServiceGapicClient
      * ```
      * $connectionServiceClient = new ConnectionServiceClient();
      * try {
-     *     $response = $connectionServiceClient->updateConnection();
+     *     $formattedName = $connectionServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $connection = new Connection();
+     *     $updateMask = new FieldMask();
+     *     $response = $connectionServiceClient->updateConnection($formattedName, $connection, $updateMask);
      * } finally {
      *     $connectionServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $name         Required. Name of the connection to update, for example:
+     *                                 `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
+     * @param Connection $connection   Required. Connection containing the updated fields.
+     * @param FieldMask  $updateMask   Required. Update mask for the connection fields to be updated.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. Name of the connection to update, for example:
-     *           `projects/{project_id}/locations/{location_id}/connections/{connection_id}`
-     *     @type Connection $connection
-     *           Required. Connection containing the updated fields.
-     *     @type FieldMask $updateMask
-     *           Required. Update mask for the connection fields to be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -847,23 +837,18 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateConnection(array $optionalArgs = [])
-    {
+    public function updateConnection(
+        $name,
+        $connection,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateConnectionRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['connection'])) {
-            $request->setConnection($optionalArgs['connection']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setName($name);
+        $request->setConnection($connection);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

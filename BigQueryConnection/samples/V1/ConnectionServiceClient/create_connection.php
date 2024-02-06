@@ -31,19 +31,20 @@ use Google\Cloud\BigQuery\Connection\V1\CreateConnectionRequest;
 /**
  * Creates a new connection.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Parent resource name.
+ *                                Must be in the format `projects/{project_id}/locations/{location_id}`
+ *                                Please see {@see ConnectionServiceClient::locationName()} for help formatting this field.
  */
-function create_connection_sample(): void
+function create_connection_sample(string $formattedParent): void
 {
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
     // Prepare the request message.
-    $request = new CreateConnectionRequest();
+    $connection = new Connection();
+    $request = (new CreateConnectionRequest())
+        ->setParent($formattedParent)
+        ->setConnection($connection);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +54,21 @@ function create_connection_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ConnectionServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    create_connection_sample($formattedParent);
 }
 // [END bigqueryconnection_v1_generated_ConnectionService_CreateConnection_sync]

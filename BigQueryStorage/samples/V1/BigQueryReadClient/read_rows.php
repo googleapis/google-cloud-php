@@ -38,19 +38,17 @@ use Google\Cloud\BigQuery\Storage\V1\ReadRowsResponse;
  * Each request also returns a set of stream statistics reflecting the current
  * state of the stream.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedReadStream Stream to read rows from. Please see
+ *                                    {@see BigQueryReadClient::readStreamName()} for help formatting this field.
  */
-function read_rows_sample(): void
+function read_rows_sample(string $formattedReadStream): void
 {
     // Create a client.
     $bigQueryReadClient = new BigQueryReadClient();
 
     // Prepare the request message.
-    $request = new ReadRowsRequest();
+    $request = (new ReadRowsRequest())
+        ->setReadStream($formattedReadStream);
 
     // Call the API and handle any network failures.
     try {
@@ -64,5 +62,26 @@ function read_rows_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedReadStream = BigQueryReadClient::readStreamName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[SESSION]',
+        '[STREAM]'
+    );
+
+    read_rows_sample($formattedReadStream);
 }
 // [END bigquerystorage_v1_generated_BigQueryRead_ReadRows_sync]

@@ -33,19 +33,25 @@ use Google\Rpc\Status;
 /**
  * Creates a Connection.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Project and location where the connection will be created.
+ *                                Format: `projects/&#42;/locations/*`. Please see
+ *                                {@see RepositoryManagerClient::locationName()} for help formatting this field.
+ * @param string $connectionId    The ID to use for the Connection, which will become the final
+ *                                component of the Connection's resource name. Names must be unique
+ *                                per-project per-location. Allows alphanumeric characters and any of
+ *                                -._~%!$&'()*+,;=&#64;.
  */
-function create_connection_sample(): void
+function create_connection_sample(string $formattedParent, string $connectionId): void
 {
     // Create a client.
     $repositoryManagerClient = new RepositoryManagerClient();
 
     // Prepare the request message.
-    $request = new CreateConnectionRequest();
+    $connection = new Connection();
+    $request = (new CreateConnectionRequest())
+        ->setParent($formattedParent)
+        ->setConnection($connection)
+        ->setConnectionId($connectionId);
 
     // Call the API and handle any network failures.
     try {
@@ -65,5 +71,22 @@ function create_connection_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = RepositoryManagerClient::locationName('[PROJECT]', '[LOCATION]');
+    $connectionId = '[CONNECTION_ID]';
+
+    create_connection_sample($formattedParent, $connectionId);
 }
 // [END cloudbuild_v2_generated_RepositoryManager_CreateConnection_sync]

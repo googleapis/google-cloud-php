@@ -18,19 +18,19 @@ class MigrationErrorDetails
         \GPBMetadata\Google\Rpc\ErrorDetails::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ê
-@google/cloud/bigquery/migration/v2/migration_error_details.proto"google.cloud.bigquery.migration.v2google/rpc/error_details.proto"µ
-ResourceErrorDetail5
-resource_info (2.google.rpc.ResourceInfoB‚AL
-error_details (2/.google.cloud.bigquery.migration.v2.ErrorDetailB‚A
-error_count (B‚A"â
-ErrorDetailI
-location (21.google.cloud.bigquery.migration.v2.ErrorLocationB‚A/
+ﬂ
+@google/cloud/bigquery/migration/v2/migration_error_details.proto"google.cloud.bigquery.migration.v2google/rpc/error_details.proto"≤
+ResourceErrorDetail4
+resource_info (2.google.rpc.ResourceInfoB‡AK
+error_details (2/.google.cloud.bigquery.migration.v2.ErrorDetailB‡A
+error_count (B‡A"á
+ErrorDetailH
+location (21.google.cloud.bigquery.migration.v2.ErrorLocationB‡A.
 
-error_info (2.google.rpc.ErrorInfoB‚A"9
-ErrorLocation
-line (B‚A
-column (B‚AB÷
+error_info (2.google.rpc.ErrorInfoB‡A"7
+ErrorLocation
+line (B‡A
+column (B‡AB÷
 &com.google.cloud.bigquery.migration.v2BMigrationErrorDetailsProtoPZDcloud.google.com/go/bigquery/migration/apiv2/migrationpb;migrationpb™"Google.Cloud.BigQuery.Migration.V2 "Google\\Cloud\\BigQuery\\Migration\\V2bproto3'
         , true);
 

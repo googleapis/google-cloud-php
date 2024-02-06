@@ -25,7 +25,8 @@ class DeleteDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The full name of the data exchange resource that you want to
-     *                     delete. For example, `projects/myproject/locations/US/dataExchanges/123`.
+     *                     delete. For example, `projects/myproject/locations/US/dataExchanges/123`. Please see
+     *                     {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteDataExchangeRequest
      *

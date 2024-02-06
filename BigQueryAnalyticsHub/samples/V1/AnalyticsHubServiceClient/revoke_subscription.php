@@ -31,19 +31,18 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionResponse;
 /**
  * Revokes a given subscription.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Resource name of the subscription to revoke.
+ *                              e.g. projects/123/locations/US/subscriptions/456
+ *                              Please see {@see AnalyticsHubServiceClient::subscriptionName()} for help formatting this field.
  */
-function revoke_subscription_sample(): void
+function revoke_subscription_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = new RevokeSubscriptionRequest();
+    $request = (new RevokeSubscriptionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,25 @@ function revoke_subscription_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = AnalyticsHubServiceClient::subscriptionName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[SUBSCRIPTION]'
+    );
+
+    revoke_subscription_sample($formattedName);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_RevokeSubscription_sync]

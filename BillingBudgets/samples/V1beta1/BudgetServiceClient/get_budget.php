@@ -35,13 +35,11 @@ use Google\Cloud\Billing\Budgets\V1beta1\BudgetServiceClient;
  * see these fields in the return value, though they may have been set
  * in the Cloud Console.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of budget to get. Values are of the form
+ *                              `billingAccounts/{billingAccountId}/budgets/{budgetId}`. Please see
+ *                              {@see BudgetServiceClient::budgetName()} for help formatting this field.
  */
-function get_budget_sample(): void
+function get_budget_sample(string $formattedName): void
 {
     // Create a client.
     $budgetServiceClient = new BudgetServiceClient();
@@ -49,10 +47,26 @@ function get_budget_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var Budget $response */
-        $response = $budgetServiceClient->getBudget();
+        $response = $budgetServiceClient->getBudget($formattedName);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = BudgetServiceClient::budgetName('[BILLING_ACCOUNT]', '[BUDGET]');
+
+    get_budget_sample($formattedName);
 }
 // [END billingbudgets_v1beta1_generated_BudgetService_GetBudget_sync]

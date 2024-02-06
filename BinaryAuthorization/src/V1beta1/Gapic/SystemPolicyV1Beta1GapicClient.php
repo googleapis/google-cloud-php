@@ -47,7 +47,8 @@ use Google\Cloud\BinaryAuthorization\V1beta1\Policy;
  * ```
  * $systemPolicyV1Beta1Client = new SystemPolicyV1Beta1Client();
  * try {
- *     $response = $systemPolicyV1Beta1Client->getSystemPolicy();
+ *     $formattedName = $systemPolicyV1Beta1Client->policyName('[PROJECT]');
+ *     $response = $systemPolicyV1Beta1Client->getSystemPolicy($formattedName);
  * } finally {
  *     $systemPolicyV1Beta1Client->close();
  * }
@@ -322,18 +323,18 @@ class SystemPolicyV1Beta1GapicClient
      * ```
      * $systemPolicyV1Beta1Client = new SystemPolicyV1Beta1Client();
      * try {
-     *     $response = $systemPolicyV1Beta1Client->getSystemPolicy();
+     *     $formattedName = $systemPolicyV1Beta1Client->policyName('[PROJECT]');
+     *     $response = $systemPolicyV1Beta1Client->getSystemPolicy($formattedName);
      * } finally {
      *     $systemPolicyV1Beta1Client->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The resource name, in the format `locations/&#42;/policy`.
+     *                             Note that the system policy is not associated with a project.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The resource name, in the format `locations/&#42;/policy`.
-     *           Note that the system policy is not associated with a project.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -346,15 +347,12 @@ class SystemPolicyV1Beta1GapicClient
      *
      * @experimental
      */
-    public function getSystemPolicy(array $optionalArgs = [])
+    public function getSystemPolicy($name, array $optionalArgs = [])
     {
         $request = new GetSystemPolicyRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetSystemPolicy', Policy::class, $optionalArgs, $request)->wait();

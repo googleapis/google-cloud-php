@@ -31,19 +31,18 @@ use Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest;
 /**
  * Retrieves a BI reservation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Name of the requested reservation, for example:
+ *                              `projects/{project_id}/locations/{location_id}/biReservation`
+ *                              Please see {@see ReservationServiceClient::biReservationName()} for help formatting this field.
  */
-function get_bi_reservation_sample(): void
+function get_bi_reservation_sample(string $formattedName): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = new GetBiReservationRequest();
+    $request = (new GetBiReservationRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,21 @@ function get_bi_reservation_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ReservationServiceClient::biReservationName('[PROJECT]', '[LOCATION]');
+
+    get_bi_reservation_sample($formattedName);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_GetBiReservation_sync]

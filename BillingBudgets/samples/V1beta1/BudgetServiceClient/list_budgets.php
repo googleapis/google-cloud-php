@@ -36,13 +36,11 @@ use Google\Cloud\Billing\Budgets\V1beta1\BudgetServiceClient;
  * see these fields in the return value, though they may have been set
  * in the Cloud Console.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Name of billing account to list budgets under. Values
+ *                                are of the form `billingAccounts/{billingAccountId}`. Please see
+ *                                {@see BudgetServiceClient::billingAccountName()} for help formatting this field.
  */
-function list_budgets_sample(): void
+function list_budgets_sample(string $formattedParent): void
 {
     // Create a client.
     $budgetServiceClient = new BudgetServiceClient();
@@ -50,7 +48,7 @@ function list_budgets_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $budgetServiceClient->listBudgets();
+        $response = $budgetServiceClient->listBudgets($formattedParent);
 
         /** @var Budget $element */
         foreach ($response as $element) {
@@ -59,5 +57,21 @@ function list_budgets_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = BudgetServiceClient::billingAccountName('[BILLING_ACCOUNT]');
+
+    list_budgets_sample($formattedParent);
 }
 // [END billingbudgets_v1beta1_generated_BudgetService_ListBudgets_sync]

@@ -31,19 +31,18 @@ use Google\Cloud\BigQuery\Reservation\V1\CreateCapacityCommitmentRequest;
 /**
  * Creates a new capacity commitment resource.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent Resource name of the parent reservation. E.g.,
+ *                                `projects/myproject/locations/US`
+ *                                Please see {@see ReservationServiceClient::locationName()} for help formatting this field.
  */
-function create_capacity_commitment_sample(): void
+function create_capacity_commitment_sample(string $formattedParent): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = new CreateCapacityCommitmentRequest();
+    $request = (new CreateCapacityCommitmentRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +52,21 @@ function create_capacity_commitment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = ReservationServiceClient::locationName('[PROJECT]', '[LOCATION]');
+
+    create_capacity_commitment_sample($formattedParent);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_CreateCapacityCommitment_sync]

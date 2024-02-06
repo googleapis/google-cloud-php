@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START billingbudgets_v1_generated_BudgetService_UpdateBudget_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Billing\Budgets\V1\Budget;
+use Google\Cloud\Billing\Budgets\V1\BudgetAmount;
 use Google\Cloud\Billing\Budgets\V1\Client\BudgetServiceClient;
 use Google\Cloud\Billing\Budgets\V1\UpdateBudgetRequest;
 
@@ -47,7 +48,11 @@ function update_budget_sample(): void
     $budgetServiceClient = new BudgetServiceClient();
 
     // Prepare the request message.
-    $request = new UpdateBudgetRequest();
+    $budgetAmount = new BudgetAmount();
+    $budget = (new Budget())
+        ->setAmount($budgetAmount);
+    $request = (new UpdateBudgetRequest())
+        ->setBudget($budget);
 
     // Call the API and handle any network failures.
     try {

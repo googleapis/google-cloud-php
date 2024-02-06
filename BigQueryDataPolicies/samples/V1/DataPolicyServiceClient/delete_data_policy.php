@@ -30,19 +30,18 @@ use Google\Cloud\BigQuery\DataPolicies\V1\DeleteDataPolicyRequest;
 /**
  * Deletes the data policy specified by its resource name.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName Resource name of the data policy to delete. Format is
+ *                              `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`. Please see
+ *                              {@see DataPolicyServiceClient::dataPolicyName()} for help formatting this field.
  */
-function delete_data_policy_sample(): void
+function delete_data_policy_sample(string $formattedName): void
 {
     // Create a client.
     $dataPolicyServiceClient = new DataPolicyServiceClient();
 
     // Prepare the request message.
-    $request = new DeleteDataPolicyRequest();
+    $request = (new DeleteDataPolicyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -51,5 +50,25 @@ function delete_data_policy_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = DataPolicyServiceClient::dataPolicyName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DATA_POLICY]'
+    );
+
+    delete_data_policy_sample($formattedName);
 }
 // [END bigquerydatapolicy_v1_generated_DataPolicyService_DeleteDataPolicy_sync]

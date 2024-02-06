@@ -44,6 +44,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent resource path of the subscription.
      *                       e.g. projects/myproject/locations/US
+     *                       Please see {@see AnalyticsHubServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest
      *

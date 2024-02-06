@@ -57,7 +57,8 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                        $parent         Required. The request project that owns the session, in the form of
-     *                                                                      `projects/{project_id}`.
+     *                                                                      `projects/{project_id}`. Please see
+     *                                                                      {@see BigQueryReadClient::projectName()} for help formatting this field.
      * @param \Google\Cloud\BigQuery\Storage\V1\ReadSession $readSession    Required. Session to be created.
      * @param int                                           $maxStreamCount Max initial number of streams. If unset or zero, the server will
      *                                                                      provide a value of streams so as to produce reasonable throughput. Must be

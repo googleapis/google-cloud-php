@@ -59,7 +59,8 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                $parent  Required. The unique name of the instance in which to create the table.
-     *                                                       Values are of the form `projects/{project}/instances/{instance}`.
+     *                                                       Values are of the form `projects/{project}/instances/{instance}`. Please see
+     *                                                       {@see BigtableTableAdminClient::instanceName()} for help formatting this field.
      * @param string                                $tableId Required. The name by which the new table should be referred to within the
      *                                                       parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *                                                       Maximum 50 characters.

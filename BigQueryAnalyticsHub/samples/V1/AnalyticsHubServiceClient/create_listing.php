@@ -27,23 +27,41 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 
 /**
  * Creates a new listing.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent    The parent resource path of the listing.
+ *                                   e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+ *                                   {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
+ * @param string $listingId          The ID of the listing to create.
+ *                                   Must contain only Unicode letters, numbers (0-9), underscores (_).
+ *                                   Should not use characters that require URL-escaping, or characters
+ *                                   outside of ASCII, spaces.
+ *                                   Max length: 100 bytes.
+ * @param string $listingDisplayName Human-readable display name of the listing. The display name must
+ *                                   contain only Unicode letters, numbers (0-9), underscores (_), dashes (-),
+ *                                   spaces ( ), ampersands (&) and can't start or end with spaces. Default
+ *                                   value is an empty string. Max length: 63 bytes.
  */
-function create_listing_sample(): void
-{
+function create_listing_sample(
+    string $formattedParent,
+    string $listingId,
+    string $listingDisplayName
+): void {
     // Create a client.
     $analyticsHubServiceClient = new AnalyticsHubServiceClient();
 
     // Prepare the request message.
-    $request = new CreateListingRequest();
+    $listingBigqueryDataset = new BigQueryDatasetSource();
+    $listing = (new Listing())
+        ->setBigqueryDataset($listingBigqueryDataset)
+        ->setDisplayName($listingDisplayName);
+    $request = (new CreateListingRequest())
+        ->setParent($formattedParent)
+        ->setListingId($listingId)
+        ->setListing($listing);
 
     // Call the API and handle any network failures.
     try {
@@ -53,5 +71,27 @@ function create_listing_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = AnalyticsHubServiceClient::dataExchangeName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[DATA_EXCHANGE]'
+    );
+    $listingId = '[LISTING_ID]';
+    $listingDisplayName = '[DISPLAY_NAME]';
+
+    create_listing_sample($formattedParent, $listingId, $listingDisplayName);
 }
 // [END analyticshub_v1_generated_AnalyticsHubService_CreateListing_sync]

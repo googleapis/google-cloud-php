@@ -347,8 +347,9 @@ class CloudCatalogGapicClient
      * ```
      * $cloudCatalogClient = new CloudCatalogClient();
      * try {
+     *     $formattedParent = $cloudCatalogClient->serviceName('[SERVICE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $cloudCatalogClient->listSkus();
+     *     $pagedResponse = $cloudCatalogClient->listSkus($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -356,7 +357,7 @@ class CloudCatalogGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $cloudCatalogClient->listSkus();
+     *     $pagedResponse = $cloudCatalogClient->listSkus($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -365,12 +366,11 @@ class CloudCatalogGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the service.
+     *                             Example: "services/DA34-426B-A397"
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The name of the service.
-     *           Example: "services/DA34-426B-A397"
      *     @type Timestamp $startTime
      *           Optional inclusive start time of the time range for which the pricing
      *           versions will be returned. Timestamps in the future are not allowed.
@@ -408,15 +408,12 @@ class CloudCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSkus(array $optionalArgs = [])
+    public function listSkus($parent, array $optionalArgs = [])
     {
         $request = new ListSkusRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['startTime'])) {
             $request->setStartTime($optionalArgs['startTime']);
         }

@@ -92,9 +92,15 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse3->setWriteStream($writeStream3);
         $transport->addResponse($expectedResponse3);
         // Mock request
+        $formattedWriteStream4 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request = new AppendRowsRequest();
+        $request->setWriteStream($formattedWriteStream4);
+        $formattedWriteStream5 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request2 = new AppendRowsRequest();
+        $request2->setWriteStream($formattedWriteStream5);
+        $formattedWriteStream6 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request3 = new AppendRowsRequest();
+        $request3->setWriteStream($formattedWriteStream6);
         $bidi = $gapicClient->appendRows();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
@@ -175,7 +181,12 @@ class BigQueryWriteClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCommitWriteStreamsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new BatchCommitWriteStreamsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $writeStreams = [];
+        $request = (new BatchCommitWriteStreamsRequest())
+            ->setParent($formattedParent)
+            ->setWriteStreams($writeStreams);
         $response = $gapicClient->batchCommitWriteStreams($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -183,6 +194,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryWrite/BatchCommitWriteStreams', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getWriteStreams();
+        $this->assertProtobufEquals($writeStreams, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -204,7 +219,12 @@ class BigQueryWriteClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new BatchCommitWriteStreamsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $writeStreams = [];
+        $request = (new BatchCommitWriteStreamsRequest())
+            ->setParent($formattedParent)
+            ->setWriteStreams($writeStreams);
         try {
             $gapicClient->batchCommitWriteStreams($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -233,7 +253,12 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setLocation($location);
         $transport->addResponse($expectedResponse);
-        $request = new CreateWriteStreamRequest();
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $writeStream = new WriteStream();
+        $request = (new CreateWriteStreamRequest())
+            ->setParent($formattedParent)
+            ->setWriteStream($writeStream);
         $response = $gapicClient->createWriteStream($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -241,6 +266,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryWrite/CreateWriteStream', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getWriteStream();
+        $this->assertProtobufEquals($writeStream, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -262,7 +291,12 @@ class BigQueryWriteClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new CreateWriteStreamRequest();
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $writeStream = new WriteStream();
+        $request = (new CreateWriteStreamRequest())
+            ->setParent($formattedParent)
+            ->setWriteStream($writeStream);
         try {
             $gapicClient->createWriteStream($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -289,7 +323,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse = new FinalizeWriteStreamResponse();
         $expectedResponse->setRowCount($rowCount);
         $transport->addResponse($expectedResponse);
-        $request = new FinalizeWriteStreamRequest();
+        // Mock request
+        $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $request = (new FinalizeWriteStreamRequest())
+            ->setName($formattedName);
         $response = $gapicClient->finalizeWriteStream($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -297,6 +334,8 @@ class BigQueryWriteClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryWrite/FinalizeWriteStream', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -318,7 +357,10 @@ class BigQueryWriteClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new FinalizeWriteStreamRequest();
+        // Mock request
+        $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $request = (new FinalizeWriteStreamRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->finalizeWriteStream($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -345,7 +387,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse = new FlushRowsResponse();
         $expectedResponse->setOffset($offset2);
         $transport->addResponse($expectedResponse);
-        $request = new FlushRowsRequest();
+        // Mock request
+        $formattedWriteStream = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $request = (new FlushRowsRequest())
+            ->setWriteStream($formattedWriteStream);
         $response = $gapicClient->flushRows($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -353,6 +398,8 @@ class BigQueryWriteClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryWrite/FlushRows', $actualFuncCall);
+        $actualValue = $actualRequestObject->getWriteStream();
+        $this->assertProtobufEquals($formattedWriteStream, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -374,7 +421,10 @@ class BigQueryWriteClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new FlushRowsRequest();
+        // Mock request
+        $formattedWriteStream = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $request = (new FlushRowsRequest())
+            ->setWriteStream($formattedWriteStream);
         try {
             $gapicClient->flushRows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -403,7 +453,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setLocation($location);
         $transport->addResponse($expectedResponse);
-        $request = new GetWriteStreamRequest();
+        // Mock request
+        $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $request = (new GetWriteStreamRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getWriteStream($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -411,6 +464,8 @@ class BigQueryWriteClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryWrite/GetWriteStream', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -432,7 +487,10 @@ class BigQueryWriteClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new GetWriteStreamRequest();
+        // Mock request
+        $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $request = (new GetWriteStreamRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getWriteStream($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -457,7 +515,12 @@ class BigQueryWriteClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new BatchCommitWriteStreamsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new BatchCommitWriteStreamsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $writeStreams = [];
+        $request = (new BatchCommitWriteStreamsRequest())
+            ->setParent($formattedParent)
+            ->setWriteStreams($writeStreams);
         $response = $gapicClient->batchCommitWriteStreamsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -465,6 +528,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.storage.v1.BigQueryWrite/BatchCommitWriteStreams', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getWriteStreams();
+        $this->assertProtobufEquals($writeStreams, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

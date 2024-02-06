@@ -22,21 +22,21 @@ class ProcurementService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¶
-Ggoogle/cloud/commerce/consumer/procurement/v1/procurement_service.proto-google.cloud.commerce.consumer.procurement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto9google/cloud/commerce/consumer/procurement/v1/order.proto#google/longrunning/operations.proto"È
-PlaceOrderRequestC
-parent (	B3‚A˙A,
-*cloudbilling.googleapis.com/BillingAccount
-display_name (	B‚AY
+†
+Ggoogle/cloud/commerce/consumer/procurement/v1/procurement_service.proto-google.cloud.commerce.consumer.procurement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto9google/cloud/commerce/consumer/procurement/v1/order.proto#google/longrunning/operations.proto"Â
+PlaceOrderRequestB
+parent (	B2‡A˙A,
+*cloudbilling.googleapis.com/BillingAccount
+display_name (	B‡AX
 line_item_info
- (2;.google.cloud.commerce.consumer.procurement.v1.LineItemInfoB‚A
+ (2;.google.cloud.commerce.consumer.procurement.v1.LineItemInfoB‡A
 
-request_id (	B‚A"
-PlaceOrderMetadata"%
-GetOrderRequest
-name (	B‚A"`
-ListOrdersRequest
-parent (	B‚A
+request_id (	B‡A"
+PlaceOrderMetadata"$
+GetOrderRequest
+name (	B‡A"_
+ListOrdersRequest
+parent (	B‡A
 	page_size (
 
 page_token (	

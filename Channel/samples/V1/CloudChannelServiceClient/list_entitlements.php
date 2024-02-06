@@ -42,19 +42,19 @@ use Google\Cloud\Channel\V1\ListEntitlementsRequest;
  * A list of the customer's
  * [Entitlement][google.cloud.channel.v1.Entitlement]s.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedParent The resource name of the reseller's customer account to list
+ *                                entitlements for.
+ *                                Parent uses the format: accounts/{account_id}/customers/{customer_id}
+ *                                Please see {@see CloudChannelServiceClient::customerName()} for help formatting this field.
  */
-function list_entitlements_sample(): void
+function list_entitlements_sample(string $formattedParent): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new ListEntitlementsRequest();
+    $request = (new ListEntitlementsRequest())
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -68,5 +68,21 @@ function list_entitlements_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedParent = CloudChannelServiceClient::customerName('[ACCOUNT]', '[CUSTOMER]');
+
+    list_entitlements_sample($formattedParent);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListEntitlements_sync]

@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\Channel\V1\ChangeRenewalSettingsRequest;
 use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Entitlement;
+use Google\Cloud\Channel\V1\RenewalSettings;
 use Google\Rpc\Status;
 
 /**
@@ -55,19 +56,20 @@ use Google\Rpc\Status;
  * CloudChannelOperationsService. The Operation metadata will contain an
  * instance of [OperationMetadata][google.cloud.channel.v1.OperationMetadata].
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name The name of the entitlement to update.
+ *                     Name uses the format:
+ *                     accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
  */
-function change_renewal_settings_sample(): void
+function change_renewal_settings_sample(string $name): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new ChangeRenewalSettingsRequest();
+    $renewalSettings = new RenewalSettings();
+    $request = (new ChangeRenewalSettingsRequest())
+        ->setName($name)
+        ->setRenewalSettings($renewalSettings);
 
     // Call the API and handle any network failures.
     try {
@@ -87,5 +89,21 @@ function change_renewal_settings_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+
+    change_renewal_settings_sample($name);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ChangeRenewalSettings_sync]

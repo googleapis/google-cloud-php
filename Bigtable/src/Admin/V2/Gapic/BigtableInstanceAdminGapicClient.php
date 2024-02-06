@@ -84,7 +84,10 @@ use Google\Protobuf\Timestamp;
  * ```
  * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
  * try {
- *     $response = $bigtableInstanceAdminClient->createAppProfile();
+ *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+ *     $appProfileId = 'app_profile_id';
+ *     $appProfile = new Google\Cloud\Bigtable\Admin\V2\AppProfile();
+ *     $response = $bigtableInstanceAdminClient->createAppProfile($formattedParent, $appProfileId, $appProfile);
  * } finally {
  *     $bigtableInstanceAdminClient->close();
  * }
@@ -487,25 +490,25 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $response = $bigtableInstanceAdminClient->createAppProfile();
+     *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $appProfileId = 'app_profile_id';
+     *     $appProfile = new Google\Cloud\Bigtable\Admin\V2\AppProfile();
+     *     $response = $bigtableInstanceAdminClient->createAppProfile($formattedParent, $appProfileId, $appProfile);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string     $parent       Required. The unique name of the instance in which to create the new app
+     *                                 profile. Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string     $appProfileId Required. The ID to be used when referring to the new app profile within
+     *                                 its instance, e.g., just `myprofile` rather than
+     *                                 `projects/myproject/instances/myinstance/appProfiles/myprofile`.
+     * @param AppProfile $appProfile   Required. The app profile to be created.
+     *                                 Fields marked `OutputOnly` will be ignored.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The unique name of the instance in which to create the new app
-     *           profile. Values are of the form `projects/{project}/instances/{instance}`.
-     *     @type string $appProfileId
-     *           Required. The ID to be used when referring to the new app profile within
-     *           its instance, e.g., just `myprofile` rather than
-     *           `projects/myproject/instances/myinstance/appProfiles/myprofile`.
-     *     @type AppProfile $appProfile
-     *           Required. The app profile to be created.
-     *           Fields marked `OutputOnly` will be ignored.
      *     @type bool $ignoreWarnings
      *           If true, ignore safety checks when creating the app profile.
      *     @type RetrySettings|array $retrySettings
@@ -518,23 +521,14 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAppProfile(array $optionalArgs = [])
+    public function createAppProfile($parent, $appProfileId, $appProfile, array $optionalArgs = [])
     {
         $request = new CreateAppProfileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['appProfileId'])) {
-            $request->setAppProfileId($optionalArgs['appProfileId']);
-        }
-
-        if (isset($optionalArgs['appProfile'])) {
-            $request->setAppProfile($optionalArgs['appProfile']);
-        }
-
+        $request->setParent($parent);
+        $request->setAppProfileId($appProfileId);
+        $request->setAppProfile($appProfile);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['ignoreWarnings'])) {
             $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
         }
@@ -557,7 +551,10 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $operationResponse = $bigtableInstanceAdminClient->createCluster();
+     *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $clusterId = 'cluster_id';
+     *     $cluster = new Google\Cloud\Bigtable\Admin\V2\Cluster();
+     *     $operationResponse = $bigtableInstanceAdminClient->createCluster($formattedParent, $clusterId, $cluster);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -568,7 +565,7 @@ class BigtableInstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->createCluster();
+     *     $operationResponse = $bigtableInstanceAdminClient->createCluster($formattedParent, $clusterId, $cluster);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'createCluster');
@@ -588,19 +585,16 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string  $parent       Required. The unique name of the instance in which to create the new
+     *                              cluster. Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string  $clusterId    Required. The ID to be used when referring to the new cluster within its
+     *                              instance, e.g., just `mycluster` rather than
+     *                              `projects/myproject/instances/myinstance/clusters/mycluster`.
+     * @param Cluster $cluster      Required. The cluster to be created.
+     *                              Fields marked `OutputOnly` must be left blank.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The unique name of the instance in which to create the new
-     *           cluster. Values are of the form `projects/{project}/instances/{instance}`.
-     *     @type string $clusterId
-     *           Required. The ID to be used when referring to the new cluster within its
-     *           instance, e.g., just `mycluster` rather than
-     *           `projects/myproject/instances/myinstance/clusters/mycluster`.
-     *     @type Cluster $cluster
-     *           Required. The cluster to be created.
-     *           Fields marked `OutputOnly` must be left blank.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -611,23 +605,14 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createCluster(array $optionalArgs = [])
+    public function createCluster($parent, $clusterId, $cluster, array $optionalArgs = [])
     {
         $request = new CreateClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['clusterId'])) {
-            $request->setClusterId($optionalArgs['clusterId']);
-        }
-
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
-        }
-
+        $request->setParent($parent);
+        $request->setClusterId($clusterId);
+        $request->setCluster($cluster);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -646,7 +631,11 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $operationResponse = $bigtableInstanceAdminClient->createInstance();
+     *     $formattedParent = $bigtableInstanceAdminClient->projectName('[PROJECT]');
+     *     $instanceId = 'instance_id';
+     *     $instance = new Google\Cloud\Bigtable\Admin\V2\Instance();
+     *     $clusters = [];
+     *     $operationResponse = $bigtableInstanceAdminClient->createInstance($formattedParent, $instanceId, $instance, $clusters);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -657,7 +646,7 @@ class BigtableInstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->createInstance();
+     *     $operationResponse = $bigtableInstanceAdminClient->createInstance($formattedParent, $instanceId, $instance, $clusters);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'createInstance');
@@ -677,25 +666,21 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string   $parent       Required. The unique name of the project in which to create the new
+     *                               instance. Values are of the form `projects/{project}`.
+     * @param string   $instanceId   Required. The ID to be used when referring to the new instance within its
+     *                               project, e.g., just `myinstance` rather than
+     *                               `projects/myproject/instances/myinstance`.
+     * @param Instance $instance     Required. The instance to create.
+     *                               Fields marked `OutputOnly` must be left blank.
+     * @param array    $clusters     Required. The clusters to be created within the instance, mapped by desired
+     *                               cluster ID, e.g., just `mycluster` rather than
+     *                               `projects/myproject/instances/myinstance/clusters/mycluster`.
+     *                               Fields marked `OutputOnly` must be left blank.
+     *                               Currently, at most four clusters can be specified.
+     * @param array    $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The unique name of the project in which to create the new
-     *           instance. Values are of the form `projects/{project}`.
-     *     @type string $instanceId
-     *           Required. The ID to be used when referring to the new instance within its
-     *           project, e.g., just `myinstance` rather than
-     *           `projects/myproject/instances/myinstance`.
-     *     @type Instance $instance
-     *           Required. The instance to create.
-     *           Fields marked `OutputOnly` must be left blank.
-     *     @type array $clusters
-     *           Required. The clusters to be created within the instance, mapped by desired
-     *           cluster ID, e.g., just `mycluster` rather than
-     *           `projects/myproject/instances/myinstance/clusters/mycluster`.
-     *           Fields marked `OutputOnly` must be left blank.
-     *           Currently, at most four clusters can be specified.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -706,27 +691,15 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInstance(array $optionalArgs = [])
+    public function createInstance($parent, $instanceId, $instance, $clusters, array $optionalArgs = [])
     {
         $request = new CreateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
-        if (isset($optionalArgs['instanceId'])) {
-            $request->setInstanceId($optionalArgs['instanceId']);
-        }
-
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
-        if (isset($optionalArgs['clusters'])) {
-            $request->setClusters($optionalArgs['clusters']);
-        }
-
+        $request->setParent($parent);
+        $request->setInstanceId($instanceId);
+        $request->setInstance($instance);
+        $request->setClusters($clusters);
+        $requestParamHeaders['parent'] = $parent;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -739,21 +712,21 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient->deleteAppProfile();
+     *     $formattedName = $bigtableInstanceAdminClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
+     *     $ignoreWarnings = false;
+     *     $bigtableInstanceAdminClient->deleteAppProfile($formattedName, $ignoreWarnings);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name           Required. The unique name of the app profile to be deleted. Values are of
+     *                               the form
+     *                               `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * @param bool   $ignoreWarnings Required. If true, ignore safety checks when deleting the app profile.
+     * @param array  $optionalArgs   {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique name of the app profile to be deleted. Values are of
-     *           the form
-     *           `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
-     *     @type bool $ignoreWarnings
-     *           Required. If true, ignore safety checks when deleting the app profile.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -762,19 +735,13 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteAppProfile(array $optionalArgs = [])
+    public function deleteAppProfile($name, $ignoreWarnings, array $optionalArgs = [])
     {
         $request = new DeleteAppProfileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['ignoreWarnings'])) {
-            $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
-        }
-
+        $request->setName($name);
+        $request->setIgnoreWarnings($ignoreWarnings);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAppProfile', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -787,18 +754,18 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient->deleteCluster();
+     *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+     *     $bigtableInstanceAdminClient->deleteCluster($formattedName);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique name of the cluster to be deleted. Values are of the
+     *                             form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique name of the cluster to be deleted. Values are of the
-     *           form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -807,15 +774,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteCluster(array $optionalArgs = [])
+    public function deleteCluster($name, array $optionalArgs = [])
     {
         $request = new DeleteClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteCluster', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -828,18 +792,18 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $bigtableInstanceAdminClient->deleteInstance();
+     *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $bigtableInstanceAdminClient->deleteInstance($formattedName);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique name of the instance to be deleted.
+     *                             Values are of the form `projects/{project}/instances/{instance}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique name of the instance to be deleted.
-     *           Values are of the form `projects/{project}/instances/{instance}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -848,15 +812,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteInstance(array $optionalArgs = [])
+    public function deleteInstance($name, array $optionalArgs = [])
     {
         $request = new DeleteInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteInstance', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -869,18 +830,18 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $response = $bigtableInstanceAdminClient->getAppProfile();
+     *     $formattedName = $bigtableInstanceAdminClient->appProfileName('[PROJECT]', '[INSTANCE]', '[APP_PROFILE]');
+     *     $response = $bigtableInstanceAdminClient->getAppProfile($formattedName);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique name of the requested app profile. Values are of the
+     *                             form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique name of the requested app profile. Values are of the
-     *           form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -891,15 +852,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getAppProfile(array $optionalArgs = [])
+    public function getAppProfile($name, array $optionalArgs = [])
     {
         $request = new GetAppProfileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetAppProfile', AppProfile::class, $optionalArgs, $request)->wait();
@@ -912,18 +870,18 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $response = $bigtableInstanceAdminClient->getCluster();
+     *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+     *     $response = $bigtableInstanceAdminClient->getCluster($formattedName);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique name of the requested cluster. Values are of the form
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique name of the requested cluster. Values are of the form
-     *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -934,15 +892,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getCluster(array $optionalArgs = [])
+    public function getCluster($name, array $optionalArgs = [])
     {
         $request = new GetClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCluster', Cluster::class, $optionalArgs, $request)->wait();
@@ -1003,18 +958,18 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $response = $bigtableInstanceAdminClient->getInstance();
+     *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $response = $bigtableInstanceAdminClient->getInstance($formattedName);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The unique name of the requested instance. Values are of the form
+     *                             `projects/{project}/instances/{instance}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           Required. The unique name of the requested instance. Values are of the form
-     *           `projects/{project}/instances/{instance}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1025,15 +980,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getInstance(array $optionalArgs = [])
+    public function getInstance($name, array $optionalArgs = [])
     {
         $request = new GetInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetInstance', Instance::class, $optionalArgs, $request)->wait();
@@ -1046,8 +998,9 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
+     *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles();
+     *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1055,7 +1008,7 @@ class BigtableInstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles();
+     *     $pagedResponse = $bigtableInstanceAdminClient->listAppProfiles($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1064,15 +1017,14 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The unique name of the instance for which a list of app profiles
+     *                             is requested. Values are of the form
+     *                             `projects/{project}/instances/{instance}`.
+     *                             Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
+     *                             e.g., `projects/myproject/instances/-`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The unique name of the instance for which a list of app profiles
-     *           is requested. Values are of the form
-     *           `projects/{project}/instances/{instance}`.
-     *           Use `{instance} = '-'` to list AppProfiles for all Instances in a project,
-     *           e.g., `projects/myproject/instances/-`.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1092,15 +1044,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listAppProfiles(array $optionalArgs = [])
+    public function listAppProfiles($parent, array $optionalArgs = [])
     {
         $request = new ListAppProfilesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1121,21 +1070,21 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $response = $bigtableInstanceAdminClient->listClusters();
+     *     $formattedParent = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $response = $bigtableInstanceAdminClient->listClusters($formattedParent);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The unique name of the instance for which a list of clusters is
+     *                             requested. Values are of the form
+     *                             `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list
+     *                             Clusters for all Instances in a project, e.g.,
+     *                             `projects/myproject/instances/-`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The unique name of the instance for which a list of clusters is
-     *           requested. Values are of the form
-     *           `projects/{project}/instances/{instance}`. Use `{instance} = '-'` to list
-     *           Clusters for all Instances in a project, e.g.,
-     *           `projects/myproject/instances/-`.
      *     @type string $pageToken
      *           DEPRECATED: This field is unused and ignored.
      *     @type RetrySettings|array $retrySettings
@@ -1148,15 +1097,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listClusters(array $optionalArgs = [])
+    public function listClusters($parent, array $optionalArgs = [])
     {
         $request = new ListClustersRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -1174,8 +1120,9 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
+     *     $formattedParent = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bigtableInstanceAdminClient->listHotTablets();
+     *     $pagedResponse = $bigtableInstanceAdminClient->listHotTablets($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1183,7 +1130,7 @@ class BigtableInstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bigtableInstanceAdminClient->listHotTablets();
+     *     $pagedResponse = $bigtableInstanceAdminClient->listHotTablets($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1192,13 +1139,12 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The cluster name to list hot tablets.
+     *                             Value is in the following form:
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The cluster name to list hot tablets.
-     *           Value is in the following form:
-     *           `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *     @type Timestamp $startTime
      *           The start time to list hot tablets. The hot tablets in the response will
      *           have start times between the requested start time and end time. Start time
@@ -1227,15 +1173,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listHotTablets(array $optionalArgs = [])
+    public function listHotTablets($parent, array $optionalArgs = [])
     {
         $request = new ListHotTabletsRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['startTime'])) {
             $request->setStartTime($optionalArgs['startTime']);
         }
@@ -1264,18 +1207,18 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $response = $bigtableInstanceAdminClient->listInstances();
+     *     $formattedParent = $bigtableInstanceAdminClient->projectName('[PROJECT]');
+     *     $response = $bigtableInstanceAdminClient->listInstances($formattedParent);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The unique name of the project for which a list of instances is
+     *                             requested. Values are of the form `projects/{project}`.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           Required. The unique name of the project for which a list of instances is
-     *           requested. Values are of the form `projects/{project}`.
      *     @type string $pageToken
      *           DEPRECATED: This field is unused and ignored.
      *     @type RetrySettings|array $retrySettings
@@ -1288,15 +1231,12 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listInstances(array $optionalArgs = [])
+    public function listInstances($parent, array $optionalArgs = [])
     {
         $request = new ListInstancesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -1324,7 +1264,9 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateCluster();
+     *     $cluster = new Google\Cloud\Bigtable\Admin\V2\Cluster();
+     *     $updateMask = new Google\Protobuf\FieldMask();
+     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateCluster($cluster, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1335,7 +1277,7 @@ class BigtableInstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateCluster();
+     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateCluster($cluster, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'partialUpdateCluster');
@@ -1355,14 +1297,12 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Cluster   $cluster      Required. The Cluster which contains the partial updates to be applied,
+     *                                subject to the update_mask.
+     * @param FieldMask $updateMask   Required. The subset of Cluster fields which should be replaced.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Cluster $cluster
-     *           Required. The Cluster which contains the partial updates to be applied,
-     *           subject to the update_mask.
-     *     @type FieldMask $updateMask
-     *           Required. The subset of Cluster fields which should be replaced.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1373,18 +1313,13 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function partialUpdateCluster(array $optionalArgs = [])
+    public function partialUpdateCluster($cluster, $updateMask, array $optionalArgs = [])
     {
         $request = new PartialUpdateClusterRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setCluster($cluster);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['cluster.name'] = $cluster->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('PartialUpdateCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1398,7 +1333,9 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance();
+     *     $instance = new Google\Cloud\Bigtable\Admin\V2\Instance();
+     *     $updateMask = new Google\Protobuf\FieldMask();
+     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1409,7 +1346,7 @@ class BigtableInstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance();
+     *     $operationResponse = $bigtableInstanceAdminClient->partialUpdateInstance($instance, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'partialUpdateInstance');
@@ -1429,14 +1366,12 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param Instance  $instance     Required. The Instance which will (partially) replace the current value.
+     * @param FieldMask $updateMask   Required. The subset of Instance fields which should be replaced.
+     *                                Must be explicitly set.
+     * @param array     $optionalArgs {
      *     Optional.
      *
-     *     @type Instance $instance
-     *           Required. The Instance which will (partially) replace the current value.
-     *     @type FieldMask $updateMask
-     *           Required. The subset of Instance fields which should be replaced.
-     *           Must be explicitly set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1447,18 +1382,13 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function partialUpdateInstance(array $optionalArgs = [])
+    public function partialUpdateInstance($instance, $updateMask, array $optionalArgs = [])
     {
         $request = new PartialUpdateInstanceRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['instance'])) {
-            $request->setInstance($optionalArgs['instance']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setInstance($instance);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['instance.name'] = $instance->getName();
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('PartialUpdateInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -1574,7 +1504,9 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile();
+     *     $appProfile = new Google\Cloud\Bigtable\Admin\V2\AppProfile();
+     *     $updateMask = new Google\Protobuf\FieldMask();
+     *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1585,7 +1517,7 @@ class BigtableInstanceAdminGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile();
+     *     $operationResponse = $bigtableInstanceAdminClient->updateAppProfile($appProfile, $updateMask);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'updateAppProfile');
@@ -1605,14 +1537,12 @@ class BigtableInstanceAdminGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param AppProfile $appProfile   Required. The app profile which will (partially) replace the current value.
+     * @param FieldMask  $updateMask   Required. The subset of app profile fields which should be replaced.
+     *                                 If unset, all fields will be replaced.
+     * @param array      $optionalArgs {
      *     Optional.
      *
-     *     @type AppProfile $appProfile
-     *           Required. The app profile which will (partially) replace the current value.
-     *     @type FieldMask $updateMask
-     *           Required. The subset of app profile fields which should be replaced.
-     *           If unset, all fields will be replaced.
      *     @type bool $ignoreWarnings
      *           If true, ignore safety checks when updating the app profile.
      *     @type RetrySettings|array $retrySettings
@@ -1625,18 +1555,13 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAppProfile(array $optionalArgs = [])
+    public function updateAppProfile($appProfile, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateAppProfileRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['appProfile'])) {
-            $request->setAppProfile($optionalArgs['appProfile']);
-        }
-
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
+        $request->setAppProfile($appProfile);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['app_profile.name'] = $appProfile->getName();
         if (isset($optionalArgs['ignoreWarnings'])) {
             $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
         }
@@ -1765,9 +1690,10 @@ class BigtableInstanceAdminGapicClient
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
      *     $name = 'name';
+     *     $displayName = 'display_name';
      *     $type = Google\Cloud\Bigtable\Admin\V2\Instance\Type::TYPE_UNSPECIFIED;
      *     $labels = [];
-     *     $response = $bigtableInstanceAdminClient->updateInstance($name, $type, $labels);
+     *     $response = $bigtableInstanceAdminClient->updateInstance($name, $displayName, $type, $labels);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
@@ -1775,6 +1701,9 @@ class BigtableInstanceAdminGapicClient
      *
      * @param string $name         The unique name of the instance. Values are of the form
      *                             `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * @param string $displayName  Required. The descriptive name for this instance as it appears in UIs.
+     *                             Can be changed at any time, but should be kept globally unique
+     *                             to avoid confusion.
      * @param int    $type         The type of the instance. Defaults to `PRODUCTION`.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\Type}
      * @param array  $labels       Labels are a flexible and lightweight mechanism for organizing cloud
@@ -1791,10 +1720,6 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $displayName
-     *           Required. The descriptive name for this instance as it appears in UIs.
-     *           Can be changed at any time, but should be kept globally unique
-     *           to avoid confusion.
      *     @type int $state
      *           (`OutputOnly`)
      *           The current state of the instance.
@@ -1815,18 +1740,15 @@ class BigtableInstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInstance($name, $type, $labels, array $optionalArgs = [])
+    public function updateInstance($name, $displayName, $type, $labels, array $optionalArgs = [])
     {
         $request = new Instance();
         $requestParamHeaders = [];
         $request->setName($name);
+        $request->setDisplayName($displayName);
         $request->setType($type);
         $request->setLabels($labels);
         $requestParamHeaders['name'] = $name;
-        if (isset($optionalArgs['displayName'])) {
-            $request->setDisplayName($optionalArgs['displayName']);
-        }
-
         if (isset($optionalArgs['state'])) {
             $request->setState($optionalArgs['state']);
         }

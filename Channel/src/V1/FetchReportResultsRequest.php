@@ -60,6 +60,7 @@ class FetchReportResultsRequest extends \Google\Protobuf\Internal\Message
      *                          [CloudChannelReportsService.RunReportJob][google.cloud.channel.v1.CloudChannelReportsService.RunReportJob].
      *                          Report_job uses the format:
      *                          accounts/{account_id}/reportJobs/{report_job_id}
+     *                          Please see {@see CloudChannelReportsServiceClient::reportJobName()} for help formatting this field.
      *
      * @return \Google\Cloud\Channel\V1\FetchReportResultsRequest
      *

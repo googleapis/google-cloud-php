@@ -27,6 +27,7 @@ class GetCustomerRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the customer to retrieve.
      *                     Name uses the format: accounts/{account_id}/customers/{customer_id}
+     *                     Please see {@see CloudChannelServiceClient::customerName()} for help formatting this field.
      *
      * @return \Google\Cloud\Channel\V1\GetCustomerRequest
      *

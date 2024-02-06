@@ -43,19 +43,18 @@ use Google\Cloud\Channel\V1\PurchasableOffer;
  * https://support.google.com/channelservices/answer/9759265
  * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedCustomer The resource name of the customer to list Offers for.
+ *                                  Format: accounts/{account_id}/customers/{customer_id}. Please see
+ *                                  {@see CloudChannelServiceClient::customerName()} for help formatting this field.
  */
-function list_purchasable_offers_sample(): void
+function list_purchasable_offers_sample(string $formattedCustomer): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new ListPurchasableOffersRequest();
+    $request = (new ListPurchasableOffersRequest())
+        ->setCustomer($formattedCustomer);
 
     // Call the API and handle any network failures.
     try {
@@ -69,5 +68,21 @@ function list_purchasable_offers_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedCustomer = CloudChannelServiceClient::customerName('[ACCOUNT]', '[CUSTOMER]');
+
+    list_purchasable_offers_sample($formattedCustomer);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ListPurchasableOffers_sync]

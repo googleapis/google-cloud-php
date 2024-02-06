@@ -51,19 +51,19 @@ use Google\Cloud\Channel\V1\UnregisterSubscriberResponse;
  * Returns a success response if the service email address wasn't registered
  * with the topic.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $account        Resource name of the account.
+ * @param string $serviceAccount Service account to unregister from subscriber access to the
+ *                               topic.
  */
-function unregister_subscriber_sample(): void
+function unregister_subscriber_sample(string $account, string $serviceAccount): void
 {
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
     // Prepare the request message.
-    $request = new UnregisterSubscriberRequest();
+    $request = (new UnregisterSubscriberRequest())
+        ->setAccount($account)
+        ->setServiceAccount($serviceAccount);
 
     // Call the API and handle any network failures.
     try {
@@ -73,5 +73,22 @@ function unregister_subscriber_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $account = '[ACCOUNT]';
+    $serviceAccount = '[SERVICE_ACCOUNT]';
+
+    unregister_subscriber_sample($account, $serviceAccount);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_UnregisterSubscriber_sync]

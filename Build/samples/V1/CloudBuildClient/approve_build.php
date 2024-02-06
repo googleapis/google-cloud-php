@@ -37,13 +37,10 @@ use Google\Rpc\Status;
  *
  * If rejected, the returned LRO will be immediately done.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $name Name of the target build.
+ *                     For example: "projects/{$project_id}/builds/{$build_id}"
  */
-function approve_build_sample(): void
+function approve_build_sample(string $name): void
 {
     // Create a client.
     $cloudBuildClient = new CloudBuildClient();
@@ -51,7 +48,7 @@ function approve_build_sample(): void
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudBuildClient->approveBuild();
+        $response = $cloudBuildClient->approveBuild($name);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -66,5 +63,21 @@ function approve_build_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $name = '[NAME]';
+
+    approve_build_sample($name);
 }
 // [END cloudbuild_v1_generated_CloudBuild_ApproveBuild_sync]

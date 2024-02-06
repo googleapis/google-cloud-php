@@ -35,19 +35,19 @@ use Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest;
  * by providing a transactional change that ensures an assignee always has an
  * associated reservation.
  *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
+ * @param string $formattedName The resource name of the assignment,
+ *                              e.g.
+ *                              `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+ *                              Please see {@see ReservationServiceClient::assignmentName()} for help formatting this field.
  */
-function move_assignment_sample(): void
+function move_assignment_sample(string $formattedName): void
 {
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
     // Prepare the request message.
-    $request = new MoveAssignmentRequest();
+    $request = (new MoveAssignmentRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -57,5 +57,26 @@ function move_assignment_sample(): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedName = ReservationServiceClient::assignmentName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[RESERVATION]',
+        '[ASSIGNMENT]'
+    );
+
+    move_assignment_sample($formattedName);
 }
 // [END bigqueryreservation_v1_generated_ReservationService_MoveAssignment_sync]

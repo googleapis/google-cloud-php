@@ -25,7 +25,8 @@ class GetDataExchangeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the data exchange.
-     *                     e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     *                     e.g. `projects/myproject/locations/US/dataExchanges/123`. Please see
+     *                     {@see AnalyticsHubServiceClient::dataExchangeName()} for help formatting this field.
      *
      * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest
      *
