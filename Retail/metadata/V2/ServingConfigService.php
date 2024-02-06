@@ -59,14 +59,14 @@ control_id (	B‡A"t
 
 control_id (	B‡A2≤
 ServingConfigServiceÒ
-CreateServingConfig2.google.cloud.retail.v2.CreateServingConfigRequest%.google.cloud.retail.v2.ServingConfig"Ç”‰ìO"=/v2/{parent=projects/*/locations/*/catalogs/*}/servingConfigs:serving_config⁄A\'parent,serving_config,serving_config_idØ
-DeleteServingConfig2.google.cloud.retail.v2.DeleteServingConfigRequest.google.protobuf.Empty"LÇ”‰ì?*=/v2/{name=projects/*/locations/*/catalogs/*/servingConfigs/*}⁄AnameÙ
-UpdateServingConfig2.google.cloud.retail.v2.UpdateServingConfigRequest%.google.cloud.retail.v2.ServingConfig"ÅÇ”‰ì^2L/v2/{serving_config.name=projects/*/locations/*/catalogs/*/servingConfigs/*}:serving_config⁄Aserving_config,update_mask∏
-GetServingConfig/.google.cloud.retail.v2.GetServingConfigRequest%.google.cloud.retail.v2.ServingConfig"LÇ”‰ì?=/v2/{name=projects/*/locations/*/catalogs/*/servingConfigs/*}⁄AnameÀ
-ListServingConfigs1.google.cloud.retail.v2.ListServingConfigsRequest2.google.cloud.retail.v2.ListServingConfigsResponse"NÇ”‰ì?=/v2/{parent=projects/*/locations/*/catalogs/*}/servingConfigs⁄AparentŒ
+CreateServingConfig2.google.cloud.retail.v2.CreateServingConfigRequest%.google.cloud.retail.v2.ServingConfig"⁄A\'parent,serving_config,serving_config_idÇ”‰ìO"=/v2/{parent=projects/*/locations/*/catalogs/*}/servingConfigs:serving_configØ
+DeleteServingConfig2.google.cloud.retail.v2.DeleteServingConfigRequest.google.protobuf.Empty"L⁄AnameÇ”‰ì?*=/v2/{name=projects/*/locations/*/catalogs/*/servingConfigs/*}Ù
+UpdateServingConfig2.google.cloud.retail.v2.UpdateServingConfigRequest%.google.cloud.retail.v2.ServingConfig"Å⁄Aserving_config,update_maskÇ”‰ì^2L/v2/{serving_config.name=projects/*/locations/*/catalogs/*/servingConfigs/*}:serving_config∏
+GetServingConfig/.google.cloud.retail.v2.GetServingConfigRequest%.google.cloud.retail.v2.ServingConfig"L⁄AnameÇ”‰ì?=/v2/{name=projects/*/locations/*/catalogs/*/servingConfigs/*}À
+ListServingConfigs1.google.cloud.retail.v2.ListServingConfigsRequest2.google.cloud.retail.v2.ListServingConfigsResponse"N⁄AparentÇ”‰ì?=/v2/{parent=projects/*/locations/*/catalogs/*}/servingConfigsŒ
 
-AddControl).google.cloud.retail.v2.AddControlRequest%.google.cloud.retail.v2.ServingConfig"nÇ”‰ìW"R/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:addControl:*⁄Aserving_config◊
-RemoveControl,.google.cloud.retail.v2.RemoveControlRequest%.google.cloud.retail.v2.ServingConfig"qÇ”‰ìZ"U/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:removeControl:*⁄Aserving_configI Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBƒ
+AddControl).google.cloud.retail.v2.AddControlRequest%.google.cloud.retail.v2.ServingConfig"n⁄Aserving_configÇ”‰ìW"R/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:addControl:*◊
+RemoveControl,.google.cloud.retail.v2.RemoveControlRequest%.google.cloud.retail.v2.ServingConfig"q⁄Aserving_configÇ”‰ìZ"U/v2/{serving_config=projects/*/locations/*/catalogs/*/servingConfigs/*}:removeControl:*I Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBƒ
 com.google.cloud.retail.v2BServingConfigServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 

@@ -92,13 +92,13 @@ conditions (2.google.cloud.run.v2.ConditionBàA
 value (	:8:têAq
 run.googleapis.com/RevisionOprojects/{project}/locations/{location}/services/{service}/revisions/{revision}R2…
 	RevisionsÒ
-GetRevision\'.google.cloud.run.v2.GetRevisionRequest.google.cloud.run.v2.Revision"{‚Óä“:8/v2/{name=projects/*/locations/*/services/*/revisions/*}ŠÓä“.,
-name$projects/*/locations/{location=*}/**ÚAnameç
-ListRevisions).google.cloud.run.v2.ListRevisionsRequest*.google.cloud.run.v2.ListRevisionsResponse"‚Óä“:8/v2/{parent=projects/*/locations/*/services/*}/revisionsŠÓä“0.
-parent$projects/*/locations/{location=*}/**ÚAparentð
-DeleteRevision*.google.cloud.run.v2.DeleteRevisionRequest.google.longrunning.Operation"’‚Óä“:*8/v2/{name=projects/*/locations/*/services/*/revisions/*}ŠÓä“.,
-name$projects/*/locations/{location=*}/**ÚAnameÊA
-RevisionRevisionFÊArun.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBU
+GetRevision\'.google.cloud.run.v2.GetRevisionRequest.google.cloud.run.v2.Revision"{ÚAname‚Óä“:8/v2/{name=projects/*/locations/*/services/*/revisions/*}ŠÓä“.,
+name$projects/*/locations/{location=*}/**ç
+ListRevisions).google.cloud.run.v2.ListRevisionsRequest*.google.cloud.run.v2.ListRevisionsResponse"ÚAparent‚Óä“:8/v2/{parent=projects/*/locations/*/services/*}/revisionsŠÓä“0.
+parent$projects/*/locations/{location=*}/**ð
+DeleteRevision*.google.cloud.run.v2.DeleteRevisionRequest.google.longrunning.Operation"’ÊA
+RevisionRevisionÚAname‚Óä“:*8/v2/{name=projects/*/locations/*/services/*/revisions/*}ŠÓä“.,
+name$projects/*/locations/{location=*}/**FÊArun.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBU
 com.google.cloud.run.v2BRevisionProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 
