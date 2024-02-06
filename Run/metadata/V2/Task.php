@@ -92,8 +92,8 @@ vpc_access (2.google.cloud.run.v2.VpcAccessBàA
 status (2.google.rpc.StatusBàA
 	exit_code (BàA2–
 Tasks—
-GetTask#.google.cloud.run.v2.GetTaskRequest.google.cloud.run.v2.Task"L‚Óä“?=/v2/{name=projects/*/locations/*/jobs/*/executions/*/tasks/*}ÚAnameª
-	ListTasks%.google.cloud.run.v2.ListTasksRequest&.google.cloud.run.v2.ListTasksResponse"N‚Óä“?=/v2/{parent=projects/*/locations/*/jobs/*/executions/*}/tasksÚAparentFÊArun.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBQ
+GetTask#.google.cloud.run.v2.GetTaskRequest.google.cloud.run.v2.Task"LÚAname‚Óä“?=/v2/{name=projects/*/locations/*/jobs/*/executions/*/tasks/*}ª
+	ListTasks%.google.cloud.run.v2.ListTasksRequest&.google.cloud.run.v2.ListTasksResponse"NÚAparent‚Óä“?=/v2/{parent=projects/*/locations/*/jobs/*/executions/*}/tasksFÊArun.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBQ
 com.google.cloud.run.v2B	TaskProtoPZ)cloud.google.com/go/run/apiv2/runpb;runpbbproto3'
         , true);
 

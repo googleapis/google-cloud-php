@@ -79,14 +79,14 @@ page_token (	"b
 catalog_attribute (2(.google.cloud.retail.v2.CatalogAttributeBàA/
 update_mask (2.google.protobuf.FieldMask2—
 CatalogService¨
-ListCatalogs+.google.cloud.retail.v2.ListCatalogsRequest,.google.cloud.retail.v2.ListCatalogsResponse"=‚Óä“.,/v2/{parent=projects/*/locations/*}/catalogsÚAparent»
-UpdateCatalog,.google.cloud.retail.v2.UpdateCatalogRequest.google.cloud.retail.v2.Catalog"[‚Óä“?24/v2/{catalog.name=projects/*/locations/*/catalogs/*}:catalogÚAcatalog,update_mask²
-SetDefaultBranch/.google.cloud.retail.v2.SetDefaultBranchRequest.google.protobuf.Empty"U‚Óä“E"@/v2/{catalog=projects/*/locations/*/catalogs/*}:setDefaultBranch:*ÚAcatalogÉ
-GetDefaultBranch/.google.cloud.retail.v2.GetDefaultBranchRequest0.google.cloud.retail.v2.GetDefaultBranchResponse"R‚Óä“B@/v2/{catalog=projects/*/locations/*/catalogs/*}:getDefaultBranchÚAcatalogÁ
-GetCompletionConfig2.google.cloud.retail.v2.GetCompletionConfigRequest(.google.cloud.retail.v2.CompletionConfig"L‚Óä“?=/v2/{name=projects/*/locations/*/catalogs/*/completionConfig}ÚAname†
-UpdateCompletionConfig5.google.cloud.retail.v2.UpdateCompletionConfigRequest(.google.cloud.retail.v2.CompletionConfig"Š‚Óä“d2O/v2/{completion_config.name=projects/*/locations/*/catalogs/*/completionConfig}:completion_configÚAcompletion_config,update_maskÁ
-GetAttributesConfig2.google.cloud.retail.v2.GetAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"L‚Óä“?=/v2/{name=projects/*/locations/*/catalogs/*/attributesConfig}ÚAname†
-UpdateAttributesConfig5.google.cloud.retail.v2.UpdateAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"Š‚Óä“d2O/v2/{attributes_config.name=projects/*/locations/*/catalogs/*/attributesConfig}:attributes_configÚAattributes_config,update_maskÞ
+ListCatalogs+.google.cloud.retail.v2.ListCatalogsRequest,.google.cloud.retail.v2.ListCatalogsResponse"=ÚAparent‚Óä“.,/v2/{parent=projects/*/locations/*}/catalogs»
+UpdateCatalog,.google.cloud.retail.v2.UpdateCatalogRequest.google.cloud.retail.v2.Catalog"[ÚAcatalog,update_mask‚Óä“?24/v2/{catalog.name=projects/*/locations/*/catalogs/*}:catalog²
+SetDefaultBranch/.google.cloud.retail.v2.SetDefaultBranchRequest.google.protobuf.Empty"UÚAcatalog‚Óä“E"@/v2/{catalog=projects/*/locations/*/catalogs/*}:setDefaultBranch:*É
+GetDefaultBranch/.google.cloud.retail.v2.GetDefaultBranchRequest0.google.cloud.retail.v2.GetDefaultBranchResponse"RÚAcatalog‚Óä“B@/v2/{catalog=projects/*/locations/*/catalogs/*}:getDefaultBranchÁ
+GetCompletionConfig2.google.cloud.retail.v2.GetCompletionConfigRequest(.google.cloud.retail.v2.CompletionConfig"LÚAname‚Óä“?=/v2/{name=projects/*/locations/*/catalogs/*/completionConfig}†
+UpdateCompletionConfig5.google.cloud.retail.v2.UpdateCompletionConfigRequest(.google.cloud.retail.v2.CompletionConfig"ŠÚAcompletion_config,update_mask‚Óä“d2O/v2/{completion_config.name=projects/*/locations/*/catalogs/*/completionConfig}:completion_configÁ
+GetAttributesConfig2.google.cloud.retail.v2.GetAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"LÚAname‚Óä“?=/v2/{name=projects/*/locations/*/catalogs/*/attributesConfig}†
+UpdateAttributesConfig5.google.cloud.retail.v2.UpdateAttributesConfigRequest(.google.cloud.retail.v2.AttributesConfig"ŠÚAattributes_config,update_mask‚Óä“d2O/v2/{attributes_config.name=projects/*/locations/*/catalogs/*/attributesConfig}:attributes_configÞ
 AddCatalogAttribute2.google.cloud.retail.v2.AddCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"i‚Óä“c"^/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:addCatalogAttribute:*ç
 RemoveCatalogAttribute5.google.cloud.retail.v2.RemoveCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"l‚Óä“f"a/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:removeCatalogAttribute:*ê
 ReplaceCatalogAttribute6.google.cloud.retail.v2.ReplaceCatalogAttributeRequest(.google.cloud.retail.v2.AttributesConfig"m‚Óä“g"b/v2/{attributes_config=projects/*/locations/*/catalogs/*/attributesConfig}:replaceCatalogAttribute:*IÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¾
