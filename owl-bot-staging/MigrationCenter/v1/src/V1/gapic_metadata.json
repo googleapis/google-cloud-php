@@ -1,0 +1,268 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.migrationcenter.v1",
+    "libraryPackage": "Google\\Cloud\\MigrationCenter\\V1",
+    "services": {
+        "MigrationCenter": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MigrationCenterGapicClient",
+                    "rpcs": {
+                        "AddAssetsToGroup": {
+                            "methods": [
+                                "addAssetsToGroup"
+                            ]
+                        },
+                        "AggregateAssetsValues": {
+                            "methods": [
+                                "aggregateAssetsValues"
+                            ]
+                        },
+                        "BatchDeleteAssets": {
+                            "methods": [
+                                "batchDeleteAssets"
+                            ]
+                        },
+                        "BatchUpdateAssets": {
+                            "methods": [
+                                "batchUpdateAssets"
+                            ]
+                        },
+                        "CreateGroup": {
+                            "methods": [
+                                "createGroup"
+                            ]
+                        },
+                        "CreateImportDataFile": {
+                            "methods": [
+                                "createImportDataFile"
+                            ]
+                        },
+                        "CreateImportJob": {
+                            "methods": [
+                                "createImportJob"
+                            ]
+                        },
+                        "CreatePreferenceSet": {
+                            "methods": [
+                                "createPreferenceSet"
+                            ]
+                        },
+                        "CreateReport": {
+                            "methods": [
+                                "createReport"
+                            ]
+                        },
+                        "CreateReportConfig": {
+                            "methods": [
+                                "createReportConfig"
+                            ]
+                        },
+                        "CreateSource": {
+                            "methods": [
+                                "createSource"
+                            ]
+                        },
+                        "DeleteAsset": {
+                            "methods": [
+                                "deleteAsset"
+                            ]
+                        },
+                        "DeleteGroup": {
+                            "methods": [
+                                "deleteGroup"
+                            ]
+                        },
+                        "DeleteImportDataFile": {
+                            "methods": [
+                                "deleteImportDataFile"
+                            ]
+                        },
+                        "DeleteImportJob": {
+                            "methods": [
+                                "deleteImportJob"
+                            ]
+                        },
+                        "DeletePreferenceSet": {
+                            "methods": [
+                                "deletePreferenceSet"
+                            ]
+                        },
+                        "DeleteReport": {
+                            "methods": [
+                                "deleteReport"
+                            ]
+                        },
+                        "DeleteReportConfig": {
+                            "methods": [
+                                "deleteReportConfig"
+                            ]
+                        },
+                        "DeleteSource": {
+                            "methods": [
+                                "deleteSource"
+                            ]
+                        },
+                        "GetAsset": {
+                            "methods": [
+                                "getAsset"
+                            ]
+                        },
+                        "GetErrorFrame": {
+                            "methods": [
+                                "getErrorFrame"
+                            ]
+                        },
+                        "GetGroup": {
+                            "methods": [
+                                "getGroup"
+                            ]
+                        },
+                        "GetImportDataFile": {
+                            "methods": [
+                                "getImportDataFile"
+                            ]
+                        },
+                        "GetImportJob": {
+                            "methods": [
+                                "getImportJob"
+                            ]
+                        },
+                        "GetPreferenceSet": {
+                            "methods": [
+                                "getPreferenceSet"
+                            ]
+                        },
+                        "GetReport": {
+                            "methods": [
+                                "getReport"
+                            ]
+                        },
+                        "GetReportConfig": {
+                            "methods": [
+                                "getReportConfig"
+                            ]
+                        },
+                        "GetSettings": {
+                            "methods": [
+                                "getSettings"
+                            ]
+                        },
+                        "GetSource": {
+                            "methods": [
+                                "getSource"
+                            ]
+                        },
+                        "ListAssets": {
+                            "methods": [
+                                "listAssets"
+                            ]
+                        },
+                        "ListErrorFrames": {
+                            "methods": [
+                                "listErrorFrames"
+                            ]
+                        },
+                        "ListGroups": {
+                            "methods": [
+                                "listGroups"
+                            ]
+                        },
+                        "ListImportDataFiles": {
+                            "methods": [
+                                "listImportDataFiles"
+                            ]
+                        },
+                        "ListImportJobs": {
+                            "methods": [
+                                "listImportJobs"
+                            ]
+                        },
+                        "ListPreferenceSets": {
+                            "methods": [
+                                "listPreferenceSets"
+                            ]
+                        },
+                        "ListReportConfigs": {
+                            "methods": [
+                                "listReportConfigs"
+                            ]
+                        },
+                        "ListReports": {
+                            "methods": [
+                                "listReports"
+                            ]
+                        },
+                        "ListSources": {
+                            "methods": [
+                                "listSources"
+                            ]
+                        },
+                        "RemoveAssetsFromGroup": {
+                            "methods": [
+                                "removeAssetsFromGroup"
+                            ]
+                        },
+                        "ReportAssetFrames": {
+                            "methods": [
+                                "reportAssetFrames"
+                            ]
+                        },
+                        "RunImportJob": {
+                            "methods": [
+                                "runImportJob"
+                            ]
+                        },
+                        "UpdateAsset": {
+                            "methods": [
+                                "updateAsset"
+                            ]
+                        },
+                        "UpdateGroup": {
+                            "methods": [
+                                "updateGroup"
+                            ]
+                        },
+                        "UpdateImportJob": {
+                            "methods": [
+                                "updateImportJob"
+                            ]
+                        },
+                        "UpdatePreferenceSet": {
+                            "methods": [
+                                "updatePreferenceSet"
+                            ]
+                        },
+                        "UpdateSettings": {
+                            "methods": [
+                                "updateSettings"
+                            ]
+                        },
+                        "UpdateSource": {
+                            "methods": [
+                                "updateSource"
+                            ]
+                        },
+                        "ValidateImportJob": {
+                            "methods": [
+                                "validateImportJob"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
