@@ -420,6 +420,11 @@
                                 "fetchFeatureValues"
                             ]
                         },
+                        "SearchNearestEntities": {
+                            "methods": [
+                                "searchNearestEntities"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
