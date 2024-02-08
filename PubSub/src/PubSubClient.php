@@ -21,7 +21,7 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
-use Google\Cloud\Core\HandwrittenClientTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
@@ -40,6 +40,7 @@ use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 use Google\Cloud\PubSub\V1\Schema\Type;
 use Google\Cloud\PubSub\V1\ValidateMessageRequest;
 use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
+use Google\ApiCore\ClientOptionsTrait;
 
 /**
  * Google Cloud Pub/Sub allows you to send and receive
@@ -92,10 +93,11 @@ use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
  */
 class PubSubClient
 {
-    use HandwrittenClientTrait;
+    use DetectProjectIdTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
     use ApiHelperTrait;
+    use ClientOptionsTrait;
 
     const VERSION = '1.51.0';
 
@@ -184,7 +186,17 @@ class PubSubClient
                 ]
             ]
         ];
-        $config = $this->initCredentialsAndProjectId($config);
+
+        // Configure GAPIC client options
+        $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
+
+        $this->projectId = $this->detectProjectId($config);
+        
         $this->clientConfig = $config;
         $this->serializer = new Serializer([
             'publish_time' => function ($v) {

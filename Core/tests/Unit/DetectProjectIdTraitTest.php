@@ -17,11 +17,10 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
-use Exception;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Core\HandwrittenClientTrait;
-use Google\Cloud\Core\Compute\Metadata;
+use Google\Auth\ProjectIdProviderInterface;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Response;
@@ -32,59 +31,39 @@ use Prophecy\PhpUnit\ProphecyTrait;
  * @group core
  * @group core-client-trait
  */
-class HandwrittenClientTraitTest extends TestCase
+class DetectProjectIdTraitTest extends TestCase
 {
     use ProphecyTrait;
 
     private $impl;
     private $dependency;
+    private $credentials;
 
     public function setUp(): void
     {
-        $this->impl = TestHelpers::impl(HandwrittenClientTrait::class);
+        $this->impl = TestHelpers::impl(DetectProjectIdTrait::class);
+        $this->credentials = $this->prophesize(ProjectIdProviderInterface::class);
     }
 
-    public function testCredentialsWithEnv()
+    public function testDetectProjectIdFromCredentials()
     {
-        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
-        putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath");
+        $this->credentials->getProjectId()->willReturn('abc');
 
-        $conf = $this->impl->call('initCredentialsAndProjectId', [[]]);
-
-        $this->assertInstanceOf(CredentialsWrapper::class, $conf['credentials']);
-    }
-
-    public function testCredentialsWithKeyFileContents()
-    {
-        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
-        $keyFile = json_decode(file_get_contents($keyFilePath), true);
-
-        $conf = $this->impl->call('initCredentialsAndProjectId', [[
-            'credentials' => $keyFile
+        $projectId = $this->impl->call('detectProjectId', [[
+            'credentials' => $this->credentials->reveal()
         ]]);
 
-        $this->assertInstanceOf(CredentialsWrapper::class, $conf['credentials']);
+        $this->assertEquals('abc', $projectId);
     }
 
-    public function testCredentialsWithKeyFilePath()
+    public function testDetectProjectIdThrowsValidationExceptionOnNullProjectId()
     {
-        $keyFilePath = Fixtures::JSON_KEY_FIXTURE();
+        $this->expectException(GoogleException::class);
+        $this->credentials->getProjectId()->willReturn(null);
 
-        $conf = $this->impl->call('initCredentialsAndProjectId', [[
-            'credentials' => $keyFilePath
-        ]]);
-
-        $this->assertInstanceOf(CredentialsWrapper::class, $conf['credentials']);
-    }
-
-    public function testInitCredentialsAndProjectIdWithInvalidKeyFilePath()
-    {
-        $this->expectException(ValidationException::class);
-
-        $keyFilePath = __DIR__ . '/i/sure/hope/this/doesnt/exist';
-
-        $conf = $this->impl->call('initCredentialsAndProjectId', [[
-            'credentials' => $keyFilePath
+        $projectId = $this->impl->call('detectProjectId', [[
+            'credentials' => $this->credentials->reveal(),
+            'projectIdRequired' => true
         ]]);
     }
 
@@ -158,53 +137,6 @@ class HandwrittenClientTraitTest extends TestCase
         }
     }
 
-    public function testDetectProjectIdOnGce()
-    {
-        $projectId = 'gce-project-rawks';
-
-        $m = $this->prophesize(Metadata::class);
-        $m->getProjectId()->willReturn($projectId)->shouldBeCalled();
-
-        $trait = TestHelpers::impl(HandwrittenClientTraitStubOnGce::class, ['metadata']);
-        $trait->___setProperty('metadata', $m);
-
-        $res = $trait->call('detectProjectId', [[]]);
-
-        $this->assertEquals($res, $projectId);
-    }
-
-    public function testDetectNumericProjectIdOnGce()
-    {
-        $projectId = '1234567';
-
-        $m = $this->prophesize(Metadata::class);
-        $m->getNumericProjectId()->willReturn($projectId)->shouldBeCalled();
-
-        $trait = TestHelpers::impl(HandwrittenClientTraitStubOnGce::class, ['metadata']);
-        $trait->___setProperty('metadata', $m);
-
-        $res = $trait->call('detectProjectId', [['preferNumericProjectId' => true]]);
-
-        $this->assertEquals($res, $projectId);
-    }
-
-    public function testDetectProjectIdOnGceButOhNoThereStillIsntAProjectId()
-    {
-        $this->expectException(GoogleException::class);
-
-        $projectId = null;
-
-        $m = $this->prophesize(Metadata::class);
-        $m->getProjectId()->willReturn($projectId)->shouldBeCalled();
-
-        $trait = TestHelpers::impl(HandwrittenClientTraitStubOnGce::class, ['metadata']);
-        $trait->___setProperty('metadata', $m);
-
-        $res = $trait->call('detectProjectId', [[
-            'projectIdRequired' => true
-        ]]);
-    }
-
     public function testDetectProjectIdEmulatorWithProjectId()
     {
         $projectId = 'emulator-project';
@@ -229,20 +161,3 @@ class HandwrittenClientTraitTest extends TestCase
         $this->assertEquals($projectId, $res);
     }
 }
-
-//@codingStandardsIgnoreStart
-trait HandwrittenClientTraitStubOnGce
-{
-    use HandwrittenClientTrait;
-
-    protected function onGce($httpHandler)
-    {
-        return true;
-    }
-
-    protected function getMetadata()
-    {
-        return $this->metadata->reveal();
-    }
-}
-//@codingStandardsIgnoreEnd

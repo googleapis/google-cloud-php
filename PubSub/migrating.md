@@ -34,6 +34,7 @@ The following properties are removed/replaced with other options present in GAX.
 - `grpcOptions` -> Moved to `transportConfig.grpc`
 - `accessToken` -> Removed
 - `shouldSignRequest` -> Removed
+- `preferNumericProjectId` -> Removed
 
 ### Connection classes are not used anymore.
 

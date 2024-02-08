@@ -17,18 +17,15 @@
 
 namespace Google\Cloud\Core;
 
-use Google\ApiCore\ClientOptionsTrait;
 use Google\Auth\ProjectIdProviderInterface;
 use Google\Cloud\Core\Exception\GoogleException;
-use Google\Auth\Credentials\GCECredentials;
-use Google\Cloud\Core\Compute\Metadata;
 
 /**
+ * @internal
  * Provides functionality common to handwritten clients.
  */
-trait HandwrittenClientTrait
+trait DetectProjectIdTrait
 {
-    use ClientOptionsTrait;
 
     /**
      * @var string|null The project ID created in the Google Developers Console.
@@ -60,7 +57,6 @@ trait HandwrittenClientTrait
             'projectId' => null,
             'projectIdRequired' => false,
             'hasEmulator' => false,
-            'preferNumericProjectId' => false,
             'credentials' => null,
         ];
 
@@ -70,10 +66,6 @@ trait HandwrittenClientTrait
 
         if ($config['hasEmulator']) {
             return 'emulator-project';
-        }
-
-        if ($projectId = $this->getProjectIdFromGce($config)) {
-            return $projectId;
         }
 
         if ($config['credentials']
@@ -108,69 +100,5 @@ trait HandwrittenClientTrait
                 'and we were unable to detect a default project ID.'
             );
         }
-    }
-
-    /**
-     * Helper function to be used inside the handwritten clients
-     * which are delegating there auth to GAX(starting V2).
-     * @param array $config
-     * @return array
-     */
-    private function initCredentialsAndProjectId(array $config)
-    {
-        // Configure GAPIC client options
-        $config = $this->buildClientOptions($config);
-        $config['credentials'] = $this->createCredentialsWrapper(
-            $config['credentials'],
-            $config['credentialsConfig'],
-            $config['universeDomain']
-        );
-
-        $this->projectId = $this->detectProjectId($config);
-
-        return $config;
-    }
-
-    /**
-     * Helper method to get project id from a GCE instance.
-     *
-     * @param array $config
-     * @return string|int|null
-     */
-    private function getProjectIdFromGce(array $config)
-    {
-        if ($this->onGce($config['httpHandler'])) {
-            $metadata = $this->getMetaData();
-            $projectId = $config['preferNumericProjectId']
-                ? $metadata->getNumericProjectId()
-                : $metadata->getProjectId();
-            if ($projectId) {
-                return $projectId;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Abstract the GCECredentials call so we can mock it in the unit tests!
-     *
-     * @codeCoverageIgnore
-     * @return bool
-     */
-    protected function onGce($httpHandler)
-    {
-        return GCECredentials::onGce($httpHandler);
-    }
-
-    /**
-     * Abstract the Metadata instantiation for unit testing
-     *
-     * @codeCoverageIgnore
-     * @return Metadata
-     */
-    protected function getMetaData()
-    {
-        return new Metadata;
     }
 }
