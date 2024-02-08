@@ -20,12 +20,54 @@ return [
                     ],
                 ],
             ],
+            'ImportSuggestionDenyListEntries' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/suggestionDenyListEntries:import',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/dataStores/*}/suggestionDenyListEntries:import',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PurgeSuggestionDenyListEntries' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/suggestionDenyListEntries:purge',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/dataStores/**}/suggestionDenyListEntries:purge',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataConnector/operations/*}',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}',
@@ -91,6 +133,10 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*}/operations',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataConnector}/operations',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*}/operations',

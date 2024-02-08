@@ -153,6 +153,34 @@ final class ConversationalSearchServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a document
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted document resource.
+     */
+    public static function documentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('document')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_data_store resource.
      *
@@ -174,6 +202,37 @@ final class ConversationalSearchServiceClient
             'location' => $location,
             'collection' => $collection,
             'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_branch_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted project_location_collection_data_store_branch_document resource.
+     */
+    public static function projectLocationCollectionDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocument')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
         ]);
     }
 
@@ -235,6 +294,62 @@ final class ConversationalSearchServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_conversation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $conversation
+     *
+     * @return string The formatted project_location_collection_engine_conversation resource.
+     */
+    public static function projectLocationCollectionEngineConversationName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $conversation
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineConversation')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $servingConfig
+     *
+     * @return string The formatted project_location_collection_engine_serving_config resource.
+     */
+    public static function projectLocationCollectionEngineServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineServingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store resource.
      *
      * @param string $project
@@ -249,6 +364,34 @@ final class ConversationalSearchServiceClient
             'project' => $project,
             'location' => $location,
             'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_branch_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted project_location_data_store_branch_document resource.
+     */
+    public static function projectLocationDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreBranchDocument')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
         ]);
     }
 
@@ -333,10 +476,15 @@ final class ConversationalSearchServiceClient
      * Template: Pattern
      * - conversation: projects/{project}/locations/{location}/dataStores/{data_store}/conversations/{conversation}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
+     * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationCollectionDataStoreConversation: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/conversations/{conversation}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationCollectionEngineConversation: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/conversations/{conversation}
+     * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - projectLocationDataStoreBranchDocument: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationDataStoreConversation: projects/{project}/locations/{location}/dataStores/{data_store}/conversations/{conversation}
      * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}

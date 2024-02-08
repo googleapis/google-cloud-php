@@ -13,6 +13,11 @@ return [
                         'uriTemplate' => '/v1/{serving_config=projects/*/locations/*/collections/*/dataStores/*/servingConfigs/*}:search',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{serving_config=projects/*/locations/*/collections/*/engines/*/servingConfigs/*}:search',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'serving_config' => [
@@ -28,6 +33,10 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataConnector/operations/*}',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}',
@@ -93,6 +102,10 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*}/operations',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataConnector}/operations',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*}/operations',

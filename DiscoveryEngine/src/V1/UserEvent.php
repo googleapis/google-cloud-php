@@ -129,9 +129,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
      * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
-     * [RecommendationService.RecommendRequest][], this field may be populated
-     * directly from [RecommendationService.RecommendRequest.filter][] conforming
-     * to https://google.aip.dev/160#filtering.
+     * [RecommendRequest][], this field may be populated directly from
+     * [RecommendRequest.filter][] conforming to
+     * https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
@@ -323,9 +323,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
      *           conforming to https://google.aip.dev/160#filtering.
      *           Similarly, for `view-item-list` events that are generated from a
-     *           [RecommendationService.RecommendRequest][], this field may be populated
-     *           directly from [RecommendationService.RecommendRequest.filter][] conforming
-     *           to https://google.aip.dev/160#filtering.
+     *           [RecommendRequest][], this field may be populated directly from
+     *           [RecommendRequest.filter][] conforming to
+     *           https://google.aip.dev/160#filtering.
      *           The value must be a UTF-8 encoded string with a length limit of 1,000
      *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $documents
@@ -755,9 +755,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
      * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
-     * [RecommendationService.RecommendRequest][], this field may be populated
-     * directly from [RecommendationService.RecommendRequest.filter][] conforming
-     * to https://google.aip.dev/160#filtering.
+     * [RecommendRequest][], this field may be populated directly from
+     * [RecommendRequest.filter][] conforming to
+     * https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
@@ -778,9 +778,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [SearchRequest.filter][google.cloud.discoveryengine.v1.SearchRequest.filter]
      * conforming to https://google.aip.dev/160#filtering.
      * Similarly, for `view-item-list` events that are generated from a
-     * [RecommendationService.RecommendRequest][], this field may be populated
-     * directly from [RecommendationService.RecommendRequest.filter][] conforming
-     * to https://google.aip.dev/160#filtering.
+     * [RecommendRequest][], this field may be populated directly from
+     * [RecommendRequest.filter][] conforming to
+     * https://google.aip.dev/160#filtering.
      * The value must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
