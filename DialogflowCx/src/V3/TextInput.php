@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TextInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text
-     * length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed.
      *
      * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +29,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $text
-     *           Required. The UTF-8 encoded natural language text to be processed. Text
-     *           length must not exceed 256 characters.
+     *           Required. The UTF-8 encoded natural language text to be processed.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +38,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text
-     * length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed.
      *
      * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -52,8 +49,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text
-     * length must not exceed 256 characters.
+     * Required. The UTF-8 encoded natural language text to be processed.
      *
      * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

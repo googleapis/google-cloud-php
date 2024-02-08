@@ -150,7 +150,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     protected $channel = '';
     /**
-     * Optional. Sets Dialogflow session life time.
+     * Optional. Configure lifetime of the Dialogflow session.
      * By default, a Dialogflow session remains active and its data is stored for
      * 30 minutes after the last request is sent for the session.
      * This value should be no longer than 1 day.
@@ -281,7 +281,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *           [ResponseMessage][google.cloud.dialogflow.cx.v3.ResponseMessage] with
      *           unspecified channel will be returned.
      *     @type \Google\Protobuf\Duration $session_ttl
-     *           Optional. Sets Dialogflow session life time.
+     *           Optional. Configure lifetime of the Dialogflow session.
      *           By default, a Dialogflow session remains active and its data is stored for
      *           30 minutes after the last request is sent for the session.
      *           This value should be no longer than 1 day.
@@ -762,7 +762,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Sets Dialogflow session life time.
+     * Optional. Configure lifetime of the Dialogflow session.
      * By default, a Dialogflow session remains active and its data is stored for
      * 30 minutes after the last request is sent for the session.
      * This value should be no longer than 1 day.
@@ -786,7 +786,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Sets Dialogflow session life time.
+     * Optional. Configure lifetime of the Dialogflow session.
      * By default, a Dialogflow session remains active and its data is stored for
      * 30 minutes after the last request is sent for the session.
      * This value should be no longer than 1 day.

@@ -83,6 +83,7 @@ class ChangelogsClientTest extends GeneratedTest
         $action = 'action-1422950858';
         $type = 'type3575610';
         $resource = 'resource-341064690';
+        $languageCode = 'languageCode-412800396';
         $expectedResponse = new Changelog();
         $expectedResponse->setName($name2);
         $expectedResponse->setUserEmail($userEmail);
@@ -90,6 +91,7 @@ class ChangelogsClientTest extends GeneratedTest
         $expectedResponse->setAction($action);
         $expectedResponse->setType($type);
         $expectedResponse->setResource($resource);
+        $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->changelogName('[PROJECT]', '[LOCATION]', '[AGENT]', '[CHANGELOG]');
@@ -357,6 +359,7 @@ class ChangelogsClientTest extends GeneratedTest
         $action = 'action-1422950858';
         $type = 'type3575610';
         $resource = 'resource-341064690';
+        $languageCode = 'languageCode-412800396';
         $expectedResponse = new Changelog();
         $expectedResponse->setName($name2);
         $expectedResponse->setUserEmail($userEmail);
@@ -364,6 +367,7 @@ class ChangelogsClientTest extends GeneratedTest
         $expectedResponse->setAction($action);
         $expectedResponse->setType($type);
         $expectedResponse->setResource($resource);
+        $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->changelogName('[PROJECT]', '[LOCATION]', '[AGENT]', '[CHANGELOG]');
