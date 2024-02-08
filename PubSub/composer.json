@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=7.4",
-        "google/cloud-core": "^1.54",
+        "google/cloud-core": "^1.55",
         "google/gax": "^1.26.0"
     },
     "require-dev": {
