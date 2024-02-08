@@ -74,6 +74,7 @@ use Google\Cloud\Compute\V1\ListReferrersInstancesRequest;
 use Google\Cloud\Compute\V1\Metadata;
 use Google\Cloud\Compute\V1\NetworkInterface;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\PerformMaintenanceInstanceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveResourcePoliciesInstanceRequest;
 use Google\Cloud\Compute\V1\ResetInstanceRequest;
@@ -540,6 +541,7 @@ class InstancesGapicClient
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type int $serviceProjectNumber
+     *           The Shared VPC service project id or service project number for which aggregated list request is invoked for subnetworks list-usable api.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1613,6 +1615,82 @@ class InstancesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListReferrers', $optionalArgs, InstanceListReferrers::class, $request);
+    }
+
+    /**
+     * Perform a manual maintenance on the instance.
+     *
+     * Sample code:
+     * ```
+     * $instancesClient = new InstancesClient();
+     * try {
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->performMaintenance($instance, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instancesClient->performMaintenance($instance, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'performMaintenance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $instancesClient->close();
+     * }
+     * ```
+     *
+     * @param string $instance     Name of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function performMaintenance($instance, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new PerformMaintenanceInstanceRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('PerformMaintenance', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**
@@ -3023,6 +3101,8 @@ class InstancesGapicClient
      *
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type bool $withExtendedNotifications
+     *           Determines whether the customers receive notifications before migration. Only applicable to SF vms.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3045,6 +3125,10 @@ class InstancesGapicClient
         $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['withExtendedNotifications'])) {
+            $request->setWithExtendedNotifications($optionalArgs['withExtendedNotifications']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3253,7 +3337,7 @@ class InstancesGapicClient
      *     Optional.
      *
      *     @type bool $discardLocalSsd
-     *           If true, discard the contents of any attached localSSD partitions. Default value is false.
+     *           This property is required if the instance has any attached Local SSD disks. If false, Local SSD data will be preserved when the instance is suspended. If true, the contents of any attached Local SSD disks will be discarded.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -3335,7 +3419,7 @@ class InstancesGapicClient
      *     Optional.
      *
      *     @type bool $discardLocalSsd
-     *           If true, discard the contents of any attached localSSD partitions. Default value is false.
+     *           This property is required if the instance has any attached Local SSD disks. If false, Local SSD data will be preserved when the instance is suspended. If true, the contents of any attached Local SSD disks will be discarded.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings

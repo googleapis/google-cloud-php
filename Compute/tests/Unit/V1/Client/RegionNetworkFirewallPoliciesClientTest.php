@@ -964,6 +964,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $priority2 = 978365527;
         $ruleName = 'ruleName-2092197394';
         $ruleTupleCount = 388342037;
+        $securityProfileGroup = 'securityProfileGroup-329459286';
+        $tlsInspect = true;
         $expectedResponse = new FirewallPolicyRule();
         $expectedResponse->setAction($action);
         $expectedResponse->setDescription($description);
@@ -974,6 +976,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setPriority($priority2);
         $expectedResponse->setRuleName($ruleName);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
+        $expectedResponse->setSecurityProfileGroup($securityProfileGroup);
+        $expectedResponse->setTlsInspect($tlsInspect);
         $transport->addResponse($expectedResponse);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';

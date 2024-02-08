@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\UsableSubnetwork;
 use UnexpectedValueException;
 
 /**
- * The purpose of the resource. This field can be either PRIVATE, REGIONAL_MANAGED_PROXY, PRIVATE_SERVICE_CONNECT, or INTERNAL_HTTPS_LOAD_BALANCER. PRIVATE is the default purpose for user-created subnets or subnets that are automatically created in auto mode networks. A subnet with purpose set to REGIONAL_MANAGED_PROXY is a user-created subnetwork that is reserved for regional Envoy-based load balancers. A subnet with purpose set to PRIVATE_SERVICE_CONNECT is used to publish services using Private Service Connect. A subnet with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a proxy-only subnet that can be used only by regional internal HTTP(S) load balancers. Note that REGIONAL_MANAGED_PROXY is the preferred setting for all regional Envoy load balancers. If unspecified, the subnet purpose defaults to PRIVATE. The enableFlowLogs field isn't supported if the subnet purpose field is set to REGIONAL_MANAGED_PROXY.
+ * The purpose of the resource. This field can be either PRIVATE, GLOBAL_MANAGED_PROXY, REGIONAL_MANAGED_PROXY, PRIVATE_SERVICE_CONNECT, or PRIVATE is the default purpose for user-created subnets or subnets that are automatically created in auto mode networks. Subnets with purpose set to GLOBAL_MANAGED_PROXY or REGIONAL_MANAGED_PROXY are user-created subnetworks that are reserved for Envoy-based load balancers. A subnet with purpose set to PRIVATE_SERVICE_CONNECT is used to publish services using Private Service Connect. If unspecified, the subnet purpose defaults to PRIVATE. The enableFlowLogs field isn't supported if the subnet purpose field is set to GLOBAL_MANAGED_PROXY or REGIONAL_MANAGED_PROXY.
  *
  * Protobuf type <code>google.cloud.compute.v1.UsableSubnetwork.Purpose</code>
  */
@@ -26,7 +26,7 @@ class Purpose
      */
     const GLOBAL_MANAGED_PROXY = 236463602;
     /**
-     * Subnet reserved for Internal HTTP(S) Load Balancing.
+     * Subnet reserved for Internal HTTP(S) Load Balancing. This is a legacy purpose, please use REGIONAL_MANAGED_PROXY instead.
      *
      * Generated from protobuf enum <code>INTERNAL_HTTPS_LOAD_BALANCER = 248748889;</code>
      */

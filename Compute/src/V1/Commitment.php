@@ -47,6 +47,12 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $end_timestamp = null;
     /**
+     * Specifies the already existing reservations to attach to the Commitment. This field is optional, and it can be a full or partial URL. For example, the following are valid URLs to an reservation: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /reservations/reservation - projects/project/zones/zone/reservations/reservation 
+     *
+     * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
+     */
+    private $existing_reservations;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -90,7 +96,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     private $region = null;
     /**
-     * List of create-on-create reseravtions for this commitment.
+     * List of create-on-create reservations for this commitment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      */
@@ -157,6 +163,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $end_timestamp
      *           [Output Only] Commitment end time in RFC3339 text format.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $existing_reservations
+     *           Specifies the already existing reservations to attach to the Commitment. This field is optional, and it can be a full or partial URL. For example, the following are valid URLs to an reservation: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /reservations/reservation - projects/project/zones/zone/reservations/reservation 
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -173,7 +181,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           [Output Only] URL of the region where this commitment may be used.
      *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
-     *           List of create-on-create reseravtions for this commitment.
+     *           List of create-on-create reservations for this commitment.
      *     @type array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $resources
      *           A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
      *     @type string $self_link
@@ -375,6 +383,32 @@ class Commitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->end_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the already existing reservations to attach to the Commitment. This field is optional, and it can be a full or partial URL. For example, the following are valid URLs to an reservation: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /reservations/reservation - projects/project/zones/zone/reservations/reservation 
+     *
+     * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExistingReservations()
+    {
+        return $this->existing_reservations;
+    }
+
+    /**
+     * Specifies the already existing reservations to attach to the Commitment. This field is optional, and it can be a full or partial URL. For example, the following are valid URLs to an reservation: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /reservations/reservation - projects/project/zones/zone/reservations/reservation 
+     *
+     * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExistingReservations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->existing_reservations = $arr;
 
         return $this;
     }
@@ -624,7 +658,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of create-on-create reseravtions for this commitment.
+     * List of create-on-create reservations for this commitment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -635,7 +669,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of create-on-create reseravtions for this commitment.
+     * List of create-on-create reservations for this commitment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @param array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $var

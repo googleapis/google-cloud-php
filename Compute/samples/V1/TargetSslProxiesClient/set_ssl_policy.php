@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\TargetSslProxiesClient;
 use Google\Rpc\Status;
 
 /**
- * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the SSL proxy load balancer. They do not affect the connection between the load balancer and the backends.
+ * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the load balancer. They do not affect the connection between the load balancer and the backends.
  *
  * @param string $project        Project ID for this request.
  * @param string $targetSslProxy Name of the TargetSslProxy resource whose SSL policy is to be set. The name must be 1-63 characters long, and comply with RFC1035.

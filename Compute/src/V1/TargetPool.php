@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target Pool resource. Target pools are used for network TCP/UDP load balancing. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools.
+ * Represents a Target Pool resource. Target pools are used with external passthrough Network Load Balancers. A target pool references member instances, an associated legacy HttpHealthCheck resource, and, optionally, a backup target pool. For more information, read Using target pools.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetPool</code>
  */
