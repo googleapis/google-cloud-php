@@ -1,0 +1,363 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.discoveryengine.v1beta",
+    "libraryPackage": "Google\\Cloud\\DiscoveryEngine\\V1beta",
+    "services": {
+        "CompletionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompletionServiceGapicClient",
+                    "rpcs": {
+                        "CompleteQuery": {
+                            "methods": [
+                                "completeQuery"
+                            ]
+                        },
+                        "ImportSuggestionDenyListEntries": {
+                            "methods": [
+                                "importSuggestionDenyListEntries"
+                            ]
+                        },
+                        "PurgeSuggestionDenyListEntries": {
+                            "methods": [
+                                "purgeSuggestionDenyListEntries"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ConversationalSearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationalSearchServiceGapicClient",
+                    "rpcs": {
+                        "ConverseConversation": {
+                            "methods": [
+                                "converseConversation"
+                            ]
+                        },
+                        "CreateConversation": {
+                            "methods": [
+                                "createConversation"
+                            ]
+                        },
+                        "DeleteConversation": {
+                            "methods": [
+                                "deleteConversation"
+                            ]
+                        },
+                        "GetConversation": {
+                            "methods": [
+                                "getConversation"
+                            ]
+                        },
+                        "ListConversations": {
+                            "methods": [
+                                "listConversations"
+                            ]
+                        },
+                        "UpdateConversation": {
+                            "methods": [
+                                "updateConversation"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DataStoreService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataStoreServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataStore": {
+                            "methods": [
+                                "createDataStore"
+                            ]
+                        },
+                        "DeleteDataStore": {
+                            "methods": [
+                                "deleteDataStore"
+                            ]
+                        },
+                        "GetDataStore": {
+                            "methods": [
+                                "getDataStore"
+                            ]
+                        },
+                        "ListDataStores": {
+                            "methods": [
+                                "listDataStores"
+                            ]
+                        },
+                        "UpdateDataStore": {
+                            "methods": [
+                                "updateDataStore"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DocumentService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DocumentServiceGapicClient",
+                    "rpcs": {
+                        "CreateDocument": {
+                            "methods": [
+                                "createDocument"
+                            ]
+                        },
+                        "DeleteDocument": {
+                            "methods": [
+                                "deleteDocument"
+                            ]
+                        },
+                        "GetDocument": {
+                            "methods": [
+                                "getDocument"
+                            ]
+                        },
+                        "ImportDocuments": {
+                            "methods": [
+                                "importDocuments"
+                            ]
+                        },
+                        "ListDocuments": {
+                            "methods": [
+                                "listDocuments"
+                            ]
+                        },
+                        "PurgeDocuments": {
+                            "methods": [
+                                "purgeDocuments"
+                            ]
+                        },
+                        "UpdateDocument": {
+                            "methods": [
+                                "updateDocument"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EngineService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EngineServiceGapicClient",
+                    "rpcs": {
+                        "CreateEngine": {
+                            "methods": [
+                                "createEngine"
+                            ]
+                        },
+                        "DeleteEngine": {
+                            "methods": [
+                                "deleteEngine"
+                            ]
+                        },
+                        "GetEngine": {
+                            "methods": [
+                                "getEngine"
+                            ]
+                        },
+                        "ListEngines": {
+                            "methods": [
+                                "listEngines"
+                            ]
+                        },
+                        "UpdateEngine": {
+                            "methods": [
+                                "updateEngine"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RecommendationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RecommendationServiceGapicClient",
+                    "rpcs": {
+                        "Recommend": {
+                            "methods": [
+                                "recommend"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SchemaService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SchemaServiceGapicClient",
+                    "rpcs": {
+                        "CreateSchema": {
+                            "methods": [
+                                "createSchema"
+                            ]
+                        },
+                        "DeleteSchema": {
+                            "methods": [
+                                "deleteSchema"
+                            ]
+                        },
+                        "GetSchema": {
+                            "methods": [
+                                "getSchema"
+                            ]
+                        },
+                        "ListSchemas": {
+                            "methods": [
+                                "listSchemas"
+                            ]
+                        },
+                        "UpdateSchema": {
+                            "methods": [
+                                "updateSchema"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ServingConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "rpcs": {
+                        "GetServingConfig": {
+                            "methods": [
+                                "getServingConfig"
+                            ]
+                        },
+                        "ListServingConfigs": {
+                            "methods": [
+                                "listServingConfigs"
+                            ]
+                        },
+                        "UpdateServingConfig": {
+                            "methods": [
+                                "updateServingConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SiteSearchEngineService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SiteSearchEngineServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateTargetSites": {
+                            "methods": [
+                                "batchCreateTargetSites"
+                            ]
+                        },
+                        "BatchVerifyTargetSites": {
+                            "methods": [
+                                "batchVerifyTargetSites"
+                            ]
+                        },
+                        "CreateTargetSite": {
+                            "methods": [
+                                "createTargetSite"
+                            ]
+                        },
+                        "DeleteTargetSite": {
+                            "methods": [
+                                "deleteTargetSite"
+                            ]
+                        },
+                        "DisableAdvancedSiteSearch": {
+                            "methods": [
+                                "disableAdvancedSiteSearch"
+                            ]
+                        },
+                        "EnableAdvancedSiteSearch": {
+                            "methods": [
+                                "enableAdvancedSiteSearch"
+                            ]
+                        },
+                        "FetchDomainVerificationStatus": {
+                            "methods": [
+                                "fetchDomainVerificationStatus"
+                            ]
+                        },
+                        "GetSiteSearchEngine": {
+                            "methods": [
+                                "getSiteSearchEngine"
+                            ]
+                        },
+                        "GetTargetSite": {
+                            "methods": [
+                                "getTargetSite"
+                            ]
+                        },
+                        "ListTargetSites": {
+                            "methods": [
+                                "listTargetSites"
+                            ]
+                        },
+                        "RecrawlUris": {
+                            "methods": [
+                                "recrawlUris"
+                            ]
+                        },
+                        "UpdateTargetSite": {
+                            "methods": [
+                                "updateTargetSite"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserEventService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserEventServiceGapicClient",
+                    "rpcs": {
+                        "CollectUserEvent": {
+                            "methods": [
+                                "collectUserEvent"
+                            ]
+                        },
+                        "ImportUserEvents": {
+                            "methods": [
+                                "importUserEvents"
+                            ]
+                        },
+                        "WriteUserEvent": {
+                            "methods": [
+                                "writeUserEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
