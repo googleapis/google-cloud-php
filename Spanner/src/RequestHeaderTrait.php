@@ -20,12 +20,14 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
- * Shared methods for request headers.
+ * Shared functionality for request headers.
+ *
+ * @internal
  */
 trait RequestHeaderTrait
 {
-    public static $larHeader = 'x-goog-spanner-route-to-leader';
-    public static $resourcePrefixHeader = 'google-cloud-resource-prefix';
+    private static $larHeader = 'x-goog-spanner-route-to-leader';
+    private static $resourcePrefixHeader = 'google-cloud-resource-prefix';
 
     /**
      * Add the `x-goog-spanner-route-to-leader` header value to the request.
@@ -40,9 +42,8 @@ trait RequestHeaderTrait
         bool $value = true,
         string $context = SessionPoolInterface::CONTEXT_READWRITE
     ) {
-        // If value is false, unset LAR header.
         if (!$value) {
-            return $this->conditionallyUnsetLarHeader($args, $value);
+            return $args;
         }
         // If value is true and context is READWRITE, set LAR header.
         if ($context === SessionPoolInterface::CONTEXT_READWRITE) {
@@ -75,7 +76,7 @@ trait RequestHeaderTrait
      * @param string $value Resource prefix header value.
      * @return array
      */
-    private function addResourcePrefixHeader(array $args, $value)
+    private function addResourcePrefixHeader(array $args, string $value)
     {
         $args['headers'][self::$resourcePrefixHeader] = [$value];
         return $args;

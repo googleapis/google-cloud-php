@@ -65,7 +65,6 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 class Transaction implements TransactionalReadInterface
 {
     use TransactionalReadTrait;
-    use RequestHeaderTrait;
 
     /**
      * @var CommitStats

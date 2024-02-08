@@ -93,6 +93,13 @@ use Google\ApiCore\ValidationException;
  * $spanner = new SpannerClient($directedOptions);
  * ```
  *
+ * ```
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * $config = ['routeToLeader' => false];
+ * $spanner = new SpannerClient($config);
+ * ```
+ *
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
