@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -57,7 +56,6 @@ use Google\Cloud\PubSub\V1\UpdateTopicRequest;
  */
 class Topic
 {
-    use ArrayTrait;
     use ResourceNameTrait;
     use ApiHelperTrait;
 

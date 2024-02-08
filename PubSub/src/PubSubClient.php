@@ -19,10 +19,9 @@ namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
@@ -41,6 +40,7 @@ use Google\Cloud\PubSub\V1\Schema as SchemaProto;
 use Google\Cloud\PubSub\V1\Schema\Type;
 use Google\Cloud\PubSub\V1\ValidateMessageRequest;
 use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
+use Google\ApiCore\ClientOptionsTrait;
 
 /**
  * Google Cloud Pub/Sub allows you to send and receive
@@ -93,11 +93,11 @@ use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
  */
 class PubSubClient
 {
-    use ArrayTrait;
-    use ClientTrait;
+    use DetectProjectIdTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
     use ApiHelperTrait;
+    use ClientOptionsTrait;
 
     const VERSION = '1.51.0';
 
@@ -173,6 +173,7 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
+        // configure custom client options
         $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $config += [
             'scopes' => [self::FULL_CONTROL_SCOPE],
@@ -186,7 +187,16 @@ class PubSubClient
             ]
         ];
 
+        // Configure GAPIC client options
+        $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
+
         $this->projectId = $this->detectProjectId($config);
+        
         $this->clientConfig = $config;
         $this->serializer = new Serializer([
             'publish_time' => function ($v) {
@@ -940,37 +950,6 @@ class PubSubClient
             $this->encode,
             $info
         );
-    }
-
-    /**
-     * Helper function that initializes the default config for handlwritten clients.
-     *
-     * @param array $config The client config passed on by the user.
-     * @param array $customAttrs The key/val pairs containing default values
-     * common for the handwritten clients.
-     *
-     * @return array The default config combined with the options passed on by the user
-     * and auth related config.
-     */
-    private function getDefaultClientConfig(array $config, array $customAttrs)
-    {
-        $defaultScope = $customAttrs['defaultScope'] ?? [];
-        $emulatorHost = $customAttrs['emulatorHost'] ?? '';
-
-        $config += [
-            'scopes' => [$defaultScope],
-            'projectIdRequired' => true,
-            'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
-        ];
-
-        if (isset($customAttrs['libVersion'])) {
-            $config['libVersion'] = $customAttrs['libVersion'];
-        }
-
-        $config = $this->configureAuthentication($config);
-
-        return $config;
     }
 
     /**

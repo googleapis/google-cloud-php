@@ -18,7 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\PubSub\V1\CreateSnapshotRequest;
 use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;

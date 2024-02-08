@@ -17,6 +17,7 @@
  */
 namespace Google\Cloud\Core;
 
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Options\CallOptions;
 use Google\Protobuf\NullValue;
 use Google\Cloud\Core\Duration;
