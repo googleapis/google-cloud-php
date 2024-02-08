@@ -80,6 +80,10 @@ class Type
      */
     const MEMORY_OPTIMIZED_M3 = 276301372;
     /**
+     * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z3 = 316796085;</code>
+     */
+    const STORAGE_OPTIMIZED_Z3 = 316796085;
+    /**
      * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 437714322;</code>
      */
     const TYPE_UNSPECIFIED = 437714322;
@@ -101,6 +105,7 @@ class Type
         self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
+        self::STORAGE_OPTIMIZED_Z3 => 'STORAGE_OPTIMIZED_Z3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];
 

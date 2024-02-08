@@ -214,11 +214,13 @@ class SnapshotsClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $diskSizeGb = 757478089;
         $downloadBytes = 971924980;
+        $enableConfidentialCompute = true;
         $id = 3355;
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
         $locationHint = 'locationHint-1796964143';
         $name = 'name3373707';
+        $satisfiesPzi = false;
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $snapshotType = 'snapshotType1198091477';
@@ -239,11 +241,13 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDiskSizeGb($diskSizeGb);
         $expectedResponse->setDownloadBytes($downloadBytes);
+        $expectedResponse->setEnableConfidentialCompute($enableConfidentialCompute);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setLocationHint($locationHint);
         $expectedResponse->setName($name);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSnapshotType($snapshotType);

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SuspendInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If true, discard the contents of any attached localSSD partitions. Default value is false.
+     * This property is required if the instance has any attached Local SSD disks. If false, Local SSD data will be preserved when the instance is suspended. If true, the contents of any attached Local SSD disks will be discarded.
      *
      * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
      */
@@ -70,7 +70,7 @@ class SuspendInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $discard_local_ssd
-     *           If true, discard the contents of any attached localSSD partitions. Default value is false.
+     *           This property is required if the instance has any attached Local SSD disks. If false, Local SSD data will be preserved when the instance is suspended. If true, the contents of any attached Local SSD disks will be discarded.
      *     @type string $instance
      *           Name of the instance resource to suspend.
      *     @type string $project
@@ -87,7 +87,7 @@ class SuspendInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, discard the contents of any attached localSSD partitions. Default value is false.
+     * This property is required if the instance has any attached Local SSD disks. If false, Local SSD data will be preserved when the instance is suspended. If true, the contents of any attached Local SSD disks will be discarded.
      *
      * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
      * @return bool
@@ -108,7 +108,7 @@ class SuspendInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, discard the contents of any attached localSSD partitions. Default value is false.
+     * This property is required if the instance has any attached Local SSD disks. If false, Local SSD data will be preserved when the instance is suspended. If true, the contents of any attached Local SSD disks will be discarded.
      *
      * Generated from protobuf field <code>optional bool discard_local_ssd = 319517903;</code>
      * @param bool $var

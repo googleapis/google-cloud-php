@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\GuestOsFeature;
 use UnexpectedValueException;
 
 /**
- * The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_LIVE_MIGRATABLE - SEV_SNP_CAPABLE For more information, see Enabling guest operating system features.
+ * The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_LIVE_MIGRATABLE - SEV_SNP_CAPABLE - TDX_CAPABLE - IDPF For more information, see Enabling guest operating system features.
  *
  * Protobuf type <code>google.cloud.compute.v1.GuestOsFeature.Type</code>
  */
@@ -27,6 +27,10 @@ class Type
      * Generated from protobuf enum <code>GVNIC = 68209305;</code>
      */
     const GVNIC = 68209305;
+    /**
+     * Generated from protobuf enum <code>IDPF = 2242641;</code>
+     */
+    const IDPF = 2242641;
     /**
      * Generated from protobuf enum <code>MULTI_IP_SUBNET = 151776719;</code>
      */
@@ -68,6 +72,7 @@ class Type
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::FEATURE_TYPE_UNSPECIFIED => 'FEATURE_TYPE_UNSPECIFIED',
         self::GVNIC => 'GVNIC',
+        self::IDPF => 'IDPF',
         self::MULTI_IP_SUBNET => 'MULTI_IP_SUBNET',
         self::SECURE_BOOT => 'SECURE_BOOT',
         self::SEV_CAPABLE => 'SEV_CAPABLE',

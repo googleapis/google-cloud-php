@@ -298,6 +298,7 @@ class VpnGatewaysGapicClient
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type int $serviceProjectNumber
+     *           The Shared VPC service project id or service project number for which aggregated list request is invoked for subnetworks list-usable api.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output only] Status of all-instances configuration on the group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAllInstancesConfig all_instances_config = 112596737;</code>
+     */
+    private $all_instances_config = null;
+    /**
      * [Output Only] The URL of the Autoscaler that targets this instance group manager.
      *
      * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
@@ -45,6 +51,8 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAllInstancesConfig $all_instances_config
+     *           [Output only] Status of all-instances configuration on the group.
      *     @type string $autoscaler
      *           [Output Only] The URL of the Autoscaler that targets this instance group manager.
      *     @type bool $is_stable
@@ -58,6 +66,42 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output only] Status of all-instances configuration on the group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAllInstancesConfig all_instances_config = 112596737;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAllInstancesConfig|null
+     */
+    public function getAllInstancesConfig()
+    {
+        return $this->all_instances_config;
+    }
+
+    public function hasAllInstancesConfig()
+    {
+        return isset($this->all_instances_config);
+    }
+
+    public function clearAllInstancesConfig()
+    {
+        unset($this->all_instances_config);
+    }
+
+    /**
+     * [Output only] Status of all-instances configuration on the group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAllInstancesConfig all_instances_config = 112596737;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAllInstancesConfig $var
+     * @return $this
+     */
+    public function setAllInstancesConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAllInstancesConfig::class);
+        $this->all_instances_config = $var;
+
+        return $this;
     }
 
     /**
