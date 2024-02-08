@@ -10,6 +10,8 @@
 support requests, bug reports, or development contributions should be directed to
 that project.
 
+**NOTE:** The handwritten Admin functionalities under `Spanner/SpannerClient` are frozen, and will no longer receive feature updates. Please use the new Admin clients `Spanner/Admin/Database/DatabaseAdminClient` and `Spanner/Admin/Database/DatabaseAdminClient` instead for the admin development.
+
 A fully managed, mission-critical, relational database service that offers transactional consistency at global scale,
 schemas, SQL (ANSI 2011 with extensions), and automatic, synchronous replication for high availability.
 
