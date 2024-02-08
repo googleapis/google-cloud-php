@@ -13,6 +13,11 @@ return [
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}:converse',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}:converse',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -32,6 +37,11 @@ return [
                         'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversations',
                         'body' => 'conversation',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/engines/*}/conversations',
+                        'body' => 'conversation',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -48,6 +58,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -66,6 +80,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -82,6 +100,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/engines/*}/conversations',
                     ],
                 ],
                 'placeholders' => [
@@ -102,6 +124,11 @@ return [
                         'uriTemplate' => '/v1beta/{conversation.name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
                         'body' => 'conversation',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1beta/{conversation.name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
+                        'body' => 'conversation',
+                    ],
                 ],
                 'placeholders' => [
                     'conversation.name' => [
@@ -116,8 +143,12 @@ return [
         'google.longrunning.Operations' => [
             'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataConnector/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/models/*/operations/*}',
@@ -177,8 +208,12 @@ return [
             ],
             'ListOperations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*}/operations',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataConnector}/operations',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*}/operations',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/models/*}/operations',

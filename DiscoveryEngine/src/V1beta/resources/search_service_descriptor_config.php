@@ -27,6 +27,7 @@ return [
                 'branch' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}',
                 'projectLocationCollectionDataStoreBranch' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}',
                 'projectLocationCollectionDataStoreServingConfig' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}',
+                'projectLocationCollectionEngineServingConfig' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}',
                 'projectLocationDataStoreBranch' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}',
                 'projectLocationDataStoreServingConfig' => 'projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}',
                 'servingConfig' => 'projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}',
