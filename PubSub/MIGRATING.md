@@ -38,6 +38,20 @@ Google Cloud clients.
 - `shouldSignRequest` -> Removed
 - `preferNumericProjectId` -> Removed
 
+### Retry Options changes
+
+The retry options have been moved to use [`RetrySettings`][RetrySettings] in Client Options and in
+call options.
+
+- `retries` -> Renamed to `retrySettings.maxRetries`
+- `restRetryFunction` -> Renamed to `retrySettings.retryFunction`
+- `grpcRetryFunction` -> Renamed to `retrySettings.retryFunction`
+- `delayFunc`/`calcDelayFunction` -> Removed in favor of the properties
+  `retrySettings.initialRetryDelayMillis`, `retrySettings.retryDelayMultiplier` and
+  `retrySettings.maxRetryDelayMillis`.
+
+[RetrySettings]: https://googleapis.github.io/gax-php/v1.26.1/Google/ApiCore/RetrySettings.html
+
 [ClientOptions]: https://googleapis.github.io/gax-php/v1.26.1/Google/ApiCore/Options/ClientOptions.html
 
 ### Connection classes are not used anymore.
@@ -67,20 +81,6 @@ $topic = new Topic(
 );
 ```
 
-### Retry Settings changes
-
-With `v2` in `google/cloud-pubsub` the retry settings have been moved to use
-[`RetrySettings`][RetrySettings]. Here are the changes:
-
-- `retries` -> Renamed to `retrySettings.maxRetries`
-- `restRetryFunction` -> Renamed to `retrySettings.retryFunction`
-- `grpcRetryFunction` -> Renamed to `retrySettings.retryFunction`
-- `delayFunc`/`calcDelayFunction` -> Removed in favour of the properties
-  `retrySettings.initialRetryDelayMillis`, `retrySettings.retryDelayMultiplier` and
-  `retrySettings.maxRetryDelayMillis`.
-
-[RetrySettings]: https://googleapis.github.io/gax-php/v1.26.1/Google/ApiCore/RetrySettings.html
-
 ### IAM class changes
 
 We have kept the functionality of IAM the same, however the underlying IAM class has changed.
@@ -99,7 +99,7 @@ $iam->testIamPermissions();
 
 ### Changes specific to resources:
 
-- Topic
+#### Topic
 
 `$topic->info()['schemaSettings']['encoding']` used to be an `int` for the gRPC transport and a
 `string` for the REST transport. This is now uniformly returned as an `int` for both the
@@ -142,7 +142,7 @@ $topic = $pubSubClient->createTopic('new-topic', [
 $topic->info()['messageRetentionDuration'];
 ```
 
-- Schema
+#### Schema
 
 `$schema->info()['type']` was a `string` but is now an `int` whose string value can be obtained from
 the `Google\Cloud\PubSub\V1\Schema\Type` class:
@@ -152,7 +152,7 @@ use Google\Cloud\PubSub\V1\Schema\Type;
 $type = Type::name($schema->info()['type']);
 ```
 
-- Subscription
+#### Subscription
 
 While creating a subscription and using the `bigqueryConfig` argument, the REST transport expected
 an `array`, while the gRPC transport expected an instance of
@@ -178,7 +178,7 @@ use Google\Cloud\PubSub\V1\Subscription\State;
 $state = State::name($subscription->info()['state']);
 ```
 
-- Snapshot
+#### Snapshot
 
 `$snapshot->info()['expireTime']` used to be a `string` for the REST transports but a serialized
 `Google\Protobuf\Timestamp` array for the gRPC transport. Now, it will always be a serialized
