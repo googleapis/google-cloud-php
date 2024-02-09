@@ -170,7 +170,7 @@ transport could accept `string` or a `Google\Protobuf\Duration` object. Now both
 `$subscription->info()['retryPolicy']['maximumBackoff']` is a `Duration` object serialized as an
 array.
 
-`#subscription->info()['state']` is now an `int` whose string value can be obtained using the
+`$subscription->info()['state']` is now an `int` whose string value can be obtained using the
 `Google\Cloud\PubSub\V1\Subscription\State` class:
 ```
 use Google\Cloud\PubSub\V1\Subscription\State;
