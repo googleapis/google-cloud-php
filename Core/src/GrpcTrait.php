@@ -19,21 +19,19 @@ namespace Google\Cloud\Core;
 
 use Google\Auth\GetUniverseDomainInterface;
 use Google\ApiCore\CredentialsWrapper;
-use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Protobuf\NullValue;
+use Google\Cloud\Core\Duration;
 
 /**
  * Provides shared functionality for gRPC service implementations.
  */
 trait GrpcTrait
 {
-    use ArrayTrait;
-    use TimeTrait;
     use WhitelistTrait;
+    use ArrayTrait;
 
     /**
      * @var GrpcRequestWrapper Wrapper used to handle sending requests to the
@@ -129,6 +127,8 @@ trait GrpcTrait
         return $config;
     }
 
+    use TimeTrait;
+
     /**
      * Format a struct for the API.
      *
@@ -220,7 +220,7 @@ trait GrpcTrait
     /**
      * Format a value for the API.
      *
-     * @param array $value
+     * @param mixed $value
      * @return array
      */
     private function formatValueForApi($value)
@@ -285,7 +285,7 @@ trait GrpcTrait
     /**
      * Format a duration for the API.
      *
-     * @param string|Duration $value
+     * @param string|mixed $value
      * @return array
      */
     private function formatDurationForApi($value)

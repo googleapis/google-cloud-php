@@ -51,12 +51,12 @@ page_token (	BàA
 controls (2.google.cloud.retail.v2.Control
 next_page_token (	2ä
 ControlServiceÄ
-CreateControl,.google.cloud.retail.v2.CreateControlRequest.google.cloud.retail.v2.Control"d‚Óä“B"7/v2/{parent=projects/*/locations/*/catalogs/*}/controls:controlÚAparent,control,control_id
-DeleteControl,.google.cloud.retail.v2.DeleteControlRequest.google.protobuf.Empty"F‚Óä“9*7/v2/{name=projects/*/locations/*/catalogs/*/controls/*}ÚAnameÆ
-UpdateControl,.google.cloud.retail.v2.UpdateControlRequest.google.cloud.retail.v2.Control"f‚Óä“J2?/v2/{control.name=projects/*/locations/*/catalogs/*/controls/*}:controlÚAcontrol,update_mask 
+CreateControl,.google.cloud.retail.v2.CreateControlRequest.google.cloud.retail.v2.Control"dÚAparent,control,control_id‚Óä“B"7/v2/{parent=projects/*/locations/*/catalogs/*}/controls:control
+DeleteControl,.google.cloud.retail.v2.DeleteControlRequest.google.protobuf.Empty"FÚAname‚Óä“9*7/v2/{name=projects/*/locations/*/catalogs/*/controls/*}Æ
+UpdateControl,.google.cloud.retail.v2.UpdateControlRequest.google.cloud.retail.v2.Control"fÚAcontrol,update_mask‚Óä“J2?/v2/{control.name=projects/*/locations/*/catalogs/*/controls/*}:control 
 
-GetControl).google.cloud.retail.v2.GetControlRequest.google.cloud.retail.v2.Control"F‚Óä“97/v2/{name=projects/*/locations/*/catalogs/*/controls/*}ÚAname³
-ListControls+.google.cloud.retail.v2.ListControlsRequest,.google.cloud.retail.v2.ListControlsResponse"H‚Óä“97/v2/{parent=projects/*/locations/*/catalogs/*}/controlsÚAparentIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¾
+GetControl).google.cloud.retail.v2.GetControlRequest.google.cloud.retail.v2.Control"FÚAname‚Óä“97/v2/{name=projects/*/locations/*/catalogs/*/controls/*}³
+ListControls+.google.cloud.retail.v2.ListControlsRequest,.google.cloud.retail.v2.ListControlsResponse"HÚAparent‚Óä“97/v2/{parent=projects/*/locations/*/catalogs/*}/controlsIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¾
 com.google.cloud.retail.v2BControlServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 

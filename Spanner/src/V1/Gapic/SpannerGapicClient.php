@@ -1423,9 +1423,10 @@ class SpannerGapicClient
      * @param string $session      Required. The session used to create the partitions.
      * @param string $sql          Required. The query request to generate partitions for. The request will
      *                             fail if the query is not root partitionable. For a query to be root
-     *                             partitionable, it needs to satisfy a few conditions. For example, the first
-     *                             operator in the query execution plan must be a distributed union operator.
-     *                             For more information about other conditions, see [Read data in
+     *                             partitionable, it needs to satisfy a few conditions. For example, if the
+     *                             query execution plan contains a distributed union operator, then it must be
+     *                             the first operator in the plan. For more information about other
+     *                             conditions, see [Read data in
      *                             parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
      *
      *                             The query request must not contain DML commands, such as INSERT, UPDATE, or

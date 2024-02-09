@@ -81,33 +81,33 @@ page_token (	
 \'managedidentities.googleapis.com/DomainA
 trust (2-.google.cloud.managedidentities.v1beta1.TrustBàA2å
 ManagedIdentitiesServiceú
-CreateMicrosoftAdDomainF.google.cloud.managedidentities.v1beta1.CreateMicrosoftAdDomainRequest.google.longrunning.Operation"x‚Óä“?"5/v1beta1/{parent=projects/*/locations/global}/domains:domainÚAparent,domain_name,domainÊA
+CreateMicrosoftAdDomainF.google.cloud.managedidentities.v1beta1.CreateMicrosoftAdDomainRequest.google.longrunning.Operation"xÊA
 Domain
-OpMetadata÷
-ResetAdminPasswordA.google.cloud.managedidentities.v1beta1.ResetAdminPasswordRequestB.google.cloud.managedidentities.v1beta1.ResetAdminPasswordResponse"Z‚Óä“M"H/v1beta1/{name=projects/*/locations/global/domains/*}:resetAdminPassword:*ÚAnameÎ
-ListDomains:.google.cloud.managedidentities.v1beta1.ListDomainsRequest;.google.cloud.managedidentities.v1beta1.ListDomainsResponse"F‚Óä“75/v1beta1/{parent=projects/*/locations/global}/domainsÚAparent»
-	GetDomain8.google.cloud.managedidentities.v1beta1.GetDomainRequest..google.cloud.managedidentities.v1beta1.Domain"D‚Óä“75/v1beta1/{name=projects/*/locations/global/domains/*}ÚAnameä
-UpdateDomain;.google.cloud.managedidentities.v1beta1.UpdateDomainRequest.google.longrunning.Operation"x‚Óä“F2</v1beta1/{domain.name=projects/*/locations/global/domains/*}:domainÚAdomain,update_maskÊA
+OpMetadataÚAparent,domain_name,domain‚Óä“?"5/v1beta1/{parent=projects/*/locations/global}/domains:domain÷
+ResetAdminPasswordA.google.cloud.managedidentities.v1beta1.ResetAdminPasswordRequestB.google.cloud.managedidentities.v1beta1.ResetAdminPasswordResponse"ZÚAname‚Óä“M"H/v1beta1/{name=projects/*/locations/global/domains/*}:resetAdminPassword:*Î
+ListDomains:.google.cloud.managedidentities.v1beta1.ListDomainsRequest;.google.cloud.managedidentities.v1beta1.ListDomainsResponse"FÚAparent‚Óä“75/v1beta1/{parent=projects/*/locations/global}/domains»
+	GetDomain8.google.cloud.managedidentities.v1beta1.GetDomainRequest..google.cloud.managedidentities.v1beta1.Domain"DÚAname‚Óä“75/v1beta1/{name=projects/*/locations/global/domains/*}ä
+UpdateDomain;.google.cloud.managedidentities.v1beta1.UpdateDomainRequest.google.longrunning.Operation"xÊA
 Domain
-OpMetadataÖ
-DeleteDomain;.google.cloud.managedidentities.v1beta1.DeleteDomainRequest.google.longrunning.Operation"j‚Óä“7*5/v1beta1/{name=projects/*/locations/global/domains/*}ÚAnameÊA#
+OpMetadataÚAdomain,update_mask‚Óä“F2</v1beta1/{domain.name=projects/*/locations/global/domains/*}:domainÖ
+DeleteDomain;.google.cloud.managedidentities.v1beta1.DeleteDomainRequest.google.longrunning.Operation"jÊA#
 google.protobuf.Empty
-OpMetadataÚ
-AttachTrust:.google.cloud.managedidentities.v1beta1.AttachTrustRequest.google.longrunning.Operation"p‚Óä“F"A/v1beta1/{name=projects/*/locations/global/domains/*}:attachTrust:*ÚA
-name,trustÊA
+OpMetadataÚAname‚Óä“7*5/v1beta1/{name=projects/*/locations/global/domains/*}Ú
+AttachTrust:.google.cloud.managedidentities.v1beta1.AttachTrustRequest.google.longrunning.Operation"pÊA
 Domain
-OpMetadata
-ReconfigureTrust?.google.cloud.managedidentities.v1beta1.ReconfigureTrustRequest.google.longrunning.Operation"š‚Óä“K"F/v1beta1/{name=projects/*/locations/global/domains/*}:reconfigureTrust:*ÚA/name,target_domain_name,target_dns_ip_addressesÊA
+OpMetadataÚA
+name,trust‚Óä“F"A/v1beta1/{name=projects/*/locations/global/domains/*}:attachTrust:*
+ReconfigureTrust?.google.cloud.managedidentities.v1beta1.ReconfigureTrustRequest.google.longrunning.Operation"šÊA
 Domain
-OpMetadataÚ
-DetachTrust:.google.cloud.managedidentities.v1beta1.DetachTrustRequest.google.longrunning.Operation"p‚Óä“F"A/v1beta1/{name=projects/*/locations/global/domains/*}:detachTrust:*ÚA
-name,trustÊA
+OpMetadataÚA/name,target_domain_name,target_dns_ip_addresses‚Óä“K"F/v1beta1/{name=projects/*/locations/global/domains/*}:reconfigureTrust:*Ú
+DetachTrust:.google.cloud.managedidentities.v1beta1.DetachTrustRequest.google.longrunning.Operation"pÊA
 Domain
-OpMetadataà
-ValidateTrust<.google.cloud.managedidentities.v1beta1.ValidateTrustRequest.google.longrunning.Operation"r‚Óä“H"C/v1beta1/{name=projects/*/locations/global/domains/*}:validateTrust:*ÚA
-name,trustÊA
+OpMetadataÚA
+name,trust‚Óä“F"A/v1beta1/{name=projects/*/locations/global/domains/*}:detachTrust:*à
+ValidateTrust<.google.cloud.managedidentities.v1beta1.ValidateTrustRequest.google.longrunning.Operation"rÊA
 Domain
-OpMetadataTÊA managedidentities.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¬
+OpMetadataÚA
+name,trust‚Óä“H"C/v1beta1/{name=projects/*/locations/global/domains/*}:validateTrust:*TÊA managedidentities.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¬
 *com.google.cloud.managedidentities.v1beta1BManagedIdentitiesServiceProtoPZXcloud.google.com/go/managedidentities/apiv1beta1/managedidentitiespb;managedidentitiespb¢GCMIª&Google.Cloud.ManagedIdentities.V1Beta1Ê&Google\\Cloud\\ManagedIdentities\\V1beta1ê)Google::Cloud::ManagedIdentities::V1beta1bproto3'
         , true);
 

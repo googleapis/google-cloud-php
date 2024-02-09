@@ -32,8 +32,8 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Required. The names refer to the [full_resource_names]
      * (https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of [searchable asset
-     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * of the asset types [supported by search
+     * APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      * A maximum of 20 resources' effective policies can be retrieved in a batch.
      *
      * Generated from protobuf field <code>repeated string names = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -58,8 +58,8 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           Required. The names refer to the [full_resource_names]
      *           (https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     *           of [searchable asset
-     *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     *           of the asset types [supported by search
+     *           APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *           A maximum of 20 resources' effective policies can be retrieved in a batch.
      * }
      */
@@ -111,8 +111,8 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Required. The names refer to the [full_resource_names]
      * (https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of [searchable asset
-     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * of the asset types [supported by search
+     * APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      * A maximum of 20 resources' effective policies can be retrieved in a batch.
      *
      * Generated from protobuf field <code>repeated string names = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -126,8 +126,8 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Required. The names refer to the [full_resource_names]
      * (https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of [searchable asset
-     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
+     * of the asset types [supported by search
+     * APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      * A maximum of 20 resources' effective policies can be retrieved in a batch.
      *
      * Generated from protobuf field <code>repeated string names = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -51,6 +51,30 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     private $response_messages;
     /**
+     * The list of webhook ids in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_ids = 25;</code>
+     */
+    private $webhook_ids;
+    /**
+     * The list of webhook display names in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_display_names = 26;</code>
+     */
+    private $webhook_display_names;
+    /**
+     * The list of webhook latencies in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Duration webhook_latencies = 27;</code>
+     */
+    private $webhook_latencies;
+    /**
+     * The list of webhook tags in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_tags = 29;</code>
+     */
+    private $webhook_tags;
+    /**
      * The list of webhook call status in the order of call sequence.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status webhook_statuses = 13;</code>
@@ -73,6 +97,14 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Page current_page = 7;</code>
      */
     protected $current_page = null;
+    /**
+     * The current [Flow][google.cloud.dialogflow.cx.v3.Flow]. Some, not all
+     * fields are filled in this message, including but not limited to `name` and
+     * `display_name`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Flow current_flow = 31;</code>
+     */
+    protected $current_flow = null;
     /**
      * The [Intent][google.cloud.dialogflow.cx.v3.Intent] that matched the
      * conversational query. Some, not all fields are filled in this message,
@@ -202,6 +234,14 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           The list of rich messages returned to the client. Responses vary from
      *           simple text messages to more sophisticated, structured payloads used
      *           to drive complex logic.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $webhook_ids
+     *           The list of webhook ids in the order of call sequence.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $webhook_display_names
+     *           The list of webhook display names in the order of call sequence.
+     *     @type array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $webhook_latencies
+     *           The list of webhook latencies in the order of call sequence.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $webhook_tags
+     *           The list of webhook tags in the order of call sequence.
      *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $webhook_statuses
      *           The list of webhook call status in the order of call sequence.
      *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $webhook_payloads
@@ -211,6 +251,10 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *           any payload, an empty `Struct` would be used instead.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Page $current_page
      *           The current [Page][google.cloud.dialogflow.cx.v3.Page]. Some, not all
+     *           fields are filled in this message, including but not limited to `name` and
+     *           `display_name`.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Flow $current_flow
+     *           The current [Flow][google.cloud.dialogflow.cx.v3.Flow]. Some, not all
      *           fields are filled in this message, including but not limited to `name` and
      *           `display_name`.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Intent $intent
@@ -565,6 +609,110 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The list of webhook ids in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_ids = 25;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWebhookIds()
+    {
+        return $this->webhook_ids;
+    }
+
+    /**
+     * The list of webhook ids in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_ids = 25;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWebhookIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->webhook_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The list of webhook display names in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_display_names = 26;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWebhookDisplayNames()
+    {
+        return $this->webhook_display_names;
+    }
+
+    /**
+     * The list of webhook display names in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_display_names = 26;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWebhookDisplayNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->webhook_display_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The list of webhook latencies in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Duration webhook_latencies = 27;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWebhookLatencies()
+    {
+        return $this->webhook_latencies;
+    }
+
+    /**
+     * The list of webhook latencies in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Duration webhook_latencies = 27;</code>
+     * @param array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWebhookLatencies($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Duration::class);
+        $this->webhook_latencies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The list of webhook tags in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_tags = 29;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getWebhookTags()
+    {
+        return $this->webhook_tags;
+    }
+
+    /**
+     * The list of webhook tags in the order of call sequence.
+     *
+     * Generated from protobuf field <code>repeated string webhook_tags = 29;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setWebhookTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->webhook_tags = $arr;
+
+        return $this;
+    }
+
+    /**
      * The list of webhook call status in the order of call sequence.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status webhook_statuses = 13;</code>
@@ -658,6 +806,46 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Page::class);
         $this->current_page = $var;
+
+        return $this;
+    }
+
+    /**
+     * The current [Flow][google.cloud.dialogflow.cx.v3.Flow]. Some, not all
+     * fields are filled in this message, including but not limited to `name` and
+     * `display_name`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Flow current_flow = 31;</code>
+     * @return \Google\Cloud\Dialogflow\Cx\V3\Flow|null
+     */
+    public function getCurrentFlow()
+    {
+        return $this->current_flow;
+    }
+
+    public function hasCurrentFlow()
+    {
+        return isset($this->current_flow);
+    }
+
+    public function clearCurrentFlow()
+    {
+        unset($this->current_flow);
+    }
+
+    /**
+     * The current [Flow][google.cloud.dialogflow.cx.v3.Flow]. Some, not all
+     * fields are filled in this message, including but not limited to `name` and
+     * `display_name`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Flow current_flow = 31;</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Flow $var
+     * @return $this
+     */
+    public function setCurrentFlow($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\Flow::class);
+        $this->current_flow = $var;
 
         return $this;
     }

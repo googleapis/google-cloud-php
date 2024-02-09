@@ -75,6 +75,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of an Audience resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\EventCreateRule $event_create_rule
      *           A snapshot of an EventCreateRule resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\CalculatedMetric $calculated_metric
+     *           A snapshot of a CalculatedMetric resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -828,6 +830,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\EventCreateRule::class);
         $this->writeOneof(29, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a CalculatedMetric resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CalculatedMetric calculated_metric = 31;</code>
+     * @return \Google\Analytics\Admin\V1alpha\CalculatedMetric|null
+     */
+    public function getCalculatedMetric()
+    {
+        return $this->readOneof(31);
+    }
+
+    public function hasCalculatedMetric()
+    {
+        return $this->hasOneof(31);
+    }
+
+    /**
+     * A snapshot of a CalculatedMetric resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CalculatedMetric calculated_metric = 31;</code>
+     * @param \Google\Analytics\Admin\V1alpha\CalculatedMetric $var
+     * @return $this
+     */
+    public function setCalculatedMetric($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\CalculatedMetric::class);
+        $this->writeOneof(31, $var);
 
         return $this;
     }

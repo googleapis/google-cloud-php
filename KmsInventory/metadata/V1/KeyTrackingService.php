@@ -76,8 +76,8 @@ project_id	 (	
 value (	:8:\'êA$
 cloudasset.googleapis.com/Asset*2Ú
 KeyTrackingService
-GetProtectedResourcesSummaryB.google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest8.google.cloud.kms.inventory.v1.ProtectedResourcesSummary"c‚Óä“VT/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}/protectedResourcesSummaryÚAnameî
-SearchProtectedResources>.google.cloud.kms.inventory.v1.SearchProtectedResourcesRequest?.google.cloud.kms.inventory.v1.SearchProtectedResourcesResponse"Q‚Óä“75/v1/{scope=organizations/*}/protectedResources:searchÚAscope, crypto_keyOÊAkmsinventory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÂ
+GetProtectedResourcesSummaryB.google.cloud.kms.inventory.v1.GetProtectedResourcesSummaryRequest8.google.cloud.kms.inventory.v1.ProtectedResourcesSummary"cÚAname‚Óä“VT/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}/protectedResourcesSummaryî
+SearchProtectedResources>.google.cloud.kms.inventory.v1.SearchProtectedResourcesRequest?.google.cloud.kms.inventory.v1.SearchProtectedResourcesResponse"QÚAscope, crypto_key‚Óä“75/v1/{scope=organizations/*}/protectedResources:searchOÊAkmsinventory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÂ
 !com.google.cloud.kms.inventory.v1BKeyTrackingServiceProtoPZ?cloud.google.com/go/kms/inventory/apiv1/inventorypb;inventorypbøªGoogle.Cloud.Kms.Inventory.V1ÊGoogle\\Cloud\\Kms\\Inventory\\V1bproto3'
         , true);
 

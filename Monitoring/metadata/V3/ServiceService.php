@@ -75,17 +75,17 @@ page_token (	>
 name (	B7àAúA1
 /monitoring.googleapis.com/ServiceLevelObjective2ê
 ServiceMonitoringService—
-CreateService*.google.monitoring.v3.CreateServiceRequest.google.monitoring.v3.Service";‚Óä“$"/v3/{parent=*/*}/services:serviceÚAparent,service~
+CreateService*.google.monitoring.v3.CreateServiceRequest.google.monitoring.v3.Service";ÚAparent,service‚Óä“$"/v3/{parent=*/*}/services:service~
 
-GetService\'.google.monitoring.v3.GetServiceRequest.google.monitoring.v3.Service"(‚Óä“/v3/{name=*/*/services/*}ÚAname‘
-ListServices).google.monitoring.v3.ListServicesRequest*.google.monitoring.v3.ListServicesResponse"*‚Óä“/v3/{parent=*/*}/servicesÚAparent˜
-UpdateService*.google.monitoring.v3.UpdateServiceRequest.google.monitoring.v3.Service"<‚Óä“,2!/v3/{service.name=*/*/services/*}:serviceÚAservice}
-DeleteService*.google.monitoring.v3.DeleteServiceRequest.google.protobuf.Empty"(‚Óä“*/v3/{name=*/*/services/*}ÚAnameú
-CreateServiceLevelObjective8.google.monitoring.v3.CreateServiceLevelObjectiveRequest+.google.monitoring.v3.ServiceLevelObjective"t‚Óä“M"2/v3/{parent=*/*/services/*}/serviceLevelObjectives:service_level_objectiveÚAparent,service_level_objectiveÁ
-GetServiceLevelObjective5.google.monitoring.v3.GetServiceLevelObjectiveRequest+.google.monitoring.v3.ServiceLevelObjective"A‚Óä“42/v3/{name=*/*/services/*/serviceLevelObjectives/*}ÚAnameÔ
-ListServiceLevelObjectives7.google.monitoring.v3.ListServiceLevelObjectivesRequest8.google.monitoring.v3.ListServiceLevelObjectivesResponse"C‚Óä“42/v3/{parent=*/*/services/*}/serviceLevelObjectivesÚAparentŒ
-UpdateServiceLevelObjective8.google.monitoring.v3.UpdateServiceLevelObjectiveRequest+.google.monitoring.v3.ServiceLevelObjective"…‚Óä“e2J/v3/{service_level_objective.name=*/*/services/*/serviceLevelObjectives/*}:service_level_objectiveÚAservice_level_objective²
-DeleteServiceLevelObjective8.google.monitoring.v3.DeleteServiceLevelObjectiveRequest.google.protobuf.Empty"A‚Óä“4*2/v3/{name=*/*/services/*/serviceLevelObjectives/*}ÚAname©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBØ
+GetService\'.google.monitoring.v3.GetServiceRequest.google.monitoring.v3.Service"(ÚAname‚Óä“/v3/{name=*/*/services/*}‘
+ListServices).google.monitoring.v3.ListServicesRequest*.google.monitoring.v3.ListServicesResponse"*ÚAparent‚Óä“/v3/{parent=*/*}/services˜
+UpdateService*.google.monitoring.v3.UpdateServiceRequest.google.monitoring.v3.Service"<ÚAservice‚Óä“,2!/v3/{service.name=*/*/services/*}:service}
+DeleteService*.google.monitoring.v3.DeleteServiceRequest.google.protobuf.Empty"(ÚAname‚Óä“*/v3/{name=*/*/services/*}ú
+CreateServiceLevelObjective8.google.monitoring.v3.CreateServiceLevelObjectiveRequest+.google.monitoring.v3.ServiceLevelObjective"tÚAparent,service_level_objective‚Óä“M"2/v3/{parent=*/*/services/*}/serviceLevelObjectives:service_level_objectiveÁ
+GetServiceLevelObjective5.google.monitoring.v3.GetServiceLevelObjectiveRequest+.google.monitoring.v3.ServiceLevelObjective"AÚAname‚Óä“42/v3/{name=*/*/services/*/serviceLevelObjectives/*}Ô
+ListServiceLevelObjectives7.google.monitoring.v3.ListServiceLevelObjectivesRequest8.google.monitoring.v3.ListServiceLevelObjectivesResponse"CÚAparent‚Óä“42/v3/{parent=*/*/services/*}/serviceLevelObjectivesŒ
+UpdateServiceLevelObjective8.google.monitoring.v3.UpdateServiceLevelObjectiveRequest+.google.monitoring.v3.ServiceLevelObjective"…ÚAservice_level_objective‚Óä“e2J/v3/{service_level_objective.name=*/*/services/*/serviceLevelObjectives/*}:service_level_objective²
+DeleteServiceLevelObjective8.google.monitoring.v3.DeleteServiceLevelObjectiveRequest.google.protobuf.Empty"AÚAname‚Óä“4*2/v3/{name=*/*/services/*/serviceLevelObjectives/*}©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBØ
 com.google.monitoring.v3BServiceMonitoringServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 

@@ -21,7 +21,7 @@ class Changelog
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˛
+ï
 -google/cloud/dialogflow/cx/v3/changelog.protogoogle.cloud.dialogflow.cx.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"ã
 ListChangelogsRequest;
 parent (	B+‡A˙A%#dialogflow.googleapis.com/Changelog
@@ -35,7 +35,7 @@ changelogs (2(.google.cloud.dialogflow.cx.v3.Changelog
 next_page_token (	"P
 GetChangelogRequest9
 name (	B+‡A˙A%
-#dialogflow.googleapis.com/Changelog"ù
+#dialogflow.googleapis.com/Changelog"¥
 	Changelog
 name (	
 
@@ -44,12 +44,13 @@ user_email (	
 action (	
 type (	
 resource (	/
-create_time (2.google.protobuf.Timestamp:wÍAt
+create_time (2.google.protobuf.Timestamp
+language_code (	:wÍAt
 #dialogflow.googleapis.com/ChangelogMprojects/{project}/locations/{location}/agents/{agent}/changelogs/{changelog}2á
 
 Changelogs«
-ListChangelogs4.google.cloud.dialogflow.cx.v3.ListChangelogsRequest5.google.cloud.dialogflow.cx.v3.ListChangelogsResponse"HÇ”‰ì97/v3/{parent=projects/*/locations/*/agents/*}/changelogs⁄Aparent¥
-GetChangelog2.google.cloud.dialogflow.cx.v3.GetChangelogRequest(.google.cloud.dialogflow.cx.v3.Changelog"FÇ”‰ì97/v3/{name=projects/*/locations/*/agents/*/changelogs/*}⁄Anamex Adialogflow.googleapis.com“AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB¥
+ListChangelogs4.google.cloud.dialogflow.cx.v3.ListChangelogsRequest5.google.cloud.dialogflow.cx.v3.ListChangelogsResponse"H⁄AparentÇ”‰ì97/v3/{parent=projects/*/locations/*/agents/*}/changelogs¥
+GetChangelog2.google.cloud.dialogflow.cx.v3.GetChangelogRequest(.google.cloud.dialogflow.cx.v3.Changelog"F⁄AnameÇ”‰ì97/v3/{name=projects/*/locations/*/agents/*/changelogs/*}x Adialogflow.googleapis.com“AYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB¥
 !com.google.cloud.dialogflow.cx.v3BChangelogProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpb¯¢DF™Google.Cloud.Dialogflow.Cx.V3Í!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 

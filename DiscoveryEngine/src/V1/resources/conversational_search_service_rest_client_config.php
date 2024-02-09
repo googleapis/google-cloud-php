@@ -13,6 +13,11 @@ return [
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}:converse',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}:converse',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -32,6 +37,11 @@ return [
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversations',
                         'body' => 'conversation',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/engines/*}/conversations',
+                        'body' => 'conversation',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -48,6 +58,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -66,6 +80,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -82,6 +100,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/collections/*/engines/*}/conversations',
                     ],
                 ],
                 'placeholders' => [
@@ -102,6 +124,11 @@ return [
                         'uriTemplate' => '/v1/{conversation.name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
                         'body' => 'conversation',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{conversation.name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
+                        'body' => 'conversation',
+                    ],
                 ],
                 'placeholders' => [
                     'conversation.name' => [
@@ -118,6 +145,10 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataConnector/operations/*}',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}',
@@ -183,6 +214,10 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*}/operations',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataConnector}/operations',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*}/operations',

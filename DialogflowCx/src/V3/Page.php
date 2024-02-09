@@ -46,6 +46,12 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
+     * The description of the page. The maximum length is 500 characters.
+     *
+     * Generated from protobuf field <code>string description = 19;</code>
+     */
+    protected $description = '';
+    /**
      * The fulfillment to call when the session is entering the page.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.Fulfillment entry_fulfillment = 7;</code>
@@ -141,6 +147,8 @@ class Page extends \Google\Protobuf\Internal\Message
      *           ID>/flows/<Flow ID>/pages/<Page ID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the page, unique within the flow.
+     *     @type string $description
+     *           The description of the page. The maximum length is 500 characters.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment $entry_fulfillment
      *           The fulfillment to call when the session is entering the page.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Form $form
@@ -259,6 +267,32 @@ class Page extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The description of the page. The maximum length is 500 characters.
+     *
+     * Generated from protobuf field <code>string description = 19;</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * The description of the page. The maximum length is 500 characters.
+     *
+     * Generated from protobuf field <code>string description = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
 
         return $this;
     }

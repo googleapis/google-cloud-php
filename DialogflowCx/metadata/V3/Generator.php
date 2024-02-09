@@ -64,11 +64,11 @@ generators (2(.google.cloud.dialogflow.cx.v3.Generator
 force (2é
 
 GeneratorsÇ
-ListGenerators4.google.cloud.dialogflow.cx.v3.ListGeneratorsRequest5.google.cloud.dialogflow.cx.v3.ListGeneratorsResponse"H‚Óä“97/v3/{parent=projects/*/locations/*/agents/*}/generatorsÚAparent´
-GetGenerator2.google.cloud.dialogflow.cx.v3.GetGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"F‚Óä“97/v3/{name=projects/*/locations/*/agents/*/generators/*}ÚAnameÑ
-CreateGenerator5.google.cloud.dialogflow.cx.v3.CreateGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"]‚Óä“D"7/v3/{parent=projects/*/locations/*/agents/*}/generators:	generatorÚAparent,generatorà
-UpdateGenerator5.google.cloud.dialogflow.cx.v3.UpdateGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"l‚Óä“N2A/v3/{generator.name=projects/*/locations/*/agents/*/generators/*}:	generatorÚAgenerator,update_mask¨
-DeleteGenerator5.google.cloud.dialogflow.cx.v3.DeleteGeneratorRequest.google.protobuf.Empty"F‚Óä“9*7/v3/{name=projects/*/locations/*/agents/*/generators/*}ÚAnamexÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB´
+ListGenerators4.google.cloud.dialogflow.cx.v3.ListGeneratorsRequest5.google.cloud.dialogflow.cx.v3.ListGeneratorsResponse"HÚAparent‚Óä“97/v3/{parent=projects/*/locations/*/agents/*}/generators´
+GetGenerator2.google.cloud.dialogflow.cx.v3.GetGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"FÚAname‚Óä“97/v3/{name=projects/*/locations/*/agents/*/generators/*}Ñ
+CreateGenerator5.google.cloud.dialogflow.cx.v3.CreateGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"]ÚAparent,generator‚Óä“D"7/v3/{parent=projects/*/locations/*/agents/*}/generators:	generatorà
+UpdateGenerator5.google.cloud.dialogflow.cx.v3.UpdateGeneratorRequest(.google.cloud.dialogflow.cx.v3.Generator"lÚAgenerator,update_mask‚Óä“N2A/v3/{generator.name=projects/*/locations/*/agents/*/generators/*}:	generator¨
+DeleteGenerator5.google.cloud.dialogflow.cx.v3.DeleteGeneratorRequest.google.protobuf.Empty"FÚAname‚Óä“9*7/v3/{name=projects/*/locations/*/agents/*/generators/*}xÊAdialogflow.googleapis.comÒAYhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/dialogflowB´
 !com.google.cloud.dialogflow.cx.v3BGeneratorProtoPZ1cloud.google.com/go/dialogflow/cx/apiv3/cxpb;cxpbø¢DFªGoogle.Cloud.Dialogflow.Cx.V3ê!Google::Cloud::Dialogflow::CX::V3bproto3'
         , true);
 

@@ -39,7 +39,7 @@ is_default (!
 creation_disabled (
 upgrade_disabled (2É
 ImageVersionsê
-ListImageVersionsG.google.cloud.orchestration.airflow.service.v1.ListImageVersionsRequestH.google.cloud.orchestration.airflow.service.v1.ListImageVersionsResponse"B‚Óä“31/v1/{parent=projects/*/locations/*}/imageVersionsÚAparentKÊAcomposer.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB‚
+ListImageVersionsG.google.cloud.orchestration.airflow.service.v1.ListImageVersionsRequestH.google.cloud.orchestration.airflow.service.v1.ListImageVersionsResponse"BÚAparent‚Óä“31/v1/{parent=projects/*/locations/*}/imageVersionsKÊAcomposer.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB‚
 1com.google.cloud.orchestration.airflow.service.v1PZKcloud.google.com/go/orchestration/airflow/service/apiv1/servicepb;servicepbbproto3'
         , true);
 

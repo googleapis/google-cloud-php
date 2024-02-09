@@ -27,7 +27,7 @@ class Service
 parent (	B2‡A˙A,*publicca.googleapis.com/ExternalAccountKey]
 external_account_key (2:.google.cloud.security.publicca.v1beta1.ExternalAccountKeyB‡A2å
 !PublicCertificateAuthorityServiceô
-CreateExternalAccountKeyG.google.cloud.security.publicca.v1beta1.CreateExternalAccountKeyRequest:.google.cloud.security.publicca.v1beta1.ExternalAccountKey"xÇ”‰ìT"</v1beta1/{parent=projects/*/locations/*}/externalAccountKeys:external_account_key⁄Aparent,external_account_keyK Apublicca.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÜ
+CreateExternalAccountKeyG.google.cloud.security.publicca.v1beta1.CreateExternalAccountKeyRequest:.google.cloud.security.publicca.v1beta1.ExternalAccountKey"x⁄Aparent,external_account_keyÇ”‰ìT"</v1beta1/{parent=projects/*/locations/*}/externalAccountKeys:external_account_keyK Apublicca.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÜ
 *com.google.cloud.security.publicca.v1beta1BServiceProtoPZFcloud.google.com/go/security/publicca/apiv1beta1/publiccapb;publiccapb¯™&Google.Cloud.Security.PublicCA.V1Beta1 &Google\\Cloud\\Security\\PublicCA\\V1beta1Í*Google::Cloud::Security::PublicCA::V1beta1bproto3'
         , true);
 

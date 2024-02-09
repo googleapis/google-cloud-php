@@ -605,9 +605,8 @@ final class AssetServiceClient
      * * compute.requireOsLogin
      * * compute.disableNestedVirtualization
      *
-     * This RPC only returns either resources of types supported by [searchable
-     * asset
-     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types),
+     * This RPC only returns either resources of types [supported by search
+     * APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * or IAM policies.
      *
      * The async variant is

@@ -16,10 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class RecommendRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Full resource name of the format:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1beta.ServingConfig]:
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
-     * Before you can request recommendations from your model, you must create at
-     * least one serving config  for it.
+     * One default serving config is created along with your recommendation engine
+     * creation. The engine ID will be used as the ID of the default serving
+     * config. For example, for Engine
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine`, you can use
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine/servingConfigs/my-engine`
+     * for your
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1beta.RecommendationService.Recommend]
+     * requests.
      *
      * Generated from protobuf field <code>string serving_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -60,6 +68,12 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      * Examples:
      *  * `(filter_tags: ANY("Red", "Blue") OR filter_tags: ANY("Hot", "Cold"))`
      *  * `(filter_tags: ANY("Red", "Blue")) AND NOT (filter_tags: ANY("Green"))`
+     * If `attributeFilteringSyntax` is set to true under the `params` field, then
+     * attribute-based expressions are expected instead of the above described
+     * tag-based syntax. Examples:
+     *  * (launguage: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
+     *  * (available: true) AND
+     *    (launguage: ANY("en", "es")) OR (categories: ANY("Movie"))
      * If your filter blocks all results, the API will return generic
      * (unfiltered) popular Documents. If you only want results strictly matching
      * the filters, set `strictFiltering` to True in
@@ -104,6 +118,9 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *     *  `auto-diversity`
      *    This gives request-level control and adjusts recommendation results
      *    based on Document category.
+     * * `attributeFilteringSyntax`: Boolean. False by default. If set to true,
+     *    the `filter` field is interpreted according to the new,
+     *    attribute-based syntax.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 6;</code>
      */
@@ -136,10 +153,18 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $serving_config
-     *           Required. Full resource name of the format:
+     *           Required. Full resource name of a
+     *           [ServingConfig][google.cloud.discoveryengine.v1beta.ServingConfig]:
+     *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
-     *           Before you can request recommendations from your model, you must create at
-     *           least one serving config  for it.
+     *           One default serving config is created along with your recommendation engine
+     *           creation. The engine ID will be used as the ID of the default serving
+     *           config. For example, for Engine
+     *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine`, you can use
+     *           `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine/servingConfigs/my-engine`
+     *           for your
+     *           [RecommendationService.Recommend][google.cloud.discoveryengine.v1beta.RecommendationService.Recommend]
+     *           requests.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\UserEvent $user_event
      *           Required. Context about the user, what they are looking at and what action
      *           they took to trigger the Recommend request. Note that this user event
@@ -168,6 +193,12 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *           Examples:
      *            * `(filter_tags: ANY("Red", "Blue") OR filter_tags: ANY("Hot", "Cold"))`
      *            * `(filter_tags: ANY("Red", "Blue")) AND NOT (filter_tags: ANY("Green"))`
+     *           If `attributeFilteringSyntax` is set to true under the `params` field, then
+     *           attribute-based expressions are expected instead of the above described
+     *           tag-based syntax. Examples:
+     *            * (launguage: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
+     *            * (available: true) AND
+     *              (launguage: ANY("en", "es")) OR (categories: ANY("Movie"))
      *           If your filter blocks all results, the API will return generic
      *           (unfiltered) popular Documents. If you only want results strictly matching
      *           the filters, set `strictFiltering` to True in
@@ -204,6 +235,9 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *               *  `auto-diversity`
      *              This gives request-level control and adjusts recommendation results
      *              based on Document category.
+     *           * `attributeFilteringSyntax`: Boolean. False by default. If set to true,
+     *              the `filter` field is interpreted according to the new,
+     *              attribute-based syntax.
      *     @type array|\Google\Protobuf\Internal\MapField $user_labels
      *           The user labels applied to a resource must meet the following requirements:
      *           * Each resource can have multiple labels, up to a maximum of 64.
@@ -228,10 +262,18 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Full resource name of the format:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1beta.ServingConfig]:
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
-     * Before you can request recommendations from your model, you must create at
-     * least one serving config  for it.
+     * One default serving config is created along with your recommendation engine
+     * creation. The engine ID will be used as the ID of the default serving
+     * config. For example, for Engine
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine`, you can use
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine/servingConfigs/my-engine`
+     * for your
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1beta.RecommendationService.Recommend]
+     * requests.
      *
      * Generated from protobuf field <code>string serving_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -242,10 +284,18 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Full resource name of the format:
+     * Required. Full resource name of a
+     * [ServingConfig][google.cloud.discoveryengine.v1beta.ServingConfig]:
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/&#42;&#47;servingConfigs/&#42;`, or
      * `projects/&#42;&#47;locations/global/collections/&#42;&#47;dataStores/&#42;&#47;servingConfigs/&#42;`
-     * Before you can request recommendations from your model, you must create at
-     * least one serving config  for it.
+     * One default serving config is created along with your recommendation engine
+     * creation. The engine ID will be used as the ID of the default serving
+     * config. For example, for Engine
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine`, you can use
+     * `projects/&#42;&#47;locations/global/collections/&#42;&#47;engines/my-engine/servingConfigs/my-engine`
+     * for your
+     * [RecommendationService.Recommend][google.cloud.discoveryengine.v1beta.RecommendationService.Recommend]
+     * requests.
      *
      * Generated from protobuf field <code>string serving_config = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -362,6 +412,12 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      * Examples:
      *  * `(filter_tags: ANY("Red", "Blue") OR filter_tags: ANY("Hot", "Cold"))`
      *  * `(filter_tags: ANY("Red", "Blue")) AND NOT (filter_tags: ANY("Green"))`
+     * If `attributeFilteringSyntax` is set to true under the `params` field, then
+     * attribute-based expressions are expected instead of the above described
+     * tag-based syntax. Examples:
+     *  * (launguage: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
+     *  * (available: true) AND
+     *    (launguage: ANY("en", "es")) OR (categories: ANY("Movie"))
      * If your filter blocks all results, the API will return generic
      * (unfiltered) popular Documents. If you only want results strictly matching
      * the filters, set `strictFiltering` to True in
@@ -386,6 +442,12 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      * Examples:
      *  * `(filter_tags: ANY("Red", "Blue") OR filter_tags: ANY("Hot", "Cold"))`
      *  * `(filter_tags: ANY("Red", "Blue")) AND NOT (filter_tags: ANY("Green"))`
+     * If `attributeFilteringSyntax` is set to true under the `params` field, then
+     * attribute-based expressions are expected instead of the above described
+     * tag-based syntax. Examples:
+     *  * (launguage: ANY("en", "es")) AND NOT (categories: ANY("Movie"))
+     *  * (available: true) AND
+     *    (launguage: ANY("en", "es")) OR (categories: ANY("Movie"))
      * If your filter blocks all results, the API will return generic
      * (unfiltered) popular Documents. If you only want results strictly matching
      * the filters, set `strictFiltering` to True in
@@ -462,6 +524,9 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *     *  `auto-diversity`
      *    This gives request-level control and adjusts recommendation results
      *    based on Document category.
+     * * `attributeFilteringSyntax`: Boolean. False by default. If set to true,
+     *    the `filter` field is interpreted according to the new,
+     *    attribute-based syntax.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 6;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -494,6 +559,9 @@ class RecommendRequest extends \Google\Protobuf\Internal\Message
      *     *  `auto-diversity`
      *    This gives request-level control and adjusts recommendation results
      *    based on Document category.
+     * * `attributeFilteringSyntax`: Boolean. False by default. If set to true,
+     *    the `filter` field is interpreted according to the new,
+     *    attribute-based syntax.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 6;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

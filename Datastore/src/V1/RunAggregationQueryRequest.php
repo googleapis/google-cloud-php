@@ -45,14 +45,6 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
      */
     private $read_options = null;
-    /**
-     * Optional. The mode in which the query request is processed. This field is
-     * optional, and when not provided, it defaults to `NORMAL` mode where no
-     * additional statistics will be returned with the query results.
-     *
-     * Generated from protobuf field <code>.google.datastore.v1.QueryMode mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $mode = 0;
     protected $query_type;
 
     /**
@@ -78,10 +70,6 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      *           The query to run.
      *     @type \Google\Cloud\Datastore\V1\GqlQuery $gql_query
      *           The GQL query to run. This query must be an aggregation query.
-     *     @type int $mode
-     *           Optional. The mode in which the query request is processed. This field is
-     *           optional, and when not provided, it defaults to `NORMAL` mode where no
-     *           additional statistics will be returned with the query results.
      * }
      */
     public function __construct($data = NULL) {
@@ -281,36 +269,6 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\GqlQuery::class);
         $this->writeOneof(7, $var);
-
-        return $this;
-    }
-
-    /**
-     * Optional. The mode in which the query request is processed. This field is
-     * optional, and when not provided, it defaults to `NORMAL` mode where no
-     * additional statistics will be returned with the query results.
-     *
-     * Generated from protobuf field <code>.google.datastore.v1.QueryMode mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int
-     */
-    public function getMode()
-    {
-        return $this->mode;
-    }
-
-    /**
-     * Optional. The mode in which the query request is processed. This field is
-     * optional, and when not provided, it defaults to `NORMAL` mode where no
-     * additional statistics will be returned with the query results.
-     *
-     * Generated from protobuf field <code>.google.datastore.v1.QueryMode mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setMode($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Datastore\V1\QueryMode::class);
-        $this->mode = $var;
 
         return $this;
     }

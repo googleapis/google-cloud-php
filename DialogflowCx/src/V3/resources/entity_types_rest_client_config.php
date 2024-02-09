@@ -26,6 +26,18 @@ return [
                     ],
                 ],
             ],
+            'ExportEntityTypes' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/agents/*}/entityTypes:export',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetEntityType' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*/locations/*/agents/*/entityTypes/*}',
@@ -33,6 +45,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportEntityTypes' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/agents/*}/entityTypes:import',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

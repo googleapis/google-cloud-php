@@ -60,14 +60,14 @@ page_token (	
 update_mask (2.google.protobuf.FieldMaskBàA2ö
 
 ScheduleService¼
-CreateSchedule1.google.cloud.aiplatform.v1.CreateScheduleRequest$.google.cloud.aiplatform.v1.Schedule"Q‚Óä“9"-/v1/{parent=projects/*/locations/*}/schedules:scheduleÚAparent,scheduleÓ
-DeleteSchedule1.google.cloud.aiplatform.v1.DeleteScheduleRequest.google.longrunning.Operation"o‚Óä“/*-/v1/{name=projects/*/locations/*/schedules/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadata¡
-GetSchedule..google.cloud.aiplatform.v1.GetScheduleRequest$.google.cloud.aiplatform.v1.Schedule"<‚Óä“/-/v1/{name=projects/*/locations/*/schedules/*}ÚAname´
-ListSchedules0.google.cloud.aiplatform.v1.ListSchedulesRequest1.google.cloud.aiplatform.v1.ListSchedulesResponse">‚Óä“/-/v1/{parent=projects/*/locations/*}/schedulesÚAparent 
-PauseSchedule0.google.cloud.aiplatform.v1.PauseScheduleRequest.google.protobuf.Empty"E‚Óä“8"3/v1/{name=projects/*/locations/*/schedules/*}:pause:*ÚAname³
-ResumeSchedule1.google.cloud.aiplatform.v1.ResumeScheduleRequest.google.protobuf.Empty"V‚Óä“9"4/v1/{name=projects/*/locations/*/schedules/*}:resume:*ÚAnameÚAname,catch_upÊ
-UpdateSchedule1.google.cloud.aiplatform.v1.UpdateScheduleRequest$.google.cloud.aiplatform.v1.Schedule"_‚Óä“B26/v1/{schedule.name=projects/*/locations/*/schedules/*}:scheduleÚAschedule,update_maskMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÒ
+CreateSchedule1.google.cloud.aiplatform.v1.CreateScheduleRequest$.google.cloud.aiplatform.v1.Schedule"QÚAparent,schedule‚Óä“9"-/v1/{parent=projects/*/locations/*}/schedules:scheduleÓ
+DeleteSchedule1.google.cloud.aiplatform.v1.DeleteScheduleRequest.google.longrunning.Operation"oÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“/*-/v1/{name=projects/*/locations/*/schedules/*}¡
+GetSchedule..google.cloud.aiplatform.v1.GetScheduleRequest$.google.cloud.aiplatform.v1.Schedule"<ÚAname‚Óä“/-/v1/{name=projects/*/locations/*/schedules/*}´
+ListSchedules0.google.cloud.aiplatform.v1.ListSchedulesRequest1.google.cloud.aiplatform.v1.ListSchedulesResponse">ÚAparent‚Óä“/-/v1/{parent=projects/*/locations/*}/schedules 
+PauseSchedule0.google.cloud.aiplatform.v1.PauseScheduleRequest.google.protobuf.Empty"EÚAname‚Óä“8"3/v1/{name=projects/*/locations/*/schedules/*}:pause:*³
+ResumeSchedule1.google.cloud.aiplatform.v1.ResumeScheduleRequest.google.protobuf.Empty"VÚAnameÚAname,catch_up‚Óä“9"4/v1/{name=projects/*/locations/*/schedules/*}:resume:*Ê
+UpdateSchedule1.google.cloud.aiplatform.v1.UpdateScheduleRequest$.google.cloud.aiplatform.v1.Schedule"_ÚAschedule,update_mask‚Óä“B26/v1/{schedule.name=projects/*/locations/*/schedules/*}:scheduleMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÒ
 com.google.cloud.aiplatform.v1BScheduleServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

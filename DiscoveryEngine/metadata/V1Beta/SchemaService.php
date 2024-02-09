@@ -59,14 +59,14 @@ page_token (	"l
 create_time (2.google.protobuf.Timestamp/
 update_time (2.google.protobuf.Timestamp2â
 SchemaServiceå
-	GetSchema5.google.cloud.discoveryengine.v1beta.GetSchemaRequest+.google.cloud.discoveryengine.v1beta.Schema"öÇ”‰ìå</v1beta/{name=projects/*/locations/*/dataStores/*/schemas/*}ZLJ/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}⁄Anameü
-ListSchemas7.google.cloud.discoveryengine.v1beta.ListSchemasRequest8.google.cloud.discoveryengine.v1beta.ListSchemasResponse"úÇ”‰ìå</v1beta/{parent=projects/*/locations/*/dataStores/*}/schemasZLJ/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemas⁄Aparentê
-CreateSchema8.google.cloud.discoveryengine.v1beta.CreateSchemaRequest.google.longrunning.Operation"¶Ç”‰ìú"</v1beta/{parent=projects/*/locations/*/dataStores/*}/schemas:schemaZT"J/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemas:schema⁄Aparent,schema,schema_id Af
-*google.cloud.discoveryengine.v1beta.Schema8google.cloud.discoveryengine.v1beta.CreateSchemaMetadataÑ
-UpdateSchema8.google.cloud.discoveryengine.v1beta.UpdateSchemaRequest.google.longrunning.Operation"öÇ”‰ì™2C/v1beta/{schema.name=projects/*/locations/*/dataStores/*/schemas/*}:schemaZ[2Q/v1beta/{schema.name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}:schema Af
-*google.cloud.discoveryengine.v1beta.Schema8google.cloud.discoveryengine.v1beta.UpdateSchemaMetadataÿ
-DeleteSchema8.google.cloud.discoveryengine.v1beta.DeleteSchemaRequest.google.longrunning.Operation"ÓÇ”‰ìå*</v1beta/{name=projects/*/locations/*/dataStores/*/schemas/*}ZL*J/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}⁄Aname AQ
-google.protobuf.Empty8google.cloud.discoveryengine.v1beta.DeleteSchemaMetadataR Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBô
+	GetSchema5.google.cloud.discoveryengine.v1beta.GetSchemaRequest+.google.cloud.discoveryengine.v1beta.Schema"ö⁄AnameÇ”‰ìå</v1beta/{name=projects/*/locations/*/dataStores/*/schemas/*}ZLJ/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}ü
+ListSchemas7.google.cloud.discoveryengine.v1beta.ListSchemasRequest8.google.cloud.discoveryengine.v1beta.ListSchemasResponse"ú⁄AparentÇ”‰ìå</v1beta/{parent=projects/*/locations/*/dataStores/*}/schemasZLJ/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemasê
+CreateSchema8.google.cloud.discoveryengine.v1beta.CreateSchemaRequest.google.longrunning.Operation"¶ Af
+*google.cloud.discoveryengine.v1beta.Schema8google.cloud.discoveryengine.v1beta.CreateSchemaMetadata⁄Aparent,schema,schema_idÇ”‰ìú"</v1beta/{parent=projects/*/locations/*/dataStores/*}/schemas:schemaZT"J/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemas:schemaÑ
+UpdateSchema8.google.cloud.discoveryengine.v1beta.UpdateSchemaRequest.google.longrunning.Operation"ö Af
+*google.cloud.discoveryengine.v1beta.Schema8google.cloud.discoveryengine.v1beta.UpdateSchemaMetadataÇ”‰ì™2C/v1beta/{schema.name=projects/*/locations/*/dataStores/*/schemas/*}:schemaZ[2Q/v1beta/{schema.name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}:schemaÿ
+DeleteSchema8.google.cloud.discoveryengine.v1beta.DeleteSchemaRequest.google.longrunning.Operation"Ó AQ
+google.protobuf.Empty8google.cloud.discoveryengine.v1beta.DeleteSchemaMetadata⁄AnameÇ”‰ìå*</v1beta/{name=projects/*/locations/*/dataStores/*/schemas/*}ZL*J/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}R Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBô
 \'com.google.cloud.discoveryengine.v1betaBSchemaServiceProtoPZQcloud.google.com/go/discoveryengine/apiv1beta/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINE™#Google.Cloud.DiscoveryEngine.V1Beta #Google\\Cloud\\DiscoveryEngine\\V1betaÍ&Google::Cloud::DiscoveryEngine::V1betabproto3'
         , true);
 

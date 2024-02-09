@@ -43,10 +43,10 @@ page_token (	B‡A"]
 snooze (2.google.monitoring.v3.SnoozeB‡A4
 update_mask (2.google.protobuf.FieldMaskB‡A2ò
 SnoozeServiceò
-CreateSnooze).google.monitoring.v3.CreateSnoozeRequest.google.monitoring.v3.Snooze"?Ç”‰ì)"/v3/{parent=projects/*}/snoozes:snooze⁄Aparent,snoozeî
-ListSnoozes(.google.monitoring.v3.ListSnoozesRequest).google.monitoring.v3.ListSnoozesResponse"0Ç”‰ì!/v3/{parent=projects/*}/snoozes⁄AparentÅ
-	GetSnooze&.google.monitoring.v3.GetSnoozeRequest.google.monitoring.v3.Snooze".Ç”‰ì!/v3/{name=projects/*/snoozes/*}⁄Aname§
-UpdateSnooze).google.monitoring.v3.UpdateSnoozeRequest.google.monitoring.v3.Snooze"KÇ”‰ì02&/v3/{snooze.name=projects/*/snoozes/*}:snooze⁄Asnooze,update_mask© Amonitoring.googleapis.com“Aâhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÕ
+CreateSnooze).google.monitoring.v3.CreateSnoozeRequest.google.monitoring.v3.Snooze"?⁄Aparent,snoozeÇ”‰ì)"/v3/{parent=projects/*}/snoozes:snoozeî
+ListSnoozes(.google.monitoring.v3.ListSnoozesRequest).google.monitoring.v3.ListSnoozesResponse"0⁄AparentÇ”‰ì!/v3/{parent=projects/*}/snoozesÅ
+	GetSnooze&.google.monitoring.v3.GetSnoozeRequest.google.monitoring.v3.Snooze".⁄AnameÇ”‰ì!/v3/{name=projects/*/snoozes/*}§
+UpdateSnooze).google.monitoring.v3.UpdateSnoozeRequest.google.monitoring.v3.Snooze"K⁄Asnooze,update_maskÇ”‰ì02&/v3/{snooze.name=projects/*/snoozes/*}:snooze© Amonitoring.googleapis.com“Aâhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÕ
 com.google.monitoring.v3BSnoozeServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpb™Google.Cloud.Monitoring.V3 Google\\Cloud\\Monitoring\\V3ÍGoogle::Cloud::Monitoring::V3bproto3'
         , true);
 

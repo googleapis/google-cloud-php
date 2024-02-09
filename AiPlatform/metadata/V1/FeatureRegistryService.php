@@ -62,24 +62,24 @@ page_token (	
 UpdateFeatureOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2Æ
 FeatureRegistryService“
-CreateFeatureGroup5.google.cloud.aiplatform.v1.CreateFeatureGroupRequest.google.longrunning.Operation"¦‚Óä“B"1/v1/{parent=projects/*/locations/*}/featureGroups:feature_groupÚA%parent,feature_group,feature_group_idÊA3
-FeatureGroup#CreateFeatureGroupOperationMetadata±
-GetFeatureGroup2.google.cloud.aiplatform.v1.GetFeatureGroupRequest(.google.cloud.aiplatform.v1.FeatureGroup"@‚Óä“31/v1/{name=projects/*/locations/*/featureGroups/*}ÚAnameÄ
-ListFeatureGroups4.google.cloud.aiplatform.v1.ListFeatureGroupsRequest5.google.cloud.aiplatform.v1.ListFeatureGroupsResponse"B‚Óä“31/v1/{parent=projects/*/locations/*}/featureGroupsÚAparent•
-UpdateFeatureGroup5.google.cloud.aiplatform.v1.UpdateFeatureGroupRequest.google.longrunning.Operation"¨‚Óä“P2?/v1/{feature_group.name=projects/*/locations/*/featureGroups/*}:feature_groupÚAfeature_group,update_maskÊA3
-FeatureGroup#UpdateFeatureGroupOperationMetadataå
-DeleteFeatureGroup5.google.cloud.aiplatform.v1.DeleteFeatureGroupRequest.google.longrunning.Operation"y‚Óä“3*1/v1/{name=projects/*/locations/*/featureGroups/*}ÚA
-name,forceÊA0
-google.protobuf.EmptyDeleteOperationMetadataø
-CreateFeature0.google.cloud.aiplatform.v1.CreateFeatureRequest.google.longrunning.Operation"•‚Óä“G"</v1/{parent=projects/*/locations/*/featureGroups/*}/features:featureÚAparent,feature,feature_idÊA)
-FeatureCreateFeatureOperationMetadata­
+CreateFeatureGroup5.google.cloud.aiplatform.v1.CreateFeatureGroupRequest.google.longrunning.Operation"¦ÊA3
+FeatureGroup#CreateFeatureGroupOperationMetadataÚA%parent,feature_group,feature_group_id‚Óä“B"1/v1/{parent=projects/*/locations/*}/featureGroups:feature_group±
+GetFeatureGroup2.google.cloud.aiplatform.v1.GetFeatureGroupRequest(.google.cloud.aiplatform.v1.FeatureGroup"@ÚAname‚Óä“31/v1/{name=projects/*/locations/*/featureGroups/*}Ä
+ListFeatureGroups4.google.cloud.aiplatform.v1.ListFeatureGroupsRequest5.google.cloud.aiplatform.v1.ListFeatureGroupsResponse"BÚAparent‚Óä“31/v1/{parent=projects/*/locations/*}/featureGroups•
+UpdateFeatureGroup5.google.cloud.aiplatform.v1.UpdateFeatureGroupRequest.google.longrunning.Operation"¨ÊA3
+FeatureGroup#UpdateFeatureGroupOperationMetadataÚAfeature_group,update_mask‚Óä“P2?/v1/{feature_group.name=projects/*/locations/*/featureGroups/*}:feature_groupå
+DeleteFeatureGroup5.google.cloud.aiplatform.v1.DeleteFeatureGroupRequest.google.longrunning.Operation"yÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚA
+name,force‚Óä“3*1/v1/{name=projects/*/locations/*/featureGroups/*}ø
+CreateFeature0.google.cloud.aiplatform.v1.CreateFeatureRequest.google.longrunning.Operation"•ÊA)
+FeatureCreateFeatureOperationMetadataÚAparent,feature,feature_id‚Óä“G"</v1/{parent=projects/*/locations/*/featureGroups/*}/features:feature­
 
-GetFeature-.google.cloud.aiplatform.v1.GetFeatureRequest#.google.cloud.aiplatform.v1.Feature"K‚Óä“></v1/{name=projects/*/locations/*/featureGroups/*/features/*}ÚAnameÀ
-ListFeatures/.google.cloud.aiplatform.v1.ListFeaturesRequest0.google.cloud.aiplatform.v1.ListFeaturesResponse"M‚Óä“></v1/{parent=projects/*/locations/*/featureGroups/*}/featuresÚAparentú
-UpdateFeature0.google.cloud.aiplatform.v1.UpdateFeatureRequest.google.longrunning.Operation"—‚Óä“O2D/v1/{feature.name=projects/*/locations/*/featureGroups/*/features/*}:featureÚAfeature,update_maskÊA)
-FeatureUpdateFeatureOperationMetadataà
-DeleteFeature0.google.cloud.aiplatform.v1.DeleteFeatureRequest.google.longrunning.Operation"~‚Óä“>*</v1/{name=projects/*/locations/*/featureGroups/*/features/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÙ
+GetFeature-.google.cloud.aiplatform.v1.GetFeatureRequest#.google.cloud.aiplatform.v1.Feature"KÚAname‚Óä“></v1/{name=projects/*/locations/*/featureGroups/*/features/*}À
+ListFeatures/.google.cloud.aiplatform.v1.ListFeaturesRequest0.google.cloud.aiplatform.v1.ListFeaturesResponse"MÚAparent‚Óä“></v1/{parent=projects/*/locations/*/featureGroups/*}/featuresú
+UpdateFeature0.google.cloud.aiplatform.v1.UpdateFeatureRequest.google.longrunning.Operation"—ÊA)
+FeatureUpdateFeatureOperationMetadataÚAfeature,update_mask‚Óä“O2D/v1/{feature.name=projects/*/locations/*/featureGroups/*/features/*}:featureà
+DeleteFeature0.google.cloud.aiplatform.v1.DeleteFeatureRequest.google.longrunning.Operation"~ÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“>*</v1/{name=projects/*/locations/*/featureGroups/*/features/*}MÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÙ
 com.google.cloud.aiplatform.v1BFeatureRegistryServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

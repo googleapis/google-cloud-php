@@ -51,8 +51,8 @@ use Google\Rpc\Status;
  * ProductSet, you must wait until the PurgeProducts operation has finished
  * for that ProductSet.
  *
- * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
- * progress and results of the request.
+ * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+ * used to keep track of the progress and results of the request.
  * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
  *
  * @param string $formattedParent The project and location in which the Products should be deleted.

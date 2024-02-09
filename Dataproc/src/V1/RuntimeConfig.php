@@ -35,6 +35,12 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $properties;
+    /**
+     * Optional. Dependency repository configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.RepositoryConfig repository_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $repository_config = null;
 
     /**
      * Constructor.
@@ -50,6 +56,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, which are used to
      *           configure workload execution.
+     *     @type \Google\Cloud\Dataproc\V1\RepositoryConfig $repository_config
+     *           Optional. Dependency repository configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +143,42 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->properties = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Dependency repository configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.RepositoryConfig repository_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\RepositoryConfig|null
+     */
+    public function getRepositoryConfig()
+    {
+        return $this->repository_config;
+    }
+
+    public function hasRepositoryConfig()
+    {
+        return isset($this->repository_config);
+    }
+
+    public function clearRepositoryConfig()
+    {
+        unset($this->repository_config);
+    }
+
+    /**
+     * Optional. Dependency repository configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.RepositoryConfig repository_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\RepositoryConfig $var
+     * @return $this
+     */
+    public function setRepositoryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\RepositoryConfig::class);
+        $this->repository_config = $var;
 
         return $this;
     }

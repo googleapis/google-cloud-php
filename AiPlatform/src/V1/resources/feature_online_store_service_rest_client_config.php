@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'SearchNearestEntities' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{feature_view=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:searchNearestEntities',
+                'body' => '*',
+                'placeholders' => [
+                    'feature_view' => [
+                        'getters' => [
+                            'getFeatureView',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

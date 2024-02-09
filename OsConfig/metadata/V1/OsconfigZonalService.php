@@ -26,21 +26,21 @@ class OsconfigZonalService
 Ý
 5google/cloud/osconfig/v1/osconfig_zonal_service.protogoogle.cloud.osconfig.v1google/api/client.proto(google/cloud/osconfig/v1/inventory.proto;google/cloud/osconfig/v1/os_policy_assignment_reports.proto4google/cloud/osconfig/v1/os_policy_assignments.proto,google/cloud/osconfig/v1/vulnerability.proto#google/longrunning/operations.proto2¬
 OsConfigZonalService¾
-CreateOSPolicyAssignment9.google.cloud.osconfig.v1.CreateOSPolicyAssignmentRequest.google.longrunning.Operation"Ç‚Óä“O"7/v1/{parent=projects/*/locations/*}/osPolicyAssignments:os_policy_assignmentÚA3parent,os_policy_assignment,os_policy_assignment_idÊA9
-OSPolicyAssignment#OSPolicyAssignmentOperationMetadataÀ
-UpdateOSPolicyAssignment9.google.cloud.osconfig.v1.UpdateOSPolicyAssignmentRequest.google.longrunning.Operation"É‚Óä“d2L/v1/{os_policy_assignment.name=projects/*/locations/*/osPolicyAssignments/*}:os_policy_assignmentÚA os_policy_assignment,update_maskÊA9
-OSPolicyAssignment#OSPolicyAssignmentOperationMetadataÅ
-GetOSPolicyAssignment6.google.cloud.osconfig.v1.GetOSPolicyAssignmentRequest,.google.cloud.osconfig.v1.OSPolicyAssignment"F‚Óä“97/v1/{name=projects/*/locations/*/osPolicyAssignments/*}ÚAnameØ
-ListOSPolicyAssignments8.google.cloud.osconfig.v1.ListOSPolicyAssignmentsRequest9.google.cloud.osconfig.v1.ListOSPolicyAssignmentsResponse"H‚Óä“97/v1/{parent=projects/*/locations/*}/osPolicyAssignmentsÚAparentü
-ListOSPolicyAssignmentRevisions@.google.cloud.osconfig.v1.ListOSPolicyAssignmentRevisionsRequestA.google.cloud.osconfig.v1.ListOSPolicyAssignmentRevisionsResponse"T‚Óä“GE/v1/{name=projects/*/locations/*/osPolicyAssignments/*}:listRevisionsÚAnameü
-DeleteOSPolicyAssignment9.google.cloud.osconfig.v1.DeleteOSPolicyAssignmentRequest.google.longrunning.Operation"…‚Óä“9*7/v1/{name=projects/*/locations/*/osPolicyAssignments/*}ÚAnameÊA<
-google.protobuf.Empty#OSPolicyAssignmentOperationMetadataê
-GetOSPolicyAssignmentReport<.google.cloud.osconfig.v1.GetOSPolicyAssignmentReportRequest2.google.cloud.osconfig.v1.OSPolicyAssignmentReport"Y‚Óä“LJ/v1/{name=projects/*/locations/*/instances/*/osPolicyAssignments/*/report}ÚAname€
-ListOSPolicyAssignmentReports>.google.cloud.osconfig.v1.ListOSPolicyAssignmentReportsRequest?.google.cloud.osconfig.v1.ListOSPolicyAssignmentReportsResponse"^‚Óä“OM/v1/{parent=projects/*/locations/*/instances/*/osPolicyAssignments/*}/reportsÚAparentª
-GetInventory-.google.cloud.osconfig.v1.GetInventoryRequest#.google.cloud.osconfig.v1.Inventory"F‚Óä“97/v1/{name=projects/*/locations/*/instances/*/inventory}ÚAnameÄ
-ListInventories0.google.cloud.osconfig.v1.ListInventoriesRequest1.google.cloud.osconfig.v1.ListInventoriesResponse"L‚Óä“=;/v1/{parent=projects/*/locations/*/instances/*}/inventoriesÚAparentÒ
-GetVulnerabilityReport7.google.cloud.osconfig.v1.GetVulnerabilityReportRequest-.google.cloud.osconfig.v1.VulnerabilityReport"P‚Óä“CA/v1/{name=projects/*/locations/*/instances/*/vulnerabilityReport}ÚAnameè
-ListVulnerabilityReports9.google.cloud.osconfig.v1.ListVulnerabilityReportsRequest:.google.cloud.osconfig.v1.ListVulnerabilityReportsResponse"U‚Óä“FD/v1/{parent=projects/*/locations/*/instances/*}/vulnerabilityReportsÚAparentKÊAosconfig.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÉ
+CreateOSPolicyAssignment9.google.cloud.osconfig.v1.CreateOSPolicyAssignmentRequest.google.longrunning.Operation"ÇÊA9
+OSPolicyAssignment#OSPolicyAssignmentOperationMetadataÚA3parent,os_policy_assignment,os_policy_assignment_id‚Óä“O"7/v1/{parent=projects/*/locations/*}/osPolicyAssignments:os_policy_assignmentÀ
+UpdateOSPolicyAssignment9.google.cloud.osconfig.v1.UpdateOSPolicyAssignmentRequest.google.longrunning.Operation"ÉÊA9
+OSPolicyAssignment#OSPolicyAssignmentOperationMetadataÚA os_policy_assignment,update_mask‚Óä“d2L/v1/{os_policy_assignment.name=projects/*/locations/*/osPolicyAssignments/*}:os_policy_assignmentÅ
+GetOSPolicyAssignment6.google.cloud.osconfig.v1.GetOSPolicyAssignmentRequest,.google.cloud.osconfig.v1.OSPolicyAssignment"FÚAname‚Óä“97/v1/{name=projects/*/locations/*/osPolicyAssignments/*}Ø
+ListOSPolicyAssignments8.google.cloud.osconfig.v1.ListOSPolicyAssignmentsRequest9.google.cloud.osconfig.v1.ListOSPolicyAssignmentsResponse"HÚAparent‚Óä“97/v1/{parent=projects/*/locations/*}/osPolicyAssignmentsü
+ListOSPolicyAssignmentRevisions@.google.cloud.osconfig.v1.ListOSPolicyAssignmentRevisionsRequestA.google.cloud.osconfig.v1.ListOSPolicyAssignmentRevisionsResponse"TÚAname‚Óä“GE/v1/{name=projects/*/locations/*/osPolicyAssignments/*}:listRevisionsü
+DeleteOSPolicyAssignment9.google.cloud.osconfig.v1.DeleteOSPolicyAssignmentRequest.google.longrunning.Operation"…ÊA<
+google.protobuf.Empty#OSPolicyAssignmentOperationMetadataÚAname‚Óä“9*7/v1/{name=projects/*/locations/*/osPolicyAssignments/*}ê
+GetOSPolicyAssignmentReport<.google.cloud.osconfig.v1.GetOSPolicyAssignmentReportRequest2.google.cloud.osconfig.v1.OSPolicyAssignmentReport"YÚAname‚Óä“LJ/v1/{name=projects/*/locations/*/instances/*/osPolicyAssignments/*/report}€
+ListOSPolicyAssignmentReports>.google.cloud.osconfig.v1.ListOSPolicyAssignmentReportsRequest?.google.cloud.osconfig.v1.ListOSPolicyAssignmentReportsResponse"^ÚAparent‚Óä“OM/v1/{parent=projects/*/locations/*/instances/*/osPolicyAssignments/*}/reportsª
+GetInventory-.google.cloud.osconfig.v1.GetInventoryRequest#.google.cloud.osconfig.v1.Inventory"FÚAname‚Óä“97/v1/{name=projects/*/locations/*/instances/*/inventory}Ä
+ListInventories0.google.cloud.osconfig.v1.ListInventoriesRequest1.google.cloud.osconfig.v1.ListInventoriesResponse"LÚAparent‚Óä“=;/v1/{parent=projects/*/locations/*/instances/*}/inventoriesÒ
+GetVulnerabilityReport7.google.cloud.osconfig.v1.GetVulnerabilityReportRequest-.google.cloud.osconfig.v1.VulnerabilityReport"PÚAname‚Óä“CA/v1/{name=projects/*/locations/*/instances/*/vulnerabilityReport}è
+ListVulnerabilityReports9.google.cloud.osconfig.v1.ListVulnerabilityReportsRequest:.google.cloud.osconfig.v1.ListVulnerabilityReportsResponse"UÚAparent‚Óä“FD/v1/{parent=projects/*/locations/*/instances/*}/vulnerabilityReportsKÊAosconfig.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÉ
 com.google.cloud.osconfig.v1BOsConfigZonalServiceProtoPZ8cloud.google.com/go/osconfig/apiv1/osconfigpb;osconfigpbªGoogle.Cloud.OsConfig.V1ÊGoogle\\Cloud\\OsConfig\\V1êGoogle::Cloud::OsConfig::V1bproto3'
         , true);
 

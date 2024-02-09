@@ -31,6 +31,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -656,6 +657,32 @@ final class SessionsClient
     public function matchIntent(MatchIntentRequest $request, array $callOptions = []): MatchIntentResponse
     {
         return $this->startApiCall('MatchIntent', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Processes a natural language query and returns structured, actionable data
+     * as a result through server-side streaming. Server-side streaming allows
+     * Dialogflow to send [partial
+     * responses](https://cloud.google.com/dialogflow/cx/docs/concept/fulfillment#partial-response)
+     * earlier in a single request.
+     *
+     * @example samples/V3/SessionsClient/server_streaming_detect_intent.php
+     *
+     * @param DetectIntentRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function serverStreamingDetectIntent(DetectIntentRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('ServerStreamingDetectIntent', $request, $callOptions);
     }
 
     /**

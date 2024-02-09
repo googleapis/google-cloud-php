@@ -56,11 +56,7 @@ class SchemaTest extends PubSubTestCase
         $this->assertEquals($schema->name(), $schema->reload()['name']);
         $this->assertEquals(trim($definition), trim($schema->info()['definition']));
 
-        if ($client instanceof PubSubClientGrpc) {
-            $this->assertEquals(Type::AVRO, $schema->info()['type']);
-        } else {
-            $this->assertEquals('AVRO', $schema->info()['type']);
-        }
+        $this->assertEquals(Type::AVRO, $schema->info()['type']);
 
         $schemas = $client->schemas();
         $hasSchema = false;
@@ -93,11 +89,7 @@ class SchemaTest extends PubSubTestCase
         $this->assertEquals($schema->name(), $schema->reload()['name']);
         $this->assertEquals(trim($definition), trim($schema->info()['definition']));
 
-        if ($client instanceof PubSubClientGrpc) {
-            $this->assertEquals(Type::PROTOCOL_BUFFER, $schema->info()['type']);
-        } else {
-            $this->assertEquals('PROTOCOL_BUFFER', $schema->info()['type']);
-        }
+        $this->assertEquals(Type::PROTOCOL_BUFFER, $schema->info()['type']);
 
         $schemas = $client->schemas();
         $hasSchema = false;

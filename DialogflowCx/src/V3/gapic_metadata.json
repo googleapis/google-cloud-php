@@ -265,9 +265,19 @@
                                 "deleteEntityType"
                             ]
                         },
+                        "ExportEntityTypes": {
+                            "methods": [
+                                "exportEntityTypes"
+                            ]
+                        },
                         "GetEntityType": {
                             "methods": [
                                 "getEntityType"
+                            ]
+                        },
+                        "ImportEntityTypes": {
+                            "methods": [
+                                "importEntityTypes"
                             ]
                         },
                         "ListEntityTypes": {
@@ -410,6 +420,11 @@
                         "MatchIntent": {
                             "methods": [
                                 "matchIntent"
+                            ]
+                        },
+                        "ServerStreamingDetectIntent": {
+                            "methods": [
+                                "serverStreamingDetectIntent"
                             ]
                         },
                         "StreamingDetectIntent": {

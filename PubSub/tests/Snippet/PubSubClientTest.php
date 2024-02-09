@@ -20,16 +20,19 @@ namespace Google\Cloud\PubSub\Tests\Snippet;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -40,18 +43,21 @@ class PubSubClientTest extends SnippetTestCase
 {
     use ProphecyTrait;
 
-    const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
-    const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
-    const SNAPSHOT = 'projects/my-awesome-project/snapshots/my-snapshot';
-    const SCHEMA = 'projects/my-awesome-project/schemas/my-schema';
+    private const PROJECT_ID = 'my-awesome-project';
+    private const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
+    private const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
+    private const SNAPSHOT = 'projects/my-awesome-project/snapshots/my-snapshot';
+    private const SCHEMA = 'projects/my-awesome-project/schemas/my-schema';
 
-    private $connection;
+    private $requestHandler;
     private $client;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = TestHelpers::stub(PubSubClient::class, [['transport' => 'rest']]);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->client = TestHelpers::stub(PubSubClient::class, [
+            ['transport' => 'rest', 'projectId' => self::PROJECT_ID]
+        ], ['requestHandler']);
     }
 
     public function testClassExample()
@@ -75,13 +81,16 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testCreateTopic()
     {
-        $this->connection->createTopic(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => self::TOPIC
-            ]);
+        $this->requestHandler->sendRequest(
+            PublisherClient::class,
+            'createTopic',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'name' => self::TOPIC
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'createTopic');
         $snippet->addLocal('pubsub', $this->client);
@@ -98,13 +107,16 @@ class PubSubClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'topic');
         $snippet->addLocal('pubsub', $this->client);
 
-        $this->connection->getTopic(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => self::TOPIC
-            ]);
+        $this->requestHandler->sendRequest(
+            PublisherClient::class,
+            'getTopic',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'name' => self::TOPIC
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke('topic');
 
@@ -118,15 +130,18 @@ class PubSubClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'topics');
         $snippet->addLocal('pubsub', $this->client);
 
-        $this->connection->listTopics(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'topics' => [
-                    ['name' => self::TOPIC]
-                ]
-            ]);
+        $this->requestHandler->sendRequest(
+            PublisherClient::class,
+            'listTopics',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'topics' => [
+                ['name' => self::TOPIC]
+            ]
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke('topics');
 
@@ -139,14 +154,17 @@ class PubSubClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'subscribe');
         $snippet->addLocal('pubsub', $this->client);
 
-        $this->connection->createSubscription(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => self::SUBSCRIPTION,
-                'topic' => self::TOPIC
-            ]);
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'createSubscription',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke('subscription');
 
@@ -161,14 +179,17 @@ class PubSubClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'subscription');
         $snippet->addLocal('pubsub', $this->client);
 
-        $this->connection->getSubscription(['subscription' => self::SUBSCRIPTION])
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => self::SUBSCRIPTION,
-                'topic' => self::TOPIC
-            ]);
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'getSubscription',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'name' => self::SUBSCRIPTION,
+            'topic' => self::TOPIC
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke('subscription');
 
@@ -183,15 +204,18 @@ class PubSubClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'subscriptions');
         $snippet->addLocal('pubsub', $this->client);
 
-        $this->connection->listSubscriptions(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'subscriptions' => [
-                    ['name' => self::SUBSCRIPTION, 'topic' => self::TOPIC]
-                ]
-            ]);
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'listSubscriptions',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'subscriptions' => [
+                ['name' => self::SUBSCRIPTION, 'topic' => self::TOPIC]
+            ]
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke('subscriptions');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -200,11 +224,14 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testCreateSnapshot()
     {
-        $this->connection->createSnapshot(Argument::any())
-            ->shouldBecalled()
-            ->willReturn([]);
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'createSnapshot',
+            Argument::cetera()
+        )->shouldBecalled()
+        ->willReturn([]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'createSnapshot');
         $snippet->addLocal('pubsub', $this->client);
@@ -228,15 +255,18 @@ class PubSubClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'snapshots');
         $snippet->addLocal('pubsub', $this->client);
 
-        $this->connection->listSnapshots(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'snapshots' => [
-                    ['name' => self::SNAPSHOT]
-                ]
-            ]);
+        $this->requestHandler->sendRequest(
+            SubscriberClient::class,
+            'listSnapshots',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'snapshots' => [
+                ['name' => self::SNAPSHOT]
+            ]
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke('snapshots');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -262,11 +292,14 @@ class PubSubClientTest extends SnippetTestCase
         $snippet->addLocal('definition', $definition);
         $snippet->addLocal('pubsub', $this->client);
 
-        $this->connection->createSchema(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['name' => self::SCHEMA]);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'createSchema',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn(['name' => self::SCHEMA]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke('schema');
         $this->assertInstanceOf(Schema::class, $res->returnVal());
@@ -278,15 +311,18 @@ class PubSubClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'schemas');
         $snippet->addLocal('pubsub', $this->client);
 
-        $this->connection->listSchemas(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'schemas' => [
-                    ['name' => self::SCHEMA]
-                ]
-            ]);
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'listSchemas',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'schemas' => [
+                ['name' => self::SCHEMA]
+            ]
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke('schemas');
 
@@ -301,8 +337,12 @@ class PubSubClientTest extends SnippetTestCase
         $snippet->addLocal('pubsub', $this->client);
         $snippet->addLocal('definition', '');
 
-        $this->connection->validateSchema(Argument::any())->shouldBeCalled();
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'validateSchema',
+            Argument::cetera()
+        )->shouldBeCalled();
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke();
 
@@ -316,10 +356,13 @@ class PubSubClientTest extends SnippetTestCase
         $snippet->addLocal('pubsub', $this->client);
         $snippet->addLocal('definition', '');
 
-        $this->connection->validateSchema(Argument::any())
-            ->shouldBeCalled()
-            ->willThrow(new BadRequestException('foo'));
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'validateSchema',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willThrow(new BadRequestException('foo'));
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke();
 
@@ -332,8 +375,12 @@ class PubSubClientTest extends SnippetTestCase
         $snippet->addLocal('pubsub', $this->client);
         $snippet->addLocal('message', '');
 
-        $this->connection->validateMessage(Argument::any())->shouldBeCalled();
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'validateMessage',
+            Argument::cetera()
+        )->shouldBeCalled();
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke();
 
@@ -346,10 +393,13 @@ class PubSubClientTest extends SnippetTestCase
         $snippet->addLocal('pubsub', $this->client);
         $snippet->addLocal('message', '');
 
-        $this->connection->validateMessage(Argument::any())
-            ->shouldBeCalled()
-            ->willThrow(new BadRequestException('foo'));
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'validateMessage',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willThrow(new BadRequestException('foo'));
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $snippet->invoke();
 

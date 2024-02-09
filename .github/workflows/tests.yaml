@@ -91,7 +91,9 @@ jobs:
         php-version: '7.4'
         extensions: grpc
     - name: Run Package Test Suites
-      run: bash .github/run-package-tests.sh --prefer-lowest
+      env:
+        PREFER_LOWEST: ${{ github.event.pull_request.user.login == 'release-please[bot]' && '--prefer-lowest-strict' || '--prefer-lowest' }}
+      run: bash .github/run-package-tests.sh $PREFER_LOWEST
 
   test_dev_commands:
     name: Dev Commands Unit Tests

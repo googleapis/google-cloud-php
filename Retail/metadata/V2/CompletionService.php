@@ -53,8 +53,8 @@ attributes (2N.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult
 recent_search (	2≤
 CompletionService≥
 CompleteQuery,.google.cloud.retail.v2.CompleteQueryRequest-.google.cloud.retail.v2.CompleteQueryResponse"EÇ”‰ì?=/v2/{catalog=projects/*/locations/*/catalogs/*}:completeQueryõ
-ImportCompletionData3.google.cloud.retail.v2.ImportCompletionDataRequest.google.longrunning.Operation"ÆÇ”‰ìI"D/v2/{parent=projects/*/locations/*/catalogs/*}/completionData:import:* A\\
-3google.cloud.retail.v2.ImportCompletionDataResponse%google.cloud.retail.v2.ImportMetadataI Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB¡
+ImportCompletionData3.google.cloud.retail.v2.ImportCompletionDataRequest.google.longrunning.Operation"Æ A\\
+3google.cloud.retail.v2.ImportCompletionDataResponse%google.cloud.retail.v2.ImportMetadataÇ”‰ìI"D/v2/{parent=projects/*/locations/*/catalogs/*}/completionData:import:*I Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB¡
 com.google.cloud.retail.v2BCompletionServiceProtoPZ2cloud.google.com/go/retail/apiv2/retailpb;retailpb¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 

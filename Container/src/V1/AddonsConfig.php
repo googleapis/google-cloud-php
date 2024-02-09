@@ -94,6 +94,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.GcsFuseCsiDriverConfig gcs_fuse_csi_driver_config = 17;</code>
      */
     private $gcs_fuse_csi_driver_config = null;
+    /**
+     * Optional. Configuration for the StatefulHA add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.StatefulHAConfig stateful_ha_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $stateful_ha_config = null;
 
     /**
      * Constructor.
@@ -134,6 +140,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the Backup for GKE agent addon.
      *     @type \Google\Cloud\Container\V1\GcsFuseCsiDriverConfig $gcs_fuse_csi_driver_config
      *           Configuration for the Cloud Storage Fuse CSI driver.
+     *     @type \Google\Cloud\Container\V1\StatefulHAConfig $stateful_ha_config
+     *           Optional. Configuration for the StatefulHA add-on.
      * }
      */
     public function __construct($data = NULL) {
@@ -561,6 +569,42 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcsFuseCsiDriverConfig::class);
         $this->gcs_fuse_csi_driver_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the StatefulHA add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.StatefulHAConfig stateful_ha_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\StatefulHAConfig|null
+     */
+    public function getStatefulHaConfig()
+    {
+        return $this->stateful_ha_config;
+    }
+
+    public function hasStatefulHaConfig()
+    {
+        return isset($this->stateful_ha_config);
+    }
+
+    public function clearStatefulHaConfig()
+    {
+        unset($this->stateful_ha_config);
+    }
+
+    /**
+     * Optional. Configuration for the StatefulHA add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.StatefulHAConfig stateful_ha_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\StatefulHAConfig $var
+     * @return $this
+     */
+    public function setStatefulHaConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\StatefulHAConfig::class);
+        $this->stateful_ha_config = $var;
 
         return $this;
     }

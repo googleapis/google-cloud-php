@@ -166,44 +166,44 @@ request_id (	"
 
 request_id (	2Â"
 LivestreamServiceà
-CreateChannel6.google.cloud.video.livestream.v1.CreateChannelRequest.google.longrunning.Operation"x‚Óä“7",/v1/{parent=projects/*/locations/*}/channels:channelÚAparent,channel,channel_idÊA
-ChannelOperationMetadata¼
-ListChannels5.google.cloud.video.livestream.v1.ListChannelsRequest6.google.cloud.video.livestream.v1.ListChannelsResponse"=‚Óä“.,/v1/{parent=projects/*/locations/*}/channelsÚAparent©
+CreateChannel6.google.cloud.video.livestream.v1.CreateChannelRequest.google.longrunning.Operation"xÊA
+ChannelOperationMetadataÚAparent,channel,channel_id‚Óä“7",/v1/{parent=projects/*/locations/*}/channels:channel¼
+ListChannels5.google.cloud.video.livestream.v1.ListChannelsRequest6.google.cloud.video.livestream.v1.ListChannelsResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/channels©
 
-GetChannel3.google.cloud.video.livestream.v1.GetChannelRequest).google.cloud.video.livestream.v1.Channel";‚Óä“.,/v1/{name=projects/*/locations/*/channels/*}ÚAnameĞ
-DeleteChannel6.google.cloud.video.livestream.v1.DeleteChannelRequest.google.longrunning.Operation"h‚Óä“.*,/v1/{name=projects/*/locations/*/channels/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataâ
-UpdateChannel6.google.cloud.video.livestream.v1.UpdateChannelRequest.google.longrunning.Operation"z‚Óä“?24/v1/{channel.name=projects/*/locations/*/channels/*}:channelÚAchannel,update_maskÊA
-ChannelOperationMetadataÚ
-StartChannel5.google.cloud.video.livestream.v1.StartChannelRequest.google.longrunning.Operation"t‚Óä“7"2/v1/{name=projects/*/locations/*/channels/*}:start:*ÚAnameÊA-
-ChannelOperationResponseOperationMetadata×
-StopChannel4.google.cloud.video.livestream.v1.StopChannelRequest.google.longrunning.Operation"s‚Óä“6"1/v1/{name=projects/*/locations/*/channels/*}:stop:*ÚAnameÊA-
-ChannelOperationResponseOperationMetadataÒ
-CreateInput4.google.cloud.video.livestream.v1.CreateInputRequest.google.longrunning.Operation"n‚Óä“3"*/v1/{parent=projects/*/locations/*}/inputs:inputÚAparent,input,input_idÊA
-InputOperationMetadata´
+GetChannel3.google.cloud.video.livestream.v1.GetChannelRequest).google.cloud.video.livestream.v1.Channel";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/channels/*}Ğ
+DeleteChannel6.google.cloud.video.livestream.v1.DeleteChannelRequest.google.longrunning.Operation"hÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“.*,/v1/{name=projects/*/locations/*/channels/*}â
+UpdateChannel6.google.cloud.video.livestream.v1.UpdateChannelRequest.google.longrunning.Operation"zÊA
+ChannelOperationMetadataÚAchannel,update_mask‚Óä“?24/v1/{channel.name=projects/*/locations/*/channels/*}:channelÚ
+StartChannel5.google.cloud.video.livestream.v1.StartChannelRequest.google.longrunning.Operation"tÊA-
+ChannelOperationResponseOperationMetadataÚAname‚Óä“7"2/v1/{name=projects/*/locations/*/channels/*}:start:*×
+StopChannel4.google.cloud.video.livestream.v1.StopChannelRequest.google.longrunning.Operation"sÊA-
+ChannelOperationResponseOperationMetadataÚAname‚Óä“6"1/v1/{name=projects/*/locations/*/channels/*}:stop:*Ò
+CreateInput4.google.cloud.video.livestream.v1.CreateInputRequest.google.longrunning.Operation"nÊA
+InputOperationMetadataÚAparent,input,input_id‚Óä“3"*/v1/{parent=projects/*/locations/*}/inputs:input´
 
-ListInputs3.google.cloud.video.livestream.v1.ListInputsRequest4.google.cloud.video.livestream.v1.ListInputsResponse";‚Óä“,*/v1/{parent=projects/*/locations/*}/inputsÚAparent¡
-GetInput1.google.cloud.video.livestream.v1.GetInputRequest\'.google.cloud.video.livestream.v1.Input"9‚Óä“,*/v1/{name=projects/*/locations/*/inputs/*}ÚAnameÊ
-DeleteInput4.google.cloud.video.livestream.v1.DeleteInputRequest.google.longrunning.Operation"f‚Óä“,**/v1/{name=projects/*/locations/*/inputs/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataÔ
-UpdateInput4.google.cloud.video.livestream.v1.UpdateInputRequest.google.longrunning.Operation"p‚Óä“920/v1/{input.name=projects/*/locations/*/inputs/*}:inputÚAinput,update_maskÊA
-InputOperationMetadataÊ
-CreateEvent4.google.cloud.video.livestream.v1.CreateEventRequest\'.google.cloud.video.livestream.v1.Event"\\‚Óä“>"5/v1/{parent=projects/*/locations/*/channels/*}/events:eventÚAparent,event,event_id¿
+ListInputs3.google.cloud.video.livestream.v1.ListInputsRequest4.google.cloud.video.livestream.v1.ListInputsResponse";ÚAparent‚Óä“,*/v1/{parent=projects/*/locations/*}/inputs¡
+GetInput1.google.cloud.video.livestream.v1.GetInputRequest\'.google.cloud.video.livestream.v1.Input"9ÚAname‚Óä“,*/v1/{name=projects/*/locations/*/inputs/*}Ê
+DeleteInput4.google.cloud.video.livestream.v1.DeleteInputRequest.google.longrunning.Operation"fÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/inputs/*}Ô
+UpdateInput4.google.cloud.video.livestream.v1.UpdateInputRequest.google.longrunning.Operation"pÊA
+InputOperationMetadataÚAinput,update_mask‚Óä“920/v1/{input.name=projects/*/locations/*/inputs/*}:inputÊ
+CreateEvent4.google.cloud.video.livestream.v1.CreateEventRequest\'.google.cloud.video.livestream.v1.Event"\\ÚAparent,event,event_id‚Óä“>"5/v1/{parent=projects/*/locations/*/channels/*}/events:event¿
 
-ListEvents3.google.cloud.video.livestream.v1.ListEventsRequest4.google.cloud.video.livestream.v1.ListEventsResponse"F‚Óä“75/v1/{parent=projects/*/locations/*/channels/*}/eventsÚAparent¬
-GetEvent1.google.cloud.video.livestream.v1.GetEventRequest\'.google.cloud.video.livestream.v1.Event"D‚Óä“75/v1/{name=projects/*/locations/*/channels/*/events/*}ÚAname¡
-DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"D‚Óä“7*5/v1/{name=projects/*/locations/*/channels/*/events/*}ÚAnameÒ
-CreateAsset4.google.cloud.video.livestream.v1.CreateAssetRequest.google.longrunning.Operation"n‚Óä“3"*/v1/{parent=projects/*/locations/*}/assets:assetÚAparent,asset,asset_idÊA
-AssetOperationMetadataÊ
-DeleteAsset4.google.cloud.video.livestream.v1.DeleteAssetRequest.google.longrunning.Operation"f‚Óä“,**/v1/{name=projects/*/locations/*/assets/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata¡
-GetAsset1.google.cloud.video.livestream.v1.GetAssetRequest\'.google.cloud.video.livestream.v1.Asset"9‚Óä“,*/v1/{name=projects/*/locations/*/assets/*}ÚAname´
+ListEvents3.google.cloud.video.livestream.v1.ListEventsRequest4.google.cloud.video.livestream.v1.ListEventsResponse"FÚAparent‚Óä“75/v1/{parent=projects/*/locations/*/channels/*}/events¬
+GetEvent1.google.cloud.video.livestream.v1.GetEventRequest\'.google.cloud.video.livestream.v1.Event"DÚAname‚Óä“75/v1/{name=projects/*/locations/*/channels/*/events/*}¡
+DeleteEvent4.google.cloud.video.livestream.v1.DeleteEventRequest.google.protobuf.Empty"DÚAname‚Óä“7*5/v1/{name=projects/*/locations/*/channels/*/events/*}Ò
+CreateAsset4.google.cloud.video.livestream.v1.CreateAssetRequest.google.longrunning.Operation"nÊA
+AssetOperationMetadataÚAparent,asset,asset_id‚Óä“3"*/v1/{parent=projects/*/locations/*}/assets:assetÊ
+DeleteAsset4.google.cloud.video.livestream.v1.DeleteAssetRequest.google.longrunning.Operation"fÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“,**/v1/{name=projects/*/locations/*/assets/*}¡
+GetAsset1.google.cloud.video.livestream.v1.GetAssetRequest\'.google.cloud.video.livestream.v1.Asset"9ÚAname‚Óä“,*/v1/{name=projects/*/locations/*/assets/*}´
 
-ListAssets3.google.cloud.video.livestream.v1.ListAssetsRequest4.google.cloud.video.livestream.v1.ListAssetsResponse";‚Óä“,*/v1/{parent=projects/*/locations/*}/assetsÚAparent
-GetPool0.google.cloud.video.livestream.v1.GetPoolRequest&.google.cloud.video.livestream.v1.Pool"8‚Óä“+)/v1/{name=projects/*/locations/*/pools/*}ÚAnameÍ
+ListAssets3.google.cloud.video.livestream.v1.ListAssetsRequest4.google.cloud.video.livestream.v1.ListAssetsResponse";ÚAparent‚Óä“,*/v1/{parent=projects/*/locations/*}/assets
+GetPool0.google.cloud.video.livestream.v1.GetPoolRequest&.google.cloud.video.livestream.v1.Pool"8ÚAname‚Óä“+)/v1/{name=projects/*/locations/*/pools/*}Í
 
-UpdatePool3.google.cloud.video.livestream.v1.UpdatePoolRequest.google.longrunning.Operation"k‚Óä“62./v1/{pool.name=projects/*/locations/*/pools/*}:poolÚApool,update_maskÊA
-PoolOperationMetadataMÊAlivestream.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¡
+UpdatePool3.google.cloud.video.livestream.v1.UpdatePoolRequest.google.longrunning.Operation"kÊA
+PoolOperationMetadataÚApool,update_mask‚Óä“62./v1/{pool.name=projects/*/locations/*/pools/*}:poolMÊAlivestream.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¡
 $com.google.cloud.video.livestream.v1BServiceProtoPZDcloud.google.com/go/video/livestream/apiv1/livestreampb;livestreampbª Google.Cloud.Video.LiveStream.V1Ê Google\\Cloud\\Video\\LiveStream\\V1ê$Google::Cloud::Video::LiveStream::V1êAd
 *secretmanager.googleapis.com/SecretVersion6projects/{project}/secrets/{secret}/versions/{version}êAN
 compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'

@@ -83,9 +83,11 @@ class PagesClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
         $expectedResponse = new Page();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');
@@ -220,9 +222,11 @@ class PagesClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
         $expectedResponse = new Page();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->pageName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]', '[PAGE]');
@@ -358,9 +362,11 @@ class PagesClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
         $expectedResponse = new Page();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
         $page = new Page();
@@ -557,9 +563,11 @@ class PagesClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
         $expectedResponse = new Page();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->flowName('[PROJECT]', '[LOCATION]', '[AGENT]', '[FLOW]');

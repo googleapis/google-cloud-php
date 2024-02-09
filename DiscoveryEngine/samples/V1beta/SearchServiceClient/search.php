@@ -33,6 +33,8 @@ use Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\SearchResult;
  * Performs a search.
  *
  * @param string $formattedServingConfig The resource name of the Search serving config, such as
+ *                                       `projects/&#42;/locations/global/collections/default_collection/engines/&#42;/servingConfigs/default_serving_config`,
+ *                                       or
  *                                       `projects/&#42;/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
  *                                       This field is used to identify the serving configuration name, set
  *                                       of models used to make the search. Please see

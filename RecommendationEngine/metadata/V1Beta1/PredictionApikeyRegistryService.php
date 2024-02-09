@@ -43,9 +43,9 @@ page_token (	BàA"·
 name (	BHàAúAB
 @recommendationengine.googleapis.com/PredictionApiKeyRegistration2—
 PredictionApiKeyRegistryÙ
-"CreatePredictionApiKeyRegistrationT.google.cloud.recommendationengine.v1beta1.CreatePredictionApiKeyRegistrationRequestG.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration"“‚Óä“d"_/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/predictionApiKeyRegistrations:*ÚA&parent,prediction_api_key_registrationÀ
-!ListPredictionApiKeyRegistrationsS.google.cloud.recommendationengine.v1beta1.ListPredictionApiKeyRegistrationsRequestT.google.cloud.recommendationengine.v1beta1.ListPredictionApiKeyRegistrationsResponse"p‚Óä“a_/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/predictionApiKeyRegistrationsÚAparent‚
-"DeletePredictionApiKeyRegistrationT.google.cloud.recommendationengine.v1beta1.DeletePredictionApiKeyRegistrationRequest.google.protobuf.Empty"n‚Óä“a*_/v1beta1/{name=projects/*/locations/*/catalogs/*/eventStores/*/predictionApiKeyRegistrations/*}ÚAnameWÊA#recommendationengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB£
+"CreatePredictionApiKeyRegistrationT.google.cloud.recommendationengine.v1beta1.CreatePredictionApiKeyRegistrationRequestG.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration"“ÚA&parent,prediction_api_key_registration‚Óä“d"_/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/predictionApiKeyRegistrations:*À
+!ListPredictionApiKeyRegistrationsS.google.cloud.recommendationengine.v1beta1.ListPredictionApiKeyRegistrationsRequestT.google.cloud.recommendationengine.v1beta1.ListPredictionApiKeyRegistrationsResponse"pÚAparent‚Óä“a_/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/predictionApiKeyRegistrations‚
+"DeletePredictionApiKeyRegistrationT.google.cloud.recommendationengine.v1beta1.DeletePredictionApiKeyRegistrationRequest.google.protobuf.Empty"nÚAname‚Óä“a*_/v1beta1/{name=projects/*/locations/*/catalogs/*/eventStores/*/predictionApiKeyRegistrations/*}WÊA#recommendationengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB£
 -com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAIª)Google.Cloud.RecommendationEngine.V1Beta1Ê)Google\\Cloud\\RecommendationEngine\\V1beta1ê,Google::Cloud::RecommendationEngine::V1beta1bproto3'
         , true);
 

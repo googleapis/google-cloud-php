@@ -124,6 +124,9 @@ class Operation
      *     @type string $transactionId The ID of the transaction.
      *     @type bool $returnCommitStats If true, return the full response.
      *           **Defaults to** `false`.
+     *     @type Duration $maxCommitDelay The amount of latency this request
+     *           is willing to incur in order to improve throughput.
+     *           **Defaults to** null.
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
@@ -151,6 +154,9 @@ class Operation
      *     @type string $transactionId The ID of the transaction.
      *     @type bool $returnCommitStats If true, return the full response.
      *           **Defaults to** `false`.
+     *     @type Duration $maxCommitDelay The amount of latency this request
+     *           is willing to incur in order to improve throughput.
+     *           **Defaults to** null.
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
