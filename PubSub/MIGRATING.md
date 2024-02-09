@@ -56,8 +56,8 @@ call options.
 
 ### Connection classes are not used anymore.
 
-This is a major change with this major version but one that we hope won't break most users. When one
-created a `PubSubClient`, behind the scenes a connection adapter was initialized based on your
+This is a major change with this major version but one that we hope won't break any users. When the
+`PubSubClient` was created, behind the scenes a connection adapter was initialized based on your
 transport preferences. This connection object was then forwarded to any resource classes internally,
 like so:
 
@@ -69,7 +69,7 @@ $topic = $client->topic('my-topic');
 ```
 
 As you can see the connection object was handled internally. If you used the library in this way,
-you will not need to make any no changes. However, if you created the connection classes directly
+you will not need to make any changes. However, if you created the connection classes directly
 and passed it to the Topic class, this will break in PubSub `v2`:
 
 ```php
