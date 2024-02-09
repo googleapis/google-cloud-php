@@ -295,7 +295,7 @@
 
 </details>
 
-<details><summary>google/cloud-core 2.0.0</summary>
+<details><summary>google/cloud-core 1.55.0</summary>
 
 
 
@@ -718,7 +718,7 @@
 
 </details>
 
-<details><summary>google/cloud-pubsub 2.0.0</summary>
+<details><summary>google/cloud-pubsub 2.0.0-RC1</summary>
 
 
 
@@ -886,7 +886,7 @@
 
 </details>
 
-<details><summary>google/cloud-spanner 2.0.0</summary>
+<details><summary>google/cloud-spanner 1.71.0</summary>
 
 
 
