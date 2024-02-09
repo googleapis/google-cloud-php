@@ -18,9 +18,8 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Duration;
-use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\Tests\Unit\Stubs\ApiHelpersTraitImpl;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -36,7 +35,7 @@ class ApiHelperTraitTest extends TestCase
 
     public function setUp(): void
     {
-        $this->implementation = TestHelpers::impl(ApiHelperTrait::class);
+        $this->implementation = new ApiHelpersTraitImpl();
     }
 
     public function testFormatsTimestamp()
@@ -48,7 +47,7 @@ class ApiHelperTraitTest extends TestCase
 
         $this->assertEquals(
             '2016-08-15T06:35:09.000000001Z',
-            $this->implementation->call('formatTimestampFromApi', [$timestamp])
+            $this->implementation->formatTimestampFromApi($timestamp)
         );
     }
 
@@ -75,7 +74,7 @@ class ApiHelperTraitTest extends TestCase
             ]
         ];
 
-        $this->assertEquals($expected, $this->implementation->call('formatStructForApi', [$struct]));
+        $this->assertEquals($expected, $this->implementation->formatStructForApi($struct));
     }
 
     public function testFormatsList()
@@ -96,7 +95,7 @@ class ApiHelperTraitTest extends TestCase
             ]
         ];
 
-        $this->assertEquals($expected, $this->implementation->call('formatListForApi', [$list]));
+        $this->assertEquals($expected, $this->implementation->formatListForApi($list));
     }
 
     /**
@@ -104,10 +103,7 @@ class ApiHelperTraitTest extends TestCase
      */
     public function testFormatTimestampForApi($timestamp, $expectedSeconds, $expectedNanos)
     {
-        $result = $this->implementation->call(
-            'formatTimestampForApi',
-            [$timestamp]
-        );
+        $result = $this->implementation->formatTimestampForApi($timestamp);
 
         $this->assertEquals($expectedSeconds, $result['seconds']);
         $this->assertEquals($expectedNanos, $result['nanos']);
@@ -144,7 +140,7 @@ class ApiHelperTraitTest extends TestCase
      */
     public function testFormatsDuration($value, $expected)
     {
-        $this->assertEquals($expected, $this->implementation->call('formatDurationForApi', [$value]));
+        $this->assertEquals($expected, $this->implementation->formatDurationForApi($value));
     }
 
     public function durationProvider()
@@ -174,7 +170,7 @@ class ApiHelperTraitTest extends TestCase
      */
     public function testFormatsValue($value, $expected)
     {
-        $this->assertEquals($expected, $this->implementation->call('formatValueForApi', [$value]));
+        $this->assertEquals($expected, $this->implementation->formatValueForApi($value));
     }
 
     public function formatValueProvider()
@@ -215,7 +211,7 @@ class ApiHelperTraitTest extends TestCase
      */
     public function testUnpackValue($expected, $value)
     {
-        $this->assertEquals($expected, $this->implementation->call('unpackValue', [$value]));
+        $this->assertEquals($expected, $this->implementation->unpackValue($value));
     }
 
     public function unpackValueProvider()
