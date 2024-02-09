@@ -37,8 +37,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * response.
      * A `Tool` is a piece of code that enables the system to interact with
      * external systems to perform an action, or set of actions, outside of
-     * knowledge and scope of the model. The only supported tool is currently
-     * `Function`
+     * knowledge and scope of the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -98,8 +97,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *           response.
      *           A `Tool` is a piece of code that enables the system to interact with
      *           external systems to perform an action, or set of actions, outside of
-     *           knowledge and scope of the model. The only supported tool is currently
-     *           `Function`
+     *           knowledge and scope of the model.
      *     @type array<\Google\Cloud\AIPlatform\V1\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
@@ -179,8 +177,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * response.
      * A `Tool` is a piece of code that enables the system to interact with
      * external systems to perform an action, or set of actions, outside of
-     * knowledge and scope of the model. The only supported tool is currently
-     * `Function`
+     * knowledge and scope of the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -195,8 +192,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * response.
      * A `Tool` is a piece of code that enables the system to interact with
      * external systems to perform an action, or set of actions, outside of
-     * knowledge and scope of the model. The only supported tool is currently
-     * `Function`
+     * knowledge and scope of the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $var

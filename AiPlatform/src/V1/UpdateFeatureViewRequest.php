@@ -34,6 +34,7 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
+     *   * `serviceAgentType`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -54,6 +55,7 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *                                                             Updatable fields:
      *
      *                                                             * `labels`
+     *                                                             * `serviceAgentType`
      *
      * @return \Google\Cloud\AIPlatform\V1\UpdateFeatureViewRequest
      *
@@ -86,6 +88,7 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      *           fields.
      *           Updatable fields:
      *             * `labels`
+     *             * `serviceAgentType`
      * }
      */
     public function __construct($data = NULL) {
@@ -143,6 +146,7 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
+     *   * `serviceAgentType`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -172,6 +176,7 @@ class UpdateFeatureViewRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `labels`
+     *   * `serviceAgentType`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

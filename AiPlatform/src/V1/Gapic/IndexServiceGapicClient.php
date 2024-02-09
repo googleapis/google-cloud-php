@@ -872,6 +872,14 @@ class IndexServiceGapicClient
      *
      *     @type IndexDatapoint[] $datapoints
      *           A list of datapoints to be created/updated.
+     *     @type FieldMask $updateMask
+     *           Optional. Update mask is used to specify the fields to be overwritten in
+     *           the datapoints by the update. The fields specified in the update_mask are
+     *           relative to each IndexDatapoint inside datapoints, not the full request.
+     *
+     *           Updatable fields:
+     *
+     *           * Use `all_restricts` to update both restricts and numeric_restricts.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -890,6 +898,10 @@ class IndexServiceGapicClient
         $requestParamHeaders['index'] = $index;
         if (isset($optionalArgs['datapoints'])) {
             $request->setDatapoints($optionalArgs['datapoints']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

@@ -136,6 +136,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
                     ],
                     [
@@ -179,6 +183,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:setIamPolicy',
                         'body' => '*',
                     ],
                     [
@@ -227,6 +236,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:testIamPermissions',
                     ],
                     [
                         'method' => 'post',
