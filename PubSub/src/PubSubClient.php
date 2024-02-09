@@ -182,6 +182,7 @@ class PubSubClient
             'emulatorHost' => $emulatorHost,
             'transportConfig' => [
                 'grpc' => [
+                    // increase default limit to 4MB to prevent metadata exhausted errors
                     'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
                 ]
             ]
@@ -196,7 +197,7 @@ class PubSubClient
         );
 
         $this->projectId = $this->detectProjectId($config);
-        
+
         $this->clientConfig = $config;
         $this->serializer = new Serializer([
             'publish_time' => function ($v) {
