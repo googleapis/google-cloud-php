@@ -54,6 +54,7 @@ use Google\Cloud\Compute\V1\Instance;
 use Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponse;
 use Google\Cloud\Compute\V1\ListInstancesRequest;
 use Google\Cloud\Compute\V1\ListReferrersInstancesRequest;
+use Google\Cloud\Compute\V1\PerformMaintenanceInstanceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveResourcePoliciesInstanceRequest;
 use Google\Cloud\Compute\V1\ResetInstanceRequest;
@@ -116,6 +117,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface insertAsync(InsertInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listReferrersAsync(ListReferrersInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface performMaintenanceAsync(PerformMaintenanceInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface removeResourcePoliciesAsync(RemoveResourcePoliciesInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resetAsync(ResetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resumeAsync(ResumeInstanceRequest $request, array $optionalArgs = [])
@@ -759,6 +761,30 @@ final class InstancesClient
     public function listReferrers(ListReferrersInstancesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListReferrers', $request, $callOptions);
+    }
+
+    /**
+     * Perform a manual maintenance on the instance.
+     *
+     * The async variant is {@see InstancesClient::performMaintenanceAsync()} .
+     *
+     * @param PerformMaintenanceInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function performMaintenance(PerformMaintenanceInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PerformMaintenance', $request, $callOptions)->wait();
     }
 
     /**

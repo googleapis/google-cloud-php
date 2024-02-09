@@ -418,6 +418,7 @@ class SubnetworksClientTest extends GeneratedTest
         $privateIpv6GoogleAccess = 'privateIpv6GoogleAccess1122018830';
         $purpose = 'purpose-220463842';
         $region2 = 'region2-690338393';
+        $reservedInternalRange = 'reservedInternalRange-787493070';
         $role = 'role3506294';
         $selfLink = 'selfLink-1691268851';
         $stackType = 'stackType2036521617';
@@ -441,6 +442,7 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setPrivateIpv6GoogleAccess($privateIpv6GoogleAccess);
         $expectedResponse->setPurpose($purpose);
         $expectedResponse->setRegion($region2);
+        $expectedResponse->setReservedInternalRange($reservedInternalRange);
         $expectedResponse->setRole($role);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setStackType($stackType);

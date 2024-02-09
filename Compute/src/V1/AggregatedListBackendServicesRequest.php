@@ -58,6 +58,8 @@ class AggregatedListBackendServicesRequest extends \Google\Protobuf\Internal\Mes
      */
     private $return_partial_success = null;
     /**
+     * The Shared VPC service project id or service project number for which aggregated list request is invoked for subnetworks list-usable api.
+     *
      * Generated from protobuf field <code>optional int64 service_project_number = 316757497;</code>
      */
     private $service_project_number = null;
@@ -96,6 +98,7 @@ class AggregatedListBackendServicesRequest extends \Google\Protobuf\Internal\Mes
      *     @type bool $return_partial_success
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type int|string $service_project_number
+     *           The Shared VPC service project id or service project number for which aggregated list request is invoked for subnetworks list-usable api.
      * }
      */
     public function __construct($data = NULL) {
@@ -346,6 +349,8 @@ class AggregatedListBackendServicesRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
+     * The Shared VPC service project id or service project number for which aggregated list request is invoked for subnetworks list-usable api.
+     *
      * Generated from protobuf field <code>optional int64 service_project_number = 316757497;</code>
      * @return int|string
      */
@@ -365,6 +370,8 @@ class AggregatedListBackendServicesRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
+     * The Shared VPC service project id or service project number for which aggregated list request is invoked for subnetworks list-usable api.
+     *
      * Generated from protobuf field <code>optional int64 service_project_number = 316757497;</code>
      * @param int|string $var
      * @return $this
