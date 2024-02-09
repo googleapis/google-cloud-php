@@ -40,6 +40,21 @@ return [
                     ],
                 ],
             ],
+            'ServerStreamingDetectIntent' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Dialogflow\Cx\V3\DetectIntentResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'session',
+                        'fieldAccessors' => [
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
             'StreamingDetectIntent' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',

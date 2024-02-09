@@ -61,6 +61,25 @@ return [
                     ],
                 ],
             ],
+            'ServerStreamingDetectIntent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/sessions/*}:serverStreamingDetectIntent',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/environments/*/sessions/*}:serverStreamingDetectIntent',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'session' => [
+                        'getters' => [
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
             'SubmitAnswerFeedback' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{session=projects/*/locations/*/agents/*/sessions/*}:submitAnswerFeedback',

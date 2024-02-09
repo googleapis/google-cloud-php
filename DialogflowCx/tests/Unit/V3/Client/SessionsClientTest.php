@@ -25,6 +25,7 @@ namespace Google\Cloud\Dialogflow\Cx\Tests\Unit\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\Cx\V3\AnswerFeedback;
@@ -277,6 +278,107 @@ class SessionsClientTest extends GeneratedTest
         try {
             $gapicClient->matchIntent($request);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function serverStreamingDetectIntentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $responseId = 'responseId1847552473';
+        $outputAudio = '24';
+        $allowCancellation = false;
+        $expectedResponse = new DetectIntentResponse();
+        $expectedResponse->setResponseId($responseId);
+        $expectedResponse->setOutputAudio($outputAudio);
+        $expectedResponse->setAllowCancellation($allowCancellation);
+        $transport->addResponse($expectedResponse);
+        $responseId2 = 'responseId21676436300';
+        $outputAudio2 = '-53';
+        $allowCancellation2 = true;
+        $expectedResponse2 = new DetectIntentResponse();
+        $expectedResponse2->setResponseId($responseId2);
+        $expectedResponse2->setOutputAudio($outputAudio2);
+        $expectedResponse2->setAllowCancellation($allowCancellation2);
+        $transport->addResponse($expectedResponse2);
+        $responseId3 = 'responseId31676436301';
+        $outputAudio3 = '-52';
+        $allowCancellation3 = false;
+        $expectedResponse3 = new DetectIntentResponse();
+        $expectedResponse3->setResponseId($responseId3);
+        $expectedResponse3->setOutputAudio($outputAudio3);
+        $expectedResponse3->setAllowCancellation($allowCancellation3);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
+        $queryInput = new QueryInput();
+        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
+        $queryInput->setLanguageCode($queryInputLanguageCode);
+        $request = (new DetectIntentRequest())->setSession($formattedSession)->setQueryInput($queryInput);
+        $serverStream = $gapicClient->serverStreamingDetectIntent($request);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.cx.v3.Sessions/ServerStreamingDetectIntent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($formattedSession, $actualValue);
+        $actualValue = $actualRequestObject->getQueryInput();
+        $this->assertProtobufEquals($queryInput, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function serverStreamingDetectIntentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $formattedSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[AGENT]', '[SESSION]');
+        $queryInput = new QueryInput();
+        $queryInputLanguageCode = 'queryInputLanguageCode478766695';
+        $queryInput->setLanguageCode($queryInputLanguageCode);
+        $request = (new DetectIntentRequest())->setSession($formattedSession)->setQueryInput($queryInput);
+        $serverStream = $gapicClient->serverStreamingDetectIntent($request);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
