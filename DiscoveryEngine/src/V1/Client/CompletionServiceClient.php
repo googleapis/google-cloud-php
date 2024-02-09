@@ -27,6 +27,8 @@ namespace Google\Cloud\DiscoveryEngine\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -34,6 +36,9 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DiscoveryEngine\V1\CompleteQueryRequest;
 use Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse;
+use Google\Cloud\DiscoveryEngine\V1\ImportSuggestionDenyListEntriesRequest;
+use Google\Cloud\DiscoveryEngine\V1\PurgeSuggestionDenyListEntriesRequest;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -48,6 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface completeQueryAsync(CompleteQueryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface importSuggestionDenyListEntriesAsync(ImportSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface purgeSuggestionDenyListEntriesAsync(PurgeSuggestionDenyListEntriesRequest $request, array $optionalArgs = [])
  */
 final class CompletionServiceClient
 {
@@ -76,6 +83,8 @@ final class CompletionServiceClient
     /** The default scopes required by the service. */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -93,6 +102,37 @@ final class CompletionServiceClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
     }
 
     /**
@@ -242,6 +282,7 @@ final class CompletionServiceClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -279,5 +320,67 @@ final class CompletionServiceClient
     public function completeQuery(CompleteQueryRequest $request, array $callOptions = []): CompleteQueryResponse
     {
         return $this->startApiCall('CompleteQuery', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Imports all
+     * [SuggestionDenyListEntry][google.cloud.discoveryengine.v1.SuggestionDenyListEntry]
+     * for a DataStore.
+     *
+     * The async variant is
+     * {@see CompletionServiceClient::importSuggestionDenyListEntriesAsync()} .
+     *
+     * @example samples/V1/CompletionServiceClient/import_suggestion_deny_list_entries.php
+     *
+     * @param ImportSuggestionDenyListEntriesRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importSuggestionDenyListEntries(
+        ImportSuggestionDenyListEntriesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ImportSuggestionDenyListEntries', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Permanently deletes all
+     * [SuggestionDenyListEntry][google.cloud.discoveryengine.v1.SuggestionDenyListEntry]
+     * for a DataStore.
+     *
+     * The async variant is
+     * {@see CompletionServiceClient::purgeSuggestionDenyListEntriesAsync()} .
+     *
+     * @example samples/V1/CompletionServiceClient/purge_suggestion_deny_list_entries.php
+     *
+     * @param PurgeSuggestionDenyListEntriesRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function purgeSuggestionDenyListEntries(
+        PurgeSuggestionDenyListEntriesRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('PurgeSuggestionDenyListEntries', $request, $callOptions)->wait();
     }
 }
