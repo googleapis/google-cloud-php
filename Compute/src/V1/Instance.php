@@ -208,6 +208,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Reserved for future use.
      *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     */
+    private $satisfies_pzi = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
      */
     private $satisfies_pzs = null;
@@ -351,6 +357,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Resource policies applied to this instance.
      *     @type \Google\Cloud\Compute\V1\ResourceStatus $resource_status
      *           [Output Only] Specifies values set for instance attributes as compared to the values requested by user in the corresponding input only field.
+     *     @type bool $satisfies_pzi
+     *           [Output Only] Reserved for future use.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
      *     @type \Google\Cloud\Compute\V1\Scheduling $scheduling
@@ -1477,6 +1485,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceStatus::class);
         $this->resource_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

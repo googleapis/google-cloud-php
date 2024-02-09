@@ -174,6 +174,34 @@ final class SearchServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $servingConfig
+     *
+     * @return string The formatted project_location_collection_engine_serving_config resource.
+     */
+    public static function projectLocationCollectionEngineServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineServingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store_branch resource.
      *
      * @param string $project
@@ -254,6 +282,7 @@ final class SearchServiceClient
      * - branch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreBranch: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
      * - projectLocationDataStoreBranch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}

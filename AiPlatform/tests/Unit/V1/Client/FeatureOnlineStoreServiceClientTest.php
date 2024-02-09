@@ -29,6 +29,9 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\Client\FeatureOnlineStoreServiceClient;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse;
+use Google\Cloud\AIPlatform\V1\NearestNeighborQuery;
+use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesRequest;
+use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesResponse;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -120,6 +123,74 @@ class FeatureOnlineStoreServiceClientTest extends GeneratedTest
             ->setFeatureView($formattedFeatureView);
         try {
             $gapicClient->fetchFeatureValues($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchNearestEntitiesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SearchNearestEntitiesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedFeatureView = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
+        $query = new NearestNeighborQuery();
+        $request = (new SearchNearestEntitiesRequest())
+            ->setFeatureView($formattedFeatureView)
+            ->setQuery($query);
+        $response = $gapicClient->searchNearestEntities($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.FeatureOnlineStoreService/SearchNearestEntities', $actualFuncCall);
+        $actualValue = $actualRequestObject->getFeatureView();
+        $this->assertProtobufEquals($formattedFeatureView, $actualValue);
+        $actualValue = $actualRequestObject->getQuery();
+        $this->assertProtobufEquals($query, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchNearestEntitiesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedFeatureView = $gapicClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
+        $query = new NearestNeighborQuery();
+        $request = (new SearchNearestEntitiesRequest())
+            ->setFeatureView($formattedFeatureView)
+            ->setQuery($query);
+        try {
+            $gapicClient->searchNearestEntities($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

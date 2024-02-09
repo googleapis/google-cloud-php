@@ -420,6 +420,11 @@
                                 "fetchFeatureValues"
                             ]
                         },
+                        "SearchNearestEntities": {
+                            "methods": [
+                                "searchNearestEntities"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -1044,6 +1049,11 @@
                                 "explain"
                             ]
                         },
+                        "GenerateContent": {
+                            "methods": [
+                                "generateContent"
+                            ]
+                        },
                         "Predict": {
                             "methods": [
                                 "predict"
@@ -1059,9 +1069,24 @@
                                 "serverStreamingPredict"
                             ]
                         },
+                        "StreamDirectPredict": {
+                            "methods": [
+                                "streamDirectPredict"
+                            ]
+                        },
+                        "StreamDirectRawPredict": {
+                            "methods": [
+                                "streamDirectRawPredict"
+                            ]
+                        },
                         "StreamGenerateContent": {
                             "methods": [
                                 "streamGenerateContent"
+                            ]
+                        },
+                        "StreamRawPredict": {
+                            "methods": [
+                                "streamRawPredict"
                             ]
                         },
                         "StreamingPredict": {

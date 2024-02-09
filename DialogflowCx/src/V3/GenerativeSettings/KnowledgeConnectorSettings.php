@@ -52,6 +52,13 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string agent_scope = 5;</code>
      */
     protected $agent_scope = '';
+    /**
+     * Whether to disable fallback to Data Store search results (in case the LLM
+     * couldn't pick a proper answer). Per default the feature is enabled.
+     *
+     * Generated from protobuf field <code>bool disable_data_store_fallback = 8;</code>
+     */
+    protected $disable_data_store_fallback = false;
 
     /**
      * Constructor.
@@ -73,6 +80,9 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
      *     @type string $agent_scope
      *           Agent scope, e.g. "Example company website", "internal Example
      *           company website for employees", "manual of car owner".
+     *     @type bool $disable_data_store_fallback
+     *           Whether to disable fallback to Data Store search results (in case the LLM
+     *           couldn't pick a proper answer). Per default the feature is enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -214,6 +224,34 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->agent_scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to disable fallback to Data Store search results (in case the LLM
+     * couldn't pick a proper answer). Per default the feature is enabled.
+     *
+     * Generated from protobuf field <code>bool disable_data_store_fallback = 8;</code>
+     * @return bool
+     */
+    public function getDisableDataStoreFallback()
+    {
+        return $this->disable_data_store_fallback;
+    }
+
+    /**
+     * Whether to disable fallback to Data Store search results (in case the LLM
+     * couldn't pick a proper answer). Per default the feature is enabled.
+     *
+     * Generated from protobuf field <code>bool disable_data_store_fallback = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableDataStoreFallback($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_data_store_fallback = $var;
 
         return $this;
     }

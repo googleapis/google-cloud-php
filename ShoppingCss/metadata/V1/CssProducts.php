@@ -49,8 +49,8 @@ page_token (	"l
 css_products (2".google.shopping.css.v1.CssProduct
 next_page_token (	2˜
 CssProductsService•
-GetCssProduct,.google.shopping.css.v1.GetCssProductRequest".google.shopping.css.v1.CssProduct"2‚Óä“%#/v1/{name=accounts/*/cssProducts/*}ÚAname¨
-ListCssProducts..google.shopping.css.v1.ListCssProductsRequest/.google.shopping.css.v1.ListCssProductsResponse"4‚Óä“%#/v1/{parent=accounts/*}/cssProductsÚAparent?ÊAcss.googleapis.comÒA\'https://www.googleapis.com/auth/contentB²
+GetCssProduct,.google.shopping.css.v1.GetCssProductRequest".google.shopping.css.v1.CssProduct"2ÚAname‚Óä“%#/v1/{name=accounts/*/cssProducts/*}¨
+ListCssProducts..google.shopping.css.v1.ListCssProductsRequest/.google.shopping.css.v1.ListCssProductsResponse"4ÚAparent‚Óä“%#/v1/{parent=accounts/*}/cssProducts?ÊAcss.googleapis.comÒA\'https://www.googleapis.com/auth/contentB²
 com.google.shopping.css.v1BCssProductsProtoPZ2cloud.google.com/go/shopping/css/apiv1/csspb;csspbªGoogle.Shopping.Css.V1ÊGoogle\\Shopping\\Css\\V1êGoogle::Shopping::Css::V1bproto3'
         , true);
 

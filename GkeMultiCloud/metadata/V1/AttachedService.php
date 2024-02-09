@@ -91,18 +91,18 @@ expires_in (
 
 token_type (	2Ý
 AttachedClusters™
-CreateAttachedCluster;.google.cloud.gkemulticloud.v1.CreateAttachedClusterRequest.google.longrunning.Operation"£‚Óä“H"4/v1/{parent=projects/*/locations/*}/attachedClusters:attached_clusterÚA+parent,attached_cluster,attached_cluster_idÊA$
-AttachedClusterOperationMetadata›
-UpdateAttachedCluster;.google.cloud.gkemulticloud.v1.UpdateAttachedClusterRequest.google.longrunning.Operation"¥‚Óä“Y2E/v1/{attached_cluster.name=projects/*/locations/*/attachedClusters/*}:attached_clusterÚAattached_cluster,update_maskÊA$
-AttachedClusterOperationMetadataý
-ImportAttachedCluster;.google.cloud.gkemulticloud.v1.ImportAttachedClusterRequest.google.longrunning.Operation"‡‚Óä“@";/v1/{parent=projects/*/locations/*}/attachedClusters:import:*ÚAparent,fleet_membershipÊA$
-AttachedClusterOperationMetadataÃ
-GetAttachedCluster8.google.cloud.gkemulticloud.v1.GetAttachedClusterRequest..google.cloud.gkemulticloud.v1.AttachedCluster"C‚Óä“64/v1/{name=projects/*/locations/*/attachedClusters/*}ÚAnameÖ
-ListAttachedClusters:.google.cloud.gkemulticloud.v1.ListAttachedClustersRequest;.google.cloud.gkemulticloud.v1.ListAttachedClustersResponse"E‚Óä“64/v1/{parent=projects/*/locations/*}/attachedClustersÚAparentå
-DeleteAttachedCluster;.google.cloud.gkemulticloud.v1.DeleteAttachedClusterRequest.google.longrunning.Operation"p‚Óä“6*4/v1/{name=projects/*/locations/*/attachedClusters/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataÔ
-GetAttachedServerConfig=.google.cloud.gkemulticloud.v1.GetAttachedServerConfigRequest3.google.cloud.gkemulticloud.v1.AttachedServerConfig"E‚Óä“86/v1/{name=projects/*/locations/*/attachedServerConfig}ÚAname¶
-&GenerateAttachedClusterInstallManifestL.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestRequestM.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestResponse"o‚Óä“LJ/v1/{parent=projects/*/locations/*}:generateAttachedClusterInstallManifestÚAparent,attached_cluster_id¥
+CreateAttachedCluster;.google.cloud.gkemulticloud.v1.CreateAttachedClusterRequest.google.longrunning.Operation"£ÊA$
+AttachedClusterOperationMetadataÚA+parent,attached_cluster,attached_cluster_id‚Óä“H"4/v1/{parent=projects/*/locations/*}/attachedClusters:attached_cluster›
+UpdateAttachedCluster;.google.cloud.gkemulticloud.v1.UpdateAttachedClusterRequest.google.longrunning.Operation"¥ÊA$
+AttachedClusterOperationMetadataÚAattached_cluster,update_mask‚Óä“Y2E/v1/{attached_cluster.name=projects/*/locations/*/attachedClusters/*}:attached_clusterý
+ImportAttachedCluster;.google.cloud.gkemulticloud.v1.ImportAttachedClusterRequest.google.longrunning.Operation"‡ÊA$
+AttachedClusterOperationMetadataÚAparent,fleet_membership‚Óä“@";/v1/{parent=projects/*/locations/*}/attachedClusters:import:*Ã
+GetAttachedCluster8.google.cloud.gkemulticloud.v1.GetAttachedClusterRequest..google.cloud.gkemulticloud.v1.AttachedCluster"CÚAname‚Óä“64/v1/{name=projects/*/locations/*/attachedClusters/*}Ö
+ListAttachedClusters:.google.cloud.gkemulticloud.v1.ListAttachedClustersRequest;.google.cloud.gkemulticloud.v1.ListAttachedClustersResponse"EÚAparent‚Óä“64/v1/{parent=projects/*/locations/*}/attachedClusterså
+DeleteAttachedCluster;.google.cloud.gkemulticloud.v1.DeleteAttachedClusterRequest.google.longrunning.Operation"pÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/attachedClusters/*}Ô
+GetAttachedServerConfig=.google.cloud.gkemulticloud.v1.GetAttachedServerConfigRequest3.google.cloud.gkemulticloud.v1.AttachedServerConfig"EÚAname‚Óä“86/v1/{name=projects/*/locations/*/attachedServerConfig}¶
+&GenerateAttachedClusterInstallManifestL.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestRequestM.google.cloud.gkemulticloud.v1.GenerateAttachedClusterInstallManifestResponse"oÚAparent,attached_cluster_id‚Óä“LJ/v1/{parent=projects/*/locations/*}:generateAttachedClusterInstallManifest¥
 !GenerateAttachedClusterAgentTokenG.google.cloud.gkemulticloud.v1.GenerateAttachedClusterAgentTokenRequestH.google.cloud.gkemulticloud.v1.GenerateAttachedClusterAgentTokenResponse"m‚Óä“g"b/v1/{attached_cluster=projects/*/locations/*/attachedClusters/*}:generateAttachedClusterAgentToken:*PÊAgkemulticloud.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBç
 !com.google.cloud.gkemulticloud.v1BAttachedServiceProtoPZGcloud.google.com/go/gkemulticloud/apiv1/gkemulticloudpb;gkemulticloudpbªGoogle.Cloud.GkeMultiCloud.V1ÊGoogle\\Cloud\\GkeMultiCloud\\V1ê Google::Cloud::GkeMultiCloud::V1bproto3'
         , true);

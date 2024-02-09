@@ -15,6 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * 3. Natural language speech audio to be processed.
  * 4. An event to be triggered.
  * 5. DTMF digits to invoke an intent and fill in parameter value.
+ * 6. The results of a tool executed by the client.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.cx.v3.QueryInput</code>
  */

@@ -29,8 +29,8 @@ class Tracing
 +cloudresourcemanager.googleapis.com/Project7
 spans (2#.google.devtools.cloudtrace.v2.SpanBàA2º
 TraceService¡
-BatchWriteSpans5.google.devtools.cloudtrace.v2.BatchWriteSpansRequest.google.protobuf.Empty"?‚Óä“,"\'/v2/{name=projects/*}/traces:batchWrite:*ÚA
-name,spans‰
+BatchWriteSpans5.google.devtools.cloudtrace.v2.BatchWriteSpansRequest.google.protobuf.Empty"?ÚA
+name,spans‚Óä“,"\'/v2/{name=projects/*}/traces:batchWrite:*‰
 
 CreateSpan#.google.devtools.cloudtrace.v2.Span#.google.devtools.cloudtrace.v2.Span"1‚Óä“+"&/v2/{name=projects/*/traces/*/spans/*}:*zÊAcloudtrace.googleapis.comÒA[https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/trace.appendB¯
 !com.google.devtools.cloudtrace.v2BTracingProtoPZ/cloud.google.com/go/trace/apiv2/tracepb;tracepbªGoogle.Cloud.Trace.V2ÊGoogle\\Cloud\\Trace\\V2êGoogle::Cloud::Trace::V2bproto3'

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes the auto-registration of the Forwarding Rule to Service Directory. The region and project of the Service Directory resource generated from this registration will be the same as this Forwarding Rule.
+ * Describes the auto-registration of the forwarding rule to Service Directory. The region and project of the Service Directory resource generated from this registration will be the same as this forwarding rule.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ForwardingRuleServiceDirectoryRegistration</code>
  */
@@ -28,7 +28,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
      */
     private $service = null;
     /**
-     * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs Forwarding Rules on the same network should use the same Service Directory region.
+     * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs forwarding rules on the same network should use the same Service Directory region.
      *
      * Generated from protobuf field <code>optional string service_directory_region = 74030416;</code>
      */
@@ -45,7 +45,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
      *     @type string $service
      *           Service Directory service to register the forwarding rule under.
      *     @type string $service_directory_region
-     *           [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs Forwarding Rules on the same network should use the same Service Directory region.
+     *           [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs forwarding rules on the same network should use the same Service Directory region.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +126,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     }
 
     /**
-     * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs Forwarding Rules on the same network should use the same Service Directory region.
+     * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs forwarding rules on the same network should use the same Service Directory region.
      *
      * Generated from protobuf field <code>optional string service_directory_region = 74030416;</code>
      * @return string
@@ -147,7 +147,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     }
 
     /**
-     * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs Forwarding Rules on the same network should use the same Service Directory region.
+     * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs forwarding rules on the same network should use the same Service Directory region.
      *
      * Generated from protobuf field <code>optional string service_directory_region = 74030416;</code>
      * @param string $var

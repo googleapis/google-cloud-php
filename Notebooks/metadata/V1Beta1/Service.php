@@ -113,37 +113,37 @@ page_token (	"ã
 NotebookService∏
 ListInstances4.google.cloud.notebooks.v1beta1.ListInstancesRequest5.google.cloud.notebooks.v1beta1.ListInstancesResponse":Ç”‰ì42/v1beta1/{parent=projects/*/locations/*}/instancesß
 GetInstance2.google.cloud.notebooks.v1beta1.GetInstanceRequest(.google.cloud.notebooks.v1beta1.Instance":Ç”‰ì42/v1beta1/{name=projects/*/locations/*/instances/*}Ã
-CreateInstance5.google.cloud.notebooks.v1beta1.CreateInstanceRequest.google.longrunning.Operation"dÇ”‰ì>"2/v1beta1/{parent=projects/*/locations/*}/instances:instance A
-InstanceOperationMetadata“
-RegisterInstance7.google.cloud.notebooks.v1beta1.RegisterInstanceRequest.google.longrunning.Operation"fÇ”‰ì@";/v1beta1/{parent=projects/*/locations/*}/instances:register:* A
-InstanceOperationMetadata‰
-SetInstanceAccelerator=.google.cloud.notebooks.v1beta1.SetInstanceAcceleratorRequest.google.longrunning.Operation"lÇ”‰ìF2A/v1beta1/{name=projects/*/locations/*/instances/*}:setAccelerator:* A
-InstanceOperationMetadata‰
-SetInstanceMachineType=.google.cloud.notebooks.v1beta1.SetInstanceMachineTypeRequest.google.longrunning.Operation"lÇ”‰ìF2A/v1beta1/{name=projects/*/locations/*/instances/*}:setMachineType:* A
-InstanceOperationMetadata’
-SetInstanceLabels8.google.cloud.notebooks.v1beta1.SetInstanceLabelsRequest.google.longrunning.Operation"gÇ”‰ìA2</v1beta1/{name=projects/*/locations/*/instances/*}:setLabels:* A
-InstanceOperationMetadataœ
-DeleteInstance5.google.cloud.notebooks.v1beta1.DeleteInstanceRequest.google.longrunning.Operation"gÇ”‰ì4*2/v1beta1/{name=projects/*/locations/*/instances/*} A*
-google.protobuf.EmptyOperationMetadata…
-StartInstance4.google.cloud.notebooks.v1beta1.StartInstanceRequest.google.longrunning.Operation"cÇ”‰ì="8/v1beta1/{name=projects/*/locations/*/instances/*}:start:* A
-InstanceOperationMetadata∆
-StopInstance3.google.cloud.notebooks.v1beta1.StopInstanceRequest.google.longrunning.Operation"bÇ”‰ì<"7/v1beta1/{name=projects/*/locations/*/instances/*}:stop:* A
-InstanceOperationMetadata…
-ResetInstance4.google.cloud.notebooks.v1beta1.ResetInstanceRequest.google.longrunning.Operation"cÇ”‰ì="8/v1beta1/{name=projects/*/locations/*/instances/*}:reset:* A
-InstanceOperationMetadata‘
-ReportInstanceInfo9.google.cloud.notebooks.v1beta1.ReportInstanceInfoRequest.google.longrunning.Operation"dÇ”‰ì>"9/v1beta1/{name=projects/*/locations/*/instances/*}:report:* A
-InstanceOperationMetadataÓ
+CreateInstance5.google.cloud.notebooks.v1beta1.CreateInstanceRequest.google.longrunning.Operation"d A
+InstanceOperationMetadataÇ”‰ì>"2/v1beta1/{parent=projects/*/locations/*}/instances:instance“
+RegisterInstance7.google.cloud.notebooks.v1beta1.RegisterInstanceRequest.google.longrunning.Operation"f A
+InstanceOperationMetadataÇ”‰ì@";/v1beta1/{parent=projects/*/locations/*}/instances:register:*‰
+SetInstanceAccelerator=.google.cloud.notebooks.v1beta1.SetInstanceAcceleratorRequest.google.longrunning.Operation"l A
+InstanceOperationMetadataÇ”‰ìF2A/v1beta1/{name=projects/*/locations/*/instances/*}:setAccelerator:*‰
+SetInstanceMachineType=.google.cloud.notebooks.v1beta1.SetInstanceMachineTypeRequest.google.longrunning.Operation"l A
+InstanceOperationMetadataÇ”‰ìF2A/v1beta1/{name=projects/*/locations/*/instances/*}:setMachineType:*’
+SetInstanceLabels8.google.cloud.notebooks.v1beta1.SetInstanceLabelsRequest.google.longrunning.Operation"g A
+InstanceOperationMetadataÇ”‰ìA2</v1beta1/{name=projects/*/locations/*/instances/*}:setLabels:*œ
+DeleteInstance5.google.cloud.notebooks.v1beta1.DeleteInstanceRequest.google.longrunning.Operation"g A*
+google.protobuf.EmptyOperationMetadataÇ”‰ì4*2/v1beta1/{name=projects/*/locations/*/instances/*}…
+StartInstance4.google.cloud.notebooks.v1beta1.StartInstanceRequest.google.longrunning.Operation"c A
+InstanceOperationMetadataÇ”‰ì="8/v1beta1/{name=projects/*/locations/*/instances/*}:start:*∆
+StopInstance3.google.cloud.notebooks.v1beta1.StopInstanceRequest.google.longrunning.Operation"b A
+InstanceOperationMetadataÇ”‰ì<"7/v1beta1/{name=projects/*/locations/*/instances/*}:stop:*…
+ResetInstance4.google.cloud.notebooks.v1beta1.ResetInstanceRequest.google.longrunning.Operation"c A
+InstanceOperationMetadataÇ”‰ì="8/v1beta1/{name=projects/*/locations/*/instances/*}:reset:*‘
+ReportInstanceInfo9.google.cloud.notebooks.v1beta1.ReportInstanceInfoRequest.google.longrunning.Operation"d A
+InstanceOperationMetadataÇ”‰ì>"9/v1beta1/{name=projects/*/locations/*/instances/*}:report:*Ó
 IsInstanceUpgradeable<.google.cloud.notebooks.v1beta1.IsInstanceUpgradeableRequest=.google.cloud.notebooks.v1beta1.IsInstanceUpgradeableResponse"XàÇ”‰ìOM/v1beta1/{notebook_instance=projects/*/locations/*/instances/*}:isUpgradeable“
-UpgradeInstance6.google.cloud.notebooks.v1beta1.UpgradeInstanceRequest.google.longrunning.Operation"hàÇ”‰ì?":/v1beta1/{name=projects/*/locations/*/instances/*}:upgrade:* A
-InstanceOperationMetadataÍ
-UpgradeInstanceInternal>.google.cloud.notebooks.v1beta1.UpgradeInstanceInternalRequest.google.longrunning.Operation"pàÇ”‰ìG"B/v1beta1/{name=projects/*/locations/*/instances/*}:upgradeInternal:* A
-InstanceOperationMetadataƒ
+UpgradeInstance6.google.cloud.notebooks.v1beta1.UpgradeInstanceRequest.google.longrunning.Operation"hà A
+InstanceOperationMetadataÇ”‰ì?":/v1beta1/{name=projects/*/locations/*/instances/*}:upgrade:*Í
+UpgradeInstanceInternal>.google.cloud.notebooks.v1beta1.UpgradeInstanceInternalRequest.google.longrunning.Operation"pà A
+InstanceOperationMetadataÇ”‰ìG"B/v1beta1/{name=projects/*/locations/*/instances/*}:upgradeInternal:*ƒ
 ListEnvironments7.google.cloud.notebooks.v1beta1.ListEnvironmentsRequest8.google.cloud.notebooks.v1beta1.ListEnvironmentsResponse"=Ç”‰ì75/v1beta1/{parent=projects/*/locations/*}/environments≥
 GetEnvironment5.google.cloud.notebooks.v1beta1.GetEnvironmentRequest+.google.cloud.notebooks.v1beta1.Environment"=Ç”‰ì75/v1beta1/{name=projects/*/locations/*/environments/*}€
-CreateEnvironment8.google.cloud.notebooks.v1beta1.CreateEnvironmentRequest.google.longrunning.Operation"mÇ”‰ìD"5/v1beta1/{parent=projects/*/locations/*}/environments:environment A 
-EnvironmentOperationMetadataÿ
-DeleteEnvironment8.google.cloud.notebooks.v1beta1.DeleteEnvironmentRequest.google.longrunning.Operation"jÇ”‰ì7*5/v1beta1/{name=projects/*/locations/*/environments/*} A*
-google.protobuf.EmptyOperationMetadataL Anotebooks.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBﬁ
+CreateEnvironment8.google.cloud.notebooks.v1beta1.CreateEnvironmentRequest.google.longrunning.Operation"m A 
+EnvironmentOperationMetadataÇ”‰ìD"5/v1beta1/{parent=projects/*/locations/*}/environments:environmentÿ
+DeleteEnvironment8.google.cloud.notebooks.v1beta1.DeleteEnvironmentRequest.google.longrunning.Operation"j A*
+google.protobuf.EmptyOperationMetadataÇ”‰ì7*5/v1beta1/{name=projects/*/locations/*/environments/*}L Anotebooks.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBﬁ
 "com.google.cloud.notebooks.v1beta1BNotebooksProtoPZ@cloud.google.com/go/notebooks/apiv1beta1/notebookspb;notebookspb™Google.Cloud.Notebooks.V1Beta1 Google\\Cloud\\Notebooks\\V1beta1Í!Google::Cloud::Notebooks::V1beta1bproto3'
         , true);
 

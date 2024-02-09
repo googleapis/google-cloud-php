@@ -17,10 +17,11 @@ class PurgeConfig
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
+        \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Õ
-6google/cloud/discoveryengine/v1beta/purge_config.proto#google.cloud.discoveryengine.v1betagoogle/api/resource.protogoogle/protobuf/timestamp.proto"z
+Ð	
+6google/cloud/discoveryengine/v1beta/purge_config.proto#google.cloud.discoveryengine.v1betagoogle/api/resource.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"z
 PurgeDocumentsRequest=
 parent (	B-àAúA\'
 %discoveryengine.googleapis.com/Branch
@@ -34,7 +35,16 @@ class PurgeConfig
 create_time (2.google.protobuf.Timestamp/
 update_time (2.google.protobuf.Timestamp
 success_count (
-failure_count (B—
+failure_count ("i
+%PurgeSuggestionDenyListEntriesRequest@
+parent (	B0àAúA*
+(discoveryengine.googleapis.com/DataStore"h
+&PurgeSuggestionDenyListEntriesResponse
+purge_count ()
+error_samples (2.google.rpc.Status"Š
+&PurgeSuggestionDenyListEntriesMetadata/
+create_time (2.google.protobuf.Timestamp/
+update_time (2.google.protobuf.TimestampB—
 \'com.google.cloud.discoveryengine.v1betaBPurgeConfigProtoPZQcloud.google.com/go/discoveryengine/apiv1beta/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINEª#Google.Cloud.DiscoveryEngine.V1BetaÊ#Google\\Cloud\\DiscoveryEngine\\V1betaê&Google::Cloud::DiscoveryEngine::V1betabproto3'
         , true);
 

@@ -36,6 +36,8 @@ class Type
 
     const GVNIC = 'GVNIC';
 
+    const IDPF = 'IDPF';
+
     const MULTI_IP_SUBNET = 'MULTI_IP_SUBNET';
 
     const SECURE_BOOT = 'SECURE_BOOT';

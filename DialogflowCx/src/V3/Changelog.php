@@ -59,6 +59,12 @@ class Changelog extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
      */
     protected $create_time = null;
+    /**
+     * The affected language code of the change.
+     *
+     * Generated from protobuf field <code>string language_code = 14;</code>
+     */
+    protected $language_code = '';
 
     /**
      * Constructor.
@@ -82,6 +88,8 @@ class Changelog extends \Google\Protobuf\Internal\Message
      *           The affected resource name of the change.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The timestamp of the change.
+     *     @type string $language_code
+     *           The affected language code of the change.
      * }
      */
     public function __construct($data = NULL) {
@@ -281,6 +289,32 @@ class Changelog extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The affected language code of the change.
+     *
+     * Generated from protobuf field <code>string language_code = 14;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * The affected language code of the change.
+     *
+     * Generated from protobuf field <code>string language_code = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
 
         return $this;
     }

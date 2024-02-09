@@ -87,26 +87,26 @@ page_token (	"]
 
 CloudTasks­
 
-ListQueues-.google.cloud.tasks.v2beta3.ListQueuesRequest..google.cloud.tasks.v2beta3.ListQueuesResponse"@‚Óä“1//v2beta3/{parent=projects/*/locations/*}/queuesÚAparentš
-GetQueue+.google.cloud.tasks.v2beta3.GetQueueRequest!.google.cloud.tasks.v2beta3.Queue">‚Óä“1//v2beta3/{name=projects/*/locations/*/queues/*}ÚAname¯
-CreateQueue..google.cloud.tasks.v2beta3.CreateQueueRequest!.google.cloud.tasks.v2beta3.Queue"M‚Óä“8"//v2beta3/{parent=projects/*/locations/*}/queues:queueÚAparent,queueº
-UpdateQueue..google.cloud.tasks.v2beta3.UpdateQueueRequest!.google.cloud.tasks.v2beta3.Queue"X‚Óä“>25/v2beta3/{queue.name=projects/*/locations/*/queues/*}:queueÚAqueue,update_mask•
-DeleteQueue..google.cloud.tasks.v2beta3.DeleteQueueRequest.google.protobuf.Empty">‚Óä“1*//v2beta3/{name=projects/*/locations/*/queues/*}ÚAname§
+ListQueues-.google.cloud.tasks.v2beta3.ListQueuesRequest..google.cloud.tasks.v2beta3.ListQueuesResponse"@ÚAparent‚Óä“1//v2beta3/{parent=projects/*/locations/*}/queuesš
+GetQueue+.google.cloud.tasks.v2beta3.GetQueueRequest!.google.cloud.tasks.v2beta3.Queue">ÚAname‚Óä“1//v2beta3/{name=projects/*/locations/*/queues/*}¯
+CreateQueue..google.cloud.tasks.v2beta3.CreateQueueRequest!.google.cloud.tasks.v2beta3.Queue"MÚAparent,queue‚Óä“8"//v2beta3/{parent=projects/*/locations/*}/queues:queueº
+UpdateQueue..google.cloud.tasks.v2beta3.UpdateQueueRequest!.google.cloud.tasks.v2beta3.Queue"XÚAqueue,update_mask‚Óä“>25/v2beta3/{queue.name=projects/*/locations/*/queues/*}:queue•
+DeleteQueue..google.cloud.tasks.v2beta3.DeleteQueueRequest.google.protobuf.Empty">ÚAname‚Óä“1*//v2beta3/{name=projects/*/locations/*/queues/*}§
 
-PurgeQueue-.google.cloud.tasks.v2beta3.PurgeQueueRequest!.google.cloud.tasks.v2beta3.Queue"G‚Óä“:"5/v2beta3/{name=projects/*/locations/*/queues/*}:purge:*ÚAname§
+PurgeQueue-.google.cloud.tasks.v2beta3.PurgeQueueRequest!.google.cloud.tasks.v2beta3.Queue"GÚAname‚Óä“:"5/v2beta3/{name=projects/*/locations/*/queues/*}:purge:*§
 
-PauseQueue-.google.cloud.tasks.v2beta3.PauseQueueRequest!.google.cloud.tasks.v2beta3.Queue"G‚Óä“:"5/v2beta3/{name=projects/*/locations/*/queues/*}:pause:*ÚAnameª
-ResumeQueue..google.cloud.tasks.v2beta3.ResumeQueueRequest!.google.cloud.tasks.v2beta3.Queue"H‚Óä“;"6/v2beta3/{name=projects/*/locations/*/queues/*}:resume:*ÚAname¡
-GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"V‚Óä“E"@/v2beta3/{resource=projects/*/locations/*/queues/*}:getIamPolicy:*ÚAresource¨
-SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"]‚Óä“E"@/v2beta3/{resource=projects/*/locations/*/queues/*}:setIamPolicy:*ÚAresource,policyÓ
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"h‚Óä“K"F/v2beta3/{resource=projects/*/locations/*/queues/*}:testIamPermissions:*ÚAresource,permissions²
-	ListTasks,.google.cloud.tasks.v2beta3.ListTasksRequest-.google.cloud.tasks.v2beta3.ListTasksResponse"H‚Óä“97/v2beta3/{parent=projects/*/locations/*/queues/*}/tasksÚAparentŸ
-GetTask*.google.cloud.tasks.v2beta3.GetTaskRequest .google.cloud.tasks.v2beta3.Task"F‚Óä“97/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}ÚAname¯
+PauseQueue-.google.cloud.tasks.v2beta3.PauseQueueRequest!.google.cloud.tasks.v2beta3.Queue"GÚAname‚Óä“:"5/v2beta3/{name=projects/*/locations/*/queues/*}:pause:*ª
+ResumeQueue..google.cloud.tasks.v2beta3.ResumeQueueRequest!.google.cloud.tasks.v2beta3.Queue"HÚAname‚Óä“;"6/v2beta3/{name=projects/*/locations/*/queues/*}:resume:*¡
+GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"VÚAresource‚Óä“E"@/v2beta3/{resource=projects/*/locations/*/queues/*}:getIamPolicy:*¨
+SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"]ÚAresource,policy‚Óä“E"@/v2beta3/{resource=projects/*/locations/*/queues/*}:setIamPolicy:*Ó
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"hÚAresource,permissions‚Óä“K"F/v2beta3/{resource=projects/*/locations/*/queues/*}:testIamPermissions:*²
+	ListTasks,.google.cloud.tasks.v2beta3.ListTasksRequest-.google.cloud.tasks.v2beta3.ListTasksResponse"HÚAparent‚Óä“97/v2beta3/{parent=projects/*/locations/*/queues/*}/tasksŸ
+GetTask*.google.cloud.tasks.v2beta3.GetTaskRequest .google.cloud.tasks.v2beta3.Task"FÚAname‚Óä“97/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}¯
 
-CreateTask-.google.cloud.tasks.v2beta3.CreateTaskRequest .google.cloud.tasks.v2beta3.Task"P‚Óä“<"7/v2beta3/{parent=projects/*/locations/*/queues/*}/tasks:*ÚAparent,task›
+CreateTask-.google.cloud.tasks.v2beta3.CreateTaskRequest .google.cloud.tasks.v2beta3.Task"PÚAparent,task‚Óä“<"7/v2beta3/{parent=projects/*/locations/*/queues/*}/tasks:*›
 
-DeleteTask-.google.cloud.tasks.v2beta3.DeleteTaskRequest.google.protobuf.Empty"F‚Óä“9*7/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}ÚAname¦
-RunTask*.google.cloud.tasks.v2beta3.RunTaskRequest .google.cloud.tasks.v2beta3.Task"M‚Óä“@";/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}:run:*ÚAnameMÊAcloudtasks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB€
+DeleteTask-.google.cloud.tasks.v2beta3.DeleteTaskRequest.google.protobuf.Empty"FÚAname‚Óä“9*7/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}¦
+RunTask*.google.cloud.tasks.v2beta3.RunTaskRequest .google.cloud.tasks.v2beta3.Task"MÚAname‚Óä“@";/v2beta3/{name=projects/*/locations/*/queues/*/tasks/*}:run:*MÊAcloudtasks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB€
 com.google.cloud.tasks.v2beta3BCloudTasksProtoPZCcloud.google.com/go/cloudtasks/apiv2beta3/cloudtaskspb;cloudtaskspb¢TASKSbproto3'
         , true);
 

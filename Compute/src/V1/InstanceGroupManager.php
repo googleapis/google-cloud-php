@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManager extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Specifies configuration that overrides the instance template configuration for the group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerAllInstancesConfig all_instances_config = 112596737;</code>
+     */
+    private $all_instances_config = null;
+    /**
      * The autohealing policy for this managed instance group. You can specify only one value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy auto_healing_policies = 456799109;</code>
@@ -167,6 +173,8 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerAllInstancesConfig $all_instances_config
+     *           Specifies configuration that overrides the instance template configuration for the group.
      *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $auto_healing_policies
      *           The autohealing policy for this managed instance group. You can specify only one value.
      *     @type string $base_instance_name
@@ -221,6 +229,42 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Specifies configuration that overrides the instance template configuration for the group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerAllInstancesConfig all_instances_config = 112596737;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerAllInstancesConfig|null
+     */
+    public function getAllInstancesConfig()
+    {
+        return $this->all_instances_config;
+    }
+
+    public function hasAllInstancesConfig()
+    {
+        return isset($this->all_instances_config);
+    }
+
+    public function clearAllInstancesConfig()
+    {
+        unset($this->all_instances_config);
+    }
+
+    /**
+     * Specifies configuration that overrides the instance template configuration for the group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerAllInstancesConfig all_instances_config = 112596737;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerAllInstancesConfig $var
+     * @return $this
+     */
+    public function setAllInstancesConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagerAllInstancesConfig::class);
+        $this->all_instances_config = $var;
+
+        return $this;
     }
 
     /**

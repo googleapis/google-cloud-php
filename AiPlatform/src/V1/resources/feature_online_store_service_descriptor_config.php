@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'SearchNearestEntities' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\SearchNearestEntitiesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'feature_view',
+                        'fieldAccessors' => [
+                            'getFeatureView',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',

@@ -97,7 +97,8 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
      * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
+     * ID>/agents/<Agent ID>/flows/<Flow ID>`. Currently only the default start
+     * flow with id "00000000-0000-0000-0000-000000000000" is allowed.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -213,7 +214,8 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Immutable. Name of the start flow in this agent. A start flow will be
      *           automatically created when the agent is created, and can only be deleted by
      *           deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     *           ID>/agents/<Agent ID>/flows/<Flow ID>`.
+     *           ID>/agents/<Agent ID>/flows/<Flow ID>`. Currently only the default start
+     *           flow with id "00000000-0000-0000-0000-000000000000" is allowed.
      *     @type string $security_settings
      *           Name of the
      *           [SecuritySettings][google.cloud.dialogflow.cx.v3.SecuritySettings]
@@ -509,7 +511,8 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
      * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
+     * ID>/agents/<Agent ID>/flows/<Flow ID>`. Currently only the default start
+     * flow with id "00000000-0000-0000-0000-000000000000" is allowed.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -523,7 +526,8 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Immutable. Name of the start flow in this agent. A start flow will be
      * automatically created when the agent is created, and can only be deleted by
      * deleting the agent. Format: `projects/<Project ID>/locations/<Location
-     * ID>/agents/<Agent ID>/flows/<Flow ID>`.
+     * ID>/agents/<Agent ID>/flows/<Flow ID>`. Currently only the default start
+     * flow with id "00000000-0000-0000-0000-000000000000" is allowed.
      *
      * Generated from protobuf field <code>string start_flow = 16 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

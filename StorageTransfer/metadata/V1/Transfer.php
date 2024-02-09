@@ -92,17 +92,17 @@ page_token (	"l
 ListTransferJobs2.google.storagetransfer.v1.ListTransferJobsRequest3.google.storagetransfer.v1.ListTransferJobsResponse"Ç”‰ì/v1/transferJobsù
 PauseTransferOperation8.google.storagetransfer.v1.PauseTransferOperationRequest.google.protobuf.Empty"1Ç”‰ì+"&/v1/{name=transferOperations/**}:pause:*†
 ResumeTransferOperation9.google.storagetransfer.v1.ResumeTransferOperationRequest.google.protobuf.Empty"2Ç”‰ì,"\'/v1/{name=transferOperations/**}:resume:*Ω
-RunTransferJob0.google.storagetransfer.v1.RunTransferJobRequest.google.longrunning.Operation"ZÇ”‰ì\'""/v1/{job_name=transferJobs/**}:run:* A*
-google.protobuf.EmptyTransferOperationà
+RunTransferJob0.google.storagetransfer.v1.RunTransferJobRequest.google.longrunning.Operation"Z A*
+google.protobuf.EmptyTransferOperationÇ”‰ì\'""/v1/{job_name=transferJobs/**}:run:*à
 DeleteTransferJob3.google.storagetransfer.v1.DeleteTransferJobRequest.google.protobuf.Empty"&Ç”‰ì */v1/{job_name=transferJobs/**}Ã
-CreateAgentPool1.google.storagetransfer.v1.CreateAgentPoolRequest$.google.storagetransfer.v1.AgentPool"`Ç”‰ì4"&/v1/projects/{project_id=*}/agentPools:
-agent_pool⁄A#project_id,agent_pool,agent_pool_id∆
-UpdateAgentPool1.google.storagetransfer.v1.UpdateAgentPoolRequest$.google.storagetransfer.v1.AgentPool"ZÇ”‰ì;2-/v1/{agent_pool.name=projects/*/agentPools/*}:
-agent_pool⁄Aagent_pool,update_maskó
-GetAgentPool..google.storagetransfer.v1.GetAgentPoolRequest$.google.storagetransfer.v1.AgentPool"1Ç”‰ì$"/v1/{name=projects/*/agentPools/*}⁄Aname≤
-ListAgentPools0.google.storagetransfer.v1.ListAgentPoolsRequest1.google.storagetransfer.v1.ListAgentPoolsResponse";Ç”‰ì(&/v1/projects/{project_id=*}/agentPools⁄A
-project_idè
-DeleteAgentPool1.google.storagetransfer.v1.DeleteAgentPoolRequest.google.protobuf.Empty"1Ç”‰ì$*"/v1/{name=projects/*/agentPools/*}⁄AnameR Astoragetransfer.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÔ
+CreateAgentPool1.google.storagetransfer.v1.CreateAgentPoolRequest$.google.storagetransfer.v1.AgentPool"`⁄A#project_id,agent_pool,agent_pool_idÇ”‰ì4"&/v1/projects/{project_id=*}/agentPools:
+agent_pool∆
+UpdateAgentPool1.google.storagetransfer.v1.UpdateAgentPoolRequest$.google.storagetransfer.v1.AgentPool"Z⁄Aagent_pool,update_maskÇ”‰ì;2-/v1/{agent_pool.name=projects/*/agentPools/*}:
+agent_pooló
+GetAgentPool..google.storagetransfer.v1.GetAgentPoolRequest$.google.storagetransfer.v1.AgentPool"1⁄AnameÇ”‰ì$"/v1/{name=projects/*/agentPools/*}≤
+ListAgentPools0.google.storagetransfer.v1.ListAgentPoolsRequest1.google.storagetransfer.v1.ListAgentPoolsResponse";⁄A
+project_idÇ”‰ì(&/v1/projects/{project_id=*}/agentPoolsè
+DeleteAgentPool1.google.storagetransfer.v1.DeleteAgentPoolRequest.google.protobuf.Empty"1⁄AnameÇ”‰ì$*"/v1/{name=projects/*/agentPools/*}R Astoragetransfer.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÔ
 #com.google.storagetransfer.v1.protoBTransferProtoZMcloud.google.com/go/storagetransfer/apiv1/storagetransferpb;storagetransferpb¯™Google.Cloud.StorageTransfer.V1 Google\\Cloud\\StorageTransfer\\V1Í"Google::Cloud::StorageTransfer::V1bproto3'
         , true);
 

@@ -42,12 +42,12 @@ request_id (	BàAE
 name (	B)àAúA#
 !dataproc.googleapis.com/NodeGroup2§
 NodeGroupController•
-CreateNodeGroup0.google.cloud.dataproc.v1.CreateNodeGroupRequest.google.longrunning.Operation"°‚Óä“E"7/v1/{parent=projects/*/regions/*/clusters/*}/nodeGroups:
-node_groupÚAparent,node_group,node_group_idÊA@
-	NodeGroup3google.cloud.dataproc.v1.NodeGroupOperationMetadataý
-ResizeNodeGroup0.google.cloud.dataproc.v1.ResizeNodeGroupRequest.google.longrunning.Operation"˜‚Óä“C">/v1/{name=projects/*/regions/*/clusters/*/nodeGroups/*}:resize:*ÚA	name,sizeÊA@
-	NodeGroup3google.cloud.dataproc.v1.NodeGroupOperationMetadataª
-GetNodeGroup-.google.cloud.dataproc.v1.GetNodeGroupRequest#.google.cloud.dataproc.v1.NodeGroup"F‚Óä“97/v1/{name=projects/*/regions/*/clusters/*/nodeGroups/*}ÚAnameKÊAdataproc.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
+CreateNodeGroup0.google.cloud.dataproc.v1.CreateNodeGroupRequest.google.longrunning.Operation"°ÊA@
+	NodeGroup3google.cloud.dataproc.v1.NodeGroupOperationMetadataÚAparent,node_group,node_group_id‚Óä“E"7/v1/{parent=projects/*/regions/*/clusters/*}/nodeGroups:
+node_groupý
+ResizeNodeGroup0.google.cloud.dataproc.v1.ResizeNodeGroupRequest.google.longrunning.Operation"˜ÊA@
+	NodeGroup3google.cloud.dataproc.v1.NodeGroupOperationMetadataÚA	name,size‚Óä“C">/v1/{name=projects/*/regions/*/clusters/*/nodeGroups/*}:resize:*ª
+GetNodeGroup-.google.cloud.dataproc.v1.GetNodeGroupRequest#.google.cloud.dataproc.v1.NodeGroup"FÚAname‚Óä“97/v1/{name=projects/*/regions/*/clusters/*/nodeGroups/*}KÊAdataproc.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
 com.google.cloud.dataproc.v1BNodeGroupsProtoPZ;cloud.google.com/go/dataproc/v2/apiv1/dataprocpb;dataprocpbêA_
 %dataproc.googleapis.com/ClusterRegion6projects/{project}/regions/{region}/clusters/{cluster}bproto3'
         , true);

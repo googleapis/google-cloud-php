@@ -35,8 +35,8 @@ use Google\Rpc\Status;
  * Asynchronous API that imports a list of reference images to specified
  * product sets based on a list of image information.
  *
- * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
- * progress and results of the request.
+ * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+ * used to keep track of the progress and results of the request.
  * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
  * `Operation.response` contains `ImportProductSetsResponse`. (results)
  *

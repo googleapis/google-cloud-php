@@ -73,12 +73,27 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      */
     protected $ignore_non_summary_seeking_query = false;
     /**
+     * If specified, the spec will be used to modify the prompt provided to
+     * the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelPromptSpec model_prompt_spec = 5;</code>
+     */
+    protected $model_prompt_spec = null;
+    /**
      * Language code for Summary. Use language tags defined by
-     * [BCP47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     * [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
+     * Note: This is an experimental feature.
      *
      * Generated from protobuf field <code>string language_code = 6;</code>
      */
     protected $language_code = '';
+    /**
+     * If specified, the spec will be used to modify the model specification
+     * provided to the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelSpec model_spec = 7;</code>
+     */
+    protected $model_spec = null;
 
     /**
      * Constructor.
@@ -126,9 +141,16 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           navigational queries. If this field is set to `true`, we skip
      *           generating summaries for non-summary seeking queries and return
      *           fallback messages instead.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec $model_prompt_spec
+     *           If specified, the spec will be used to modify the prompt provided to
+     *           the LLM.
      *     @type string $language_code
      *           Language code for Summary. Use language tags defined by
-     *           [BCP47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     *           [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
+     *           Note: This is an experimental feature.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec $model_spec
+     *           If specified, the spec will be used to modify the model specification
+     *           provided to the LLM.
      * }
      */
     public function __construct($data = NULL) {
@@ -305,8 +327,47 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If specified, the spec will be used to modify the prompt provided to
+     * the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelPromptSpec model_prompt_spec = 5;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec|null
+     */
+    public function getModelPromptSpec()
+    {
+        return $this->model_prompt_spec;
+    }
+
+    public function hasModelPromptSpec()
+    {
+        return isset($this->model_prompt_spec);
+    }
+
+    public function clearModelPromptSpec()
+    {
+        unset($this->model_prompt_spec);
+    }
+
+    /**
+     * If specified, the spec will be used to modify the prompt provided to
+     * the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelPromptSpec model_prompt_spec = 5;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec $var
+     * @return $this
+     */
+    public function setModelPromptSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec::class);
+        $this->model_prompt_spec = $var;
+
+        return $this;
+    }
+
+    /**
      * Language code for Summary. Use language tags defined by
-     * [BCP47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     * [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
+     * Note: This is an experimental feature.
      *
      * Generated from protobuf field <code>string language_code = 6;</code>
      * @return string
@@ -318,7 +379,8 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Language code for Summary. Use language tags defined by
-     * [BCP47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     * [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
+     * Note: This is an experimental feature.
      *
      * Generated from protobuf field <code>string language_code = 6;</code>
      * @param string $var
@@ -328,6 +390,44 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * If specified, the spec will be used to modify the model specification
+     * provided to the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelSpec model_spec = 7;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec|null
+     */
+    public function getModelSpec()
+    {
+        return $this->model_spec;
+    }
+
+    public function hasModelSpec()
+    {
+        return isset($this->model_spec);
+    }
+
+    public function clearModelSpec()
+    {
+        unset($this->model_spec);
+    }
+
+    /**
+     * If specified, the spec will be used to modify the model specification
+     * provided to the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelSpec model_spec = 7;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec $var
+     * @return $this
+     */
+    public function setModelSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec::class);
+        $this->model_spec = $var;
 
         return $this;
     }

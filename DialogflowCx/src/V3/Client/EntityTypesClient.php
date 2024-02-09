@@ -27,6 +27,8 @@ namespace Google\Cloud\Dialogflow\Cx\V3\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -36,12 +38,15 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\Cx\V3\CreateEntityTypeRequest;
 use Google\Cloud\Dialogflow\Cx\V3\DeleteEntityTypeRequest;
 use Google\Cloud\Dialogflow\Cx\V3\EntityType;
+use Google\Cloud\Dialogflow\Cx\V3\ExportEntityTypesRequest;
 use Google\Cloud\Dialogflow\Cx\V3\GetEntityTypeRequest;
+use Google\Cloud\Dialogflow\Cx\V3\ImportEntityTypesRequest;
 use Google\Cloud\Dialogflow\Cx\V3\ListEntityTypesRequest;
 use Google\Cloud\Dialogflow\Cx\V3\UpdateEntityTypeRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -57,7 +62,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createEntityTypeAsync(CreateEntityTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteEntityTypeAsync(DeleteEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface exportEntityTypesAsync(ExportEntityTypesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getEntityTypeAsync(GetEntityTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface importEntityTypesAsync(ImportEntityTypesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listEntityTypesAsync(ListEntityTypesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateEntityTypeAsync(UpdateEntityTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -93,6 +100,8 @@ final class EntityTypesClient
         'https://www.googleapis.com/auth/dialogflow',
     ];
 
+    private $operationsClient;
+
     private static function getClientDefaults()
     {
         return [
@@ -110,6 +119,37 @@ final class EntityTypesClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
     }
 
     /**
@@ -235,6 +275,7 @@ final class EntityTypesClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
@@ -307,6 +348,32 @@ final class EntityTypesClient
     }
 
     /**
+     * Exports the selected entity types.
+     *
+     * The async variant is {@see EntityTypesClient::exportEntityTypesAsync()} .
+     *
+     * @example samples/V3/EntityTypesClient/export_entity_types.php
+     *
+     * @param ExportEntityTypesRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportEntityTypes(ExportEntityTypesRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportEntityTypes', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves the specified entity type.
      *
      * The async variant is {@see EntityTypesClient::getEntityTypeAsync()} .
@@ -330,6 +397,32 @@ final class EntityTypesClient
     public function getEntityType(GetEntityTypeRequest $request, array $callOptions = []): EntityType
     {
         return $this->startApiCall('GetEntityType', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Imports the specified entitytypes into the agent.
+     *
+     * The async variant is {@see EntityTypesClient::importEntityTypesAsync()} .
+     *
+     * @example samples/V3/EntityTypesClient/import_entity_types.php
+     *
+     * @param ImportEntityTypesRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importEntityTypes(ImportEntityTypesRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ImportEntityTypes', $request, $callOptions)->wait();
     }
 
     /**

@@ -43,91 +43,91 @@ class CloudNetappService
 requested_cancellation (B‡A
 api_version (	B‡A2‡T
 NetApp∏
-ListStoragePools/.google.cloud.netapp.v1.ListStoragePoolsRequest0.google.cloud.netapp.v1.ListStoragePoolsResponse"AÇ”‰ì20/v1/{parent=projects/*/locations/*}/storagePools⁄Aparentˆ
-CreateStoragePool0.google.cloud.netapp.v1.CreateStoragePoolRequest.google.longrunning.Operation"èÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/storagePools:storage_pool⁄A#parent,storage_pool,storage_pool_id A 
-StoragePoolOperationMetadata•
-GetStoragePool-.google.cloud.netapp.v1.GetStoragePoolRequest#.google.cloud.netapp.v1.StoragePool"?Ç”‰ì20/v1/{name=projects/*/locations/*/storagePools/*}⁄Aname¯
-UpdateStoragePool0.google.cloud.netapp.v1.UpdateStoragePoolRequest.google.longrunning.Operation"ëÇ”‰ìM2=/v1/{storage_pool.name=projects/*/locations/*/storagePools/*}:storage_pool⁄Astorage_pool,update_mask A 
-StoragePoolOperationMetadata“
-DeleteStoragePool0.google.cloud.netapp.v1.DeleteStoragePoolRequest.google.longrunning.Operation"lÇ”‰ì2*0/v1/{name=projects/*/locations/*/storagePools/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadata§
-ListVolumes*.google.cloud.netapp.v1.ListVolumesRequest+.google.cloud.netapp.v1.ListVolumesResponse"<Ç”‰ì-+/v1/{parent=projects/*/locations/*}/volumes⁄Aparentë
-	GetVolume(.google.cloud.netapp.v1.GetVolumeRequest.google.cloud.netapp.v1.Volume":Ç”‰ì-+/v1/{name=projects/*/locations/*/volumes/*}⁄Anameœ
-CreateVolume+.google.cloud.netapp.v1.CreateVolumeRequest.google.longrunning.Operation"sÇ”‰ì5"+/v1/{parent=projects/*/locations/*}/volumes:volume⁄Aparent,volume,volume_id A
-VolumeOperationMetadata—
-UpdateVolume+.google.cloud.netapp.v1.UpdateVolumeRequest.google.longrunning.Operation"uÇ”‰ì<22/v1/{volume.name=projects/*/locations/*/volumes/*}:volume⁄Avolume,update_mask A
-VolumeOperationMetadata√
-DeleteVolume+.google.cloud.netapp.v1.DeleteVolumeRequest.google.longrunning.Operation"gÇ”‰ì-*+/v1/{name=projects/*/locations/*/volumes/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadata∑
-RevertVolume+.google.cloud.netapp.v1.RevertVolumeRequest.google.longrunning.Operation"[Ç”‰ì7"2/v1/{name=projects/*/locations/*/volumes/*}:revert:* A
-VolumeOperationMetadata∂
-ListSnapshots,.google.cloud.netapp.v1.ListSnapshotsRequest-.google.cloud.netapp.v1.ListSnapshotsResponse"HÇ”‰ì97/v1/{parent=projects/*/locations/*/volumes/*}/snapshots⁄Aparent£
-GetSnapshot*.google.cloud.netapp.v1.GetSnapshotRequest .google.cloud.netapp.v1.Snapshot"FÇ”‰ì97/v1/{name=projects/*/locations/*/volumes/*/snapshots/*}⁄AnameË
-CreateSnapshot-.google.cloud.netapp.v1.CreateSnapshotRequest.google.longrunning.Operation"áÇ”‰ìC"7/v1/{parent=projects/*/locations/*/volumes/*}/snapshots:snapshot⁄Aparent,snapshot,snapshot_id A
-SnapshotOperationMetadata”
-DeleteSnapshot-.google.cloud.netapp.v1.DeleteSnapshotRequest.google.longrunning.Operation"sÇ”‰ì9*7/v1/{name=projects/*/locations/*/volumes/*/snapshots/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadataÍ
-UpdateSnapshot-.google.cloud.netapp.v1.UpdateSnapshotRequest.google.longrunning.Operation"âÇ”‰ìL2@/v1/{snapshot.name=projects/*/locations/*/volumes/*/snapshots/*}:snapshot⁄Asnapshot,update_mask A
-SnapshotOperationMetadataÃ
-ListActiveDirectories4.google.cloud.netapp.v1.ListActiveDirectoriesRequest5.google.cloud.netapp.v1.ListActiveDirectoriesResponse"FÇ”‰ì75/v1/{parent=projects/*/locations/*}/activeDirectories⁄Aparent∂
-GetActiveDirectory1.google.cloud.netapp.v1.GetActiveDirectoryRequest\'.google.cloud.netapp.v1.ActiveDirectory"DÇ”‰ì75/v1/{name=projects/*/locations/*/activeDirectories/*}⁄Anameì
-CreateActiveDirectory4.google.cloud.netapp.v1.CreateActiveDirectoryRequest.google.longrunning.Operation"§Ç”‰ìI"5/v1/{parent=projects/*/locations/*}/activeDirectories:active_directory⁄A+parent,active_directory,active_directory_id A$
-ActiveDirectoryOperationMetadataï
-UpdateActiveDirectory4.google.cloud.netapp.v1.UpdateActiveDirectoryRequest.google.longrunning.Operation"¶Ç”‰ìZ2F/v1/{active_directory.name=projects/*/locations/*/activeDirectories/*}:active_directory⁄Aactive_directory,update_mask A$
-ActiveDirectoryOperationMetadataﬂ
-DeleteActiveDirectory4.google.cloud.netapp.v1.DeleteActiveDirectoryRequest.google.longrunning.Operation"qÇ”‰ì7*5/v1/{name=projects/*/locations/*/activeDirectories/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadata∞
-ListKmsConfigs-.google.cloud.netapp.v1.ListKmsConfigsRequest..google.cloud.netapp.v1.ListKmsConfigsResponse"?Ç”‰ì0./v1/{parent=projects/*/locations/*}/kmsConfigs⁄AparentË
-CreateKmsConfig..google.cloud.netapp.v1.CreateKmsConfigRequest.google.longrunning.Operation"ÖÇ”‰ì<"./v1/{parent=projects/*/locations/*}/kmsConfigs:
-kms_config⁄Aparent,kms_config,kms_config_id A
-	KmsConfigOperationMetadataù
-GetKmsConfig+.google.cloud.netapp.v1.GetKmsConfigRequest!.google.cloud.netapp.v1.KmsConfig"=Ç”‰ì0./v1/{name=projects/*/locations/*/kmsConfigs/*}⁄AnameÍ
-UpdateKmsConfig..google.cloud.netapp.v1.UpdateKmsConfigRequest.google.longrunning.Operation"áÇ”‰ìG29/v1/{kms_config.name=projects/*/locations/*/kmsConfigs/*}:
-kms_config⁄Akms_config,update_mask A
-	KmsConfigOperationMetadata¬
-EncryptVolumes-.google.cloud.netapp.v1.EncryptVolumesRequest.google.longrunning.Operation"bÇ”‰ì;"6/v1/{name=projects/*/locations/*/kmsConfigs/*}:encrypt:* A
-	KmsConfigOperationMetadata¥
+ListStoragePools/.google.cloud.netapp.v1.ListStoragePoolsRequest0.google.cloud.netapp.v1.ListStoragePoolsResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/storagePoolsˆ
+CreateStoragePool0.google.cloud.netapp.v1.CreateStoragePoolRequest.google.longrunning.Operation"è A 
+StoragePoolOperationMetadata⁄A#parent,storage_pool,storage_pool_idÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/storagePools:storage_pool•
+GetStoragePool-.google.cloud.netapp.v1.GetStoragePoolRequest#.google.cloud.netapp.v1.StoragePool"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/storagePools/*}¯
+UpdateStoragePool0.google.cloud.netapp.v1.UpdateStoragePoolRequest.google.longrunning.Operation"ë A 
+StoragePoolOperationMetadata⁄Astorage_pool,update_maskÇ”‰ìM2=/v1/{storage_pool.name=projects/*/locations/*/storagePools/*}:storage_pool“
+DeleteStoragePool0.google.cloud.netapp.v1.DeleteStoragePoolRequest.google.longrunning.Operation"l A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/storagePools/*}§
+ListVolumes*.google.cloud.netapp.v1.ListVolumesRequest+.google.cloud.netapp.v1.ListVolumesResponse"<⁄AparentÇ”‰ì-+/v1/{parent=projects/*/locations/*}/volumesë
+	GetVolume(.google.cloud.netapp.v1.GetVolumeRequest.google.cloud.netapp.v1.Volume":⁄AnameÇ”‰ì-+/v1/{name=projects/*/locations/*/volumes/*}œ
+CreateVolume+.google.cloud.netapp.v1.CreateVolumeRequest.google.longrunning.Operation"s A
+VolumeOperationMetadata⁄Aparent,volume,volume_idÇ”‰ì5"+/v1/{parent=projects/*/locations/*}/volumes:volume—
+UpdateVolume+.google.cloud.netapp.v1.UpdateVolumeRequest.google.longrunning.Operation"u A
+VolumeOperationMetadata⁄Avolume,update_maskÇ”‰ì<22/v1/{volume.name=projects/*/locations/*/volumes/*}:volume√
+DeleteVolume+.google.cloud.netapp.v1.DeleteVolumeRequest.google.longrunning.Operation"g A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì-*+/v1/{name=projects/*/locations/*/volumes/*}∑
+RevertVolume+.google.cloud.netapp.v1.RevertVolumeRequest.google.longrunning.Operation"[ A
+VolumeOperationMetadataÇ”‰ì7"2/v1/{name=projects/*/locations/*/volumes/*}:revert:*∂
+ListSnapshots,.google.cloud.netapp.v1.ListSnapshotsRequest-.google.cloud.netapp.v1.ListSnapshotsResponse"H⁄AparentÇ”‰ì97/v1/{parent=projects/*/locations/*/volumes/*}/snapshots£
+GetSnapshot*.google.cloud.netapp.v1.GetSnapshotRequest .google.cloud.netapp.v1.Snapshot"F⁄AnameÇ”‰ì97/v1/{name=projects/*/locations/*/volumes/*/snapshots/*}Ë
+CreateSnapshot-.google.cloud.netapp.v1.CreateSnapshotRequest.google.longrunning.Operation"á A
+SnapshotOperationMetadata⁄Aparent,snapshot,snapshot_idÇ”‰ìC"7/v1/{parent=projects/*/locations/*/volumes/*}/snapshots:snapshot”
+DeleteSnapshot-.google.cloud.netapp.v1.DeleteSnapshotRequest.google.longrunning.Operation"s A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì9*7/v1/{name=projects/*/locations/*/volumes/*/snapshots/*}Í
+UpdateSnapshot-.google.cloud.netapp.v1.UpdateSnapshotRequest.google.longrunning.Operation"â A
+SnapshotOperationMetadata⁄Asnapshot,update_maskÇ”‰ìL2@/v1/{snapshot.name=projects/*/locations/*/volumes/*/snapshots/*}:snapshotÃ
+ListActiveDirectories4.google.cloud.netapp.v1.ListActiveDirectoriesRequest5.google.cloud.netapp.v1.ListActiveDirectoriesResponse"F⁄AparentÇ”‰ì75/v1/{parent=projects/*/locations/*}/activeDirectories∂
+GetActiveDirectory1.google.cloud.netapp.v1.GetActiveDirectoryRequest\'.google.cloud.netapp.v1.ActiveDirectory"D⁄AnameÇ”‰ì75/v1/{name=projects/*/locations/*/activeDirectories/*}ì
+CreateActiveDirectory4.google.cloud.netapp.v1.CreateActiveDirectoryRequest.google.longrunning.Operation"§ A$
+ActiveDirectoryOperationMetadata⁄A+parent,active_directory,active_directory_idÇ”‰ìI"5/v1/{parent=projects/*/locations/*}/activeDirectories:active_directoryï
+UpdateActiveDirectory4.google.cloud.netapp.v1.UpdateActiveDirectoryRequest.google.longrunning.Operation"¶ A$
+ActiveDirectoryOperationMetadata⁄Aactive_directory,update_maskÇ”‰ìZ2F/v1/{active_directory.name=projects/*/locations/*/activeDirectories/*}:active_directoryﬂ
+DeleteActiveDirectory4.google.cloud.netapp.v1.DeleteActiveDirectoryRequest.google.longrunning.Operation"q A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì7*5/v1/{name=projects/*/locations/*/activeDirectories/*}∞
+ListKmsConfigs-.google.cloud.netapp.v1.ListKmsConfigsRequest..google.cloud.netapp.v1.ListKmsConfigsResponse"?⁄AparentÇ”‰ì0./v1/{parent=projects/*/locations/*}/kmsConfigsË
+CreateKmsConfig..google.cloud.netapp.v1.CreateKmsConfigRequest.google.longrunning.Operation"Ö A
+	KmsConfigOperationMetadata⁄Aparent,kms_config,kms_config_idÇ”‰ì<"./v1/{parent=projects/*/locations/*}/kmsConfigs:
+kms_configù
+GetKmsConfig+.google.cloud.netapp.v1.GetKmsConfigRequest!.google.cloud.netapp.v1.KmsConfig"=⁄AnameÇ”‰ì0./v1/{name=projects/*/locations/*/kmsConfigs/*}Í
+UpdateKmsConfig..google.cloud.netapp.v1.UpdateKmsConfigRequest.google.longrunning.Operation"á A
+	KmsConfigOperationMetadata⁄Akms_config,update_maskÇ”‰ìG29/v1/{kms_config.name=projects/*/locations/*/kmsConfigs/*}:
+kms_config¬
+EncryptVolumes-.google.cloud.netapp.v1.EncryptVolumesRequest.google.longrunning.Operation"b A
+	KmsConfigOperationMetadataÇ”‰ì;"6/v1/{name=projects/*/locations/*/kmsConfigs/*}:encrypt:*¥
 VerifyKmsConfig..google.cloud.netapp.v1.VerifyKmsConfigRequest/.google.cloud.netapp.v1.VerifyKmsConfigResponse"@Ç”‰ì:"5/v1/{name=projects/*/locations/*/kmsConfigs/*}:verify:*Ã
-DeleteKmsConfig..google.cloud.netapp.v1.DeleteKmsConfigRequest.google.longrunning.Operation"jÇ”‰ì0*./v1/{name=projects/*/locations/*/kmsConfigs/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadata¬
-ListReplications/.google.cloud.netapp.v1.ListReplicationsRequest0.google.cloud.netapp.v1.ListReplicationsResponse"KÇ”‰ì<:/v1/{parent=projects/*/locations/*/volumes/*}/replications⁄AparentØ
-GetReplication-.google.cloud.netapp.v1.GetReplicationRequest#.google.cloud.netapp.v1.Replication"IÇ”‰ì<:/v1/{name=projects/*/locations/*/volumes/*/replications/*}⁄Aname˝
-CreateReplication0.google.cloud.netapp.v1.CreateReplicationRequest.google.longrunning.Operation"ñÇ”‰ìI":/v1/{parent=projects/*/locations/*/volumes/*}/replications:replication⁄A!parent,replication,replication_id A 
-ReplicationOperationMetadata‹
-DeleteReplication0.google.cloud.netapp.v1.DeleteReplicationRequest.google.longrunning.Operation"vÇ”‰ì<*:/v1/{name=projects/*/locations/*/volumes/*/replications/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadataˇ
-UpdateReplication0.google.cloud.netapp.v1.UpdateReplicationRequest.google.longrunning.Operation"òÇ”‰ìU2F/v1/{replication.name=projects/*/locations/*/volumes/*/replications/*}:replication⁄Areplication,update_mask A 
-ReplicationOperationMetadataœ
-StopReplication..google.cloud.netapp.v1.StopReplicationRequest.google.longrunning.Operation"mÇ”‰ìD"?/v1/{name=projects/*/locations/*/volumes/*/replications/*}:stop:* A 
-ReplicationOperationMetadata’
-ResumeReplication0.google.cloud.netapp.v1.ResumeReplicationRequest.google.longrunning.Operation"oÇ”‰ìF"A/v1/{name=projects/*/locations/*/volumes/*/replications/*}:resume:* A 
-ReplicationOperationMetadataÛ
-ReverseReplicationDirection:.google.cloud.netapp.v1.ReverseReplicationDirectionRequest.google.longrunning.Operation"yÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:reverseDirection:* A 
-ReplicationOperationMetadataˆ
-CreateBackupVault0.google.cloud.netapp.v1.CreateBackupVaultRequest.google.longrunning.Operation"èÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/backupVaults:backup_vault⁄A#parent,backup_vault,backup_vault_id A 
-BackupVaultOperationMetadata•
-GetBackupVault-.google.cloud.netapp.v1.GetBackupVaultRequest#.google.cloud.netapp.v1.BackupVault"?Ç”‰ì20/v1/{name=projects/*/locations/*/backupVaults/*}⁄Aname∏
-ListBackupVaults/.google.cloud.netapp.v1.ListBackupVaultsRequest0.google.cloud.netapp.v1.ListBackupVaultsResponse"AÇ”‰ì20/v1/{parent=projects/*/locations/*}/backupVaults⁄Aparent¯
-UpdateBackupVault0.google.cloud.netapp.v1.UpdateBackupVaultRequest.google.longrunning.Operation"ëÇ”‰ìM2=/v1/{backup_vault.name=projects/*/locations/*/backupVaults/*}:backup_vault⁄Abackup_vault,update_mask A 
-BackupVaultOperationMetadata“
-DeleteBackupVault0.google.cloud.netapp.v1.DeleteBackupVaultRequest.google.longrunning.Operation"lÇ”‰ì2*0/v1/{name=projects/*/locations/*/backupVaults/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadataﬂ
-CreateBackup+.google.cloud.netapp.v1.CreateBackupRequest.google.longrunning.Operation"ÇÇ”‰ìD":/v1/{parent=projects/*/locations/*/backupVaults/*}/backups:backup⁄Aparent,backup,backup_id A
-BackupOperationMetadata†
-	GetBackup(.google.cloud.netapp.v1.GetBackupRequest.google.cloud.netapp.v1.Backup"IÇ”‰ì<:/v1/{name=projects/*/locations/*/backupVaults/*/backups/*}⁄Aname≥
-ListBackups*.google.cloud.netapp.v1.ListBackupsRequest+.google.cloud.netapp.v1.ListBackupsResponse"KÇ”‰ì<:/v1/{parent=projects/*/locations/*/backupVaults/*}/backups⁄Aparent“
-DeleteBackup+.google.cloud.netapp.v1.DeleteBackupRequest.google.longrunning.Operation"vÇ”‰ì<*:/v1/{name=projects/*/locations/*/backupVaults/*/backups/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadata·
-UpdateBackup+.google.cloud.netapp.v1.UpdateBackupRequest.google.longrunning.Operation"ÑÇ”‰ìK2A/v1/{backup.name=projects/*/locations/*/backupVaults/*/backups/*}:backup⁄Abackup,update_mask A
-BackupOperationMetadata˛
-CreateBackupPolicy1.google.cloud.netapp.v1.CreateBackupPolicyRequest.google.longrunning.Operation"ïÇ”‰ìC"2/v1/{parent=projects/*/locations/*}/backupPolicies:backup_policy⁄A%parent,backup_policy,backup_policy_id A!
-BackupPolicyOperationMetadata™
-GetBackupPolicy..google.cloud.netapp.v1.GetBackupPolicyRequest$.google.cloud.netapp.v1.BackupPolicy"AÇ”‰ì42/v1/{name=projects/*/locations/*/backupPolicies/*}⁄Aname¿
-ListBackupPolicies1.google.cloud.netapp.v1.ListBackupPoliciesRequest2.google.cloud.netapp.v1.ListBackupPoliciesResponse"CÇ”‰ì42/v1/{parent=projects/*/locations/*}/backupPolicies⁄AparentÄ
-UpdateBackupPolicy1.google.cloud.netapp.v1.UpdateBackupPolicyRequest.google.longrunning.Operation"óÇ”‰ìQ2@/v1/{backup_policy.name=projects/*/locations/*/backupPolicies/*}:backup_policy⁄Abackup_policy,update_mask A!
-BackupPolicyOperationMetadata÷
-DeleteBackupPolicy1.google.cloud.netapp.v1.DeleteBackupPolicyRequest.google.longrunning.Operation"nÇ”‰ì4*2/v1/{name=projects/*/locations/*/backupPolicies/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadataI Anetapp.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBä
+DeleteKmsConfig..google.cloud.netapp.v1.DeleteKmsConfigRequest.google.longrunning.Operation"j A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì0*./v1/{name=projects/*/locations/*/kmsConfigs/*}¬
+ListReplications/.google.cloud.netapp.v1.ListReplicationsRequest0.google.cloud.netapp.v1.ListReplicationsResponse"K⁄AparentÇ”‰ì<:/v1/{parent=projects/*/locations/*/volumes/*}/replicationsØ
+GetReplication-.google.cloud.netapp.v1.GetReplicationRequest#.google.cloud.netapp.v1.Replication"I⁄AnameÇ”‰ì<:/v1/{name=projects/*/locations/*/volumes/*/replications/*}˝
+CreateReplication0.google.cloud.netapp.v1.CreateReplicationRequest.google.longrunning.Operation"ñ A 
+ReplicationOperationMetadata⁄A!parent,replication,replication_idÇ”‰ìI":/v1/{parent=projects/*/locations/*/volumes/*}/replications:replication‹
+DeleteReplication0.google.cloud.netapp.v1.DeleteReplicationRequest.google.longrunning.Operation"v A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì<*:/v1/{name=projects/*/locations/*/volumes/*/replications/*}ˇ
+UpdateReplication0.google.cloud.netapp.v1.UpdateReplicationRequest.google.longrunning.Operation"ò A 
+ReplicationOperationMetadata⁄Areplication,update_maskÇ”‰ìU2F/v1/{replication.name=projects/*/locations/*/volumes/*/replications/*}:replicationœ
+StopReplication..google.cloud.netapp.v1.StopReplicationRequest.google.longrunning.Operation"m A 
+ReplicationOperationMetadataÇ”‰ìD"?/v1/{name=projects/*/locations/*/volumes/*/replications/*}:stop:*’
+ResumeReplication0.google.cloud.netapp.v1.ResumeReplicationRequest.google.longrunning.Operation"o A 
+ReplicationOperationMetadataÇ”‰ìF"A/v1/{name=projects/*/locations/*/volumes/*/replications/*}:resume:*Û
+ReverseReplicationDirection:.google.cloud.netapp.v1.ReverseReplicationDirectionRequest.google.longrunning.Operation"y A 
+ReplicationOperationMetadataÇ”‰ìP"K/v1/{name=projects/*/locations/*/volumes/*/replications/*}:reverseDirection:*ˆ
+CreateBackupVault0.google.cloud.netapp.v1.CreateBackupVaultRequest.google.longrunning.Operation"è A 
+BackupVaultOperationMetadata⁄A#parent,backup_vault,backup_vault_idÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/backupVaults:backup_vault•
+GetBackupVault-.google.cloud.netapp.v1.GetBackupVaultRequest#.google.cloud.netapp.v1.BackupVault"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/backupVaults/*}∏
+ListBackupVaults/.google.cloud.netapp.v1.ListBackupVaultsRequest0.google.cloud.netapp.v1.ListBackupVaultsResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/backupVaults¯
+UpdateBackupVault0.google.cloud.netapp.v1.UpdateBackupVaultRequest.google.longrunning.Operation"ë A 
+BackupVaultOperationMetadata⁄Abackup_vault,update_maskÇ”‰ìM2=/v1/{backup_vault.name=projects/*/locations/*/backupVaults/*}:backup_vault“
+DeleteBackupVault0.google.cloud.netapp.v1.DeleteBackupVaultRequest.google.longrunning.Operation"l A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/backupVaults/*}ﬂ
+CreateBackup+.google.cloud.netapp.v1.CreateBackupRequest.google.longrunning.Operation"Ç A
+BackupOperationMetadata⁄Aparent,backup,backup_idÇ”‰ìD":/v1/{parent=projects/*/locations/*/backupVaults/*}/backups:backup†
+	GetBackup(.google.cloud.netapp.v1.GetBackupRequest.google.cloud.netapp.v1.Backup"I⁄AnameÇ”‰ì<:/v1/{name=projects/*/locations/*/backupVaults/*/backups/*}≥
+ListBackups*.google.cloud.netapp.v1.ListBackupsRequest+.google.cloud.netapp.v1.ListBackupsResponse"K⁄AparentÇ”‰ì<:/v1/{parent=projects/*/locations/*/backupVaults/*}/backups“
+DeleteBackup+.google.cloud.netapp.v1.DeleteBackupRequest.google.longrunning.Operation"v A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì<*:/v1/{name=projects/*/locations/*/backupVaults/*/backups/*}·
+UpdateBackup+.google.cloud.netapp.v1.UpdateBackupRequest.google.longrunning.Operation"Ñ A
+BackupOperationMetadata⁄Abackup,update_maskÇ”‰ìK2A/v1/{backup.name=projects/*/locations/*/backupVaults/*/backups/*}:backup˛
+CreateBackupPolicy1.google.cloud.netapp.v1.CreateBackupPolicyRequest.google.longrunning.Operation"ï A!
+BackupPolicyOperationMetadata⁄A%parent,backup_policy,backup_policy_idÇ”‰ìC"2/v1/{parent=projects/*/locations/*}/backupPolicies:backup_policy™
+GetBackupPolicy..google.cloud.netapp.v1.GetBackupPolicyRequest$.google.cloud.netapp.v1.BackupPolicy"A⁄AnameÇ”‰ì42/v1/{name=projects/*/locations/*/backupPolicies/*}¿
+ListBackupPolicies1.google.cloud.netapp.v1.ListBackupPoliciesRequest2.google.cloud.netapp.v1.ListBackupPoliciesResponse"C⁄AparentÇ”‰ì42/v1/{parent=projects/*/locations/*}/backupPoliciesÄ
+UpdateBackupPolicy1.google.cloud.netapp.v1.UpdateBackupPolicyRequest.google.longrunning.Operation"ó A!
+BackupPolicyOperationMetadata⁄Abackup_policy,update_maskÇ”‰ìQ2@/v1/{backup_policy.name=projects/*/locations/*/backupPolicies/*}:backup_policy÷
+DeleteBackupPolicy1.google.cloud.netapp.v1.DeleteBackupPolicyRequest.google.longrunning.Operation"n A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì4*2/v1/{name=projects/*/locations/*/backupPolicies/*}I Anetapp.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBä
 com.google.cloud.netapp.v1BCloudNetappServiceProtoPZ2cloud.google.com/go/netapp/apiv1/netapppb;netapppb™Google.Cloud.NetApp.V1 Google\\Cloud\\NetApp\\V1ÍGoogle::Cloud::NetApp::V1ÍAN
 compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'
         , true);
