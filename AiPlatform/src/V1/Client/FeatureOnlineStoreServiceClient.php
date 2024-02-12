@@ -35,6 +35,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse;
+use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesRequest;
+use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesResponse;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -46,7 +48,7 @@ use Google\Cloud\Location\Location;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description:
+ * Service Description: A service for fetching feature values from the online store.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -56,13 +58,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AIPlatform\V1\FeatureOnlineStoreServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface fetchFeatureValuesAsync(FetchFeatureValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface searchNearestEntitiesAsync(SearchNearestEntitiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -77,8 +74,15 @@ final class FeatureOnlineStoreServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.aiplatform.v1.FeatureOnlineStoreService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -251,6 +255,35 @@ final class FeatureOnlineStoreServiceClient
     public function fetchFeatureValues(FetchFeatureValuesRequest $request, array $callOptions = []): FetchFeatureValuesResponse
     {
         return $this->startApiCall('FetchFeatureValues', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Search the nearest entities under a FeatureView.
+     * Search only works for indexable feature view; if a feature view isn't
+     * indexable, returns Invalid argument response.
+     *
+     * The async variant is
+     * {@see FeatureOnlineStoreServiceClient::searchNearestEntitiesAsync()} .
+     *
+     * @example samples/V1/FeatureOnlineStoreServiceClient/search_nearest_entities.php
+     *
+     * @param SearchNearestEntitiesRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SearchNearestEntitiesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchNearestEntities(SearchNearestEntitiesRequest $request, array $callOptions = []): SearchNearestEntitiesResponse
+    {
+        return $this->startApiCall('SearchNearestEntities', $request, $callOptions)->wait();
     }
 
     /**

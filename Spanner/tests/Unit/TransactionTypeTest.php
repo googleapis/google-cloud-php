@@ -95,8 +95,7 @@ class TransactionTypeTest extends TestCase
         $database = $this->database($this->connection->reveal());
 
         $database->runTransaction(function ($t) {
-            $this->assertEquals($t->id(), self::TRANSACTION);
-
+            // Transaction gets created at the commit operation
             $t->commit();
         });
     }
@@ -778,6 +777,7 @@ class TransactionTypeTest extends TestCase
         $operation = new Operation($connection, false);
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
+        $instance->directedReadOptions()->willReturn([]);
 
         $database = TestHelpers::stub(Database::class, [
             $connection,

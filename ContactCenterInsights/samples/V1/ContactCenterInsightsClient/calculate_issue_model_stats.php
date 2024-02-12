@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_CalculateIssueModelStats_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 
 /**
  * Gets an issue model's statistics.
@@ -38,10 +39,14 @@ function calculate_issue_model_stats_sample(string $formattedIssueModel): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new CalculateIssueModelStatsRequest())
+        ->setIssueModel($formattedIssueModel);
+
     // Call the API and handle any network failures.
     try {
         /** @var CalculateIssueModelStatsResponse $response */
-        $response = $contactCenterInsightsClient->calculateIssueModelStats($formattedIssueModel);
+        $response = $contactCenterInsightsClient->calculateIssueModelStats($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

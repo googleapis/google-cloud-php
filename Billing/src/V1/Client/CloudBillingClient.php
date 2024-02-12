@@ -39,6 +39,7 @@ use Google\Cloud\Billing\V1\GetBillingAccountRequest;
 use Google\Cloud\Billing\V1\GetProjectBillingInfoRequest;
 use Google\Cloud\Billing\V1\ListBillingAccountsRequest;
 use Google\Cloud\Billing\V1\ListProjectBillingInfoRequest;
+use Google\Cloud\Billing\V1\MoveBillingAccountRequest;
 use Google\Cloud\Billing\V1\ProjectBillingInfo;
 use Google\Cloud\Billing\V1\UpdateBillingAccountRequest;
 use Google\Cloud\Billing\V1\UpdateProjectBillingInfoRequest;
@@ -61,17 +62,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Billing\V1\CloudBillingClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createBillingAccountAsync(CreateBillingAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBillingAccountAsync(GetBillingAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getProjectBillingInfoAsync(GetProjectBillingInfoRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listBillingAccountsAsync(ListBillingAccountsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listProjectBillingInfoAsync(ListProjectBillingInfoRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface moveBillingAccountAsync(MoveBillingAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateBillingAccountAsync(UpdateBillingAccountRequest $request, array $optionalArgs = [])
@@ -85,8 +82,15 @@ final class CloudBillingClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.billing.v1.CloudBilling';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudbilling.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudbilling.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -136,6 +140,38 @@ final class CloudBillingClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a organization
+     * resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     */
+    public static function organizationName(string $organization): string
+    {
+        return self::getPathTemplate('organization')->render([
+            'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_billing_account resource.
+     *
+     * @param string $organization
+     * @param string $billingAccount
+     *
+     * @return string The formatted organization_billing_account resource.
+     */
+    public static function organizationBillingAccountName(string $organization, string $billingAccount): string
+    {
+        return self::getPathTemplate('organizationBillingAccount')->render([
+            'organization' => $organization,
+            'billing_account' => $billingAccount,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -170,6 +206,8 @@ final class CloudBillingClient
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccount: billingAccounts/{billing_account}
+     * - organization: organizations/{organization}
+     * - organizationBillingAccount: organizations/{organization}/billingAccounts/{billing_account}
      * - project: projects/{project}
      * - projectBillingInfo: projects/{project}/billingInfo
      *
@@ -281,6 +319,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::createBillingAccountAsync()} .
      *
+     * @example samples/V1/CloudBillingClient/create_billing_account.php
+     *
      * @param CreateBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -306,6 +346,8 @@ final class CloudBillingClient
      * account](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
      * The async variant is {@see CloudBillingClient::getBillingAccountAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/get_billing_account.php
      *
      * @param GetBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -333,6 +375,8 @@ final class CloudBillingClient
      * [viewers](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
      * The async variant is {@see CloudBillingClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -362,6 +406,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::getProjectBillingInfoAsync()} .
      *
+     * @example samples/V1/CloudBillingClient/get_project_billing_info.php
+     *
      * @param GetProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -387,6 +433,8 @@ final class CloudBillingClient
      * [view](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
      * The async variant is {@see CloudBillingClient::listBillingAccountsAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/list_billing_accounts.php
      *
      * @param ListBillingAccountsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -415,6 +463,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::listProjectBillingInfoAsync()} .
      *
+     * @example samples/V1/CloudBillingClient/list_project_billing_info.php
+     *
      * @param ListProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -435,6 +485,32 @@ final class CloudBillingClient
     }
 
     /**
+     * Changes which parent organization a billing account belongs to.
+     *
+     * The async variant is {@see CloudBillingClient::moveBillingAccountAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/move_billing_account.php
+     *
+     * @param MoveBillingAccountRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BillingAccount
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function moveBillingAccount(MoveBillingAccountRequest $request, array $callOptions = []): BillingAccount
+    {
+        return $this->startApiCall('MoveBillingAccount', $request, $callOptions)->wait();
+    }
+
+    /**
      * Sets the access control policy for a billing account. Replaces any existing
      * policy.
      * The caller must have the `billing.accounts.setIamPolicy` permission on the
@@ -442,6 +518,8 @@ final class CloudBillingClient
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
      *
      * The async variant is {@see CloudBillingClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -468,6 +546,8 @@ final class CloudBillingClient
      * the input permissions that the caller is allowed for that resource.
      *
      * The async variant is {@see CloudBillingClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -497,6 +577,8 @@ final class CloudBillingClient
      * of the billing account.
      *
      * The async variant is {@see CloudBillingClient::updateBillingAccountAsync()} .
+     *
+     * @example samples/V1/CloudBillingClient/update_billing_account.php
      *
      * @param UpdateBillingAccountRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -531,7 +613,8 @@ final class CloudBillingClient
      * account, even if the charge occurred before the new billing account was
      * assigned to the project.
      *
-     * The current authenticated user must have ownership privileges for both the
+     * The current authenticated user must have ownership privileges for both
+     * the
      * [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
      * ) and the [billing
      * account](https://cloud.google.com/billing/docs/how-to/billing-access).
@@ -552,6 +635,8 @@ final class CloudBillingClient
      *
      * The async variant is {@see CloudBillingClient::updateProjectBillingInfoAsync()}
      * .
+     *
+     * @example samples/V1/CloudBillingClient/update_project_billing_info.php
      *
      * @param UpdateProjectBillingInfoRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {

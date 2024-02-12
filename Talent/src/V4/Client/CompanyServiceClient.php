@@ -52,11 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Talent\V4\CompanyServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createCompanyAsync(CreateCompanyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteCompanyAsync(DeleteCompanyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCompanyAsync(GetCompanyRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class CompanyServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.talent.v4.CompanyService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'jobs.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'jobs.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -242,6 +244,8 @@ final class CompanyServiceClient
      *
      * The async variant is {@see CompanyServiceClient::createCompanyAsync()} .
      *
+     * @example samples/V4/CompanyServiceClient/create_company.php
+     *
      * @param CreateCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -267,6 +271,8 @@ final class CompanyServiceClient
      *
      * The async variant is {@see CompanyServiceClient::deleteCompanyAsync()} .
      *
+     * @example samples/V4/CompanyServiceClient/delete_company.php
+     *
      * @param DeleteCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -288,6 +294,8 @@ final class CompanyServiceClient
      * Retrieves specified company.
      *
      * The async variant is {@see CompanyServiceClient::getCompanyAsync()} .
+     *
+     * @example samples/V4/CompanyServiceClient/get_company.php
      *
      * @param GetCompanyRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -313,6 +321,8 @@ final class CompanyServiceClient
      *
      * The async variant is {@see CompanyServiceClient::listCompaniesAsync()} .
      *
+     * @example samples/V4/CompanyServiceClient/list_companies.php
+     *
      * @param ListCompaniesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -336,6 +346,8 @@ final class CompanyServiceClient
      * Updates specified company.
      *
      * The async variant is {@see CompanyServiceClient::updateCompanyAsync()} .
+     *
+     * @example samples/V4/CompanyServiceClient/update_company.php
      *
      * @param UpdateCompanyRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

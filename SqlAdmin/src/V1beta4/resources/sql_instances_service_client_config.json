@@ -46,6 +46,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "Demote": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "DemoteMaster": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -157,6 +162,11 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "StopReplica": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "Switchover": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

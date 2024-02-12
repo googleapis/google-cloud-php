@@ -68,6 +68,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "CreateCustomTargetType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "CreateDeliveryPipeline": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -93,6 +98,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "DeleteCustomTargetType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "DeleteDeliveryPipeline": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -114,6 +124,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "GetConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetCustomTargetType": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -154,6 +169,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "ListAutomations": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListCustomTargetTypes": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -199,6 +219,11 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "UpdateAutomation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateCustomTargetType": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

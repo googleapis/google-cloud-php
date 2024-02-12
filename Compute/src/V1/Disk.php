@@ -53,6 +53,12 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $disk_encryption_key = null;
     /**
+     * Whether this disk is using confidential compute mode.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     */
+    private $enable_confidential_compute = null;
+    /**
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
@@ -173,6 +179,12 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $resource_status = null;
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     */
+    private $satisfies_pzi = null;
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -185,7 +197,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are greater than 0.
      *
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      */
@@ -301,6 +313,8 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $disk_encryption_key
      *           Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key. Encryption keys do not protect access to metadata of the disk. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later. For example, to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine. After you encrypt a disk with a customer-managed key, the diskEncryptionKey.kmsKeyName is set to a key *version* name once the disk is created. The disk is encrypted with this version of the key. In the response, diskEncryptionKey.kmsKeyName appears in the following format: "diskEncryptionKey.kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeysVersions/version If you do not provide an encryption key when creating the disk, then the disk is encrypted using an automatically generated key and you don't need to provide a key to use the disk later.
+     *     @type bool $enable_confidential_compute
+     *           Whether this disk is using confidential compute mode.
      *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *     @type int|string $id
@@ -341,12 +355,14 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Resource policies applied to this disk for automatic snapshot creations.
      *     @type \Google\Cloud\Compute\V1\DiskResourceStatus $resource_status
      *           [Output Only] Status information for the disk resource.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type int|string $size_gb
-     *           Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     *           Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are greater than 0.
      *     @type string $source_consistency_group_policy
      *           [Output Only] URL of the DiskConsistencyGroupPolicy for a secondary disk that was created using a consistency group.
      *     @type string $source_consistency_group_policy_id
@@ -589,6 +605,42 @@ class Disk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CustomerEncryptionKey::class);
         $this->disk_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether this disk is using confidential compute mode.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     * @return bool
+     */
+    public function getEnableConfidentialCompute()
+    {
+        return isset($this->enable_confidential_compute) ? $this->enable_confidential_compute : false;
+    }
+
+    public function hasEnableConfidentialCompute()
+    {
+        return isset($this->enable_confidential_compute);
+    }
+
+    public function clearEnableConfidentialCompute()
+    {
+        unset($this->enable_confidential_compute);
+    }
+
+    /**
+     * Whether this disk is using confidential compute mode.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableConfidentialCompute($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_confidential_compute = $var;
 
         return $this;
     }
@@ -1254,6 +1306,42 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -1326,7 +1414,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are greater than 0.
      *
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      * @return int|string
@@ -1347,7 +1435,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
+     * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk. If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are greater than 0.
      *
      * Generated from protobuf field <code>optional int64 size_gb = 494929369;</code>
      * @param int|string $var

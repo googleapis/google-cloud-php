@@ -56,8 +56,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
  * @experimental
  *
  * @method PromiseInterface converseConversationAsync(ConverseConversationRequest $request, array $optionalArgs = [])
@@ -75,8 +73,15 @@ final class ConversationalSearchServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.discoveryengine.v1beta.ConversationalSearchService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'discoveryengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'discoveryengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -85,9 +90,7 @@ final class ConversationalSearchServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -102,7 +105,8 @@ final class ConversationalSearchServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/conversational_search_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/conversational_search_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -121,8 +125,12 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function conversationName(string $project, string $location, string $dataStore, string $conversation): string
-    {
+    public static function conversationName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $conversation
+    ): string {
         return self::getPathTemplate('conversation')->render([
             'project' => $project,
             'location' => $location,
@@ -153,6 +161,36 @@ final class ConversationalSearchServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a document
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted document resource.
+     *
+     * @experimental
+     */
+    public static function documentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('document')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_data_store resource.
      *
@@ -165,13 +203,50 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
             'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_branch_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted project_location_collection_data_store_branch_document resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocument')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
         ]);
     }
 
@@ -189,8 +264,13 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationCollectionDataStoreConversationName(string $project, string $location, string $collection, string $dataStore, string $conversation): string
-    {
+    public static function projectLocationCollectionDataStoreConversationName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $conversation
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreConversation')->render([
             'project' => $project,
             'location' => $location,
@@ -214,13 +294,78 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationCollectionDataStoreServingConfigName(string $project, string $location, string $collection, string $dataStore, string $servingConfig): string
-    {
+    public static function projectLocationCollectionDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreServingConfig')->render([
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
             'data_store' => $dataStore,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_conversation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $conversation
+     *
+     * @return string The formatted project_location_collection_engine_conversation resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionEngineConversationName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $conversation
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineConversation')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $servingConfig
+     *
+     * @return string The formatted project_location_collection_engine_serving_config resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionEngineServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineServingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
             'serving_config' => $servingConfig,
         ]);
     }
@@ -248,6 +393,36 @@ final class ConversationalSearchServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_branch_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted project_location_data_store_branch_document resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreBranchDocument')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store_conversation resource.
      *
      * @param string $project
@@ -259,8 +434,12 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationDataStoreConversationName(string $project, string $location, string $dataStore, string $conversation): string
-    {
+    public static function projectLocationDataStoreConversationName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $conversation
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreConversation')->render([
             'project' => $project,
             'location' => $location,
@@ -282,8 +461,12 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationDataStoreServingConfigName(string $project, string $location, string $dataStore, string $servingConfig): string
-    {
+    public static function projectLocationDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreServingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -305,8 +488,12 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function servingConfigName(string $project, string $location, string $dataStore, string $servingConfig): string
-    {
+    public static function servingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('servingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -321,10 +508,15 @@ final class ConversationalSearchServiceClient
      * Template: Pattern
      * - conversation: projects/{project}/locations/{location}/dataStores/{data_store}/conversations/{conversation}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
+     * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationCollectionDataStoreConversation: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/conversations/{conversation}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationCollectionEngineConversation: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/conversations/{conversation}
+     * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - projectLocationDataStoreBranchDocument: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationDataStoreConversation: projects/{project}/locations/{location}/dataStores/{data_store}/conversations/{conversation}
      * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
@@ -446,8 +638,10 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public function converseConversation(ConverseConversationRequest $request, array $callOptions = []): ConverseConversationResponse
-    {
+    public function converseConversation(
+        ConverseConversationRequest $request,
+        array $callOptions = []
+    ): ConverseConversationResponse {
         return $this->startApiCall('ConverseConversation', $request, $callOptions)->wait();
     }
 

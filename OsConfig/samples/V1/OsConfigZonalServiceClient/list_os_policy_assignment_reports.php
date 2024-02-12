@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START osconfig_v1_generated_OsConfigZonalService_ListOSPolicyAssignmentReports_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentReportsRequest;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
 
 /**
  * List OS policy asssignment reports for all Compute Engine VM instances in
@@ -60,10 +61,14 @@ function list_os_policy_assignment_reports_sample(string $formattedParent): void
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListOSPolicyAssignmentReportsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $osConfigZonalServiceClient->listOSPolicyAssignmentReports($formattedParent);
+        $response = $osConfigZonalServiceClient->listOSPolicyAssignmentReports($request);
 
         /** @var OSPolicyAssignmentReport $element */
         foreach ($response as $element) {

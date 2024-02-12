@@ -107,12 +107,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\SecurityCenter\V1\SecurityCenterClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface bulkMuteFindingsAsync(BulkMuteFindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createBigQueryExportAsync(CreateBigQueryExportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createFindingAsync(CreateFindingRequest $request, array $optionalArgs = [])
@@ -167,8 +161,15 @@ final class SecurityCenterClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.securitycenter.v1.SecurityCenter';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'securitycenter.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'securitycenter.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -1323,6 +1324,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::bulkMuteFindingsAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/bulk_mute_findings.php
+     *
      * @param BulkMuteFindingsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1346,6 +1349,8 @@ final class SecurityCenterClient
      * Creates a BigQuery export.
      *
      * The async variant is {@see SecurityCenterClient::createBigQueryExportAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/create_big_query_export.php
      *
      * @param CreateBigQueryExportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1372,6 +1377,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::createFindingAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/create_finding.php
+     *
      * @param CreateFindingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1395,6 +1402,8 @@ final class SecurityCenterClient
      * Creates a mute config.
      *
      * The async variant is {@see SecurityCenterClient::createMuteConfigAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/create_mute_config.php
      *
      * @param CreateMuteConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1420,6 +1429,8 @@ final class SecurityCenterClient
      *
      * The async variant is
      * {@see SecurityCenterClient::createNotificationConfigAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/create_notification_config.php
      *
      * @param CreateNotificationConfigRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1449,6 +1460,8 @@ final class SecurityCenterClient
      * The async variant is
      * {@see SecurityCenterClient::createSecurityHealthAnalyticsCustomModuleAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/create_security_health_analytics_custom_module.php
+     *
      * @param CreateSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -1472,6 +1485,8 @@ final class SecurityCenterClient
      * Creates a source.
      *
      * The async variant is {@see SecurityCenterClient::createSourceAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/create_source.php
      *
      * @param CreateSourceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1497,6 +1512,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::deleteBigQueryExportAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/delete_big_query_export.php
+     *
      * @param DeleteBigQueryExportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -1518,6 +1535,8 @@ final class SecurityCenterClient
      * Deletes an existing mute config.
      *
      * The async variant is {@see SecurityCenterClient::deleteMuteConfigAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/delete_mute_config.php
      *
      * @param DeleteMuteConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -1541,6 +1560,8 @@ final class SecurityCenterClient
      *
      * The async variant is
      * {@see SecurityCenterClient::deleteNotificationConfigAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/delete_notification_config.php
      *
      * @param DeleteNotificationConfigRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -1567,6 +1588,8 @@ final class SecurityCenterClient
      * The async variant is
      * {@see SecurityCenterClient::deleteSecurityHealthAnalyticsCustomModuleAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/delete_security_health_analytics_custom_module.php
+     *
      * @param DeleteSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -1588,6 +1611,8 @@ final class SecurityCenterClient
      * Gets a BigQuery export.
      *
      * The async variant is {@see SecurityCenterClient::getBigQueryExportAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/get_big_query_export.php
      *
      * @param GetBigQueryExportRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -1615,6 +1640,8 @@ final class SecurityCenterClient
      * {@see SecurityCenterClient::getEffectiveSecurityHealthAnalyticsCustomModuleAsync()}
      * .
      *
+     * @example samples/V1/SecurityCenterClient/get_effective_security_health_analytics_custom_module.php
+     *
      * @param GetEffectiveSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                                  $callOptions {
      *     Optional.
@@ -1638,6 +1665,8 @@ final class SecurityCenterClient
      * Gets the access control policy on the specified Source.
      *
      * The async variant is {@see SecurityCenterClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1663,6 +1692,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::getMuteConfigAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/get_mute_config.php
+     *
      * @param GetMuteConfigRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1686,6 +1717,8 @@ final class SecurityCenterClient
      * Gets a notification config.
      *
      * The async variant is {@see SecurityCenterClient::getNotificationConfigAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/get_notification_config.php
      *
      * @param GetNotificationConfigRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -1712,6 +1745,8 @@ final class SecurityCenterClient
      * The async variant is {@see SecurityCenterClient::getOrganizationSettingsAsync()}
      * .
      *
+     * @example samples/V1/SecurityCenterClient/get_organization_settings.php
+     *
      * @param GetOrganizationSettingsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1737,6 +1772,8 @@ final class SecurityCenterClient
      * The async variant is
      * {@see SecurityCenterClient::getSecurityHealthAnalyticsCustomModuleAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/get_security_health_analytics_custom_module.php
+     *
      * @param GetSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
      *     Optional.
@@ -1760,6 +1797,8 @@ final class SecurityCenterClient
      * Gets a source.
      *
      * The async variant is {@see SecurityCenterClient::getSourceAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/get_source.php
      *
      * @param GetSourceRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1785,6 +1824,8 @@ final class SecurityCenterClient
      * properties.
      *
      * The async variant is {@see SecurityCenterClient::groupAssetsAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/group_assets.php
      *
      * @param GroupAssetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1818,6 +1859,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::groupFindingsAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/group_findings.php
+     *
      * @param GroupFindingsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1841,6 +1884,8 @@ final class SecurityCenterClient
      * Lists an organization's assets.
      *
      * The async variant is {@see SecurityCenterClient::listAssetsAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/list_assets.php
      *
      * @param ListAssetsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1872,6 +1917,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::listBigQueryExportsAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/list_big_query_exports.php
+     *
      * @param ListBigQueryExportsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1898,6 +1945,8 @@ final class SecurityCenterClient
      * The async variant is
      * {@see SecurityCenterClient::listDescendantSecurityHealthAnalyticsCustomModulesAsync()}
      * .
+     *
+     * @example samples/V1/SecurityCenterClient/list_descendant_security_health_analytics_custom_modules.php
      *
      * @param ListDescendantSecurityHealthAnalyticsCustomModulesRequest $request     A request to house fields associated with the call.
      * @param array                                                     $callOptions {
@@ -1927,6 +1976,8 @@ final class SecurityCenterClient
      * {@see SecurityCenterClient::listEffectiveSecurityHealthAnalyticsCustomModulesAsync()}
      * .
      *
+     * @example samples/V1/SecurityCenterClient/list_effective_security_health_analytics_custom_modules.php
+     *
      * @param ListEffectiveSecurityHealthAnalyticsCustomModulesRequest $request     A request to house fields associated with the call.
      * @param array                                                    $callOptions {
      *     Optional.
@@ -1954,6 +2005,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::listFindingsAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/list_findings.php
+     *
      * @param ListFindingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -1977,6 +2030,8 @@ final class SecurityCenterClient
      * Lists mute configs.
      *
      * The async variant is {@see SecurityCenterClient::listMuteConfigsAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/list_mute_configs.php
      *
      * @param ListMuteConfigsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -2002,6 +2057,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::listNotificationConfigsAsync()}
      * .
+     *
+     * @example samples/V1/SecurityCenterClient/list_notification_configs.php
      *
      * @param ListNotificationConfigsRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -2030,6 +2087,8 @@ final class SecurityCenterClient
      * The async variant is
      * {@see SecurityCenterClient::listSecurityHealthAnalyticsCustomModulesAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/list_security_health_analytics_custom_modules.php
+     *
      * @param ListSecurityHealthAnalyticsCustomModulesRequest $request     A request to house fields associated with the call.
      * @param array                                           $callOptions {
      *     Optional.
@@ -2053,6 +2112,8 @@ final class SecurityCenterClient
      * Lists all sources belonging to an organization.
      *
      * The async variant is {@see SecurityCenterClient::listSourcesAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/list_sources.php
      *
      * @param ListSourcesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -2083,6 +2144,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::runAssetDiscoveryAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/run_asset_discovery.php
+     *
      * @param RunAssetDiscoveryRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -2109,6 +2172,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::setFindingStateAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/set_finding_state.php
+     *
      * @param SetFindingStateRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -2133,6 +2198,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -2156,6 +2223,8 @@ final class SecurityCenterClient
      * Updates the mute state of a finding.
      *
      * The async variant is {@see SecurityCenterClient::setMuteAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/set_mute.php
      *
      * @param SetMuteRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -2183,6 +2252,8 @@ final class SecurityCenterClient
      * {@see SecurityCenterClient::simulateSecurityHealthAnalyticsCustomModuleAsync()}
      * .
      *
+     * @example samples/V1/SecurityCenterClient/simulate_security_health_analytics_custom_module.php
+     *
      * @param SimulateSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                              $callOptions {
      *     Optional.
@@ -2206,6 +2277,8 @@ final class SecurityCenterClient
      * Returns the permissions that a caller has on the specified source.
      *
      * The async variant is {@see SecurityCenterClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -2231,6 +2304,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::updateBigQueryExportAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/update_big_query_export.php
+     *
      * @param UpdateBigQueryExportRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -2254,6 +2329,8 @@ final class SecurityCenterClient
      * Updates external system. This is for a given finding.
      *
      * The async variant is {@see SecurityCenterClient::updateExternalSystemAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/update_external_system.php
      *
      * @param UpdateExternalSystemRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -2280,6 +2357,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::updateFindingAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/update_finding.php
+     *
      * @param UpdateFindingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -2303,6 +2382,8 @@ final class SecurityCenterClient
      * Updates a mute config.
      *
      * The async variant is {@see SecurityCenterClient::updateMuteConfigAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/update_mute_config.php
      *
      * @param UpdateMuteConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -2331,6 +2412,8 @@ final class SecurityCenterClient
      * The async variant is
      * {@see SecurityCenterClient::updateNotificationConfigAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/update_notification_config.php
+     *
      * @param UpdateNotificationConfigRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -2355,6 +2438,8 @@ final class SecurityCenterClient
      *
      * The async variant is
      * {@see SecurityCenterClient::updateOrganizationSettingsAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/update_organization_settings.php
      *
      * @param UpdateOrganizationSettingsRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -2385,6 +2470,8 @@ final class SecurityCenterClient
      * The async variant is
      * {@see SecurityCenterClient::updateSecurityHealthAnalyticsCustomModuleAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/update_security_health_analytics_custom_module.php
+     *
      * @param UpdateSecurityHealthAnalyticsCustomModuleRequest $request     A request to house fields associated with the call.
      * @param array                                            $callOptions {
      *     Optional.
@@ -2409,6 +2496,8 @@ final class SecurityCenterClient
      *
      * The async variant is {@see SecurityCenterClient::updateSecurityMarksAsync()} .
      *
+     * @example samples/V1/SecurityCenterClient/update_security_marks.php
+     *
      * @param UpdateSecurityMarksRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -2432,6 +2521,8 @@ final class SecurityCenterClient
      * Updates a source.
      *
      * The async variant is {@see SecurityCenterClient::updateSourceAsync()} .
+     *
+     * @example samples/V1/SecurityCenterClient/update_source.php
      *
      * @param UpdateSourceRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

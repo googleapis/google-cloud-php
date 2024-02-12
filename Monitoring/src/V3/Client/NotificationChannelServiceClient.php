@@ -60,10 +60,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Monitoring\V3\NotificationChannelServiceClient} for the stable
- * implementation
- *
  * @method PromiseInterface createNotificationChannelAsync(CreateNotificationChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteNotificationChannelAsync(DeleteNotificationChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNotificationChannelAsync(GetNotificationChannelRequest $request, array $optionalArgs = [])
@@ -83,8 +79,15 @@ final class NotificationChannelServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.monitoring.v3.NotificationChannelService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'monitoring.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -368,6 +371,8 @@ final class NotificationChannelServiceClient
      * The async variant is
      * {@see NotificationChannelServiceClient::createNotificationChannelAsync()} .
      *
+     * @example samples/V3/NotificationChannelServiceClient/create_notification_channel.php
+     *
      * @param CreateNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -398,6 +403,8 @@ final class NotificationChannelServiceClient
      * The async variant is
      * {@see NotificationChannelServiceClient::deleteNotificationChannelAsync()} .
      *
+     * @example samples/V3/NotificationChannelServiceClient/delete_notification_channel.php
+     *
      * @param DeleteNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -425,6 +432,8 @@ final class NotificationChannelServiceClient
      * The async variant is
      * {@see NotificationChannelServiceClient::getNotificationChannelAsync()} .
      *
+     * @example samples/V3/NotificationChannelServiceClient/get_notification_channel.php
+     *
      * @param GetNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -451,6 +460,8 @@ final class NotificationChannelServiceClient
      * The async variant is
      * {@see NotificationChannelServiceClient::getNotificationChannelDescriptorAsync()}
      * .
+     *
+     * @example samples/V3/NotificationChannelServiceClient/get_notification_channel_descriptor.php
      *
      * @param GetNotificationChannelDescriptorRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
@@ -498,6 +509,8 @@ final class NotificationChannelServiceClient
      * {@see NotificationChannelServiceClient::getNotificationChannelVerificationCodeAsync()}
      * .
      *
+     * @example samples/V3/NotificationChannelServiceClient/get_notification_channel_verification_code.php
+     *
      * @param GetNotificationChannelVerificationCodeRequest $request     A request to house fields associated with the call.
      * @param array                                         $callOptions {
      *     Optional.
@@ -524,6 +537,8 @@ final class NotificationChannelServiceClient
      * The async variant is
      * {@see NotificationChannelServiceClient::listNotificationChannelDescriptorsAsync()}
      * .
+     *
+     * @example samples/V3/NotificationChannelServiceClient/list_notification_channel_descriptors.php
      *
      * @param ListNotificationChannelDescriptorsRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -552,6 +567,8 @@ final class NotificationChannelServiceClient
      * The async variant is
      * {@see NotificationChannelServiceClient::listNotificationChannelsAsync()} .
      *
+     * @example samples/V3/NotificationChannelServiceClient/list_notification_channels.php
+     *
      * @param ListNotificationChannelsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -578,6 +595,8 @@ final class NotificationChannelServiceClient
      * The async variant is
      * {@see NotificationChannelServiceClient::sendNotificationChannelVerificationCodeAsync()}
      * .
+     *
+     * @example samples/V3/NotificationChannelServiceClient/send_notification_channel_verification_code.php
      *
      * @param SendNotificationChannelVerificationCodeRequest $request     A request to house fields associated with the call.
      * @param array                                          $callOptions {
@@ -608,6 +627,8 @@ final class NotificationChannelServiceClient
      * The async variant is
      * {@see NotificationChannelServiceClient::updateNotificationChannelAsync()} .
      *
+     * @example samples/V3/NotificationChannelServiceClient/update_notification_channel.php
+     *
      * @param UpdateNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -634,6 +655,8 @@ final class NotificationChannelServiceClient
      *
      * The async variant is
      * {@see NotificationChannelServiceClient::verifyNotificationChannelAsync()} .
+     *
+     * @example samples/V3/NotificationChannelServiceClient/verify_notification_channel.php
      *
      * @param VerifyNotificationChannelRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {

@@ -84,6 +84,8 @@ use Google\Protobuf\GPBEmpty;
  * contained within formatted names that are returned by the API.
  *
  * @experimental
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class WebSecurityScannerGapicClient
 {
@@ -92,8 +94,15 @@ class WebSecurityScannerGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.websecurityscanner.v1beta.WebSecurityScanner';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'websecurityscanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'websecurityscanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

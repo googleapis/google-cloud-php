@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START appengine_v1_generated_AuthorizedCertificates_DeleteAuthorizedCertificate_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AppEngine\V1\AuthorizedCertificatesClient;
+use Google\Cloud\AppEngine\V1\Client\AuthorizedCertificatesClient;
+use Google\Cloud\AppEngine\V1\DeleteAuthorizedCertificateRequest;
 
 /**
  * Deletes the specified SSL certificate.
@@ -40,9 +41,12 @@ function delete_authorized_certificate_sample(): void
     // Create a client.
     $authorizedCertificatesClient = new AuthorizedCertificatesClient();
 
+    // Prepare the request message.
+    $request = new DeleteAuthorizedCertificateRequest();
+
     // Call the API and handle any network failures.
     try {
-        $authorizedCertificatesClient->deleteAuthorizedCertificate();
+        $authorizedCertificatesClient->deleteAuthorizedCertificate($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

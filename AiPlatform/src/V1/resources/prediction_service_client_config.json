@@ -31,6 +31,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "GenerateContent": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "Predict": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -42,6 +47,18 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "ServerStreamingPredict": {
+                    "timeout_millis": 60000
+                },
+                "StreamDirectPredict": {
+                    "timeout_millis": 60000
+                },
+                "StreamDirectRawPredict": {
+                    "timeout_millis": 60000
+                },
+                "StreamGenerateContent": {
+                    "timeout_millis": 60000
+                },
+                "StreamRawPredict": {
                     "timeout_millis": 60000
                 },
                 "StreamingPredict": {

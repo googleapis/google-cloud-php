@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START vision_v1_generated_ProductSearch_AddProductToProductSet_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Vision\V1\ProductSearchClient;
+use Google\Cloud\Vision\V1\AddProductToProductSetRequest;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
 
 /**
  * Adds a Product to the specified ProductSet. If the Product is already
@@ -52,9 +53,14 @@ function add_product_to_product_set_sample(string $formattedName, string $format
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
+    // Prepare the request message.
+    $request = (new AddProductToProductSetRequest())
+        ->setName($formattedName)
+        ->setProduct($formattedProduct);
+
     // Call the API and handle any network failures.
     try {
-        $productSearchClient->addProductToProductSet($formattedName, $formattedProduct);
+        $productSearchClient->addProductToProductSet($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

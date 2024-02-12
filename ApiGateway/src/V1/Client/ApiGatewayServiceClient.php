@@ -67,12 +67,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createApiAsync(CreateApiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createApiConfigAsync(CreateApiConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createGatewayAsync(CreateGatewayRequest $request, array $optionalArgs = [])
@@ -97,8 +91,15 @@ final class ApiGatewayServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.apigateway.v1.ApiGatewayService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'apigateway.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'apigateway.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -389,6 +390,8 @@ final class ApiGatewayServiceClient
      *
      * The async variant is {@see ApiGatewayServiceClient::createApiAsync()} .
      *
+     * @example samples/V1/ApiGatewayServiceClient/create_api.php
+     *
      * @param CreateApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -412,6 +415,8 @@ final class ApiGatewayServiceClient
      * Creates a new ApiConfig in a given project and location.
      *
      * The async variant is {@see ApiGatewayServiceClient::createApiConfigAsync()} .
+     *
+     * @example samples/V1/ApiGatewayServiceClient/create_api_config.php
      *
      * @param CreateApiConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -437,6 +442,8 @@ final class ApiGatewayServiceClient
      *
      * The async variant is {@see ApiGatewayServiceClient::createGatewayAsync()} .
      *
+     * @example samples/V1/ApiGatewayServiceClient/create_gateway.php
+     *
      * @param CreateGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -460,6 +467,8 @@ final class ApiGatewayServiceClient
      * Deletes a single Api.
      *
      * The async variant is {@see ApiGatewayServiceClient::deleteApiAsync()} .
+     *
+     * @example samples/V1/ApiGatewayServiceClient/delete_api.php
      *
      * @param DeleteApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -485,6 +494,8 @@ final class ApiGatewayServiceClient
      *
      * The async variant is {@see ApiGatewayServiceClient::deleteApiConfigAsync()} .
      *
+     * @example samples/V1/ApiGatewayServiceClient/delete_api_config.php
+     *
      * @param DeleteApiConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -508,6 +519,8 @@ final class ApiGatewayServiceClient
      * Deletes a single Gateway.
      *
      * The async variant is {@see ApiGatewayServiceClient::deleteGatewayAsync()} .
+     *
+     * @example samples/V1/ApiGatewayServiceClient/delete_gateway.php
      *
      * @param DeleteGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -533,6 +546,8 @@ final class ApiGatewayServiceClient
      *
      * The async variant is {@see ApiGatewayServiceClient::getApiAsync()} .
      *
+     * @example samples/V1/ApiGatewayServiceClient/get_api.php
+     *
      * @param GetApiRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -556,6 +571,8 @@ final class ApiGatewayServiceClient
      * Gets details of a single ApiConfig.
      *
      * The async variant is {@see ApiGatewayServiceClient::getApiConfigAsync()} .
+     *
+     * @example samples/V1/ApiGatewayServiceClient/get_api_config.php
      *
      * @param GetApiConfigRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -581,6 +598,8 @@ final class ApiGatewayServiceClient
      *
      * The async variant is {@see ApiGatewayServiceClient::getGatewayAsync()} .
      *
+     * @example samples/V1/ApiGatewayServiceClient/get_gateway.php
+     *
      * @param GetGatewayRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -604,6 +623,8 @@ final class ApiGatewayServiceClient
      * Lists ApiConfigs in a given project and location.
      *
      * The async variant is {@see ApiGatewayServiceClient::listApiConfigsAsync()} .
+     *
+     * @example samples/V1/ApiGatewayServiceClient/list_api_configs.php
      *
      * @param ListApiConfigsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -629,6 +650,8 @@ final class ApiGatewayServiceClient
      *
      * The async variant is {@see ApiGatewayServiceClient::listApisAsync()} .
      *
+     * @example samples/V1/ApiGatewayServiceClient/list_apis.php
+     *
      * @param ListApisRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -652,6 +675,8 @@ final class ApiGatewayServiceClient
      * Lists Gateways in a given project and location.
      *
      * The async variant is {@see ApiGatewayServiceClient::listGatewaysAsync()} .
+     *
+     * @example samples/V1/ApiGatewayServiceClient/list_gateways.php
      *
      * @param ListGatewaysRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -677,6 +702,8 @@ final class ApiGatewayServiceClient
      *
      * The async variant is {@see ApiGatewayServiceClient::updateApiAsync()} .
      *
+     * @example samples/V1/ApiGatewayServiceClient/update_api.php
+     *
      * @param UpdateApiRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -701,6 +728,8 @@ final class ApiGatewayServiceClient
      *
      * The async variant is {@see ApiGatewayServiceClient::updateApiConfigAsync()} .
      *
+     * @example samples/V1/ApiGatewayServiceClient/update_api_config.php
+     *
      * @param UpdateApiConfigRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -724,6 +753,8 @@ final class ApiGatewayServiceClient
      * Updates the parameters of a single Gateway.
      *
      * The async variant is {@see ApiGatewayServiceClient::updateGatewayAsync()} .
+     *
+     * @example samples/V1/ApiGatewayServiceClient/update_gateway.php
      *
      * @param UpdateGatewayRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

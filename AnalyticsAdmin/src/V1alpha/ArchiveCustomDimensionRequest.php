@@ -24,6 +24,21 @@ class ArchiveCustomDimensionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the CustomDimension to archive.
+     *                     Example format: properties/1234/customDimensions/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::customDimensionName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ArchiveCustomDimensionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigateway_v1_generated_ApiGatewayService_DeleteGateway_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\DeleteGatewayRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function delete_gateway_sample(string $formattedName): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteGatewayRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiGatewayServiceClient->deleteGateway($formattedName);
+        $response = $apiGatewayServiceClient->deleteGateway($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

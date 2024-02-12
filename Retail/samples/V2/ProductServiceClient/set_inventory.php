@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_ProductService_SetInventory_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Retail\V2\Client\ProductServiceClient;
 use Google\Cloud\Retail\V2\Product;
-use Google\Cloud\Retail\V2\ProductServiceClient;
+use Google\Cloud\Retail\V2\SetInventoryRequest;
 use Google\Cloud\Retail\V2\SetInventoryResponse;
 use Google\Rpc\Status;
 
@@ -95,14 +96,16 @@ function set_inventory_sample(string $inventoryTitle): void
     // Create a client.
     $productServiceClient = new ProductServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inventory = (new Product())
         ->setTitle($inventoryTitle);
+    $request = (new SetInventoryRequest())
+        ->setInventory($inventory);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $productServiceClient->setInventory($inventory);
+        $response = $productServiceClient->setInventory($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class FeatureView extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Name of the FeatureView. Format:
+     * Identifier. Name of the FeatureView. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -79,7 +79,7 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *           Optional. Configures the features from a Feature Registry source that
      *           need to be loaded onto the FeatureOnlineStore.
      *     @type string $name
-     *           Output only. Name of the FeatureView. Format:
+     *           Identifier. Name of the FeatureView. Format:
      *           `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this FeatureView was created.
@@ -176,10 +176,10 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the FeatureView. Format:
+     * Identifier. Name of the FeatureView. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -188,10 +188,10 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the FeatureView. Format:
+     * Identifier. Name of the FeatureView. Format:
      * `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

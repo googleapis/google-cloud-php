@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_KeyManagementService_GetPublicKey_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\GetPublicKeyRequest;
 use Google\Cloud\Kms\V1\PublicKey;
 
 /**
@@ -44,10 +45,14 @@ function get_public_key_sample(string $formattedName): void
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetPublicKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PublicKey $response */
-        $response = $keyManagementServiceClient->getPublicKey($formattedName);
+        $response = $keyManagementServiceClient->getPublicKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

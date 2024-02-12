@@ -49,6 +49,9 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
     private $labels;
     /**
      * The network policy.
+     * If you define an instance template in the `InstancePolicyOrTemplate` field,
+     * Batch will use the network settings in the instance template instead of
+     * this field.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.NetworkPolicy network = 7;</code>
      */
@@ -59,6 +62,15 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.PlacementPolicy placement = 10;</code>
      */
     private $placement = null;
+    /**
+     * Optional. Tags applied to the VM instances.
+     * The tags identify valid sources or targets for network firewalls.
+     * Each tag must be 1-63 characters long, and comply with
+     * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
+     *
+     * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -83,8 +95,16 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Label names that start with "goog-" or "google-" are reserved.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\NetworkPolicy $network
      *           The network policy.
+     *           If you define an instance template in the `InstancePolicyOrTemplate` field,
+     *           Batch will use the network settings in the instance template instead of
+     *           this field.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\PlacementPolicy $placement
      *           The placement policy.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *           Optional. Tags applied to the VM instances.
+     *           The tags identify valid sources or targets for network firewalls.
+     *           Each tag must be 1-63 characters long, and comply with
+     *           [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
      * }
      */
     public function __construct($data = NULL) {
@@ -232,6 +252,9 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The network policy.
+     * If you define an instance template in the `InstancePolicyOrTemplate` field,
+     * Batch will use the network settings in the instance template instead of
+     * this field.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.NetworkPolicy network = 7;</code>
      * @return \Google\Cloud\Batch\V1\AllocationPolicy\NetworkPolicy|null
@@ -253,6 +276,9 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The network policy.
+     * If you define an instance template in the `InstancePolicyOrTemplate` field,
+     * Batch will use the network settings in the instance template instead of
+     * this field.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.AllocationPolicy.NetworkPolicy network = 7;</code>
      * @param \Google\Cloud\Batch\V1\AllocationPolicy\NetworkPolicy $var
@@ -298,6 +324,38 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\AllocationPolicy\PlacementPolicy::class);
         $this->placement = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Tags applied to the VM instances.
+     * The tags identify valid sources or targets for network firewalls.
+     * Each tag must be 1-63 characters long, and comply with
+     * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
+     *
+     * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Tags applied to the VM instances.
+     * The tags identify valid sources or targets for network firewalls.
+     * Each tag must be 1-63 characters long, and comply with
+     * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
+     *
+     * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

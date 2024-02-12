@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateSearchAds360Link_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
+use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -42,13 +43,15 @@ function update_search_ads360_link_sample(): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
+    $request = (new UpdateSearchAds360LinkRequest())
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var SearchAds360Link $response */
-        $response = $analyticsAdminServiceClient->updateSearchAds360Link($updateMask);
+        $response = $analyticsAdminServiceClient->updateSearchAds360Link($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

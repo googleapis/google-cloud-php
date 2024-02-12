@@ -23,6 +23,12 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeAnswer answers = 2;</code>
      */
     private $answers;
+    /**
+     * The rewritten query used to search knowledge.
+     *
+     * Generated from protobuf field <code>string rewritten_query = 3;</code>
+     */
+    private $rewritten_query = '';
 
     /**
      * Constructor.
@@ -33,6 +39,8 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer>|\Google\Protobuf\Internal\RepeatedField $answers
      *           Most relevant snippets extracted from articles in the given knowledge base,
      *           ordered by confidence.
+     *     @type string $rewritten_query
+     *           The rewritten query used to search knowledge.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,6 +72,32 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer::class);
         $this->answers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The rewritten query used to search knowledge.
+     *
+     * Generated from protobuf field <code>string rewritten_query = 3;</code>
+     * @return string
+     */
+    public function getRewrittenQuery()
+    {
+        return $this->rewritten_query;
+    }
+
+    /**
+     * The rewritten query used to search knowledge.
+     *
+     * Generated from protobuf field <code>string rewritten_query = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRewrittenQuery($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->rewritten_query = $var;
 
         return $this;
     }

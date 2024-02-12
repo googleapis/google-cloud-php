@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationModels_ListConversationModels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient;
 use Google\Cloud\Dialogflow\V2\ConversationModel;
-use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
+use Google\Cloud\Dialogflow\V2\ListConversationModelsRequest;
 
 /**
  * Lists conversation models.
@@ -39,10 +40,14 @@ function list_conversation_models_sample(string $parent): void
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
+    // Prepare the request message.
+    $request = (new ListConversationModelsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $conversationModelsClient->listConversationModels($parent);
+        $response = $conversationModelsClient->listConversationModels($request);
 
         /** @var ConversationModel $element */
         foreach ($response as $element) {

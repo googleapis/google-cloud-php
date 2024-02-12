@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_KeyManagementService_GetIamPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
 
 /**
  * Gets the access control policy for a resource. Returns an empty policy
@@ -39,10 +40,14 @@ function get_iam_policy_sample(string $resource): void
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetIamPolicyRequest())
+        ->setResource($resource);
+
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $keyManagementServiceClient->getIamPolicy($resource);
+        $response = $keyManagementServiceClient->getIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

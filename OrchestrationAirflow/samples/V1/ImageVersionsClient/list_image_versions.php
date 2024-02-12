@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START composer_v1_generated_ImageVersions_ListImageVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\ImageVersionsClient;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion;
-use Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersionsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ListImageVersionsRequest;
 
 /**
  * List ImageVersions for provided location.
@@ -42,10 +43,13 @@ function list_image_versions_sample(): void
     // Create a client.
     $imageVersionsClient = new ImageVersionsClient();
 
+    // Prepare the request message.
+    $request = new ListImageVersionsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $imageVersionsClient->listImageVersions();
+        $response = $imageVersionsClient->listImageVersions($request);
 
         /** @var ImageVersion $element */
         foreach ($response as $element) {

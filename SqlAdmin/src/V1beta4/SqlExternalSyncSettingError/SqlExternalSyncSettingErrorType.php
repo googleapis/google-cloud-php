@@ -224,6 +224,32 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>LOCAL_INFILE_OFF = 35;</code>
      */
     const LOCAL_INFILE_OFF = 35;
+    /**
+     * This code instructs customers to turn on point-in-time recovery manually
+     * for the instance after promoting the Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf enum <code>TURN_ON_PITR_AFTER_PROMOTE = 36;</code>
+     */
+    const TURN_ON_PITR_AFTER_PROMOTE = 36;
+    /**
+     * The minor version of replica database is incompatible with the source.
+     *
+     * Generated from protobuf enum <code>INCOMPATIBLE_DATABASE_MINOR_VERSION = 37;</code>
+     */
+    const INCOMPATIBLE_DATABASE_MINOR_VERSION = 37;
+    /**
+     * This warning message indicates that Cloud SQL uses the maximum number of
+     * subscriptions to migrate data from the source to the destination.
+     *
+     * Generated from protobuf enum <code>SOURCE_MAX_SUBSCRIPTIONS = 38;</code>
+     */
+    const SOURCE_MAX_SUBSCRIPTIONS = 38;
+    /**
+     * Unable to verify definers on the source for MySQL.
+     *
+     * Generated from protobuf enum <code>UNABLE_TO_VERIFY_DEFINERS = 39;</code>
+     */
+    const UNABLE_TO_VERIFY_DEFINERS = 39;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -262,6 +288,10 @@ class SqlExternalSyncSettingErrorType
         self::UNSUPPORTED_DATABASE_SETTINGS => 'UNSUPPORTED_DATABASE_SETTINGS',
         self::MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE => 'MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE',
         self::LOCAL_INFILE_OFF => 'LOCAL_INFILE_OFF',
+        self::TURN_ON_PITR_AFTER_PROMOTE => 'TURN_ON_PITR_AFTER_PROMOTE',
+        self::INCOMPATIBLE_DATABASE_MINOR_VERSION => 'INCOMPATIBLE_DATABASE_MINOR_VERSION',
+        self::SOURCE_MAX_SUBSCRIPTIONS => 'SOURCE_MAX_SUBSCRIPTIONS',
+        self::UNABLE_TO_VERIFY_DEFINERS => 'UNABLE_TO_VERIFY_DEFINERS',
     ];
 
     public static function name($value)

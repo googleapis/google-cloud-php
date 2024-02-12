@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * For example, "Google Cloud Daily Spend", "Google Workspace License Activity",
  * etc.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.Report</code>
  */
 class Report extends \Google\Protobuf\Internal\Message

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START composer_v1_generated_Environments_ListEnvironments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
 use Google\Cloud\Orchestration\Airflow\Service\V1\Environment;
-use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ListEnvironmentsRequest;
 
 /**
  * List environments.
@@ -42,10 +43,13 @@ function list_environments_sample(): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = new ListEnvironmentsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $environmentsClient->listEnvironments();
+        $response = $environmentsClient->listEnvironments($request);
 
         /** @var Environment $element */
         foreach ($response as $element) {

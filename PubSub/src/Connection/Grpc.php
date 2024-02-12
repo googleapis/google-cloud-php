@@ -56,6 +56,9 @@ class Grpc implements ConnectionInterface
     use EmulatorTrait;
     use GrpcTrait;
 
+    /**
+     * @deprecated
+     */
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
     const COMPRESSION_HEADER_KEY = 'grpc-internal-encoding-request';
@@ -112,7 +115,8 @@ class Grpc implements ConnectionInterface
             PubSubClient::VERSION,
             isset($config['authHttpHandler'])
                 ? $config['authHttpHandler']
-                : null
+                : null,
+            $config['universeDomain'] ?? null
         );
 
         $config += ['emulatorHost' => null];
@@ -126,6 +130,10 @@ class Grpc implements ConnectionInterface
                 $grpcConfig,
                 $this->emulatorGapicConfig($config['emulatorHost'])
             );
+        }
+
+        if (isset($config['universeDomain'])) {
+            $grpcConfig['universeDomain'] = $config['universeDomain'];
         }
         //@codeCoverageIgnoreEnd
 
@@ -760,5 +768,49 @@ class Grpc implements ConnectionInterface
 
         $this->schemaClient = $this->constructGapic(SchemaServiceClient::class, $this->clientConfig);
         return $this->schemaClient;
+    }
+
+    /**
+     * Retrieve schema revisions
+     *
+     * @param array $args
+     * @return array
+     */
+    public function listRevisions(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'listSchemaRevisions'], [
+            $this->pluck('name', $args),
+            $args,
+        ]);
+    }
+
+    /**
+     * Create schema revisions
+     *
+     * @param array $args
+     * @return array
+     */
+    public function commitSchema(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'commitSchema'], [
+            $this->pluck('name', $args),
+            new Schema($this->pluck('schema', $args)),
+            $args,
+        ]);
+    }
+
+    /**
+     * Delete schema revision
+     *
+     * @param array $args
+     * @return array
+     */
+    public function deleteRevision(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'deleteSchemaRevision'], [
+            $this->pluck('name', $args),
+            null,
+            $args,
+        ]);
     }
 }

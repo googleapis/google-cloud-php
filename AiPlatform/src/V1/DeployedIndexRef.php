@@ -27,6 +27,12 @@ class DeployedIndexRef extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string deployed_index_id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $deployed_index_id = '';
+    /**
+     * Output only. The display name of the DeployedIndex.
+     *
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $display_name = '';
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class DeployedIndexRef extends \Google\Protobuf\Internal\Message
      *           Immutable. A resource name of the IndexEndpoint.
      *     @type string $deployed_index_id
      *           Immutable. The ID of the DeployedIndex in the above IndexEndpoint.
+     *     @type string $display_name
+     *           Output only. The display name of the DeployedIndex.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class DeployedIndexRef extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->deployed_index_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The display name of the DeployedIndex.
+     *
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Output only. The display name of the DeployedIndex.
+     *
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }

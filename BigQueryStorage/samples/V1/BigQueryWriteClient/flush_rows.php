@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerystorage_v1_generated_BigQueryWrite_FlushRows_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\Storage\V1\BigQueryWriteClient;
+use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryWriteClient;
+use Google\Cloud\BigQuery\Storage\V1\FlushRowsRequest;
 use Google\Cloud\BigQuery\Storage\V1\FlushRowsResponse;
 
 /**
@@ -45,10 +46,14 @@ function flush_rows_sample(string $formattedWriteStream): void
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
+    // Prepare the request message.
+    $request = (new FlushRowsRequest())
+        ->setWriteStream($formattedWriteStream);
+
     // Call the API and handle any network failures.
     try {
         /** @var FlushRowsResponse $response */
-        $response = $bigQueryWriteClient->flushRows($formattedWriteStream);
+        $response = $bigQueryWriteClient->flushRows($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

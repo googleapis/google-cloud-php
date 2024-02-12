@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Intents_ListIntents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\IntentsClient;
 use Google\Cloud\Dialogflow\V2\Intent;
-use Google\Cloud\Dialogflow\V2\IntentsClient;
+use Google\Cloud\Dialogflow\V2\ListIntentsRequest;
 
 /**
  * Returns the list of all intents in the specified agent.
@@ -48,10 +49,14 @@ function list_intents_sample(string $formattedParent): void
     // Create a client.
     $intentsClient = new IntentsClient();
 
+    // Prepare the request message.
+    $request = (new ListIntentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $intentsClient->listIntents($formattedParent);
+        $response = $intentsClient->listIntents($request);
 
         /** @var Intent $element */
         foreach ($response as $element) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudshell_v1_generated_CloudShellService_RemovePublicKey_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Shell\V1\CloudShellServiceClient;
+use Google\Cloud\Shell\V1\Client\CloudShellServiceClient;
+use Google\Cloud\Shell\V1\RemovePublicKeyRequest;
 use Google\Cloud\Shell\V1\RemovePublicKeyResponse;
 use Google\Rpc\Status;
 
@@ -46,10 +47,13 @@ function remove_public_key_sample(): void
     // Create a client.
     $cloudShellServiceClient = new CloudShellServiceClient();
 
+    // Prepare the request message.
+    $request = new RemovePublicKeyRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudShellServiceClient->removePublicKey();
+        $response = $cloudShellServiceClient->removePublicKey($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

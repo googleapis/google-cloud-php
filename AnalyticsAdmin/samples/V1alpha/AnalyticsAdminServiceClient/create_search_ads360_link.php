@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateSearchAds360Link_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\ApiCore\ApiException;
 
@@ -38,16 +39,16 @@ function create_search_ads360_link_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $searchAds360Link = new SearchAds360Link();
+    $request = (new CreateSearchAds360LinkRequest())
+        ->setParent($formattedParent)
+        ->setSearchAds360Link($searchAds360Link);
 
     // Call the API and handle any network failures.
     try {
         /** @var SearchAds360Link $response */
-        $response = $analyticsAdminServiceClient->createSearchAds360Link(
-            $formattedParent,
-            $searchAds360Link
-        );
+        $response = $analyticsAdminServiceClient->createSearchAds360Link($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

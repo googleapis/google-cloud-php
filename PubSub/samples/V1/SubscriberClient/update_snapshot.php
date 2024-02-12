@@ -24,12 +24,14 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_UpdateSnapshot_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\Snapshot;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\UpdateSnapshotRequest;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates an existing snapshot. Snapshots are used in
+ * Updates an existing snapshot by updating the fields specified in the update
+ * mask. Snapshots are used in
  * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
  * which allow you to manage message acknowledgments in bulk. That is, you can
  * set the acknowledgment state of messages in an existing subscription to the
@@ -46,14 +48,17 @@ function update_snapshot_sample(): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $snapshot = new Snapshot();
     $updateMask = new FieldMask();
+    $request = (new UpdateSnapshotRequest())
+        ->setSnapshot($snapshot)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Snapshot $response */
-        $response = $subscriberClient->updateSnapshot($snapshot, $updateMask);
+        $response = $subscriberClient->updateSnapshot($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -27,6 +27,14 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>string project = 2;</code>
      */
     private $project = '';
+    /**
+     * Set to true if the promote operation should attempt to re-add the original
+     * primary as a replica when it comes back online. Otherwise, if this value is
+     * false or not set, the original primary will be a standalone instance.
+     *
+     * Generated from protobuf field <code>bool failover = 3;</code>
+     */
+    private $failover = false;
 
     /**
      * Constructor.
@@ -38,6 +46,10 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
      *           Cloud SQL read replica instance name.
      *     @type string $project
      *           ID of the project that contains the read replica.
+     *     @type bool $failover
+     *           Set to true if the promote operation should attempt to re-add the original
+     *           primary as a replica when it comes back online. Otherwise, if this value is
+     *           false or not set, the original primary will be a standalone instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +105,36 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Set to true if the promote operation should attempt to re-add the original
+     * primary as a replica when it comes back online. Otherwise, if this value is
+     * false or not set, the original primary will be a standalone instance.
+     *
+     * Generated from protobuf field <code>bool failover = 3;</code>
+     * @return bool
+     */
+    public function getFailover()
+    {
+        return $this->failover;
+    }
+
+    /**
+     * Set to true if the promote operation should attempt to re-add the original
+     * primary as a replica when it comes back online. Otherwise, if this value is
+     * false or not set, the original primary will be a standalone instance.
+     *
+     * Generated from protobuf field <code>bool failover = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setFailover($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->failover = $var;
 
         return $this;
     }

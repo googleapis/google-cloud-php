@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecuritySettings extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The configuration needed to generate a signature for access to private storage buckets that support AWS's Signature Version 4 for authentication. Allowed only for INTERNET_IP_PORT and INTERNET_FQDN_PORT NEG backends.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AWSV4Signature aws_v4_authentication = 433993111;</code>
+     */
+    private $aws_v4_authentication = null;
+    /**
      * Optional. A URL referring to a networksecurity.ClientTlsPolicy resource that describes how clients should authenticate with this service's backends. clientTlsPolicy only applies to a global BackendService with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted.
      *
      * Generated from protobuf field <code>optional string client_tls_policy = 462325226;</code>
@@ -34,6 +40,8 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\AWSV4Signature $aws_v4_authentication
+     *           The configuration needed to generate a signature for access to private storage buckets that support AWS's Signature Version 4 for authentication. Allowed only for INTERNET_IP_PORT and INTERNET_FQDN_PORT NEG backends.
      *     @type string $client_tls_policy
      *           Optional. A URL referring to a networksecurity.ClientTlsPolicy resource that describes how clients should authenticate with this service's backends. clientTlsPolicy only applies to a global BackendService with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subject_alt_names
@@ -43,6 +51,42 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The configuration needed to generate a signature for access to private storage buckets that support AWS's Signature Version 4 for authentication. Allowed only for INTERNET_IP_PORT and INTERNET_FQDN_PORT NEG backends.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AWSV4Signature aws_v4_authentication = 433993111;</code>
+     * @return \Google\Cloud\Compute\V1\AWSV4Signature|null
+     */
+    public function getAwsV4Authentication()
+    {
+        return $this->aws_v4_authentication;
+    }
+
+    public function hasAwsV4Authentication()
+    {
+        return isset($this->aws_v4_authentication);
+    }
+
+    public function clearAwsV4Authentication()
+    {
+        unset($this->aws_v4_authentication);
+    }
+
+    /**
+     * The configuration needed to generate a signature for access to private storage buckets that support AWS's Signature Version 4 for authentication. Allowed only for INTERNET_IP_PORT and INTERNET_FQDN_PORT NEG backends.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AWSV4Signature aws_v4_authentication = 433993111;</code>
+     * @param \Google\Cloud\Compute\V1\AWSV4Signature $var
+     * @return $this
+     */
+    public function setAwsV4Authentication($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AWSV4Signature::class);
+        $this->aws_v4_authentication = $var;
+
+        return $this;
     }
 
     /**

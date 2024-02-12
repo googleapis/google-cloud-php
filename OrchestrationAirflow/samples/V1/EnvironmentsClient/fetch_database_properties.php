@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START composer_v1_generated_Environments_FetchDatabaseProperties_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesResponse;
 
 /**
@@ -39,10 +40,14 @@ function fetch_database_properties_sample(string $formattedEnvironment): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = (new FetchDatabasePropertiesRequest())
+        ->setEnvironment($formattedEnvironment);
+
     // Call the API and handle any network failures.
     try {
         /** @var FetchDatabasePropertiesResponse $response */
-        $response = $environmentsClient->fetchDatabaseProperties($formattedEnvironment);
+        $response = $environmentsClient->fetchDatabaseProperties($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

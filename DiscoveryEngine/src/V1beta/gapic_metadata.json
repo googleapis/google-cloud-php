@@ -14,6 +14,16 @@
                             "methods": [
                                 "completeQuery"
                             ]
+                        },
+                        "ImportSuggestionDenyListEntries": {
+                            "methods": [
+                                "importSuggestionDenyListEntries"
+                            ]
+                        },
+                        "PurgeSuggestionDenyListEntries": {
+                            "methods": [
+                                "purgeSuggestionDenyListEntries"
+                            ]
                         }
                     }
                 }
@@ -72,6 +82,40 @@
                 }
             }
         },
+        "DataStoreService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataStoreServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataStore": {
+                            "methods": [
+                                "createDataStore"
+                            ]
+                        },
+                        "DeleteDataStore": {
+                            "methods": [
+                                "deleteDataStore"
+                            ]
+                        },
+                        "GetDataStore": {
+                            "methods": [
+                                "getDataStore"
+                            ]
+                        },
+                        "ListDataStores": {
+                            "methods": [
+                                "listDataStores"
+                            ]
+                        },
+                        "UpdateDataStore": {
+                            "methods": [
+                                "updateDataStore"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DocumentService": {
             "clients": {
                 "grpc": {
@@ -110,6 +154,40 @@
                         "UpdateDocument": {
                             "methods": [
                                 "updateDocument"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EngineService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EngineServiceGapicClient",
+                    "rpcs": {
+                        "CreateEngine": {
+                            "methods": [
+                                "createEngine"
+                            ]
+                        },
+                        "DeleteEngine": {
+                            "methods": [
+                                "deleteEngine"
+                            ]
+                        },
+                        "GetEngine": {
+                            "methods": [
+                                "getEngine"
+                            ]
+                        },
+                        "ListEngines": {
+                            "methods": [
+                                "listEngines"
+                            ]
+                        },
+                        "UpdateEngine": {
+                            "methods": [
+                                "updateEngine"
                             ]
                         }
                     }
@@ -158,6 +236,99 @@
                         "UpdateSchema": {
                             "methods": [
                                 "updateSchema"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ServingConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "rpcs": {
+                        "GetServingConfig": {
+                            "methods": [
+                                "getServingConfig"
+                            ]
+                        },
+                        "ListServingConfigs": {
+                            "methods": [
+                                "listServingConfigs"
+                            ]
+                        },
+                        "UpdateServingConfig": {
+                            "methods": [
+                                "updateServingConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SiteSearchEngineService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SiteSearchEngineServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateTargetSites": {
+                            "methods": [
+                                "batchCreateTargetSites"
+                            ]
+                        },
+                        "BatchVerifyTargetSites": {
+                            "methods": [
+                                "batchVerifyTargetSites"
+                            ]
+                        },
+                        "CreateTargetSite": {
+                            "methods": [
+                                "createTargetSite"
+                            ]
+                        },
+                        "DeleteTargetSite": {
+                            "methods": [
+                                "deleteTargetSite"
+                            ]
+                        },
+                        "DisableAdvancedSiteSearch": {
+                            "methods": [
+                                "disableAdvancedSiteSearch"
+                            ]
+                        },
+                        "EnableAdvancedSiteSearch": {
+                            "methods": [
+                                "enableAdvancedSiteSearch"
+                            ]
+                        },
+                        "FetchDomainVerificationStatus": {
+                            "methods": [
+                                "fetchDomainVerificationStatus"
+                            ]
+                        },
+                        "GetSiteSearchEngine": {
+                            "methods": [
+                                "getSiteSearchEngine"
+                            ]
+                        },
+                        "GetTargetSite": {
+                            "methods": [
+                                "getTargetSite"
+                            ]
+                        },
+                        "ListTargetSites": {
+                            "methods": [
+                                "listTargetSites"
+                            ]
+                        },
+                        "RecrawlUris": {
+                            "methods": [
+                                "recrawlUris"
+                            ]
+                        },
+                        "UpdateTargetSite": {
+                            "methods": [
+                                "updateTargetSite"
                             ]
                         }
                     }

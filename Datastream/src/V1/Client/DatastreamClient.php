@@ -85,11 +85,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Datastream\V1\DatastreamClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createConnectionProfileAsync(CreateConnectionProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createPrivateConnectionAsync(CreatePrivateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createRouteAsync(CreateRouteRequest $request, array $optionalArgs = [])
@@ -126,8 +121,15 @@ final class DatastreamClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.datastream.v1.Datastream';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'datastream.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'datastream.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -430,6 +432,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::createConnectionProfileAsync()} .
      *
+     * @example samples/V1/DatastreamClient/create_connection_profile.php
+     *
      * @param CreateConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -453,6 +457,8 @@ final class DatastreamClient
      * Use this method to create a private connectivity configuration.
      *
      * The async variant is {@see DatastreamClient::createPrivateConnectionAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/create_private_connection.php
      *
      * @param CreatePrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -479,6 +485,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::createRouteAsync()} .
      *
+     * @example samples/V1/DatastreamClient/create_route.php
+     *
      * @param CreateRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -502,6 +510,8 @@ final class DatastreamClient
      * Use this method to create a stream.
      *
      * The async variant is {@see DatastreamClient::createStreamAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/create_stream.php
      *
      * @param CreateStreamRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -527,6 +537,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::deleteConnectionProfileAsync()} .
      *
+     * @example samples/V1/DatastreamClient/delete_connection_profile.php
+     *
      * @param DeleteConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -550,6 +562,8 @@ final class DatastreamClient
      * Use this method to delete a private connectivity configuration.
      *
      * The async variant is {@see DatastreamClient::deletePrivateConnectionAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/delete_private_connection.php
      *
      * @param DeletePrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -575,6 +589,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::deleteRouteAsync()} .
      *
+     * @example samples/V1/DatastreamClient/delete_route.php
+     *
      * @param DeleteRouteRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -598,6 +614,8 @@ final class DatastreamClient
      * Use this method to delete a stream.
      *
      * The async variant is {@see DatastreamClient::deleteStreamAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/delete_stream.php
      *
      * @param DeleteStreamRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -626,6 +644,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::discoverConnectionProfileAsync()} .
      *
+     * @example samples/V1/DatastreamClient/discover_connection_profile.php
+     *
      * @param DiscoverConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -651,6 +671,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::fetchStaticIpsAsync()} .
      *
+     * @example samples/V1/DatastreamClient/fetch_static_ips.php
+     *
      * @param FetchStaticIpsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -674,6 +696,8 @@ final class DatastreamClient
      * Use this method to get details about a connection profile.
      *
      * The async variant is {@see DatastreamClient::getConnectionProfileAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/get_connection_profile.php
      *
      * @param GetConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -699,6 +723,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::getPrivateConnectionAsync()} .
      *
+     * @example samples/V1/DatastreamClient/get_private_connection.php
+     *
      * @param GetPrivateConnectionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -722,6 +748,8 @@ final class DatastreamClient
      * Use this method to get details about a route.
      *
      * The async variant is {@see DatastreamClient::getRouteAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/get_route.php
      *
      * @param GetRouteRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -747,6 +775,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::getStreamAsync()} .
      *
+     * @example samples/V1/DatastreamClient/get_stream.php
+     *
      * @param GetStreamRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -770,6 +800,8 @@ final class DatastreamClient
      * Use this method to get details about a stream object.
      *
      * The async variant is {@see DatastreamClient::getStreamObjectAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/get_stream_object.php
      *
      * @param GetStreamObjectRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -796,6 +828,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::listConnectionProfilesAsync()} .
      *
+     * @example samples/V1/DatastreamClient/list_connection_profiles.php
+     *
      * @param ListConnectionProfilesRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -820,6 +854,8 @@ final class DatastreamClient
      * and location.
      *
      * The async variant is {@see DatastreamClient::listPrivateConnectionsAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/list_private_connections.php
      *
      * @param ListPrivateConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -846,6 +882,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::listRoutesAsync()} .
      *
+     * @example samples/V1/DatastreamClient/list_routes.php
+     *
      * @param ListRoutesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -869,6 +907,8 @@ final class DatastreamClient
      * Use this method to list the objects of a specific stream.
      *
      * The async variant is {@see DatastreamClient::listStreamObjectsAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/list_stream_objects.php
      *
      * @param ListStreamObjectsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -894,6 +934,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::listStreamsAsync()} .
      *
+     * @example samples/V1/DatastreamClient/list_streams.php
+     *
      * @param ListStreamsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -917,6 +959,8 @@ final class DatastreamClient
      * Use this method to look up a stream object by its source object identifier.
      *
      * The async variant is {@see DatastreamClient::lookupStreamObjectAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/lookup_stream_object.php
      *
      * @param LookupStreamObjectRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -942,6 +986,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::startBackfillJobAsync()} .
      *
+     * @example samples/V1/DatastreamClient/start_backfill_job.php
+     *
      * @param StartBackfillJobRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -965,6 +1011,8 @@ final class DatastreamClient
      * Use this method to stop a backfill job for the specified stream object.
      *
      * The async variant is {@see DatastreamClient::stopBackfillJobAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/stop_backfill_job.php
      *
      * @param StopBackfillJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -990,6 +1038,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::updateConnectionProfileAsync()} .
      *
+     * @example samples/V1/DatastreamClient/update_connection_profile.php
+     *
      * @param UpdateConnectionProfileRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1013,6 +1063,8 @@ final class DatastreamClient
      * Use this method to update the configuration of a stream.
      *
      * The async variant is {@see DatastreamClient::updateStreamAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/update_stream.php
      *
      * @param UpdateStreamRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1038,6 +1090,8 @@ final class DatastreamClient
      *
      * The async variant is {@see DatastreamClient::getLocationAsync()} .
      *
+     * @example samples/V1/DatastreamClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1061,6 +1115,8 @@ final class DatastreamClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see DatastreamClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/DatastreamClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

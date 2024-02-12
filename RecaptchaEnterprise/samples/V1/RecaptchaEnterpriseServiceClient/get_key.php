@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_GetKey_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 
 /**
  * Returns the specified key.
@@ -39,10 +40,14 @@ function get_key_sample(string $formattedName): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Key $response */
-        $response = $recaptchaEnterpriseServiceClient->getKey($formattedName);
+        $response = $recaptchaEnterpriseServiceClient->getKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

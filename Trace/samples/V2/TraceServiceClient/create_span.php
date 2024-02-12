@@ -24,8 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudtrace_v2_generated_TraceService_CreateSpan_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Trace\V2\Client\TraceServiceClient;
 use Google\Cloud\Trace\V2\Span;
-use Google\Cloud\Trace\V2\TraceServiceClient;
 use Google\Cloud\Trace\V2\TruncatableString;
 use Google\Protobuf\Timestamp;
 
@@ -51,15 +51,21 @@ function create_span_sample(string $name, string $spanId): void
     // Create a client.
     $traceServiceClient = new TraceServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $displayName = new TruncatableString();
     $startTime = new Timestamp();
     $endTime = new Timestamp();
+    $request = (new Span())
+        ->setName($name)
+        ->setSpanId($spanId)
+        ->setDisplayName($displayName)
+        ->setStartTime($startTime)
+        ->setEndTime($endTime);
 
     // Call the API and handle any network failures.
     try {
         /** @var Span $response */
-        $response = $traceServiceClient->createSpan($name, $spanId, $displayName, $startTime, $endTime);
+        $response = $traceServiceClient->createSpan($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

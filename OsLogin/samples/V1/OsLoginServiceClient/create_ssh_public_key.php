@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START oslogin_v1_generated_OsLoginService_CreateSshPublicKey_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\OsLogin\Common\SshPublicKey;
-use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
+use Google\Cloud\OsLogin\V1\Client\OsLoginServiceClient;
+use Google\Cloud\OsLogin\V1\CreateSshPublicKeyRequest;
 
 /**
  * Create an SSH public key
@@ -38,13 +39,16 @@ function create_ssh_public_key_sample(string $formattedParent): void
     // Create a client.
     $osLoginServiceClient = new OsLoginServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $sshPublicKey = new SshPublicKey();
+    $request = (new CreateSshPublicKeyRequest())
+        ->setParent($formattedParent)
+        ->setSshPublicKey($sshPublicKey);
 
     // Call the API and handle any network failures.
     try {
         /** @var SshPublicKey $response */
-        $response = $osLoginServiceClient->createSshPublicKey($formattedParent, $sshPublicKey);
+        $response = $osLoginServiceClient->createSshPublicKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

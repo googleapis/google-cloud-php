@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatatransfer_v1_generated_DataTransferService_DeleteTransferConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferConfigRequest;
 
 /**
  * Deletes a data transfer configuration, including any associated transfer
@@ -40,9 +41,13 @@ function delete_transfer_config_sample(string $formattedName): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTransferConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataTransferServiceClient->deleteTransferConfig($formattedName);
+        $dataTransferServiceClient->deleteTransferConfig($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

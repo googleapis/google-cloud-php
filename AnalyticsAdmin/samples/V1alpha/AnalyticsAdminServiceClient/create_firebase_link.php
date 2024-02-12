@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateFirebaseLink_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\ApiCore\ApiException;
 
@@ -41,13 +42,16 @@ function create_firebase_link_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firebaseLink = new FirebaseLink();
+    $request = (new CreateFirebaseLinkRequest())
+        ->setParent($formattedParent)
+        ->setFirebaseLink($firebaseLink);
 
     // Call the API and handle any network failures.
     try {
         /** @var FirebaseLink $response */
-        $response = $analyticsAdminServiceClient->createFirebaseLink($formattedParent, $firebaseLink);
+        $response = $analyticsAdminServiceClient->createFirebaseLink($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

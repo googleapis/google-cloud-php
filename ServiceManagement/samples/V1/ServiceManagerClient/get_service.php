@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicemanagement_v1_generated_ServiceManager_GetService_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\GetServiceRequest;
 use Google\Cloud\ServiceManagement\V1\ManagedService;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 
 /**
  * Gets a managed service. Authentication is required unless the service is
@@ -39,10 +40,14 @@ function get_service_sample(string $serviceName): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetServiceRequest())
+        ->setServiceName($serviceName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ManagedService $response */
-        $response = $serviceManagerClient->getService($serviceName);
+        $response = $serviceManagerClient->getService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

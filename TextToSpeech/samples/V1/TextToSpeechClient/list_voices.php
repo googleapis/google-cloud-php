@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START texttospeech_v1_generated_TextToSpeech_ListVoices_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechClient;
+use Google\Cloud\TextToSpeech\V1\ListVoicesRequest;
 use Google\Cloud\TextToSpeech\V1\ListVoicesResponse;
-use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
 
 /**
  * Returns a list of Voice supported for synthesis.
@@ -41,10 +42,13 @@ function list_voices_sample(): void
     // Create a client.
     $textToSpeechClient = new TextToSpeechClient();
 
+    // Prepare the request message.
+    $request = new ListVoicesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var ListVoicesResponse $response */
-        $response = $textToSpeechClient->listVoices();
+        $response = $textToSpeechClient->listVoices($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

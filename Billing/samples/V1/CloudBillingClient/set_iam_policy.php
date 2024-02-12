@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbilling_v1_generated_CloudBilling_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
 use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 
 /**
  * Sets the access control policy for a billing account. Replaces any existing
@@ -42,13 +43,16 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $cloudBillingClient->setIamPolicy($resource, $policy);
+        $response = $cloudBillingClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

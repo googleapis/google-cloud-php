@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataproc_v1_generated_ClusterController_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataproc\V1\ClusterControllerClient;
+use Google\Cloud\Dataproc\V1\Client\ClusterControllerClient;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 
 /**
@@ -48,13 +49,16 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $clusterControllerClient->testIamPermissions($resource, $permissions);
+        $response = $clusterControllerClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

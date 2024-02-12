@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\AppEngine\V1\AuthorizedDomain;
-use Google\Cloud\AppEngine\V1\AuthorizedDomainsClient;
+use Google\Cloud\AppEngine\V1\Client\AuthorizedDomainsClient;
+use Google\Cloud\AppEngine\V1\ListAuthorizedDomainsRequest;
 
 /**
  * Lists all domains the user is authorized to administer.
@@ -42,10 +43,13 @@ function list_authorized_domains_sample(): void
     // Create a client.
     $authorizedDomainsClient = new AuthorizedDomainsClient();
 
+    // Prepare the request message.
+    $request = new ListAuthorizedDomainsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $authorizedDomainsClient->listAuthorizedDomains();
+        $response = $authorizedDomainsClient->listAuthorizedDomains($request);
 
         /** @var AuthorizedDomain $element */
         foreach ($response as $element) {

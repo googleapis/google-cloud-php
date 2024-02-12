@@ -272,6 +272,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_version = '';
     /**
+     * The SQL network architecture for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture sql_network_architecture = 47;</code>
+     */
+    private $sql_network_architecture = null;
+    /**
      * Output only. The link to service attachment of PSC instance.
      *
      * Generated from protobuf field <code>optional string psc_service_attachment_link = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -284,11 +290,18 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $dns_name = null;
     /**
+     * Output only. DEPRECATED: please use write_endpoint instead.
+     *
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
+     */
+    protected $primary_dns_name = null;
+    /**
      * Output only. The dns name of the primary instance in a replication group.
      *
-     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string write_endpoint = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $primary_dns_name = null;
+    private $write_endpoint = null;
 
     /**
      * Constructor.
@@ -405,11 +418,15 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Output only. List all maintenance versions applicable on the instance
      *     @type string $maintenance_version
      *           The current software version on the instance.
+     *     @type int $sql_network_architecture
+     *           The SQL network architecture for the instance.
      *     @type string $psc_service_attachment_link
      *           Output only. The link to service attachment of PSC instance.
      *     @type string $dns_name
      *           Output only. The dns name of the instance.
      *     @type string $primary_dns_name
+     *           Output only. DEPRECATED: please use write_endpoint instead.
+     *     @type string $write_endpoint
      *           Output only. The dns name of the primary instance in a replication group.
      * }
      */
@@ -1670,6 +1687,42 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The SQL network architecture for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture sql_network_architecture = 47;</code>
+     * @return int
+     */
+    public function getSqlNetworkArchitecture()
+    {
+        return isset($this->sql_network_architecture) ? $this->sql_network_architecture : 0;
+    }
+
+    public function hasSqlNetworkArchitecture()
+    {
+        return isset($this->sql_network_architecture);
+    }
+
+    public function clearSqlNetworkArchitecture()
+    {
+        unset($this->sql_network_architecture);
+    }
+
+    /**
+     * The SQL network architecture for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlNetworkArchitecture sql_network_architecture = 47;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSqlNetworkArchitecture($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\DatabaseInstance\SqlNetworkArchitecture::class);
+        $this->sql_network_architecture = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The link to service attachment of PSC instance.
      *
      * Generated from protobuf field <code>optional string psc_service_attachment_link = 48 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -1742,37 +1795,79 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The dns name of the primary instance in a replication group.
+     * Output only. DEPRECATED: please use write_endpoint instead.
      *
-     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
+     * @deprecated
      */
     public function getPrimaryDnsName()
     {
+        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
         return isset($this->primary_dns_name) ? $this->primary_dns_name : '';
     }
 
     public function hasPrimaryDnsName()
     {
+        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
         return isset($this->primary_dns_name);
     }
 
     public function clearPrimaryDnsName()
     {
+        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
         unset($this->primary_dns_name);
+    }
+
+    /**
+     * Output only. DEPRECATED: please use write_endpoint instead.
+     *
+     * Generated from protobuf field <code>optional string primary_dns_name = 51 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setPrimaryDnsName($var)
+    {
+        @trigger_error('primary_dns_name is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkString($var, True);
+        $this->primary_dns_name = $var;
+
+        return $this;
     }
 
     /**
      * Output only. The dns name of the primary instance in a replication group.
      *
-     * Generated from protobuf field <code>optional string primary_dns_name = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional string write_endpoint = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getWriteEndpoint()
+    {
+        return isset($this->write_endpoint) ? $this->write_endpoint : '';
+    }
+
+    public function hasWriteEndpoint()
+    {
+        return isset($this->write_endpoint);
+    }
+
+    public function clearWriteEndpoint()
+    {
+        unset($this->write_endpoint);
+    }
+
+    /**
+     * Output only. The dns name of the primary instance in a replication group.
+     *
+     * Generated from protobuf field <code>optional string write_endpoint = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
-    public function setPrimaryDnsName($var)
+    public function setWriteEndpoint($var)
     {
         GPBUtil::checkString($var, True);
-        $this->primary_dns_name = $var;
+        $this->write_endpoint = $var;
 
         return $this;
     }

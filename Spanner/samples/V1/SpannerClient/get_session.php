@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_GetSession_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\Session;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Gets a session. Returns `NOT_FOUND` if the session does not exist.
@@ -40,10 +41,14 @@ function get_session_sample(string $formattedName): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
+    // Prepare the request message.
+    $request = (new GetSessionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Session $response */
-        $response = $spannerClient->getSession($formattedName);
+        $response = $spannerClient->getSession($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

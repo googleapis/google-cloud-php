@@ -52,11 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Retail\V2\ControlServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createControlAsync(CreateControlRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteControlAsync(DeleteControlRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getControlAsync(GetControlRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class ControlServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.retail.v2.ControlService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'retail.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'retail.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -248,6 +250,8 @@ final class ControlServiceClient
      *
      * The async variant is {@see ControlServiceClient::createControlAsync()} .
      *
+     * @example samples/V2/ControlServiceClient/create_control.php
+     *
      * @param CreateControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -275,6 +279,8 @@ final class ControlServiceClient
      *
      * The async variant is {@see ControlServiceClient::deleteControlAsync()} .
      *
+     * @example samples/V2/ControlServiceClient/delete_control.php
+     *
      * @param DeleteControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -296,6 +302,8 @@ final class ControlServiceClient
      * Gets a Control.
      *
      * The async variant is {@see ControlServiceClient::getControlAsync()} .
+     *
+     * @example samples/V2/ControlServiceClient/get_control.php
      *
      * @param GetControlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -321,6 +329,8 @@ final class ControlServiceClient
      * [Catalog][google.cloud.retail.v2.Catalog].
      *
      * The async variant is {@see ControlServiceClient::listControlsAsync()} .
+     *
+     * @example samples/V2/ControlServiceClient/list_controls.php
      *
      * @param ListControlsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -350,6 +360,8 @@ final class ControlServiceClient
      * NOT_FOUND error is returned.
      *
      * The async variant is {@see ControlServiceClient::updateControlAsync()} .
+     *
+     * @example samples/V2/ControlServiceClient/update_control.php
      *
      * @param UpdateControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

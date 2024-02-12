@@ -29,7 +29,8 @@ use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
 
 /**
- * Perform an online prediction request through gRPC.
+ * Perform an unary online prediction request to a gRPC model server for
+ * custom containers.
  *
  * @param string $formattedEndpoint The name of the Endpoint requested to serve the prediction.
  *                                  Format:

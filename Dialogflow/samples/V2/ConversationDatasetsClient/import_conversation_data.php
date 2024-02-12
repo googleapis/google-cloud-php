@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationDatasets_ImportConversationData_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
+use Google\Cloud\Dialogflow\V2\Client\ConversationDatasetsClient;
 use Google\Cloud\Dialogflow\V2\ImportConversationDataOperationResponse;
+use Google\Cloud\Dialogflow\V2\ImportConversationDataRequest;
 use Google\Cloud\Dialogflow\V2\InputConfig;
 use Google\Rpc\Status;
 
@@ -54,13 +55,16 @@ function import_conversation_data_sample(string $formattedName): void
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfig = new InputConfig();
+    $request = (new ImportConversationDataRequest())
+        ->setName($formattedName)
+        ->setInputConfig($inputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationDatasetsClient->importConversationData($formattedName, $inputConfig);
+        $response = $conversationDatasetsClient->importConversationData($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

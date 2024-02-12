@@ -28,6 +28,12 @@ class AdvancedDatapathObservabilityConfig extends \Google\Protobuf\Internal\Mess
      * Generated from protobuf field <code>.google.container.v1.AdvancedDatapathObservabilityConfig.RelayMode relay_mode = 2;</code>
      */
     private $relay_mode = 0;
+    /**
+     * Enable Relay component
+     *
+     * Generated from protobuf field <code>optional bool enable_relay = 3;</code>
+     */
+    private $enable_relay = null;
 
     /**
      * Constructor.
@@ -39,6 +45,8 @@ class AdvancedDatapathObservabilityConfig extends \Google\Protobuf\Internal\Mess
      *           Expose flow metrics on nodes
      *     @type int $relay_mode
      *           Method used to make Relay available
+     *     @type bool $enable_relay
+     *           Enable Relay component
      * }
      */
     public function __construct($data = NULL) {
@@ -94,6 +102,42 @@ class AdvancedDatapathObservabilityConfig extends \Google\Protobuf\Internal\Mess
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\AdvancedDatapathObservabilityConfig\RelayMode::class);
         $this->relay_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable Relay component
+     *
+     * Generated from protobuf field <code>optional bool enable_relay = 3;</code>
+     * @return bool
+     */
+    public function getEnableRelay()
+    {
+        return isset($this->enable_relay) ? $this->enable_relay : false;
+    }
+
+    public function hasEnableRelay()
+    {
+        return isset($this->enable_relay);
+    }
+
+    public function clearEnableRelay()
+    {
+        unset($this->enable_relay);
+    }
+
+    /**
+     * Enable Relay component
+     *
+     * Generated from protobuf field <code>optional bool enable_relay = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableRelay($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_relay = $var;
 
         return $this;
     }

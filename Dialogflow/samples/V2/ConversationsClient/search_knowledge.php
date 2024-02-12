@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Conversations_SearchKnowledge_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\V2\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
 use Google\Cloud\Dialogflow\V2\SearchKnowledgeResponse;
 use Google\Cloud\Dialogflow\V2\TextInput;
 
@@ -50,15 +51,18 @@ function search_knowledge_sample(
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $query = (new TextInput())
         ->setText($queryText)
         ->setLanguageCode($queryLanguageCode);
+    $request = (new SearchKnowledgeRequest())
+        ->setQuery($query)
+        ->setConversationProfile($formattedConversationProfile);
 
     // Call the API and handle any network failures.
     try {
         /** @var SearchKnowledgeResponse $response */
-        $response = $conversationsClient->searchKnowledge($query, $formattedConversationProfile);
+        $response = $conversationsClient->searchKnowledge($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

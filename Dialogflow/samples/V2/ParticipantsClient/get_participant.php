@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Participants_GetParticipant_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
+use Google\Cloud\Dialogflow\V2\GetParticipantRequest;
 use Google\Cloud\Dialogflow\V2\Participant;
-use Google\Cloud\Dialogflow\V2\ParticipantsClient;
 
 /**
  * Retrieves a conversation participant.
@@ -40,10 +41,14 @@ function get_participant_sample(string $formattedName): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
+    // Prepare the request message.
+    $request = (new GetParticipantRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Participant $response */
-        $response = $participantsClient->getParticipant($formattedName);
+        $response = $participantsClient->getParticipant($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

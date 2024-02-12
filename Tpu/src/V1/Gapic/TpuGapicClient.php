@@ -76,7 +76,7 @@ use Google\LongRunning\Operation;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -93,7 +93,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -107,6 +107,8 @@ use Google\LongRunning\Operation;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class TpuGapicClient
 {
@@ -115,8 +117,15 @@ class TpuGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.tpu.v1.Tpu';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'tpu.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'tpu.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -431,7 +440,7 @@ class TpuGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -448,7 +457,7 @@ class TpuGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -503,7 +512,7 @@ class TpuGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -520,7 +529,7 @@ class TpuGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -911,7 +920,7 @@ class TpuGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -928,7 +937,7 @@ class TpuGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -984,7 +993,7 @@ class TpuGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1001,7 +1010,7 @@ class TpuGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1051,7 +1060,7 @@ class TpuGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1068,7 +1077,7 @@ class TpuGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastore_v1_generated_Datastore_RunQuery_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Datastore\V1\DatastoreClient;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 use Google\Cloud\Datastore\V1\PartitionId;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
 
 /**
@@ -38,13 +39,16 @@ function run_query_sample(string $projectId): void
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $partitionId = new PartitionId();
+    $request = (new RunQueryRequest())
+        ->setProjectId($projectId)
+        ->setPartitionId($partitionId);
 
     // Call the API and handle any network failures.
     try {
         /** @var RunQueryResponse $response */
-        $response = $datastoreClient->runQuery($projectId, $partitionId);
+        $response = $datastoreClient->runQuery($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

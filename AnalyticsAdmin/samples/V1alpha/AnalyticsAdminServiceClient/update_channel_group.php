@@ -23,10 +23,11 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateChannelGroup_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ChannelGroup;
 use Google\Analytics\Admin\V1alpha\ChannelGroupFilterExpression;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\GroupingRule;
+use Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -44,7 +45,7 @@ function update_channel_group_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channelGroupGroupingRuleExpression = new ChannelGroupFilterExpression();
     $groupingRule = (new GroupingRule())
         ->setDisplayName($channelGroupGroupingRuleDisplayName)
@@ -54,11 +55,14 @@ function update_channel_group_sample(
         ->setDisplayName($channelGroupDisplayName)
         ->setGroupingRule($channelGroupGroupingRule);
     $updateMask = new FieldMask();
+    $request = (new UpdateChannelGroupRequest())
+        ->setChannelGroup($channelGroup)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var ChannelGroup $response */
-        $response = $analyticsAdminServiceClient->updateChannelGroup($channelGroup, $updateMask);
+        $response = $analyticsAdminServiceClient->updateChannelGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

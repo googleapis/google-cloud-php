@@ -80,7 +80,7 @@ use Google\Type\Money;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -97,7 +97,7 @@ use Google\Type\Money;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -113,6 +113,8 @@ use Google\Type\Money;
  * contained within formatted names that are returned by the API.
  *
  * @experimental
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class DomainsGapicClient
 {
@@ -121,8 +123,15 @@ class DomainsGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.domains.v1alpha2.Domains';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'domains.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'domains.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -386,7 +395,7 @@ class DomainsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -403,7 +412,7 @@ class DomainsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -478,7 +487,7 @@ class DomainsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -495,7 +504,7 @@ class DomainsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -568,7 +577,7 @@ class DomainsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -585,7 +594,7 @@ class DomainsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -736,7 +745,7 @@ class DomainsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -753,7 +762,7 @@ class DomainsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -951,7 +960,7 @@ class DomainsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -968,7 +977,7 @@ class DomainsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1304,7 +1313,7 @@ class DomainsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1321,7 +1330,7 @@ class DomainsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1410,7 +1419,7 @@ class DomainsGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1427,7 +1436,7 @@ class DomainsGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

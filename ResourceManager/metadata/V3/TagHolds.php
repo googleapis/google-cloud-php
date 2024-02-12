@@ -52,11 +52,11 @@ page_token (	BàA
 	tag_holds (2(.google.cloud.resourcemanager.v3.TagHold
 next_page_token (	2ì
 TagHoldsÏ
-CreateTagHold5.google.cloud.resourcemanager.v3.CreateTagHoldRequest.google.longrunning.Operation"h‚Óä“-"!/v3/{parent=tagValues/*}/tagHolds:tag_holdÚAparent,tag_holdÊA 
-TagHoldCreateTagHoldMetadataÈ
-DeleteTagHold5.google.cloud.resourcemanager.v3.DeleteTagHoldRequest.google.longrunning.Operation"a‚Óä“#*!/v3/{name=tagValues/*/tagHolds/*}ÚAnameÊA.
-google.protobuf.EmptyDeleteTagHoldMetadata¯
-ListTagHolds4.google.cloud.resourcemanager.v3.ListTagHoldsRequest5.google.cloud.resourcemanager.v3.ListTagHoldsResponse"2‚Óä“#!/v3/{parent=tagValues/*}/tagHoldsÚAparentÊA#cloudresourcemanager.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBî
+CreateTagHold5.google.cloud.resourcemanager.v3.CreateTagHoldRequest.google.longrunning.Operation"hÊA 
+TagHoldCreateTagHoldMetadataÚAparent,tag_hold‚Óä“-"!/v3/{parent=tagValues/*}/tagHolds:tag_holdÈ
+DeleteTagHold5.google.cloud.resourcemanager.v3.DeleteTagHoldRequest.google.longrunning.Operation"aÊA.
+google.protobuf.EmptyDeleteTagHoldMetadataÚAname‚Óä“#*!/v3/{name=tagValues/*/tagHolds/*}¯
+ListTagHolds4.google.cloud.resourcemanager.v3.ListTagHoldsRequest5.google.cloud.resourcemanager.v3.ListTagHoldsResponse"2ÚAparent‚Óä“#!/v3/{parent=tagValues/*}/tagHoldsÊA#cloudresourcemanager.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBî
 #com.google.cloud.resourcemanager.v3BTagHoldsProtoPZMcloud.google.com/go/resourcemanager/apiv3/resourcemanagerpb;resourcemanagerpbªGoogle.Cloud.ResourceManager.V3ÊGoogle\\Cloud\\ResourceManager\\V3ê"Google::Cloud::ResourceManager::V3bproto3'
         , true);
 

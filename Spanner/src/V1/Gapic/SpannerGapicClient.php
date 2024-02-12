@@ -69,6 +69,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\Transaction;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Struct;
 
@@ -97,8 +98,7 @@ use Google\Protobuf\Struct;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Spanner\V1\Client\SpannerClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Spanner\V1\Client\SpannerClient}.
  */
 class SpannerGapicClient
 {
@@ -107,8 +107,15 @@ class SpannerGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.spanner.v1.Spanner';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'spanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'spanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -597,6 +604,12 @@ class SpannerGapicClient
      *           If `true`, then statistics related to the transaction will be included in
      *           the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
      *           Default value is `false`.
+     *     @type Duration $maxCommitDelay
+     *           Optional. The amount of latency this request is willing to incur in order
+     *           to improve throughput. If this field is not set, Spanner assumes requests
+     *           are relatively latency sensitive and automatically determines an
+     *           appropriate delay time. You can specify a batching delay value between 0
+     *           and 500 ms.
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
      *     @type RetrySettings|array $retrySettings
@@ -628,6 +641,10 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['returnCommitStats'])) {
             $request->setReturnCommitStats($optionalArgs['returnCommitStats']);
+        }
+
+        if (isset($optionalArgs['maxCommitDelay'])) {
+            $request->setMaxCommitDelay($optionalArgs['maxCommitDelay']);
         }
 
         if (isset($optionalArgs['requestOptions'])) {
@@ -1406,9 +1423,10 @@ class SpannerGapicClient
      * @param string $session      Required. The session used to create the partitions.
      * @param string $sql          Required. The query request to generate partitions for. The request will
      *                             fail if the query is not root partitionable. For a query to be root
-     *                             partitionable, it needs to satisfy a few conditions. For example, the first
-     *                             operator in the query execution plan must be a distributed union operator.
-     *                             For more information about other conditions, see [Read data in
+     *                             partitionable, it needs to satisfy a few conditions. For example, if the
+     *                             query execution plan contains a distributed union operator, then it must be
+     *                             the first operator in the plan. For more information about other
+     *                             conditions, see [Read data in
      *                             parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
      *
      *                             The query request must not contain DML commands, such as INSERT, UPDATE, or

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START jobs_v4_generated_JobService_ListJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Talent\V4\Client\JobServiceClient;
 use Google\Cloud\Talent\V4\Job;
-use Google\Cloud\Talent\V4\JobServiceClient;
+use Google\Cloud\Talent\V4\ListJobsRequest;
 
 /**
  * Lists jobs by filter.
@@ -65,10 +66,15 @@ function list_jobs_sample(string $formattedParent, string $filter): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListJobsRequest())
+        ->setParent($formattedParent)
+        ->setFilter($filter);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $jobServiceClient->listJobs($formattedParent, $filter);
+        $response = $jobServiceClient->listJobs($request);
 
         /** @var Job $element */
         foreach ($response as $element) {

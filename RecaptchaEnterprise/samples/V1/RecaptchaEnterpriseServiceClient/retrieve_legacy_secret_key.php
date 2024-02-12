@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_RetrieveLegacySecretKey_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 
 /**
@@ -41,10 +42,14 @@ function retrieve_legacy_secret_key_sample(string $formattedKey): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new RetrieveLegacySecretKeyRequest())
+        ->setKey($formattedKey);
+
     // Call the API and handle any network failures.
     try {
         /** @var RetrieveLegacySecretKeyResponse $response */
-        $response = $recaptchaEnterpriseServiceClient->retrieveLegacySecretKey($formattedKey);
+        $response = $recaptchaEnterpriseServiceClient->retrieveLegacySecretKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

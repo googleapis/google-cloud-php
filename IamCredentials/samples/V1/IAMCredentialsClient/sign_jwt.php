@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iamcredentials_v1_generated_IAMCredentials_SignJwt_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iam\Credentials\V1\IAMCredentialsClient;
+use Google\Cloud\Iam\Credentials\V1\Client\IAMCredentialsClient;
+use Google\Cloud\Iam\Credentials\V1\SignJwtRequest;
 use Google\Cloud\Iam\Credentials\V1\SignJwtResponse;
 
 /**
@@ -42,10 +43,15 @@ function sign_jwt_sample(string $formattedName, string $payload): void
     // Create a client.
     $iAMCredentialsClient = new IAMCredentialsClient();
 
+    // Prepare the request message.
+    $request = (new SignJwtRequest())
+        ->setName($formattedName)
+        ->setPayload($payload);
+
     // Call the API and handle any network failures.
     try {
         /** @var SignJwtResponse $response */
-        $response = $iAMCredentialsClient->signJwt($formattedName, $payload);
+        $response = $iAMCredentialsClient->signJwt($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

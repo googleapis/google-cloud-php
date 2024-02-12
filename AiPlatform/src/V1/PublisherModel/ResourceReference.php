@@ -27,6 +27,10 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
      *           The URI of the resource.
      *     @type string $resource_name
      *           The resource name of the Google Cloud resource.
+     *     @type string $use_case
+     *           Use case (CUJ) of the resource.
+     *     @type string $description
+     *           Description of the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +96,68 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Use case (CUJ) of the resource.
+     *
+     * Generated from protobuf field <code>string use_case = 3;</code>
+     * @return string
+     */
+    public function getUseCase()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasUseCase()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Use case (CUJ) of the resource.
+     *
+     * Generated from protobuf field <code>string use_case = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUseCase($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Description of the resource.
+     *
+     * Generated from protobuf field <code>string description = 4;</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasDescription()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Description of the resource.
+     *
+     * Generated from protobuf field <code>string description = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

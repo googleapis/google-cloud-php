@@ -54,12 +54,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\DataCatalog\V1\PolicyTagManagerSerializationClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface exportTaxonomiesAsync(ExportTaxonomiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importTaxonomiesAsync(ImportTaxonomiesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface replaceTaxonomyAsync(ReplaceTaxonomyRequest $request, array $optionalArgs = [])
@@ -72,8 +66,15 @@ final class PolicyTagManagerSerializationClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.datacatalog.v1.PolicyTagManagerSerialization';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'datacatalog.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'datacatalog.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -248,6 +249,8 @@ final class PolicyTagManagerSerializationClient
      * The async variant is
      * {@see PolicyTagManagerSerializationClient::exportTaxonomiesAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerSerializationClient/export_taxonomies.php
+     *
      * @param ExportTaxonomiesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -279,6 +282,8 @@ final class PolicyTagManagerSerializationClient
      *
      * The async variant is
      * {@see PolicyTagManagerSerializationClient::importTaxonomiesAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerSerializationClient/import_taxonomies.php
      *
      * @param ImportTaxonomiesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -316,6 +321,8 @@ final class PolicyTagManagerSerializationClient
      *
      * The async variant is
      * {@see PolicyTagManagerSerializationClient::replaceTaxonomyAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerSerializationClient/replace_taxonomy.php
      *
      * @param ReplaceTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

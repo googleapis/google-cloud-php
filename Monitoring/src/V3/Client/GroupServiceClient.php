@@ -64,9 +64,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Monitoring\V3\GroupServiceClient} for the stable implementation
- *
  * @method PromiseInterface createGroupAsync(CreateGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteGroupAsync(DeleteGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getGroupAsync(GetGroupRequest $request, array $optionalArgs = [])
@@ -82,8 +79,15 @@ final class GroupServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.monitoring.v3.GroupService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'monitoring.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -288,6 +292,8 @@ final class GroupServiceClient
      *
      * The async variant is {@see GroupServiceClient::createGroupAsync()} .
      *
+     * @example samples/V3/GroupServiceClient/create_group.php
+     *
      * @param CreateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -312,6 +318,8 @@ final class GroupServiceClient
      *
      * The async variant is {@see GroupServiceClient::deleteGroupAsync()} .
      *
+     * @example samples/V3/GroupServiceClient/delete_group.php
+     *
      * @param DeleteGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -333,6 +341,8 @@ final class GroupServiceClient
      * Gets a single group.
      *
      * The async variant is {@see GroupServiceClient::getGroupAsync()} .
+     *
+     * @example samples/V3/GroupServiceClient/get_group.php
      *
      * @param GetGroupRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -358,6 +368,8 @@ final class GroupServiceClient
      *
      * The async variant is {@see GroupServiceClient::listGroupMembersAsync()} .
      *
+     * @example samples/V3/GroupServiceClient/list_group_members.php
+     *
      * @param ListGroupMembersRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -381,6 +393,8 @@ final class GroupServiceClient
      * Lists the existing groups.
      *
      * The async variant is {@see GroupServiceClient::listGroupsAsync()} .
+     *
+     * @example samples/V3/GroupServiceClient/list_groups.php
      *
      * @param ListGroupsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -406,6 +420,8 @@ final class GroupServiceClient
      * You can change any group attributes except `name`.
      *
      * The async variant is {@see GroupServiceClient::updateGroupAsync()} .
+     *
+     * @example samples/V3/GroupServiceClient/update_group.php
      *
      * @param UpdateGroupRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

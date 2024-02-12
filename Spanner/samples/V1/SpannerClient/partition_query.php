@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_PartitionQuery_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Creates a set of partition tokens that can be used to execute a query
@@ -45,9 +46,10 @@ use Google\Cloud\Spanner\V1\SpannerClient;
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.
  * @param string $sql              The query request to generate partitions for. The request will
  *                                 fail if the query is not root partitionable. For a query to be root
- *                                 partitionable, it needs to satisfy a few conditions. For example, the first
- *                                 operator in the query execution plan must be a distributed union operator.
- *                                 For more information about other conditions, see [Read data in
+ *                                 partitionable, it needs to satisfy a few conditions. For example, if the
+ *                                 query execution plan contains a distributed union operator, then it must be
+ *                                 the first operator in the plan. For more information about other
+ *                                 conditions, see [Read data in
  *                                 parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
  *
  *                                 The query request must not contain DML commands, such as INSERT, UPDATE, or
@@ -60,10 +62,15 @@ function partition_query_sample(string $formattedSession, string $sql): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
+    // Prepare the request message.
+    $request = (new PartitionQueryRequest())
+        ->setSession($formattedSession)
+        ->setSql($sql);
+
     // Call the API and handle any network failures.
     try {
         /** @var PartitionResponse $response */
-        $response = $spannerClient->partitionQuery($formattedSession, $sql);
+        $response = $spannerClient->partitionQuery($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

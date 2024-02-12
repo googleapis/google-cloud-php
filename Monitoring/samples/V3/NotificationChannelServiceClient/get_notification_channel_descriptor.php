@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_NotificationChannelService_GetNotificationChannelDescriptor_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\GetNotificationChannelDescriptorRequest;
 use Google\Cloud\Monitoring\V3\NotificationChannelDescriptor;
-use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 
 /**
  * Gets a single channel descriptor. The descriptor indicates which fields
@@ -41,10 +42,14 @@ function get_notification_channel_descriptor_sample(string $formattedName): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetNotificationChannelDescriptorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var NotificationChannelDescriptor $response */
-        $response = $notificationChannelServiceClient->getNotificationChannelDescriptor($formattedName);
+        $response = $notificationChannelServiceClient->getNotificationChannelDescriptor($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

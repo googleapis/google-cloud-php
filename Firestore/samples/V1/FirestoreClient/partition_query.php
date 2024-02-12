@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START firestore_v1_generated_Firestore_PartitionQuery_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\Cursor;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\PartitionQueryRequest;
 
 /**
  * Partitions a query by returning partition cursors that can be used to run
@@ -44,10 +45,13 @@ function partition_query_sample(): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = new PartitionQueryRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $firestoreClient->partitionQuery();
+        $response = $firestoreClient->partitionQuery($request);
 
         /** @var Cursor $element */
         foreach ($response as $element) {

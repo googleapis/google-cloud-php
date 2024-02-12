@@ -47,6 +47,12 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $disk_type = null;
     /**
+     * Whether this disk is using confidential compute mode.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     */
+    private $enable_confidential_compute = null;
+    /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
      * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
@@ -78,7 +84,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_throughput = null;
     /**
-     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
      */
@@ -137,6 +143,8 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *     @type string $disk_type
      *           Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/pd-standard For a full list of acceptable values, see Persistent disk types. If you specify this field when creating a VM, you can provide either the full or partial URL. For example, the following values are valid: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/diskType - projects/project/zones/zone/diskTypes/diskType - zones/zone/diskTypes/diskType If you specify this field when creating or updating an instance template or all-instances configuration, specify the type of the disk, not the URL. For example: pd-standard.
+     *     @type bool $enable_confidential_compute
+     *           Whether this disk is using confidential compute mode.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
@@ -149,7 +157,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *     @type int|string $provisioned_throughput
      *           Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
-     *           Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     *           Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
      *           Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
@@ -352,6 +360,42 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Whether this disk is using confidential compute mode.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     * @return bool
+     */
+    public function getEnableConfidentialCompute()
+    {
+        return isset($this->enable_confidential_compute) ? $this->enable_confidential_compute : false;
+    }
+
+    public function hasEnableConfidentialCompute()
+    {
+        return isset($this->enable_confidential_compute);
+    }
+
+    public function clearEnableConfidentialCompute()
+    {
+        unset($this->enable_confidential_compute);
+    }
+
+    /**
+     * Whether this disk is using confidential compute mode.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableConfidentialCompute($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_confidential_compute = $var;
+
+        return $this;
+    }
+
+    /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
      * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
@@ -514,7 +558,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -525,7 +569,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone. You can't use this option with boot disks.
+     * Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

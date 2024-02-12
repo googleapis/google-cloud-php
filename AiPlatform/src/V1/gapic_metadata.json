@@ -129,6 +129,65 @@
                 }
             }
         },
+        "DeploymentResourcePoolService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeploymentResourcePoolServiceGapicClient",
+                    "rpcs": {
+                        "CreateDeploymentResourcePool": {
+                            "methods": [
+                                "createDeploymentResourcePool"
+                            ]
+                        },
+                        "DeleteDeploymentResourcePool": {
+                            "methods": [
+                                "deleteDeploymentResourcePool"
+                            ]
+                        },
+                        "GetDeploymentResourcePool": {
+                            "methods": [
+                                "getDeploymentResourcePool"
+                            ]
+                        },
+                        "ListDeploymentResourcePools": {
+                            "methods": [
+                                "listDeploymentResourcePools"
+                            ]
+                        },
+                        "QueryDeployedModels": {
+                            "methods": [
+                                "queryDeployedModels"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "EndpointService": {
             "clients": {
                 "grpc": {
@@ -359,6 +418,11 @@
                         "FetchFeatureValues": {
                             "methods": [
                                 "fetchFeatureValues"
+                            ]
+                        },
+                        "SearchNearestEntities": {
+                            "methods": [
+                                "searchNearestEntities"
                             ]
                         },
                         "GetLocation": {
@@ -985,6 +1049,11 @@
                                 "explain"
                             ]
                         },
+                        "GenerateContent": {
+                            "methods": [
+                                "generateContent"
+                            ]
+                        },
                         "Predict": {
                             "methods": [
                                 "predict"
@@ -998,6 +1067,26 @@
                         "ServerStreamingPredict": {
                             "methods": [
                                 "serverStreamingPredict"
+                            ]
+                        },
+                        "StreamDirectPredict": {
+                            "methods": [
+                                "streamDirectPredict"
+                            ]
+                        },
+                        "StreamDirectRawPredict": {
+                            "methods": [
+                                "streamDirectRawPredict"
+                            ]
+                        },
+                        "StreamGenerateContent": {
+                            "methods": [
+                                "streamGenerateContent"
+                            ]
+                        },
+                        "StreamRawPredict": {
+                            "methods": [
+                                "streamRawPredict"
                             ]
                         },
                         "StreamingPredict": {

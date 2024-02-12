@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_RegisterSubscriber_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\RegisterSubscriberRequest;
 use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 
 /**
@@ -56,10 +57,15 @@ function register_subscriber_sample(string $account, string $serviceAccount): vo
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new RegisterSubscriberRequest())
+        ->setAccount($account)
+        ->setServiceAccount($serviceAccount);
+
     // Call the API and handle any network failures.
     try {
         /** @var RegisterSubscriberResponse $response */
-        $response = $cloudChannelServiceClient->registerSubscriber($account, $serviceAccount);
+        $response = $cloudChannelServiceClient->registerSubscriber($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

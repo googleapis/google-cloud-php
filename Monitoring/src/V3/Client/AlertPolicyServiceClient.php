@@ -60,10 +60,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Monitoring\V3\AlertPolicyServiceClient} for the stable
- * implementation
- *
  * @method PromiseInterface createAlertPolicyAsync(CreateAlertPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAlertPolicyAsync(DeleteAlertPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAlertPolicyAsync(GetAlertPolicyRequest $request, array $optionalArgs = [])
@@ -78,8 +74,15 @@ final class AlertPolicyServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.monitoring.v3.AlertPolicyService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'monitoring.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -368,6 +371,8 @@ final class AlertPolicyServiceClient
      *
      * The async variant is {@see AlertPolicyServiceClient::createAlertPolicyAsync()} .
      *
+     * @example samples/V3/AlertPolicyServiceClient/create_alert_policy.php
+     *
      * @param CreateAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -396,6 +401,8 @@ final class AlertPolicyServiceClient
      *
      * The async variant is {@see AlertPolicyServiceClient::deleteAlertPolicyAsync()} .
      *
+     * @example samples/V3/AlertPolicyServiceClient/delete_alert_policy.php
+     *
      * @param DeleteAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -417,6 +424,8 @@ final class AlertPolicyServiceClient
      * Gets a single alerting policy.
      *
      * The async variant is {@see AlertPolicyServiceClient::getAlertPolicyAsync()} .
+     *
+     * @example samples/V3/AlertPolicyServiceClient/get_alert_policy.php
      *
      * @param GetAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -441,6 +450,8 @@ final class AlertPolicyServiceClient
      * Lists the existing alerting policies for the workspace.
      *
      * The async variant is {@see AlertPolicyServiceClient::listAlertPoliciesAsync()} .
+     *
+     * @example samples/V3/AlertPolicyServiceClient/list_alert_policies.php
      *
      * @param ListAlertPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -472,6 +483,8 @@ final class AlertPolicyServiceClient
      * CreateAlertPolicy, DeleteAlertPolicy and UpdateAlertPolicy.
      *
      * The async variant is {@see AlertPolicyServiceClient::updateAlertPolicyAsync()} .
+     *
+     * @example samples/V3/AlertPolicyServiceClient/update_alert_policy.php
      *
      * @param UpdateAlertPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {

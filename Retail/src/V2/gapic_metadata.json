@@ -5,6 +5,20 @@
     "protoPackage": "google.cloud.retail.v2",
     "libraryPackage": "Google\\Cloud\\Retail\\V2",
     "services": {
+        "AnalyticsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AnalyticsServiceGapicClient",
+                    "rpcs": {
+                        "ExportAnalyticsMetrics": {
+                            "methods": [
+                                "exportAnalyticsMetrics"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CatalogService": {
             "clients": {
                 "grpc": {

@@ -109,6 +109,12 @@ class EventType
      * Generated from protobuf enum <code>GOVERNANCE_RULE_ERRORS = 17;</code>
      */
     const GOVERNANCE_RULE_ERRORS = 17;
+    /**
+     * Governance rule processing Event.
+     *
+     * Generated from protobuf enum <code>GOVERNANCE_RULE_PROCESSING = 18;</code>
+     */
+    const GOVERNANCE_RULE_PROCESSING = 18;
 
     private static $valueToName = [
         self::EVENT_TYPE_UNSPECIFIED => 'EVENT_TYPE_UNSPECIFIED',
@@ -127,6 +133,7 @@ class EventType
         self::GOVERNANCE_RULE_MATCHED_RESOURCES => 'GOVERNANCE_RULE_MATCHED_RESOURCES',
         self::GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS => 'GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS',
         self::GOVERNANCE_RULE_ERRORS => 'GOVERNANCE_RULE_ERRORS',
+        self::GOVERNANCE_RULE_PROCESSING => 'GOVERNANCE_RULE_PROCESSING',
     ];
 
     public static function name($value)

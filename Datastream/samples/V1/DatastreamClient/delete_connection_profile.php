@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_DeleteConnectionProfile_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\DeleteConnectionProfileRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_connection_profile_sample(string $formattedName): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
+    // Prepare the request message.
+    $request = (new DeleteConnectionProfileRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastreamClient->deleteConnectionProfile($formattedName);
+        $response = $datastreamClient->deleteConnectionProfile($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

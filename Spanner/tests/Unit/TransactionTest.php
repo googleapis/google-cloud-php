@@ -22,6 +22,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
@@ -236,7 +237,7 @@ class TransactionTest extends TestCase
         $sql = 'UPDATE foo SET bar = @bar';
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
-            Argument::withEntry('transactionId', self::TRANSACTION),
+            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
             Argument::withEntry('requestOptions', [
                 'requestTag' => self::REQUEST_TAG,
                 'transactionTag' => self::TRANSACTION_TAG
@@ -435,7 +436,7 @@ class TransactionTest extends TestCase
         $sql = 'UPDATE foo SET bar = @bar';
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
-            Argument::withEntry('transactionId', self::TRANSACTION),
+            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
             Argument::withEntry('requestOptions', [
                 'transactionTag' => self::TRANSACTION_TAG,
                 'requestTag' => self::REQUEST_TAG
@@ -523,6 +524,37 @@ class TransactionTest extends TestCase
         $this->transaction->___setProperty('operation', $operation->reveal());
 
         $this->transaction->commit(['returnCommitStats' => true]);
+
+        $this->assertEquals(['mutationCount' => 1], $this->transaction->getCommitStats());
+    }
+
+    public function testCommitWithMaxCommitDelay()
+    {
+        $duration = new Duration(0, 100000000);
+        $this->transaction->insert('Posts', ['foo' => 'bar']);
+
+        $mutations = $this->transaction->___getProperty('mutations');
+
+        $operation = $this->prophesize(Operation::class);
+        $operation->commitWithResponse(
+            $this->session,
+            $mutations,
+            [
+                'transactionId' => self::TRANSACTION,
+                'returnCommitStats' => true,
+                'maxCommitDelay' => $duration,
+                'requestOptions' => [
+                    'transactionTag' => self::TRANSACTION_TAG
+                ]
+            ]
+        )->shouldBeCalled()->willReturn($this->commitResponseWithCommitStats());
+
+        $this->transaction->___setProperty('operation', $operation->reveal());
+
+        $this->transaction->commit([
+            'returnCommitStats' => true,
+            'maxCommitDelay' => $duration
+        ]);
 
         $this->assertEquals(['mutationCount' => 1], $this->transaction->getCommitStats());
     }

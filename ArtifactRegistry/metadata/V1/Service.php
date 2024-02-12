@@ -36,53 +36,53 @@ class Service
 1google/devtools/artifactregistry/v1/service.proto#google.devtools.artifactregistry.v1google/api/client.proto6google/devtools/artifactregistry/v1/apt_artifact.proto2google/devtools/artifactregistry/v1/artifact.proto.google/devtools/artifactregistry/v1/file.proto1google/devtools/artifactregistry/v1/package.proto4google/devtools/artifactregistry/v1/repository.proto2google/devtools/artifactregistry/v1/settings.proto-google/devtools/artifactregistry/v1/tag.proto1google/devtools/artifactregistry/v1/version.proto6google/devtools/artifactregistry/v1/vpcsc_config.proto6google/devtools/artifactregistry/v1/yum_artifact.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"
 OperationMetadata2‰@
 ArtifactRegistry·
-ListDockerImages<.google.devtools.artifactregistry.v1.ListDockerImagesRequest=.google.devtools.artifactregistry.v1.ListDockerImagesResponse"PÇ”‰ìA?/v1/{parent=projects/*/locations/*/repositories/*}/dockerImages⁄AparentŒ
-GetDockerImage:.google.devtools.artifactregistry.v1.GetDockerImageRequest0.google.devtools.artifactregistry.v1.DockerImage"NÇ”‰ìA?/v1/{name=projects/*/locations/*/repositories/*/dockerImages/*}⁄AnameÈ
-ListMavenArtifacts>.google.devtools.artifactregistry.v1.ListMavenArtifactsRequest?.google.devtools.artifactregistry.v1.ListMavenArtifactsResponse"RÇ”‰ìCA/v1/{parent=projects/*/locations/*/repositories/*}/mavenArtifacts⁄Aparent÷
-GetMavenArtifact<.google.devtools.artifactregistry.v1.GetMavenArtifactRequest2.google.devtools.artifactregistry.v1.MavenArtifact"PÇ”‰ìCA/v1/{name=projects/*/locations/*/repositories/*/mavenArtifacts/*}⁄Aname›
-ListNpmPackages;.google.devtools.artifactregistry.v1.ListNpmPackagesRequest<.google.devtools.artifactregistry.v1.ListNpmPackagesResponse"OÇ”‰ì@>/v1/{parent=projects/*/locations/*/repositories/*}/npmPackages⁄Aparent 
-GetNpmPackage9.google.devtools.artifactregistry.v1.GetNpmPackageRequest/.google.devtools.artifactregistry.v1.NpmPackage"MÇ”‰ì@>/v1/{name=projects/*/locations/*/repositories/*/npmPackages/*}⁄AnameÈ
-ListPythonPackages>.google.devtools.artifactregistry.v1.ListPythonPackagesRequest?.google.devtools.artifactregistry.v1.ListPythonPackagesResponse"RÇ”‰ìCA/v1/{parent=projects/*/locations/*/repositories/*}/pythonPackages⁄Aparent÷
-GetPythonPackage<.google.devtools.artifactregistry.v1.GetPythonPackageRequest2.google.devtools.artifactregistry.v1.PythonPackage"PÇ”‰ìCA/v1/{name=projects/*/locations/*/repositories/*/pythonPackages/*}⁄AnameÀ
-ImportAptArtifacts>.google.devtools.artifactregistry.v1.ImportAptArtifactsRequest.google.longrunning.Operation"’Ç”‰ìK"F/v1/{parent=projects/*/locations/*/repositories/*}/aptArtifacts:import:* AÄ
->google.devtools.artifactregistry.v1.ImportAptArtifactsResponse>google.devtools.artifactregistry.v1.ImportAptArtifactsMetadataÀ
-ImportYumArtifacts>.google.devtools.artifactregistry.v1.ImportYumArtifactsRequest.google.longrunning.Operation"’Ç”‰ìK"F/v1/{parent=projects/*/locations/*/repositories/*}/yumArtifacts:import:* AÄ
->google.devtools.artifactregistry.v1.ImportYumArtifactsResponse>google.devtools.artifactregistry.v1.ImportYumArtifactsMetadata“
-ListRepositories<.google.devtools.artifactregistry.v1.ListRepositoriesRequest=.google.devtools.artifactregistry.v1.ListRepositoriesResponse"AÇ”‰ì20/v1/{parent=projects/*/locations/*}/repositories⁄Aparentº
-GetRepository9.google.devtools.artifactregistry.v1.GetRepositoryRequest/.google.devtools.artifactregistry.v1.Repository"?Ç”‰ì20/v1/{name=projects/*/locations/*/repositories/*}⁄Aname¬
-CreateRepository<.google.devtools.artifactregistry.v1.CreateRepositoryRequest.google.longrunning.Operation"–Ç”‰ì>"0/v1/{parent=projects/*/locations/*}/repositories:
-repository⁄Aparent,repository,repository_id Ag
-.google.devtools.artifactregistry.v1.Repository5google.devtools.artifactregistry.v1.OperationMetadataÎ
-UpdateRepository<.google.devtools.artifactregistry.v1.UpdateRepositoryRequest/.google.devtools.artifactregistry.v1.Repository"hÇ”‰ìI2;/v1/{repository.name=projects/*/locations/*/repositories/*}:
-repository⁄Arepository,update_maskÇ
-DeleteRepository<.google.devtools.artifactregistry.v1.DeleteRepositoryRequest.google.longrunning.Operation"êÇ”‰ì2*0/v1/{name=projects/*/locations/*/repositories/*}⁄Aname AN
-google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadata—
-ListPackages8.google.devtools.artifactregistry.v1.ListPackagesRequest9.google.devtools.artifactregistry.v1.ListPackagesResponse"LÇ”‰ì=;/v1/{parent=projects/*/locations/*/repositories/*}/packages⁄Aparentæ
+ListDockerImages<.google.devtools.artifactregistry.v1.ListDockerImagesRequest=.google.devtools.artifactregistry.v1.ListDockerImagesResponse"P⁄AparentÇ”‰ìA?/v1/{parent=projects/*/locations/*/repositories/*}/dockerImagesŒ
+GetDockerImage:.google.devtools.artifactregistry.v1.GetDockerImageRequest0.google.devtools.artifactregistry.v1.DockerImage"N⁄AnameÇ”‰ìA?/v1/{name=projects/*/locations/*/repositories/*/dockerImages/*}È
+ListMavenArtifacts>.google.devtools.artifactregistry.v1.ListMavenArtifactsRequest?.google.devtools.artifactregistry.v1.ListMavenArtifactsResponse"R⁄AparentÇ”‰ìCA/v1/{parent=projects/*/locations/*/repositories/*}/mavenArtifacts÷
+GetMavenArtifact<.google.devtools.artifactregistry.v1.GetMavenArtifactRequest2.google.devtools.artifactregistry.v1.MavenArtifact"P⁄AnameÇ”‰ìCA/v1/{name=projects/*/locations/*/repositories/*/mavenArtifacts/*}›
+ListNpmPackages;.google.devtools.artifactregistry.v1.ListNpmPackagesRequest<.google.devtools.artifactregistry.v1.ListNpmPackagesResponse"O⁄AparentÇ”‰ì@>/v1/{parent=projects/*/locations/*/repositories/*}/npmPackages 
+GetNpmPackage9.google.devtools.artifactregistry.v1.GetNpmPackageRequest/.google.devtools.artifactregistry.v1.NpmPackage"M⁄AnameÇ”‰ì@>/v1/{name=projects/*/locations/*/repositories/*/npmPackages/*}È
+ListPythonPackages>.google.devtools.artifactregistry.v1.ListPythonPackagesRequest?.google.devtools.artifactregistry.v1.ListPythonPackagesResponse"R⁄AparentÇ”‰ìCA/v1/{parent=projects/*/locations/*/repositories/*}/pythonPackages÷
+GetPythonPackage<.google.devtools.artifactregistry.v1.GetPythonPackageRequest2.google.devtools.artifactregistry.v1.PythonPackage"P⁄AnameÇ”‰ìCA/v1/{name=projects/*/locations/*/repositories/*/pythonPackages/*}À
+ImportAptArtifacts>.google.devtools.artifactregistry.v1.ImportAptArtifactsRequest.google.longrunning.Operation"’ AÄ
+>google.devtools.artifactregistry.v1.ImportAptArtifactsResponse>google.devtools.artifactregistry.v1.ImportAptArtifactsMetadataÇ”‰ìK"F/v1/{parent=projects/*/locations/*/repositories/*}/aptArtifacts:import:*À
+ImportYumArtifacts>.google.devtools.artifactregistry.v1.ImportYumArtifactsRequest.google.longrunning.Operation"’ AÄ
+>google.devtools.artifactregistry.v1.ImportYumArtifactsResponse>google.devtools.artifactregistry.v1.ImportYumArtifactsMetadataÇ”‰ìK"F/v1/{parent=projects/*/locations/*/repositories/*}/yumArtifacts:import:*“
+ListRepositories<.google.devtools.artifactregistry.v1.ListRepositoriesRequest=.google.devtools.artifactregistry.v1.ListRepositoriesResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/repositoriesº
+GetRepository9.google.devtools.artifactregistry.v1.GetRepositoryRequest/.google.devtools.artifactregistry.v1.Repository"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/repositories/*}¬
+CreateRepository<.google.devtools.artifactregistry.v1.CreateRepositoryRequest.google.longrunning.Operation"– Ag
+.google.devtools.artifactregistry.v1.Repository5google.devtools.artifactregistry.v1.OperationMetadata⁄Aparent,repository,repository_idÇ”‰ì>"0/v1/{parent=projects/*/locations/*}/repositories:
+repositoryÎ
+UpdateRepository<.google.devtools.artifactregistry.v1.UpdateRepositoryRequest/.google.devtools.artifactregistry.v1.Repository"h⁄Arepository,update_maskÇ”‰ìI2;/v1/{repository.name=projects/*/locations/*/repositories/*}:
+repositoryÇ
+DeleteRepository<.google.devtools.artifactregistry.v1.DeleteRepositoryRequest.google.longrunning.Operation"ê AN
+google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/repositories/*}—
+ListPackages8.google.devtools.artifactregistry.v1.ListPackagesRequest9.google.devtools.artifactregistry.v1.ListPackagesResponse"L⁄AparentÇ”‰ì=;/v1/{parent=projects/*/locations/*/repositories/*}/packagesæ
 
-GetPackage6.google.devtools.artifactregistry.v1.GetPackageRequest,.google.devtools.artifactregistry.v1.Package"JÇ”‰ì=;/v1/{name=projects/*/locations/*/repositories/*/packages/*}⁄Anameá
-DeletePackage9.google.devtools.artifactregistry.v1.DeletePackageRequest.google.longrunning.Operation"õÇ”‰ì=*;/v1/{name=projects/*/locations/*/repositories/*/packages/*}⁄Aname AN
-google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadata‹
-ListVersions8.google.devtools.artifactregistry.v1.ListVersionsRequest9.google.devtools.artifactregistry.v1.ListVersionsResponse"WÇ”‰ìHF/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/versions⁄Aparent…
+GetPackage6.google.devtools.artifactregistry.v1.GetPackageRequest,.google.devtools.artifactregistry.v1.Package"J⁄AnameÇ”‰ì=;/v1/{name=projects/*/locations/*/repositories/*/packages/*}á
+DeletePackage9.google.devtools.artifactregistry.v1.DeletePackageRequest.google.longrunning.Operation"õ AN
+google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadata⁄AnameÇ”‰ì=*;/v1/{name=projects/*/locations/*/repositories/*/packages/*}‹
+ListVersions8.google.devtools.artifactregistry.v1.ListVersionsRequest9.google.devtools.artifactregistry.v1.ListVersionsResponse"W⁄AparentÇ”‰ìHF/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/versions…
 
-GetVersion6.google.devtools.artifactregistry.v1.GetVersionRequest,.google.devtools.artifactregistry.v1.Version"UÇ”‰ìHF/v1/{name=projects/*/locations/*/repositories/*/packages/*/versions/*}⁄Anameí
-DeleteVersion9.google.devtools.artifactregistry.v1.DeleteVersionRequest.google.longrunning.Operation"¶Ç”‰ìH*F/v1/{name=projects/*/locations/*/repositories/*/packages/*/versions/*}⁄Aname AN
-google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadataø
-BatchDeleteVersions?.google.devtools.artifactregistry.v1.BatchDeleteVersionsRequest.google.longrunning.Operation"«Ç”‰ìW"R/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/versions:batchDelete:*⁄Aparent,names AX
-google.protobuf.Empty?google.devtools.artifactregistry.v1.BatchDeleteVersionsMetadata≈
-	ListFiles5.google.devtools.artifactregistry.v1.ListFilesRequest6.google.devtools.artifactregistry.v1.ListFilesResponse"IÇ”‰ì:8/v1/{parent=projects/*/locations/*/repositories/*}/files⁄Aparent≥
-GetFile3.google.devtools.artifactregistry.v1.GetFileRequest).google.devtools.artifactregistry.v1.File"HÇ”‰ì;9/v1/{name=projects/*/locations/*/repositories/*/files/**}⁄AnameÃ
-ListTags4.google.devtools.artifactregistry.v1.ListTagsRequest5.google.devtools.artifactregistry.v1.ListTagsResponse"SÇ”‰ìDB/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/tags⁄Aparentπ
-GetTag2.google.devtools.artifactregistry.v1.GetTagRequest(.google.devtools.artifactregistry.v1.Tag"QÇ”‰ìDB/v1/{name=projects/*/locations/*/repositories/*/packages/*/tags/*}⁄Aname—
-	CreateTag5.google.devtools.artifactregistry.v1.CreateTagRequest(.google.devtools.artifactregistry.v1.Tag"cÇ”‰ìI"B/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/tags:tag⁄Aparent,tag,tag_id”
-	UpdateTag5.google.devtools.artifactregistry.v1.UpdateTagRequest(.google.devtools.artifactregistry.v1.Tag"eÇ”‰ìM2F/v1/{tag.name=projects/*/locations/*/repositories/*/packages/*/tags/*}:tag⁄Atag,update_mask≠
-	DeleteTag5.google.devtools.artifactregistry.v1.DeleteTagRequest.google.protobuf.Empty"QÇ”‰ìD*B/v1/{name=projects/*/locations/*/repositories/*/packages/*/tags/*}⁄Anameó
+GetVersion6.google.devtools.artifactregistry.v1.GetVersionRequest,.google.devtools.artifactregistry.v1.Version"U⁄AnameÇ”‰ìHF/v1/{name=projects/*/locations/*/repositories/*/packages/*/versions/*}í
+DeleteVersion9.google.devtools.artifactregistry.v1.DeleteVersionRequest.google.longrunning.Operation"¶ AN
+google.protobuf.Empty5google.devtools.artifactregistry.v1.OperationMetadata⁄AnameÇ”‰ìH*F/v1/{name=projects/*/locations/*/repositories/*/packages/*/versions/*}ø
+BatchDeleteVersions?.google.devtools.artifactregistry.v1.BatchDeleteVersionsRequest.google.longrunning.Operation"« AX
+google.protobuf.Empty?google.devtools.artifactregistry.v1.BatchDeleteVersionsMetadata⁄Aparent,namesÇ”‰ìW"R/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/versions:batchDelete:*≈
+	ListFiles5.google.devtools.artifactregistry.v1.ListFilesRequest6.google.devtools.artifactregistry.v1.ListFilesResponse"I⁄AparentÇ”‰ì:8/v1/{parent=projects/*/locations/*/repositories/*}/files≥
+GetFile3.google.devtools.artifactregistry.v1.GetFileRequest).google.devtools.artifactregistry.v1.File"H⁄AnameÇ”‰ì;9/v1/{name=projects/*/locations/*/repositories/*/files/**}Ã
+ListTags4.google.devtools.artifactregistry.v1.ListTagsRequest5.google.devtools.artifactregistry.v1.ListTagsResponse"S⁄AparentÇ”‰ìDB/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/tagsπ
+GetTag2.google.devtools.artifactregistry.v1.GetTagRequest(.google.devtools.artifactregistry.v1.Tag"Q⁄AnameÇ”‰ìDB/v1/{name=projects/*/locations/*/repositories/*/packages/*/tags/*}—
+	CreateTag5.google.devtools.artifactregistry.v1.CreateTagRequest(.google.devtools.artifactregistry.v1.Tag"c⁄Aparent,tag,tag_idÇ”‰ìI"B/v1/{parent=projects/*/locations/*/repositories/*/packages/*}/tags:tag”
+	UpdateTag5.google.devtools.artifactregistry.v1.UpdateTagRequest(.google.devtools.artifactregistry.v1.Tag"e⁄Atag,update_maskÇ”‰ìM2F/v1/{tag.name=projects/*/locations/*/repositories/*/packages/*/tags/*}:tag≠
+	DeleteTag5.google.devtools.artifactregistry.v1.DeleteTagRequest.google.protobuf.Empty"Q⁄AnameÇ”‰ìD*B/v1/{name=projects/*/locations/*/repositories/*/packages/*/tags/*}ó
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"LÇ”‰ìF"A/v1/{resource=projects/*/locations/*/repositories/*}:setIamPolicy:*î
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"IÇ”‰ìCA/v1/{resource=projects/*/locations/*/repositories/*}:getIamPolicyΩ
 TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"RÇ”‰ìL"G/v1/{resource=projects/*/locations/*/repositories/*}:testIamPermissions:*¿
-GetProjectSettings>.google.devtools.artifactregistry.v1.GetProjectSettingsRequest4.google.devtools.artifactregistry.v1.ProjectSettings"4Ç”‰ì\'%/v1/{name=projects/*/projectSettings}⁄AnameÅ
-UpdateProjectSettingsA.google.devtools.artifactregistry.v1.UpdateProjectSettingsRequest4.google.devtools.artifactregistry.v1.ProjectSettings"oÇ”‰ìJ26/v1/{project_settings.name=projects/*/projectSettings}:project_settings⁄Aproject_settings,update_maskº
-GetVPCSCConfig:.google.devtools.artifactregistry.v1.GetVPCSCConfigRequest0.google.devtools.artifactregistry.v1.VPCSCConfig"<Ç”‰ì/-/v1/{name=projects/*/locations/*/vpcscConfig}⁄AnameÒ
-UpdateVPCSCConfig=.google.devtools.artifactregistry.v1.UpdateVPCSCConfigRequest0.google.devtools.artifactregistry.v1.VPCSCConfig"kÇ”‰ìJ2:/v1/{vpcsc_config.name=projects/*/locations/*/vpcscConfig}:vpcsc_config⁄Avpcsc_config,update_maskå Aartifactregistry.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB˜
+GetProjectSettings>.google.devtools.artifactregistry.v1.GetProjectSettingsRequest4.google.devtools.artifactregistry.v1.ProjectSettings"4⁄AnameÇ”‰ì\'%/v1/{name=projects/*/projectSettings}Å
+UpdateProjectSettingsA.google.devtools.artifactregistry.v1.UpdateProjectSettingsRequest4.google.devtools.artifactregistry.v1.ProjectSettings"o⁄Aproject_settings,update_maskÇ”‰ìJ26/v1/{project_settings.name=projects/*/projectSettings}:project_settingsº
+GetVPCSCConfig:.google.devtools.artifactregistry.v1.GetVPCSCConfigRequest0.google.devtools.artifactregistry.v1.VPCSCConfig"<⁄AnameÇ”‰ì/-/v1/{name=projects/*/locations/*/vpcscConfig}Ò
+UpdateVPCSCConfig=.google.devtools.artifactregistry.v1.UpdateVPCSCConfigRequest0.google.devtools.artifactregistry.v1.VPCSCConfig"k⁄Avpcsc_config,update_maskÇ”‰ìJ2:/v1/{vpcsc_config.name=projects/*/locations/*/vpcscConfig}:vpcsc_configå Aartifactregistry.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB˜
 \'com.google.devtools.artifactregistry.v1BServiceProtoPZPcloud.google.com/go/artifactregistry/apiv1/artifactregistrypb;artifactregistrypb™ Google.Cloud.ArtifactRegistry.V1  Google\\Cloud\\ArtifactRegistry\\V1Í#Google::Cloud::ArtifactRegistry::V1bproto3'
         , true);
 

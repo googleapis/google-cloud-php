@@ -38,6 +38,9 @@ use Google\Cloud\AIPlatform\V1\FeatureViewDataFormat;
 use Google\Cloud\AIPlatform\V1\FeatureViewDataKey;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesRequest;
 use Google\Cloud\AIPlatform\V1\FetchFeatureValuesResponse;
+use Google\Cloud\AIPlatform\V1\NearestNeighborQuery;
+use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesRequest;
+use Google\Cloud\AIPlatform\V1\SearchNearestEntitiesResponse;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -51,7 +54,7 @@ use Google\Cloud\Location\Location;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description:
+ * Service Description: A service for fetching feature values from the online store.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -71,9 +74,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\FeatureOnlineStoreServiceClient} to use the
- * new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\FeatureOnlineStoreServiceClient}.
  */
 class FeatureOnlineStoreServiceGapicClient
 {
@@ -82,8 +83,15 @@ class FeatureOnlineStoreServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.FeatureOnlineStoreService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -339,6 +347,72 @@ class FeatureOnlineStoreServiceGapicClient
         return $this->startCall(
             'FetchFeatureValues',
             FetchFeatureValuesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Search the nearest entities under a FeatureView.
+     * Search only works for indexable feature view; if a feature view isn't
+     * indexable, returns Invalid argument response.
+     *
+     * Sample code:
+     * ```
+     * $featureOnlineStoreServiceClient = new FeatureOnlineStoreServiceClient();
+     * try {
+     *     $formattedFeatureView = $featureOnlineStoreServiceClient->featureViewName('[PROJECT]', '[LOCATION]', '[FEATURE_ONLINE_STORE]', '[FEATURE_VIEW]');
+     *     $query = new NearestNeighborQuery();
+     *     $response = $featureOnlineStoreServiceClient->searchNearestEntities($formattedFeatureView, $query);
+     * } finally {
+     *     $featureOnlineStoreServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string               $featureView  Required. FeatureView resource format
+     *                                           `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`
+     * @param NearestNeighborQuery $query        Required. The query.
+     * @param array                $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $returnFullEntity
+     *           Optional. If set to true, the full entities (including all vector values
+     *           and metadata) of the nearest neighbors are returned; otherwise only entity
+     *           id of the nearest neighbors will be returned. Note that returning full
+     *           entities will significantly increase the latency and cost of the query.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\SearchNearestEntitiesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchNearestEntities(
+        $featureView,
+        $query,
+        array $optionalArgs = []
+    ) {
+        $request = new SearchNearestEntitiesRequest();
+        $requestParamHeaders = [];
+        $request->setFeatureView($featureView);
+        $request->setQuery($query);
+        $requestParamHeaders['feature_view'] = $featureView;
+        if (isset($optionalArgs['returnFullEntity'])) {
+            $request->setReturnFullEntity($optionalArgs['returnFullEntity']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SearchNearestEntities',
+            SearchNearestEntitiesResponse::class,
             $optionalArgs,
             $request
         )->wait();

@@ -3,9 +3,53 @@
 return [
     'interfaces' => [
         'google.cloud.compute.v1.RegionNetworkEndpointGroups' => [
+            'AttachNetworkEndpoints' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}/attachNetworkEndpoints',
+                'body' => 'region_network_endpoint_groups_attach_endpoints_request_resource',
+                'placeholders' => [
+                    'network_endpoint_group' => [
+                        'getters' => [
+                            'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}',
+                'placeholders' => [
+                    'network_endpoint_group' => [
+                        'getters' => [
+                            'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'DetachNetworkEndpoints' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}/detachNetworkEndpoints',
+                'body' => 'region_network_endpoint_groups_detach_endpoints_request_resource',
                 'placeholders' => [
                     'network_endpoint_group' => [
                         'getters' => [
@@ -66,6 +110,27 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups',
                 'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNetworkEndpoints' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}/listNetworkEndpoints',
+                'placeholders' => [
+                    'network_endpoint_group' => [
+                        'getters' => [
+                            'getNetworkEndpointGroup',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',

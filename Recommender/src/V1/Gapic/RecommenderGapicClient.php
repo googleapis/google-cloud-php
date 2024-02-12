@@ -78,8 +78,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Recommender\V1\Client\RecommenderClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Recommender\V1\Client\RecommenderClient}.
  */
 class RecommenderGapicClient
 {
@@ -88,8 +87,15 @@ class RecommenderGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.recommender.v1.Recommender';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'recommender.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'recommender.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -1395,6 +1401,8 @@ class RecommenderGapicClient
      *
      *           * `severity`
      *
+     *           * `targetResources`
+     *
      *           Examples:
      *
      *           * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
@@ -1403,7 +1411,12 @@ class RecommenderGapicClient
      *
      *           * `severity = CRITICAL OR severity = HIGH`
      *
+     *           * `targetResources :
+     *           //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+     *
      *           * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     *
+     *           The max allowed filter length is 500 characters.
      *
      *           (These expressions are based on the filter language described at
      *           https://google.aip.dev/160)
@@ -1506,6 +1519,8 @@ class RecommenderGapicClient
      *
      *           * `priority`
      *
+     *           * `targetResources`
+     *
      *           Examples:
      *
      *           * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
@@ -1514,7 +1529,12 @@ class RecommenderGapicClient
      *
      *           * `priority = P1 OR priority = P2`
      *
+     *           * `targetResources :
+     *           //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1`
+     *
      *           * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+     *
+     *           The max allowed filter length is 500 characters.
      *
      *           (These expressions are based on the filter language described at
      *           https://google.aip.dev/160)
@@ -1687,7 +1707,7 @@ class RecommenderGapicClient
      * }
      * ```
      *
-     * @param string $name         Name of the recommendation.
+     * @param string $name         Required. Name of the recommendation.
      * @param array  $optionalArgs {
      *     Optional.
      *

@@ -43,10 +43,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
  * @method PromiseInterface troubleshootIamPolicyAsync(TroubleshootIamPolicyRequest $request, array $optionalArgs = [])
  */
 final class PolicyTroubleshooterClient
@@ -56,8 +52,15 @@ final class PolicyTroubleshooterClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.policytroubleshooter.iam.v3.PolicyTroubleshooter';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'policytroubleshooter.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'policytroubleshooter.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -66,9 +69,7 @@ final class PolicyTroubleshooterClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -184,8 +185,10 @@ final class PolicyTroubleshooterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function troubleshootIamPolicy(TroubleshootIamPolicyRequest $request, array $callOptions = []): TroubleshootIamPolicyResponse
-    {
+    public function troubleshootIamPolicy(
+        TroubleshootIamPolicyRequest $request,
+        array $callOptions = []
+    ): TroubleshootIamPolicyResponse {
         return $this->startApiCall('TroubleshootIamPolicy', $request, $callOptions)->wait();
     }
 }

@@ -28,7 +28,7 @@ class EventService
 jobs.googleapis.com/Tenant>
 client_event (2#.google.cloud.talent.v4.ClientEventB‡A2≈
 EventService∆
-CreateClientEvent0.google.cloud.talent.v4.CreateClientEventRequest#.google.cloud.talent.v4.ClientEvent"ZÇ”‰ì>"./v4/{parent=projects/*/tenants/*}/clientEvents:client_event⁄Aparent,client_eventl Ajobs.googleapis.com“AShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBk
+CreateClientEvent0.google.cloud.talent.v4.CreateClientEventRequest#.google.cloud.talent.v4.ClientEvent"Z⁄Aparent,client_eventÇ”‰ì>"./v4/{parent=projects/*/tenants/*}/clientEvents:client_eventl Ajobs.googleapis.com“AShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBk
 com.google.cloud.talent.v4BEventServiceProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 

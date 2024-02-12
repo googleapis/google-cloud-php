@@ -14,8 +14,9 @@ use Google\Protobuf\Internal\GPBUtil;
  *     TextAnnotation -> Page -> Block -> Paragraph -> Word -> Symbol
  * Each structural component, starting from Page, may further have their own
  * properties. Properties describe detected languages, breaks etc.. Please refer
- * to the [TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty] message definition below for more
- * detail.
+ * to the
+ * [TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty]
+ * message definition below for more detail.
  *
  * Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation</code>
  */

@@ -106,26 +106,26 @@ page_token (	
 feature_view_syncs (2+.google.cloud.aiplatform.v1.FeatureViewSync
 next_page_token (	2Ð
 FeatureOnlineStoreAdminServiceÆ
-CreateFeatureOnlineStore;.google.cloud.aiplatform.v1.CreateFeatureOnlineStoreRequest.google.longrunning.Operation"Í‚Óä“O"7/v1/{parent=projects/*/locations/*}/featureOnlineStores:feature_online_storeÚA3parent,feature_online_store,feature_online_store_idÊA?
-FeatureOnlineStore)CreateFeatureOnlineStoreOperationMetadataÉ
-GetFeatureOnlineStore8.google.cloud.aiplatform.v1.GetFeatureOnlineStoreRequest..google.cloud.aiplatform.v1.FeatureOnlineStore"F‚Óä“97/v1/{name=projects/*/locations/*/featureOnlineStores/*}ÚAnameÜ
-ListFeatureOnlineStores:.google.cloud.aiplatform.v1.ListFeatureOnlineStoresRequest;.google.cloud.aiplatform.v1.ListFeatureOnlineStoresResponse"H‚Óä“97/v1/{parent=projects/*/locations/*}/featureOnlineStoresÚAparentÈ
-UpdateFeatureOnlineStore;.google.cloud.aiplatform.v1.UpdateFeatureOnlineStoreRequest.google.longrunning.Operation"Ï‚Óä“d2L/v1/{feature_online_store.name=projects/*/locations/*/featureOnlineStores/*}:feature_online_storeÚA feature_online_store,update_maskÊA?
-FeatureOnlineStore)UpdateFeatureOnlineStoreOperationMetadata÷
-DeleteFeatureOnlineStore;.google.cloud.aiplatform.v1.DeleteFeatureOnlineStoreRequest.google.longrunning.Operation"‚Óä“9*7/v1/{name=projects/*/locations/*/featureOnlineStores/*}ÚA
-name,forceÊA0
-google.protobuf.EmptyDeleteOperationMetadata¡
-CreateFeatureView4.google.cloud.aiplatform.v1.CreateFeatureViewRequest.google.longrunning.Operation"¶‚Óä“V"F/v1/{parent=projects/*/locations/*/featureOnlineStores/*}/featureViews:feature_viewÚA#parent,feature_view,feature_view_idÊA1
-FeatureView"CreateFeatureViewOperationMetadataÃ
-GetFeatureView1.google.cloud.aiplatform.v1.GetFeatureViewRequest\'.google.cloud.aiplatform.v1.FeatureView"U‚Óä“HF/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*}ÚAnameÖ
-ListFeatureViews3.google.cloud.aiplatform.v1.ListFeatureViewsRequest4.google.cloud.aiplatform.v1.ListFeatureViewsResponse"W‚Óä“HF/v1/{parent=projects/*/locations/*/featureOnlineStores/*}/featureViewsÚAparent£
-UpdateFeatureView4.google.cloud.aiplatform.v1.UpdateFeatureViewRequest.google.longrunning.Operation"¸‚Óä“c2S/v1/{feature_view.name=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:feature_viewÚAfeature_view,update_maskÊA1
-FeatureView"UpdateFeatureViewOperationMetadataó
-DeleteFeatureView4.google.cloud.aiplatform.v1.DeleteFeatureViewRequest.google.longrunning.Operation"ˆ‚Óä“H*F/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadataé
-SyncFeatureView2.google.cloud.aiplatform.v1.SyncFeatureViewRequest3.google.cloud.aiplatform.v1.SyncFeatureViewResponse"m‚Óä“X"S/v1/{feature_view=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:sync:*ÚAfeature_viewâ
-GetFeatureViewSync5.google.cloud.aiplatform.v1.GetFeatureViewSyncRequest+.google.cloud.aiplatform.v1.FeatureViewSync"h‚Óä“[Y/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/featureViewSyncs/*}ÚAnameõ
-ListFeatureViewSyncs7.google.cloud.aiplatform.v1.ListFeatureViewSyncsRequest8.google.cloud.aiplatform.v1.ListFeatureViewSyncsResponse"j‚Óä“[Y/v1/{parent=projects/*/locations/*/featureOnlineStores/*/featureViews/*}/featureViewSyncsÚAparentMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBá
+CreateFeatureOnlineStore;.google.cloud.aiplatform.v1.CreateFeatureOnlineStoreRequest.google.longrunning.Operation"ÍÊA?
+FeatureOnlineStore)CreateFeatureOnlineStoreOperationMetadataÚA3parent,feature_online_store,feature_online_store_id‚Óä“O"7/v1/{parent=projects/*/locations/*}/featureOnlineStores:feature_online_storeÉ
+GetFeatureOnlineStore8.google.cloud.aiplatform.v1.GetFeatureOnlineStoreRequest..google.cloud.aiplatform.v1.FeatureOnlineStore"FÚAname‚Óä“97/v1/{name=projects/*/locations/*/featureOnlineStores/*}Ü
+ListFeatureOnlineStores:.google.cloud.aiplatform.v1.ListFeatureOnlineStoresRequest;.google.cloud.aiplatform.v1.ListFeatureOnlineStoresResponse"HÚAparent‚Óä“97/v1/{parent=projects/*/locations/*}/featureOnlineStoresÈ
+UpdateFeatureOnlineStore;.google.cloud.aiplatform.v1.UpdateFeatureOnlineStoreRequest.google.longrunning.Operation"ÏÊA?
+FeatureOnlineStore)UpdateFeatureOnlineStoreOperationMetadataÚA feature_online_store,update_mask‚Óä“d2L/v1/{feature_online_store.name=projects/*/locations/*/featureOnlineStores/*}:feature_online_store÷
+DeleteFeatureOnlineStore;.google.cloud.aiplatform.v1.DeleteFeatureOnlineStoreRequest.google.longrunning.Operation"ÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚA
+name,force‚Óä“9*7/v1/{name=projects/*/locations/*/featureOnlineStores/*}¡
+CreateFeatureView4.google.cloud.aiplatform.v1.CreateFeatureViewRequest.google.longrunning.Operation"¶ÊA1
+FeatureView"CreateFeatureViewOperationMetadataÚA#parent,feature_view,feature_view_id‚Óä“V"F/v1/{parent=projects/*/locations/*/featureOnlineStores/*}/featureViews:feature_viewÃ
+GetFeatureView1.google.cloud.aiplatform.v1.GetFeatureViewRequest\'.google.cloud.aiplatform.v1.FeatureView"UÚAname‚Óä“HF/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*}Ö
+ListFeatureViews3.google.cloud.aiplatform.v1.ListFeatureViewsRequest4.google.cloud.aiplatform.v1.ListFeatureViewsResponse"WÚAparent‚Óä“HF/v1/{parent=projects/*/locations/*/featureOnlineStores/*}/featureViews£
+UpdateFeatureView4.google.cloud.aiplatform.v1.UpdateFeatureViewRequest.google.longrunning.Operation"¸ÊA1
+FeatureView"UpdateFeatureViewOperationMetadataÚAfeature_view,update_mask‚Óä“c2S/v1/{feature_view.name=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:feature_viewó
+DeleteFeatureView4.google.cloud.aiplatform.v1.DeleteFeatureViewRequest.google.longrunning.Operation"ˆÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“H*F/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*}é
+SyncFeatureView2.google.cloud.aiplatform.v1.SyncFeatureViewRequest3.google.cloud.aiplatform.v1.SyncFeatureViewResponse"mÚAfeature_view‚Óä“X"S/v1/{feature_view=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:sync:*â
+GetFeatureViewSync5.google.cloud.aiplatform.v1.GetFeatureViewSyncRequest+.google.cloud.aiplatform.v1.FeatureViewSync"hÚAname‚Óä“[Y/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/featureViewSyncs/*}õ
+ListFeatureViewSyncs7.google.cloud.aiplatform.v1.ListFeatureViewSyncsRequest8.google.cloud.aiplatform.v1.ListFeatureViewSyncsResponse"jÚAparent‚Óä“[Y/v1/{parent=projects/*/locations/*/featureOnlineStores/*/featureViews/*}/featureViewSyncsMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBá
 com.google.cloud.aiplatform.v1B#FeatureOnlineStoreAdminServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_AuthorizedCertificates_GetAuthorizedCertificate_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\AppEngine\V1\AuthorizedCertificate;
-use Google\Cloud\AppEngine\V1\AuthorizedCertificatesClient;
+use Google\Cloud\AppEngine\V1\Client\AuthorizedCertificatesClient;
+use Google\Cloud\AppEngine\V1\GetAuthorizedCertificateRequest;
 
 /**
  * Gets the specified SSL certificate.
@@ -41,10 +42,13 @@ function get_authorized_certificate_sample(): void
     // Create a client.
     $authorizedCertificatesClient = new AuthorizedCertificatesClient();
 
+    // Prepare the request message.
+    $request = new GetAuthorizedCertificateRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var AuthorizedCertificate $response */
-        $response = $authorizedCertificatesClient->getAuthorizedCertificate();
+        $response = $authorizedCertificatesClient->getAuthorizedCertificate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

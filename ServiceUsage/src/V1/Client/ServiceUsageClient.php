@@ -55,11 +55,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ServiceUsage\V1\ServiceUsageClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchEnableServicesAsync(BatchEnableServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchGetServicesAsync(BatchGetServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface disableServiceAsync(DisableServiceRequest $request, array $optionalArgs = [])
@@ -74,8 +69,15 @@ final class ServiceUsageClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.api.serviceusage.v1.ServiceUsage';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'serviceusage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'serviceusage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -219,6 +221,8 @@ final class ServiceUsageClient
      *
      * The async variant is {@see ServiceUsageClient::batchEnableServicesAsync()} .
      *
+     * @example samples/V1/ServiceUsageClient/batch_enable_services.php
+     *
      * @param BatchEnableServicesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -243,6 +247,8 @@ final class ServiceUsageClient
      * services.
      *
      * The async variant is {@see ServiceUsageClient::batchGetServicesAsync()} .
+     *
+     * @example samples/V1/ServiceUsageClient/batch_get_services.php
      *
      * @param BatchGetServicesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -274,6 +280,8 @@ final class ServiceUsageClient
      *
      * The async variant is {@see ServiceUsageClient::disableServiceAsync()} .
      *
+     * @example samples/V1/ServiceUsageClient/disable_service.php
+     *
      * @param DisableServiceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -298,6 +306,8 @@ final class ServiceUsageClient
      *
      * The async variant is {@see ServiceUsageClient::enableServiceAsync()} .
      *
+     * @example samples/V1/ServiceUsageClient/enable_service.php
+     *
      * @param EnableServiceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -321,6 +331,8 @@ final class ServiceUsageClient
      * Returns the service configuration and enabled state for a given service.
      *
      * The async variant is {@see ServiceUsageClient::getServiceAsync()} .
+     *
+     * @example samples/V1/ServiceUsageClient/get_service.php
      *
      * @param GetServiceRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -357,6 +369,8 @@ final class ServiceUsageClient
      * higher throughput and richer filtering capability.
      *
      * The async variant is {@see ServiceUsageClient::listServicesAsync()} .
+     *
+     * @example samples/V1/ServiceUsageClient/list_services.php
      *
      * @param ListServicesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

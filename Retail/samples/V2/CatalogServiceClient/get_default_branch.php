@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_CatalogService_GetDefaultBranch_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Retail\V2\CatalogServiceClient;
+use Google\Cloud\Retail\V2\Client\CatalogServiceClient;
+use Google\Cloud\Retail\V2\GetDefaultBranchRequest;
 use Google\Cloud\Retail\V2\GetDefaultBranchResponse;
 
 /**
@@ -43,10 +44,13 @@ function get_default_branch_sample(): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
+    // Prepare the request message.
+    $request = new GetDefaultBranchRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var GetDefaultBranchResponse $response */
-        $response = $catalogServiceClient->getDefaultBranch();
+        $response = $catalogServiceClient->getDefaultBranch($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

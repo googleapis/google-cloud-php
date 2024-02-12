@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationModels_ListConversationModelEvaluations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient;
 use Google\Cloud\Dialogflow\V2\ConversationModelEvaluation;
-use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
+use Google\Cloud\Dialogflow\V2\ListConversationModelEvaluationsRequest;
 
 /**
  * Lists evaluations of a conversation model.
@@ -39,10 +40,14 @@ function list_conversation_model_evaluations_sample(string $parent): void
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
+    // Prepare the request message.
+    $request = (new ListConversationModelEvaluationsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $conversationModelsClient->listConversationModelEvaluations($parent);
+        $response = $conversationModelsClient->listConversationModelEvaluations($request);
 
         /** @var ConversationModelEvaluation $element */
         foreach ($response as $element) {

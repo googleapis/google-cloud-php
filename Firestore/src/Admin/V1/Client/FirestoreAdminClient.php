@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
+use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\Field;
@@ -95,14 +96,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Firestore\Admin\V1\FirestoreAdminClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteDatabaseAsync(DeleteDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportDocumentsAsync(ExportDocumentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
@@ -123,8 +119,15 @@ final class FirestoreAdminClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.firestore.admin.v1.FirestoreAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'firestore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'firestore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -386,6 +389,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::createDatabaseAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/create_database.php
+     *
      * @param CreateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -414,6 +419,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::createIndexAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/create_index.php
+     *
      * @param CreateIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -434,9 +441,37 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Deletes a database.
+     *
+     * The async variant is {@see FirestoreAdminClient::deleteDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/delete_database.php
+     *
+     * @param DeleteDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDatabase(DeleteDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a composite index.
      *
      * The async variant is {@see FirestoreAdminClient::deleteIndexAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/delete_index.php
      *
      * @param DeleteIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -470,6 +505,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::exportDocumentsAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/export_documents.php
+     *
      * @param ExportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -493,6 +530,8 @@ final class FirestoreAdminClient
      * Gets information about a database.
      *
      * The async variant is {@see FirestoreAdminClient::getDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_database.php
      *
      * @param GetDatabaseRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -518,6 +557,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::getFieldAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/get_field.php
+     *
      * @param GetFieldRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -541,6 +582,8 @@ final class FirestoreAdminClient
      * Gets a composite index.
      *
      * The async variant is {@see FirestoreAdminClient::getIndexAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_index.php
      *
      * @param GetIndexRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -570,6 +613,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::importDocumentsAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/import_documents.php
+     *
      * @param ImportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -593,6 +638,8 @@ final class FirestoreAdminClient
      * List all the databases in the project.
      *
      * The async variant is {@see FirestoreAdminClient::listDatabasesAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/list_databases.php
      *
      * @param ListDatabasesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -621,9 +668,12 @@ final class FirestoreAdminClient
      * only supports listing fields that have been explicitly overridden. To issue
      * this query, call
      * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
-     * with the filter set to `indexConfig.usesAncestorConfig:false` .
+     * with the filter set to `indexConfig.usesAncestorConfig:false` or
+     * `ttlConfig:*`.
      *
      * The async variant is {@see FirestoreAdminClient::listFieldsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/list_fields.php
      *
      * @param ListFieldsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -649,6 +699,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::listIndexesAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/list_indexes.php
+     *
      * @param ListIndexesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -672,6 +724,8 @@ final class FirestoreAdminClient
      * Updates a database.
      *
      * The async variant is {@see FirestoreAdminClient::updateDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/update_database.php
      *
      * @param UpdateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -711,6 +765,8 @@ final class FirestoreAdminClient
      * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`.
      *
      * The async variant is {@see FirestoreAdminClient::updateFieldAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/update_field.php
      *
      * @param UpdateFieldRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

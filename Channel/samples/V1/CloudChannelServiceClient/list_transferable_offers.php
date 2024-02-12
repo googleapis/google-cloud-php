@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListTransferableOffers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListTransferableOffersRequest;
 use Google\Cloud\Channel\V1\TransferableOffer;
 
 /**
@@ -60,10 +61,15 @@ function list_transferable_offers_sample(string $parent, string $sku): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTransferableOffersRequest())
+        ->setParent($parent)
+        ->setSku($sku);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listTransferableOffers($parent, $sku);
+        $response = $cloudChannelServiceClient->listTransferableOffers($request);
 
         /** @var TransferableOffer $element */
         foreach ($response as $element) {

@@ -538,7 +538,7 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $runtime = 'runtime1550962648';
         $availableMemoryMb = 1964533661;
         $serviceAccountEmail = 'serviceAccountEmail-1300473088';
-        $versionId = 670497310;
+        $versionId2 = 102817515;
         $network = 'network1843485230';
         $maxInstances = 330682013;
         $minInstances = 1491624145;
@@ -557,7 +557,7 @@ class CloudFunctionsServiceClientTest extends GeneratedTest
         $expectedResponse->setRuntime($runtime);
         $expectedResponse->setAvailableMemoryMb($availableMemoryMb);
         $expectedResponse->setServiceAccountEmail($serviceAccountEmail);
-        $expectedResponse->setVersionId($versionId);
+        $expectedResponse->setVersionId($versionId2);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setMaxInstances($maxInstances);
         $expectedResponse->setMinInstances($minInstances);

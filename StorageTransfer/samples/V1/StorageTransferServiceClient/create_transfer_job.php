@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storagetransfer_v1_generated_StorageTransferService_CreateTransferJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\CreateTransferJobRequest;
 use Google\Cloud\StorageTransfer\V1\TransferJob;
 
 /**
@@ -41,13 +42,15 @@ function create_transfer_job_sample(): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $transferJob = new TransferJob();
+    $request = (new CreateTransferJobRequest())
+        ->setTransferJob($transferJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var TransferJob $response */
-        $response = $storageTransferServiceClient->createTransferJob($transferJob);
+        $response = $storageTransferServiceClient->createTransferJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

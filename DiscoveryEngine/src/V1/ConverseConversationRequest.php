@@ -82,6 +82,24 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.SummarySpec summary_spec = 8;</code>
      */
     protected $summary_spec = null;
+    /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the documents being filtered. Filter
+     * expression is case-sensitive. This will be used to filter search results
+     * which may affect the summary response.
+     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * Filtering in Vertex AI Search is done by mapping the LHS filter key to a
+     * key property defined in the Vertex AI Search backend -- this mapping is
+     * defined by the customer in their schema. For example a media customer might
+     * have a field 'name' in their schema. In this case the filter would look
+     * like this: filter --> name:'ANY("king kong")'
+     * For more information about filtering including syntax and filter
+     * operators, see
+     * [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 9;</code>
+     */
+    protected $filter = '';
 
     /**
      * @param string                                     $name  Required. The resource name of the Conversation to get. Format:
@@ -147,6 +165,20 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
      *           for more details.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec $summary_spec
      *           A specification for configuring the summary returned in the response.
+     *     @type string $filter
+     *           The filter syntax consists of an expression language for constructing a
+     *           predicate from one or more fields of the documents being filtered. Filter
+     *           expression is case-sensitive. This will be used to filter search results
+     *           which may affect the summary response.
+     *           If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     *           Filtering in Vertex AI Search is done by mapping the LHS filter key to a
+     *           key property defined in the Vertex AI Search backend -- this mapping is
+     *           defined by the customer in their schema. For example a media customer might
+     *           have a field 'name' in their schema. In this case the filter would look
+     *           like this: filter --> name:'ANY("king kong")'
+     *           For more information about filtering including syntax and filter
+     *           operators, see
+     *           [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      * }
      */
     public function __construct($data = NULL) {
@@ -408,6 +440,56 @@ class ConverseConversationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec\SummarySpec::class);
         $this->summary_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the documents being filtered. Filter
+     * expression is case-sensitive. This will be used to filter search results
+     * which may affect the summary response.
+     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * Filtering in Vertex AI Search is done by mapping the LHS filter key to a
+     * key property defined in the Vertex AI Search backend -- this mapping is
+     * defined by the customer in their schema. For example a media customer might
+     * have a field 'name' in their schema. In this case the filter would look
+     * like this: filter --> name:'ANY("king kong")'
+     * For more information about filtering including syntax and filter
+     * operators, see
+     * [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 9;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the documents being filtered. Filter
+     * expression is case-sensitive. This will be used to filter search results
+     * which may affect the summary response.
+     * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * Filtering in Vertex AI Search is done by mapping the LHS filter key to a
+     * key property defined in the Vertex AI Search backend -- this mapping is
+     * defined by the customer in their schema. For example a media customer might
+     * have a field 'name' in their schema. In this case the filter would look
+     * like this: filter --> name:'ANY("king kong")'
+     * For more information about filtering including syntax and filter
+     * operators, see
+     * [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *
+     * Generated from protobuf field <code>string filter = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

@@ -53,11 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Logging\V2\LoggingServiceV2Client} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface deleteLogAsync(DeleteLogRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLogEntriesAsync(ListLogEntriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLogsAsync(ListLogsRequest $request, array $optionalArgs = [])
@@ -72,8 +67,15 @@ final class LoggingServiceV2Client
     /** The name of the service. */
     private const SERVICE_NAME = 'google.logging.v2.LoggingServiceV2';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'logging.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'logging.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -365,6 +367,8 @@ final class LoggingServiceV2Client
      *
      * The async variant is {@see LoggingServiceV2Client::deleteLogAsync()} .
      *
+     * @example samples/V2/LoggingServiceV2Client/delete_log.php
+     *
      * @param DeleteLogRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -389,6 +393,8 @@ final class LoggingServiceV2Client
      * Logs](https://cloud.google.com/logging/docs/export).
      *
      * The async variant is {@see LoggingServiceV2Client::listLogEntriesAsync()} .
+     *
+     * @example samples/V2/LoggingServiceV2Client/list_log_entries.php
      *
      * @param ListLogEntriesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -415,6 +421,8 @@ final class LoggingServiceV2Client
      *
      * The async variant is {@see LoggingServiceV2Client::listLogsAsync()} .
      *
+     * @example samples/V2/LoggingServiceV2Client/list_logs.php
+     *
      * @param ListLogsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -440,6 +448,8 @@ final class LoggingServiceV2Client
      * The async variant is
      * {@see LoggingServiceV2Client::listMonitoredResourceDescriptorsAsync()} .
      *
+     * @example samples/V2/LoggingServiceV2Client/list_monitored_resource_descriptors.php
+     *
      * @param ListMonitoredResourceDescriptorsRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
@@ -462,6 +472,8 @@ final class LoggingServiceV2Client
     /**
      * Streaming read of log entries as they are ingested. Until the stream is
      * terminated, it will continue reading logs.
+     *
+     * @example samples/V2/LoggingServiceV2Client/tail_log_entries.php
      *
      * @param array $callOptions {
      *     Optional.
@@ -489,6 +501,8 @@ final class LoggingServiceV2Client
      * folders)
      *
      * The async variant is {@see LoggingServiceV2Client::writeLogEntriesAsync()} .
+     *
+     * @example samples/V2/LoggingServiceV2Client/write_log_entries.php
      *
      * @param WriteLogEntriesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

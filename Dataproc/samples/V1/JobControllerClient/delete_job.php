@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataproc_v1_generated_JobController_DeleteJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dataproc\V1\JobControllerClient;
+use Google\Cloud\Dataproc\V1\Client\JobControllerClient;
+use Google\Cloud\Dataproc\V1\DeleteJobRequest;
 
 /**
  * Deletes the job from the project. If the job is active, the delete fails,
@@ -40,9 +41,15 @@ function delete_job_sample(string $projectId, string $region, string $jobId): vo
     // Create a client.
     $jobControllerClient = new JobControllerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteJobRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setJobId($jobId);
+
     // Call the API and handle any network failures.
     try {
-        $jobControllerClient->deleteJob($projectId, $region, $jobId);
+        $jobControllerClient->deleteJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,6 +25,22 @@ class DeleteRollupPropertySourceLinkRequest extends \Google\Protobuf\Internal\Me
     private $name = '';
 
     /**
+     * @param string $name Required. Format:
+     *                     properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link_id}
+     *                     Example: properties/1234/rollupPropertySourceLinks/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::rollupPropertySourceLinkName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DeleteRollupPropertySourceLinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

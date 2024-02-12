@@ -41,9 +41,9 @@ wait_token (	
 breakpoint (2,.google.devtools.clouddebugger.v2.BreakpointBàA" 
 UpdateActiveBreakpointResponse2¾
 Controller2Â
-RegisterDebuggee9.google.devtools.clouddebugger.v2.RegisterDebuggeeRequest:.google.devtools.clouddebugger.v2.RegisterDebuggeeResponse"7‚Óä“&"!/v2/controller/debuggees/register:*ÚAdebuggeeâ
-ListActiveBreakpoints>.google.devtools.clouddebugger.v2.ListActiveBreakpointsRequest?.google.devtools.clouddebugger.v2.ListActiveBreakpointsResponse"H‚Óä“42/v2/controller/debuggees/{debuggee_id}/breakpointsÚAdebuggee_idƒ
-UpdateActiveBreakpoint?.google.devtools.clouddebugger.v2.UpdateActiveBreakpointRequest@.google.devtools.clouddebugger.v2.UpdateActiveBreakpointResponse"f‚Óä“GB/v2/controller/debuggees/{debuggee_id}/breakpoints/{breakpoint.id}:*ÚAdebuggee_id,breakpointÊAclouddebugger.googleapis.comÒA]https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud_debuggerBÇ
+RegisterDebuggee9.google.devtools.clouddebugger.v2.RegisterDebuggeeRequest:.google.devtools.clouddebugger.v2.RegisterDebuggeeResponse"7ÚAdebuggee‚Óä“&"!/v2/controller/debuggees/register:*â
+ListActiveBreakpoints>.google.devtools.clouddebugger.v2.ListActiveBreakpointsRequest?.google.devtools.clouddebugger.v2.ListActiveBreakpointsResponse"HÚAdebuggee_id‚Óä“42/v2/controller/debuggees/{debuggee_id}/breakpointsƒ
+UpdateActiveBreakpoint?.google.devtools.clouddebugger.v2.UpdateActiveBreakpointRequest@.google.devtools.clouddebugger.v2.UpdateActiveBreakpointResponse"fÚAdebuggee_id,breakpoint‚Óä“GB/v2/controller/debuggees/{debuggee_id}/breakpoints/{breakpoint.id}:*ÊAclouddebugger.googleapis.comÒA]https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud_debuggerBÇ
 $com.google.devtools.clouddebugger.v2BControllerProtoPZ8cloud.google.com/go/debugger/apiv2/debuggerpb;debuggerpbªGoogle.Cloud.Debugger.V2ÊGoogle\\Cloud\\Debugger\\V2êGoogle::Cloud::Debugger::V2bproto3'
         , true);
 

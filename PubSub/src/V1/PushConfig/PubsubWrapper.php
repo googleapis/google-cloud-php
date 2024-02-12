@@ -33,6 +33,4 @@ class PubsubWrapper extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PubsubWrapper::class, \Google\Cloud\PubSub\V1\PushConfig_PubsubWrapper::class);
 

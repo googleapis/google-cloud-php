@@ -3,6 +3,22 @@
 return [
     'interfaces' => [
         'google.cloud.compute.v1.PublicAdvertisedPrefixes' => [
+            'Announce' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{public_advertised_prefix}/announce',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'public_advertised_prefix' => [
+                        'getters' => [
+                            'getPublicAdvertisedPrefix',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{public_advertised_prefix}',
@@ -62,6 +78,22 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{public_advertised_prefix}',
                 'body' => 'public_advertised_prefix_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'public_advertised_prefix' => [
+                        'getters' => [
+                            'getPublicAdvertisedPrefix',
+                        ],
+                    ],
+                ],
+            ],
+            'Withdraw' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/publicAdvertisedPrefixes/{public_advertised_prefix}/withdraw',
                 'placeholders' => [
                     'project' => [
                         'getters' => [

@@ -30,9 +30,9 @@ group_name (	B5àAúA/
 UpdateGroupRequestK
 group (27.google.devtools.clouderrorreporting.v1beta1.ErrorGroupBàA2û
 ErrorGroupServiceÁ
-GetGroup<.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest7.google.devtools.clouderrorreporting.v1beta1.ErrorGroup">‚Óä“+)/v1beta1/{group_name=projects/*/groups/*}ÚA
-group_nameÉ
-UpdateGroup?.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest7.google.devtools.clouderrorreporting.v1beta1.ErrorGroup"@‚Óä“2)/v1beta1/{group.name=projects/*/groups/*}:groupÚAgroupVÊA"clouderrorreporting.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB”
+GetGroup<.google.devtools.clouderrorreporting.v1beta1.GetGroupRequest7.google.devtools.clouderrorreporting.v1beta1.ErrorGroup">ÚA
+group_name‚Óä“+)/v1beta1/{group_name=projects/*/groups/*}É
+UpdateGroup?.google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest7.google.devtools.clouderrorreporting.v1beta1.ErrorGroup"@ÚAgroup‚Óä“2)/v1beta1/{group.name=projects/*/groups/*}:groupVÊA"clouderrorreporting.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB”
 /com.google.devtools.clouderrorreporting.v1beta1BErrorGroupServiceProtoPZOcloud.google.com/go/errorreporting/apiv1beta1/errorreportingpb;errorreportingpbøª#Google.Cloud.ErrorReporting.V1Beta1Ê#Google\\Cloud\\ErrorReporting\\V1beta1ê&Google::Cloud::ErrorReporting::V1beta1bproto3'
         , true);
 

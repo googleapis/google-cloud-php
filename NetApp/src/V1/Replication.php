@@ -18,11 +18,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Replication extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the Replication.
+     * Identifier. The resource name of the Replication.
      * Format:
      * `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -117,7 +117,7 @@ class Replication extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the Replication.
+     *           Identifier. The resource name of the Replication.
      *           Format:
      *           `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`.
      *     @type int $state
@@ -160,11 +160,11 @@ class Replication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Replication.
+     * Identifier. The resource name of the Replication.
      * Format:
      * `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -173,11 +173,11 @@ class Replication extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Replication.
+     * Identifier. The resource name of the Replication.
      * Format:
      * `projects/{project_id}/locations/{location}/volumes/{volume_id}/replications/{replication_id}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

@@ -56,7 +56,7 @@ use Google\LongRunning\Operation;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -76,7 +76,7 @@ use Google\LongRunning\Operation;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -86,9 +86,7 @@ use Google\LongRunning\Operation;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\VideoIntelligence\V1\Client\VideoIntelligenceServiceClient} to use
- * the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\VideoIntelligence\V1\Client\VideoIntelligenceServiceClient}.
  */
 class VideoIntelligenceServiceGapicClient
 {
@@ -97,8 +95,15 @@ class VideoIntelligenceServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.videointelligence.v1.VideoIntelligenceService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'videointelligence.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'videointelligence.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -254,7 +259,7 @@ class VideoIntelligenceServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -274,7 +279,7 @@ class VideoIntelligenceServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

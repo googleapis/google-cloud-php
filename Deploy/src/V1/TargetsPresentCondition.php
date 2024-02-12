@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * TargetsPresentCondition contains information on any Targets defined in
+ * `TargetsPresentCondition` contains information on any Targets referenced in
  * the Delivery Pipeline that do not actually exist.
  *
  * Generated from protobuf message <code>google.cloud.deploy.v1.TargetsPresentCondition</code>

@@ -33,7 +33,8 @@ use Google\Cloud\AdvisoryNotifications\V1\Notification;
  *
  * @param string $formattedName A name of the notification to retrieve.
  *                              Format:
- *                              organizations/{organization}/locations/{location}/notifications/{notification}. Please see
+ *                              organizations/{organization}/locations/{location}/notifications/{notification}
+ *                              or projects/{projects}/locations/{location}/notifications/{notification}. Please see
  *                              {@see AdvisoryNotificationsServiceClient::notificationName()} for help formatting this field.
  */
 function get_notification_sample(string $formattedName): void

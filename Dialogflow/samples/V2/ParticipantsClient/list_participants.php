@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Participants_ListParticipants_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
+use Google\Cloud\Dialogflow\V2\ListParticipantsRequest;
 use Google\Cloud\Dialogflow\V2\Participant;
-use Google\Cloud\Dialogflow\V2\ParticipantsClient;
 
 /**
  * Returns the list of all participants in the specified conversation.
@@ -41,10 +42,14 @@ function list_participants_sample(string $formattedParent): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
+    // Prepare the request message.
+    $request = (new ListParticipantsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $participantsClient->listParticipants($formattedParent);
+        $response = $participantsClient->listParticipants($request);
 
         /** @var Participant $element */
         foreach ($response as $element) {

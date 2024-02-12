@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datamigration_v1_generated_DataMigrationService_GenerateTcpProxyScript_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\GenerateTcpProxyScriptRequest;
 use Google\Cloud\CloudDms\V1\TcpProxyScript;
 
 /**
@@ -46,10 +47,16 @@ function generate_tcp_proxy_script_sample(
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new GenerateTcpProxyScriptRequest())
+        ->setVmName($vmName)
+        ->setVmMachineType($vmMachineType)
+        ->setVmSubnet($vmSubnet);
+
     // Call the API and handle any network failures.
     try {
         /** @var TcpProxyScript $response */
-        $response = $dataMigrationServiceClient->generateTcpProxyScript($vmName, $vmMachineType, $vmSubnet);
+        $response = $dataMigrationServiceClient->generateTcpProxyScript($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

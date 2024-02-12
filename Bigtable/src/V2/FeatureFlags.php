@@ -52,6 +52,20 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
      */
     private $last_scanned_row_responses = false;
+    /**
+     * Notify the server that the client supports using encoded routing cookie
+     * strings to retry requests with.
+     *
+     * Generated from protobuf field <code>bool routing_cookie = 6;</code>
+     */
+    private $routing_cookie = false;
+    /**
+     * Notify the server that the client supports using retry info back off
+     * durations to retry requests with.
+     *
+     * Generated from protobuf field <code>bool retry_info = 7;</code>
+     */
+    private $retry_info = false;
 
     /**
      * Constructor.
@@ -73,6 +87,12 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *     @type bool $last_scanned_row_responses
      *           Notify the server that the client supports the last_scanned_row field
      *           in ReadRowsResponse for long-running scans.
+     *     @type bool $routing_cookie
+     *           Notify the server that the client supports using encoded routing cookie
+     *           strings to retry requests with.
+     *     @type bool $retry_info
+     *           Notify the server that the client supports using retry info back off
+     *           durations to retry requests with.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,6 +212,62 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->last_scanned_row_responses = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client supports using encoded routing cookie
+     * strings to retry requests with.
+     *
+     * Generated from protobuf field <code>bool routing_cookie = 6;</code>
+     * @return bool
+     */
+    public function getRoutingCookie()
+    {
+        return $this->routing_cookie;
+    }
+
+    /**
+     * Notify the server that the client supports using encoded routing cookie
+     * strings to retry requests with.
+     *
+     * Generated from protobuf field <code>bool routing_cookie = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRoutingCookie($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->routing_cookie = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client supports using retry info back off
+     * durations to retry requests with.
+     *
+     * Generated from protobuf field <code>bool retry_info = 7;</code>
+     * @return bool
+     */
+    public function getRetryInfo()
+    {
+        return $this->retry_info;
+    }
+
+    /**
+     * Notify the server that the client supports using retry info back off
+     * durations to retry requests with.
+     *
+     * Generated from protobuf field <code>bool retry_info = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRetryInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->retry_info = $var;
 
         return $this;
     }

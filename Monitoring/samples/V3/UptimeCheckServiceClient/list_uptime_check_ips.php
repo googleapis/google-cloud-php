@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_UptimeCheckService_ListUptimeCheckIps_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\UptimeCheckServiceClient;
+use Google\Cloud\Monitoring\V3\ListUptimeCheckIpsRequest;
 use Google\Cloud\Monitoring\V3\UptimeCheckIp;
-use Google\Cloud\Monitoring\V3\UptimeCheckServiceClient;
 
 /**
  * Returns the list of IP addresses that checkers run from
@@ -42,10 +43,13 @@ function list_uptime_check_ips_sample(): void
     // Create a client.
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
+    // Prepare the request message.
+    $request = new ListUptimeCheckIpsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $uptimeCheckServiceClient->listUptimeCheckIps();
+        $response = $uptimeCheckServiceClient->listUptimeCheckIps($request);
 
         /** @var UptimeCheckIp $element */
         foreach ($response as $element) {

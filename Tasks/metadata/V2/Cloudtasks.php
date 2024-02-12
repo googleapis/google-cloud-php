@@ -85,26 +85,26 @@ page_token (	"X
 
 CloudTasksž
 
-ListQueues(.google.cloud.tasks.v2.ListQueuesRequest).google.cloud.tasks.v2.ListQueuesResponse";‚Óä“,*/v2/{parent=projects/*/locations/*}/queuesÚAparent‹
-GetQueue&.google.cloud.tasks.v2.GetQueueRequest.google.cloud.tasks.v2.Queue"9‚Óä“,*/v2/{name=projects/*/locations/*/queues/*}ÚAname 
-CreateQueue).google.cloud.tasks.v2.CreateQueueRequest.google.cloud.tasks.v2.Queue"H‚Óä“3"*/v2/{parent=projects/*/locations/*}/queues:queueÚAparent,queue«
-UpdateQueue).google.cloud.tasks.v2.UpdateQueueRequest.google.cloud.tasks.v2.Queue"S‚Óä“920/v2/{queue.name=projects/*/locations/*/queues/*}:queueÚAqueue,update_mask‹
-DeleteQueue).google.cloud.tasks.v2.DeleteQueueRequest.google.protobuf.Empty"9‚Óä“,**/v2/{name=projects/*/locations/*/queues/*}ÚAname˜
+ListQueues(.google.cloud.tasks.v2.ListQueuesRequest).google.cloud.tasks.v2.ListQueuesResponse";ÚAparent‚Óä“,*/v2/{parent=projects/*/locations/*}/queues‹
+GetQueue&.google.cloud.tasks.v2.GetQueueRequest.google.cloud.tasks.v2.Queue"9ÚAname‚Óä“,*/v2/{name=projects/*/locations/*/queues/*} 
+CreateQueue).google.cloud.tasks.v2.CreateQueueRequest.google.cloud.tasks.v2.Queue"HÚAparent,queue‚Óä“3"*/v2/{parent=projects/*/locations/*}/queues:queue«
+UpdateQueue).google.cloud.tasks.v2.UpdateQueueRequest.google.cloud.tasks.v2.Queue"SÚAqueue,update_mask‚Óä“920/v2/{queue.name=projects/*/locations/*/queues/*}:queue‹
+DeleteQueue).google.cloud.tasks.v2.DeleteQueueRequest.google.protobuf.Empty"9ÚAname‚Óä“,**/v2/{name=projects/*/locations/*/queues/*}˜
 
-PurgeQueue(.google.cloud.tasks.v2.PurgeQueueRequest.google.cloud.tasks.v2.Queue"B‚Óä“5"0/v2/{name=projects/*/locations/*/queues/*}:purge:*ÚAname˜
+PurgeQueue(.google.cloud.tasks.v2.PurgeQueueRequest.google.cloud.tasks.v2.Queue"BÚAname‚Óä“5"0/v2/{name=projects/*/locations/*/queues/*}:purge:*˜
 
-PauseQueue(.google.cloud.tasks.v2.PauseQueueRequest.google.cloud.tasks.v2.Queue"B‚Óä“5"0/v2/{name=projects/*/locations/*/queues/*}:pause:*ÚAname›
-ResumeQueue).google.cloud.tasks.v2.ResumeQueueRequest.google.cloud.tasks.v2.Queue"C‚Óä“6"1/v2/{name=projects/*/locations/*/queues/*}:resume:*ÚAnameœ
-GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"Q‚Óä“@";/v2/{resource=projects/*/locations/*/queues/*}:getIamPolicy:*ÚAresource£
-SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"X‚Óä“@";/v2/{resource=projects/*/locations/*/queues/*}:setIamPolicy:*ÚAresource,policyÎ
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"c‚Óä“F"A/v2/{resource=projects/*/locations/*/queues/*}:testIamPermissions:*ÚAresource,permissions£
-	ListTasks\'.google.cloud.tasks.v2.ListTasksRequest(.google.cloud.tasks.v2.ListTasksResponse"C‚Óä“42/v2/{parent=projects/*/locations/*/queues/*}/tasksÚAparent
-GetTask%.google.cloud.tasks.v2.GetTaskRequest.google.cloud.tasks.v2.Task"A‚Óä“42/v2/{name=projects/*/locations/*/queues/*/tasks/*}ÚAname 
+PauseQueue(.google.cloud.tasks.v2.PauseQueueRequest.google.cloud.tasks.v2.Queue"BÚAname‚Óä“5"0/v2/{name=projects/*/locations/*/queues/*}:pause:*›
+ResumeQueue).google.cloud.tasks.v2.ResumeQueueRequest.google.cloud.tasks.v2.Queue"CÚAname‚Óä“6"1/v2/{name=projects/*/locations/*/queues/*}:resume:*œ
+GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"QÚAresource‚Óä“@";/v2/{resource=projects/*/locations/*/queues/*}:getIamPolicy:*£
+SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"XÚAresource,policy‚Óä“@";/v2/{resource=projects/*/locations/*/queues/*}:setIamPolicy:*Î
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"cÚAresource,permissions‚Óä“F"A/v2/{resource=projects/*/locations/*/queues/*}:testIamPermissions:*£
+	ListTasks\'.google.cloud.tasks.v2.ListTasksRequest(.google.cloud.tasks.v2.ListTasksResponse"CÚAparent‚Óä“42/v2/{parent=projects/*/locations/*/queues/*}/tasks
+GetTask%.google.cloud.tasks.v2.GetTaskRequest.google.cloud.tasks.v2.Task"AÚAname‚Óä“42/v2/{name=projects/*/locations/*/queues/*/tasks/*} 
 
-CreateTask(.google.cloud.tasks.v2.CreateTaskRequest.google.cloud.tasks.v2.Task"K‚Óä“7"2/v2/{parent=projects/*/locations/*/queues/*}/tasks:*ÚAparent,task‘
+CreateTask(.google.cloud.tasks.v2.CreateTaskRequest.google.cloud.tasks.v2.Task"KÚAparent,task‚Óä“7"2/v2/{parent=projects/*/locations/*/queues/*}/tasks:*‘
 
-DeleteTask(.google.cloud.tasks.v2.DeleteTaskRequest.google.protobuf.Empty"A‚Óä“4*2/v2/{name=projects/*/locations/*/queues/*/tasks/*}ÚAname—
-RunTask%.google.cloud.tasks.v2.RunTaskRequest.google.cloud.tasks.v2.Task"H‚Óä“;"6/v2/{name=projects/*/locations/*/queues/*/tasks/*}:run:*ÚAnameMÊAcloudtasks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBv
+DeleteTask(.google.cloud.tasks.v2.DeleteTaskRequest.google.protobuf.Empty"AÚAname‚Óä“4*2/v2/{name=projects/*/locations/*/queues/*/tasks/*}—
+RunTask%.google.cloud.tasks.v2.RunTaskRequest.google.cloud.tasks.v2.Task"HÚAname‚Óä“;"6/v2/{name=projects/*/locations/*/queues/*/tasks/*}:run:*MÊAcloudtasks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBv
 com.google.cloud.tasks.v2BCloudTasksProtoPZ>cloud.google.com/go/cloudtasks/apiv2/cloudtaskspb;cloudtaskspb¢TASKSbproto3'
         , true);
 

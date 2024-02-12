@@ -116,6 +116,12 @@ class SplitCommand extends Command
                 '',
                 InputOption::VALUE_NONE,
                 'Update the release notes if the release already exists.'
+            )
+            ->addOption(
+                'component-branch',
+                '',
+                InputOption::VALUE_OPTIONAL,
+                'Specify the branch of the component to push to.'
             );
     }
 
@@ -148,14 +154,16 @@ class SplitCommand extends Command
 
 
         @mkdir($execDir);
-        $splitBinaryPath = $this->splitshInstall($output, $shell, $execDir, $input->getOption('splitsh'));
-
+        if (!$splitBinaryPath = $input->getOption('splitsh')) {
+            throw new \InvalidArgumentException('A splitsh binary path must be provided.');
+        }
         $changelog = $github->getChangelog(
             $input->getArgument('repo'),
             $input->getArgument('parent')
         );
 
         $releaseNotes = new ReleaseNotes($changelog);
+        $branchToPush = $input->getOption('component-branch');
 
         if ($componentId = $input->getOption('component')) {
             $components = [new Component($componentId)];
@@ -175,7 +183,6 @@ class SplitCommand extends Command
             $input->getArgument('parent')
         );
 
-
         $errors = [];
         foreach ($components as $component) {
             $res = $this->processComponent(
@@ -187,7 +194,8 @@ class SplitCommand extends Command
                 $splitBinaryPath,
                 $parentTagSource,
                 $input->getOption('update-release-notes'),
-                $packagist
+                $packagist,
+                $branchToPush
             );
             if (!$res) {
                 $errors[] = $component->getId();
@@ -222,6 +230,7 @@ class SplitCommand extends Command
      * @param string $splitBinaryPath The path to the splitsh binary.
      * @param string $parentTagSource The URI to the parent tag.
      * @param ?Packagist $packagist The Packagist API object (if configured).
+     * @param ?string $branchToPush The branch to which the component will be pushed.
      * @return bool
      */
     private function processComponent(
@@ -234,13 +243,16 @@ class SplitCommand extends Command
         $parentTagSource,
         $updateReleaseNotes,
         ?Packagist $packagist,
+        ?string $branchToPush
     ) {
         $output->writeln('');
         $tagName = 'v' . $component->getPackageVersion();
         $repoName = $component->getRepoName();
         $componentId = $component->getId();
         $isAlreadyTagged = $github->doesTagExist($repoName, $tagName);
-        $defaultBranch = $github->getDefaultBranch($repoName) ?: 'main';
+        if (is_null($branchToPush)) {
+            $branchToPush = $github->getDefaultBranch($repoName) ?: 'main';
+        }
 
         // If the repo is empty, it's new and we don't want to force-push.
         $isTargetEmpty = $github->isTargetEmpty($repoName);
@@ -292,7 +304,7 @@ class SplitCommand extends Command
             $repoName
         ));
 
-        $res = $github->push($repoName, $splitBranch, $defaultBranch, $isTargetEmpty);
+        $res = $github->push($repoName, $splitBranch, $branchToPush, $isTargetEmpty);
         if ($res[0]) {
             $output->writeln(sprintf('<comment>%s</comment>: Push succeeded.', $componentId));
         } else {
@@ -457,40 +469,6 @@ class SplitCommand extends Command
         $stack->remove('http_errors');
         $stack->unshift($httpErrorsMiddleware, 'http_errors');
         return new Client(['handler' => $stack]);
-    }
-
-    /**
-     * Install the Splitsh program.
-     *
-     * You can override this method in unit tests.
-     *
-     * @param OutputInterface $output Allows writing to cli.
-     * @param RunShell $shell A wrapper for executing shell commands.
-     * @param string $execDir The path to a working directory.
-     * @param string|null The path to an existing splitsh binary, or null if
-     *        install from source is desired.
-     * @return string
-     */
-    protected function splitshInstall(OutputInterface $output, RunShell $shell, $execDir, $binaryPath)
-    {
-        if ($binaryPath) {
-            $output->writeln('<comment>[info]</comment> Using User-Provided Splitsh binary.');
-            return $binaryPath;
-        }
-
-        $output->writeln('<comment>[info]</comment> Compiling Splitsh');
-        $this->writeDiv($output);
-
-        $install = new SplitInstall($shell, $execDir);
-
-        $res = $install->installFromSource($this->rootPath);
-
-        $output->writeln(sprintf(
-            '<comment>[info]</comment> Splitsh Installer says <info>%s</info>',
-            $res[0]
-        ));
-
-        return $res[1];
     }
 
     private function writeDiv(OutputInterface $output)

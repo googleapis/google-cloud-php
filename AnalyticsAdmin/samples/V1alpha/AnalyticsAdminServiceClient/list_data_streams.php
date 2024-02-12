@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListDataStreams_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\DataStream;
+use Google\Analytics\Admin\V1alpha\ListDataStreamsRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
@@ -39,10 +40,14 @@ function list_data_streams_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDataStreamsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listDataStreams($formattedParent);
+        $response = $analyticsAdminServiceClient->listDataStreams($request);
 
         /** @var DataStream $element */
         foreach ($response as $element) {

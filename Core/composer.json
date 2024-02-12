@@ -6,22 +6,23 @@
     "require": {
         "php": ">=7.4",
         "rize/uri-template": "~0.3",
-        "google/auth": "^1.18",
+        "google/auth": "^1.34",
         "guzzlehttp/guzzle": "^6.5.8|^7.4.4",
         "guzzlehttp/promises": "^1.4||^2.0",
-        "guzzlehttp/psr7": "^1.7|^2.0",
-        "monolog/monolog": "^1.1|^2.0|^3.0",
-        "psr/http-message": "^1.0|^2.0"
+        "guzzlehttp/psr7": "^2.6",
+        "monolog/monolog": "^2.9|^3.0",
+        "psr/http-message": "^1.0|^2.0",
+        "google/gax": "^1.27.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "2.*",
-        "phpdocumentor/reflection": "^5.0",
+        "phpdocumentor/reflection": "^5.3.3",
+        "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
-        "google/gax": "^1.24.0",
         "opis/closure": "^3",
-        "google/cloud-common-protos": "^0.4"
+        "google/cloud-common-protos": "~0.5"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",

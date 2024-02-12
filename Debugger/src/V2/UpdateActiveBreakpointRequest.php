@@ -31,6 +31,23 @@ class UpdateActiveBreakpointRequest extends \Google\Protobuf\Internal\Message
     private $breakpoint = null;
 
     /**
+     * @param string                               $debuggeeId Required. Identifies the debuggee being debugged.
+     * @param \Google\Cloud\Debugger\V2\Breakpoint $breakpoint Required. Updated breakpoint information.
+     *                                                         The field `id` must be set.
+     *                                                         The agent must echo all Breakpoint specification fields in the update.
+     *
+     * @return \Google\Cloud\Debugger\V2\UpdateActiveBreakpointRequest
+     *
+     * @experimental
+     */
+    public static function build(string $debuggeeId, \Google\Cloud\Debugger\V2\Breakpoint $breakpoint): self
+    {
+        return (new self())
+            ->setDebuggeeId($debuggeeId)
+            ->setBreakpoint($breakpoint);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

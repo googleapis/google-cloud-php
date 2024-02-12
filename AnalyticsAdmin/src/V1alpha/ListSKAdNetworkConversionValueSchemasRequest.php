@@ -45,6 +45,23 @@ class ListSKAdNetworkConversionValueSchemasRequest extends \Google\Protobuf\Inte
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The DataStream resource to list schemas for.
+     *                       Format:
+     *                       properties/{property_id}/dataStreams/{dataStream}
+     *                       Example: properties/1234/dataStreams/5678
+     *                       Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ListSKAdNetworkConversionValueSchemasRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

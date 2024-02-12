@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_SessionEntityTypes_DeleteSessionEntityType_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\V2\SessionEntityTypesClient;
+use Google\Cloud\Dialogflow\V2\Client\SessionEntityTypesClient;
+use Google\Cloud\Dialogflow\V2\DeleteSessionEntityTypeRequest;
 
 /**
  * Deletes the specified session entity type.
@@ -47,9 +48,13 @@ function delete_session_entity_type_sample(string $formattedName): void
     // Create a client.
     $sessionEntityTypesClient = new SessionEntityTypesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSessionEntityTypeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $sessionEntityTypesClient->deleteSessionEntityType($formattedName);
+        $sessionEntityTypesClient->deleteSessionEntityType($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

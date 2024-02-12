@@ -20,6 +20,11 @@
                                 "createIndex"
                             ]
                         },
+                        "DeleteDatabase": {
+                            "methods": [
+                                "deleteDatabase"
+                            ]
+                        },
                         "DeleteIndex": {
                             "methods": [
                                 "deleteIndex"

@@ -25,25 +25,25 @@ class SchemaSettings extends \Google\Protobuf\Internal\Message
      */
     private $schema = '';
     /**
-     * The encoding of messages validated against `schema`.
+     * Optional. The encoding of messages validated against `schema`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Encoding encoding = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Encoding encoding = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encoding = 0;
     /**
-     * The minimum (inclusive) revision allowed for validating messages. If empty
-     * or not present, allow any revision to be validated against last_revision or
-     * any revision created before.
+     * Optional. The minimum (inclusive) revision allowed for validating messages.
+     * If empty or not present, allow any revision to be validated against
+     * last_revision or any revision created before.
      *
-     * Generated from protobuf field <code>string first_revision_id = 3;</code>
+     * Generated from protobuf field <code>string first_revision_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $first_revision_id = '';
     /**
-     * The maximum (inclusive) revision allowed for validating messages. If empty
-     * or not present, allow any revision to be validated against first_revision
-     * or any revision created after.
+     * Optional. The maximum (inclusive) revision allowed for validating messages.
+     * If empty or not present, allow any revision to be validated against
+     * first_revision or any revision created after.
      *
-     * Generated from protobuf field <code>string last_revision_id = 4;</code>
+     * Generated from protobuf field <code>string last_revision_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $last_revision_id = '';
 
@@ -59,15 +59,15 @@ class SchemaSettings extends \Google\Protobuf\Internal\Message
      *           value of this field will be `_deleted-schema_` if the schema has been
      *           deleted.
      *     @type int $encoding
-     *           The encoding of messages validated against `schema`.
+     *           Optional. The encoding of messages validated against `schema`.
      *     @type string $first_revision_id
-     *           The minimum (inclusive) revision allowed for validating messages. If empty
-     *           or not present, allow any revision to be validated against last_revision or
-     *           any revision created before.
+     *           Optional. The minimum (inclusive) revision allowed for validating messages.
+     *           If empty or not present, allow any revision to be validated against
+     *           last_revision or any revision created before.
      *     @type string $last_revision_id
-     *           The maximum (inclusive) revision allowed for validating messages. If empty
-     *           or not present, allow any revision to be validated against first_revision
-     *           or any revision created after.
+     *           Optional. The maximum (inclusive) revision allowed for validating messages.
+     *           If empty or not present, allow any revision to be validated against
+     *           first_revision or any revision created after.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,9 +108,9 @@ class SchemaSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The encoding of messages validated against `schema`.
+     * Optional. The encoding of messages validated against `schema`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Encoding encoding = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Encoding encoding = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getEncoding()
@@ -119,9 +119,9 @@ class SchemaSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The encoding of messages validated against `schema`.
+     * Optional. The encoding of messages validated against `schema`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.Encoding encoding = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.Encoding encoding = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -134,11 +134,11 @@ class SchemaSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum (inclusive) revision allowed for validating messages. If empty
-     * or not present, allow any revision to be validated against last_revision or
-     * any revision created before.
+     * Optional. The minimum (inclusive) revision allowed for validating messages.
+     * If empty or not present, allow any revision to be validated against
+     * last_revision or any revision created before.
      *
-     * Generated from protobuf field <code>string first_revision_id = 3;</code>
+     * Generated from protobuf field <code>string first_revision_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFirstRevisionId()
@@ -147,11 +147,11 @@ class SchemaSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum (inclusive) revision allowed for validating messages. If empty
-     * or not present, allow any revision to be validated against last_revision or
-     * any revision created before.
+     * Optional. The minimum (inclusive) revision allowed for validating messages.
+     * If empty or not present, allow any revision to be validated against
+     * last_revision or any revision created before.
      *
-     * Generated from protobuf field <code>string first_revision_id = 3;</code>
+     * Generated from protobuf field <code>string first_revision_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -164,11 +164,11 @@ class SchemaSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum (inclusive) revision allowed for validating messages. If empty
-     * or not present, allow any revision to be validated against first_revision
-     * or any revision created after.
+     * Optional. The maximum (inclusive) revision allowed for validating messages.
+     * If empty or not present, allow any revision to be validated against
+     * first_revision or any revision created after.
      *
-     * Generated from protobuf field <code>string last_revision_id = 4;</code>
+     * Generated from protobuf field <code>string last_revision_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLastRevisionId()
@@ -177,11 +177,11 @@ class SchemaSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum (inclusive) revision allowed for validating messages. If empty
-     * or not present, allow any revision to be validated against first_revision
-     * or any revision created after.
+     * Optional. The maximum (inclusive) revision allowed for validating messages.
+     * If empty or not present, allow any revision to be validated against
+     * first_revision or any revision created after.
      *
-     * Generated from protobuf field <code>string last_revision_id = 4;</code>
+     * Generated from protobuf field <code>string last_revision_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

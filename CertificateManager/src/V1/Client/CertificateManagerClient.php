@@ -106,12 +106,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\CertificateManager\V1\CertificateManagerClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createCertificateAsync(CreateCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCertificateIssuanceConfigAsync(CreateCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCertificateMapAsync(CreateCertificateMapRequest $request, array $optionalArgs = [])
@@ -147,8 +141,15 @@ final class CertificateManagerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.certificatemanager.v1.CertificateManager';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'certificatemanager.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'certificatemanager.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

@@ -28,6 +28,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Helper\TableCell;
+use Symfony\Component\Console\Helper\TableCellStyle;
 
 /**
  * List release details
@@ -52,9 +54,15 @@ class ReleaseInfoCommand extends Command
     {
         $this->setName('release-info')
             ->setDescription('list information for a google-cloud-php release')
-            ->addArgument('tag', InputArgument::REQUIRED, 'The git tag of the release (e.g. v0.200.0)')
+            ->addArgument('tag', InputArgument::OPTIONAL, 'The git tag of the release (e.g. v0.200.0)')
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
-            ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'output format, can be "json" or "shell"', 'shell')
+            ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'output format, can be "json", "shell", or "sql"', 'shell')
+            ->addOption(
+                'from',
+                '',
+                InputOption::VALUE_REQUIRED,
+                'Date string representing how far back to get release data (e.g. "-6 months")'
+            )
         ;
     }
 
@@ -63,13 +71,96 @@ class ReleaseInfoCommand extends Command
         $github = new Github(
             new RunShell(),
             $this->httpClient,
-            $input->getOption('token')
+            $input->getOption('token'),
+            $output
         );
 
-        $changelog = $github->getChangelog(
-            self::REPO_ID,
-            $tag = $input->getArgument('tag')
-        );
+        if ($from = $input->getOption('from')) {
+            if ($input->getArgument('tag')) {
+                throw new \InvalidArgumentException('cannot specify both a tag and a from date');
+            }
+            $releases = [];
+            $tags = [];
+            foreach ($github->getReleases(self::REPO_ID, new \DateTime($from)) as $release) {
+                $releases = array_merge($releases, $this->getReleaseDataFromTag($release['tag_name'], $github));
+                $tags[] = $release['tag_name'];
+            }
+            $tag = implode(', ', $tags);
+        } else {
+            if (!$tag = $input->getArgument('tag')) {
+                // if no tag is supplied, get the most recent tag
+                $releases = $github->getReleases(self::REPO_ID);
+                $tag = $releases[0]['tag_name'] ?? '';
+            }
+            $releases = $this->getReleaseDataFromTag($tag, $github);
+        }
+
+        switch ($input->getOption('format')) {
+            case 'shell':
+                (new Table($output))
+                    ->setHeaders([
+                        [
+                            new TableCell($tag, [
+                                'rowspan' => 1,
+                                'colspan' => 3,
+                                'style' => new TableCellStyle(['align' => 'center', 'cellFormat' => '<info>%s</info>'])
+                            ])
+                        ],
+                        ['component', 'id', 'version']
+                    ])
+                    ->setRows($releases)
+                    ->render();
+                break;
+            case 'json':
+                $releases = ['version' => $tag, 'releases' => $releases];
+                $output->writeln(json_encode($releases, JSON_PRETTY_PRINT));
+                break;
+            case 'sql':
+                foreach ($releases as $release) {
+                    $component = new Component($release['component']);
+                    // Some components make calls to multiple services, so we can add a query line for each one.
+                    foreach (array_filter($component->getApiShortnames()) as $shortname) {
+                        // The following service names are used by more than one package, so we exclude them to be more accurate
+                        if (in_array($shortname, [
+                            'beyondcorp', // used by cloud-beyondcorp-[appconnections|appconnectors|appgateways|clientconnectorservices|clientgateways]
+                            'analyticshub', // used by cloud-bigquery-analyticshub and cloud-bigquery-data-exchange
+                            'datastore', // used by cloud-datastore and cloud-datastore-admin
+                            'dialogflow', // used by cloud-dialogflow and cloud-dialogflow-cx
+                            'containeranalysis', // used by cloud-container-analysis and grafeas
+                            'policytroubleshooter', // used by cloud-policy-troubleshooter and cloud-policytroubleshooter-iam
+                            'redis', // used by cloud-redis and cloud-redis-cluster
+                            'merchantapi', // used by shopping-merchant-inventories and shopping-merchant-reports
+                        ])) {
+                            // corresponds to multiple packages, so skip
+                            continue;
+                        }
+
+                        $lines["$shortname-$release[version]"] = sprintf(
+                            '(service_name = "%s" and client_library_version = "%s")',
+                            $shortname,
+                            $release['version']
+                        );
+                    }
+                }
+                ksort($lines); // order by service name and version
+                $output->writeln(implode("\nOR ", $lines));
+                break;
+            default:
+                throw new \InvalidArgumentException('invalid format');
+        }
+
+        return 0;
+    }
+
+    private function getReleaseDataFromTag(string $tag, Github $github)
+    {
+        $changelog = $github->getChangelog(self::REPO_ID, $tag);
+        if (false === $changelog) {
+            throw new \InvalidArgumentException(sprintf('Tag "%s" not found', $tag));
+        }
+        if (null === $changelog) {
+            throw new \RuntimeException('Unable to retrieve tag');
+        }
 
         $releaseNotes = new ReleaseNotes($changelog);
 
@@ -84,21 +175,6 @@ class ReleaseInfoCommand extends Command
             }
         }
 
-        switch ($input->getOption('format')) {
-            case 'shell':
-                (new Table($output))
-                    ->setHeaders(['component', 'id', 'version'])
-                    ->setRows($releases)
-                    ->render();
-                break;
-            case 'json':
-                $releases = ['version' => $tag, 'releases' => $releases];
-                $output->writeln(json_encode($releases, JSON_PRETTY_PRINT));
-                break;
-            default:
-                throw new \InvalidArgumentException('invalid format');
-        }
-
-        return 0;
+        return $releases;
     }
 }

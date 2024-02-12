@@ -4,15 +4,37 @@ on:
         tags:
             - "*"
     workflow_dispatch:
-
+        inputs:
+            tag:
+                description: 'Tag to release'
+                required: true
 permissions:
     contents: read
 jobs:
-    docs:
+    release:
         name: "Split and Release Components"
         runs-on: ubuntu-latest
+        env:
+          LD_LIBRARY_PATH: /usr/local/lib
+          RELEASE_TAG: ${{ inputs.tag }}
         steps:
-        - name: Checkout
+        - name: Clone libgit2
+          uses: actions/checkout@master
+          with:
+            repository: libgit2/libgit2
+            ref: v1.5.1
+            path: libgit2
+        - name: Install libgit2
+          run: |
+            mkdir libgit2/build && cd libgit2/build
+            cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+            sudo cmake --build . --target install
+        - name: Compile splitsh
+          run: |
+            go env -w GO111MODULE=off
+            go get github.com/splitsh/lite
+            go build -o /usr/local/bin/splitsh-lite github.com/splitsh/lite
+        - name: Checkout google/cloud
           uses: actions/checkout@v4
           with:
             persist-credentials: false
@@ -33,9 +55,10 @@ jobs:
           run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
         - name: Run Subtree Split and Release
           env:
-            tagName: ${{ steps.getTag.outputs.tag }}
+            RELEASE_TAG: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
           run: |
-            ./dev/google-cloud split $GITHUB_REPOSITORY $tagName \
+            ./dev/google-cloud split $GITHUB_REPOSITORY $RELEASE_TAG \
+              --splitsh=/usr/local/bin/splitsh-lite \
               -t ${{ secrets.SPLIT_TOKEN }} \
               --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
               --packagist-token=${{ secrets.PACKAGIST_TOKEN }}

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkconnectivity_v1_generated_HubService_GetHub_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\GetHubRequest;
 use Google\Cloud\NetworkConnectivity\V1\Hub;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
 
 /**
  * Gets details about a Network Connectivity Center hub.
@@ -38,10 +39,14 @@ function get_hub_sample(string $formattedName): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetHubRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Hub $response */
-        $response = $hubServiceClient->getHub($formattedName);
+        $response = $hubServiceClient->getHub($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

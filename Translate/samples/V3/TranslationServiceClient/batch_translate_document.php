@@ -27,8 +27,9 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Translate\V3\BatchDocumentInputConfig;
 use Google\Cloud\Translate\V3\BatchDocumentOutputConfig;
+use Google\Cloud\Translate\V3\BatchTranslateDocumentRequest;
 use Google\Cloud\Translate\V3\BatchTranslateDocumentResponse;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -64,21 +65,21 @@ function batch_translate_document_sample(
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $targetLanguageCodes = [$targetLanguageCodesElement,];
     $inputConfigs = [new BatchDocumentInputConfig()];
     $outputConfig = new BatchDocumentOutputConfig();
+    $request = (new BatchTranslateDocumentRequest())
+        ->setParent($formattedParent)
+        ->setSourceLanguageCode($sourceLanguageCode)
+        ->setTargetLanguageCodes($targetLanguageCodes)
+        ->setInputConfigs($inputConfigs)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $translationServiceClient->batchTranslateDocument(
-            $formattedParent,
-            $sourceLanguageCode,
-            $targetLanguageCodes,
-            $inputConfigs,
-            $outputConfig
-        );
+        $response = $translationServiceClient->batchTranslateDocument($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

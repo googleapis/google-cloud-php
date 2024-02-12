@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Api\MonitoredResourceDescriptor;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
 
 /**
  * Lists monitored resource descriptors that match a filter. This method does not require a Workspace.
@@ -41,10 +42,14 @@ function list_monitored_resource_descriptors_sample(string $name): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListMonitoredResourceDescriptorsRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metricServiceClient->listMonitoredResourceDescriptors($name);
+        $response = $metricServiceClient->listMonitoredResourceDescriptors($request);
 
         /** @var MonitoredResourceDescriptor $element */
         foreach ($response as $element) {

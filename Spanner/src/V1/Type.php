@@ -47,6 +47,16 @@ class Type extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.TypeAnnotationCode type_annotation = 4;</code>
      */
     private $type_annotation = 0;
+    /**
+     * If [code][google.spanner.v1.Type.code] ==
+     * [PROTO][google.spanner.v1.TypeCode.PROTO] or
+     * [code][google.spanner.v1.Type.code] ==
+     * [ENUM][google.spanner.v1.TypeCode.ENUM], then `proto_type_fqn` is the fully
+     * qualified name of the proto type representing the proto/enum definition.
+     *
+     * Generated from protobuf field <code>string proto_type_fqn = 5;</code>
+     */
+    private $proto_type_fqn = '';
 
     /**
      * Constructor.
@@ -69,6 +79,12 @@ class Type extends \Google\Protobuf\Internal\Message
      *           to different SQL types depending on the SQL dialect. [type_annotation][google.spanner.v1.Type.type_annotation]
      *           typically is not needed to process the content of a value (it doesn't
      *           affect serialization) and clients can ignore it on the read path.
+     *     @type string $proto_type_fqn
+     *           If [code][google.spanner.v1.Type.code] ==
+     *           [PROTO][google.spanner.v1.TypeCode.PROTO] or
+     *           [code][google.spanner.v1.Type.code] ==
+     *           [ENUM][google.spanner.v1.TypeCode.ENUM], then `proto_type_fqn` is the fully
+     *           qualified name of the proto type representing the proto/enum definition.
      * }
      */
     public function __construct($data = NULL) {
@@ -210,6 +226,40 @@ class Type extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\TypeAnnotationCode::class);
         $this->type_annotation = $var;
+
+        return $this;
+    }
+
+    /**
+     * If [code][google.spanner.v1.Type.code] ==
+     * [PROTO][google.spanner.v1.TypeCode.PROTO] or
+     * [code][google.spanner.v1.Type.code] ==
+     * [ENUM][google.spanner.v1.TypeCode.ENUM], then `proto_type_fqn` is the fully
+     * qualified name of the proto type representing the proto/enum definition.
+     *
+     * Generated from protobuf field <code>string proto_type_fqn = 5;</code>
+     * @return string
+     */
+    public function getProtoTypeFqn()
+    {
+        return $this->proto_type_fqn;
+    }
+
+    /**
+     * If [code][google.spanner.v1.Type.code] ==
+     * [PROTO][google.spanner.v1.TypeCode.PROTO] or
+     * [code][google.spanner.v1.Type.code] ==
+     * [ENUM][google.spanner.v1.TypeCode.ENUM], then `proto_type_fqn` is the fully
+     * qualified name of the proto type representing the proto/enum definition.
+     *
+     * Generated from protobuf field <code>string proto_type_fqn = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtoTypeFqn($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->proto_type_fqn = $var;
 
         return $this;
     }

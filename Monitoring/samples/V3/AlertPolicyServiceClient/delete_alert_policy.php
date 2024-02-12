@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_AlertPolicyService_DeleteAlertPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Monitoring\V3\AlertPolicyServiceClient;
+use Google\Cloud\Monitoring\V3\Client\AlertPolicyServiceClient;
+use Google\Cloud\Monitoring\V3\DeleteAlertPolicyRequest;
 
 /**
  * Deletes an alerting policy.
@@ -45,9 +46,13 @@ function delete_alert_policy_sample(string $formattedName): void
     // Create a client.
     $alertPolicyServiceClient = new AlertPolicyServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAlertPolicyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $alertPolicyServiceClient->deleteAlertPolicy($formattedName);
+        $alertPolicyServiceClient->deleteAlertPolicy($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

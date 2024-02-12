@@ -17,6 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Debug message for when a rollout update event occurs.
+     *
+     * Generated from protobuf field <code>string message = 6;</code>
+     */
+    private $message = '';
+    /**
      * Unique identifier of the pipeline.
      *
      * Generated from protobuf field <code>string pipeline_uid = 1;</code>
@@ -29,7 +35,15 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
      */
     private $release_uid = '';
     /**
+     * The name of the `Release`.
+     *
+     * Generated from protobuf field <code>string release = 8;</code>
+     */
+    private $release = '';
+    /**
      * The name of the rollout.
+     * rollout_uid is not in this log message because we write some of these log
+     * messages at rollout creation time, before we've generated the uid.
      *
      * Generated from protobuf field <code>string rollout = 3;</code>
      */
@@ -41,23 +55,17 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
      */
     private $target_id = '';
     /**
-     * The type of the rollout update.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutUpdateEvent.RolloutUpdateType rollout_update_type = 5;</code>
-     */
-    private $rollout_update_type = 0;
-    /**
-     * Debug message for when a rollout update event occurs.
-     *
-     * Generated from protobuf field <code>string message = 6;</code>
-     */
-    private $message = '';
-    /**
      * Type of this notification, e.g. for a rollout update event.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 7;</code>
      */
     private $type = 0;
+    /**
+     * The type of the rollout update.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutUpdateEvent.RolloutUpdateType rollout_update_type = 5;</code>
+     */
+    private $rollout_update_type = 0;
 
     /**
      * Constructor.
@@ -65,25 +73,55 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $message
+     *           Debug message for when a rollout update event occurs.
      *     @type string $pipeline_uid
      *           Unique identifier of the pipeline.
      *     @type string $release_uid
      *           Unique identifier of the release.
+     *     @type string $release
+     *           The name of the `Release`.
      *     @type string $rollout
      *           The name of the rollout.
+     *           rollout_uid is not in this log message because we write some of these log
+     *           messages at rollout creation time, before we've generated the uid.
      *     @type string $target_id
      *           ID of the target.
-     *     @type int $rollout_update_type
-     *           The type of the rollout update.
-     *     @type string $message
-     *           Debug message for when a rollout update event occurs.
      *     @type int $type
      *           Type of this notification, e.g. for a rollout update event.
+     *     @type int $rollout_update_type
+     *           The type of the rollout update.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Deploy\V1\RolloutUpdatePayload::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Debug message for when a rollout update event occurs.
+     *
+     * Generated from protobuf field <code>string message = 6;</code>
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Debug message for when a rollout update event occurs.
+     *
+     * Generated from protobuf field <code>string message = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->message = $var;
+
+        return $this;
     }
 
     /**
@@ -139,7 +177,35 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The name of the `Release`.
+     *
+     * Generated from protobuf field <code>string release = 8;</code>
+     * @return string
+     */
+    public function getRelease()
+    {
+        return $this->release;
+    }
+
+    /**
+     * The name of the `Release`.
+     *
+     * Generated from protobuf field <code>string release = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRelease($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->release = $var;
+
+        return $this;
+    }
+
+    /**
      * The name of the rollout.
+     * rollout_uid is not in this log message because we write some of these log
+     * messages at rollout creation time, before we've generated the uid.
      *
      * Generated from protobuf field <code>string rollout = 3;</code>
      * @return string
@@ -151,6 +217,8 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the rollout.
+     * rollout_uid is not in this log message because we write some of these log
+     * messages at rollout creation time, before we've generated the uid.
      *
      * Generated from protobuf field <code>string rollout = 3;</code>
      * @param string $var
@@ -191,58 +259,6 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the rollout update.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutUpdateEvent.RolloutUpdateType rollout_update_type = 5;</code>
-     * @return int
-     */
-    public function getRolloutUpdateType()
-    {
-        return $this->rollout_update_type;
-    }
-
-    /**
-     * The type of the rollout update.
-     *
-     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutUpdateEvent.RolloutUpdateType rollout_update_type = 5;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setRolloutUpdateType($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\RolloutUpdateEvent\RolloutUpdateType::class);
-        $this->rollout_update_type = $var;
-
-        return $this;
-    }
-
-    /**
-     * Debug message for when a rollout update event occurs.
-     *
-     * Generated from protobuf field <code>string message = 6;</code>
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-    /**
-     * Debug message for when a rollout update event occurs.
-     *
-     * Generated from protobuf field <code>string message = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setMessage($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->message = $var;
-
-        return $this;
-    }
-
-    /**
      * Type of this notification, e.g. for a rollout update event.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 7;</code>
@@ -264,6 +280,32 @@ class RolloutUpdateEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\Type::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of the rollout update.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutUpdateEvent.RolloutUpdateType rollout_update_type = 5;</code>
+     * @return int
+     */
+    public function getRolloutUpdateType()
+    {
+        return $this->rollout_update_type;
+    }
+
+    /**
+     * The type of the rollout update.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.RolloutUpdateEvent.RolloutUpdateType rollout_update_type = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRolloutUpdateType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\RolloutUpdateEvent\RolloutUpdateType::class);
+        $this->rollout_update_type = $var;
 
         return $this;
     }

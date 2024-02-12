@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_CompletionService_CompleteQuery_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\Client\CompletionServiceClient;
+use Google\Cloud\Retail\V2\CompleteQueryRequest;
 use Google\Cloud\Retail\V2\CompleteQueryResponse;
-use Google\Cloud\Retail\V2\CompletionServiceClient;
 
 /**
  * Completes the specified prefix with keyword suggestions.
@@ -47,10 +48,15 @@ function complete_query_sample(string $formattedCatalog, string $query): void
     // Create a client.
     $completionServiceClient = new CompletionServiceClient();
 
+    // Prepare the request message.
+    $request = (new CompleteQueryRequest())
+        ->setCatalog($formattedCatalog)
+        ->setQuery($query);
+
     // Call the API and handle any network failures.
     try {
         /** @var CompleteQueryResponse $response */
-        $response = $completionServiceClient->completeQuery($formattedCatalog, $query);
+        $response = $completionServiceClient->completeQuery($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -73,6 +73,9 @@ trait RequestWrapperTrait
      */
     private $quotaProject;
 
+    private string $universeDomain;
+    private bool $hasCheckedUniverse = false;
+
     /**
      * Sets common defaults between request wrappers.
      *

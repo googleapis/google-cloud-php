@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for [google.longrunning.Operation][google.longrunning.Operation] results from
+ * Metadata for [google.longrunning.Operation][google.longrunning.Operation]
+ * results from
  * [FirestoreAdmin.ExportDocuments][google.firestore.admin.v1.FirestoreAdmin.ExportDocuments].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ExportDocumentsMetadata</code>
@@ -54,11 +55,25 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      */
     private $collection_ids;
     /**
-     * Where the entities are being exported to.
+     * Where the documents are being exported to.
      *
      * Generated from protobuf field <code>string output_uri_prefix = 7;</code>
      */
     private $output_uri_prefix = '';
+    /**
+     * Which namespace ids are being exported.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     */
+    private $namespace_ids;
+    /**
+     * The timestamp that corresponds to the version of the database that is being
+     * exported. If unspecified, there are no guarantees about the consistency of
+     * the documents being exported.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 9;</code>
+     */
+    private $snapshot_time = null;
 
     /**
      * Constructor.
@@ -80,7 +95,13 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
      *           Which collection ids are being exported.
      *     @type string $output_uri_prefix
-     *           Where the entities are being exported to.
+     *           Where the documents are being exported to.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *           Which namespace ids are being exported.
+     *     @type \Google\Protobuf\Timestamp $snapshot_time
+     *           The timestamp that corresponds to the version of the database that is being
+     *           exported. If unspecified, there are no guarantees about the consistency of
+     *           the documents being exported.
      * }
      */
     public function __construct($data = NULL) {
@@ -287,7 +308,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Where the entities are being exported to.
+     * Where the documents are being exported to.
      *
      * Generated from protobuf field <code>string output_uri_prefix = 7;</code>
      * @return string
@@ -298,7 +319,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Where the entities are being exported to.
+     * Where the documents are being exported to.
      *
      * Generated from protobuf field <code>string output_uri_prefix = 7;</code>
      * @param string $var
@@ -308,6 +329,72 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->output_uri_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which namespace ids are being exported.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNamespaceIds()
+    {
+        return $this->namespace_ids;
+    }
+
+    /**
+     * Which namespace ids are being exported.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNamespaceIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->namespace_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The timestamp that corresponds to the version of the database that is being
+     * exported. If unspecified, there are no guarantees about the consistency of
+     * the documents being exported.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 9;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getSnapshotTime()
+    {
+        return $this->snapshot_time;
+    }
+
+    public function hasSnapshotTime()
+    {
+        return isset($this->snapshot_time);
+    }
+
+    public function clearSnapshotTime()
+    {
+        unset($this->snapshot_time);
+    }
+
+    /**
+     * The timestamp that corresponds to the version of the database that is being
+     * exported. If unspecified, there are no guarantees about the consistency of
+     * the documents being exported.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 9;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setSnapshotTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->snapshot_time = $var;
 
         return $this;
     }

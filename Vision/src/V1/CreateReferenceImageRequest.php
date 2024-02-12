@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the product in which to create the reference image.
+     * Required. Resource name of the product in which to create the reference
+     * image.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *
@@ -41,7 +42,8 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
     private $reference_image_id = '';
 
     /**
-     * @param string                                 $parent           Required. Resource name of the product in which to create the reference image.
+     * @param string                                 $parent           Required. Resource name of the product in which to create the reference
+     *                                                                 image.
      *
      *                                                                 Format is
      *                                                                 `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
@@ -72,7 +74,8 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the product in which to create the reference image.
+     *           Required. Resource name of the product in which to create the reference
+     *           image.
      *           Format is
      *           `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *     @type \Google\Cloud\Vision\V1\ReferenceImage $reference_image
@@ -91,7 +94,8 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the product in which to create the reference image.
+     * Required. Resource name of the product in which to create the reference
+     * image.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *
@@ -104,7 +108,8 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the product in which to create the reference image.
+     * Required. Resource name of the product in which to create the reference
+     * image.
      * Format is
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
      *

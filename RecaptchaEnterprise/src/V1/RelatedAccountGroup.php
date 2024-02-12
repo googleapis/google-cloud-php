@@ -16,10 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class RelatedAccountGroup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name for the related account group in the format
+     * Required. Identifier. The resource name for the related account group in
+     * the format
      * `projects/{project}/relatedaccountgroups/{related_account_group}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,7 +31,8 @@ class RelatedAccountGroup extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name for the related account group in the format
+     *           Required. Identifier. The resource name for the related account group in
+     *           the format
      *           `projects/{project}/relatedaccountgroups/{related_account_group}`.
      * }
      */
@@ -40,10 +42,11 @@ class RelatedAccountGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for the related account group in the format
+     * Required. Identifier. The resource name for the related account group in
+     * the format
      * `projects/{project}/relatedaccountgroups/{related_account_group}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +55,11 @@ class RelatedAccountGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for the related account group in the format
+     * Required. Identifier. The resource name for the related account group in
+     * the format
      * `projects/{project}/relatedaccountgroups/{related_account_group}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

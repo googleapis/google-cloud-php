@@ -63,12 +63,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dialogflow\V2\ConversationProfilesClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface clearSuggestionFeatureConfigAsync(ClearSuggestionFeatureConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createConversationProfileAsync(CreateConversationProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConversationProfileAsync(DeleteConversationProfileRequest $request, array $optionalArgs = [])
@@ -87,8 +81,15 @@ final class ConversationProfilesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dialogflow.v2.ConversationProfiles';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -599,6 +600,8 @@ final class ConversationProfilesClient
      * The async variant is
      * {@see ConversationProfilesClient::clearSuggestionFeatureConfigAsync()} .
      *
+     * @example samples/V2/ConversationProfilesClient/clear_suggestion_feature_config.php
+     *
      * @param ClearSuggestionFeatureConfigRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
      *     Optional.
@@ -629,6 +632,8 @@ final class ConversationProfilesClient
      * The async variant is
      * {@see ConversationProfilesClient::createConversationProfileAsync()} .
      *
+     * @example samples/V2/ConversationProfilesClient/create_conversation_profile.php
+     *
      * @param CreateConversationProfileRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -654,6 +659,8 @@ final class ConversationProfilesClient
      * The async variant is
      * {@see ConversationProfilesClient::deleteConversationProfileAsync()} .
      *
+     * @example samples/V2/ConversationProfilesClient/delete_conversation_profile.php
+     *
      * @param DeleteConversationProfileRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -676,6 +683,8 @@ final class ConversationProfilesClient
      *
      * The async variant is
      * {@see ConversationProfilesClient::getConversationProfileAsync()} .
+     *
+     * @example samples/V2/ConversationProfilesClient/get_conversation_profile.php
      *
      * @param GetConversationProfileRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -701,6 +710,8 @@ final class ConversationProfilesClient
      *
      * The async variant is
      * {@see ConversationProfilesClient::listConversationProfilesAsync()} .
+     *
+     * @example samples/V2/ConversationProfilesClient/list_conversation_profiles.php
      *
      * @param ListConversationProfilesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -744,6 +755,8 @@ final class ConversationProfilesClient
      * The async variant is
      * {@see ConversationProfilesClient::setSuggestionFeatureConfigAsync()} .
      *
+     * @example samples/V2/ConversationProfilesClient/set_suggestion_feature_config.php
+     *
      * @param SetSuggestionFeatureConfigRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -774,6 +787,8 @@ final class ConversationProfilesClient
      * The async variant is
      * {@see ConversationProfilesClient::updateConversationProfileAsync()} .
      *
+     * @example samples/V2/ConversationProfilesClient/update_conversation_profile.php
+     *
      * @param UpdateConversationProfileRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -798,6 +813,8 @@ final class ConversationProfilesClient
      *
      * The async variant is {@see ConversationProfilesClient::getLocationAsync()} .
      *
+     * @example samples/V2/ConversationProfilesClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -821,6 +838,8 @@ final class ConversationProfilesClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see ConversationProfilesClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/ConversationProfilesClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -62,11 +62,9 @@ use Google\Cloud\Security\PublicCA\V1beta1\ExternalAccountKey;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Security\PublicCA\V1beta1\Client\PublicCertificateAuthorityServiceClient}
- * to use the new surface.
- *
  * @experimental
+ *
+ * @deprecated Please use the new service client {@see \Google\Cloud\Security\PublicCA\V1beta1\Client\PublicCertificateAuthorityServiceClient}.
  */
 class PublicCertificateAuthorityServiceGapicClient
 {
@@ -75,8 +73,15 @@ class PublicCertificateAuthorityServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.security.publicca.v1beta1.PublicCertificateAuthorityService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'publicca.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'publicca.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

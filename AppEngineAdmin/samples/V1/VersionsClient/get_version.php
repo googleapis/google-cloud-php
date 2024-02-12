@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START appengine_v1_generated_Versions_GetVersion_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AppEngine\V1\Client\VersionsClient;
+use Google\Cloud\AppEngine\V1\GetVersionRequest;
 use Google\Cloud\AppEngine\V1\Version;
-use Google\Cloud\AppEngine\V1\VersionsClient;
 
 /**
  * Gets the specified Version resource.
@@ -43,10 +44,13 @@ function get_version_sample(): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
+    // Prepare the request message.
+    $request = new GetVersionRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Version $response */
-        $response = $versionsClient->getVersion();
+        $response = $versionsClient->getVersion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

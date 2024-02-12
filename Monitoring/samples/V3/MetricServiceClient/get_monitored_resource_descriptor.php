@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_MetricService_GetMonitoredResourceDescriptor_sync]
 use Google\ApiCore\ApiException;
 use Google\Api\MonitoredResourceDescriptor;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
 
 /**
  * Gets a single monitored resource descriptor. This method does not require a Workspace.
@@ -43,10 +44,14 @@ function get_monitored_resource_descriptor_sample(string $formattedName): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetMonitoredResourceDescriptorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var MonitoredResourceDescriptor $response */
-        $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
+        $response = $metricServiceClient->getMonitoredResourceDescriptor($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

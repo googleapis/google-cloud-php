@@ -41,10 +41,14 @@ use Google\Cloud\Compute\V1\GetIamPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\InsertRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\ListRegionBackendServicesRequest;
+use Google\Cloud\Compute\V1\ListUsableRegionBackendServicesRequest;
 use Google\Cloud\Compute\V1\PatchRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Compute\V1\SetIamPolicyRegionBackendServiceRequest;
+use Google\Cloud\Compute\V1\SetSecurityPolicyRegionBackendServiceRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionBackendServiceRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateRegionBackendServiceRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -54,20 +58,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\RegionBackendServicesClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface deleteAsync(DeleteRegionBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetRegionBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getHealthAsync(GetHealthRegionBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertRegionBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAsync(ListRegionBackendServicesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listUsableAsync(ListUsableRegionBackendServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface patchAsync(PatchRegionBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setSecurityPolicyAsync(SetSecurityPolicyRegionBackendServiceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRegionBackendServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAsync(UpdateRegionBackendServiceRequest $request, array $optionalArgs = [])
  */
 final class RegionBackendServicesClient
@@ -77,8 +78,15 @@ final class RegionBackendServicesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.RegionBackendServices';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -390,6 +398,30 @@ final class RegionBackendServicesClient
     }
 
     /**
+     * Retrieves an aggregated list of all usable backend services in the specified project in the given region.
+     *
+     * The async variant is {@see RegionBackendServicesClient::listUsableAsync()} .
+     *
+     * @param ListUsableRegionBackendServicesRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUsable(ListUsableRegionBackendServicesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListUsable', $request, $callOptions);
+    }
+
+    /**
      * Updates the specified regional BackendService resource with the data included in the request. For more information, see Understanding backend services This method supports PATCH semantics and uses the JSON merge patch format and processing rules.
      *
      * The async variant is {@see RegionBackendServicesClient::patchAsync()} .
@@ -435,6 +467,56 @@ final class RegionBackendServicesClient
     public function setIamPolicy(SetIamPolicyRegionBackendServiceRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the Google Cloud Armor security policy for the specified backend service. For more information, see Google Cloud Armor Overview
+     *
+     * The async variant is
+     * {@see RegionBackendServicesClient::setSecurityPolicyAsync()} .
+     *
+     * @param SetSecurityPolicyRegionBackendServiceRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setSecurityPolicy(SetSecurityPolicyRegionBackendServiceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetSecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * The async variant is
+     * {@see RegionBackendServicesClient::testIamPermissionsAsync()} .
+     *
+     * @param TestIamPermissionsRegionBackendServiceRequest $request     A request to house fields associated with the call.
+     * @param array                                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(TestIamPermissionsRegionBackendServiceRequest $request, array $callOptions = []): TestPermissionsResponse
+    {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
     /**

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ModelService_DeleteModel_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Retail\V2\ModelServiceClient;
+use Google\Cloud\Retail\V2\Client\ModelServiceClient;
+use Google\Cloud\Retail\V2\DeleteModelRequest;
 
 /**
  * Deletes an existing model.
@@ -39,9 +40,13 @@ function delete_model_sample(string $formattedName): void
     // Create a client.
     $modelServiceClient = new ModelServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteModelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $modelServiceClient->deleteModel($formattedName);
+        $modelServiceClient->deleteModel($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

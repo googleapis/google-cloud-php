@@ -68,12 +68,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\DataCatalog\V1\PolicyTagManagerClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createPolicyTagAsync(CreatePolicyTagRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTaxonomyAsync(CreateTaxonomyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePolicyTagAsync(DeletePolicyTagRequest $request, array $optionalArgs = [])
@@ -96,8 +90,15 @@ final class PolicyTagManagerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.datacatalog.v1.PolicyTagManager';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'datacatalog.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'datacatalog.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -288,6 +289,8 @@ final class PolicyTagManagerClient
      *
      * The async variant is {@see PolicyTagManagerClient::createPolicyTagAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerClient/create_policy_tag.php
+     *
      * @param CreatePolicyTagRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -313,6 +316,8 @@ final class PolicyTagManagerClient
      * The taxonomy is initially empty, that is, it doesn't contain policy tags.
      *
      * The async variant is {@see PolicyTagManagerClient::createTaxonomyAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerClient/create_taxonomy.php
      *
      * @param CreateTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -343,6 +348,8 @@ final class PolicyTagManagerClient
      *
      * The async variant is {@see PolicyTagManagerClient::deletePolicyTagAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerClient/delete_policy_tag.php
+     *
      * @param DeletePolicyTagRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -367,6 +374,8 @@ final class PolicyTagManagerClient
      *
      * The async variant is {@see PolicyTagManagerClient::deleteTaxonomyAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerClient/delete_taxonomy.php
+     *
      * @param DeleteTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -388,6 +397,8 @@ final class PolicyTagManagerClient
      * Gets the IAM policy for a policy tag or a taxonomy.
      *
      * The async variant is {@see PolicyTagManagerClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -413,6 +424,8 @@ final class PolicyTagManagerClient
      *
      * The async variant is {@see PolicyTagManagerClient::getPolicyTagAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerClient/get_policy_tag.php
+     *
      * @param GetPolicyTagRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -437,6 +450,8 @@ final class PolicyTagManagerClient
      *
      * The async variant is {@see PolicyTagManagerClient::getTaxonomyAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerClient/get_taxonomy.php
+     *
      * @param GetTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -460,6 +475,8 @@ final class PolicyTagManagerClient
      * Lists all policy tags in a taxonomy.
      *
      * The async variant is {@see PolicyTagManagerClient::listPolicyTagsAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerClient/list_policy_tags.php
      *
      * @param ListPolicyTagsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -486,6 +503,8 @@ final class PolicyTagManagerClient
      *
      * The async variant is {@see PolicyTagManagerClient::listTaxonomiesAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerClient/list_taxonomies.php
+     *
      * @param ListTaxonomiesRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -509,6 +528,8 @@ final class PolicyTagManagerClient
      * Sets the IAM policy for a policy tag or a taxonomy.
      *
      * The async variant is {@see PolicyTagManagerClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -535,6 +556,8 @@ final class PolicyTagManagerClient
      *
      * The async variant is {@see PolicyTagManagerClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -560,6 +583,8 @@ final class PolicyTagManagerClient
      *
      * The async variant is {@see PolicyTagManagerClient::updatePolicyTagAsync()} .
      *
+     * @example samples/V1/PolicyTagManagerClient/update_policy_tag.php
+     *
      * @param UpdatePolicyTagRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -584,6 +609,8 @@ final class PolicyTagManagerClient
      * description, and activated policy types.
      *
      * The async variant is {@see PolicyTagManagerClient::updateTaxonomyAsync()} .
+     *
+     * @example samples/V1/PolicyTagManagerClient/update_taxonomy.php
      *
      * @param UpdateTaxonomyRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

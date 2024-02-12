@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_CreatePrivateConnection_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\CloudDms\V1\PrivateConnection;
 use Google\Rpc\Status;
 
@@ -43,17 +44,17 @@ function create_private_connection_sample(
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $privateConnection = new PrivateConnection();
+    $request = (new CreatePrivateConnectionRequest())
+        ->setParent($formattedParent)
+        ->setPrivateConnectionId($privateConnectionId)
+        ->setPrivateConnection($privateConnection);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->createPrivateConnection(
-            $formattedParent,
-            $privateConnectionId,
-            $privateConnection
-        );
+        $response = $dataMigrationServiceClient->createPrivateConnection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -39,6 +39,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateContent' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\GenerateContentResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'model',
+                        'fieldAccessors' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
             'Predict' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\PredictResponse',
@@ -69,6 +81,50 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\StreamingPredictResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'endpoint',
+                        'fieldAccessors' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
+            ],
+            'StreamDirectPredict' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\StreamDirectPredictResponse',
+            ],
+            'StreamDirectRawPredict' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\StreamDirectRawPredictResponse',
+            ],
+            'StreamGenerateContent' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\GenerateContentResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'model',
+                        'fieldAccessors' => [
+                            'getModel',
+                        ],
+                    ],
+                ],
+            ],
+            'StreamRawPredict' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Api\HttpBody',
                 'headerParams' => [
                     [
                         'keyName' => 'endpoint',

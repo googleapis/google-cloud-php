@@ -21,13 +21,13 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      */
     private $ip_range = null;
     /**
-     * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
+     * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *
      * Generated from protobuf field <code>optional string linked_interconnect_attachment = 501085518;</code>
      */
     private $linked_interconnect_attachment = null;
     /**
-     * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
+     * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *
      * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
      */
@@ -73,9 +73,9 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      *     @type string $ip_range
      *           IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
      *     @type string $linked_interconnect_attachment
-     *           URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
+     *           URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *     @type string $linked_vpn_tunnel
-     *           URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
+     *           URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *     @type string $management_type
      *           [Output Only] The resource that configures and manages this interface. - MANAGED_BY_USER is the default value and can be managed directly by users. - MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically, by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted.
      *           Check the ManagementType enum for the list of possible values.
@@ -131,7 +131,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
+     * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *
      * Generated from protobuf field <code>optional string linked_interconnect_attachment = 501085518;</code>
      * @return string
@@ -152,7 +152,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
+     * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *
      * Generated from protobuf field <code>optional string linked_interconnect_attachment = 501085518;</code>
      * @param string $var
@@ -167,7 +167,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
+     * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *
      * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
      * @return string
@@ -188,7 +188,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
+     * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *
      * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
      * @param string $var

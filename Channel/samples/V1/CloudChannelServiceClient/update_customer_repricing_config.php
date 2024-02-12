@@ -24,11 +24,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_UpdateCustomerRepricingConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
 use Google\Cloud\Channel\V1\RebillingBasis;
 use Google\Cloud\Channel\V1\RepricingAdjustment;
 use Google\Cloud\Channel\V1\RepricingConfig;
+use Google\Cloud\Channel\V1\UpdateCustomerRepricingConfigRequest;
 use Google\Type\Date;
 
 /**
@@ -75,7 +76,7 @@ function update_customer_repricing_config_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
     $customerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
     $customerRepricingConfigRepricingConfig = (new RepricingConfig())
@@ -84,11 +85,13 @@ function update_customer_repricing_config_sample(
         ->setRebillingBasis($customerRepricingConfigRepricingConfigRebillingBasis);
     $customerRepricingConfig = (new CustomerRepricingConfig())
         ->setRepricingConfig($customerRepricingConfigRepricingConfig);
+    $request = (new UpdateCustomerRepricingConfigRequest())
+        ->setCustomerRepricingConfig($customerRepricingConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var CustomerRepricingConfig $response */
-        $response = $cloudChannelServiceClient->updateCustomerRepricingConfig($customerRepricingConfig);
+        $response = $cloudChannelServiceClient->updateCustomerRepricingConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

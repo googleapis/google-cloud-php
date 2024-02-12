@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_KnowledgeBases_DeleteKnowledgeBase_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\V2\KnowledgeBasesClient;
+use Google\Cloud\Dialogflow\V2\Client\KnowledgeBasesClient;
+use Google\Cloud\Dialogflow\V2\DeleteKnowledgeBaseRequest;
 
 /**
  * Deletes the specified knowledge base.
@@ -39,9 +40,13 @@ function delete_knowledge_base_sample(string $formattedName): void
     // Create a client.
     $knowledgeBasesClient = new KnowledgeBasesClient();
 
+    // Prepare the request message.
+    $request = (new DeleteKnowledgeBaseRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $knowledgeBasesClient->deleteKnowledgeBase($formattedName);
+        $knowledgeBasesClient->deleteKnowledgeBase($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

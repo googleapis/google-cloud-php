@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerystorage_v1_generated_BigQueryWrite_GetWriteStream_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\Storage\V1\BigQueryWriteClient;
+use Google\Cloud\BigQuery\Storage\V1\Client\BigQueryWriteClient;
+use Google\Cloud\BigQuery\Storage\V1\GetWriteStreamRequest;
 use Google\Cloud\BigQuery\Storage\V1\WriteStream;
 
 /**
@@ -39,10 +40,14 @@ function get_write_stream_sample(string $formattedName): void
     // Create a client.
     $bigQueryWriteClient = new BigQueryWriteClient();
 
+    // Prepare the request message.
+    $request = (new GetWriteStreamRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var WriteStream $response */
-        $response = $bigQueryWriteClient->getWriteStream($formattedName);
+        $response = $bigQueryWriteClient->getWriteStream($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

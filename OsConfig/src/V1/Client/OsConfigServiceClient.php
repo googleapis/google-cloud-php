@@ -63,11 +63,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\OsConfig\V1\OsConfigServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface cancelPatchJobAsync(CancelPatchJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createPatchDeploymentAsync(CreatePatchDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePatchDeploymentAsync(DeletePatchDeploymentRequest $request, array $optionalArgs = [])
@@ -89,8 +84,15 @@ class OsConfigServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.osconfig.v1.OsConfigService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'osconfig.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'osconfig.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -274,6 +276,8 @@ class OsConfigServiceClient
      *
      * The async variant is {@see OsConfigServiceClient::cancelPatchJobAsync()} .
      *
+     * @example samples/V1/OsConfigServiceClient/cancel_patch_job.php
+     *
      * @param CancelPatchJobRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -298,6 +302,8 @@ class OsConfigServiceClient
      *
      * The async variant is {@see OsConfigServiceClient::createPatchDeploymentAsync()}
      * .
+     *
+     * @example samples/V1/OsConfigServiceClient/create_patch_deployment.php
      *
      * @param CreatePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -324,6 +330,8 @@ class OsConfigServiceClient
      * The async variant is {@see OsConfigServiceClient::deletePatchDeploymentAsync()}
      * .
      *
+     * @example samples/V1/OsConfigServiceClient/delete_patch_deployment.php
+     *
      * @param DeletePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -345,6 +353,8 @@ class OsConfigServiceClient
      * Patch VM instances by creating and running a patch job.
      *
      * The async variant is {@see OsConfigServiceClient::executePatchJobAsync()} .
+     *
+     * @example samples/V1/OsConfigServiceClient/execute_patch_job.php
      *
      * @param ExecutePatchJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -369,6 +379,8 @@ class OsConfigServiceClient
      * Get an OS Config patch deployment.
      *
      * The async variant is {@see OsConfigServiceClient::getPatchDeploymentAsync()} .
+     *
+     * @example samples/V1/OsConfigServiceClient/get_patch_deployment.php
      *
      * @param GetPatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -395,6 +407,8 @@ class OsConfigServiceClient
      *
      * The async variant is {@see OsConfigServiceClient::getPatchJobAsync()} .
      *
+     * @example samples/V1/OsConfigServiceClient/get_patch_job.php
+     *
      * @param GetPatchJobRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -418,6 +432,8 @@ class OsConfigServiceClient
      * Get a page of OS Config patch deployments.
      *
      * The async variant is {@see OsConfigServiceClient::listPatchDeploymentsAsync()} .
+     *
+     * @example samples/V1/OsConfigServiceClient/list_patch_deployments.php
      *
      * @param ListPatchDeploymentsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -444,6 +460,8 @@ class OsConfigServiceClient
      * The async variant is
      * {@see OsConfigServiceClient::listPatchJobInstanceDetailsAsync()} .
      *
+     * @example samples/V1/OsConfigServiceClient/list_patch_job_instance_details.php
+     *
      * @param ListPatchJobInstanceDetailsRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -467,6 +485,8 @@ class OsConfigServiceClient
      * Get a list of patch jobs.
      *
      * The async variant is {@see OsConfigServiceClient::listPatchJobsAsync()} .
+     *
+     * @example samples/V1/OsConfigServiceClient/list_patch_jobs.php
      *
      * @param ListPatchJobsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -492,6 +512,8 @@ class OsConfigServiceClient
      * Patch deployment in paused state doesn't generate patch jobs.
      *
      * The async variant is {@see OsConfigServiceClient::pausePatchDeploymentAsync()} .
+     *
+     * @example samples/V1/OsConfigServiceClient/pause_patch_deployment.php
      *
      * @param PausePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -519,6 +541,8 @@ class OsConfigServiceClient
      * The async variant is {@see OsConfigServiceClient::resumePatchDeploymentAsync()}
      * .
      *
+     * @example samples/V1/OsConfigServiceClient/resume_patch_deployment.php
+     *
      * @param ResumePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -543,6 +567,8 @@ class OsConfigServiceClient
      *
      * The async variant is {@see OsConfigServiceClient::updatePatchDeploymentAsync()}
      * .
+     *
+     * @example samples/V1/OsConfigServiceClient/update_patch_deployment.php
      *
      * @param UpdatePatchDeploymentRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {

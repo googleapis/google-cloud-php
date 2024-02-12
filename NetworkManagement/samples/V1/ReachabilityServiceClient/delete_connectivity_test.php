@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkmanagement_v1_generated_ReachabilityService_DeleteConnectivityTest_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkManagement\V1\ReachabilityServiceClient;
+use Google\Cloud\NetworkManagement\V1\Client\ReachabilityServiceClient;
+use Google\Cloud\NetworkManagement\V1\DeleteConnectivityTestRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_connectivity_test_sample(string $name): void
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteConnectivityTestRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $reachabilityServiceClient->deleteConnectivityTest($name);
+        $response = $reachabilityServiceClient->deleteConnectivityTest($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

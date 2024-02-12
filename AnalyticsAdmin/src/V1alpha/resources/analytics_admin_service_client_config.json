@@ -104,6 +104,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "CreateCalculatedMetric": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "CreateChannelGroup": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -215,6 +220,11 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "DeleteAdSenseLink": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "DeleteCalculatedMetric": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -339,6 +349,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetCalculatedMetric": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetChannelGroup": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -439,6 +454,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetSubpropertyEventFilter": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListAccessBindings": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -465,6 +485,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "ListBigQueryLinks": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListCalculatedMetrics": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -554,6 +579,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ListSubpropertyEventFilters": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ProvisionAccountTicket": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -590,6 +620,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "UpdateAudience": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateCalculatedMetric": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -675,6 +710,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "UpdateSearchAds360Link": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateSubpropertyEventFilter": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

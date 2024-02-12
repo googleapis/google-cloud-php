@@ -9,23 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Manually constructed resource. If the custom module only evaluates against
- * the resource data, the iam_policy_data field can be omitted, and vice
- * versa.
+ * Manually constructed resource name. If the custom module evaluates against
+ * only the resource data, you can omit the `iam_policy_data` field. If it
+ * evaluates only the `iam_policy_data` field, you can omit the resource data.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.SimulateSecurityHealthAnalyticsCustomModuleRequest.SimulatedResource</code>
  */
 class SimulatedResource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The type of the resource, e.g. `compute.googleapis.com/Disk`.
+     * Required. The type of the resource, for example,
+     * `compute.googleapis.com/Disk`.
      *
      * Generated from protobuf field <code>string resource_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $resource_type = '';
     /**
-     * Optional. A representation of the GCP resource. Should match the GCP
-     * resource JSON format.
+     * Optional. A representation of the Google Cloud resource. Should match the
+     * Google Cloud resource JSON format.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,10 +45,11 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource_type
-     *           Required. The type of the resource, e.g. `compute.googleapis.com/Disk`.
+     *           Required. The type of the resource, for example,
+     *           `compute.googleapis.com/Disk`.
      *     @type \Google\Protobuf\Struct $resource_data
-     *           Optional. A representation of the GCP resource. Should match the GCP
-     *           resource JSON format.
+     *           Optional. A representation of the Google Cloud resource. Should match the
+     *           Google Cloud resource JSON format.
      *     @type \Google\Cloud\Iam\V1\Policy $iam_policy_data
      *           Optional. A representation of the IAM policy.
      * }
@@ -58,7 +60,8 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of the resource, e.g. `compute.googleapis.com/Disk`.
+     * Required. The type of the resource, for example,
+     * `compute.googleapis.com/Disk`.
      *
      * Generated from protobuf field <code>string resource_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -69,7 +72,8 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of the resource, e.g. `compute.googleapis.com/Disk`.
+     * Required. The type of the resource, for example,
+     * `compute.googleapis.com/Disk`.
      *
      * Generated from protobuf field <code>string resource_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -84,8 +88,8 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A representation of the GCP resource. Should match the GCP
-     * resource JSON format.
+     * Optional. A representation of the Google Cloud resource. Should match the
+     * Google Cloud resource JSON format.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -106,8 +110,8 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A representation of the GCP resource. Should match the GCP
-     * resource JSON format.
+     * Optional. A representation of the Google Cloud resource. Should match the
+     * Google Cloud resource JSON format.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct resource_data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var

@@ -80,11 +80,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Asset\V1\AssetServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface analyzeIamPolicyAsync(AnalyzeIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface analyzeIamPolicyLongrunningAsync(AnalyzeIamPolicyLongrunningRequest $request, array $optionalArgs = [])
  * @method PromiseInterface analyzeMoveAsync(AnalyzeMoveRequest $request, array $optionalArgs = [])
@@ -117,8 +112,15 @@ final class AssetServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.asset.v1.AssetService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudasset.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudasset.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -474,6 +476,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::analyzeIamPolicyAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/analyze_iam_policy.php
+     *
      * @param AnalyzeIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -508,6 +512,8 @@ final class AssetServiceClient
      * The async variant is
      * {@see AssetServiceClient::analyzeIamPolicyLongrunningAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/analyze_iam_policy_longrunning.php
+     *
      * @param AnalyzeIamPolicyLongrunningRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
      *     Optional.
@@ -536,6 +542,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::analyzeMoveAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/analyze_move.php
+     *
      * @param AnalyzeMoveRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -559,6 +567,8 @@ final class AssetServiceClient
      * Analyzes organization policies under a scope.
      *
      * The async variant is {@see AssetServiceClient::analyzeOrgPoliciesAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/analyze_org_policies.php
      *
      * @param AnalyzeOrgPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -595,13 +605,14 @@ final class AssetServiceClient
      * * compute.requireOsLogin
      * * compute.disableNestedVirtualization
      *
-     * This RPC only returns either resources of types supported by [searchable
-     * asset
-     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types),
+     * This RPC only returns either resources of types [supported by search
+     * APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * or IAM policies.
      *
      * The async variant is
      * {@see AssetServiceClient::analyzeOrgPolicyGovernedAssetsAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/analyze_org_policy_governed_assets.php
      *
      * @param AnalyzeOrgPolicyGovernedAssetsRequest $request     A request to house fields associated with the call.
      * @param array                                 $callOptions {
@@ -628,6 +639,8 @@ final class AssetServiceClient
      *
      * The async variant is
      * {@see AssetServiceClient::analyzeOrgPolicyGovernedContainersAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/analyze_org_policy_governed_containers.php
      *
      * @param AnalyzeOrgPolicyGovernedContainersRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
@@ -659,6 +672,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::batchGetAssetsHistoryAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/batch_get_assets_history.php
+     *
      * @param BatchGetAssetsHistoryRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -683,6 +698,8 @@ final class AssetServiceClient
      *
      * The async variant is
      * {@see AssetServiceClient::batchGetEffectiveIamPoliciesAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/batch_get_effective_iam_policies.php
      *
      * @param BatchGetEffectiveIamPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -709,6 +726,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::createFeedAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/create_feed.php
+     *
      * @param CreateFeedRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -732,6 +751,8 @@ final class AssetServiceClient
      * Creates a saved query in a parent project/folder/organization.
      *
      * The async variant is {@see AssetServiceClient::createSavedQueryAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/create_saved_query.php
      *
      * @param CreateSavedQueryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -757,6 +778,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::deleteFeedAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/delete_feed.php
+     *
      * @param DeleteFeedRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -778,6 +801,8 @@ final class AssetServiceClient
      * Deletes a saved query.
      *
      * The async variant is {@see AssetServiceClient::deleteSavedQueryAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/delete_saved_query.php
      *
      * @param DeleteSavedQueryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -811,6 +836,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::exportAssetsAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/export_assets.php
+     *
      * @param ExportAssetsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -835,6 +862,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::getFeedAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/get_feed.php
+     *
      * @param GetFeedRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.
@@ -858,6 +887,8 @@ final class AssetServiceClient
      * Gets details about a saved query.
      *
      * The async variant is {@see AssetServiceClient::getSavedQueryAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/get_saved_query.php
      *
      * @param GetSavedQueryRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -884,6 +915,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::listAssetsAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/list_assets.php
+     *
      * @param ListAssetsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -908,6 +941,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::listFeedsAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/list_feeds.php
+     *
      * @param ListFeedsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -931,6 +966,8 @@ final class AssetServiceClient
      * Lists all saved queries in a parent project/folder/organization.
      *
      * The async variant is {@see AssetServiceClient::listSavedQueriesAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/list_saved_queries.php
      *
      * @param ListSavedQueriesRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -967,6 +1004,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::queryAssetsAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/query_assets.php
+     *
      * @param QueryAssetsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -993,6 +1032,8 @@ final class AssetServiceClient
      * otherwise the request will be rejected.
      *
      * The async variant is {@see AssetServiceClient::searchAllIamPoliciesAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/search_all_iam_policies.php
      *
      * @param SearchAllIamPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -1021,6 +1062,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::searchAllResourcesAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/search_all_resources.php
+     *
      * @param SearchAllResourcesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1045,6 +1088,8 @@ final class AssetServiceClient
      *
      * The async variant is {@see AssetServiceClient::updateFeedAsync()} .
      *
+     * @example samples/V1/AssetServiceClient/update_feed.php
+     *
      * @param UpdateFeedRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -1068,6 +1113,8 @@ final class AssetServiceClient
      * Updates a saved query.
      *
      * The async variant is {@see AssetServiceClient::updateSavedQueryAsync()} .
+     *
+     * @example samples/V1/AssetServiceClient/update_saved_query.php
      *
      * @param UpdateSavedQueryRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

@@ -63,12 +63,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createPolicyBasedRouteAsync(CreatePolicyBasedRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePolicyBasedRouteAsync(DeletePolicyBasedRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getPolicyBasedRouteAsync(GetPolicyBasedRouteRequest $request, array $optionalArgs = [])
@@ -87,8 +81,15 @@ final class PolicyBasedRoutingServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.networkconnectivity.v1.PolicyBasedRoutingService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'networkconnectivity.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'networkconnectivity.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -306,6 +307,8 @@ final class PolicyBasedRoutingServiceClient
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::createPolicyBasedRouteAsync()} .
      *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/create_policy_based_route.php
+     *
      * @param CreatePolicyBasedRouteRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -330,6 +333,8 @@ final class PolicyBasedRoutingServiceClient
      *
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::deletePolicyBasedRouteAsync()} .
+     *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/delete_policy_based_route.php
      *
      * @param DeletePolicyBasedRouteRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -356,6 +361,8 @@ final class PolicyBasedRoutingServiceClient
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::getPolicyBasedRouteAsync()} .
      *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/get_policy_based_route.php
+     *
      * @param GetPolicyBasedRouteRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -380,6 +387,8 @@ final class PolicyBasedRoutingServiceClient
      *
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::listPolicyBasedRoutesAsync()} .
+     *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/list_policy_based_routes.php
      *
      * @param ListPolicyBasedRoutesRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
@@ -406,6 +415,8 @@ final class PolicyBasedRoutingServiceClient
      * The async variant is {@see PolicyBasedRoutingServiceClient::getLocationAsync()}
      * .
      *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -430,6 +441,8 @@ final class PolicyBasedRoutingServiceClient
      *
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -456,6 +469,8 @@ final class PolicyBasedRoutingServiceClient
      *
      * The async variant is {@see PolicyBasedRoutingServiceClient::getIamPolicyAsync()}
      * .
+     *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -485,6 +500,8 @@ final class PolicyBasedRoutingServiceClient
      *
      * The async variant is {@see PolicyBasedRoutingServiceClient::setIamPolicyAsync()}
      * .
+     *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -516,6 +533,8 @@ final class PolicyBasedRoutingServiceClient
      *
      * The async variant is
      * {@see PolicyBasedRoutingServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/PolicyBasedRoutingServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

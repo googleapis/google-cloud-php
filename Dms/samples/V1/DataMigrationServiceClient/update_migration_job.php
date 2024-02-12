@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_UpdateMigrationJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\MigrationJob;
 use Google\Cloud\CloudDms\V1\MigrationJob\Type;
+use Google\Cloud\CloudDms\V1\UpdateMigrationJobRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -46,17 +47,20 @@ function update_migration_job_sample(
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $migrationJob = (new MigrationJob())
         ->setType($migrationJobType)
         ->setSource($migrationJobSource)
         ->setDestination($migrationJobDestination);
+    $request = (new UpdateMigrationJobRequest())
+        ->setUpdateMask($updateMask)
+        ->setMigrationJob($migrationJob);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->updateMigrationJob($updateMask, $migrationJob);
+        $response = $dataMigrationServiceClient->updateMigrationJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

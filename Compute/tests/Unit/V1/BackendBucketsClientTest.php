@@ -31,10 +31,14 @@ use Google\Cloud\Compute\V1\BackendBucketList;
 use Google\Cloud\Compute\V1\BackendBucketsClient;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SecurityPolicyReference;
 use Google\Cloud\Compute\V1\SignedUrlKey;
+use Google\Cloud\Compute\V1\TestPermissionsRequest;
+use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -499,6 +503,74 @@ class BackendBucketsClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $iamOwned = false;
+        $version = 351608024;
+        $expectedResponse = new Policy();
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIamOwned($iamOwned);
+        $expectedResponse->setVersion($version);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $response = $gapicClient->getIamPolicy($project, $resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.BackendBuckets/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        try {
+            $gapicClient->getIamPolicy($project, $resource);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -920,6 +992,144 @@ class BackendBucketsClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $iamOwned = false;
+        $version = 351608024;
+        $expectedResponse = new Policy();
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIamOwned($iamOwned);
+        $expectedResponse->setVersion($version);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $response = $gapicClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.BackendBuckets/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGlobalSetPolicyRequestResource();
+        $this->assertProtobufEquals($globalSetPolicyRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        try {
+            $gapicClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        $response = $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.BackendBuckets/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
+        $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $testPermissionsRequestResource = new TestPermissionsRequest();
+        try {
+            $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

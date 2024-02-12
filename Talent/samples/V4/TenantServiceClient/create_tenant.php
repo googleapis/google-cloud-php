@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START jobs_v4_generated_TenantService_CreateTenant_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Talent\V4\Client\TenantServiceClient;
+use Google\Cloud\Talent\V4\CreateTenantRequest;
 use Google\Cloud\Talent\V4\Tenant;
-use Google\Cloud\Talent\V4\TenantServiceClient;
 
 /**
  * Creates a new tenant entity.
@@ -45,14 +46,17 @@ function create_tenant_sample(string $formattedParent, string $tenantExternalId)
     // Create a client.
     $tenantServiceClient = new TenantServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tenant = (new Tenant())
         ->setExternalId($tenantExternalId);
+    $request = (new CreateTenantRequest())
+        ->setParent($formattedParent)
+        ->setTenant($tenant);
 
     // Call the API and handle any network failures.
     try {
         /** @var Tenant $response */
-        $response = $tenantServiceClient->createTenant($formattedParent, $tenant);
+        $response = $tenantServiceClient->createTenant($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Publisher_GetTopic_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\GetTopicRequest;
 use Google\Cloud\PubSub\V1\Topic;
 
 /**
@@ -39,10 +40,14 @@ function get_topic_sample(string $formattedTopic): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
+    // Prepare the request message.
+    $request = (new GetTopicRequest())
+        ->setTopic($formattedTopic);
+
     // Call the API and handle any network failures.
     try {
         /** @var Topic $response */
-        $response = $publisherClient->getTopic($formattedTopic);
+        $response = $publisherClient->getTopic($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

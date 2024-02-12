@@ -27,6 +27,12 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string range_name = 332216397;</code>
      */
     private $range_name = null;
+    /**
+     * The URL of the reserved internal range.
+     *
+     * Generated from protobuf field <code>optional string reserved_internal_range = 286248754;</code>
+     */
+    private $reserved_internal_range = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
      *           The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. The range can be any range listed in the Valid ranges list.
      *     @type string $range_name
      *           The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
+     *     @type string $reserved_internal_range
+     *           The URL of the reserved internal range.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +121,42 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->range_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The URL of the reserved internal range.
+     *
+     * Generated from protobuf field <code>optional string reserved_internal_range = 286248754;</code>
+     * @return string
+     */
+    public function getReservedInternalRange()
+    {
+        return isset($this->reserved_internal_range) ? $this->reserved_internal_range : '';
+    }
+
+    public function hasReservedInternalRange()
+    {
+        return isset($this->reserved_internal_range);
+    }
+
+    public function clearReservedInternalRange()
+    {
+        unset($this->reserved_internal_range);
+    }
+
+    /**
+     * The URL of the reserved internal range.
+     *
+     * Generated from protobuf field <code>optional string reserved_internal_range = 286248754;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReservedInternalRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->reserved_internal_range = $var;
 
         return $this;
     }

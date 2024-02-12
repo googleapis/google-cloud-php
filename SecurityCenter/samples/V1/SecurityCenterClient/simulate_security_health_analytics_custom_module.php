@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_SimulateSecurityHealthAnalyticsCustomModule_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
 use Google\Cloud\SecurityCenter\V1\CustomConfig;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource;
 use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 
@@ -33,11 +34,12 @@ use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRe
  * Simulates a given SecurityHealthAnalyticsCustomModule and Resource.
  *
  * @param string $parent               The relative resource name of the organization, project, or
- *                                     folder. See:
- *                                     https://cloud.google.com/apis/design/resource_names#relative_resource_name
- *                                     An example is:
- *                                     "organizations/{organization_id}".
- * @param string $resourceResourceType The type of the resource, e.g. `compute.googleapis.com/Disk`.
+ *                                     folder. For more information about relative resource names, see [Relative
+ *                                     Resource
+ *                                     Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+ *                                     Example: `organizations/{organization_id}`
+ * @param string $resourceResourceType The type of the resource, for example,
+ *                                     `compute.googleapis.com/Disk`.
  */
 function simulate_security_health_analytics_custom_module_sample(
     string $parent,
@@ -46,19 +48,19 @@ function simulate_security_health_analytics_custom_module_sample(
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customConfig = new CustomConfig();
     $resource = (new SimulatedResource())
         ->setResourceType($resourceResourceType);
+    $request = (new SimulateSecurityHealthAnalyticsCustomModuleRequest())
+        ->setParent($parent)
+        ->setCustomConfig($customConfig)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var SimulateSecurityHealthAnalyticsCustomModuleResponse $response */
-        $response = $securityCenterClient->simulateSecurityHealthAnalyticsCustomModule(
-            $parent,
-            $customConfig,
-            $resource
-        );
+        $response = $securityCenterClient->simulateSecurityHealthAnalyticsCustomModule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The names of the snapshots that match the request.
+     * Optional. The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated string snapshots = 1;</code>
+     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $snapshots;
     /**
-     * If not empty, indicates that there may be more snapshots that match
-     * the request; this value should be passed in a new
+     * Optional. If not empty, indicates that there may be more snapshots that
+     * match the request; this value should be passed in a new
      * `ListTopicSnapshotsRequest` to get more snapshots.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $next_page_token = '';
 
@@ -37,10 +37,10 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $snapshots
-     *           The names of the snapshots that match the request.
+     *           Optional. The names of the snapshots that match the request.
      *     @type string $next_page_token
-     *           If not empty, indicates that there may be more snapshots that match
-     *           the request; this value should be passed in a new
+     *           Optional. If not empty, indicates that there may be more snapshots that
+     *           match the request; this value should be passed in a new
      *           `ListTopicSnapshotsRequest` to get more snapshots.
      * }
      */
@@ -50,9 +50,9 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The names of the snapshots that match the request.
+     * Optional. The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated string snapshots = 1;</code>
+     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSnapshots()
@@ -61,9 +61,9 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The names of the snapshots that match the request.
+     * Optional. The names of the snapshots that match the request.
      *
-     * Generated from protobuf field <code>repeated string snapshots = 1;</code>
+     * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -76,11 +76,11 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If not empty, indicates that there may be more snapshots that match
-     * the request; this value should be passed in a new
+     * Optional. If not empty, indicates that there may be more snapshots that
+     * match the request; this value should be passed in a new
      * `ListTopicSnapshotsRequest` to get more snapshots.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNextPageToken()
@@ -89,11 +89,11 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If not empty, indicates that there may be more snapshots that match
-     * the request; this value should be passed in a new
+     * Optional. If not empty, indicates that there may be more snapshots that
+     * match the request; this value should be passed in a new
      * `ListTopicSnapshotsRequest` to get more snapshots.
      *
-     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

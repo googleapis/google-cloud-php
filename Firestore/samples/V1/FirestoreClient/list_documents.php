@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START firestore_v1_generated_Firestore_ListDocuments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\Document;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
 /**
  * Lists documents.
@@ -50,10 +51,15 @@ function list_documents_sample(string $parent, string $collectionId): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = (new ListDocumentsRequest())
+        ->setParent($parent)
+        ->setCollectionId($collectionId);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $firestoreClient->listDocuments($parent, $collectionId);
+        $response = $firestoreClient->listDocuments($request);
 
         /** @var Document $element */
         foreach ($response as $element) {

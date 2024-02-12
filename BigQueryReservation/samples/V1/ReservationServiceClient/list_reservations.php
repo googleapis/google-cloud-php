@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigqueryreservation_v1_generated_ReservationService_ListReservations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\ListReservationsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\Reservation;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
 
 /**
  * Lists all the reservations for the project in the specified location.
@@ -40,10 +41,14 @@ function list_reservations_sample(string $formattedParent): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListReservationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $reservationServiceClient->listReservations($formattedParent);
+        $response = $reservationServiceClient->listReservations($request);
 
         /** @var Reservation $element */
         foreach ($response as $element) {

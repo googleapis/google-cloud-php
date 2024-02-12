@@ -29,12 +29,27 @@
                 }
             },
             "methods": {
+                "CreateCustomConstraint": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "CreatePolicy": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "DeleteCustomConstraint": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "DeletePolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetCustomConstraint": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -54,7 +69,17 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ListCustomConstraints": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListPolicies": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateCustomConstraint": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

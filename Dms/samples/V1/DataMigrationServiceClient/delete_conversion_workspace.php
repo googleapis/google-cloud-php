@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_DeleteConversionWorkspace_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\DeleteConversionWorkspaceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_conversion_workspace_sample(string $formattedName): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteConversionWorkspaceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->deleteConversionWorkspace($formattedName);
+        $response = $dataMigrationServiceClient->deleteConversionWorkspace($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
