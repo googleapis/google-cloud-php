@@ -9,21 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request to enroll a set of data sources so they are visible in the
- * BigQuery UI's `Transfer` tab.
+ * A request to unenroll a set of data sources so they are no longer visible in
+ * the BigQuery UI's `Transfer` tab.
  *
- * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.EnrollDataSourcesRequest</code>
+ * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.UnenrollDataSourcesRequest</code>
  */
-class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
+class UnenrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the project resource in the form: `projects/{project_id}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
-     * Data sources that are enrolled. It is required to provide at least one
+     * Data sources that are unenrolled. It is required to provide at least one
      * data source id.
      *
      * Generated from protobuf field <code>repeated string data_source_ids = 2;</code>
@@ -39,7 +39,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the project resource in the form: `projects/{project_id}`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_source_ids
-     *           Data sources that are enrolled. It is required to provide at least one
+     *           Data sources that are unenrolled. It is required to provide at least one
      *           data source id.
      * }
      */
@@ -75,7 +75,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data sources that are enrolled. It is required to provide at least one
+     * Data sources that are unenrolled. It is required to provide at least one
      * data source id.
      *
      * Generated from protobuf field <code>repeated string data_source_ids = 2;</code>
@@ -87,7 +87,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data sources that are enrolled. It is required to provide at least one
+     * Data sources that are unenrolled. It is required to provide at least one
      * data source id.
      *
      * Generated from protobuf field <code>repeated string data_source_ids = 2;</code>
