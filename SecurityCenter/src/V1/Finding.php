@@ -317,6 +317,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.KernelRootkit kernel_rootkit = 50;</code>
      */
     private $kernel_rootkit = null;
+    /**
+     * Represents an application associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Application application = 53;</code>
+     */
+    private $application = null;
 
     /**
      * Constructor.
@@ -469,6 +475,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Cloud DLP data profile that is associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\KernelRootkit $kernel_rootkit
      *           Signature of the kernel rootkit.
+     *     @type \Google\Cloud\SecurityCenter\V1\Application $application
+     *           Represents an application associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -1738,6 +1746,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\KernelRootkit::class);
         $this->kernel_rootkit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents an application associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Application application = 53;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Application|null
+     */
+    public function getApplication()
+    {
+        return $this->application;
+    }
+
+    public function hasApplication()
+    {
+        return isset($this->application);
+    }
+
+    public function clearApplication()
+    {
+        unset($this->application);
+    }
+
+    /**
+     * Represents an application associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Application application = 53;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Application $var
+     * @return $this
+     */
+    public function setApplication($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Application::class);
+        $this->application = $var;
 
         return $this;
     }
