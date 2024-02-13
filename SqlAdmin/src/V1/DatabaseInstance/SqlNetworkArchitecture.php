@@ -7,7 +7,7 @@ namespace Google\Cloud\Sql\V1\DatabaseInstance;
 use UnexpectedValueException;
 
 /**
- * The current SQL network architecture for the instance.
+ * The SQL network architecture for the instance.
  *
  * Protobuf type <code>google.cloud.sql.v1.DatabaseInstance.SqlNetworkArchitecture</code>
  */
@@ -18,13 +18,13 @@ class SqlNetworkArchitecture
      */
     const SQL_NETWORK_ARCHITECTURE_UNSPECIFIED = 0;
     /**
-     * Instance is a Tenancy Unit (TU) instance.
+     * The instance uses the new network architecture.
      *
      * Generated from protobuf enum <code>NEW_NETWORK_ARCHITECTURE = 1;</code>
      */
     const NEW_NETWORK_ARCHITECTURE = 1;
     /**
-     * Instance is an Umbrella instance.
+     * The instance uses the old network architecture.
      *
      * Generated from protobuf enum <code>OLD_NETWORK_ARCHITECTURE = 2;</code>
      */
