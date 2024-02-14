@@ -34,7 +34,7 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
      */
     protected $page_size = 0;
     /**
-     * Optional. The value returned by the last call indicating a continuation
+     * Optional. The value returned by the last call indicating a continuation.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -74,7 +74,7 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
      *           Optional. The maximum number of results to return in a single response.
      *           Default is 10, minimum is 1, maximum is 1000.
      *     @type string $page_token
-     *           Optional. The value returned by the last call indicating a continuation
+     *           Optional. The value returned by the last call indicating a continuation.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,7 +145,7 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
     }
 
     /**
-     * Optional. The value returned by the last call indicating a continuation
+     * Optional. The value returned by the last call indicating a continuation.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -156,7 +156,7 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesRequest extends \Google\P
     }
 
     /**
-     * Optional. The value returned by the last call indicating a continuation
+     * Optional. The value returned by the last call indicating a continuation.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
