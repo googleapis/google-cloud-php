@@ -165,6 +165,13 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.EnvironmentConfig.ResilienceMode resilience_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $resilience_mode = 0;
+    /**
+     * Optional. The configuration setting for Airflow database data retention
+     * mechanism.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.DataRetentionConfig data_retention_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $data_retention_config = null;
 
     /**
      * Constructor.
@@ -250,6 +257,9 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Resilience mode of the Cloud Composer Environment.
      *           This field is supported for Cloud Composer environments in versions
      *           composer-2.2.0-airflow-*.*.* and newer.
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\DataRetentionConfig $data_retention_config
+     *           Optional. The configuration setting for Airflow database data retention
+     *           mechanism.
      * }
      */
     public function __construct($data = NULL) {
@@ -915,6 +925,44 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentConfig\ResilienceMode::class);
         $this->resilience_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration setting for Airflow database data retention
+     * mechanism.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.DataRetentionConfig data_retention_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\DataRetentionConfig|null
+     */
+    public function getDataRetentionConfig()
+    {
+        return $this->data_retention_config;
+    }
+
+    public function hasDataRetentionConfig()
+    {
+        return isset($this->data_retention_config);
+    }
+
+    public function clearDataRetentionConfig()
+    {
+        unset($this->data_retention_config);
+    }
+
+    /**
+     * Optional. The configuration setting for Airflow database data retention
+     * mechanism.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.DataRetentionConfig data_retention_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\DataRetentionConfig $var
+     * @return $this
+     */
+    public function setDataRetentionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\DataRetentionConfig::class);
+        $this->data_retention_config = $var;
 
         return $this;
     }
