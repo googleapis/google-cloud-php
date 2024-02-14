@@ -168,7 +168,7 @@ class ClientOptions implements ArrayAccess
         $this->setApiEndpoint($arr['apiEndpoint'] ?? null);
         $this->setDisableRetries($arr['disableRetries'] ?? false);
         $this->setClientConfig($arr['clientConfig'] ?? []);
-        $this->setCredentials($arr['credentials']);
+        $this->setCredentials($arr['credentials'] ?? null);
         $this->setCredentialsConfig($arr['credentialsConfig'] ?? []);
         $this->setTransport($arr['transport'] ?? null);
         $this->setTransportConfig(new TransportOptions($arr['transportConfig'] ?? []));
