@@ -60,6 +60,43 @@ class RecordErrorType
      * Generated from protobuf enum <code>NAMESPACE_MISSING = 7;</code>
      */
     const NAMESPACE_MISSING = 7;
+    /**
+     * Generic catch-all error. Only used for validation failure where the
+     * root cause cannot be easily retrieved programmatically.
+     *
+     * Generated from protobuf enum <code>PARSING_ERROR = 8;</code>
+     */
+    const PARSING_ERROR = 8;
+    /**
+     * There are multiple restricts with the same `namespace` value.
+     *
+     * Generated from protobuf enum <code>DUPLICATE_NAMESPACE = 9;</code>
+     */
+    const DUPLICATE_NAMESPACE = 9;
+    /**
+     * Numeric restrict has operator specified in datapoint.
+     *
+     * Generated from protobuf enum <code>OP_IN_DATAPOINT = 10;</code>
+     */
+    const OP_IN_DATAPOINT = 10;
+    /**
+     * Numeric restrict has multiple values specified.
+     *
+     * Generated from protobuf enum <code>MULTIPLE_VALUES = 11;</code>
+     */
+    const MULTIPLE_VALUES = 11;
+    /**
+     * Numeric restrict has invalid numeric value specified.
+     *
+     * Generated from protobuf enum <code>INVALID_NUMERIC_VALUE = 12;</code>
+     */
+    const INVALID_NUMERIC_VALUE = 12;
+    /**
+     * File is not in UTF_8 format.
+     *
+     * Generated from protobuf enum <code>INVALID_ENCODING = 13;</code>
+     */
+    const INVALID_ENCODING = 13;
 
     private static $valueToName = [
         self::ERROR_TYPE_UNSPECIFIED => 'ERROR_TYPE_UNSPECIFIED',
@@ -70,6 +107,12 @@ class RecordErrorType
         self::INVALID_EMBEDDING_ID => 'INVALID_EMBEDDING_ID',
         self::EMBEDDING_SIZE_MISMATCH => 'EMBEDDING_SIZE_MISMATCH',
         self::NAMESPACE_MISSING => 'NAMESPACE_MISSING',
+        self::PARSING_ERROR => 'PARSING_ERROR',
+        self::DUPLICATE_NAMESPACE => 'DUPLICATE_NAMESPACE',
+        self::OP_IN_DATAPOINT => 'OP_IN_DATAPOINT',
+        self::MULTIPLE_VALUES => 'MULTIPLE_VALUES',
+        self::INVALID_NUMERIC_VALUE => 'INVALID_NUMERIC_VALUE',
+        self::INVALID_ENCODING => 'INVALID_ENCODING',
     ];
 
     public static function name($value)

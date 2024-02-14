@@ -103,28 +103,33 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
     /**
      * Use case (CUJ) of the resource.
      *
-     * Generated from protobuf field <code>string use_case = 3;</code>
+     * Generated from protobuf field <code>string use_case = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getUseCase()
     {
+        @trigger_error('use_case is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(3);
     }
 
     public function hasUseCase()
     {
+        @trigger_error('use_case is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(3);
     }
 
     /**
      * Use case (CUJ) of the resource.
      *
-     * Generated from protobuf field <code>string use_case = 3;</code>
+     * Generated from protobuf field <code>string use_case = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setUseCase($var)
     {
+        @trigger_error('use_case is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
 
@@ -134,28 +139,33 @@ class ResourceReference extends \Google\Protobuf\Internal\Message
     /**
      * Description of the resource.
      *
-     * Generated from protobuf field <code>string description = 4;</code>
+     * Generated from protobuf field <code>string description = 4 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getDescription()
     {
+        @trigger_error('description is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(4);
     }
 
     public function hasDescription()
     {
+        @trigger_error('description is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(4);
     }
 
     /**
      * Description of the resource.
      *
-     * Generated from protobuf field <code>string description = 4;</code>
+     * Generated from protobuf field <code>string description = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setDescription($var)
     {
+        @trigger_error('description is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->writeOneof(4, $var);
 

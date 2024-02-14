@@ -136,14 +136,14 @@ class Model extends \Google\Protobuf\Internal\Message
      * deploying this Model. The specification is ingested upon
      * [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel],
      * and all binaries it contains are copied and stored internally by Vertex AI.
-     * Not present for AutoML Models or Large Models.
+     * Not required for AutoML Models.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 9 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $container_spec = null;
     /**
      * Immutable. The path to the directory containing the Model artifact and any
-     * of its supporting files. Not present for AutoML Models or Large Models.
+     * of its supporting files. Not required for AutoML Models.
      *
      * Generated from protobuf field <code>string artifact_uri = 26 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -335,7 +335,8 @@ class Model extends \Google\Protobuf\Internal\Message
     private $encryption_spec = null;
     /**
      * Output only. Source of a model. It can either be automl training pipeline,
-     * custom training pipeline, BigQuery ML, or existing Vertex AI Model.
+     * custom training pipeline, BigQuery ML, or saved and tuned from Genie or
+     * Model Garden.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -428,10 +429,10 @@ class Model extends \Google\Protobuf\Internal\Message
      *           deploying this Model. The specification is ingested upon
      *           [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel],
      *           and all binaries it contains are copied and stored internally by Vertex AI.
-     *           Not present for AutoML Models or Large Models.
+     *           Not required for AutoML Models.
      *     @type string $artifact_uri
      *           Immutable. The path to the directory containing the Model artifact and any
-     *           of its supporting files. Not present for AutoML Models or Large Models.
+     *           of its supporting files. Not required for AutoML Models.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_deployment_resources_types
      *           Output only. When this Model is deployed, its prediction resources are
      *           described by the `prediction_resources` field of the
@@ -575,7 +576,8 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Model and all sub-resources of this Model will be secured by this key.
      *     @type \Google\Cloud\AIPlatform\V1\ModelSourceInfo $model_source_info
      *           Output only. Source of a model. It can either be automl training pipeline,
-     *           custom training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *           custom training pipeline, BigQuery ML, or saved and tuned from Genie or
+     *           Model Garden.
      *     @type \Google\Cloud\AIPlatform\V1\Model\OriginalModelInfo $original_model_info
      *           Output only. If this Model is a copy of another Model, this contains info
      *           about the original.
@@ -1064,7 +1066,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * deploying this Model. The specification is ingested upon
      * [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel],
      * and all binaries it contains are copied and stored internally by Vertex AI.
-     * Not present for AutoML Models or Large Models.
+     * Not required for AutoML Models.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 9 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\ModelContainerSpec|null
@@ -1089,7 +1091,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * deploying this Model. The specification is ingested upon
      * [ModelService.UploadModel][google.cloud.aiplatform.v1.ModelService.UploadModel],
      * and all binaries it contains are copied and stored internally by Vertex AI.
-     * Not present for AutoML Models or Large Models.
+     * Not required for AutoML Models.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelContainerSpec container_spec = 9 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\ModelContainerSpec $var
@@ -1105,7 +1107,7 @@ class Model extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The path to the directory containing the Model artifact and any
-     * of its supporting files. Not present for AutoML Models or Large Models.
+     * of its supporting files. Not required for AutoML Models.
      *
      * Generated from protobuf field <code>string artifact_uri = 26 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -1117,7 +1119,7 @@ class Model extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The path to the directory containing the Model artifact and any
-     * of its supporting files. Not present for AutoML Models or Large Models.
+     * of its supporting files. Not required for AutoML Models.
      *
      * Generated from protobuf field <code>string artifact_uri = 26 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -1707,7 +1709,8 @@ class Model extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Source of a model. It can either be automl training pipeline,
-     * custom training pipeline, BigQuery ML, or existing Vertex AI Model.
+     * custom training pipeline, BigQuery ML, or saved and tuned from Genie or
+     * Model Garden.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AIPlatform\V1\ModelSourceInfo|null
@@ -1729,7 +1732,8 @@ class Model extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Source of a model. It can either be automl training pipeline,
-     * custom training pipeline, BigQuery ML, or existing Vertex AI Model.
+     * custom training pipeline, BigQuery ML, or saved and tuned from Genie or
+     * Model Garden.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\ModelSourceInfo $var

@@ -30,6 +30,16 @@ class UpsertDatapointsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint datapoints = 2;</code>
      */
     private $datapoints;
+    /**
+     * Optional. Update mask is used to specify the fields to be overwritten in
+     * the datapoints by the update. The fields specified in the update_mask are
+     * relative to each IndexDatapoint inside datapoints, not the full request.
+     * Updatable fields:
+     *   * Use `all_restricts` to update both restricts and numeric_restricts.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $update_mask = null;
 
     /**
      * Constructor.
@@ -43,6 +53,12 @@ class UpsertDatapointsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/indexes/{index}`
      *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint>|\Google\Protobuf\Internal\RepeatedField $datapoints
      *           A list of datapoints to be created/updated.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. Update mask is used to specify the fields to be overwritten in
+     *           the datapoints by the update. The fields specified in the update_mask are
+     *           relative to each IndexDatapoint inside datapoints, not the full request.
+     *           Updatable fields:
+     *             * Use `all_restricts` to update both restricts and numeric_restricts.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,6 +118,50 @@ class UpsertDatapointsRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\IndexDatapoint::class);
         $this->datapoints = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Update mask is used to specify the fields to be overwritten in
+     * the datapoints by the update. The fields specified in the update_mask are
+     * relative to each IndexDatapoint inside datapoints, not the full request.
+     * Updatable fields:
+     *   * Use `all_restricts` to update both restricts and numeric_restricts.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getUpdateMask()
+    {
+        return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
+    /**
+     * Optional. Update mask is used to specify the fields to be overwritten in
+     * the datapoints by the update. The fields specified in the update_mask are
+     * relative to each IndexDatapoint inside datapoints, not the full request.
+     * Updatable fields:
+     *   * Use `all_restricts` to update both restricts and numeric_restricts.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setUpdateMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->update_mask = $var;
 
         return $this;
     }
