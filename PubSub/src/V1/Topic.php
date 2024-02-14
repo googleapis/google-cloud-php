@@ -83,8 +83,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Optional. Settings for managed ingestion from a data source into this
-     * topic.
+     * Optional. Settings for ingestion from a data source into this topic.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings ingestion_data_source_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -150,8 +149,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. An output-only field indicating the state of the topic.
      *     @type \Google\Cloud\PubSub\V1\IngestionDataSourceSettings $ingestion_data_source_settings
-     *           Optional. Settings for managed ingestion from a data source into this
-     *           topic.
+     *           Optional. Settings for ingestion from a data source into this topic.
      * }
      */
     public function __construct($data = NULL) {
@@ -436,8 +434,7 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Settings for managed ingestion from a data source into this
-     * topic.
+     * Optional. Settings for ingestion from a data source into this topic.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings ingestion_data_source_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\IngestionDataSourceSettings|null
@@ -458,8 +455,7 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Settings for managed ingestion from a data source into this
-     * topic.
+     * Optional. Settings for ingestion from a data source into this topic.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.IngestionDataSourceSettings ingestion_data_source_settings = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\IngestionDataSourceSettings $var
