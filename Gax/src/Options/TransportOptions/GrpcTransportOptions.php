@@ -124,7 +124,7 @@ class GrpcTransportOptions implements ArrayAccess
     public function setClientCertSource(?callable $clientCertSource)
     {
         if (!is_null($clientCertSource)) {
-            $this->clientCertSource = Closure::fromCallable($clientCertSource);
+            $clientCertSource = Closure::fromCallable($clientCertSource);
         }
         $this->clientCertSource = $clientCertSource;
     }
