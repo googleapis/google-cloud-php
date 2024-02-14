@@ -7,7 +7,7 @@ namespace Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AwsKinesis;
 use UnexpectedValueException;
 
 /**
- * Possible states for managed ingestion from Amazon Kinesis Data Streams.
+ * Possible states for ingestion from Amazon Kinesis Data Streams.
  *
  * Protobuf type <code>google.pubsub.v1.IngestionDataSourceSettings.AwsKinesis.State</code>
  */
