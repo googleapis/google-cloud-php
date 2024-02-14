@@ -69,7 +69,7 @@ class TransportOptions implements ArrayAccess
     private function fromArray(array $arr): void
     {
         $this->setGrpc(new GrpcTransportOptions($arr['grpc'] ?? []));
-        $this->setGrpcFallback(new GrpcFallbackTransportOptions($arr['grpc-fallack'] ?? []));
+        $this->setGrpcFallback(new GrpcFallbackTransportOptions($arr['grpc-fallback'] ?? []));
         $this->setRest(new RestTransportOptions($arr['rest'] ?? []));
     }
 
