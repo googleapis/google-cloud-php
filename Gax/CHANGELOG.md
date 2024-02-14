@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.27.2](https://github.com/googleapis/gax-php/compare/v1.27.1...v1.27.2) (2024-02-14)
+
+
+### Bug Fixes
+
+* Typo in TransportOptions option name ([#530](https://github.com/googleapis/gax-php/issues/530)) ([6914fe0](https://github.com/googleapis/gax-php/commit/6914fe04554867bd827be6596fafc751a3d7621a))
+
 ## [1.27.1](https://github.com/googleapis/gax-php/compare/v1.27.0...v1.27.1) (2024-02-14)
 
 
