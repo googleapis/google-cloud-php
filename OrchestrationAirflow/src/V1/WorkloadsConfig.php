@@ -35,6 +35,20 @@ class WorkloadsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.WorkerResource worker = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $worker = null;
+    /**
+     * Optional. Resources used by Airflow triggerers.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.TriggererResource triggerer = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $triggerer = null;
+    /**
+     * Optional. Resources used by Airflow DAG processors.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource dag_processor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $dag_processor = null;
 
     /**
      * Constructor.
@@ -48,6 +62,12 @@ class WorkloadsConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Resources used by Airflow web server.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\WorkerResource $worker
      *           Optional. Resources used by Airflow workers.
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\TriggererResource $triggerer
+     *           Optional. Resources used by Airflow triggerers.
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\DagProcessorResource $dag_processor
+     *           Optional. Resources used by Airflow DAG processors.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-3.*.*-airflow-*.*.* and newer.
      * }
      */
     public function __construct($data = NULL) {
@@ -159,6 +179,82 @@ class WorkloadsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\WorkerResource::class);
         $this->worker = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resources used by Airflow triggerers.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.TriggererResource triggerer = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\TriggererResource|null
+     */
+    public function getTriggerer()
+    {
+        return $this->triggerer;
+    }
+
+    public function hasTriggerer()
+    {
+        return isset($this->triggerer);
+    }
+
+    public function clearTriggerer()
+    {
+        unset($this->triggerer);
+    }
+
+    /**
+     * Optional. Resources used by Airflow triggerers.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.TriggererResource triggerer = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\TriggererResource $var
+     * @return $this
+     */
+    public function setTriggerer($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\TriggererResource::class);
+        $this->triggerer = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resources used by Airflow DAG processors.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource dag_processor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\DagProcessorResource|null
+     */
+    public function getDagProcessor()
+    {
+        return $this->dag_processor;
+    }
+
+    public function hasDagProcessor()
+    {
+        return isset($this->dag_processor);
+    }
+
+    public function clearDagProcessor()
+    {
+        unset($this->dag_processor);
+    }
+
+    /**
+     * Optional. Resources used by Airflow DAG processors.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.WorkloadsConfig.DagProcessorResource dag_processor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\DagProcessorResource $var
+     * @return $this
+     */
+    public function setDagProcessor($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\WorkloadsConfig\DagProcessorResource::class);
+        $this->dag_processor = $var;
 
         return $this;
     }
