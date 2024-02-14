@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.27.1](https://github.com/googleapis/gax-php/compare/v1.27.0...v1.27.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* Issues in Options classes ([#528](https://github.com/googleapis/gax-php/issues/528)) ([aa9ba3a](https://github.com/googleapis/gax-php/commit/aa9ba3a6bac9324ad894d9677da0e897497ebab2))
+
 ## [1.27.0](https://github.com/googleapis/gax-php/compare/v1.26.3...v1.27.0) (2024-02-07)
 
 
