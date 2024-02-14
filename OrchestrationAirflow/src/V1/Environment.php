@@ -67,6 +67,18 @@ class Environment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      */
     private $labels;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
+    /**
+     * Optional. Storage configuration for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.StorageConfig storage_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $storage_config = null;
 
     /**
      * Constructor.
@@ -98,6 +110,10 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           * Values must conform to regexp:  [\p{Ll}\p{Lo}\p{N}_-]{0,63}
      *           * Both keys and values are additionally constrained to be <= 128 bytes in
      *           size.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\StorageConfig $storage_config
+     *           Optional. Storage configuration for this environment.
      * }
      */
     public function __construct($data = NULL) {
@@ -333,6 +349,68 @@ class Environment extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Storage configuration for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.StorageConfig storage_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\StorageConfig|null
+     */
+    public function getStorageConfig()
+    {
+        return $this->storage_config;
+    }
+
+    public function hasStorageConfig()
+    {
+        return isset($this->storage_config);
+    }
+
+    public function clearStorageConfig()
+    {
+        unset($this->storage_config);
+    }
+
+    /**
+     * Optional. Storage configuration for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.StorageConfig storage_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\StorageConfig $var
+     * @return $this
+     */
+    public function setStorageConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\StorageConfig::class);
+        $this->storage_config = $var;
 
         return $this;
     }

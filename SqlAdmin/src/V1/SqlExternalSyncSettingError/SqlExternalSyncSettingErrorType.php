@@ -250,6 +250,13 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>UNABLE_TO_VERIFY_DEFINERS = 39;</code>
      */
     const UNABLE_TO_VERIFY_DEFINERS = 39;
+    /**
+     * If a time out occurs while the subscription counts are calculated, then
+     * this value is set to 1. Otherwise, this value is set to 2.
+     *
+     * Generated from protobuf enum <code>SUBSCRIPTION_CALCULATION_STATUS = 40;</code>
+     */
+    const SUBSCRIPTION_CALCULATION_STATUS = 40;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -292,6 +299,7 @@ class SqlExternalSyncSettingErrorType
         self::INCOMPATIBLE_DATABASE_MINOR_VERSION => 'INCOMPATIBLE_DATABASE_MINOR_VERSION',
         self::SOURCE_MAX_SUBSCRIPTIONS => 'SOURCE_MAX_SUBSCRIPTIONS',
         self::UNABLE_TO_VERIFY_DEFINERS => 'UNABLE_TO_VERIFY_DEFINERS',
+        self::SUBSCRIPTION_CALCULATION_STATUS => 'SUBSCRIPTION_CALCULATION_STATUS',
     ];
 
     public static function name($value)
