@@ -77,7 +77,7 @@ class GrpcFallbackTransportOptions implements ArrayAccess
     public function setHttpHandler(?callable $httpHandler)
     {
         if (!is_null($httpHandler)) {
-            $this->httpHandler = Closure::fromCallable($httpHandler);
+            $httpHandler = Closure::fromCallable($httpHandler);
         }
         $this->httpHandler = $httpHandler;
     }
@@ -88,7 +88,7 @@ class GrpcFallbackTransportOptions implements ArrayAccess
     public function setClientCertSource(?callable $clientCertSource)
     {
         if (!is_null($clientCertSource)) {
-            $this->clientCertSource = Closure::fromCallable($clientCertSource);
+            $clientCertSource = Closure::fromCallable($clientCertSource);
         }
         $this->clientCertSource = $clientCertSource;
     }
