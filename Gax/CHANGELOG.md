@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.28.0](https://github.com/googleapis/gax-php/compare/v1.27.2...v1.28.0) (2024-02-15)
+
+
+### Features
+
+* Allow setting of universe domain in environment variable ([#520](https://github.com/googleapis/gax-php/issues/520)) ([6e6603b](https://github.com/googleapis/gax-php/commit/6e6603b03285f3f8d1072776cd206720e3990f50))
+
 ## [1.27.2](https://github.com/googleapis/gax-php/compare/v1.27.1...v1.27.2) (2024-02-14)
 
 
