@@ -97,8 +97,7 @@ trait ClientOptionsTrait
             'libVersion' => null,
             'apiEndpoint' => null,
             'clientCertSource' => null,
-            // if the universe domain hasn't been explicitly set, assume GDU ("googleapis.com")
-            'universeDomain' => GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
+            'universeDomain' => null,
         ];
 
         $supportedTransports = $this->supportedTransports();
@@ -177,6 +176,11 @@ trait ClientOptionsTrait
         if (is_null($apiEndpoint) && $this->shouldUseMtlsEndpoint($options)) {
             $apiEndpoint = self::determineMtlsEndpoint($options['apiEndpoint']);
         }
+
+        // If the user has not supplied a universe domain, use the environment variable if set.
+        // Otherwise, use the default ("googleapis.com").
+        $options['universeDomain'] ??= getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN')
+            ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
 
         // mTLS: It is not valid to configure mTLS outside of "googleapis.com" (yet)
         if (isset($options['clientCertSource'])
