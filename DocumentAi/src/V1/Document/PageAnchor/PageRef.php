@@ -44,7 +44,8 @@ class PageRef extends \Google\Protobuf\Internal\Message
     protected $layout_id = '';
     /**
      * Optional. Identifies the bounding polygon of a layout element on the
-     * page.
+     * page. If `layout_type` is set, the bounding polygon must be exactly the
+     * same to the layout element it's referring to.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,7 +80,8 @@ class PageRef extends \Google\Protobuf\Internal\Message
      *           instead.
      *     @type \Google\Cloud\DocumentAI\V1\BoundingPoly $bounding_poly
      *           Optional. Identifies the bounding polygon of a layout element on the
-     *           page.
+     *           page. If `layout_type` is set, the bounding polygon must be exactly the
+     *           same to the layout element it's referring to.
      *     @type float $confidence
      *           Optional. Confidence of detected page element, if applicable. Range
      *           `[0, 1]`.
@@ -190,7 +192,8 @@ class PageRef extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Identifies the bounding polygon of a layout element on the
-     * page.
+     * page. If `layout_type` is set, the bounding polygon must be exactly the
+     * same to the layout element it's referring to.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\BoundingPoly|null
@@ -212,7 +215,8 @@ class PageRef extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Identifies the bounding polygon of a layout element on the
-     * page.
+     * page. If `layout_type` is set, the bounding polygon must be exactly the
+     * same to the layout element it's referring to.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\BoundingPoly $var

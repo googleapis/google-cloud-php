@@ -8,13 +8,13 @@ use UnexpectedValueException;
 
 /**
  * Types of occurrences of the entity type in the document.  This
- * represents the number of instances of an entity, not number of mentions
- * of an entity.  For example, a bank statement may only have one
- * `account_number`, but this account number may be mentioned in several
- * places on the document.  In this case the 'account_number' would be
+ * represents the number of instances, not mentions, of an entity.
+ * For example, a bank statement might only have one
+ * `account_number`, but this account number can be mentioned in several
+ * places on the document.  In this case, the `account_number` is
  * considered a `REQUIRED_ONCE` entity type. If, on the other hand, we
  * expect a bank statement to contain the status of multiple different
- * accounts for the customers, the occurrence type will be set to
+ * accounts for the customers, the occurrence type is set to
  * `REQUIRED_MULTIPLE`.
  *
  * Protobuf type <code>google.cloud.documentai.v1.DocumentSchema.EntityType.Property.OccurrenceType</code>
