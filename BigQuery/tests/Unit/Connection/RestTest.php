@@ -52,7 +52,7 @@ class RestTest extends TestCase
     public function testApiEndpointForUniverseDomain(
         array $config,
         string $expectedEndpoint,
-        string $envUniverse = null,
+        string $envUniverse = null
     ) {
         if ($envUniverse) {
             putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $envUniverse);
@@ -64,6 +64,9 @@ class RestTest extends TestCase
         $p->setAccessible(true);
 
         if ($envUniverse) {
+            // We have to do this instead of using "@runInSeparateProcess" because in the case of
+            // an error, PHPUnit throws a "Serialization of 'ReflectionClass' is not allowed" error.
+            // @TODO: Remove this once we've updated to PHPUnit 10.
             putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
         }
 
