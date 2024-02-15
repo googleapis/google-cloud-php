@@ -645,6 +645,9 @@ class Bucket
      *           from the prefix, contain delimiter will have their name,
      *           truncated after the delimiter, returned in prefixes. Duplicate
      *           prefixes are omitted.
+     *     @type bool $includeFoldersAsPrefixes If true, will also include folders
+     *           and managed folders (besides objects) in the returned prefixes.
+     *           Only applicable if delimiter is set to '/'.
      *     @type int $maxResults Maximum number of results to return per
      *           request. **Defaults to** `1000`.
      *     @type int $resultLimit Limit the number of results returned in total.
