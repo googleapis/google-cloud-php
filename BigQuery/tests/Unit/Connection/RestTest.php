@@ -88,7 +88,9 @@ class RestTest extends TestCase
     public function testApiEndpointForUniverseDomainThrowsException()
     {
         $this->expectException(UnexpectedValueException::class);
-        $this->expectExceptionMessage('The "universeDomain" config value must be set to use the default API endpoint template.');
+        $this->expectExceptionMessage(
+            'The "universeDomain" config value must be set to use the default API endpoint template.'
+        );
 
         new Rest(['universeDomain' => null]);
     }

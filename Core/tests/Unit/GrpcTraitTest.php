@@ -212,7 +212,11 @@ class GrpcTraitTest extends TestCase
         $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
         $this->requestWrapper->getCredentialsFetcher()->willReturn($fetcher);
 
-        $impl = new GrpcTraitImpl();
+        $impl = new class() {
+            use GrpcTrait {
+                getGaxConfig as public;
+            }
+        };
         $impl->setRequestWrapper($this->requestWrapper->reveal());
 
         $config = $impl->getGaxConfig('1.2.3', null, $universeDomain);
@@ -248,11 +252,3 @@ class GrpcTraitTest extends TestCase
         };
     }
 }
-
-class GrpcTraitImpl
-{
-    use GrpcTrait {
-        getGaxConfig as public;
-    }
-}
-
