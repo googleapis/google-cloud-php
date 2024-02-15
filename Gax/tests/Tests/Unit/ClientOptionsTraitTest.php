@@ -475,13 +475,17 @@ class ClientOptionsTraitTest extends TestCase
 
     /**
      * @dataProvider provideServiceAddressTemplate
+     * @runInSeparateProcess
      */
-    public function testServiceAddressTemplate(array $options, string $expectedEndpoint)
+    public function testServiceAddressTemplate(array $options, string $expectedEndpoint, string $envVar = null)
     {
+        if ($envVar) {
+            putenv($envVar);
+        }
         $client = new UniverseDomainStubClientOptionsClient();
         $updatedOptions = $client->buildClientOptions($options);
 
-        $this->assertEquals($updatedOptions['apiEndpoint'], $expectedEndpoint);
+        $this->assertEquals($expectedEndpoint, $updatedOptions['apiEndpoint']);
     }
 
     public function provideServiceAddressTemplate()
@@ -502,6 +506,21 @@ class ClientOptionsTraitTest extends TestCase
             [
                 ['universeDomain' => 'foo.com', 'apiEndpoint' => 'new.test.address.com'],
                 'new.test.address.com', // set through api endpoint (universe domain is not used)
+            ],
+            [
+                [],
+                'stub.googleapis.com',
+                'GOOGLE_CLOUD_UNIVERSE_DOMAIN=', // env var is ignored when empty
+            ],
+            [
+                ['universeDomain' => 'foo.com'],
+                'stub.foo.com',
+                'GOOGLE_CLOUD_UNIVERSE_DOMAIN=bar.com', // env var is ignored when client option is set
+            ],
+            [
+                [],
+                'stub.bar.com',
+                'GOOGLE_CLOUD_UNIVERSE_DOMAIN=bar.com', // env var is used when client option isn't set
             ],
         ];
     }
