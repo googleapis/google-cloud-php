@@ -93,6 +93,13 @@ use Google\ApiCore\ValidationException;
  * $spanner = new SpannerClient($directedOptions);
  * ```
  *
+ * ```
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * $config = ['routeToLeader' => false];
+ * $spanner = new SpannerClient($config);
+ * ```
+ *
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
@@ -193,6 +200,8 @@ class SpannerClient
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
+     *           **Defaults to** `true` (enabled).
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */

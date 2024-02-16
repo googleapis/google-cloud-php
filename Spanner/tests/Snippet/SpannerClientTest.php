@@ -305,4 +305,11 @@ class SpannerClientTest extends SnippetTestCase
         $res = $snippet->invoke('spanner');
         $this->assertInstanceOf(SpannerClient::class, $res->returnVal());
     }
+
+    public function testClassWithLar()
+    {
+        $snippet = $this->snippetFromClass(SpannerClient::class, 3);
+        $res = $snippet->invoke('spanner');
+        $this->assertInstanceOf(SpannerClient::class, $res->returnVal());
+    }
 }
