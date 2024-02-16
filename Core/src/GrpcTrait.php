@@ -114,7 +114,11 @@ trait GrpcTrait
             $config['credentials'] = new CredentialsWrapper(
                 $this->requestWrapper->getCredentialsFetcher(),
                 $authHttpHandler,
-                $universeDomain ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+                // If the universe domain hasn't been explicitly set, check the the environment variable,
+                // otherwise assume GDU ("googleapis.com").
+                $universeDomain
+                    ?: getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN')
+                    ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
             );
         } else {
             $config += [
