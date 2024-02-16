@@ -221,7 +221,8 @@ class TransactionTest extends TestCase
 
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
-            Argument::withEntry('sql', $sql)
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
         ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
@@ -241,7 +242,8 @@ class TransactionTest extends TestCase
             Argument::withEntry('requestOptions', [
                 'requestTag' => self::REQUEST_TAG,
                 'transactionTag' => self::TRANSACTION_TAG
-            ])
+            ]),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
         ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
@@ -327,7 +329,8 @@ class TransactionTest extends TestCase
             Argument::withEntry('requestOptions', [
                 'transactionTag' => self::TRANSACTION_TAG,
                 'requestTag' => self::REQUEST_TAG
-            ])
+            ]),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
         ))->shouldBeCalled()->willReturn([
             'resultSets' => [
                 [
@@ -462,7 +465,8 @@ class TransactionTest extends TestCase
             Argument::withEntry('requestOptions', [
                 'transactionTag' => self::TRANSACTION_TAG,
                 'requestTag' => self::REQUEST_TAG
-            ])
+            ]),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
         ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
