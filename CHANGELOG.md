@@ -90,18 +90,6 @@
 
 </details>
 
-<details><summary>google/cloud-pubsub 2.0.1-RC1
-</summary>
-
-](https://github.com/googleapis/google-cloud-php/compare/v0.234.0...v0.235.0) (2024-02-16)
-
-
-### Documentation
-
-* Small fix in Pub/Sub ingestion comments ([#7061](https://github.com/googleapis/google-cloud-php/issues/7061)) ([f0b9b05](https://github.com/googleapis/google-cloud-php/commit/f0b9b054ab49a0fa440e16a0b958c6d85965f29e))
-
-</details>
-
 <details><summary>google/cloud-recaptcha-enterprise 1.9.0</summary>
 
 
