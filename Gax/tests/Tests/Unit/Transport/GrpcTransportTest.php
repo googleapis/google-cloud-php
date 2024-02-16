@@ -387,6 +387,8 @@ class GrpcTransportTest extends TestCase
         $call->getDecodeType()->shouldBeCalled();
 
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
+        $credentialsWrapper->checkUniverseDomain()
+            ->shouldBeCalledOnce();
         $credentialsWrapper->getAuthorizationHeaderCallback('an-audience')
             ->shouldBeCalledOnce();
         $hostname = '';
