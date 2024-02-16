@@ -159,6 +159,8 @@ class GrpcTransport extends BaseStub implements TransportInterface
      */
     public function startBidiStreamingCall(Call $call, array $options)
     {
+        $this->verifyUniverseDomain($options);
+
         return new BidiStream(
             $this->_bidiRequest(
                 '/' . $call->getMethod(),
@@ -175,6 +177,9 @@ class GrpcTransport extends BaseStub implements TransportInterface
      */
     public function startClientStreamingCall(Call $call, array $options)
     {
+
+        $this->verifyUniverseDomain($options);
+
         return new ClientStream(
             $this->_clientStreamRequest(
                 '/' . $call->getMethod(),
@@ -191,6 +196,8 @@ class GrpcTransport extends BaseStub implements TransportInterface
      */
     public function startServerStreamingCall(Call $call, array $options)
     {
+        $this->verifyUniverseDomain($options);
+
         $message = $call->getMessage();
 
         if (!$message) {
@@ -216,6 +223,8 @@ class GrpcTransport extends BaseStub implements TransportInterface
      */
     public function startUnaryCall(Call $call, array $options)
     {
+        $this->verifyUniverseDomain($options);
+
         $unaryCall = $this->_simpleRequest(
             '/' . $call->getMethod(),
             $call->getMessage(),
@@ -243,6 +252,13 @@ class GrpcTransport extends BaseStub implements TransportInterface
         );
 
         return $promise;
+    }
+
+    private function verifyUniverseDomain(array $options)
+    {
+        if (isset($options['credentialsWrapper'])) {
+            $options['credentialsWrapper']->checkUniverseDomain();
+        }
     }
 
     private function getCallOptions(array $options)

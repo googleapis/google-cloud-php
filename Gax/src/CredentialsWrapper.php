@@ -272,7 +272,7 @@ class CredentialsWrapper implements ProjectIdProviderInterface
     /**
      * Verify that the expected universe domain matches the universe domain from the credentials.
      */
-    private function checkUniverseDomain()
+    public function checkUniverseDomain()
     {
         if (false === $this->hasCheckedUniverse) {
             $credentialsUniverse = $this->credentialsFetcher instanceof GetUniverseDomainInterface
