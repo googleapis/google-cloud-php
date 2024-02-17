@@ -102,6 +102,17 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string default_value_expression = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $default_value_expression = '';
+    /**
+     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+     * the type is RANGE, this field is required. Possible values for the field
+     * element type of a RANGE include:
+     * * DATE
+     * * DATETIME
+     * * TIMESTAMP
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableFieldSchema.FieldElementType range_element_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $range_element_type = null;
 
     /**
      * Constructor.
@@ -160,6 +171,13 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *     @type string $default_value_expression
      *           Optional. A SQL expression to specify the [default value]
      *           (https://cloud.google.com/bigquery/docs/default-values) for this field.
+     *     @type \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema\FieldElementType $range_element_type
+     *           Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+     *           the type is RANGE, this field is required. Possible values for the field
+     *           element type of a RANGE include:
+     *           * DATE
+     *           * DATETIME
+     *           * TIMESTAMP
      * }
      */
     public function __construct($data = NULL) {
@@ -463,6 +481,52 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->default_value_expression = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+     * the type is RANGE, this field is required. Possible values for the field
+     * element type of a RANGE include:
+     * * DATE
+     * * DATETIME
+     * * TIMESTAMP
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableFieldSchema.FieldElementType range_element_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema\FieldElementType|null
+     */
+    public function getRangeElementType()
+    {
+        return $this->range_element_type;
+    }
+
+    public function hasRangeElementType()
+    {
+        return isset($this->range_element_type);
+    }
+
+    public function clearRangeElementType()
+    {
+        unset($this->range_element_type);
+    }
+
+    /**
+     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+     * the type is RANGE, this field is required. Possible values for the field
+     * element type of a RANGE include:
+     * * DATE
+     * * DATETIME
+     * * TIMESTAMP
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableFieldSchema.FieldElementType range_element_type = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema\FieldElementType $var
+     * @return $this
+     */
+    public function setRangeElementType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema\FieldElementType::class);
+        $this->range_element_type = $var;
 
         return $this;
     }

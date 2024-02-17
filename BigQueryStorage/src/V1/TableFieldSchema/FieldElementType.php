@@ -20,7 +20,7 @@ class FieldElementType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableFieldSchema.Type type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $type = 0;
+    private $type = 0;
 
     /**
      * Constructor.
