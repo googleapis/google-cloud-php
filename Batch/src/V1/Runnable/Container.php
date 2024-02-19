@@ -67,17 +67,36 @@ class Container extends \Google\Protobuf\Internal\Message
      */
     private $block_external_network = false;
     /**
-     * Optional username for logging in to a docker registry. If username
-     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
-     * username from the Secret Manager.
+     * Required if the container image is from a private Docker registry. The
+     * username to login to the Docker registry that contains the image.
+     * You can either specify the username directly by using plain text or
+     * specify an encrypted username by using a Secret Manager secret:
+     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. However, using a secret is
+     * recommended for enhanced security.
+     * Caution: If you specify the username using plain text, you risk the
+     * username being exposed to any users who can view the job or its logs.
+     * To avoid this risk, specify a secret that contains the username instead.
+     * Learn more about [Secret
+     * Manager](https://cloud.google.com/secret-manager/docs/) and [using
+     * Secret Manager with
+     * Batch](https://cloud.google.com/batch/docs/create-run-job-secret-manager).
      *
      * Generated from protobuf field <code>string username = 10;</code>
      */
     private $username = '';
     /**
-     * Optional password for logging in to a docker registry. If password
-     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
-     * password from the Secret Manager;
+     * Required if the container image is from a private Docker registry. The
+     * password to login to the Docker registry that contains the image.
+     * For security, it is strongly recommended to specify an
+     * encrypted password by using a Secret Manager secret:
+     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * Warning: If you specify the password using plain text, you risk the
+     * password being exposed to any users who can view the job or its logs.
+     * To avoid this risk, specify a secret that contains the password instead.
+     * Learn more about [Secret
+     * Manager](https://cloud.google.com/secret-manager/docs/) and [using
+     * Secret Manager with
+     * Batch](https://cloud.google.com/batch/docs/create-run-job-secret-manager).
      *
      * Generated from protobuf field <code>string password = 11;</code>
      */
@@ -136,13 +155,32 @@ class Container extends \Google\Protobuf\Internal\Message
      *           still communicate with each other, network cannot be specified in the
      *           `container.options` field.
      *     @type string $username
-     *           Optional username for logging in to a docker registry. If username
-     *           matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
-     *           username from the Secret Manager.
+     *           Required if the container image is from a private Docker registry. The
+     *           username to login to the Docker registry that contains the image.
+     *           You can either specify the username directly by using plain text or
+     *           specify an encrypted username by using a Secret Manager secret:
+     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. However, using a secret is
+     *           recommended for enhanced security.
+     *           Caution: If you specify the username using plain text, you risk the
+     *           username being exposed to any users who can view the job or its logs.
+     *           To avoid this risk, specify a secret that contains the username instead.
+     *           Learn more about [Secret
+     *           Manager](https://cloud.google.com/secret-manager/docs/) and [using
+     *           Secret Manager with
+     *           Batch](https://cloud.google.com/batch/docs/create-run-job-secret-manager).
      *     @type string $password
-     *           Optional password for logging in to a docker registry. If password
-     *           matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
-     *           password from the Secret Manager;
+     *           Required if the container image is from a private Docker registry. The
+     *           password to login to the Docker registry that contains the image.
+     *           For security, it is strongly recommended to specify an
+     *           encrypted password by using a Secret Manager secret:
+     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           Warning: If you specify the password using plain text, you risk the
+     *           password being exposed to any users who can view the job or its logs.
+     *           To avoid this risk, specify a secret that contains the password instead.
+     *           Learn more about [Secret
+     *           Manager](https://cloud.google.com/secret-manager/docs/) and [using
+     *           Secret Manager with
+     *           Batch](https://cloud.google.com/batch/docs/create-run-job-secret-manager).
      *     @type bool $enable_image_streaming
      *           Optional. If set to true, this container runnable uses Image streaming.
      *           Use Image streaming to allow the runnable to initialize without
@@ -352,9 +390,19 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional username for logging in to a docker registry. If username
-     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
-     * username from the Secret Manager.
+     * Required if the container image is from a private Docker registry. The
+     * username to login to the Docker registry that contains the image.
+     * You can either specify the username directly by using plain text or
+     * specify an encrypted username by using a Secret Manager secret:
+     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. However, using a secret is
+     * recommended for enhanced security.
+     * Caution: If you specify the username using plain text, you risk the
+     * username being exposed to any users who can view the job or its logs.
+     * To avoid this risk, specify a secret that contains the username instead.
+     * Learn more about [Secret
+     * Manager](https://cloud.google.com/secret-manager/docs/) and [using
+     * Secret Manager with
+     * Batch](https://cloud.google.com/batch/docs/create-run-job-secret-manager).
      *
      * Generated from protobuf field <code>string username = 10;</code>
      * @return string
@@ -365,9 +413,19 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional username for logging in to a docker registry. If username
-     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
-     * username from the Secret Manager.
+     * Required if the container image is from a private Docker registry. The
+     * username to login to the Docker registry that contains the image.
+     * You can either specify the username directly by using plain text or
+     * specify an encrypted username by using a Secret Manager secret:
+     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. However, using a secret is
+     * recommended for enhanced security.
+     * Caution: If you specify the username using plain text, you risk the
+     * username being exposed to any users who can view the job or its logs.
+     * To avoid this risk, specify a secret that contains the username instead.
+     * Learn more about [Secret
+     * Manager](https://cloud.google.com/secret-manager/docs/) and [using
+     * Secret Manager with
+     * Batch](https://cloud.google.com/batch/docs/create-run-job-secret-manager).
      *
      * Generated from protobuf field <code>string username = 10;</code>
      * @param string $var
@@ -382,9 +440,18 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional password for logging in to a docker registry. If password
-     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
-     * password from the Secret Manager;
+     * Required if the container image is from a private Docker registry. The
+     * password to login to the Docker registry that contains the image.
+     * For security, it is strongly recommended to specify an
+     * encrypted password by using a Secret Manager secret:
+     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * Warning: If you specify the password using plain text, you risk the
+     * password being exposed to any users who can view the job or its logs.
+     * To avoid this risk, specify a secret that contains the password instead.
+     * Learn more about [Secret
+     * Manager](https://cloud.google.com/secret-manager/docs/) and [using
+     * Secret Manager with
+     * Batch](https://cloud.google.com/batch/docs/create-run-job-secret-manager).
      *
      * Generated from protobuf field <code>string password = 11;</code>
      * @return string
@@ -395,9 +462,18 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional password for logging in to a docker registry. If password
-     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
-     * password from the Secret Manager;
+     * Required if the container image is from a private Docker registry. The
+     * password to login to the Docker registry that contains the image.
+     * For security, it is strongly recommended to specify an
+     * encrypted password by using a Secret Manager secret:
+     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * Warning: If you specify the password using plain text, you risk the
+     * password being exposed to any users who can view the job or its logs.
+     * To avoid this risk, specify a secret that contains the password instead.
+     * Learn more about [Secret
+     * Manager](https://cloud.google.com/secret-manager/docs/) and [using
+     * Secret Manager with
+     * Batch](https://cloud.google.com/batch/docs/create-run-job-secret-manager).
      *
      * Generated from protobuf field <code>string password = 11;</code>
      * @param string $var
