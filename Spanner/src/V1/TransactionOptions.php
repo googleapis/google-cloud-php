@@ -269,6 +269,24 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class TransactionOptions extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * When `exclude_txn_from_change_streams` is set to `true`:
+     *  * Mutations from this transaction will not be recorded in change streams
+     *  with DDL option `allow_txn_exclusion=true` that are tracking columns
+     *  modified by these transactions.
+     *  * Mutations from this transaction will be recorded in change streams with
+     *  DDL option `allow_txn_exclusion=false or not set` that are tracking
+     *  columns modified by these transactions.
+     * When `exclude_txn_from_change_streams` is set to `false` or not set,
+     * mutations from this transaction will be recorded in all change streams that
+     * are tracking columns modified by these transactions.
+     * `exclude_txn_from_change_streams` may only be specified for read-write or
+     * partitioned-dml transactions, otherwise the API will return an
+     * `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5;</code>
+     */
+    private $exclude_txn_from_change_streams = false;
     protected $mode;
 
     /**
@@ -292,6 +310,20 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      *           Authorization to begin a read-only transaction requires
      *           `spanner.databases.beginReadOnlyTransaction` permission
      *           on the `session` resource.
+     *     @type bool $exclude_txn_from_change_streams
+     *           When `exclude_txn_from_change_streams` is set to `true`:
+     *            * Mutations from this transaction will not be recorded in change streams
+     *            with DDL option `allow_txn_exclusion=true` that are tracking columns
+     *            modified by these transactions.
+     *            * Mutations from this transaction will be recorded in change streams with
+     *            DDL option `allow_txn_exclusion=false or not set` that are tracking
+     *            columns modified by these transactions.
+     *           When `exclude_txn_from_change_streams` is set to `false` or not set,
+     *           mutations from this transaction will be recorded in all change streams that
+     *           are tracking columns modified by these transactions.
+     *           `exclude_txn_from_change_streams` may only be specified for read-write or
+     *           partitioned-dml transactions, otherwise the API will return an
+     *           `INVALID_ARGUMENT` error.
      * }
      */
     public function __construct($data = NULL) {
@@ -406,6 +438,56 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * When `exclude_txn_from_change_streams` is set to `true`:
+     *  * Mutations from this transaction will not be recorded in change streams
+     *  with DDL option `allow_txn_exclusion=true` that are tracking columns
+     *  modified by these transactions.
+     *  * Mutations from this transaction will be recorded in change streams with
+     *  DDL option `allow_txn_exclusion=false or not set` that are tracking
+     *  columns modified by these transactions.
+     * When `exclude_txn_from_change_streams` is set to `false` or not set,
+     * mutations from this transaction will be recorded in all change streams that
+     * are tracking columns modified by these transactions.
+     * `exclude_txn_from_change_streams` may only be specified for read-write or
+     * partitioned-dml transactions, otherwise the API will return an
+     * `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5;</code>
+     * @return bool
+     */
+    public function getExcludeTxnFromChangeStreams()
+    {
+        return $this->exclude_txn_from_change_streams;
+    }
+
+    /**
+     * When `exclude_txn_from_change_streams` is set to `true`:
+     *  * Mutations from this transaction will not be recorded in change streams
+     *  with DDL option `allow_txn_exclusion=true` that are tracking columns
+     *  modified by these transactions.
+     *  * Mutations from this transaction will be recorded in change streams with
+     *  DDL option `allow_txn_exclusion=false or not set` that are tracking
+     *  columns modified by these transactions.
+     * When `exclude_txn_from_change_streams` is set to `false` or not set,
+     * mutations from this transaction will be recorded in all change streams that
+     * are tracking columns modified by these transactions.
+     * `exclude_txn_from_change_streams` may only be specified for read-write or
+     * partitioned-dml transactions, otherwise the API will return an
+     * `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>bool exclude_txn_from_change_streams = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExcludeTxnFromChangeStreams($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->exclude_txn_from_change_streams = $var;
 
         return $this;
     }
