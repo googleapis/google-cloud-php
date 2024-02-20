@@ -43,9 +43,9 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": "^8.0",
         "rize/uri-template": "~0.3",
-        "guzzlehttp/guzzle": "^6.5.8|^7.4.4",
+        "guzzlehttp/guzzle": "^7.4.5",
         "guzzlehttp/psr7": "^2.6",
         "monolog/monolog": "^2.9||^3.0",
         "psr/http-message": "^1.0|^2.0",
@@ -64,7 +64,7 @@
         "flix-tech/avro-php": "^5.0.0",
         "phpspec/prophecy-phpunit": "^2.1",
         "kreait/firebase-php": "^5.26.5",
-        "psr/log": "^1.1.1 || 2.0"
+        "psr/log": "^2.0||^3.0"
     },
     "conflict": {
         "psr/log": ">=3"

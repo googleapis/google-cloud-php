@@ -18,7 +18,7 @@
         }
     },
     "require": {
-        "php": ">=7.4",
+        "php": "^8.0",
         "google/gax": "^1.26.3"
     },
     "require-dev": {
