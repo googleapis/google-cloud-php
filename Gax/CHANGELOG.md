@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.28.1](https://github.com/googleapis/gax-php/compare/v1.28.0...v1.28.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* Universe domain check for grpc transport ([#534](https://github.com/googleapis/gax-php/issues/534)) ([1026d8a](https://github.com/googleapis/gax-php/commit/1026d8aec73e0aad8949a86ee7575e3edb3d56be))
+
 ## [1.28.0](https://github.com/googleapis/gax-php/compare/v1.27.2...v1.28.0) (2024-02-15)
 
 
