@@ -33,8 +33,9 @@ class DirectedReadOptions extends \Google\Protobuf\Internal\Message
      *           Spanner will wait for a replica in the list to become available, requests
      *           may fail due to `DEADLINE_EXCEEDED` errors.
      *     @type \Google\Cloud\Spanner\V1\DirectedReadOptions\ExcludeReplicas $exclude_replicas
-     *           Exclude_replicas indicates that should be excluded from serving
-     *           requests. Spanner will not route requests to the replicas in this list.
+     *           Exclude_replicas indicates that specified replicas should be excluded
+     *           from serving requests. Spanner will not route requests to the replicas
+     *           in this list.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,8 +83,9 @@ class DirectedReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exclude_replicas indicates that should be excluded from serving
-     * requests. Spanner will not route requests to the replicas in this list.
+     * Exclude_replicas indicates that specified replicas should be excluded
+     * from serving requests. Spanner will not route requests to the replicas
+     * in this list.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.ExcludeReplicas exclude_replicas = 2;</code>
      * @return \Google\Cloud\Spanner\V1\DirectedReadOptions\ExcludeReplicas|null
@@ -99,8 +101,9 @@ class DirectedReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exclude_replicas indicates that should be excluded from serving
-     * requests. Spanner will not route requests to the replicas in this list.
+     * Exclude_replicas indicates that specified replicas should be excluded
+     * from serving requests. Spanner will not route requests to the replicas
+     * in this list.
      *
      * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions.ExcludeReplicas exclude_replicas = 2;</code>
      * @param \Google\Cloud\Spanner\V1\DirectedReadOptions\ExcludeReplicas $var

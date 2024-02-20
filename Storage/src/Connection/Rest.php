@@ -111,7 +111,10 @@ class Rest implements ConnectionInterface
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json',
             'componentVersion' => StorageClient::VERSION,
             'apiEndpoint' => null,
-            'universeDomain' => GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
+            // If the user has not supplied a universe domain, use the environment variable if set.
+            // Otherwise, use the default ("googleapis.com").
+            'universeDomain' => getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN')
+                ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
             // Cloud Storage needs to provide a default scope because the Storage
             // API does not accept JWTs with "audience"
             'scopes' => StorageClient::FULL_CONTROL_SCOPE,

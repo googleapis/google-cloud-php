@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *   * `location:us-east1` --> The "us-east1" replica(s) of any available type
  *                             will be used to process the request.
  *   * `type:READ_ONLY`    --> The "READ_ONLY" type replica(s) in nearest
- * .                            available location will be used to process the
+ *                             available location will be used to process the
  *                             request.
  *   * `location:us-east1 type:READ_ONLY` --> The "READ_ONLY" type replica(s)
  *                          in location "us-east1" will be used to process

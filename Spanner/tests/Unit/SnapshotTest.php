@@ -128,6 +128,10 @@ class SnapshotTest extends TestCase
             'directedReadOptions',
             $this->directedReadOptionsIncludeReplicas
         ))->shouldBeCalled()->willReturn($result);
+        $operation->execute(Argument::any(), Argument::any(), Argument::withEntry(
+            'headers',
+            ['x-goog-spanner-route-to-leader' => ['true']]
+        ))->shouldNotBeCalled();
 
         $snapshot = new Snapshot(
             $operation->reveal(),
@@ -151,6 +155,10 @@ class SnapshotTest extends TestCase
             'directedReadOptions',
             $this->directedReadOptionsIncludeReplicas
         ))->shouldBeCalled()->willReturn($result);
+        $operation->read(Argument::any(), Argument::any(), Argument::any(), Argument::any(), Argument::withEntry(
+            'headers',
+            ['x-goog-spanner-route-to-leader' => ['true']]
+        ))->shouldNotBeCalled();
 
         $snapshot = new Snapshot(
             $operation->reveal(),

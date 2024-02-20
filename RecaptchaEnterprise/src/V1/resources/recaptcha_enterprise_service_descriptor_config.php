@@ -203,6 +203,18 @@ return [
                     ],
                 ],
             ],
+            'ReorderFirewallPolicies' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RetrieveLegacySecretKey' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse',

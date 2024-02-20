@@ -72,7 +72,10 @@ class Rest implements ConnectionInterface
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/bigquery-v2.json',
             'componentVersion' => BigQueryClient::VERSION,
             'apiEndpoint' => null,
-            'universeDomain' => GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
+            // If the user has not supplied a universe domain, use the environment variable if set.
+            // Otherwise, use the default ("googleapis.com").
+            'universeDomain' => getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN')
+                ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
         ];
 
         $apiEndpoint = $this->getApiEndpoint(null, $config, self::DEFAULT_API_ENDPOINT_TEMPLATE);
