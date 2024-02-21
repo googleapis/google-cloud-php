@@ -12,7 +12,7 @@
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "google/cloud-core": "^1.52.7",
-        "psr/log": "^1.1.1||^2.0"
+        "psr/log": "^2.0||^3.0"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension allows more granular control over Error Reporting",
