@@ -1191,12 +1191,16 @@ class DatabaseTest extends TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
-            ->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $res = $this->database->execute($sql);
+        $res = $this->database->execute($sql, [
+            'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+        ]);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
@@ -1266,7 +1270,8 @@ class DatabaseTest extends TestCase
 
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', ['id' => self::TRANSACTION])
+            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
+            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
         ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
@@ -1293,12 +1298,21 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
+            if ($arg['headers'] !== ['x-goog-spanner-route-to-leader' => ['true']]) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
+        $res = $this->database->read(
+            $table,
+            new KeySet(['all' => true]),
+            ['ID'],
+            ['transactionType' => SessionPoolInterface::CONTEXT_READWRITE]
+        );
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);

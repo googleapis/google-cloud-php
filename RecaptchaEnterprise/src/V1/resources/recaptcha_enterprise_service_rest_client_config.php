@@ -162,6 +162,18 @@ return [
                     ],
                 ],
             ],
+            'ReorderFirewallPolicies' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/firewallpolicies:reorder',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RetrieveLegacySecretKey' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{key=projects/*/keys/*}:retrieveLegacySecretKey',

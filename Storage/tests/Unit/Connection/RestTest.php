@@ -62,32 +62,52 @@ class RestTest extends TestCase
     }
 
     /**
-     * @dataProvider clientUniverseDomainConfigProvider
+     * @dataProvider provideApiEndpointForUniverseDomain
      */
-    public function testApiEndpointForUniverseDomain($config, $expectedEndpoint, $expectException = false)
-    {
-        if ($expectException) {
-            $this->expectException(UnexpectedValueException::class);
+    public function testApiEndpointForUniverseDomain(
+        array $config,
+        string $expectedEndpoint,
+        string $envUniverse = null
+    ) {
+        if ($envUniverse) {
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $envUniverse);
         }
-        $rest = TestHelpers::stub(Rest::class, [$config], ['requestBuilder']);
+        $rest = new Rest($config);
 
-        $rb = $rest->___getProperty('requestBuilder');
-        $r = new \ReflectionObject($rb);
-        $p = $r->getProperty('baseUri');
+        $r = new \ReflectionClass($rest);
+        $p = $r->getProperty('apiEndpoint');
         $p->setAccessible(true);
 
-        $this->assertEquals($expectedEndpoint, $p->getValue($rb));
+        if ($envUniverse) {
+            // We have to do this instead of using "@runInSeparateProcess" because in the case of
+            // an error, PHPUnit throws a "Serialization of 'ReflectionClass' is not allowed" error.
+            // @TODO: Remove this once we've updated to PHPUnit 10.
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+        }
+
+        $this->assertEquals($expectedEndpoint, $p->getValue($rest));
     }
 
-    public function clientUniverseDomainConfigProvider()
+    public function provideApiEndpointForUniverseDomain()
     {
         return [
-            [[], 'https://storage.googleapis.com/storage/v1/'], // default
-            [['apiEndpoint' => 'https://foobar.com'], 'https://foobar.com/storage/v1/'],
-            [['universeDomain' => 'googleapis.com'], 'https://storage.googleapis.com/storage/v1/'],
-            [['universeDomain' => 'abc.def.ghi'], 'https://storage.abc.def.ghi/storage/v1/'],
-            [['universeDomain' => null], '', true],
+            [[], 'https://storage.googleapis.com/'], // default
+            [['apiEndpoint' => 'https://foobar.com'], 'https://foobar.com/'],
+            [['universeDomain' => 'googleapis.com'], 'https://storage.googleapis.com/'],
+            [['universeDomain' => 'abc.def.ghi'], 'https://storage.abc.def.ghi/'],
+            [[], 'https://storage.abc.def.ghi/', 'abc.def.ghi'],
+            [['universeDomain' => 'googleapis.com'], 'https://storage.googleapis.com/', 'abc.def.ghi'],
         ];
+    }
+
+    public function testApiEndpointForUniverseDomainThrowsException()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage(
+            'The "universeDomain" config value must be set to use the default API endpoint template.'
+        );
+
+        new Rest(['universeDomain' => null]);
     }
 
     /**

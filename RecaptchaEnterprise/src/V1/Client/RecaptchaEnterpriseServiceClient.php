@@ -52,6 +52,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsReques
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
@@ -84,6 +86,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listRelatedAccountGroupMembershipsAsync(ListRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRelatedAccountGroupsAsync(ListRelatedAccountGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface migrateKeyAsync(MigrateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface reorderFirewallPoliciesAsync(ReorderFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface retrieveLegacySecretKeyAsync(RetrieveLegacySecretKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchRelatedAccountGroupMembershipsAsync(SearchRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateFirewallPolicyAsync(UpdateFirewallPolicyRequest $request, array $optionalArgs = [])
@@ -715,6 +718,33 @@ final class RecaptchaEnterpriseServiceClient
     public function migrateKey(MigrateKeyRequest $request, array $callOptions = []): Key
     {
         return $this->startApiCall('MigrateKey', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Reorders all firewall policies.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::reorderFirewallPoliciesAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/reorder_firewall_policies.php
+     *
+     * @param ReorderFirewallPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReorderFirewallPoliciesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function reorderFirewallPolicies(ReorderFirewallPoliciesRequest $request, array $callOptions = []): ReorderFirewallPoliciesResponse
+    {
+        return $this->startApiCall('ReorderFirewallPolicies', $request, $callOptions)->wait();
     }
 
     /**
