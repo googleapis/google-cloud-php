@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Recognizer extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the Recognizer.
+     * Output only. Identifier. The resource name of the Recognizer.
      * Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -160,7 +160,7 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the Recognizer.
+     *           Output only. Identifier. The resource name of the Recognizer.
      *           Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`.
      *     @type string $uid
      *           Output only. System-assigned unique identifier for the Recognizer.
@@ -238,10 +238,10 @@ class Recognizer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Recognizer.
+     * Output only. Identifier. The resource name of the Recognizer.
      * Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -250,10 +250,10 @@ class Recognizer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the Recognizer.
+     * Output only. Identifier. The resource name of the Recognizer.
      * Format: `projects/{project}/locations/{location}/recognizers/{recognizer}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
