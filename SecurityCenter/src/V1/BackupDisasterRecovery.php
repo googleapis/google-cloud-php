@@ -23,7 +23,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_template = 1;</code>
      */
-    protected $backup_template = '';
+    private $backup_template = '';
     /**
      * The names of Backup and DR policies that are associated with a template
      * and that define when to run a backup, how frequently to run a backup, and
@@ -43,7 +43,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 3;</code>
      */
-    protected $host = '';
+    private $host = '';
     /**
      * The names of Backup and DR applications. An application is a VM, database,
      * or file system on a managed host monitored by a backup and recovery
@@ -63,7 +63,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string storage_pool = 5;</code>
      */
-    protected $storage_pool = '';
+    private $storage_pool = '';
     /**
      * The names of Backup and DR advanced policy options of a policy applying to
      * an application. See the [Backup and DR documentation on policy
@@ -82,27 +82,27 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string profile = 7;</code>
      */
-    protected $profile = '';
+    private $profile = '';
     /**
      * The name of the Backup and DR appliance that captures, moves, and manages
      * the lifecycle of backup data. For example, `backup-server-57137`.
      *
      * Generated from protobuf field <code>string appliance = 8;</code>
      */
-    protected $appliance = '';
+    private $appliance = '';
     /**
      * The backup type of the Backup and DR image.
      * For example, `Snapshot`, `Remote Snapshot`, `OnVault`.
      *
      * Generated from protobuf field <code>string backup_type = 9;</code>
      */
-    protected $backup_type = '';
+    private $backup_type = '';
     /**
      * The timestamp at which the Backup and DR backup was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp backup_create_time = 10;</code>
      */
-    protected $backup_create_time = null;
+    private $backup_create_time = null;
 
     /**
      * Constructor.
