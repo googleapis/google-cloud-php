@@ -323,6 +323,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Application application = 53;</code>
      */
     private $application = null;
+    /**
+     * Fields related to Backup and DR findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BackupDisasterRecovery backup_disaster_recovery = 55;</code>
+     */
+    private $backup_disaster_recovery = null;
 
     /**
      * Constructor.
@@ -477,6 +483,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Signature of the kernel rootkit.
      *     @type \Google\Cloud\SecurityCenter\V1\Application $application
      *           Represents an application associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\BackupDisasterRecovery $backup_disaster_recovery
+     *           Fields related to Backup and DR findings.
      * }
      */
     public function __construct($data = NULL) {
@@ -1782,6 +1790,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Application::class);
         $this->application = $var;
+
+        return $this;
+    }
+
+    /**
+     * Fields related to Backup and DR findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BackupDisasterRecovery backup_disaster_recovery = 55;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\BackupDisasterRecovery|null
+     */
+    public function getBackupDisasterRecovery()
+    {
+        return $this->backup_disaster_recovery;
+    }
+
+    public function hasBackupDisasterRecovery()
+    {
+        return isset($this->backup_disaster_recovery);
+    }
+
+    public function clearBackupDisasterRecovery()
+    {
+        unset($this->backup_disaster_recovery);
+    }
+
+    /**
+     * Fields related to Backup and DR findings.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BackupDisasterRecovery backup_disaster_recovery = 55;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\BackupDisasterRecovery $var
+     * @return $this
+     */
+    public function setBackupDisasterRecovery($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\BackupDisasterRecovery::class);
+        $this->backup_disaster_recovery = $var;
 
         return $this;
     }
