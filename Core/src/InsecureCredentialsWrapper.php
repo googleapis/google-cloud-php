@@ -33,4 +33,8 @@ class InsecureCredentialsWrapper extends CredentialsWrapper
     {
         return null;
     }
+
+    public function checkUniverseDomain()
+    {
+    }
 }
