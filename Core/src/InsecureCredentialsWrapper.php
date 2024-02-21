@@ -33,4 +33,11 @@ class InsecureCredentialsWrapper extends CredentialsWrapper
     {
         return null;
     }
+
+    public function checkUniverseDomain()
+    {
+        // no-op: universe domain is not validated for an insecure credential. This is only implemented
+        // to prevent an exception due to the parent class not being initialised.
+    }
+
 }
