@@ -116,26 +116,6 @@ class QueryTest extends SpannerTestCase
     }
 
     /**
-     * covers 24
-     */
-    public function testBindBoolParameterNull()
-    {
-        $db = self::$database;
-
-        $res = $db->execute('SELECT @param as foo', [
-            'parameters' => [
-                'param' => null
-            ],
-            'types' => [
-                'param' => Database::TYPE_BOOL
-            ]
-        ]);
-
-        $row = $res->rows()->current();
-        $this->assertNull($row['foo']);
-    }
-
-    /**
      * covers 25
      */
     public function testBindInt64Parameter()
@@ -170,26 +150,6 @@ class QueryTest extends SpannerTestCase
     }
 
     /**
-     * covers 26
-     */
-    public function testBindNullIntParameter()
-    {
-        $db = self::$database;
-
-        $res = $db->execute('SELECT @param as foo', [
-            'parameters' => [
-                'param' => null
-            ],
-            'types' => [
-                'param' => Database::TYPE_INT64
-            ]
-        ]);
-
-        $row = $res->rows()->current();
-        $this->assertNull($row['foo']);
-    }
-
-    /**
      * covers 27
      */
     public function testBindFloat64Parameter()
@@ -208,9 +168,16 @@ class QueryTest extends SpannerTestCase
     }
 
     /**
+     * covers 24
+     * covers 26
      * covers 28
+     * covers 30
+     * covers 32
+     * covers 34
+     * covers 36
+     * @dataProvider arrayTypesBindNull
      */
-    public function testBindFloat64ParameterNull()
+    public function testBindTypeParameterNull($type)
     {
         $db = self::$database;
 
@@ -219,7 +186,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => Database::TYPE_FLOAT64
+                'param' => $type
             ]
         ]);
 
@@ -243,26 +210,6 @@ class QueryTest extends SpannerTestCase
 
         $row = $res->rows()->current();
         $this->assertEquals($str, $row['foo']);
-    }
-
-    /**
-     * covers 30
-     */
-    public function testBindStringParameterNull()
-    {
-        $db = self::$database;
-
-        $res = $db->execute('SELECT @param as foo', [
-            'parameters' => [
-                'param' => null
-            ],
-            'types' => [
-                'param' => Database::TYPE_STRING
-            ]
-        ]);
-
-        $row = $res->rows()->current();
-        $this->assertNull($row['foo']);
     }
 
     public function testBindNumericParameter()
@@ -324,26 +271,6 @@ class QueryTest extends SpannerTestCase
     }
 
     /**
-     * covers 32
-     */
-    public function testBindBytesParameterNull()
-    {
-        $db = self::$database;
-
-        $res = $db->execute('SELECT @param as foo', [
-            'parameters' => [
-                'param' => null
-            ],
-            'types' => [
-                'param' => Database::TYPE_BYTES
-            ]
-        ]);
-
-        $row = $res->rows()->current();
-        $this->assertNull($row['foo']);
-    }
-
-    /**
      * covers 33
      */
     public function testBindTimestampParameter()
@@ -364,26 +291,6 @@ class QueryTest extends SpannerTestCase
     }
 
     /**
-     * covers 34
-     */
-    public function testBindTimestampParameterNull()
-    {
-        $db = self::$database;
-
-        $res = $db->execute('SELECT @param as foo', [
-            'parameters' => [
-                'param' => null
-            ],
-            'types' => [
-                'param' => Database::TYPE_TIMESTAMP
-            ]
-        ]);
-
-        $row = $res->rows()->current();
-        $this->assertNull($row['foo']);
-    }
-
-    /**
      * covers 35
      */
     public function testBindDateParameter()
@@ -401,26 +308,6 @@ class QueryTest extends SpannerTestCase
         $row = $res->rows()->current();
         $this->assertInstanceOf(Date::class, $row['foo']);
         $this->assertEquals($ts->get()->format('Y-m-d'), $row['foo']->get()->format('Y-m-d'));
-    }
-
-    /**
-     * covers 36
-     */
-    public function testBindDateParameterNull()
-    {
-        $db = self::$database;
-
-        $res = $db->execute('SELECT @param as foo', [
-            'parameters' => [
-                'param' => null
-            ],
-            'types' => [
-                'param' => Database::TYPE_DATE
-            ]
-        ]);
-
-        $row = $res->rows()->current();
-        $this->assertNull($row['foo']);
     }
 
     public function testBindJsonParameter()
@@ -781,11 +668,26 @@ class QueryTest extends SpannerTestCase
         ];
     }
 
+    public function arrayTypesBindNull()
+    {
+        return [
+            [Database::TYPE_BOOL],
+            [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT32],
+            [Database::TYPE_FLOAT64],
+            [Database::TYPE_STRING],
+            [Database::TYPE_BYTES],
+            [Database::TYPE_TIMESTAMP],
+            [Database::TYPE_DATE],
+        ];
+    }
+
     public function arrayTypesEmpty()
     {
         return [
             [Database::TYPE_BOOL],
             [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT32],
             [Database::TYPE_FLOAT64],
             [Database::TYPE_STRING],
             [Database::TYPE_BYTES],
@@ -800,6 +702,7 @@ class QueryTest extends SpannerTestCase
         return [
             [Database::TYPE_BOOL],
             [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT32],
             [Database::TYPE_FLOAT64],
             [Database::TYPE_STRING],
             [Database::TYPE_BYTES],
@@ -994,6 +897,7 @@ class QueryTest extends SpannerTestCase
         ]);
 
         $row = $res->rows()->current();
+        $this->assertTrue($row[0]);
     }
 
     /**

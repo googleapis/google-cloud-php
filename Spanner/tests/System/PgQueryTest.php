@@ -650,6 +650,7 @@ class PgQueryTest extends SpannerPgTestCase
         return [
             [Database::TYPE_BOOL],
             [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT32],
             [Database::TYPE_FLOAT64],
             [Database::TYPE_STRING],
             [Database::TYPE_BYTES],
@@ -686,6 +687,7 @@ class PgQueryTest extends SpannerPgTestCase
         return [
             [Database::TYPE_BOOL],
             [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT32],
             [Database::TYPE_FLOAT64],
             [Database::TYPE_STRING],
             [Database::TYPE_BYTES],
