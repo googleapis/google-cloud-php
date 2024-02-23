@@ -318,6 +318,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $kernel_rootkit = null;
     /**
+     * Contains information about the org policies associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.OrgPolicy org_policies = 51;</code>
+     */
+    private $org_policies;
+    /**
      * Represents an application associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Application application = 53;</code>
@@ -329,6 +335,18 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.BackupDisasterRecovery backup_disaster_recovery = 55;</code>
      */
     private $backup_disaster_recovery = null;
+    /**
+     * Log entries that are relevant to the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.LogEntry log_entries = 57;</code>
+     */
+    private $log_entries;
+    /**
+     * The load balancers associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.LoadBalancer load_balancers = 58;</code>
+     */
+    private $load_balancers;
 
     /**
      * Constructor.
@@ -481,10 +499,16 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Cloud DLP data profile that is associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\KernelRootkit $kernel_rootkit
      *           Signature of the kernel rootkit.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\OrgPolicy>|\Google\Protobuf\Internal\RepeatedField $org_policies
+     *           Contains information about the org policies associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Application $application
      *           Represents an application associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\BackupDisasterRecovery $backup_disaster_recovery
      *           Fields related to Backup and DR findings.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\LogEntry>|\Google\Protobuf\Internal\RepeatedField $log_entries
+     *           Log entries that are relevant to the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\LoadBalancer>|\Google\Protobuf\Internal\RepeatedField $load_balancers
+     *           The load balancers associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -1759,6 +1783,32 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Contains information about the org policies associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.OrgPolicy org_policies = 51;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getOrgPolicies()
+    {
+        return $this->org_policies;
+    }
+
+    /**
+     * Contains information about the org policies associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.OrgPolicy org_policies = 51;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\OrgPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setOrgPolicies($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\OrgPolicy::class);
+        $this->org_policies = $arr;
+
+        return $this;
+    }
+
+    /**
      * Represents an application associated with the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Application application = 53;</code>
@@ -1826,6 +1876,58 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\BackupDisasterRecovery::class);
         $this->backup_disaster_recovery = $var;
+
+        return $this;
+    }
+
+    /**
+     * Log entries that are relevant to the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.LogEntry log_entries = 57;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLogEntries()
+    {
+        return $this->log_entries;
+    }
+
+    /**
+     * Log entries that are relevant to the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.LogEntry log_entries = 57;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\LogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLogEntries($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\LogEntry::class);
+        $this->log_entries = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The load balancers associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.LoadBalancer load_balancers = 58;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLoadBalancers()
+    {
+        return $this->load_balancers;
+    }
+
+    /**
+     * The load balancers associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.LoadBalancer load_balancers = 58;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\LoadBalancer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLoadBalancers($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\LoadBalancer::class);
+        $this->load_balancers = $arr;
 
         return $this;
     }
