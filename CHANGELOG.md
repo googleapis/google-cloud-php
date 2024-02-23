@@ -1,5 +1,140 @@
 # Changelog
 
+## 0.236.0
+
+<details><summary>google/cloud-batch 0.16.2</summary>
+
+
+
+### Documentation
+
+* Add caution messages for container runnable username and password fields ([1164d54](https://github.com/googleapis/google-cloud-php/commit/1164d5494669c0b8a19d94def34bcfc9df808efa))
+* Refine proto comment for run_as_non_root ([#7073](https://github.com/googleapis/google-cloud-php/issues/7073)) ([1164d54](https://github.com/googleapis/google-cloud-php/commit/1164d5494669c0b8a19d94def34bcfc9df808efa))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.30.0</summary>
+
+
+
+### Features
+
+* Add universe domain environment variable support ([#6993](https://github.com/googleapis/google-cloud-php/issues/6993)) ([528bb62](https://github.com/googleapis/google-cloud-php/commit/528bb62810558fc73a7fbeb2f2c891cede1b9a8f))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.8.1</summary>
+
+
+
+### Documentation
+
+* Update unenrollDataSources API documentation ([#7079](https://github.com/googleapis/google-cloud-php/issues/7079)) ([b119d44](https://github.com/googleapis/google-cloud-php/commit/b119d44f8e823795788586d9091dcc0e31634af2))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.10.0</summary>
+
+
+
+### Features
+
+* Add the RANGE type to the google.cloud.bigquery.storage.v1.TableFieldSchema ([#7072](https://github.com/googleapis/google-cloud-php/issues/7072)) ([b188d41](https://github.com/googleapis/google-cloud-php/commit/b188d412f8a9d6824ee9ba69489e73b0c9fa1c61))
+
+</details>
+
+<details><summary>google/cloud-container 1.27.0</summary>
+
+
+
+### Features
+
+* Add API to enable Provisioning Request API on existing nodepools ([#7085](https://github.com/googleapis/google-cloud-php/issues/7085)) ([f5e3f8a](https://github.com/googleapis/google-cloud-php/commit/f5e3f8a955922b45697846d065561b8f9bbd356d))
+* Promoted enable_confidential_storage to GA (behind allowlist) ([f5e3f8a](https://github.com/googleapis/google-cloud-php/commit/f5e3f8a955922b45697846d065561b8f9bbd356d))
+
+</details>
+
+<details><summary>google/cloud-core 1.56.0</summary>
+
+
+
+### Features
+
+* Add universe domain environment variable support ([#6993](https://github.com/googleapis/google-cloud-php/issues/6993)) ([528bb62](https://github.com/googleapis/google-cloud-php/commit/528bb62810558fc73a7fbeb2f2c891cede1b9a8f))
+
+
+### Bug Fixes
+
+* Insecure credentials wrapper ([#7077](https://github.com/googleapis/google-cloud-php/issues/7077)) ([adb9a54](https://github.com/googleapis/google-cloud-php/commit/adb9a54d99767eef3ce944770f002783983e8178))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.23.0</summary>
+
+
+
+### Features
+
+* Add Backup DR field to finding's list of attributes ([#7083](https://github.com/googleapis/google-cloud-php/issues/7083)) ([ee748dd](https://github.com/googleapis/google-cloud-php/commit/ee748ddff7a44e5c1050363096a6149e4cad7d73))
+* Add load balancer, log entry, org policy, database.version, exfiltration.total_exfiltrated_bytes, file.disk_path, indicator.signature_type, and kubernetes.objects to finding's list of attributes ([#7087](https://github.com/googleapis/google-cloud-php/issues/7087)) ([81e472f](https://github.com/googleapis/google-cloud-php/commit/81e472f7a851f7693466b715bdca1151f42d3e04))
+
+</details>
+
+<details><summary>google/cloud-service-control 1.4.0</summary>
+
+
+
+### Features
+
+* Include api_key_uid in service control check response ([#7078](https://github.com/googleapis/google-cloud-php/issues/7078)) ([6ac831b](https://github.com/googleapis/google-cloud-php/commit/6ac831bdb120a3cfbe5f1dfd0116413178c5a9cb))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.73.0</summary>
+
+
+
+### Features
+
+* Update TransactionOptions to include new option exclude_txn_from_change_streams ([#7071](https://github.com/googleapis/google-cloud-php/issues/7071)) ([81c782d](https://github.com/googleapis/google-cloud-php/commit/81c782d2f839b0c2fcb308c5a78883688fc356da))
+
+</details>
+
+<details><summary>google/cloud-speech 1.17.0</summary>
+
+
+
+### Features
+
+* Add API for writing BatchRecognize transcripts in SRT and VTT formats ([#7082](https://github.com/googleapis/google-cloud-php/issues/7082)) ([4c49f40](https://github.com/googleapis/google-cloud-php/commit/4c49f406839cb210277c2d10fa024028a31729e5))
+
+
+### Documentation
+
+* Update field documentation based on field behavior updates ([4c49f40](https://github.com/googleapis/google-cloud-php/commit/4c49f406839cb210277c2d10fa024028a31729e5))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.13.1</summary>
+
+
+
+### Documentation
+
+* Deprecate field `disallow_compromised_credentials` of `PasswordValidationPolicy` ([#7090](https://github.com/googleapis/google-cloud-php/issues/7090)) ([16856c4](https://github.com/googleapis/google-cloud-php/commit/16856c4512dd673f591d8437e9e0f168adaa42c0))
+
+</details>
+
+<details><summary>google/cloud-storage 1.39.0</summary>
+
+
+
+### Features
+
+* Add universe domain environment variable support ([#6993](https://github.com/googleapis/google-cloud-php/issues/6993)) ([528bb62](https://github.com/googleapis/google-cloud-php/commit/528bb62810558fc73a7fbeb2f2c891cede1b9a8f))
+
+</details>
+
 ## 0.235.0
 
 <details><summary>google/cloud-ai-platform 0.34.0</summary>
