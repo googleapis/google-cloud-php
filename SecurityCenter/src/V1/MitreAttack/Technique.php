@@ -9,6 +9,7 @@ use UnexpectedValueException;
 /**
  * MITRE ATT&CK techniques that can be referenced by SCC findings.
  * See: https://attack.mitre.org/techniques/enterprise/
+ * Next ID: 59
  *
  * Protobuf type <code>google.cloud.securitycenter.v1.MitreAttack.Technique</code>
  */
@@ -21,35 +22,41 @@ class Technique
      */
     const TECHNIQUE_UNSPECIFIED = 0;
     /**
-     * T1595
+     * T1036
      *
-     * Generated from protobuf enum <code>ACTIVE_SCANNING = 1;</code>
+     * Generated from protobuf enum <code>MASQUERADING = 49;</code>
      */
-    const ACTIVE_SCANNING = 1;
+    const MASQUERADING = 49;
     /**
-     * T1595.001
+     * T1036.005
      *
-     * Generated from protobuf enum <code>SCANNING_IP_BLOCKS = 2;</code>
+     * Generated from protobuf enum <code>MATCH_LEGITIMATE_NAME_OR_LOCATION = 50;</code>
      */
-    const SCANNING_IP_BLOCKS = 2;
+    const MATCH_LEGITIMATE_NAME_OR_LOCATION = 50;
     /**
-     * T1105
+     * T1037
      *
-     * Generated from protobuf enum <code>INGRESS_TOOL_TRANSFER = 3;</code>
+     * Generated from protobuf enum <code>BOOT_OR_LOGON_INITIALIZATION_SCRIPTS = 37;</code>
      */
-    const INGRESS_TOOL_TRANSFER = 3;
+    const BOOT_OR_LOGON_INITIALIZATION_SCRIPTS = 37;
     /**
-     * T1106
+     * T1037.005
      *
-     * Generated from protobuf enum <code>NATIVE_API = 4;</code>
+     * Generated from protobuf enum <code>STARTUP_ITEMS = 38;</code>
      */
-    const NATIVE_API = 4;
+    const STARTUP_ITEMS = 38;
     /**
-     * T1129
+     * T1046
      *
-     * Generated from protobuf enum <code>SHARED_MODULES = 5;</code>
+     * Generated from protobuf enum <code>NETWORK_SERVICE_DISCOVERY = 32;</code>
      */
-    const SHARED_MODULES = 5;
+    const NETWORK_SERVICE_DISCOVERY = 32;
+    /**
+     * T1057
+     *
+     * Generated from protobuf enum <code>PROCESS_DISCOVERY = 56;</code>
+     */
+    const PROCESS_DISCOVERY = 56;
     /**
      * T1059
      *
@@ -63,11 +70,59 @@ class Technique
      */
     const UNIX_SHELL = 7;
     /**
-     * T1496
+     * T1069
      *
-     * Generated from protobuf enum <code>RESOURCE_HIJACKING = 8;</code>
+     * Generated from protobuf enum <code>PERMISSION_GROUPS_DISCOVERY = 18;</code>
      */
-    const RESOURCE_HIJACKING = 8;
+    const PERMISSION_GROUPS_DISCOVERY = 18;
+    /**
+     * T1069.003
+     *
+     * Generated from protobuf enum <code>CLOUD_GROUPS = 19;</code>
+     */
+    const CLOUD_GROUPS = 19;
+    /**
+     * T1071
+     *
+     * Generated from protobuf enum <code>APPLICATION_LAYER_PROTOCOL = 45;</code>
+     */
+    const APPLICATION_LAYER_PROTOCOL = 45;
+    /**
+     * T1071.004
+     *
+     * Generated from protobuf enum <code>DNS = 46;</code>
+     */
+    const DNS = 46;
+    /**
+     * T1072
+     *
+     * Generated from protobuf enum <code>SOFTWARE_DEPLOYMENT_TOOLS = 47;</code>
+     */
+    const SOFTWARE_DEPLOYMENT_TOOLS = 47;
+    /**
+     * T1078
+     *
+     * Generated from protobuf enum <code>VALID_ACCOUNTS = 14;</code>
+     */
+    const VALID_ACCOUNTS = 14;
+    /**
+     * T1078.001
+     *
+     * Generated from protobuf enum <code>DEFAULT_ACCOUNTS = 35;</code>
+     */
+    const DEFAULT_ACCOUNTS = 35;
+    /**
+     * T1078.003
+     *
+     * Generated from protobuf enum <code>LOCAL_ACCOUNTS = 15;</code>
+     */
+    const LOCAL_ACCOUNTS = 15;
+    /**
+     * T1078.004
+     *
+     * Generated from protobuf enum <code>CLOUD_ACCOUNTS = 16;</code>
+     */
+    const CLOUD_ACCOUNTS = 16;
     /**
      * T1090
      *
@@ -87,35 +142,101 @@ class Technique
      */
     const MULTI_HOP_PROXY = 11;
     /**
-     * T1568
+     * T1098
      *
-     * Generated from protobuf enum <code>DYNAMIC_RESOLUTION = 12;</code>
+     * Generated from protobuf enum <code>ACCOUNT_MANIPULATION = 22;</code>
      */
-    const DYNAMIC_RESOLUTION = 12;
+    const ACCOUNT_MANIPULATION = 22;
     /**
-     * T1552
+     * T1098.001
      *
-     * Generated from protobuf enum <code>UNSECURED_CREDENTIALS = 13;</code>
+     * Generated from protobuf enum <code>ADDITIONAL_CLOUD_CREDENTIALS = 40;</code>
      */
-    const UNSECURED_CREDENTIALS = 13;
+    const ADDITIONAL_CLOUD_CREDENTIALS = 40;
     /**
-     * T1078
+     * T1098.004
      *
-     * Generated from protobuf enum <code>VALID_ACCOUNTS = 14;</code>
+     * Generated from protobuf enum <code>SSH_AUTHORIZED_KEYS = 23;</code>
      */
-    const VALID_ACCOUNTS = 14;
+    const SSH_AUTHORIZED_KEYS = 23;
     /**
-     * T1078.003
+     * T1098.006
      *
-     * Generated from protobuf enum <code>LOCAL_ACCOUNTS = 15;</code>
+     * Generated from protobuf enum <code>ADDITIONAL_CONTAINER_CLUSTER_ROLES = 58;</code>
      */
-    const LOCAL_ACCOUNTS = 15;
+    const ADDITIONAL_CONTAINER_CLUSTER_ROLES = 58;
     /**
-     * T1078.004
+     * T1105
      *
-     * Generated from protobuf enum <code>CLOUD_ACCOUNTS = 16;</code>
+     * Generated from protobuf enum <code>INGRESS_TOOL_TRANSFER = 3;</code>
      */
-    const CLOUD_ACCOUNTS = 16;
+    const INGRESS_TOOL_TRANSFER = 3;
+    /**
+     * T1106
+     *
+     * Generated from protobuf enum <code>NATIVE_API = 4;</code>
+     */
+    const NATIVE_API = 4;
+    /**
+     * T1110
+     *
+     * Generated from protobuf enum <code>BRUTE_FORCE = 44;</code>
+     */
+    const BRUTE_FORCE = 44;
+    /**
+     * T1129
+     *
+     * Generated from protobuf enum <code>SHARED_MODULES = 5;</code>
+     */
+    const SHARED_MODULES = 5;
+    /**
+     * T1134
+     *
+     * Generated from protobuf enum <code>ACCESS_TOKEN_MANIPULATION = 33;</code>
+     */
+    const ACCESS_TOKEN_MANIPULATION = 33;
+    /**
+     * T1134.001
+     *
+     * Generated from protobuf enum <code>TOKEN_IMPERSONATION_OR_THEFT = 39;</code>
+     */
+    const TOKEN_IMPERSONATION_OR_THEFT = 39;
+    /**
+     * T1190
+     *
+     * Generated from protobuf enum <code>EXPLOIT_PUBLIC_FACING_APPLICATION = 27;</code>
+     */
+    const EXPLOIT_PUBLIC_FACING_APPLICATION = 27;
+    /**
+     * T1484
+     *
+     * Generated from protobuf enum <code>DOMAIN_POLICY_MODIFICATION = 30;</code>
+     */
+    const DOMAIN_POLICY_MODIFICATION = 30;
+    /**
+     * T1485
+     *
+     * Generated from protobuf enum <code>DATA_DESTRUCTION = 29;</code>
+     */
+    const DATA_DESTRUCTION = 29;
+    /**
+     * T1489
+     *
+     * Generated from protobuf enum <code>SERVICE_STOP = 52;</code>
+     */
+    const SERVICE_STOP = 52;
+    /**
+     * T1490
+     *
+     * Generated from protobuf enum <code>INHIBIT_SYSTEM_RECOVERY = 36;</code>
+     */
+    const INHIBIT_SYSTEM_RECOVERY = 36;
+    /**
+     * T1496
+     *
+     * Generated from protobuf enum <code>RESOURCE_HIJACKING = 8;</code>
+     */
+    const RESOURCE_HIJACKING = 8;
     /**
      * T1498
      *
@@ -123,17 +244,65 @@ class Technique
      */
     const NETWORK_DENIAL_OF_SERVICE = 17;
     /**
-     * T1069
+     * T1526
      *
-     * Generated from protobuf enum <code>PERMISSION_GROUPS_DISCOVERY = 18;</code>
+     * Generated from protobuf enum <code>CLOUD_SERVICE_DISCOVERY = 48;</code>
      */
-    const PERMISSION_GROUPS_DISCOVERY = 18;
+    const CLOUD_SERVICE_DISCOVERY = 48;
     /**
-     * T1069.003
+     * T1528
      *
-     * Generated from protobuf enum <code>CLOUD_GROUPS = 19;</code>
+     * Generated from protobuf enum <code>STEAL_APPLICATION_ACCESS_TOKEN = 42;</code>
      */
-    const CLOUD_GROUPS = 19;
+    const STEAL_APPLICATION_ACCESS_TOKEN = 42;
+    /**
+     * T1531
+     *
+     * Generated from protobuf enum <code>ACCOUNT_ACCESS_REMOVAL = 51;</code>
+     */
+    const ACCOUNT_ACCESS_REMOVAL = 51;
+    /**
+     * T1539
+     *
+     * Generated from protobuf enum <code>STEAL_WEB_SESSION_COOKIE = 25;</code>
+     */
+    const STEAL_WEB_SESSION_COOKIE = 25;
+    /**
+     * T1543
+     *
+     * Generated from protobuf enum <code>CREATE_OR_MODIFY_SYSTEM_PROCESS = 24;</code>
+     */
+    const CREATE_OR_MODIFY_SYSTEM_PROCESS = 24;
+    /**
+     * T1548
+     *
+     * Generated from protobuf enum <code>ABUSE_ELEVATION_CONTROL_MECHANISM = 34;</code>
+     */
+    const ABUSE_ELEVATION_CONTROL_MECHANISM = 34;
+    /**
+     * T1552
+     *
+     * Generated from protobuf enum <code>UNSECURED_CREDENTIALS = 13;</code>
+     */
+    const UNSECURED_CREDENTIALS = 13;
+    /**
+     * T1556
+     *
+     * Generated from protobuf enum <code>MODIFY_AUTHENTICATION_PROCESS = 28;</code>
+     */
+    const MODIFY_AUTHENTICATION_PROCESS = 28;
+    /**
+     * T1562
+     *
+     * Generated from protobuf enum <code>IMPAIR_DEFENSES = 31;</code>
+     */
+    const IMPAIR_DEFENSES = 31;
+    /**
+     * T1562.001
+     *
+     * Generated from protobuf enum <code>DISABLE_OR_MODIFY_TOOLS = 55;</code>
+     */
+    const DISABLE_OR_MODIFY_TOOLS = 55;
     /**
      * T1567
      *
@@ -147,29 +316,17 @@ class Technique
      */
     const EXFILTRATION_TO_CLOUD_STORAGE = 21;
     /**
-     * T1098
+     * T1568
      *
-     * Generated from protobuf enum <code>ACCOUNT_MANIPULATION = 22;</code>
+     * Generated from protobuf enum <code>DYNAMIC_RESOLUTION = 12;</code>
      */
-    const ACCOUNT_MANIPULATION = 22;
+    const DYNAMIC_RESOLUTION = 12;
     /**
-     * T1098.004
+     * T1570
      *
-     * Generated from protobuf enum <code>SSH_AUTHORIZED_KEYS = 23;</code>
+     * Generated from protobuf enum <code>LATERAL_TOOL_TRANSFER = 41;</code>
      */
-    const SSH_AUTHORIZED_KEYS = 23;
-    /**
-     * T1543
-     *
-     * Generated from protobuf enum <code>CREATE_OR_MODIFY_SYSTEM_PROCESS = 24;</code>
-     */
-    const CREATE_OR_MODIFY_SYSTEM_PROCESS = 24;
-    /**
-     * T1539
-     *
-     * Generated from protobuf enum <code>STEAL_WEB_SESSION_COOKIE = 25;</code>
-     */
-    const STEAL_WEB_SESSION_COOKIE = 25;
+    const LATERAL_TOOL_TRANSFER = 41;
     /**
      * T1578
      *
@@ -177,97 +334,102 @@ class Technique
      */
     const MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE = 26;
     /**
-     * T1190
+     * T1578.001
      *
-     * Generated from protobuf enum <code>EXPLOIT_PUBLIC_FACING_APPLICATION = 27;</code>
+     * Generated from protobuf enum <code>CREATE_SNAPSHOT = 54;</code>
      */
-    const EXPLOIT_PUBLIC_FACING_APPLICATION = 27;
+    const CREATE_SNAPSHOT = 54;
     /**
-     * T1556
+     * T1580
      *
-     * Generated from protobuf enum <code>MODIFY_AUTHENTICATION_PROCESS = 28;</code>
+     * Generated from protobuf enum <code>CLOUD_INFRASTRUCTURE_DISCOVERY = 53;</code>
      */
-    const MODIFY_AUTHENTICATION_PROCESS = 28;
+    const CLOUD_INFRASTRUCTURE_DISCOVERY = 53;
     /**
-     * T1485
+     * T1588
      *
-     * Generated from protobuf enum <code>DATA_DESTRUCTION = 29;</code>
+     * Generated from protobuf enum <code>OBTAIN_CAPABILITIES = 43;</code>
      */
-    const DATA_DESTRUCTION = 29;
+    const OBTAIN_CAPABILITIES = 43;
     /**
-     * T1484
+     * T1595
      *
-     * Generated from protobuf enum <code>DOMAIN_POLICY_MODIFICATION = 30;</code>
+     * Generated from protobuf enum <code>ACTIVE_SCANNING = 1;</code>
      */
-    const DOMAIN_POLICY_MODIFICATION = 30;
+    const ACTIVE_SCANNING = 1;
     /**
-     * T1562
+     * T1595.001
      *
-     * Generated from protobuf enum <code>IMPAIR_DEFENSES = 31;</code>
+     * Generated from protobuf enum <code>SCANNING_IP_BLOCKS = 2;</code>
      */
-    const IMPAIR_DEFENSES = 31;
+    const SCANNING_IP_BLOCKS = 2;
     /**
-     * T1046
+     * T1613
      *
-     * Generated from protobuf enum <code>NETWORK_SERVICE_DISCOVERY = 32;</code>
+     * Generated from protobuf enum <code>CONTAINER_AND_RESOURCE_DISCOVERY = 57;</code>
      */
-    const NETWORK_SERVICE_DISCOVERY = 32;
-    /**
-     * T1134
-     *
-     * Generated from protobuf enum <code>ACCESS_TOKEN_MANIPULATION = 33;</code>
-     */
-    const ACCESS_TOKEN_MANIPULATION = 33;
-    /**
-     * T1548
-     *
-     * Generated from protobuf enum <code>ABUSE_ELEVATION_CONTROL_MECHANISM = 34;</code>
-     */
-    const ABUSE_ELEVATION_CONTROL_MECHANISM = 34;
-    /**
-     * T1078.001
-     *
-     * Generated from protobuf enum <code>DEFAULT_ACCOUNTS = 35;</code>
-     */
-    const DEFAULT_ACCOUNTS = 35;
+    const CONTAINER_AND_RESOURCE_DISCOVERY = 57;
 
     private static $valueToName = [
         self::TECHNIQUE_UNSPECIFIED => 'TECHNIQUE_UNSPECIFIED',
-        self::ACTIVE_SCANNING => 'ACTIVE_SCANNING',
-        self::SCANNING_IP_BLOCKS => 'SCANNING_IP_BLOCKS',
-        self::INGRESS_TOOL_TRANSFER => 'INGRESS_TOOL_TRANSFER',
-        self::NATIVE_API => 'NATIVE_API',
-        self::SHARED_MODULES => 'SHARED_MODULES',
+        self::MASQUERADING => 'MASQUERADING',
+        self::MATCH_LEGITIMATE_NAME_OR_LOCATION => 'MATCH_LEGITIMATE_NAME_OR_LOCATION',
+        self::BOOT_OR_LOGON_INITIALIZATION_SCRIPTS => 'BOOT_OR_LOGON_INITIALIZATION_SCRIPTS',
+        self::STARTUP_ITEMS => 'STARTUP_ITEMS',
+        self::NETWORK_SERVICE_DISCOVERY => 'NETWORK_SERVICE_DISCOVERY',
+        self::PROCESS_DISCOVERY => 'PROCESS_DISCOVERY',
         self::COMMAND_AND_SCRIPTING_INTERPRETER => 'COMMAND_AND_SCRIPTING_INTERPRETER',
         self::UNIX_SHELL => 'UNIX_SHELL',
-        self::RESOURCE_HIJACKING => 'RESOURCE_HIJACKING',
+        self::PERMISSION_GROUPS_DISCOVERY => 'PERMISSION_GROUPS_DISCOVERY',
+        self::CLOUD_GROUPS => 'CLOUD_GROUPS',
+        self::APPLICATION_LAYER_PROTOCOL => 'APPLICATION_LAYER_PROTOCOL',
+        self::DNS => 'DNS',
+        self::SOFTWARE_DEPLOYMENT_TOOLS => 'SOFTWARE_DEPLOYMENT_TOOLS',
+        self::VALID_ACCOUNTS => 'VALID_ACCOUNTS',
+        self::DEFAULT_ACCOUNTS => 'DEFAULT_ACCOUNTS',
+        self::LOCAL_ACCOUNTS => 'LOCAL_ACCOUNTS',
+        self::CLOUD_ACCOUNTS => 'CLOUD_ACCOUNTS',
         self::PROXY => 'PROXY',
         self::EXTERNAL_PROXY => 'EXTERNAL_PROXY',
         self::MULTI_HOP_PROXY => 'MULTI_HOP_PROXY',
-        self::DYNAMIC_RESOLUTION => 'DYNAMIC_RESOLUTION',
-        self::UNSECURED_CREDENTIALS => 'UNSECURED_CREDENTIALS',
-        self::VALID_ACCOUNTS => 'VALID_ACCOUNTS',
-        self::LOCAL_ACCOUNTS => 'LOCAL_ACCOUNTS',
-        self::CLOUD_ACCOUNTS => 'CLOUD_ACCOUNTS',
+        self::ACCOUNT_MANIPULATION => 'ACCOUNT_MANIPULATION',
+        self::ADDITIONAL_CLOUD_CREDENTIALS => 'ADDITIONAL_CLOUD_CREDENTIALS',
+        self::SSH_AUTHORIZED_KEYS => 'SSH_AUTHORIZED_KEYS',
+        self::ADDITIONAL_CONTAINER_CLUSTER_ROLES => 'ADDITIONAL_CONTAINER_CLUSTER_ROLES',
+        self::INGRESS_TOOL_TRANSFER => 'INGRESS_TOOL_TRANSFER',
+        self::NATIVE_API => 'NATIVE_API',
+        self::BRUTE_FORCE => 'BRUTE_FORCE',
+        self::SHARED_MODULES => 'SHARED_MODULES',
+        self::ACCESS_TOKEN_MANIPULATION => 'ACCESS_TOKEN_MANIPULATION',
+        self::TOKEN_IMPERSONATION_OR_THEFT => 'TOKEN_IMPERSONATION_OR_THEFT',
+        self::EXPLOIT_PUBLIC_FACING_APPLICATION => 'EXPLOIT_PUBLIC_FACING_APPLICATION',
+        self::DOMAIN_POLICY_MODIFICATION => 'DOMAIN_POLICY_MODIFICATION',
+        self::DATA_DESTRUCTION => 'DATA_DESTRUCTION',
+        self::SERVICE_STOP => 'SERVICE_STOP',
+        self::INHIBIT_SYSTEM_RECOVERY => 'INHIBIT_SYSTEM_RECOVERY',
+        self::RESOURCE_HIJACKING => 'RESOURCE_HIJACKING',
         self::NETWORK_DENIAL_OF_SERVICE => 'NETWORK_DENIAL_OF_SERVICE',
-        self::PERMISSION_GROUPS_DISCOVERY => 'PERMISSION_GROUPS_DISCOVERY',
-        self::CLOUD_GROUPS => 'CLOUD_GROUPS',
+        self::CLOUD_SERVICE_DISCOVERY => 'CLOUD_SERVICE_DISCOVERY',
+        self::STEAL_APPLICATION_ACCESS_TOKEN => 'STEAL_APPLICATION_ACCESS_TOKEN',
+        self::ACCOUNT_ACCESS_REMOVAL => 'ACCOUNT_ACCESS_REMOVAL',
+        self::STEAL_WEB_SESSION_COOKIE => 'STEAL_WEB_SESSION_COOKIE',
+        self::CREATE_OR_MODIFY_SYSTEM_PROCESS => 'CREATE_OR_MODIFY_SYSTEM_PROCESS',
+        self::ABUSE_ELEVATION_CONTROL_MECHANISM => 'ABUSE_ELEVATION_CONTROL_MECHANISM',
+        self::UNSECURED_CREDENTIALS => 'UNSECURED_CREDENTIALS',
+        self::MODIFY_AUTHENTICATION_PROCESS => 'MODIFY_AUTHENTICATION_PROCESS',
+        self::IMPAIR_DEFENSES => 'IMPAIR_DEFENSES',
+        self::DISABLE_OR_MODIFY_TOOLS => 'DISABLE_OR_MODIFY_TOOLS',
         self::EXFILTRATION_OVER_WEB_SERVICE => 'EXFILTRATION_OVER_WEB_SERVICE',
         self::EXFILTRATION_TO_CLOUD_STORAGE => 'EXFILTRATION_TO_CLOUD_STORAGE',
-        self::ACCOUNT_MANIPULATION => 'ACCOUNT_MANIPULATION',
-        self::SSH_AUTHORIZED_KEYS => 'SSH_AUTHORIZED_KEYS',
-        self::CREATE_OR_MODIFY_SYSTEM_PROCESS => 'CREATE_OR_MODIFY_SYSTEM_PROCESS',
-        self::STEAL_WEB_SESSION_COOKIE => 'STEAL_WEB_SESSION_COOKIE',
+        self::DYNAMIC_RESOLUTION => 'DYNAMIC_RESOLUTION',
+        self::LATERAL_TOOL_TRANSFER => 'LATERAL_TOOL_TRANSFER',
         self::MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE => 'MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE',
-        self::EXPLOIT_PUBLIC_FACING_APPLICATION => 'EXPLOIT_PUBLIC_FACING_APPLICATION',
-        self::MODIFY_AUTHENTICATION_PROCESS => 'MODIFY_AUTHENTICATION_PROCESS',
-        self::DATA_DESTRUCTION => 'DATA_DESTRUCTION',
-        self::DOMAIN_POLICY_MODIFICATION => 'DOMAIN_POLICY_MODIFICATION',
-        self::IMPAIR_DEFENSES => 'IMPAIR_DEFENSES',
-        self::NETWORK_SERVICE_DISCOVERY => 'NETWORK_SERVICE_DISCOVERY',
-        self::ACCESS_TOKEN_MANIPULATION => 'ACCESS_TOKEN_MANIPULATION',
-        self::ABUSE_ELEVATION_CONTROL_MECHANISM => 'ABUSE_ELEVATION_CONTROL_MECHANISM',
-        self::DEFAULT_ACCOUNTS => 'DEFAULT_ACCOUNTS',
+        self::CREATE_SNAPSHOT => 'CREATE_SNAPSHOT',
+        self::CLOUD_INFRASTRUCTURE_DISCOVERY => 'CLOUD_INFRASTRUCTURE_DISCOVERY',
+        self::OBTAIN_CAPABILITIES => 'OBTAIN_CAPABILITIES',
+        self::ACTIVE_SCANNING => 'ACTIVE_SCANNING',
+        self::SCANNING_IP_BLOCKS => 'SCANNING_IP_BLOCKS',
+        self::CONTAINER_AND_RESOURCE_DISCOVERY => 'CONTAINER_AND_RESOURCE_DISCOVERY',
     ];
 
     public static function name($value)
