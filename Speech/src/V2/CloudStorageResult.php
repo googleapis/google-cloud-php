@@ -21,6 +21,20 @@ class CloudStorageResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string uri = 1;</code>
      */
     private $uri = '';
+    /**
+     * The Cloud Storage URI to which recognition results were written as VTT
+     * formatted captions. This is populated only when `VTT` output is requested.
+     *
+     * Generated from protobuf field <code>string vtt_format_uri = 2;</code>
+     */
+    private $vtt_format_uri = '';
+    /**
+     * The Cloud Storage URI to which recognition results were written as SRT
+     * formatted captions. This is populated only when `SRT` output is requested.
+     *
+     * Generated from protobuf field <code>string srt_format_uri = 3;</code>
+     */
+    private $srt_format_uri = '';
 
     /**
      * Constructor.
@@ -30,6 +44,12 @@ class CloudStorageResult extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           The Cloud Storage URI to which recognition results were written.
+     *     @type string $vtt_format_uri
+     *           The Cloud Storage URI to which recognition results were written as VTT
+     *           formatted captions. This is populated only when `VTT` output is requested.
+     *     @type string $srt_format_uri
+     *           The Cloud Storage URI to which recognition results were written as SRT
+     *           formatted captions. This is populated only when `SRT` output is requested.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +79,62 @@ class CloudStorageResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Cloud Storage URI to which recognition results were written as VTT
+     * formatted captions. This is populated only when `VTT` output is requested.
+     *
+     * Generated from protobuf field <code>string vtt_format_uri = 2;</code>
+     * @return string
+     */
+    public function getVttFormatUri()
+    {
+        return $this->vtt_format_uri;
+    }
+
+    /**
+     * The Cloud Storage URI to which recognition results were written as VTT
+     * formatted captions. This is populated only when `VTT` output is requested.
+     *
+     * Generated from protobuf field <code>string vtt_format_uri = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVttFormatUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->vtt_format_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Cloud Storage URI to which recognition results were written as SRT
+     * formatted captions. This is populated only when `SRT` output is requested.
+     *
+     * Generated from protobuf field <code>string srt_format_uri = 3;</code>
+     * @return string
+     */
+    public function getSrtFormatUri()
+    {
+        return $this->srt_format_uri;
+    }
+
+    /**
+     * The Cloud Storage URI to which recognition results were written as SRT
+     * formatted captions. This is populated only when `SRT` output is requested.
+     *
+     * Generated from protobuf field <code>string srt_format_uri = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSrtFormatUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->srt_format_uri = $var;
 
         return $this;
     }

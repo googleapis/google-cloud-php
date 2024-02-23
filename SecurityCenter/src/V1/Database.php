@@ -16,17 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
  * name](https://google.aip.dev/122#full-resource-names) populated because these
  * resource types, such as Cloud SQL databases, are not yet supported by Cloud
  * Asset Inventory. In these cases only the display name is provided.
- * Some database resources may not have the [full resource
- * name](https://google.aip.dev/122#full-resource-names) populated because
- * these resource types are not yet supported by Cloud Asset Inventory (e.g.
- * Cloud SQL databases). In these cases only the display name will be
- * provided.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Database</code>
  */
 class Database extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Some database resources may not have the [full resource
+     * name](https://google.aip.dev/122#full-resource-names) populated because
+     * these resource types are not yet supported by Cloud Asset Inventory (e.g.
+     * Cloud SQL databases). In these cases only the display name will be
+     * provided.
      * The [full resource name](https://google.aip.dev/122#full-resource-names) of
      * the database that the user connected to, if it is supported by Cloud Asset
      * Inventory.
@@ -60,6 +60,14 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string grantees = 5;</code>
      */
     private $grantees;
+    /**
+     * The version of the database, for example, POSTGRES_14.
+     * See [the complete
+     * list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     *
+     * Generated from protobuf field <code>string version = 6;</code>
+     */
+    private $version = '';
 
     /**
      * Constructor.
@@ -68,6 +76,11 @@ class Database extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
+     *           Some database resources may not have the [full resource
+     *           name](https://google.aip.dev/122#full-resource-names) populated because
+     *           these resource types are not yet supported by Cloud Asset Inventory (e.g.
+     *           Cloud SQL databases). In these cases only the display name will be
+     *           provided.
      *           The [full resource name](https://google.aip.dev/122#full-resource-names) of
      *           the database that the user connected to, if it is supported by Cloud Asset
      *           Inventory.
@@ -81,6 +94,10 @@ class Database extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $grantees
      *           The target usernames, roles, or groups of an SQL privilege grant, which is
      *           not an IAM policy change.
+     *     @type string $version
+     *           The version of the database, for example, POSTGRES_14.
+     *           See [the complete
+     *           list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      * }
      */
     public function __construct($data = NULL) {
@@ -89,6 +106,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Some database resources may not have the [full resource
+     * name](https://google.aip.dev/122#full-resource-names) populated because
+     * these resource types are not yet supported by Cloud Asset Inventory (e.g.
+     * Cloud SQL databases). In these cases only the display name will be
+     * provided.
      * The [full resource name](https://google.aip.dev/122#full-resource-names) of
      * the database that the user connected to, if it is supported by Cloud Asset
      * Inventory.
@@ -102,6 +124,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Some database resources may not have the [full resource
+     * name](https://google.aip.dev/122#full-resource-names) populated because
+     * these resource types are not yet supported by Cloud Asset Inventory (e.g.
+     * Cloud SQL databases). In these cases only the display name will be
+     * provided.
      * The [full resource name](https://google.aip.dev/122#full-resource-names) of
      * the database that the user connected to, if it is supported by Cloud Asset
      * Inventory.
@@ -222,6 +249,36 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->grantees = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The version of the database, for example, POSTGRES_14.
+     * See [the complete
+     * list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     *
+     * Generated from protobuf field <code>string version = 6;</code>
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * The version of the database, for example, POSTGRES_14.
+     * See [the complete
+     * list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     *
+     * Generated from protobuf field <code>string version = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version = $var;
 
         return $this;
     }

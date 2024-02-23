@@ -319,6 +319,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
      */
     private $resource_manager_tags = null;
+    /**
+     * Optional. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool enable_confidential_storage = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_confidential_storage = false;
 
     /**
      * Constructor.
@@ -486,6 +492,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Parameters for node pools to be backed by shared sole tenant node groups.
      *     @type \Google\Cloud\Container\V1\ResourceManagerTags $resource_manager_tags
      *           A map of resource manager tag keys and values to be attached to the nodes.
+     *     @type bool $enable_confidential_storage
+     *           Optional. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -1749,6 +1757,32 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
         $this->resource_manager_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool enable_confidential_storage = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableConfidentialStorage()
+    {
+        return $this->enable_confidential_storage;
+    }
+
+    /**
+     * Optional. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool enable_confidential_storage = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableConfidentialStorage($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_confidential_storage = $var;
 
         return $this;
     }

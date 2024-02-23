@@ -105,7 +105,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Pub/Sub topic where a notification will be sent after this
      * transfer run finishes.
      * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
+     * `projects/{project_id}/topics/{topic_id}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -170,7 +170,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *           Output only. Pub/Sub topic where a notification will be sent after this
      *           transfer run finishes.
      *           The format for specifying a pubsub topic is:
-     *           `projects/{project}/topics/{topic}`
+     *           `projects/{project_id}/topics/{topic_id}`
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $email_preferences
      *           Output only. Email notifications will be sent according to these
      *           preferences to the email address of the user who owns the transfer config
@@ -627,7 +627,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Pub/Sub topic where a notification will be sent after this
      * transfer run finishes.
      * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
+     * `projects/{project_id}/topics/{topic_id}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -641,7 +641,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Pub/Sub topic where a notification will be sent after this
      * transfer run finishes.
      * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
+     * `projects/{project_id}/topics/{topic_id}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

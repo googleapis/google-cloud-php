@@ -205,6 +205,8 @@ class SecurityCenterGapicClient
 
     private static $folderAssetSecurityMarksNameTemplate;
 
+    private static $folderConstraintNameNameTemplate;
+
     private static $folderCustomModuleNameTemplate;
 
     private static $folderEffectiveCustomModuleNameTemplate;
@@ -233,6 +235,8 @@ class SecurityCenterGapicClient
 
     private static $organizationAssetSecurityMarksNameTemplate;
 
+    private static $organizationConstraintNameNameTemplate;
+
     private static $organizationCustomModuleNameTemplate;
 
     private static $organizationEffectiveCustomModuleNameTemplate;
@@ -255,9 +259,13 @@ class SecurityCenterGapicClient
 
     private static $organizationSourceFindingSecurityMarksNameTemplate;
 
+    private static $policyNameTemplate;
+
     private static $projectNameTemplate;
 
     private static $projectAssetSecurityMarksNameTemplate;
+
+    private static $projectConstraintNameNameTemplate;
 
     private static $projectCustomModuleNameTemplate;
 
@@ -383,6 +391,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$folderAssetSecurityMarksNameTemplate;
+    }
+
+    private static function getFolderConstraintNameNameTemplate()
+    {
+        if (self::$folderConstraintNameNameTemplate == null) {
+            self::$folderConstraintNameNameTemplate = new PathTemplate('folders/{folder}/policies/{constraint_name}');
+        }
+
+        return self::$folderConstraintNameNameTemplate;
     }
 
     private static function getFolderCustomModuleNameTemplate()
@@ -511,6 +528,15 @@ class SecurityCenterGapicClient
         return self::$organizationAssetSecurityMarksNameTemplate;
     }
 
+    private static function getOrganizationConstraintNameNameTemplate()
+    {
+        if (self::$organizationConstraintNameNameTemplate == null) {
+            self::$organizationConstraintNameNameTemplate = new PathTemplate('organizations/{organization}/policies/{constraint_name}');
+        }
+
+        return self::$organizationConstraintNameNameTemplate;
+    }
+
     private static function getOrganizationCustomModuleNameTemplate()
     {
         if (self::$organizationCustomModuleNameTemplate == null) {
@@ -610,6 +636,15 @@ class SecurityCenterGapicClient
         return self::$organizationSourceFindingSecurityMarksNameTemplate;
     }
 
+    private static function getPolicyNameTemplate()
+    {
+        if (self::$policyNameTemplate == null) {
+            self::$policyNameTemplate = new PathTemplate('organizations/{organization}/policies/{constraint_name}');
+        }
+
+        return self::$policyNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -626,6 +661,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$projectAssetSecurityMarksNameTemplate;
+    }
+
+    private static function getProjectConstraintNameNameTemplate()
+    {
+        if (self::$projectConstraintNameNameTemplate == null) {
+            self::$projectConstraintNameNameTemplate = new PathTemplate('projects/{project}/policies/{constraint_name}');
+        }
+
+        return self::$projectConstraintNameNameTemplate;
     }
 
     private static function getProjectCustomModuleNameTemplate()
@@ -819,6 +863,7 @@ class SecurityCenterGapicClient
                 'finding' => self::getFindingNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
                 'folderAssetSecurityMarks' => self::getFolderAssetSecurityMarksNameTemplate(),
+                'folderConstraintName' => self::getFolderConstraintNameNameTemplate(),
                 'folderCustomModule' => self::getFolderCustomModuleNameTemplate(),
                 'folderEffectiveCustomModule' => self::getFolderEffectiveCustomModuleNameTemplate(),
                 'folderExport' => self::getFolderExportNameTemplate(),
@@ -833,6 +878,7 @@ class SecurityCenterGapicClient
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
                 'organizationAssetSecurityMarks' => self::getOrganizationAssetSecurityMarksNameTemplate(),
+                'organizationConstraintName' => self::getOrganizationConstraintNameNameTemplate(),
                 'organizationCustomModule' => self::getOrganizationCustomModuleNameTemplate(),
                 'organizationEffectiveCustomModule' => self::getOrganizationEffectiveCustomModuleNameTemplate(),
                 'organizationExport' => self::getOrganizationExportNameTemplate(),
@@ -844,8 +890,10 @@ class SecurityCenterGapicClient
                 'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
                 'organizationSourceFindingExternalsystem' => self::getOrganizationSourceFindingExternalsystemNameTemplate(),
                 'organizationSourceFindingSecurityMarks' => self::getOrganizationSourceFindingSecurityMarksNameTemplate(),
+                'policy' => self::getPolicyNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAssetSecurityMarks' => self::getProjectAssetSecurityMarksNameTemplate(),
+                'projectConstraintName' => self::getProjectConstraintNameNameTemplate(),
                 'projectCustomModule' => self::getProjectCustomModuleNameTemplate(),
                 'projectDlpJob' => self::getProjectDlpJobNameTemplate(),
                 'projectEffectiveCustomModule' => self::getProjectEffectiveCustomModuleNameTemplate(),
@@ -992,6 +1040,23 @@ class SecurityCenterGapicClient
         return self::getFolderAssetSecurityMarksNameTemplate()->render([
             'folder' => $folder,
             'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_constraint_name resource.
+     *
+     * @param string $folder
+     * @param string $constraintName
+     *
+     * @return string The formatted folder_constraint_name resource.
+     */
+    public static function folderConstraintNameName($folder, $constraintName)
+    {
+        return self::getFolderConstraintNameNameTemplate()->render([
+            'folder' => $folder,
+            'constraint_name' => $constraintName,
         ]);
     }
 
@@ -1239,6 +1304,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_constraint_name resource.
+     *
+     * @param string $organization
+     * @param string $constraintName
+     *
+     * @return string The formatted organization_constraint_name resource.
+     */
+    public static function organizationConstraintNameName($organization, $constraintName)
+    {
+        return self::getOrganizationConstraintNameNameTemplate()->render([
+            'organization' => $organization,
+            'constraint_name' => $constraintName,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_custom_module resource.
      *
      * @param string $organization
@@ -1429,6 +1511,23 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a policy
+     * resource.
+     *
+     * @param string $organization
+     * @param string $constraintName
+     *
+     * @return string The formatted policy resource.
+     */
+    public static function policyName($organization, $constraintName)
+    {
+        return self::getPolicyNameTemplate()->render([
+            'organization' => $organization,
+            'constraint_name' => $constraintName,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -1457,6 +1556,23 @@ class SecurityCenterGapicClient
         return self::getProjectAssetSecurityMarksNameTemplate()->render([
             'project' => $project,
             'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_constraint_name resource.
+     *
+     * @param string $project
+     * @param string $constraintName
+     *
+     * @return string The formatted project_constraint_name resource.
+     */
+    public static function projectConstraintNameName($project, $constraintName)
+    {
+        return self::getProjectConstraintNameNameTemplate()->render([
+            'project' => $project,
+            'constraint_name' => $constraintName,
         ]);
     }
 
@@ -1819,6 +1935,7 @@ class SecurityCenterGapicClient
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - folder: folders/{folder}
      * - folderAssetSecurityMarks: folders/{folder}/assets/{asset}/securityMarks
+     * - folderConstraintName: folders/{folder}/policies/{constraint_name}
      * - folderCustomModule: folders/{folder}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - folderEffectiveCustomModule: folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - folderExport: folders/{folder}/bigQueryExports/{export}
@@ -1833,6 +1950,7 @@ class SecurityCenterGapicClient
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
      * - organizationAssetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
+     * - organizationConstraintName: organizations/{organization}/policies/{constraint_name}
      * - organizationCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - organizationEffectiveCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - organizationExport: organizations/{organization}/bigQueryExports/{export}
@@ -1844,8 +1962,10 @@ class SecurityCenterGapicClient
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
      * - organizationSourceFindingExternalsystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - organizationSourceFindingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
+     * - policy: organizations/{organization}/policies/{constraint_name}
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
+     * - projectConstraintName: projects/{project}/policies/{constraint_name}
      * - projectCustomModule: projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - projectDlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - projectEffectiveCustomModule: projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
