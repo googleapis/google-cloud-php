@@ -22,6 +22,9 @@ use Google\ApiCore\CredentialsWrapper;
 
 /**
  * For connect to emulator.
+ *
+ * This class is deprecated. Use Google\ApiCore\InsecureCredentialsWrapper instead.
+ * @deprecated
  */
 class InsecureCredentialsWrapper extends CredentialsWrapper
 {
