@@ -26,7 +26,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of items to return.
      * Default page_size is 1000.
-     * Max limit is 10000.
+     * Max limit is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -41,6 +41,21 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of profiles.
+     *                       Format: projects/{user_project_id}
+     *                       Please see {@see ExportServiceClient::projectName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\Profiler\V2\ListProfilesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -52,7 +67,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           The maximum number of items to return.
      *           Default page_size is 1000.
-     *           Max limit is 10000.
+     *           Max limit is 1000.
      *     @type string $page_token
      *           The token to continue pagination and get profiles from a particular page.
      *           When paginating, all other parameters provided to `ListProfiles` must match
@@ -95,7 +110,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of items to return.
      * Default page_size is 1000.
-     * Max limit is 10000.
+     * Max limit is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -108,7 +123,7 @@ class ListProfilesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of items to return.
      * Default page_size is 1000.
-     * Max limit is 10000.
+     * Max limit is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
