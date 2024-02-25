@@ -1,0 +1,8 @@
+{
+    "language": "php",
+    "distribution_name": "google/chat",
+    "release_level": "preview",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/chat/latest",
+    "library_type": "GAPIC_AUTO",
+    "api_shortname": "chat"
+}
