@@ -20,7 +20,7 @@
         }
     },
     "require-dev": {
-        "google/gax": "^1.29.0",
+        "google/gax": "^1.30.0",
         "phpunit/phpunit": "^9.0"
     }
 }
