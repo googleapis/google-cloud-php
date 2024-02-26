@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.29.1](https://github.com/googleapis/gax-php/compare/v1.29.0...v1.29.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* Allow InsecureCredentialsWrapper::getAuthorizationHeaderCallback to return null ([#541](https://github.com/googleapis/gax-php/issues/541)) ([676f4f7](https://github.com/googleapis/gax-php/commit/676f4f7e3d8925d8aba00285616fdf89440b45f9))
+
 ## [1.29.0](https://github.com/googleapis/gax-php/compare/v1.28.1...v1.29.0) (2024-02-26)
 
 
