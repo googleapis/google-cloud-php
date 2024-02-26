@@ -33,6 +33,14 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      */
     protected $ip_address = '';
     /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     */
+    protected $public_ip_address = '';
+    /**
      * Output only. The pem-encoded chain that may be used to verify the X.509
      * certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *
@@ -46,6 +54,12 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string instance_uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $instance_uid = '';
+    /**
+     * Output only. The DNS name to use with PSC for the Instance.
+     *
+     * Generated from protobuf field <code>string psc_dns_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $psc_dns_name = '';
 
     /**
      * Constructor.
@@ -61,11 +75,17 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      *           Output only. The private network IP address for the Instance. This is the
      *           default IP for the instance and is always created (even if enable_public_ip
      *           is set). This is the connection endpoint for an end-user application.
+     *     @type string $public_ip_address
+     *           Output only. The public IP addresses for the Instance. This is available
+     *           ONLY when enable_public_ip is set. This is the connection endpoint for an
+     *           end-user application.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
      *           Output only. The pem-encoded chain that may be used to verify the X.509
      *           certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *     @type string $instance_uid
      *           Output only. The unique ID of the Instance.
+     *     @type string $psc_dns_name
+     *           Output only. The DNS name to use with PSC for the Instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,6 +154,36 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getPublicIpAddress()
+    {
+        return $this->public_ip_address;
+    }
+
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublicIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->public_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The pem-encoded chain that may be used to verify the X.509
      * certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *
@@ -187,6 +237,32 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance_uid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The DNS name to use with PSC for the Instance.
+     *
+     * Generated from protobuf field <code>string psc_dns_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPscDnsName()
+    {
+        return $this->psc_dns_name;
+    }
+
+    /**
+     * Output only. The DNS name to use with PSC for the Instance.
+     *
+     * Generated from protobuf field <code>string psc_dns_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPscDnsName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->psc_dns_name = $var;
 
         return $this;
     }
