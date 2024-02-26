@@ -41,9 +41,13 @@ class InsecureCredentialsWrapper extends CredentialsWrapper
     {
     }
 
-    public function getAuthorizationHeaderCallback($audience = null): callable
+    /**
+     * @param string $audience
+     * @return callable|null Returns null so the gRPC can accept it as an insecure channel.
+     */
+    public function getAuthorizationHeaderCallback($audience = null): ?callable
     {
-        return fn() => [];
+        return null;
     }
 
     public function checkUniverseDomain(): void
