@@ -2,7 +2,6 @@
     "name": "google/cloud-spanner",
     "description": "Cloud Spanner Client for PHP",
     "license": "Apache-2.0",
-    "minimum-stability": "stable",
     "require": {
         "php": ">=7.4",
         "ext-grpc": "*",
