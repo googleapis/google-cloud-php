@@ -109,7 +109,8 @@ trait HttpUnaryTransportTrait
             // Prevent unexpected behavior, as the authorization header callback
             // uses lowercase "authorization"
             unset($headers['authorization']);
-            $authHeaders = $callback();
+            // Mitigate scenario where InsecureCredentialsWrapper returns null.
+            $authHeaders = empty($callback) ? [] : $callback();
             if (!is_array($authHeaders)) {
                 throw new \UnexpectedValueException(
                     'Expected array response from authorization header callback'
