@@ -6,7 +6,7 @@
         "php": ">=7.4",
         "ext-grpc": "*",
         "google/cloud-core": "^1.52.7",
-        "google/gax": "^1.26.0"
+        "google/gax": "dev-grpc_insecure_support as 1.30.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
