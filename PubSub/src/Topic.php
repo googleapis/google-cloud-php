@@ -658,10 +658,17 @@ class Topic
      */
     public function batchPublisher(array $options = [])
     {
+        $config = $this->clientConfig;
+
+        // We don't want to forward the credentials to the BatchPubslisher
+        if (isset($config['credentials'])) {
+            unset($config['credentials']);
+        }
+
         return new BatchPublisher(
             $this->name,
             $options + [
-                'clientConfig' => $this->clientConfig
+                'clientConfig' => $config
             ]
         );
     }
