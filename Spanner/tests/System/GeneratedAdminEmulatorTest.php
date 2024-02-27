@@ -45,6 +45,7 @@ class GeneratedAdminEmulatorTest extends SpannerTestCase
 
         $instanceId = uniqid(self::INSTANCE_NAME);
         $databaseId = uniqid(self::TESTING_PREFIX);
+
         // Create Instance
         $instanceAdminClient = new InstanceAdminClient();
         $parent = InstanceAdminClient::projectName(self::$projectId);
@@ -71,6 +72,7 @@ class GeneratedAdminEmulatorTest extends SpannerTestCase
 
         $this->assertEquals($instance->getName(), $instanceName);
 
+        // Create Database
         $databaseAdminClient = new DatabaseAdminClient();
         $operation = $databaseAdminClient->createDatabase(
             new CreateDatabaseRequest([
