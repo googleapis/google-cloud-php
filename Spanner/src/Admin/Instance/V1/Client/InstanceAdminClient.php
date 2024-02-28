@@ -27,6 +27,7 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
@@ -67,6 +68,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstancePartitionMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\LongRunning\Operation;
+use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -299,6 +301,10 @@ final class InstanceAdminClient
     /**
      * Constructor.
      *
+     * Setting the "SPANNER_EMULATOR_HOST" environment variable will automatically set
+     * the API Endpoint to the value specified in the variable, as well as ensure that
+     * empty credentials are used in the transport layer.
+     *
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
@@ -352,6 +358,7 @@ final class InstanceAdminClient
      */
     public function __construct(array $options = [])
     {
+        $options = $options + $this->getDefaultEmulatorConfig();
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -1179,5 +1186,31 @@ final class InstanceAdminClient
     public function updateInstancePartition(UpdateInstancePartitionRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateInstancePartition', $request, $callOptions)->wait();
+    }
+
+    /** Configure the gapic configuration to use a service emulator. */
+    private function getDefaultEmulatorConfig(): array
+    {
+        $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
+        if (empty($emulatorHost)) {
+            return [];
+        }
+
+        if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
+            $search = $scheme . '://';
+            $emulatorHost = str_replace($search, '', $emulatorHost);
+        }
+
+        return [
+            'apiEndpoint' => $emulatorHost,
+            'transportConfig' => [
+                'grpc' => [
+                    'stubOpts' => [
+                        'credentials' => ChannelCredentials::createInsecure(),
+                    ],
+                ],
+            ],
+            'credentials' => new InsecureCredentialsWrapper(),
+        ];
     }
 }
