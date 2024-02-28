@@ -12,12 +12,12 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "7.4", "8.0", "8.1", "8.2", "8.3" ]
+        php: [ "8.0", "8.1", "8.2", "8.3" ]
         extensions: ["grpc-1.54.0"]
         type: ["Unit Test"]
         include:
           - platform: "ubuntu-latest"
-            php: "7.4"
+            php: "8.0"
             extensions: "protobuf,grpc-1.54.0"
             type: "Unit Test + protobuf extension"
     name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
@@ -88,7 +88,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
-        php-version: '7.4'
+        php-version: '8.1'
         extensions: grpc
     - name: Run Package Test Suites
       env:
