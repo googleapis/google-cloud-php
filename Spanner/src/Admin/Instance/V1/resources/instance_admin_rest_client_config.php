@@ -97,6 +97,18 @@ return [
                     ],
                 ],
             ],
+            'CreateInstancePartition' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/instancePartitions',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInstance' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*}',
@@ -111,6 +123,17 @@ return [
             'DeleteInstanceConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteInstancePartition' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/instancePartitions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -153,6 +176,17 @@ return [
                     ],
                 ],
             ],
+            'GetInstancePartition' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/instancePartitions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstanceConfigOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/instanceConfigOperations',
@@ -167,6 +201,28 @@ return [
             'ListInstanceConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/instanceConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListInstancePartitionOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/instancePartitionOperations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListInstancePartitions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/instancePartitions',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -231,6 +287,19 @@ return [
                     'instance_config.name' => [
                         'getters' => [
                             'getInstanceConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateInstancePartition' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{instance_partition.name=projects/*/instances/*/instancePartitions/*}',
+                'body' => '*',
+                'placeholders' => [
+                    'instance_partition.name' => [
+                        'getters' => [
+                            'getInstancePartition',
                             'getName',
                         ],
                     ],
