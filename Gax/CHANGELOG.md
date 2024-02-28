@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.30.0](https://github.com/googleapis/gax-php/compare/v1.29.1...v1.30.0) (2024-02-28)
+
+
+### Features
+
+* Auto Populate fields configured for auto population in Rpc Request Message ([#543](https://github.com/googleapis/gax-php/issues/543)) ([99d6b89](https://github.com/googleapis/gax-php/commit/99d6b899ddf55d51fab976844c1e0f8fe9918a52))
+* Make the default authHttpHandler in CredentialsWrapper null ([#544](https://github.com/googleapis/gax-php/issues/544)) ([2a25eea](https://github.com/googleapis/gax-php/commit/2a25eeacadf2f783f64b4eca4f94e067ddef3eaa))
+
 ## [1.29.1](https://github.com/googleapis/gax-php/compare/v1.29.0...v1.29.1) (2024-02-26)
 
 
