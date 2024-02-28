@@ -30,7 +30,7 @@ jobs:
       uses: shivammathur/cache-extensions@v1
       with:
         php-version: ${{ matrix.php }}
-        extensions: ${{ matrix.extensions }}
+        extensions: sodium,${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
     - name: Cache extensions
       uses: actions/cache@v4
@@ -42,7 +42,7 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: ${{ matrix.extensions }}
+        extensions: sodium,${{ matrix.extensions }}
     - name: Install Dependencies
       uses: nick-invision/retry@v3
       with:

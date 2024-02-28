@@ -19,12 +19,12 @@
         "phpdocumentor/reflection-docblock": "^5.3",
         "erusev/parsedown": "^1.6",
         "google/cloud-tools": "^0.13.0",
-        "kreait/firebase-php": "^5.26.5"
+        "kreait/firebase-php": "^6.9"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",
-        "kreait/firebase-php": "^5.26.5 for use of the Firebase connection class and snapshot-debugger (see https://github.com/GoogleCloudPlatform/snapshot-debugger)",
+        "kreait/firebase-php": "^6.9 for use of the Firebase connection class and snapshot-debugger (see https://github.com/GoogleCloudPlatform/snapshot-debugger)",
         "ext-stackdriver_debugger": "*"
     },
     "extra": {
