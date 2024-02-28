@@ -135,6 +135,21 @@ class GapicClientTraitTest extends TestCase
         );
     }
 
+    public function testConfigureCallConstructionOptions()
+    {
+        $client = new StubGapicClient();
+        $client->setClientOptions($client->buildClientOptions([]));
+        $retrySettings = RetrySettings::constructDefault();
+        $expected = [
+            'retrySettings' => $retrySettings,
+            'autoPopulationSettings' => [
+                'pageToken' => \Google\Api\FieldInfo\Format::UUID4,
+            ],
+        ];
+        $actual = $client->configureCallConstructionOptions('PageStreamingMethod', ['retrySettings' => $retrySettings]);
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testConfigureCallConstructionOptionsAcceptsRetryObjectOrArray()
     {
         $defaultRetrySettings = RetrySettings::constructDefault();
@@ -142,7 +157,8 @@ class GapicClientTraitTest extends TestCase
         $client->set('retrySettings', ['method' => $defaultRetrySettings]);
         $expectedOptions = [
             'retrySettings' => $defaultRetrySettings
-                ->with(['rpcTimeoutMultiplier' => 5])
+                ->with(['rpcTimeoutMultiplier' => 5]),
+            'autoPopulationSettings' => []
         ];
         $actualOptionsWithObject = $client->configureCallConstructionOptions(
             'method',

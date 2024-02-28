@@ -11,6 +11,9 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                 ],
+                'autoPopulatedFields' => [
+                    'pageToken' => \Google\Api\FieldInfo\Format::UUID4,
+                ]
             ],
             'templateMap' => [
                 'project' => 'projects/{project}',
