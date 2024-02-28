@@ -530,6 +530,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
         $satisfiesPzi = false;
@@ -540,6 +541,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
@@ -822,6 +824,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
         $satisfiesPzi = false;
@@ -832,6 +835,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
@@ -1447,6 +1451,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
         $satisfiesPzi = false;
@@ -1457,6 +1462,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
@@ -1785,11 +1791,13 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $ipAddress = 'ipAddress1480014044';
         $publicIpAddress = 'publicIpAddress2014408818';
         $instanceUid = 'instanceUid-737331802';
+        $pscDnsName = 'pscDnsName-691071360';
         $expectedResponse = new ConnectionInfo();
         $expectedResponse->setName($name);
         $expectedResponse->setIpAddress($ipAddress);
         $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setInstanceUid($instanceUid);
+        $expectedResponse->setPscDnsName($pscDnsName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
@@ -1852,6 +1860,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
         $satisfiesPzi = false;
@@ -1862,6 +1871,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
@@ -2002,6 +2012,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
         $satisfiesPzi = false;
@@ -2012,6 +2023,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
@@ -2682,6 +2694,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
         $satisfiesPzi = false;
@@ -2692,6 +2705,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
@@ -3242,6 +3256,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
         $satisfiesPzi = false;
@@ -3252,6 +3267,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);

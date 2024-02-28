@@ -25,6 +25,9 @@ class FeatureViewDataKey extends \Google\Protobuf\Internal\Message
      *
      *     @type string $key
      *           String key to use for lookup.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureViewDataKey\CompositeKey $composite_key
+     *           The actual Entity ID will be composed from this struct. This should match
+     *           with the way ID is defined in the FeatureView spec.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +62,39 @@ class FeatureViewDataKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * The actual Entity ID will be composed from this struct. This should match
+     * with the way ID is defined in the FeatureView spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewDataKey.CompositeKey composite_key = 2;</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureViewDataKey\CompositeKey|null
+     */
+    public function getCompositeKey()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasCompositeKey()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * The actual Entity ID will be composed from this struct. This should match
+     * with the way ID is defined in the FeatureView spec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewDataKey.CompositeKey composite_key = 2;</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureViewDataKey\CompositeKey $var
+     * @return $this
+     */
+    public function setCompositeKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureViewDataKey\CompositeKey::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

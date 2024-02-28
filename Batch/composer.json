@@ -18,8 +18,13 @@
         }
     },
     "require": {
+<<<<<<< HEAD
         "php": "^8.0",
         "google/gax": "^1.26.3"
+=======
+        "php": ">=7.4",
+        "google/gax": "^1.29.1"
+>>>>>>> main
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"

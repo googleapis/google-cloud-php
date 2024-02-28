@@ -18,23 +18,17 @@
 
 namespace Google\Cloud\Core;
 
-use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\InsecureCredentialsWrapper as ApiCoreInsecureCredentialsWrapper;
 
 /**
  * For connect to emulator.
+ *
+ * This class is deprecated. Use Google\ApiCore\InsecureCredentialsWrapper instead.
+ * @deprecated
  */
-class InsecureCredentialsWrapper extends CredentialsWrapper
+class InsecureCredentialsWrapper extends ApiCoreInsecureCredentialsWrapper
 {
     public function __construct()
-    {
-    }
-
-    public function getAuthorizationHeaderCallback($audience = null)
-    {
-        return null;
-    }
-
-    public function checkUniverseDomain()
     {
     }
 }

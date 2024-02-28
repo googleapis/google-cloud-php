@@ -105,6 +105,13 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string version_column_name = 106;</code>
      */
     private $version_column_name = '';
+    /**
+     * Entity responsible for maintaining this feature. Can be comma separated
+     * list of email addresses or URIs.
+     *
+     * Generated from protobuf field <code>string point_of_contact = 107;</code>
+     */
+    private $point_of_contact = '';
 
     /**
      * Constructor.
@@ -161,6 +168,9 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           Only applicable for Vertex AI Feature Store.
      *           The name of the BigQuery Table/View column hosting data for this version.
      *           If no value is provided, will use feature_id.
+     *     @type string $point_of_contact
+     *           Entity responsible for maintaining this feature. Can be comma separated
+     *           list of email addresses or URIs.
      * }
      */
     public function __construct($data = NULL) {
@@ -502,6 +512,34 @@ class Feature extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->version_column_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Entity responsible for maintaining this feature. Can be comma separated
+     * list of email addresses or URIs.
+     *
+     * Generated from protobuf field <code>string point_of_contact = 107;</code>
+     * @return string
+     */
+    public function getPointOfContact()
+    {
+        return $this->point_of_contact;
+    }
+
+    /**
+     * Entity responsible for maintaining this feature. Can be comma separated
+     * list of email addresses or URIs.
+     *
+     * Generated from protobuf field <code>string point_of_contact = 107;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPointOfContact($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->point_of_contact = $var;
 
         return $this;
     }
