@@ -10,7 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * CVE stands for Common Vulnerabilities and Exposures.
- * More information: https://cve.mitre.org
+ * Information from the [CVE
+ * record](https://www.cve.org/ResourcesSupport/Glossary) that describes this
+ * vulnerability.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.Cve</code>
  */
@@ -42,6 +44,31 @@ class Cve extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool upstream_fix_available = 4;</code>
      */
     private $upstream_fix_available = false;
+    /**
+     * The potential impact of the vulnerability if it was to be exploited.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cve.RiskRating impact = 5;</code>
+     */
+    private $impact = 0;
+    /**
+     * The exploitation activity of the vulnerability in the wild.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cve.ExploitationActivity exploitation_activity = 6;</code>
+     */
+    private $exploitation_activity = 0;
+    /**
+     * Whether or not the vulnerability has been observed in the wild.
+     *
+     * Generated from protobuf field <code>bool observed_in_the_wild = 7;</code>
+     */
+    private $observed_in_the_wild = false;
+    /**
+     * Whether or not the vulnerability was zero day when the finding was
+     * published.
+     *
+     * Generated from protobuf field <code>bool zero_day = 8;</code>
+     */
+    private $zero_day = false;
 
     /**
      * Constructor.
@@ -59,6 +86,15 @@ class Cve extends \Google\Protobuf\Internal\Message
      *           https://www.first.org/cvss/v3.1/specification-document
      *     @type bool $upstream_fix_available
      *           Whether upstream fix is available for the CVE.
+     *     @type int $impact
+     *           The potential impact of the vulnerability if it was to be exploited.
+     *     @type int $exploitation_activity
+     *           The exploitation activity of the vulnerability in the wild.
+     *     @type bool $observed_in_the_wild
+     *           Whether or not the vulnerability has been observed in the wild.
+     *     @type bool $zero_day
+     *           Whether or not the vulnerability was zero day when the finding was
+     *           published.
      * }
      */
     public function __construct($data = NULL) {
@@ -180,6 +216,112 @@ class Cve extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->upstream_fix_available = $var;
+
+        return $this;
+    }
+
+    /**
+     * The potential impact of the vulnerability if it was to be exploited.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cve.RiskRating impact = 5;</code>
+     * @return int
+     */
+    public function getImpact()
+    {
+        return $this->impact;
+    }
+
+    /**
+     * The potential impact of the vulnerability if it was to be exploited.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cve.RiskRating impact = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setImpact($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Cve\RiskRating::class);
+        $this->impact = $var;
+
+        return $this;
+    }
+
+    /**
+     * The exploitation activity of the vulnerability in the wild.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cve.ExploitationActivity exploitation_activity = 6;</code>
+     * @return int
+     */
+    public function getExploitationActivity()
+    {
+        return $this->exploitation_activity;
+    }
+
+    /**
+     * The exploitation activity of the vulnerability in the wild.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cve.ExploitationActivity exploitation_activity = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExploitationActivity($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Cve\ExploitationActivity::class);
+        $this->exploitation_activity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether or not the vulnerability has been observed in the wild.
+     *
+     * Generated from protobuf field <code>bool observed_in_the_wild = 7;</code>
+     * @return bool
+     */
+    public function getObservedInTheWild()
+    {
+        return $this->observed_in_the_wild;
+    }
+
+    /**
+     * Whether or not the vulnerability has been observed in the wild.
+     *
+     * Generated from protobuf field <code>bool observed_in_the_wild = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setObservedInTheWild($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->observed_in_the_wild = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether or not the vulnerability was zero day when the finding was
+     * published.
+     *
+     * Generated from protobuf field <code>bool zero_day = 8;</code>
+     * @return bool
+     */
+    public function getZeroDay()
+    {
+        return $this->zero_day;
+    }
+
+    /**
+     * Whether or not the vulnerability was zero day when the finding was
+     * published.
+     *
+     * Generated from protobuf field <code>bool zero_day = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setZeroDay($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->zero_day = $var;
 
         return $this;
     }

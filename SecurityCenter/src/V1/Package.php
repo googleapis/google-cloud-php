@@ -20,25 +20,25 @@ class Package extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string package_name = 1;</code>
      */
-    protected $package_name = '';
+    private $package_name = '';
     /**
      * The CPE URI where the vulnerability was detected.
      *
      * Generated from protobuf field <code>string cpe_uri = 2;</code>
      */
-    protected $cpe_uri = '';
+    private $cpe_uri = '';
     /**
      * Type of package, for example, os, maven, or go.
      *
      * Generated from protobuf field <code>string package_type = 3;</code>
      */
-    protected $package_type = '';
+    private $package_type = '';
     /**
      * The version of the package.
      *
      * Generated from protobuf field <code>string package_version = 4;</code>
      */
-    protected $package_version = '';
+    private $package_version = '';
 
     /**
      * Constructor.
