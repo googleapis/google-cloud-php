@@ -83,7 +83,6 @@ class CredentialsWrapperTest extends TestCase
         $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/testdata/json-key-file.json');
         $scopes = ['myscope'];
-        $defaultAuthHttpHandler = HttpHandlerFactory::build();
         $authHttpHandler = HttpHandlerFactory::build();
         $asyncAuthHttpHandler = function ($request, $options) use ($authHttpHandler) {
             return $authHttpHandler->async($request, $options)->wait();
@@ -96,11 +95,11 @@ class CredentialsWrapperTest extends TestCase
         $testData = [
             [
                 [],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $defaultAuthCache), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, null, $defaultAuthCache)),
             ],
             [
                 ['scopes' => $scopes],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials($scopes, $defaultAuthHttpHandler, null, $defaultAuthCache), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials($scopes, $authHttpHandler, null, $defaultAuthCache)),
             ],
             [
                 ['scopes' => $scopes, 'authHttpHandler' => $asyncAuthHttpHandler],
@@ -108,19 +107,19 @@ class CredentialsWrapperTest extends TestCase
             ],
             [
                 ['enableCaching' => false],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, null), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, null, null)),
             ],
             [
                 ['authCacheOptions' => $authCacheOptions],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, $authCacheOptions, $defaultAuthCache), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, $authCacheOptions, $defaultAuthCache)),
             ],
             [
                 ['authCache' => $authCache],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $authCache), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, null, $authCache)),
             ],
             [
                 ['quotaProject' => $quotaProject],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $defaultAuthCache, $quotaProject), $defaultAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, null, $defaultAuthCache, $quotaProject)),
             ],
         ];
 
@@ -556,5 +555,14 @@ class CredentialsWrapperTest extends TestCase
         $cache = new FetchAuthTokenCache($credentials->reveal(), [], new MemoryCacheItemPool());
         $credentialsWrapper = new CredentialsWrapper($cache);
         $this->assertEquals('my-project-id', $credentialsWrapper->getProjectId());
+    }
+
+    public function testSerializeCredentialsWrapper()
+    {
+        $credentialsWrapper = CredentialsWrapper::build([
+            'keyFile' => __DIR__ . '/testdata/json-key-file.json',
+        ]);
+        $serialized = serialize($credentialsWrapper);
+        $this->assertIsString($serialized);
     }
 }
