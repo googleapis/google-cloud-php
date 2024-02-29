@@ -183,7 +183,7 @@ final class AcceleratorTypesClient
     }
 
     /**
-     * Retrieves an aggregated list of accelerator types.
+     * Retrieves an aggregated list of accelerator types. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see AcceleratorTypesClient::aggregatedListAsync()} .
      *

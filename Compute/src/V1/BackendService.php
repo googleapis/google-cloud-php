@@ -238,6 +238,12 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     private $service_bindings;
     /**
+     * URL to networkservices.ServiceLbPolicy resource. Can only be set if load balancing scheme is EXTERNAL, EXTERNAL_MANAGED, INTERNAL_MANAGED or INTERNAL_SELF_MANAGED and the scope is global.
+     *
+     * Generated from protobuf field <code>optional string service_lb_policy = 94848785;</code>
+     */
+    private $service_lb_policy = null;
+    /**
      * Type of session affinity to use. The default is NONE. Only NONE and HEADER_FIELD are supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true. For more details, see: [Session Affinity](https://cloud.google.com/load-balancing/docs/backend-service#session_affinity).
      * Check the SessionAffinity enum for the list of possible values.
      *
@@ -341,6 +347,8 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_bindings
      *           URLs of networkservices.ServiceBinding resources. Can only be set if load balancing scheme is INTERNAL_SELF_MANAGED. If set, lists of backends and health checks must be both empty.
+     *     @type string $service_lb_policy
+     *           URL to networkservices.ServiceLbPolicy resource. Can only be set if load balancing scheme is EXTERNAL, EXTERNAL_MANAGED, INTERNAL_MANAGED or INTERNAL_SELF_MANAGED and the scope is global.
      *     @type string $session_affinity
      *           Type of session affinity to use. The default is NONE. Only NONE and HEADER_FIELD are supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true. For more details, see: [Session Affinity](https://cloud.google.com/load-balancing/docs/backend-service#session_affinity).
      *           Check the SessionAffinity enum for the list of possible values.
@@ -1613,6 +1621,42 @@ class BackendService extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->service_bindings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * URL to networkservices.ServiceLbPolicy resource. Can only be set if load balancing scheme is EXTERNAL, EXTERNAL_MANAGED, INTERNAL_MANAGED or INTERNAL_SELF_MANAGED and the scope is global.
+     *
+     * Generated from protobuf field <code>optional string service_lb_policy = 94848785;</code>
+     * @return string
+     */
+    public function getServiceLbPolicy()
+    {
+        return isset($this->service_lb_policy) ? $this->service_lb_policy : '';
+    }
+
+    public function hasServiceLbPolicy()
+    {
+        return isset($this->service_lb_policy);
+    }
+
+    public function clearServiceLbPolicy()
+    {
+        unset($this->service_lb_policy);
+    }
+
+    /**
+     * URL to networkservices.ServiceLbPolicy resource. Can only be set if load balancing scheme is EXTERNAL, EXTERNAL_MANAGED, INTERNAL_MANAGED or INTERNAL_SELF_MANAGED and the scope is global.
+     *
+     * Generated from protobuf field <code>optional string service_lb_policy = 94848785;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceLbPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_lb_policy = $var;
 
         return $this;
     }

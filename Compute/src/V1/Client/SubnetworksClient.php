@@ -253,7 +253,7 @@ final class SubnetworksClient
     }
 
     /**
-     * Retrieves an aggregated list of subnetworks.
+     * Retrieves an aggregated list of subnetworks. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see SubnetworksClient::aggregatedListAsync()} .
      *

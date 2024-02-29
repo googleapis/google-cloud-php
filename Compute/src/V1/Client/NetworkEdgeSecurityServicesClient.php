@@ -237,7 +237,7 @@ final class NetworkEdgeSecurityServicesClient
     }
 
     /**
-     * Retrieves the list of all NetworkEdgeSecurityService resources available to the specified project.
+     * Retrieves the list of all NetworkEdgeSecurityService resources available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is
      * {@see NetworkEdgeSecurityServicesClient::aggregatedListAsync()} .

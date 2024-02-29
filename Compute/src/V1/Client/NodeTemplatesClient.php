@@ -245,7 +245,7 @@ final class NodeTemplatesClient
     }
 
     /**
-     * Retrieves an aggregated list of node templates.
+     * Retrieves an aggregated list of node templates. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NodeTemplatesClient::aggregatedListAsync()} .
      *
