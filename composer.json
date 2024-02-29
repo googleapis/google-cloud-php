@@ -184,7 +184,7 @@
         "google/cloud-policytroubleshooter-iam": "0.2.2",
         "google/cloud-private-catalog": "0.4.1",
         "google/cloud-profiler": "1.4.0",
-        "google/cloud-pubsub": "2.0.1-RC1\n",
+        "google/cloud-pubsub": "2.0.0",
         "google/cloud-quotas": "0.1.2",
         "google/cloud-rapidmigrationassessment": "0.3.2",
         "google/cloud-recaptcha-enterprise": "1.9.1",

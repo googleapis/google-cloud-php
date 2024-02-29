@@ -727,10 +727,9 @@
 
 </details>
 
-<details><summary>google/cloud-pubsub 2.0.1-RC1
-</summary>
+<details><summary>google/cloud-pubsub 2.0.0</summary>
 
-](https://github.com/googleapis/google-cloud-php/compare/v0.236.0...v0.237.0) (2024-02-29)
+* Release V2 PubSub
 
 </details>
 
