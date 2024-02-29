@@ -60,9 +60,9 @@ class GeneratedAdminEmulatorTest extends SpannerTestCase
 
         $operation = $instanceAdminClient->createInstance(
             (new CreateInstanceRequest())
-            ->setParent($parent)
-            ->setInstanceId($instanceId)
-            ->setInstance($instance)
+                ->setParent($parent)
+                ->setInstanceId($instanceId)
+                ->setInstance($instance)
         );
         $operation->pollUntilComplete();
 
