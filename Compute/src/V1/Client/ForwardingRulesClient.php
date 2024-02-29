@@ -243,7 +243,7 @@ final class ForwardingRulesClient
     }
 
     /**
-     * Retrieves an aggregated list of forwarding rules.
+     * Retrieves an aggregated list of forwarding rules. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see ForwardingRulesClient::aggregatedListAsync()} .
      *

@@ -281,7 +281,7 @@ final class NodeGroupsClient
     }
 
     /**
-     * Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group.
+     * Retrieves an aggregated list of node groups. Note: use nodeGroups.listNodes for more details about each group. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NodeGroupsClient::aggregatedListAsync()} .
      *

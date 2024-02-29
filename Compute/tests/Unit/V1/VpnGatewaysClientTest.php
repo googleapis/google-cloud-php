@@ -275,6 +275,7 @@ class VpnGatewaysClientTest extends GeneratedTest
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $gatewayIpVersion = 'gatewayIpVersion1138816667';
         $id = 3355;
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
@@ -286,6 +287,7 @@ class VpnGatewaysClientTest extends GeneratedTest
         $expectedResponse = new VpnGateway();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setGatewayIpVersion($gatewayIpVersion);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setLabelFingerprint($labelFingerprint);
