@@ -53,10 +53,10 @@ class GeneratedAdminEmulatorTest extends SpannerTestCase
         $configName = $instanceAdminClient->instanceConfigName(self::$projectId, 'regional-us-central1');
         $databaseName = DatabaseAdminClient::databaseName(self::$projectId, $instanceId, $databaseId);
         $instance = (new Instance())
-        ->setName($instanceName)
-        ->setConfig($configName)
-        ->setDisplayName('dispName')
-        ->setNodeCount(1);
+            ->setName($instanceName)
+            ->setConfig($configName)
+            ->setDisplayName('dispName')
+            ->setNodeCount(1);
 
         $operation = $instanceAdminClient->createInstance(
             (new CreateInstanceRequest())
