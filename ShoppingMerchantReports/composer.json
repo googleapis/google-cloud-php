@@ -18,7 +18,7 @@
     },
     "require": {
         "php": "^8.0",
-        "google/gax": "^1.29.1",
+        "google/gax": "^1.30",
         "google/shopping-common-protos": "^0.2.0"
     },
     "require-dev": {
