@@ -264,7 +264,7 @@ class ResumableUploader extends AbstractUploader
         $request = new Request(
             'PUT',
             $this->resumeUri,
-            ['Content-Range' => 'bytes */*']
+            ['Content-Range' => 'bytes */' . $this->data->getSize()]
         );
 
         return $this->requestWrapper->send($request, $this->requestOptions);
