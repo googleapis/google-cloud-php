@@ -124,22 +124,43 @@ class ResumableUploaderTest extends TestCase
         $this->assertEquals($resumeUri, $uploader->getResumeUri());
     }
 
-    public function testResumesUpload()
+    public function testResumeUploadReturnsIfAlreadySuccessful()
     {
         $response = new Response(200, [], $this->successBody);
-        $statusResponse = new Response(200, ['Range' => 'bytes 0-2']);
 
         $this->requestWrapper->send(
             Argument::type(RequestInterface::class),
             Argument::type('array')
         )->willReturn($response);
 
+        $uploader = new ResumableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com'
+        );
+
+        $this->assertEquals(
+            json_decode($this->successBody, true),
+            $uploader->resume('http://some-resume-uri.example.com')
+        );
+    }
+
+    public function testResumesFailedUpload()
+    {
+        $response = new Response(200, [], $this->successBody);
+        $statusResponse = new Response(200, ['Range' => 'bytes 0-2']);
+
         $this->requestWrapper->send(
             Argument::that(function ($request) {
-                return $request->getHeaderLine('Content-Range') === 'bytes */*';
+                return $request->getHeaderLine('Content-Range') === 'bytes */4';
             }),
             Argument::type('array')
         )->willReturn($statusResponse);
+
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->willReturn($response);
 
         $uploader = new ResumableUploader(
             $this->requestWrapper->reveal(),
