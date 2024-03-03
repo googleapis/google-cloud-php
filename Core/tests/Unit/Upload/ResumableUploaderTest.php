@@ -293,4 +293,31 @@ class ResumableUploaderTest extends TestCase
 
         $uploader->upload();
     }
+
+    /**
+     * @dataProvider rangeHeaderProvider
+     */
+    public function testGetRangeStart($rangeHeader, $expectedRangeStart)
+    {
+        $method = new \ReflectionMethod(ResumableUploader::class, 'getRangeStart');
+        $method->setAccessible(true);
+
+        $uploader = $this->createMock(ResumableUploader::class);
+
+        $actualRangeStart = $method->invoke($uploader, $rangeHeader);
+        $this->assertEquals($expectedRangeStart, $actualRangeStart);
+    }
+
+    public function rangeHeaderProvider()
+    {
+        return
+        [
+            // range header, expected range start
+            ['', 0],
+            ['bytes 0-3/4', 4],
+            ['bytes 0-99/100', 100],
+            ['bytes 100-199/200', 200],
+            ['bytes=2000-',1]
+        ];
+    }
 }
