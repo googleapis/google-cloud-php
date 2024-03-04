@@ -27,23 +27,29 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Bigtable\Admin\V2\AuthorizedView;
 use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
 use Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse;
+use Google\Cloud\Bigtable\Admin\V2\GetAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListAuthorizedViewsRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListAuthorizedViewsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListBackupsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest;
@@ -56,6 +62,7 @@ use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -301,6 +308,145 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/copyBackupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAuthorizedViewTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAuthorizedViewTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $deletionProtection = true;
+        $expectedResponse = new AuthorizedView();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDeletionProtection($deletionProtection);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createAuthorizedViewTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $authorizedViewId = 'authorizedViewId1171901009';
+        $authorizedView = new AuthorizedView();
+        $request = (new CreateAuthorizedViewRequest())
+            ->setParent($formattedParent)
+            ->setAuthorizedViewId($authorizedViewId)
+            ->setAuthorizedView($authorizedView);
+        $response = $gapicClient->createAuthorizedView($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/CreateAuthorizedView', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthorizedViewId();
+        $this->assertProtobufEquals($authorizedViewId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthorizedView();
+        $this->assertProtobufEquals($authorizedView, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAuthorizedViewTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createAuthorizedViewExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createAuthorizedViewTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $authorizedViewId = 'authorizedViewId1171901009';
+        $authorizedView = new AuthorizedView();
+        $request = (new CreateAuthorizedViewRequest())
+            ->setParent($formattedParent)
+            ->setAuthorizedViewId($authorizedViewId)
+            ->setAuthorizedView($authorizedView);
+        $response = $gapicClient->createAuthorizedView($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createAuthorizedViewTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -683,6 +829,67 @@ class BigtableTableAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteAuthorizedViewTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->authorizedViewName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[AUTHORIZED_VIEW]');
+        $request = (new DeleteAuthorizedViewRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteAuthorizedView($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteAuthorizedView', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAuthorizedViewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->authorizedViewName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[AUTHORIZED_VIEW]');
+        $request = (new DeleteAuthorizedViewRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteAuthorizedView($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteBackupTest()
     {
         $transport = $this->createTransport();
@@ -991,6 +1198,74 @@ class BigtableTableAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAuthorizedViewTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
+        $deletionProtection = true;
+        $expectedResponse = new AuthorizedView();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDeletionProtection($deletionProtection);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->authorizedViewName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[AUTHORIZED_VIEW]');
+        $request = (new GetAuthorizedViewRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getAuthorizedView($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/GetAuthorizedView', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAuthorizedViewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->authorizedViewName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[AUTHORIZED_VIEW]');
+        $request = (new GetAuthorizedViewRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getAuthorizedView($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getBackupTest()
     {
         $transport = $this->createTransport();
@@ -1249,6 +1524,78 @@ class BigtableTableAdminClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->getTable($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAuthorizedViewsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $authorizedViewsElement = new AuthorizedView();
+        $authorizedViews = [
+            $authorizedViewsElement,
+        ];
+        $expectedResponse = new ListAuthorizedViewsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAuthorizedViews($authorizedViews);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new ListAuthorizedViewsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listAuthorizedViews($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAuthorizedViews()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/ListAuthorizedViews', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAuthorizedViewsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+        $request = (new ListAuthorizedViewsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listAuthorizedViews($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2066,6 +2413,133 @@ class BigtableTableAdminClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/undeleteTableTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAuthorizedViewTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAuthorizedViewTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $deletionProtection = true;
+        $expectedResponse = new AuthorizedView();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDeletionProtection($deletionProtection);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateAuthorizedViewTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $authorizedView = new AuthorizedView();
+        $request = (new UpdateAuthorizedViewRequest())
+            ->setAuthorizedView($authorizedView);
+        $response = $gapicClient->updateAuthorizedView($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.bigtable.admin.v2.BigtableTableAdmin/UpdateAuthorizedView', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAuthorizedView();
+        $this->assertProtobufEquals($authorizedView, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAuthorizedViewTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAuthorizedViewExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateAuthorizedViewTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $authorizedView = new AuthorizedView();
+        $request = (new UpdateAuthorizedViewRequest())
+            ->setAuthorizedView($authorizedView);
+        $response = $gapicClient->updateAuthorizedView($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateAuthorizedViewTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

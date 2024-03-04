@@ -27,6 +27,21 @@ return [
                     ],
                 ],
             ],
+            'CreateAuthorizedView' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/tables/*}/authorizedViews',
+                'body' => 'authorized_view',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'authorized_view_id',
+                ],
+            ],
             'CreateBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/backups',
@@ -62,6 +77,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAuthorizedView' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*/authorizedViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -123,6 +149,17 @@ return [
                     ],
                 ],
             ],
+            'GetAuthorizedView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*/authorizedViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
@@ -171,6 +208,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuthorizedViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/tables/*}/authorizedViews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -289,6 +337,19 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAuthorizedView' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{authorized_view.name=projects/*/instances/*/tables/*/authorizedViews/*}',
+                'body' => 'authorized_view',
+                'placeholders' => [
+                    'authorized_view.name' => [
+                        'getters' => [
+                            'getAuthorizedView',
                             'getName',
                         ],
                     ],
