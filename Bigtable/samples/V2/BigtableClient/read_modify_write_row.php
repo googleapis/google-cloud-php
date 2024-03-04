@@ -36,14 +36,10 @@ use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
  * timestamp is the greater of the existing timestamp or the current server
  * time. The method returns the new contents of all modified cells.
  *
- * @param string $formattedTableName The unique name of the table to which the read/modify/write rules
- *                                   should be applied. Values are of the form
- *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
- *                                   {@see BigtableClient::tableName()} for help formatting this field.
- * @param string $rowKey             The key of the row to which the read/modify/write rules should be
- *                                   applied.
+ * @param string $rowKey The key of the row to which the read/modify/write rules should be
+ *                       applied.
  */
-function read_modify_write_row_sample(string $formattedTableName, string $rowKey): void
+function read_modify_write_row_sample(string $rowKey): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
@@ -51,7 +47,6 @@ function read_modify_write_row_sample(string $formattedTableName, string $rowKey
     // Prepare the request message.
     $rules = [new ReadModifyWriteRule()];
     $request = (new ReadModifyWriteRowRequest())
-        ->setTableName($formattedTableName)
         ->setRowKey($rowKey)
         ->setRules($rules);
 
@@ -76,9 +71,8 @@ function read_modify_write_row_sample(string $formattedTableName, string $rowKey
  */
 function callSample(): void
 {
-    $formattedTableName = BigtableClient::tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
     $rowKey = '...';
 
-    read_modify_write_row_sample($formattedTableName, $rowKey);
+    read_modify_write_row_sample($rowKey);
 }
 // [END bigtable_v2_generated_Bigtable_ReadModifyWriteRow_sync]

@@ -71,9 +71,8 @@ use Google\Protobuf\Timestamp;
  * ```
  * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
  * try {
- *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
  *     $rowKey = '...';
- *     $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
+ *     $response = $bigtableClient->checkAndMutateRow($rowKey);
  * } finally {
  *     $bigtableClient->close();
  * }
@@ -119,6 +118,8 @@ class BigtableGapicClient
         'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
 
+    private static $authorizedViewNameTemplate;
+
     private static $instanceNameTemplate;
 
     private static $tableNameTemplate;
@@ -144,6 +145,15 @@ class BigtableGapicClient
         ];
     }
 
+    private static function getAuthorizedViewNameTemplate()
+    {
+        if (self::$authorizedViewNameTemplate == null) {
+            self::$authorizedViewNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}');
+        }
+
+        return self::$authorizedViewNameTemplate;
+    }
+
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
@@ -166,12 +176,34 @@ class BigtableGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'authorizedView' => self::getAuthorizedViewNameTemplate(),
                 'instance' => self::getInstanceNameTemplate(),
                 'table' => self::getTableNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * authorized_view resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $table
+     * @param string $authorizedView
+     *
+     * @return string The formatted authorized_view resource.
+     */
+    public static function authorizedViewName($project, $instance, $table, $authorizedView)
+    {
+        return self::getAuthorizedViewNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+            'table' => $table,
+            'authorized_view' => $authorizedView,
+        ]);
     }
 
     /**
@@ -214,6 +246,7 @@ class BigtableGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - authorizedView: projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}
      * - instance: projects/{project}/instances/{instance}
      * - table: projects/{project}/instances/{instance}/tables/{table}
      *
@@ -319,22 +352,30 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '...';
-     *     $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
+     *     $response = $bigtableClient->checkAndMutateRow($rowKey);
      * } finally {
      *     $bigtableClient->close();
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table to which the conditional mutation
-     *                             should be applied. Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string $rowKey       Required. The key of the row to which the conditional mutation should be
      *                             applied.
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Optional. The unique name of the table to which the conditional mutation
+     *           should be applied.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $authorizedViewName
+     *           Optional. The unique name of the AuthorizedView to which the conditional
+     *           mutation should be applied.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -365,15 +406,25 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function checkAndMutateRow($tableName, $rowKey, array $optionalArgs = [])
+    public function checkAndMutateRow($rowKey, array $optionalArgs = [])
     {
         $request = new CheckAndMutateRowRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
         $request->setRowKey($rowKey);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
+        }
+
+        if (isset($optionalArgs['authorizedViewName'])) {
+            $request->setAuthorizedViewName($optionalArgs['authorizedViewName']);
+            $authorizedViewNameMatches = [];
+            if (preg_match('/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/', $optionalArgs['authorizedViewName'], $authorizedViewNameMatches)) {
+                $requestParamHeaders['authorized_view_name'] = $authorizedViewNameMatches['authorized_view_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
@@ -461,18 +512,14 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '...';
      *     $mutations = [];
-     *     $response = $bigtableClient->mutateRow($formattedTableName, $rowKey, $mutations);
+     *     $response = $bigtableClient->mutateRow($rowKey, $mutations);
      * } finally {
      *     $bigtableClient->close();
      * }
      * ```
      *
-     * @param string     $tableName    Required. The unique name of the table to which the mutation should be
-     *                                 applied. Values are of the form
-     *                                 `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string     $rowKey       Required. The key of the row to which the mutation should be applied.
      * @param Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries
      *                                 are applied in order, meaning that earlier mutations can be masked by later
@@ -480,6 +527,18 @@ class BigtableGapicClient
      * @param array      $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Optional. The unique name of the table to which the mutation should be
+     *           applied.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $authorizedViewName
+     *           Optional. The unique name of the AuthorizedView to which the mutation
+     *           should be applied.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -493,16 +552,26 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function mutateRow($tableName, $rowKey, $mutations, array $optionalArgs = [])
+    public function mutateRow($rowKey, $mutations, array $optionalArgs = [])
     {
         $request = new MutateRowRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
         $request->setRowKey($rowKey);
         $request->setMutations($mutations);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
+        }
+
+        if (isset($optionalArgs['authorizedViewName'])) {
+            $request->setAuthorizedViewName($optionalArgs['authorizedViewName']);
+            $authorizedViewNameMatches = [];
+            if (preg_match('/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/', $optionalArgs['authorizedViewName'], $authorizedViewNameMatches)) {
+                $requestParamHeaders['authorized_view_name'] = $authorizedViewNameMatches['authorized_view_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
@@ -524,10 +593,9 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $entries = [];
      *     // Read all responses until the stream is complete
-     *     $stream = $bigtableClient->mutateRows($formattedTableName, $entries);
+     *     $stream = $bigtableClient->mutateRows($entries);
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -536,8 +604,6 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string  $tableName    Required. The unique name of the table to which the mutations should be
-     *                              applied.
      * @param Entry[] $entries      Required. The row keys and corresponding mutations to be applied in bulk.
      *                              Each entry is applied as an atomic mutation, but the entries may be
      *                              applied in arbitrary order (even between entries for the same row).
@@ -546,6 +612,18 @@ class BigtableGapicClient
      * @param array   $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Optional. The unique name of the table to which the mutations should be
+     *           applied.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $authorizedViewName
+     *           Optional. The unique name of the AuthorizedView to which the mutations
+     *           should be applied.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -557,15 +635,25 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function mutateRows($tableName, $entries, array $optionalArgs = [])
+    public function mutateRows($entries, array $optionalArgs = [])
     {
         $request = new MutateRowsRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
         $request->setEntries($entries);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
+        }
+
+        if (isset($optionalArgs['authorizedViewName'])) {
+            $request->setAuthorizedViewName($optionalArgs['authorizedViewName']);
+            $authorizedViewNameMatches = [];
+            if (preg_match('/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/', $optionalArgs['authorizedViewName'], $authorizedViewNameMatches)) {
+                $requestParamHeaders['authorized_view_name'] = $authorizedViewNameMatches['authorized_view_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
@@ -743,18 +831,14 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     $rowKey = '...';
      *     $rules = [];
-     *     $response = $bigtableClient->readModifyWriteRow($formattedTableName, $rowKey, $rules);
+     *     $response = $bigtableClient->readModifyWriteRow($rowKey, $rules);
      * } finally {
      *     $bigtableClient->close();
      * }
      * ```
      *
-     * @param string                $tableName    Required. The unique name of the table to which the read/modify/write rules
-     *                                            should be applied. Values are of the form
-     *                                            `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string                $rowKey       Required. The key of the row to which the read/modify/write rules should be
      *                                            applied.
      * @param ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be
@@ -763,6 +847,18 @@ class BigtableGapicClient
      * @param array                 $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Optional. The unique name of the table to which the read/modify/write rules
+     *           should be applied.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $authorizedViewName
+     *           Optional. The unique name of the AuthorizedView to which the
+     *           read/modify/write rules should be applied.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -776,16 +872,26 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readModifyWriteRow($tableName, $rowKey, $rules, array $optionalArgs = [])
+    public function readModifyWriteRow($rowKey, $rules, array $optionalArgs = [])
     {
         $request = new ReadModifyWriteRowRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
         $request->setRowKey($rowKey);
         $request->setRules($rules);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
+        }
+
+        if (isset($optionalArgs['authorizedViewName'])) {
+            $request->setAuthorizedViewName($optionalArgs['authorizedViewName']);
+            $authorizedViewNameMatches = [];
+            if (preg_match('/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/', $optionalArgs['authorizedViewName'], $authorizedViewNameMatches)) {
+                $requestParamHeaders['authorized_view_name'] = $authorizedViewNameMatches['authorized_view_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
@@ -809,9 +915,8 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
-     *     $stream = $bigtableClient->readRows($formattedTableName);
+     *     $stream = $bigtableClient->readRows();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -820,12 +925,19 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table from which to read.
-     *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Optional. The unique name of the table from which to read.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $authorizedViewName
+     *           Optional. The unique name of the AuthorizedView from which to read.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -862,14 +974,24 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function readRows($tableName, array $optionalArgs = [])
+    public function readRows(array $optionalArgs = [])
     {
         $request = new ReadRowsRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
+        }
+
+        if (isset($optionalArgs['authorizedViewName'])) {
+            $request->setAuthorizedViewName($optionalArgs['authorizedViewName']);
+            $authorizedViewNameMatches = [];
+            if (preg_match('/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/', $optionalArgs['authorizedViewName'], $authorizedViewNameMatches)) {
+                $requestParamHeaders['authorized_view_name'] = $authorizedViewNameMatches['authorized_view_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
@@ -912,9 +1034,8 @@ class BigtableGapicClient
      * ```
      * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
      * try {
-     *     $formattedTableName = $bigtableClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
      *     // Read all responses until the stream is complete
-     *     $stream = $bigtableClient->sampleRowKeys($formattedTableName);
+     *     $stream = $bigtableClient->sampleRowKeys();
      *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -923,12 +1044,20 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table from which to sample row keys.
-     *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $tableName
+     *           Optional. The unique name of the table from which to sample row keys.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $authorizedViewName
+     *           Optional. The unique name of the AuthorizedView from which to sample row
+     *           keys.
+     *
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
      *     @type string $appProfileId
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -940,14 +1069,24 @@ class BigtableGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function sampleRowKeys($tableName, array $optionalArgs = [])
+    public function sampleRowKeys(array $optionalArgs = [])
     {
         $request = new SampleRowKeysRequest();
         $requestParamHeaders = [];
-        $request->setTableName($tableName);
-        $tableNameMatches = [];
-        if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $tableName, $tableNameMatches)) {
-            $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+        if (isset($optionalArgs['tableName'])) {
+            $request->setTableName($optionalArgs['tableName']);
+            $tableNameMatches = [];
+            if (preg_match('/^(?<table_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+)$/', $optionalArgs['tableName'], $tableNameMatches)) {
+                $requestParamHeaders['table_name'] = $tableNameMatches['table_name'];
+            }
+        }
+
+        if (isset($optionalArgs['authorizedViewName'])) {
+            $request->setAuthorizedViewName($optionalArgs['authorizedViewName']);
+            $authorizedViewNameMatches = [];
+            if (preg_match('/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/', $optionalArgs['authorizedViewName'], $authorizedViewNameMatches)) {
+                $requestParamHeaders['authorized_view_name'] = $authorizedViewNameMatches['authorized_view_name'];
+            }
         }
 
         if (isset($optionalArgs['appProfileId'])) {
