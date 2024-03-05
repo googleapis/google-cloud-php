@@ -29,9 +29,14 @@ use Google\Cloud\Profiler\V2\CreateOfflineProfileRequest;
 use Google\Cloud\Profiler\V2\Profile;
 
 /**
- * CreateOfflineProfile creates a new profile resource in the offline mode.
- * The client provides the profile to create along with the profile bytes, the
- * server records it.
+ * CreateOfflineProfile creates a new profile resource in the offline
+ * mode. The client provides the profile to create along with the profile
+ * bytes, the server records it.
+ *
+ * _Direct use of this API is discouraged, please use a [supported
+ * profiler
+ * agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+ * instead for profile collection._
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

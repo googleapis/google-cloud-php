@@ -120,9 +120,7 @@ class StreamWrapper
     }
 
     /**
-     * Starting PHP 7.4, this is called when include/require is used on a stream.
-     * Absence of this method presents a warning.
-     * https://www.php.net/manual/en/migration74.incompatible.php
+     * This is called when include/require is used on a stream.
      */
     public function stream_set_option()
     {

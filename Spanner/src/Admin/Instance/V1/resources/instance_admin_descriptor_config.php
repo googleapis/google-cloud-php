@@ -41,6 +41,25 @@ return [
                     ],
                 ],
             ],
+            'CreateInstancePartition' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition',
+                    'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\CreateInstancePartitionMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\Instance',
@@ -81,6 +100,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateInstancePartition' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition',
+                    'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstancePartitionMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'instance_partition.name',
+                        'fieldAccessors' => [
+                            'getInstancePartition',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInstance' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
@@ -94,6 +133,18 @@ return [
                 ],
             ],
             'DeleteInstanceConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteInstancePartition' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -141,6 +192,18 @@ return [
                     ],
                 ],
             ],
+            'GetInstancePartition' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstanceConfigOperations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -172,6 +235,46 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListInstancePartitionOperations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOperations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionOperationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListInstancePartitions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getInstancePartitions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -228,6 +331,7 @@ return [
             'templateMap' => [
                 'instance' => 'projects/{project}/instances/{instance}',
                 'instanceConfig' => 'projects/{project}/instanceConfigs/{instance_config}',
+                'instancePartition' => 'projects/{project}/instances/{instance}/instancePartitions/{instance_partition}',
                 'project' => 'projects/{project}',
             ],
         ],

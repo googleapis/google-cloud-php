@@ -74,6 +74,7 @@ use Google\Cloud\Container\V1\NodeNetworkConfig;
 use Google\Cloud\Container\V1\NodePool;
 use Google\Cloud\Container\V1\NodePoolAutoscaling;
 use Google\Cloud\Container\V1\NodePoolLoggingConfig;
+use Google\Cloud\Container\V1\NodePool\QueuedProvisioning;
 use Google\Cloud\Container\V1\NodePool\UpgradeSettings;
 use Google\Cloud\Container\V1\NodeTaints;
 use Google\Cloud\Container\V1\Operation;
@@ -2829,6 +2830,8 @@ class ClusterManagerGapicClient
      *           Desired resource manager tag keys and values to be attached to the nodes
      *           for managing Compute Engine firewalls using Network Firewall Policies.
      *           Existing tags will be replaced with new values.
+     *     @type QueuedProvisioning $queuedProvisioning
+     *           Specifies the configuration of queued provisioning.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2952,6 +2955,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['resourceManagerTags'])) {
             $request->setResourceManagerTags($optionalArgs['resourceManagerTags']);
+        }
+
+        if (isset($optionalArgs['queuedProvisioning'])) {
+            $request->setQueuedProvisioning($optionalArgs['queuedProvisioning']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

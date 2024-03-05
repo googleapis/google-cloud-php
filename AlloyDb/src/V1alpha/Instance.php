@@ -160,6 +160,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $ip_address = '';
     /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $public_ip_address = '';
+    /**
      * Output only. Reconciling (https://google.aip.dev/128#reconciliation).
      * Set to true if the current state of Instance does not match the user's
      * intended state, and the service is actively updating the resource to
@@ -301,6 +309,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $ip_address
      *           Output only. The IP address for the Instance.
      *           This is the connection endpoint for an end-user application.
+     *     @type string $public_ip_address
+     *           Output only. The public IP addresses for the Instance. This is available
+     *           ONLY when enable_public_ip is set. This is the connection endpoint for an
+     *           end-user application.
      *     @type bool $reconciling
      *           Output only. Reconciling (https://google.aip.dev/128#reconciliation).
      *           Set to true if the current state of Instance does not match the user's
@@ -940,6 +952,36 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPublicIpAddress()
+    {
+        return $this->public_ip_address;
+    }
+
+    /**
+     * Output only. The public IP addresses for the Instance. This is available
+     * ONLY when enable_public_ip is set. This is the connection endpoint for an
+     * end-user application.
+     *
+     * Generated from protobuf field <code>string public_ip_address = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublicIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->public_ip_address = $var;
 
         return $this;
     }

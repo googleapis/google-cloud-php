@@ -33,6 +33,12 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ExfilResource targets = 2;</code>
      */
     private $targets;
+    /**
+     * Total exfiltrated bytes processed for the entire job.
+     *
+     * Generated from protobuf field <code>int64 total_exfiltrated_bytes = 3;</code>
+     */
+    private $total_exfiltrated_bytes = 0;
 
     /**
      * Constructor.
@@ -47,6 +53,8 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $targets
      *           If there are multiple targets, each target would get a complete copy of the
      *           "joined" source data.
+     *     @type int|string $total_exfiltrated_bytes
+     *           Total exfiltrated bytes processed for the entire job.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,6 +116,32 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\ExfilResource::class);
         $this->targets = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Total exfiltrated bytes processed for the entire job.
+     *
+     * Generated from protobuf field <code>int64 total_exfiltrated_bytes = 3;</code>
+     * @return int|string
+     */
+    public function getTotalExfiltratedBytes()
+    {
+        return $this->total_exfiltrated_bytes;
+    }
+
+    /**
+     * Total exfiltrated bytes processed for the entire job.
+     *
+     * Generated from protobuf field <code>int64 total_exfiltrated_bytes = 3;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalExfiltratedBytes($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_exfiltrated_bytes = $var;
 
         return $this;
     }

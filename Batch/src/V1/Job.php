@@ -23,7 +23,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. A system generated unique ID (in UUID4 format) for the Job.
+     * Output only. A system generated unique ID for the Job.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -106,7 +106,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. Job name.
      *           For example: "projects/123456/locations/us-central1/jobs/job01".
      *     @type string $uid
-     *           Output only. A system generated unique ID (in UUID4 format) for the Job.
+     *           Output only. A system generated unique ID for the Job.
      *     @type int|string $priority
      *           Priority of the Job.
      *           The valid value range is [0, 100). Default value is 0.
@@ -174,7 +174,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system generated unique ID (in UUID4 format) for the Job.
+     * Output only. A system generated unique ID for the Job.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -185,7 +185,7 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A system generated unique ID (in UUID4 format) for the Job.
+     * Output only. A system generated unique ID for the Job.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

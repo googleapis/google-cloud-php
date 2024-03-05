@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class ProcessSignature extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Describes the type of resource associated with the signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator.ProcessSignature.SignatureType signature_type = 8;</code>
+     */
+    private $signature_type = 0;
     protected $signature;
 
     /**
@@ -27,6 +33,8 @@ class ProcessSignature extends \Google\Protobuf\Internal\Message
      *           Signature indicating that a binary family was matched.
      *     @type \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\YaraRuleSignature $yara_rule_signature
      *           Signature indicating that a YARA rule was matched.
+     *     @type int $signature_type
+     *           Describes the type of resource associated with the signature.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +100,32 @@ class ProcessSignature extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\YaraRuleSignature::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Describes the type of resource associated with the signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator.ProcessSignature.SignatureType signature_type = 8;</code>
+     * @return int
+     */
+    public function getSignatureType()
+    {
+        return $this->signature_type;
+    }
+
+    /**
+     * Describes the type of resource associated with the signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator.ProcessSignature.SignatureType signature_type = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSignatureType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\SignatureType::class);
+        $this->signature_type = $var;
 
         return $this;
     }

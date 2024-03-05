@@ -50,9 +50,9 @@ class Source extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * The canonical name of the finding. It's either
+     * The canonical name of the finding source. It's either
      * "organizations/{organization_id}/sources/{source_id}",
-     * "folders/{folder_id}/sources/{source_id}" or
+     * "folders/{folder_id}/sources/{source_id}", or
      * "projects/{project_number}/sources/{source_id}",
      * depending on the closest CRM ancestor of the resource associated with the
      * finding.
@@ -87,9 +87,9 @@ class Source extends \Google\Protobuf\Internal\Message
      *           (XSS), Flash injection, mixed content (HTTP in HTTPS), and
      *           outdated or insecure libraries."
      *     @type string $canonical_name
-     *           The canonical name of the finding. It's either
+     *           The canonical name of the finding source. It's either
      *           "organizations/{organization_id}/sources/{source_id}",
-     *           "folders/{folder_id}/sources/{source_id}" or
+     *           "folders/{folder_id}/sources/{source_id}", or
      *           "projects/{project_number}/sources/{source_id}",
      *           depending on the closest CRM ancestor of the resource associated with the
      *           finding.
@@ -205,9 +205,9 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The canonical name of the finding. It's either
+     * The canonical name of the finding source. It's either
      * "organizations/{organization_id}/sources/{source_id}",
-     * "folders/{folder_id}/sources/{source_id}" or
+     * "folders/{folder_id}/sources/{source_id}", or
      * "projects/{project_number}/sources/{source_id}",
      * depending on the closest CRM ancestor of the resource associated with the
      * finding.
@@ -221,9 +221,9 @@ class Source extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The canonical name of the finding. It's either
+     * The canonical name of the finding source. It's either
      * "organizations/{organization_id}/sources/{source_id}",
-     * "folders/{folder_id}/sources/{source_id}" or
+     * "folders/{folder_id}/sources/{source_id}", or
      * "projects/{project_number}/sources/{source_id}",
      * depending on the closest CRM ancestor of the resource associated with the
      * finding.

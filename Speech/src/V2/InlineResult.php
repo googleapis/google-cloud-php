@@ -21,6 +21,20 @@ class InlineResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.speech.v2.BatchRecognizeResults transcript = 1;</code>
      */
     private $transcript = null;
+    /**
+     * The transcript for the audio file as VTT formatted captions. This is
+     * populated only when `VTT` output is requested.
+     *
+     * Generated from protobuf field <code>string vtt_captions = 2;</code>
+     */
+    private $vtt_captions = '';
+    /**
+     * The transcript for the audio file as SRT formatted captions. This is
+     * populated only when `SRT` output is requested.
+     *
+     * Generated from protobuf field <code>string srt_captions = 3;</code>
+     */
+    private $srt_captions = '';
 
     /**
      * Constructor.
@@ -30,6 +44,12 @@ class InlineResult extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Speech\V2\BatchRecognizeResults $transcript
      *           The transcript for the audio file.
+     *     @type string $vtt_captions
+     *           The transcript for the audio file as VTT formatted captions. This is
+     *           populated only when `VTT` output is requested.
+     *     @type string $srt_captions
+     *           The transcript for the audio file as SRT formatted captions. This is
+     *           populated only when `SRT` output is requested.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +89,62 @@ class InlineResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\BatchRecognizeResults::class);
         $this->transcript = $var;
+
+        return $this;
+    }
+
+    /**
+     * The transcript for the audio file as VTT formatted captions. This is
+     * populated only when `VTT` output is requested.
+     *
+     * Generated from protobuf field <code>string vtt_captions = 2;</code>
+     * @return string
+     */
+    public function getVttCaptions()
+    {
+        return $this->vtt_captions;
+    }
+
+    /**
+     * The transcript for the audio file as VTT formatted captions. This is
+     * populated only when `VTT` output is requested.
+     *
+     * Generated from protobuf field <code>string vtt_captions = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVttCaptions($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->vtt_captions = $var;
+
+        return $this;
+    }
+
+    /**
+     * The transcript for the audio file as SRT formatted captions. This is
+     * populated only when `SRT` output is requested.
+     *
+     * Generated from protobuf field <code>string srt_captions = 3;</code>
+     * @return string
+     */
+    public function getSrtCaptions()
+    {
+        return $this->srt_captions;
+    }
+
+    /**
+     * The transcript for the audio file as SRT formatted captions. This is
+     * populated only when `SRT` output is requested.
+     *
+     * Generated from protobuf field <code>string srt_captions = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSrtCaptions($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->srt_captions = $var;
 
         return $this;
     }

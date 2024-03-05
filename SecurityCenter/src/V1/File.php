@@ -56,6 +56,12 @@ class File extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string contents = 6;</code>
      */
     private $contents = '';
+    /**
+     * Path of the file in terms of underlying disk/partition identifiers.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File.DiskPath disk_path = 7;</code>
+     */
+    private $disk_path = null;
 
     /**
      * Constructor.
@@ -79,6 +85,8 @@ class File extends \Google\Protobuf\Internal\Message
      *           True when the hash covers only a prefix of the file.
      *     @type string $contents
      *           Prefix of the file contents as a JSON-encoded string.
+     *     @type \Google\Cloud\SecurityCenter\V1\File\DiskPath $disk_path
+     *           Path of the file in terms of underlying disk/partition identifiers.
      * }
      */
     public function __construct($data = NULL) {
@@ -246,6 +254,42 @@ class File extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->contents = $var;
+
+        return $this;
+    }
+
+    /**
+     * Path of the file in terms of underlying disk/partition identifiers.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File.DiskPath disk_path = 7;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\File\DiskPath|null
+     */
+    public function getDiskPath()
+    {
+        return $this->disk_path;
+    }
+
+    public function hasDiskPath()
+    {
+        return isset($this->disk_path);
+    }
+
+    public function clearDiskPath()
+    {
+        unset($this->disk_path);
+    }
+
+    /**
+     * Path of the file in terms of underlying disk/partition identifiers.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File.DiskPath disk_path = 7;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\File\DiskPath $var
+     * @return $this
+     */
+    public function setDiskPath($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\File\DiskPath::class);
+        $this->disk_path = $var;
 
         return $this;
     }

@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.4",
+        "php": "^8.0",
         "rize/uri-template": "~0.3",
         "google/auth": "^1.34",
         "guzzlehttp/guzzle": "^6.5.8|^7.4.4",
@@ -12,7 +12,7 @@
         "guzzlehttp/psr7": "^2.6",
         "monolog/monolog": "^2.9|^3.0",
         "psr/http-message": "^1.0|^2.0",
-        "google/gax": "^1.27.0"
+        "google/gax": "^1.30"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",

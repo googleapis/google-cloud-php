@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.4",
+        "php": "^8.0",
         "google/cloud-core": "^1.55",
         "ramsey/uuid": "^3.0|^4.0"
     },

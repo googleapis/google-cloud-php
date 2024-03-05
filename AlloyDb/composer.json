@@ -17,8 +17,8 @@
         }
     },
     "require": {
-        "php": ">=7.4",
-        "google/gax": "^1.26.0",
+        "php": "^8.0",
+        "google/gax": "^1.30",
         "google/common-protos": "^4.4"
     },
     "require-dev": {

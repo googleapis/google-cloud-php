@@ -28,7 +28,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
      * Specifies time to start scheduling transfer runs. The first run will be
      * scheduled at or after the start time according to a recurrence pattern
      * defined in the schedule string. The start time can be changed at any
-     * moment. The time when a data transfer can be trigerred manually is not
+     * moment. The time when a data transfer can be triggered manually is not
      * limited by this option.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
@@ -37,7 +37,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
     /**
      * Defines time to stop scheduling transfer runs. A transfer run cannot be
      * scheduled at or after the end time. The end time can be changed at any
-     * moment. The time when a data transfer can be trigerred manually is not
+     * moment. The time when a data transfer can be triggered manually is not
      * limited by this option.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
@@ -59,12 +59,12 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
      *           Specifies time to start scheduling transfer runs. The first run will be
      *           scheduled at or after the start time according to a recurrence pattern
      *           defined in the schedule string. The start time can be changed at any
-     *           moment. The time when a data transfer can be trigerred manually is not
+     *           moment. The time when a data transfer can be triggered manually is not
      *           limited by this option.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Defines time to stop scheduling transfer runs. A transfer run cannot be
      *           scheduled at or after the end time. The end time can be changed at any
-     *           moment. The time when a data transfer can be trigerred manually is not
+     *           moment. The time when a data transfer can be triggered manually is not
      *           limited by this option.
      * }
      */
@@ -109,7 +109,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
      * Specifies time to start scheduling transfer runs. The first run will be
      * scheduled at or after the start time according to a recurrence pattern
      * defined in the schedule string. The start time can be changed at any
-     * moment. The time when a data transfer can be trigerred manually is not
+     * moment. The time when a data transfer can be triggered manually is not
      * limited by this option.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
@@ -134,7 +134,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
      * Specifies time to start scheduling transfer runs. The first run will be
      * scheduled at or after the start time according to a recurrence pattern
      * defined in the schedule string. The start time can be changed at any
-     * moment. The time when a data transfer can be trigerred manually is not
+     * moment. The time when a data transfer can be triggered manually is not
      * limited by this option.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
@@ -152,7 +152,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
     /**
      * Defines time to stop scheduling transfer runs. A transfer run cannot be
      * scheduled at or after the end time. The end time can be changed at any
-     * moment. The time when a data transfer can be trigerred manually is not
+     * moment. The time when a data transfer can be triggered manually is not
      * limited by this option.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
@@ -176,7 +176,7 @@ class ScheduleOptions extends \Google\Protobuf\Internal\Message
     /**
      * Defines time to stop scheduling transfer runs. A transfer run cannot be
      * scheduled at or after the end time. The end time can be changed at any
-     * moment. The time when a data transfer can be trigerred manually is not
+     * moment. The time when a data transfer can be triggered manually is not
      * limited by this option.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
