@@ -52,7 +52,6 @@ class ValueMapper
     public static $allowedTypes = [
         self::TYPE_BOOL,
         self::TYPE_INT64,
-        self::TYPE_FLOAT32,
         self::TYPE_FLOAT64,
         self::TYPE_TIMESTAMP,
         self::TYPE_DATE,
@@ -64,6 +63,7 @@ class ValueMapper
         self::TYPE_JSON,
         self::TYPE_PG_NUMERIC,
         self::TYPE_PG_JSONB,
+        self::TYPE_FLOAT32,
     ];
 
     /*

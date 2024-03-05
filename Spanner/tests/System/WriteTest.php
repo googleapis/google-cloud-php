@@ -1155,7 +1155,8 @@ class WriteTest extends SpannerTestCase
         $this->assertEquals($statements[2], $res->error()['statement']);
     }
 
-    private function assertValues($expected, $actual, $delta = 0.000001) {
+    private function assertValues($expected, $actual, $delta = 0.000001)
+    {
         if (is_float($expected)) {
             $this->assertEqualsWithDelta($expected, $actual, $delta);
         } elseif (is_array($expected)) {
