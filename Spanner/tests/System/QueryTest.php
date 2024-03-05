@@ -179,6 +179,9 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindTypeParameterNull($type)
     {
+        if ($type == Database::TYPE_FLOAT32) {
+            $this->skipEmulatorTests();
+        }
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -398,7 +401,7 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindEmptyArrayOfTypeLegacy($type)
     {
-        if ($type == Database::TYPE_NUMERIC) {
+        if (in_array($type, [Database::TYPE_NUMERIC, Database::TYPE_FLOAT32])) {
             $this->skipEmulatorTests();
         }
 
@@ -429,7 +432,7 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindEmptyArrayOfType($type)
     {
-        if ($type == Database::TYPE_NUMERIC) {
+        if (in_array($type, [Database::TYPE_NUMERIC, Database::TYPE_FLOAT32])) {
             $this->skipEmulatorTests();
         }
         $db = self::$database;
@@ -460,7 +463,7 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindNullArrayOfTypeLegacy($type)
     {
-        if ($type == Database::TYPE_NUMERIC) {
+        if (in_array($type, [Database::TYPE_NUMERIC, Database::TYPE_FLOAT32])) {
             $this->skipEmulatorTests();
         }
 
@@ -492,7 +495,7 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindNullArrayOfType($type)
     {
-        if ($type == Database::TYPE_NUMERIC) {
+        if (in_array($type, [Database::TYPE_NUMERIC, Database::TYPE_FLOAT32])) {
             $this->skipEmulatorTests();
         }
 
