@@ -1,0 +1,113 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.recaptchaenterprise.v1",
+    "libraryPackage": "Google\\Cloud\\RecaptchaEnterprise\\V1",
+    "services": {
+        "RecaptchaEnterpriseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RecaptchaEnterpriseServiceGapicClient",
+                    "rpcs": {
+                        "AnnotateAssessment": {
+                            "methods": [
+                                "annotateAssessment"
+                            ]
+                        },
+                        "CreateAssessment": {
+                            "methods": [
+                                "createAssessment"
+                            ]
+                        },
+                        "CreateFirewallPolicy": {
+                            "methods": [
+                                "createFirewallPolicy"
+                            ]
+                        },
+                        "CreateKey": {
+                            "methods": [
+                                "createKey"
+                            ]
+                        },
+                        "DeleteFirewallPolicy": {
+                            "methods": [
+                                "deleteFirewallPolicy"
+                            ]
+                        },
+                        "DeleteKey": {
+                            "methods": [
+                                "deleteKey"
+                            ]
+                        },
+                        "GetFirewallPolicy": {
+                            "methods": [
+                                "getFirewallPolicy"
+                            ]
+                        },
+                        "GetKey": {
+                            "methods": [
+                                "getKey"
+                            ]
+                        },
+                        "GetMetrics": {
+                            "methods": [
+                                "getMetrics"
+                            ]
+                        },
+                        "ListFirewallPolicies": {
+                            "methods": [
+                                "listFirewallPolicies"
+                            ]
+                        },
+                        "ListKeys": {
+                            "methods": [
+                                "listKeys"
+                            ]
+                        },
+                        "ListRelatedAccountGroupMemberships": {
+                            "methods": [
+                                "listRelatedAccountGroupMemberships"
+                            ]
+                        },
+                        "ListRelatedAccountGroups": {
+                            "methods": [
+                                "listRelatedAccountGroups"
+                            ]
+                        },
+                        "MigrateKey": {
+                            "methods": [
+                                "migrateKey"
+                            ]
+                        },
+                        "ReorderFirewallPolicies": {
+                            "methods": [
+                                "reorderFirewallPolicies"
+                            ]
+                        },
+                        "RetrieveLegacySecretKey": {
+                            "methods": [
+                                "retrieveLegacySecretKey"
+                            ]
+                        },
+                        "SearchRelatedAccountGroupMemberships": {
+                            "methods": [
+                                "searchRelatedAccountGroupMemberships"
+                            ]
+                        },
+                        "UpdateFirewallPolicy": {
+                            "methods": [
+                                "updateFirewallPolicy"
+                            ]
+                        },
+                        "UpdateKey": {
+                            "methods": [
+                                "updateKey"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
