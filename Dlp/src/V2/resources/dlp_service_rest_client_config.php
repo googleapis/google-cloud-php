@@ -351,6 +351,23 @@ return [
                     ],
                 ],
             ],
+            'GetColumnDataProfile' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/locations/*/columnDataProfiles/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/columnDataProfiles/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDeidentifyTemplate' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=organizations/*/deidentifyTemplates/*}',
@@ -456,6 +473,23 @@ return [
                     ],
                 ],
             ],
+            'GetProjectDataProfile' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/locations/*/projectDataProfiles/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/projectDataProfiles/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetStoredInfoType' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=organizations/*/storedInfoTypes/*}',
@@ -471,6 +505,23 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTableDataProfile' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/locations/*/tableDataProfiles/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/tableDataProfiles/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -514,6 +565,23 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/content:inspect',
                         'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListColumnDataProfiles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/columnDataProfiles',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/columnDataProfiles',
                     ],
                 ],
                 'placeholders' => [
@@ -650,6 +718,23 @@ return [
                     ],
                 ],
             ],
+            'ListProjectDataProfiles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/projectDataProfiles',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/projectDataProfiles',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListStoredInfoTypes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=organizations/*}/storedInfoTypes',
@@ -665,6 +750,23 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/storedInfoTypes',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTableDataProfiles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/tableDataProfiles',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/tableDataProfiles',
                     ],
                 ],
                 'placeholders' => [

@@ -29,8 +29,9 @@ use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
 
 /**
  * Deletes a DeidentifyTemplate.
- * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
- * more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+ * to learn more.
  *
  * @param string $formattedName Resource name of the organization and deidentify template to be
  *                              deleted, for example

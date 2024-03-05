@@ -16,6 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImageTransformations extends \Google\Protobuf\Internal\Message
 {
     /**
+     * List of transforms to make.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ImageTransformations.ImageTransformation transforms = 2;</code>
      */
     private $transforms;
@@ -27,6 +29,7 @@ class ImageTransformations extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Dlp\V2\ImageTransformations\ImageTransformation>|\Google\Protobuf\Internal\RepeatedField $transforms
+     *           List of transforms to make.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,6 +38,8 @@ class ImageTransformations extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * List of transforms to make.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ImageTransformations.ImageTransformation transforms = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
@@ -44,6 +49,8 @@ class ImageTransformations extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * List of transforms to make.
+     *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ImageTransformations.ImageTransformation transforms = 2;</code>
      * @param array<\Google\Cloud\Dlp\V2\ImageTransformations\ImageTransformation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this

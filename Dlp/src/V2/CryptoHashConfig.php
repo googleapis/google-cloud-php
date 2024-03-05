@@ -15,7 +15,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * Outputs a base64 encoded representation of the hashed output
  * (for example, L7k0BHmF1ha5U3NfGykjro4xWi1MPVQPjhMAZbSV9mM=).
  * Currently, only string and integer values can be hashed.
- * See https://cloud.google.com/dlp/docs/pseudonymization to learn more.
+ * See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization
+ * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CryptoHashConfig</code>
  */

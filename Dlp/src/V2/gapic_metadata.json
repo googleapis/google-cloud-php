@@ -90,6 +90,11 @@
                                 "finishDlpJob"
                             ]
                         },
+                        "GetColumnDataProfile": {
+                            "methods": [
+                                "getColumnDataProfile"
+                            ]
+                        },
                         "GetDeidentifyTemplate": {
                             "methods": [
                                 "getDeidentifyTemplate"
@@ -115,9 +120,19 @@
                                 "getJobTrigger"
                             ]
                         },
+                        "GetProjectDataProfile": {
+                            "methods": [
+                                "getProjectDataProfile"
+                            ]
+                        },
                         "GetStoredInfoType": {
                             "methods": [
                                 "getStoredInfoType"
+                            ]
+                        },
+                        "GetTableDataProfile": {
+                            "methods": [
+                                "getTableDataProfile"
                             ]
                         },
                         "HybridInspectDlpJob": {
@@ -133,6 +148,11 @@
                         "InspectContent": {
                             "methods": [
                                 "inspectContent"
+                            ]
+                        },
+                        "ListColumnDataProfiles": {
+                            "methods": [
+                                "listColumnDataProfiles"
                             ]
                         },
                         "ListDeidentifyTemplates": {
@@ -165,9 +185,19 @@
                                 "listJobTriggers"
                             ]
                         },
+                        "ListProjectDataProfiles": {
+                            "methods": [
+                                "listProjectDataProfiles"
+                            ]
+                        },
                         "ListStoredInfoTypes": {
                             "methods": [
                                 "listStoredInfoTypes"
+                            ]
+                        },
+                        "ListTableDataProfiles": {
+                            "methods": [
+                                "listTableDataProfiles"
                             ]
                         },
                         "RedactImage": {

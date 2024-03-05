@@ -10,7 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * DeidentifyTemplates contains instructions on how to de-identify content.
- * See https://cloud.google.com/dlp/docs/concepts-templates to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/concepts-templates to
+ * learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeidentifyTemplate</code>
  */
