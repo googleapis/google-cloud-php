@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceRequirements extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Only ´memory´ and 'cpu' are supported.
+     * Only `memory` and `cpu` keys in the map are supported.
      * <p>Notes:
      *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
      * CPU requires at least 2Gi of memory. For more information, go to
@@ -28,7 +28,9 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      */
     private $limits;
     /**
-     * Determines whether CPU should be throttled or not outside of requests.
+     * Determines whether CPU is only allocated during requests (true by default).
+     * However, if ResourceRequirements is set, the caller must explicitly
+     * set this field to true to preserve the default behavior.
      *
      * Generated from protobuf field <code>bool cpu_idle = 2;</code>
      */
@@ -49,7 +51,7 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $limits
-     *           Only ´memory´ and 'cpu' are supported.
+     *           Only `memory` and `cpu` keys in the map are supported.
      *           <p>Notes:
      *            * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
      *           CPU requires at least 2Gi of memory. For more information, go to
@@ -57,7 +59,9 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      *             * For supported 'memory' values and syntax, go to
      *            https://cloud.google.com/run/docs/configuring/memory-limits
      *     @type bool $cpu_idle
-     *           Determines whether CPU should be throttled or not outside of requests.
+     *           Determines whether CPU is only allocated during requests (true by default).
+     *           However, if ResourceRequirements is set, the caller must explicitly
+     *           set this field to true to preserve the default behavior.
      *     @type bool $startup_cpu_boost
      *           Determines whether CPU should be boosted on startup of a new container
      *           instance above the requested CPU threshold, this can help reduce cold-start
@@ -70,7 +74,7 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only ´memory´ and 'cpu' are supported.
+     * Only `memory` and `cpu` keys in the map are supported.
      * <p>Notes:
      *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
      * CPU requires at least 2Gi of memory. For more information, go to
@@ -87,7 +91,7 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only ´memory´ and 'cpu' are supported.
+     * Only `memory` and `cpu` keys in the map are supported.
      * <p>Notes:
      *  * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4
      * CPU requires at least 2Gi of memory. For more information, go to
@@ -108,7 +112,9 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Determines whether CPU should be throttled or not outside of requests.
+     * Determines whether CPU is only allocated during requests (true by default).
+     * However, if ResourceRequirements is set, the caller must explicitly
+     * set this field to true to preserve the default behavior.
      *
      * Generated from protobuf field <code>bool cpu_idle = 2;</code>
      * @return bool
@@ -119,7 +125,9 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Determines whether CPU should be throttled or not outside of requests.
+     * Determines whether CPU is only allocated during requests (true by default).
+     * However, if ResourceRequirements is set, the caller must explicitly
+     * set this field to true to preserve the default behavior.
      *
      * Generated from protobuf field <code>bool cpu_idle = 2;</code>
      * @param bool $var

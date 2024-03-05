@@ -104,6 +104,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -120,6 +121,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -271,6 +273,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -287,6 +290,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -476,6 +480,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -492,6 +497,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -792,6 +798,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -808,6 +815,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);
@@ -947,6 +955,7 @@ class ServicesClientTest extends GeneratedTest
         $lastModifier = 'lastModifier-28366240';
         $client = 'client-1357712437';
         $clientVersion = 'clientVersion-1506231196';
+        $defaultUriDisabled = false;
         $observedGeneration = 900833007;
         $latestReadyRevision = 'latestReadyRevision-853854545';
         $latestCreatedRevision = 'latestCreatedRevision452370698';
@@ -963,6 +972,7 @@ class ServicesClientTest extends GeneratedTest
         $expectedResponse->setLastModifier($lastModifier);
         $expectedResponse->setClient($client);
         $expectedResponse->setClientVersion($clientVersion);
+        $expectedResponse->setDefaultUriDisabled($defaultUriDisabled);
         $expectedResponse->setObservedGeneration($observedGeneration);
         $expectedResponse->setLatestReadyRevision($latestReadyRevision);
         $expectedResponse->setLatestCreatedRevision($latestCreatedRevision);

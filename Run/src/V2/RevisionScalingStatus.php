@@ -20,7 +20,7 @@ class RevisionScalingStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 desired_min_instance_count = 1;</code>
      */
-    protected $desired_min_instance_count = 0;
+    private $desired_min_instance_count = 0;
 
     /**
      * Constructor.

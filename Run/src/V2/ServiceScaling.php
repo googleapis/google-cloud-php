@@ -23,7 +23,7 @@ class ServiceScaling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_instance_count = 1;</code>
      */
-    protected $min_instance_count = 0;
+    private $min_instance_count = 0;
 
     /**
      * Constructor.
