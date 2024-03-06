@@ -146,8 +146,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * ```
      * $lifecycle->addAbortIncompleteMultipartUploadRule([
      *     'age' => 50,
-     *     'matchesPrefix' => ['images/'],
-     *     'matchesSuffix' => ['.pdf']
+     *     'isLive' => true
      * ]);
      * ```
      *
