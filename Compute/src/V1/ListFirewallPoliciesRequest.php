@@ -46,7 +46,7 @@ class ListFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent_id = null;
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      */
@@ -69,7 +69,7 @@ class ListFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent_id
      *           Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      * }
      */
     public function __construct($data = NULL) {
@@ -258,7 +258,7 @@ class ListFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      * @return bool
@@ -279,7 +279,7 @@ class ListFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      * @param bool $var

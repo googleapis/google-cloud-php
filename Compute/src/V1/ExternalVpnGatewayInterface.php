@@ -27,6 +27,12 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     private $ip_address = null;
+    /**
+     * IPv6 address of the interface in the external VPN gateway. This IPv6 address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine. Must specify an IPv6 address (not IPV4-mapped) using any format described in RFC 4291 (e.g. 2001:db8:0:0:2d9:51:0:0). The output format is RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     */
+    private $ipv6_address = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      *           The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: - SINGLE_IP_INTERNALLY_REDUNDANT - 0 - TWO_IPS_REDUNDANCY - 0, 1 - FOUR_IPS_REDUNDANCY - 0, 1, 2, 3 
      *     @type string $ip_address
      *           IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine.
+     *     @type string $ipv6_address
+     *           IPv6 address of the interface in the external VPN gateway. This IPv6 address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine. Must specify an IPv6 address (not IPV4-mapped) using any format described in RFC 4291 (e.g. 2001:db8:0:0:2d9:51:0:0). The output format is RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +121,42 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * IPv6 address of the interface in the external VPN gateway. This IPv6 address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine. Must specify an IPv6 address (not IPV4-mapped) using any format described in RFC 4291 (e.g. 2001:db8:0:0:2d9:51:0:0). The output format is RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     * @return string
+     */
+    public function getIpv6Address()
+    {
+        return isset($this->ipv6_address) ? $this->ipv6_address : '';
+    }
+
+    public function hasIpv6Address()
+    {
+        return isset($this->ipv6_address);
+    }
+
+    public function clearIpv6Address()
+    {
+        unset($this->ipv6_address);
+    }
+
+    /**
+     * IPv6 address of the interface in the external VPN gateway. This IPv6 address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine. Must specify an IPv6 address (not IPV4-mapped) using any format described in RFC 4291 (e.g. 2001:db8:0:0:2d9:51:0:0). The output format is RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
+     *
+     * Generated from protobuf field <code>optional string ipv6_address = 341563804;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6Address($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_address = $var;
 
         return $this;
     }

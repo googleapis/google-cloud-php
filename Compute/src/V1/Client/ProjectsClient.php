@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\ListXpnHostsProjectsRequest;
 use Google\Cloud\Compute\V1\MoveDiskProjectRequest;
 use Google\Cloud\Compute\V1\MoveInstanceProjectRequest;
 use Google\Cloud\Compute\V1\Project;
+use Google\Cloud\Compute\V1\SetCloudArmorTierProjectRequest;
 use Google\Cloud\Compute\V1\SetCommonInstanceMetadataProjectRequest;
 use Google\Cloud\Compute\V1\SetDefaultNetworkTierProjectRequest;
 use Google\Cloud\Compute\V1\SetUsageExportBucketProjectRequest;
@@ -66,6 +67,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listXpnHostsAsync(ListXpnHostsProjectsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface moveDiskAsync(MoveDiskProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface moveInstanceAsync(MoveInstanceProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setCloudArmorTierAsync(SetCloudArmorTierProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setCommonInstanceMetadataAsync(SetCommonInstanceMetadataProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setDefaultNetworkTierAsync(SetDefaultNetworkTierProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setUsageExportBucketAsync(SetUsageExportBucketProjectRequest $request, array $optionalArgs = [])
@@ -489,6 +491,30 @@ final class ProjectsClient
     public function moveInstance(MoveInstanceProjectRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('MoveInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the Cloud Armor tier of the project. To set ENTERPRISE or above the billing account of the project must be subscribed to Cloud Armor Enterprise. See Subscribing to Cloud Armor Enterprise for more information.
+     *
+     * The async variant is {@see ProjectsClient::setCloudArmorTierAsync()} .
+     *
+     * @param SetCloudArmorTierProjectRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setCloudArmorTier(SetCloudArmorTierProjectRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetCloudArmorTier', $request, $callOptions)->wait();
     }
 
     /**

@@ -285,7 +285,7 @@ final class BackendServicesClient
     }
 
     /**
-     * Retrieves the list of all BackendService resources, regional and global, available to the specified project.
+     * Retrieves the list of all BackendService resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see BackendServicesClient::aggregatedListAsync()} .
      *

@@ -242,7 +242,7 @@ final class PacketMirroringsClient
     }
 
     /**
-     * Retrieves an aggregated list of packetMirrorings.
+     * Retrieves an aggregated list of packetMirrorings. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see PacketMirroringsClient::aggregatedListAsync()} .
      *

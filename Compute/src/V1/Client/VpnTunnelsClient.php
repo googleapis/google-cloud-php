@@ -239,7 +239,7 @@ final class VpnTunnelsClient
     }
 
     /**
-     * Retrieves an aggregated list of VPN tunnels.
+     * Retrieves an aggregated list of VPN tunnels. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see VpnTunnelsClient::aggregatedListAsync()} .
      *

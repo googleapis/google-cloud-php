@@ -28,7 +28,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\ForwardingRulesClient;
 
 /**
- * Retrieves an aggregated list of forwarding rules.
+ * Retrieves an aggregated list of forwarding rules. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

@@ -88,6 +88,13 @@ class Backend extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional float max_utilization = 148192199;</code>
      */
     private $max_utilization = null;
+    /**
+     * This field indicates whether this backend should be fully utilized before sending traffic to backends with default preference. The possible values are: - PREFERRED: Backends with this preference level will be filled up to their capacity limits first, based on RTT. - DEFAULT: If preferred backends don't have enough capacity, backends in this layer would be used and traffic would be assigned based on the load balancing algorithm you use. This is the default
+     * Check the Preference enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string preference = 150781147;</code>
+     */
+    private $preference = null;
 
     /**
      * Constructor.
@@ -120,6 +127,9 @@ class Backend extends \Google\Protobuf\Internal\Message
      *           Defines a maximum target for requests per second (RPS). For usage guidelines, see Rate balancing mode and Utilization balancing mode. Not available if the backend's balancingMode is CONNECTION.
      *     @type float $max_utilization
      *           Optional parameter to define a target capacity for the UTILIZATION balancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
+     *     @type string $preference
+     *           This field indicates whether this backend should be fully utilized before sending traffic to backends with default preference. The possible values are: - PREFERRED: Backends with this preference level will be filled up to their capacity limits first, based on RTT. - DEFAULT: If preferred backends don't have enough capacity, backends in this layer would be used and traffic would be assigned based on the load balancing algorithm you use. This is the default
+     *           Check the Preference enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -557,6 +567,44 @@ class Backend extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->max_utilization = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field indicates whether this backend should be fully utilized before sending traffic to backends with default preference. The possible values are: - PREFERRED: Backends with this preference level will be filled up to their capacity limits first, based on RTT. - DEFAULT: If preferred backends don't have enough capacity, backends in this layer would be used and traffic would be assigned based on the load balancing algorithm you use. This is the default
+     * Check the Preference enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string preference = 150781147;</code>
+     * @return string
+     */
+    public function getPreference()
+    {
+        return isset($this->preference) ? $this->preference : '';
+    }
+
+    public function hasPreference()
+    {
+        return isset($this->preference);
+    }
+
+    public function clearPreference()
+    {
+        unset($this->preference);
+    }
+
+    /**
+     * This field indicates whether this backend should be fully utilized before sending traffic to backends with default preference. The possible values are: - PREFERRED: Backends with this preference level will be filled up to their capacity limits first, based on RTT. - DEFAULT: If preferred backends don't have enough capacity, backends in this layer would be used and traffic would be assigned based on the load balancing algorithm you use. This is the default
+     * Check the Preference enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string preference = 150781147;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPreference($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->preference = $var;
 
         return $this;
     }

@@ -52,7 +52,7 @@ class ListRegionInstanceGroupManagersRequest extends \Google\Protobuf\Internal\M
      */
     private $region = '';
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      */
@@ -92,7 +92,7 @@ class ListRegionInstanceGroupManagersRequest extends \Google\Protobuf\Internal\M
      *     @type string $region
      *           Name of the region scoping this request.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      * }
      */
     public function __construct($data = NULL) {
@@ -297,7 +297,7 @@ class ListRegionInstanceGroupManagersRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      * @return bool
@@ -318,7 +318,7 @@ class ListRegionInstanceGroupManagersRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      * @param bool $var
