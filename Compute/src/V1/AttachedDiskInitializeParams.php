@@ -78,7 +78,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_iops = null;
     /**
-     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must greater than or equal to 1.
      *
      * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
      */
@@ -155,7 +155,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *     @type int|string $provisioned_iops
      *           Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
      *     @type int|string $provisioned_throughput
-     *           Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     *           Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must greater than or equal to 1.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
      *           Required for each regional disk associated with the instance. Specify the URLs of the zones where the disk should be replicated to. You must provide exactly two replica zones, and one zone must be the same as the instance zone.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
@@ -522,7 +522,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must greater than or equal to 1.
      *
      * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
      * @return int|string
@@ -543,7 +543,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be between 1 and 7,124.
+     * Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must greater than or equal to 1.
      *
      * Generated from protobuf field <code>optional int64 provisioned_throughput = 526524181;</code>
      * @param int|string $var

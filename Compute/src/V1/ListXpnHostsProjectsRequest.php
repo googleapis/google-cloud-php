@@ -52,7 +52,7 @@ class ListXpnHostsProjectsRequest extends \Google\Protobuf\Internal\Message
      */
     private $projects_list_xpn_hosts_request_resource = null;
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      */
@@ -92,7 +92,7 @@ class ListXpnHostsProjectsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\ProjectsListXpnHostsRequest $projects_list_xpn_hosts_request_resource
      *           The body resource for this request
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      * }
      */
     public function __construct($data = NULL) {
@@ -307,7 +307,7 @@ class ListXpnHostsProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      * @return bool
@@ -328,7 +328,7 @@ class ListXpnHostsProjectsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      * @param bool $var

@@ -115,11 +115,17 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      */
     private $max_instance_request_concurrency = 0;
     /**
-     * Enable session affinity.
+     * Optional. Enable session affinity.
      *
-     * Generated from protobuf field <code>bool session_affinity = 19;</code>
+     * Generated from protobuf field <code>bool session_affinity = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $session_affinity = false;
+    /**
+     * Optional. Disables health checking containers during deployment.
+     *
+     * Generated from protobuf field <code>bool health_check_disabled = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $health_check_disabled = false;
 
     /**
      * Constructor.
@@ -178,7 +184,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *     @type int $max_instance_request_concurrency
      *           Sets the maximum number of requests that each serving instance can receive.
      *     @type bool $session_affinity
-     *           Enable session affinity.
+     *           Optional. Enable session affinity.
+     *     @type bool $health_check_disabled
+     *           Optional. Disables health checking containers during deployment.
      * }
      */
     public function __construct($data = NULL) {
@@ -581,9 +589,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable session affinity.
+     * Optional. Enable session affinity.
      *
-     * Generated from protobuf field <code>bool session_affinity = 19;</code>
+     * Generated from protobuf field <code>bool session_affinity = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getSessionAffinity()
@@ -592,9 +600,9 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable session affinity.
+     * Optional. Enable session affinity.
      *
-     * Generated from protobuf field <code>bool session_affinity = 19;</code>
+     * Generated from protobuf field <code>bool session_affinity = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -602,6 +610,32 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->session_affinity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Disables health checking containers during deployment.
+     *
+     * Generated from protobuf field <code>bool health_check_disabled = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getHealthCheckDisabled()
+    {
+        return $this->health_check_disabled;
+    }
+
+    /**
+     * Optional. Disables health checking containers during deployment.
+     *
+     * Generated from protobuf field <code>bool health_check_disabled = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setHealthCheckDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->health_check_disabled = $var;
 
         return $this;
     }

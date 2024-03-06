@@ -325,6 +325,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_confidential_storage = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_confidential_storage = false;
+    /**
+     * List of secondary boot disks attached to the nodes.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
+     */
+    private $secondary_boot_disks;
 
     /**
      * Constructor.
@@ -494,6 +500,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           A map of resource manager tag keys and values to be attached to the nodes.
      *     @type bool $enable_confidential_storage
      *           Optional. Reserved for future use.
+     *     @type array<\Google\Cloud\Container\V1\SecondaryBootDisk>|\Google\Protobuf\Internal\RepeatedField $secondary_boot_disks
+     *           List of secondary boot disks attached to the nodes.
      * }
      */
     public function __construct($data = NULL) {
@@ -1783,6 +1791,32 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_confidential_storage = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of secondary boot disks attached to the nodes.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSecondaryBootDisks()
+    {
+        return $this->secondary_boot_disks;
+    }
+
+    /**
+     * List of secondary boot disks attached to the nodes.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
+     * @param array<\Google\Cloud\Container\V1\SecondaryBootDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSecondaryBootDisks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\SecondaryBootDisk::class);
+        $this->secondary_boot_disks = $arr;
 
         return $this;
     }

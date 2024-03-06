@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * or project.
  * The generated data profiles are retained according to the
  * [data retention policy]
- * (https://cloud.google.com/dlp/docs/data-profiles#retention).
+ * (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DiscoveryConfig</code>
  */
@@ -53,7 +53,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/dlp/docs/data-profiles#data-residency.
+     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 3;</code>
      */
@@ -131,7 +131,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      *           template is provided for a region with data, that region's data will not be
      *           scanned.
      *           For more information, see
-     *           https://cloud.google.com/dlp/docs/data-profiles#data-residency.
+     *           https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *     @type array<\Google\Cloud\Dlp\V2\DataProfileAction>|\Google\Protobuf\Internal\RepeatedField $actions
      *           Actions to execute at the completion of scanning.
      *     @type array<\Google\Cloud\Dlp\V2\DiscoveryTarget>|\Google\Protobuf\Internal\RepeatedField $targets
@@ -261,7 +261,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/dlp/docs/data-profiles#data-residency.
+     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -284,7 +284,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/dlp/docs/data-profiles#data-residency.
+     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

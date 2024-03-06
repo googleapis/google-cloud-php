@@ -24,6 +24,21 @@ class Rule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.type.Expr condition = 7;</code>
      */
     private $condition = null;
+    /**
+     * The condition evaluation result for this rule.
+     * Only populated if it meets all the following criteria:
+     * * there is a
+     * [condition][google.cloud.asset.v1.AnalyzerOrgPolicy.Rule.condition]
+     * defined for this rule
+     * * this rule is within a consolidated_policy
+     * * the consolidated_policy is within
+     *   [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer]
+     *   or
+     *   [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource]
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 8;</code>
+     */
+    private $condition_evaluation = null;
     protected $kind;
 
     /**
@@ -47,6 +62,17 @@ class Rule extends \Google\Protobuf\Internal\Message
      *           This field can be set only in Policies for boolean constraints.
      *     @type \Google\Type\Expr $condition
      *           The evaluating condition for this rule.
+     *     @type \Google\Cloud\Asset\V1\ConditionEvaluation $condition_evaluation
+     *           The condition evaluation result for this rule.
+     *           Only populated if it meets all the following criteria:
+     *           * there is a
+     *           [condition][google.cloud.asset.v1.AnalyzerOrgPolicy.Rule.condition]
+     *           defined for this rule
+     *           * this rule is within a consolidated_policy
+     *           * the consolidated_policy is within
+     *             [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer]
+     *             or
+     *             [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource]
      * }
      */
     public function __construct($data = NULL) {
@@ -220,6 +246,60 @@ class Rule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Type\Expr::class);
         $this->condition = $var;
+
+        return $this;
+    }
+
+    /**
+     * The condition evaluation result for this rule.
+     * Only populated if it meets all the following criteria:
+     * * there is a
+     * [condition][google.cloud.asset.v1.AnalyzerOrgPolicy.Rule.condition]
+     * defined for this rule
+     * * this rule is within a consolidated_policy
+     * * the consolidated_policy is within
+     *   [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer]
+     *   or
+     *   [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource]
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 8;</code>
+     * @return \Google\Cloud\Asset\V1\ConditionEvaluation|null
+     */
+    public function getConditionEvaluation()
+    {
+        return $this->condition_evaluation;
+    }
+
+    public function hasConditionEvaluation()
+    {
+        return isset($this->condition_evaluation);
+    }
+
+    public function clearConditionEvaluation()
+    {
+        unset($this->condition_evaluation);
+    }
+
+    /**
+     * The condition evaluation result for this rule.
+     * Only populated if it meets all the following criteria:
+     * * there is a
+     * [condition][google.cloud.asset.v1.AnalyzerOrgPolicy.Rule.condition]
+     * defined for this rule
+     * * this rule is within a consolidated_policy
+     * * the consolidated_policy is within
+     *   [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer]
+     *   or
+     *   [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource]
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 8;</code>
+     * @param \Google\Cloud\Asset\V1\ConditionEvaluation $var
+     * @return $this
+     */
+    public function setConditionEvaluation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\ConditionEvaluation::class);
+        $this->condition_evaluation = $var;
 
         return $this;
     }

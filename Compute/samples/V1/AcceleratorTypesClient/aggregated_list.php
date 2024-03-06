@@ -28,7 +28,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\AcceleratorTypesClient;
 
 /**
- * Retrieves an aggregated list of accelerator types.
+ * Retrieves an aggregated list of accelerator types. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

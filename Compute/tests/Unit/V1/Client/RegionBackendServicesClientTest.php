@@ -239,6 +239,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $region2 = 'region2-690338393';
         $securityPolicy = 'securityPolicy1781695249';
         $selfLink = 'selfLink-1691268851';
+        $serviceLbPolicy = 'serviceLbPolicy1168590609';
         $sessionAffinity = 'sessionAffinity1000759473';
         $timeoutSec = 2067488653;
         $expectedResponse = new BackendService();
@@ -261,6 +262,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSecurityPolicy($securityPolicy);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setServiceLbPolicy($serviceLbPolicy);
         $expectedResponse->setSessionAffinity($sessionAffinity);
         $expectedResponse->setTimeoutSec($timeoutSec);
         $transport->addResponse($expectedResponse);

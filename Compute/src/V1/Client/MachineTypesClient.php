@@ -180,7 +180,7 @@ final class MachineTypesClient
     }
 
     /**
-     * Retrieves an aggregated list of machine types.
+     * Retrieves an aggregated list of machine types. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see MachineTypesClient::aggregatedListAsync()} .
      *
