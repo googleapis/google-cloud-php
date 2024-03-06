@@ -118,6 +118,18 @@ return [
                     ],
                 ],
             ],
+            'SetCloudArmorTier' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/setCloudArmorTier',
+                'body' => 'projects_set_cloud_armor_tier_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'SetCommonInstanceMetadata' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/setCommonInstanceMetadata',

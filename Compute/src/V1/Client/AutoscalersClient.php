@@ -241,7 +241,7 @@ final class AutoscalersClient
     }
 
     /**
-     * Retrieves an aggregated list of autoscalers.
+     * Retrieves an aggregated list of autoscalers. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see AutoscalersClient::aggregatedListAsync()} .
      *
