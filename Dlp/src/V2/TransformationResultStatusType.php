@@ -16,6 +16,8 @@ use UnexpectedValueException;
 class TransformationResultStatusType
 {
     /**
+     * Unused.
+     *
      * Generated from protobuf enum <code>STATE_TYPE_UNSPECIFIED = 0;</code>
      */
     const STATE_TYPE_UNSPECIFIED = 0;

@@ -18,7 +18,7 @@ use UnexpectedValueException;
  * of being a false positive.
  * For more information about each likelihood level
  * and how likelihood works, see [Match
- * likelihood](https://cloud.google.com/dlp/docs/likelihood).
+ * likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
  *
  * Protobuf type <code>google.privacy.dlp.v2.Likelihood</code>
  */

@@ -47,13 +47,13 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      */
     private $table_data_profile = '';
     /**
-     * The resource name of the table this column is within.
+     * The resource name of the resource this column is within.
      *
      * Generated from protobuf field <code>string table_full_resource = 5;</code>
      */
     private $table_full_resource = '';
     /**
-     * The Google Cloud project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the profiled resource.
      *
      * Generated from protobuf field <code>string dataset_project_id = 19;</code>
      */
@@ -162,9 +162,9 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
      *     @type string $table_data_profile
      *           The resource name of the table data profile.
      *     @type string $table_full_resource
-     *           The resource name of the table this column is within.
+     *           The resource name of the resource this column is within.
      *     @type string $dataset_project_id
-     *           The Google Cloud project ID that owns the BigQuery dataset.
+     *           The Google Cloud project ID that owns the profiled resource.
      *     @type string $dataset_location
      *           The BigQuery location where the dataset's data is stored.
      *           See https://cloud.google.com/bigquery/docs/locations for supported
@@ -358,7 +358,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the table this column is within.
+     * The resource name of the resource this column is within.
      *
      * Generated from protobuf field <code>string table_full_resource = 5;</code>
      * @return string
@@ -369,7 +369,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the table this column is within.
+     * The resource name of the resource this column is within.
      *
      * Generated from protobuf field <code>string table_full_resource = 5;</code>
      * @param string $var
@@ -384,7 +384,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the profiled resource.
      *
      * Generated from protobuf field <code>string dataset_project_id = 19;</code>
      * @return string
@@ -395,7 +395,7 @@ class ColumnDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the profiled resource.
      *
      * Generated from protobuf field <code>string dataset_project_id = 19;</code>
      * @param string $var

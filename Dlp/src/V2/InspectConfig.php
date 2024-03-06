@@ -20,7 +20,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Restricts what info_types to look for. The values must correspond to
      * InfoType values returned by ListInfoTypes or listed at
-     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose a default list of detectors to run, which
      * may change over time.
@@ -36,7 +36,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * POSSIBLE.
      * In general, the highest likelihood setting yields the fewest findings in
      * results and the lowest chance of a false positive. For more information,
-     * see [Match likelihood](https://cloud.google.com/dlp/docs/likelihood).
+     * see [Match
+     * likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      */
@@ -86,7 +87,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     private $exclude_info_types = false;
     /**
      * CustomInfoTypes provided by the user. See
-     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+     * to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      */
@@ -115,7 +117,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $info_types
      *           Restricts what info_types to look for. The values must correspond to
      *           InfoType values returned by ListInfoTypes or listed at
-     *           https://cloud.google.com/dlp/docs/infotypes-reference.
+     *           https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
      *           When no InfoTypes or CustomInfoTypes are specified in a request, the
      *           system may automatically choose a default list of detectors to run, which
      *           may change over time.
@@ -127,7 +129,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *           POSSIBLE.
      *           In general, the highest likelihood setting yields the fewest findings in
      *           results and the lowest chance of a false positive. For more information,
-     *           see [Match likelihood](https://cloud.google.com/dlp/docs/likelihood).
+     *           see [Match
+     *           likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
      *     @type array<\Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood>|\Google\Protobuf\Internal\RepeatedField $min_likelihood_per_info_type
      *           Minimum likelihood per infotype. For each infotype, a user can specify a
      *           minimum likelihood. The system only returns a finding if its likelihood is
@@ -157,7 +160,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *           This is not used for data profiling.
      *     @type array<\Google\Cloud\Dlp\V2\CustomInfoType>|\Google\Protobuf\Internal\RepeatedField $custom_info_types
      *           CustomInfoTypes provided by the user. See
-     *           https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     *           https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+     *           to learn more.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $content_options
      *           Deprecated and unused.
      *     @type array<\Google\Cloud\Dlp\V2\InspectionRuleSet>|\Google\Protobuf\Internal\RepeatedField $rule_set
@@ -174,7 +178,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Restricts what info_types to look for. The values must correspond to
      * InfoType values returned by ListInfoTypes or listed at
-     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose a default list of detectors to run, which
      * may change over time.
@@ -193,7 +197,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Restricts what info_types to look for. The values must correspond to
      * InfoType values returned by ListInfoTypes or listed at
-     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
      * system may automatically choose a default list of detectors to run, which
      * may change over time.
@@ -218,7 +222,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * POSSIBLE.
      * In general, the highest likelihood setting yields the fewest findings in
      * results and the lowest chance of a false positive. For more information,
-     * see [Match likelihood](https://cloud.google.com/dlp/docs/likelihood).
+     * see [Match
+     * likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      * @return int
@@ -233,7 +238,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * POSSIBLE.
      * In general, the highest likelihood setting yields the fewest findings in
      * results and the lowest chance of a false positive. For more information,
-     * see [Match likelihood](https://cloud.google.com/dlp/docs/likelihood).
+     * see [Match
+     * likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      * @param int $var
@@ -401,7 +407,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * CustomInfoTypes provided by the user. See
-     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+     * to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -413,7 +420,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * CustomInfoTypes provided by the user. See
-     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+     * to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      * @param array<\Google\Cloud\Dlp\V2\CustomInfoType>|\Google\Protobuf\Internal\RepeatedField $var

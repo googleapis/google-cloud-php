@@ -30,8 +30,11 @@ use Google\Cloud\Dlp\V2\DlpJob;
 
 /**
  * Creates a new job to inspect storage or calculate risk metrics.
- * See https://cloud.google.com/dlp/docs/inspecting-storage and
- * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+ * and
+ * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+ * to learn more.
  *
  * When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
  * system will automatically choose what detectors to run. By default this may
@@ -41,7 +44,7 @@ use Google\Cloud\Dlp\V2\DlpJob;
  *
  *                                The format of this value varies depending on whether you have [specified a
  *                                processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                + Projects scope, location specified:<br/>
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>

@@ -31,13 +31,15 @@ use Google\Cloud\Dlp\V2\ListJobTriggersRequest;
 
 /**
  * Lists job triggers.
- * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+ * to learn more.
  *
  * @param string $formattedParent Parent resource name.
  *
  *                                The format of this value varies depending on whether you have [specified a
  *                                processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                + Projects scope, location specified:<br/>
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
