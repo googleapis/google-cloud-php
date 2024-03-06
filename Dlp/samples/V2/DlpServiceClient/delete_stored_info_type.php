@@ -29,8 +29,9 @@ use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
 
 /**
  * Deletes a stored infoType.
- * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
- * learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+ * to learn more.
  *
  * @param string $formattedName Resource name of the organization and storedInfoType to be
  *                              deleted, for example `organizations/433245324/storedInfoTypes/432452342` or

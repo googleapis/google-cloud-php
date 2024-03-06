@@ -34,6 +34,11 @@ use Google\Cloud\Profiler\V2\UpdateProfileRequest;
  * offline mode is currently not supported: the profile content must be
  * provided at the time of the profile creation.
  *
+ * _Direct use of this API is discouraged, please use a [supported
+ * profiler
+ * agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+ * instead for profile collection._
+ *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
  *  - It may require correct/in-range values for request initialization.

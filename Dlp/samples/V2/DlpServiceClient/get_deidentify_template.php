@@ -30,8 +30,9 @@ use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 
 /**
  * Gets a DeidentifyTemplate.
- * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
- * more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+ * to learn more.
  *
  * @param string $formattedName Resource name of the organization and deidentify template to be
  *                              read, for example `organizations/433245324/deidentifyTemplates/432452342`

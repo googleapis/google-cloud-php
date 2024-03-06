@@ -36,8 +36,10 @@ use Google\Cloud\Dlp\V2\InspectContentResponse;
  * system will automatically choose what detectors to run. By default this may
  * be all types, but may change over time as detectors are updated.
  *
- * For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images
- * and https://cloud.google.com/dlp/docs/inspecting-text,
+ * For how to guides, see
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-images
+ * and
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-text,
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

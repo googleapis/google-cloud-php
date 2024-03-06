@@ -33,6 +33,8 @@ class NullPercentageLevel
      */
     const NULL_PERCENTAGE_LOW = 2;
     /**
+     * A few null entries.
+     *
      * Generated from protobuf enum <code>NULL_PERCENTAGE_MEDIUM = 3;</code>
      */
     const NULL_PERCENTAGE_MEDIUM = 3;

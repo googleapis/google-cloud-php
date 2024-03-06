@@ -15,15 +15,17 @@ class Container
           return;
         }
         \GPBMetadata\Google\Cloud\Securitycenter\V1\Label::initOnce();
+        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
-.google/cloud/securitycenter/v1/container.protogoogle.cloud.securitycenter.v1"o
+‡
+.google/cloud/securitycenter/v1/container.protogoogle.cloud.securitycenter.v1google/protobuf/timestamp.proto" 
 	Container
 name (	
 uri (	
 image_id (	5
-labels (2%.google.cloud.securitycenter.v1.LabelBè
+labels (2%.google.cloud.securitycenter.v1.Label/
+create_time (2.google.protobuf.TimestampBè
 "com.google.cloud.securitycenter.v1BContainerProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 

@@ -246,10 +246,8 @@ class Bucket
      *           are `true`, `false`, `md5` and `crc32`. If true, either md5 or
      *           crc32c will be chosen based on your platform. If false, no
      *           validation hash will be sent. Choose either `md5` or `crc32` to
-     *           force a hash method regardless of performance implications. In
-     *           PHP versions earlier than 7.4, performance will be very
-     *           adversely impacted by using crc32c unless you install the
-     *           `crc32c` PHP extension. **Defaults to** `true`.
+     *           force a hash method regardless of performance implications.
+     *           **Defaults to** `true`.
      *     @type int $chunkSize If provided the upload will be done in chunks.
      *           The size must be in multiples of 262144 bytes. With chunking
      *           you have increased reliability at the risk of higher overhead.
@@ -365,10 +363,8 @@ class Bucket
      *           are `true`, `false`, `md5` and `crc32`. If true, either md5 or
      *           crc32c will be chosen based on your platform. If false, no
      *           validation hash will be sent. Choose either `md5` or `crc32` to
-     *           force a hash method regardless of performance implications. In
-     *           PHP versions earlier than 7.4, performance will be very
-     *           adversely impacted by using crc32c unless you install the
-     *           `crc32c` PHP extension. **Defaults to** `true`.ß
+     *           force a hash method regardless of performance implications.
+     *           **Defaults to** `true`.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,

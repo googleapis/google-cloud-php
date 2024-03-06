@@ -115,6 +115,11 @@
                                 "listClusters"
                             ]
                         },
+                        "ListDatabases": {
+                            "methods": [
+                                "listDatabases"
+                            ]
+                        },
                         "ListInstances": {
                             "methods": [
                                 "listInstances"

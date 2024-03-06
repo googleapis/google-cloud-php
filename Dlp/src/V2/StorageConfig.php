@@ -16,6 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class StorageConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Configuration of the timespan of the items to include in scanning.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageConfig.TimespanConfig timespan_config = 6;</code>
      */
     private $timespan_config = null;
@@ -36,6 +38,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\HybridOptions $hybrid_options
      *           Hybrid inspection options.
      *     @type \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig $timespan_config
+     *           Configuration of the timespan of the items to include in scanning.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,6 +171,8 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration of the timespan of the items to include in scanning.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageConfig.TimespanConfig timespan_config = 6;</code>
      * @return \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig|null
      */
@@ -187,6 +192,8 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration of the timespan of the items to include in scanning.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageConfig.TimespanConfig timespan_config = 6;</code>
      * @param \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig $var
      * @return $this

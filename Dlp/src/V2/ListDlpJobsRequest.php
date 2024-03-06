@@ -19,7 +19,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
      * processing
-     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
@@ -105,7 +105,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *
      *                       The format of this value varies depending on whether you have [specified a
      *                       processing
-     *                       location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                       location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                       + Projects scope, location specified:<br/>
      *                       `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -139,7 +139,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *           Required. Parent resource name.
      *           The format of this value varies depending on whether you have [specified a
      *           processing
-     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *           + Projects scope, location specified:<br/>
      *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           + Projects scope, no location specified (defaults to global):<br/>
@@ -202,7 +202,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
      * processing
-     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
@@ -224,7 +224,7 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
      * processing
-     * location](https://cloud.google.com/dlp/docs/specifying-location):
+     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>

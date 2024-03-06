@@ -31,8 +31,9 @@ use Google\Cloud\Dlp\V2\RedactImageResponse;
 /**
  * Redacts potentially sensitive info from an image.
  * This method has limits on input size, processing time, and output size.
- * See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to
- * learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
+ * to learn more.
  *
  * When no InfoTypes or CustomInfoTypes are specified in this request, the
  * system will automatically choose what detectors to run. By default this may

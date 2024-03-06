@@ -529,12 +529,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $disableMonitoring = false;
         $versionColumnName = 'versionColumnName-1981743891';
+        $pointOfContact = 'pointOfContact1207498695';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
         $expectedResponse->setVersionColumnName($versionColumnName);
+        $expectedResponse->setPointOfContact($pointOfContact);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1494,12 +1496,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $disableMonitoring = false;
         $versionColumnName = 'versionColumnName-1981743891';
+        $pointOfContact = 'pointOfContact1207498695';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
         $expectedResponse->setVersionColumnName($versionColumnName);
+        $expectedResponse->setPointOfContact($pointOfContact);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->featureName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]', '[FEATURE]');
@@ -2127,12 +2131,14 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $etag = 'etag3123477';
         $disableMonitoring = false;
         $versionColumnName = 'versionColumnName-1981743891';
+        $pointOfContact = 'pointOfContact1207498695';
         $expectedResponse = new Feature();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setDisableMonitoring($disableMonitoring);
         $expectedResponse->setVersionColumnName($versionColumnName);
+        $expectedResponse->setPointOfContact($pointOfContact);
         $transport->addResponse($expectedResponse);
         // Mock request
         $feature = new Feature();

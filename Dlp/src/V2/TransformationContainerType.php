@@ -14,18 +14,26 @@ use UnexpectedValueException;
 class TransformationContainerType
 {
     /**
+     * Unused.
+     *
      * Generated from protobuf enum <code>TRANSFORM_UNKNOWN_CONTAINER = 0;</code>
      */
     const TRANSFORM_UNKNOWN_CONTAINER = 0;
     /**
+     * Body of a file.
+     *
      * Generated from protobuf enum <code>TRANSFORM_BODY = 1;</code>
      */
     const TRANSFORM_BODY = 1;
     /**
+     * Metadata for a file.
+     *
      * Generated from protobuf enum <code>TRANSFORM_METADATA = 2;</code>
      */
     const TRANSFORM_METADATA = 2;
     /**
+     * A table.
+     *
      * Generated from protobuf enum <code>TRANSFORM_TABLE = 3;</code>
      */
     const TRANSFORM_TABLE = 3;

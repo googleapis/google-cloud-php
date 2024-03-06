@@ -119,6 +119,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "GetColumnDataProfile": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetDeidentifyTemplate": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -144,7 +149,17 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetProjectDataProfile": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetStoredInfoType": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetTableDataProfile": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -160,6 +175,11 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "InspectContent": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListColumnDataProfiles": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -194,7 +214,17 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ListProjectDataProfiles": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListStoredInfoTypes": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListTableDataProfiles": {
                     "timeout_millis": 300000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Structured content to inspect. Up to 50,000 `Value`s per request allowed. See
- * https://cloud.google.com/dlp/docs/inspecting-structured-text#inspecting_a_table
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-structured-text#inspecting_a_table
  * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Table</code>

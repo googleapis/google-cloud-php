@@ -30,8 +30,11 @@ use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 
 /**
  * Gets the latest state of a long-running DlpJob.
- * See https://cloud.google.com/dlp/docs/inspecting-storage and
- * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+ * and
+ * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+ * to learn more.
  *
  * @param string $formattedName The name of the DlpJob resource. Please see
  *                              {@see DlpServiceClient::dlpJobName()} for help formatting this field.

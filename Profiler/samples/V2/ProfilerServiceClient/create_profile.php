@@ -31,6 +31,11 @@ use Google\Cloud\Profiler\V2\Profile;
 /**
  * CreateProfile creates a new profile resource in the online mode.
  *
+ * _Direct use of this API is discouraged, please use a [supported
+ * profiler
+ * agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+ * instead for profile collection._
+ *
  * The server ensures that the new profiles are created at a constant rate per
  * deployment, so the creation request may hang for some time until the next
  * profile session is available.
