@@ -257,6 +257,19 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>SUBSCRIPTION_CALCULATION_STATUS = 40;</code>
      */
     const SUBSCRIPTION_CALCULATION_STATUS = 40;
+    /**
+     * Count of subscriptions needed to sync source data for PostgreSQL
+     * database.
+     *
+     * Generated from protobuf enum <code>PG_SUBSCRIPTION_COUNT = 41;</code>
+     */
+    const PG_SUBSCRIPTION_COUNT = 41;
+    /**
+     * Final parallel level that is used to do migration.
+     *
+     * Generated from protobuf enum <code>PG_SYNC_PARALLEL_LEVEL = 42;</code>
+     */
+    const PG_SYNC_PARALLEL_LEVEL = 42;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -300,6 +313,8 @@ class SqlExternalSyncSettingErrorType
         self::SOURCE_MAX_SUBSCRIPTIONS => 'SOURCE_MAX_SUBSCRIPTIONS',
         self::UNABLE_TO_VERIFY_DEFINERS => 'UNABLE_TO_VERIFY_DEFINERS',
         self::SUBSCRIPTION_CALCULATION_STATUS => 'SUBSCRIPTION_CALCULATION_STATUS',
+        self::PG_SUBSCRIPTION_COUNT => 'PG_SUBSCRIPTION_COUNT',
+        self::PG_SYNC_PARALLEL_LEVEL => 'PG_SYNC_PARALLEL_LEVEL',
     ];
 
     public static function name($value)
