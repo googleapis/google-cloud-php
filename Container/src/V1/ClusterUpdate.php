@@ -377,6 +377,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig desired_in_transit_encryption_config = 137;</code>
      */
     private $desired_in_transit_encryption_config = null;
+    /**
+     * Enable/Disable Cilium Clusterwide Network Policy for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_cilium_clusterwide_network_policy = 138;</code>
+     */
+    private $desired_enable_cilium_clusterwide_network_policy = null;
 
     /**
      * Constructor.
@@ -540,6 +546,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           pools in autopilot clusters and node auto-provisioning enabled clusters.
      *     @type int $desired_in_transit_encryption_config
      *           Specify the details of in-transit encryption.
+     *     @type bool $desired_enable_cilium_clusterwide_network_policy
+     *           Enable/Disable Cilium Clusterwide Network Policy for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -2377,6 +2385,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\InTransitEncryptionConfig::class);
         $this->desired_in_transit_encryption_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable/Disable Cilium Clusterwide Network Policy for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_cilium_clusterwide_network_policy = 138;</code>
+     * @return bool
+     */
+    public function getDesiredEnableCiliumClusterwideNetworkPolicy()
+    {
+        return isset($this->desired_enable_cilium_clusterwide_network_policy) ? $this->desired_enable_cilium_clusterwide_network_policy : false;
+    }
+
+    public function hasDesiredEnableCiliumClusterwideNetworkPolicy()
+    {
+        return isset($this->desired_enable_cilium_clusterwide_network_policy);
+    }
+
+    public function clearDesiredEnableCiliumClusterwideNetworkPolicy()
+    {
+        unset($this->desired_enable_cilium_clusterwide_network_policy);
+    }
+
+    /**
+     * Enable/Disable Cilium Clusterwide Network Policy for the cluster.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_cilium_clusterwide_network_policy = 138;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDesiredEnableCiliumClusterwideNetworkPolicy($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->desired_enable_cilium_clusterwide_network_policy = $var;
 
         return $this;
     }
