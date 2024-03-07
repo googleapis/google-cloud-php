@@ -1,4 +1,4 @@
 deep-copy-regex:
-    - source: /google/apps/meet/(v2beta)/.*-php/(.*)
+    - source: /google/apps/meet/(v2|v2beta)/.*-php/(.*)
       dest: /owl-bot-staging/AppsMeet/$1/$2
 api-name: AppsMeet
