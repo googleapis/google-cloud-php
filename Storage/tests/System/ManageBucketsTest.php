@@ -141,6 +141,26 @@ class ManageBucketsTest extends StorageTestCase
      * @group storage-bucket-lifecycle
      * @dataProvider lifecycleRules
      */
+    public function testCreateBucketWithLifecycleAbortIncompleteMultipartUploadRule(array $rule, $isError = false)
+    {
+        if ($isError) {
+            $this->expectException(BadRequestException::class);
+        }
+
+        $lifecycle = Bucket::lifecycle();
+        $lifecycle->addAbortIncompleteMultipartUploadRule($rule);
+
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), [
+            'lifecycle' => $lifecycle
+        ]);
+
+        $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
+    }
+
+    /**
+     * @group storage-bucket-lifecycle
+     * @dataProvider lifecycleRules
+     */
     public function testUpdateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
     {
         if ($isError) {
