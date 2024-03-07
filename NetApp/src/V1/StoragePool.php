@@ -66,15 +66,15 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
-     * Description of the storage pool
+     * Optional. Description of the storage pool
      *
-     * Generated from protobuf field <code>string description = 9;</code>
+     * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $description = '';
     /**
-     * Labels as key value pairs
+     * Optional. Labels as key value pairs
      *
-     * Generated from protobuf field <code>map<string, string> labels = 10;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -85,28 +85,29 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      */
     protected $network = '';
     /**
-     * Specifies the Active Directory to be used for creating a SMB volume.
+     * Optional. Specifies the Active Directory to be used for creating a SMB
+     * volume.
      *
-     * Generated from protobuf field <code>string active_directory = 12 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string active_directory = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $active_directory = '';
     /**
-     * Specifies the KMS config to be used for volume encryption.
+     * Optional. Specifies the KMS config to be used for volume encryption.
      *
-     * Generated from protobuf field <code>string kms_config = 13 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_config = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $kms_config = '';
     /**
-     * Flag indicating if the pool is NFS LDAP enabled or not.
+     * Optional. Flag indicating if the pool is NFS LDAP enabled or not.
      *
-     * Generated from protobuf field <code>bool ldap_enabled = 14;</code>
+     * Generated from protobuf field <code>bool ldap_enabled = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ldap_enabled = false;
     /**
-     * Name of the Private Service Access allocated range. If
-     * not provided, any available range will be chosen.
+     * Optional. This field is currently not implemented. Currently values
+     * provided in this field will be ignored.
      *
-     * Generated from protobuf field <code>string psa_range = 15;</code>
+     * Generated from protobuf field <code>string psa_range = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $psa_range = '';
     /**
@@ -147,21 +148,22 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Create time of the storage pool
      *     @type string $description
-     *           Description of the storage pool
+     *           Optional. Description of the storage pool
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Labels as key value pairs
+     *           Optional. Labels as key value pairs
      *     @type string $network
      *           Required. VPC Network name.
      *           Format: projects/{project}/global/networks/{network}
      *     @type string $active_directory
-     *           Specifies the Active Directory to be used for creating a SMB volume.
+     *           Optional. Specifies the Active Directory to be used for creating a SMB
+     *           volume.
      *     @type string $kms_config
-     *           Specifies the KMS config to be used for volume encryption.
+     *           Optional. Specifies the KMS config to be used for volume encryption.
      *     @type bool $ldap_enabled
-     *           Flag indicating if the pool is NFS LDAP enabled or not.
+     *           Optional. Flag indicating if the pool is NFS LDAP enabled or not.
      *     @type string $psa_range
-     *           Name of the Private Service Access allocated range. If
-     *           not provided, any available range will be chosen.
+     *           Optional. This field is currently not implemented. Currently values
+     *           provided in this field will be ignored.
      *     @type int $encryption_type
      *           Output only. Specifies the current pool encryption key source.
      *     @type bool $global_access_allowed
@@ -393,9 +395,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the storage pool
+     * Optional. Description of the storage pool
      *
-     * Generated from protobuf field <code>string description = 9;</code>
+     * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -404,9 +406,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Description of the storage pool
+     * Optional. Description of the storage pool
      *
-     * Generated from protobuf field <code>string description = 9;</code>
+     * Generated from protobuf field <code>string description = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -419,9 +421,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Labels as key value pairs
+     * Optional. Labels as key value pairs
      *
-     * Generated from protobuf field <code>map<string, string> labels = 10;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -430,9 +432,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Labels as key value pairs
+     * Optional. Labels as key value pairs
      *
-     * Generated from protobuf field <code>map<string, string> labels = 10;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -473,9 +475,10 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the Active Directory to be used for creating a SMB volume.
+     * Optional. Specifies the Active Directory to be used for creating a SMB
+     * volume.
      *
-     * Generated from protobuf field <code>string active_directory = 12 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string active_directory = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getActiveDirectory()
@@ -484,9 +487,10 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the Active Directory to be used for creating a SMB volume.
+     * Optional. Specifies the Active Directory to be used for creating a SMB
+     * volume.
      *
-     * Generated from protobuf field <code>string active_directory = 12 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string active_directory = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -499,9 +503,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the KMS config to be used for volume encryption.
+     * Optional. Specifies the KMS config to be used for volume encryption.
      *
-     * Generated from protobuf field <code>string kms_config = 13 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_config = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsConfig()
@@ -510,9 +514,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the KMS config to be used for volume encryption.
+     * Optional. Specifies the KMS config to be used for volume encryption.
      *
-     * Generated from protobuf field <code>string kms_config = 13 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string kms_config = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -525,9 +529,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Flag indicating if the pool is NFS LDAP enabled or not.
+     * Optional. Flag indicating if the pool is NFS LDAP enabled or not.
      *
-     * Generated from protobuf field <code>bool ldap_enabled = 14;</code>
+     * Generated from protobuf field <code>bool ldap_enabled = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getLdapEnabled()
@@ -536,9 +540,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Flag indicating if the pool is NFS LDAP enabled or not.
+     * Optional. Flag indicating if the pool is NFS LDAP enabled or not.
      *
-     * Generated from protobuf field <code>bool ldap_enabled = 14;</code>
+     * Generated from protobuf field <code>bool ldap_enabled = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -551,10 +555,10 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Private Service Access allocated range. If
-     * not provided, any available range will be chosen.
+     * Optional. This field is currently not implemented. Currently values
+     * provided in this field will be ignored.
      *
-     * Generated from protobuf field <code>string psa_range = 15;</code>
+     * Generated from protobuf field <code>string psa_range = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPsaRange()
@@ -563,10 +567,10 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the Private Service Access allocated range. If
-     * not provided, any available range will be chosen.
+     * Optional. This field is currently not implemented. Currently values
+     * provided in this field will be ignored.
      *
-     * Generated from protobuf field <code>string psa_range = 15;</code>
+     * Generated from protobuf field <code>string psa_range = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
