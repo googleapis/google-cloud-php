@@ -20,70 +20,70 @@ class ProxyConnectionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string protocol = 1;</code>
      */
-    protected $protocol = '';
+    private $protocol = '';
     /**
      * Source IP address of an original connection.
      *
      * Generated from protobuf field <code>string old_source_ip = 2;</code>
      */
-    protected $old_source_ip = '';
+    private $old_source_ip = '';
     /**
      * Source IP address of a new connection.
      *
      * Generated from protobuf field <code>string new_source_ip = 3;</code>
      */
-    protected $new_source_ip = '';
+    private $new_source_ip = '';
     /**
      * Destination IP address of an original connection
      *
      * Generated from protobuf field <code>string old_destination_ip = 4;</code>
      */
-    protected $old_destination_ip = '';
+    private $old_destination_ip = '';
     /**
      * Destination IP address of a new connection.
      *
      * Generated from protobuf field <code>string new_destination_ip = 5;</code>
      */
-    protected $new_destination_ip = '';
+    private $new_destination_ip = '';
     /**
      * Source port of an original connection. Only valid when protocol is TCP or
      * UDP.
      *
      * Generated from protobuf field <code>int32 old_source_port = 6;</code>
      */
-    protected $old_source_port = 0;
+    private $old_source_port = 0;
     /**
      * Source port of a new connection. Only valid when protocol is TCP or UDP.
      *
      * Generated from protobuf field <code>int32 new_source_port = 7;</code>
      */
-    protected $new_source_port = 0;
+    private $new_source_port = 0;
     /**
      * Destination port of an original connection. Only valid when protocol is TCP
      * or UDP.
      *
      * Generated from protobuf field <code>int32 old_destination_port = 8;</code>
      */
-    protected $old_destination_port = 0;
+    private $old_destination_port = 0;
     /**
      * Destination port of a new connection. Only valid when protocol is TCP or
      * UDP.
      *
      * Generated from protobuf field <code>int32 new_destination_port = 9;</code>
      */
-    protected $new_destination_port = 0;
+    private $new_destination_port = 0;
     /**
      * Uri of proxy subnet.
      *
      * Generated from protobuf field <code>string subnet_uri = 10;</code>
      */
-    protected $subnet_uri = '';
+    private $subnet_uri = '';
     /**
      * URI of the network where connection is proxied.
      *
      * Generated from protobuf field <code>string network_uri = 11;</code>
      */
-    protected $network_uri = '';
+    private $network_uri = '';
 
     /**
      * Constructor.

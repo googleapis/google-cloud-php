@@ -81,6 +81,4 @@ class HealthCheckFirewallsConfigState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HealthCheckFirewallsConfigState::class, \Google\Cloud\NetworkManagement\V1\LoadBalancerBackendInfo_HealthCheckFirewallsConfigState::class);
 

@@ -20,7 +20,7 @@ class StorageBucketInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket = 1;</code>
      */
-    protected $bucket = '';
+    private $bucket = '';
 
     /**
      * Constructor.
