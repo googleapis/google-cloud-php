@@ -99,6 +99,8 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of an App Engine service version.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo $cloud_run_revision
      *           Display information of a Cloud Run revision.
+     *     @type \Google\Cloud\NetworkManagement\V1\NatInfo $nat
+     *           Display information of a NAT.
      *     @type \Google\Cloud\NetworkManagement\V1\ProxyConnectionInfo $proxy_connection
      *           Display information of a ProxyConnection.
      *     @type \Google\Cloud\NetworkManagement\V1\LoadBalancerBackendInfo $load_balancer_backend_info
@@ -838,6 +840,37 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo::class);
         $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a NAT.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo nat = 25;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\NatInfo|null
+     */
+    public function getNat()
+    {
+        return $this->readOneof(25);
+    }
+
+    public function hasNat()
+    {
+        return $this->hasOneof(25);
+    }
+
+    /**
+     * Display information of a NAT.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo nat = 25;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\NatInfo $var
+     * @return $this
+     */
+    public function setNat($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\NatInfo::class);
+        $this->writeOneof(25, $var);
 
         return $this;
     }
