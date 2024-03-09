@@ -51,6 +51,13 @@ class FindingClass
      * Generated from protobuf enum <code>SCC_ERROR = 5;</code>
      */
     const SCC_ERROR = 5;
+    /**
+     * Describes a potential security risk due to a change in the security
+     * posture.
+     *
+     * Generated from protobuf enum <code>POSTURE_VIOLATION = 6;</code>
+     */
+    const POSTURE_VIOLATION = 6;
 
     private static $valueToName = [
         self::FINDING_CLASS_UNSPECIFIED => 'FINDING_CLASS_UNSPECIFIED',
@@ -59,6 +66,7 @@ class FindingClass
         self::MISCONFIGURATION => 'MISCONFIGURATION',
         self::OBSERVATION => 'OBSERVATION',
         self::SCC_ERROR => 'SCC_ERROR',
+        self::POSTURE_VIOLATION => 'POSTURE_VIOLATION',
     ];
 
     public static function name($value)
