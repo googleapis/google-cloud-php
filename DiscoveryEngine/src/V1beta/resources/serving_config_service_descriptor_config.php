@@ -50,6 +50,7 @@ return [
             ],
             'templateMap' => [
                 'dataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
+                'engine' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}',
                 'projectLocationCollectionDataStore' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}',
                 'projectLocationCollectionDataStoreServingConfig' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}',
                 'projectLocationCollectionEngineServingConfig' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}',

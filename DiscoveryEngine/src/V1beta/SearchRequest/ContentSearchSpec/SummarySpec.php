@@ -20,7 +20,7 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * The number of top results to generate the summary from. If the number
      * of results returned is less than `summaryResultCount`, the summary is
      * generated from all of the results.
-     * At most five results can be used to generate a summary.
+     * At most 10 results can be used to generate a summary.
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      */
@@ -105,7 +105,7 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           The number of top results to generate the summary from. If the number
      *           of results returned is less than `summaryResultCount`, the summary is
      *           generated from all of the results.
-     *           At most five results can be used to generate a summary.
+     *           At most 10 results can be used to generate a summary.
      *     @type bool $include_citations
      *           Specifies whether to include citations in the summary. The default
      *           value is `false`.
@@ -162,7 +162,7 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * The number of top results to generate the summary from. If the number
      * of results returned is less than `summaryResultCount`, the summary is
      * generated from all of the results.
-     * At most five results can be used to generate a summary.
+     * At most 10 results can be used to generate a summary.
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      * @return int
@@ -176,7 +176,7 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * The number of top results to generate the summary from. If the number
      * of results returned is less than `summaryResultCount`, the summary is
      * generated from all of the results.
-     * At most five results can be used to generate a summary.
+     * At most 10 results can be used to generate a summary.
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      * @param int $var
