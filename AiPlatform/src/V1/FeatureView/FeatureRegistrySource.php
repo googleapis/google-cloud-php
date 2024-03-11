@@ -22,6 +22,12 @@ class FeatureRegistrySource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureView.FeatureRegistrySource.FeatureGroup feature_groups = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $feature_groups;
+    /**
+     * Optional. The project number of the parent project of the Feature Groups.
+     *
+     * Generated from protobuf field <code>optional int64 project_number = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $project_number = null;
 
     /**
      * Constructor.
@@ -31,6 +37,8 @@ class FeatureRegistrySource extends \Google\Protobuf\Internal\Message
      *
      *     @type array<\Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource\FeatureGroup>|\Google\Protobuf\Internal\RepeatedField $feature_groups
      *           Required. List of features that need to be synced to Online Store.
+     *     @type int|string $project_number
+     *           Optional. The project number of the parent project of the Feature Groups.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +68,42 @@ class FeatureRegistrySource extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource\FeatureGroup::class);
         $this->feature_groups = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The project number of the parent project of the Feature Groups.
+     *
+     * Generated from protobuf field <code>optional int64 project_number = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getProjectNumber()
+    {
+        return isset($this->project_number) ? $this->project_number : 0;
+    }
+
+    public function hasProjectNumber()
+    {
+        return isset($this->project_number);
+    }
+
+    public function clearProjectNumber()
+    {
+        unset($this->project_number);
+    }
+
+    /**
+     * Optional. The project number of the parent project of the Feature Groups.
+     *
+     * Generated from protobuf field <code>optional int64 project_number = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setProjectNumber($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->project_number = $var;
 
         return $this;
     }
