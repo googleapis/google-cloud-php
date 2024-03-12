@@ -21,19 +21,19 @@ class ExecutionStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 results_returned = 1;</code>
      */
-    protected $results_returned = 0;
+    private $results_returned = 0;
     /**
      * Total time to execute the query in the backend.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration execution_duration = 3;</code>
      */
-    protected $execution_duration = null;
+    private $execution_duration = null;
     /**
      * Total billable read operations.
      *
      * Generated from protobuf field <code>int64 read_operations = 4;</code>
      */
-    protected $read_operations = 0;
+    private $read_operations = 0;
     /**
      * Debugging statistics from the execution of the query. Note that the
      * debugging stats are subject to change as Firestore evolves. It could
@@ -50,7 +50,7 @@ class ExecutionStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct debug_stats = 5;</code>
      */
-    protected $debug_stats = null;
+    private $debug_stats = null;
 
     /**
      * Constructor.

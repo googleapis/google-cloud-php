@@ -24,7 +24,7 @@ class ExplainOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool analyze = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $analyze = false;
+    private $analyze = false;
 
     /**
      * Constructor.
