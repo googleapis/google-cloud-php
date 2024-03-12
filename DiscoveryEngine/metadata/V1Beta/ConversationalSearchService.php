@@ -24,8 +24,8 @@ class ConversationalSearchService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¦\'
-Ggoogle/cloud/discoveryengine/v1beta/conversational_search_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/discoveryengine/v1beta/conversation.proto8google/cloud/discoveryengine/v1beta/search_service.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ß
+ø\'
+Ggoogle/cloud/discoveryengine/v1beta/conversational_search_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto6google/cloud/discoveryengine/v1beta/conversation.proto8google/cloud/discoveryengine/v1beta/search_service.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"±
 ConverseConversationRequestA
 name (	B3àAúA-
 +discoveryengine.googleapis.com/ConversationB
@@ -36,7 +36,10 @@ Ggoogle/cloud/discoveryengine/v1beta/conversational_search_service.proto#google
 safe_search (e
 user_labels (2P.google.cloud.discoveryengine.v1beta.ConverseConversationRequest.UserLabelsEntryf
 summary_spec (2P.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec
-filter	 (	1
+filter	 (	P
+
+boost_spec
+ (2<.google.cloud.discoveryengine.v1beta.SearchRequest.BoostSpec1
 UserLabelsEntry
 key (	
 value (	:8"—

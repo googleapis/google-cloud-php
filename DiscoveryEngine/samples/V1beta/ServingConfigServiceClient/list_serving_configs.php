@@ -32,8 +32,8 @@ use Google\Cloud\DiscoveryEngine\V1beta\ServingConfig;
 /**
  * Lists all ServingConfigs linked to this dataStore.
  *
- * @param string $formattedParent The dataStore resource name. Format:
- *                                `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`
+ * @param string $formattedParent Full resource name of the parent resource. Format:
+ *                                `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
  *                                Please see {@see ServingConfigServiceClient::dataStoreName()} for help formatting this field.
  */
 function list_serving_configs_sample(string $formattedParent): void

@@ -22,9 +22,8 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      * for detail syntax and limitations.
      * Examples:
      * * To boost documents with document ID "doc_1" or "doc_2", and
-     * color
-     *   "Red" or "Blue":
-     *     * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     * color "Red" or "Blue":
+     * `(document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))`
      *
      * Generated from protobuf field <code>string condition = 1;</code>
      */
@@ -62,9 +61,8 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *           for detail syntax and limitations.
      *           Examples:
      *           * To boost documents with document ID "doc_1" or "doc_2", and
-     *           color
-     *             "Red" or "Blue":
-     *               * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     *           color "Red" or "Blue":
+     *           `(document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))`
      *     @type float $boost
      *           Strength of the condition boost, which should be in [-1, 1]. Negative
      *           boost means demotion. Default is 0.0.
@@ -94,9 +92,8 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      * for detail syntax and limitations.
      * Examples:
      * * To boost documents with document ID "doc_1" or "doc_2", and
-     * color
-     *   "Red" or "Blue":
-     *     * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     * color "Red" or "Blue":
+     * `(document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))`
      *
      * Generated from protobuf field <code>string condition = 1;</code>
      * @return string
@@ -113,9 +110,8 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      * for detail syntax and limitations.
      * Examples:
      * * To boost documents with document ID "doc_1" or "doc_2", and
-     * color
-     *   "Red" or "Blue":
-     *     * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     * color "Red" or "Blue":
+     * `(document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))`
      *
      * Generated from protobuf field <code>string condition = 1;</code>
      * @param string $var

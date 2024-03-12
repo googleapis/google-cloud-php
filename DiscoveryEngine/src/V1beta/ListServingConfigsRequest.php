@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The dataStore resource name. Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`
+     * Required. Full resource name of the parent resource. Format:
+     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,8 +39,8 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The dataStore resource name. Format:
-     *                       `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`
+     * @param string $parent Required. Full resource name of the parent resource. Format:
+     *                       `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
      *                       Please see {@see ServingConfigServiceClient::dataStoreName()} for help formatting this field.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1beta\ListServingConfigsRequest
@@ -60,8 +60,8 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The dataStore resource name. Format:
-     *           `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`
+     *           Required. Full resource name of the parent resource. Format:
+     *           `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
      *     @type int $page_size
      *           Optional. Maximum number of results to return. If unspecified, defaults
      *           to 100. If a value greater than 100 is provided, at most 100 results are
@@ -77,8 +77,8 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The dataStore resource name. Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`
+     * Required. Full resource name of the parent resource. Format:
+     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,8 +89,8 @@ class ListServingConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The dataStore resource name. Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}`
+     * Required. Full resource name of the parent resource. Format:
+     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
