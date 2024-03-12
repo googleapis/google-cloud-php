@@ -121,6 +121,15 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
      */
     private $enable_automatic_punctuation = false;
+    /**
+     * If `true`, the request will opt out for STT conformer model migration.
+     * This field will be deprecated once force migration takes place in June
+     * 2024. Please refer to [Dialogflow ES Speech model
+     * migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
+     *
+     * Generated from protobuf field <code>bool opt_out_conformer_model_migration = 26;</code>
+     */
+    private $opt_out_conformer_model_migration = false;
 
     /**
      * Constructor.
@@ -189,6 +198,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
      *     @type bool $enable_automatic_punctuation
      *           Enable automatic punctuation option at the speech backend.
+     *     @type bool $opt_out_conformer_model_migration
+     *           If `true`, the request will opt out for STT conformer model migration.
+     *           This field will be deprecated once force migration takes place in June
+     *           2024. Please refer to [Dialogflow ES Speech model
+     *           migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
      * }
      */
     public function __construct($data = NULL) {
@@ -560,6 +574,38 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_automatic_punctuation = $var;
+
+        return $this;
+    }
+
+    /**
+     * If `true`, the request will opt out for STT conformer model migration.
+     * This field will be deprecated once force migration takes place in June
+     * 2024. Please refer to [Dialogflow ES Speech model
+     * migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
+     *
+     * Generated from protobuf field <code>bool opt_out_conformer_model_migration = 26;</code>
+     * @return bool
+     */
+    public function getOptOutConformerModelMigration()
+    {
+        return $this->opt_out_conformer_model_migration;
+    }
+
+    /**
+     * If `true`, the request will opt out for STT conformer model migration.
+     * This field will be deprecated once force migration takes place in June
+     * 2024. Please refer to [Dialogflow ES Speech model
+     * migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
+     *
+     * Generated from protobuf field <code>bool opt_out_conformer_model_migration = 26;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setOptOutConformerModelMigration($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->opt_out_conformer_model_migration = $var;
 
         return $this;
     }
