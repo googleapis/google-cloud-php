@@ -284,6 +284,34 @@ class ManageObjectsTest extends StorageTestCase
 
         $this->assertEquals($name, $composedObject->name());
         $this->assertEquals($expectedContent, $composedObject->downloadAsString());
+        return $composedObject;
+    }
+
+    /**
+     * @depends testComposeObjects
+     */
+    public function testSoftDeleteObject($object)
+    {
+        // Set soft delete policy
+        self::$bucket->update([
+            'softDeletePolicy' => [
+                'retentionDurationSeconds' => 8*24*60*60
+                ]
+            ]);
+
+        $this->assertObjectExists($object);
+
+        $object->delete();
+
+        $this->assertObjectExists($object, [], false);
+        $this->assertObjectExists($object, [
+            'softDeleted' => true,
+            'generation' => $object->info()['generation']
+        ], true);
+
+        self::$bucket->restore($object->name(), $object->info()['generation']);
+
+        $this->assertObjectExists($object);
     }
 
     public function testRotatesCustomerSuppliedEncrpytion()
@@ -413,5 +441,15 @@ class ManageObjectsTest extends StorageTestCase
 
             $this->assertSame($expectedContent, $actualContent);
         }
+    }
+
+    private function assertObjectExists($object, $options = [], $isPresent = true)
+    {
+        $this->assertEquals($isPresent, $object->exists($options));
+        $objects = self::$bucket->objects($options);
+        $objects = array_map(function ($o) {
+            return $o->name();
+        }, iterator_to_array($objects));
+        $this->assertEquals($isPresent, in_array($object->name(), $objects));
     }
 }

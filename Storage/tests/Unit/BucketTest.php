@@ -275,6 +275,22 @@ class BucketTest extends TestCase
         $this->assertNull($bucket->delete());
     }
 
+    public function testRestore()
+    {
+        $this->connection->restoreObject(Argument::any())
+            ->willReturn([
+                'name' => 'file.txt',
+                'generation' => 'abc'
+            ]);
+
+        $bucket = $this->getBucket();
+        $restoredObject = $bucket->restore('file.txt', 'abc');
+
+        $this->assertInstanceOf(StorageObject::class, $restoredObject);
+        $this->assertEquals('file.txt', $restoredObject->name());
+        $this->assertEquals('abc', $restoredObject->info()['generation']);
+    }
+
     public function testComposeThrowsExceptionWithLessThanTwoSources()
     {
         $this->expectException(InvalidArgumentException::class);
