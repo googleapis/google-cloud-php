@@ -50,7 +50,6 @@ use Google\Cloud\Security\PrivateCA\V1\ListCertificateRevocationListsResponse;
 use Google\Cloud\Security\PrivateCA\V1\ListCertificateTemplatesResponse;
 use Google\Cloud\Security\PrivateCA\V1\ListCertificatesResponse;
 use Google\Cloud\Security\PrivateCA\V1\RevocationReason;
-use Google\Cloud\Security\PrivateCA\V1\Subject;
 use Google\Cloud\Security\PrivateCA\V1\SubordinateConfig;
 use Google\Cloud\Security\PrivateCA\V1\X509Parameters;
 use Google\LongRunning\GetOperationRequest;
@@ -471,8 +470,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthority->setType($certificateAuthorityType);
         $certificateAuthorityConfig = new CertificateConfig();
         $configSubjectConfig = new SubjectConfig();
-        $subjectConfigSubject = new Subject();
-        $configSubjectConfig->setSubject($subjectConfigSubject);
         $certificateAuthorityConfig->setSubjectConfig($configSubjectConfig);
         $configX509Config = new X509Parameters();
         $certificateAuthorityConfig->setX509Config($configX509Config);
@@ -555,8 +552,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthority->setType($certificateAuthorityType);
         $certificateAuthorityConfig = new CertificateConfig();
         $configSubjectConfig = new SubjectConfig();
-        $subjectConfigSubject = new Subject();
-        $configSubjectConfig->setSubject($subjectConfigSubject);
         $certificateAuthorityConfig->setSubjectConfig($configSubjectConfig);
         $configX509Config = new X509Parameters();
         $certificateAuthorityConfig->setX509Config($configX509Config);
@@ -2526,8 +2521,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthority->setType($certificateAuthorityType);
         $certificateAuthorityConfig = new CertificateConfig();
         $configSubjectConfig = new SubjectConfig();
-        $subjectConfigSubject = new Subject();
-        $configSubjectConfig->setSubject($subjectConfigSubject);
         $certificateAuthorityConfig->setSubjectConfig($configSubjectConfig);
         $configX509Config = new X509Parameters();
         $certificateAuthorityConfig->setX509Config($configX509Config);
@@ -2607,8 +2600,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthority->setType($certificateAuthorityType);
         $certificateAuthorityConfig = new CertificateConfig();
         $configSubjectConfig = new SubjectConfig();
-        $subjectConfigSubject = new Subject();
-        $configSubjectConfig->setSubject($subjectConfigSubject);
         $certificateAuthorityConfig->setSubjectConfig($configSubjectConfig);
         $configX509Config = new X509Parameters();
         $certificateAuthorityConfig->setX509Config($configX509Config);

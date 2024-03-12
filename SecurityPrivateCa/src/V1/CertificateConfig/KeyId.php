@@ -22,7 +22,7 @@ class KeyId extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $key_id = '';
+    private $key_id = '';
 
     /**
      * Constructor.
@@ -70,6 +70,4 @@ class KeyId extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeyId::class, \Google\Cloud\Security\PrivateCA\V1\CertificateConfig_KeyId::class);
 
