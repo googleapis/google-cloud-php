@@ -27,6 +27,13 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
+    /**
+     * Optional. Explain options for the query. If set, additional query
+     * statistics will be returned. If not, only query results will be returned.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainOptions explain_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $explain_options = null;
     protected $query_type;
     protected $consistency_selector;
 
@@ -57,6 +64,9 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type \Google\Cloud\Firestore\V1\ExplainOptions $explain_options
+     *           Optional. Explain options for the query. If set, additional query
+     *           statistics will be returned. If not, only query results will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -232,6 +242,44 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Explain options for the query. If set, additional query
+     * statistics will be returned. If not, only query results will be returned.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainOptions explain_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\V1\ExplainOptions|null
+     */
+    public function getExplainOptions()
+    {
+        return $this->explain_options;
+    }
+
+    public function hasExplainOptions()
+    {
+        return isset($this->explain_options);
+    }
+
+    public function clearExplainOptions()
+    {
+        unset($this->explain_options);
+    }
+
+    /**
+     * Optional. Explain options for the query. If set, additional query
+     * statistics will be returned. If not, only query results will be returned.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainOptions explain_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\V1\ExplainOptions $var
+     * @return $this
+     */
+    public function setExplainOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\ExplainOptions::class);
+        $this->explain_options = $var;
 
         return $this;
     }
