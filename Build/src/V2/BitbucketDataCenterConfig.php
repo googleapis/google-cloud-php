@@ -9,64 +9,62 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for connections to gitlab.com or an instance of GitLab
- * Enterprise.
+ * Configuration for connections to Bitbucket Data Center.
  *
- * Generated from protobuf message <code>google.devtools.cloudbuild.v2.GitLabConfig</code>
+ * Generated from protobuf message <code>google.devtools.cloudbuild.v2.BitbucketDataCenterConfig</code>
  */
-class GitLabConfig extends \Google\Protobuf\Internal\Message
+class BitbucketDataCenterConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URI of the GitLab Enterprise host this connection is for.
-     * If not specified, the default value is https://gitlab.com.
+     * Required. The URI of the Bitbucket Data Center instance or cluster this
+     * connection is for.
      *
-     * Generated from protobuf field <code>string host_uri = 1;</code>
+     * Generated from protobuf field <code>string host_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $host_uri = '';
+    private $host_uri = '';
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
-     * of a GitLab Enterprise project, formatted as
+     * used to verify webhook events, formatted as
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    protected $webhook_secret_secret_version = '';
+    private $webhook_secret_secret_version = '';
     /**
-     * Required. A GitLab personal access token with the minimum `read_api` scope
-     * access.
+     * Required. A http access token with the `REPO_READ` access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential read_authorizer_credential = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $read_authorizer_credential = null;
+    private $read_authorizer_credential = null;
     /**
-     * Required. A GitLab personal access token with the `api` scope access.
+     * Required. A http access token with the `REPO_ADMIN` scope access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential authorizer_credential = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $authorizer_credential = null;
+    private $authorizer_credential = null;
     /**
-     * Configuration for using Service Directory to privately connect to a GitLab
-     * Enterprise server. This should only be set if the GitLab Enterprise server
-     * is hosted on-premises and not reachable by public internet. If this field
-     * is left empty, calls to the GitLab Enterprise server will be made over the
-     * public internet.
+     * Optional. Configuration for using Service Directory to privately connect to
+     * a Bitbucket Data Center. This should only be set if the Bitbucket Data
+     * Center is hosted on-premises and not reachable by public internet. If this
+     * field is left empty, calls to the Bitbucket Data Center will be made over
+     * the public internet.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $service_directory_config = null;
+    private $service_directory_config = null;
     /**
-     * SSL certificate to use for requests to GitLab Enterprise.
+     * Optional. SSL certificate to use for requests to the Bitbucket Data Center.
      *
-     * Generated from protobuf field <code>string ssl_ca = 6;</code>
+     * Generated from protobuf field <code>string ssl_ca = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $ssl_ca = '';
+    private $ssl_ca = '';
     /**
-     * Output only. Version of the GitLab Enterprise server running on the
+     * Output only. Version of the Bitbucket Data Center running on the
      * `host_uri`.
      *
      * Generated from protobuf field <code>string server_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $server_version = '';
+    private $server_version = '';
 
     /**
      * Constructor.
@@ -75,27 +73,26 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $host_uri
-     *           The URI of the GitLab Enterprise host this connection is for.
-     *           If not specified, the default value is https://gitlab.com.
+     *           Required. The URI of the Bitbucket Data Center instance or cluster this
+     *           connection is for.
      *     @type string $webhook_secret_secret_version
      *           Required. Immutable. SecretManager resource containing the webhook secret
-     *           of a GitLab Enterprise project, formatted as
+     *           used to verify webhook events, formatted as
      *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *     @type \Google\Cloud\Build\V2\UserCredential $read_authorizer_credential
-     *           Required. A GitLab personal access token with the minimum `read_api` scope
-     *           access.
+     *           Required. A http access token with the `REPO_READ` access.
      *     @type \Google\Cloud\Build\V2\UserCredential $authorizer_credential
-     *           Required. A GitLab personal access token with the `api` scope access.
+     *           Required. A http access token with the `REPO_ADMIN` scope access.
      *     @type \Google\Cloud\Build\V2\ServiceDirectoryConfig $service_directory_config
-     *           Configuration for using Service Directory to privately connect to a GitLab
-     *           Enterprise server. This should only be set if the GitLab Enterprise server
-     *           is hosted on-premises and not reachable by public internet. If this field
-     *           is left empty, calls to the GitLab Enterprise server will be made over the
-     *           public internet.
+     *           Optional. Configuration for using Service Directory to privately connect to
+     *           a Bitbucket Data Center. This should only be set if the Bitbucket Data
+     *           Center is hosted on-premises and not reachable by public internet. If this
+     *           field is left empty, calls to the Bitbucket Data Center will be made over
+     *           the public internet.
      *     @type string $ssl_ca
-     *           SSL certificate to use for requests to GitLab Enterprise.
+     *           Optional. SSL certificate to use for requests to the Bitbucket Data Center.
      *     @type string $server_version
-     *           Output only. Version of the GitLab Enterprise server running on the
+     *           Output only. Version of the Bitbucket Data Center running on the
      *           `host_uri`.
      * }
      */
@@ -105,10 +102,10 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the GitLab Enterprise host this connection is for.
-     * If not specified, the default value is https://gitlab.com.
+     * Required. The URI of the Bitbucket Data Center instance or cluster this
+     * connection is for.
      *
-     * Generated from protobuf field <code>string host_uri = 1;</code>
+     * Generated from protobuf field <code>string host_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getHostUri()
@@ -117,10 +114,10 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the GitLab Enterprise host this connection is for.
-     * If not specified, the default value is https://gitlab.com.
+     * Required. The URI of the Bitbucket Data Center instance or cluster this
+     * connection is for.
      *
-     * Generated from protobuf field <code>string host_uri = 1;</code>
+     * Generated from protobuf field <code>string host_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -134,7 +131,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
-     * of a GitLab Enterprise project, formatted as
+     * used to verify webhook events, formatted as
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -147,7 +144,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
-     * of a GitLab Enterprise project, formatted as
+     * used to verify webhook events, formatted as
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -163,8 +160,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A GitLab personal access token with the minimum `read_api` scope
-     * access.
+     * Required. A http access token with the `REPO_READ` access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential read_authorizer_credential = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Build\V2\UserCredential|null
@@ -185,8 +181,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A GitLab personal access token with the minimum `read_api` scope
-     * access.
+     * Required. A http access token with the `REPO_READ` access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential read_authorizer_credential = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Build\V2\UserCredential $var
@@ -201,7 +196,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A GitLab personal access token with the `api` scope access.
+     * Required. A http access token with the `REPO_ADMIN` scope access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential authorizer_credential = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Build\V2\UserCredential|null
@@ -222,7 +217,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A GitLab personal access token with the `api` scope access.
+     * Required. A http access token with the `REPO_ADMIN` scope access.
      *
      * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.UserCredential authorizer_credential = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Build\V2\UserCredential $var
@@ -237,13 +232,13 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for using Service Directory to privately connect to a GitLab
-     * Enterprise server. This should only be set if the GitLab Enterprise server
-     * is hosted on-premises and not reachable by public internet. If this field
-     * is left empty, calls to the GitLab Enterprise server will be made over the
-     * public internet.
+     * Optional. Configuration for using Service Directory to privately connect to
+     * a Bitbucket Data Center. This should only be set if the Bitbucket Data
+     * Center is hosted on-premises and not reachable by public internet. If this
+     * field is left empty, calls to the Bitbucket Data Center will be made over
+     * the public internet.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Build\V2\ServiceDirectoryConfig|null
      */
     public function getServiceDirectoryConfig()
@@ -262,13 +257,13 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration for using Service Directory to privately connect to a GitLab
-     * Enterprise server. This should only be set if the GitLab Enterprise server
-     * is hosted on-premises and not reachable by public internet. If this field
-     * is left empty, calls to the GitLab Enterprise server will be made over the
-     * public internet.
+     * Optional. Configuration for using Service Directory to privately connect to
+     * a Bitbucket Data Center. This should only be set if the Bitbucket Data
+     * Center is hosted on-premises and not reachable by public internet. If this
+     * field is left empty, calls to the Bitbucket Data Center will be made over
+     * the public internet.
      *
-     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.ServiceDirectoryConfig service_directory_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Build\V2\ServiceDirectoryConfig $var
      * @return $this
      */
@@ -281,9 +276,9 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SSL certificate to use for requests to GitLab Enterprise.
+     * Optional. SSL certificate to use for requests to the Bitbucket Data Center.
      *
-     * Generated from protobuf field <code>string ssl_ca = 6;</code>
+     * Generated from protobuf field <code>string ssl_ca = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSslCa()
@@ -292,9 +287,9 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * SSL certificate to use for requests to GitLab Enterprise.
+     * Optional. SSL certificate to use for requests to the Bitbucket Data Center.
      *
-     * Generated from protobuf field <code>string ssl_ca = 6;</code>
+     * Generated from protobuf field <code>string ssl_ca = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -307,7 +302,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Version of the GitLab Enterprise server running on the
+     * Output only. Version of the Bitbucket Data Center running on the
      * `host_uri`.
      *
      * Generated from protobuf field <code>string server_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -319,7 +314,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Version of the GitLab Enterprise server running on the
+     * Output only. Version of the Bitbucket Data Center running on the
      * `host_uri`.
      *
      * Generated from protobuf field <code>string server_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
