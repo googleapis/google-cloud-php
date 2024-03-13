@@ -349,8 +349,9 @@ class ValueMapper
 
                         default:
                             throw new \RuntimeException(sprintf(
-                                'Unexpected string value %s encountered in FLOAT64 field.',
-                                $value
+                                'Unexpected string value %s encountered in %s field.',
+                                $value,
+                                TypeCode::name($type['code'])
                             ));
                     }
                 }

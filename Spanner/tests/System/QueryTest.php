@@ -168,6 +168,24 @@ class QueryTest extends SpannerTestCase
     }
 
     /**
+     * covers 27
+     */
+    public function testBindFloat32Parameter()
+    {
+        $db = self::$database;
+
+        $pi = 3.1415;
+        $res = $db->execute('SELECT cast(@param as FLOAT32) as foo', [
+            'parameters' => [
+                'param' => $pi
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertEqualsWithDelta($pi, $row['foo'], 0.0001);
+    }
+
+    /**
      * covers 24
      * covers 26
      * covers 28
