@@ -21,7 +21,7 @@ class FieldElementType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $type = '';
+    private $type = '';
 
     /**
      * Constructor.
