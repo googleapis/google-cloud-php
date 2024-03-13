@@ -128,6 +128,24 @@ class StreamWrapper
     }
 
     /**
+     * This is called when touch is used on a stream. See:
+     * https://www.php.net/manual/en/streamwrapper.stream-metadata.php
+     */
+    public function stream_metadata($path, $option, $value)
+    {
+        if ($option == STREAM_META_TOUCH) {
+            $this->openPath($path);
+            $this->bucket->upload('', [
+                'name' => $this->file
+            ]);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Register a StreamWrapper for reading and writing to Google Storage
      *
      * @param StorageClient $client The StorageClient configuration to use.
