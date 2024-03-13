@@ -52,7 +52,7 @@ class ListPerInstanceConfigsInstanceGroupManagersRequest extends \Google\Protobu
      */
     private $project = '';
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      */
@@ -100,7 +100,7 @@ class ListPerInstanceConfigsInstanceGroupManagersRequest extends \Google\Protobu
      *     @type string $project
      *           Project ID for this request.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *     @type string $zone
      *           The name of the zone where the managed instance group is located. It should conform to RFC1035.
      * }
@@ -307,7 +307,7 @@ class ListPerInstanceConfigsInstanceGroupManagersRequest extends \Google\Protobu
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      * @return bool
@@ -328,7 +328,7 @@ class ListPerInstanceConfigsInstanceGroupManagersRequest extends \Google\Protobu
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *
      * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
      * @param bool $var

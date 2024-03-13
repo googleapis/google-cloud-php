@@ -87,15 +87,16 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      */
     protected $password = '';
     /**
-     * Users to be added to the Built-in Backup Operator active directory group.
+     * Optional. Users to be added to the Built-in Backup Operator active
+     * directory group.
      *
-     * Generated from protobuf field <code>repeated string backup_operators = 12;</code>
+     * Generated from protobuf field <code>repeated string backup_operators = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $backup_operators;
     /**
-     * Domain users to be given the SeSecurityPrivilege.
+     * Optional. Domain users to be given the SeSecurityPrivilege.
      *
-     * Generated from protobuf field <code>repeated string security_operators = 13;</code>
+     * Generated from protobuf field <code>repeated string security_operators = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $security_operators;
     /**
@@ -184,9 +185,10 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      *     @type string $password
      *           Required. Password of the Active Directory domain administrator.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $backup_operators
-     *           Users to be added to the Built-in Backup Operator active directory group.
+     *           Optional. Users to be added to the Built-in Backup Operator active
+     *           directory group.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $security_operators
-     *           Domain users to be given the SeSecurityPrivilege.
+     *           Optional. Domain users to be given the SeSecurityPrivilege.
      *     @type string $kdc_hostname
      *           Name of the active directory machine. This optional parameter is used only
      *           while creating kerberos volume
@@ -520,9 +522,10 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Users to be added to the Built-in Backup Operator active directory group.
+     * Optional. Users to be added to the Built-in Backup Operator active
+     * directory group.
      *
-     * Generated from protobuf field <code>repeated string backup_operators = 12;</code>
+     * Generated from protobuf field <code>repeated string backup_operators = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBackupOperators()
@@ -531,9 +534,10 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Users to be added to the Built-in Backup Operator active directory group.
+     * Optional. Users to be added to the Built-in Backup Operator active
+     * directory group.
      *
-     * Generated from protobuf field <code>repeated string backup_operators = 12;</code>
+     * Generated from protobuf field <code>repeated string backup_operators = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -546,9 +550,9 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Domain users to be given the SeSecurityPrivilege.
+     * Optional. Domain users to be given the SeSecurityPrivilege.
      *
-     * Generated from protobuf field <code>repeated string security_operators = 13;</code>
+     * Generated from protobuf field <code>repeated string security_operators = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSecurityOperators()
@@ -557,9 +561,9 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Domain users to be given the SeSecurityPrivilege.
+     * Optional. Domain users to be given the SeSecurityPrivilege.
      *
-     * Generated from protobuf field <code>repeated string security_operators = 13;</code>
+     * Generated from protobuf field <code>repeated string security_operators = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

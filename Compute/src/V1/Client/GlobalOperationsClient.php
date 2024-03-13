@@ -184,7 +184,7 @@ final class GlobalOperationsClient
     }
 
     /**
-     * Retrieves an aggregated list of all operations.
+     * Retrieves an aggregated list of all operations. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see GlobalOperationsClient::aggregatedListAsync()} .
      *

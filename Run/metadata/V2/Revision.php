@@ -22,14 +22,15 @@ class Revision
         \GPBMetadata\Google\Api\Routing::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\Condition::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\K8SMin::initOnce();
+        \GPBMetadata\Google\Cloud\Run\V2\Status::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\VendorSettings::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-◊
-"google/cloud/run/v2/revision.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"G
+¬
+"google/cloud/run/v2/revision.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto!google/cloud/run/v2/k8s.min.proto google/cloud/run/v2/status.proto)google/cloud/run/v2/vendor_settings.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.proto"G
 GetRevisionRequest1
 name (	B#‡A˙A
 run.googleapis.com/Revision"à
@@ -46,7 +47,7 @@ page_token (	
 name (	B#‡A˙A
 run.googleapis.com/Revision
 validate_only (
-etag (	"§
+etag (	"Ì
 Revision
 name (	B‡A
 uid (	B‡A
@@ -82,7 +83,8 @@ conditions (2.google.cloud.run.v2.ConditionB‡A
 observed_generation  (B‡A
 log_uri! (	B‡A
 satisfies_pzs% (B‡A
-session_affinity& (
+session_affinity& (G
+scaling_status\' (2*.google.cloud.run.v2.RevisionScalingStatusB‡A
 etagc (	B‡A-
 LabelsEntry
 key (	

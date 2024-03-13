@@ -336,6 +336,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $backup_disaster_recovery = null;
     /**
+     * The security posture associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityPosture security_posture = 56;</code>
+     */
+    private $security_posture = null;
+    /**
      * Log entries that are relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.LogEntry log_entries = 57;</code>
@@ -505,6 +511,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Represents an application associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\BackupDisasterRecovery $backup_disaster_recovery
      *           Fields related to Backup and DR findings.
+     *     @type \Google\Cloud\SecurityCenter\V1\SecurityPosture $security_posture
+     *           The security posture associated with the finding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\LogEntry>|\Google\Protobuf\Internal\RepeatedField $log_entries
      *           Log entries that are relevant to the finding.
      *     @type array<\Google\Cloud\SecurityCenter\V1\LoadBalancer>|\Google\Protobuf\Internal\RepeatedField $load_balancers
@@ -1876,6 +1884,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\BackupDisasterRecovery::class);
         $this->backup_disaster_recovery = $var;
+
+        return $this;
+    }
+
+    /**
+     * The security posture associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityPosture security_posture = 56;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\SecurityPosture|null
+     */
+    public function getSecurityPosture()
+    {
+        return $this->security_posture;
+    }
+
+    public function hasSecurityPosture()
+    {
+        return isset($this->security_posture);
+    }
+
+    public function clearSecurityPosture()
+    {
+        unset($this->security_posture);
+    }
+
+    /**
+     * The security posture associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityPosture security_posture = 56;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\SecurityPosture $var
+     * @return $this
+     */
+    public function setSecurityPosture($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\SecurityPosture::class);
+        $this->security_posture = $var;
 
         return $this;
     }

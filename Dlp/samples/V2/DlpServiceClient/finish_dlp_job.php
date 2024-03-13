@@ -31,7 +31,7 @@ use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
  * Finish a running hybrid DlpJob. Triggers the finalization steps and running
  * of any enabled actions that have not yet run.
  *
- * @param string $formattedName The name of the DlpJob resource to be cancelled. Please see
+ * @param string $formattedName The name of the DlpJob resource to be finished. Please see
  *                              {@see DlpServiceClient::dlpJobName()} for help formatting this field.
  */
 function finish_dlp_job_sample(string $formattedName): void

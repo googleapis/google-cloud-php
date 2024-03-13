@@ -7,14 +7,14 @@ namespace Google\Cloud\NetApp\V1;
 use UnexpectedValueException;
 
 /**
- * Defined the current volume encryption key source.
+ * The volume encryption key source.
  *
  * Protobuf type <code>google.cloud.netapp.v1.EncryptionType</code>
  */
 class EncryptionType
 {
     /**
-     * The source of encryption key is not specified.
+     * The source of the encryption key is not specified.
      *
      * Generated from protobuf enum <code>ENCRYPTION_TYPE_UNSPECIFIED = 0;</code>
      */

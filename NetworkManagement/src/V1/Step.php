@@ -99,6 +99,14 @@ class Step extends \Google\Protobuf\Internal\Message
      *           Display information of an App Engine service version.
      *     @type \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo $cloud_run_revision
      *           Display information of a Cloud Run revision.
+     *     @type \Google\Cloud\NetworkManagement\V1\NatInfo $nat
+     *           Display information of a NAT.
+     *     @type \Google\Cloud\NetworkManagement\V1\ProxyConnectionInfo $proxy_connection
+     *           Display information of a ProxyConnection.
+     *     @type \Google\Cloud\NetworkManagement\V1\LoadBalancerBackendInfo $load_balancer_backend_info
+     *           Display information of a specific load balancer backend.
+     *     @type \Google\Cloud\NetworkManagement\V1\StorageBucketInfo $storage_bucket
+     *           Display information of a Storage Bucket. Used only for return traces.
      * }
      */
     public function __construct($data = NULL) {
@@ -832,6 +840,130 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\CloudRunRevisionInfo::class);
         $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a NAT.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo nat = 25;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\NatInfo|null
+     */
+    public function getNat()
+    {
+        return $this->readOneof(25);
+    }
+
+    public function hasNat()
+    {
+        return $this->hasOneof(25);
+    }
+
+    /**
+     * Display information of a NAT.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.NatInfo nat = 25;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\NatInfo $var
+     * @return $this
+     */
+    public function setNat($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\NatInfo::class);
+        $this->writeOneof(25, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a ProxyConnection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProxyConnectionInfo proxy_connection = 26;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\ProxyConnectionInfo|null
+     */
+    public function getProxyConnection()
+    {
+        return $this->readOneof(26);
+    }
+
+    public function hasProxyConnection()
+    {
+        return $this->hasOneof(26);
+    }
+
+    /**
+     * Display information of a ProxyConnection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProxyConnectionInfo proxy_connection = 26;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\ProxyConnectionInfo $var
+     * @return $this
+     */
+    public function setProxyConnection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ProxyConnectionInfo::class);
+        $this->writeOneof(26, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a specific load balancer backend.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerBackendInfo load_balancer_backend_info = 27;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\LoadBalancerBackendInfo|null
+     */
+    public function getLoadBalancerBackendInfo()
+    {
+        return $this->readOneof(27);
+    }
+
+    public function hasLoadBalancerBackendInfo()
+    {
+        return $this->hasOneof(27);
+    }
+
+    /**
+     * Display information of a specific load balancer backend.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerBackendInfo load_balancer_backend_info = 27;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\LoadBalancerBackendInfo $var
+     * @return $this
+     */
+    public function setLoadBalancerBackendInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\LoadBalancerBackendInfo::class);
+        $this->writeOneof(27, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a Storage Bucket. Used only for return traces.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.StorageBucketInfo storage_bucket = 28;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\StorageBucketInfo|null
+     */
+    public function getStorageBucket()
+    {
+        return $this->readOneof(28);
+    }
+
+    public function hasStorageBucket()
+    {
+        return $this->hasOneof(28);
+    }
+
+    /**
+     * Display information of a Storage Bucket. Used only for return traces.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.StorageBucketInfo storage_bucket = 28;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\StorageBucketInfo $var
+     * @return $this
+     */
+    public function setStorageBucket($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\StorageBucketInfo::class);
+        $this->writeOneof(28, $var);
 
         return $this;
     }

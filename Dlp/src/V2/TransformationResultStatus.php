@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * The outcome of a transformation.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.TransformationResultStatus</code>
  */
 class TransformationResultStatus extends \Google\Protobuf\Internal\Message

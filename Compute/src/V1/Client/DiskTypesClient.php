@@ -180,7 +180,7 @@ final class DiskTypesClient
     }
 
     /**
-     * Retrieves an aggregated list of disk types.
+     * Retrieves an aggregated list of disk types. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see DiskTypesClient::aggregatedListAsync()} .
      *

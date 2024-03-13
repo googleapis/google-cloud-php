@@ -25,8 +25,8 @@ class ReplaceDictionaryConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList $word_list
      *           A list of words to select from for random replacement. The
-     *           [limits](https://cloud.google.com/dlp/limits) page contains details about
-     *           the size limits of dictionaries.
+     *           [limits](https://cloud.google.com/sensitive-data-protection/limits) page
+     *           contains details about the size limits of dictionaries.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,8 +36,8 @@ class ReplaceDictionaryConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of words to select from for random replacement. The
-     * [limits](https://cloud.google.com/dlp/limits) page contains details about
-     * the size limits of dictionaries.
+     * [limits](https://cloud.google.com/sensitive-data-protection/limits) page
+     * contains details about the size limits of dictionaries.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList word_list = 1;</code>
      * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList|null
@@ -54,8 +54,8 @@ class ReplaceDictionaryConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of words to select from for random replacement. The
-     * [limits](https://cloud.google.com/dlp/limits) page contains details about
-     * the size limits of dictionaries.
+     * [limits](https://cloud.google.com/sensitive-data-protection/limits) page
+     * contains details about the size limits of dictionaries.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList word_list = 1;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList $var

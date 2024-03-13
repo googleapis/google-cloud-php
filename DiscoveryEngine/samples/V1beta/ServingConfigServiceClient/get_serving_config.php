@@ -34,7 +34,7 @@ use Google\Cloud\DiscoveryEngine\V1beta\ServingConfig;
  * Returns a NotFound error if the ServingConfig does not exist.
  *
  * @param string $formattedName The resource name of the ServingConfig to get. Format:
- *                              `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`
+ *                              `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`
  *                              Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
  */
 function get_serving_config_sample(string $formattedName): void

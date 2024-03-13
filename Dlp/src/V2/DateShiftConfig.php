@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Shifts dates by random number of days, with option to be consistent for the
- * same context. See https://cloud.google.com/dlp/docs/concepts-date-shifting
+ * same context. See
+ * https://cloud.google.com/sensitive-data-protection/docs/concepts-date-shifting
  * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DateShiftConfig</code>

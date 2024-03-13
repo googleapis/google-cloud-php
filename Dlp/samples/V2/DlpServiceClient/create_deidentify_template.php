@@ -31,14 +31,15 @@ use Google\Cloud\Dlp\V2\DeidentifyTemplate;
 /**
  * Creates a DeidentifyTemplate for reusing frequently used configuration
  * for de-identifying content, images, and storage.
- * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
- * more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+ * to learn more.
  *
  * @param string $formattedParent Parent resource name.
  *
  *                                The format of this value varies depending on the scope of the request
  *                                (project or organization) and whether you have [specified a processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                + Projects scope, location specified:<br/>
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>

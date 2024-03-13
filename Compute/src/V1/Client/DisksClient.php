@@ -289,7 +289,7 @@ final class DisksClient
     }
 
     /**
-     * Retrieves an aggregated list of persistent disks.
+     * Retrieves an aggregated list of persistent disks. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see DisksClient::aggregatedListAsync()} .
      *

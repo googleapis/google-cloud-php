@@ -76,6 +76,12 @@ class Target
      * Generated from protobuf enum <code>SERVERLESS_NEG = 9;</code>
      */
     const SERVERLESS_NEG = 9;
+    /**
+     * Target is a Cloud Storage bucket.
+     *
+     * Generated from protobuf enum <code>STORAGE_BUCKET = 10;</code>
+     */
+    const STORAGE_BUCKET = 10;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -88,6 +94,7 @@ class Target
         self::PSC_GOOGLE_API => 'PSC_GOOGLE_API',
         self::PSC_VPC_SC => 'PSC_VPC_SC',
         self::SERVERLESS_NEG => 'SERVERLESS_NEG',
+        self::STORAGE_BUCKET => 'STORAGE_BUCKET',
     ];
 
     public static function name($value)

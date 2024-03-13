@@ -46,8 +46,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      */
     protected $share_name = '';
     /**
-     * Output only. Name of the Private Service Access allocated range. This is
-     * optional. If not provided, any available range will be chosen.
+     * Output only. This field is currently not implemented. Currently values
+     * provided in this field will be ignored.
      *
      * Generated from protobuf field <code>string psa_range = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -228,8 +228,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type string $share_name
      *           Required. Share name of the volume
      *     @type string $psa_range
-     *           Output only. Name of the Private Service Access allocated range. This is
-     *           optional. If not provided, any available range will be chosen.
+     *           Output only. This field is currently not implemented. Currently values
+     *           provided in this field will be ignored.
      *     @type string $storage_pool
      *           Required. StoragePool name of the volume
      *     @type string $network
@@ -436,8 +436,8 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the Private Service Access allocated range. This is
-     * optional. If not provided, any available range will be chosen.
+     * Output only. This field is currently not implemented. Currently values
+     * provided in this field will be ignored.
      *
      * Generated from protobuf field <code>string psa_range = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -448,8 +448,8 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the Private Service Access allocated range. This is
-     * optional. If not provided, any available range will be chosen.
+     * Output only. This field is currently not implemented. Currently values
+     * provided in this field will be ignored.
      *
      * Generated from protobuf field <code>string psa_range = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

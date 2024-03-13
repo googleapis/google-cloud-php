@@ -99,6 +99,30 @@ class LifecycleTest extends SnippetTestCase
         );
     }
 
+    public function testAddAbortIncompleteMultipartUploadRule()
+    {
+        $snippet = $this->snippetFromMethod(Lifecycle::class, 'addAbortIncompleteMultipartUploadRule');
+        $snippet->addLocal('lifecycle', $this->lifecycle);
+
+        $returnVal = $snippet->invoke('lifecycle')
+            ->returnVal();
+
+        $this->assertInstanceOf(Lifecycle::class, $returnVal);
+        $this->assertEquals(
+            [
+                'rule' => [
+                    [
+                        'action' => [
+                            'type' => 'AbortIncompleteMultipartUpload',
+                        ],
+                        'condition' => self::$condition
+                    ]
+                ]
+            ],
+            $returnVal->toArray()
+        );
+    }
+
     public function testAddSetStorageClassRule()
     {
         $snippet = $this->snippetFromMethod(Lifecycle::class, 'addSetStorageClassRule');

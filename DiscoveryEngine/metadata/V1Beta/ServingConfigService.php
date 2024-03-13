@@ -22,17 +22,16 @@ class ServingConfigService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ﬁ
+‚
 @google/cloud/discoveryengine/v1beta/serving_config_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/cloud/discoveryengine/v1beta/serving_config.proto google/protobuf/field_mask.proto"û
 UpdateServingConfigRequestO
 serving_config (22.google.cloud.discoveryengine.v1beta.ServingConfigB‡A/
 update_mask (2.google.protobuf.FieldMask"]
 GetServingConfigRequestB
 name (	B4‡A˙A.
-,discoveryengine.googleapis.com/ServingConfig"é
-ListServingConfigsRequest@
-parent (	B0‡A˙A*
-(discoveryengine.googleapis.com/DataStore
+,discoveryengine.googleapis.com/ServingConfig"í
+ListServingConfigsRequestD
+parent (	B4‡A˙A.,discoveryengine.googleapis.com/ServingConfig
 	page_size (B‡A
 
 page_token (	B‡A"Ç

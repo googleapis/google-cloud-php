@@ -23,11 +23,34 @@ class DataProfileConfigSnapshot extends \Google\Protobuf\Internal\Message
      */
     private $inspect_config = null;
     /**
+     * A copy of the configuration used to generate this profile. This is
+     * deprecated, and the DiscoveryConfig field is preferred moving forward.
+     * DataProfileJobConfig will still be written here for Discovery in BigQuery
+     * for backwards compatibility, but will not be updated with new fields, while
+     * DiscoveryConfig will.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileJobConfig data_profile_job = 3 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $data_profile_job = null;
+    /**
      * A copy of the configuration used to generate this profile.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileJobConfig data_profile_job = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig discovery_config = 4;</code>
      */
-    private $data_profile_job = null;
+    private $discovery_config = null;
+    /**
+     * Name of the inspection template used to generate this profile
+     *
+     * Generated from protobuf field <code>string inspect_template_name = 5;</code>
+     */
+    private $inspect_template_name = '';
+    /**
+     * Timestamp when the template was modified
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp inspect_template_modified_time = 6;</code>
+     */
+    private $inspect_template_modified_time = null;
 
     /**
      * Constructor.
@@ -39,7 +62,17 @@ class DataProfileConfigSnapshot extends \Google\Protobuf\Internal\Message
      *           A copy of the inspection config used to generate this profile. This
      *           is a copy of the inspect_template specified in `DataProfileJobConfig`.
      *     @type \Google\Cloud\Dlp\V2\DataProfileJobConfig $data_profile_job
+     *           A copy of the configuration used to generate this profile. This is
+     *           deprecated, and the DiscoveryConfig field is preferred moving forward.
+     *           DataProfileJobConfig will still be written here for Discovery in BigQuery
+     *           for backwards compatibility, but will not be updated with new fields, while
+     *           DiscoveryConfig will.
+     *     @type \Google\Cloud\Dlp\V2\DiscoveryConfig $discovery_config
      *           A copy of the configuration used to generate this profile.
+     *     @type string $inspect_template_name
+     *           Name of the inspection template used to generate this profile
+     *     @type \Google\Protobuf\Timestamp $inspect_template_modified_time
+     *           Timestamp when the template was modified
      * }
      */
     public function __construct($data = NULL) {
@@ -86,37 +119,149 @@ class DataProfileConfigSnapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A copy of the configuration used to generate this profile.
+     * A copy of the configuration used to generate this profile. This is
+     * deprecated, and the DiscoveryConfig field is preferred moving forward.
+     * DataProfileJobConfig will still be written here for Discovery in BigQuery
+     * for backwards compatibility, but will not be updated with new fields, while
+     * DiscoveryConfig will.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileJobConfig data_profile_job = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileJobConfig data_profile_job = 3 [deprecated = true];</code>
      * @return \Google\Cloud\Dlp\V2\DataProfileJobConfig|null
+     * @deprecated
      */
     public function getDataProfileJob()
     {
+        @trigger_error('data_profile_job is deprecated.', E_USER_DEPRECATED);
         return $this->data_profile_job;
     }
 
     public function hasDataProfileJob()
     {
+        @trigger_error('data_profile_job is deprecated.', E_USER_DEPRECATED);
         return isset($this->data_profile_job);
     }
 
     public function clearDataProfileJob()
     {
+        @trigger_error('data_profile_job is deprecated.', E_USER_DEPRECATED);
         unset($this->data_profile_job);
+    }
+
+    /**
+     * A copy of the configuration used to generate this profile. This is
+     * deprecated, and the DiscoveryConfig field is preferred moving forward.
+     * DataProfileJobConfig will still be written here for Discovery in BigQuery
+     * for backwards compatibility, but will not be updated with new fields, while
+     * DiscoveryConfig will.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileJobConfig data_profile_job = 3 [deprecated = true];</code>
+     * @param \Google\Cloud\Dlp\V2\DataProfileJobConfig $var
+     * @return $this
+     * @deprecated
+     */
+    public function setDataProfileJob($var)
+    {
+        @trigger_error('data_profile_job is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileJobConfig::class);
+        $this->data_profile_job = $var;
+
+        return $this;
     }
 
     /**
      * A copy of the configuration used to generate this profile.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileJobConfig data_profile_job = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\DataProfileJobConfig $var
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig discovery_config = 4;</code>
+     * @return \Google\Cloud\Dlp\V2\DiscoveryConfig|null
+     */
+    public function getDiscoveryConfig()
+    {
+        return $this->discovery_config;
+    }
+
+    public function hasDiscoveryConfig()
+    {
+        return isset($this->discovery_config);
+    }
+
+    public function clearDiscoveryConfig()
+    {
+        unset($this->discovery_config);
+    }
+
+    /**
+     * A copy of the configuration used to generate this profile.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DiscoveryConfig discovery_config = 4;</code>
+     * @param \Google\Cloud\Dlp\V2\DiscoveryConfig $var
      * @return $this
      */
-    public function setDataProfileJob($var)
+    public function setDiscoveryConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataProfileJobConfig::class);
-        $this->data_profile_job = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DiscoveryConfig::class);
+        $this->discovery_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Name of the inspection template used to generate this profile
+     *
+     * Generated from protobuf field <code>string inspect_template_name = 5;</code>
+     * @return string
+     */
+    public function getInspectTemplateName()
+    {
+        return $this->inspect_template_name;
+    }
+
+    /**
+     * Name of the inspection template used to generate this profile
+     *
+     * Generated from protobuf field <code>string inspect_template_name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInspectTemplateName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->inspect_template_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Timestamp when the template was modified
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp inspect_template_modified_time = 6;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getInspectTemplateModifiedTime()
+    {
+        return $this->inspect_template_modified_time;
+    }
+
+    public function hasInspectTemplateModifiedTime()
+    {
+        return isset($this->inspect_template_modified_time);
+    }
+
+    public function clearInspectTemplateModifiedTime()
+    {
+        unset($this->inspect_template_modified_time);
+    }
+
+    /**
+     * Timestamp when the template was modified
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp inspect_template_modified_time = 6;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setInspectTemplateModifiedTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->inspect_template_modified_time = $var;
 
         return $this;
     }

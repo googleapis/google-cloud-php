@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Success or errors for the profile generation.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ProfileStatus</code>
  */
 class ProfileStatus extends \Google\Protobuf\Internal\Message

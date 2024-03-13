@@ -112,6 +112,12 @@ class State
      */
     const APPLY_FORWARDING_RULE = 7;
     /**
+     * Config checking state: verify load balancer backend configuration.
+     *
+     * Generated from protobuf enum <code>ANALYZE_LOAD_BALANCER_BACKEND = 28;</code>
+     */
+    const ANALYZE_LOAD_BALANCER_BACKEND = 28;
+    /**
      * Config checking state: packet sent or received under foreign IP
      * address and allowed.
      *
@@ -215,6 +221,7 @@ class State
         self::APPLY_EGRESS_FIREWALL_RULE => 'APPLY_EGRESS_FIREWALL_RULE',
         self::APPLY_ROUTE => 'APPLY_ROUTE',
         self::APPLY_FORWARDING_RULE => 'APPLY_FORWARDING_RULE',
+        self::ANALYZE_LOAD_BALANCER_BACKEND => 'ANALYZE_LOAD_BALANCER_BACKEND',
         self::SPOOFING_APPROVED => 'SPOOFING_APPROVED',
         self::ARRIVE_AT_INSTANCE => 'ARRIVE_AT_INSTANCE',
         self::ARRIVE_AT_INTERNAL_LOAD_BALANCER => 'ARRIVE_AT_INTERNAL_LOAD_BALANCER',

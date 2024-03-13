@@ -28,6 +28,13 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * The IP family of the gateway IPs for the HA-VPN gateway interfaces. If not specified, IPV4 will be used.
+     * Check the GatewayIpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string gateway_ip_version = 65074843;</code>
+     */
+    private $gateway_ip_version = null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -99,6 +106,9 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type string $gateway_ip_version
+     *           The IP family of the gateway IPs for the HA-VPN gateway interfaces. If not specified, IPV4 will be used.
+     *           Check the GatewayIpVersion enum for the list of possible values.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -195,6 +205,44 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * The IP family of the gateway IPs for the HA-VPN gateway interfaces. If not specified, IPV4 will be used.
+     * Check the GatewayIpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string gateway_ip_version = 65074843;</code>
+     * @return string
+     */
+    public function getGatewayIpVersion()
+    {
+        return isset($this->gateway_ip_version) ? $this->gateway_ip_version : '';
+    }
+
+    public function hasGatewayIpVersion()
+    {
+        return isset($this->gateway_ip_version);
+    }
+
+    public function clearGatewayIpVersion()
+    {
+        unset($this->gateway_ip_version);
+    }
+
+    /**
+     * The IP family of the gateway IPs for the HA-VPN gateway interfaces. If not specified, IPV4 will be used.
+     * Check the GatewayIpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string gateway_ip_version = 65074843;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGatewayIpVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->gateway_ip_version = $var;
 
         return $this;
     }
