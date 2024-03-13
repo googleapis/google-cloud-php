@@ -172,6 +172,7 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindFloat32Parameter()
     {
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $pi = 3.1415;
