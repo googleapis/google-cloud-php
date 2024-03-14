@@ -135,18 +135,28 @@ class StreamWrapper
     {
         if ($option == STREAM_META_TOUCH) {
             $this->openPath($path);
-            $object = $this->bucket->object($this->file);
-            try {
-                if (!$object->exists()) {
-                    $this->bucket->upload('', [
-                        'name' => $this->file
-                    ]);
-                }
-                return true;
-            } catch (NotFoundException $e) {
-            }
+            return $this->touch();
         }
 
+        return false;
+    }
+
+    /**
+     * Creates an empty file if it does not exist.
+     * @return bool Returns true if file exists or has been created, false otherwise.
+     */
+    private function touch()
+    {
+        $object = $this->bucket->object($this->file);
+        try {
+            if (!$object->exists()) {
+                $this->bucket->upload('', [
+                    'name' => $this->file
+                ]);
+            }
+            return true;
+        } catch (NotFoundException $e) {
+        }
         return false;
     }
 
