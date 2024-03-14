@@ -53,6 +53,27 @@ class FinishReason
      * Generated from protobuf enum <code>OTHER = 5;</code>
      */
     const OTHER = 5;
+    /**
+     * The token generation was stopped as the response was flagged for the
+     * terms which are included from the terminology blocklist.
+     *
+     * Generated from protobuf enum <code>BLOCKLIST = 6;</code>
+     */
+    const BLOCKLIST = 6;
+    /**
+     * The token generation was stopped as the response was flagged for
+     * the prohibited contents.
+     *
+     * Generated from protobuf enum <code>PROHIBITED_CONTENT = 7;</code>
+     */
+    const PROHIBITED_CONTENT = 7;
+    /**
+     * The token generation was stopped as the response was flagged for
+     * Sensitive Personally Identifiable Information (SPII) contents.
+     *
+     * Generated from protobuf enum <code>SPII = 8;</code>
+     */
+    const SPII = 8;
 
     private static $valueToName = [
         self::FINISH_REASON_UNSPECIFIED => 'FINISH_REASON_UNSPECIFIED',
@@ -61,6 +82,9 @@ class FinishReason
         self::SAFETY => 'SAFETY',
         self::RECITATION => 'RECITATION',
         self::OTHER => 'OTHER',
+        self::BLOCKLIST => 'BLOCKLIST',
+        self::PROHIBITED_CONTENT => 'PROHIBITED_CONTENT',
+        self::SPII => 'SPII',
     ];
 
     public static function name($value)

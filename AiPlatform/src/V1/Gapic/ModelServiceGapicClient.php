@@ -1655,12 +1655,14 @@ class ModelServiceGapicClient
      *           * `labels.key=value` - key:value equality
      *           * `labels.key:* or labels:key - key existence
      *           * A key including a space must be quoted. `labels."a key"`.
+     *           * `base_model_name` only supports =
      *
      *           Some examples:
      *
      *           * `model=1234`
      *           * `displayName="myDisplayName"`
      *           * `labels.myKey="myValue"`
+     *           * `baseModelName="text-bison"`
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
