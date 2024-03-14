@@ -135,11 +135,16 @@ class StreamWrapper
     {
         if ($option == STREAM_META_TOUCH) {
             $this->openPath($path);
-            $this->bucket->upload('', [
-                'name' => $this->file
-            ]);
-
-            return true;
+            $object = $this->bucket->object($this->file);
+            try {
+                if (!$object->exists()) {
+                    $this->bucket->upload('', [
+                        'name' => $this->file
+                    ]);
+                }
+                return true;
+            } catch (NotFoundException $e) {
+            }
         }
 
         return false;
@@ -204,7 +209,7 @@ class StreamWrapper
      */
     public function stream_open($path, $mode, $flags, &$openedPath)
     {
-        $client = $this->openPath($path);
+        $this->openPath($path);
 
         // strip off 'b' or 't' from the mode
         $mode = rtrim($mode, 'bt');
