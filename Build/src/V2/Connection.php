@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Server or
- * GitLab.
+ * A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data Center,
+ * Bitbucket Cloud or GitLab.
  *
  * Generated from protobuf message <code>google.devtools.cloudbuild.v2.Connection</code>
  */
@@ -92,6 +92,10 @@ class Connection extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Build\V2\GitLabConfig $gitlab_config
      *           Configuration for connections to gitlab.com or an instance of GitLab
      *           Enterprise.
+     *     @type \Google\Cloud\Build\V2\BitbucketDataCenterConfig $bitbucket_data_center_config
+     *           Configuration for connections to Bitbucket Data Center.
+     *     @type \Google\Cloud\Build\V2\BitbucketCloudConfig $bitbucket_cloud_config
+     *           Configuration for connections to Bitbucket Cloud.
      *     @type \Google\Cloud\Build\V2\InstallationState $installation_state
      *           Output only. Installation state of the Connection.
      *     @type bool $disabled
@@ -305,6 +309,68 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Build\V2\GitLabConfig::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configuration for connections to Bitbucket Data Center.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.BitbucketDataCenterConfig bitbucket_data_center_config = 8;</code>
+     * @return \Google\Cloud\Build\V2\BitbucketDataCenterConfig|null
+     */
+    public function getBitbucketDataCenterConfig()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasBitbucketDataCenterConfig()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Configuration for connections to Bitbucket Data Center.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.BitbucketDataCenterConfig bitbucket_data_center_config = 8;</code>
+     * @param \Google\Cloud\Build\V2\BitbucketDataCenterConfig $var
+     * @return $this
+     */
+    public function setBitbucketDataCenterConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V2\BitbucketDataCenterConfig::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Configuration for connections to Bitbucket Cloud.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.BitbucketCloudConfig bitbucket_cloud_config = 9;</code>
+     * @return \Google\Cloud\Build\V2\BitbucketCloudConfig|null
+     */
+    public function getBitbucketCloudConfig()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasBitbucketCloudConfig()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Configuration for connections to Bitbucket Cloud.
+     *
+     * Generated from protobuf field <code>.google.devtools.cloudbuild.v2.BitbucketCloudConfig bitbucket_cloud_config = 9;</code>
+     * @param \Google\Cloud\Build\V2\BitbucketCloudConfig $var
+     * @return $this
+     */
+    public function setBitbucketCloudConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Build\V2\BitbucketCloudConfig::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }
