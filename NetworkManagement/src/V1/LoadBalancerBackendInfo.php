@@ -74,11 +74,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
      */
     private $health_check_uri = '';
     /**
-     * Health check firewalls configuration state for the backend. This is a
-     * result of the static firewall analysis (verifying that health check traffic
-     * from required IP ranges to the backend is allowed or not). The backend
-     * might still be unhealthy even if these firewalls are configured. Please
-     * refer to the documentation for more information:
+     * Output only. Health check firewalls configuration state for the backend.
+     * This is a result of the static firewall analysis (verifying that health
+     * check traffic from required IP ranges to the backend is allowed or not).
+     * The backend might still be unhealthy even if these firewalls are
+     * configured. Please refer to the documentation for more information:
      * https://cloud.google.com/load-balancing/docs/firewall-rules
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerBackendInfo.HealthCheckFirewallsConfigState health_check_firewalls_config_state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -114,11 +114,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
      *     @type string $health_check_uri
      *           URI of the health check attached to this backend (if applicable).
      *     @type int $health_check_firewalls_config_state
-     *           Health check firewalls configuration state for the backend. This is a
-     *           result of the static firewall analysis (verifying that health check traffic
-     *           from required IP ranges to the backend is allowed or not). The backend
-     *           might still be unhealthy even if these firewalls are configured. Please
-     *           refer to the documentation for more information:
+     *           Output only. Health check firewalls configuration state for the backend.
+     *           This is a result of the static firewall analysis (verifying that health
+     *           check traffic from required IP ranges to the backend is allowed or not).
+     *           The backend might still be unhealthy even if these firewalls are
+     *           configured. Please refer to the documentation for more information:
      *           https://cloud.google.com/load-balancing/docs/firewall-rules
      * }
      */
@@ -370,11 +370,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health check firewalls configuration state for the backend. This is a
-     * result of the static firewall analysis (verifying that health check traffic
-     * from required IP ranges to the backend is allowed or not). The backend
-     * might still be unhealthy even if these firewalls are configured. Please
-     * refer to the documentation for more information:
+     * Output only. Health check firewalls configuration state for the backend.
+     * This is a result of the static firewall analysis (verifying that health
+     * check traffic from required IP ranges to the backend is allowed or not).
+     * The backend might still be unhealthy even if these firewalls are
+     * configured. Please refer to the documentation for more information:
      * https://cloud.google.com/load-balancing/docs/firewall-rules
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerBackendInfo.HealthCheckFirewallsConfigState health_check_firewalls_config_state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -386,11 +386,11 @@ class LoadBalancerBackendInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health check firewalls configuration state for the backend. This is a
-     * result of the static firewall analysis (verifying that health check traffic
-     * from required IP ranges to the backend is allowed or not). The backend
-     * might still be unhealthy even if these firewalls are configured. Please
-     * refer to the documentation for more information:
+     * Output only. Health check firewalls configuration state for the backend.
+     * This is a result of the static firewall analysis (verifying that health
+     * check traffic from required IP ranges to the backend is allowed or not).
+     * The backend might still be unhealthy even if these firewalls are
+     * configured. Please refer to the documentation for more information:
      * https://cloud.google.com/load-balancing/docs/firewall-rules
      *
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerBackendInfo.HealthCheckFirewallsConfigState health_check_firewalls_config_state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

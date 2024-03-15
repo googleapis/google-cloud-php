@@ -42,7 +42,7 @@ class Cause
      */
     const FIREWALL_RULE = 3;
     /**
-     * Dropped due to no routes.
+     * Dropped due to no matching routes.
      *
      * Generated from protobuf enum <code>NO_ROUTE = 4;</code>
      */
@@ -56,11 +56,73 @@ class Cause
     /**
      * Packet is sent to a wrong (unintended) network. Example: you trace a
      * packet from VM1:Network1 to VM2:Network2, however, the route configured
-     * in Network1 sends the packet destined for VM2's IP addresss to Network3.
+     * in Network1 sends the packet destined for VM2's IP address to Network3.
      *
      * Generated from protobuf enum <code>ROUTE_WRONG_NETWORK = 6;</code>
      */
     const ROUTE_WRONG_NETWORK = 6;
+    /**
+     * Route's next hop IP address cannot be resolved to a GCP resource.
+     *
+     * Generated from protobuf enum <code>ROUTE_NEXT_HOP_IP_ADDRESS_NOT_RESOLVED = 42;</code>
+     */
+    const ROUTE_NEXT_HOP_IP_ADDRESS_NOT_RESOLVED = 42;
+    /**
+     * Route's next hop resource is not found.
+     *
+     * Generated from protobuf enum <code>ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND = 43;</code>
+     */
+    const ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND = 43;
+    /**
+     * Route's next hop instance doesn't hace a NIC in the route's network.
+     *
+     * Generated from protobuf enum <code>ROUTE_NEXT_HOP_INSTANCE_WRONG_NETWORK = 49;</code>
+     */
+    const ROUTE_NEXT_HOP_INSTANCE_WRONG_NETWORK = 49;
+    /**
+     * Route's next hop IP address is not a primary IP address of the next hop
+     * instance.
+     *
+     * Generated from protobuf enum <code>ROUTE_NEXT_HOP_INSTANCE_NON_PRIMARY_IP = 50;</code>
+     */
+    const ROUTE_NEXT_HOP_INSTANCE_NON_PRIMARY_IP = 50;
+    /**
+     * Route's next hop forwarding rule doesn't match next hop IP address.
+     *
+     * Generated from protobuf enum <code>ROUTE_NEXT_HOP_FORWARDING_RULE_IP_MISMATCH = 51;</code>
+     */
+    const ROUTE_NEXT_HOP_FORWARDING_RULE_IP_MISMATCH = 51;
+    /**
+     * Route's next hop VPN tunnel is down (does not have valid IKE SAs).
+     *
+     * Generated from protobuf enum <code>ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED = 52;</code>
+     */
+    const ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED = 52;
+    /**
+     * Route's next hop forwarding rule type is invalid (it's not a forwarding
+     * rule of the internal passthrough load balancer).
+     *
+     * Generated from protobuf enum <code>ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID = 53;</code>
+     */
+    const ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID = 53;
+    /**
+     * Packet is sent from the Internet to the private IPv6 address.
+     *
+     * Generated from protobuf enum <code>NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS = 44;</code>
+     */
+    const NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS = 44;
+    /**
+     * The packet does not match a policy-based VPN tunnel local selector.
+     *
+     * Generated from protobuf enum <code>VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH = 45;</code>
+     */
+    const VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH = 45;
+    /**
+     * The packet does not match a policy-based VPN tunnel remote selector.
+     *
+     * Generated from protobuf enum <code>VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH = 46;</code>
+     */
+    const VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH = 46;
     /**
      * Packet with internal destination address sent to the internet gateway.
      *
@@ -69,11 +131,19 @@ class Cause
     const PRIVATE_TRAFFIC_TO_INTERNET = 7;
     /**
      * Instance with only an internal IP address tries to access Google API and
-     * services, but private Google access is not enabled.
+     * services, but private Google access is not enabled in the subnet.
      *
      * Generated from protobuf enum <code>PRIVATE_GOOGLE_ACCESS_DISALLOWED = 8;</code>
      */
     const PRIVATE_GOOGLE_ACCESS_DISALLOWED = 8;
+    /**
+     * Source endpoint tries to access Google API and services through the VPN
+     * tunnel to another network, but Private Google Access needs to be enabled
+     * in the source endpoint network.
+     *
+     * Generated from protobuf enum <code>PRIVATE_GOOGLE_ACCESS_VIA_VPN_TUNNEL_UNSUPPORTED = 47;</code>
+     */
+    const PRIVATE_GOOGLE_ACCESS_VIA_VPN_TUNNEL_UNSUPPORTED = 47;
     /**
      * Instance with only an internal IP address tries to access external hosts,
      * but Cloud NAT is not enabled in the subnet, unless special configurations
@@ -97,13 +167,6 @@ class Cause
      * Generated from protobuf enum <code>FORWARDING_RULE_MISMATCH = 11;</code>
      */
     const FORWARDING_RULE_MISMATCH = 11;
-    /**
-     * Packet could be dropped because it was sent from a different region
-     * to a regional forwarding without global access.
-     *
-     * Generated from protobuf enum <code>FORWARDING_RULE_REGION_MISMATCH = 25;</code>
-     */
-    const FORWARDING_RULE_REGION_MISMATCH = 25;
     /**
      * Forwarding rule does not have backends configured.
      *
@@ -269,12 +332,72 @@ class Cause
      */
     const VPC_CONNECTOR_NOT_RUNNING = 24;
     /**
+     * Packet could be dropped because it was sent from a different region
+     * to a regional forwarding without global access.
+     *
+     * Generated from protobuf enum <code>FORWARDING_RULE_REGION_MISMATCH = 25;</code>
+     */
+    const FORWARDING_RULE_REGION_MISMATCH = 25;
+    /**
      * The Private Service Connect endpoint is in a project that is not approved
      * to connect to the service.
      *
      * Generated from protobuf enum <code>PSC_CONNECTION_NOT_ACCEPTED = 26;</code>
      */
     const PSC_CONNECTION_NOT_ACCEPTED = 26;
+    /**
+     * The packet is sent to the Private Service Connect endpoint over the
+     * peering, but [it's not
+     * supported](https://cloud.google.com/vpc/docs/configure-private-service-connect-services#on-premises).
+     *
+     * Generated from protobuf enum <code>PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK = 41;</code>
+     */
+    const PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK = 41;
+    /**
+     * The packet is sent to the Private Service Connect backend (network
+     * endpoint group), but the producer PSC forwarding rule does not have
+     * global access enabled.
+     *
+     * Generated from protobuf enum <code>PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS = 48;</code>
+     */
+    const PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS = 48;
+    /**
+     * The packet is sent to the Private Service Connect backend (network
+     * endpoint group), but the producer PSC forwarding rule has multiple ports
+     * specified.
+     *
+     * Generated from protobuf enum <code>PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS = 54;</code>
+     */
+    const PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS = 54;
+    /**
+     * The packet is sent to the Private Service Connect backend (network
+     * endpoint group) targeting a Cloud SQL service attachment, but this
+     * configuration is not supported.
+     *
+     * Generated from protobuf enum <code>CLOUD_SQL_PSC_NEG_UNSUPPORTED = 58;</code>
+     */
+    const CLOUD_SQL_PSC_NEG_UNSUPPORTED = 58;
+    /**
+     * No NAT subnets are defined for the PSC service attachment.
+     *
+     * Generated from protobuf enum <code>NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT = 57;</code>
+     */
+    const NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT = 57;
+    /**
+     * The packet sent from the hybrid NEG proxy matches a non-dynamic route,
+     * but such a configuration is not supported.
+     *
+     * Generated from protobuf enum <code>HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED = 55;</code>
+     */
+    const HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED = 55;
+    /**
+     * The packet sent from the hybrid NEG proxy matches a dynamic route with a
+     * next hop in a different region, but such a configuration is not
+     * supported.
+     *
+     * Generated from protobuf enum <code>HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED = 56;</code>
+     */
+    const HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED = 56;
     /**
      * Packet sent from a Cloud Run revision that is not ready.
      *
@@ -294,6 +417,18 @@ class Cause
      * Generated from protobuf enum <code>LOAD_BALANCER_HAS_NO_PROXY_SUBNET = 39;</code>
      */
     const LOAD_BALANCER_HAS_NO_PROXY_SUBNET = 39;
+    /**
+     * Packet sent to Cloud Nat without active NAT IPs.
+     *
+     * Generated from protobuf enum <code>CLOUD_NAT_NO_ADDRESSES = 40;</code>
+     */
+    const CLOUD_NAT_NO_ADDRESSES = 40;
+    /**
+     * Packet is stuck in a routing loop.
+     *
+     * Generated from protobuf enum <code>ROUTING_LOOP = 59;</code>
+     */
+    const ROUTING_LOOP = 59;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -303,12 +438,22 @@ class Cause
         self::NO_ROUTE => 'NO_ROUTE',
         self::ROUTE_BLACKHOLE => 'ROUTE_BLACKHOLE',
         self::ROUTE_WRONG_NETWORK => 'ROUTE_WRONG_NETWORK',
+        self::ROUTE_NEXT_HOP_IP_ADDRESS_NOT_RESOLVED => 'ROUTE_NEXT_HOP_IP_ADDRESS_NOT_RESOLVED',
+        self::ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND => 'ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND',
+        self::ROUTE_NEXT_HOP_INSTANCE_WRONG_NETWORK => 'ROUTE_NEXT_HOP_INSTANCE_WRONG_NETWORK',
+        self::ROUTE_NEXT_HOP_INSTANCE_NON_PRIMARY_IP => 'ROUTE_NEXT_HOP_INSTANCE_NON_PRIMARY_IP',
+        self::ROUTE_NEXT_HOP_FORWARDING_RULE_IP_MISMATCH => 'ROUTE_NEXT_HOP_FORWARDING_RULE_IP_MISMATCH',
+        self::ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED => 'ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED',
+        self::ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID => 'ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID',
+        self::NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS => 'NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS',
+        self::VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH => 'VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH',
+        self::VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH => 'VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH',
         self::PRIVATE_TRAFFIC_TO_INTERNET => 'PRIVATE_TRAFFIC_TO_INTERNET',
         self::PRIVATE_GOOGLE_ACCESS_DISALLOWED => 'PRIVATE_GOOGLE_ACCESS_DISALLOWED',
+        self::PRIVATE_GOOGLE_ACCESS_VIA_VPN_TUNNEL_UNSUPPORTED => 'PRIVATE_GOOGLE_ACCESS_VIA_VPN_TUNNEL_UNSUPPORTED',
         self::NO_EXTERNAL_ADDRESS => 'NO_EXTERNAL_ADDRESS',
         self::UNKNOWN_INTERNAL_ADDRESS => 'UNKNOWN_INTERNAL_ADDRESS',
         self::FORWARDING_RULE_MISMATCH => 'FORWARDING_RULE_MISMATCH',
-        self::FORWARDING_RULE_REGION_MISMATCH => 'FORWARDING_RULE_REGION_MISMATCH',
         self::FORWARDING_RULE_NO_INSTANCES => 'FORWARDING_RULE_NO_INSTANCES',
         self::FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK => 'FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK',
         self::INSTANCE_NOT_RUNNING => 'INSTANCE_NOT_RUNNING',
@@ -332,10 +477,20 @@ class Cause
         self::CLOUD_FUNCTION_NOT_ACTIVE => 'CLOUD_FUNCTION_NOT_ACTIVE',
         self::VPC_CONNECTOR_NOT_SET => 'VPC_CONNECTOR_NOT_SET',
         self::VPC_CONNECTOR_NOT_RUNNING => 'VPC_CONNECTOR_NOT_RUNNING',
+        self::FORWARDING_RULE_REGION_MISMATCH => 'FORWARDING_RULE_REGION_MISMATCH',
         self::PSC_CONNECTION_NOT_ACCEPTED => 'PSC_CONNECTION_NOT_ACCEPTED',
+        self::PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK => 'PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK',
+        self::PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS => 'PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS',
+        self::PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS => 'PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS',
+        self::CLOUD_SQL_PSC_NEG_UNSUPPORTED => 'CLOUD_SQL_PSC_NEG_UNSUPPORTED',
+        self::NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT => 'NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT',
+        self::HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED => 'HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED',
+        self::HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED => 'HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED',
         self::CLOUD_RUN_REVISION_NOT_READY => 'CLOUD_RUN_REVISION_NOT_READY',
         self::DROPPED_INSIDE_PSC_SERVICE_PRODUCER => 'DROPPED_INSIDE_PSC_SERVICE_PRODUCER',
         self::LOAD_BALANCER_HAS_NO_PROXY_SUBNET => 'LOAD_BALANCER_HAS_NO_PROXY_SUBNET',
+        self::CLOUD_NAT_NO_ADDRESSES => 'CLOUD_NAT_NO_ADDRESSES',
+        self::ROUTING_LOOP => 'ROUTING_LOOP',
     ];
 
     public static function name($value)
