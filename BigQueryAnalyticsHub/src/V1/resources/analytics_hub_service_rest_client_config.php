@@ -87,6 +87,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataExchanges/*/listings/*}:getIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/subscriptions/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -211,6 +216,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataExchanges/*/listings/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/subscriptions/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],
