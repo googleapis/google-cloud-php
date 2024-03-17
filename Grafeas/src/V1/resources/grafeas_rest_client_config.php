@@ -79,6 +79,12 @@ return [
             'GetNote' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/notes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/notes/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -90,6 +96,12 @@ return [
             'GetOccurrence' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/occurrences/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/occurrences/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -101,6 +113,12 @@ return [
             'GetOccurrenceNote' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/occurrences/*}/notes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/occurrences/*}/notes',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -112,6 +130,12 @@ return [
             'ListNoteOccurrences' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/notes/*}/occurrences',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/notes/*}/occurrences',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -123,6 +147,12 @@ return [
             'ListNotes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/notes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notes',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -134,6 +164,12 @@ return [
             'ListOccurrences' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/occurrences',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/occurrences',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

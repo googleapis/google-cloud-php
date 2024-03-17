@@ -43,6 +43,12 @@ class FeatureViewSync extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.Status final_status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $final_status = null;
+    /**
+     * Output only. Summary of the sync job.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewSync.SyncSummary sync_summary = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $sync_summary = null;
 
     /**
      * Constructor.
@@ -61,6 +67,8 @@ class FeatureViewSync extends \Google\Protobuf\Internal\Message
      *           Output only. Time when this FeatureViewSync is finished.
      *     @type \Google\Rpc\Status $final_status
      *           Output only. Final status of the FeatureViewSync.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureViewSync\SyncSummary $sync_summary
+     *           Output only. Summary of the sync job.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,6 +212,42 @@ class FeatureViewSync extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->final_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Summary of the sync job.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewSync.SyncSummary sync_summary = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureViewSync\SyncSummary|null
+     */
+    public function getSyncSummary()
+    {
+        return $this->sync_summary;
+    }
+
+    public function hasSyncSummary()
+    {
+        return isset($this->sync_summary);
+    }
+
+    public function clearSyncSummary()
+    {
+        unset($this->sync_summary);
+    }
+
+    /**
+     * Output only. Summary of the sync job.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewSync.SyncSummary sync_summary = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureViewSync\SyncSummary $var
+     * @return $this
+     */
+    public function setSyncSummary($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureViewSync\SyncSummary::class);
+        $this->sync_summary = $var;
 
         return $this;
     }

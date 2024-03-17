@@ -54,6 +54,12 @@ class Candidate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CitationMetadata citation_metadata = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $citation_metadata = null;
+    /**
+     * Output only. Metadata specifies sources used to ground generated content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingMetadata grounding_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $grounding_metadata = null;
 
     /**
      * Constructor.
@@ -76,6 +82,8 @@ class Candidate extends \Google\Protobuf\Internal\Message
      *           more detail. This is only filled when `finish_reason` is set.
      *     @type \Google\Cloud\AIPlatform\V1\CitationMetadata $citation_metadata
      *           Output only. Source attribution of the generated content.
+     *     @type \Google\Cloud\AIPlatform\V1\GroundingMetadata $grounding_metadata
+     *           Output only. Metadata specifies sources used to ground generated content.
      * }
      */
     public function __construct($data = NULL) {
@@ -271,6 +279,42 @@ class Candidate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CitationMetadata::class);
         $this->citation_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata specifies sources used to ground generated content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingMetadata grounding_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GroundingMetadata|null
+     */
+    public function getGroundingMetadata()
+    {
+        return $this->grounding_metadata;
+    }
+
+    public function hasGroundingMetadata()
+    {
+        return isset($this->grounding_metadata);
+    }
+
+    public function clearGroundingMetadata()
+    {
+        unset($this->grounding_metadata);
+    }
+
+    /**
+     * Output only. Metadata specifies sources used to ground generated content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingMetadata grounding_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GroundingMetadata $var
+     * @return $this
+     */
+    public function setGroundingMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GroundingMetadata::class);
+        $this->grounding_metadata = $var;
 
         return $this;
     }
