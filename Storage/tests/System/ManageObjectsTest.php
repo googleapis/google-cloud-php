@@ -447,9 +447,8 @@ class ManageObjectsTest extends StorageTestCase
 
     private function assertStorageObjectExists($object, $options = [], $isPresent = true)
     {
-        // $this->assertEquals($isPresent, $object->exists($options));
-        $object = self::$bucket->object($object->name(), $options);
         $this->assertEquals($isPresent, $object->exists($options));
+        $object = self::$bucket->object($object->name(), $options);
         $this->assertEquals($isPresent, $object->exists($options));
         $objects = self::$bucket->objects($options);
         $objects = array_map(function ($o) {

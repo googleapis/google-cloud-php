@@ -649,7 +649,7 @@ class Bucket
             $this->connection,
             $name,
             $this->identity['bucket'],
-            $generation,
+            $res['generation'], // restored object will have a new generation
             $res + array_filter([
                 'requesterProjectId' => $this->identity['userProject']
             ])
