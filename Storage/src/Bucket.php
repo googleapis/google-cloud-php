@@ -627,6 +627,10 @@ class Bucket
      * @param array $options [optional] {
      *     Configuration Options.
      *
+     *     @type string $ifGenerationMatch Makes the operation conditional on whether
+     *           the object's current generation matches the given value.
+     *     @type string $ifGenerationNotMatch Makes the operation conditional on whether
+     *           the object's current generation matches the given value.
      *     @type string $ifMetagenerationMatch If set, only restores
      *           if its metageneration matches this value.
      *     @type string $ifMetagenerationNotMatch If set, only restores
@@ -638,8 +642,8 @@ class Bucket
     {
         $res = $this->connection->restoreObject([
             'bucket' => $this->identity['bucket'],
+            'generation' => $generation,
             'object' => $name,
-            'generation' => $generation
         ] + $options);
         return new StorageObject(
             $this->connection,
