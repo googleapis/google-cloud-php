@@ -1622,6 +1622,16 @@
                 "grpc": {
                     "libraryClient": "PipelineServiceGapicClient",
                     "rpcs": {
+                        "BatchCancelPipelineJobs": {
+                            "methods": [
+                                "batchCancelPipelineJobs"
+                            ]
+                        },
+                        "BatchDeletePipelineJobs": {
+                            "methods": [
+                                "batchDeletePipelineJobs"
+                            ]
+                        },
                         "CancelPipelineJob": {
                             "methods": [
                                 "cancelPipelineJob"

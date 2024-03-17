@@ -40,6 +40,7 @@ use Google\Cloud\Datastore\V1\BeginTransactionResponse;
 use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\CommitResponse;
+use Google\Cloud\Datastore\V1\ExplainOptions;
 use Google\Cloud\Datastore\V1\GqlQuery;
 use Google\Cloud\Datastore\V1\Key;
 use Google\Cloud\Datastore\V1\LookupRequest;
@@ -585,6 +586,9 @@ class DatastoreGapicClient
      *           The query to run.
      *     @type GqlQuery $gqlQuery
      *           The GQL query to run. This query must be an aggregation query.
+     *     @type ExplainOptions $explainOptions
+     *           Optional. Explain options for the query. If set, additional query
+     *           statistics will be returned. If not, only query results will be returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -620,6 +624,10 @@ class DatastoreGapicClient
 
         if (isset($optionalArgs['gqlQuery'])) {
             $request->setGqlQuery($optionalArgs['gqlQuery']);
+        }
+
+        if (isset($optionalArgs['explainOptions'])) {
+            $request->setExplainOptions($optionalArgs['explainOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -661,6 +669,9 @@ class DatastoreGapicClient
      *           The query to run.
      *     @type GqlQuery $gqlQuery
      *           The GQL query to run. This query must be a non-aggregation query.
+     *     @type ExplainOptions $explainOptions
+     *           Optional. Explain options for the query. If set, additional query
+     *           statistics will be returned. If not, only query results will be returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -693,6 +704,10 @@ class DatastoreGapicClient
 
         if (isset($optionalArgs['gqlQuery'])) {
             $request->setGqlQuery($optionalArgs['gqlQuery']);
+        }
+
+        if (isset($optionalArgs['explainOptions'])) {
+            $request->setExplainOptions($optionalArgs['explainOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

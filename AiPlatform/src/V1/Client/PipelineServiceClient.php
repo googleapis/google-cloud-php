@@ -35,6 +35,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\BatchCancelPipelineJobsRequest;
+use Google\Cloud\AIPlatform\V1\BatchDeletePipelineJobsRequest;
 use Google\Cloud\AIPlatform\V1\CancelPipelineJobRequest;
 use Google\Cloud\AIPlatform\V1\CancelTrainingPipelineRequest;
 use Google\Cloud\AIPlatform\V1\CreatePipelineJobRequest;
@@ -71,6 +73,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface batchCancelPipelineJobsAsync(BatchCancelPipelineJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface batchDeletePipelineJobsAsync(BatchDeletePipelineJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface cancelPipelineJobAsync(CancelPipelineJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface cancelTrainingPipelineAsync(CancelTrainingPipelineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createPipelineJobAsync(CreatePipelineJobRequest $request, array $optionalArgs = [])
@@ -523,6 +527,68 @@ final class PipelineServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Batch cancel PipelineJobs.
+     * Firstly the server will check if all the jobs are in non-terminal states,
+     * and skip the jobs that are already terminated.
+     * If the operation failed, none of the pipeline jobs are cancelled.
+     * The server will poll the states of all the pipeline jobs periodically
+     * to check the cancellation status.
+     * This operation will return an LRO.
+     *
+     * The async variant is
+     * {@see PipelineServiceClient::batchCancelPipelineJobsAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/batch_cancel_pipeline_jobs.php
+     *
+     * @param BatchCancelPipelineJobsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCancelPipelineJobs(BatchCancelPipelineJobsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BatchCancelPipelineJobs', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch deletes PipelineJobs
+     * The Operation is atomic. If it fails, none of the PipelineJobs are deleted.
+     * If it succeeds, all of the PipelineJobs are deleted.
+     *
+     * The async variant is
+     * {@see PipelineServiceClient::batchDeletePipelineJobsAsync()} .
+     *
+     * @example samples/V1/PipelineServiceClient/batch_delete_pipeline_jobs.php
+     *
+     * @param BatchDeletePipelineJobsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeletePipelineJobs(BatchDeletePipelineJobsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BatchDeletePipelineJobs', $request, $callOptions)->wait();
     }
 
     /**
