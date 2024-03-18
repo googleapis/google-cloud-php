@@ -169,7 +169,12 @@ class ManageBucketsTest extends StorageTestCase
      */
     public function testCreateBucketWithLifecycleAbortIncompleteMultipartUploadRule(array $rule, $isError = false)
     {
-        if ($isError) {
+        $supportedRules = [
+            'age',
+            'matchesPrefix',
+            'matchesSuffix'
+        ];
+        if ($isError || !in_array(array_key_first($rule), $supportedRules)) {
             $this->expectException(BadRequestException::class);
         }
 
