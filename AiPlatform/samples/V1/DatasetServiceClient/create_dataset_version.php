@@ -28,6 +28,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\CreateDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\DatasetVersion;
+use Google\Protobuf\Value;
 use Google\Rpc\Status;
 
 /**
@@ -44,7 +45,9 @@ function create_dataset_version_sample(string $formattedParent): void
     $datasetServiceClient = new DatasetServiceClient();
 
     // Prepare the request message.
-    $datasetVersion = new DatasetVersion();
+    $datasetVersionMetadata = new Value();
+    $datasetVersion = (new DatasetVersion())
+        ->setMetadata($datasetVersionMetadata);
     $request = (new CreateDatasetVersionRequest())
         ->setParent($formattedParent)
         ->setDatasetVersion($datasetVersion);

@@ -44,6 +44,15 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1.PublicKey public_key = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $public_key = null;
+    /**
+     * Optional. When specified this provides a custom SKI to be used in the
+     * certificate. This should only be used to maintain a SKI of an existing CA
+     * originally created outside CAS, which was not generated using method (1)
+     * described in RFC 5280 section 4.2.1.2.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateConfig.KeyId subject_key_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $subject_key_id = null;
 
     /**
      * Constructor.
@@ -66,6 +75,11 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      *           or
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      *           CSR.
+     *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateConfig\KeyId $subject_key_id
+     *           Optional. When specified this provides a custom SKI to be used in the
+     *           certificate. This should only be used to maintain a SKI of an existing CA
+     *           originally created outside CAS, which was not generated using method (1)
+     *           described in RFC 5280 section 4.2.1.2.
      * }
      */
     public function __construct($data = NULL) {
@@ -195,6 +209,48 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Security\PrivateCA\V1\PublicKey::class);
         $this->public_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When specified this provides a custom SKI to be used in the
+     * certificate. This should only be used to maintain a SKI of an existing CA
+     * originally created outside CAS, which was not generated using method (1)
+     * described in RFC 5280 section 4.2.1.2.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateConfig.KeyId subject_key_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Security\PrivateCA\V1\CertificateConfig\KeyId|null
+     */
+    public function getSubjectKeyId()
+    {
+        return $this->subject_key_id;
+    }
+
+    public function hasSubjectKeyId()
+    {
+        return isset($this->subject_key_id);
+    }
+
+    public function clearSubjectKeyId()
+    {
+        unset($this->subject_key_id);
+    }
+
+    /**
+     * Optional. When specified this provides a custom SKI to be used in the
+     * certificate. This should only be used to maintain a SKI of an existing CA
+     * originally created outside CAS, which was not generated using method (1)
+     * described in RFC 5280 section 4.2.1.2.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CertificateConfig.KeyId subject_key_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateConfig\KeyId $var
+     * @return $this
+     */
+    public function setSubjectKeyId($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Security\PrivateCA\V1\CertificateConfig\KeyId::class);
+        $this->subject_key_id = $var;
 
         return $this;
     }

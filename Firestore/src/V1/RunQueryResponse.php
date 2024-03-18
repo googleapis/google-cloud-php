@@ -50,6 +50,14 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 skipped_results = 4;</code>
      */
     private $skipped_results = 0;
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunQueryRequest.explain_options][google.firestore.v1.RunQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainMetrics explain_metrics = 11;</code>
+     */
+    private $explain_metrics = null;
     protected $continuation_selector;
 
     /**
@@ -79,6 +87,10 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *     @type bool $done
      *           If present, Firestore has completely finished the request and no more
      *           documents will be returned.
+     *     @type \Google\Cloud\Firestore\V1\ExplainMetrics $explain_metrics
+     *           Query explain metrics. This is only present when the
+     *           [RunQueryRequest.explain_options][google.firestore.v1.RunQueryRequest.explain_options]
+     *           is provided, and it is sent only once with the last response in the stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -259,6 +271,46 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunQueryRequest.explain_options][google.firestore.v1.RunQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainMetrics explain_metrics = 11;</code>
+     * @return \Google\Cloud\Firestore\V1\ExplainMetrics|null
+     */
+    public function getExplainMetrics()
+    {
+        return $this->explain_metrics;
+    }
+
+    public function hasExplainMetrics()
+    {
+        return isset($this->explain_metrics);
+    }
+
+    public function clearExplainMetrics()
+    {
+        unset($this->explain_metrics);
+    }
+
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunQueryRequest.explain_options][google.firestore.v1.RunQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainMetrics explain_metrics = 11;</code>
+     * @param \Google\Cloud\Firestore\V1\ExplainMetrics $var
+     * @return $this
+     */
+    public function setExplainMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\ExplainMetrics::class);
+        $this->explain_metrics = $var;
 
         return $this;
     }

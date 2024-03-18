@@ -45,6 +45,13 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
      */
     private $read_options = null;
+    /**
+     * Optional. Explain options for the query. If set, additional query
+     * statistics will be returned. If not, only query results will be returned.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.ExplainOptions explain_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $explain_options = null;
     protected $query_type;
 
     /**
@@ -70,6 +77,9 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      *           The query to run.
      *     @type \Google\Cloud\Datastore\V1\GqlQuery $gql_query
      *           The GQL query to run. This query must be an aggregation query.
+     *     @type \Google\Cloud\Datastore\V1\ExplainOptions $explain_options
+     *           Optional. Explain options for the query. If set, additional query
+     *           statistics will be returned. If not, only query results will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -269,6 +279,44 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\GqlQuery::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Explain options for the query. If set, additional query
+     * statistics will be returned. If not, only query results will be returned.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.ExplainOptions explain_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastore\V1\ExplainOptions|null
+     */
+    public function getExplainOptions()
+    {
+        return $this->explain_options;
+    }
+
+    public function hasExplainOptions()
+    {
+        return isset($this->explain_options);
+    }
+
+    public function clearExplainOptions()
+    {
+        unset($this->explain_options);
+    }
+
+    /**
+     * Optional. Explain options for the query. If set, additional query
+     * statistics will be returned. If not, only query results will be returned.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.ExplainOptions explain_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastore\V1\ExplainOptions $var
+     * @return $this
+     */
+    public function setExplainOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\ExplainOptions::class);
+        $this->explain_options = $var;
 
         return $this;
     }

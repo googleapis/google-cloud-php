@@ -26,8 +26,10 @@ class PipelineService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-å"
-1google/cloud/aiplatform/v1/pipeline_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto-google/cloud/aiplatform/v1/pipeline_job.proto2google/cloud/aiplatform/v1/training_pipeline.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"®
+π+
+1google/cloud/aiplatform/v1/pipeline_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto*google/cloud/aiplatform/v1/operation.proto-google/cloud/aiplatform/v1/pipeline_job.proto2google/cloud/aiplatform/v1/training_pipeline.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"z
+(BatchCancelPipelineJobsOperationMetadataN
+generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"®
 CreateTrainingPipelineRequest9
 parent (	B)‡A˙A#
 !locations.googleapis.com/LocationL
@@ -74,10 +76,22 @@ page_token (	
 next_page_token (	"W
 DeletePipelineJobRequest;
 name (	B-‡A˙A\'
-%aiplatform.googleapis.com/PipelineJob"W
+%aiplatform.googleapis.com/PipelineJob"ù
+BatchDeletePipelineJobsRequest=
+parent (	B-‡A˙A\'%aiplatform.googleapis.com/PipelineJob<
+names (	B-‡A˙A\'
+%aiplatform.googleapis.com/PipelineJob"a
+BatchDeletePipelineJobsResponse>
+pipeline_jobs (2\'.google.cloud.aiplatform.v1.PipelineJob"W
 CancelPipelineJobRequest;
 name (	B-‡A˙A\'
-%aiplatform.googleapis.com/PipelineJob2¸
+%aiplatform.googleapis.com/PipelineJob"ù
+BatchCancelPipelineJobsRequest=
+parent (	B-‡A˙A\'%aiplatform.googleapis.com/PipelineJob<
+names (	B-‡A˙A\'
+%aiplatform.googleapis.com/PipelineJob"a
+BatchCancelPipelineJobsResponse>
+pipeline_jobs (2\'.google.cloud.aiplatform.v1.PipelineJob2ß
 PipelineServiceÓ
 CreateTrainingPipeline9.google.cloud.aiplatform.v1.CreateTrainingPipelineRequest,.google.cloud.aiplatform.v1.TrainingPipeline"k⁄Aparent,training_pipelineÇ”‰ìJ"5/v1/{parent=projects/*/locations/*}/trainingPipelines:training_pipeline¡
 GetTrainingPipeline6.google.cloud.aiplatform.v1.GetTrainingPipelineRequest,.google.cloud.aiplatform.v1.TrainingPipeline"D⁄AnameÇ”‰ì75/v1/{name=projects/*/locations/*/trainingPipelines/*}‘
@@ -89,8 +103,12 @@ page_token (	
 GetPipelineJob1.google.cloud.aiplatform.v1.GetPipelineJobRequest\'.google.cloud.aiplatform.v1.PipelineJob"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/pipelineJobs/*}¿
 ListPipelineJobs3.google.cloud.aiplatform.v1.ListPipelineJobsRequest4.google.cloud.aiplatform.v1.ListPipelineJobsResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/pipelineJobs‹
 DeletePipelineJob4.google.cloud.aiplatform.v1.DeletePipelineJobRequest.google.longrunning.Operation"r A0
-google.protobuf.EmptyDeleteOperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/pipelineJobs/*}¨
-CancelPipelineJob4.google.cloud.aiplatform.v1.CancelPipelineJobRequest.google.protobuf.Empty"I⁄AnameÇ”‰ì<"7/v1/{name=projects/*/locations/*/pipelineJobs/*}:cancel:*M Aaiplatform.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB“
+google.protobuf.EmptyDeleteOperationMetadata⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/pipelineJobs/*}ä
+BatchDeletePipelineJobs:.google.cloud.aiplatform.v1.BatchDeletePipelineJobsRequest.google.longrunning.Operation"ì A:
+BatchDeletePipelineJobsResponseDeleteOperationMetadata⁄Aparent,namesÇ”‰ìA"</v1/{parent=projects/*/locations/*}/pipelineJobs:batchDelete:*¨
+CancelPipelineJob4.google.cloud.aiplatform.v1.CancelPipelineJobRequest.google.protobuf.Empty"I⁄AnameÇ”‰ì<"7/v1/{name=projects/*/locations/*/pipelineJobs/*}:cancel:*õ
+BatchCancelPipelineJobs:.google.cloud.aiplatform.v1.BatchCancelPipelineJobsRequest.google.longrunning.Operation"§ AK
+BatchCancelPipelineJobsResponse(BatchCancelPipelineJobsOperationMetadata⁄Aparent,namesÇ”‰ìA"</v1/{parent=projects/*/locations/*}/pipelineJobs:batchCancel:*M Aaiplatform.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB“
 com.google.cloud.aiplatform.v1BPipelineServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb™Google.Cloud.AIPlatform.V1 Google\\Cloud\\AIPlatform\\V1ÍGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

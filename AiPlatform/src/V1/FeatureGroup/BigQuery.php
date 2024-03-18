@@ -23,8 +23,8 @@ class BigQuery extends \Google\Protobuf\Internal\Message
      */
     private $big_query_source = null;
     /**
-     * Optional. Columns to construct entity_id / row keys. Currently only
-     * supports 1 entity_id_column. If not provided defaults to `entity_id`.
+     * Optional. Columns to construct entity_id / row keys.
+     * If not provided defaults to `entity_id`.
      *
      * Generated from protobuf field <code>repeated string entity_id_columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,8 +40,8 @@ class BigQuery extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. The BigQuery source URI that points to either a
      *           BigQuery Table or View.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_id_columns
-     *           Optional. Columns to construct entity_id / row keys. Currently only
-     *           supports 1 entity_id_column. If not provided defaults to `entity_id`.
+     *           Optional. Columns to construct entity_id / row keys.
+     *           If not provided defaults to `entity_id`.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,8 +88,8 @@ class BigQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Columns to construct entity_id / row keys. Currently only
-     * supports 1 entity_id_column. If not provided defaults to `entity_id`.
+     * Optional. Columns to construct entity_id / row keys.
+     * If not provided defaults to `entity_id`.
      *
      * Generated from protobuf field <code>repeated string entity_id_columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -100,8 +100,8 @@ class BigQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Columns to construct entity_id / row keys. Currently only
-     * supports 1 entity_id_column. If not provided defaults to `entity_id`.
+     * Optional. Columns to construct entity_id / row keys.
+     * If not provided defaults to `entity_id`.
      *
      * Generated from protobuf field <code>repeated string entity_id_columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

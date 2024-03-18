@@ -16,6 +16,16 @@
                 }
             },
             "methods": {
+                "BatchCancelPipelineJobs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "BatchDeletePipelineJobs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CancelPipelineJob": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
