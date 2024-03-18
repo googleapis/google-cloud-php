@@ -245,6 +245,18 @@ return [
                     ],
                 ],
             ],
+            'GetTerraformVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\TerraformVersion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ImportStatefile' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Statefile',
@@ -337,6 +349,26 @@ return [
                     ],
                 ],
             ],
+            'ListTerraformVersions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTerraformVersions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ListTerraformVersionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -417,6 +449,7 @@ return [
                 'resource' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}',
                 'revision' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}',
                 'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
+                'terraformVersion' => 'projects/{project}/locations/{location}/terraformVersions/{terraform_version}',
                 'workerPool' => 'projects/{project}/locations/{location}/workerPools/{worker_pool}',
             ],
         ],
