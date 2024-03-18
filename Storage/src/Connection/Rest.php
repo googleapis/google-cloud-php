@@ -231,6 +231,14 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function restoreObject(array $args = [])
+    {
+        return $this->send('objects', 'restore', $args);
+    }
+
+    /**
+     * @param array $args
+     */
     public function copyObject(array $args = [])
     {
         return $this->send('objects', 'copy', $args);
@@ -614,14 +622,22 @@ class Rest implements ConnectionInterface
             'restDelayFunction' => null
         ]);
 
+        $queryOptions = [
+            'generation' => $args['generation'],
+            'alt' => 'media',
+            'userProject' => $args['userProject'],
+        ];
+        if (isset($args['softDeleted'])) {
+            // alt param cannot be specified with softDeleted param. See:
+            // https://cloud.google.com/storage/docs/json_api/v1/objects/get
+            unset($args['alt']);
+            $queryOptions['softDeleted'] = $args['softDeleted'];
+        }
+
         $uri = $this->expandUri($this->apiEndpoint . self::DOWNLOAD_PATH, [
             'bucket' => $args['bucket'],
             'object' => $args['object'],
-            'query' => [
-                'generation' => $args['generation'],
-                'alt' => 'media',
-                'userProject' => $args['userProject']
-            ]
+            'query' => $queryOptions,
         ]);
 
         return [

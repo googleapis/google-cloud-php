@@ -615,6 +615,48 @@ class Bucket
     }
 
     /**
+     * Restores an object.
+     *
+     * Example:
+     * ```
+     * $object = $bucket->restore('file.txt');
+     * ```
+     *
+     * @param string $name The name of the object to restore.
+     * @param string $generation Request a specific generation of the object.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $ifGenerationMatch Makes the operation conditional on whether
+     *           the object's current generation matches the given value.
+     *     @type string $ifGenerationNotMatch Makes the operation conditional on whether
+     *           the object's current generation matches the given value.
+     *     @type string $ifMetagenerationMatch If set, only restores
+     *           if its metageneration matches this value.
+     *     @type string $ifMetagenerationNotMatch If set, only restores
+     *           if its metageneration does not match this value.
+     * }
+     * @return StorageObject
+     */
+    public function restore($name, $generation, array $options = [])
+    {
+        $res = $this->connection->restoreObject([
+            'bucket' => $this->identity['bucket'],
+            'generation' => $generation,
+            'object' => $name,
+        ] + $options);
+        return new StorageObject(
+            $this->connection,
+            $name,
+            $this->identity['bucket'],
+            $res['generation'], // restored object will have a new generation
+            $res + array_filter([
+                'requesterProjectId' => $this->identity['userProject']
+            ])
+        );
+    }
+
+    /**
      * Fetches all objects in the bucket.
      *
      * Example:
