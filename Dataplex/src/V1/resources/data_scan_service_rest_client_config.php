@@ -29,6 +29,25 @@ return [
                     ],
                 ],
             ],
+            'GenerateDataQualityRules' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataScans/*}:generateDataQualityRules',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/dataScans/*/jobs/*}:generateDataQualityRules',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDataScan' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dataScans/*}',
