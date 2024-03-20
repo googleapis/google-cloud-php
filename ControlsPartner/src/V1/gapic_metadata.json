@@ -1,0 +1,77 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.cloudcontrolspartner.v1",
+    "libraryPackage": "Google\\Cloud\\CloudControlsPartner\\V1",
+    "services": {
+        "CloudControlsPartnerCore": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudControlsPartnerCoreGapicClient",
+                    "rpcs": {
+                        "GetCustomer": {
+                            "methods": [
+                                "getCustomer"
+                            ]
+                        },
+                        "GetEkmConnections": {
+                            "methods": [
+                                "getEkmConnections"
+                            ]
+                        },
+                        "GetPartner": {
+                            "methods": [
+                                "getPartner"
+                            ]
+                        },
+                        "GetPartnerPermissions": {
+                            "methods": [
+                                "getPartnerPermissions"
+                            ]
+                        },
+                        "GetWorkload": {
+                            "methods": [
+                                "getWorkload"
+                            ]
+                        },
+                        "ListAccessApprovalRequests": {
+                            "methods": [
+                                "listAccessApprovalRequests"
+                            ]
+                        },
+                        "ListCustomers": {
+                            "methods": [
+                                "listCustomers"
+                            ]
+                        },
+                        "ListWorkloads": {
+                            "methods": [
+                                "listWorkloads"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CloudControlsPartnerMonitoring": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudControlsPartnerMonitoringGapicClient",
+                    "rpcs": {
+                        "GetViolation": {
+                            "methods": [
+                                "getViolation"
+                            ]
+                        },
+                        "ListViolations": {
+                            "methods": [
+                                "listViolations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
