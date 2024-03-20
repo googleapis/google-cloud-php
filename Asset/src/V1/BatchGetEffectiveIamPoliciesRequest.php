@@ -21,9 +21,9 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").
-     * To know how to get organization id, visit [here
+     * To know how to get organization ID, visit [here
      * ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
-     * To know how to get folder or project id, visit [here
+     * To know how to get folder or project ID, visit [here
      * ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -51,9 +51,9 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      *           This can only be an organization number (such as "organizations/123"), a
      *           folder number (such as "folders/123"), a project ID (such as
      *           "projects/my-project-id"), or a project number (such as "projects/12345").
-     *           To know how to get organization id, visit [here
+     *           To know how to get organization ID, visit [here
      *           ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
-     *           To know how to get folder or project id, visit [here
+     *           To know how to get folder or project ID, visit [here
      *           ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           Required. The names refer to the [full_resource_names]
@@ -73,9 +73,9 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").
-     * To know how to get organization id, visit [here
+     * To know how to get organization ID, visit [here
      * ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
-     * To know how to get folder or project id, visit [here
+     * To know how to get folder or project ID, visit [here
      * ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -91,9 +91,9 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").
-     * To know how to get organization id, visit [here
+     * To know how to get organization ID, visit [here
      * ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
-     * To know how to get folder or project id, visit [here
+     * To know how to get folder or project ID, visit [here
      * ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

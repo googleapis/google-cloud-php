@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The key and value for a
- * [tag](https://cloud.google.com/resource-manager/docs/tags/tags-overview),
+ * [tag](https://cloud.google.com/resource-manager/docs/tags/tags-overview).
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.Tag</code>
  */
