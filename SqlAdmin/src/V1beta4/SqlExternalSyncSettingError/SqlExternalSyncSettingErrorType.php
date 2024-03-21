@@ -270,6 +270,21 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>PG_SYNC_PARALLEL_LEVEL = 42;</code>
      */
     const PG_SYNC_PARALLEL_LEVEL = 42;
+    /**
+     * The disk size of the replica instance is smaller than the data size of
+     * the source instance.
+     *
+     * Generated from protobuf enum <code>INSUFFICIENT_DISK_SIZE = 43;</code>
+     */
+    const INSUFFICIENT_DISK_SIZE = 43;
+    /**
+     * The data size of the source instance is greater than 1 TB, the number of
+     * cores of the replica instance is less than 8, and the memory of the
+     * replica is less than 32 GB.
+     *
+     * Generated from protobuf enum <code>INSUFFICIENT_MACHINE_TIER = 44;</code>
+     */
+    const INSUFFICIENT_MACHINE_TIER = 44;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -315,6 +330,8 @@ class SqlExternalSyncSettingErrorType
         self::SUBSCRIPTION_CALCULATION_STATUS => 'SUBSCRIPTION_CALCULATION_STATUS',
         self::PG_SUBSCRIPTION_COUNT => 'PG_SUBSCRIPTION_COUNT',
         self::PG_SYNC_PARALLEL_LEVEL => 'PG_SYNC_PARALLEL_LEVEL',
+        self::INSUFFICIENT_DISK_SIZE => 'INSUFFICIENT_DISK_SIZE',
+        self::INSUFFICIENT_MACHINE_TIER => 'INSUFFICIENT_MACHINE_TIER',
     ];
 
     public static function name($value)
