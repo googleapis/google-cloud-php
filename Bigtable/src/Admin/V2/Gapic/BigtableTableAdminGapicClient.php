@@ -46,6 +46,7 @@ use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split;
+use Google\Cloud\Bigtable\Admin\V2\DataBoostReadLocalWrites;
 use Google\Cloud\Bigtable\Admin\V2\DeleteAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest;
@@ -71,6 +72,7 @@ use Google\Cloud\Bigtable\Admin\V2\RestoreTableMetadata;
 use Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\StandardReadRemoteWrites;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Admin\V2\Table\View;
 use Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest;
@@ -569,6 +571,14 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs     {
      *     Optional.
      *
+     *     @type StandardReadRemoteWrites $standardReadRemoteWrites
+     *           Checks that reads using an app profile with `StandardIsolation` can
+     *           see all writes committed before the token was created, even if the
+     *           read and write target different clusters.
+     *     @type DataBoostReadLocalWrites $dataBoostReadLocalWrites
+     *           Checks that reads using an app profile with `DataBoostIsolationReadOnly`
+     *           can see all writes committed before the token was created, but only if
+     *           the read and write target the same cluster.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -586,6 +596,14 @@ class BigtableTableAdminGapicClient
         $request->setName($name);
         $request->setConsistencyToken($consistencyToken);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['standardReadRemoteWrites'])) {
+            $request->setStandardReadRemoteWrites($optionalArgs['standardReadRemoteWrites']);
+        }
+
+        if (isset($optionalArgs['dataBoostReadLocalWrites'])) {
+            $request->setDataBoostReadLocalWrites($optionalArgs['dataBoostReadLocalWrites']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CheckConsistency', CheckConsistencyResponse::class, $optionalArgs, $request)->wait();

@@ -30,6 +30,7 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string consistency_token = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $consistency_token = '';
+    protected $mode;
 
     /**
      * @param string $name             Required. The unique name of the Table for which to check replication
@@ -61,6 +62,14 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/instances/{instance}/tables/{table}`.
      *     @type string $consistency_token
      *           Required. The token created using GenerateConsistencyToken for the Table.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\StandardReadRemoteWrites $standard_read_remote_writes
+     *           Checks that reads using an app profile with `StandardIsolation` can
+     *           see all writes committed before the token was created, even if the
+     *           read and write target different clusters.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\DataBoostReadLocalWrites $data_boost_read_local_writes
+     *           Checks that reads using an app profile with `DataBoostIsolationReadOnly`
+     *           can see all writes committed before the token was created, but only if
+     *           the read and write target the same cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,6 +131,84 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
         $this->consistency_token = $var;
 
         return $this;
+    }
+
+    /**
+     * Checks that reads using an app profile with `StandardIsolation` can
+     * see all writes committed before the token was created, even if the
+     * read and write target different clusters.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.StandardReadRemoteWrites standard_read_remote_writes = 3;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\StandardReadRemoteWrites|null
+     */
+    public function getStandardReadRemoteWrites()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasStandardReadRemoteWrites()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Checks that reads using an app profile with `StandardIsolation` can
+     * see all writes committed before the token was created, even if the
+     * read and write target different clusters.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.StandardReadRemoteWrites standard_read_remote_writes = 3;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\StandardReadRemoteWrites $var
+     * @return $this
+     */
+    public function setStandardReadRemoteWrites($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\StandardReadRemoteWrites::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Checks that reads using an app profile with `DataBoostIsolationReadOnly`
+     * can see all writes committed before the token was created, but only if
+     * the read and write target the same cluster.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.DataBoostReadLocalWrites data_boost_read_local_writes = 4;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\DataBoostReadLocalWrites|null
+     */
+    public function getDataBoostReadLocalWrites()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasDataBoostReadLocalWrites()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Checks that reads using an app profile with `DataBoostIsolationReadOnly`
+     * can see all writes committed before the token was created, but only if
+     * the read and write target the same cluster.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.DataBoostReadLocalWrites data_boost_read_local_writes = 4;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\DataBoostReadLocalWrites $var
+     * @return $this
+     */
+    public function setDataBoostReadLocalWrites($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\DataBoostReadLocalWrites::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMode()
+    {
+        return $this->whichOneof("mode");
     }
 
 }
