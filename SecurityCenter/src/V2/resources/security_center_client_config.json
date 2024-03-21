@@ -1,0 +1,226 @@
+{
+    "interfaces": {
+        "google.cloud.securitycenter.v2.SecurityCenter": {
+            "retry_codes": {
+                "idempotent": [
+                    "DEADLINE_EXCEEDED",
+                    "UNAVAILABLE"
+                ],
+                "non_idempotent": []
+            },
+            "retry_params": {
+                "default": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 20000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 20000,
+                    "total_timeout_millis": 600000
+                }
+            },
+            "methods": {
+                "BatchCreateResourceValueConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "BulkMuteFindings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "CreateBigQueryExport": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "CreateFinding": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "CreateMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "CreateNotificationConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "CreateSource": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "DeleteBigQueryExport": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "DeleteMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "DeleteNotificationConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "DeleteResourceValueConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetBigQueryExport": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetNotificationConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetResourceValueConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetSimulation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetSource": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetValuedResource": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "GroupFindings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListAttackPaths": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListBigQueryExports": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListFindings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListMuteConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListNotificationConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListResourceValueConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListSources": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListValuedResources": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "SetFindingState": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "SetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "SetMute": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "TestIamPermissions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateBigQueryExport": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateExternalSystem": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateFinding": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateNotificationConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateResourceValueConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateSecurityMarks": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "UpdateSource": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                }
+            }
+        }
+    }
+}
