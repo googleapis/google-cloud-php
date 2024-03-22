@@ -1214,7 +1214,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setRelatedAccountGroupMemberships($relatedAccountGroupMemberships);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         $request = (new SearchRelatedAccountGroupMembershipsRequest())
             ->setProject($formattedProject);
         $response = $gapicClient->searchRelatedAccountGroupMemberships($request);
@@ -1251,7 +1251,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         $request = (new SearchRelatedAccountGroupMembershipsRequest())
             ->setProject($formattedProject);
         try {

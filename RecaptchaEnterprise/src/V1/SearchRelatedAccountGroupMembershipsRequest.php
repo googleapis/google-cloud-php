@@ -67,7 +67,7 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      * @param string $project         Required. The name of the project to search related account group
      *                                memberships from. Specify the project name in the following format:
      *                                `projects/{project}`. Please see
-     *                                {@see RecaptchaEnterpriseServiceClient::relatedAccountGroupName()} for help formatting this field.
+     *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
      * @param string $hashedAccountId Optional. Deprecated: use `account_id` instead.
      *                                The unique stable hashed account identifier used to search connections. The
      *                                identifier should correspond to a `hashed_account_id` provided in a

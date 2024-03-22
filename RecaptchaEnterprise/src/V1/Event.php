@@ -40,7 +40,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. The IP address in the request from the user's device related to
      * this event.
      *
-     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     private $user_ip_address = '';
     /**
@@ -268,7 +268,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. The IP address in the request from the user's device related to
      * this event.
      *
-     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getUserIpAddress()
@@ -280,7 +280,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. The IP address in the request from the user's device related to
      * this event.
      *
-     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

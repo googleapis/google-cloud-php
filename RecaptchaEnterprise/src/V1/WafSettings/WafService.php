@@ -31,11 +31,18 @@ class WafService
      * Generated from protobuf enum <code>FASTLY = 3;</code>
      */
     const FASTLY = 3;
+    /**
+     * Cloudflare
+     *
+     * Generated from protobuf enum <code>CLOUDFLARE = 4;</code>
+     */
+    const CLOUDFLARE = 4;
 
     private static $valueToName = [
         self::WAF_SERVICE_UNSPECIFIED => 'WAF_SERVICE_UNSPECIFIED',
         self::CA => 'CA',
         self::FASTLY => 'FASTLY',
+        self::CLOUDFLARE => 'CLOUDFLARE',
     ];
 
     public static function name($value)
