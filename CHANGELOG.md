@@ -1,5 +1,208 @@
 # Changelog
 
+## 0.239.0
+
+<details><summary>google/cloud-apphub 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce AppsHub ([#7169](https://github.com/googleapis/google-cloud-php/issues/7169)) ([dd12f36](https://github.com/googleapis/google-cloud-php/commit/dd12f3629b604bc15f7a16cb2ccb4a0d7f80a14f))
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.1.0</summary>
+
+
+
+### Features
+
+* [AppsEventsSubscriptions] add new client library surface for Subscription PHP ([#7075](https://github.com/googleapis/google-cloud-php/issues/7075)) ([d80fa7b](https://github.com/googleapis/google-cloud-php/commit/d80fa7b71e3bf963bf431d5ccf68babefe9a27b5))
+
+</details>
+
+<details><summary>google/cloud-asset 1.15.1</summary>
+
+
+
+### Documentation
+
+* Minor comment updates ([#7170](https://github.com/googleapis/google-cloud-php/issues/7170)) ([6d00a8a](https://github.com/googleapis/google-cloud-php/commit/6d00a8a7f5537c2668f5745ecec0b817e491b6a0))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.7.0</summary>
+
+
+
+### Features
+
+* Added Trust Configs and DnsAuthorization.Type to Certificate Manager ([#7160](https://github.com/googleapis/google-cloud-php/issues/7160)) ([54b8682](https://github.com/googleapis/google-cloud-php/commit/54b868295d557e8600310e6b2f449ed7b0f8aec7))
+
+</details>
+
+<details><summary>google/cloud-config 0.4.0</summary>
+
+
+
+### Features
+
+* Infrastructure Manager can validate and enforce quota limits, preventing infrastructure that exceeds quota limits from being deployed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* Infrastructure Manager supports the deployment of infrastructure from Terraform configurations in a private Git repository ([#7161](https://github.com/googleapis/google-cloud-php/issues/7161)) ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* Infrastructure manager supports the following versions of Terraform when creating a deployment: Terraform version 1.2.3, 1.3.10, 1.4.7, 1.5.7 ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+
+
+### Documentation
+
+* A comment for field `page_size` in message `.google.cloud.config.v1.ListDeploymentsRequest` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* A comment for field `page_size` in message `.google.cloud.config.v1.ListPreviewsRequest` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* A comment for field `page_size` in message `.google.cloud.config.v1.ListResourcesRequest` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* A comment for field `page_size` in message `.google.cloud.config.v1.ListRevisionsRequest` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* A comment for field `service_account` in message `.google.cloud.config.v1.Preview` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+
+</details>
+
+<details><summary>google/cloud-container 1.29.0</summary>
+
+
+
+### Features
+
+* Add optional secondary_boot_disk_update_strategy field to NodePool API ([#7174](https://github.com/googleapis/google-cloud-php/issues/7174)) ([8492405](https://github.com/googleapis/google-cloud-php/commit/849240580dbf3faed32b7bdf47478c74e9514d49))
+* Allow existing clusters to enable multi-networking ([8492405](https://github.com/googleapis/google-cloud-php/commit/849240580dbf3faed32b7bdf47478c74e9514d49))
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.1.0</summary>
+
+
+
+### Features
+
+* [CloudcontrolsPartner] add new client library surface ([#7086](https://github.com/googleapis/google-cloud-php/issues/7086)) ([abea94f](https://github.com/googleapis/google-cloud-php/commit/abea94f0fa58c9e5eea3b6b88da2285f6c86054c))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.15.0</summary>
+
+
+
+### Features
+
+* Added client side library for the followings: ([#7163](https://github.com/googleapis/google-cloud-php/issues/7163)) ([ebf0875](https://github.com/googleapis/google-cloud-php/commit/ebf0875426663a1122bcd84c14f39ecd7e515905))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 0.3.3</summary>
+
+
+
+### Bug Fixes
+
+* Deprecate unimplemented Zone fields and methods ([#7162](https://github.com/googleapis/google-cloud-php/issues/7162)) ([a7f8970](https://github.com/googleapis/google-cloud-php/commit/a7f8970fad96581da8bf4c7773934ed296f5eb89))
+
+</details>
+
+<details><summary>google/cloud-netapp 0.2.4</summary>
+
+
+
+### Documentation
+
+* Fix comment for UNIX of SecurityStyle ([2ade69b](https://github.com/googleapis/google-cloud-php/commit/2ade69bc67527dd1127d8efbc8681f44e07cda75))
+* Rephrase comment on psa_range ([#7164](https://github.com/googleapis/google-cloud-php/issues/7164)) ([2ade69b](https://github.com/googleapis/google-cloud-php/commit/2ade69bc67527dd1127d8efbc8681f44e07cda75))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.1.0</summary>
+
+
+
+### Features
+
+* [Parallelstore] add new client library surface for Parallelstore PHP ([#7074](https://github.com/googleapis/google-cloud-php/issues/7074)) ([35a964c](https://github.com/googleapis/google-cloud-php/commit/35a964cde422aeeac6db2f0f33be8699b21972b6))
+
+</details>
+
+<details><summary>google/cloud-quotas 0.1.4</summary>
+
+
+
+### Documentation
+
+* Annotate QuotaPreference.dimensions field as immutable, annotate QuotaPreference.QuotaConfig.annotations field as optional ([a18dd91](https://github.com/googleapis/google-cloud-php/commit/a18dd910f463699905afdaa8f5c5c38b98110ccc))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.14.0</summary>
+
+
+
+### Features
+
+* **SecretManager:** Introduce v1beta2 ([#7166](https://github.com/googleapis/google-cloud-php/issues/7166)) ([c843cee](https://github.com/googleapis/google-cloud-php/commit/c843ceeb83be62699d92d89952ed3f7a77909208))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.26.0</summary>
+
+
+
+### Features
+
+* **SecurityCenter:** Add new V2 client surface ([#7142](https://github.com/googleapis/google-cloud-php/issues/7142)) ([a6c4add](https://github.com/googleapis/google-cloud-php/commit/a6c4addaf49d9c9386a56c6732bc28d9a46484b0))
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 0.2.5</summary>
+
+
+
+### Bug Fixes
+
+* Annotate EffectiveEventThreatDetectionCustomModule.name as IDENTIFIER ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+* Annotate EffectiveSecurityHealthAnalyticsCustomModule.name as IDENTIFIER ([#7173](https://github.com/googleapis/google-cloud-php/issues/7173)) ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+* Annotate EventThreatDetectionCustomModule.name as IDENTIFIER ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+* Annotate SecurityHealthAnalyticsCustomModule.name as IDENTIFIER ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+
+
+### Documentation
+
+* Updated comments ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce ShoppingMerchantQuota ([#7167](https://github.com/googleapis/google-cloud-php/issues/7167)) ([b3aafaf](https://github.com/googleapis/google-cloud-php/commit/b3aafaf490e9eb4b8d18ded8ef8d82b0390bf71b))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.16.0</summary>
+
+
+
+### Features
+
+* Support INSUFFICIENT_DISK_SIZE and INSUFFICIENT_MACHINE_TIER error types for external primary instance migration settings ([#7172](https://github.com/googleapis/google-cloud-php/issues/7172)) ([bc9c045](https://github.com/googleapis/google-cloud-php/commit/bc9c0455e041efef56e36c341b8032e3b58a9c9d))
+
+</details>
+
+<details><summary>google/cloud-storage 1.41.0</summary>
+
+
+
+### Features
+
+* **Storage:** SoftDelete object in gcs buckets ([#7154](https://github.com/googleapis/google-cloud-php/issues/7154)) ([09ea3af](https://github.com/googleapis/google-cloud-php/commit/09ea3afa93c4c2015b3ff443d13f76948e0a6e70))
+
+</details>
+
 ## 0.238.0
 
 <details><summary>google/cloud-ai-platform 0.36.0</summary>
