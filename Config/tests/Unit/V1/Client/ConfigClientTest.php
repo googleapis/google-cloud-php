@@ -43,6 +43,7 @@ use Google\Cloud\Config\V1\GetDeploymentRequest;
 use Google\Cloud\Config\V1\GetPreviewRequest;
 use Google\Cloud\Config\V1\GetResourceRequest;
 use Google\Cloud\Config\V1\GetRevisionRequest;
+use Google\Cloud\Config\V1\GetTerraformVersionRequest;
 use Google\Cloud\Config\V1\ImportStatefileRequest;
 use Google\Cloud\Config\V1\ListDeploymentsRequest;
 use Google\Cloud\Config\V1\ListDeploymentsResponse;
@@ -52,12 +53,15 @@ use Google\Cloud\Config\V1\ListResourcesRequest;
 use Google\Cloud\Config\V1\ListResourcesResponse;
 use Google\Cloud\Config\V1\ListRevisionsRequest;
 use Google\Cloud\Config\V1\ListRevisionsResponse;
+use Google\Cloud\Config\V1\ListTerraformVersionsRequest;
+use Google\Cloud\Config\V1\ListTerraformVersionsResponse;
 use Google\Cloud\Config\V1\LockDeploymentRequest;
 use Google\Cloud\Config\V1\LockInfo;
 use Google\Cloud\Config\V1\Preview;
 use Google\Cloud\Config\V1\Resource;
 use Google\Cloud\Config\V1\Revision;
 use Google\Cloud\Config\V1\Statefile;
+use Google\Cloud\Config\V1\TerraformVersion;
 use Google\Cloud\Config\V1\UnlockDeploymentRequest;
 use Google\Cloud\Config\V1\UpdateDeploymentRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -137,6 +141,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -148,6 +154,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -435,6 +443,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -446,6 +456,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1035,6 +1047,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -1046,6 +1060,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
@@ -1272,6 +1288,9 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
+        $quotaValidationResults = 'quotaValidationResults220555095';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetail($stateDetail);
@@ -1281,6 +1300,9 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
+        $expectedResponse->setQuotaValidationResults($quotaValidationResults);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]');
@@ -1323,6 +1345,71 @@ class ConfigClientTest extends GeneratedTest
         $request = (new GetRevisionRequest())->setName($formattedName);
         try {
             $gapicClient->getRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getTerraformVersionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new TerraformVersion();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->terraformVersionName('[PROJECT]', '[LOCATION]', '[TERRAFORM_VERSION]');
+        $request = (new GetTerraformVersionRequest())->setName($formattedName);
+        $response = $gapicClient->getTerraformVersion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/GetTerraformVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getTerraformVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->terraformVersionName('[PROJECT]', '[LOCATION]', '[TERRAFORM_VERSION]');
+        $request = (new GetTerraformVersionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getTerraformVersion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1688,6 +1775,77 @@ class ConfigClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listTerraformVersionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $terraformVersionsElement = new TerraformVersion();
+        $terraformVersions = [$terraformVersionsElement];
+        $expectedResponse = new ListTerraformVersionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTerraformVersions($terraformVersions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListTerraformVersionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listTerraformVersions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getTerraformVersions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/ListTerraformVersions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listTerraformVersionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListTerraformVersionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listTerraformVersions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function lockDeploymentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1718,6 +1876,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -1729,6 +1889,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1860,6 +2022,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -1871,6 +2035,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2006,6 +2172,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -2017,6 +2185,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2481,6 +2651,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -2492,6 +2664,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

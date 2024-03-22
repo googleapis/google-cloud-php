@@ -80,6 +80,18 @@ class DeploymentStep
      * Generated from protobuf enum <code>FAILED = 10;</code>
      */
     const FAILED = 10;
+    /**
+     * Validating the provided repository.
+     *
+     * Generated from protobuf enum <code>VALIDATING_REPOSITORY = 11;</code>
+     */
+    const VALIDATING_REPOSITORY = 11;
+    /**
+     * Running quota validation
+     *
+     * Generated from protobuf enum <code>RUNNING_QUOTA_VALIDATION = 12;</code>
+     */
+    const RUNNING_QUOTA_VALIDATION = 12;
 
     private static $valueToName = [
         self::DEPLOYMENT_STEP_UNSPECIFIED => 'DEPLOYMENT_STEP_UNSPECIFIED',
@@ -93,6 +105,8 @@ class DeploymentStep
         self::UNLOCKING_DEPLOYMENT => 'UNLOCKING_DEPLOYMENT',
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
+        self::VALIDATING_REPOSITORY => 'VALIDATING_REPOSITORY',
+        self::RUNNING_QUOTA_VALIDATION => 'RUNNING_QUOTA_VALIDATION',
     ];
 
     public static function name($value)

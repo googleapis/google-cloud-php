@@ -50,17 +50,20 @@ use Google\Cloud\Config\V1\GetDeploymentRequest;
 use Google\Cloud\Config\V1\GetPreviewRequest;
 use Google\Cloud\Config\V1\GetResourceRequest;
 use Google\Cloud\Config\V1\GetRevisionRequest;
+use Google\Cloud\Config\V1\GetTerraformVersionRequest;
 use Google\Cloud\Config\V1\ImportStatefileRequest;
 use Google\Cloud\Config\V1\ListDeploymentsRequest;
 use Google\Cloud\Config\V1\ListPreviewsRequest;
 use Google\Cloud\Config\V1\ListResourcesRequest;
 use Google\Cloud\Config\V1\ListRevisionsRequest;
+use Google\Cloud\Config\V1\ListTerraformVersionsRequest;
 use Google\Cloud\Config\V1\LockDeploymentRequest;
 use Google\Cloud\Config\V1\LockInfo;
 use Google\Cloud\Config\V1\Preview;
 use Google\Cloud\Config\V1\Resource;
 use Google\Cloud\Config\V1\Revision;
 use Google\Cloud\Config\V1\Statefile;
+use Google\Cloud\Config\V1\TerraformVersion;
 use Google\Cloud\Config\V1\UnlockDeploymentRequest;
 use Google\Cloud\Config\V1\UpdateDeploymentRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -99,11 +102,13 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getPreviewAsync(GetPreviewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getResourceAsync(GetResourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRevisionAsync(GetRevisionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getTerraformVersionAsync(GetTerraformVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importStatefileAsync(ImportStatefileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDeploymentsAsync(ListDeploymentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listPreviewsAsync(ListPreviewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listResourcesAsync(ListResourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRevisionsAsync(ListRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listTerraformVersionsAsync(ListTerraformVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface lockDeploymentAsync(LockDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface unlockDeploymentAsync(UnlockDeploymentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDeploymentAsync(UpdateDeploymentRequest $request, array $optionalArgs = [])
@@ -314,6 +319,25 @@ final class ConfigClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * terraform_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $terraformVersion
+     *
+     * @return string The formatted terraform_version resource.
+     */
+    public static function terraformVersionName(string $project, string $location, string $terraformVersion): string
+    {
+        return self::getPathTemplate('terraformVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'terraform_version' => $terraformVersion,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a worker_pool
      * resource.
      *
@@ -342,6 +366,7 @@ final class ConfigClient
      * - resource: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}
      * - revision: projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
+     * - terraformVersion: projects/{project}/locations/{location}/terraformVersions/{terraform_version}
      * - workerPool: projects/{project}/locations/{location}/workerPools/{worker_pool}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -776,6 +801,33 @@ final class ConfigClient
     }
 
     /**
+     * Gets details about a
+     * [TerraformVersion][google.cloud.config.v1.TerraformVersion].
+     *
+     * The async variant is {@see ConfigClient::getTerraformVersionAsync()} .
+     *
+     * @example samples/V1/ConfigClient/get_terraform_version.php
+     *
+     * @param GetTerraformVersionRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TerraformVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getTerraformVersion(GetTerraformVersionRequest $request, array $callOptions = []): TerraformVersion
+    {
+        return $this->startApiCall('GetTerraformVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Imports Terraform state file in a given deployment. The state file does not
      * take effect until the Deployment has been unlocked.
      *
@@ -906,6 +958,35 @@ final class ConfigClient
     public function listRevisions(ListRevisionsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListRevisions', $request, $callOptions);
+    }
+
+    /**
+     * Lists [TerraformVersion][google.cloud.config.v1.TerraformVersion]s in a
+     * given project and location.
+     *
+     * The async variant is {@see ConfigClient::listTerraformVersionsAsync()} .
+     *
+     * @example samples/V1/ConfigClient/list_terraform_versions.php
+     *
+     * @param ListTerraformVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listTerraformVersions(
+        ListTerraformVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListTerraformVersions', $request, $callOptions);
     }
 
     /**

@@ -39,12 +39,20 @@ class ErrorCode
      * Generated from protobuf enum <code>APPLY_BUILD_RUN_FAILED = 5;</code>
      */
     const APPLY_BUILD_RUN_FAILED = 5;
+    /**
+     * quota validation failed for one or more resources in terraform
+     * configuration files.
+     *
+     * Generated from protobuf enum <code>QUOTA_VALIDATION_FAILED = 7;</code>
+     */
+    const QUOTA_VALIDATION_FAILED = 7;
 
     private static $valueToName = [
         self::ERROR_CODE_UNSPECIFIED => 'ERROR_CODE_UNSPECIFIED',
         self::CLOUD_BUILD_PERMISSION_DENIED => 'CLOUD_BUILD_PERMISSION_DENIED',
         self::APPLY_BUILD_API_FAILED => 'APPLY_BUILD_API_FAILED',
         self::APPLY_BUILD_RUN_FAILED => 'APPLY_BUILD_RUN_FAILED',
+        self::QUOTA_VALIDATION_FAILED => 'QUOTA_VALIDATION_FAILED',
     ];
 
     public static function name($value)
