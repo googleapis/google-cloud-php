@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The Condition evaluation.
+ * The condition evaluation.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ConditionEvaluation</code>
  */
