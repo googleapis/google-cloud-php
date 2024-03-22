@@ -31,6 +31,7 @@ use Google\Cloud\Dataplex\V1\DataScan;
 use Google\Cloud\Dataplex\V1\DataScanJob;
 use Google\Cloud\Dataplex\V1\DataScanServiceClient;
 use Google\Cloud\Dataplex\V1\DataSource;
+use Google\Cloud\Dataplex\V1\GenerateDataQualityRulesResponse;
 use Google\Cloud\Dataplex\V1\ListDataScanJobsResponse;
 use Google\Cloud\Dataplex\V1\ListDataScansResponse;
 use Google\Cloud\Dataplex\V1\RunDataScanResponse;
@@ -326,6 +327,64 @@ class DataScanServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function generateDataQualityRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GenerateDataQualityRulesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $response = $gapicClient->generateDataQualityRules($name);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.DataScanService/GenerateDataQualityRules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateDataQualityRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        try {
+            $gapicClient->generateDataQualityRules($name);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

@@ -26,6 +26,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "GenerateDataQualityRules": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "GetDataScan": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
