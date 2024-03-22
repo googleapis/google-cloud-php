@@ -63,6 +63,13 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Optional. The dedicated serving endpoint for this FeatureOnlineStore, which
+     * is different from common Vertex service endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.DedicatedServingEndpoint dedicated_serving_endpoint = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $dedicated_serving_endpoint = null;
     protected $storage_type;
 
     /**
@@ -75,6 +82,12 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
      *           Contains settings for the Cloud Bigtable instance that will be created
      *           to serve featureValues for all FeatureViews under this
      *           FeatureOnlineStore.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Optimized $optimized
+     *           Contains settings for the Optimized store that will be created
+     *           to serve featureValues for all FeatureViews under this
+     *           FeatureOnlineStore. When choose Optimized storage type, need to set
+     *           [PrivateServiceConnectConfig.enable_private_service_connect][google.cloud.aiplatform.v1.PrivateServiceConnectConfig.enable_private_service_connect]
+     *           to use private endpoint. Otherwise will use public endpoint by default.
      *     @type string $name
      *           Identifier. Name of the FeatureOnlineStore. Format:
      *           `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`
@@ -97,6 +110,9 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
      *           are prefixed with "aiplatform.googleapis.com/" and are immutable.
      *     @type int $state
      *           Output only. State of the featureOnlineStore.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\DedicatedServingEndpoint $dedicated_serving_endpoint
+     *           Optional. The dedicated serving endpoint for this FeatureOnlineStore, which
+     *           is different from common Vertex service endpoint.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +151,45 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Bigtable::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Contains settings for the Optimized store that will be created
+     * to serve featureValues for all FeatureViews under this
+     * FeatureOnlineStore. When choose Optimized storage type, need to set
+     * [PrivateServiceConnectConfig.enable_private_service_connect][google.cloud.aiplatform.v1.PrivateServiceConnectConfig.enable_private_service_connect]
+     * to use private endpoint. Otherwise will use public endpoint by default.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Optimized optimized = 12;</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Optimized|null
+     */
+    public function getOptimized()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasOptimized()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Contains settings for the Optimized store that will be created
+     * to serve featureValues for all FeatureViews under this
+     * FeatureOnlineStore. When choose Optimized storage type, need to set
+     * [PrivateServiceConnectConfig.enable_private_service_connect][google.cloud.aiplatform.v1.PrivateServiceConnectConfig.enable_private_service_connect]
+     * to use private endpoint. Otherwise will use public endpoint by default.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.Optimized optimized = 12;</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Optimized $var
+     * @return $this
+     */
+    public function setOptimized($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\Optimized::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }
@@ -331,6 +386,44 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The dedicated serving endpoint for this FeatureOnlineStore, which
+     * is different from common Vertex service endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.DedicatedServingEndpoint dedicated_serving_endpoint = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\DedicatedServingEndpoint|null
+     */
+    public function getDedicatedServingEndpoint()
+    {
+        return $this->dedicated_serving_endpoint;
+    }
+
+    public function hasDedicatedServingEndpoint()
+    {
+        return isset($this->dedicated_serving_endpoint);
+    }
+
+    public function clearDedicatedServingEndpoint()
+    {
+        unset($this->dedicated_serving_endpoint);
+    }
+
+    /**
+     * Optional. The dedicated serving endpoint for this FeatureOnlineStore, which
+     * is different from common Vertex service endpoint.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.DedicatedServingEndpoint dedicated_serving_endpoint = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\DedicatedServingEndpoint $var
+     * @return $this
+     */
+    public function setDedicatedServingEndpoint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\DedicatedServingEndpoint::class);
+        $this->dedicated_serving_endpoint = $var;
 
         return $this;
     }
