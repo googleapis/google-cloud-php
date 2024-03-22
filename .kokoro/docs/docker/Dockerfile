@@ -1,7 +1,7 @@
 FROM gcr.io/gcp-runtimes/ubuntu_16_0_4
 ENV PHP_DIR=/opt/php80
-ENV PHP_VERSION=8.1.18
-ENV PHP_SRC_DIR=/usr/local/src/php81-build
+ENV PHP_VERSION=8.2.13
+ENV PHP_SRC_DIR=/usr/local/src/php82-build
 ENV PATH=${PATH}:/usr/local/bin:${PHP_DIR}/bin
 
 RUN apt-get update && \
@@ -35,7 +35,7 @@ RUN apt-get update && \
 # Remove old version of PHP
 RUN apt purge -y php7.0-common
 
-# Install PHP 8.1
+# Install PHP 8.2
 RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
     mkdir -p ${PHP_DIR} ${PHP_SRC_DIR} ${PHP_DIR}/lib/conf.d && \
     cd ${PHP_SRC_DIR} && \
