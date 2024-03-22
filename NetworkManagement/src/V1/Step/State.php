@@ -131,13 +131,13 @@ class State
     /**
      * Forwarding state: arriving at a Compute Engine internal load balancer.
      *
-     * Generated from protobuf enum <code>ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10;</code>
+     * Generated from protobuf enum <code>ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10 [deprecated = true];</code>
      */
     const ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10;
     /**
      * Forwarding state: arriving at a Compute Engine external load balancer.
      *
-     * Generated from protobuf enum <code>ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11;</code>
+     * Generated from protobuf enum <code>ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11 [deprecated = true];</code>
      */
     const ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11;
     /**
