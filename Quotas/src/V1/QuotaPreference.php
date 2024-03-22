@@ -28,9 +28,9 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * The dimensions that this quota preference applies to. The key of the map
-     * entry is the name of a dimension, such as "region", "zone", "network_id",
-     * and the value of the map entry is the dimension value.
+     * Immutable. The dimensions that this quota preference applies to. The key of
+     * the map entry is the name of a dimension, such as "region", "zone",
+     * "network_id", and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
      * preferences configured for the specific value.
@@ -40,7 +40,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      * Example: {"provider", "Foo Inc"} where "provider" is a service specific
      * dimension.
      *
-     * Generated from protobuf field <code>map<string, string> dimensions = 2;</code>
+     * Generated from protobuf field <code>map<string, string> dimensions = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $dimensions;
     /**
@@ -121,9 +121,9 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      *           Example:
      *           `projects/123/locations/global/quotaPreferences/my-config-for-us-east1`
      *     @type array|\Google\Protobuf\Internal\MapField $dimensions
-     *           The dimensions that this quota preference applies to. The key of the map
-     *           entry is the name of a dimension, such as "region", "zone", "network_id",
-     *           and the value of the map entry is the dimension value.
+     *           Immutable. The dimensions that this quota preference applies to. The key of
+     *           the map entry is the name of a dimension, such as "region", "zone",
+     *           "network_id", and the value of the map entry is the dimension value.
      *           If a dimension is missing from the map of dimensions, the quota preference
      *           applies to all the dimension values except for those that have other quota
      *           preferences configured for the specific value.
@@ -202,9 +202,9 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dimensions that this quota preference applies to. The key of the map
-     * entry is the name of a dimension, such as "region", "zone", "network_id",
-     * and the value of the map entry is the dimension value.
+     * Immutable. The dimensions that this quota preference applies to. The key of
+     * the map entry is the name of a dimension, such as "region", "zone",
+     * "network_id", and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
      * preferences configured for the specific value.
@@ -214,7 +214,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      * Example: {"provider", "Foo Inc"} where "provider" is a service specific
      * dimension.
      *
-     * Generated from protobuf field <code>map<string, string> dimensions = 2;</code>
+     * Generated from protobuf field <code>map<string, string> dimensions = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getDimensions()
@@ -223,9 +223,9 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dimensions that this quota preference applies to. The key of the map
-     * entry is the name of a dimension, such as "region", "zone", "network_id",
-     * and the value of the map entry is the dimension value.
+     * Immutable. The dimensions that this quota preference applies to. The key of
+     * the map entry is the name of a dimension, such as "region", "zone",
+     * "network_id", and the value of the map entry is the dimension value.
      * If a dimension is missing from the map of dimensions, the quota preference
      * applies to all the dimension values except for those that have other quota
      * preferences configured for the specific value.
@@ -235,7 +235,7 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      * Example: {"provider", "Foo Inc"} where "provider" is a service specific
      * dimension.
      *
-     * Generated from protobuf field <code>map<string, string> dimensions = 2;</code>
+     * Generated from protobuf field <code>map<string, string> dimensions = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
