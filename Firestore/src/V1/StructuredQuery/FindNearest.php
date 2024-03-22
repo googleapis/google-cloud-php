@@ -22,27 +22,27 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FieldReference vector_field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $vector_field = null;
+    private $vector_field = null;
     /**
      * Required. The query vector that we are searching on. Must be a vector of
      * no more than 2048 dimensions.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Value query_vector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $query_vector = null;
+    private $query_vector = null;
     /**
      * Required. The Distance Measure to use, required.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest.DistanceMeasure distance_measure = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $distance_measure = 0;
+    private $distance_measure = 0;
     /**
      * Required. The number of nearest neighbors to return. Must be a positive
      * integer of no more than 1000.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $limit = null;
+    private $limit = null;
 
     /**
      * Constructor.
@@ -204,7 +204,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|null
      */
-    public function getLimitUnwrapped()
+    public function getLimitValue()
     {
         return $this->readWrapperValue("limit");
     }
@@ -235,7 +235,7 @@ class FindNearest extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setLimitUnwrapped($var)
+    public function setLimitValue($var)
     {
         $this->writeWrapperValue("limit", $var);
         return $this;}
