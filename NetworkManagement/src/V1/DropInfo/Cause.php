@@ -74,7 +74,7 @@ class Cause
      */
     const ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND = 43;
     /**
-     * Route's next hop instance doesn't hace a NIC in the route's network.
+     * Route's next hop instance doesn't have a NIC in the route's network.
      *
      * Generated from protobuf enum <code>ROUTE_NEXT_HOP_INSTANCE_WRONG_NETWORK = 49;</code>
      */

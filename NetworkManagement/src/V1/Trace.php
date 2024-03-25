@@ -43,6 +43,14 @@ class Trace extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.Step steps = 2;</code>
      */
     private $steps;
+    /**
+     * ID of trace. For forward traces, this ID is unique for each trace. For
+     * return traces, it matches ID of associated forward trace. A single forward
+     * trace can be associated with none, one or more than one return trace.
+     *
+     * Generated from protobuf field <code>int32 forward_trace_id = 4;</code>
+     */
+    private $forward_trace_id = 0;
 
     /**
      * Constructor.
@@ -61,6 +69,10 @@ class Trace extends \Google\Protobuf\Internal\Message
      *           The steps are ordered by the processing sequence within the simulated
      *           network state machine. It is critical to preserve the order of the steps
      *           and avoid reordering or sorting them.
+     *     @type int $forward_trace_id
+     *           ID of trace. For forward traces, this ID is unique for each trace. For
+     *           return traces, it matches ID of associated forward trace. A single forward
+     *           trace can be associated with none, one or more than one return trace.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,6 +152,36 @@ class Trace extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkManagement\V1\Step::class);
         $this->steps = $arr;
+
+        return $this;
+    }
+
+    /**
+     * ID of trace. For forward traces, this ID is unique for each trace. For
+     * return traces, it matches ID of associated forward trace. A single forward
+     * trace can be associated with none, one or more than one return trace.
+     *
+     * Generated from protobuf field <code>int32 forward_trace_id = 4;</code>
+     * @return int
+     */
+    public function getForwardTraceId()
+    {
+        return $this->forward_trace_id;
+    }
+
+    /**
+     * ID of trace. For forward traces, this ID is unique for each trace. For
+     * return traces, it matches ID of associated forward trace. A single forward
+     * trace can be associated with none, one or more than one return trace.
+     *
+     * Generated from protobuf field <code>int32 forward_trace_id = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setForwardTraceId($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->forward_trace_id = $var;
 
         return $this;
     }

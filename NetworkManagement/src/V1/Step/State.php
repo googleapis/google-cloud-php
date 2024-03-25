@@ -86,6 +86,21 @@ class State
      */
     const START_FROM_CLOUD_RUN_REVISION = 26;
     /**
+     * Initial state: packet originating from a Storage Bucket. Used only for
+     * return traces.
+     * The storage_bucket information is populated.
+     *
+     * Generated from protobuf enum <code>START_FROM_STORAGE_BUCKET = 29;</code>
+     */
+    const START_FROM_STORAGE_BUCKET = 29;
+    /**
+     * Initial state: packet originating from a published service that uses
+     * Private Service Connect. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>START_FROM_PSC_PUBLISHED_SERVICE = 30;</code>
+     */
+    const START_FROM_PSC_PUBLISHED_SERVICE = 30;
+    /**
      * Config checking state: verify ingress firewall rule.
      *
      * Generated from protobuf enum <code>APPLY_INGRESS_FIREWALL_RULE = 4;</code>
@@ -215,6 +230,8 @@ class State
         self::START_FROM_CLOUD_FUNCTION => 'START_FROM_CLOUD_FUNCTION',
         self::START_FROM_APP_ENGINE_VERSION => 'START_FROM_APP_ENGINE_VERSION',
         self::START_FROM_CLOUD_RUN_REVISION => 'START_FROM_CLOUD_RUN_REVISION',
+        self::START_FROM_STORAGE_BUCKET => 'START_FROM_STORAGE_BUCKET',
+        self::START_FROM_PSC_PUBLISHED_SERVICE => 'START_FROM_PSC_PUBLISHED_SERVICE',
         self::APPLY_INGRESS_FIREWALL_RULE => 'APPLY_INGRESS_FIREWALL_RULE',
         self::APPLY_EGRESS_FIREWALL_RULE => 'APPLY_EGRESS_FIREWALL_RULE',
         self::APPLY_ROUTE => 'APPLY_ROUTE',
