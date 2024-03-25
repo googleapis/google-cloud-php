@@ -22,7 +22,7 @@ class VectorConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 dimension = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $dimension = 0;
+    private $dimension = 0;
     protected $type;
 
     /**
