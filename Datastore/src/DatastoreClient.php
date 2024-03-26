@@ -18,8 +18,9 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
+use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\ClientOptionsTrait;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
@@ -30,6 +31,7 @@ use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as DatastoreGapicClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
@@ -90,11 +92,16 @@ class DatastoreClient
 {
     use ArrayTrait;
     use ClientTrait;
+    use ClientOptionsTrait;
     use DatastoreTrait;
 
     const VERSION = '1.28.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
+
+    private const GAPIC_KEYS = [
+        DatastoreGapicClient::class
+    ];
 
     /**
      * @deprecated
@@ -166,8 +173,15 @@ class DatastoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
+            'transportConfig' => [
+                'grpc' => [
+                    // increase default limit to 4MB to prevent metadata exhausted errors
+                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
+                ],
+            ],
         ];
+        $config = $this->buildClientOptions($config);
 
         $config = $this->configureAuthentication($config);
         $this->connection = $connectionType === 'grpc'
