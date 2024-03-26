@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -40,6 +43,7 @@ use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
  */
 class Operation
 {
+    use ApiHelperTrait;
     use DatastoreTrait;
     use ValidateTrait;
     use TimestampTrait;
@@ -49,6 +53,19 @@ class Operation
      * @internal
      */
     protected $connection;
+
+    /**
+     * @var RequestHandler
+     * @internal
+     * The request handler responsible for sending requests and
+     * serializing responses into relevant classes.
+     */
+    private RequestHandler $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -76,6 +93,9 @@ class Operation
      * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
      *        This object is created by DatastoreClient,
      *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.
      * @param EntityMapper $entityMapper A Datastore Entity Mapper instance.
@@ -83,6 +103,8 @@ class Operation
      */
     public function __construct(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         $projectId,
         $namespaceId,
         EntityMapper $entityMapper,
@@ -93,6 +115,8 @@ class Operation
         $this->namespaceId = $namespaceId;
         $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
     }
 
     /**

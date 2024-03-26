@@ -113,7 +113,8 @@ class DatastoreClient
     /**
      * @var RequestHandler
      * @internal
-     * The request handler responsible for sending requests and serializing responses into relevant classes.
+     * The request handler responsible for sending requests and
+     * serializing responses into relevant classes.
      */
     private $requestHandler;
 
