@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -40,6 +41,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
     private $connection;
     private $client;
+    private $requestHandler;
 
     public static function setUpBeforeClass(): void
     {
@@ -59,6 +61,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $this->client = TestHelpers::stub(DatastoreClient::class, [], [
             'operation',
         ]);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
     }
 
     public function testClass()
@@ -96,7 +99,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             })
         ))->shouldBeCalled()->willReturn([]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal());
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();
@@ -134,7 +137,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
                 trigger_error('oops!', E_USER_WARNING);
             });
 
-        $this->refreshOperation($this->client, $this->connection->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal());
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();

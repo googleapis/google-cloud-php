@@ -116,7 +116,7 @@ class DatastoreClient
      * The request handler responsible for sending requests and
      * serializing responses into relevant classes.
      */
-    private $requestHandler;
+    protected $requestHandler;
 
     /**
      * @var Serializer
@@ -254,6 +254,8 @@ class DatastoreClient
         );
         $this->operation = new Operation(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->projectId,
             $config['namespaceId'],
             $this->entityMapper,

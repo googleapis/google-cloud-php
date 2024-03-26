@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -51,12 +54,15 @@ class DatastoreClientTest extends TestCase
     use DatastoreOperationRefreshTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';
 
     private $connection;
     private $client;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
@@ -65,6 +71,24 @@ class DatastoreClientTest extends TestCase
             ['projectId' => self::PROJECT]
         ], [
             'operation'
+        ]);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                if (is_string($v)) {
+                    $dt = new \DateTime($v);
+                    return ['seconds' => $dt->format('U')];
+                }
+                return $v;
+            }
         ]);
     }
 
@@ -199,7 +223,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -243,7 +267,7 @@ class DatastoreClientTest extends TestCase
             'transaction' => self::TRANSACTION
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -272,7 +296,7 @@ class DatastoreClientTest extends TestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -301,7 +325,7 @@ class DatastoreClientTest extends TestCase
             Argument::withEntry('mutations', [[$method => $mutation]])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -322,7 +346,7 @@ class DatastoreClientTest extends TestCase
             Argument::withEntry('mutations', [[$method => $mutation]])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -360,7 +384,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -389,7 +413,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -420,7 +444,7 @@ class DatastoreClientTest extends TestCase
                 ]
             ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -442,7 +466,7 @@ class DatastoreClientTest extends TestCase
             ])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -465,7 +489,7 @@ class DatastoreClientTest extends TestCase
             ])
         ))->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -488,7 +512,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -512,7 +536,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -543,7 +567,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -569,7 +593,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -593,7 +617,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -634,7 +658,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -664,7 +688,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -700,7 +724,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -735,7 +759,7 @@ class DatastoreClientTest extends TestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 

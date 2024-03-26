@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
@@ -39,6 +42,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class OperationTest extends TestCase
 {
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const PROJECT = 'example-project';
     const NAMESPACEID = 'namespace-id';
@@ -46,12 +50,33 @@ class OperationTest extends TestCase
 
     private $operation;
     private $connection;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                if (is_string($v)) {
+                    $dt = new \DateTime($v);
+                    return ['seconds' => $dt->format('U')];
+                }
+                return $v;
+            }
+        ]);
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::PROJECT,
             null,
             new EntityMapper('foo', true, false),

@@ -60,7 +60,7 @@ class Operation
      * The request handler responsible for sending requests and
      * serializing responses into relevant classes.
      */
-    private RequestHandler $requestHandler;
+    protected RequestHandler $requestHandler;
 
     /**
      * @var Serializer
