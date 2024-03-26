@@ -120,15 +120,9 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      */
     protected $is_concurrent = false;
     /**
-     * URI to the page where the user can request more quotas for the cloud
-     * service, such as
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0={email}&entry_1={id}.
-     * Google Developers Console UI replace {email} with the current
-     * user's e-mail, {id} with the current project number, or organization ID
-     * with "organizations/" prefix. For example,
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0=johndoe&#64;gmail.com&entry_1=25463754,
-     * or
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0=johndoe&#64;gmail.com&entry_1=organizations/26474422.
+     * URI to the page where users can request more quota for the cloud
+     * service—for example,
+     * https://console.cloud.google.com/iam-admin/quotas.
      *
      * Generated from protobuf field <code>string service_request_quota_uri = 17;</code>
      */
@@ -184,15 +178,9 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
      *           Whether the quota is a concurrent quota. Concurrent quotas are enforced
      *           on the total number of concurrent operations in flight at any given time.
      *     @type string $service_request_quota_uri
-     *           URI to the page where the user can request more quotas for the cloud
-     *           service, such as
-     *           https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0={email}&entry_1={id}.
-     *           Google Developers Console UI replace {email} with the current
-     *           user's e-mail, {id} with the current project number, or organization ID
-     *           with "organizations/" prefix. For example,
-     *           https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0=johndoe&#64;gmail.com&entry_1=25463754,
-     *           or
-     *           https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0=johndoe&#64;gmail.com&entry_1=organizations/26474422.
+     *           URI to the page where users can request more quota for the cloud
+     *           service—for example,
+     *           https://console.cloud.google.com/iam-admin/quotas.
      * }
      */
     public function __construct($data = NULL) {
@@ -627,15 +615,9 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI to the page where the user can request more quotas for the cloud
-     * service, such as
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0={email}&entry_1={id}.
-     * Google Developers Console UI replace {email} with the current
-     * user's e-mail, {id} with the current project number, or organization ID
-     * with "organizations/" prefix. For example,
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0=johndoe&#64;gmail.com&entry_1=25463754,
-     * or
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0=johndoe&#64;gmail.com&entry_1=organizations/26474422.
+     * URI to the page where users can request more quota for the cloud
+     * service—for example,
+     * https://console.cloud.google.com/iam-admin/quotas.
      *
      * Generated from protobuf field <code>string service_request_quota_uri = 17;</code>
      * @return string
@@ -646,15 +628,9 @@ class QuotaInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI to the page where the user can request more quotas for the cloud
-     * service, such as
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0={email}&entry_1={id}.
-     * Google Developers Console UI replace {email} with the current
-     * user's e-mail, {id} with the current project number, or organization ID
-     * with "organizations/" prefix. For example,
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0=johndoe&#64;gmail.com&entry_1=25463754,
-     * or
-     * https://docs.google.com/spreadsheet/viewform?formkey=abc123&entry_0=johndoe&#64;gmail.com&entry_1=organizations/26474422.
+     * URI to the page where users can request more quota for the cloud
+     * service—for example,
+     * https://console.cloud.google.com/iam-admin/quotas.
      *
      * Generated from protobuf field <code>string service_request_quota_uri = 17;</code>
      * @param string $var
