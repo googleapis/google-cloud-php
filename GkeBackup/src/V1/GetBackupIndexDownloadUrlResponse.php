@@ -18,7 +18,7 @@ class GetBackupIndexDownloadUrlResponse extends \Google\Protobuf\Internal\Messag
     /**
      * Generated from protobuf field <code>string signed_url = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $signed_url = '';
+    private $signed_url = '';
 
     /**
      * Constructor.
