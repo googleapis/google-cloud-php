@@ -32,7 +32,6 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateConfig;
 use Google\Cloud\Security\PrivateCA\V1\CertificateConfig\SubjectConfig;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CreateCertificateAuthorityRequest;
-use Google\Cloud\Security\PrivateCA\V1\Subject;
 use Google\Cloud\Security\PrivateCA\V1\X509Parameters;
 use Google\Protobuf\Duration;
 use Google\Rpc\Status;
@@ -63,9 +62,7 @@ function create_certificate_authority_sample(
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $certificateAuthorityConfigSubjectConfigSubject = new Subject();
-    $certificateAuthorityConfigSubjectConfig = (new SubjectConfig())
-        ->setSubject($certificateAuthorityConfigSubjectConfigSubject);
+    $certificateAuthorityConfigSubjectConfig = new SubjectConfig();
     $certificateAuthorityConfigX509Config = new X509Parameters();
     $certificateAuthorityConfig = (new CertificateConfig())
         ->setSubjectConfig($certificateAuthorityConfigSubjectConfig)

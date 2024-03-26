@@ -75,6 +75,11 @@
                                 "getRevision"
                             ]
                         },
+                        "GetTerraformVersion": {
+                            "methods": [
+                                "getTerraformVersion"
+                            ]
+                        },
                         "ImportStatefile": {
                             "methods": [
                                 "importStatefile"
@@ -98,6 +103,11 @@
                         "ListRevisions": {
                             "methods": [
                                 "listRevisions"
+                            ]
+                        },
+                        "ListTerraformVersions": {
+                            "methods": [
+                                "listTerraformVersions"
                             ]
                         },
                         "LockDeployment": {

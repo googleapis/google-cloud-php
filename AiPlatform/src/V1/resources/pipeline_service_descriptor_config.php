@@ -3,6 +3,44 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.PipelineService' => [
+            'BatchCancelPipelineJobs' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\BatchCancelPipelineJobsResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\BatchCancelPipelineJobsOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeletePipelineJobs' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\BatchDeletePipelineJobsResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\DeleteOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeletePipelineJob' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',

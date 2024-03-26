@@ -878,6 +878,7 @@ final class EdgeNetworkClient
     }
 
     /**
+     * Deprecated: not implemented.
      * Gets details of a single Zone.
      *
      * The async variant is {@see EdgeNetworkClient::getZoneAsync()} .
@@ -897,6 +898,8 @@ final class EdgeNetworkClient
      * @return Zone
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function getZone(GetZoneRequest $request, array $callOptions = []): Zone
     {
@@ -1063,6 +1066,7 @@ final class EdgeNetworkClient
     }
 
     /**
+     * Deprecated: not implemented.
      * Lists Zones in a given project and location.
      *
      * The async variant is {@see EdgeNetworkClient::listZonesAsync()} .
@@ -1082,6 +1086,8 @@ final class EdgeNetworkClient
      * @return PagedListResponse
      *
      * @throws ApiException Thrown if the API call fails.
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function listZones(ListZonesRequest $request, array $callOptions = []): PagedListResponse
     {

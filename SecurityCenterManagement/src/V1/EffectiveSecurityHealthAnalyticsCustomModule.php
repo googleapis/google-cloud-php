@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the custom module.
+     * Identifier. The resource name of the custom module.
      * Its format is
      * "organizations/{organization}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}",
      * or
@@ -32,7 +32,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
      * or
      * "projects/{project}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -64,7 +64,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the custom module.
+     *           Identifier. The resource name of the custom module.
      *           Its format is
      *           "organizations/{organization}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}",
      *           or
@@ -88,7 +88,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
     }
 
     /**
-     * Output only. The resource name of the custom module.
+     * Identifier. The resource name of the custom module.
      * Its format is
      * "organizations/{organization}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}",
      * or
@@ -96,7 +96,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
      * or
      * "projects/{project}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -105,7 +105,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
     }
 
     /**
-     * Output only. The resource name of the custom module.
+     * Identifier. The resource name of the custom module.
      * Its format is
      * "organizations/{organization}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}",
      * or
@@ -113,7 +113,7 @@ class EffectiveSecurityHealthAnalyticsCustomModule extends \Google\Protobuf\Inte
      * or
      * "projects/{project}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

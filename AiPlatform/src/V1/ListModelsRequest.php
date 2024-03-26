@@ -34,10 +34,12 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *     * `labels.key=value` - key:value equality
      *     * `labels.key:* or labels:key - key existence
      *     * A key including a space must be quoted. `labels."a key"`.
+     *   * `base_model_name` only supports =
      * Some examples:
      *   * `model=1234`
      *   * `displayName="myDisplayName"`
      *   * `labels.myKey="myValue"`
+     *   * `baseModelName="text-bison"`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -113,10 +115,12 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *               * `labels.key=value` - key:value equality
      *               * `labels.key:* or labels:key - key existence
      *               * A key including a space must be quoted. `labels."a key"`.
+     *             * `base_model_name` only supports =
      *           Some examples:
      *             * `model=1234`
      *             * `displayName="myDisplayName"`
      *             * `labels.myKey="myValue"`
+     *             * `baseModelName="text-bison"`
      *     @type int $page_size
      *           The standard list page size.
      *     @type string $page_token
@@ -182,10 +186,12 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *     * `labels.key=value` - key:value equality
      *     * `labels.key:* or labels:key - key existence
      *     * A key including a space must be quoted. `labels."a key"`.
+     *   * `base_model_name` only supports =
      * Some examples:
      *   * `model=1234`
      *   * `displayName="myDisplayName"`
      *   * `labels.myKey="myValue"`
+     *   * `baseModelName="text-bison"`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -206,10 +212,12 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *     * `labels.key=value` - key:value equality
      *     * `labels.key:* or labels:key - key existence
      *     * A key including a space must be quoted. `labels."a key"`.
+     *   * `base_model_name` only supports =
      * Some examples:
      *   * `model=1234`
      *   * `displayName="myDisplayName"`
      *   * `labels.myKey="myValue"`
+     *   * `baseModelName="text-bison"`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var

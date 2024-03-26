@@ -30,6 +30,7 @@ use Google\Cloud\EdgeNetwork\V1\ListZonesRequest;
 use Google\Cloud\EdgeNetwork\V1\Zone;
 
 /**
+ * Deprecated: not implemented.
  * Lists Zones in a given project and location.
  *
  * @param string $formattedParent Parent value for ListZonesRequest

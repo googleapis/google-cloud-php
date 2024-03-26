@@ -1,5 +1,565 @@
 # Changelog
 
+## 0.239.0
+
+<details><summary>google/cloud-apphub 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce AppsHub ([#7169](https://github.com/googleapis/google-cloud-php/issues/7169)) ([dd12f36](https://github.com/googleapis/google-cloud-php/commit/dd12f3629b604bc15f7a16cb2ccb4a0d7f80a14f))
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.1.0</summary>
+
+
+
+### Features
+
+* [AppsEventsSubscriptions] add new client library surface for Subscription PHP ([#7075](https://github.com/googleapis/google-cloud-php/issues/7075)) ([d80fa7b](https://github.com/googleapis/google-cloud-php/commit/d80fa7b71e3bf963bf431d5ccf68babefe9a27b5))
+
+</details>
+
+<details><summary>google/cloud-asset 1.15.1</summary>
+
+
+
+### Documentation
+
+* Minor comment updates ([#7170](https://github.com/googleapis/google-cloud-php/issues/7170)) ([6d00a8a](https://github.com/googleapis/google-cloud-php/commit/6d00a8a7f5537c2668f5745ecec0b817e491b6a0))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.7.0</summary>
+
+
+
+### Features
+
+* Added Trust Configs and DnsAuthorization.Type to Certificate Manager ([#7160](https://github.com/googleapis/google-cloud-php/issues/7160)) ([54b8682](https://github.com/googleapis/google-cloud-php/commit/54b868295d557e8600310e6b2f449ed7b0f8aec7))
+
+</details>
+
+<details><summary>google/cloud-config 0.4.0</summary>
+
+
+
+### Features
+
+* Infrastructure Manager can validate and enforce quota limits, preventing infrastructure that exceeds quota limits from being deployed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* Infrastructure Manager supports the deployment of infrastructure from Terraform configurations in a private Git repository ([#7161](https://github.com/googleapis/google-cloud-php/issues/7161)) ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* Infrastructure manager supports the following versions of Terraform when creating a deployment: Terraform version 1.2.3, 1.3.10, 1.4.7, 1.5.7 ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+
+
+### Documentation
+
+* A comment for field `page_size` in message `.google.cloud.config.v1.ListDeploymentsRequest` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* A comment for field `page_size` in message `.google.cloud.config.v1.ListPreviewsRequest` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* A comment for field `page_size` in message `.google.cloud.config.v1.ListResourcesRequest` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* A comment for field `page_size` in message `.google.cloud.config.v1.ListRevisionsRequest` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+* A comment for field `service_account` in message `.google.cloud.config.v1.Preview` is changed ([5541f21](https://github.com/googleapis/google-cloud-php/commit/5541f21a04cb27baf52e82f3af2c022cf0f07ee8))
+
+</details>
+
+<details><summary>google/cloud-container 1.29.0</summary>
+
+
+
+### Features
+
+* Add optional secondary_boot_disk_update_strategy field to NodePool API ([#7174](https://github.com/googleapis/google-cloud-php/issues/7174)) ([8492405](https://github.com/googleapis/google-cloud-php/commit/849240580dbf3faed32b7bdf47478c74e9514d49))
+* Allow existing clusters to enable multi-networking ([8492405](https://github.com/googleapis/google-cloud-php/commit/849240580dbf3faed32b7bdf47478c74e9514d49))
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.1.0</summary>
+
+
+
+### Features
+
+* [CloudcontrolsPartner] add new client library surface ([#7086](https://github.com/googleapis/google-cloud-php/issues/7086)) ([abea94f](https://github.com/googleapis/google-cloud-php/commit/abea94f0fa58c9e5eea3b6b88da2285f6c86054c))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.15.0</summary>
+
+
+
+### Features
+
+* Added client side library for the followings: ([#7163](https://github.com/googleapis/google-cloud-php/issues/7163)) ([ebf0875](https://github.com/googleapis/google-cloud-php/commit/ebf0875426663a1122bcd84c14f39ecd7e515905))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 0.3.3</summary>
+
+
+
+### Bug Fixes
+
+* Deprecate unimplemented Zone fields and methods ([#7162](https://github.com/googleapis/google-cloud-php/issues/7162)) ([a7f8970](https://github.com/googleapis/google-cloud-php/commit/a7f8970fad96581da8bf4c7773934ed296f5eb89))
+
+</details>
+
+<details><summary>google/cloud-netapp 0.2.4</summary>
+
+
+
+### Documentation
+
+* Fix comment for UNIX of SecurityStyle ([2ade69b](https://github.com/googleapis/google-cloud-php/commit/2ade69bc67527dd1127d8efbc8681f44e07cda75))
+* Rephrase comment on psa_range ([#7164](https://github.com/googleapis/google-cloud-php/issues/7164)) ([2ade69b](https://github.com/googleapis/google-cloud-php/commit/2ade69bc67527dd1127d8efbc8681f44e07cda75))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.1.0</summary>
+
+
+
+### Features
+
+* [Parallelstore] add new client library surface for Parallelstore PHP ([#7074](https://github.com/googleapis/google-cloud-php/issues/7074)) ([35a964c](https://github.com/googleapis/google-cloud-php/commit/35a964cde422aeeac6db2f0f33be8699b21972b6))
+
+</details>
+
+<details><summary>google/cloud-quotas 0.1.4</summary>
+
+
+
+### Documentation
+
+* Annotate QuotaPreference.dimensions field as immutable, annotate QuotaPreference.QuotaConfig.annotations field as optional ([a18dd91](https://github.com/googleapis/google-cloud-php/commit/a18dd910f463699905afdaa8f5c5c38b98110ccc))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.14.0</summary>
+
+
+
+### Features
+
+* **SecretManager:** Introduce v1beta2 ([#7166](https://github.com/googleapis/google-cloud-php/issues/7166)) ([c843cee](https://github.com/googleapis/google-cloud-php/commit/c843ceeb83be62699d92d89952ed3f7a77909208))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.26.0</summary>
+
+
+
+### Features
+
+* **SecurityCenter:** Add new V2 client surface ([#7142](https://github.com/googleapis/google-cloud-php/issues/7142)) ([a6c4add](https://github.com/googleapis/google-cloud-php/commit/a6c4addaf49d9c9386a56c6732bc28d9a46484b0))
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 0.2.5</summary>
+
+
+
+### Bug Fixes
+
+* Annotate EffectiveEventThreatDetectionCustomModule.name as IDENTIFIER ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+* Annotate EffectiveSecurityHealthAnalyticsCustomModule.name as IDENTIFIER ([#7173](https://github.com/googleapis/google-cloud-php/issues/7173)) ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+* Annotate EventThreatDetectionCustomModule.name as IDENTIFIER ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+* Annotate SecurityHealthAnalyticsCustomModule.name as IDENTIFIER ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+
+
+### Documentation
+
+* Updated comments ([6baaf75](https://github.com/googleapis/google-cloud-php/commit/6baaf750bfd91b75e5c0d94bafa59b1ca9a723e2))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce ShoppingMerchantQuota ([#7167](https://github.com/googleapis/google-cloud-php/issues/7167)) ([b3aafaf](https://github.com/googleapis/google-cloud-php/commit/b3aafaf490e9eb4b8d18ded8ef8d82b0390bf71b))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.16.0</summary>
+
+
+
+### Features
+
+* Support INSUFFICIENT_DISK_SIZE and INSUFFICIENT_MACHINE_TIER error types for external primary instance migration settings ([#7172](https://github.com/googleapis/google-cloud-php/issues/7172)) ([bc9c045](https://github.com/googleapis/google-cloud-php/commit/bc9c0455e041efef56e36c341b8032e3b58a9c9d))
+
+</details>
+
+<details><summary>google/cloud-storage 1.41.0</summary>
+
+
+
+### Features
+
+* **Storage:** SoftDelete object in gcs buckets ([#7154](https://github.com/googleapis/google-cloud-php/issues/7154)) ([09ea3af](https://github.com/googleapis/google-cloud-php/commit/09ea3afa93c4c2015b3ff443d13f76948e0a6e70))
+
+</details>
+
+## 0.238.0
+
+<details><summary>google/cloud-ai-platform 0.36.0</summary>
+
+
+
+### Features
+
+* A new enum `HarmSeverity` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `base_model_source` is added to message `.google.cloud.aiplatform.v1.Model` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `display_name` is added to message `.google.cloud.aiplatform.v1.DatasetVersion` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `google_search_retrieval` is added to message `.google.cloud.aiplatform.v1.Tool` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `grounding_metadata` is added to message `.google.cloud.aiplatform.v1.Candidate` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `metadata` is added to message `.google.cloud.aiplatform.v1.DatasetVersion` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `probability_score` is added to message `.google.cloud.aiplatform.v1.SafetyRating` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `project_number` is added to message `.google.cloud.aiplatform.v1.FeatureView` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `retrieval` is added to message `.google.cloud.aiplatform.v1.Tool` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `severity_score` is added to message `.google.cloud.aiplatform.v1.SafetyRating` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `severity` is added to message `.google.cloud.aiplatform.v1.SafetyRating` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new field `sync_summary` is added to message `.google.cloud.aiplatform.v1.FeatureViewSync` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `BaseModelSource` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `BatchCancelPipelineJobsOperationMetadata` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `BatchCancelPipelineJobsRequest` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `BatchCancelPipelineJobsResponse` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `BatchDeletePipelineJobsRequest` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `BatchDeletePipelineJobsResponse` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `GenieSource` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `GoogleSearchRetrieval` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `GroundingAttribution` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `GroundingMetadata` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `ModelGardenSource` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `Retrieval` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `Segment` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `SyncSummary` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new message `VertexAISearch` is added ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new method `BatchCancelPipelineJobs` is added to service `PipelineService` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new method `BatchDeletePipelineJobs` is added to service `PipelineService` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new value `BLOCKLIST` is added to enum `FinishReason` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new value `NOT_EQUAL` is added to enum `Operator` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new value `NVIDIA_H100_80GB` is added to enum `AcceleratorType` ([#7134](https://github.com/googleapis/google-cloud-php/issues/7134)) ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new value `PROHIBITED_CONTENT` is added to enum `FinishReason` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+* A new value `SPII` is added to enum `FinishReason` ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+
+
+### Documentation
+
+* Various documentation improvements ([f5eb49c](https://github.com/googleapis/google-cloud-php/commit/f5eb49c0549ebb8d23620e155e66533b8fe81edf))
+
+</details>
+
+<details><summary>google/apps-meet 0.2.0</summary>
+
+
+
+### Features
+
+* **AppsMeet:** Add new V2 client surface ([#7143](https://github.com/googleapis/google-cloud-php/issues/7143)) ([6183bd8](https://github.com/googleapis/google-cloud-php/commit/6183bd8b224caeebcdfc0261bf514258c495b134))
+
+</details>
+
+<details><summary>google/cloud-asset 1.15.0</summary>
+
+
+
+### Features
+
+* Add `asset_type` field to `GovernedIamPolicy` and `GovernedResource` ([#7122](https://github.com/googleapis/google-cloud-php/issues/7122)) ([78e0715](https://github.com/googleapis/google-cloud-php/commit/78e07158cd1e13790244ab60b2f4750f36239587))
+* Add `effective_tags` field to `GovernedResource` ([78e0715](https://github.com/googleapis/google-cloud-php/commit/78e07158cd1e13790244ab60b2f4750f36239587))
+* Add field `condition_evaluation` to `AnalyzerOrgPolicy.Rule` ([78e0715](https://github.com/googleapis/google-cloud-php/commit/78e07158cd1e13790244ab60b2f4750f36239587))
+* Add fields `project`, `folders` and `organization` to `OrgPolicyResult` ([78e0715](https://github.com/googleapis/google-cloud-php/commit/78e07158cd1e13790244ab60b2f4750f36239587))
+* Add fields `project`, `folders`, `organization` and `effective_tags` to `GovernedContainer` ([78e0715](https://github.com/googleapis/google-cloud-php/commit/78e07158cd1e13790244ab60b2f4750f36239587))
+
+
+### Documentation
+
+* Update comment for rpc `AnalyzeOrgPolicyGovernedAssets` to include additional canned constraints ([78e0715](https://github.com/googleapis/google-cloud-php/commit/78e07158cd1e13790244ab60b2f4750f36239587))
+
+</details>
+
+<details><summary>google/cloud-build 0.16.0</summary>
+
+
+
+### Features
+
+* Add Bitbucket Data Center Config and Bitbucket Cloud config for Cloud Build Repositories ([#7147](https://github.com/googleapis/google-cloud-php/issues/7147)) ([852254d](https://github.com/googleapis/google-cloud-php/commit/852254d61b93d0cd28b1e45f8e26d2180f6e2aee))
+
+</details>
+
+<details><summary>google/cloud-compute 1.16.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20240220 ([#886](https://github.com/googleapis/google-cloud-php/issues/886)) ([#7114](https://github.com/googleapis/google-cloud-php/issues/7114)) ([f2b474d](https://github.com/googleapis/google-cloud-php/commit/f2b474ddcfd9eaa38bc61432a1d3449f37b65a2d))
+
+</details>
+
+<details><summary>google/cloud-container 1.28.0</summary>
+
+
+
+### Features
+
+* Add API to enable/disable secret manager csi component on GKE clusters ([#7125](https://github.com/googleapis/google-cloud-php/issues/7125)) ([8bf0dd7](https://github.com/googleapis/google-cloud-php/commit/8bf0dd77ebd845233a2ae3aa941d9b7fbdf745f1))
+* Add secondary boot disks field to NodePool API ([#7123](https://github.com/googleapis/google-cloud-php/issues/7123)) ([185f4a6](https://github.com/googleapis/google-cloud-php/commit/185f4a6860f80862c35908c6de74df403a0794e2))
+
+</details>
+
+<details><summary>google/cloud-core 1.56.2</summary>
+
+
+
+### Bug Fixes
+
+* **Core:** Fixes limit stream errors ([#7117](https://github.com/googleapis/google-cloud-php/issues/7117)) ([fd396c8](https://github.com/googleapis/google-cloud-php/commit/fd396c840a9e40cdf8b814e3d21f93de20e2d849))
+* **Core:** Pass total_bytes in ResumableUploader ([#7100](https://github.com/googleapis/google-cloud-php/issues/7100)) ([eba56f8](https://github.com/googleapis/google-cloud-php/commit/eba56f8fb89482040b792b10eb5764a8cebd8fc9))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.10.0</summary>
+
+
+
+### Features
+
+* Add RANGE type to Data Catalog ([#7149](https://github.com/googleapis/google-cloud-php/issues/7149)) ([44cfa27](https://github.com/googleapis/google-cloud-php/commit/44cfa2703cc477455612efd5442ea5e10974a7a6))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.28.0</summary>
+
+
+
+### Features
+
+* Add ExplainMetrics field to RunAggregationQueryResponse ([acb3cbd](https://github.com/googleapis/google-cloud-php/commit/acb3cbd27e794a9b20b790dee1027ef02a29528e))
+* Add ExplainMetrics field to RunQueryResponse ([acb3cbd](https://github.com/googleapis/google-cloud-php/commit/acb3cbd27e794a9b20b790dee1027ef02a29528e))
+* Add ExplainOptions field to RunAggregationQueryRequest ([acb3cbd](https://github.com/googleapis/google-cloud-php/commit/acb3cbd27e794a9b20b790dee1027ef02a29528e))
+* Add ExplainOptions field to RunQueryRequest ([acb3cbd](https://github.com/googleapis/google-cloud-php/commit/acb3cbd27e794a9b20b790dee1027ef02a29528e))
+* Add new types ExplainOptions, ExplainMetrics, PlanSummary, ExecutionStats ([#7140](https://github.com/googleapis/google-cloud-php/issues/7140)) ([acb3cbd](https://github.com/googleapis/google-cloud-php/commit/acb3cbd27e794a9b20b790dee1027ef02a29528e))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.12.0</summary>
+
+
+
+### Features
+
+* Added conformer model migration opt out flag ([837d8cb](https://github.com/googleapis/google-cloud-php/commit/837d8cb8da9e907f01342db2c51bcf819649840b))
+* Added text sections to the submitted summary ([#7135](https://github.com/googleapis/google-cloud-php/issues/7135)) ([837d8cb](https://github.com/googleapis/google-cloud-php/commit/837d8cb8da9e907f01342db2c51bcf819649840b))
+
+
+### Documentation
+
+* Clarified wording around END_OF_SINGLE_UTTERANCE ([837d8cb](https://github.com/googleapis/google-cloud-php/commit/837d8cb8da9e907f01342db2c51bcf819649840b))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.10.0</summary>
+
+
+
+### Features
+
+* Add document processing config services ([20c47da](https://github.com/googleapis/google-cloud-php/commit/20c47dae7fbe665500bb75246e3b1f1ca6f8f02b))
+* Add search tuning services ([20c47da](https://github.com/googleapis/google-cloud-php/commit/20c47dae7fbe665500bb75246e3b1f1ca6f8f02b))
+* Allow setting schema on schema creation ([20c47da](https://github.com/googleapis/google-cloud-php/commit/20c47dae7fbe665500bb75246e3b1f1ca6f8f02b))
+* Support blended search ([#7133](https://github.com/googleapis/google-cloud-php/issues/7133)) ([20c47da](https://github.com/googleapis/google-cloud-php/commit/20c47dae7fbe665500bb75246e3b1f1ca6f8f02b))
+* Support boost in multi-turn search ([20c47da](https://github.com/googleapis/google-cloud-php/commit/20c47dae7fbe665500bb75246e3b1f1ca6f8f02b))
+
+
+### Documentation
+
+* Keep the API doc up-to-date with recent changes ([20c47da](https://github.com/googleapis/google-cloud-php/commit/20c47dae7fbe665500bb75246e3b1f1ca6f8f02b))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.13.0</summary>
+
+
+
+### Features
+
+* Add RPCs for getting and listing project, table, and column data profiles ([#7121](https://github.com/googleapis/google-cloud-php/issues/7121)) ([79df121](https://github.com/googleapis/google-cloud-php/commit/79df1218f43951553f9bd19779f21031ba011f45))
+
+
+### Documentation
+
+* Update urls to reflect branding change to Sensitive Data Protection ([79df121](https://github.com/googleapis/google-cloud-php/commit/79df1218f43951553f9bd19779f21031ba011f45))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.42.0</summary>
+
+
+
+### Features
+
+* Add ExplainMetrics field to RunAggregationQueryResponse ([f8c9d2a](https://github.com/googleapis/google-cloud-php/commit/f8c9d2a0cfa4ce3aae5337f4aa618e0e44be2cbb))
+* Add ExplainMetrics field to RunQueryResponse ([f8c9d2a](https://github.com/googleapis/google-cloud-php/commit/f8c9d2a0cfa4ce3aae5337f4aa618e0e44be2cbb))
+* Add ExplainOptions field to RunAggregationQueryRequest ([f8c9d2a](https://github.com/googleapis/google-cloud-php/commit/f8c9d2a0cfa4ce3aae5337f4aa618e0e44be2cbb))
+* Add ExplainOptions field to RunQueryRequest ([f8c9d2a](https://github.com/googleapis/google-cloud-php/commit/f8c9d2a0cfa4ce3aae5337f4aa618e0e44be2cbb))
+* Add new types ExplainOptions, ExplainMetrics, PlanSummary, ExecutionStats ([#7139](https://github.com/googleapis/google-cloud-php/issues/7139)) ([f8c9d2a](https://github.com/googleapis/google-cloud-php/commit/f8c9d2a0cfa4ce3aae5337f4aa618e0e44be2cbb))
+
+</details>
+
+<details><summary>google/grafeas 0.10.0</summary>
+
+
+
+### Features
+
+* A new field `extra_details` is added to message `VulnerabilityOccurrence` ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new field `impact` is added to message `ComplianceNote` ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new field `in_toto_slsa_provenance_v1` is added to message `BuildOccurrence` ([#7148](https://github.com/googleapis/google-cloud-php/issues/7148)) ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new field `sbom_reference` is added to message `Note` ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new field `sbom_reference` is added to message `Occurrence` ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new field `sbom_status` is added to message `DiscoveryOccurrence` ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new field `vulnerability_id` is added to message `VulnerabilityAssessmentNote` ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new field `vulnerability_id` is added to message `VulnerabilityOccurrence` ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new message `InTotoSlsaProvenanceV1` is added ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new message `SbomReferenceIntotoPayload` is added ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new message `SbomReferenceIntotoPredicate` is added ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new message `SBOMReferenceNote` is added ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new message `SBOMReferenceOccurrence` is added ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new message `SBOMStatus` is added ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A new value `SBOM_REFERENCE` is added to enum `NoteKind` ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+
+
+### Documentation
+
+* A comment for field `cve` in message `VulnerabilityAssessmentNote` is changed ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+* A comment for field `cve` in message `VulnerabilityOccurrence` is changed ([05a3670](https://github.com/googleapis/google-cloud-php/commit/05a367050a384363d9a8207935bcd04cf9f3d7c9))
+
+</details>
+
+<details><summary>google/cloud-netapp 0.2.3</summary>
+
+
+
+### Documentation
+
+* Change comments of the psa_range field to note it is currently not implemented ([3868be8](https://github.com/googleapis/google-cloud-php/commit/3868be835207c184f983588daf0af3b1478c4fff))
+* Mark optional fields explicitly in Storage Pool ([#7127](https://github.com/googleapis/google-cloud-php/issues/7127)) ([3868be8](https://github.com/googleapis/google-cloud-php/commit/3868be835207c184f983588daf0af3b1478c4fff))
+* Update comments of ServiceLevel and EncryptionType ([3868be8](https://github.com/googleapis/google-cloud-php/commit/3868be835207c184f983588daf0af3b1478c4fff))
+
+</details>
+
+<details><summary>google/cloud-network-management 1.6.0</summary>
+
+
+
+### Features
+
+* Add IAM related functions to NetworkManagement ([#7145](https://github.com/googleapis/google-cloud-php/issues/7145)) ([f1eeb5e](https://github.com/googleapis/google-cloud-php/commit/f1eeb5e51a7549b65b76a47fb22e2addc099e48f))
+* Add Location & IAM mixins ([f1eeb5e](https://github.com/googleapis/google-cloud-php/commit/f1eeb5e51a7549b65b76a47fb22e2addc099e48f))
+* Add new NAT fields to Network Management API definition ([#7130](https://github.com/googleapis/google-cloud-php/issues/7130)) ([9b9af45](https://github.com/googleapis/google-cloud-php/commit/9b9af455b1a0f9e1f220ab35dc1477c8c0b5ecb8))
+
+</details>
+
+<details><summary>google/cloud-quotas 0.1.3</summary>
+
+
+
+### Documentation
+
+* A comment for field `filter` in message `.google.api.cloudquotas.v1.ListQuotaPreferencesRequest` is changed ([#7141](https://github.com/googleapis/google-cloud-php/issues/7141)) ([2f63135](https://github.com/googleapis/google-cloud-php/commit/2f6313510d27fd90559a4a3d3aeca002b30e7f4a))
+* A comment for field `order_by` in message `.google.api.cloudquotas.v1.ListQuotaPreferencesRequest` is changed ([2f63135](https://github.com/googleapis/google-cloud-php/commit/2f6313510d27fd90559a4a3d3aeca002b30e7f4a))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.10.0</summary>
+
+
+
+### Features
+
+* Add include_recaptcha_script for as a new action in firewall policies ([#7120](https://github.com/googleapis/google-cloud-php/issues/7120)) ([de08403](https://github.com/googleapis/google-cloud-php/commit/de08403f8d597ec190cd5cd6b110bad58cf55910))
+
+</details>
+
+<details><summary>google/cloud-run 0.9.0</summary>
+
+
+
+### Features
+
+* Allow disabling the default URL (run.app) for Cloud Run Services ([5737bf9](https://github.com/googleapis/google-cloud-php/commit/5737bf9d45278e67bd5e5cbde2a7757f95c0f200))
+* Support disabling waiting for health checks during Service deployment. ([5737bf9](https://github.com/googleapis/google-cloud-php/commit/5737bf9d45278e67bd5e5cbde2a7757f95c0f200))
+* Support mounting NFS and GCS volumes in Cloud Run Jobs and Services ([5737bf9](https://github.com/googleapis/google-cloud-php/commit/5737bf9d45278e67bd5e5cbde2a7757f95c0f200))
+* Support specifying a per-Service min-instance-count ([5737bf9](https://github.com/googleapis/google-cloud-php/commit/5737bf9d45278e67bd5e5cbde2a7757f95c0f200))
+
+
+### Documentation
+
+* Clarify some defaults and required or optional values ([#7119](https://github.com/googleapis/google-cloud-php/issues/7119)) ([5737bf9](https://github.com/googleapis/google-cloud-php/commit/5737bf9d45278e67bd5e5cbde2a7757f95c0f200))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.25.0</summary>
+
+
+
+### Features
+
+* Add multiple attributes ([#7132](https://github.com/googleapis/google-cloud-php/issues/7132)) ([4cfaa13](https://github.com/googleapis/google-cloud-php/commit/4cfaa139eadb934b8fe0588521a3461e079d851e))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 1.6.0</summary>
+
+
+
+### Features
+
+* Add custom subject key identifier field ([#7138](https://github.com/googleapis/google-cloud-php/issues/7138)) ([451b066](https://github.com/googleapis/google-cloud-php/commit/451b0662893309cda025834761d1aabb069d3234))
+* Add support for fine-grained maximum certificate lifetime controls ([451b066](https://github.com/googleapis/google-cloud-php/commit/451b0662893309cda025834761d1aabb069d3234))
+
+
+### Documentation
+
+* A comment for field `ca_certs` in message `.google.cloud.security.privateca.v1.FetchCaCertsResponse` is changed ([451b066](https://github.com/googleapis/google-cloud-php/commit/451b0662893309cda025834761d1aabb069d3234))
+* A comment for field `subject` in message `.google.cloud.security.privateca.v1.CertificateConfig` is changed ([451b066](https://github.com/googleapis/google-cloud-php/commit/451b0662893309cda025834761d1aabb069d3234))
+* A comment for method `FetchCaCerts` in service `CertificateAuthorityService` is changed ([451b066](https://github.com/googleapis/google-cloud-php/commit/451b0662893309cda025834761d1aabb069d3234))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.15.0</summary>
+
+
+
+### Features
+
+* A new value `PG_SUBSCRIPTION_COUNT` is added to enum `SqlExternalSyncSettingErrorType` ([#7126](https://github.com/googleapis/google-cloud-php/issues/7126)) ([e043534](https://github.com/googleapis/google-cloud-php/commit/e043534f6635c53aed03c253eb58e1a9feaa2b90))
+* A new value `PG_SYNC_PARALLEL_LEVEL` is added to enum `SqlExternalSyncSettingErrorType` ([e043534](https://github.com/googleapis/google-cloud-php/commit/e043534f6635c53aed03c253eb58e1a9feaa2b90))
+
+
+### Documentation
+
+* Update a few doc comments ([#7115](https://github.com/googleapis/google-cloud-php/issues/7115)) ([62e2620](https://github.com/googleapis/google-cloud-php/commit/62e2620c46747574e4a710a92951175d1bbf7aac))
+
+</details>
+
+<details><summary>google/cloud-storage 1.40.0</summary>
+
+
+
+### Features
+
+* **Storage:** AbortIncompleteMultipartUpload LifecycleAction ([#7099](https://github.com/googleapis/google-cloud-php/issues/7099)) ([d4d6115](https://github.com/googleapis/google-cloud-php/commit/d4d61151d45e56739d66d765c2fe1bad66bbaf28))
+* **Storage:** Implement touch on streams ([#7144](https://github.com/googleapis/google-cloud-php/issues/7144)) ([f4c6c24](https://github.com/googleapis/google-cloud-php/commit/f4c6c24ee236be121a173341350c7f77081bcb35))
+
+</details>
+
 ## 0.237.0
 
 <details><summary>google/cloud-access-approval 1.2.2</summary>

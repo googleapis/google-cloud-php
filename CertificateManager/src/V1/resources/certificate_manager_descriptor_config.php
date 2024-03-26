@@ -98,6 +98,25 @@ return [
                     ],
                 ],
             ],
+            'CreateTrustConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\CertificateManager\V1\TrustConfig',
+                    'metadataReturnType' => '\Google\Cloud\CertificateManager\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteCertificate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -175,6 +194,25 @@ return [
                 ],
             ],
             'DeleteDnsAuthorization' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\CertificateManager\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTrustConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\CertificateManager\V1\OperationMetadata',
@@ -273,6 +311,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateTrustConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\CertificateManager\V1\TrustConfig',
+                    'metadataReturnType' => '\Google\Cloud\CertificateManager\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'trust_config.name',
+                        'fieldAccessors' => [
+                            'getTrustConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCertificate' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\CertificateManager\V1\Certificate',
@@ -324,6 +382,18 @@ return [
             'GetDnsAuthorization' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\CertificateManager\V1\DnsAuthorization',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTrustConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\CertificateManager\V1\TrustConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -433,6 +503,26 @@ return [
                     ],
                 ],
             ],
+            'ListTrustConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTrustConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\CertificateManager\V1\ListTrustConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -475,6 +565,7 @@ return [
                 'certificateMapEntry' => 'projects/{project}/locations/{location}/certificateMaps/{certificate_map}/certificateMapEntries/{certificate_map_entry}',
                 'dnsAuthorization' => 'projects/{project}/locations/{location}/dnsAuthorizations/{dns_authorization}',
                 'location' => 'projects/{project}/locations/{location}',
+                'trustConfig' => 'projects/{project}/locations/{location}/trustConfigs/{trust_config}',
             ],
         ],
     ],

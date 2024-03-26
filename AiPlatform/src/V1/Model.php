@@ -357,6 +357,13 @@ class Model extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string metadata_artifact = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metadata_artifact = '';
+    /**
+     * Optional. User input field to specify the base model source. Currently it
+     * only supports specifing the Model Garden models and Genie models.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.BaseModelSource base_model_source = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $base_model_source = null;
 
     /**
      * Constructor.
@@ -586,6 +593,9 @@ class Model extends \Google\Protobuf\Internal\Message
      *           MetadataStore when creating the Model. The Artifact resource name pattern
      *           is
      *           `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *     @type \Google\Cloud\AIPlatform\V1\Model\BaseModelSource $base_model_source
+     *           Optional. User input field to specify the base model source. Currently it
+     *           only supports specifing the Model Garden models and Genie models.
      * }
      */
     public function __construct($data = NULL) {
@@ -1813,6 +1823,44 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->metadata_artifact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. User input field to specify the base model source. Currently it
+     * only supports specifing the Model Garden models and Genie models.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.BaseModelSource base_model_source = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Model\BaseModelSource|null
+     */
+    public function getBaseModelSource()
+    {
+        return $this->base_model_source;
+    }
+
+    public function hasBaseModelSource()
+    {
+        return isset($this->base_model_source);
+    }
+
+    public function clearBaseModelSource()
+    {
+        unset($this->base_model_source);
+    }
+
+    /**
+     * Optional. User input field to specify the base model source. Currently it
+     * only supports specifing the Model Garden models and Genie models.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Model.BaseModelSource base_model_source = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Model\BaseModelSource $var
+     * @return $this
+     */
+    public function setBaseModelSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Model\BaseModelSource::class);
+        $this->base_model_source = $var;
 
         return $this;
     }

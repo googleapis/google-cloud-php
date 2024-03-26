@@ -94,7 +94,8 @@ class HmacKeyTest extends SnippetTestCase
     public function testUpdate()
     {
         $this->connection->updateHmacKey(Argument::withEntry('state', 'INACTIVE'))
-            ->willReturn($this->metadata);
+            ->willReturn($this->metadata)
+            ->shouldBeCalled();
 
         $this->key->___setProperty('connection', $this->connection->reveal());
 
@@ -107,7 +108,8 @@ class HmacKeyTest extends SnippetTestCase
     public function testDelete()
     {
         $this->connection->deleteHmacKey(Argument::any())
-            ->willReturn(null);
+            ->willReturn(null)
+            ->shouldBeCalled();
 
         $this->key->___setProperty('connection', $this->connection->reveal());
 

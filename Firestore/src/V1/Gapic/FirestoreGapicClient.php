@@ -45,6 +45,7 @@ use Google\Cloud\Firestore\V1\CreateDocumentRequest;
 use Google\Cloud\Firestore\V1\DeleteDocumentRequest;
 use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\DocumentMask;
+use Google\Cloud\Firestore\V1\ExplainOptions;
 use Google\Cloud\Firestore\V1\GetDocumentRequest;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
@@ -1114,6 +1115,9 @@ class FirestoreGapicClient
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type ExplainOptions $explainOptions
+     *           Optional. Explain options for the query. If set, additional query
+     *           statistics will be returned. If not, only query results will be returned.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1142,6 +1146,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['explainOptions'])) {
+            $request->setExplainOptions($optionalArgs['explainOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1193,6 +1201,9 @@ class FirestoreGapicClient
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type ExplainOptions $explainOptions
+     *           Optional. Explain options for the query. If set, additional query
+     *           statistics will be returned. If not, only query results will be returned.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1221,6 +1232,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['explainOptions'])) {
+            $request->setExplainOptions($optionalArgs['explainOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

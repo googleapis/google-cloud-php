@@ -44,26 +44,32 @@ use Google\Cloud\CertificateManager\V1\CreateCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\CreateCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\CreateCertificateRequest;
 use Google\Cloud\CertificateManager\V1\CreateDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\CreateTrustConfigRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\DeleteCertificateRequest;
 use Google\Cloud\CertificateManager\V1\DeleteDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\DeleteTrustConfigRequest;
 use Google\Cloud\CertificateManager\V1\DnsAuthorization;
 use Google\Cloud\CertificateManager\V1\GetCertificateIssuanceConfigRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\GetCertificateRequest;
 use Google\Cloud\CertificateManager\V1\GetDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\GetTrustConfigRequest;
 use Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsRequest;
 use Google\Cloud\CertificateManager\V1\ListCertificateMapEntriesRequest;
 use Google\Cloud\CertificateManager\V1\ListCertificateMapsRequest;
 use Google\Cloud\CertificateManager\V1\ListCertificatesRequest;
 use Google\Cloud\CertificateManager\V1\ListDnsAuthorizationsRequest;
+use Google\Cloud\CertificateManager\V1\ListTrustConfigsRequest;
+use Google\Cloud\CertificateManager\V1\TrustConfig;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapEntryRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateMapRequest;
 use Google\Cloud\CertificateManager\V1\UpdateCertificateRequest;
 use Google\Cloud\CertificateManager\V1\UpdateDnsAuthorizationRequest;
+use Google\Cloud\CertificateManager\V1\UpdateTrustConfigRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -111,25 +117,30 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createCertificateMapAsync(CreateCertificateMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCertificateMapEntryAsync(CreateCertificateMapEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDnsAuthorizationAsync(CreateDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createTrustConfigAsync(CreateTrustConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteCertificateAsync(DeleteCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteCertificateIssuanceConfigAsync(DeleteCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteCertificateMapAsync(DeleteCertificateMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteCertificateMapEntryAsync(DeleteCertificateMapEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDnsAuthorizationAsync(DeleteDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteTrustConfigAsync(DeleteTrustConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCertificateAsync(GetCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCertificateIssuanceConfigAsync(GetCertificateIssuanceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCertificateMapAsync(GetCertificateMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getCertificateMapEntryAsync(GetCertificateMapEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDnsAuthorizationAsync(GetDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getTrustConfigAsync(GetTrustConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listCertificateIssuanceConfigsAsync(ListCertificateIssuanceConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listCertificateMapEntriesAsync(ListCertificateMapEntriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listCertificateMapsAsync(ListCertificateMapsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listCertificatesAsync(ListCertificatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDnsAuthorizationsAsync(ListDnsAuthorizationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listTrustConfigsAsync(ListTrustConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCertificateAsync(UpdateCertificateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCertificateMapAsync(UpdateCertificateMapRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateCertificateMapEntryAsync(UpdateCertificateMapEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDnsAuthorizationAsync(UpdateDnsAuthorizationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateTrustConfigAsync(UpdateTrustConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -346,6 +357,25 @@ final class CertificateManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a trust_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $trustConfig
+     *
+     * @return string The formatted trust_config resource.
+     */
+    public static function trustConfigName(string $project, string $location, string $trustConfig): string
+    {
+        return self::getPathTemplate('trustConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'trust_config' => $trustConfig,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -356,6 +386,7 @@ final class CertificateManagerClient
      * - certificateMapEntry: projects/{project}/locations/{location}/certificateMaps/{certificate_map}/certificateMapEntries/{certificate_map_entry}
      * - dnsAuthorization: projects/{project}/locations/{location}/dnsAuthorizations/{dns_authorization}
      * - location: projects/{project}/locations/{location}
+     * - trustConfig: projects/{project}/locations/{location}/trustConfigs/{trust_config}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -582,6 +613,32 @@ final class CertificateManagerClient
     }
 
     /**
+     * Creates a new TrustConfig in a given project and location.
+     *
+     * The async variant is {@see CertificateManagerClient::createTrustConfigAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/create_trust_config.php
+     *
+     * @param CreateTrustConfigRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createTrustConfig(CreateTrustConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateTrustConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Certificate.
      *
      * The async variant is {@see CertificateManagerClient::deleteCertificateAsync()} .
@@ -718,6 +775,32 @@ final class CertificateManagerClient
     }
 
     /**
+     * Deletes a single TrustConfig.
+     *
+     * The async variant is {@see CertificateManagerClient::deleteTrustConfigAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/delete_trust_config.php
+     *
+     * @param DeleteTrustConfigRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTrustConfig(DeleteTrustConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteTrustConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single Certificate.
      *
      * The async variant is {@see CertificateManagerClient::getCertificateAsync()} .
@@ -848,6 +931,32 @@ final class CertificateManagerClient
     public function getDnsAuthorization(GetDnsAuthorizationRequest $request, array $callOptions = []): DnsAuthorization
     {
         return $this->startApiCall('GetDnsAuthorization', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single TrustConfig.
+     *
+     * The async variant is {@see CertificateManagerClient::getTrustConfigAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/get_trust_config.php
+     *
+     * @param GetTrustConfigRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TrustConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getTrustConfig(GetTrustConfigRequest $request, array $callOptions = []): TrustConfig
+    {
+        return $this->startApiCall('GetTrustConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -985,6 +1094,32 @@ final class CertificateManagerClient
     }
 
     /**
+     * Lists TrustConfigs in a given project and location.
+     *
+     * The async variant is {@see CertificateManagerClient::listTrustConfigsAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/list_trust_configs.php
+     *
+     * @param ListTrustConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listTrustConfigs(ListTrustConfigsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListTrustConfigs', $request, $callOptions);
+    }
+
+    /**
      * Updates a Certificate.
      *
      * The async variant is {@see CertificateManagerClient::updateCertificateAsync()} .
@@ -1089,6 +1224,32 @@ final class CertificateManagerClient
     public function updateDnsAuthorization(UpdateDnsAuthorizationRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateDnsAuthorization', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a TrustConfig.
+     *
+     * The async variant is {@see CertificateManagerClient::updateTrustConfigAsync()} .
+     *
+     * @example samples/V1/CertificateManagerClient/update_trust_config.php
+     *
+     * @param UpdateTrustConfigRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateTrustConfig(UpdateTrustConfigRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateTrustConfig', $request, $callOptions)->wait();
     }
 
     /**

@@ -85,6 +85,12 @@ class NoteKind
      * Generated from protobuf enum <code>VULNERABILITY_ASSESSMENT = 11;</code>
      */
     const VULNERABILITY_ASSESSMENT = 11;
+    /**
+     * This represents an SBOM Reference.
+     *
+     * Generated from protobuf enum <code>SBOM_REFERENCE = 12;</code>
+     */
+    const SBOM_REFERENCE = 12;
 
     private static $valueToName = [
         self::NOTE_KIND_UNSPECIFIED => 'NOTE_KIND_UNSPECIFIED',
@@ -99,6 +105,7 @@ class NoteKind
         self::COMPLIANCE => 'COMPLIANCE',
         self::DSSE_ATTESTATION => 'DSSE_ATTESTATION',
         self::VULNERABILITY_ASSESSMENT => 'VULNERABILITY_ASSESSMENT',
+        self::SBOM_REFERENCE => 'SBOM_REFERENCE',
     ];
 
     public static function name($value)

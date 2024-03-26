@@ -39,6 +39,8 @@ use Google\Cloud\Dataplex\V1\CreateDataScanRequest;
 use Google\Cloud\Dataplex\V1\DataScan;
 use Google\Cloud\Dataplex\V1\DataScanJob;
 use Google\Cloud\Dataplex\V1\DeleteDataScanRequest;
+use Google\Cloud\Dataplex\V1\GenerateDataQualityRulesRequest;
+use Google\Cloud\Dataplex\V1\GenerateDataQualityRulesResponse;
 use Google\Cloud\Dataplex\V1\GetDataScanJobRequest;
 use Google\Cloud\Dataplex\V1\GetDataScanRequest;
 use Google\Cloud\Dataplex\V1\ListDataScanJobsRequest;
@@ -72,6 +74,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createDataScanAsync(CreateDataScanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDataScanAsync(DeleteDataScanRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface generateDataQualityRulesAsync(GenerateDataQualityRulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDataScanAsync(GetDataScanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDataScanJobAsync(GetDataScanJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDataScanJobsAsync(ListDataScanJobsRequest $request, array $optionalArgs = [])
@@ -392,6 +395,33 @@ final class DataScanServiceClient
     public function deleteDataScan(DeleteDataScanRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteDataScan', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Generates recommended DataQualityRule from a data profiling DataScan.
+     *
+     * The async variant is
+     * {@see DataScanServiceClient::generateDataQualityRulesAsync()} .
+     *
+     * @example samples/V1/DataScanServiceClient/generate_data_quality_rules.php
+     *
+     * @param GenerateDataQualityRulesRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateDataQualityRulesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateDataQualityRules(GenerateDataQualityRulesRequest $request, array $callOptions = []): GenerateDataQualityRulesResponse
+    {
+        return $this->startApiCall('GenerateDataQualityRules', $request, $callOptions)->wait();
     }
 
     /**

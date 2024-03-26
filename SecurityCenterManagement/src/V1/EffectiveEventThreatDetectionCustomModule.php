@@ -22,13 +22,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The resource name of the ETD custom module.
+     * Identifier. The resource name of the ETD custom module.
      * Its format is:
      *   * "organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *   * "folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *   * "projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -70,7 +70,7 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Immutable. The resource name of the ETD custom module.
+     *           Identifier. The resource name of the ETD custom module.
      *           Its format is:
      *             * "organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *             * "folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
@@ -94,13 +94,13 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Immutable. The resource name of the ETD custom module.
+     * Identifier. The resource name of the ETD custom module.
      * Its format is:
      *   * "organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *   * "folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *   * "projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -109,13 +109,13 @@ class EffectiveEventThreatDetectionCustomModule extends \Google\Protobuf\Interna
     }
 
     /**
-     * Immutable. The resource name of the ETD custom module.
+     * Identifier. The resource name of the ETD custom module.
      * Its format is:
      *   * "organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *   * "folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *   * "projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

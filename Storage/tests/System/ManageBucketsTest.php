@@ -117,6 +117,32 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($options['website'], $info['website']);
     }
 
+    public function testSoftDeletePolicy()
+    {
+        $durationSecond = 8*24*60*60;
+        // set soft delete policy
+        self::$bucket->update([
+            'softDeletePolicy' => [
+                'retentionDurationSeconds' => $durationSecond
+                ]
+            ]);
+        $this->assertArrayHasKey('softDeletePolicy', self::$bucket->info());
+        $this->assertEquals(
+            $durationSecond,
+            self::$bucket->info()['softDeletePolicy']['retentionDurationSeconds']
+        );
+
+        // remove soft delete policy
+        self::$bucket->update([
+            'softDeletePolicy' => []
+        ]);
+        $this->assertArrayHasKey('softDeletePolicy', self::$bucket->info());
+        $this->assertEquals(
+            0,
+            self::$bucket->info()['softDeletePolicy']['retentionDurationSeconds']
+        );
+    }
+
     /**
      * @group storage-bucket-lifecycle
      * @dataProvider lifecycleRules
@@ -143,7 +169,12 @@ class ManageBucketsTest extends StorageTestCase
      */
     public function testCreateBucketWithLifecycleAbortIncompleteMultipartUploadRule(array $rule, $isError = false)
     {
-        if ($isError) {
+        $supportedRules = [
+            'age',
+            'matchesPrefix',
+            'matchesSuffix'
+        ];
+        if ($isError || !in_array(array_key_first($rule), $supportedRules)) {
             $this->expectException(BadRequestException::class);
         }
 
