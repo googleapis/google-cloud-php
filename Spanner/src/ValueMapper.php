@@ -48,6 +48,7 @@ class ValueMapper
 
     /**
      * @var array
+     * @internal
      */
     public static $allowedTypes = [
         self::TYPE_BOOL,
