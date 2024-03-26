@@ -16,26 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The source cluster from which this Backup was created.
+     * Output only. The source cluster from which this Backup was created.
      * Valid formats:
      *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
      *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *
-     * Generated from protobuf field <code>string cluster = 1;</code>
+     * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $cluster = '';
     /**
-     * The Kubernetes server version of the source cluster.
+     * Output only. The Kubernetes server version of the source cluster.
      *
-     * Generated from protobuf field <code>string k8s_version = 2;</code>
+     * Generated from protobuf field <code>string k8s_version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $k8s_version = '';
     /**
-     * A list of the Backup for GKE CRD versions found in the cluster.
+     * Output only. A list of the Backup for GKE CRD versions found in the
+     * cluster.
      *
-     * Generated from protobuf field <code>map<string, string> backup_crd_versions = 3;</code>
+     * Generated from protobuf field <code>map<string, string> backup_crd_versions = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $backup_crd_versions;
     protected $platform_version;
@@ -47,20 +48,21 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cluster
-     *           The source cluster from which this Backup was created.
+     *           Output only. The source cluster from which this Backup was created.
      *           Valid formats:
      *             - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
      *             - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      *           This is inherited from the parent BackupPlan's
      *           [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *     @type string $k8s_version
-     *           The Kubernetes server version of the source cluster.
+     *           Output only. The Kubernetes server version of the source cluster.
      *     @type array|\Google\Protobuf\Internal\MapField $backup_crd_versions
-     *           A list of the Backup for GKE CRD versions found in the cluster.
+     *           Output only. A list of the Backup for GKE CRD versions found in the
+     *           cluster.
      *     @type string $gke_version
-     *           GKE version
+     *           Output only. GKE version
      *     @type string $anthos_version
-     *           Anthos version
+     *           Output only. Anthos version
      * }
      */
     public function __construct($data = NULL) {
@@ -69,14 +71,14 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source cluster from which this Backup was created.
+     * Output only. The source cluster from which this Backup was created.
      * Valid formats:
      *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
      *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *
-     * Generated from protobuf field <code>string cluster = 1;</code>
+     * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getCluster()
@@ -85,14 +87,14 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source cluster from which this Backup was created.
+     * Output only. The source cluster from which this Backup was created.
      * Valid formats:
      *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
      *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *
-     * Generated from protobuf field <code>string cluster = 1;</code>
+     * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -105,9 +107,9 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Kubernetes server version of the source cluster.
+     * Output only. The Kubernetes server version of the source cluster.
      *
-     * Generated from protobuf field <code>string k8s_version = 2;</code>
+     * Generated from protobuf field <code>string k8s_version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getK8SVersion()
@@ -116,9 +118,9 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Kubernetes server version of the source cluster.
+     * Output only. The Kubernetes server version of the source cluster.
      *
-     * Generated from protobuf field <code>string k8s_version = 2;</code>
+     * Generated from protobuf field <code>string k8s_version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -131,9 +133,10 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of the Backup for GKE CRD versions found in the cluster.
+     * Output only. A list of the Backup for GKE CRD versions found in the
+     * cluster.
      *
-     * Generated from protobuf field <code>map<string, string> backup_crd_versions = 3;</code>
+     * Generated from protobuf field <code>map<string, string> backup_crd_versions = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getBackupCrdVersions()
@@ -142,9 +145,10 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of the Backup for GKE CRD versions found in the cluster.
+     * Output only. A list of the Backup for GKE CRD versions found in the
+     * cluster.
      *
-     * Generated from protobuf field <code>map<string, string> backup_crd_versions = 3;</code>
+     * Generated from protobuf field <code>map<string, string> backup_crd_versions = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -157,9 +161,9 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GKE version
+     * Output only. GKE version
      *
-     * Generated from protobuf field <code>string gke_version = 4;</code>
+     * Generated from protobuf field <code>string gke_version = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getGkeVersion()
@@ -173,9 +177,9 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GKE version
+     * Output only. GKE version
      *
-     * Generated from protobuf field <code>string gke_version = 4;</code>
+     * Generated from protobuf field <code>string gke_version = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -188,9 +192,9 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Anthos version
+     * Output only. Anthos version
      *
-     * Generated from protobuf field <code>string anthos_version = 5;</code>
+     * Generated from protobuf field <code>string anthos_version = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getAnthosVersion()
@@ -204,9 +208,9 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Anthos version
+     * Output only. Anthos version
      *
-     * Generated from protobuf field <code>string anthos_version = 5;</code>
+     * Generated from protobuf field <code>string anthos_version = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

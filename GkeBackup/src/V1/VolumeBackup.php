@@ -12,7 +12,6 @@ use Google\Protobuf\Internal\GPBUtil;
  * Represents the backup of a specific persistent volume as a component of a
  * Backup - both the record of the operation and a pointer to the underlying
  * storage-specific artifacts.
- * Next id: 14
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.VolumeBackup</code>
  */

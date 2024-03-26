@@ -22,7 +22,7 @@ class ExclusionWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay start_time = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $start_time = null;
+    private $start_time = null;
     /**
      * Required. Specifies duration of the window. Restrictions for duration based
      * on the recurrence type to allow some time for backup to happen:
@@ -35,7 +35,7 @@ class ExclusionWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $duration = null;
+    private $duration = null;
     protected $recurrence;
 
     /**
