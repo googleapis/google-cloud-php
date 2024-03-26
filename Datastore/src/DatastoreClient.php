@@ -182,6 +182,11 @@ class DatastoreClient
             ],
         ];
         $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain'],
+        );
 
         $config = $this->configureAuthentication($config);
         $this->connection = $connectionType === 'grpc'
