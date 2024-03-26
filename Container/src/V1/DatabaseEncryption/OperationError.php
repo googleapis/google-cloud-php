@@ -21,19 +21,19 @@ class OperationError extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key_name = 1;</code>
      */
-    protected $key_name = '';
+    private $key_name = '';
     /**
      * Description of the error seen during the operation.
      *
      * Generated from protobuf field <code>string error_message = 2;</code>
      */
-    protected $error_message = '';
+    private $error_message = '';
     /**
      * Time when the CloudKMS error was seen.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 3;</code>
      */
-    protected $timestamp = null;
+    private $timestamp = null;
 
     /**
      * Constructor.
