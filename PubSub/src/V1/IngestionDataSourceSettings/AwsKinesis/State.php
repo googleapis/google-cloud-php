@@ -41,7 +41,7 @@ class State
     const KINESIS_PERMISSION_DENIED = 2;
     /**
      * Permission denied encountered while publishing to the topic. This can
-     * happen due to Pub/Sub SA has not been granted the [appropriate publish
+     * happen if the Pub/Sub SA has not been granted the [appropriate publish
      * permissions](https://cloud.google.com/pubsub/docs/access-control#pubsub.publisher)
      *
      * Generated from protobuf enum <code>PUBLISH_PERMISSION_DENIED = 3;</code>
