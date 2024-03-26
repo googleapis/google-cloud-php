@@ -46,6 +46,7 @@ class ArrayTypeTest extends TestCase
             // types (w/ typeAnnotation)
             [Database::TYPE_PG_NUMERIC],
             [Database::TYPE_PG_JSONB],
+            [Database::TYPE_PG_OID],
         ];
     }
 
