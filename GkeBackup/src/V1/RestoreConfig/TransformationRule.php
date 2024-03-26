@@ -27,19 +27,19 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
      */
     private $field_actions;
     /**
-     * This field is used to specify a set of fields that should be used to
-     * determine which resources in backup should be acted upon by the supplied
-     * transformation rule actions, and this will ensure that only specific
-     * resources are affected by transformation rule actions.
+     * Optional. This field is used to specify a set of fields that should be
+     * used to determine which resources in backup should be acted upon by the
+     * supplied transformation rule actions, and this will ensure that only
+     * specific resources are affected by transformation rule actions.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ResourceFilter resource_filter = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ResourceFilter resource_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $resource_filter = null;
     /**
-     * The description is a user specified string description of the
+     * Optional. The description is a user specified string description of the
      * transformation rule.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
 
@@ -55,12 +55,12 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
      *           they could potentially interfere with each other and the first operation
      *           could affect the outcome of the second operation.
      *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\ResourceFilter $resource_filter
-     *           This field is used to specify a set of fields that should be used to
-     *           determine which resources in backup should be acted upon by the supplied
-     *           transformation rule actions, and this will ensure that only specific
-     *           resources are affected by transformation rule actions.
+     *           Optional. This field is used to specify a set of fields that should be
+     *           used to determine which resources in backup should be acted upon by the
+     *           supplied transformation rule actions, and this will ensure that only
+     *           specific resources are affected by transformation rule actions.
      *     @type string $description
-     *           The description is a user specified string description of the
+     *           Optional. The description is a user specified string description of the
      *           transformation rule.
      * }
      */
@@ -102,12 +102,12 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field is used to specify a set of fields that should be used to
-     * determine which resources in backup should be acted upon by the supplied
-     * transformation rule actions, and this will ensure that only specific
-     * resources are affected by transformation rule actions.
+     * Optional. This field is used to specify a set of fields that should be
+     * used to determine which resources in backup should be acted upon by the
+     * supplied transformation rule actions, and this will ensure that only
+     * specific resources are affected by transformation rule actions.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ResourceFilter resource_filter = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ResourceFilter resource_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GkeBackup\V1\RestoreConfig\ResourceFilter|null
      */
     public function getResourceFilter()
@@ -126,12 +126,12 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field is used to specify a set of fields that should be used to
-     * determine which resources in backup should be acted upon by the supplied
-     * transformation rule actions, and this will ensure that only specific
-     * resources are affected by transformation rule actions.
+     * Optional. This field is used to specify a set of fields that should be
+     * used to determine which resources in backup should be acted upon by the
+     * supplied transformation rule actions, and this will ensure that only
+     * specific resources are affected by transformation rule actions.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ResourceFilter resource_filter = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ResourceFilter resource_filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\ResourceFilter $var
      * @return $this
      */
@@ -144,10 +144,10 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The description is a user specified string description of the
+     * Optional. The description is a user specified string description of the
      * transformation rule.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -156,10 +156,10 @@ class TransformationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The description is a user specified string description of the
+     * Optional. The description is a user specified string description of the
      * transformation rule.
      *
-     * Generated from protobuf field <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

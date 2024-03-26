@@ -18,35 +18,33 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (Filtering parameter) Any resource subject to transformation must be
-     * contained within one of the listed Kubernetes Namespace in the Backup.
-     * If this field is not provided, no namespace filtering will be performed
-     * (all resources in all Namespaces, including all cluster-scoped resources,
-     * will be candidates for transformation).
-     * To mix cluster-scoped and namespaced resources in the same rule, use an
-     * empty string ("") as one of the target namespaces.
+     * Optional. (Filtering parameter) Any resource subject to transformation
+     * must be contained within one of the listed Kubernetes Namespace in the
+     * Backup. If this field is not provided, no namespace filtering will be
+     * performed (all resources in all Namespaces, including all cluster-scoped
+     * resources, will be candidates for transformation).
      *
-     * Generated from protobuf field <code>repeated string namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $namespaces;
     /**
-     * (Filtering parameter) Any resource subject to transformation must belong
-     * to one of the listed "types". If this field is not provided, no type
-     * filtering will be performed (all resources of all types matching previous
-     * filtering parameters will be candidates for transformation).
+     * Optional. (Filtering parameter) Any resource subject to transformation
+     * must belong to one of the listed "types". If this field is not provided,
+     * no type filtering will be performed (all resources of all types matching
+     * previous filtering parameters will be candidates for transformation).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $group_kinds;
     /**
-     * This is a [JSONPath]
+     * Optional. This is a [JSONPath]
      * (https://github.com/json-path/JsonPath/blob/master/README.md)
      * expression that matches specific fields of candidate
      * resources and it operates as a filtering parameter (resources that
      * are not matched with this expression will not be candidates for
      * transformation).
      *
-     * Generated from protobuf field <code>string json_path = 3;</code>
+     * Generated from protobuf field <code>string json_path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $json_path = '';
 
@@ -57,20 +55,18 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespaces
-     *           (Filtering parameter) Any resource subject to transformation must be
-     *           contained within one of the listed Kubernetes Namespace in the Backup.
-     *           If this field is not provided, no namespace filtering will be performed
-     *           (all resources in all Namespaces, including all cluster-scoped resources,
-     *           will be candidates for transformation).
-     *           To mix cluster-scoped and namespaced resources in the same rule, use an
-     *           empty string ("") as one of the target namespaces.
+     *           Optional. (Filtering parameter) Any resource subject to transformation
+     *           must be contained within one of the listed Kubernetes Namespace in the
+     *           Backup. If this field is not provided, no namespace filtering will be
+     *           performed (all resources in all Namespaces, including all cluster-scoped
+     *           resources, will be candidates for transformation).
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $group_kinds
-     *           (Filtering parameter) Any resource subject to transformation must belong
-     *           to one of the listed "types". If this field is not provided, no type
-     *           filtering will be performed (all resources of all types matching previous
-     *           filtering parameters will be candidates for transformation).
+     *           Optional. (Filtering parameter) Any resource subject to transformation
+     *           must belong to one of the listed "types". If this field is not provided,
+     *           no type filtering will be performed (all resources of all types matching
+     *           previous filtering parameters will be candidates for transformation).
      *     @type string $json_path
-     *           This is a [JSONPath]
+     *           Optional. This is a [JSONPath]
      *           (https://github.com/json-path/JsonPath/blob/master/README.md)
      *           expression that matches specific fields of candidate
      *           resources and it operates as a filtering parameter (resources that
@@ -84,15 +80,13 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) Any resource subject to transformation must be
-     * contained within one of the listed Kubernetes Namespace in the Backup.
-     * If this field is not provided, no namespace filtering will be performed
-     * (all resources in all Namespaces, including all cluster-scoped resources,
-     * will be candidates for transformation).
-     * To mix cluster-scoped and namespaced resources in the same rule, use an
-     * empty string ("") as one of the target namespaces.
+     * Optional. (Filtering parameter) Any resource subject to transformation
+     * must be contained within one of the listed Kubernetes Namespace in the
+     * Backup. If this field is not provided, no namespace filtering will be
+     * performed (all resources in all Namespaces, including all cluster-scoped
+     * resources, will be candidates for transformation).
      *
-     * Generated from protobuf field <code>repeated string namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNamespaces()
@@ -101,15 +95,13 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) Any resource subject to transformation must be
-     * contained within one of the listed Kubernetes Namespace in the Backup.
-     * If this field is not provided, no namespace filtering will be performed
-     * (all resources in all Namespaces, including all cluster-scoped resources,
-     * will be candidates for transformation).
-     * To mix cluster-scoped and namespaced resources in the same rule, use an
-     * empty string ("") as one of the target namespaces.
+     * Optional. (Filtering parameter) Any resource subject to transformation
+     * must be contained within one of the listed Kubernetes Namespace in the
+     * Backup. If this field is not provided, no namespace filtering will be
+     * performed (all resources in all Namespaces, including all cluster-scoped
+     * resources, will be candidates for transformation).
      *
-     * Generated from protobuf field <code>repeated string namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -122,12 +114,12 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) Any resource subject to transformation must belong
-     * to one of the listed "types". If this field is not provided, no type
-     * filtering will be performed (all resources of all types matching previous
-     * filtering parameters will be candidates for transformation).
+     * Optional. (Filtering parameter) Any resource subject to transformation
+     * must belong to one of the listed "types". If this field is not provided,
+     * no type filtering will be performed (all resources of all types matching
+     * previous filtering parameters will be candidates for transformation).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGroupKinds()
@@ -136,12 +128,12 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) Any resource subject to transformation must belong
-     * to one of the listed "types". If this field is not provided, no type
-     * filtering will be performed (all resources of all types matching previous
-     * filtering parameters will be candidates for transformation).
+     * Optional. (Filtering parameter) Any resource subject to transformation
+     * must belong to one of the listed "types". If this field is not provided,
+     * no type filtering will be performed (all resources of all types matching
+     * previous filtering parameters will be candidates for transformation).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -154,14 +146,14 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is a [JSONPath]
+     * Optional. This is a [JSONPath]
      * (https://github.com/json-path/JsonPath/blob/master/README.md)
      * expression that matches specific fields of candidate
      * resources and it operates as a filtering parameter (resources that
      * are not matched with this expression will not be candidates for
      * transformation).
      *
-     * Generated from protobuf field <code>string json_path = 3;</code>
+     * Generated from protobuf field <code>string json_path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getJsonPath()
@@ -170,14 +162,14 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is a [JSONPath]
+     * Optional. This is a [JSONPath]
      * (https://github.com/json-path/JsonPath/blob/master/README.md)
      * expression that matches specific fields of candidate
      * resources and it operates as a filtering parameter (resources that
      * are not matched with this expression will not be candidates for
      * transformation).
      *
-     * Generated from protobuf field <code>string json_path = 3;</code>
+     * Generated from protobuf field <code>string json_path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

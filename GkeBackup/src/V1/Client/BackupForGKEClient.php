@@ -45,6 +45,8 @@ use Google\Cloud\GkeBackup\V1\DeleteBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\DeleteBackupRequest;
 use Google\Cloud\GkeBackup\V1\DeleteRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\DeleteRestoreRequest;
+use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlRequest;
+use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlResponse;
 use Google\Cloud\GkeBackup\V1\GetBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupRequest;
 use Google\Cloud\GkeBackup\V1\GetRestorePlanRequest;
@@ -97,6 +99,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface deleteRestoreAsync(DeleteRestoreRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteRestorePlanAsync(DeleteRestorePlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getBackupIndexDownloadUrlAsync(GetBackupIndexDownloadUrlRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBackupPlanAsync(GetBackupPlanRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRestoreAsync(GetRestoreRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRestorePlanAsync(GetRestorePlanRequest $request, array $optionalArgs = [])
@@ -716,6 +719,33 @@ final class BackupForGKEClient
     public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
     {
         return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieve the link to the backupIndex.
+     *
+     * The async variant is {@see BackupForGKEClient::getBackupIndexDownloadUrlAsync()}
+     * .
+     *
+     * @example samples/V1/BackupForGKEClient/get_backup_index_download_url.php
+     *
+     * @param GetBackupIndexDownloadUrlRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GetBackupIndexDownloadUrlResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupIndexDownloadUrl(GetBackupIndexDownloadUrlRequest $request, array $callOptions = []): GetBackupIndexDownloadUrlResponse
+    {
+        return $this->startApiCall('GetBackupIndexDownloadUrl', $request, $callOptions)->wait();
     }
 
     /**

@@ -23,11 +23,11 @@ class DeleteBackupPlanRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * If provided, this value must match the current value of the
+     * Optional. If provided, this value must match the current value of the
      * target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field
      * or the request is rejected.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
 
@@ -56,7 +56,7 @@ class DeleteBackupPlanRequest extends \Google\Protobuf\Internal\Message
      *           Required. Fully qualified BackupPlan name.
      *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *     @type string $etag
-     *           If provided, this value must match the current value of the
+     *           Optional. If provided, this value must match the current value of the
      *           target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field
      *           or the request is rejected.
      * }
@@ -95,11 +95,11 @@ class DeleteBackupPlanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, this value must match the current value of the
+     * Optional. If provided, this value must match the current value of the
      * target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field
      * or the request is rejected.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEtag()
@@ -108,11 +108,11 @@ class DeleteBackupPlanRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, this value must match the current value of the
+     * Optional. If provided, this value must match the current value of the
      * target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field
      * or the request is rejected.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class EncryptionKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Google Cloud KMS encryption key. Format:
+     * Optional. Google Cloud KMS encryption key. Format:
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
      *
-     * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $gcp_kms_encryption_key = '';
 
@@ -31,7 +31,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gcp_kms_encryption_key
-     *           Google Cloud KMS encryption key. Format:
+     *           Optional. Google Cloud KMS encryption key. Format:
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
      * }
      */
@@ -41,10 +41,10 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud KMS encryption key. Format:
+     * Optional. Google Cloud KMS encryption key. Format:
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
      *
-     * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getGcpKmsEncryptionKey()
@@ -53,10 +53,10 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud KMS encryption key. Format:
+     * Optional. Google Cloud KMS encryption key. Format:
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
      *
-     * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

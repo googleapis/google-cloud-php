@@ -247,6 +247,18 @@ return [
                     ],
                 ],
             ],
+            'GetBackupIndexDownloadUrl' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup',
+                        'fieldAccessors' => [
+                            'getBackup',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackupPlan' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeBackup\V1\BackupPlan',

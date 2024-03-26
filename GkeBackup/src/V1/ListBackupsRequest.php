@@ -23,37 +23,37 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The target number of results to return in a single response.
+     * Optional. The target number of results to return in a single response.
      * If not specified, a default value will be chosen by the service.
-     * Note that the response may inclue a partial list and a caller should
+     * Note that the response may include a partial list and a caller should
      * only rely on the response's
      * [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * The value of
+     * Optional. The value of
      * [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
      * received from a previous `ListBackups` call.
      * Provide this to retrieve the subsequent page in a multi-page list of
      * results. When paginating, all other parameters provided to
      * `ListBackups` must match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $order_by = '';
 
@@ -82,23 +82,23 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The BackupPlan that contains the Backups to list.
      *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
      *     @type int $page_size
-     *           The target number of results to return in a single response.
+     *           Optional. The target number of results to return in a single response.
      *           If not specified, a default value will be chosen by the service.
-     *           Note that the response may inclue a partial list and a caller should
+     *           Note that the response may include a partial list and a caller should
      *           only rely on the response's
      *           [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
      *           to determine if there are more instances left to be queried.
      *     @type string $page_token
-     *           The value of
+     *           Optional. The value of
      *           [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
      *           received from a previous `ListBackups` call.
      *           Provide this to retrieve the subsequent page in a multi-page list of
      *           results. When paginating, all other parameters provided to
      *           `ListBackups` must match the call that provided the page token.
      *     @type string $filter
-     *           Field match expression used to filter the results.
+     *           Optional. Field match expression used to filter the results.
      *     @type string $order_by
-     *           Field by which to sort the results.
+     *           Optional. Field by which to sort the results.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,14 +135,14 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target number of results to return in a single response.
+     * Optional. The target number of results to return in a single response.
      * If not specified, a default value will be chosen by the service.
-     * Note that the response may inclue a partial list and a caller should
+     * Note that the response may include a partial list and a caller should
      * only rely on the response's
      * [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -151,14 +151,14 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target number of results to return in a single response.
+     * Optional. The target number of results to return in a single response.
      * If not specified, a default value will be chosen by the service.
-     * Note that the response may inclue a partial list and a caller should
+     * Note that the response may include a partial list and a caller should
      * only rely on the response's
      * [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
      * to determine if there are more instances left to be queried.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -171,14 +171,14 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of
+     * Optional. The value of
      * [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
      * received from a previous `ListBackups` call.
      * Provide this to retrieve the subsequent page in a multi-page list of
      * results. When paginating, all other parameters provided to
      * `ListBackups` must match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -187,14 +187,14 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of
+     * Optional. The value of
      * [next_page_token][google.cloud.gkebackup.v1.ListBackupsResponse.next_page_token]
      * received from a previous `ListBackups` call.
      * Provide this to retrieve the subsequent page in a multi-page list of
      * results. When paginating, all other parameters provided to
      * `ListBackups` must match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -207,9 +207,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -218,9 +218,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field match expression used to filter the results.
+     * Optional. Field match expression used to filter the results.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -233,9 +233,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -244,9 +244,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field by which to sort the results.
+     * Optional. Field by which to sort the results.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

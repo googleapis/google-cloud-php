@@ -23,7 +23,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     private $backup = null;
     /**
-     * This is used to specify the fields to be overwritten in the
+     * Optional. This is used to specify the fields to be overwritten in the
      * Backup targeted for update. The values for each of these
      * updated fields will be taken from the `backup_plan` provided
      * with this request. Field names are relative to the root of the resource.
@@ -32,14 +32,14 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      * Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored
      * and are not used to update the target Backup.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
 
     /**
      * @param \Google\Cloud\GkeBackup\V1\Backup $backup     Required. A new version of the Backup resource that contains updated
      *                                                      fields. This may be sparsely populated if an `update_mask` is provided.
-     * @param \Google\Protobuf\FieldMask        $updateMask This is used to specify the fields to be overwritten in the
+     * @param \Google\Protobuf\FieldMask        $updateMask Optional. This is used to specify the fields to be overwritten in the
      *                                                      Backup targeted for update. The values for each of these
      *                                                      updated fields will be taken from the `backup_plan` provided
      *                                                      with this request. Field names are relative to the root of the resource.
@@ -69,7 +69,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      *           Required. A new version of the Backup resource that contains updated
      *           fields. This may be sparsely populated if an `update_mask` is provided.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           This is used to specify the fields to be overwritten in the
+     *           Optional. This is used to specify the fields to be overwritten in the
      *           Backup targeted for update. The values for each of these
      *           updated fields will be taken from the `backup_plan` provided
      *           with this request. Field names are relative to the root of the resource.
@@ -123,7 +123,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is used to specify the fields to be overwritten in the
+     * Optional. This is used to specify the fields to be overwritten in the
      * Backup targeted for update. The values for each of these
      * updated fields will be taken from the `backup_plan` provided
      * with this request. Field names are relative to the root of the resource.
@@ -132,7 +132,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      * Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored
      * and are not used to update the target Backup.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -151,7 +151,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is used to specify the fields to be overwritten in the
+     * Optional. This is used to specify the fields to be overwritten in the
      * Backup targeted for update. The values for each of these
      * updated fields will be taken from the `backup_plan` provided
      * with this request. Field names are relative to the root of the resource.
@@ -160,7 +160,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      * Note that OUTPUT_ONLY and IMMUTABLE fields in `backup` are ignored
      * and are not used to update the target Backup.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

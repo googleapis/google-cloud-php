@@ -29,7 +29,7 @@ class Gkebackup
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ˇO
+’T
 )google/cloud/gkebackup/v1/gkebackup.protogoogle.cloud.gkebackup.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/gkebackup/v1/backup.proto+google/cloud/gkebackup/v1/backup_plan.proto\'google/cloud/gkebackup/v1/restore.proto,google/cloud/gkebackup/v1/restore_plan.proto&google/cloud/gkebackup/v1/volume.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
@@ -43,64 +43,64 @@ class Gkebackup
 parent (	B)‡A˙A#
 !locations.googleapis.com/Location?
 backup_plan (2%.google.cloud.gkebackup.v1.BackupPlanB‡A
-backup_plan_id (	B‡A"ú
+backup_plan_id (	B‡A"∞
 ListBackupPlansRequest9
 parent (	B)‡A˙A#
-!locations.googleapis.com/Location
-	page_size (
+!locations.googleapis.com/Location
+	page_size (B‡A
 
-page_token (	
-filter (	
-order_by (	"Ñ
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"Ñ
 ListBackupPlansResponse;
 backup_plans (2%.google.cloud.gkebackup.v1.BackupPlan
 next_page_token (	
 unreachable (	"Q
 GetBackupPlanRequest9
 name (	B+‡A˙A%
-#gkebackup.googleapis.com/BackupPlan"ã
+#gkebackup.googleapis.com/BackupPlan"ê
 UpdateBackupPlanRequest?
-backup_plan (2%.google.cloud.gkebackup.v1.BackupPlanB‡A/
-update_mask (2.google.protobuf.FieldMask"b
+backup_plan (2%.google.cloud.gkebackup.v1.BackupPlanB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"g
 DeleteBackupPlanRequest9
 name (	B+‡A˙A%
-#gkebackup.googleapis.com/BackupPlan
-etag (	"ò
+#gkebackup.googleapis.com/BackupPlan
+etag (	B‡A"¢
 CreateBackupRequest;
 parent (	B+‡A˙A%
-#gkebackup.googleapis.com/BackupPlan1
-backup (2!.google.cloud.gkebackup.v1.Backup
-	backup_id (	"ö
+#gkebackup.googleapis.com/BackupPlan6
+backup (2!.google.cloud.gkebackup.v1.BackupB‡A
+	backup_id (	B‡A"Æ
 ListBackupsRequest;
 parent (	B+‡A˙A%
-#gkebackup.googleapis.com/BackupPlan
-	page_size (
+#gkebackup.googleapis.com/BackupPlan
+	page_size (B‡A
 
-page_token (	
-filter (	
-order_by (	"b
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"b
 ListBackupsResponse2
 backups (2!.google.cloud.gkebackup.v1.Backup
 next_page_token (	"I
 GetBackupRequest5
 name (	B\'‡A˙A!
-gkebackup.googleapis.com/Backup"~
+gkebackup.googleapis.com/Backup"É
 UpdateBackupRequest6
-backup (2!.google.cloud.gkebackup.v1.BackupB‡A/
-update_mask (2.google.protobuf.FieldMask"i
+backup (2!.google.cloud.gkebackup.v1.BackupB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"s
 DeleteBackupRequest5
 name (	B\'‡A˙A!
-gkebackup.googleapis.com/Backup
-etag (	
-force ("ú
+gkebackup.googleapis.com/Backup
+etag (	B‡A
+force (B‡A"∞
 ListVolumeBackupsRequest7
 parent (	B\'‡A˙A!
-gkebackup.googleapis.com/Backup
-	page_size (
+gkebackup.googleapis.com/Backup
+	page_size (B‡A
 
-page_token (	
-filter (	
-order_by (	"u
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"u
 ListVolumeBackupsResponse?
 volume_backups (2\'.google.cloud.gkebackup.v1.VolumeBackup
 next_page_token (	"U
@@ -111,73 +111,79 @@ page_token (	
 parent (	B)‡A˙A#
 !locations.googleapis.com/LocationA
 restore_plan (2&.google.cloud.gkebackup.v1.RestorePlanB‡A
-restore_plan_id (	B‡A"ù
+restore_plan_id (	B‡A"±
 ListRestorePlansRequest9
 parent (	B)‡A˙A#
-!locations.googleapis.com/Location
-	page_size (
+!locations.googleapis.com/Location
+	page_size (B‡A
 
-page_token (	
-filter (	
-order_by (	"á
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"á
 ListRestorePlansResponse=
 restore_plans (2&.google.cloud.gkebackup.v1.RestorePlan
 next_page_token (	
 unreachable (	"S
 GetRestorePlanRequest:
 name (	B,‡A˙A&
-$gkebackup.googleapis.com/RestorePlan"é
+$gkebackup.googleapis.com/RestorePlan"ì
 UpdateRestorePlanRequestA
-restore_plan (2&.google.cloud.gkebackup.v1.RestorePlanB‡A/
-update_mask (2.google.protobuf.FieldMask"s
+restore_plan (2&.google.cloud.gkebackup.v1.RestorePlanB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"}
 DeleteRestorePlanRequest:
 name (	B,‡A˙A&
-$gkebackup.googleapis.com/RestorePlan
-etag (	
-force ("ß
+$gkebackup.googleapis.com/RestorePlan
+etag (	B‡A
+force (B‡A"ß
 CreateRestoreRequest<
 parent (	B,‡A˙A&
 $gkebackup.googleapis.com/RestorePlan8
 restore (2".google.cloud.gkebackup.v1.RestoreB‡A
 
-restore_id (	B‡A"ú
+restore_id (	B‡A"∞
 ListRestoresRequest<
 parent (	B,‡A˙A&
-$gkebackup.googleapis.com/RestorePlan
-	page_size (
+$gkebackup.googleapis.com/RestorePlan
+	page_size (B‡A
 
-page_token (	
-filter (	
-order_by (	"z
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"z
 ListRestoresResponse4
 restores (2".google.cloud.gkebackup.v1.Restore
 next_page_token (	
 unreachable (	"K
 GetRestoreRequest6
 name (	B(‡A˙A"
- gkebackup.googleapis.com/Restore"Å
+ gkebackup.googleapis.com/Restore"Ü
 UpdateRestoreRequest8
-restore (2".google.cloud.gkebackup.v1.RestoreB‡A/
-update_mask (2.google.protobuf.FieldMask"k
+restore (2".google.cloud.gkebackup.v1.RestoreB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"u
 DeleteRestoreRequest6
 name (	B(‡A˙A"
- gkebackup.googleapis.com/Restore
-etag (	
-force ("û
+ gkebackup.googleapis.com/Restore
+etag (	B‡A
+force (B‡A"≤
 ListVolumeRestoresRequest8
 parent (	B(‡A˙A"
- gkebackup.googleapis.com/Restore
-	page_size (
+ gkebackup.googleapis.com/Restore
+	page_size (B‡A
 
-page_token (	
-filter (	
-order_by (	"x
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"x
 ListVolumeRestoresResponseA
 volume_restores (2(.google.cloud.gkebackup.v1.VolumeRestore
 next_page_token (	"W
 GetVolumeRestoreRequest<
 name (	B.‡A˙A(
-&gkebackup.googleapis.com/VolumeRestore2≈(
+&gkebackup.googleapis.com/VolumeRestore"[
+ GetBackupIndexDownloadUrlRequest7
+backup (	B\'‡A˙A!
+gkebackup.googleapis.com/Backup"<
+!GetBackupIndexDownloadUrlResponse
+
+signed_url (	B‡A2∆*
 BackupForGKEÚ
 CreateBackupPlan2.google.cloud.gkebackup.v1.CreateBackupPlanRequest.google.longrunning.Operation"ä A
 
@@ -217,7 +223,8 @@ GetRestore,.google.cloud.gkebackup.v1.GetRestoreRequest".google.cloud.gkebacku
 DeleteRestore/.google.cloud.gkebackup.v1.DeleteRestoreRequest.google.longrunning.Operation"w A*
 google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì=*;/v1/{name=projects/*/locations/*/restorePlans/*/restores/*}‡
 ListVolumeRestores4.google.cloud.gkebackup.v1.ListVolumeRestoresRequest5.google.cloud.gkebackup.v1.ListVolumeRestoresResponse"]⁄AparentÇ”‰ìNL/v1/{parent=projects/*/locations/*/restorePlans/*/restores/*}/volumeRestoresÕ
-GetVolumeRestore2.google.cloud.gkebackup.v1.GetVolumeRestoreRequest(.google.cloud.gkebackup.v1.VolumeRestore"[⁄AnameÇ”‰ìNL/v1/{name=projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*}L Agkebackup.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB°
+GetVolumeRestore2.google.cloud.gkebackup.v1.GetVolumeRestoreRequest(.google.cloud.gkebackup.v1.VolumeRestore"[⁄AnameÇ”‰ìNL/v1/{name=projects/*/locations/*/restorePlans/*/restores/*/volumeRestores/*}˛
+GetBackupIndexDownloadUrl;.google.cloud.gkebackup.v1.GetBackupIndexDownloadUrlRequest<.google.cloud.gkebackup.v1.GetBackupIndexDownloadUrlResponse"f⁄AbackupÇ”‰ìWU/v1/{backup=projects/*/locations/*/backupPlans/*/backups/*}:getBackupIndexDownloadUrlL Agkebackup.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB°
 com.google.cloud.gkebackup.v1BGKEBackupProtoPZ;cloud.google.com/go/gkebackup/apiv1/gkebackuppb;gkebackuppb™Google.Cloud.GkeBackup.V1 Google\\Cloud\\GkeBackup\\V1ÍGoogle::Cloud::GkeBackup::V1ÍA^
  container.googleapis.com/Cluster:projects/{project}/locations/{location}/clusters/{cluster}ÍAx
 !cloudkms.googleapis.com/CryptoKeySprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}bproto3'

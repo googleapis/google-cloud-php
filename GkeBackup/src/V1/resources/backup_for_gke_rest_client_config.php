@@ -115,6 +115,17 @@ return [
                     ],
                 ],
             ],
+            'GetBackupIndexDownloadUrl' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{backup=projects/*/locations/*/backupPlans/*/backups/*}:getBackupIndexDownloadUrl',
+                'placeholders' => [
+                    'backup' => [
+                        'getters' => [
+                            'getBackup',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackupPlan' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backupPlans/*}',
@@ -441,7 +452,7 @@ return [
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

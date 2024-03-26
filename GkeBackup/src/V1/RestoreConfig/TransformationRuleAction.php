@@ -23,24 +23,24 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
      */
     private $op = 0;
     /**
-     * A string containing a JSON Pointer value that references the location in
-     * the target document to move the value from.
+     * Optional. A string containing a JSON Pointer value that references the
+     * location in the target document to move the value from.
      *
-     * Generated from protobuf field <code>string from_path = 2;</code>
+     * Generated from protobuf field <code>string from_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $from_path = '';
     /**
-     * A string containing a JSON-Pointer value that references a location
-     * within the target document where the operation is performed.
+     * Optional. A string containing a JSON-Pointer value that references a
+     * location within the target document where the operation is performed.
      *
-     * Generated from protobuf field <code>string path = 3;</code>
+     * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $path = '';
     /**
-     * A string that specifies the desired value in string format to
+     * Optional. A string that specifies the desired value in string format to
      * use for transformation.
      *
-     * Generated from protobuf field <code>string value = 4;</code>
+     * Generated from protobuf field <code>string value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $value = '';
 
@@ -53,13 +53,13 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
      *     @type int $op
      *           Required. op specifies the operation to perform.
      *     @type string $from_path
-     *           A string containing a JSON Pointer value that references the location in
-     *           the target document to move the value from.
+     *           Optional. A string containing a JSON Pointer value that references the
+     *           location in the target document to move the value from.
      *     @type string $path
-     *           A string containing a JSON-Pointer value that references a location
-     *           within the target document where the operation is performed.
+     *           Optional. A string containing a JSON-Pointer value that references a
+     *           location within the target document where the operation is performed.
      *     @type string $value
-     *           A string that specifies the desired value in string format to
+     *           Optional. A string that specifies the desired value in string format to
      *           use for transformation.
      * }
      */
@@ -95,10 +95,10 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A string containing a JSON Pointer value that references the location in
-     * the target document to move the value from.
+     * Optional. A string containing a JSON Pointer value that references the
+     * location in the target document to move the value from.
      *
-     * Generated from protobuf field <code>string from_path = 2;</code>
+     * Generated from protobuf field <code>string from_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFromPath()
@@ -107,10 +107,10 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A string containing a JSON Pointer value that references the location in
-     * the target document to move the value from.
+     * Optional. A string containing a JSON Pointer value that references the
+     * location in the target document to move the value from.
      *
-     * Generated from protobuf field <code>string from_path = 2;</code>
+     * Generated from protobuf field <code>string from_path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -123,10 +123,10 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A string containing a JSON-Pointer value that references a location
-     * within the target document where the operation is performed.
+     * Optional. A string containing a JSON-Pointer value that references a
+     * location within the target document where the operation is performed.
      *
-     * Generated from protobuf field <code>string path = 3;</code>
+     * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPath()
@@ -135,10 +135,10 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A string containing a JSON-Pointer value that references a location
-     * within the target document where the operation is performed.
+     * Optional. A string containing a JSON-Pointer value that references a
+     * location within the target document where the operation is performed.
      *
-     * Generated from protobuf field <code>string path = 3;</code>
+     * Generated from protobuf field <code>string path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -151,10 +151,10 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A string that specifies the desired value in string format to
+     * Optional. A string that specifies the desired value in string format to
      * use for transformation.
      *
-     * Generated from protobuf field <code>string value = 4;</code>
+     * Generated from protobuf field <code>string value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getValue()
@@ -163,10 +163,10 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A string that specifies the desired value in string format to
+     * Optional. A string that specifies the desired value in string format to
      * use for transformation.
      *
-     * Generated from protobuf field <code>string value = 4;</code>
+     * Generated from protobuf field <code>string value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

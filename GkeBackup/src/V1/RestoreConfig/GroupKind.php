@@ -18,18 +18,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class GroupKind extends \Google\Protobuf\Internal\Message
 {
     /**
-     * API group string of a Kubernetes resource, e.g.
+     * Optional. API group string of a Kubernetes resource, e.g.
      * "apiextensions.k8s.io", "storage.k8s.io", etc.
      * Note: use empty string for core API group
      *
-     * Generated from protobuf field <code>string resource_group = 1;</code>
+     * Generated from protobuf field <code>string resource_group = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $resource_group = '';
     /**
-     * Kind of a Kubernetes resource, e.g.
-     * "CustomResourceDefinition", "StorageClass", etc.
+     * Optional. Kind of a Kubernetes resource, must be in UpperCamelCase
+     * (PascalCase) and singular form. E.g. "CustomResourceDefinition",
+     * "StorageClass", etc.
      *
-     * Generated from protobuf field <code>string resource_kind = 2;</code>
+     * Generated from protobuf field <code>string resource_kind = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $resource_kind = '';
 
@@ -40,12 +41,13 @@ class GroupKind extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource_group
-     *           API group string of a Kubernetes resource, e.g.
+     *           Optional. API group string of a Kubernetes resource, e.g.
      *           "apiextensions.k8s.io", "storage.k8s.io", etc.
      *           Note: use empty string for core API group
      *     @type string $resource_kind
-     *           Kind of a Kubernetes resource, e.g.
-     *           "CustomResourceDefinition", "StorageClass", etc.
+     *           Optional. Kind of a Kubernetes resource, must be in UpperCamelCase
+     *           (PascalCase) and singular form. E.g. "CustomResourceDefinition",
+     *           "StorageClass", etc.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,11 +56,11 @@ class GroupKind extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * API group string of a Kubernetes resource, e.g.
+     * Optional. API group string of a Kubernetes resource, e.g.
      * "apiextensions.k8s.io", "storage.k8s.io", etc.
      * Note: use empty string for core API group
      *
-     * Generated from protobuf field <code>string resource_group = 1;</code>
+     * Generated from protobuf field <code>string resource_group = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getResourceGroup()
@@ -67,11 +69,11 @@ class GroupKind extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * API group string of a Kubernetes resource, e.g.
+     * Optional. API group string of a Kubernetes resource, e.g.
      * "apiextensions.k8s.io", "storage.k8s.io", etc.
      * Note: use empty string for core API group
      *
-     * Generated from protobuf field <code>string resource_group = 1;</code>
+     * Generated from protobuf field <code>string resource_group = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -84,10 +86,11 @@ class GroupKind extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kind of a Kubernetes resource, e.g.
-     * "CustomResourceDefinition", "StorageClass", etc.
+     * Optional. Kind of a Kubernetes resource, must be in UpperCamelCase
+     * (PascalCase) and singular form. E.g. "CustomResourceDefinition",
+     * "StorageClass", etc.
      *
-     * Generated from protobuf field <code>string resource_kind = 2;</code>
+     * Generated from protobuf field <code>string resource_kind = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getResourceKind()
@@ -96,10 +99,11 @@ class GroupKind extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kind of a Kubernetes resource, e.g.
-     * "CustomResourceDefinition", "StorageClass", etc.
+     * Optional. Kind of a Kubernetes resource, must be in UpperCamelCase
+     * (PascalCase) and singular form. E.g. "CustomResourceDefinition",
+     * "StorageClass", etc.
      *
-     * Generated from protobuf field <code>string resource_kind = 2;</code>
+     * Generated from protobuf field <code>string resource_kind = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class NamespacedName extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Namespace of the Kubernetes resource.
+     * Optional. The Namespace of the Kubernetes resource.
      *
-     * Generated from protobuf field <code>string namespace = 1;</code>
+     * Generated from protobuf field <code>string namespace = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $namespace = '';
     /**
-     * The name of the Kubernetes resource.
+     * Optional. The name of the Kubernetes resource.
      *
-     * Generated from protobuf field <code>string name = 2;</code>
+     * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $name = '';
 
@@ -35,9 +35,9 @@ class NamespacedName extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $namespace
-     *           The Namespace of the Kubernetes resource.
+     *           Optional. The Namespace of the Kubernetes resource.
      *     @type string $name
-     *           The name of the Kubernetes resource.
+     *           Optional. The name of the Kubernetes resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class NamespacedName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Namespace of the Kubernetes resource.
+     * Optional. The Namespace of the Kubernetes resource.
      *
-     * Generated from protobuf field <code>string namespace = 1;</code>
+     * Generated from protobuf field <code>string namespace = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNamespace()
@@ -57,9 +57,9 @@ class NamespacedName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Namespace of the Kubernetes resource.
+     * Optional. The Namespace of the Kubernetes resource.
      *
-     * Generated from protobuf field <code>string namespace = 1;</code>
+     * Generated from protobuf field <code>string namespace = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class NamespacedName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Kubernetes resource.
+     * Optional. The name of the Kubernetes resource.
      *
-     * Generated from protobuf field <code>string name = 2;</code>
+     * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getName()
@@ -83,9 +83,9 @@ class NamespacedName extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Kubernetes resource.
+     * Optional. The name of the Kubernetes resource.
      *
-     * Generated from protobuf field <code>string name = 2;</code>
+     * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

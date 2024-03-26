@@ -10,63 +10,64 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Configuration of a restore.
- * Next id: 12
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.RestoreConfig</code>
  */
 class RestoreConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies the mechanism to be used to restore volume data.
+     * Optional. Specifies the mechanism to be used to restore volume data.
      * Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as
      * NO_VOLUME_DATA_RESTORATION).
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicy volume_data_restore_policy = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicy volume_data_restore_policy = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $volume_data_restore_policy = 0;
     /**
-     * Defines the behavior for handling the situation where cluster-scoped
-     * resources being restored already exist in the target cluster. This MUST be
-     * set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
+     * Optional. Defines the behavior for handling the situation where
+     * cluster-scoped resources being restored already exist in the target
+     * cluster. This MUST be set to a value other than
+     * CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
      * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope]
      * is not empty.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cluster_resource_conflict_policy = 0;
     /**
-     * Defines the behavior for handling the situation where sets of namespaced
-     * resources being restored already exist in the target cluster. This MUST be
-     * set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
+     * Optional. Defines the behavior for handling the situation where sets of
+     * namespaced resources being restored already exist in the target cluster.
+     * This MUST be set to a value other than
+     * NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.NamespacedResourceRestoreMode namespaced_resource_restore_mode = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.NamespacedResourceRestoreMode namespaced_resource_restore_mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $namespaced_resource_restore_mode = 0;
     /**
-     * Identifies the cluster-scoped resources to restore from the Backup.
-     * Not specifying it means NO cluster resource will be restored.
+     * Optional. Identifies the cluster-scoped resources to restore from the
+     * Backup. Not specifying it means NO cluster resource will be restored.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope cluster_resource_restore_scope = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope cluster_resource_restore_scope = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cluster_resource_restore_scope = null;
     /**
-     * A list of transformation rules to be applied against Kubernetes resources
-     * as they are selected for restoration from a Backup. Rules are executed in
-     * order defined - this order matters, as changes made by a rule may impact
-     * the filtering logic of subsequent rules. An empty list means no
+     * Optional. A list of transformation rules to be applied against Kubernetes
+     * resources as they are selected for restoration from a Backup. Rules are
+     * executed in order defined - this order matters, as changes made by a rule
+     * may impact the filtering logic of subsequent rules. An empty list means no
      * substitution will occur.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $substitution_rules;
     /**
-     * A list of transformation rules to be applied against Kubernetes resources
-     * as they are selected for restoration from a Backup. Rules are executed in
-     * order defined - this order matters, as changes made by a rule may impact
-     * the filtering logic of subsequent rules. An empty list means no
+     * Optional. A list of transformation rules to be applied against Kubernetes
+     * resources as they are selected for restoration from a Backup. Rules are
+     * executed in order defined - this order matters, as changes made by a rule
+     * may impact the filtering logic of subsequent rules. An empty list means no
      * transformation will occur.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $transformation_rules;
     protected $namespaced_resource_restore_scope;
@@ -78,22 +79,24 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $volume_data_restore_policy
-     *           Specifies the mechanism to be used to restore volume data.
+     *           Optional. Specifies the mechanism to be used to restore volume data.
      *           Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as
      *           NO_VOLUME_DATA_RESTORATION).
      *     @type int $cluster_resource_conflict_policy
-     *           Defines the behavior for handling the situation where cluster-scoped
-     *           resources being restored already exist in the target cluster. This MUST be
-     *           set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
+     *           Optional. Defines the behavior for handling the situation where
+     *           cluster-scoped resources being restored already exist in the target
+     *           cluster. This MUST be set to a value other than
+     *           CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
      *           [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope]
      *           is not empty.
      *     @type int $namespaced_resource_restore_mode
-     *           Defines the behavior for handling the situation where sets of namespaced
-     *           resources being restored already exist in the target cluster. This MUST be
-     *           set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
+     *           Optional. Defines the behavior for handling the situation where sets of
+     *           namespaced resources being restored already exist in the target cluster.
+     *           This MUST be set to a value other than
+     *           NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
      *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\ClusterResourceRestoreScope $cluster_resource_restore_scope
-     *           Identifies the cluster-scoped resources to restore from the Backup.
-     *           Not specifying it means NO cluster resource will be restored.
+     *           Optional. Identifies the cluster-scoped resources to restore from the
+     *           Backup. Not specifying it means NO cluster resource will be restored.
      *     @type bool $all_namespaces
      *           Restore all namespaced resources in the Backup if set to "True".
      *           Specifying this field to "False" is an error.
@@ -111,16 +114,16 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *           A list of selected namespaces excluded from restoration. All
      *           namespaces except those in this list will be restored.
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $substitution_rules
-     *           A list of transformation rules to be applied against Kubernetes resources
-     *           as they are selected for restoration from a Backup. Rules are executed in
-     *           order defined - this order matters, as changes made by a rule may impact
-     *           the filtering logic of subsequent rules. An empty list means no
+     *           Optional. A list of transformation rules to be applied against Kubernetes
+     *           resources as they are selected for restoration from a Backup. Rules are
+     *           executed in order defined - this order matters, as changes made by a rule
+     *           may impact the filtering logic of subsequent rules. An empty list means no
      *           substitution will occur.
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule>|\Google\Protobuf\Internal\RepeatedField $transformation_rules
-     *           A list of transformation rules to be applied against Kubernetes resources
-     *           as they are selected for restoration from a Backup. Rules are executed in
-     *           order defined - this order matters, as changes made by a rule may impact
-     *           the filtering logic of subsequent rules. An empty list means no
+     *           Optional. A list of transformation rules to be applied against Kubernetes
+     *           resources as they are selected for restoration from a Backup. Rules are
+     *           executed in order defined - this order matters, as changes made by a rule
+     *           may impact the filtering logic of subsequent rules. An empty list means no
      *           transformation will occur.
      * }
      */
@@ -130,11 +133,11 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the mechanism to be used to restore volume data.
+     * Optional. Specifies the mechanism to be used to restore volume data.
      * Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as
      * NO_VOLUME_DATA_RESTORATION).
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicy volume_data_restore_policy = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicy volume_data_restore_policy = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getVolumeDataRestorePolicy()
@@ -143,11 +146,11 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the mechanism to be used to restore volume data.
+     * Optional. Specifies the mechanism to be used to restore volume data.
      * Default: VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED (will be treated as
      * NO_VOLUME_DATA_RESTORATION).
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicy volume_data_restore_policy = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.VolumeDataRestorePolicy volume_data_restore_policy = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -160,13 +163,14 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the behavior for handling the situation where cluster-scoped
-     * resources being restored already exist in the target cluster. This MUST be
-     * set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
+     * Optional. Defines the behavior for handling the situation where
+     * cluster-scoped resources being restored already exist in the target
+     * cluster. This MUST be set to a value other than
+     * CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
      * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope]
      * is not empty.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getClusterResourceConflictPolicy()
@@ -175,13 +179,14 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the behavior for handling the situation where cluster-scoped
-     * resources being restored already exist in the target cluster. This MUST be
-     * set to a value other than CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
+     * Optional. Defines the behavior for handling the situation where
+     * cluster-scoped resources being restored already exist in the target
+     * cluster. This MUST be set to a value other than
+     * CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED if
      * [cluster_resource_restore_scope][google.cloud.gkebackup.v1.RestoreConfig.cluster_resource_restore_scope]
      * is not empty.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceConflictPolicy cluster_resource_conflict_policy = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -194,11 +199,12 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the behavior for handling the situation where sets of namespaced
-     * resources being restored already exist in the target cluster. This MUST be
-     * set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
+     * Optional. Defines the behavior for handling the situation where sets of
+     * namespaced resources being restored already exist in the target cluster.
+     * This MUST be set to a value other than
+     * NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.NamespacedResourceRestoreMode namespaced_resource_restore_mode = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.NamespacedResourceRestoreMode namespaced_resource_restore_mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getNamespacedResourceRestoreMode()
@@ -207,11 +213,12 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the behavior for handling the situation where sets of namespaced
-     * resources being restored already exist in the target cluster. This MUST be
-     * set to a value other than NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
+     * Optional. Defines the behavior for handling the situation where sets of
+     * namespaced resources being restored already exist in the target cluster.
+     * This MUST be set to a value other than
+     * NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.NamespacedResourceRestoreMode namespaced_resource_restore_mode = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.NamespacedResourceRestoreMode namespaced_resource_restore_mode = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -224,10 +231,10 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the cluster-scoped resources to restore from the Backup.
-     * Not specifying it means NO cluster resource will be restored.
+     * Optional. Identifies the cluster-scoped resources to restore from the
+     * Backup. Not specifying it means NO cluster resource will be restored.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope cluster_resource_restore_scope = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope cluster_resource_restore_scope = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GkeBackup\V1\RestoreConfig\ClusterResourceRestoreScope|null
      */
     public function getClusterResourceRestoreScope()
@@ -246,10 +253,10 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies the cluster-scoped resources to restore from the Backup.
-     * Not specifying it means NO cluster resource will be restored.
+     * Optional. Identifies the cluster-scoped resources to restore from the
+     * Backup. Not specifying it means NO cluster resource will be restored.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope cluster_resource_restore_scope = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.RestoreConfig.ClusterResourceRestoreScope cluster_resource_restore_scope = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\ClusterResourceRestoreScope $var
      * @return $this
      */
@@ -429,13 +436,13 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of transformation rules to be applied against Kubernetes resources
-     * as they are selected for restoration from a Backup. Rules are executed in
-     * order defined - this order matters, as changes made by a rule may impact
-     * the filtering logic of subsequent rules. An empty list means no
+     * Optional. A list of transformation rules to be applied against Kubernetes
+     * resources as they are selected for restoration from a Backup. Rules are
+     * executed in order defined - this order matters, as changes made by a rule
+     * may impact the filtering logic of subsequent rules. An empty list means no
      * substitution will occur.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubstitutionRules()
@@ -444,13 +451,13 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of transformation rules to be applied against Kubernetes resources
-     * as they are selected for restoration from a Backup. Rules are executed in
-     * order defined - this order matters, as changes made by a rule may impact
-     * the filtering logic of subsequent rules. An empty list means no
+     * Optional. A list of transformation rules to be applied against Kubernetes
+     * resources as they are selected for restoration from a Backup. Rules are
+     * executed in order defined - this order matters, as changes made by a rule
+     * may impact the filtering logic of subsequent rules. An empty list means no
      * substitution will occur.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -463,13 +470,13 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of transformation rules to be applied against Kubernetes resources
-     * as they are selected for restoration from a Backup. Rules are executed in
-     * order defined - this order matters, as changes made by a rule may impact
-     * the filtering logic of subsequent rules. An empty list means no
+     * Optional. A list of transformation rules to be applied against Kubernetes
+     * resources as they are selected for restoration from a Backup. Rules are
+     * executed in order defined - this order matters, as changes made by a rule
+     * may impact the filtering logic of subsequent rules. An empty list means no
      * transformation will occur.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTransformationRules()
@@ -478,13 +485,13 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of transformation rules to be applied against Kubernetes resources
-     * as they are selected for restoration from a Backup. Rules are executed in
-     * order defined - this order matters, as changes made by a rule may impact
-     * the filtering logic of subsequent rules. An empty list means no
+     * Optional. A list of transformation rules to be applied against Kubernetes
+     * resources as they are selected for restoration from a Backup. Rules are
+     * executed in order defined - this order matters, as changes made by a rule
+     * may impact the filtering logic of subsequent rules. An empty list means no
      * transformation will occur.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.TransformationRule transformation_rules = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\TransformationRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

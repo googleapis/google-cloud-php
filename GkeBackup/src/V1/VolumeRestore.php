@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents the operation of restoring a volume from a VolumeBackup.
- * Next id: 13
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.VolumeRestore</code>
  */

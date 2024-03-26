@@ -31,35 +31,35 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of cluster-scoped resource group kinds to restore from the
-     * backup. If specified, only the selected resources will be restored.
+     * Optional. A list of cluster-scoped resource group kinds to restore from
+     * the backup. If specified, only the selected resources will be restored.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $selected_group_kinds;
     /**
-     * A list of cluster-scoped resource group kinds to NOT restore from the
-     * backup. If specified, all valid cluster-scoped resources will be
+     * Optional. A list of cluster-scoped resource group kinds to NOT restore
+     * from the backup. If specified, all valid cluster-scoped resources will be
      * restored except for those specified in the list.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $excluded_group_kinds;
     /**
-     * If True, all valid cluster-scoped resources will be restored.
+     * Optional. If True, all valid cluster-scoped resources will be restored.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>bool all_group_kinds = 3;</code>
+     * Generated from protobuf field <code>bool all_group_kinds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $all_group_kinds = false;
     /**
-     * If True, no cluster-scoped resources will be restored.
+     * Optional. If True, no cluster-scoped resources will be restored.
      * This has the same restore scope as if the message is not defined.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>bool no_group_kinds = 4;</code>
+     * Generated from protobuf field <code>bool no_group_kinds = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $no_group_kinds = false;
 
@@ -70,19 +70,19 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $selected_group_kinds
-     *           A list of cluster-scoped resource group kinds to restore from the
-     *           backup. If specified, only the selected resources will be restored.
+     *           Optional. A list of cluster-scoped resource group kinds to restore from
+     *           the backup. If specified, only the selected resources will be restored.
      *           Mutually exclusive to any other field in the message.
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $excluded_group_kinds
-     *           A list of cluster-scoped resource group kinds to NOT restore from the
-     *           backup. If specified, all valid cluster-scoped resources will be
+     *           Optional. A list of cluster-scoped resource group kinds to NOT restore
+     *           from the backup. If specified, all valid cluster-scoped resources will be
      *           restored except for those specified in the list.
      *           Mutually exclusive to any other field in the message.
      *     @type bool $all_group_kinds
-     *           If True, all valid cluster-scoped resources will be restored.
+     *           Optional. If True, all valid cluster-scoped resources will be restored.
      *           Mutually exclusive to any other field in the message.
      *     @type bool $no_group_kinds
-     *           If True, no cluster-scoped resources will be restored.
+     *           Optional. If True, no cluster-scoped resources will be restored.
      *           This has the same restore scope as if the message is not defined.
      *           Mutually exclusive to any other field in the message.
      * }
@@ -93,11 +93,11 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of cluster-scoped resource group kinds to restore from the
-     * backup. If specified, only the selected resources will be restored.
+     * Optional. A list of cluster-scoped resource group kinds to restore from
+     * the backup. If specified, only the selected resources will be restored.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSelectedGroupKinds()
@@ -106,11 +106,11 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of cluster-scoped resource group kinds to restore from the
-     * backup. If specified, only the selected resources will be restored.
+     * Optional. A list of cluster-scoped resource group kinds to restore from
+     * the backup. If specified, only the selected resources will be restored.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -123,12 +123,12 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of cluster-scoped resource group kinds to NOT restore from the
-     * backup. If specified, all valid cluster-scoped resources will be
+     * Optional. A list of cluster-scoped resource group kinds to NOT restore
+     * from the backup. If specified, all valid cluster-scoped resources will be
      * restored except for those specified in the list.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getExcludedGroupKinds()
@@ -137,12 +137,12 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of cluster-scoped resource group kinds to NOT restore from the
-     * backup. If specified, all valid cluster-scoped resources will be
+     * Optional. A list of cluster-scoped resource group kinds to NOT restore
+     * from the backup. If specified, all valid cluster-scoped resources will be
      * restored except for those specified in the list.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -155,10 +155,10 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If True, all valid cluster-scoped resources will be restored.
+     * Optional. If True, all valid cluster-scoped resources will be restored.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>bool all_group_kinds = 3;</code>
+     * Generated from protobuf field <code>bool all_group_kinds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllGroupKinds()
@@ -167,10 +167,10 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If True, all valid cluster-scoped resources will be restored.
+     * Optional. If True, all valid cluster-scoped resources will be restored.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>bool all_group_kinds = 3;</code>
+     * Generated from protobuf field <code>bool all_group_kinds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -183,11 +183,11 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If True, no cluster-scoped resources will be restored.
+     * Optional. If True, no cluster-scoped resources will be restored.
      * This has the same restore scope as if the message is not defined.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>bool no_group_kinds = 4;</code>
+     * Generated from protobuf field <code>bool no_group_kinds = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getNoGroupKinds()
@@ -196,11 +196,11 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If True, no cluster-scoped resources will be restored.
+     * Optional. If True, no cluster-scoped resources will be restored.
      * This has the same restore scope as if the message is not defined.
      * Mutually exclusive to any other field in the message.
      *
-     * Generated from protobuf field <code>bool no_group_kinds = 4;</code>
+     * Generated from protobuf field <code>bool no_group_kinds = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

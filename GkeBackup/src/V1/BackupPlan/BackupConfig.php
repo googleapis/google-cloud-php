@@ -17,28 +17,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackupConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This flag specifies whether volume data should be backed up when
-     * PVCs are included in the scope of a Backup.
+     * Optional. This flag specifies whether volume data should be backed up
+     * when PVCs are included in the scope of a Backup.
      * Default: False
      *
-     * Generated from protobuf field <code>bool include_volume_data = 4;</code>
+     * Generated from protobuf field <code>bool include_volume_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $include_volume_data = false;
     /**
-     * This flag specifies whether Kubernetes Secret resources should be
-     * included when they fall into the scope of Backups.
+     * Optional. This flag specifies whether Kubernetes Secret resources should
+     * be included when they fall into the scope of Backups.
      * Default: False
      *
-     * Generated from protobuf field <code>bool include_secrets = 5;</code>
+     * Generated from protobuf field <code>bool include_secrets = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $include_secrets = false;
     /**
-     * This defines a customer managed encryption key that will be used to
-     * encrypt the "config" portion (the Kubernetes resources) of Backups
-     * created via this plan.
+     * Optional. This defines a customer managed encryption key that will be
+     * used to encrypt the "config" portion (the Kubernetes resources) of
+     * Backups created via this plan.
      * Default (empty): Config backup artifacts will not be encrypted.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encryption_key = null;
     protected $backup_scope;
@@ -57,17 +57,17 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      *           If set, include just the resources referenced by the listed
      *           ProtectedApplications.
      *     @type bool $include_volume_data
-     *           This flag specifies whether volume data should be backed up when
-     *           PVCs are included in the scope of a Backup.
+     *           Optional. This flag specifies whether volume data should be backed up
+     *           when PVCs are included in the scope of a Backup.
      *           Default: False
      *     @type bool $include_secrets
-     *           This flag specifies whether Kubernetes Secret resources should be
-     *           included when they fall into the scope of Backups.
+     *           Optional. This flag specifies whether Kubernetes Secret resources should
+     *           be included when they fall into the scope of Backups.
      *           Default: False
      *     @type \Google\Cloud\GkeBackup\V1\EncryptionKey $encryption_key
-     *           This defines a customer managed encryption key that will be used to
-     *           encrypt the "config" portion (the Kubernetes resources) of Backups
-     *           created via this plan.
+     *           Optional. This defines a customer managed encryption key that will be
+     *           used to encrypt the "config" portion (the Kubernetes resources) of
+     *           Backups created via this plan.
      *           Default (empty): Config backup artifacts will not be encrypted.
      * }
      */
@@ -172,11 +172,11 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This flag specifies whether volume data should be backed up when
-     * PVCs are included in the scope of a Backup.
+     * Optional. This flag specifies whether volume data should be backed up
+     * when PVCs are included in the scope of a Backup.
      * Default: False
      *
-     * Generated from protobuf field <code>bool include_volume_data = 4;</code>
+     * Generated from protobuf field <code>bool include_volume_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getIncludeVolumeData()
@@ -185,11 +185,11 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This flag specifies whether volume data should be backed up when
-     * PVCs are included in the scope of a Backup.
+     * Optional. This flag specifies whether volume data should be backed up
+     * when PVCs are included in the scope of a Backup.
      * Default: False
      *
-     * Generated from protobuf field <code>bool include_volume_data = 4;</code>
+     * Generated from protobuf field <code>bool include_volume_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -202,11 +202,11 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This flag specifies whether Kubernetes Secret resources should be
-     * included when they fall into the scope of Backups.
+     * Optional. This flag specifies whether Kubernetes Secret resources should
+     * be included when they fall into the scope of Backups.
      * Default: False
      *
-     * Generated from protobuf field <code>bool include_secrets = 5;</code>
+     * Generated from protobuf field <code>bool include_secrets = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getIncludeSecrets()
@@ -215,11 +215,11 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This flag specifies whether Kubernetes Secret resources should be
-     * included when they fall into the scope of Backups.
+     * Optional. This flag specifies whether Kubernetes Secret resources should
+     * be included when they fall into the scope of Backups.
      * Default: False
      *
-     * Generated from protobuf field <code>bool include_secrets = 5;</code>
+     * Generated from protobuf field <code>bool include_secrets = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -232,12 +232,12 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This defines a customer managed encryption key that will be used to
-     * encrypt the "config" portion (the Kubernetes resources) of Backups
-     * created via this plan.
+     * Optional. This defines a customer managed encryption key that will be
+     * used to encrypt the "config" portion (the Kubernetes resources) of
+     * Backups created via this plan.
      * Default (empty): Config backup artifacts will not be encrypted.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GkeBackup\V1\EncryptionKey|null
      */
     public function getEncryptionKey()
@@ -256,12 +256,12 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This defines a customer managed encryption key that will be used to
-     * encrypt the "config" portion (the Kubernetes resources) of Backups
-     * created via this plan.
+     * Optional. This defines a customer managed encryption key that will be
+     * used to encrypt the "config" portion (the Kubernetes resources) of
+     * Backups created via this plan.
      * Default (empty): Config backup artifacts will not be encrypted.
      *
-     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.gkebackup.v1.EncryptionKey encryption_key = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GkeBackup\V1\EncryptionKey $var
      * @return $this
      */
