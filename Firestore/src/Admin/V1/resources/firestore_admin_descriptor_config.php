@@ -98,6 +98,25 @@ return [
                     ],
                 ],
             ],
+            'RestoreDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\Database',
+                    'metadataReturnType' => '\Google\Cloud\Firestore\Admin\V1\RestoreDatabaseMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDatabase' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Firestore\Admin\V1\Database',
@@ -138,9 +157,69 @@ return [
                     ],
                 ],
             ],
+            'CreateBackupSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\BackupSchedule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteIndex' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\Backup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\BackupSchedule',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -182,6 +261,30 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupSchedules' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\ListBackupSchedulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\ListBackupsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -238,11 +341,27 @@ return [
                     ],
                 ],
             ],
+            'UpdateBackupSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Firestore\Admin\V1\BackupSchedule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup_schedule.name',
+                        'fieldAccessors' => [
+                            'getBackupSchedule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
+                'backup' => 'projects/{project}/locations/{location}/backups/{backup}',
+                'backupSchedule' => 'projects/{project}/databases/{database}/backupSchedules/{backup_schedule}',
                 'collectionGroup' => 'projects/{project}/databases/{database}/collectionGroups/{collection}',
                 'database' => 'projects/{project}/databases/{database}',
                 'field' => 'projects/{project}/databases/{database}/collectionGroups/{collection}/fields/{field}',
                 'index' => 'projects/{project}/databases/{database}/collectionGroups/{collection}/indexes/{index}',
+                'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',
             ],
         ],
