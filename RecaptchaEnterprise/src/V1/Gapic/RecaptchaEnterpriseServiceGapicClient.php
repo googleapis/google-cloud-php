@@ -1448,7 +1448,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedProject = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+     *     $formattedProject = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
