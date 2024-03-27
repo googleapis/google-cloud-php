@@ -38,19 +38,11 @@ use Google\Cloud\CloudQuotas\V1\UpdateQuotaPreferenceRequest;
  * @param string $quotaPreferenceService                   The name of the service to which the quota preference is applied.
  * @param string $quotaPreferenceQuotaId                   The id of the quota to which the quota preference is applied. A
  *                                                         quota name is unique in the service. Example: `CpusPerProjectPerRegion`
- * @param string $quotaPreferenceContactEmail              Input only. An email address that can be used for quota related
- *                                                         communication between the Google Cloud and the user in case the Google
- *                                                         Cloud needs further information to make a decision on whether the user
- *                                                         preferred quota can be granted.
- *
- *                                                         The Google account for the email address must have quota update permission
- *                                                         for the project, folder or organization this quota preference is for.
  */
 function update_quota_preference_sample(
     int $quotaPreferenceQuotaConfigPreferredValue,
     string $quotaPreferenceService,
-    string $quotaPreferenceQuotaId,
-    string $quotaPreferenceContactEmail
+    string $quotaPreferenceQuotaId
 ): void {
     // Create a client.
     $cloudQuotasClient = new CloudQuotasClient();
@@ -61,8 +53,7 @@ function update_quota_preference_sample(
     $quotaPreference = (new QuotaPreference())
         ->setQuotaConfig($quotaPreferenceQuotaConfig)
         ->setService($quotaPreferenceService)
-        ->setQuotaId($quotaPreferenceQuotaId)
-        ->setContactEmail($quotaPreferenceContactEmail);
+        ->setQuotaId($quotaPreferenceQuotaId);
     $request = (new UpdateQuotaPreferenceRequest())
         ->setQuotaPreference($quotaPreference);
 
@@ -90,13 +81,11 @@ function callSample(): void
     $quotaPreferenceQuotaConfigPreferredValue = 0;
     $quotaPreferenceService = '[SERVICE]';
     $quotaPreferenceQuotaId = '[QUOTA_ID]';
-    $quotaPreferenceContactEmail = '[CONTACT_EMAIL]';
 
     update_quota_preference_sample(
         $quotaPreferenceQuotaConfigPreferredValue,
         $quotaPreferenceService,
-        $quotaPreferenceQuotaId,
-        $quotaPreferenceContactEmail
+        $quotaPreferenceQuotaId
     );
 }
 // [END cloudquotas_v1_generated_CloudQuotas_UpdateQuotaPreference_sync]
