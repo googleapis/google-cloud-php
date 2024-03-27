@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Reporting contexts are groups of surfaces and formats for product results on
  * Google. They can represent the entire destination (for example, [Shopping
  * ads](https://support.google.com/merchants/answer/6149970)) or a subset of
- * formats within a destination (for example, [Discovery
+ * formats within a destination (for example, [Demand Gen
  * ads](https://support.google.com/merchants/answer/13389785)).
  *
  * Generated from protobuf message <code>google.shopping.type.ReportingContext</code>

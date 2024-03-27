@@ -26,12 +26,26 @@ class ReportingContextEnum
      */
     const SHOPPING_ADS = 1;
     /**
+     * Deprecated:  Use `DEMAND_GEN_ADS` instead.
      * [Discovery and Demand Gen
      * ads](https://support.google.com/merchants/answer/13389785).
      *
-     * Generated from protobuf enum <code>DISCOVERY_ADS = 2;</code>
+     * Generated from protobuf enum <code>DISCOVERY_ADS = 2 [deprecated = true];</code>
      */
     const DISCOVERY_ADS = 2;
+    /**
+     * [Demand Gen ads](https://support.google.com/merchants/answer/13389785).
+     *
+     * Generated from protobuf enum <code>DEMAND_GEN_ADS = 13;</code>
+     */
+    const DEMAND_GEN_ADS = 13;
+    /**
+     * [Demand Gen ads on Discover
+     * surface](https://support.google.com/merchants/answer/13389785).
+     *
+     * Generated from protobuf enum <code>DEMAND_GEN_ADS_DISCOVER_SURFACE = 14;</code>
+     */
+    const DEMAND_GEN_ADS_DISCOVER_SURFACE = 14;
     /**
      * [Video ads](https://support.google.com/google-ads/answer/6340491).
      *
@@ -103,6 +117,8 @@ class ReportingContextEnum
         self::REPORTING_CONTEXT_ENUM_UNSPECIFIED => 'REPORTING_CONTEXT_ENUM_UNSPECIFIED',
         self::SHOPPING_ADS => 'SHOPPING_ADS',
         self::DISCOVERY_ADS => 'DISCOVERY_ADS',
+        self::DEMAND_GEN_ADS => 'DEMAND_GEN_ADS',
+        self::DEMAND_GEN_ADS_DISCOVER_SURFACE => 'DEMAND_GEN_ADS_DISCOVER_SURFACE',
         self::VIDEO_ADS => 'VIDEO_ADS',
         self::DISPLAY_ADS => 'DISPLAY_ADS',
         self::LOCAL_INVENTORY_ADS => 'LOCAL_INVENTORY_ADS',
