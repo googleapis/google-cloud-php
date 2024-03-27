@@ -53,7 +53,6 @@ class SpannerPgTestCase extends SystemTestCase
             return;
         }
 
-        self::skipEmulatorTests();
         self::getClient();
 
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
