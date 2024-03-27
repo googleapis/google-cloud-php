@@ -22,6 +22,15 @@ return [
                             'getAppProfileId',
                         ],
                     ],
+                    [
+                        'keyName' => 'authorized_view_name',
+                        'fieldAccessors' => [
+                            'getAuthorizedViewName',
+                        ],
+                        'matchers' => [
+                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                        ],
+                    ],
                 ],
             ],
             'GenerateInitialChangeStreamPartitions' => [
@@ -58,6 +67,15 @@ return [
                             'getAppProfileId',
                         ],
                     ],
+                    [
+                        'keyName' => 'authorized_view_name',
+                        'fieldAccessors' => [
+                            'getAuthorizedViewName',
+                        ],
+                        'matchers' => [
+                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                        ],
+                    ],
                 ],
             ],
             'MutateRows' => [
@@ -80,6 +98,15 @@ return [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'authorized_view_name',
+                        'fieldAccessors' => [
+                            'getAuthorizedViewName',
+                        ],
+                        'matchers' => [
+                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -139,6 +166,15 @@ return [
                             'getAppProfileId',
                         ],
                     ],
+                    [
+                        'keyName' => 'authorized_view_name',
+                        'fieldAccessors' => [
+                            'getAuthorizedViewName',
+                        ],
+                        'matchers' => [
+                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                        ],
+                    ],
                 ],
             ],
             'ReadRows' => [
@@ -161,6 +197,15 @@ return [
                         'keyName' => 'app_profile_id',
                         'fieldAccessors' => [
                             'getAppProfileId',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'authorized_view_name',
+                        'fieldAccessors' => [
+                            'getAuthorizedViewName',
+                        ],
+                        'matchers' => [
+                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
                         ],
                     ],
                 ],
@@ -187,9 +232,19 @@ return [
                             'getAppProfileId',
                         ],
                     ],
+                    [
+                        'keyName' => 'authorized_view_name',
+                        'fieldAccessors' => [
+                            'getAuthorizedViewName',
+                        ],
+                        'matchers' => [
+                            '/^(?<authorized_view_name>projects\/[^\/]+\/instances\/[^\/]+\/tables\/[^\/]+\/authorizedViews\/[^\/]+)$/',
+                        ],
+                    ],
                 ],
             ],
             'templateMap' => [
+                'authorizedView' => 'projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}',
                 'instance' => 'projects/{project}/instances/{instance}',
                 'table' => 'projects/{project}/instances/{instance}/tables/{table}',
             ],

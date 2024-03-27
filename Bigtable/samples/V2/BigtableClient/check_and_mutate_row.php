@@ -31,21 +31,16 @@ use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 /**
  * Mutates a row atomically based on the output of a predicate Reader filter.
  *
- * @param string $formattedTableName The unique name of the table to which the conditional mutation
- *                                   should be applied. Values are of the form
- *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
- *                                   {@see BigtableClient::tableName()} for help formatting this field.
- * @param string $rowKey             The key of the row to which the conditional mutation should be
- *                                   applied.
+ * @param string $rowKey The key of the row to which the conditional mutation should be
+ *                       applied.
  */
-function check_and_mutate_row_sample(string $formattedTableName, string $rowKey): void
+function check_and_mutate_row_sample(string $rowKey): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
 
     // Prepare the request message.
     $request = (new CheckAndMutateRowRequest())
-        ->setTableName($formattedTableName)
         ->setRowKey($rowKey);
 
     // Call the API and handle any network failures.
@@ -69,9 +64,8 @@ function check_and_mutate_row_sample(string $formattedTableName, string $rowKey)
  */
 function callSample(): void
 {
-    $formattedTableName = BigtableClient::tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
     $rowKey = '...';
 
-    check_and_mutate_row_sample($formattedTableName, $rowKey);
+    check_and_mutate_row_sample($rowKey);
 }
 // [END bigtable_v2_generated_Bigtable_CheckAndMutateRow_sync]

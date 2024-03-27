@@ -33,13 +33,9 @@ use Google\Cloud\Bigtable\V2\Mutation;
  * Mutates a row atomically. Cells already present in the row are left
  * unchanged unless explicitly changed by `mutation`.
  *
- * @param string $formattedTableName The unique name of the table to which the mutation should be
- *                                   applied. Values are of the form
- *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
- *                                   {@see BigtableClient::tableName()} for help formatting this field.
- * @param string $rowKey             The key of the row to which the mutation should be applied.
+ * @param string $rowKey The key of the row to which the mutation should be applied.
  */
-function mutate_row_sample(string $formattedTableName, string $rowKey): void
+function mutate_row_sample(string $rowKey): void
 {
     // Create a client.
     $bigtableClient = new BigtableClient();
@@ -47,7 +43,6 @@ function mutate_row_sample(string $formattedTableName, string $rowKey): void
     // Prepare the request message.
     $mutations = [new Mutation()];
     $request = (new MutateRowRequest())
-        ->setTableName($formattedTableName)
         ->setRowKey($rowKey)
         ->setMutations($mutations);
 
@@ -72,9 +67,8 @@ function mutate_row_sample(string $formattedTableName, string $rowKey): void
  */
 function callSample(): void
 {
-    $formattedTableName = BigtableClient::tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
     $rowKey = '...';
 
-    mutate_row_sample($formattedTableName, $rowKey);
+    mutate_row_sample($rowKey);
 }
 // [END bigtable_v2_generated_Bigtable_MutateRow_sync]

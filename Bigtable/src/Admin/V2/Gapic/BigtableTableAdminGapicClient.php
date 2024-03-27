@@ -35,24 +35,31 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Bigtable\Admin\V2\AuthorizedView;
 use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
 use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupMetadata;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split;
+use Google\Cloud\Bigtable\Admin\V2\DataBoostReadLocalWrites;
+use Google\Cloud\Bigtable\Admin\V2\DeleteAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse;
+use Google\Cloud\Bigtable\Admin\V2\GetAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListAuthorizedViewsRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListAuthorizedViewsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListBackupsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest;
@@ -65,9 +72,11 @@ use Google\Cloud\Bigtable\Admin\V2\RestoreTableMetadata;
 use Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\StandardReadRemoteWrites;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Admin\V2\Table\View;
 use Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -143,6 +152,8 @@ class BigtableTableAdminGapicClient
         'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
 
+    private static $authorizedViewNameTemplate;
+
     private static $backupNameTemplate;
 
     private static $clusterNameTemplate;
@@ -176,6 +187,15 @@ class BigtableTableAdminGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getAuthorizedViewNameTemplate()
+    {
+        if (self::$authorizedViewNameTemplate == null) {
+            self::$authorizedViewNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}');
+        }
+
+        return self::$authorizedViewNameTemplate;
     }
 
     private static function getBackupNameTemplate()
@@ -236,6 +256,7 @@ class BigtableTableAdminGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'authorizedView' => self::getAuthorizedViewNameTemplate(),
                 'backup' => self::getBackupNameTemplate(),
                 'cluster' => self::getClusterNameTemplate(),
                 'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
@@ -246,6 +267,27 @@ class BigtableTableAdminGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * authorized_view resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $table
+     * @param string $authorizedView
+     *
+     * @return string The formatted authorized_view resource.
+     */
+    public static function authorizedViewName($project, $instance, $table, $authorizedView)
+    {
+        return self::getAuthorizedViewNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+            'table' => $table,
+            'authorized_view' => $authorizedView,
+        ]);
     }
 
     /**
@@ -372,6 +414,7 @@ class BigtableTableAdminGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - authorizedView: projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}
      * - backup: projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
@@ -528,6 +571,14 @@ class BigtableTableAdminGapicClient
      * @param array  $optionalArgs     {
      *     Optional.
      *
+     *     @type StandardReadRemoteWrites $standardReadRemoteWrites
+     *           Checks that reads using an app profile with `StandardIsolation` can
+     *           see all writes committed before the token was created, even if the
+     *           read and write target different clusters.
+     *     @type DataBoostReadLocalWrites $dataBoostReadLocalWrites
+     *           Checks that reads using an app profile with `DataBoostIsolationReadOnly`
+     *           can see all writes committed before the token was created, but only if
+     *           the read and write target the same cluster.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -545,6 +596,14 @@ class BigtableTableAdminGapicClient
         $request->setName($name);
         $request->setConsistencyToken($consistencyToken);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['standardReadRemoteWrites'])) {
+            $request->setStandardReadRemoteWrites($optionalArgs['standardReadRemoteWrites']);
+        }
+
+        if (isset($optionalArgs['dataBoostReadLocalWrites'])) {
+            $request->setDataBoostReadLocalWrites($optionalArgs['dataBoostReadLocalWrites']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CheckConsistency', CheckConsistencyResponse::class, $optionalArgs, $request)->wait();
@@ -639,6 +698,81 @@ class BigtableTableAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CopyBackup', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a new AuthorizedView in a table.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedParent = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+     *     $authorizedViewId = 'authorized_view_id';
+     *     $authorizedView = new AuthorizedView();
+     *     $operationResponse = $bigtableTableAdminClient->createAuthorizedView($formattedParent, $authorizedViewId, $authorizedView);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableTableAdminClient->createAuthorizedView($formattedParent, $authorizedViewId, $authorizedView);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'createAuthorizedView');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent           Required. This is the name of the table the AuthorizedView belongs to.
+     *                                         Values are of the form
+     *                                         `projects/{project}/instances/{instance}/tables/{table}`.
+     * @param string         $authorizedViewId Required. The id of the AuthorizedView to create. This AuthorizedView must
+     *                                         not already exist. The `authorized_view_id` appended to `parent` forms the
+     *                                         full AuthorizedView name of the form
+     *                                         `projects/{project}/instances/{instance}/tables/{table}/authorizedView/{authorized_view}`.
+     * @param AuthorizedView $authorizedView   Required. The AuthorizedView to create.
+     * @param array          $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createAuthorizedView($parent, $authorizedViewId, $authorizedView, array $optionalArgs = [])
+    {
+        $request = new CreateAuthorizedViewRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setAuthorizedViewId($authorizedViewId);
+        $request->setAuthorizedView($authorizedView);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateAuthorizedView', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -879,6 +1013,54 @@ class BigtableTableAdminGapicClient
     }
 
     /**
+     * Permanently deletes a specified AuthorizedView.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedName = $bigtableTableAdminClient->authorizedViewName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[AUTHORIZED_VIEW]');
+     *     $bigtableTableAdminClient->deleteAuthorizedView($formattedName);
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The unique name of the AuthorizedView to be deleted.
+     *                             Values are of the form
+     *                             `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $etag
+     *           Optional. The current etag of the AuthorizedView.
+     *           If an etag is provided and does not match the current etag of the
+     *           AuthorizedView, deletion will be blocked and an ABORTED error will be
+     *           returned.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteAuthorizedView($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAuthorizedViewRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteAuthorizedView', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a pending or completed Cloud Bigtable backup.
      *
      * Sample code:
@@ -1100,6 +1282,55 @@ class BigtableTableAdminGapicClient
     }
 
     /**
+     * Gets information from a specified AuthorizedView.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedName = $bigtableTableAdminClient->authorizedViewName('[PROJECT]', '[INSTANCE]', '[TABLE]', '[AUTHORIZED_VIEW]');
+     *     $response = $bigtableTableAdminClient->getAuthorizedView($formattedName);
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The unique name of the requested AuthorizedView.
+     *                             Values are of the form
+     *                             `projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $view
+     *           Optional. The resource_view to be applied to the returned AuthorizedView's
+     *           fields. Default to BASIC.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\AuthorizedView\ResponseView}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Bigtable\Admin\V2\AuthorizedView
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAuthorizedView($name, array $optionalArgs = [])
+    {
+        $request = new GetAuthorizedViewRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAuthorizedView', AuthorizedView::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets metadata on a pending or completed Cloud Bigtable Backup.
      *
      * Sample code:
@@ -1283,6 +1514,84 @@ class BigtableTableAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetTable', Table::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lists all AuthorizedViews from a specific table.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedParent = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $bigtableTableAdminClient->listAuthorizedViews($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $bigtableTableAdminClient->listAuthorizedViews($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The unique name of the table for which AuthorizedViews should be
+     *                             listed. Values are of the form
+     *                             `projects/{project}/instances/{instance}/tables/{table}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $view
+     *           Optional. The resource_view to be applied to the returned views' fields.
+     *           Default to NAME_ONLY.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\AuthorizedView\ResponseView}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAuthorizedViews($parent, array $optionalArgs = [])
+    {
+        $request = new ListAuthorizedViewsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListAuthorizedViews', $optionalArgs, ListAuthorizedViewsResponse::class, $request);
     }
 
     /**
@@ -1984,6 +2293,92 @@ class BigtableTableAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UndeleteTable', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Updates an AuthorizedView in a table.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $authorizedView = new AuthorizedView();
+     *     $operationResponse = $bigtableTableAdminClient->updateAuthorizedView($authorizedView);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableTableAdminClient->updateAuthorizedView($authorizedView);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'updateAuthorizedView');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param AuthorizedView $authorizedView Required. The AuthorizedView to update. The `name` in `authorized_view` is
+     *                                       used to identify the AuthorizedView. AuthorizedView name must in this
+     *                                       format
+     *                                       projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. The list of fields to update.
+     *           A mask specifying which fields in the AuthorizedView resource should be
+     *           updated. This mask is relative to the AuthorizedView resource, not to the
+     *           request message. A field will be overwritten if it is in the mask. If
+     *           empty, all fields set in the request will be overwritten. A special value
+     *           `*` means to overwrite all fields (including fields not set in the
+     *           request).
+     *     @type bool $ignoreWarnings
+     *           Optional. If true, ignore the safety checks when updating the
+     *           AuthorizedView.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateAuthorizedView($authorizedView, array $optionalArgs = [])
+    {
+        $request = new UpdateAuthorizedViewRequest();
+        $requestParamHeaders = [];
+        $request->setAuthorizedView($authorizedView);
+        $requestParamHeaders['authorized_view.name'] = $authorizedView->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['ignoreWarnings'])) {
+            $request->setIgnoreWarnings($optionalArgs['ignoreWarnings']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateAuthorizedView', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**

@@ -25,6 +25,17 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
      */
     private $gc_rule = null;
+    /**
+     * The type of data stored in each of this family's cell values, including its
+     * full encoding. If omitted, the family only serves raw untyped bytes.
+     * For now, only the `Aggregate` type is supported.
+     * `Aggregate` can only be set at family creation and is immutable afterwards.
+     * If `value_type` is `Aggregate`, written data must be compatible with:
+     *  * `value_type.input_type` for `AddInput` mutations
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type value_type = 3;</code>
+     */
+    private $value_type = null;
 
     /**
      * Constructor.
@@ -38,6 +49,13 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
      *           NOTE: Garbage collection executes opportunistically in the background, and
      *           so it's possible for reads to return a cell even if it matches the active
      *           GC expression for its family.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type $value_type
+     *           The type of data stored in each of this family's cell values, including its
+     *           full encoding. If omitted, the family only serves raw untyped bytes.
+     *           For now, only the `Aggregate` type is supported.
+     *           `Aggregate` can only be set at family creation and is immutable afterwards.
+     *           If `value_type` is `Aggregate`, written data must be compatible with:
+     *            * `value_type.input_type` for `AddInput` mutations
      * }
      */
     public function __construct($data = NULL) {
@@ -85,6 +103,52 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\GcRule::class);
         $this->gc_rule = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of data stored in each of this family's cell values, including its
+     * full encoding. If omitted, the family only serves raw untyped bytes.
+     * For now, only the `Aggregate` type is supported.
+     * `Aggregate` can only be set at family creation and is immutable afterwards.
+     * If `value_type` is `Aggregate`, written data must be compatible with:
+     *  * `value_type.input_type` for `AddInput` mutations
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type value_type = 3;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type|null
+     */
+    public function getValueType()
+    {
+        return $this->value_type;
+    }
+
+    public function hasValueType()
+    {
+        return isset($this->value_type);
+    }
+
+    public function clearValueType()
+    {
+        unset($this->value_type);
+    }
+
+    /**
+     * The type of data stored in each of this family's cell values, including its
+     * full encoding. If omitted, the family only serves raw untyped bytes.
+     * For now, only the `Aggregate` type is supported.
+     * `Aggregate` can only be set at family creation and is immutable afterwards.
+     * If `value_type` is `Aggregate`, written data must be compatible with:
+     *  * `value_type.input_type` for `AddInput` mutations
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type value_type = 3;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type $var
+     * @return $this
+     */
+    public function setValueType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type::class);
+        $this->value_type = $var;
 
         return $this;
     }

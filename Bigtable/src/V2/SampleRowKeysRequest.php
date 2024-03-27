@@ -16,13 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the table from which to sample row keys.
+     * Optional. The unique name of the table from which to sample row keys.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $table_name = '';
+    /**
+     * Optional. The unique name of the AuthorizedView from which to sample row
+     * keys.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
+     *
+     * Generated from protobuf field <code>string authorized_view_name = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $authorized_view_name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
@@ -32,10 +41,10 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     private $app_profile_id = '';
 
     /**
-     * @param string $tableName Required. The unique name of the table from which to sample row keys.
+     * @param string $tableName Optional. The unique name of the table from which to sample row keys.
+     *
      *                          Values are of the form
-     *                          `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                          {@see BigtableClient::tableName()} for help formatting this field.
+     *                          `projects/<project>/instances/<instance>/tables/<table>`.
      *
      * @return \Google\Cloud\Bigtable\V2\SampleRowKeysRequest
      *
@@ -48,10 +57,10 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * @param string $tableName    Required. The unique name of the table from which to sample row keys.
+     * @param string $tableName    Optional. The unique name of the table from which to sample row keys.
+     *
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/tables/<table>`. Please see
-     *                             {@see BigtableClient::tableName()} for help formatting this field.
+     *                             `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string $appProfileId This value specifies routing for replication. If not specified, the
      *                             "default" application profile will be used.
      *
@@ -73,9 +82,14 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table_name
-     *           Required. The unique name of the table from which to sample row keys.
+     *           Optional. The unique name of the table from which to sample row keys.
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
+     *     @type string $authorized_view_name
+     *           Optional. The unique name of the AuthorizedView from which to sample row
+     *           keys.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
@@ -87,11 +101,11 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table from which to sample row keys.
+     * Optional. The unique name of the table from which to sample row keys.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getTableName()
@@ -100,11 +114,11 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the table from which to sample row keys.
+     * Optional. The unique name of the table from which to sample row keys.
      * Values are of the form
      * `projects/<project>/instances/<instance>/tables/<table>`.
      *
-     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -112,6 +126,38 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->table_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The unique name of the AuthorizedView from which to sample row
+     * keys.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
+     *
+     * Generated from protobuf field <code>string authorized_view_name = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAuthorizedViewName()
+    {
+        return $this->authorized_view_name;
+    }
+
+    /**
+     * Optional. The unique name of the AuthorizedView from which to sample row
+     * keys.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/tables/<table>/authorizedViews/<authorized_view>`.
+     *
+     * Generated from protobuf field <code>string authorized_view_name = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAuthorizedViewName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->authorized_view_name = $var;
 
         return $this;
     }

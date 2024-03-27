@@ -7,7 +7,19 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:checkAndMutateRow',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{authorized_view_name=projects/*/instances/*/tables/*/authorizedViews/*}:checkAndMutateRow',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
+                    'authorized_view_name' => [
+                        'getters' => [
+                            'getAuthorizedViewName',
+                        ],
+                    ],
                     'table_name' => [
                         'getters' => [
                             'getTableName',
@@ -31,7 +43,19 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:mutateRow',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{authorized_view_name=projects/*/instances/*/tables/*/authorizedViews/*}:mutateRow',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
+                    'authorized_view_name' => [
+                        'getters' => [
+                            'getAuthorizedViewName',
+                        ],
+                    ],
                     'table_name' => [
                         'getters' => [
                             'getTableName',
@@ -43,7 +67,19 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:mutateRows',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{authorized_view_name=projects/*/instances/*/tables/*/authorizedViews/*}:mutateRows',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
+                    'authorized_view_name' => [
+                        'getters' => [
+                            'getAuthorizedViewName',
+                        ],
+                    ],
                     'table_name' => [
                         'getters' => [
                             'getTableName',
@@ -79,7 +115,19 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readModifyWriteRow',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{authorized_view_name=projects/*/instances/*/tables/*/authorizedViews/*}:readModifyWriteRow',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
+                    'authorized_view_name' => [
+                        'getters' => [
+                            'getAuthorizedViewName',
+                        ],
+                    ],
                     'table_name' => [
                         'getters' => [
                             'getTableName',
@@ -91,7 +139,19 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readRows',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{authorized_view_name=projects/*/instances/*/tables/*/authorizedViews/*}:readRows',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
+                    'authorized_view_name' => [
+                        'getters' => [
+                            'getAuthorizedViewName',
+                        ],
+                    ],
                     'table_name' => [
                         'getters' => [
                             'getTableName',
@@ -102,7 +162,18 @@ return [
             'SampleRowKeys' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:sampleRowKeys',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{authorized_view_name=projects/*/instances/*/tables/*/authorizedViews/*}:sampleRowKeys',
+                    ],
+                ],
                 'placeholders' => [
+                    'authorized_view_name' => [
+                        'getters' => [
+                            'getAuthorizedViewName',
+                        ],
+                    ],
                     'table_name' => [
                         'getters' => [
                             'getTableName',
