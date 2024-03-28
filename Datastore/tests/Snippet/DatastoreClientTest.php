@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
@@ -36,6 +37,7 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as DatastoreGapicClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -44,6 +46,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class DatastoreClientTest extends SnippetTestCase
 {
+    use ApiHelperTrait;
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
 
@@ -58,6 +61,7 @@ class DatastoreClientTest extends SnippetTestCase
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+
         $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
 
         $this->key = new Key('my-awesome-project', [
@@ -351,11 +355,11 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'transaction');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->beginTransaction($this->validateTransactionOptions('readWrite'))
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
+        $this->mockSendRequest(
+            'beginTransaction',
+            ['transactionOptions' => ['readWrite' => []]],
+            ['transaction' => 'foo']
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -369,11 +373,11 @@ class DatastoreClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'readOnlyTransaction');
         $snippet->addLocal('datastore', $this->client);
-        $this->connection->beginTransaction($this->validateTransactionOptions('readOnly'))
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
+        $this->mockSendRequest(
+            'beginTransaction',
+            ['transactionOptions' => ['readOnly' => []]],
+            ['transaction' => 'foo']
+        );
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
@@ -770,28 +774,30 @@ class DatastoreClientTest extends SnippetTestCase
 
     private function allocateIdsConnectionMock()
     {
-        $this->connection->allocateIds(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'keys' => [
-                    [
-                        'path' => [
-                            [
-                                'kind' => 'Person',
-                                'id' => '4682475895'
-                            ]
+        $this->requestHandler->sendRequest(
+            DatastoreGapicClient::class,
+            'allocateIds',
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'keys' => [
+                [
+                    'path' => [
+                        [
+                            'kind' => 'Person',
+                            'id' => '4682475895'
                         ]
-                    ],
-                    [
-                        'path' => [
-                            [
-                                'kind' => 'Person',
-                                'id' => '4682475896'
-                            ]
+                    ]
+                ],
+                [
+                    'path' => [
+                        [
+                            'kind' => 'Person',
+                            'id' => '4682475896'
                         ]
                     ]
                 ]
-            ]);
+            ]
+        ]);
     }
 
     private function validateTransactionOptions($type, array $options = [])

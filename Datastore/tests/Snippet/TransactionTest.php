@@ -31,6 +31,7 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as DatastoreGapicClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -105,11 +106,12 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
+        $this->mockSendRequest(
+            'beginTransaction',
+            [],
+            ['transaction' => 'foo'],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -506,29 +508,31 @@ class TransactionTest extends SnippetTestCase
 
     private function allocateIdsConnectionMock()
     {
-        $this->connection->allocateIds(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'keys' => [
-                    [
-                        'path' => [
-                            [
-                                'kind' => 'Person',
-                                'id' => '4682475895'
-                            ]
+        $this->requestHandler->sendRequest(
+            DatastoreGapicClient::class,
+            'allocateIds',
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'keys' => [
+                [
+                    'path' => [
+                        [
+                            'kind' => 'Person',
+                            'id' => '4682475895'
                         ]
-                    ],
-                    [
-                        'path' => [
-                            [
-                                'kind' => 'Person',
-                                'id' => '4682475896'
-                            ]
+                    ]
+                ],
+                [
+                    'path' => [
+                        [
+                            'kind' => 'Person',
+                            'id' => '4682475896'
                         ]
                     ]
                 ]
-            ]);
+            ]
+        ]);
 
-        return $this->connection->reveal();
+        return $this->requestHandler->reveal();
     }
 }

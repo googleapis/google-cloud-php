@@ -28,7 +28,11 @@ use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\AllocateIdsRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
+use Google\Cloud\Datastore\V1\TransactionOptions;
 
 /**
  * Run lookups and queries and commit changes.
@@ -304,11 +308,30 @@ class Operation
                 $transactionOptions['readOnly']
             );
         }
-        $res = $this->connection->beginTransaction($options + [
+
+        array_walk($transactionOptions, function (&$item) {
+            if ($item instanceof \stdClass) {
+                $item = [];
+            }
+        });
+
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+
+        $data += [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
             'transactionOptions' => $transactionOptions,
-        ]);
+        ];
+
+        $data = $this->convertDataToProtos($data, ['transactionOptions' => TransactionOptions::class]);
+        $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'beginTransaction',
+            $request,
+            $optionalArgs
+        );
 
         return $res['transaction'];
     }
@@ -349,11 +372,22 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         }
 
-        $res = $this->connection->allocateIds($options + [
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+
+        $data += [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
             'keys' => $serviceKeys,
-        ]);
+        ];
+
+        $request = $this->serializer->decodeMessage(new AllocateIdsRequest(), $data);
+
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'allocateIds',
+            $request,
+            $optionalArgs
+        );
 
         if (isset($res['keys'])) {
             foreach ($res['keys'] as $index => $key) {
