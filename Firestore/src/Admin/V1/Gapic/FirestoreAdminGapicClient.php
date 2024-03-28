@@ -822,7 +822,7 @@ class FirestoreAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of backup schedule.
+     * @param string $name         Required. The name of the backup schedule.
      *
      *                             Format
      *                             `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}`

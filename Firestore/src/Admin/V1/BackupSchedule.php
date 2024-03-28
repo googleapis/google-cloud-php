@@ -76,9 +76,9 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
      *           At what relative time in the future, compared to its creation time,
      *           the backup should be deleted, e.g. keep backups for 7 days.
      *     @type \Google\Cloud\Firestore\Admin\V1\DailyRecurrence $daily_recurrence
-     *           For a schedule that runs daily at a specified time.
+     *           For a schedule that runs daily.
      *     @type \Google\Cloud\Firestore\Admin\V1\WeeklyRecurrence $weekly_recurrence
-     *           For a schedule that runs weekly on a specific day and time.
+     *           For a schedule that runs weekly on a specific day.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,7 +239,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For a schedule that runs daily at a specified time.
+     * For a schedule that runs daily.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.DailyRecurrence daily_recurrence = 7;</code>
      * @return \Google\Cloud\Firestore\Admin\V1\DailyRecurrence|null
@@ -255,7 +255,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For a schedule that runs daily at a specified time.
+     * For a schedule that runs daily.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.DailyRecurrence daily_recurrence = 7;</code>
      * @param \Google\Cloud\Firestore\Admin\V1\DailyRecurrence $var
@@ -270,7 +270,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For a schedule that runs weekly on a specific day and time.
+     * For a schedule that runs weekly on a specific day.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.WeeklyRecurrence weekly_recurrence = 8;</code>
      * @return \Google\Cloud\Firestore\Admin\V1\WeeklyRecurrence|null
@@ -286,7 +286,7 @@ class BackupSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For a schedule that runs weekly on a specific day and time.
+     * For a schedule that runs weekly on a specific day.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.WeeklyRecurrence weekly_recurrence = 8;</code>
      * @param \Google\Cloud\Firestore\Admin\V1\WeeklyRecurrence $var
