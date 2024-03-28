@@ -37,7 +37,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      */
     private $direction = '';
     /**
-     * Possible values: ALLOW, DENY
+     * Possible values: ALLOW, DENY, APPLY_SECURITY_PROFILE_GROUP
      *
      * Generated from protobuf field <code>string action = 4;</code>
      */
@@ -97,7 +97,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *     @type string $direction
      *           Possible values: INGRESS, EGRESS
      *     @type string $action
-     *           Possible values: ALLOW, DENY
+     *           Possible values: ALLOW, DENY, APPLY_SECURITY_PROFILE_GROUP
      *     @type int $priority
      *           The priority of the firewall rule.
      *     @type string $network_uri
@@ -203,7 +203,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Possible values: ALLOW, DENY
+     * Possible values: ALLOW, DENY, APPLY_SECURITY_PROFILE_GROUP
      *
      * Generated from protobuf field <code>string action = 4;</code>
      * @return string
@@ -214,7 +214,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Possible values: ALLOW, DENY
+     * Possible values: ALLOW, DENY, APPLY_SECURITY_PROFILE_GROUP
      *
      * Generated from protobuf field <code>string action = 4;</code>
      * @param string $var

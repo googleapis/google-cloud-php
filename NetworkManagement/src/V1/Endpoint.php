@@ -17,9 +17,6 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 {
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
-     * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer
-     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      */
@@ -137,9 +134,6 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      *     @type string $ip_address
      *           The IP address of the endpoint, which can be an external or internal IP.
-     *           An IPv6 address is only allowed when the test's destination is a
-     *           [global load balancer
-     *           VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *     @type int $port
      *           The IP protocol port of the endpoint.
      *           Only applicable when protocol is TCP or UDP.
@@ -197,9 +191,6 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
-     * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer
-     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      * @return string
@@ -211,9 +202,6 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * The IP address of the endpoint, which can be an external or internal IP.
-     * An IPv6 address is only allowed when the test's destination is a
-     * [global load balancer
-     * VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      *
      * Generated from protobuf field <code>string ip_address = 1;</code>
      * @param string $var

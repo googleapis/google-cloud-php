@@ -27,6 +27,24 @@ class DropInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
     private $resource_uri = '';
+    /**
+     * Source IP address of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string source_ip = 3;</code>
+     */
+    private $source_ip = '';
+    /**
+     * Destination IP address of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string destination_ip = 4;</code>
+     */
+    private $destination_ip = '';
+    /**
+     * Region of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string region = 5;</code>
+     */
+    private $region = '';
 
     /**
      * Constructor.
@@ -38,6 +56,12 @@ class DropInfo extends \Google\Protobuf\Internal\Message
      *           Cause that the packet is dropped.
      *     @type string $resource_uri
      *           URI of the resource that caused the drop.
+     *     @type string $source_ip
+     *           Source IP address of the dropped packet (if relevant).
+     *     @type string $destination_ip
+     *           Destination IP address of the dropped packet (if relevant).
+     *     @type string $region
+     *           Region of the dropped packet (if relevant).
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +117,84 @@ class DropInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->resource_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Source IP address of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string source_ip = 3;</code>
+     * @return string
+     */
+    public function getSourceIp()
+    {
+        return $this->source_ip;
+    }
+
+    /**
+     * Source IP address of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string source_ip = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceIp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Destination IP address of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string destination_ip = 4;</code>
+     * @return string
+     */
+    public function getDestinationIp()
+    {
+        return $this->destination_ip;
+    }
+
+    /**
+     * Destination IP address of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string destination_ip = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDestinationIp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->destination_ip = $var;
+
+        return $this;
+    }
+
+    /**
+     * Region of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string region = 5;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Region of the dropped packet (if relevant).
+     *
+     * Generated from protobuf field <code>string region = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }

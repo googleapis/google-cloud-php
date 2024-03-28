@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class GoogleServiceType
 {
     /**
-     * Unspecified Google Service. Includes most of Google APIs and services.
+     * Unspecified Google Service.
      *
      * Generated from protobuf enum <code>GOOGLE_SERVICE_TYPE_UNSPECIFIED = 0;</code>
      */
@@ -44,12 +44,35 @@ class GoogleServiceType
      * Generated from protobuf enum <code>CLOUD_DNS = 3;</code>
      */
     const CLOUD_DNS = 3;
+    /**
+     * private.googleapis.com and restricted.googleapis.com
+     *
+     * Generated from protobuf enum <code>GOOGLE_API = 4;</code>
+     */
+    const GOOGLE_API = 4;
+    /**
+     * Google API via Private Service Connect.
+     * https://cloud.google.com/vpc/docs/configure-private-service-connect-apis
+     *
+     * Generated from protobuf enum <code>GOOGLE_API_PSC = 5;</code>
+     */
+    const GOOGLE_API_PSC = 5;
+    /**
+     * Google API via VPC Service Controls.
+     * https://cloud.google.com/vpc/docs/configure-private-service-connect-apis
+     *
+     * Generated from protobuf enum <code>GOOGLE_API_VPC_SC = 6;</code>
+     */
+    const GOOGLE_API_VPC_SC = 6;
 
     private static $valueToName = [
         self::GOOGLE_SERVICE_TYPE_UNSPECIFIED => 'GOOGLE_SERVICE_TYPE_UNSPECIFIED',
         self::IAP => 'IAP',
         self::GFE_PROXY_OR_HEALTH_CHECK_PROBER => 'GFE_PROXY_OR_HEALTH_CHECK_PROBER',
         self::CLOUD_DNS => 'CLOUD_DNS',
+        self::GOOGLE_API => 'GOOGLE_API',
+        self::GOOGLE_API_PSC => 'GOOGLE_API_PSC',
+        self::GOOGLE_API_VPC_SC => 'GOOGLE_API_VPC_SC',
     ];
 
     public static function name($value)

@@ -96,11 +96,13 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $protocol = 'protocol-989163880';
         $displayName = 'displayName1615086568';
+        $bypassFirewallChecks = false;
         $expectedResponse = new ConnectivityTest();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setProtocol($protocol);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setBypassFirewallChecks($bypassFirewallChecks);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -346,11 +348,13 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $protocol = 'protocol-989163880';
         $displayName = 'displayName1615086568';
+        $bypassFirewallChecks = false;
         $expectedResponse = new ConnectivityTest();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setProtocol($protocol);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setBypassFirewallChecks($bypassFirewallChecks);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
@@ -492,11 +496,13 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $protocol = 'protocol-989163880';
         $displayName = 'displayName1615086568';
+        $bypassFirewallChecks = false;
         $expectedResponse = new ConnectivityTest();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setProtocol($protocol);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setBypassFirewallChecks($bypassFirewallChecks);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -617,11 +623,13 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $protocol = 'protocol-989163880';
         $displayName = 'displayName1615086568';
+        $bypassFirewallChecks = false;
         $expectedResponse = new ConnectivityTest();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setProtocol($protocol);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setBypassFirewallChecks($bypassFirewallChecks);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

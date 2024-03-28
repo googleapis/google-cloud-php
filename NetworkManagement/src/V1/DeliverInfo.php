@@ -27,6 +27,12 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
     private $resource_uri = '';
+    /**
+     * IP address of the target (if applicable).
+     *
+     * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_info) = {</code>
+     */
+    private $ip_address = '';
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
      *           Target type where the packet is delivered to.
      *     @type string $resource_uri
      *           URI of the resource that the packet is delivered to.
+     *     @type string $ip_address
+     *           IP address of the target (if applicable).
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class DeliverInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->resource_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * IP address of the target (if applicable).
+     *
+     * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getIpAddress()
+    {
+        return $this->ip_address;
+    }
+
+    /**
+     * IP address of the target (if applicable).
+     *
+     * Generated from protobuf field <code>string ip_address = 3 [(.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_address = $var;
 
         return $this;
     }
