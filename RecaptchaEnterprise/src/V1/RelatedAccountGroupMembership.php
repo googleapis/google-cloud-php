@@ -19,7 +19,7 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
      * Required. Identifier. The resource name for this membership in the format
      * `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -70,7 +70,7 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
      * Required. Identifier. The resource name for this membership in the format
      * `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -82,7 +82,7 @@ class RelatedAccountGroupMembership extends \Google\Protobuf\Internal\Message
      * Required. Identifier. The resource name for this membership in the format
      * `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

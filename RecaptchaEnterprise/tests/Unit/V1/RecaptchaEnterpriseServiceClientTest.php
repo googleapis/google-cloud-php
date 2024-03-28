@@ -1121,7 +1121,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setRelatedAccountGroupMemberships($relatedAccountGroupMemberships);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         $response = $gapicClient->searchRelatedAccountGroupMemberships($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1156,7 +1156,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         try {
             $gapicClient->searchRelatedAccountGroupMemberships($formattedProject);
             // If the $gapicClient method call did not throw, fail the test
