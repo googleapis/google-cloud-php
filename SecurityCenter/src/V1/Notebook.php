@@ -22,25 +22,25 @@ class Notebook extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * The source notebook service, for example, "Colab Enterprise".
      *
      * Generated from protobuf field <code>string service = 2;</code>
      */
-    protected $service = '';
+    private $service = '';
     /**
      * The user ID of the latest author to modify the notebook.
      *
      * Generated from protobuf field <code>string last_author = 3;</code>
      */
-    protected $last_author = '';
+    private $last_author = '';
     /**
      * The most recent time the notebook was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp notebook_update_time = 4;</code>
      */
-    protected $notebook_update_time = null;
+    private $notebook_update_time = null;
 
     /**
      * Constructor.
