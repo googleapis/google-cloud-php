@@ -1,5 +1,68 @@
 # Changelog
 
+## 0.240.0
+
+<details><summary>google/cloud-bigquery-analyticshub 0.5.0</summary>
+
+
+
+### Features
+
+* Support output fields on DcrExchangeConfig specifying selective sharing behavior on a data clean room ([e8658d3](https://github.com/googleapis/google-cloud-php/commit/e8658d39e9808ecf4c904d04e86501af96fba7cc))
+* Support selective sharing on data clean room Listings ([#7156](https://github.com/googleapis/google-cloud-php/issues/7156)) ([e8658d3](https://github.com/googleapis/google-cloud-php/commit/e8658d39e9808ecf4c904d04e86501af96fba7cc))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 0.8.0</summary>
+
+
+
+### Features
+
+* Add additional `TokenType` options (`TOKEN_TYPE_PKI` and `TOKEN_TYPE_LIMITED_AWS`) ([#7184](https://github.com/googleapis/google-cloud-php/issues/7184)) ([ef1f418](https://github.com/googleapis/google-cloud-php/commit/ef1f418e94220281656b962939a65c9b1483172e))
+
+</details>
+
+<details><summary>google/cloud-container 1.30.0</summary>
+
+
+
+### Features
+
+* Add several fields to manage state of database encryption update ([#7182](https://github.com/googleapis/google-cloud-php/issues/7182)) ([3a23c95](https://github.com/googleapis/google-cloud-php/commit/3a23c951ad43851a1c584aa7e5e521453eee40ef))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.43.0</summary>
+
+
+
+### Features
+
+* Add Vector Index API ([#7151](https://github.com/googleapis/google-cloud-php/issues/7151)) ([38be7f9](https://github.com/googleapis/google-cloud-php/commit/38be7f92c908866cf49d506ac4af34f0c27bfdfa))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.11.0</summary>
+
+
+
+### Features
+
+* Existing resource_reference option of the field name is removed from message `google.cloud.recaptchaenterprise.v1.RelatedAccountGroupMemberShip` ([#7175](https://github.com/googleapis/google-cloud-php/issues/7175)) ([8574838](https://github.com/googleapis/google-cloud-php/commit/85748387bed4dd1dece6dee255f9efe801f2dbd2))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.75.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Float 32 support ([#7080](https://github.com/googleapis/google-cloud-php/issues/7080)) ([8d3c0fd](https://github.com/googleapis/google-cloud-php/commit/8d3c0fd2e3f9676941d9f40f3f51aa2622d05428))
+
+</details>
+
 ## 0.239.0
 
 <details><summary>google/cloud-apphub 0.1.0</summary>
