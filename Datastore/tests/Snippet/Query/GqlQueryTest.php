@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet\Query;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -35,17 +38,39 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class GqlQueryTest extends SnippetTestCase
 {
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     private $datastore;
     private $connection;
     private $operation;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
         $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                if (is_string($v)) {
+                    $dt = new \DateTime($v);
+                    return ['seconds' => $dt->format('U')];
+                }
+                return $v;
+            }
+        ]);
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             'my-awesome-project',
             '',
             new EntityMapper('my-awesome-project', true, false)

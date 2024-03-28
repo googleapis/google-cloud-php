@@ -17,6 +17,10 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
@@ -39,24 +43,47 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class OperationTest extends TestCase
 {
     use ProphecyTrait;
+    use ApiHelperTrait;
+    use DatastoreOperationRefreshTrait;
 
-    const PROJECT = 'example-project';
-    const NAMESPACEID = 'namespace-id';
-    const DATABASEID = 'database-id';
+    public const PROJECT = 'example-project';
+    public const NAMESPACEID = 'namespace-id';
+    public const DATABASEID = 'database-id';
 
     private $operation;
     private $connection;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                if (is_string($v)) {
+                    $dt = new \DateTime($v);
+                    return ['seconds' => $dt->format('U')];
+                }
+                return $v;
+            }
+        ]);
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::PROJECT,
             null,
             new EntityMapper('foo', true, false),
             self::DATABASEID,
-        ], ['connection', 'namespaceId']);
+        ], ['connection', 'requestHandler', 'namespaceId']);
     }
 
     public function testKey()
@@ -226,15 +253,14 @@ class OperationTest extends TestCase
         $id = 12345;
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::withEntry('keys', [$key->keyObject()]))
-            ->shouldBeCalled()
-            ->willReturn([
-                'keys' => [
-                    $keyWithId->keyObject(),
-                ],
-            ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'allocateIds',
+            ['keys' => [$key->keyObject()]],
+            ['keys' => [$keyWithId->keyObject()]]
+        );
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->allocateIds([$key]);
 
@@ -699,15 +725,14 @@ class OperationTest extends TestCase
         $id = 12345;
         $keyWithId = clone $partialKey;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::withEntry('keys', [$partialKey->keyObject()]))
-            ->shouldBeCalled()
-            ->willReturn([
-                'keys' => [
-                    $keyWithId->keyObject(),
-                ],
-            ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'allocateIds',
+            ['keys' => [$partialKey->keyObject()]],
+            ['keys' => [$keyWithId->keyObject()]]
+        );
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $entities = [
             $this->operation->entity($completeKey),
@@ -963,11 +988,11 @@ class OperationTest extends TestCase
 
     public function testBeginTransactionWithDatabaseIdOverride()
     {
-        $this->connection
-            ->beginTransaction(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->willReturn(['transaction' => 'valid_test_transaction']);
+        $this->mockSendRequest(
+            'beginTransaction',
+            ['databaseId' => 'otherDatabaseId'],
+            ['transaction' => 'valid_test_transaction']
+        );
 
         $transactionId = $this->operation->beginTransaction(
             [],
@@ -979,12 +1004,14 @@ class OperationTest extends TestCase
 
     public function testAllocateIdsWithDatabaseIdOverride()
     {
-        $this->connection
-            ->allocateIds(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        $this->mockSendRequest(
+            'allocateIds',
+            ['databaseId' => 'otherDatabaseId'],
+            [],
+            1
+        );
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->operation->allocateIds(
             [],

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core;
 
 use Google\Auth\GetUniverseDomainInterface;
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\CredentialsWrapper;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;

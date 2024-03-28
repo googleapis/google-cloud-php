@@ -18,10 +18,14 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
+use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\Serializer;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Grpc;
 use Google\Cloud\Datastore\Connection\Rest;
@@ -30,6 +34,7 @@ use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as DatastoreGapicClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
@@ -89,12 +94,34 @@ use Psr\Http\Message\StreamInterface;
 class DatastoreClient
 {
     use ArrayTrait;
+    // TODO:
+    // [START] Replace ClientTrait with DetectProjectIdTrait
     use ClientTrait;
+    // [END] Replace ClientTrait with DetectProjectIdTrait
+    use ClientOptionsTrait;
     use DatastoreTrait;
+    use GrpcTrait;
 
     const VERSION = '1.28.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
+
+    private const GAPIC_KEYS = [
+        DatastoreGapicClient::class
+    ];
+
+    /**
+     * @var RequestHandler
+     * @internal
+     * The request handler responsible for sending requests and
+     * serializing responses into relevant classes.
+     */
+    protected $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @deprecated
@@ -157,7 +184,10 @@ class DatastoreClient
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
 
+        // TODO:
+        // [START] remove once upgraded to V2
         $connectionType = $this->getConnectionType($config);
+        // [END] remove once upgraded to V2
 
         $config += [
             'namespaceId' => null,
@@ -166,13 +196,53 @@ class DatastoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
+            'transportConfig' => [
+                'grpc' => [
+                    // increase default limit to 4MB to prevent metadata exhausted errors
+                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
+                ],
+            ],
         ];
+        $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain'],
+        );
 
+        $this->projectId = $this->detectProjectId($config);
+
+        // TODO:
+        // [START] remove once upgraded to V2
         $config = $this->configureAuthentication($config);
         $this->connection = $connectionType === 'grpc'
             ? new Grpc($config)
             : new Rest($config);
+        // [END] remove once upgraded to V2
+
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                if (is_string($v)) {
+                    $dt = new \DateTime($v);
+                    return ['seconds' => $dt->format('U')];
+                }
+                return $v;
+            }
+        ]);
+
+        $this->requestHandler = new RequestHandler(
+            $this->serializer,
+            self::GAPIC_KEYS,
+            $config
+        );
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
@@ -184,6 +254,8 @@ class DatastoreClient
         );
         $this->operation = new Operation(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->projectId,
             $config['namespaceId'],
             $this->entityMapper,
