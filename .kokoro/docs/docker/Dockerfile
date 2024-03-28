@@ -80,6 +80,10 @@ RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
         make install && \
         cp php.ini-production ${PHP_DIR}/lib/php.ini
 
+# Install gRPC
+RUN pecl install grpc && \
+    echo 'extension=grpc.so' >> ${PHP_DIR}/lib/conf.d/ext-grpc.ini
+
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php -r "if (hash_file('SHA384', 'composer-setup.php') === rtrim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
