@@ -51,6 +51,30 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string stop_sequences = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $stop_sequences;
+    /**
+     * Optional. Positive penalties.
+     *
+     * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $presence_penalty = null;
+    /**
+     * Optional. Frequency penalties.
+     *
+     * Generated from protobuf field <code>optional float frequency_penalty = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $frequency_penalty = null;
+    /**
+     * Optional. Output response mimetype of the generated candidate text.
+     * Supported mimetype:
+     * - `text/plain`: (default) Text output.
+     * - `application/json`: JSON response in the candidates.
+     * The model needs to be prompted to output the appropriate response type,
+     * otherwise the behavior is undefined.
+     * This is a preview feature.
+     *
+     * Generated from protobuf field <code>string response_mime_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $response_mime_type = '';
 
     /**
      * Constructor.
@@ -70,6 +94,18 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of output tokens to generate per message.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $stop_sequences
      *           Optional. Stop sequences.
+     *     @type float $presence_penalty
+     *           Optional. Positive penalties.
+     *     @type float $frequency_penalty
+     *           Optional. Frequency penalties.
+     *     @type string $response_mime_type
+     *           Optional. Output response mimetype of the generated candidate text.
+     *           Supported mimetype:
+     *           - `text/plain`: (default) Text output.
+     *           - `application/json`: JSON response in the candidates.
+     *           The model needs to be prompted to output the appropriate response type,
+     *           otherwise the behavior is undefined.
+     *           This is a preview feature.
      * }
      */
     public function __construct($data = NULL) {
@@ -279,6 +315,116 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->stop_sequences = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Positive penalties.
+     *
+     * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getPresencePenalty()
+    {
+        return isset($this->presence_penalty) ? $this->presence_penalty : 0.0;
+    }
+
+    public function hasPresencePenalty()
+    {
+        return isset($this->presence_penalty);
+    }
+
+    public function clearPresencePenalty()
+    {
+        unset($this->presence_penalty);
+    }
+
+    /**
+     * Optional. Positive penalties.
+     *
+     * Generated from protobuf field <code>optional float presence_penalty = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setPresencePenalty($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->presence_penalty = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Frequency penalties.
+     *
+     * Generated from protobuf field <code>optional float frequency_penalty = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getFrequencyPenalty()
+    {
+        return isset($this->frequency_penalty) ? $this->frequency_penalty : 0.0;
+    }
+
+    public function hasFrequencyPenalty()
+    {
+        return isset($this->frequency_penalty);
+    }
+
+    public function clearFrequencyPenalty()
+    {
+        unset($this->frequency_penalty);
+    }
+
+    /**
+     * Optional. Frequency penalties.
+     *
+     * Generated from protobuf field <code>optional float frequency_penalty = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setFrequencyPenalty($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->frequency_penalty = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output response mimetype of the generated candidate text.
+     * Supported mimetype:
+     * - `text/plain`: (default) Text output.
+     * - `application/json`: JSON response in the candidates.
+     * The model needs to be prompted to output the appropriate response type,
+     * otherwise the behavior is undefined.
+     * This is a preview feature.
+     *
+     * Generated from protobuf field <code>string response_mime_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getResponseMimeType()
+    {
+        return $this->response_mime_type;
+    }
+
+    /**
+     * Optional. Output response mimetype of the generated candidate text.
+     * Supported mimetype:
+     * - `text/plain`: (default) Text output.
+     * - `application/json`: JSON response in the candidates.
+     * The model needs to be prompted to output the appropriate response type,
+     * otherwise the behavior is undefined.
+     * This is a preview feature.
+     *
+     * Generated from protobuf field <code>string response_mime_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResponseMimeType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->response_mime_type = $var;
 
         return $this;
     }

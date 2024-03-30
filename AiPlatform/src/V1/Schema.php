@@ -27,12 +27,19 @@ class Schema extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The format of the data.
      * Supported formats:
-     *  for NUMBER type: float, double
-     *  for INTEGER type: int32, int64
+     *  for NUMBER type: "float", "double"
+     *  for INTEGER type: "int32", "int64"
+     *  for STRING type: "email", "byte", etc
      *
      * Generated from protobuf field <code>string format = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $format = '';
+    /**
+     * Optional. The title of the Schema.
+     *
+     * Generated from protobuf field <code>string title = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $title = '';
     /**
      * Optional. The description of the data.
      *
@@ -46,11 +53,30 @@ class Schema extends \Google\Protobuf\Internal\Message
      */
     private $nullable = false;
     /**
-     * Optional. Schema of the elements of Type.ARRAY.
+     * Optional. Default value of the data.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value default = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default = null;
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE ARRAY
+     * Schema of the elements of Type.ARRAY.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema items = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $items = null;
+    /**
+     * Optional. Minimum number of the elements for Type.ARRAY.
+     *
+     * Generated from protobuf field <code>int64 min_items = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $min_items = 0;
+    /**
+     * Optional. Maximum number of the elements for Type.ARRAY.
+     *
+     * Generated from protobuf field <code>int64 max_items = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $max_items = 0;
     /**
      * Optional. Possible values of the element of Type.STRING with enum format.
      * For example we can define an Enum Direction as :
@@ -60,7 +86,8 @@ class Schema extends \Google\Protobuf\Internal\Message
      */
     private $enum;
     /**
-     * Optional. Properties of Type.OBJECT.
+     * Optional. SCHEMA FIELDS FOR TYPE OBJECT
+     * Properties of Type.OBJECT.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -71,6 +98,51 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string required = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $required;
+    /**
+     * Optional. Minimum number of the properties for Type.OBJECT.
+     *
+     * Generated from protobuf field <code>int64 min_properties = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $min_properties = 0;
+    /**
+     * Optional. Maximum number of the properties for Type.OBJECT.
+     *
+     * Generated from protobuf field <code>int64 max_properties = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $max_properties = 0;
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE INTEGER and NUMBER
+     * Minimum value of the Type.INTEGER and Type.NUMBER
+     *
+     * Generated from protobuf field <code>double minimum = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $minimum = 0.0;
+    /**
+     * Optional. Maximum value of the Type.INTEGER and Type.NUMBER
+     *
+     * Generated from protobuf field <code>double maximum = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $maximum = 0.0;
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE STRING
+     * Minimum length of the Type.STRING
+     *
+     * Generated from protobuf field <code>int64 min_length = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $min_length = 0;
+    /**
+     * Optional. Maximum length of the Type.STRING
+     *
+     * Generated from protobuf field <code>int64 max_length = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $max_length = 0;
+    /**
+     * Optional. Pattern of the Type.STRING to restrict a string to a regular
+     * expression.
+     *
+     * Generated from protobuf field <code>string pattern = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $pattern = '';
     /**
      * Optional. Example of the object. Will only populated when the object is the
      * root.
@@ -90,22 +162,50 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type string $format
      *           Optional. The format of the data.
      *           Supported formats:
-     *            for NUMBER type: float, double
-     *            for INTEGER type: int32, int64
+     *            for NUMBER type: "float", "double"
+     *            for INTEGER type: "int32", "int64"
+     *            for STRING type: "email", "byte", etc
+     *     @type string $title
+     *           Optional. The title of the Schema.
      *     @type string $description
      *           Optional. The description of the data.
      *     @type bool $nullable
      *           Optional. Indicates if the value may be null.
+     *     @type \Google\Protobuf\Value $default
+     *           Optional. Default value of the data.
      *     @type \Google\Cloud\AIPlatform\V1\Schema $items
-     *           Optional. Schema of the elements of Type.ARRAY.
+     *           Optional. SCHEMA FIELDS FOR TYPE ARRAY
+     *           Schema of the elements of Type.ARRAY.
+     *     @type int|string $min_items
+     *           Optional. Minimum number of the elements for Type.ARRAY.
+     *     @type int|string $max_items
+     *           Optional. Maximum number of the elements for Type.ARRAY.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enum
      *           Optional. Possible values of the element of Type.STRING with enum format.
      *           For example we can define an Enum Direction as :
      *           {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]}
      *     @type array|\Google\Protobuf\Internal\MapField $properties
-     *           Optional. Properties of Type.OBJECT.
+     *           Optional. SCHEMA FIELDS FOR TYPE OBJECT
+     *           Properties of Type.OBJECT.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required
      *           Optional. Required properties of Type.OBJECT.
+     *     @type int|string $min_properties
+     *           Optional. Minimum number of the properties for Type.OBJECT.
+     *     @type int|string $max_properties
+     *           Optional. Maximum number of the properties for Type.OBJECT.
+     *     @type float $minimum
+     *           Optional. SCHEMA FIELDS FOR TYPE INTEGER and NUMBER
+     *           Minimum value of the Type.INTEGER and Type.NUMBER
+     *     @type float $maximum
+     *           Optional. Maximum value of the Type.INTEGER and Type.NUMBER
+     *     @type int|string $min_length
+     *           Optional. SCHEMA FIELDS FOR TYPE STRING
+     *           Minimum length of the Type.STRING
+     *     @type int|string $max_length
+     *           Optional. Maximum length of the Type.STRING
+     *     @type string $pattern
+     *           Optional. Pattern of the Type.STRING to restrict a string to a regular
+     *           expression.
      *     @type \Google\Protobuf\Value $example
      *           Optional. Example of the object. Will only populated when the object is the
      *           root.
@@ -145,8 +245,9 @@ class Schema extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The format of the data.
      * Supported formats:
-     *  for NUMBER type: float, double
-     *  for INTEGER type: int32, int64
+     *  for NUMBER type: "float", "double"
+     *  for INTEGER type: "int32", "int64"
+     *  for STRING type: "email", "byte", etc
      *
      * Generated from protobuf field <code>string format = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -159,8 +260,9 @@ class Schema extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The format of the data.
      * Supported formats:
-     *  for NUMBER type: float, double
-     *  for INTEGER type: int32, int64
+     *  for NUMBER type: "float", "double"
+     *  for INTEGER type: "int32", "int64"
+     *  for STRING type: "email", "byte", etc
      *
      * Generated from protobuf field <code>string format = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -170,6 +272,32 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->format = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The title of the Schema.
+     *
+     * Generated from protobuf field <code>string title = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Optional. The title of the Schema.
+     *
+     * Generated from protobuf field <code>string title = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->title = $var;
 
         return $this;
     }
@@ -227,7 +355,44 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Schema of the elements of Type.ARRAY.
+     * Optional. Default value of the data.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value default = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    public function hasDefault()
+    {
+        return isset($this->default);
+    }
+
+    public function clearDefault()
+    {
+        unset($this->default);
+    }
+
+    /**
+     * Optional. Default value of the data.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value default = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setDefault($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->default = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE ARRAY
+     * Schema of the elements of Type.ARRAY.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema items = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\Schema|null
@@ -248,7 +413,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Schema of the elements of Type.ARRAY.
+     * Optional. SCHEMA FIELDS FOR TYPE ARRAY
+     * Schema of the elements of Type.ARRAY.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Schema items = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\Schema $var
@@ -258,6 +424,58 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Schema::class);
         $this->items = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Minimum number of the elements for Type.ARRAY.
+     *
+     * Generated from protobuf field <code>int64 min_items = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMinItems()
+    {
+        return $this->min_items;
+    }
+
+    /**
+     * Optional. Minimum number of the elements for Type.ARRAY.
+     *
+     * Generated from protobuf field <code>int64 min_items = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMinItems($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->min_items = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maximum number of the elements for Type.ARRAY.
+     *
+     * Generated from protobuf field <code>int64 max_items = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMaxItems()
+    {
+        return $this->max_items;
+    }
+
+    /**
+     * Optional. Maximum number of the elements for Type.ARRAY.
+     *
+     * Generated from protobuf field <code>int64 max_items = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxItems($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_items = $var;
 
         return $this;
     }
@@ -293,7 +511,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Properties of Type.OBJECT.
+     * Optional. SCHEMA FIELDS FOR TYPE OBJECT
+     * Properties of Type.OBJECT.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -304,7 +523,8 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Properties of Type.OBJECT.
+     * Optional. SCHEMA FIELDS FOR TYPE OBJECT
+     * Properties of Type.OBJECT.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.Schema> properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -340,6 +560,194 @@ class Schema extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->required = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Minimum number of the properties for Type.OBJECT.
+     *
+     * Generated from protobuf field <code>int64 min_properties = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMinProperties()
+    {
+        return $this->min_properties;
+    }
+
+    /**
+     * Optional. Minimum number of the properties for Type.OBJECT.
+     *
+     * Generated from protobuf field <code>int64 min_properties = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMinProperties($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->min_properties = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maximum number of the properties for Type.OBJECT.
+     *
+     * Generated from protobuf field <code>int64 max_properties = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMaxProperties()
+    {
+        return $this->max_properties;
+    }
+
+    /**
+     * Optional. Maximum number of the properties for Type.OBJECT.
+     *
+     * Generated from protobuf field <code>int64 max_properties = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxProperties($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_properties = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE INTEGER and NUMBER
+     * Minimum value of the Type.INTEGER and Type.NUMBER
+     *
+     * Generated from protobuf field <code>double minimum = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getMinimum()
+    {
+        return $this->minimum;
+    }
+
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE INTEGER and NUMBER
+     * Minimum value of the Type.INTEGER and Type.NUMBER
+     *
+     * Generated from protobuf field <code>double minimum = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMinimum($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->minimum = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maximum value of the Type.INTEGER and Type.NUMBER
+     *
+     * Generated from protobuf field <code>double maximum = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getMaximum()
+    {
+        return $this->maximum;
+    }
+
+    /**
+     * Optional. Maximum value of the Type.INTEGER and Type.NUMBER
+     *
+     * Generated from protobuf field <code>double maximum = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMaximum($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->maximum = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE STRING
+     * Minimum length of the Type.STRING
+     *
+     * Generated from protobuf field <code>int64 min_length = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMinLength()
+    {
+        return $this->min_length;
+    }
+
+    /**
+     * Optional. SCHEMA FIELDS FOR TYPE STRING
+     * Minimum length of the Type.STRING
+     *
+     * Generated from protobuf field <code>int64 min_length = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMinLength($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->min_length = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maximum length of the Type.STRING
+     *
+     * Generated from protobuf field <code>int64 max_length = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMaxLength()
+    {
+        return $this->max_length;
+    }
+
+    /**
+     * Optional. Maximum length of the Type.STRING
+     *
+     * Generated from protobuf field <code>int64 max_length = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxLength($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_length = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Pattern of the Type.STRING to restrict a string to a regular
+     * expression.
+     *
+     * Generated from protobuf field <code>string pattern = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPattern()
+    {
+        return $this->pattern;
+    }
+
+    /**
+     * Optional. Pattern of the Type.STRING to restrict a string to a regular
+     * expression.
+     *
+     * Generated from protobuf field <code>string pattern = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPattern($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pattern = $var;
 
         return $this;
     }

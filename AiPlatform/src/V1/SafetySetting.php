@@ -27,6 +27,13 @@ class SafetySetting extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetySetting.HarmBlockThreshold threshold = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $threshold = 0;
+    /**
+     * Optional. Specify if the threshold is used for probability or severity
+     * score. If not specified, the threshold is used for probability score.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetySetting.HarmBlockMethod method = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $method = 0;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class SafetySetting extends \Google\Protobuf\Internal\Message
      *           Required. Harm category.
      *     @type int $threshold
      *           Required. The harm block threshold.
+     *     @type int $method
+     *           Optional. Specify if the threshold is used for probability or severity
+     *           score. If not specified, the threshold is used for probability score.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class SafetySetting extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\SafetySetting\HarmBlockThreshold::class);
         $this->threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specify if the threshold is used for probability or severity
+     * score. If not specified, the threshold is used for probability score.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetySetting.HarmBlockMethod method = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * Optional. Specify if the threshold is used for probability or severity
+     * score. If not specified, the threshold is used for probability score.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetySetting.HarmBlockMethod method = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMethod($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\SafetySetting\HarmBlockMethod::class);
+        $this->method = $var;
 
         return $this;
     }

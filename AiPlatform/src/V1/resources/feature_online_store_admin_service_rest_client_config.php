@@ -491,6 +491,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/studies/*/operations/*}:cancel',
                     ],
                     [
@@ -628,6 +632,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*/evaluations/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
@@ -792,6 +800,10 @@ return [
                     ],
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/studies/*/operations/*}',
                     ],
                     [
@@ -953,6 +965,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -1129,6 +1145,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/studies/*/operations/*}',
                     ],
                     [
@@ -1294,6 +1314,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
@@ -1478,6 +1502,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/pipelineJobs/*}/operations',
                     ],
                     [
@@ -1578,7 +1606,7 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/ui/{name=projects/*/locations/*/tuningJobs/*}/operations',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/tuningJobs/*}/operations',
                     ],
                     [
                         'method' => 'get',
@@ -1631,6 +1659,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/trainingPipelines/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*}/operations',
                     ],
                     [
                         'method' => 'get',
@@ -1815,6 +1847,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/pipelineJobs/*/operations/*}:wait',
                     ],
                     [
@@ -1964,6 +2000,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',
