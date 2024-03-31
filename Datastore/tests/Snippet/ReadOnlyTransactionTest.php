@@ -104,11 +104,12 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
+        $this->mockSendRequest(
+            'beginTransaction',
+            [],
+            ['transaction' => 'foo'],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -124,11 +125,12 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testClassRollback()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
+        $this->mockSendRequest(
+            'beginTransaction',
+            [],
+            ['transaction' => 'foo'],
+            0
+        );
         $this->connection->lookup(Argument::any())
             ->shouldBeCalled()
             ->willReturn([]);

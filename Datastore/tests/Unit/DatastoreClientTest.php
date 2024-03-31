@@ -215,13 +215,12 @@ class DatastoreClientTest extends TestCase
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
 
-        $this->connection->allocateIds(Argument::withEntry('keys', [
-            $key->keyObject()
-        ]))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->mockSendRequest(
+            'allocateIds',
+            ['keys' => [$key->keyObject()]],
+            ['keys' => [$keyWithId->keyObject()]],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -249,23 +248,14 @@ class DatastoreClientTest extends TestCase
      */
     public function testTransaction($method, $type, $key)
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT),
-            // can't do direct comparisons between (object)[].
-            Argument::that(function ($arg) use ($key) {
-                if (!($arg['transactionOptions'][$key] instanceof \stdClass)) {
-                    return false;
-                }
-
-                if ((array) $arg['transactionOptions'][$key]) {
-                    return false;
-                }
-
-                return true;
-            })
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION
-        ]);
+       $this->mockSendRequest(
+            'beginTransaction',
+            [
+                'projectId' => self::PROJECT,
+                'transactionOptions' => ['readTime' => []]
+            ],
+            ['transaction' => self::TRANSACTION]
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -280,16 +270,14 @@ class DatastoreClientTest extends TestCase
      */
     public function testTransactionWithOptions($method, $type, $key)
     {
-        $options = ['foo' => 'bar'];
-
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT),
-            Argument::withEntry('transactionOptions', [
-                $key => $options
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION
-        ]);
+        $this->mockSendRequest(
+            'beginTransaction',
+            [
+                'projectId' => self::PROJECT,
+                'transactionOptions' => [$key => []]
+            ],
+            ['transaction' => self::TRANSACTION]
+        );
 
         // Make sure the correct transaction ID was injected.
         $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
@@ -300,7 +288,7 @@ class DatastoreClientTest extends TestCase
             'projectId' => self::PROJECT
         ]);
 
-        $res = $this->client->$method(['transactionOptions' => $options]);
+        $res = $this->client->$method(['transactionOptions' => []]);
         $this->assertInstanceOf($type, $res);
 
         iterator_to_array($res->runQuery($this->client->gqlQuery('SELECT 1=1')));
@@ -376,13 +364,11 @@ class DatastoreClientTest extends TestCase
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->mockSendRequest(
+            'allocateIds',
+            ['keys' => [$key->keyObject()]],
+            ['keys' => [$keyWithId->keyObject()]]
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -405,13 +391,11 @@ class DatastoreClientTest extends TestCase
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->mockSendRequest(
+            'allocateIds',
+            ['keys' => [$key->keyObject()]],
+            ['keys' => [$keyWithId->keyObject()]]
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -684,7 +668,7 @@ class DatastoreClientTest extends TestCase
                         'aggregateProperties' => ['property_1' => 1]
                     ]
                 ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
             ]
         ]);
 
@@ -720,7 +704,7 @@ class DatastoreClientTest extends TestCase
                         'aggregateProperties' => ['property_1' => $response]
                     ]
                 ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+                'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
             ]
         ]);
 

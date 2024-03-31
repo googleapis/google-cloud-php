@@ -22,6 +22,8 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Prophecy\Argument;
 
 /**
  * Refresh Datastore operation class
@@ -87,5 +89,73 @@ trait DatastoreOperationRefreshTrait
         ));
 
         return $stub;
+    }
+
+    /**
+     * Helper method for Unit and Snippet test classes. This mocks the
+     * $requestHandler class property present in the Test Class with
+     * given arguments.
+     *
+     * @param string $methodName The method name to mock in RequestHandler::sendRequest
+     * @param array<string, mixed> $params The parameters to look for in the
+     * array equivalent of rpc request.
+     * @param mixed $returnValue The value to be returned by sendRequest mock.
+     * @param null|int $shouldBeCalledTimes Adds a shouldBeCalled prophecy. Defaults to `null`, implying nothing is added.
+     * [
+     *      `0` => `shouldBeCalled`,
+     *      Non zero positive integer $x => `shouldBeCalledTimes($x)`
+     * ]
+     */
+    private function mockSendRequest($methodName, $params, $returnValue, $shouldBeCalledTimes = null)
+    {
+        if (isset($this->serializer)) {
+            $serializer = $this->serializer;
+        } else {
+            $serializer = new Serializer([], [
+                'google.protobuf.Value' => function ($v) {
+                    return $this->flattenValue($v);
+                },
+                'google.protobuf.Timestamp' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
+                }
+            ], [], [
+                'google.protobuf.Timestamp' => function ($v) {
+                    if (is_string($v)) {
+                        $dt = new \DateTime($v);
+                        return ['seconds' => $dt->format('U')];
+                    }
+                    return $v;
+                }
+            ]);
+        }
+
+        $prophecy = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            $methodName,
+            Argument::that(function ($arg) use ($methodName, $params, $serializer) {
+                $requestName = ucfirst($methodName . 'Request');
+                $x = explode('\\', get_class($arg));
+                $argName = end($x);
+
+                if ($requestName != $argName) {
+                    return false;
+                }
+                $data = $serializer->encodeMessage($arg);
+                // $z = array_replace_recursive($data, $params) == $data;
+                return array_replace_recursive($data, $params) == $data;
+                // return array_merge($params, $data) == $data;
+            }),
+            Argument::cetera()
+        );
+
+        if (!is_null($shouldBeCalledTimes)) {
+            if ($shouldBeCalledTimes == 0) {
+                $prophecy->shouldBeCalled();
+            } else {
+                $prophecy->shouldBeCalledTimes($shouldBeCalledTimes);
+            }
+        }
+
+        $prophecy->willReturn($returnValue);
     }
 }

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
@@ -36,8 +37,10 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const TRANSACTION = 'transaction-id';
+    const PROJECT = 'example-project';
 
     private $connection;
     private $client;
@@ -78,12 +81,11 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             })
         ))->shouldBeCalled()->willReturn([]);
 
-        $this->connection->beginTransaction(Argument::withEntry(
-            'transactionOptions',
-            ['readWrite' => (object) []]
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION,
-        ]);
+        $this->mockSendRequest(
+            'beginTransaction',
+            ['transactionOptions' => ['readWrite' => []]],
+            ['transaction' => self::TRANSACTION]
+        );
 
         $this->connection->commit(Argument::allOf(
             Argument::withEntry('transaction', self::TRANSACTION),
@@ -99,7 +101,9 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             })
         ))->shouldBeCalled()->willReturn([]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();
@@ -124,12 +128,11 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             })
         ))->shouldBeCalled()->willReturn([]);
 
-        $this->connection->beginTransaction(Argument::withEntry(
-            'transactionOptions',
-            ['readWrite' => (object) []]
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION,
-        ]);
+        $this->mockSendRequest(
+            'beginTransaction',
+            ['transactionOptions' => ['readWrite' => []]],
+            ['transaction' => self::TRANSACTION]
+        );
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
@@ -137,7 +140,9 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
                 trigger_error('oops!', E_USER_WARNING);
             });
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal());
+        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();

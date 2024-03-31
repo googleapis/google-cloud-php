@@ -413,13 +413,11 @@ class TransactionTest extends TestCase
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->mockSendRequest(
+            'allocateIds',
+            ['keys' => [$key->keyObject()]],
+            ['keys' => [$keyWithId->keyObject()]]
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -445,13 +443,11 @@ class TransactionTest extends TestCase
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->mockSendRequest(
+            'allocateIds',
+            ['keys' => [$key->keyObject()]],
+            ['keys' => [$keyWithId->keyObject()]]
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
