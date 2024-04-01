@@ -80,7 +80,7 @@ class RequestHandler
         // Initialize the client classes and store them in memory
         $this->clients = [];
         foreach ($clientClasses as $className) {
-            $this->clients[$className] = new $className($clientConfig);
+            $this->addClientObject($className, new $className($clientConfig));
         }
     }
 
@@ -135,8 +135,19 @@ class RequestHandler
      * @param $clientClass The client class whose object we need.
      * @return mixed
      */
-    private function getClientObject(string $clientClass)
+    public function getClientObject(string $clientClass)
     {
         return $this->clients[$clientClass] ?? null;
+    }
+
+    /**
+     * Helper function to add a client object to the $clients array.
+     *
+     * @param $clientName The class name of the client.
+     * @param $clientObject The client object to be added.
+     */
+    public function addClientObject(string $clientName, mixed $clientObject)
+    {
+        $this->clients[$clientName] = $clientObject;
     }
 }
