@@ -141,9 +141,7 @@ trait DatastoreOperationRefreshTrait
                     return false;
                 }
                 $data = $serializer->encodeMessage($arg);
-                // $z = array_replace_recursive($data, $params) == $data;
                 return array_replace_recursive($data, $params) == $data;
-                // return array_merge($params, $data) == $data;
             }),
             Argument::cetera()
         );

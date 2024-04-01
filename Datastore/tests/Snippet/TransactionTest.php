@@ -320,9 +320,10 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -339,7 +340,8 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -355,9 +357,10 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -388,7 +391,8 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

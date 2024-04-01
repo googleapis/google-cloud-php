@@ -562,9 +562,10 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookup');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->lookup(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -581,7 +582,8 @@ class DatastoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -602,9 +604,10 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookupBatch');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->connection->lookup(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -635,7 +638,8 @@ class DatastoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

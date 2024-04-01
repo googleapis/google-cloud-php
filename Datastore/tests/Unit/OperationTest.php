@@ -31,6 +31,7 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\LookupRequest;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -281,9 +282,12 @@ class OperationTest extends TestCase
     {
         $key = $this->operation->key('foo', 'Bar');
 
-        $this->connection->lookup(Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn([]);
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            [],
+            0
+        );
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -295,9 +299,11 @@ class OperationTest extends TestCase
     public function testLookupFound()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $body,
-        ]);
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['found' => $body,]
+        );
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -317,9 +323,12 @@ class OperationTest extends TestCase
     public function testLookupMissing()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'missing' => $body,
-        ]);
+
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['missing' => $body,]
+        );
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -337,9 +346,12 @@ class OperationTest extends TestCase
     public function testLookupDeferred()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'deferred' => [$body[0]['entity']['key']],
-        ]);
+
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['deferred' => [$body[0]['entity']['key']]]
+        );
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -354,9 +366,13 @@ class OperationTest extends TestCase
 
     public function testLookupWithReadOptionsFromTransaction()
     {
-        $this->connection->lookup(Argument::withKey('readOptions'))->shouldBeCalled()->willReturn([]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['transaction' => 'foo']],
+            [],
+            0
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
@@ -367,24 +383,32 @@ class OperationTest extends TestCase
 
     public function testLookupWithReadOptionsFromReadConsistency()
     {
-        $this->connection->lookup(Argument::withKey('readOptions'))->shouldBeCalled()->willReturn([]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['readConsistency' => 123]],
+            [],
+            0
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
         ]);
 
-        $this->operation->lookup([$k], ['readConsistency' => 'foo']);
+        $this->operation->lookup([$k], ['readConsistency' => 123]);
     }
 
     public function testLookupWithoutReadOptions()
     {
-        $this->connection->lookup(Argument::that(function ($args) {
-            return !isset($args['readOptions']);
-        }))->shouldBeCalled()->willReturn([]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            Argument::any(),
+            Argument::any(),
+            Argument::that(function (LookupRequest $arg) {
+                return !$arg->hasReadOptions();
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
@@ -404,11 +428,12 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $data['entities'],
-        ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['found' => $data['entities']]
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys, [
             'sort' => true,
@@ -432,12 +457,15 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $data['entities'],
-            'missing' => $data['missing'],
-        ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            [
+                'found' => $data['entities'],
+                'missing' => $data['missing'],
+            ]
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys);
 
@@ -464,11 +492,12 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $data['entities'],
-        ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['found' => $data['entities'],]
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys, [
             'sort' => true,
@@ -854,12 +883,12 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->connection->lookup(Argument::type('array'))
-            ->willReturn([
-                'found' => $res,
-            ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['found' => $res,]
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -875,12 +904,12 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_NO_PROPERTIES_FIXTURE()), true);
 
-        $this->connection->lookup(Argument::type('array'))
-            ->willReturn([
-                'found' => $res,
-            ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['found' => $res,]
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -895,12 +924,12 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->connection->lookup(Argument::type('array'))
-            ->willReturn([
-                'found' => $res,
-            ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['found' => $res,]
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -919,12 +948,12 @@ class OperationTest extends TestCase
 
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->connection->lookup(Argument::type('array'))
-            ->willReturn([
-                'found' => $res,
-            ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            ['found' => $res,]
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -937,13 +966,13 @@ class OperationTest extends TestCase
 
     public function testTransactionInReadOptions()
     {
-        $this->connection->lookup(Argument::that(function ($arg) {
-            return isset($arg['readOptions']['transaction']);
-        }))
-            ->willReturn([])
-            ->shouldBeCalled();
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['transaction' => '1234']],
+            [],
+            0
+        );
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key], [
@@ -953,13 +982,15 @@ class OperationTest extends TestCase
 
     public function testNonTransactionalReadOptions()
     {
-        $this->connection->lookup(Argument::that(function ($arg) {
-            return !isset($arg['readOptions']['transaction']);
-        }))
-            ->willReturn([])
-            ->shouldBeCalled();
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            Argument::any(),
+            Argument::any(),
+            Argument::that(function (LookupRequest $arg) {
+                return (!$arg->hasReadOptions()) || (!$arg->getReadOptions()->hasTransaction());
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key]);
@@ -967,15 +998,18 @@ class OperationTest extends TestCase
 
     public function testReadConsistencyInReadOptions()
     {
-        $this->connection->lookup(Argument::withEntry('readOptions', ['readConsistency' => 'test']))
-            ->willReturn([])
-            ->shouldBeCalled();
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['readConsistency' => 123]],
+            [],
+            0
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key], [
-            'readConsistency' => 'test',
+            'readConsistency' => 123,
         ]);
     }
 
@@ -1021,12 +1055,19 @@ class OperationTest extends TestCase
 
     public function testLookupWithDatabaseIdOverride()
     {
-        $this->connection
-            ->lookup(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        // $this->connection
+        //     ->lookup(
+        //         Argument::withEntry('databaseId', 'otherDatabaseId')
+        //     )
+        //     ->shouldBeCalledTimes(1)
+        //     ->willReturn([]);
+
+        $this->mockSendRequest(
+            'lookup',
+            ['databaseId' => 'otherDatabaseId'],
+            [],
+            1
+        );
 
         $this->operation->lookup(
             [],

@@ -31,6 +31,9 @@ use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\AllocateIdsRequest;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\Key\PathElement;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\PartitionId;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 
@@ -453,11 +456,22 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         });
 
-        $res = $this->connection->lookup($options + $this->readOptions($options) + [
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['transaction', 'className', 'sort', 'readTime', 'readConsistency']);
+        $data += $this->readOptions($options) + [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
-            'keys' => $serviceKeys,
-        ]);
+            'keys' => $this->keysList($serviceKeys),
+        ];
+
+        $request = $this->serializer->decodeMessage(new LookupRequest(), $data);
+        $x = $this->serializer->encodeMessage($request);
+
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'lookup',
+            $request,
+            $optionalArgs
+        );
 
         $result = [];
         if (isset($res['found'])) {
@@ -928,5 +942,46 @@ class Operation
         }
 
         return $ret;
+    }
+
+    /**
+     * Convert a list of keys to a list of {@see Google\Cloud\Datastore\V1\Key}.
+     *
+     * @param array[] $keys
+     * @return Key[]
+     */
+    private function keysList(array $keys)
+    {
+        $out = [];
+        foreach ($keys as $key) {
+            $local = [];
+
+            if (isset($key['partitionId'])) {
+                $p = $this->arrayFilterRemoveNull([
+                    'project_id' => isset($key['partitionId']['projectId'])
+                        ? $key['partitionId']['projectId']
+                        : null,
+                    'namespace_id' => isset($key['partitionId']['namespaceId'])
+                        ? $key['partitionId']['namespaceId']
+                        : null,
+                    'database_id' => isset($key['partitionId']['databaseId'])
+                        ? $key['partitionId']['databaseId']
+                        : null,
+                ]);
+
+                $local['partition_id'] = new PartitionId($p);
+            }
+
+            $local['path'] = [];
+            if (isset($key['path'])) {
+                foreach ($key['path'] as $element) {
+                    $local['path'][] = new PathElement($element);
+                }
+            }
+
+            $out[] = $local;
+        }
+
+        return $out;
     }
 }

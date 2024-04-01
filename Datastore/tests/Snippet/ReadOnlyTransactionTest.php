@@ -131,9 +131,12 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             ['transaction' => 'foo'],
             0
         );
-        $this->connection->lookup(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([]);
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            [],
+            0
+        );
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
@@ -157,9 +160,10 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -176,7 +180,8 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -192,9 +197,10 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -225,7 +231,8 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

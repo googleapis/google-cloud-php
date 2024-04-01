@@ -248,11 +248,11 @@ class DatastoreClientTest extends TestCase
      */
     public function testTransaction($method, $type, $key)
     {
-       $this->mockSendRequest(
+        $this->mockSendRequest(
             'beginTransaction',
             [
                 'projectId' => self::PROJECT,
-                'transactionOptions' => ['readTime' => []]
+                'transactionOptions' => [($method == 'transaction' ? 'readWrite' : 'readOnly') => []]
             ],
             ['transaction' => self::TRANSACTION]
         );
@@ -260,7 +260,6 @@ class DatastoreClientTest extends TestCase
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
-
         $res = $this->client->$method();
         $this->assertInstanceOf($type, $res);
     }
@@ -486,15 +485,18 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->mockSendRequest(
+            'lookup',
+            ['keys' => [$key->keyObject()]],
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -510,15 +512,18 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'missing' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->mockSendRequest(
+            'lookup',
+            ['keys' => [$key->keyObject()]],
+            [
+                'missing' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -533,23 +538,26 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->mockSendRequest(
+            'lookup',
+            ['keys' => [$key->keyObject()]],
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ],
+                'missing' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ],
+                'deferred' => [
+                    $key->keyObject()
                 ]
             ],
-            'missing' => [
-                [
-                    'entity' => $this->entityArray($key)
-                ]
-            ],
-            'deferred' => [
-                $key->keyObject()
-            ]
-        ]);
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -567,15 +575,18 @@ class DatastoreClientTest extends TestCase
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
 
-        $this->connection->lookup(
-            Argument::withEntry('readTime', $time)
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['readTime' => $time]],
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -590,16 +601,21 @@ class DatastoreClientTest extends TestCase
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()]),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->mockSendRequest(
+            'lookup',
+            [
+                'keys' => [$key->keyObject()],
+                'readOptions' => ['readTime' => $time]
+            ],
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

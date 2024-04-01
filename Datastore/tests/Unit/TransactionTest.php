@@ -110,16 +110,21 @@ class TransactionTest extends TestCase
      */
     public function testLookup(callable $transaction)
     {
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
+        $this->mockSendRequest(
+            'lookup',
+            [
+                'readOptions' => ['transaction' => self::TRANSACTION],
+                'keys' => [$this->key->keyObject()],
+            ],
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $transaction = $transaction();
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
@@ -134,17 +139,25 @@ class TransactionTest extends TestCase
     public function testLookupWithReadTime()
     {
         $time = new Timestamp(new \DateTime());
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('keys', [$this->key->keyObject()]),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
+
+        $this->mockSendRequest(
+            'lookup',
+            [
+                'readOptions' => [
+                    'readTime' => $time,
+                    'transaction' => self::TRANSACTION,
+                ],
+                'keys' => [$this->key->keyObject()],
+            ],
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $transaction = $this->readOnly;
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
@@ -160,15 +173,18 @@ class TransactionTest extends TestCase
      */
     public function testLookupMissing(callable $transaction)
     {
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'missing' => [
-                [
-                    'entity' => $this->entityArray($this->key)
+        $this->mockSendRequest(
+            'lookup',
+            ['keys' => [$this->key->keyObject()]],
+            [
+                'missing' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $transaction = $transaction();
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
@@ -184,23 +200,26 @@ class TransactionTest extends TestCase
      */
     public function testLookupBatch(callable $transaction)
     {
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
+        $this->mockSendRequest(
+            'lookup',
+            ['keys' => [$this->key->keyObject()]],
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
+                ],
+                'missing' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
+                ],
+                'deferred' => [
+                    $this->key->keyObject()
                 ]
             ],
-            'missing' => [
-                [
-                    'entity' => $this->entityArray($this->key)
-                ]
-            ],
-            'deferred' => [
-                $this->key->keyObject()
-            ]
-        ]);
+            0
+        );
 
         $transaction = $transaction();
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
@@ -219,15 +238,18 @@ class TransactionTest extends TestCase
     public function testLookupBatchWithReadTime(callable $transaction)
     {
         $time = new Timestamp(new \DateTime());
-        $this->connection->lookup(
-            Argument::withEntry('readTime', $time)
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
+        $this->mockSendRequest(
+            'lookup',
+            ['readOptions' => ['readTime' => $time]],
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $transaction = $transaction();
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [

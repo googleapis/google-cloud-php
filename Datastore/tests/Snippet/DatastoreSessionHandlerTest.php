@@ -72,14 +72,22 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class);
         $snippet->replace('$datastore = new DatastoreClient();', '');
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return $args['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                 && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
-                 && isset($args['keys'][0]['path'][0]['name']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
+        $this->mockSendRequest(
+            'lookup',
+            [
+                'keys' => [
+                    [
+                        'partitionId' => ['namespaceId' => 'sessions'],
+                        'path' => [
+                            ['kind' => 'PHPSESSID']
+                        ]
+                    ]
+                ],
+                'readOptions' => ['transaction' => self::TRANSACTION]
+            ],
+            [],
+            0
+        );
 
         $this->mockSendRequest(
             'beginTransaction',
@@ -119,14 +127,22 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class, 1);
         $snippet->replace('$datastore = new DatastoreClient();', '');
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return $args['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                    && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
-                    && isset($args['keys'][0]['path'][0]['name']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
+        $this->mockSendRequest(
+            'lookup',
+            [
+                'keys' => [
+                    [
+                        'partitionId' => ['namespaceId' => 'sessions'],
+                        'path' => [
+                            ['kind' => 'PHPSESSID']
+                        ]
+                    ]
+                ],
+                'readOptions' => ['transaction' => self::TRANSACTION]
+            ],
+            [],
+            0
+        );
 
         $this->mockSendRequest(
             'beginTransaction',
