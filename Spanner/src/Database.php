@@ -17,22 +17,28 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
+use Google\Cloud\Core\LongRunning\LROTraitV2;
+use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
@@ -72,7 +78,7 @@ use Google\Rpc\Code;
  *
  *     @param string $operationName The Long Running Operation name.
  *     @param array $info [optional] The operation data.
- *     @return LongRunningOperation
+ *     @return LongRunningOperationManager
  * }
  * @method longRunningOperations() {
  *     List long running operations.
@@ -99,9 +105,11 @@ use Google\Rpc\Code;
  */
 class Database
 {
-    use LROTrait;
+    use LROTraitV2;
     use TransactionConfigurationTrait;
-    use RequestHeaderTrait;
+    use RequestTrait;
+    use ApiHelperTrait;
+    use OperationResponseTrait;
 
     const STATE_CREATING = State::CREATING;
     const STATE_READY = State::READY;
@@ -131,6 +139,19 @@ class Database
     private $connection;
 
     /**
+     * @var RequestHandler
+     * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
+
+    /**
      * @var Instance
      */
     private $instance;
@@ -156,7 +177,7 @@ class Database
     private $info;
 
     /**
-     * @var Iam|null
+     * @var IamManager|null
      */
     private $iam;
 
@@ -188,9 +209,9 @@ class Database
     /**
      * Create an object representing a Database.
      *
-     * @param ConnectionInterface $connection The connection to the
-     *        Cloud Spanner Admin API. This object is created by SpannerClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the database exists.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
@@ -206,6 +227,8 @@ class Database
      */
     public function __construct(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         Instance $instance,
         LongRunningConnectionInterface $lroConnection,
         array $lroCallables,
@@ -216,6 +239,8 @@ class Database
         array $info = [],
         $databaseRole = ''
     ) {
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->connection = $connection;
         $this->instance = $instance;
         $this->projectId = $projectId;
@@ -228,7 +253,14 @@ class Database
             $this->sessionPool->setDatabase($this);
         }
 
-        $this->setLroProperties($lroConnection, $lroCallables, $this->name);
+        $this->setLroProperties(
+            $requestHandler,
+            $serializer,
+            DatabaseAdminClient::class,
+            $lroCallables,
+            self::$lroResponseMappers,
+            $this->name
+        );
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
     }
@@ -422,22 +454,41 @@ class Database
      *
      *     @type string[] $statements Additional DDL statements.
      * }
-     * @return LongRunningOperation<Database>
+     * @return LongRunningOperationManager<Database>
      */
     public function create(array $options = [])
     {
-        $statements = $this->pluck('statements', $options, false) ?: [];
-        $dialect = $options['databaseDialect'] ?? null;
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $dialect = $data['databaseDialect'] ?? null;
 
-        $createStatement = $this->getCreateDbStatement($dialect);
+        $data += [
+            'parent' => $this->instance->name(),
+            'createStatement' => $this->getCreateDbStatement($dialect),
+            'extraStatements' => $this->pluck('statements', $data, false) ?: []
+        ];
+        if (isset($data['encryptionConfig'])) {
+            $data['encryptionConfig'] = $this->serializer->decodeMessage(
+                new EncryptionConfig,
+                $this->pluck('encryptionConfig', $options)
+            );
+        }
+        $request = $this->serializer->decodeMessage(new CreateDatabaseRequest(), $data);
+        $res = $this->requestHandler->sendRequest(
+            DatabaseAdminClient::class,
+            'createDatabase',
+            $request,
+            $this->addResourcePrefixHeader($optionalArgs, $this->instance->name())
+        );
 
-        $operation = $this->connection->createDatabase([
-            'instance' => $this->instance->name(),
-            'createStatement' => $createStatement,
-            'extraStatements' => $statements
-        ] + $options);
-
-        return $this->resumeOperation($operation['name'], $operation);
+        $operation = $this->operationToArray(
+            $res,
+            $this->serializer,
+            self::$lroResponseMappers
+        );
+        return $this->resumeOperation(
+            $operation['name'],
+            $operation
+        );
     }
 
     /**
@@ -644,15 +695,16 @@ class Database
      * $iam = $database->iam();
      * ```
      *
-     * @return Iam
+     * @return IamManager
      */
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam(
-                new IamDatabase($this->connection),
-                $this->name
-            );
+            $this->iam = new IamManager(
+                $this->requestHandler,
+                $this->serializer,
+                SpannerClient::class,
+                $this->name);
         }
 
         return $this->iam;
@@ -2072,18 +2124,6 @@ class Database
             'database' => end($databaseParts),
             'instance' => end($instanceParts),
         ];
-    }
-
-    /**
-     * Returns the underlying connection.
-     *
-     * @access private
-     * @return ConnectionInterface
-     * @experimental
-     */
-    public function connection()
-    {
-        return $this->connection;
     }
 
     /**

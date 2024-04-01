@@ -26,7 +26,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 trait TransactionalReadTrait
 {
     use TransactionConfigurationTrait;
-    use RequestHeaderTrait;
+    use RequestTrait;
 
     /**
      * @var Operation

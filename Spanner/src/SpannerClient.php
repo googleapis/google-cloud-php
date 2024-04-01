@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Serializer;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
@@ -59,7 +60,7 @@ use Google\ApiCore\ValidationException;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * ```
  *
  * ```
@@ -70,14 +71,15 @@ use Google\ApiCore\ValidationException;
  * // `9010` is used as an example only.
  * putenv('SPANNER_EMULATOR_HOST=localhost:9010');
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * ```
  *
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  * use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
  *
- * $directedOptions = [
+ * $config = [
+ *     'projectId' => 'my-project',
  *     'directedReadOptions' => [
  *         'includeReplicas' => [
  *             'replicaSelections' => [
@@ -90,13 +92,13 @@ use Google\ApiCore\ValidationException;
  *         ]
  *     ]
  * ];
- * $spanner = new SpannerClient($directedOptions);
+ * $spanner = new SpannerClient($config);
  * ```
  *
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $config = ['routeToLeader' => false];
+ * $config = ['projectId' => 'my-project', 'routeToLeader' => false];
  * $spanner = new SpannerClient($config);
  * ```
  *
@@ -127,9 +129,21 @@ class SpannerClient
 
     /**
      * @var Connection\ConnectionInterface
-     * @internal
      */
     protected $connection;
+
+    /**
+     * @var RequestHandler
+     * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @var bool

@@ -45,7 +45,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
-use Google\Cloud\Spanner\RequestHeaderTrait;
+use Google\Cloud\Spanner\RequestTrait;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\DirectedReadOptions;
@@ -86,7 +86,7 @@ class Grpc implements ConnectionInterface
     use EmulatorTrait;
     use GrpcTrait;
     use OperationResponseTrait;
-    use RequestHeaderTrait;
+    use RequestTrait;
 
     /**
      * @var InstanceAdminClient|null
