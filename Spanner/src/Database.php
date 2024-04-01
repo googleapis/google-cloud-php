@@ -132,6 +132,7 @@ class Database
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_OID = 'pgOid';
 
+    # TODO: Remove the connection related objects
     /**
      * @var ConnectionInterface
      * @internal
@@ -239,9 +240,10 @@ class Database
         array $info = [],
         $databaseRole = ''
     ) {
+        # TODO: Remove the connection related objects
+        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
-        $this->connection = $connection;
         $this->instance = $instance;
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedDatabaseName($name);
@@ -256,10 +258,10 @@ class Database
         $this->setLroProperties(
             $requestHandler,
             $serializer,
-            DatabaseAdminClient::class,
             $lroCallables,
             self::$lroResponseMappers,
-            $this->name
+            $this->name,
+            DatabaseAdminClient::class
         );
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
@@ -704,7 +706,8 @@ class Database
                 $this->requestHandler,
                 $this->serializer,
                 SpannerClient::class,
-                $this->name);
+                $this->name
+            );
         }
 
         return $this->iam;

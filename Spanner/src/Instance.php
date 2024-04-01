@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -26,6 +27,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -91,11 +93,25 @@ class Instance
 
     const DEFAULT_NODE_COUNT = 1;
 
+    # TODO: Remove the connection related objects
     /**
      * @var ConnectionInterface
      * @internal
      */
     private $connection;
+
+    /**
+     * @var RequestHandler
+     * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -130,11 +146,9 @@ class Instance
     /**
      * Create an object representing a Cloud Spanner instance.
      *
-     * @param ConnectionInterface $connection The connection to the
-     *        Cloud Spanner Admin API. This object is created by SpannerClient,
-     *        and should not be instantiated outside of this client.
-     * @param LongRunningConnectionInterface $lroConnection An implementation
-     *        mapping to methods which handle LRO resolution in the service.
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The instance name or ID.
@@ -154,6 +168,8 @@ class Instance
     public function __construct(
         ConnectionInterface $connection,
         LongRunningConnectionInterface $lroConnection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         array $lroCallables,
         $projectId,
         $name,
@@ -161,12 +177,14 @@ class Instance
         array $info = [],
         array $options = []
     ) {
+        # TODO: Remove the connection related objects
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
         $this->returnInt64AsObject = $returnInt64AsObject;
         $this->info = $info;
-
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
     }
@@ -517,8 +535,11 @@ class Instance
      */
     public function database($name, array $options = [])
     {
+        # TODO: Remove the connection related objects
         return new Database(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this,
             $this->lroConnection,
             $this->lroCallables,

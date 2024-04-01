@@ -21,8 +21,8 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
+# TODO: Point to the correct request class
 use Google\LongRunning\ListOperationsRequest;
-use Google\LongRunning\OperationsGrpcClient;
 
 /**
  * Provide Long Running Operation support to Google Cloud PHP Clients.
@@ -42,11 +42,6 @@ trait LROTraitV2
     private Serializer $serializer;
 
     /**
-     * @var string
-     */
-    private $clientClass;
-
-    /**
      * @var array
      */
     private $lroCallables;
@@ -55,6 +50,11 @@ trait LROTraitV2
      * @var string
      */
     private $lroResource;
+
+    /**
+     * @var string
+     */
+    private $clientClass;
 
     /**
      * Populate required LRO properties.
@@ -69,21 +69,22 @@ trait LROTraitV2
      * @param array $lroResponseMappers A list of mappers for deserializing operation results.
      * @param string $lroResource [optional] The resource for which operations
      *        may be listed.
+     * @param string $clientClass The request will be forwarded to this client class.
      */
     private function setLroProperties(
         RequestHandler $requestHandler,
         Serializer $serializer,
-        string $clientClass,
         array $lroCallables,
         array $lroResponseMappers,
-        $resource = null
+        string $lroResource = null,
+        string $clientClass = null
     ) {
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
-        $this->clientClass = $clientClass;
         $this->lroCallables = $lroCallables;
         $this->lroResponseMappers = $lroResponseMappers;
-        $this->lroResource = $resource;
+        $this->lroResource = $lroResource;
+        $this->clientClass = $clientClass;
     }
 
     /**
@@ -101,7 +102,6 @@ trait LROTraitV2
             $this->serializer,
             $this->lroCallables,
             $this->lroResponseMappers,
-            $this->clientClass,
             $operationName,
             $info
         );
@@ -126,13 +126,19 @@ trait LROTraitV2
      */
     public function longRunningOperations(array $options = [])
     {
-        if (is_null($this->lroResource)) {
+        if (is_null($this->lroResource) || is_null($this->clientClass)) {
             throw new \BadMethodCallException('This service does not support listing operations.');
         }
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $resultLimit = $this->pluck('resultLimit', $data, false) ?: 0;
         $data['name'] = $this->lroResource .'/operations';
 
+        $client = $this->requestHandler->getClientObject($this->clientClass);
+        $operationsClient = $client->getOperationsClient();
+        if (is_null($client) || is_null($operationsClient)) {
+            throw new \BadMethodCallException('This service does not support listing operations.');
+        }
+        $this->requestHandler->addClientObject(get_class($operationsClient), $operationsClient);
         $request = $this->serializer->decodeMessage(new ListOperationsRequest(), $data);
 
         return new ItemIterator(
@@ -140,13 +146,14 @@ trait LROTraitV2
                 function (array $operation) {
                     return $this->resumeOperation($operation['name'], $operation);
                 },
-                function ($callOptions) use ($optionalArgs, $request) {
+                function ($callOptions) use ($optionalArgs, $request, $operationsClient) {
                     if (isset($callOptions['pageToken'])) {
                         $request->setPageToken($callOptions['pageToken']);
                     }
 
+                    # TODO: Correct the usage of the operations client and its usage.
                     return $this->requestHandler->sendRequest(
-                        OperationsGrpcClient::class,
+                        get_class($operationsClient),
                         'listOperations',
                         $request,
                         $optionalArgs

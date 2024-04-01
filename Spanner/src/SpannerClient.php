@@ -17,19 +17,23 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Serializer;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\LongRunning\LROTraitV2;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
@@ -38,7 +42,7 @@ use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
-use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
 use Google\ApiCore\ValidationException;
@@ -117,16 +121,26 @@ use Google\ApiCore\ValidationException;
  */
 class SpannerClient
 {
+    use ApiHelperTrait;
+    use ClientOptionsTrait;
     use ArrayTrait;
     use ClientTrait;
-    use LROTrait;
+    use DetectProjectIdTrait;
+    use LROTraitV2;
     use ValidateTrait;
+    use RequestTrait;
 
     const VERSION = '1.79.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
+    private const GAPIC_KEYS = [
+        GapicSpannerClient::class,
+        InstanceAdminClient::class,
+        DatabaseAdminClient::class
+    ];
 
+    # TODO: Remove the connection related objects
     /**
      * @var Connection\ConnectionInterface
      */
@@ -233,9 +247,16 @@ class SpannerClient
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
-            'queryOptions' => []
+            'queryOptions' => [],
+            'transportConfig' => [
+                'grpc' => [
+                    // increase default limit to 4MB to prevent metadata exhausted errors
+                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
+                ]
+            ]
         ];
 
+        # Check this to see it needs to be removed, for now keep it.
         if (!empty($config['useDiscreteBackoffs'])) {
             $config = array_merge_recursive($config, [
                 'retries' => 0,
@@ -245,55 +266,92 @@ class SpannerClient
             ]);
         }
 
+        # TODO: Remove the connection related objects
         $this->connection = new Grpc($this->configureAuthentication($config));
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
-
-        $this->setLroProperties(new LongRunningConnection($this->connection), [
+        $lroCallables = [
             [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
                 'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
-            ], [
+            ],
+            [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
                 'callable' => function ($database) {
                     $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
                     $instanceName = $databaseNameComponents['instance'];
                     $databaseName = $databaseNameComponents['database'];
-
                     $instance = $this->instance($instanceName);
                     return $instance->database($databaseName);
                 }
-            ], [
+            ],
+            [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
                 'callable' => function ($database) {
                     $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
                     $instanceName = $databaseNameComponents['instance'];
                     $databaseName = $databaseNameComponents['database'];
-
                     $instance = $this->instance($instanceName);
                     return $instance->database($databaseName);
                 }
-            ],[
+            ],
+            [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
                 'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
-            ], [
+            ],
+            [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
                 'callable' => function ($backup) {
                     $backupNameComponents = DatabaseAdminClient::parseName($backup['name']);
                     $instanceName = $backupNameComponents['instance'];
-
                     $instance = $this->instance($instanceName);
                     return $instance->backup($backup['name'], $backup);
                 }
             ]
-        ]);
+        ];
+
+        $this->setLroProperties(
+            $this->requestHandler,
+            $this->serializer,
+            $lroCallables,
+            self::$lroResponseMappers
+        );
 
         $this->directedReadOptions = $config['directedReadOptions'] ?? [];
+
+        // Configure GAPIC client options
+        $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
+        $this->projectId = $this->detectProjectId($config);
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ]);
+
+        $this->requestHandler = new RequestHandler(
+            $this->serializer,
+            self::GAPIC_KEYS,
+            $config
+        );
     }
 
     /**
@@ -474,7 +532,8 @@ class SpannerClient
             $this->projectId,
             $name,
             $options,
-            $this->lroConnection
+            # TODO: Remove the connection related objects
+            new LongRunningConnection($this->connection)
         );
     }
 
@@ -566,8 +625,11 @@ class SpannerClient
     public function instance($name, array $instance = [])
     {
         return new Instance(
+            # TODO: Remove the connection related objects
             $this->connection,
-            $this->lroConnection,
+            new LongRunningConnection($this->connection),
+            $this->requestHandler,
+            $this->serializer,
             $this->lroCallables,
             $this->projectId,
             $name,

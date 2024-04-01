@@ -46,11 +46,6 @@ class LongRunningOperationManager
     /**
      * @var string
      */
-    private string $clientClass;
-
-    /**
-     * @var string
-     */
     private $name;
 
     /**
@@ -87,8 +82,6 @@ class LongRunningOperationManager
      *        callable Type should correspond to an expected value of
      *        operation.metadata.typeUrl.
      * @param array $lroResponseMappers A list of mappers for deserializing operation results.
-     * @param string $clientClass The client class that will be passed on to the
-     *        sendRequest method of the $requestHandler.
      * @param string $name The Operation name.
      * @param array $info [optional] The operation info.
      */
@@ -98,14 +91,12 @@ class LongRunningOperationManager
         array $callablesMap,
         array $lroResponseMappers,
         $name,
-        string $clientClass,
         array $info = []
     ) {
         $this->serializer = $serializer;
         $this->requestHandler = $requestHandler;
         $this->callablesMap = $callablesMap;
         $this->lroResponseMappers = $lroResponseMappers;
-        $this->clientClass = $clientClass;
         $this->name = $name;
         $this->info = $info;
     }
