@@ -63,6 +63,4 @@ class EncodingFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EncodingFormat::class, \Google\Cloud\Security\PrivateCA\V1\CaPool_PublishingOptions_EncodingFormat::class);
 

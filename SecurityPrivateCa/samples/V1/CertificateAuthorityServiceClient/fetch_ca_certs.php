@@ -31,7 +31,7 @@ use Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse;
 /**
  * FetchCaCerts returns the current trust anchor for the
  * [CaPool][google.cloud.security.privateca.v1.CaPool]. This will include CA
- * certificate chains for all Certificate Authorities in the ENABLED,
+ * certificate chains for all certificate authorities in the ENABLED,
  * DISABLED, or STAGED states.
  *
  * @param string $formattedCaPool The resource name for the
