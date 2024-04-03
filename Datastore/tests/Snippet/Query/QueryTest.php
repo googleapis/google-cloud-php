@@ -23,7 +23,6 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
@@ -44,7 +43,6 @@ class QueryTest extends SnippetTestCase
     use DatastoreOperationRefreshTrait;
 
     private $datastore;
-    private $connection;
     private $operation;
     private $query;
     private $requestHandler;
@@ -55,7 +53,6 @@ class QueryTest extends SnippetTestCase
         $mapper = new EntityMapper('my-awesome-project', true, false);
 
         $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
@@ -74,7 +71,6 @@ class QueryTest extends SnippetTestCase
             }
         ]);
         $this->operation = TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             'my-awesome-project',

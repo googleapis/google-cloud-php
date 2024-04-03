@@ -22,7 +22,6 @@ use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
@@ -54,13 +53,11 @@ class OperationTest extends TestCase
     public const DATABASEID = 'database-id';
 
     private $operation;
-    private $connection;
     private $requestHandler;
     private $serializer;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
@@ -79,14 +76,13 @@ class OperationTest extends TestCase
             }
         ]);
         $this->operation = TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::PROJECT,
             null,
             new EntityMapper('foo', true, false),
             self::DATABASEID,
-        ], ['connection', 'requestHandler', 'namespaceId']);
+        ], ['requestHandler', 'namespaceId']);
     }
 
     public function testKey()
@@ -291,7 +287,7 @@ class OperationTest extends TestCase
             0
         );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup([$key]);
 
@@ -307,7 +303,7 @@ class OperationTest extends TestCase
             ['found' => $body,]
         );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
         $res = $this->operation->lookup([$key]);
@@ -332,7 +328,7 @@ class OperationTest extends TestCase
             ['missing' => $body,]
         );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
 
@@ -355,7 +351,7 @@ class OperationTest extends TestCase
             ['deferred' => [$body[0]['entity']['key']]]
         );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
 
@@ -686,12 +682,6 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithDatabaseIdOverride()
     {
-        // $this->connection
-        //     ->runQuery(
-        //         Argument::withEntry('databaseId', 'otherDatabaseId')
-        //     )
-        //     ->shouldBeCalledTimes(1)
-        //     ->willReturn([]);
         $this->mockSendRequest(
             'runQuery',
             ['databaseId' => 'otherDatabaseId'],
@@ -788,7 +778,7 @@ class OperationTest extends TestCase
             0
         );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->operation->rollback('bar');
     }
@@ -1101,13 +1091,6 @@ class OperationTest extends TestCase
 
     public function testLookupWithDatabaseIdOverride()
     {
-        // $this->connection
-        //     ->lookup(
-        //         Argument::withEntry('databaseId', 'otherDatabaseId')
-        //     )
-        //     ->shouldBeCalledTimes(1)
-        //     ->willReturn([]);
-
         $this->mockSendRequest(
             'lookup',
             ['databaseId' => 'otherDatabaseId'],

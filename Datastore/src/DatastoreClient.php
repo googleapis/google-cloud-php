@@ -21,14 +21,11 @@ use DomainException;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Serializer;
-use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\Connection\Grpc;
-use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -36,7 +33,6 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
 use InvalidArgumentException;
-use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -93,14 +89,11 @@ use Psr\Http\Message\StreamInterface;
  */
 class DatastoreClient
 {
+    use ApiHelperTrait;
     use ArrayTrait;
-    // TODO:
-    // [START] Replace ClientTrait with DetectProjectIdTrait
-    use ClientTrait;
-    // [END] Replace ClientTrait with DetectProjectIdTrait
     use ClientOptionsTrait;
     use DatastoreTrait;
-    use GrpcTrait;
+    use DetectProjectIdTrait;
 
     const VERSION = '1.28.0';
 
@@ -122,12 +115,6 @@ class DatastoreClient
      * @var Serializer
      */
     private Serializer $serializer;
-
-    /**
-     * @deprecated
-     * @var ConnectionInterface
-     */
-    protected $connection;
 
     /**
      * @var Operation
@@ -177,17 +164,15 @@ class DatastoreClient
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
+     *     @type string $transport The transport type used for requests. May be
+     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
+     *           is detected on the system.
      * }
      * @throws \InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
-
-        // TODO:
-        // [START] remove once upgraded to V2
-        $connectionType = $this->getConnectionType($config);
-        // [END] remove once upgraded to V2
 
         $config += [
             'namespaceId' => null,
@@ -212,14 +197,6 @@ class DatastoreClient
         );
 
         $this->projectId = $this->detectProjectId($config);
-
-        // TODO:
-        // [START] remove once upgraded to V2
-        $config = $this->configureAuthentication($config);
-        $this->connection = $connectionType === 'grpc'
-            ? new Grpc($config)
-            : new Rest($config);
-        // [END] remove once upgraded to V2
 
         $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
@@ -250,10 +227,8 @@ class DatastoreClient
             $this->projectId,
             true,
             $config['returnInt64AsObject'],
-            $connectionType
         );
         $this->operation = new Operation(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->projectId,

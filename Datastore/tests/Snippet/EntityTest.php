@@ -20,9 +20,9 @@ namespace Google\Cloud\Datastore\Tests\Snippet;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
@@ -38,6 +38,7 @@ class EntityTest extends SnippetTestCase
 {
     use ProphecyTrait;
     use ApiHelperTrait;
+    use DatastoreOperationRefreshTrait;
 
     private $options;
     private $entity;
@@ -97,24 +98,32 @@ class EntityTest extends SnippetTestCase
             'operation'
         ]);
 
-        $connection = $this->prophesize(ConnectionInterface::class);
-        $connection->commit(Argument::any())->shouldBeCalled()->willReturn(['mutationResults' => [['version' => 1]]]);
-        $connection->lookup(Argument::any())->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => [
-                        'key' => [
-                            'path' => [['kind' => 'Business', 'name' => 'Google']]
-                        ],
-                        'properties' => [
-                            'name' => [
-                                'stringValue' => 'Google'
+        $this->mockSendRequest(
+            'commit',
+            [],
+            ['mutationResults' => [['version' => 1]]],
+            0
+        );
+        $this->mockSendRequest(
+            'lookup',
+            [],
+            [
+                'found' => [
+                    [
+                        'entity' => [
+                            'key' => [
+                                'path' => [['kind' => 'Business', 'name' => 'Google']]
                             ],
-                            'parent' => [
-                                'entityValue' => [
-                                    'properties' => [
-                                        'name' => [
-                                            'stringValue' => 'Alphabet'
+                            'properties' => [
+                                'name' => [
+                                    'stringValue' => 'Google'
+                                ],
+                                'parent' => [
+                                    'entityValue' => [
+                                        'properties' => [
+                                            'name' => [
+                                                'stringValue' => 'Alphabet'
+                                            ]
                                         ]
                                     ]
                                 ]
@@ -122,11 +131,11 @@ class EntityTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $operation = new Operation(
-            $connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             'example_project',

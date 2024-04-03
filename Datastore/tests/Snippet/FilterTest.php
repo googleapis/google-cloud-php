@@ -6,14 +6,10 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
-use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Query\Query;
-use Google\Cloud\Datastore\Query\QueryInterface;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 class FilterTest extends SnippetTestCase
@@ -22,7 +18,6 @@ class FilterTest extends SnippetTestCase
     use ProphecyTrait;
 
     private const PROJECT = 'alpha-project';
-    private $connection;
     private $datastore;
     private $operation;
     private $query;
@@ -33,7 +28,6 @@ class FilterTest extends SnippetTestCase
     {
         $entityMapper = new EntityMapper(self::PROJECT, false, false);
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $this->datastore = TestHelpers::stub(
@@ -49,7 +43,7 @@ class FilterTest extends SnippetTestCase
 
     public function testFilter()
     {
-        $this->createConnectionProphecy();
+        $this->createRequestHandlerProphecy();
 
         $snippet = $this->snippetFromClass(Filter::class, 0);
         $snippet->addLocal('datastore', $this->datastore);
@@ -66,7 +60,7 @@ class FilterTest extends SnippetTestCase
      */
     public function testOrFilter($compositeFilterType)
     {
-        $this->createConnectionProphecy();
+        $this->createRequestHandlerProphecy();
 
         $snippet = $this->snippetFromClass(Filter::class, 1);
         $snippet->addLocal('filterType', $compositeFilterType);
@@ -88,10 +82,10 @@ class FilterTest extends SnippetTestCase
         ];
     }
 
-    private function createConnectionProphecy()
+    private function createRequestHandlerProphecy()
     {
         $this->mockSendRequest(
-            '',
+            'runQuery',
             [],
             [
                 'batch' => [
@@ -113,7 +107,7 @@ class FilterTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->datastore, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->datastore, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
     }

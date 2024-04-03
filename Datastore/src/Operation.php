@@ -23,7 +23,6 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
@@ -71,12 +70,6 @@ class Operation
     use TimestampTrait;
 
     /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    protected $connection;
-
-    /**
      * @var RequestHandler
      * @internal
      * The request handler responsible for sending requests and
@@ -112,9 +105,6 @@ class Operation
     /**
      * Create an operation
      *
-     * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
-     *        This object is created by DatastoreClient,
-     *        and should not be instantiated outside of this client.
      * @param RequestHandler $requestHandler The request handler responsible for sending
      *        requests and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -124,7 +114,6 @@ class Operation
      * @param string $databaseId ID of the database to which the entities belong.
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         $projectId,
@@ -132,7 +121,6 @@ class Operation
         EntityMapper $entityMapper,
         $databaseId = ''
     ) {
-        $this->connection = $connection;
         $this->projectId = $projectId;
         $this->namespaceId = $namespaceId;
         $this->databaseId = $databaseId;

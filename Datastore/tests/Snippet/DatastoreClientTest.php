@@ -25,7 +25,6 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
@@ -52,7 +51,6 @@ class DatastoreClientTest extends SnippetTestCase
 
     const PROJECT = 'example-project';
 
-    private $connection;
     private $operation;
     private $client;
     private $key;
@@ -60,8 +58,6 @@ class DatastoreClientTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-
         $this->client = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
 
         $this->key = new Key('my-awesome-project', [
@@ -320,8 +316,8 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'allocateId');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->allocateIdsConnectionMock();
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->allocateIdsRequestHandlerMock();
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -337,8 +333,8 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'allocateIds');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->allocateIdsConnectionMock();
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->allocateIdsRequestHandlerMock();
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -361,7 +357,7 @@ class DatastoreClientTest extends SnippetTestCase
             ['transaction' => 'foo']
         );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -378,7 +374,7 @@ class DatastoreClientTest extends SnippetTestCase
             ['transactionOptions' => ['readOnly' => []]],
             ['transaction' => 'foo']
         );
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
         $res = $snippet->invoke('transaction');
@@ -402,7 +398,7 @@ class DatastoreClientTest extends SnippetTestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -418,9 +414,9 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->mockSendRequestForCommit('insert', []);
 
-        $this->allocateIdsConnectionMock();
+        $this->allocateIdsRequestHandlerMock();
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -443,7 +439,7 @@ class DatastoreClientTest extends SnippetTestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -461,7 +457,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->mockSendRequestForCommit('update', []);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -479,7 +475,7 @@ class DatastoreClientTest extends SnippetTestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -493,7 +489,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->mockSendRequestForCommit('upsert', []);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -511,7 +507,7 @@ class DatastoreClientTest extends SnippetTestCase
             ]
         ]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -525,7 +521,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $this->mockSendRequestForCommit('delete', []);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -560,7 +556,7 @@ class DatastoreClientTest extends SnippetTestCase
             ]
         );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -616,7 +612,7 @@ class DatastoreClientTest extends SnippetTestCase
             ]
         );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -698,7 +694,7 @@ class DatastoreClientTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -740,7 +736,7 @@ class DatastoreClientTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -757,7 +753,7 @@ class DatastoreClientTest extends SnippetTestCase
 
     // ******** HELPERS
 
-    private function allocateIdsConnectionMock()
+    private function allocateIdsRequestHandlerMock()
     {
         $this->requestHandler->sendRequest(
             V1DatastoreClient::class,

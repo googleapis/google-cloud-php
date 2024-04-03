@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\Testing;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
@@ -37,7 +36,6 @@ trait DatastoreOperationRefreshTrait
      * Refresh the operation property of a given stubbed class.
      *
      * @param mixed $stub
-     * @param ConnectionInterface $connection
      * @param RequestHandler $requestHandler
      * @param array $options {
      *     Configuration Options
@@ -48,7 +46,7 @@ trait DatastoreOperationRefreshTrait
      * }
      * @return mixed
      */
-    public function refreshOperation($stub, ConnectionInterface $connection, RequestHandler $requestHandler, array $options = [])
+    public function refreshOperation($stub, RequestHandler $requestHandler, array $options = [])
     {
         $options += [
             'projectId' => null,
@@ -80,7 +78,6 @@ trait DatastoreOperationRefreshTrait
         ]);
 
         $stub->___setProperty('operation', new Operation(
-            $connection,
             $requestHandler,
             $serializer,
             $options['projectId'],

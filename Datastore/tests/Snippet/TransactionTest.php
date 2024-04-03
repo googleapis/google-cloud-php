@@ -23,7 +23,6 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
@@ -47,7 +46,6 @@ class TransactionTest extends SnippetTestCase
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
     private $operation;
     private $transaction;
     private $client;
@@ -57,8 +55,6 @@ class TransactionTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-
         $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $this->serializer = new Serializer([], [
@@ -79,7 +75,6 @@ class TransactionTest extends SnippetTestCase
         ]);
 
         $operation = new Operation(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::PROJECT,
@@ -113,7 +108,7 @@ class TransactionTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -137,7 +132,7 @@ class TransactionTest extends SnippetTestCase
             ]
         ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -156,9 +151,9 @@ class TransactionTest extends SnippetTestCase
             ]
         ]);
 
-        $this->allocateIdsConnectionMock();
+        $this->allocateIdsRequestHandlerMock();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -180,7 +175,7 @@ class TransactionTest extends SnippetTestCase
             ]
         ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -217,7 +212,7 @@ class TransactionTest extends SnippetTestCase
             ]
         ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -251,7 +246,7 @@ class TransactionTest extends SnippetTestCase
             ]
         ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -298,7 +293,7 @@ class TransactionTest extends SnippetTestCase
             ]
         );
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -349,7 +344,7 @@ class TransactionTest extends SnippetTestCase
             ]
         );
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -395,7 +390,7 @@ class TransactionTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -431,7 +426,7 @@ class TransactionTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -446,7 +441,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->mockSendRequest('commit', [], [], 0);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -460,7 +455,7 @@ class TransactionTest extends SnippetTestCase
 
         $this->mockSendRequest('rollback', [], [], 0);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -469,7 +464,7 @@ class TransactionTest extends SnippetTestCase
 
     // ******** HELPERS
 
-    private function allocateIdsConnectionMock()
+    private function allocateIdsRequestHandlerMock()
     {
         $this->requestHandler->sendRequest(
             V1DatastoreClient::class,

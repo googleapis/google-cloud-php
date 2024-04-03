@@ -22,7 +22,6 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
@@ -44,7 +43,6 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
     const TRANSACTION = 'transaction-id';
     const PROJECT = 'example-project';
 
-    private $connection;
     private $client;
     private $requestHandler;
 
@@ -62,7 +60,6 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [], [
             'operation',
         ]);
@@ -114,7 +111,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
         $snippet->addLocal('datastore', $this->client);
@@ -162,7 +159,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         )->shouldBeCalled()->will(fn () => trigger_error('oops!', E_USER_WARNING));
 
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
         $snippet->addLocal('datastore', $this->client);

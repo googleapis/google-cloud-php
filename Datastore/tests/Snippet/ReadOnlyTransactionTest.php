@@ -23,15 +23,12 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -46,7 +43,6 @@ class ReadOnlyTransactionTest extends SnippetTestCase
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
     private $transaction;
     private $client;
     private $key;
@@ -55,8 +51,6 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-
         $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $this->serializer = new Serializer([], [
@@ -77,7 +71,6 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         ]);
 
         $operation = new Operation(
-            $this->connection->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             self::PROJECT,
@@ -111,7 +104,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -141,7 +134,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -182,7 +175,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             ]
         );
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -233,7 +226,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             ]
         );
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -279,7 +272,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -294,7 +287,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
         $this->mockSendRequest('rollback', [], [], 0);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
