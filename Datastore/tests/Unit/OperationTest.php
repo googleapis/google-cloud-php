@@ -32,6 +32,7 @@ use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -710,28 +711,34 @@ class OperationTest extends TestCase
 
     public function testCommit()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::that(function ($arg) {
-                return count($arg['mutations']) === 0;
-            })
-        ))->shouldBeCalled()->willReturn(['foo']);
+        $this->mockSendRequest(
+            'commit',
+            [
+                'mode' => Mode::NON_TRANSACTIONAL,
+                'mutations' => []
+            ],
+            ['foo'],
+            0
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals(['foo'], $this->operation->commit([]));
     }
 
     public function testCommitInTransaction()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::that(function ($arg) {
-                return count($arg['mutations']) === 0;
-            })
-        ))->shouldBeCalled()->willReturn(['foo']);
+        $this->mockSendRequest(
+            'commit',
+            [
+                'mode' => Mode::TRANSACTIONAL,
+                'mutations' => []
+            ],
+            ['foo'],
+            0
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->operation->commit([], [
             'transaction' => '1234',
@@ -740,11 +747,14 @@ class OperationTest extends TestCase
 
     public function testCommitWithMutation()
     {
-        $this->connection->commit(Argument::that(function ($arg) {
-            return count($arg['mutations']) === 1;
-        }))->shouldBeCalled()->willReturn(['foo']);
+        $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'commit',
+            Argument::that(fn ($arg) => (count($arg->getMutations()) == 1)),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(['foo']);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person');
         $e = new Entity($key);
@@ -756,14 +766,14 @@ class OperationTest extends TestCase
 
     public function testCommitWithDatabaseIdOverride()
     {
-        $this->connection
-            ->commit(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        $this->mockSendRequest(
+            'commit',
+            ['databaseId' => 'otherDatabaseId'],
+            [],
+            1
+        );
 
-        $iterator = $this->operation->commit(
+        $this->operation->commit(
             [],
             ['databaseId' => 'otherDatabaseId']
         );
@@ -816,19 +826,16 @@ class OperationTest extends TestCase
     {
         $id = 12345;
 
-        $this->connection->commit(Argument::that(function ($arg) {
-            if (count($arg['mutations']) !== 1) {
-                return false;
-            }
+        $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'commit',
+            Argument::that(
+                fn ($arg) => (count($arg->getMutations()) == 1 && $arg->getMutations()[0]->hasInsert())
+            ),
+            Argument::any()
+        )->shouldBeCalled();
 
-            if (!isset($arg['mutations'][0]['insert'])) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled();
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', $id);
         $e = new Entity($key);
@@ -839,11 +846,13 @@ class OperationTest extends TestCase
 
     public function testMutateWithBaseVersion()
     {
-        $this->connection->commit(Argument::that(function ($arg) {
-            return $arg['mutations'][0]['baseVersion'] === 1;
-        }))->willReturn('foo');
+        $this->mockSendRequest(
+            'commit',
+            ['mutations' => [['baseVersion' => 1]]],
+            'foo'
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->prophesize(Key::class);
         $e = new Entity($key->reveal(), [], [
@@ -857,19 +866,19 @@ class OperationTest extends TestCase
 
     public function testMutateWithKey()
     {
-        $this->connection->commit(Argument::that(function ($arg) {
-            if (!isset($arg['mutations'][0]['delete'])) {
-                return false;
-            }
+        $otherThis = $this;
+        $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'commit',
+            Argument::that(function ($arg) use ($otherThis){
+                $data = $otherThis->serializer->encodeMessage($arg);
+                $x = isset($data['mutations'][0]['delete']['path']);
+                return isset($data['mutations'][0]['delete']['path']);
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn('foo');
 
-            if (!isset($arg['mutations'][0]['delete']['path'])) {
-                return false;
-            }
-
-            return true;
-        }))->willReturn('foo');
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = new Key('foo', [
             'path' => [['kind' => 'foo', 'id' => 1]],

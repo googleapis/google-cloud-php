@@ -34,7 +34,7 @@ use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Google\Cloud\Datastore\V1\Client\DatastoreClient as DatastoreGapicClient;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
@@ -107,7 +107,7 @@ class DatastoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
     private const GAPIC_KEYS = [
-        DatastoreGapicClient::class
+        V1DatastoreClient::class
     ];
 
     /**

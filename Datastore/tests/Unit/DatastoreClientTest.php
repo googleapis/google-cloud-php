@@ -41,6 +41,7 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -309,11 +310,15 @@ class DatastoreClientTest extends TestCase
      */
     public function testEntityMutations($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'mode' => Mode::NON_TRANSACTIONAL,
+                'mutations' => [[$method => $mutation]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -330,11 +335,15 @@ class DatastoreClientTest extends TestCase
      */
     public function testEntityMutationsBatch($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'mode' => Mode::NON_TRANSACTIONAL,
+                'mutations' => [[$method => $mutation]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -358,11 +367,15 @@ class DatastoreClientTest extends TestCase
      */
     public function testMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'mode' => Mode::NON_TRANSACTIONAL,
+                'mutations' => [[$method => $mutation]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
@@ -385,11 +398,15 @@ class DatastoreClientTest extends TestCase
      */
     public function testBatchMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'mode' => Mode::NON_TRANSACTIONAL,
+                'mutations' => [[$method => $mutation]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
@@ -420,15 +437,18 @@ class DatastoreClientTest extends TestCase
     {
         $this->expectException(\DomainException::class);
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'commit',
+            [],
+            [
                 'mutationResults' => [
                     [
                         'conflictDetected' => true
                     ]
                 ]
-            ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -442,15 +462,15 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'mode' => Mode::NON_TRANSACTIONAL,
+                'mutations' => [['delete' => $key->keyObject()]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -465,15 +485,15 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'mode' => Mode::NON_TRANSACTIONAL,
+                'mutations' => [['delete' => $key->keyObject()]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

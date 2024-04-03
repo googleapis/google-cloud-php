@@ -34,6 +34,7 @@ use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -392,11 +393,16 @@ class TransactionTest extends TestCase
      */
     public function testEntityMutations($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'transaction' => self::TRANSACTION,
+                'mode' => Mode::TRANSACTIONAL,
+                'mutations' => [[$method => $mutation]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -413,11 +419,16 @@ class TransactionTest extends TestCase
      */
     public function testEntityMutationsBatch($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'transaction' => self::TRANSACTION,
+                'mode' => Mode::TRANSACTIONAL,
+                'mutations' => [[$method => $mutation]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -441,11 +452,16 @@ class TransactionTest extends TestCase
      */
     public function testMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'transaction' => self::TRANSACTION,
+                'mode' => Mode::TRANSACTIONAL,
+                'mutations' => [[$method => $mutation]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
@@ -471,11 +487,16 @@ class TransactionTest extends TestCase
      */
     public function testBatchMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'transaction' => self::TRANSACTION,
+                'mode' => Mode::TRANSACTIONAL,
+                'mutations' => [[$method => $mutation]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
@@ -507,15 +528,16 @@ class TransactionTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $this->key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'transaction' => self::TRANSACTION,
+                'mode' => Mode::TRANSACTIONAL,
+                'mutations' => [['delete' => $this->key->keyObject()]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -530,15 +552,16 @@ class TransactionTest extends TestCase
     public function testDeleteBatch()
     {
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $this->key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->mockSendRequest(
+            'commit',
+            [
+                'transaction' => self::TRANSACTION,
+                'mode' => Mode::TRANSACTIONAL,
+                'mutations' => [['delete' => $this->key->keyObject()]]
+            ],
+            $this->commitResponse(),
+            0
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

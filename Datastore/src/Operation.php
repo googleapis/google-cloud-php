@@ -32,6 +32,8 @@ use Google\Cloud\Datastore\V1\AggregationQuery as V1AggregationQuery;
 use Google\Cloud\Datastore\V1\AllocateIdsRequest;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\ExplainOptions;
 use Google\Cloud\Datastore\V1\GqlQuery;
 use Google\Cloud\Datastore\V1\Key\PathElement;
@@ -39,6 +41,7 @@ use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\PartitionId;
 use Google\Cloud\Datastore\V1\PropertyFilter\Operator as PropertyFilterOperator;
 use Google\Cloud\Datastore\V1\CompositeFilter\Operator as CompositeFilterOperator;
+use Google\Cloud\Datastore\V1\Mutation;
 use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
 use Google\Cloud\Datastore\V1\Query as V1Query;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
@@ -751,12 +754,40 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        $res = $this->connection->commit($options + [
-            'mode' => ($options['transaction']) ? 'TRANSACTIONAL' : 'NON_TRANSACTIONAL',
+        foreach ($mutations as &$mutation) {
+            $mutationType = array_keys($mutation)[0];
+            $data = $mutation[$mutationType];
+            if (isset($data['properties'])) {
+                foreach ($data['properties'] as &$property) {
+                    list ($type, $val) = $this->toGrpcValue($property);
+
+                    $property[$type] = $val;
+                }
+            }
+
+            $mutation[$mutationType] = $data;
+
+            $mutation = $this->serializer->decodeMessage(new Mutation, $mutation);
+        }
+
+        $options += [
+            'mode' => ($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL,
             'mutations' => $mutations,
             'projectId' => $this->projectId,
-        ]);
+        ];
 
+        if (is_null($options['transaction'])) {
+            // Remove 'transaction' if `null` to avoid serialization error
+            unset($options['transaction']);
+        }
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['allowOverwrite', 'baseVersion']);
+        $request = $this->serializer->decodeMessage(new CommitRequest(), $data);
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'commit',
+            $request,
+            $optionalArgs
+        );
         return $res;
     }
 

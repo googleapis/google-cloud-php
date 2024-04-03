@@ -25,6 +25,8 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -95,19 +97,22 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             ['transaction' => self::TRANSACTION]
         );
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::that(function ($args) {
-                $value = 'name|'.serialize('Bob');
-
-                return $args['mutations'][0]['upsert']['key']['partitionId']['namespaceId'] === 'sessions'
-                    && $args['mutations'][0]['upsert']['key']['path'][0]['kind'] === 'PHPSESSID'
-                    && isset($args['mutations'][0]['upsert']['key']['path'][0]['name'])
-                    && $args['mutations'][0]['upsert']['properties']['data']['stringValue'] === $value
-                    && isset($args['mutations'][0]['upsert']['properties']['t']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
+        $this->mockSendRequest(
+            'commit',
+            [
+                'transaction' => self::TRANSACTION,
+                'mode' => Mode::TRANSACTIONAL,
+                'mutations' => [['upsert' => [
+                    'key' => [
+                        'path' => [['kind' => 'PHPSESSID']],
+                        'partitionId' => ['namespaceId' => 'sessions']
+                    ],
+                    'properties' => ['data' => ['stringValue' => 'name|'.serialize('Bob')]]
+                ]]]
+            ],
+            [],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -150,11 +155,12 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
             ['transaction' => self::TRANSACTION]
         );
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->will(function () {
-                trigger_error('oops!', E_USER_WARNING);
-            });
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::cetera()
+        )->shouldBeCalled()->will(fn () => trigger_error('oops!', E_USER_WARNING));
+
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
