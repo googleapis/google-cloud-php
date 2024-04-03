@@ -28,6 +28,7 @@ use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\AggregationQuery as V1AggregationQuery;
 use Google\Cloud\Datastore\V1\AllocateIdsRequest;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
@@ -42,6 +43,7 @@ use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
 use Google\Cloud\Datastore\V1\Query as V1Query;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\ReadOptions;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 use Google\Protobuf\NullValue;
@@ -681,7 +683,7 @@ class Operation
             'query' => [],
         ];
         $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
-        $request = [
+        $req = [
             'projectId' => $this->projectId,
             'partitionId' => $this->partitionId(
                 $this->projectId,
@@ -690,7 +692,37 @@ class Operation
             ),
         ] + $requestQueryArr + $this->readOptions($options) + $options;
 
-        $res = $this->connection->runAggregationQuery($request);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($req, [
+            'namespaceId',
+            'readTime',
+            'readConsistency',
+            'transaction'
+        ]);
+
+        if (isset($data['aggregationQuery'])) {
+            if (isset($data['aggregationQuery']['nestedQuery'])) {
+                $data['aggregationQuery']['nestedQuery'] = $this->parseQuery(
+                    $data['aggregationQuery']['nestedQuery']
+                );
+            }
+
+            $data['aggregationQuery'] = $this->serializer->decodeMessage(
+                new V1AggregationQuery(),
+                $data['aggregationQuery']
+            );
+        }
+
+        if (isset($data['gqlQuery'])) {
+            $data['gqlQuery'] = $this->parseGqlQuery($data['gqlQuery']);
+        }
+
+        $request = $this->serializer->decodeMessage(new RunAggregationQueryRequest(), $data);
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'runAggregationQuery',
+            $request,
+            $optionalArgs
+        );
         return new AggregationQueryResult($res, $this->entityMapper);
     }
 

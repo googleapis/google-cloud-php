@@ -20,6 +20,7 @@ namespace Google\Cloud\Datastore\Tests\Snippet\Query;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
@@ -38,6 +39,7 @@ class AggregationQueryTest extends SnippetTestCase
 {
     use ProphecyTrait;
     use ApiHelperTrait;
+    use DatastoreOperationRefreshTrait;
 
     private $datastore;
     private $connection;
@@ -80,9 +82,10 @@ class AggregationQueryTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->connection->runAggregationQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'runAggregationQuery',
+            [],
+            [
                 'batch' => [
                     'aggregationResults' => [
                         [
@@ -93,9 +96,11 @@ class AggregationQueryTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ]);
+            ],
+            0
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->datastore->___setProperty('operation', $this->operation);
 
@@ -110,9 +115,10 @@ class AggregationQueryTest extends SnippetTestCase
 
     public function testClassWithOverAggregation()
     {
-        $this->connection->runAggregationQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'runAggregationQuery',
+            [],
+            [
                 'batch' => [
                     'aggregationResults' => [
                         [
@@ -123,9 +129,11 @@ class AggregationQueryTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ]);
+            ],
+            0
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->datastore->___setProperty('operation', $this->operation);
 

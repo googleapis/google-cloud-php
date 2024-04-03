@@ -747,9 +747,10 @@ class DatastoreClientTest extends SnippetTestCase
         $query->queryObject()->willReturn([]);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runAggregationQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'runAggregationQuery',
+            [],
+            [
                 'batch' => [
                     'aggregationResults' => [
                         [
@@ -760,7 +761,9 @@ class DatastoreClientTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

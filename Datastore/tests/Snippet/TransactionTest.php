@@ -458,9 +458,10 @@ class TransactionTest extends SnippetTestCase
         $query->queryObject()->willReturn([]);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runAggregationQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'runAggregationQuery',
+            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            [
                 'batch' => [
                     'aggregationResults' => [
                         [
@@ -471,7 +472,9 @@ class TransactionTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

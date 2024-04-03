@@ -300,21 +300,24 @@ class TransactionTest extends TestCase
      */
     public function testRunAggregationQuery(callable $transaction)
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'aggregationResults' => [
-                    [
-                        'aggregateProperties' => ['property_1' => 1]
-                    ]
-                ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
-            ]
-        ]);
+        $this->mockSendRequest(
+            'runAggregationQuery',
+            [
+                'partitionId' => ['projectId' => self::PROJECT],
+                'gqlQuery' => ['queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'],
+            ],
+            [
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => ['property_1' => 1]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
+            ],
+            0
+        );
 
         $transaction = $transaction();
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [

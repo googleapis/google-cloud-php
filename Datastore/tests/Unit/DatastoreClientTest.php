@@ -680,21 +680,24 @@ class DatastoreClientTest extends TestCase
 
     public function testRunAggregationQuery()
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'aggregationResults' => [
-                    [
-                        'aggregateProperties' => ['property_1' => 1]
-                    ]
-                ],
-                'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
-            ]
-        ]);
+        $this->mockSendRequest(
+            'runAggregationQuery',
+            [
+                'partitionId' => ['projectId' => self::PROJECT],
+                'gqlQuery' => ['queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'],
+            ],
+            [
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => ['property_1' => 1]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -716,21 +719,24 @@ class DatastoreClientTest extends TestCase
      */
     public function testAggregationQueryWithDifferentReturnTypes($response, $expected)
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'foo bar'
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'aggregationResults' => [
-                    [
-                        'aggregateProperties' => ['property_1' => $response]
-                    ]
-                ],
-                'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
-            ]
-        ]);
+        $this->mockSendRequest(
+            'runAggregationQuery',
+            [
+                'partitionId' => ['projectId' => self::PROJECT],
+                'gqlQuery' => ['queryString' => 'foo bar'],
+            ],
+            [
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => ['property_1' => $response]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
