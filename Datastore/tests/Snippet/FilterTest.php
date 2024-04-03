@@ -2,6 +2,7 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -26,12 +27,14 @@ class FilterTest extends SnippetTestCase
     private $operation;
     private $query;
     private $filter;
+    private $requestHandler;
 
     public function setUp(): void
     {
         $entityMapper = new EntityMapper(self::PROJECT, false, false);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $this->datastore = TestHelpers::stub(
             DatastoreClient::class,
@@ -87,9 +90,10 @@ class FilterTest extends SnippetTestCase
 
     private function createConnectionProphecy()
     {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            '',
+            [],
+            [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -105,9 +109,11 @@ class FilterTest extends SnippetTestCase
                     ],
                     'moreResults' => 'no'
                 ]
-            ]);
+            ],
+            0
+        );
 
-        $this->refreshOperation($this->datastore, $this->connection->reveal(), [
+        $this->refreshOperation($this->datastore, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
     }

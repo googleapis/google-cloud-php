@@ -31,11 +31,20 @@ use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\V1\AllocateIdsRequest;
 use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\ExplainOptions;
+use Google\Cloud\Datastore\V1\GqlQuery;
 use Google\Cloud\Datastore\V1\Key\PathElement;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\PartitionId;
+use Google\Cloud\Datastore\V1\PropertyFilter\Operator as PropertyFilterOperator;
+use Google\Cloud\Datastore\V1\CompositeFilter\Operator as CompositeFilterOperator;
+use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
+use Google\Cloud\Datastore\V1\Query as V1Query;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
+use Google\Cloud\Datastore\V1\ReadOptions;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
+use Google\Protobuf\NullValue;
 
 /**
  * Run lookups and queries and commit changes.
@@ -572,7 +581,7 @@ class Operation
             if (isset($remainingLimit)) {
                 $requestQueryArr['limit'] = $remainingLimit;
             }
-            $request = [
+            $req = [
                 'projectId' => $this->projectId,
                 'partitionId' => $this->partitionId(
                     $this->projectId,
@@ -582,7 +591,31 @@ class Operation
                 $runQueryObj->queryKey() => $requestQueryArr,
             ] + $this->readOptions($options) + $options;
 
-            $res = $this->connection->runQuery($request);
+            list($data, $optionalArgs) = $this->splitOptionalArgs($req, [
+                'className',
+                'namespaceId',
+                'readTime',
+                'readConsistency',
+                'transaction'
+            ]);
+            $data = $this->convertDataToProtos($data, [
+                'partitionId' => PartitionId::class,
+                'readOptions' => ReadOptions::class,
+                'explainOptions' => ExplainOptions::class
+            ]);
+            if (isset($data['query'])) {
+                $data['query'] = $this->parseQuery($data['query']);
+            }
+            if (isset($data['gqlQuery'])) {
+                $data['gqlQuery'] = $this->parseGqlQuery($data['gqlQuery']);
+            }
+            $request = $this->serializer->decodeMessage(new RunQueryRequest(), $data);
+            $res = $this->requestHandler->sendRequest(
+                DatastoreClient::class,
+                'runQuery',
+                $request,
+                $optionalArgs
+            );
 
             // When executing a GQL Query, the server will compute a query object
             // and return it with the first response batch.
@@ -983,5 +1016,158 @@ class Operation
         }
 
         return $out;
+    }
+
+    /**
+     * Convert array representation of Query to {@see Google\Cloud\Datastore\V1\Query}.
+     *
+     * @param array $query
+     * @return V1Query
+     */
+    private function parseQuery(array $query)
+    {
+        if (isset($query['order'])) {
+            foreach ($query['order'] as &$order) {
+                $order['direction'] = $order['direction'] === 'ASCENDING'
+                    ? Direction::ASCENDING
+                    : Direction::DESCENDING;
+            }
+        }
+
+        if (isset($query['filter'])) {
+            $query['filter'] = $this->convertFilterProps($query['filter']);
+        }
+
+        if (isset($query['limit']) && !is_array($query['limit'])) {
+            $query['limit'] = [
+                'value' => $query['limit']
+            ];
+        }
+
+        $parsedQuery = $this->serializer->decodeMessage(
+            new V1Query,
+            $query
+        );
+        return $parsedQuery;
+    }
+
+    /**
+     * Convert array representation of GqlQuery to {@see Google\Cloud\Datastore\V1\GqlQuery}.
+     *
+     * @param array $gqlQuery
+     * @return GqlQuery
+     */
+    private function parseGqlQuery(array $gqlQuery)
+    {
+        if (isset($gqlQuery['namedBindings'])) {
+            foreach ($gqlQuery['namedBindings'] as $name => &$binding) {
+                if (!isset($binding['value'])) {
+                    continue;
+                }
+
+                $binding = $this->prepareQueryBinding($binding);
+            }
+        }
+
+        if (isset($gqlQuery['positionalBindings'])) {
+            foreach ($gqlQuery['positionalBindings'] as &$binding) {
+                if (!isset($binding['value'])) {
+                    continue;
+                }
+
+                $binding = $this->prepareQueryBinding($binding);
+            }
+        }
+
+        $parsedGqlQuery = $this->serializer->decodeMessage(
+            new GqlQuery,
+            $gqlQuery
+        );
+
+        return $parsedGqlQuery;
+    }
+
+    /**
+     * Convert Query filters to an API-compatible value.
+     *
+     * @param array $filter The input filter data
+     * @return array
+     */
+    private function convertFilterProps(array $filter)
+    {
+        if (isset($filter['propertyFilter'])) {
+            $operator = $filter['propertyFilter']['op'];
+
+            try {
+                if (is_int($operator)) {
+                    // verify that the operator, given as enum value, exists.
+                    PropertyFilterOperator::name($operator);
+                } else {
+                    // convert the operator, given as a string, to a grpc value.
+                    $operator = PropertyFilterOperator::value($operator);
+                }
+            } catch (\UnexpectedValueException $e) {
+                throw new \InvalidArgumentException($e->getMessage());
+            }
+
+            $filter['propertyFilter']['op'] = $operator;
+        }
+
+        if (isset($filter['compositeFilter'])) {
+            if ($filter['compositeFilter']['op'] == 'AND') {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::PBAND;
+            } elseif ($filter['compositeFilter']['op'] == 'OR') {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::PBOR;
+            } else {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::OPERATOR_UNSPECIFIED;
+            }
+            foreach ($filter['compositeFilter']['filters'] as &$nested) {
+                $nested = $this->convertFilterProps($nested);
+            }
+        }
+
+        return $filter;
+    }
+
+    /**
+     * Convert a query binding to an API-compatible value.
+     *
+     * @param array $binding The input binding data
+     * @return array
+     */
+    private function prepareQueryBinding(array $binding)
+    {
+        $value = $binding['value'];
+
+        list ($type, $val) = $this->toGrpcValue($value);
+
+        $binding['value'][$type] = $val;
+
+        return $binding;
+    }
+
+    /**
+     * Convert a property value to a gRPC value.
+     *
+     * @param array $property The input property.
+     * @return array
+     */
+    private function toGrpcValue(array $property)
+    {
+        $type = array_keys($property)[0];
+        $val = $property[$type];
+        if ($val === null) {
+            $val = NullValue::NULL_VALUE;
+        }
+
+        if ($type === 'timestampValue') {
+            $val = $this->formatTimestampForApi($val);
+        }
+
+        if ($type === 'geoPointValue') {
+            $val = $this->arrayFilterRemoveNull($val);
+        }
+
+        return [$type, $val];
     }
 }

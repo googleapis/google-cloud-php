@@ -697,9 +697,10 @@ class DatastoreClientTest extends SnippetTestCase
         $query->queryKey()->willReturn('query');
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'runQuery',
+            [],
+            [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -718,7 +719,9 @@ class DatastoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

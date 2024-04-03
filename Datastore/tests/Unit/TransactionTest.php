@@ -264,18 +264,23 @@ class TransactionTest extends TestCase
      */
     public function testRunQuery(callable $transaction)
     {
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1'])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($this->key)
+        $this->mockSendRequest(
+            'runQuery',
+            [
+                'partitionId' => ['projectId' => self::PROJECT],
+                'gqlQuery' => ['queryString' => 'SELECT 1=1']
+            ],
+            [
+                'batch' => [
+                    'entityResults' => [
+                        [
+                            'entity' => $this->entityArray($this->key)
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $transaction = $transaction();
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
@@ -330,19 +335,25 @@ class TransactionTest extends TestCase
     public function testRunQueryWithReadTime()
     {
         $time = new Timestamp(new \DateTime());
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($this->key)
+
+        $this->mockSendRequest(
+            'runQuery',
+            [
+                'partitionId' => ['projectId' => self::PROJECT],
+                'gqlQuery' => ['queryString' => 'SELECT 1=1'],
+                'readOptions' => ['readTime' => $time]
+            ],
+            [
+                'batch' => [
+                    'entityResults' => [
+                        [
+                            'entity' => $this->entityArray($this->key)
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $transaction = $this->readOnly;
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [

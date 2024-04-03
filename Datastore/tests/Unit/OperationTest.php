@@ -31,6 +31,7 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 use Google\Cloud\Datastore\V1\LookupRequest;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -529,10 +530,13 @@ class OperationTest extends TestCase
     public function testRunQuery()
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->connection->runQuery(Argument::type('array'))
-            ->willReturn($queryResult['notPaged']);
+        $this->mockSendRequest(
+            'runQuery',
+            [],
+            $queryResult['notPaged']
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
@@ -555,17 +559,28 @@ class OperationTest extends TestCase
     public function testRunQueryPaged($query)
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->connection->runQuery(Argument::type('array'))
-            ->will(function ($args, $mock) use ($queryResult) {
-                // The 2nd call will return the 2nd page of results!
-                $mock->runQuery(Argument::that(function ($arg) use ($queryResult) {
-                    return $arg['query']['startCursor'] === $queryResult['paged'][0]['batch']['endCursor'];
-                }))->willReturn($queryResult['paged'][1]);
 
-                return $queryResult['paged'][0];
-            });
+        $outerThis = $this;
+        $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'runQuery',
+            Argument::cetera()
+        )->will(function ($args, $mock) use ($queryResult, $outerThis) {
+            // The 2nd call will return the 2nd page of results!
+            $mock->sendRequest(
+                DatastoreClient::class,
+                'runQuery',
+                Argument::that(function ($arg) use ($queryResult, $outerThis) {
+                    $data = $outerThis->serializer->encodeMessage($arg);
+                    $x = $data['query']['startCursor'] === $queryResult['paged'][0]['batch']['endCursor'];
+                    return $data['query']['startCursor'] === $queryResult['paged'][0]['batch']['endCursor'];
+                }),
+                Argument::any()
+            )->willReturn($queryResult['paged'][1]);
+            return $queryResult['paged'][0];
+        });
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->runQuery($query);
 
@@ -590,10 +605,13 @@ class OperationTest extends TestCase
     public function testRunQueryNoResults()
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->connection->runQuery(Argument::type('array'))
-            ->willReturn($queryResult['noResults']);
+        $this->mockSendRequest(
+            'runQuery',
+            [],
+            $queryResult['noResults']
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
@@ -610,10 +628,14 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromTransaction()
     {
-        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([])
-            ->shouldBeCalled();
+        $this->mockSendRequest(
+            'runQuery',
+            [],
+            [],
+            0
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
@@ -625,26 +647,33 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromReadConsistency()
     {
-        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([])
-            ->shouldBeCalled();
+        $this->mockSendRequest(
+            'runQuery',
+            [],
+            [],
+            0
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
         $q->queryObject()->willReturn([]);
 
-        $res = $this->operation->runQuery($q->reveal(), ['readConsistency' => 'foo']);
+        $res = $this->operation->runQuery($q->reveal(), ['readConsistency' => 123]);
         iterator_to_array($res);
     }
 
     public function testRunQueryWithoutReadOptions()
     {
-        $this->connection->runQuery(Argument::that(function ($args) {
-            return !isset($args['readOptions']);
-        }))->willReturn([])->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {return !$req->hasReadOptions();}),
+            Argument::cetera()
+        )->willReturn([])->shouldBeCalled();
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
@@ -656,12 +685,18 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithDatabaseIdOverride()
     {
-        $this->connection
-            ->runQuery(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        // $this->connection
+        //     ->runQuery(
+        //         Argument::withEntry('databaseId', 'otherDatabaseId')
+        //     )
+        //     ->shouldBeCalledTimes(1)
+        //     ->willReturn([]);
+        $this->mockSendRequest(
+            'runQuery',
+            ['databaseId' => 'otherDatabaseId'],
+            [],
+            1
+        );
 
         $mapper = new EntityMapper('foo', true, false);
         $query = new Query($mapper);

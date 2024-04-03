@@ -48,7 +48,7 @@
   "paged": [
     {
       "query": {
-        "kind": ["Person"]
+        "kind": [{"name": "Person"}]
       },
       "batch": {
         "entityResults": [

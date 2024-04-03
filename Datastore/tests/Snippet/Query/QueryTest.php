@@ -20,6 +20,7 @@ namespace Google\Cloud\Datastore\Tests\Snippet\Query;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
@@ -40,6 +41,7 @@ class QueryTest extends SnippetTestCase
 {
     use ProphecyTrait;
     use ApiHelperTrait;
+    use DatastoreOperationRefreshTrait;
 
     private $datastore;
     private $connection;
@@ -78,16 +80,17 @@ class QueryTest extends SnippetTestCase
             'my-awesome-project',
             '',
             $mapper
-        ]);
+        ], ['requestHandler']);
 
         $this->query = new Query($mapper);
     }
 
     public function testClass()
     {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'runQuery',
+            [],
+            [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -105,9 +108,11 @@ class QueryTest extends SnippetTestCase
                     ],
                     'moreResults' => 'no'
                 ]
-            ]);
+            ],
+            0
+        );
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->datastore->___setProperty('operation', $this->operation);
 

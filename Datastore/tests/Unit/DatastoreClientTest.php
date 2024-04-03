@@ -279,9 +279,12 @@ class DatastoreClientTest extends TestCase
         );
 
         // Make sure the correct transaction ID was injected.
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([]);
+        $this->mockSendRequest(
+            'runQuery',
+            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            [],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -645,18 +648,23 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1'])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($key)
+        $this->mockSendRequest(
+            'runQuery',
+            [
+                'partitionId' => ['projectId' => self::PROJECT],
+                'gqlQuery' => ['queryString' => 'SELECT 1=1']
+            ],
+            [
+                'batch' => [
+                    'entityResults' => [
+                        [
+                            'entity' => $this->entityArray($key)
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -745,19 +753,24 @@ class DatastoreClientTest extends TestCase
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
 
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($key)
+        $this->mockSendRequest(
+            'runQuery',
+            [
+                'partitionId' => ['projectId' => self::PROJECT],
+                'gqlQuery' => ['queryString' => 'SELECT 1=1'],
+                'readOptions' => ['readTime' => $time]
+            ],
+            [
+                'batch' => [
+                    'entityResults' => [
+                        [
+                            'entity' => $this->entityArray($key)
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->client, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

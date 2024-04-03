@@ -254,9 +254,10 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $query->queryKey()->willReturn('query');
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            'runQuery',
+            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -275,7 +276,9 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ],
+            0
+        );
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
