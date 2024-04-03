@@ -377,8 +377,7 @@ class TransactionTest extends TestCase
      */
     public function testRollback(callable $transaction)
     {
-        $this->connection->rollback(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled();
+        $this->mockSendRequest('rollback', ['transaction' => self::TRANSACTION], [], 0);
 
         $transaction = $transaction();
         $this->refreshOperation($transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [

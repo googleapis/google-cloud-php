@@ -781,10 +781,12 @@ class OperationTest extends TestCase
 
     public function testRollback()
     {
-        $this->connection->rollback(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT),
-            Argument::withEntry('transaction', 'bar')
-        ))->shouldBeCalled()->willReturn(null);
+        $this->mockSendRequest(
+            'rollback',
+            ['projectId' => self::PROJECT, 'transaction' => 'bar'],
+            null,
+            0
+        );
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 

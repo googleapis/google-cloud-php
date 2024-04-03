@@ -458,8 +458,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
+        $this->mockSendRequest('rollback', [], [], 0);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

@@ -137,8 +137,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             [],
             0
         );
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
+        $this->mockSendRequest('rollback', [], [], 0);
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
 
@@ -293,8 +292,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
+        $this->mockSendRequest('rollback', [], [], 0);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal(), $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

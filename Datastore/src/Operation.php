@@ -46,6 +46,7 @@ use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
 use Google\Cloud\Datastore\V1\Query as V1Query;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
 use Google\Cloud\Datastore\V1\ReadOptions;
+use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
@@ -878,11 +879,18 @@ class Operation
      */
     public function rollback($transactionId)
     {
-        $this->connection->rollback([
+        list($data, $optionalArgs) = $this->splitOptionalArgs([
             'projectId' => $this->projectId,
             'transaction' => $transactionId,
             'databaseId' => $this->databaseId,
         ]);
+        $request = $this->serializer->decodeMessage(new RollbackRequest(), $data);
+        $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'rollback',
+            $request,
+            $optionalArgs
+        );
     }
 
     /**
