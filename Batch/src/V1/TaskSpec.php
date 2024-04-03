@@ -38,6 +38,8 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     /**
      * Maximum duration the task should run.
      * The task will be killed and marked as FAILED if over this limit.
+     * The valid value range for max_run_duration in seconds is [0,
+     * 315576000000.999999999],
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 4;</code>
      */
@@ -104,6 +106,8 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $max_run_duration
      *           Maximum duration the task should run.
      *           The task will be killed and marked as FAILED if over this limit.
+     *           The valid value range for max_run_duration in seconds is [0,
+     *           315576000000.999999999],
      *     @type int $max_retry_count
      *           Maximum number of retries on failures.
      *           The default, 0, which means never retry.
@@ -211,6 +215,8 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     /**
      * Maximum duration the task should run.
      * The task will be killed and marked as FAILED if over this limit.
+     * The valid value range for max_run_duration in seconds is [0,
+     * 315576000000.999999999],
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 4;</code>
      * @return \Google\Protobuf\Duration|null
@@ -233,6 +239,8 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
     /**
      * Maximum duration the task should run.
      * The task will be killed and marked as FAILED if over this limit.
+     * The valid value range for max_run_duration in seconds is [0,
+     * 315576000000.999999999],
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_run_duration = 4;</code>
      * @param \Google\Protobuf\Duration $var
