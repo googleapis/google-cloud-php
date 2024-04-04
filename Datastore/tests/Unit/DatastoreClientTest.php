@@ -23,6 +23,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
@@ -30,7 +31,6 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Datastore\Query\Aggregation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -40,7 +40,6 @@ use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -63,7 +62,10 @@ class DatastoreClientTest extends TestCase
     public function setUp(): void
     {
         $this->client = TestHelpers::stub(DatastoreClient::class, [
-            ['projectId' => self::PROJECT]
+            [
+                'projectId' => self::PROJECT,
+                'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+            ]
         ], [
             'operation'
         ]);

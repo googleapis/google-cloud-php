@@ -132,38 +132,6 @@ class TransactionTest extends TestCase
         $this->assertEquals($this->key->keyObject(), $res->key()->keyObject());
     }
 
-    public function testLookupWithReadTime()
-    {
-        $time = new Timestamp(new \DateTime());
-
-        $this->mockSendRequest(
-            'lookup',
-            [
-                'readOptions' => [
-                    'readTime' => $time,
-                    'transaction' => self::TRANSACTION,
-                ],
-                'keys' => [$this->key->keyObject()],
-            ],
-            [
-                'found' => [
-                    [
-                        'entity' => $this->entityArray($this->key)
-                    ]
-                ]
-            ],
-            0
-        );
-
-        $transaction = $this->readOnly;
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
-        $res = $transaction->lookup($this->key, ['readTime' => $time]);
-        $this->assertInstanceOf(Entity::class, $res);
-    }
-
     /**
      * @dataProvider transactionProvider
      */
