@@ -73,7 +73,7 @@ class AggregationQueryTest extends SnippetTestCase
             'my-awesome-project',
             '',
             $mapper
-        ]);
+        ], ['requestHandler']);
     }
 
     public function testClass()
