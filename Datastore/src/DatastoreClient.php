@@ -135,37 +135,47 @@ class DatastoreClient
      *           place of the service's default endpoint.
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
-     *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
-     *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developer's Console.
-     *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
-     *     @type float $requestTimeout Seconds to wait before timing out the
-     *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request. **Defaults
-     *           to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
-     *           access charges associated with the request.
+     *     @type array $credentialsConfig Options used to configure credentials, including
+     *           auth token caching, http handler, for the client. For a full list of
+     *           supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()} .
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           The credentials to be used by the client to authorize API calls. This option
+     *           accepts either a path to a credentials file, or a decoded credentials file as a
+     *           PHP array.
+     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
+     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
+     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
+     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...],
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+     *           that when this object is provided, any settings in $transportConfig, and any
+     *           $apiEndpoint setting, will be ignored.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either
+     *           a path to a JSON file, or a PHP array containing the decoded JSON data. By
+     *           default this settings points to the default client config file, which is
+     *           provided in the resources folder.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *     @type string $databaseId ID of the database to which the entities belong.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
-     *     @type string $transport The transport type used for requests. May be
-     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
-     *           is detected on the system.
      * }
      * @throws \InvalidArgumentException
      */
