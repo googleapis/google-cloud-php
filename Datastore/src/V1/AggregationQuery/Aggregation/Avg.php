@@ -80,7 +80,3 @@ class Avg extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Avg::class, \Google\Cloud\Datastore\V1\AggregationQuery_Aggregation_Avg::class);
-

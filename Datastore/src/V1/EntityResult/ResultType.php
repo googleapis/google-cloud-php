@@ -69,7 +69,3 @@ class ResultType
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResultType::class, \Google\Cloud\Datastore\V1\EntityResult_ResultType::class);
-

@@ -22,7 +22,6 @@ use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\RequestHandler;

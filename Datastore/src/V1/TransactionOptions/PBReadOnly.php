@@ -86,8 +86,3 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PBReadOnly::class, \Google\Cloud\Datastore\V1\TransactionOptions_ReadOnly::class);
-
-
