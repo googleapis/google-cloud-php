@@ -110,6 +110,7 @@ class Database
 
     const TYPE_BOOL = TypeCode::BOOL;
     const TYPE_INT64 = TypeCode::INT64;
+    const TYPE_FLOAT32 = TypeCode::FLOAT32;
     const TYPE_FLOAT64 = TypeCode::FLOAT64;
     const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
     const TYPE_DATE = TypeCode::DATE;

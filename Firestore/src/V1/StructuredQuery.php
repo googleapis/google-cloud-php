@@ -121,6 +121,14 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 5;</code>
      */
     private $limit = null;
+    /**
+     * Optional. A potential Nearest Neighbors Search.
+     * Applies after all other filters and ordering.
+     * Finds the closest vector embeddings to the given query vector.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest find_nearest = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $find_nearest = null;
 
     /**
      * Constructor.
@@ -195,6 +203,10 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *           Applies after all other constraints.
      *           Requires:
      *           * The value must be greater than or equal to zero if specified.
+     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\FindNearest $find_nearest
+     *           Optional. A potential Nearest Neighbors Search.
+     *           Applies after all other filters and ordering.
+     *           Finds the closest vector embeddings to the given query vector.
      * }
      */
     public function __construct($data = NULL) {
@@ -594,6 +606,46 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("limit", $var);
         return $this;}
+
+    /**
+     * Optional. A potential Nearest Neighbors Search.
+     * Applies after all other filters and ordering.
+     * Finds the closest vector embeddings to the given query vector.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest find_nearest = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FindNearest|null
+     */
+    public function getFindNearest()
+    {
+        return $this->find_nearest;
+    }
+
+    public function hasFindNearest()
+    {
+        return isset($this->find_nearest);
+    }
+
+    public function clearFindNearest()
+    {
+        unset($this->find_nearest);
+    }
+
+    /**
+     * Optional. A potential Nearest Neighbors Search.
+     * Applies after all other filters and ordering.
+     * Finds the closest vector embeddings to the given query vector.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FindNearest find_nearest = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\V1\StructuredQuery\FindNearest $var
+     * @return $this
+     */
+    public function setFindNearest($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\FindNearest::class);
+        $this->find_nearest = $var;
+
+        return $this;
+    }
 
 }
 
