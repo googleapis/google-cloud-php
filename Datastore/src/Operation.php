@@ -459,7 +459,13 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         });
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['transaction', 'className', 'sort', 'readTime', 'readConsistency']);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options, [
+            'transaction',
+            'className',
+            'sort',
+            'readTime',
+            'readConsistency'
+        ]);
         $data += $this->readOptions($options) + [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
@@ -748,7 +754,7 @@ class Operation
             $data = $mutation[$mutationType];
             if (isset($data['properties'])) {
                 foreach ($data['properties'] as &$property) {
-                    list ($type, $val) = $this->toGrpcValue($property);
+                    list($type, $val) = $this->toGrpcValue($property);
 
                     $property[$type] = $val;
                 }
@@ -756,7 +762,7 @@ class Operation
 
             $mutation[$mutationType] = $data;
 
-            $mutation = $this->serializer->decodeMessage(new Mutation, $mutation);
+            $mutation = $this->serializer->decodeMessage(new Mutation(), $mutation);
         }
 
         $options += [
@@ -1104,7 +1110,7 @@ class Operation
         }
 
         $parsedQuery = $this->serializer->decodeMessage(
-            new V1Query,
+            new V1Query(),
             $query
         );
         return $parsedQuery;
@@ -1139,7 +1145,7 @@ class Operation
         }
 
         $parsedGqlQuery = $this->serializer->decodeMessage(
-            new GqlQuery,
+            new GqlQuery(),
             $gqlQuery
         );
 
@@ -1198,7 +1204,7 @@ class Operation
     {
         $value = $binding['value'];
 
-        list ($type, $val) = $this->toGrpcValue($value);
+        list($type, $val) = $this->toGrpcValue($value);
 
         $binding['value'][$type] = $val;
 

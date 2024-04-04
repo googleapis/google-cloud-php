@@ -666,7 +666,9 @@ class OperationTest extends TestCase
         $this->requestHandler->sendRequest(
             DatastoreClient::class,
             'runQuery',
-            Argument::that(function ($req) {return !$req->hasReadOptions();}),
+            Argument::that(function ($req) {
+                return !$req->hasReadOptions();
+            }),
             Argument::cetera()
         )->willReturn([])->shouldBeCalled();
 
@@ -862,7 +864,7 @@ class OperationTest extends TestCase
         $this->requestHandler->sendRequest(
             DatastoreClient::class,
             'commit',
-            Argument::that(function ($arg) use ($otherThis){
+            Argument::that(function ($arg) use ($otherThis) {
                 $data = $otherThis->serializer->encodeMessage($arg);
                 $x = isset($data['mutations'][0]['delete']['path']);
                 return isset($data['mutations'][0]['delete']['path']);

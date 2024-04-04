@@ -123,7 +123,7 @@ class TransactionTest extends TestCase
         );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -151,7 +151,7 @@ class TransactionTest extends TestCase
         );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -186,7 +186,7 @@ class TransactionTest extends TestCase
         );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -216,7 +216,7 @@ class TransactionTest extends TestCase
         );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -247,7 +247,7 @@ class TransactionTest extends TestCase
         );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -284,7 +284,7 @@ class TransactionTest extends TestCase
         );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -323,7 +323,7 @@ class TransactionTest extends TestCase
         );
 
         $transaction = $this->readOnly;
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -343,7 +343,7 @@ class TransactionTest extends TestCase
         $this->mockSendRequest('rollback', ['transaction' => self::TRANSACTION], [], 0);
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -366,7 +366,7 @@ class TransactionTest extends TestCase
             0
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -392,7 +392,7 @@ class TransactionTest extends TestCase
             0
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -433,7 +433,7 @@ class TransactionTest extends TestCase
             ['keys' => [$keyWithId->keyObject()]]
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -468,7 +468,7 @@ class TransactionTest extends TestCase
             ['keys' => [$keyWithId->keyObject()]]
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -501,7 +501,7 @@ class TransactionTest extends TestCase
             0
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -525,7 +525,7 @@ class TransactionTest extends TestCase
             0
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 

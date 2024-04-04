@@ -104,7 +104,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->client,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -134,7 +134,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
 
-        $this->refreshOperation($this->client,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -175,7 +175,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             ]
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -226,7 +226,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             ]
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -272,7 +272,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
             0
         );
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -287,7 +287,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
         $this->mockSendRequest('rollback', [], [], 0);
 
-        $this->refreshOperation($this->transaction,$this->requestHandler->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
