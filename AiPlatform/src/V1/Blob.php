@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Raw media bytes.
- * Text should not be sent as raw bytes, use the 'text' field.
+ * Content blob.
+ * It's preferred to send as [text][google.cloud.aiplatform.v1.Part.text]
+ * directly rather than raw bytes.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.Blob</code>
  */
@@ -23,7 +24,7 @@ class Blob extends \Google\Protobuf\Internal\Message
      */
     private $mime_type = '';
     /**
-     * Required. Raw bytes for media formats.
+     * Required. Raw bytes.
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,7 +39,7 @@ class Blob extends \Google\Protobuf\Internal\Message
      *     @type string $mime_type
      *           Required. The IANA standard MIME type of the source data.
      *     @type string $data
-     *           Required. Raw bytes for media formats.
+     *           Required. Raw bytes.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +74,7 @@ class Blob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Raw bytes for media formats.
+     * Required. Raw bytes.
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -84,7 +85,7 @@ class Blob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Raw bytes for media formats.
+     * Required. Raw bytes.
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
