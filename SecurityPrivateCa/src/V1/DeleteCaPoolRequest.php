@@ -43,7 +43,7 @@ class DeleteCaPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This field allows this pool to be deleted even if it's being
      * depended on by another resource. However, doing so may result in unintended
-     * and unrecoverable effects on any dependent resource(s) since the pool will
+     * and unrecoverable effects on any dependent resources since the pool will
      * no longer be able to issue certificates.
      *
      * Generated from protobuf field <code>bool ignore_dependent_resources = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -91,7 +91,7 @@ class DeleteCaPoolRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $ignore_dependent_resources
      *           Optional. This field allows this pool to be deleted even if it's being
      *           depended on by another resource. However, doing so may result in unintended
-     *           and unrecoverable effects on any dependent resource(s) since the pool will
+     *           and unrecoverable effects on any dependent resources since the pool will
      *           no longer be able to issue certificates.
      * }
      */
@@ -179,7 +179,7 @@ class DeleteCaPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This field allows this pool to be deleted even if it's being
      * depended on by another resource. However, doing so may result in unintended
-     * and unrecoverable effects on any dependent resource(s) since the pool will
+     * and unrecoverable effects on any dependent resources since the pool will
      * no longer be able to issue certificates.
      *
      * Generated from protobuf field <code>bool ignore_dependent_resources = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -193,7 +193,7 @@ class DeleteCaPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This field allows this pool to be deleted even if it's being
      * depended on by another resource. However, doing so may result in unintended
-     * and unrecoverable effects on any dependent resource(s) since the pool will
+     * and unrecoverable effects on any dependent resources since the pool will
      * no longer be able to issue certificates.
      *
      * Generated from protobuf field <code>bool ignore_dependent_resources = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
