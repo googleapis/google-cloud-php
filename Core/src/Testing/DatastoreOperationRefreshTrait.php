@@ -60,22 +60,7 @@ trait DatastoreOperationRefreshTrait
             $options['returnInt64AsObject']
         );
 
-        $serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
-                    $dt = new \DateTime($v);
-                    return ['seconds' => $dt->format('U')];
-                }
-                return $v;
-            }
-        ]);
+        $serializer = $this->getSerializer();
 
         $stub->___setProperty('operation', new Operation(
             $requestHandler,
@@ -105,26 +90,7 @@ trait DatastoreOperationRefreshTrait
      */
     private function mockSendRequest($methodName, $params, $returnValue, $shouldBeCalledTimes = null)
     {
-        if (isset($this->serializer)) {
-            $serializer = $this->serializer;
-        } else {
-            $serializer = new Serializer([], [
-                'google.protobuf.Value' => function ($v) {
-                    return $this->flattenValue($v);
-                },
-                'google.protobuf.Timestamp' => function ($v) {
-                    return $this->formatTimestampFromApi($v);
-                }
-            ], [], [
-                'google.protobuf.Timestamp' => function ($v) {
-                    if (is_string($v)) {
-                        $dt = new \DateTime($v);
-                        return ['seconds' => $dt->format('U')];
-                    }
-                    return $v;
-                }
-            ]);
-        }
+        $serializer = $this->getSerializer();
 
         $prophecy = $this->requestHandler->sendRequest(
             DatastoreClient::class,
@@ -152,5 +118,29 @@ trait DatastoreOperationRefreshTrait
         }
 
         $prophecy->willReturn($returnValue);
+    }
+
+    private function getSerializer()
+    {
+        if (isset($this->serializer)) {
+            return $this->serializer;
+        }
+
+        return new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                if (is_string($v)) {
+                    $dt = new \DateTime($v);
+                    return ['seconds' => $dt->format('U')];
+                }
+                return $v;
+            }
+        ]);
     }
 }

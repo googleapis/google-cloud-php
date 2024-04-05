@@ -475,7 +475,6 @@ class Operation
         ];
 
         $request = $this->serializer->decodeMessage(new LookupRequest(), $data);
-        $x = $this->serializer->encodeMessage($request);
 
         $res = $this->requestHandler->sendRequest(
             DatastoreClient::class,
@@ -774,7 +773,7 @@ class Operation
         ];
 
         if (is_null($options['transaction'])) {
-            // Remove 'transaction' if `null` to avoid serialization error
+            // Remove 'transaction' if set to `null` to avoid serialization error
             unset($options['transaction']);
         }
         list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['allowOverwrite', 'baseVersion']);
