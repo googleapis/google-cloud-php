@@ -35,10 +35,8 @@ class State
      */
     const START_FROM_INTERNET = 2;
     /**
-     * Initial state: packet originating from a Google service. Some Google
-     * services, such as health check probers or Identity Aware Proxy use
-     * special routes, outside VPC routing configuration to reach Compute Engine
-     * Instances.
+     * Initial state: packet originating from a Google service.
+     * The google_service information is populated.
      *
      * Generated from protobuf enum <code>START_FROM_GOOGLE_SERVICE = 27;</code>
      */
@@ -88,6 +86,21 @@ class State
      */
     const START_FROM_CLOUD_RUN_REVISION = 26;
     /**
+     * Initial state: packet originating from a Storage Bucket. Used only for
+     * return traces.
+     * The storage_bucket information is populated.
+     *
+     * Generated from protobuf enum <code>START_FROM_STORAGE_BUCKET = 29;</code>
+     */
+    const START_FROM_STORAGE_BUCKET = 29;
+    /**
+     * Initial state: packet originating from a published service that uses
+     * Private Service Connect. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>START_FROM_PSC_PUBLISHED_SERVICE = 30;</code>
+     */
+    const START_FROM_PSC_PUBLISHED_SERVICE = 30;
+    /**
      * Config checking state: verify ingress firewall rule.
      *
      * Generated from protobuf enum <code>APPLY_INGRESS_FIREWALL_RULE = 4;</code>
@@ -133,13 +146,13 @@ class State
     /**
      * Forwarding state: arriving at a Compute Engine internal load balancer.
      *
-     * Generated from protobuf enum <code>ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10;</code>
+     * Generated from protobuf enum <code>ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10 [deprecated = true];</code>
      */
     const ARRIVE_AT_INTERNAL_LOAD_BALANCER = 10;
     /**
      * Forwarding state: arriving at a Compute Engine external load balancer.
      *
-     * Generated from protobuf enum <code>ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11;</code>
+     * Generated from protobuf enum <code>ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11 [deprecated = true];</code>
      */
     const ARRIVE_AT_EXTERNAL_LOAD_BALANCER = 11;
     /**
@@ -217,6 +230,8 @@ class State
         self::START_FROM_CLOUD_FUNCTION => 'START_FROM_CLOUD_FUNCTION',
         self::START_FROM_APP_ENGINE_VERSION => 'START_FROM_APP_ENGINE_VERSION',
         self::START_FROM_CLOUD_RUN_REVISION => 'START_FROM_CLOUD_RUN_REVISION',
+        self::START_FROM_STORAGE_BUCKET => 'START_FROM_STORAGE_BUCKET',
+        self::START_FROM_PSC_PUBLISHED_SERVICE => 'START_FROM_PSC_PUBLISHED_SERVICE',
         self::APPLY_INGRESS_FIREWALL_RULE => 'APPLY_INGRESS_FIREWALL_RULE',
         self::APPLY_EGRESS_FIREWALL_RULE => 'APPLY_EGRESS_FIREWALL_RULE',
         self::APPLY_ROUTE => 'APPLY_ROUTE',

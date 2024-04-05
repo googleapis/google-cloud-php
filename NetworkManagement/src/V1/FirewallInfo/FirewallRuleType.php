@@ -68,6 +68,24 @@ class FirewallRuleType
      * Generated from protobuf enum <code>NETWORK_REGIONAL_FIREWALL_POLICY_RULE = 6;</code>
      */
     const NETWORK_REGIONAL_FIREWALL_POLICY_RULE = 6;
+    /**
+     * Firewall policy rule containing attributes not yet supported in
+     * Connectivity tests. Firewall analysis is skipped if such a rule can
+     * potentially be matched. Please see the [list of unsupported
+     * configurations](https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/concepts/overview#unsupported-configs).
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_FIREWALL_POLICY_RULE = 100;</code>
+     */
+    const UNSUPPORTED_FIREWALL_POLICY_RULE = 100;
+    /**
+     * Tracking state for response traffic created when request traffic goes
+     * through allow firewall rule.
+     * For details, see [firewall rules
+     * specifications](https://cloud.google.com/firewall/docs/firewalls#specifications)
+     *
+     * Generated from protobuf enum <code>TRACKING_STATE = 101;</code>
+     */
+    const TRACKING_STATE = 101;
 
     private static $valueToName = [
         self::FIREWALL_RULE_TYPE_UNSPECIFIED => 'FIREWALL_RULE_TYPE_UNSPECIFIED',
@@ -77,6 +95,8 @@ class FirewallRuleType
         self::SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE => 'SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE',
         self::NETWORK_FIREWALL_POLICY_RULE => 'NETWORK_FIREWALL_POLICY_RULE',
         self::NETWORK_REGIONAL_FIREWALL_POLICY_RULE => 'NETWORK_REGIONAL_FIREWALL_POLICY_RULE',
+        self::UNSUPPORTED_FIREWALL_POLICY_RULE => 'UNSUPPORTED_FIREWALL_POLICY_RULE',
+        self::TRACKING_STATE => 'TRACKING_STATE',
     ];
 
     public static function name($value)

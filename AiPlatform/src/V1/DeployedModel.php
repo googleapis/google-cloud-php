@@ -78,6 +78,16 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     private $explanation_spec = null;
     /**
+     * If true, deploy the model without explainable feature, regardless the
+     * existence of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec].
+     *
+     * Generated from protobuf field <code>bool disable_explanations = 19;</code>
+     */
+    private $disable_explanations = false;
+    /**
      * The service account that the DeployedModel's container runs as. Specify the
      * email address of the service account. If this service account is not
      * specified, the container runs as a service account that doesn't have access
@@ -176,6 +186,12 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           is not populated, all fields of the
      *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
      *           will be used for the explanation configuration.
+     *     @type bool $disable_explanations
+     *           If true, deploy the model without explainable feature, regardless the
+     *           existence of
+     *           [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     *           or
+     *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec].
      *     @type string $service_account
      *           The service account that the DeployedModel's container runs as. Specify the
      *           email address of the service account. If this service account is not
@@ -535,6 +551,40 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ExplanationSpec::class);
         $this->explanation_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, deploy the model without explainable feature, regardless the
+     * existence of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec].
+     *
+     * Generated from protobuf field <code>bool disable_explanations = 19;</code>
+     * @return bool
+     */
+    public function getDisableExplanations()
+    {
+        return $this->disable_explanations;
+    }
+
+    /**
+     * If true, deploy the model without explainable feature, regardless the
+     * existence of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec].
+     *
+     * Generated from protobuf field <code>bool disable_explanations = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableExplanations($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_explanations = $var;
 
         return $this;
     }

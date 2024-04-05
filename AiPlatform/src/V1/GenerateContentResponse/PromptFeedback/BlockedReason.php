@@ -31,11 +31,26 @@ class BlockedReason
      * Generated from protobuf enum <code>OTHER = 2;</code>
      */
     const OTHER = 2;
+    /**
+     * Candidates blocked due to the terms which are included from the
+     * terminology blocklist.
+     *
+     * Generated from protobuf enum <code>BLOCKLIST = 3;</code>
+     */
+    const BLOCKLIST = 3;
+    /**
+     * Candidates blocked due to prohibited content.
+     *
+     * Generated from protobuf enum <code>PROHIBITED_CONTENT = 4;</code>
+     */
+    const PROHIBITED_CONTENT = 4;
 
     private static $valueToName = [
         self::BLOCKED_REASON_UNSPECIFIED => 'BLOCKED_REASON_UNSPECIFIED',
         self::SAFETY => 'SAFETY',
         self::OTHER => 'OTHER',
+        self::BLOCKLIST => 'BLOCKLIST',
+        self::PROHIBITED_CONTENT => 'PROHIBITED_CONTENT',
     ];
 
     public static function name($value)
