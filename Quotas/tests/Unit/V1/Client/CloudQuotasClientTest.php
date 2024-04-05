@@ -107,8 +107,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
         $request = (new CreateQuotaPreferenceRequest())
             ->setParent($formattedParent)
             ->setQuotaPreference($quotaPreference);
@@ -158,8 +156,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
         $request = (new CreateQuotaPreferenceRequest())
             ->setParent($formattedParent)
             ->setQuotaPreference($quotaPreference);
@@ -517,8 +513,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
         $request = (new UpdateQuotaPreferenceRequest())->setQuotaPreference($quotaPreference);
         $response = $gapicClient->updateQuotaPreference($request);
         $this->assertEquals($expectedResponse, $response);
@@ -563,8 +557,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
         $request = (new UpdateQuotaPreferenceRequest())->setQuotaPreference($quotaPreference);
         try {
             $gapicClient->updateQuotaPreference($request);
@@ -615,8 +607,6 @@ class CloudQuotasClientTest extends GeneratedTest
         $quotaPreference->setService($quotaPreferenceService);
         $quotaPreferenceQuotaId = 'quotaPreferenceQuotaId1917192384';
         $quotaPreference->setQuotaId($quotaPreferenceQuotaId);
-        $quotaPreferenceContactEmail = 'quotaPreferenceContactEmail-1724666769';
-        $quotaPreference->setContactEmail($quotaPreferenceContactEmail);
         $request = (new CreateQuotaPreferenceRequest())
             ->setParent($formattedParent)
             ->setQuotaPreference($quotaPreference);
