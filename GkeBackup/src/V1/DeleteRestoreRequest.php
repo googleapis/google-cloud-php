@@ -23,19 +23,19 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * If provided, this value must match the current value of the
+     * Optional. If provided, this value must match the current value of the
      * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
      * the request is rejected.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
     /**
-     * If set to true, any VolumeRestores below this restore will also be deleted.
-     * Otherwise, the request will only succeed if the restore has no
+     * Optional. If set to true, any VolumeRestores below this restore will also
+     * be deleted. Otherwise, the request will only succeed if the restore has no
      * VolumeRestores.
      *
-     * Generated from protobuf field <code>bool force = 3;</code>
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $force = false;
 
@@ -64,12 +64,12 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
      *           Required. Full name of the Restore
      *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;`
      *     @type string $etag
-     *           If provided, this value must match the current value of the
+     *           Optional. If provided, this value must match the current value of the
      *           target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
      *           the request is rejected.
      *     @type bool $force
-     *           If set to true, any VolumeRestores below this restore will also be deleted.
-     *           Otherwise, the request will only succeed if the restore has no
+     *           Optional. If set to true, any VolumeRestores below this restore will also
+     *           be deleted. Otherwise, the request will only succeed if the restore has no
      *           VolumeRestores.
      * }
      */
@@ -107,11 +107,11 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, this value must match the current value of the
+     * Optional. If provided, this value must match the current value of the
      * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
      * the request is rejected.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEtag()
@@ -120,11 +120,11 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If provided, this value must match the current value of the
+     * Optional. If provided, this value must match the current value of the
      * target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
      * the request is rejected.
      *
-     * Generated from protobuf field <code>string etag = 2;</code>
+     * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -137,11 +137,11 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, any VolumeRestores below this restore will also be deleted.
-     * Otherwise, the request will only succeed if the restore has no
+     * Optional. If set to true, any VolumeRestores below this restore will also
+     * be deleted. Otherwise, the request will only succeed if the restore has no
      * VolumeRestores.
      *
-     * Generated from protobuf field <code>bool force = 3;</code>
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getForce()
@@ -150,11 +150,11 @@ class DeleteRestoreRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, any VolumeRestores below this restore will also be deleted.
-     * Otherwise, the request will only succeed if the restore has no
+     * Optional. If set to true, any VolumeRestores below this restore will also
+     * be deleted. Otherwise, the request will only succeed if the restore has no
      * VolumeRestores.
      *
-     * Generated from protobuf field <code>bool force = 3;</code>
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
