@@ -33,10 +33,10 @@ class FilterTest extends DatastoreMultipleDbTestCase
         $data = self::getInitialData();
         $entities = [];
         foreach ($data as $element) {
-            $key = self::$restClient->key(self::$kind, $element['Name']);
-            $entities[] = self::$restClient->entity($key, $element);
+            $key = self::$grpcClient->key(self::$kind, $element['Name']);
+            $entities[] = self::$grpcClient->entity($key, $element);
         }
-        self::$restClient->insertBatch($entities);
+        self::$grpcClient->insertBatch($entities);
 
         // on rare occasions the queries below are returning no results when
         // triggered immediately after an insert operation. the sleep here

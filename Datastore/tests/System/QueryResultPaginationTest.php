@@ -40,7 +40,7 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
 
         $ancestorKind = uniqid(self::TESTING_PREFIX);
 
-        $client = self::$restClient;
+        $client = self::$grpcClient;
         self::$parentKey = $client->key($ancestorKind, uniqid('pagination-'));
         self::$testKind = uniqid('test-kind-');
 
@@ -71,7 +71,7 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
     {
         self::setUpBeforeClass();
 
-        $client = self::$restClient;
+        $client = self::$grpcClient;
         $q = $client->query()
             ->hasAncestor(self::$parentKey)
             ->kind(self::$testKind);

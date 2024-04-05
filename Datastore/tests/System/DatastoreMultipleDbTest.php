@@ -51,18 +51,18 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpMultiDbBeforeClass();
-        self::$ancestor = self::$restMultiDbClient->key(self::$kind, 'V_A');
-        $key1 = self::$restMultiDbClient->key(self::$kind, 'B_S');
+        self::$ancestor = self::$grpcMultiDbClient->key(self::$kind, 'V_A');
+        $key1 = self::$grpcMultiDbClient->key(self::$kind, 'B_S');
         $key1->ancestorKey(self::$ancestor);
-        $key2 = self::$restMultiDbClient->key(self::$kind, 'D_S');
+        $key2 = self::$grpcMultiDbClient->key(self::$kind, 'D_S');
         $key2->ancestorKey(self::$ancestor);
-        $key3 = self::$restMultiDbClient->key(self::$kind, 'S_D');
+        $key3 = self::$grpcMultiDbClient->key(self::$kind, 'S_D');
 
-        self::$restMultiDbClient->insertBatch([
-            self::$restMultiDbClient->entity(self::$ancestor, self::$data[0]),
-            self::$restMultiDbClient->entity($key1, self::$data[1]),
-            self::$restMultiDbClient->entity($key2, self::$data[2]),
-            self::$restMultiDbClient->entity($key3, self::$data[3]),
+        self::$grpcMultiDbClient->insertBatch([
+            self::$grpcMultiDbClient->entity(self::$ancestor, self::$data[0]),
+            self::$grpcMultiDbClient->entity($key1, self::$data[1]),
+            self::$grpcMultiDbClient->entity($key2, self::$data[2]),
+            self::$grpcMultiDbClient->entity($key3, self::$data[3]),
         ]);
 
         // on rare occasions the queries below are returning no results when
