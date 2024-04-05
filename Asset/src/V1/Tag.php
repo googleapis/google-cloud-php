@@ -23,6 +23,12 @@ class Tag extends \Google\Protobuf\Internal\Message
      */
     private $tag_key = null;
     /**
+     * TagKey ID, in the format of tagKeys/{TAG_KEY_ID}.
+     *
+     * Generated from protobuf field <code>optional string tag_key_id = 2;</code>
+     */
+    private $tag_key_id = null;
+    /**
      * TagValue namespaced name, in the format of
      * {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
      *
@@ -44,6 +50,8 @@ class Tag extends \Google\Protobuf\Internal\Message
      *
      *     @type string $tag_key
      *           TagKey namespaced name, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
+     *     @type string $tag_key_id
+     *           TagKey ID, in the format of tagKeys/{TAG_KEY_ID}.
      *     @type string $tag_value
      *           TagValue namespaced name, in the format of
      *           {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
@@ -88,6 +96,42 @@ class Tag extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tag_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * TagKey ID, in the format of tagKeys/{TAG_KEY_ID}.
+     *
+     * Generated from protobuf field <code>optional string tag_key_id = 2;</code>
+     * @return string
+     */
+    public function getTagKeyId()
+    {
+        return isset($this->tag_key_id) ? $this->tag_key_id : '';
+    }
+
+    public function hasTagKeyId()
+    {
+        return isset($this->tag_key_id);
+    }
+
+    public function clearTagKeyId()
+    {
+        unset($this->tag_key_id);
+    }
+
+    /**
+     * TagKey ID, in the format of tagKeys/{TAG_KEY_ID}.
+     *
+     * Generated from protobuf field <code>optional string tag_key_id = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTagKeyId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tag_key_id = $var;
 
         return $this;
     }

@@ -340,6 +340,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `tagKeys:"123456789/env*"`
      *     - `tagKeys="123456789/env"`
      *     - `tagKeys:"env"`
+     *     - `tagKeyIds="tagKeys/123"`
      *     - `tagValues:"env"`
      *     - `tagValues:"env/prod"`
      *     - `tagValues:"123456789/env/prod*"`
@@ -361,6 +362,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `effectiveTagKeys:"123456789/env*"`
      *     - `effectiveTagKeys="123456789/env"`
      *     - `effectiveTagKeys:"env"`
+     *     - `effectiveTagKeyIds="tagKeys/123"`
      *     - `effectiveTagValues:"env"`
      *     - `effectiveTagValues:"env/prod"`
      *     - `effectiveTagValues:"123456789/env/prod*"`
@@ -627,6 +629,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `tagKeys:"123456789/env*"`
      *               - `tagKeys="123456789/env"`
      *               - `tagKeys:"env"`
+     *               - `tagKeyIds="tagKeys/123"`
      *               - `tagValues:"env"`
      *               - `tagValues:"env/prod"`
      *               - `tagValues:"123456789/env/prod*"`
@@ -644,6 +647,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `effectiveTagKeys:"123456789/env*"`
      *               - `effectiveTagKeys="123456789/env"`
      *               - `effectiveTagKeys:"env"`
+     *               - `effectiveTagKeyIds="tagKeys/123"`
      *               - `effectiveTagValues:"env"`
      *               - `effectiveTagValues:"env/prod"`
      *               - `effectiveTagValues:"123456789/env/prod*"`
@@ -1671,6 +1675,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `tagKeys:"123456789/env*"`
      *     - `tagKeys="123456789/env"`
      *     - `tagKeys:"env"`
+     *     - `tagKeyIds="tagKeys/123"`
      *     - `tagValues:"env"`
      *     - `tagValues:"env/prod"`
      *     - `tagValues:"123456789/env/prod*"`
@@ -1694,6 +1699,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `tagKeys:"123456789/env*"`
      *     - `tagKeys="123456789/env"`
      *     - `tagKeys:"env"`
+     *     - `tagKeyIds="tagKeys/123"`
      *     - `tagValues:"env"`
      *     - `tagValues:"env/prod"`
      *     - `tagValues:"123456789/env/prod*"`
@@ -1724,6 +1730,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `effectiveTagKeys:"123456789/env*"`
      *     - `effectiveTagKeys="123456789/env"`
      *     - `effectiveTagKeys:"env"`
+     *     - `effectiveTagKeyIds="tagKeys/123"`
      *     - `effectiveTagValues:"env"`
      *     - `effectiveTagValues:"env/prod"`
      *     - `effectiveTagValues:"123456789/env/prod*"`
@@ -1748,6 +1755,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `effectiveTagKeys:"123456789/env*"`
      *     - `effectiveTagKeys="123456789/env"`
      *     - `effectiveTagKeys:"env"`
+     *     - `effectiveTagKeyIds="tagKeys/123"`
      *     - `effectiveTagValues:"env"`
      *     - `effectiveTagValues:"env/prod"`
      *     - `effectiveTagValues:"123456789/env/prod*"`
