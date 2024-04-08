@@ -2,7 +2,9 @@
   "name": "google/cloud-common-protos",
   "type": "library",
   "description": "Common Protos for Google Cloud APIs",
-  "keywords": ["google"],
+  "keywords": [
+    "google"
+  ],
   "homepage": "https://github.com/googleapis/google-cloud-php-common-protos",
   "license": "Apache-2.0",
   "require": {
