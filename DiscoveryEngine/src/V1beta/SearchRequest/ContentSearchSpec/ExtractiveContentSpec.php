@@ -53,9 +53,9 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
     protected $max_extractive_segment_count = 0;
     /**
      * Specifies whether to return the confidence score from the extractive
-     * segments in each search result. The default value is `false`.
-     * Note: this is a priavte preview feature and only works for allowlisted
-     * users, please reach out to Cloud Support team if you want to use it.
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
      *
      * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
      */
@@ -112,9 +112,9 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      *           return the `max_extractive_segment_count`.
      *     @type bool $return_extractive_segment_score
      *           Specifies whether to return the confidence score from the extractive
-     *           segments in each search result. The default value is `false`.
-     *           Note: this is a priavte preview feature and only works for allowlisted
-     *           users, please reach out to Cloud Support team if you want to use it.
+     *           segments in each search result. This feature is available only for new
+     *           or allowlisted data stores. To allowlist your data store,
+     *           contact your Customer Engineer. The default value is `false`.
      *     @type int $num_previous_segments
      *           Specifies whether to also include the adjacent from each selected
      *           segments.
@@ -230,9 +230,9 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies whether to return the confidence score from the extractive
-     * segments in each search result. The default value is `false`.
-     * Note: this is a priavte preview feature and only works for allowlisted
-     * users, please reach out to Cloud Support team if you want to use it.
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
      *
      * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
      * @return bool
@@ -244,9 +244,9 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies whether to return the confidence score from the extractive
-     * segments in each search result. The default value is `false`.
-     * Note: this is a priavte preview feature and only works for allowlisted
-     * users, please reach out to Cloud Support team if you want to use it.
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
      *
      * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
      * @param bool $var

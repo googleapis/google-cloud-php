@@ -31,22 +31,31 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
     /**
      * Strength of the condition boost, which should be in [-1, 1]. Negative
      * boost means demotion. Default is 0.0.
-     * Setting to 1.0 gives the document a big promotion. However, it does not
-     * necessarily mean that the boosted document will be the top result at
-     * all times, nor that other documents will be excluded. Results could
-     * still be shown even when none of them matches the condition. And
-     * results that are significantly more relevant to the search query can
-     * still trump your heavily favored but irrelevant documents.
+     * Setting to 1.0 gives the document a big promotion. However, it does
+     * not necessarily mean that the boosted document will be the top result
+     * at all times, nor that other documents will be excluded. Results
+     * could still be shown even when none of them matches the condition.
+     * And results that are significantly more relevant to the search query
+     * can still trump your heavily favored but irrelevant documents.
      * Setting to -1.0 gives the document a big demotion. However, results
      * that are deeply relevant might still be shown. The document will have
-     * an upstream battle to get a fairly high ranking, but it is not blocked
-     * out completely.
+     * an upstream battle to get a fairly high ranking, but it is not
+     * blocked out completely.
      * Setting to 0.0 means no boost applied. The boosting condition is
-     * ignored.
+     * ignored. Only one of the (condition, boost) combination or the
+     * boost_control_spec below are set. If both are set then the global boost
+     * is ignored and the more fine-grained boost_control_spec is applied.
      *
      * Generated from protobuf field <code>float boost = 2;</code>
      */
     protected $boost = 0.0;
+    /**
+     * Complex specification for custom ranking based on customer defined
+     * attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 3;</code>
+     */
+    protected $boost_control_spec = null;
 
     /**
      * Constructor.
@@ -66,18 +75,23 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *     @type float $boost
      *           Strength of the condition boost, which should be in [-1, 1]. Negative
      *           boost means demotion. Default is 0.0.
-     *           Setting to 1.0 gives the document a big promotion. However, it does not
-     *           necessarily mean that the boosted document will be the top result at
-     *           all times, nor that other documents will be excluded. Results could
-     *           still be shown even when none of them matches the condition. And
-     *           results that are significantly more relevant to the search query can
-     *           still trump your heavily favored but irrelevant documents.
+     *           Setting to 1.0 gives the document a big promotion. However, it does
+     *           not necessarily mean that the boosted document will be the top result
+     *           at all times, nor that other documents will be excluded. Results
+     *           could still be shown even when none of them matches the condition.
+     *           And results that are significantly more relevant to the search query
+     *           can still trump your heavily favored but irrelevant documents.
      *           Setting to -1.0 gives the document a big demotion. However, results
      *           that are deeply relevant might still be shown. The document will have
-     *           an upstream battle to get a fairly high ranking, but it is not blocked
-     *           out completely.
+     *           an upstream battle to get a fairly high ranking, but it is not
+     *           blocked out completely.
      *           Setting to 0.0 means no boost applied. The boosting condition is
-     *           ignored.
+     *           ignored. Only one of the (condition, boost) combination or the
+     *           boost_control_spec below are set. If both are set then the global boost
+     *           is ignored and the more fine-grained boost_control_spec is applied.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\BoostSpec\ConditionBoostSpec\BoostControlSpec $boost_control_spec
+     *           Complex specification for custom ranking based on customer defined
+     *           attribute value.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,18 +142,20 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
     /**
      * Strength of the condition boost, which should be in [-1, 1]. Negative
      * boost means demotion. Default is 0.0.
-     * Setting to 1.0 gives the document a big promotion. However, it does not
-     * necessarily mean that the boosted document will be the top result at
-     * all times, nor that other documents will be excluded. Results could
-     * still be shown even when none of them matches the condition. And
-     * results that are significantly more relevant to the search query can
-     * still trump your heavily favored but irrelevant documents.
+     * Setting to 1.0 gives the document a big promotion. However, it does
+     * not necessarily mean that the boosted document will be the top result
+     * at all times, nor that other documents will be excluded. Results
+     * could still be shown even when none of them matches the condition.
+     * And results that are significantly more relevant to the search query
+     * can still trump your heavily favored but irrelevant documents.
      * Setting to -1.0 gives the document a big demotion. However, results
      * that are deeply relevant might still be shown. The document will have
-     * an upstream battle to get a fairly high ranking, but it is not blocked
-     * out completely.
+     * an upstream battle to get a fairly high ranking, but it is not
+     * blocked out completely.
      * Setting to 0.0 means no boost applied. The boosting condition is
-     * ignored.
+     * ignored. Only one of the (condition, boost) combination or the
+     * boost_control_spec below are set. If both are set then the global boost
+     * is ignored and the more fine-grained boost_control_spec is applied.
      *
      * Generated from protobuf field <code>float boost = 2;</code>
      * @return float
@@ -152,18 +168,20 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
     /**
      * Strength of the condition boost, which should be in [-1, 1]. Negative
      * boost means demotion. Default is 0.0.
-     * Setting to 1.0 gives the document a big promotion. However, it does not
-     * necessarily mean that the boosted document will be the top result at
-     * all times, nor that other documents will be excluded. Results could
-     * still be shown even when none of them matches the condition. And
-     * results that are significantly more relevant to the search query can
-     * still trump your heavily favored but irrelevant documents.
+     * Setting to 1.0 gives the document a big promotion. However, it does
+     * not necessarily mean that the boosted document will be the top result
+     * at all times, nor that other documents will be excluded. Results
+     * could still be shown even when none of them matches the condition.
+     * And results that are significantly more relevant to the search query
+     * can still trump your heavily favored but irrelevant documents.
      * Setting to -1.0 gives the document a big demotion. However, results
      * that are deeply relevant might still be shown. The document will have
-     * an upstream battle to get a fairly high ranking, but it is not blocked
-     * out completely.
+     * an upstream battle to get a fairly high ranking, but it is not
+     * blocked out completely.
      * Setting to 0.0 means no boost applied. The boosting condition is
-     * ignored.
+     * ignored. Only one of the (condition, boost) combination or the
+     * boost_control_spec below are set. If both are set then the global boost
+     * is ignored and the more fine-grained boost_control_spec is applied.
      *
      * Generated from protobuf field <code>float boost = 2;</code>
      * @param float $var
@@ -173,6 +191,44 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkFloat($var);
         $this->boost = $var;
+
+        return $this;
+    }
+
+    /**
+     * Complex specification for custom ranking based on customer defined
+     * attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 3;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\BoostSpec\ConditionBoostSpec\BoostControlSpec|null
+     */
+    public function getBoostControlSpec()
+    {
+        return $this->boost_control_spec;
+    }
+
+    public function hasBoostControlSpec()
+    {
+        return isset($this->boost_control_spec);
+    }
+
+    public function clearBoostControlSpec()
+    {
+        unset($this->boost_control_spec);
+    }
+
+    /**
+     * Complex specification for custom ranking based on customer defined
+     * attribute value.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec boost_control_spec = 3;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\BoostSpec\ConditionBoostSpec\BoostControlSpec $var
+     * @return $this
+     */
+    public function setBoostControlSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\BoostSpec\ConditionBoostSpec\BoostControlSpec::class);
+        $this->boost_control_spec = $var;
 
         return $this;
     }

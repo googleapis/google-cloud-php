@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Tiers of search features. Different tiers might have different
- * pricing. To learn more, please check the pricing documentation.
+ * pricing. To learn more, check the pricing documentation.
  *
  * Protobuf type <code>google.cloud.discoveryengine.v1beta.SearchTier</code>
  */

@@ -51,9 +51,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     protected $image_query = null;
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
-     * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * to return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
@@ -218,7 +221,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path].
      * If
      * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path]
-     * is not provided, it will use [ServingConfig.EmbeddingConfig.field_path][].
+     * is not provided, it will use
+     * [ServingConfig.EmbeddingConfig.field_path][google.cloud.discoveryengine.v1beta.ServingConfig.embedding_config].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
      */
@@ -299,9 +303,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           Raw image query.
      *     @type int $page_size
      *           Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
-     *           to return. If unspecified, defaults to a reasonable value. The maximum
-     *           allowed value is 100. Values above 100 are coerced to 100.
-     *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *           to return. The maximum allowed value depends on the data type. Values above
+     *           the maximum value are coerced to the maximum value.
+     *           * Websites with basic indexing: Default `10`, Maximum `25`.
+     *           * Websites with advanced indexing: Default `25`, Maximum `50`.
+     *           * Other: Default `50`, Maximum `100`.
+     *           If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *     @type string $page_token
      *           A page token received from a previous
      *           [SearchService.Search][google.cloud.discoveryengine.v1beta.SearchService.Search]
@@ -406,7 +413,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path].
      *           If
      *           [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path]
-     *           is not provided, it will use [ServingConfig.EmbeddingConfig.field_path][].
+     *           is not provided, it will use
+     *           [ServingConfig.EmbeddingConfig.field_path][google.cloud.discoveryengine.v1beta.ServingConfig.embedding_config].
      *     @type string $ranking_expression
      *           The ranking expression controls the customized ranking on retrieval
      *           documents. This overrides
@@ -585,9 +593,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
-     * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * to return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @return int
@@ -599,9 +610,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
-     * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * to return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @param int $var
@@ -1173,7 +1187,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path].
      * If
      * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path]
-     * is not provided, it will use [ServingConfig.EmbeddingConfig.field_path][].
+     * is not provided, it will use
+     * [ServingConfig.EmbeddingConfig.field_path][google.cloud.discoveryengine.v1beta.ServingConfig.embedding_config].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec|null
@@ -1201,7 +1216,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path].
      * If
      * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path]
-     * is not provided, it will use [ServingConfig.EmbeddingConfig.field_path][].
+     * is not provided, it will use
+     * [ServingConfig.EmbeddingConfig.field_path][google.cloud.discoveryengine.v1beta.ServingConfig.embedding_config].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec $var
