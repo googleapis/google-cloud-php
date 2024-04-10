@@ -113,7 +113,8 @@ class TestHelpers
             '/vendor/',
             '/dev/',
             new RegexFileFilter('/\w{0,}\/vendor\//'),
-            new RegexFileFilter('/\w{0,}\/V\d{1,}\w{0,}\//')
+            new RegexFileFilter('/\w{0,}\/V\d{1,}\w{0,}\//'),
+            'LongRunning/', // LongRunning doesn't match the GAPIC regex, but should still be excluded
         ]);
         $coverage = new Coverage($scanner);
         $coverage->buildListToCover();

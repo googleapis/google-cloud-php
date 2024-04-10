@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,14 +20,19 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\LongRunning\Tests\Unit;
+namespace Google\LongRunning\Tests\Unit\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\DeleteOperationRequest;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\ListOperationsResponse;
 use Google\LongRunning\Operation;
+use Google\LongRunning\WaitOperationRequest;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -51,13 +56,13 @@ class OperationsClientTest extends GeneratedTest
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /** @return \Google\LongRunning\OperationsClient */
+    /** @return \Google\LongRunning\Client\OperationsClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new \Google\LongRunning\OperationsClient($options);
+        return new \Google\LongRunning\Client\OperationsClient($options);
     }
 
     /** @test */
@@ -73,7 +78,9 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $gapicClient->cancelOperation($name);
+        $request = (new CancelOperationRequest())
+            ->setName($name);
+        $gapicClient->cancelOperation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -104,8 +111,10 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
+        $request = (new CancelOperationRequest())
+            ->setName($name);
         try {
-            $gapicClient->cancelOperation($name);
+            $gapicClient->cancelOperation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -130,7 +139,9 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $gapicClient->deleteOperation($name);
+        $request = (new DeleteOperationRequest())
+            ->setName($name);
+        $gapicClient->deleteOperation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -161,8 +172,10 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
+        $request = (new DeleteOperationRequest())
+            ->setName($name);
         try {
-            $gapicClient->deleteOperation($name);
+            $gapicClient->deleteOperation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -191,7 +204,9 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $gapicClient->getOperation($name);
+        $request = (new GetOperationRequest())
+            ->setName($name);
+        $response = $gapicClient->getOperation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -223,8 +238,10 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
+        $request = (new GetOperationRequest())
+            ->setName($name);
         try {
-            $gapicClient->getOperation($name);
+            $gapicClient->getOperation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -257,7 +274,10 @@ class OperationsClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $filter = 'filter-1274492040';
-        $response = $gapicClient->listOperations($name, $filter);
+        $request = (new ListOperationsRequest())
+            ->setName($name)
+            ->setFilter($filter);
+        $response = $gapicClient->listOperations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -295,8 +315,11 @@ class OperationsClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $filter = 'filter-1274492040';
+        $request = (new ListOperationsRequest())
+            ->setName($name)
+            ->setFilter($filter);
         try {
-            $gapicClient->listOperations($name, $filter);
+            $gapicClient->listOperations($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -323,7 +346,8 @@ class OperationsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setDone($done);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->waitOperation();
+        $request = new WaitOperationRequest();
+        $response = $gapicClient->waitOperation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -351,8 +375,9 @@ class OperationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
+        $request = new WaitOperationRequest();
         try {
-            $gapicClient->waitOperation();
+            $gapicClient->waitOperation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -361,6 +386,32 @@ class OperationsClientTest extends GeneratedTest
         }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelOperationAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new CancelOperationRequest())
+            ->setName($name);
+        $gapicClient->cancelOperationAsync($request)->wait();
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/CancelOperation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }
