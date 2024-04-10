@@ -2,14 +2,12 @@
 
 namespace Google\ApiCore\LongRunning\Gapic;
 
-use Google\ApiCore\LongRunning\Gapic\OperationsGapicClient;
-
 if (false) {
     /**
      * This class is deprecated. Use Google\LongRunning\OperationsClient instead.
      * @deprecated
      */
-    class OperationsGapicClient extends OperationsGapicClient
+    class OperationsGapicClient extends \Google\LongRunning\Client\OperationsClient
     {
     }
 }
