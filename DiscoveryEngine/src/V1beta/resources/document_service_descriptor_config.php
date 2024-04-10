@@ -113,6 +113,7 @@ return [
             'templateMap' => [
                 'branch' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}',
                 'document' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}',
+                'fhirStore' => 'projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}',
                 'projectLocationCollectionDataStoreBranch' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}',
                 'projectLocationCollectionDataStoreBranchDocument' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}',
                 'projectLocationDataStoreBranch' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}',

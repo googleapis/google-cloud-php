@@ -51,6 +51,42 @@ return [
                     ],
                 ],
             ],
+            'PauseEngine' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*}:pause',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ResumeEngine' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*}:resume',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'TuneEngine' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*}:tune',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateEngine' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta/{engine.name=projects/*/locations/*/collections/*/engines/*}',
