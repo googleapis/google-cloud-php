@@ -214,6 +214,21 @@ class ProductView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue item_issues = 27;</code>
      */
     private $item_issues;
+    /**
+     * Estimated performance potential compared to highest performing products of
+     * the merchant.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.ProductView.ClickPotential click_potential = 29;</code>
+     */
+    protected $click_potential = 0;
+    /**
+     * Rank of the product based on its click potential. A product with
+     * `click_potential_rank` 1 has the highest click potential among the
+     * merchant's products that fulfill the search query conditions.
+     *
+     * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
+     */
+    protected $click_potential_rank = null;
 
     /**
      * Constructor.
@@ -300,6 +315,13 @@ class ProductView extends \Google\Protobuf\Internal\Message
      *           **Only selected attributes of this field (for example,
      *           `item_issues.severity.aggregated_severity`) can be used for filtering the
      *           results.**
+     *     @type int $click_potential
+     *           Estimated performance potential compared to highest performing products of
+     *           the merchant.
+     *     @type int|string $click_potential_rank
+     *           Rank of the product based on its click potential. A product with
+     *           `click_potential_rank` 1 has the highest click potential among the
+     *           merchant's products that fulfill the search query conditions.
      * }
      */
     public function __construct($data = NULL) {
@@ -1337,6 +1359,74 @@ class ProductView extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue::class);
         $this->item_issues = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Estimated performance potential compared to highest performing products of
+     * the merchant.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.ProductView.ClickPotential click_potential = 29;</code>
+     * @return int
+     */
+    public function getClickPotential()
+    {
+        return $this->click_potential;
+    }
+
+    /**
+     * Estimated performance potential compared to highest performing products of
+     * the merchant.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.ProductView.ClickPotential click_potential = 29;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClickPotential($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\ProductView\ClickPotential::class);
+        $this->click_potential = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rank of the product based on its click potential. A product with
+     * `click_potential_rank` 1 has the highest click potential among the
+     * merchant's products that fulfill the search query conditions.
+     *
+     * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
+     * @return int|string
+     */
+    public function getClickPotentialRank()
+    {
+        return isset($this->click_potential_rank) ? $this->click_potential_rank : 0;
+    }
+
+    public function hasClickPotentialRank()
+    {
+        return isset($this->click_potential_rank);
+    }
+
+    public function clearClickPotentialRank()
+    {
+        unset($this->click_potential_rank);
+    }
+
+    /**
+     * Rank of the product based on its click potential. A product with
+     * `click_potential_rank` 1 has the highest click potential among the
+     * merchant's products that fulfill the search query conditions.
+     *
+     * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setClickPotentialRank($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->click_potential_rank = $var;
 
         return $this;
     }
