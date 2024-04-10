@@ -52,6 +52,12 @@ class Operator
      * Generated from protobuf enum <code>GREATER = 5;</code>
      */
     const GREATER = 5;
+    /**
+     * Datapoints are eligible iff their value is != the query's.
+     *
+     * Generated from protobuf enum <code>NOT_EQUAL = 6;</code>
+     */
+    const NOT_EQUAL = 6;
 
     private static $valueToName = [
         self::OPERATOR_UNSPECIFIED => 'OPERATOR_UNSPECIFIED',
@@ -60,6 +66,7 @@ class Operator
         self::EQUAL => 'EQUAL',
         self::GREATER_EQUAL => 'GREATER_EQUAL',
         self::GREATER => 'GREATER',
+        self::NOT_EQUAL => 'NOT_EQUAL',
     ];
 
     public static function name($value)

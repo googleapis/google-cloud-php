@@ -251,6 +251,18 @@ return [
                     ],
                 ],
             ],
+            'UnenrollDataSources' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}:unenrollDataSources',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateTransferConfig' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{transfer_config.name=projects/*/locations/*/transferConfigs/*}',

@@ -7,7 +7,7 @@ namespace Google\Cloud\PubSub\V1\IngestionDataSourceSettings\AwsKinesis;
 use UnexpectedValueException;
 
 /**
- * Possible states for managed ingestion from Amazon Kinesis Data Streams.
+ * Possible states for ingestion from Amazon Kinesis Data Streams.
  *
  * Protobuf type <code>google.pubsub.v1.IngestionDataSourceSettings.AwsKinesis.State</code>
  */
@@ -41,7 +41,7 @@ class State
     const KINESIS_PERMISSION_DENIED = 2;
     /**
      * Permission denied encountered while publishing to the topic. This can
-     * happen due to Pub/Sub SA has not been granted the [appropriate publish
+     * happen if the Pub/Sub SA has not been granted the [appropriate publish
      * permissions](https://cloud.google.com/pubsub/docs/access-control#pubsub.publisher)
      *
      * Generated from protobuf enum <code>PUBLISH_PERMISSION_DENIED = 3;</code>

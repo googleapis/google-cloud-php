@@ -31,7 +31,6 @@ use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\Type;
 use Google\Cloud\Security\PrivateCA\V1\CertificateConfig;
 use Google\Cloud\Security\PrivateCA\V1\CertificateConfig\SubjectConfig;
 use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
-use Google\Cloud\Security\PrivateCA\V1\Subject;
 use Google\Cloud\Security\PrivateCA\V1\UpdateCertificateAuthorityRequest;
 use Google\Cloud\Security\PrivateCA\V1\X509Parameters;
 use Google\Protobuf\Duration;
@@ -53,9 +52,7 @@ function update_certificate_authority_sample(int $certificateAuthorityType): voi
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
     // Prepare the request message.
-    $certificateAuthorityConfigSubjectConfigSubject = new Subject();
-    $certificateAuthorityConfigSubjectConfig = (new SubjectConfig())
-        ->setSubject($certificateAuthorityConfigSubjectConfigSubject);
+    $certificateAuthorityConfigSubjectConfig = new SubjectConfig();
     $certificateAuthorityConfigX509Config = new X509Parameters();
     $certificateAuthorityConfig = (new CertificateConfig())
         ->setSubjectConfig($certificateAuthorityConfigSubjectConfig)

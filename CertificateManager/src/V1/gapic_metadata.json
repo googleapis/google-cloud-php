@@ -35,6 +35,11 @@
                                 "createDnsAuthorization"
                             ]
                         },
+                        "CreateTrustConfig": {
+                            "methods": [
+                                "createTrustConfig"
+                            ]
+                        },
                         "DeleteCertificate": {
                             "methods": [
                                 "deleteCertificate"
@@ -58,6 +63,11 @@
                         "DeleteDnsAuthorization": {
                             "methods": [
                                 "deleteDnsAuthorization"
+                            ]
+                        },
+                        "DeleteTrustConfig": {
+                            "methods": [
+                                "deleteTrustConfig"
                             ]
                         },
                         "GetCertificate": {
@@ -85,6 +95,11 @@
                                 "getDnsAuthorization"
                             ]
                         },
+                        "GetTrustConfig": {
+                            "methods": [
+                                "getTrustConfig"
+                            ]
+                        },
                         "ListCertificateIssuanceConfigs": {
                             "methods": [
                                 "listCertificateIssuanceConfigs"
@@ -110,6 +125,11 @@
                                 "listDnsAuthorizations"
                             ]
                         },
+                        "ListTrustConfigs": {
+                            "methods": [
+                                "listTrustConfigs"
+                            ]
+                        },
                         "UpdateCertificate": {
                             "methods": [
                                 "updateCertificate"
@@ -128,6 +148,11 @@
                         "UpdateDnsAuthorization": {
                             "methods": [
                                 "updateDnsAuthorization"
+                            ]
+                        },
+                        "UpdateTrustConfig": {
+                            "methods": [
+                                "updateTrustConfig"
                             ]
                         },
                         "GetLocation": {

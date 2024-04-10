@@ -14,22 +14,23 @@ class Common
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–
-&google/cloud/gkebackup/v1/common.protogoogle.cloud.gkebackup.v1" 
+È
+&google/cloud/gkebackup/v1/common.protogoogle.cloud.gkebackup.v1google/api/resource.proto"%
 
-Namespaces
+Namespaces
 
-namespaces (	"1
-NamespacedName
-	namespace (	
-name (	"V
-NamespacedNamesC
-namespaced_names (2).google.cloud.gkebackup.v1.NamespacedName"W
-EncryptionKeyF
-gcp_kms_encryption_key (	B&úA#
+namespaces (	BàA";
+NamespacedName
+	namespace (	BàA
+name (	BàA"[
+NamespacedNamesH
+namespaced_names (2).google.cloud.gkebackup.v1.NamespacedNameBàA"Z
+EncryptionKeyI
+gcp_kms_encryption_key (	B)àAúA#
 !cloudkms.googleapis.com/CryptoKeyBÂ
 com.google.cloud.gkebackup.v1BCommonProtoPZ;cloud.google.com/go/gkebackup/apiv1/gkebackuppb;gkebackuppbªGoogle.Cloud.GkeBackup.V1ÊGoogle\\Cloud\\GkeBackup\\V1êGoogle::Cloud::GkeBackup::V1bproto3'
         , true);

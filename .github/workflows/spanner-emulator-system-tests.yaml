@@ -18,7 +18,7 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.5.12
+        image: gcr.io/cloud-spanner-emulator/emulator:1.5.14
         ports:
           - 9010:9010
           - 9020:9020
@@ -41,7 +41,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.1'
           ini-values: grpc.enable_fork_support=1
           tools: pecl
           extensions: bcmath, grpc

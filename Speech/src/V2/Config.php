@@ -18,11 +18,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Config extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the config resource. There is exactly one config
-     * resource per project per location. The expected format is
+     * Output only. Identifier. The name of the config resource. There is exactly
+     * one config resource per project per location. The expected format is
      * `projects/{project}/locations/{location}/config`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -50,8 +50,8 @@ class Config extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The name of the config resource. There is exactly one config
-     *           resource per project per location. The expected format is
+     *           Output only. Identifier. The name of the config resource. There is exactly
+     *           one config resource per project per location. The expected format is
      *           `projects/{project}/locations/{location}/config`.
      *     @type string $kms_key_name
      *           Optional. An optional [KMS key
@@ -70,11 +70,11 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the config resource. There is exactly one config
-     * resource per project per location. The expected format is
+     * Output only. Identifier. The name of the config resource. There is exactly
+     * one config resource per project per location. The expected format is
      * `projects/{project}/locations/{location}/config`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -83,11 +83,11 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the config resource. There is exactly one config
-     * resource per project per location. The expected format is
+     * Output only. Identifier. The name of the config resource. There is exactly
+     * one config resource per project per location. The expected format is
      * `projects/{project}/locations/{location}/config`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

@@ -53,6 +53,7 @@ use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
+use Google\Cloud\BigQuery\DataTransfer\V1\UnenrollDataSourcesRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -84,6 +85,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listTransferRunsAsync(ListTransferRunsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface scheduleTransferRunsAsync(ScheduleTransferRunsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface startManualTransferRunsAsync(StartManualTransferRunsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface unenrollDataSourcesAsync(UnenrollDataSourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateTransferConfigAsync(UpdateTransferConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -821,6 +823,35 @@ final class DataTransferServiceClient
     public function startManualTransferRuns(StartManualTransferRunsRequest $request, array $callOptions = []): StartManualTransferRunsResponse
     {
         return $this->startApiCall('StartManualTransferRuns', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Unenroll data sources in a user project. This allows users to remove
+     * transfer configurations for these data sources. They will no longer appear
+     * in the ListDataSources RPC and will also no longer appear in the [BigQuery
+     * UI](https://console.cloud.google.com/bigquery). Data transfers
+     * configurations of unenrolled data sources will not be scheduled.
+     *
+     * The async variant is
+     * {@see DataTransferServiceClient::unenrollDataSourcesAsync()} .
+     *
+     * @example samples/V1/DataTransferServiceClient/unenroll_data_sources.php
+     *
+     * @param UnenrollDataSourcesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function unenrollDataSources(UnenrollDataSourcesRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('UnenrollDataSources', $request, $callOptions)->wait();
     }
 
     /**

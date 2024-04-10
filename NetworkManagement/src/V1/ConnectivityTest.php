@@ -17,7 +17,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -124,6 +124,13 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.ProbingDetails probing_details = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $probing_details = null;
+    /**
+     * Whether the test should skip firewall checking.
+     * If not provided, we assume false.
+     *
+     * Generated from protobuf field <code>bool bypass_firewall_checks = 17;</code>
+     */
+    private $bypass_firewall_checks = false;
 
     /**
      * Constructor.
@@ -133,7 +140,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Unique name of the resource using the form:
-     *               `projects/{project_id}/locations/global/connectivityTests/{test}`
+     *               `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *     @type string $description
      *           The user-supplied description of the Connectivity Test.
      *           Maximum of 512 characters.
@@ -192,6 +199,9 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *           for applicable tests only. The details are updated when creating a new
      *           test, updating an existing test, or triggering a one-time rerun of an
      *           existing test.
+     *     @type bool $bypass_firewall_checks
+     *           Whether the test should skip firewall checking.
+     *           If not provided, we assume false.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,7 +211,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -213,7 +223,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Unique name of the resource using the form:
-     *     `projects/{project_id}/locations/global/connectivityTests/{test}`
+     *     `projects/{project_id}/locations/global/connectivityTests/{test_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -641,6 +651,34 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\ProbingDetails::class);
         $this->probing_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether the test should skip firewall checking.
+     * If not provided, we assume false.
+     *
+     * Generated from protobuf field <code>bool bypass_firewall_checks = 17;</code>
+     * @return bool
+     */
+    public function getBypassFirewallChecks()
+    {
+        return $this->bypass_firewall_checks;
+    }
+
+    /**
+     * Whether the test should skip firewall checking.
+     * If not provided, we assume false.
+     *
+     * Generated from protobuf field <code>bool bypass_firewall_checks = 17;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBypassFirewallChecks($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->bypass_firewall_checks = $var;
 
         return $this;
     }

@@ -943,7 +943,7 @@ final class SecurityCenterManagementClient
 
     /**
      * Returns a list of all resident SecurityHealthAnalyticsCustomModules under
-     * the given CRM parent and all of the parent’s CRM descendants.
+     * the given CRM parent and all of the parent's CRM descendants.
      *
      * The async variant is
      * {@see SecurityCenterManagementClient::listDescendantSecurityHealthAnalyticsCustomModulesAsync()}

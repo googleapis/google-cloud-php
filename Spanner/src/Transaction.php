@@ -742,6 +742,6 @@ class Transaction implements TransactionalReadInterface
         $selector = $this->transactionSelector($options);
         $options['transaction'] = $selector[0];
 
-        return $options;
+        return $this->addLarHeader($options);
     }
 }

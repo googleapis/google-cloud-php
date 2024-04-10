@@ -101,6 +101,7 @@ class Database
 {
     use LROTrait;
     use TransactionConfigurationTrait;
+    use RequestHeaderTrait;
 
     const STATE_CREATING = State::CREATING;
     const STATE_READY = State::READY;
@@ -109,6 +110,7 @@ class Database
 
     const TYPE_BOOL = TypeCode::BOOL;
     const TYPE_INT64 = TypeCode::INT64;
+    const TYPE_FLOAT32 = TypeCode::FLOAT32;
     const TYPE_FLOAT64 = TypeCode::FLOAT64;
     const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
     const TYPE_DATE = TypeCode::DATE;
@@ -1670,6 +1672,7 @@ class Database
             $options['transaction'],
             $options['transactionContext']
         ) = $this->transactionSelector($options);
+        $options = $this->addLarHeader($options, true, $options['transactionContext']);
 
         $options['directedReadOptions'] = $this->configureDirectedReadOptions(
             $options,
@@ -1810,6 +1813,8 @@ class Database
                 'partitionedDml' => []
             ]
         ]);
+
+        $options = $this->addLarHeader($options);
 
         try {
             return $this->operation->executeUpdate($session, $transaction, $statement, [
@@ -1953,6 +1958,8 @@ class Database
             $options,
             $this->directedReadOptions ?? []
         );
+
+        $options = $this->addLarHeader($options, true, $context);
 
         try {
             return $this->operation->read($session, $table, $keySet, $columns, $options);

@@ -231,6 +231,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 39;</code>
      */
     private $resource_manager_tags = null;
+    /**
+     * Specifies the configuration of queued provisioning.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.QueuedProvisioning queued_provisioning = 42;</code>
+     */
+    private $queued_provisioning = null;
 
     /**
      * Constructor.
@@ -338,6 +344,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Desired resource manager tag keys and values to be attached to the nodes
      *           for managing Compute Engine firewalls using Network Firewall Policies.
      *           Existing tags will be replaced with new values.
+     *     @type \Google\Cloud\Container\V1\NodePool\QueuedProvisioning $queued_provisioning
+     *           Specifies the configuration of queued provisioning.
      * }
      */
     public function __construct($data = NULL) {
@@ -1333,6 +1341,42 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
         $this->resource_manager_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the configuration of queued provisioning.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.QueuedProvisioning queued_provisioning = 42;</code>
+     * @return \Google\Cloud\Container\V1\NodePool\QueuedProvisioning|null
+     */
+    public function getQueuedProvisioning()
+    {
+        return $this->queued_provisioning;
+    }
+
+    public function hasQueuedProvisioning()
+    {
+        return isset($this->queued_provisioning);
+    }
+
+    public function clearQueuedProvisioning()
+    {
+        unset($this->queued_provisioning);
+    }
+
+    /**
+     * Specifies the configuration of queued provisioning.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.QueuedProvisioning queued_provisioning = 42;</code>
+     * @param \Google\Cloud\Container\V1\NodePool\QueuedProvisioning $var
+     * @return $this
+     */
+    public function setQueuedProvisioning($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\QueuedProvisioning::class);
+        $this->queued_provisioning = $var;
 
         return $this;
     }

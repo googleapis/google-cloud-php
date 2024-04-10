@@ -42,7 +42,8 @@ use Google\Cloud\DiscoveryEngine\V1beta\UpdateServingConfigRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
- * Service Description: Service for modifying ServingConfig.
+ * Service Description: Service for operations related to
+ * [ServingConfig][google.cloud.discoveryengine.v1beta.ServingConfig].
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -122,6 +123,29 @@ final class ServingConfigServiceClient
             'project' => $project,
             'location' => $location,
             'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a engine
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     *
+     * @return string The formatted engine resource.
+     *
+     * @experimental
+     */
+    public static function engineName(string $project, string $location, string $collection, string $engine): string
+    {
+        return self::getPathTemplate('engine')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
         ]);
     }
 
@@ -292,6 +316,7 @@ final class ServingConfigServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - engine: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}

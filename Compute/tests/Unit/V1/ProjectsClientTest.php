@@ -39,6 +39,7 @@ use Google\Cloud\Compute\V1\ProjectsDisableXpnResourceRequest;
 use Google\Cloud\Compute\V1\ProjectsEnableXpnResourceRequest;
 use Google\Cloud\Compute\V1\ProjectsGetXpnResources;
 use Google\Cloud\Compute\V1\ProjectsListXpnHostsRequest;
+use Google\Cloud\Compute\V1\ProjectsSetCloudArmorTierRequest;
 use Google\Cloud\Compute\V1\ProjectsSetDefaultNetworkTierRequest;
 use Google\Cloud\Compute\V1\UsageExportLocation;
 use Google\Cloud\Compute\V1\XpnHostList;
@@ -531,6 +532,7 @@ class ProjectsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $cloudArmorTier = 'cloudArmorTier-532443860';
         $creationTimestamp = 'creationTimestamp567396278';
         $defaultNetworkTier = 'defaultNetworkTier1545495185';
         $defaultServiceAccount = 'defaultServiceAccount-1848771419';
@@ -542,6 +544,7 @@ class ProjectsClientTest extends GeneratedTest
         $vmDnsSetting = 'vmDnsSetting1132598194';
         $xpnProjectStatus = 'xpnProjectStatus-308451647';
         $expectedResponse = new Project();
+        $expectedResponse->setCloudArmorTier($cloudArmorTier);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDefaultNetworkTier($defaultNetworkTier);
         $expectedResponse->setDefaultServiceAccount($defaultServiceAccount);
@@ -609,6 +612,7 @@ class ProjectsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $cloudArmorTier = 'cloudArmorTier-532443860';
         $creationTimestamp = 'creationTimestamp567396278';
         $defaultNetworkTier = 'defaultNetworkTier1545495185';
         $defaultServiceAccount = 'defaultServiceAccount-1848771419';
@@ -620,6 +624,7 @@ class ProjectsClientTest extends GeneratedTest
         $vmDnsSetting = 'vmDnsSetting1132598194';
         $xpnProjectStatus = 'xpnProjectStatus-308451647';
         $expectedResponse = new Project();
+        $expectedResponse->setCloudArmorTier($cloudArmorTier);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDefaultNetworkTier($defaultNetworkTier);
         $expectedResponse->setDefaultServiceAccount($defaultServiceAccount);
@@ -1035,6 +1040,120 @@ class ProjectsClientTest extends GeneratedTest
         $instanceMoveRequestResource = new InstanceMoveRequest();
         $project = 'project-309310695';
         $response = $gapicClient->moveInstance($instanceMoveRequestResource, $project);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function setCloudArmorTierTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setCloudArmorTierTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/setCloudArmorTierTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $project = 'project-309310695';
+        $projectsSetCloudArmorTierRequestResource = new ProjectsSetCloudArmorTierRequest();
+        $response = $gapicClient->setCloudArmorTier($project, $projectsSetCloudArmorTierRequestResource);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Projects/SetCloudArmorTier', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getProjectsSetCloudArmorTierRequestResource();
+        $this->assertProtobufEquals($projectsSetCloudArmorTierRequestResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function setCloudArmorTierExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setCloudArmorTierExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $projectsSetCloudArmorTierRequestResource = new ProjectsSetCloudArmorTierRequest();
+        $response = $gapicClient->setCloudArmorTier($project, $projectsSetCloudArmorTierRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

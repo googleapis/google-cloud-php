@@ -448,6 +448,19 @@ class SpannerGapicClient
      *
      *     @type RequestOptions $requestOptions
      *           Common options for this request.
+     *     @type bool $excludeTxnFromChangeStreams
+     *           Optional. When `exclude_txn_from_change_streams` is set to `true`:
+     *           * Mutations from all transactions in this batch write operation will not
+     *           be recorded in change streams with DDL option `allow_txn_exclusion=true`
+     *           that are tracking columns modified by these transactions.
+     *           * Mutations from all transactions in this batch write operation will be
+     *           recorded in change streams with DDL option `allow_txn_exclusion=false or
+     *           not set` that are tracking columns modified by these transactions.
+     *
+     *           When `exclude_txn_from_change_streams` is set to `false` or not set,
+     *           mutations from all transactions in this batch write operation will be
+     *           recorded in all change streams that are tracking columns modified by these
+     *           transactions.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -468,6 +481,12 @@ class SpannerGapicClient
         $requestParamHeaders['session'] = $session;
         if (isset($optionalArgs['requestOptions'])) {
             $request->setRequestOptions($optionalArgs['requestOptions']);
+        }
+
+        if (isset($optionalArgs['excludeTxnFromChangeStreams'])) {
+            $request->setExcludeTxnFromChangeStreams(
+                $optionalArgs['excludeTxnFromChangeStreams']
+            );
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

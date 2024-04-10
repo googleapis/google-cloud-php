@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The configuration of a potential series of Restore operations to be performed
  * against Backups belong to a particular BackupPlan.
- * Next id: 13
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.RestorePlan</code>
  */
@@ -46,9 +45,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * User specified descriptive string for this RestorePlan.
+     * Optional. User specified descriptive string for this RestorePlan.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
@@ -77,9 +76,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      */
     private $restore_config = null;
     /**
-     * A set of custom labels supplied by user.
+     * Optional. A set of custom labels supplied by user.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
@@ -130,7 +129,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when this RestorePlan resource was last
      *           updated.
      *     @type string $description
-     *           User specified descriptive string for this RestorePlan.
+     *           Optional. User specified descriptive string for this RestorePlan.
      *     @type string $backup_plan
      *           Required. Immutable. A reference to the
      *           [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
@@ -145,7 +144,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig $restore_config
      *           Required. Configuration of Restores created via this RestorePlan.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           A set of custom labels supplied by user.
+     *           Optional. A set of custom labels supplied by user.
      *     @type string $etag
      *           Output only. `etag` is used for optimistic concurrency control as a way to
      *           help prevent simultaneous updates of a restore from overwriting each other.
@@ -302,9 +301,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User specified descriptive string for this RestorePlan.
+     * Optional. User specified descriptive string for this RestorePlan.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -313,9 +312,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User specified descriptive string for this RestorePlan.
+     * Optional. User specified descriptive string for this RestorePlan.
      *
-     * Generated from protobuf field <code>string description = 5;</code>
+     * Generated from protobuf field <code>string description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -430,9 +429,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of custom labels supplied by user.
+     * Optional. A set of custom labels supplied by user.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -441,9 +440,9 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A set of custom labels supplied by user.
+     * Optional. A set of custom labels supplied by user.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 9;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

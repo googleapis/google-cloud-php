@@ -18,11 +18,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomClass extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the CustomClass.
+     * Output only. Identifier. The resource name of the CustomClass.
      * Format:
      * `projects/{project}/locations/{location}/customClasses/{custom_class}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -32,10 +32,10 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      */
     private $uid = '';
     /**
-     * User-settable, human-readable name for the CustomClass. Must be 63
-     * characters or less.
+     * Optional. User-settable, human-readable name for the CustomClass. Must be
+     * 63 characters or less.
      *
-     * Generated from protobuf field <code>string display_name = 4;</code>
+     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $display_name = '';
     /**
@@ -75,11 +75,11 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      */
     private $expire_time = null;
     /**
-     * Allows users to store small amounts of arbitrary data.
+     * Optional. Allows users to store small amounts of arbitrary data.
      * Both the key and the value must be 63 characters or less each.
      * At most 100 annotations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 10;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
     /**
@@ -123,14 +123,14 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the CustomClass.
+     *           Output only. Identifier. The resource name of the CustomClass.
      *           Format:
      *           `projects/{project}/locations/{location}/customClasses/{custom_class}`.
      *     @type string $uid
      *           Output only. System-assigned unique identifier for the CustomClass.
      *     @type string $display_name
-     *           User-settable, human-readable name for the CustomClass. Must be 63
-     *           characters or less.
+     *           Optional. User-settable, human-readable name for the CustomClass. Must be
+     *           63 characters or less.
      *     @type array<\Google\Cloud\Speech\V2\CustomClass\ClassItem>|\Google\Protobuf\Internal\RepeatedField $items
      *           A collection of class items.
      *     @type int $state
@@ -144,7 +144,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. The time at which this resource will be purged.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           Allows users to store small amounts of arbitrary data.
+     *           Optional. Allows users to store small amounts of arbitrary data.
      *           Both the key and the value must be 63 characters or less each.
      *           At most 100 annotations.
      *     @type string $etag
@@ -172,11 +172,11 @@ class CustomClass extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the CustomClass.
+     * Output only. Identifier. The resource name of the CustomClass.
      * Format:
      * `projects/{project}/locations/{location}/customClasses/{custom_class}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -185,11 +185,11 @@ class CustomClass extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the CustomClass.
+     * Output only. Identifier. The resource name of the CustomClass.
      * Format:
      * `projects/{project}/locations/{location}/customClasses/{custom_class}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -228,10 +228,10 @@ class CustomClass extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-settable, human-readable name for the CustomClass. Must be 63
-     * characters or less.
+     * Optional. User-settable, human-readable name for the CustomClass. Must be
+     * 63 characters or less.
      *
-     * Generated from protobuf field <code>string display_name = 4;</code>
+     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDisplayName()
@@ -240,10 +240,10 @@ class CustomClass extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-settable, human-readable name for the CustomClass. Must be 63
-     * characters or less.
+     * Optional. User-settable, human-readable name for the CustomClass. Must be
+     * 63 characters or less.
      *
-     * Generated from protobuf field <code>string display_name = 4;</code>
+     * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -452,11 +452,11 @@ class CustomClass extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows users to store small amounts of arbitrary data.
+     * Optional. Allows users to store small amounts of arbitrary data.
      * Both the key and the value must be 63 characters or less each.
      * At most 100 annotations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 10;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -465,11 +465,11 @@ class CustomClass extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Allows users to store small amounts of arbitrary data.
+     * Optional. Allows users to store small amounts of arbitrary data.
      * Both the key and the value must be 63 characters or less each.
      * At most 100 annotations.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 10;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

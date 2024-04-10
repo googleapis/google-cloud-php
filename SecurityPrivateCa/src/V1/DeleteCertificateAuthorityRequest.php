@@ -56,9 +56,9 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      */
     private $skip_grace_period = false;
     /**
-     * Optional. This field allows this ca to be deleted even if it's being
+     * Optional. This field allows this CA to be deleted even if it's being
      * depended on by another resource. However, doing so may result in unintended
-     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * and unrecoverable effects on any dependent resources since the CA will
      * no longer be able to issue certificates.
      *
      * Generated from protobuf field <code>bool ignore_dependent_resources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -111,9 +111,9 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *           soon as possible without a 30-day grace period where undeletion would have
      *           been allowed. If you proceed, there will be no way to recover this CA.
      *     @type bool $ignore_dependent_resources
-     *           Optional. This field allows this ca to be deleted even if it's being
+     *           Optional. This field allows this CA to be deleted even if it's being
      *           depended on by another resource. However, doing so may result in unintended
-     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           and unrecoverable effects on any dependent resources since the CA will
      *           no longer be able to issue certificates.
      * }
      */
@@ -257,9 +257,9 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. This field allows this ca to be deleted even if it's being
+     * Optional. This field allows this CA to be deleted even if it's being
      * depended on by another resource. However, doing so may result in unintended
-     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * and unrecoverable effects on any dependent resources since the CA will
      * no longer be able to issue certificates.
      *
      * Generated from protobuf field <code>bool ignore_dependent_resources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -271,9 +271,9 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Optional. This field allows this ca to be deleted even if it's being
+     * Optional. This field allows this CA to be deleted even if it's being
      * depended on by another resource. However, doing so may result in unintended
-     * and unrecoverable effects on any dependent resource(s) since the CA will
+     * and unrecoverable effects on any dependent resources since the CA will
      * no longer be able to issue certificates.
      *
      * Generated from protobuf field <code>bool ignore_dependent_resources = 6 [(.google.api.field_behavior) = OPTIONAL];</code>

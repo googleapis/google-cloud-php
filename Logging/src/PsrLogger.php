@@ -25,6 +25,7 @@ use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Google\Cloud\Core\Timestamp;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
+use Stringable;
 
 /**
  * A PSR-3 compliant logger used to write entries to Google Stackdriver Logging.
@@ -168,7 +169,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *        for the available options.
      * @return void
      */
-    public function emergency($message, array $context = [])
+    public function emergency(Stringable|string $message, array $context = []): void
     {
         $this->log(Logger::EMERGENCY, $message, $context);
     }
@@ -186,7 +187,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *        for the available options.
      * @return void
      */
-    public function alert($message, array $context = [])
+    public function alert(Stringable|string $message, array $context = []): void
     {
         $this->log(Logger::ALERT, $message, $context);
     }
@@ -204,7 +205,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *        for the available options.
      * @return void
      */
-    public function critical($message, array $context = [])
+    public function critical(Stringable|string $message, array $context = []): void
     {
         $this->log(Logger::CRITICAL, $message, $context);
     }
@@ -222,7 +223,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *        for the available options.
      * @return void
      */
-    public function error($message, array $context = [])
+    public function error(Stringable|string $message, array $context = []): void
     {
         $this->log(Logger::ERROR, $message, $context);
     }
@@ -240,7 +241,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *        for the available options.
      * @return void
      */
-    public function warning($message, array $context = [])
+    public function warning(Stringable|string $message, array $context = []): void
     {
         $this->log(Logger::WARNING, $message, $context);
     }
@@ -258,7 +259,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *        for the available options.
      * @return void
      */
-    public function notice($message, array $context = [])
+    public function notice(Stringable|string $message, array $context = []): void
     {
         $this->log(Logger::NOTICE, $message, $context);
     }
@@ -276,7 +277,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *        for the available options.
      * @return void
      */
-    public function info($message, array $context = [])
+    public function info(Stringable|string $message, array $context = []): void
     {
         $this->log(Logger::INFO, $message, $context);
     }
@@ -294,7 +295,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      *        for the available options.
      * @return void
      */
-    public function debug($message, array $context = [])
+    public function debug(Stringable|string $message, array $context = []): void
     {
         $this->log(Logger::DEBUG, $message, $context);
     }
@@ -371,7 +372,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      * @return void
      * @throws \InvalidArgumentException
      */
-    public function log($level, $message, array $context = [])
+    public function log($level, Stringable|string $message, array $context = []): void
     {
         $this->validateLogLevel($level);
         $options = [];

@@ -16,6 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomJobSpec extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. The ID of the PersistentResource in the same Project and Location
+     * which to run
+     * If this is specified, the job will be run on existing machines held by the
+     * PersistentResource instead of on-demand short-live machines.
+     * The network and CMEK configs on the job should be consistent with those on
+     * the PersistentResource, otherwise, the job will be rejected.
+     *
+     * Generated from protobuf field <code>string persistent_resource_id = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $persistent_resource_id = '';
+    /**
      * Required. The spec of the worker pools including machine type and Docker
      * image. All worker pools except the first one are optional and can be
      * skipped by providing an empty value.
@@ -174,6 +185,13 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $persistent_resource_id
+     *           Optional. The ID of the PersistentResource in the same Project and Location
+     *           which to run
+     *           If this is specified, the job will be run on existing machines held by the
+     *           PersistentResource instead of on-demand short-live machines.
+     *           The network and CMEK configs on the job should be consistent with those on
+     *           the PersistentResource, otherwise, the job will be rejected.
      *     @type array<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>|\Google\Protobuf\Internal\RepeatedField $worker_pool_specs
      *           Required. The spec of the worker pools including machine type and Docker
      *           image. All worker pools except the first one are optional and can be
@@ -279,6 +297,42 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\CustomJob::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. The ID of the PersistentResource in the same Project and Location
+     * which to run
+     * If this is specified, the job will be run on existing machines held by the
+     * PersistentResource instead of on-demand short-live machines.
+     * The network and CMEK configs on the job should be consistent with those on
+     * the PersistentResource, otherwise, the job will be rejected.
+     *
+     * Generated from protobuf field <code>string persistent_resource_id = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getPersistentResourceId()
+    {
+        return $this->persistent_resource_id;
+    }
+
+    /**
+     * Optional. The ID of the PersistentResource in the same Project and Location
+     * which to run
+     * If this is specified, the job will be run on existing machines held by the
+     * PersistentResource instead of on-demand short-live machines.
+     * The network and CMEK configs on the job should be consistent with those on
+     * the PersistentResource, otherwise, the job will be rejected.
+     *
+     * Generated from protobuf field <code>string persistent_resource_id = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPersistentResourceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->persistent_resource_id = $var;
+
+        return $this;
     }
 
     /**

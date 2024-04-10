@@ -45,11 +45,11 @@ class QuotaConfig extends \Google\Protobuf\Internal\Message
      */
     protected $trace_id = '';
     /**
-     * The annotations map for clients to store small amounts of arbitrary data.
-     * Do not put PII or other sensitive information here.
-     * See https://google.aip.dev/128#annotations
+     * Optional. The annotations map for clients to store small amounts of
+     * arbitrary data. Do not put PII or other sensitive information here. See
+     * https://google.aip.dev/128#annotations
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
     /**
@@ -79,9 +79,9 @@ class QuotaConfig extends \Google\Protobuf\Internal\Message
      *           only produced for increase requests and is unique for each request. The
      *           quota decrease requests do not have a trace id.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           The annotations map for clients to store small amounts of arbitrary data.
-     *           Do not put PII or other sensitive information here.
-     *           See https://google.aip.dev/128#annotations
+     *           Optional. The annotations map for clients to store small amounts of
+     *           arbitrary data. Do not put PII or other sensitive information here. See
+     *           https://google.aip.dev/128#annotations
      *     @type int $request_origin
      *           Output only. The origin of the quota preference request.
      * }
@@ -243,11 +243,11 @@ class QuotaConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The annotations map for clients to store small amounts of arbitrary data.
-     * Do not put PII or other sensitive information here.
-     * See https://google.aip.dev/128#annotations
+     * Optional. The annotations map for clients to store small amounts of
+     * arbitrary data. Do not put PII or other sensitive information here. See
+     * https://google.aip.dev/128#annotations
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -256,11 +256,11 @@ class QuotaConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The annotations map for clients to store small amounts of arbitrary data.
-     * Do not put PII or other sensitive information here.
-     * See https://google.aip.dev/128#annotations
+     * Optional. The annotations map for clients to store small amounts of
+     * arbitrary data. Do not put PII or other sensitive information here. See
+     * https://google.aip.dev/128#annotations
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 5;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

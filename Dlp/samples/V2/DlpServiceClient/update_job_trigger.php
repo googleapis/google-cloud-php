@@ -30,7 +30,9 @@ use Google\Cloud\Dlp\V2\UpdateJobTriggerRequest;
 
 /**
  * Updates a job trigger.
- * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+ * to learn more.
  *
  * @param string $formattedName Resource name of the project and the triggeredJob, for example
  *                              `projects/dlp-test-project/jobTriggers/53234423`. Please see

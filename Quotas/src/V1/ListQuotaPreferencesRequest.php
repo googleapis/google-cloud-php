@@ -45,10 +45,8 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Filter result QuotaPreferences by their state, type,
      * create/update time range.
      * Example filters:
-     * `state=PENDING OR state=PENDING_PARTIALLY_GRANTED`
-     * `state=PENDING OR state=PENDING_PARTIALLY_GRANTED AND
-     *  creation_time>2022-12-03T10:30:00`
-     * If no filter is provided, returns all pending quota preferences.
+     * `reconciling=true AND request_type=CLOUD_CONSOLE`,
+     * `reconciling=true OR creation_time>2022-12-03T10:30:00`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,8 +55,8 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Optional. How to order of the results. By default, the results are ordered
      * by create time.
      * Example orders:
-     * `type`
-     * `state, create_time`
+     * `quota_id`,
+     * `service, create_time`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -111,16 +109,14 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Filter result QuotaPreferences by their state, type,
      *           create/update time range.
      *           Example filters:
-     *           `state=PENDING OR state=PENDING_PARTIALLY_GRANTED`
-     *           `state=PENDING OR state=PENDING_PARTIALLY_GRANTED AND
-     *            creation_time>2022-12-03T10:30:00`
-     *           If no filter is provided, returns all pending quota preferences.
+     *           `reconciling=true AND request_type=CLOUD_CONSOLE`,
+     *           `reconciling=true OR creation_time>2022-12-03T10:30:00`
      *     @type string $order_by
      *           Optional. How to order of the results. By default, the results are ordered
      *           by create time.
      *           Example orders:
-     *           `type`
-     *           `state, create_time`
+     *           `quota_id`,
+     *           `service, create_time`
      * }
      */
     public function __construct($data = NULL) {
@@ -226,10 +222,8 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Filter result QuotaPreferences by their state, type,
      * create/update time range.
      * Example filters:
-     * `state=PENDING OR state=PENDING_PARTIALLY_GRANTED`
-     * `state=PENDING OR state=PENDING_PARTIALLY_GRANTED AND
-     *  creation_time>2022-12-03T10:30:00`
-     * If no filter is provided, returns all pending quota preferences.
+     * `reconciling=true AND request_type=CLOUD_CONSOLE`,
+     * `reconciling=true OR creation_time>2022-12-03T10:30:00`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -243,10 +237,8 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Filter result QuotaPreferences by their state, type,
      * create/update time range.
      * Example filters:
-     * `state=PENDING OR state=PENDING_PARTIALLY_GRANTED`
-     * `state=PENDING OR state=PENDING_PARTIALLY_GRANTED AND
-     *  creation_time>2022-12-03T10:30:00`
-     * If no filter is provided, returns all pending quota preferences.
+     * `reconciling=true AND request_type=CLOUD_CONSOLE`,
+     * `reconciling=true OR creation_time>2022-12-03T10:30:00`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -264,8 +256,8 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Optional. How to order of the results. By default, the results are ordered
      * by create time.
      * Example orders:
-     * `type`
-     * `state, create_time`
+     * `quota_id`,
+     * `service, create_time`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -279,8 +271,8 @@ class ListQuotaPreferencesRequest extends \Google\Protobuf\Internal\Message
      * Optional. How to order of the results. By default, the results are ordered
      * by create time.
      * Example orders:
-     * `type`
-     * `state, create_time`
+     * `quota_id`,
+     * `service, create_time`
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

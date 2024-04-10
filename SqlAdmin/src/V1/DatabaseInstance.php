@@ -173,12 +173,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The geographical region. Can be:
-     * *  `us-central` (`FIRST_GEN` instances only)
-     * *  `us-central1` (`SECOND_GEN` instances only)
-     * *  `asia-east1` or `europe-west1`.
-     * Defaults to `us-central` or `us-central1` depending on the instance
-     * type. The region cannot be changed after instance creation.
+     * The geographical region of the Cloud SQL instance.
+     * It can be one of the
+     * [regions](https://cloud.google.com/sql/docs/mysql/locations#location-r)
+     * where Cloud SQL operates:
+     * For example,  `asia-east1`, `europe-west1`, and  `us-central1`.
+     * The default value is `us-central1`.
      *
      * Generated from protobuf field <code>string region = 24;</code>
      */
@@ -370,12 +370,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the Cloud SQL instance. This does not include the project ID.
      *     @type string $region
-     *           The geographical region. Can be:
-     *           *  `us-central` (`FIRST_GEN` instances only)
-     *           *  `us-central1` (`SECOND_GEN` instances only)
-     *           *  `asia-east1` or `europe-west1`.
-     *           Defaults to `us-central` or `us-central1` depending on the instance
-     *           type. The region cannot be changed after instance creation.
+     *           The geographical region of the Cloud SQL instance.
+     *           It can be one of the
+     *           [regions](https://cloud.google.com/sql/docs/mysql/locations#location-r)
+     *           where Cloud SQL operates:
+     *           For example,  `asia-east1`, `europe-west1`, and  `us-central1`.
+     *           The default value is `us-central1`.
      *     @type string $gce_zone
      *           The Compute Engine zone that the instance is currently serving from. This
      *           value could be different from the zone that was specified when the instance
@@ -1215,12 +1215,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographical region. Can be:
-     * *  `us-central` (`FIRST_GEN` instances only)
-     * *  `us-central1` (`SECOND_GEN` instances only)
-     * *  `asia-east1` or `europe-west1`.
-     * Defaults to `us-central` or `us-central1` depending on the instance
-     * type. The region cannot be changed after instance creation.
+     * The geographical region of the Cloud SQL instance.
+     * It can be one of the
+     * [regions](https://cloud.google.com/sql/docs/mysql/locations#location-r)
+     * where Cloud SQL operates:
+     * For example,  `asia-east1`, `europe-west1`, and  `us-central1`.
+     * The default value is `us-central1`.
      *
      * Generated from protobuf field <code>string region = 24;</code>
      * @return string
@@ -1231,12 +1231,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The geographical region. Can be:
-     * *  `us-central` (`FIRST_GEN` instances only)
-     * *  `us-central1` (`SECOND_GEN` instances only)
-     * *  `asia-east1` or `europe-west1`.
-     * Defaults to `us-central` or `us-central1` depending on the instance
-     * type. The region cannot be changed after instance creation.
+     * The geographical region of the Cloud SQL instance.
+     * It can be one of the
+     * [regions](https://cloud.google.com/sql/docs/mysql/locations#location-r)
+     * where Cloud SQL operates:
+     * For example,  `asia-east1`, `europe-west1`, and  `us-central1`.
+     * The default value is `us-central1`.
      *
      * Generated from protobuf field <code>string region = 24;</code>
      * @param string $var

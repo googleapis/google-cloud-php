@@ -336,6 +336,7 @@ return [
                 'listing' => 'projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}',
                 'location' => 'projects/{project}/locations/{location}',
                 'subscription' => 'projects/{project}/locations/{location}/subscriptions/{subscription}',
+                'table' => 'projects/{project}/datasets/{dataset}/tables/{table}',
             ],
         ],
     ],

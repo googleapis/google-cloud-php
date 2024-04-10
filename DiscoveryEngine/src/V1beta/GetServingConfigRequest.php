@@ -17,7 +17,7 @@ class GetServingConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the ServingConfig to get. Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`
+     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -25,7 +25,7 @@ class GetServingConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The resource name of the ServingConfig to get. Format:
-     *                     `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`
+     *                     `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`
      *                     Please see {@see ServingConfigServiceClient::servingConfigName()} for help formatting this field.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1beta\GetServingConfigRequest
@@ -46,7 +46,7 @@ class GetServingConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the ServingConfig to get. Format:
-     *           `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`
+     *           `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetServingConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the ServingConfig to get. Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`
+     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetServingConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the ServingConfig to get. Format:
-     * `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config_id}`
+     * `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

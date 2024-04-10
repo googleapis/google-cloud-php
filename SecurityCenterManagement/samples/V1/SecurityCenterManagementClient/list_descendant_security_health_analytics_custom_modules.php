@@ -31,7 +31,7 @@ use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule
 
 /**
  * Returns a list of all resident SecurityHealthAnalyticsCustomModules under
- * the given CRM parent and all of the parent’s CRM descendants.
+ * the given CRM parent and all of the parent's CRM descendants.
  *
  * @param string $formattedParent Name of parent to list custom modules. Its format is
  *                                "organizations/{organization}/locations/{location}",

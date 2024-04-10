@@ -59,9 +59,9 @@ class Preview extends \Google\Protobuf\Internal\Message
      */
     protected $preview_mode = 0;
     /**
-     * Optional. Optional service account. If omitted, the deployment resource
-     * reference must be provided, and the service account attached to the
-     * deployment will be used.
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * previewing resources.
+     * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
      * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -165,9 +165,9 @@ class Preview extends \Google\Protobuf\Internal\Message
      *     @type int $preview_mode
      *           Optional. Current mode of preview.
      *     @type string $service_account
-     *           Optional. Optional service account. If omitted, the deployment resource
-     *           reference must be provided, and the service account attached to the
-     *           deployment will be used.
+     *           Optional. User-specified Service Account (SA) credentials to be used when
+     *           previewing resources.
+     *           Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *     @type string $artifacts_gcs_bucket
      *           Optional. User-defined location of Cloud Build logs, artifacts, and
      *           in Google Cloud Storage.
@@ -418,9 +418,9 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional service account. If omitted, the deployment resource
-     * reference must be provided, and the service account attached to the
-     * deployment will be used.
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * previewing resources.
+     * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
      * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -431,9 +431,9 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional service account. If omitted, the deployment resource
-     * reference must be provided, and the service account attached to the
-     * deployment will be used.
+     * Optional. User-specified Service Account (SA) credentials to be used when
+     * previewing resources.
+     * Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *
      * Generated from protobuf field <code>string service_account = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -54,6 +54,12 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string instance_uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $instance_uid = '';
+    /**
+     * Output only. The DNS name to use with PSC for the Instance.
+     *
+     * Generated from protobuf field <code>string psc_dns_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $psc_dns_name = '';
 
     /**
      * Constructor.
@@ -78,6 +84,8 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
      *           certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *     @type string $instance_uid
      *           Output only. The unique ID of the Instance.
+     *     @type string $psc_dns_name
+     *           Output only. The DNS name to use with PSC for the Instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +237,32 @@ class ConnectionInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance_uid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The DNS name to use with PSC for the Instance.
+     *
+     * Generated from protobuf field <code>string psc_dns_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPscDnsName()
+    {
+        return $this->psc_dns_name;
+    }
+
+    /**
+     * Output only. The DNS name to use with PSC for the Instance.
+     *
+     * Generated from protobuf field <code>string psc_dns_name = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPscDnsName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->psc_dns_name = $var;
 
         return $this;
     }

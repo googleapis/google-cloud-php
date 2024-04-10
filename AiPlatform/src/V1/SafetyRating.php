@@ -28,6 +28,24 @@ class SafetyRating extends \Google\Protobuf\Internal\Message
      */
     private $probability = 0;
     /**
+     * Output only. Harm probability score.
+     *
+     * Generated from protobuf field <code>float probability_score = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $probability_score = 0.0;
+    /**
+     * Output only. Harm severity levels in the content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetyRating.HarmSeverity severity = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $severity = 0;
+    /**
+     * Output only. Harm severity score.
+     *
+     * Generated from protobuf field <code>float severity_score = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $severity_score = 0.0;
+    /**
      * Output only. Indicates whether the content was filtered out because of this
      * rating.
      *
@@ -45,6 +63,12 @@ class SafetyRating extends \Google\Protobuf\Internal\Message
      *           Output only. Harm category.
      *     @type int $probability
      *           Output only. Harm probability levels in the content.
+     *     @type float $probability_score
+     *           Output only. Harm probability score.
+     *     @type int $severity
+     *           Output only. Harm severity levels in the content.
+     *     @type float $severity_score
+     *           Output only. Harm severity score.
      *     @type bool $blocked
      *           Output only. Indicates whether the content was filtered out because of this
      *           rating.
@@ -103,6 +127,84 @@ class SafetyRating extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\SafetyRating\HarmProbability::class);
         $this->probability = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Harm probability score.
+     *
+     * Generated from protobuf field <code>float probability_score = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getProbabilityScore()
+    {
+        return $this->probability_score;
+    }
+
+    /**
+     * Output only. Harm probability score.
+     *
+     * Generated from protobuf field <code>float probability_score = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setProbabilityScore($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->probability_score = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Harm severity levels in the content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetyRating.HarmSeverity severity = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getSeverity()
+    {
+        return $this->severity;
+    }
+
+    /**
+     * Output only. Harm severity levels in the content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.SafetyRating.HarmSeverity severity = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSeverity($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\SafetyRating\HarmSeverity::class);
+        $this->severity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Harm severity score.
+     *
+     * Generated from protobuf field <code>float severity_score = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getSeverityScore()
+    {
+        return $this->severity_score;
+    }
+
+    /**
+     * Output only. Harm severity score.
+     *
+     * Generated from protobuf field <code>float severity_score = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setSeverityScore($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->severity_score = $var;
 
         return $this;
     }

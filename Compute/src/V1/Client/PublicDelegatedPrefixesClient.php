@@ -117,8 +117,8 @@ final class PublicDelegatedPrefixesClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements GapicClientTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -243,7 +243,7 @@ final class PublicDelegatedPrefixesClient
     }
 
     /**
-     * Lists all PublicDelegatedPrefix resources owned by the specific project across all scopes.
+     * Lists all PublicDelegatedPrefix resources owned by the specific project across all scopes. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see PublicDelegatedPrefixesClient::aggregatedListAsync()}
      * .

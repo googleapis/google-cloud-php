@@ -1426,6 +1426,60 @@
                 }
             }
         },
+        "InstantSnapshots": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InstantSnapshotsGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "InterconnectAttachments": {
             "clients": {
                 "grpc": {
@@ -2234,6 +2288,11 @@
                                 "moveInstance"
                             ]
                         },
+                        "SetCloudArmorTier": {
+                            "methods": [
+                                "setCloudArmorTier"
+                            ]
+                        },
                         "SetCommonInstanceMetadata": {
                             "methods": [
                                 "setCommonInstanceMetadata"
@@ -2844,6 +2903,55 @@
                         "BulkInsert": {
                             "methods": [
                                 "bulkInsert"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RegionInstantSnapshots": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionInstantSnapshotsGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

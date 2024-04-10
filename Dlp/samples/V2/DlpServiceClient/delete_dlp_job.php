@@ -31,8 +31,11 @@ use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
  * Deletes a long-running DlpJob. This method indicates that the client is
  * no longer interested in the DlpJob result. The job will be canceled if
  * possible.
- * See https://cloud.google.com/dlp/docs/inspecting-storage and
- * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+ * and
+ * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+ * to learn more.
  *
  * @param string $formattedName The name of the DlpJob resource to be deleted. Please see
  *                              {@see DlpServiceClient::dlpJobName()} for help formatting this field.

@@ -56,7 +56,8 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * property or contains empty or invalid values, then it is included.
      * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      * See the
-     * [known issue](https://cloud.google.com/dlp/docs/known-issues#bq-timespan)
+     * [known
+     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
      * related to this operation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
@@ -111,7 +112,8 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *           property or contains empty or invalid values, then it is included.
      *           Valid data types of the provided timestamp property are: `TIMESTAMP`.
      *           See the
-     *           [known issue](https://cloud.google.com/dlp/docs/known-issues#bq-timespan)
+     *           [known
+     *           issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
      *           related to this operation.
      *     @type bool $enable_auto_population_of_timespan_config
      *           When the job is started by a JobTrigger we will automatically figure out
@@ -228,7 +230,8 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * property or contains empty or invalid values, then it is included.
      * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      * See the
-     * [known issue](https://cloud.google.com/dlp/docs/known-issues#bq-timespan)
+     * [known
+     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
      * related to this operation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
@@ -275,7 +278,8 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * property or contains empty or invalid values, then it is included.
      * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      * See the
-     * [known issue](https://cloud.google.com/dlp/docs/known-issues#bq-timespan)
+     * [known
+     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
      * related to this operation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>

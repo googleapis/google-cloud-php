@@ -24,8 +24,8 @@ class ListPreviewsRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Optional. When requesting a page of resources, 'page_size' specifies number
-     * of resources to return. If unspecified or set to 0, all resources will be
-     * returned.
+     * of resources to return. If unspecified, at most 500 will be returned. The
+     * maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -94,8 +94,8 @@ class ListPreviewsRequest extends \Google\Protobuf\Internal\Message
      *           value is in the format: 'projects/{project_id}/locations/{location}'.
      *     @type int $page_size
      *           Optional. When requesting a page of resources, 'page_size' specifies number
-     *           of resources to return. If unspecified or set to 0, all resources will be
-     *           returned.
+     *           of resources to return. If unspecified, at most 500 will be returned. The
+     *           maximum value is 1000.
      *     @type string $page_token
      *           Optional. Token returned by previous call to 'ListDeployments' which
      *           specifies the position in the list from where to continue listing the
@@ -158,8 +158,8 @@ class ListPreviewsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. When requesting a page of resources, 'page_size' specifies number
-     * of resources to return. If unspecified or set to 0, all resources will be
-     * returned.
+     * of resources to return. If unspecified, at most 500 will be returned. The
+     * maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -171,8 +171,8 @@ class ListPreviewsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. When requesting a page of resources, 'page_size' specifies number
-     * of resources to return. If unspecified or set to 0, all resources will be
-     * returned.
+     * of resources to return. If unspecified, at most 500 will be returned. The
+     * maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

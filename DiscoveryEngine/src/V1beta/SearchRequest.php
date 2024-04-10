@@ -83,6 +83,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $offset = 0;
     /**
+     * A list of data store specs to apply on a search call.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     */
+    private $data_store_specs;
+    /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the documents being filtered. Filter
      * expression is case-sensitive.
@@ -312,6 +318,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           [page_token][google.cloud.discoveryengine.v1beta.SearchRequest.page_token]
      *           is unset.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *           A list of data store specs to apply on a search call.
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the documents being filtered. Filter
@@ -679,6 +687,32 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->offset = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of data store specs to apply on a search call.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataStoreSpecs()
+    {
+        return $this->data_store_specs;
+    }
+
+    /**
+     * A list of data store specs to apply on a search call.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataStoreSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec::class);
+        $this->data_store_specs = $arr;
 
         return $this;
     }

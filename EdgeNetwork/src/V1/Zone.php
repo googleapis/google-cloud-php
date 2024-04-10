@@ -34,15 +34,19 @@ class Zone extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Labels as key value pairs
+     * Deprecated: not implemented.
+     * Labels as key value pairs.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [deprecated = true];</code>
+     * @deprecated
      */
     private $labels;
     /**
+     * Deprecated: not implemented.
      * The deployment layout type.
      *
-     * Generated from protobuf field <code>string layout_name = 5;</code>
+     * Generated from protobuf field <code>string layout_name = 5 [deprecated = true];</code>
+     * @deprecated
      */
     protected $layout_name = '';
 
@@ -59,8 +63,10 @@ class Zone extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the zone was last updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Labels as key value pairs
+     *           Deprecated: not implemented.
+     *           Labels as key value pairs.
      *     @type string $layout_name
+     *           Deprecated: not implemented.
      *           The deployment layout type.
      * }
      */
@@ -168,25 +174,31 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Labels as key value pairs
+     * Deprecated: not implemented.
+     * Labels as key value pairs.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\MapField
+     * @deprecated
      */
     public function getLabels()
     {
+        @trigger_error('labels is deprecated.', E_USER_DEPRECATED);
         return $this->labels;
     }
 
     /**
-     * Labels as key value pairs
+     * Deprecated: not implemented.
+     * Labels as key value pairs.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 4 [deprecated = true];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
+     * @deprecated
      */
     public function setLabels($var)
     {
+        @trigger_error('labels is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
 
@@ -194,25 +206,31 @@ class Zone extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: not implemented.
      * The deployment layout type.
      *
-     * Generated from protobuf field <code>string layout_name = 5;</code>
+     * Generated from protobuf field <code>string layout_name = 5 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getLayoutName()
     {
+        @trigger_error('layout_name is deprecated.', E_USER_DEPRECATED);
         return $this->layout_name;
     }
 
     /**
+     * Deprecated: not implemented.
      * The deployment layout type.
      *
-     * Generated from protobuf field <code>string layout_name = 5;</code>
+     * Generated from protobuf field <code>string layout_name = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setLayoutName($var)
     {
+        @trigger_error('layout_name is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->layout_name = $var;
 

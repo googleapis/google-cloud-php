@@ -640,14 +640,17 @@ class PredictionServiceGapicClient
      * @param array     $optionalArgs {
      *     Optional.
      *
+     *     @type Content $systemInstruction
+     *           Optional. The user provided system instructions for the model.
+     *           Note: only text should be used in parts and content in each part will be in
+     *           a separate paragraph.
      *     @type Tool[] $tools
      *           Optional. A list of `Tools` the model may use to generate the next
      *           response.
      *
      *           A `Tool` is a piece of code that enables the system to interact with
      *           external systems to perform an action, or set of actions, outside of
-     *           knowledge and scope of the model. The only supported tool is currently
-     *           `Function`
+     *           knowledge and scope of the model.
      *     @type SafetySetting[] $safetySettings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
@@ -670,6 +673,10 @@ class PredictionServiceGapicClient
         $request->setModel($model);
         $request->setContents($contents);
         $requestParamHeaders['model'] = $model;
+        if (isset($optionalArgs['systemInstruction'])) {
+            $request->setSystemInstruction($optionalArgs['systemInstruction']);
+        }
+
         if (isset($optionalArgs['tools'])) {
             $request->setTools($optionalArgs['tools']);
         }
@@ -1079,14 +1086,17 @@ class PredictionServiceGapicClient
      * @param array     $optionalArgs {
      *     Optional.
      *
+     *     @type Content $systemInstruction
+     *           Optional. The user provided system instructions for the model.
+     *           Note: only text should be used in parts and content in each part will be in
+     *           a separate paragraph.
      *     @type Tool[] $tools
      *           Optional. A list of `Tools` the model may use to generate the next
      *           response.
      *
      *           A `Tool` is a piece of code that enables the system to interact with
      *           external systems to perform an action, or set of actions, outside of
-     *           knowledge and scope of the model. The only supported tool is currently
-     *           `Function`
+     *           knowledge and scope of the model.
      *     @type SafetySetting[] $safetySettings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
@@ -1110,6 +1120,10 @@ class PredictionServiceGapicClient
         $request->setModel($model);
         $request->setContents($contents);
         $requestParamHeaders['model'] = $model;
+        if (isset($optionalArgs['systemInstruction'])) {
+            $request->setSystemInstruction($optionalArgs['systemInstruction']);
+        }
+
         if (isset($optionalArgs['tools'])) {
             $request->setTools($optionalArgs['tools']);
         }

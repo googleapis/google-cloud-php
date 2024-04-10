@@ -30,7 +30,7 @@ class Script extends \Google\Protobuf\Internal\Message
      *           first line of the file.(For example, to execute the script using bash,
      *           `#!/bin/bash` should be the first line of the file. To execute the
      *           script using`Python3`, `#!/usr/bin/env python3` should be the first
-     *           line of the file.) Otherwise, the file will by default be excuted by
+     *           line of the file.) Otherwise, the file will by default be executed by
      *           `/bin/sh`.
      *     @type string $text
      *           Shell script text.
@@ -38,7 +38,7 @@ class Script extends \Google\Protobuf\Internal\Message
      *           beginning of the text.(For example, to execute the script using bash,
      *           `#!/bin/bash\n` should be added. To execute the script using`Python3`,
      *           `#!/usr/bin/env python3\n` should be added.) Otherwise, the script will
-     *           by default be excuted by `/bin/sh`.
+     *           by default be executed by `/bin/sh`.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +53,7 @@ class Script extends \Google\Protobuf\Internal\Message
      * first line of the file.(For example, to execute the script using bash,
      * `#!/bin/bash` should be the first line of the file. To execute the
      * script using`Python3`, `#!/usr/bin/env python3` should be the first
-     * line of the file.) Otherwise, the file will by default be excuted by
+     * line of the file.) Otherwise, the file will by default be executed by
      * `/bin/sh`.
      *
      * Generated from protobuf field <code>string path = 1;</code>
@@ -76,7 +76,7 @@ class Script extends \Google\Protobuf\Internal\Message
      * first line of the file.(For example, to execute the script using bash,
      * `#!/bin/bash` should be the first line of the file. To execute the
      * script using`Python3`, `#!/usr/bin/env python3` should be the first
-     * line of the file.) Otherwise, the file will by default be excuted by
+     * line of the file.) Otherwise, the file will by default be executed by
      * `/bin/sh`.
      *
      * Generated from protobuf field <code>string path = 1;</code>
@@ -97,7 +97,7 @@ class Script extends \Google\Protobuf\Internal\Message
      * beginning of the text.(For example, to execute the script using bash,
      * `#!/bin/bash\n` should be added. To execute the script using`Python3`,
      * `#!/usr/bin/env python3\n` should be added.) Otherwise, the script will
-     * by default be excuted by `/bin/sh`.
+     * by default be executed by `/bin/sh`.
      *
      * Generated from protobuf field <code>string text = 2;</code>
      * @return string
@@ -118,7 +118,7 @@ class Script extends \Google\Protobuf\Internal\Message
      * beginning of the text.(For example, to execute the script using bash,
      * `#!/bin/bash\n` should be added. To execute the script using`Python3`,
      * `#!/usr/bin/env python3\n` should be added.) Otherwise, the script will
-     * by default be excuted by `/bin/sh`.
+     * by default be executed by `/bin/sh`.
      *
      * Generated from protobuf field <code>string text = 2;</code>
      * @param string $var

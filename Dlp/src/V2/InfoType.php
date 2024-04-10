@@ -18,9 +18,11 @@ class InfoType extends \Google\Protobuf\Internal\Message
     /**
      * Name of the information type. Either a name of your choosing when
      * creating a CustomInfoType, or one of the names listed
-     * at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
-     * a built-in type.  When sending Cloud DLP results to Data Catalog, infoType
-     * names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.
+     * at
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+     * when specifying a built-in type.  When sending Cloud DLP results to Data
+     * Catalog, infoType names should conform to the pattern
+     * `[A-Za-z0-9$_-]{1,64}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -48,9 +50,11 @@ class InfoType extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the information type. Either a name of your choosing when
      *           creating a CustomInfoType, or one of the names listed
-     *           at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
-     *           a built-in type.  When sending Cloud DLP results to Data Catalog, infoType
-     *           names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.
+     *           at
+     *           https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+     *           when specifying a built-in type.  When sending Cloud DLP results to Data
+     *           Catalog, infoType names should conform to the pattern
+     *           `[A-Za-z0-9$_-]{1,64}`.
      *     @type string $version
      *           Optional version name for this InfoType.
      *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
@@ -66,9 +70,11 @@ class InfoType extends \Google\Protobuf\Internal\Message
     /**
      * Name of the information type. Either a name of your choosing when
      * creating a CustomInfoType, or one of the names listed
-     * at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
-     * a built-in type.  When sending Cloud DLP results to Data Catalog, infoType
-     * names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.
+     * at
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+     * when specifying a built-in type.  When sending Cloud DLP results to Data
+     * Catalog, infoType names should conform to the pattern
+     * `[A-Za-z0-9$_-]{1,64}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -81,9 +87,11 @@ class InfoType extends \Google\Protobuf\Internal\Message
     /**
      * Name of the information type. Either a name of your choosing when
      * creating a CustomInfoType, or one of the names listed
-     * at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
-     * a built-in type.  When sending Cloud DLP results to Data Catalog, infoType
-     * names should conform to the pattern `[A-Za-z0-9$_-]{1,64}`.
+     * at
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+     * when specifying a built-in type.  When sending Cloud DLP results to Data
+     * Catalog, infoType names should conform to the pattern
+     * `[A-Za-z0-9$_-]{1,64}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

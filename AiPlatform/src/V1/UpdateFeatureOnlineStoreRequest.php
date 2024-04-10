@@ -34,6 +34,7 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `big_query_source`
+     *   * `bigtable`
      *   * `labels`
      *   * `sync_config`
      *
@@ -56,6 +57,7 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      *                                                                           Updatable fields:
      *
      *                                                                           * `big_query_source`
+     *                                                                           * `bigtable`
      *                                                                           * `labels`
      *                                                                           * `sync_config`
      *
@@ -90,6 +92,7 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      *           fields.
      *           Updatable fields:
      *             * `big_query_source`
+     *             * `bigtable`
      *             * `labels`
      *             * `sync_config`
      * }
@@ -149,6 +152,7 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `big_query_source`
+     *   * `bigtable`
      *   * `labels`
      *   * `sync_config`
      *
@@ -180,6 +184,7 @@ class UpdateFeatureOnlineStoreRequest extends \Google\Protobuf\Internal\Message
      * fields.
      * Updatable fields:
      *   * `big_query_source`
+     *   * `bigtable`
      *   * `labels`
      *   * `sync_config`
      *

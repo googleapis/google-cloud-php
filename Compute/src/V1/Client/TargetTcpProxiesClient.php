@@ -115,8 +115,8 @@ final class TargetTcpProxiesClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements GapicClientTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -240,7 +240,7 @@ final class TargetTcpProxiesClient
     }
 
     /**
-     * Retrieves the list of all TargetTcpProxy resources, regional and global, available to the specified project.
+     * Retrieves the list of all TargetTcpProxy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see TargetTcpProxiesClient::aggregatedListAsync()} .
      *

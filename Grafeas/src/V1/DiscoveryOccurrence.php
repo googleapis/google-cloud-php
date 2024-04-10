@@ -64,6 +64,12 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp archive_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $archive_time = null;
+    /**
+     * The status of an SBOM generation.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.SBOMStatus sbom_status = 9;</code>
+     */
+    private $sbom_status = null;
 
     /**
      * Constructor.
@@ -89,6 +95,8 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           The last time this resource was scanned.
      *     @type \Google\Protobuf\Timestamp $archive_time
      *           The time occurrences related to this discovery occurrence were archived.
+     *     @type \Grafeas\V1\DiscoveryOccurrence\SBOMStatus $sbom_status
+     *           The status of an SBOM generation.
      * }
      */
     public function __construct($data = NULL) {
@@ -342,6 +350,42 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->archive_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The status of an SBOM generation.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.SBOMStatus sbom_status = 9;</code>
+     * @return \Grafeas\V1\DiscoveryOccurrence\SBOMStatus|null
+     */
+    public function getSbomStatus()
+    {
+        return $this->sbom_status;
+    }
+
+    public function hasSbomStatus()
+    {
+        return isset($this->sbom_status);
+    }
+
+    public function clearSbomStatus()
+    {
+        unset($this->sbom_status);
+    }
+
+    /**
+     * The status of an SBOM generation.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.SBOMStatus sbom_status = 9;</code>
+     * @param \Grafeas\V1\DiscoveryOccurrence\SBOMStatus $var
+     * @return $this
+     */
+    public function setSbomStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\DiscoveryOccurrence\SBOMStatus::class);
+        $this->sbom_status = $var;
 
         return $this;
     }

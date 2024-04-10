@@ -27,6 +27,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use UnexpectedValueException;
 
 /**
  * @group core
@@ -194,6 +195,54 @@ class GrpcTraitTest extends TestCase
                 ]
             )
         );
+    }
+
+    /**
+     * @dataProvider provideGetGaxConfig
+     */
+    public function testUniverseDomainFromGaxConfig(
+        ?string $universeDomain,
+        string $expectedUniverseDomain,
+        string $envUniverse = null
+    ) {
+        if ($envUniverse) {
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $envUniverse);
+        }
+
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
+        $this->requestWrapper->getCredentialsFetcher()->willReturn($fetcher);
+
+        $impl = new class() {
+            use GrpcTrait {
+                getGaxConfig as public;
+            }
+        };
+        $impl->setRequestWrapper($this->requestWrapper->reveal());
+
+        $config = $impl->getGaxConfig('1.2.3', null, $universeDomain);
+        $refl = new \ReflectionClass($config['credentials']);
+        $prop = $refl->getProperty('universeDomain');
+        $prop->setAccessible(true);
+        $universeDomain = $prop->getValue($config['credentials']);
+
+        if ($envUniverse) {
+            // We have to do this instead of using "@runInSeparateProcess" because in the case of
+            // an error, PHPUnit throws a "Serialization of 'ReflectionClass' is not allowed" error.
+            // @TODO: Remove this once we've updated to PHPUnit 10.
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+        }
+
+        $this->assertEquals($expectedUniverseDomain, $universeDomain);
+    }
+
+    public function provideGetGaxConfig()
+    {
+        return [
+            [null, 'googleapis.com'], // default
+            ['ab.cd', 'ab.cd'], // explicitly set
+            [null, 'ab.cd', 'ab.cd'], // from env var
+            ['googleapis.com', 'googleapis.com', 'ab.cd'], // explicitly set takes priority over env var
+        ];
     }
 
     private function noop()

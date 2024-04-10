@@ -115,8 +115,8 @@ final class AddressesClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements GapicClientTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -241,7 +241,7 @@ final class AddressesClient
     }
 
     /**
-     * Retrieves an aggregated list of addresses.
+     * Retrieves an aggregated list of addresses. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see AddressesClient::aggregatedListAsync()} .
      *

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloudStoragePath extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A url representing a file or path (no wildcards) in Cloud Storage.
-     * Example: gs://[BUCKET_NAME]/dictionary.txt
+     * A URL representing a file or path (no wildcards) in Cloud Storage.
+     * Example: `gs://[BUCKET_NAME]/dictionary.txt`
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
@@ -30,8 +30,8 @@ class CloudStoragePath extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $path
-     *           A url representing a file or path (no wildcards) in Cloud Storage.
-     *           Example: gs://[BUCKET_NAME]/dictionary.txt
+     *           A URL representing a file or path (no wildcards) in Cloud Storage.
+     *           Example: `gs://[BUCKET_NAME]/dictionary.txt`
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class CloudStoragePath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A url representing a file or path (no wildcards) in Cloud Storage.
-     * Example: gs://[BUCKET_NAME]/dictionary.txt
+     * A URL representing a file or path (no wildcards) in Cloud Storage.
+     * Example: `gs://[BUCKET_NAME]/dictionary.txt`
      *
      * Generated from protobuf field <code>string path = 1;</code>
      * @return string
@@ -52,8 +52,8 @@ class CloudStoragePath extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A url representing a file or path (no wildcards) in Cloud Storage.
-     * Example: gs://[BUCKET_NAME]/dictionary.txt
+     * A URL representing a file or path (no wildcards) in Cloud Storage.
+     * Example: `gs://[BUCKET_NAME]/dictionary.txt`
      *
      * Generated from protobuf field <code>string path = 1;</code>
      * @param string $var

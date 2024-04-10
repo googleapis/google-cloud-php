@@ -30,7 +30,7 @@ class Service
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-£#
+ã$
 !google/cloud/run/v2/service.protogoogle.cloud.run.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/launch_stage.protogoogle/api/resource.protogoogle/api/routing.proto#google/cloud/run/v2/condition.proto+google/cloud/run/v2/revision_template.proto(google/cloud/run/v2/traffic_target.proto)google/cloud/run/v2/vendor_settings.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"Æ
 CreateServiceRequest2
 parent (	B"‡A˙Arun.googleapis.com/Service2
@@ -58,15 +58,15 @@ page_token (	
 name (	B"‡A˙A
 run.googleapis.com/Service
 validate_only (
-etag (	"Œ
+etag (	"∂
 Service
 name (	
 description (	
 uid (	B‡A
 
-generation (B‡A8
-labels (2(.google.cloud.run.v2.Service.LabelsEntryB
-annotations (2-.google.cloud.run.v2.Service.AnnotationsEntry4
+generation (B‡A=
+labels (2(.google.cloud.run.v2.Service.LabelsEntryB‡AG
+annotations (2-.google.cloud.run.v2.Service.AnnotationsEntryB‡A4
 create_time (2.google.protobuf.TimestampB‡A4
 update_time (2.google.protobuf.TimestampB‡A4
 delete_time	 (2.google.protobuf.TimestampB‡A4
@@ -80,7 +80,9 @@ generation (B‡A8
 launch_stage (2.google.api.LaunchStageF
 binary_authorization (2(.google.cloud.run.v2.BinaryAuthorization<
 template (2%.google.cloud.run.v2.RevisionTemplateB‡A3
-traffic (2".google.cloud.run.v2.TrafficTarget 
+traffic (2".google.cloud.run.v2.TrafficTarget9
+scaling (2#.google.cloud.run.v2.ServiceScalingB‡A!
+default_uri_disabled (B‡A 
 observed_generation (B‡A?
 terminal_condition (2.google.cloud.run.v2.ConditionB‡A7
 

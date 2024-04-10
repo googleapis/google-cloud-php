@@ -119,8 +119,8 @@ final class VpnGatewaysClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements GapicClientTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -245,7 +245,7 @@ final class VpnGatewaysClient
     }
 
     /**
-     * Retrieves an aggregated list of VPN gateways.
+     * Retrieves an aggregated list of VPN gateways. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see VpnGatewaysClient::aggregatedListAsync()} .
      *

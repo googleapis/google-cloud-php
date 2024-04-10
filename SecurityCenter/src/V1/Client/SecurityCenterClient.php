@@ -357,6 +357,23 @@ final class SecurityCenterClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * folder_constraint_name resource.
+     *
+     * @param string $folder
+     * @param string $constraintName
+     *
+     * @return string The formatted folder_constraint_name resource.
+     */
+    public static function folderConstraintNameName(string $folder, string $constraintName): string
+    {
+        return self::getPathTemplate('folderConstraintName')->render([
+            'folder' => $folder,
+            'constraint_name' => $constraintName,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * folder_custom_module resource.
      *
      * @param string $folder
@@ -599,6 +616,23 @@ final class SecurityCenterClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_constraint_name resource.
+     *
+     * @param string $organization
+     * @param string $constraintName
+     *
+     * @return string The formatted organization_constraint_name resource.
+     */
+    public static function organizationConstraintNameName(string $organization, string $constraintName): string
+    {
+        return self::getPathTemplate('organizationConstraintName')->render([
+            'organization' => $organization,
+            'constraint_name' => $constraintName,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_custom_module resource.
      *
      * @param string $organization
@@ -789,6 +823,23 @@ final class SecurityCenterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a policy
+     * resource.
+     *
+     * @param string $organization
+     * @param string $constraintName
+     *
+     * @return string The formatted policy resource.
+     */
+    public static function policyName(string $organization, string $constraintName): string
+    {
+        return self::getPathTemplate('policy')->render([
+            'organization' => $organization,
+            'constraint_name' => $constraintName,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -817,6 +868,23 @@ final class SecurityCenterClient
         return self::getPathTemplate('projectAssetSecurityMarks')->render([
             'project' => $project,
             'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_constraint_name resource.
+     *
+     * @param string $project
+     * @param string $constraintName
+     *
+     * @return string The formatted project_constraint_name resource.
+     */
+    public static function projectConstraintNameName(string $project, string $constraintName): string
+    {
+        return self::getPathTemplate('projectConstraintName')->render([
+            'project' => $project,
+            'constraint_name' => $constraintName,
         ]);
     }
 
@@ -1179,6 +1247,7 @@ final class SecurityCenterClient
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - folder: folders/{folder}
      * - folderAssetSecurityMarks: folders/{folder}/assets/{asset}/securityMarks
+     * - folderConstraintName: folders/{folder}/policies/{constraint_name}
      * - folderCustomModule: folders/{folder}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - folderEffectiveCustomModule: folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - folderExport: folders/{folder}/bigQueryExports/{export}
@@ -1193,6 +1262,7 @@ final class SecurityCenterClient
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
      * - organizationAssetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
+     * - organizationConstraintName: organizations/{organization}/policies/{constraint_name}
      * - organizationCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - organizationEffectiveCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - organizationExport: organizations/{organization}/bigQueryExports/{export}
@@ -1204,8 +1274,10 @@ final class SecurityCenterClient
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
      * - organizationSourceFindingExternalsystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - organizationSourceFindingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
+     * - policy: organizations/{organization}/policies/{constraint_name}
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
+     * - projectConstraintName: projects/{project}/policies/{constraint_name}
      * - projectCustomModule: projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - projectDlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - projectEffectiveCustomModule: projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}

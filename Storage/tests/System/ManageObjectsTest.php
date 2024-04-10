@@ -284,6 +284,36 @@ class ManageObjectsTest extends StorageTestCase
 
         $this->assertEquals($name, $composedObject->name());
         $this->assertEquals($expectedContent, $composedObject->downloadAsString());
+        return $composedObject;
+    }
+
+    /**
+     * @depends testComposeObjects
+     */
+    public function testSoftDeleteObject($object)
+    {
+        // Set soft delete policy
+        self::$bucket->update([
+            'softDeletePolicy' => [
+                'retentionDurationSeconds' => 8*24*60*60
+                ]
+            ]);
+
+        $this->assertStorageObjectExists($object);
+        $generation = $object->info()['generation'];
+
+        $object->delete();
+
+        $this->assertStorageObjectNotExists($object);
+        $this->assertStorageObjectExists($object, [
+            'softDeleted' => true,
+            'generation' => $generation
+        ]);
+
+        $restoredObject = self::$bucket->restore($object->name(), $generation);
+        $this->assertNotEquals($generation, $restoredObject->info()['generation']);
+
+        $this->assertStorageObjectExists($restoredObject);
     }
 
     public function testRotatesCustomerSuppliedEncrpytion()
@@ -413,5 +443,22 @@ class ManageObjectsTest extends StorageTestCase
 
             $this->assertSame($expectedContent, $actualContent);
         }
+    }
+
+    private function assertStorageObjectExists($object, $options = [], $isPresent = true)
+    {
+        $this->assertEquals($isPresent, $object->exists($options));
+        $object = self::$bucket->object($object->name(), $options);
+        $this->assertEquals($isPresent, $object->exists($options));
+        $objects = self::$bucket->objects($options);
+        $objects = array_map(function ($o) {
+            return $o->name();
+        }, iterator_to_array($objects));
+        $this->assertEquals($isPresent, in_array($object->name(), $objects));
+    }
+
+    private function assertStorageObjectNotExists($object, $options = [])
+    {
+        $this->assertStorageObjectExists($object, $options, false);
     }
 }

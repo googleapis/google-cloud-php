@@ -111,8 +111,8 @@ final class RegionCommitmentsClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements GapicClientTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -237,7 +237,7 @@ final class RegionCommitmentsClient
     }
 
     /**
-     * Retrieves an aggregated list of commitments by region.
+     * Retrieves an aggregated list of commitments by region. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see RegionCommitmentsClient::aggregatedListAsync()} .
      *

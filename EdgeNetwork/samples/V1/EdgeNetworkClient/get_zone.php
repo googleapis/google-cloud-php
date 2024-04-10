@@ -29,6 +29,7 @@ use Google\Cloud\EdgeNetwork\V1\GetZoneRequest;
 use Google\Cloud\EdgeNetwork\V1\Zone;
 
 /**
+ * Deprecated: not implemented.
  * Gets details of a single Zone.
  *
  * @param string $formattedName Name of the resource

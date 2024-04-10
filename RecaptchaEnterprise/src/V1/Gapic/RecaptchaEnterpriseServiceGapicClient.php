@@ -57,6 +57,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
@@ -1331,6 +1333,64 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Reorders all firewall policies.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
+     *     $formattedNames = [
+     *         $recaptchaEnterpriseServiceClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]'),
+     *     ];
+     *     $response = $recaptchaEnterpriseServiceClient->reorderFirewallPolicies($formattedParent, $formattedNames);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the project to list the policies for, in the format
+     *                               `projects/{project}`.
+     * @param string[] $names        Required. A list containing all policy names, in the new order. Each name
+     *                               is in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function reorderFirewallPolicies(
+        $parent,
+        $names,
+        array $optionalArgs = []
+    ) {
+        $request = new ReorderFirewallPoliciesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setNames($names);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ReorderFirewallPolicies',
+            ReorderFirewallPoliciesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the secret key related to the specified public key.
      * You must use the legacy secret key only in a 3rd party integration with
      * legacy reCAPTCHA.
@@ -1388,7 +1448,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedProject = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+     *     $formattedProject = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {

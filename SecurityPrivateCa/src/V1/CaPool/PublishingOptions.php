@@ -47,6 +47,15 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool publish_crl = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $publish_crl = false;
+    /**
+     * Optional. Specifies the encoding format of each
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * resource's CA certificate and CRLs. If this is omitted, CA certificates
+     * and CRLs will be published in PEM.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.PublishingOptions.EncodingFormat encoding_format = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $encoding_format = 0;
 
     /**
      * Constructor.
@@ -72,6 +81,11 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      *           extension will not be written in issued certificates. CRLs will expire 7
      *           days from their creation. However, we will rebuild daily. CRLs are also
      *           rebuilt shortly after a certificate is revoked.
+     *     @type int $encoding_format
+     *           Optional. Specifies the encoding format of each
+     *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     *           resource's CA certificate and CRLs. If this is omitted, CA certificates
+     *           and CRLs will be published in PEM.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +169,38 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->publish_crl = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the encoding format of each
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * resource's CA certificate and CRLs. If this is omitted, CA certificates
+     * and CRLs will be published in PEM.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.PublishingOptions.EncodingFormat encoding_format = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEncodingFormat()
+    {
+        return $this->encoding_format;
+    }
+
+    /**
+     * Optional. Specifies the encoding format of each
+     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
+     * resource's CA certificate and CRLs. If this is omitted, CA certificates
+     * and CRLs will be published in PEM.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.CaPool.PublishingOptions.EncodingFormat encoding_format = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEncodingFormat($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Security\PrivateCA\V1\CaPool\PublishingOptions\EncodingFormat::class);
+        $this->encoding_format = $var;
 
         return $this;
     }

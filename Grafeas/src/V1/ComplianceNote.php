@@ -50,6 +50,7 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      */
     private $scan_instructions = '';
     protected $compliance_type;
+    protected $potential_impact;
 
     /**
      * Constructor.
@@ -70,6 +71,7 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      *     @type \Grafeas\V1\ComplianceNote\CisBenchmark $cis_benchmark
      *     @type string $scan_instructions
      *           Serialized scan instructions with a predefined format.
+     *     @type string $impact
      * }
      */
     public function __construct($data = NULL) {
@@ -261,11 +263,46 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>string impact = 8;</code>
+     * @return string
+     */
+    public function getImpact()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasImpact()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Generated from protobuf field <code>string impact = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImpact($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getComplianceType()
     {
         return $this->whichOneof("compliance_type");
+    }
+
+    /**
+     * @return string
+     */
+    public function getPotentialImpact()
+    {
+        return $this->whichOneof("potential_impact");
     }
 
 }

@@ -8,6 +8,10 @@ use UnexpectedValueException;
 
 /**
  * Source of the model.
+ * Different from `objective` field, this `ModelSourceType` enum
+ * indicates the source from which the model was accessed or obtained,
+ * whereas the `objective` indicates the overall aim or function of this
+ * model.
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.ModelSourceInfo.ModelSourceType</code>
  */
@@ -55,6 +59,12 @@ class ModelSourceType
      * Generated from protobuf enum <code>CUSTOM_TEXT_EMBEDDING = 6;</code>
      */
     const CUSTOM_TEXT_EMBEDDING = 6;
+    /**
+     * The Model is saved or tuned from Marketplace.
+     *
+     * Generated from protobuf enum <code>MARKETPLACE = 7;</code>
+     */
+    const MARKETPLACE = 7;
 
     private static $valueToName = [
         self::MODEL_SOURCE_TYPE_UNSPECIFIED => 'MODEL_SOURCE_TYPE_UNSPECIFIED',
@@ -64,6 +74,7 @@ class ModelSourceType
         self::MODEL_GARDEN => 'MODEL_GARDEN',
         self::GENIE => 'GENIE',
         self::CUSTOM_TEXT_EMBEDDING => 'CUSTOM_TEXT_EMBEDDING',
+        self::MARKETPLACE => 'MARKETPLACE',
     ];
 
     public static function name($value)

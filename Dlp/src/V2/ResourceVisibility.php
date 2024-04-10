@@ -7,8 +7,8 @@ namespace Google\Cloud\Dlp\V2;
 use UnexpectedValueException;
 
 /**
- * How broadly a resource has been shared. New items may be added over time.
- * A higher number means more restricted.
+ * How broadly the data in the resource has been shared. New items may be added
+ * over time. A higher number means more restricted.
  *
  * Protobuf type <code>google.privacy.dlp.v2.ResourceVisibility</code>
  */

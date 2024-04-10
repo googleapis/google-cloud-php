@@ -41,6 +41,12 @@ class PurgeDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 failure_count = 4;</code>
      */
     protected $failure_count = 0;
+    /**
+     * Count of entries that were ignored as entries were not found.
+     *
+     * Generated from protobuf field <code>int64 ignored_count = 5;</code>
+     */
+    protected $ignored_count = 0;
 
     /**
      * Constructor.
@@ -57,6 +63,8 @@ class PurgeDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *           Count of entries that were deleted successfully.
      *     @type int|string $failure_count
      *           Count of entries that encountered errors while processing.
+     *     @type int|string $ignored_count
+     *           Count of entries that were ignored as entries were not found.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,6 +194,32 @@ class PurgeDocumentsMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->failure_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Count of entries that were ignored as entries were not found.
+     *
+     * Generated from protobuf field <code>int64 ignored_count = 5;</code>
+     * @return int|string
+     */
+    public function getIgnoredCount()
+    {
+        return $this->ignored_count;
+    }
+
+    /**
+     * Count of entries that were ignored as entries were not found.
+     *
+     * Generated from protobuf field <code>int64 ignored_count = 5;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setIgnoredCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->ignored_count = $var;
 
         return $this;
     }

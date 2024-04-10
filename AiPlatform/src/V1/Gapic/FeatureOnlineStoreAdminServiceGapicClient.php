@@ -1413,6 +1413,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *           Updatable fields:
      *
      *           * `big_query_source`
+     *           * `bigtable`
      *           * `labels`
      *           * `sync_config`
      *     @type RetrySettings|array $retrySettings
@@ -1510,6 +1511,7 @@ class FeatureOnlineStoreAdminServiceGapicClient
      *           Updatable fields:
      *
      *           * `labels`
+     *           * `serviceAgentType`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
