@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START automl_v1_generated_AutoMl_GetModel_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\GetModelRequest;
 use Google\Cloud\AutoMl\V1\Model;
 
 /**
@@ -38,10 +39,14 @@ function get_model_sample(string $formattedName): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare the request message.
+    $request = (new GetModelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Model $response */
-        $response = $autoMlClient->getModel($formattedName);
+        $response = $autoMlClient->getModel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

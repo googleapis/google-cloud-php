@@ -15,6 +15,27 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class DcrExchangeConfig extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Output only. If True, this DCR restricts the contributors to sharing
+     * only a single resource in a Listing. And no two resources should have the
+     * same IDs. So if a contributor adds a view with a conflicting name, the
+     * CreateListing API will reject the request. if False, the data contributor
+     * can publish an entire dataset (as before). This is not configurable, and
+     * by default, all new DCRs will have the restriction set to True.
+     *
+     * Generated from protobuf field <code>optional bool single_selected_resource_sharing_restriction = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $single_selected_resource_sharing_restriction = null;
+    /**
+     * Output only. If True, when subscribing to this DCR, it will create only
+     * one linked dataset containing all resources shared within the
+     * cleanroom. If False, when subscribing to this DCR, it will
+     * create 1 linked dataset per listing. This is not configurable, and by
+     * default, all new DCRs will have the restriction set to True.
+     *
+     * Generated from protobuf field <code>optional bool single_linked_dataset_per_cleanroom = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $single_linked_dataset_per_cleanroom = null;
 
     /**
      * Constructor.
@@ -22,11 +43,114 @@ class DcrExchangeConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $single_selected_resource_sharing_restriction
+     *           Output only. If True, this DCR restricts the contributors to sharing
+     *           only a single resource in a Listing. And no two resources should have the
+     *           same IDs. So if a contributor adds a view with a conflicting name, the
+     *           CreateListing API will reject the request. if False, the data contributor
+     *           can publish an entire dataset (as before). This is not configurable, and
+     *           by default, all new DCRs will have the restriction set to True.
+     *     @type bool $single_linked_dataset_per_cleanroom
+     *           Output only. If True, when subscribing to this DCR, it will create only
+     *           one linked dataset containing all resources shared within the
+     *           cleanroom. If False, when subscribing to this DCR, it will
+     *           create 1 linked dataset per listing. This is not configurable, and by
+     *           default, all new DCRs will have the restriction set to True.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Analyticshub\V1\Analyticshub::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Output only. If True, this DCR restricts the contributors to sharing
+     * only a single resource in a Listing. And no two resources should have the
+     * same IDs. So if a contributor adds a view with a conflicting name, the
+     * CreateListing API will reject the request. if False, the data contributor
+     * can publish an entire dataset (as before). This is not configurable, and
+     * by default, all new DCRs will have the restriction set to True.
+     *
+     * Generated from protobuf field <code>optional bool single_selected_resource_sharing_restriction = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSingleSelectedResourceSharingRestriction()
+    {
+        return isset($this->single_selected_resource_sharing_restriction) ? $this->single_selected_resource_sharing_restriction : false;
+    }
+
+    public function hasSingleSelectedResourceSharingRestriction()
+    {
+        return isset($this->single_selected_resource_sharing_restriction);
+    }
+
+    public function clearSingleSelectedResourceSharingRestriction()
+    {
+        unset($this->single_selected_resource_sharing_restriction);
+    }
+
+    /**
+     * Output only. If True, this DCR restricts the contributors to sharing
+     * only a single resource in a Listing. And no two resources should have the
+     * same IDs. So if a contributor adds a view with a conflicting name, the
+     * CreateListing API will reject the request. if False, the data contributor
+     * can publish an entire dataset (as before). This is not configurable, and
+     * by default, all new DCRs will have the restriction set to True.
+     *
+     * Generated from protobuf field <code>optional bool single_selected_resource_sharing_restriction = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSingleSelectedResourceSharingRestriction($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->single_selected_resource_sharing_restriction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If True, when subscribing to this DCR, it will create only
+     * one linked dataset containing all resources shared within the
+     * cleanroom. If False, when subscribing to this DCR, it will
+     * create 1 linked dataset per listing. This is not configurable, and by
+     * default, all new DCRs will have the restriction set to True.
+     *
+     * Generated from protobuf field <code>optional bool single_linked_dataset_per_cleanroom = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSingleLinkedDatasetPerCleanroom()
+    {
+        return isset($this->single_linked_dataset_per_cleanroom) ? $this->single_linked_dataset_per_cleanroom : false;
+    }
+
+    public function hasSingleLinkedDatasetPerCleanroom()
+    {
+        return isset($this->single_linked_dataset_per_cleanroom);
+    }
+
+    public function clearSingleLinkedDatasetPerCleanroom()
+    {
+        unset($this->single_linked_dataset_per_cleanroom);
+    }
+
+    /**
+     * Output only. If True, when subscribing to this DCR, it will create only
+     * one linked dataset containing all resources shared within the
+     * cleanroom. If False, when subscribing to this DCR, it will
+     * create 1 linked dataset per listing. This is not configurable, and by
+     * default, all new DCRs will have the restriction set to True.
+     *
+     * Generated from protobuf field <code>optional bool single_linked_dataset_per_cleanroom = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSingleLinkedDatasetPerCleanroom($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->single_linked_dataset_per_cleanroom = $var;
+
+        return $this;
     }
 
 }

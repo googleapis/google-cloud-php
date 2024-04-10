@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicemanagement_v1_generated_ServiceManager_CreateServiceConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\Api\Service;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\CreateServiceConfigRequest;
 
 /**
  * Creates a new service configuration (version) for a managed service.
@@ -46,13 +47,16 @@ function create_service_config_sample(string $serviceName): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $serviceConfig = new Service();
+    $request = (new CreateServiceConfigRequest())
+        ->setServiceName($serviceName)
+        ->setServiceConfig($serviceConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var Service $response */
-        $response = $serviceManagerClient->createServiceConfig($serviceName, $serviceConfig);
+        $response = $serviceManagerClient->createServiceConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

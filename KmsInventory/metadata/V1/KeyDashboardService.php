@@ -33,7 +33,7 @@ page_token (	BàA"f
 crypto_keys (2.google.cloud.kms.v1.CryptoKey
 next_page_token (	2›
 KeyDashboardService²
-ListCryptoKeys4.google.cloud.kms.inventory.v1.ListCryptoKeysRequest5.google.cloud.kms.inventory.v1.ListCryptoKeysResponse"3‚Óä“$"/v1/{parent=projects/*}/cryptoKeysÚAparentOÊAkmsinventory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÃ
+ListCryptoKeys4.google.cloud.kms.inventory.v1.ListCryptoKeysRequest5.google.cloud.kms.inventory.v1.ListCryptoKeysResponse"3ÚAparent‚Óä“$"/v1/{parent=projects/*}/cryptoKeysOÊAkmsinventory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÃ
 !com.google.cloud.kms.inventory.v1BKeyDashboardServiceProtoPZ?cloud.google.com/go/kms/inventory/apiv1/inventorypb;inventorypbøªGoogle.Cloud.Kms.Inventory.V1ÊGoogle\\Cloud\\Kms\\Inventory\\V1bproto3'
         , true);
 

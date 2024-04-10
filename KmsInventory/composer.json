@@ -17,8 +17,8 @@
         }
     },
     "require": {
-        "php": ">=7.4",
-        "google/gax": "^1.19.1",
+        "php": "^8.0",
+        "google/gax": "^1.30",
         "google/cloud-kms": "^1.15"
     },
     "require-dev": {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Environments_UpdateEnvironment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\EnvironmentsClient;
 use Google\Cloud\Dialogflow\V2\Environment;
-use Google\Cloud\Dialogflow\V2\EnvironmentsClient;
+use Google\Cloud\Dialogflow\V2\UpdateEnvironmentRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -53,14 +54,17 @@ function update_environment_sample(): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $environment = new Environment();
     $updateMask = new FieldMask();
+    $request = (new UpdateEnvironmentRequest())
+        ->setEnvironment($environment)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Environment $response */
-        $response = $environmentsClient->updateEnvironment($environment, $updateMask);
+        $response = $environmentsClient->updateEnvironment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

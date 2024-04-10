@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START managedidentities_v1_generated_ManagedIdentitiesService_ResetAdminPassword_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\Client\ManagedIdentitiesServiceClient;
+use Google\Cloud\ManagedIdentities\V1\ResetAdminPasswordRequest;
 use Google\Cloud\ManagedIdentities\V1\ResetAdminPasswordResponse;
 
 /**
@@ -39,10 +40,14 @@ function reset_admin_password_sample(string $formattedName): void
     // Create a client.
     $managedIdentitiesServiceClient = new ManagedIdentitiesServiceClient();
 
+    // Prepare the request message.
+    $request = (new ResetAdminPasswordRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ResetAdminPasswordResponse $response */
-        $response = $managedIdentitiesServiceClient->resetAdminPassword($formattedName);
+        $response = $managedIdentitiesServiceClient->resetAdminPassword($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

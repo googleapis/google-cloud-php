@@ -142,6 +142,13 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceFlexibilityPolicy instance_flexibility_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $instance_flexibility_policy = null;
+    /**
+     * Optional. Configuration to handle the startup of instances during cluster
+     * create and update process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.StartupConfig startup_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $startup_config = null;
 
     /**
      * Constructor.
@@ -223,6 +230,9 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy $instance_flexibility_policy
      *           Optional. Instance flexibility Policy allowing a mixture of VM shapes and
      *           provisioning models.
+     *     @type \Google\Cloud\Dataproc\V1\StartupConfig $startup_config
+     *           Optional. Configuration to handle the startup of instances during cluster
+     *           create and update process.
      * }
      */
     public function __construct($data = NULL) {
@@ -690,6 +700,44 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy::class);
         $this->instance_flexibility_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration to handle the startup of instances during cluster
+     * create and update process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.StartupConfig startup_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\StartupConfig|null
+     */
+    public function getStartupConfig()
+    {
+        return $this->startup_config;
+    }
+
+    public function hasStartupConfig()
+    {
+        return isset($this->startup_config);
+    }
+
+    public function clearStartupConfig()
+    {
+        unset($this->startup_config);
+    }
+
+    /**
+     * Optional. Configuration to handle the startup of instances during cluster
+     * create and update process.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.StartupConfig startup_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\StartupConfig $var
+     * @return $this
+     */
+    public function setStartupConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\StartupConfig::class);
+        $this->startup_config = $var;
 
         return $this;
     }

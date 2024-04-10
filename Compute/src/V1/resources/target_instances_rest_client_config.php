@@ -89,6 +89,28 @@ return [
                     ],
                 ],
             ],
+            'SetSecurityPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/targetInstances/{target_instance}/setSecurityPolicy',
+                'body' => 'security_policy_reference_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'target_instance' => [
+                        'getters' => [
+                            'getTargetInstance',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.ZoneOperations' => [
             'Delete' => [

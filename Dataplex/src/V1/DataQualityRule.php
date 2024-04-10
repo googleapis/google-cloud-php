@@ -25,7 +25,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      * Optional. Rows with `null` values will automatically fail a rule, unless
      * `ignore_null` is `true`. In that case, such `null` rows are trivially
      * considered passing.
-     * This field is only valid for row-level type rules.
+     * This field is only valid for the following type of rules:
+     * * RangeExpectation
+     * * RegexExpectation
+     * * SetExpectation
+     * * UniquenessExpectation
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -101,7 +105,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *           Optional. Rows with `null` values will automatically fail a rule, unless
      *           `ignore_null` is `true`. In that case, such `null` rows are trivially
      *           considered passing.
-     *           This field is only valid for row-level type rules.
+     *           This field is only valid for the following type of rules:
+     *           * RangeExpectation
+     *           * RegexExpectation
+     *           * SetExpectation
+     *           * UniquenessExpectation
      *     @type string $dimension
      *           Required. The dimension a rule belongs to. Results are also aggregated at
      *           the dimension level. Supported dimensions are **["COMPLETENESS",
@@ -418,7 +426,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      * Optional. Rows with `null` values will automatically fail a rule, unless
      * `ignore_null` is `true`. In that case, such `null` rows are trivially
      * considered passing.
-     * This field is only valid for row-level type rules.
+     * This field is only valid for the following type of rules:
+     * * RangeExpectation
+     * * RegexExpectation
+     * * SetExpectation
+     * * UniquenessExpectation
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -432,7 +444,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      * Optional. Rows with `null` values will automatically fail a rule, unless
      * `ignore_null` is `true`. In that case, such `null` rows are trivially
      * considered passing.
-     * This field is only valid for row-level type rules.
+     * This field is only valid for the following type of rules:
+     * * RangeExpectation
+     * * RegexExpectation
+     * * SetExpectation
+     * * UniquenessExpectation
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iap_v1_generated_IdentityAwareProxyOAuthService_ListBrands_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\ListBrandsRequest;
 use Google\Cloud\Iap\V1\ListBrandsResponse;
 
 /**
@@ -38,10 +39,14 @@ function list_brands_sample(string $parent): void
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListBrandsRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var ListBrandsResponse $response */
-        $response = $identityAwareProxyOAuthServiceClient->listBrands($parent);
+        $response = $identityAwareProxyOAuthServiceClient->listBrands($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

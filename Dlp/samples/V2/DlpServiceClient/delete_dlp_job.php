@@ -24,14 +24,18 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_DeleteDlpJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
 
 /**
  * Deletes a long-running DlpJob. This method indicates that the client is
  * no longer interested in the DlpJob result. The job will be canceled if
  * possible.
- * See https://cloud.google.com/dlp/docs/inspecting-storage and
- * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+ * and
+ * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+ * to learn more.
  *
  * @param string $formattedName The name of the DlpJob resource to be deleted. Please see
  *                              {@see DlpServiceClient::dlpJobName()} for help formatting this field.
@@ -41,9 +45,13 @@ function delete_dlp_job_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDlpJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dlpServiceClient->deleteDlpJob($formattedName);
+        $dlpServiceClient->deleteDlpJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

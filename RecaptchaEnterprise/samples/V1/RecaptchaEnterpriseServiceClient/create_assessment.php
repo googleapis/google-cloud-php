@@ -25,13 +25,14 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_CreateAssessment_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
 
 /**
  * Creates an Assessment of the likelihood an event is legitimate.
  *
  * @param string $formattedParent The name of the project in which the assessment will be created,
- *                                in the format "projects/{project}". Please see
+ *                                in the format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  */
 function create_assessment_sample(string $formattedParent): void
@@ -39,13 +40,16 @@ function create_assessment_sample(string $formattedParent): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $assessment = new Assessment();
+    $request = (new CreateAssessmentRequest())
+        ->setParent($formattedParent)
+        ->setAssessment($assessment);
 
     // Call the API and handle any network failures.
     try {
         /** @var Assessment $response */
-        $response = $recaptchaEnterpriseServiceClient->createAssessment($formattedParent, $assessment);
+        $response = $recaptchaEnterpriseServiceClient->createAssessment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

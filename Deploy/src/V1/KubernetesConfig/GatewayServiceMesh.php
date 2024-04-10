@@ -42,6 +42,15 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration route_update_wait_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $route_update_wait_time = null;
+    /**
+     * Optional. The amount of time to migrate traffic back from the canary
+     * Service to the original Service during the stable phase deployment. If
+     * specified, must be between 15s and 3600s. If unspecified, there is no
+     * cutback time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration stable_cutback_duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $stable_cutback_duration = null;
 
     /**
      * Constructor.
@@ -60,6 +69,11 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
      *           Optional. The time to wait for route updates to propagate. The maximum
      *           configurable time is 3 hours, in seconds format. If unspecified, there is
      *           no wait time.
+     *     @type \Google\Protobuf\Duration $stable_cutback_duration
+     *           Optional. The amount of time to migrate traffic back from the canary
+     *           Service to the original Service during the stable phase deployment. If
+     *           specified, must be between 15s and 3600s. If unspecified, there is no
+     *           cutback time.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,6 +197,48 @@ class GatewayServiceMesh extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->route_update_wait_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The amount of time to migrate traffic back from the canary
+     * Service to the original Service during the stable phase deployment. If
+     * specified, must be between 15s and 3600s. If unspecified, there is no
+     * cutback time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration stable_cutback_duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getStableCutbackDuration()
+    {
+        return $this->stable_cutback_duration;
+    }
+
+    public function hasStableCutbackDuration()
+    {
+        return isset($this->stable_cutback_duration);
+    }
+
+    public function clearStableCutbackDuration()
+    {
+        unset($this->stable_cutback_duration);
+    }
+
+    /**
+     * Optional. The amount of time to migrate traffic back from the canary
+     * Service to the original Service during the stable phase deployment. If
+     * specified, must be between 15s and 3600s. If unspecified, there is no
+     * cutback time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration stable_cutback_duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setStableCutbackDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->stable_cutback_duration = $var;
 
         return $this;
     }

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigqueryconnection_v1_generated_ConnectionService_ListConnections_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\BigQuery\Connection\V1\Client\ConnectionServiceClient;
 use Google\Cloud\BigQuery\Connection\V1\Connection;
-use Google\Cloud\BigQuery\Connection\V1\ConnectionServiceClient;
+use Google\Cloud\BigQuery\Connection\V1\ListConnectionsRequest;
 
 /**
  * Returns a list of connections in the given project.
@@ -43,10 +44,15 @@ function list_connections_sample(string $formattedParent, int $pageSize): void
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListConnectionsRequest())
+        ->setParent($formattedParent)
+        ->setPageSize($pageSize);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $connectionServiceClient->listConnections($formattedParent, $pageSize);
+        $response = $connectionServiceClient->listConnections($request);
 
         /** @var Connection $element */
         foreach ($response as $element) {

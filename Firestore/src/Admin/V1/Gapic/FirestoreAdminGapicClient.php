@@ -35,31 +35,47 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Firestore\Admin\V1\Backup;
+use Google\Cloud\Firestore\Admin\V1\BackupSchedule;
+use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
+use Google\Cloud\Firestore\Admin\V1\DeleteBackupRequest;
+use Google\Cloud\Firestore\Admin\V1\DeleteBackupScheduleRequest;
+use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsResponse;
 use Google\Cloud\Firestore\Admin\V1\Field;
 use Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata;
+use Google\Cloud\Firestore\Admin\V1\GetBackupRequest;
+use Google\Cloud\Firestore\Admin\V1\GetBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\GetFieldRequest;
 use Google\Cloud\Firestore\Admin\V1\GetIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\Index;
 use Google\Cloud\Firestore\Admin\V1\IndexOperationMetadata;
+use Google\Cloud\Firestore\Admin\V1\ListBackupSchedulesRequest;
+use Google\Cloud\Firestore\Admin\V1\ListBackupSchedulesResponse;
+use Google\Cloud\Firestore\Admin\V1\ListBackupsRequest;
+use Google\Cloud\Firestore\Admin\V1\ListBackupsResponse;
 use Google\Cloud\Firestore\Admin\V1\ListDatabasesRequest;
 use Google\Cloud\Firestore\Admin\V1\ListDatabasesResponse;
 use Google\Cloud\Firestore\Admin\V1\ListFieldsRequest;
 use Google\Cloud\Firestore\Admin\V1\ListFieldsResponse;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesRequest;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesResponse;
+use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseMetadata;
+use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseRequest;
+use Google\Cloud\Firestore\Admin\V1\UpdateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: The Cloud Firestore Admin API.
@@ -97,35 +113,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $firestoreAdminClient = new FirestoreAdminClient();
  * try {
- *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
- *     $database = new Database();
- *     $databaseId = 'database_id';
- *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         $result = $operationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $firestoreAdminClient->createDatabase($formattedParent, $database, $databaseId);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'createDatabase');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         $result = $newOperationResponse->getResult();
- *         // doSomethingWith($result)
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $formattedParent = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+ *     $backupSchedule = new BackupSchedule();
+ *     $response = $firestoreAdminClient->createBackupSchedule($formattedParent, $backupSchedule);
  * } finally {
  *     $firestoreAdminClient->close();
  * }
@@ -136,9 +126,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Firestore\Admin\V1\Client\FirestoreAdminClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Firestore\Admin\V1\Client\FirestoreAdminClient}.
  */
 class FirestoreAdminGapicClient
 {
@@ -147,8 +135,15 @@ class FirestoreAdminGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.firestore.admin.v1.FirestoreAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'firestore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'firestore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -162,6 +157,10 @@ class FirestoreAdminGapicClient
         'https://www.googleapis.com/auth/datastore',
     ];
 
+    private static $backupNameTemplate;
+
+    private static $backupScheduleNameTemplate;
+
     private static $collectionGroupNameTemplate;
 
     private static $databaseNameTemplate;
@@ -169,6 +168,8 @@ class FirestoreAdminGapicClient
     private static $fieldNameTemplate;
 
     private static $indexNameTemplate;
+
+    private static $locationNameTemplate;
 
     private static $projectNameTemplate;
 
@@ -193,6 +194,24 @@ class FirestoreAdminGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getBackupNameTemplate()
+    {
+        if (self::$backupNameTemplate == null) {
+            self::$backupNameTemplate = new PathTemplate('projects/{project}/locations/{location}/backups/{backup}');
+        }
+
+        return self::$backupNameTemplate;
+    }
+
+    private static function getBackupScheduleNameTemplate()
+    {
+        if (self::$backupScheduleNameTemplate == null) {
+            self::$backupScheduleNameTemplate = new PathTemplate('projects/{project}/databases/{database}/backupSchedules/{backup_schedule}');
+        }
+
+        return self::$backupScheduleNameTemplate;
     }
 
     private static function getCollectionGroupNameTemplate()
@@ -231,6 +250,15 @@ class FirestoreAdminGapicClient
         return self::$indexNameTemplate;
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (self::$locationNameTemplate == null) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -244,15 +272,56 @@ class FirestoreAdminGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'backup' => self::getBackupNameTemplate(),
+                'backupSchedule' => self::getBackupScheduleNameTemplate(),
                 'collectionGroup' => self::getCollectionGroupNameTemplate(),
                 'database' => self::getDatabaseNameTemplate(),
                 'field' => self::getFieldNameTemplate(),
                 'index' => self::getIndexNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a backup
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     */
+    public static function backupName($project, $location, $backup)
+    {
+        return self::getBackupNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_schedule resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $backupSchedule
+     *
+     * @return string The formatted backup_schedule resource.
+     */
+    public static function backupScheduleName($project, $database, $backupSchedule)
+    {
+        return self::getBackupScheduleNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+            'backup_schedule' => $backupSchedule,
+        ]);
     }
 
     /**
@@ -334,6 +403,23 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -352,10 +438,13 @@ class FirestoreAdminGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - backup: projects/{project}/locations/{location}/backups/{backup}
+     * - backupSchedule: projects/{project}/databases/{database}/backupSchedules/{backup_schedule}
      * - collectionGroup: projects/{project}/databases/{database}/collectionGroups/{collection}
      * - database: projects/{project}/databases/{database}
      * - field: projects/{project}/databases/{database}/collectionGroups/{collection}/fields/{field}
      * - index: projects/{project}/databases/{database}/collectionGroups/{collection}/indexes/{index}
+     * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -484,6 +573,52 @@ class FirestoreAdminGapicClient
     }
 
     /**
+     * Creates a backup schedule on a database.
+     * At most two backup schedules can be configured on a database, one daily
+     * backup schedule and one weekly backup schedule.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+     *     $backupSchedule = new BackupSchedule();
+     *     $response = $firestoreAdminClient->createBackupSchedule($formattedParent, $backupSchedule);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent         Required. The parent database.
+     *
+     *                                       Format `projects/{project}/databases/{database}`
+     * @param BackupSchedule $backupSchedule Required. The backup schedule to create.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\BackupSchedule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createBackupSchedule($parent, $backupSchedule, array $optionalArgs = [])
+    {
+        $request = new CreateBackupScheduleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setBackupSchedule($backupSchedule);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateBackupSchedule', BackupSchedule::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Create a database.
      *
      * Sample code:
@@ -530,7 +665,11 @@ class FirestoreAdminGapicClient
      * @param string   $databaseId   Required. The ID to use for the database, which will become the final
      *                               component of the database's resource name.
      *
-     *                               The value must be set to "(default)".
+     *                               This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *                               with first character a letter and the last a letter or a number. Must not
+     *                               be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     *
+     *                               "(default)" database id is also valid.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -627,6 +766,158 @@ class FirestoreAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('CreateIndex', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Deletes a backup.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+     *     $firestoreAdminClient->deleteBackup($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the backup to delete.
+     *
+     *                             format is `projects/{project}/locations/{location}/backups/{backup}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteBackup($name, array $optionalArgs = [])
+    {
+        $request = new DeleteBackupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteBackup', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes a backup schedule.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->backupScheduleName('[PROJECT]', '[DATABASE]', '[BACKUP_SCHEDULE]');
+     *     $firestoreAdminClient->deleteBackupSchedule($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the backup schedule.
+     *
+     *                             Format
+     *                             `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteBackupSchedule($name, array $optionalArgs = [])
+    {
+        $request = new DeleteBackupScheduleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteBackupSchedule', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes a database.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+     *     $operationResponse = $firestoreAdminClient->deleteDatabase($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $firestoreAdminClient->deleteDatabase($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'deleteDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. A name of the form
+     *                             `projects/{project_id}/databases/{database_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $etag
+     *           The current etag of the Database.
+     *           If an etag is provided and does not match the current etag of the database,
+     *           deletion will be blocked and a FAILED_PRECONDITION error will be returned.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteDatabase($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -732,6 +1023,21 @@ class FirestoreAdminGapicClient
      *           guidelines: https://cloud.google.com/storage/docs/naming.
      *           If the URI is a bucket (without a namespace path), a prefix will be
      *           generated based on the start time.
+     *     @type string[] $namespaceIds
+     *           An empty list represents all namespaces. This is the preferred
+     *           usage for databases that don't use namespaces.
+     *
+     *           An empty string element represents the default namespace. This should be
+     *           used if the database has data in non-default namespaces, but doesn't want
+     *           to include them. Each namespace in this list must be unique.
+     *     @type Timestamp $snapshotTime
+     *           The timestamp that corresponds to the version of the database to be
+     *           exported. The timestamp must be in the past, rounded to the minute and not
+     *           older than
+     *           [earliestVersionTime][google.firestore.admin.v1.Database.earliest_version_time].
+     *           If specified, then the exported documents will represent a consistent view
+     *           of the database at the provided time. Otherwise, there are no guarantees
+     *           about the consistency of the exported documents.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -756,9 +1062,100 @@ class FirestoreAdminGapicClient
             $request->setOutputUriPrefix($optionalArgs['outputUriPrefix']);
         }
 
+        if (isset($optionalArgs['namespaceIds'])) {
+            $request->setNamespaceIds($optionalArgs['namespaceIds']);
+        }
+
+        if (isset($optionalArgs['snapshotTime'])) {
+            $request->setSnapshotTime($optionalArgs['snapshotTime']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ExportDocuments', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Gets information about a backup.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+     *     $response = $firestoreAdminClient->getBackup($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the backup to fetch.
+     *
+     *                             Format is `projects/{project}/locations/{location}/backups/{backup}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\Backup
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getBackup($name, array $optionalArgs = [])
+    {
+        $request = new GetBackupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBackup', Backup::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a backup schedule.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedName = $firestoreAdminClient->backupScheduleName('[PROJECT]', '[DATABASE]', '[BACKUP_SCHEDULE]');
+     *     $response = $firestoreAdminClient->getBackupSchedule($formattedName);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the backup schedule.
+     *
+     *                             Format
+     *                             `projects/{project}/databases/{database}/backupSchedules/{backup_schedule}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\BackupSchedule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getBackupSchedule($name, array $optionalArgs = [])
+    {
+        $request = new GetBackupScheduleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBackupSchedule', BackupSchedule::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -936,6 +1333,13 @@ class FirestoreAdminGapicClient
      *           an export that has completed successfully.
      *           See:
      *           [google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix][google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix].
+     *     @type string[] $namespaceIds
+     *           An empty list represents all namespaces. This is the preferred
+     *           usage for databases that don't use namespaces.
+     *
+     *           An empty string element represents the default namespace. This should be
+     *           used if the database has data in non-default namespaces, but doesn't want
+     *           to include them. Each namespace in this list must be unique.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -960,9 +1364,98 @@ class FirestoreAdminGapicClient
             $request->setInputUriPrefix($optionalArgs['inputUriPrefix']);
         }
 
+        if (isset($optionalArgs['namespaceIds'])) {
+            $request->setNamespaceIds($optionalArgs['namespaceIds']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('ImportDocuments', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * List backup schedules.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
+     *     $response = $firestoreAdminClient->listBackupSchedules($formattedParent);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent database.
+     *
+     *                             Format is `projects/{project}/databases/{database}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\ListBackupSchedulesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listBackupSchedules($parent, array $optionalArgs = [])
+    {
+        $request = new ListBackupSchedulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ListBackupSchedules', ListBackupSchedulesResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lists all the backups.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $firestoreAdminClient->listBackups($formattedParent);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The location to list backups from.
+     *
+     *                             Format is `projects/{project}/locations/{location}`.
+     *                             Use `{location} = '-'` to list backups from all locations for the given
+     *                             project. This allows listing backups from a single location or from all
+     *                             locations.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\ListBackupsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listBackups($parent, array $optionalArgs = [])
+    {
+        $request = new ListBackupsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ListBackups', ListBackupsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1013,7 +1506,8 @@ class FirestoreAdminGapicClient
      * only supports listing fields that have been explicitly overridden. To issue
      * this query, call
      * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
-     * with the filter set to `indexConfig.usesAncestorConfig:false` .
+     * with the filter set to `indexConfig.usesAncestorConfig:false` or
+     * `ttlConfig:*`.
      *
      * Sample code:
      * ```
@@ -1165,6 +1659,149 @@ class FirestoreAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListIndexes', $optionalArgs, ListIndexesResponse::class, $request);
+    }
+
+    /**
+     * Creates a new database by restoring from an existing backup.
+     *
+     * The new database must be in the same cloud region or multi-region location
+     * as the existing backup. This behaves similar to
+     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.CreateDatabase]
+     * except instead of creating a new empty database, a new database is created
+     * with the database type, index configuration, and documents from an existing
+     * backup.
+     *
+     * The [long-running operation][google.longrunning.Operation] can be used to
+     * track the progress of the restore, with the Operation's
+     * [metadata][google.longrunning.Operation.metadata] field type being the
+     * [RestoreDatabaseMetadata][google.firestore.admin.v1.RestoreDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] type is the
+     * [Database][google.firestore.admin.v1.Database] if the restore was
+     * successful. The new database is not readable or writeable until the LRO has
+     * completed.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $formattedParent = $firestoreAdminClient->projectName('[PROJECT]');
+     *     $databaseId = 'database_id';
+     *     $formattedBackup = $firestoreAdminClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+     *     $operationResponse = $firestoreAdminClient->restoreDatabase($formattedParent, $databaseId, $formattedBackup);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $firestoreAdminClient->restoreDatabase($formattedParent, $databaseId, $formattedBackup);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'restoreDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project to restore the database in. Format is
+     *                             `projects/{project_id}`.
+     * @param string $databaseId   Required. The ID to use for the database, which will become the final
+     *                             component of the database's resource name. This database id must not be
+     *                             associated with an existing database.
+     *
+     *                             This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *                             with first character a letter and the last a letter or a number. Must not
+     *                             be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     *
+     *                             "(default)" database id is also valid.
+     * @param string $backup       Required. Backup to restore from. Must be from the same project as the
+     *                             parent.
+     *
+     *                             Format is: `projects/{project_id}/locations/{location}/backups/{backup}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function restoreDatabase($parent, $databaseId, $backup, array $optionalArgs = [])
+    {
+        $request = new RestoreDatabaseRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDatabaseId($databaseId);
+        $request->setBackup($backup);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RestoreDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Updates a backup schedule.
+     *
+     * Sample code:
+     * ```
+     * $firestoreAdminClient = new FirestoreAdminClient();
+     * try {
+     *     $backupSchedule = new BackupSchedule();
+     *     $response = $firestoreAdminClient->updateBackupSchedule($backupSchedule);
+     * } finally {
+     *     $firestoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param BackupSchedule $backupSchedule Required. The backup schedule to update.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Firestore\Admin\V1\BackupSchedule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateBackupSchedule($backupSchedule, array $optionalArgs = [])
+    {
+        $request = new UpdateBackupScheduleRequest();
+        $requestParamHeaders = [];
+        $request->setBackupSchedule($backupSchedule);
+        $requestParamHeaders['backup_schedule.name'] = $backupSchedule->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateBackupSchedule', BackupSchedule::class, $optionalArgs, $request)->wait();
     }
 
     /**

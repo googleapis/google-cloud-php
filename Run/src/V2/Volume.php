@@ -39,6 +39,10 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           more information on how to connect Cloud SQL and Cloud Run.
      *     @type \Google\Cloud\Run\V2\EmptyDirVolumeSource $empty_dir
      *           Ephemeral storage used as a shared volume.
+     *     @type \Google\Cloud\Run\V2\NFSVolumeSource $nfs
+     *           For NFS Voumes, contains the path to the nfs Volume
+     *     @type \Google\Cloud\Run\V2\GCSVolumeSource $gcs
+     *           Persistent storage backed by a Google Cloud Storage bucket.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,6 +169,68 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\EmptyDirVolumeSource::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * For NFS Voumes, contains the path to the nfs Volume
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NFSVolumeSource nfs = 5;</code>
+     * @return \Google\Cloud\Run\V2\NFSVolumeSource|null
+     */
+    public function getNfs()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasNfs()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * For NFS Voumes, contains the path to the nfs Volume
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.NFSVolumeSource nfs = 5;</code>
+     * @param \Google\Cloud\Run\V2\NFSVolumeSource $var
+     * @return $this
+     */
+    public function setNfs($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\NFSVolumeSource::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Persistent storage backed by a Google Cloud Storage bucket.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.GCSVolumeSource gcs = 6;</code>
+     * @return \Google\Cloud\Run\V2\GCSVolumeSource|null
+     */
+    public function getGcs()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasGcs()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Persistent storage backed by a Google Cloud Storage bucket.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.GCSVolumeSource gcs = 6;</code>
+     * @param \Google\Cloud\Run\V2\GCSVolumeSource $var
+     * @return $this
+     */
+    public function setGcs($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\GCSVolumeSource::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

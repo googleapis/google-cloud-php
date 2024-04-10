@@ -19,6 +19,8 @@ class Price extends \Google\Protobuf\Internal\Message
      * The price represented as a number in micros (1 million micros is an
      * equivalent to one's currency standard unit, for example, 1 USD = 1000000
      * micros).
+     * This field can also be set as infinity by setting to -1.
+     * This field only support -1 and positive value.
      *
      * Generated from protobuf field <code>optional int64 amount_micros = 1;</code>
      */
@@ -41,6 +43,8 @@ class Price extends \Google\Protobuf\Internal\Message
      *           The price represented as a number in micros (1 million micros is an
      *           equivalent to one's currency standard unit, for example, 1 USD = 1000000
      *           micros).
+     *           This field can also be set as infinity by setting to -1.
+     *           This field only support -1 and positive value.
      *     @type string $currency_code
      *           The currency of the price using three-letter acronyms according to [ISO
      *           4217](http://en.wikipedia.org/wiki/ISO_4217).
@@ -55,6 +59,8 @@ class Price extends \Google\Protobuf\Internal\Message
      * The price represented as a number in micros (1 million micros is an
      * equivalent to one's currency standard unit, for example, 1 USD = 1000000
      * micros).
+     * This field can also be set as infinity by setting to -1.
+     * This field only support -1 and positive value.
      *
      * Generated from protobuf field <code>optional int64 amount_micros = 1;</code>
      * @return int|string
@@ -78,6 +84,8 @@ class Price extends \Google\Protobuf\Internal\Message
      * The price represented as a number in micros (1 million micros is an
      * equivalent to one's currency standard unit, for example, 1 USD = 1000000
      * micros).
+     * This field can also be set as infinity by setting to -1.
+     * This field only support -1 and positive value.
      *
      * Generated from protobuf field <code>optional int64 amount_micros = 1;</code>
      * @param int|string $var

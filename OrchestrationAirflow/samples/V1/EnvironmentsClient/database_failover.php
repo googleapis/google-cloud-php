@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START composer_v1_generated_Environments_DatabaseFailover_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseFailoverRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseFailoverResponse;
-use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,13 @@ function database_failover_sample(): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = new DatabaseFailoverRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $environmentsClient->databaseFailover();
+        $response = $environmentsClient->databaseFailover($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

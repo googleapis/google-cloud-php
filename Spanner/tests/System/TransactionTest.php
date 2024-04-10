@@ -21,6 +21,7 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type as ReplicaType;
 
 /**
  * @group spanner
@@ -68,21 +69,31 @@ class TransactionTest extends SpannerTestCase
     public function testRunTransaction()
     {
         $db = self::$database;
+        $id = rand(1, 346464);
+        $keySet = new KeySet([
+            'keys' => [$id]
+        ]);
+        $row = [
+            'id' => $id,
+            'name' => uniqid(self::TESTING_PREFIX),
+            'birthday' => new Date(new \DateTime)
+        ];
+        $cols = array_keys($row);
 
-        $db->runTransaction(function ($t) {
-            $id = rand(1, 346464);
-            $t->insert(self::TEST_TABLE_NAME, [
-                'id' => $id,
-                'name' => uniqid(self::TESTING_PREFIX),
-                'birthday' => new Date(new \DateTime)
-            ]);
-
+        $db->runTransaction(function ($t) use ($row) {
+            $t->insert(self::TEST_TABLE_NAME, $row);
             $t->commit();
         });
 
-        $db->runTransaction(function ($t) {
-            $t->rollback();
-        });
+        $snapshot = $db->snapshot();
+        $res = $snapshot->read(self::TEST_TABLE_NAME, $keySet, $cols);
+        $resRow = $res->rows()->current();
+        $this->assertEquals($resRow['id'], $row['id']);
+        $this->assertEquals($resRow['name'], $row['name']);
+        $this->assertEquals(
+            $resRow['birthday']->formatAsString(),
+            $row['birthday']->formatAsString()
+        );
     }
 
     /**
@@ -92,7 +103,6 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
-        $this->markTestSkipped('fixme');
         $db = self::$database;
 
         $id = $this->randId();
@@ -117,7 +127,9 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertGreaterThan(2, $iterations);
+        // Emulator aborts a parallel transaction therefore
+        // iterations might be greater than 2
+        $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
     /**
@@ -147,7 +159,6 @@ class TransactionTest extends SpannerTestCase
      */
     public function testAbortedErrorCausesRetry()
     {
-        $this->markTestSkipped('fixme');
         $db = self::$database;
         $db2 = self::$database2;
 
@@ -172,7 +183,9 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertEquals(2, $iterations);
+        // Emulator aborts a parallel transaction therefore
+        // iterations might be greater than 2
+        $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
     /**
@@ -182,7 +195,6 @@ class TransactionTest extends SpannerTestCase
      */
     public function testConcurrentTransactionsIncrementValueWithExecute()
     {
-        $this->markTestSkipped('fixme');
         $db = self::$database;
 
         $id = $this->randId();
@@ -206,7 +218,9 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertGreaterThan(2, $iterations);
+        // Emulator aborts a parallel transaction therefore
+        // iterations might be greater than 2
+        $this->assertGreaterThanOrEqual(2, $iterations);
     }
 
     public function testStrongRead()
@@ -262,6 +276,207 @@ class TransactionTest extends SpannerTestCase
         } else {
             $this->assertEquals($error->getServiceException()->getStatus(), $expected);
         }
+    }
+
+    /**
+     * @dataProvider getDirectedReadOptions
+     */
+    public function testTransactionExecuteWithDirectedRead($directedReadOptions)
+    {
+        // Emulator does not support DirectedRead
+        $this->skipEmulatorTests();
+
+        $db = self::$database;
+        $id = $this->randId();
+
+        $db->insert(self::$tableName, [
+            'id' => $id,
+            'number' => 0
+        ]);
+
+        $snapshot = $db->snapshot();
+        $rows = $snapshot->execute(
+            'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
+            $directedReadOptions
+        )->rows()->current();
+        $this->assertEquals(0, $rows['number']);
+
+        $rows = $db->execute(
+            'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
+            ['transactionId' => $snapshot->id()] + $directedReadOptions
+        )->rows()->current();
+        $this->assertEquals(0, $rows['number']);
+    }
+
+    /**
+     * @dataProvider getDirectedReadOptions
+     */
+    public function testRWTransactionExecuteFailsWithDirectedRead($directedReadOptions)
+    {
+        // Emulator does not support DirectedRead
+        $this->skipEmulatorTests();
+
+        $db = self::$database;
+        $transaction = $db->transaction();
+        $expected = 'Directed reads can only be performed in a read-only transaction.';
+        $exception = null;
+
+        try {
+            $rows = $db->execute(
+                'SELECT * FROM ' . self::$tableName,
+                ['transactionId' => $transaction->id()] + $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
+
+        $exception = null;
+        try {
+            $row = $transaction->execute(
+                'SELECT * FROM ' . self::$tableName,
+                $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
+    }
+
+    /**
+     * @dataProvider getDirectedReadOptions
+     */
+    public function testRWTransactionReadFailsWithDirectedRead($directedReadOptions)
+    {
+        // Emulator does not support DirectedRead
+        $this->skipEmulatorTests();
+
+        $db = self::$database;
+        $transaction = $db->transaction();
+        $expected = 'Directed reads can only be performed in a read-only transaction.';
+        $exception = null;
+
+        list($keySet, $cols) = $this->readArgs();
+        try {
+            $res = $db->read(
+                self::TEST_TABLE_NAME,
+                $keySet,
+                $cols,
+                ['transactionId' => $transaction->id()] + $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
+        $exception = null;
+
+        try {
+            $res = $transaction->read(
+                self::TEST_TABLE_NAME,
+                $keySet,
+                $cols,
+                $directedReadOptions
+            )->rows()->current();
+        } catch (ServiceException $e) {
+            $exception = $e;
+        }
+        $this->assertEquals($exception->getServiceException()->getBasicMessage(), $expected);
+    }
+
+    public function testRunTransactionILBWithMultipleOperations()
+    {
+        $db = self::$database;
+
+        $res = $db->runTransaction(function ($t) {
+            $id = rand(1, 346464);
+            $row = [
+                'id' => $id,
+                'name' => uniqid(self::TESTING_PREFIX),
+                'birthday' => new Date(new \DateTime)
+            ];
+            // Representative of all mutations
+            $t->insert(self::TEST_TABLE_NAME, $row);
+            $this->assertNull($t->id());
+
+            $id = rand(1, 346464);
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
+                [
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX),
+                        'birthday' => new Date(new \DateTime)
+                    ]
+                ]
+            );
+            $transactionId = $t->id();
+            $this->assertNotEmpty($t->id());
+
+            $res = $t->execute('SELECT * FROM ' . self::TEST_TABLE_NAME . ' WHERE id = @id', [
+                'parameters' => [
+                    'id' => $id
+                ]
+            ]);
+            $this->assertEquals($res->rows()->current()['id'], $id);
+            // No new transaction created.
+            $this->assertNull($res->transaction());
+            $this->assertEquals($t->id(), $transactionId);
+
+            $keyset = new KeySet(['keys' => [$id]]);
+            $res = $t->read(self::TEST_TABLE_NAME, $keyset, ['id']);
+            $this->assertEquals($res->rows()->current()['id'], $id);
+            $this->assertNull($res->transaction());
+            $this->assertEquals($t->id(), $transactionId);
+
+            $res = $t->executeUpdateBatch([
+                [
+                    'sql' => 'UPDATE ' . self::TEST_TABLE_NAME . ' SET name = @name WHERE id = @id',
+                    'parameters' => [
+                        'id' => $id,
+                        'name' => uniqid(self::TESTING_PREFIX)
+                    ]
+                ]
+            ]);
+            $this->assertEquals($t->id(), $transactionId);
+
+            $t->commit();
+
+            return $res;
+        });
+
+        $this->assertEquals([1], $res->rowCounts());
+    }
+
+    public function getDirectedReadOptions()
+    {
+        return
+        [
+            [[
+                'directedReadOptions' => [
+                    'includeReplicas' => [
+                        'replicaSelections' => [
+                            [
+                                'location' => 'asia-northeast1',
+                                'type' => ReplicaType::READ_WRITE
+                            ]
+                        ],
+                        'autoFailoverDisabled' => false
+                    ]
+                ]
+            ]],
+            [[
+                'directedReadOptions' => [
+                    'excludeReplicas' => [
+                        'replicaSelections' => [
+                            [
+                                'location' => 'asia-northeast1',
+                                'type' => ReplicaType::READ_WRITE
+                            ]
+                        ]
+                    ]
+                ]
+            ]]
+        ];
     }
 
     private function readArgs()

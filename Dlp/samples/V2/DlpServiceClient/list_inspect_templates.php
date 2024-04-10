@@ -25,18 +25,21 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dlp_v2_generated_DlpService_ListInspectTemplates_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\InspectTemplate;
+use Google\Cloud\Dlp\V2\ListInspectTemplatesRequest;
 
 /**
  * Lists InspectTemplates.
- * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+ * to learn more.
  *
  * @param string $formattedParent Parent resource name.
  *
  *                                The format of this value varies depending on the scope of the request
  *                                (project or organization) and whether you have [specified a processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                + Projects scope, location specified:<br/>
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -59,10 +62,14 @@ function list_inspect_templates_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListInspectTemplatesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listInspectTemplates($formattedParent);
+        $response = $dlpServiceClient->listInspectTemplates($request);
 
         /** @var InspectTemplate $element */
         foreach ($response as $element) {

@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\GkeMultiCloud\V1\AwsAuthorization;
 use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
 use Google\Cloud\GkeMultiCloud\V1\AwsClusterNetworking;
-use Google\Cloud\GkeMultiCloud\V1\AwsClusterUser;
 use Google\Cloud\GkeMultiCloud\V1\AwsConfigEncryption;
 use Google\Cloud\GkeMultiCloud\V1\AwsControlPlane;
 use Google\Cloud\GkeMultiCloud\V1\AwsDatabaseEncryption;
@@ -87,7 +86,6 @@ use Google\Rpc\Status;
  * @param string $awsClusterControlPlaneAwsServicesAuthenticationRoleArn The Amazon Resource Name (ARN) of the role that the Anthos
  *                                                                       Multi-Cloud API will assume when managing AWS resources on your account.
  * @param string $awsClusterControlPlaneConfigEncryptionKmsKeyArn        The ARN of the AWS KMS key used to encrypt user data.
- * @param string $awsClusterAuthorizationAdminUsersUsername              The name of the user, e.g. `my-gcp-id&#64;gmail.com`.
  * @param string $awsClusterFleetProject                                 The name of the Fleet host project where this cluster will be
  *                                                                       registered.
  *
@@ -115,7 +113,6 @@ function create_aws_cluster_sample(
     string $awsClusterControlPlaneDatabaseEncryptionKmsKeyArn,
     string $awsClusterControlPlaneAwsServicesAuthenticationRoleArn,
     string $awsClusterControlPlaneConfigEncryptionKmsKeyArn,
-    string $awsClusterAuthorizationAdminUsersUsername,
     string $awsClusterFleetProject,
     string $awsClusterId
 ): void {
@@ -145,11 +142,7 @@ function create_aws_cluster_sample(
         ->setDatabaseEncryption($awsClusterControlPlaneDatabaseEncryption)
         ->setAwsServicesAuthentication($awsClusterControlPlaneAwsServicesAuthentication)
         ->setConfigEncryption($awsClusterControlPlaneConfigEncryption);
-    $awsClusterUser = (new AwsClusterUser())
-        ->setUsername($awsClusterAuthorizationAdminUsersUsername);
-    $awsClusterAuthorizationAdminUsers = [$awsClusterUser,];
-    $awsClusterAuthorization = (new AwsAuthorization())
-        ->setAdminUsers($awsClusterAuthorizationAdminUsers);
+    $awsClusterAuthorization = new AwsAuthorization();
     $awsClusterFleet = (new Fleet())
         ->setProject($awsClusterFleetProject);
     $awsCluster = (new AwsCluster())
@@ -205,7 +198,6 @@ function callSample(): void
     $awsClusterControlPlaneDatabaseEncryptionKmsKeyArn = '[KMS_KEY_ARN]';
     $awsClusterControlPlaneAwsServicesAuthenticationRoleArn = '[ROLE_ARN]';
     $awsClusterControlPlaneConfigEncryptionKmsKeyArn = '[KMS_KEY_ARN]';
-    $awsClusterAuthorizationAdminUsersUsername = '[USERNAME]';
     $awsClusterFleetProject = '[PROJECT]';
     $awsClusterId = '[AWS_CLUSTER_ID]';
 
@@ -221,7 +213,6 @@ function callSample(): void
         $awsClusterControlPlaneDatabaseEncryptionKmsKeyArn,
         $awsClusterControlPlaneAwsServicesAuthenticationRoleArn,
         $awsClusterControlPlaneConfigEncryptionKmsKeyArn,
-        $awsClusterAuthorizationAdminUsersUsername,
         $awsClusterFleetProject,
         $awsClusterId
     );

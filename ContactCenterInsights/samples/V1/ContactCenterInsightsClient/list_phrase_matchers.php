@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_ListPhraseMatchers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersRequest;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
 
 /**
@@ -39,10 +40,14 @@ function list_phrase_matchers_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new ListPhraseMatchersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $contactCenterInsightsClient->listPhraseMatchers($formattedParent);
+        $response = $contactCenterInsightsClient->listPhraseMatchers($request);
 
         /** @var PhraseMatcher $element */
         foreach ($response as $element) {

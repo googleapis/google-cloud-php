@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_ListKeys_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 
 /**
  * Returns the list of all keys that belong to a project.
  *
  * @param string $formattedParent The name of the project that contains the keys that will be
- *                                listed, in the format "projects/{project}". Please see
+ *                                listed, in the format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  */
 function list_keys_sample(string $formattedParent): void
@@ -40,10 +41,14 @@ function list_keys_sample(string $formattedParent): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListKeysRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $recaptchaEnterpriseServiceClient->listKeys($formattedParent);
+        $response = $recaptchaEnterpriseServiceClient->listKeys($request);
 
         /** @var Key $element */
         foreach ($response as $element) {

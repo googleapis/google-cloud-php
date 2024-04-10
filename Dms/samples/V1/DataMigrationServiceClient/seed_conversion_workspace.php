@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_SeedConversionWorkspace_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\ConversionWorkspace;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\SeedConversionWorkspaceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,10 +45,13 @@ function seed_conversion_workspace_sample(): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = new SeedConversionWorkspaceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->seedConversionWorkspace();
+        $response = $dataMigrationServiceClient->seedConversionWorkspace($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

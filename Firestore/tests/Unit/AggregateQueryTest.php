@@ -67,11 +67,16 @@ class AggregateQueryTest extends TestCase
         ], ['connection', 'query', 'aggregates']);
     }
 
-    public function testGetSnapshot()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testGetSnapshot($type, $arg, $expected)
     {
         $expectedProps = [
-            ['count' => []]
+            [$type => $expected]
         ];
+        $aggregate = $arg ? Aggregate::$type($arg) : Aggregate::$type();
+        $this->aggregateQuery->___setProperty('aggregates', [$aggregate]);
 
         $this->connection->runAggregationQuery(Argument::that(function ($args) use ($expectedProps) {
             return $expectedProps == $args['structuredAggregationQuery']['aggregations'];
@@ -80,7 +85,7 @@ class AggregateQueryTest extends TestCase
             ->willReturn(new \ArrayIterator([[
                 'result' => [
                     'aggregateFields' => [
-                        'count' => ['integerValue' => 123456]
+                        $type => ['testResultType' => 123456]
                     ]
                 ]
             ]]));
@@ -88,30 +93,46 @@ class AggregateQueryTest extends TestCase
 
         $response = $this->aggregateQuery->getSnapshot();
         $this->assertInstanceOf(AggregateQuerySnapshot::class, $response);
-        $this->assertEquals(123456, $response->get('count'));
+        $this->assertEquals(123456, $response->get($type));
     }
 
-    public function testAddAggregation()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testAddAggregation($type, $arg, $expected)
     {
         $expectedProps = [
-            ['count' => []],
-            ['count' => [], 'alias' => 'total'],
-            ['count' => [], 'alias' => 'count_with_another_alias'],
+            [$type => $expected],
+            [$type => $expected, 'alias' => 'total'],
+            [$type => $expected, 'alias' => 'type_with_another_alias'],
         ];
-        $this->aggregateQuery->addAggregation(Aggregate::count()->alias('total'));
-        $this->aggregateQuery->addAggregation(
-            Aggregate::count()
-            ->alias('count_with_another_alias')
-        );
 
+        // Filling the array using array_fill or similar method results in
+        // having values by reference, hence not suited for test's purpose.
+        $aggregates = [
+            $arg ? Aggregate::$type($arg) : Aggregate::$type(),
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('total'),
+            ($arg ? Aggregate::$type($arg) : Aggregate::$type())->alias('type_with_another_alias')
+        ];
+        $this->aggregateQuery->___setProperty('aggregates', $aggregates);
         $this->connection->runAggregationQuery(Argument::that(function ($args) use ($expectedProps) {
             return $expectedProps == $args['structuredAggregationQuery']['aggregations'];
         }))
             ->shouldBeCalledTimes(1)
             ->willReturn(new \ArrayIterator([]));
         $this->aggregateQuery->___setProperty('connection', $this->connection->reveal());
+
         $response = $this->aggregateQuery->getSnapshot();
 
         $this->assertInstanceOf(AggregateQuerySnapshot::class, $response);
+    }
+
+    public function aggregationTypes()
+    {
+        return [
+            ['count', null, []],
+            ['sum', 'testField', ['field' => ['fieldPath' => 'testField']]],
+            ['avg', 'testField', ['field' => ['fieldPath' => 'testField']]]
+        ];
     }
 }

@@ -235,63 +235,63 @@ page_token (	BàA
 next_page_token (	2¬2
 DataplexServiceÃ
 
-CreateLake+.google.cloud.dataplex.v1.CreateLakeRequest.google.longrunning.Operation"i‚Óä“1")/v1/{parent=projects/*/locations/*}/lakes:lakeÚAparent,lake,lake_idÊA
-LakeOperationMetadataÅ
+CreateLake+.google.cloud.dataplex.v1.CreateLakeRequest.google.longrunning.Operation"iÊA
+LakeOperationMetadataÚAparent,lake,lake_id‚Óä“1")/v1/{parent=projects/*/locations/*}/lakes:lakeÅ
 
-UpdateLake+.google.cloud.dataplex.v1.UpdateLakeRequest.google.longrunning.Operation"k‚Óä“62./v1/{lake.name=projects/*/locations/*/lakes/*}:lakeÚAlake,update_maskÊA
-LakeOperationMetadata¿
+UpdateLake+.google.cloud.dataplex.v1.UpdateLakeRequest.google.longrunning.Operation"kÊA
+LakeOperationMetadataÚAlake,update_mask‚Óä“62./v1/{lake.name=projects/*/locations/*/lakes/*}:lake¿
 
-DeleteLake+.google.cloud.dataplex.v1.DeleteLakeRequest.google.longrunning.Operation"e‚Óä“+*)/v1/{name=projects/*/locations/*/lakes/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata 
-	ListLakes*.google.cloud.dataplex.v1.ListLakesRequest+.google.cloud.dataplex.v1.ListLakesResponse":‚Óä“+)/v1/{parent=projects/*/locations/*}/lakesÚAparent
-GetLake(.google.cloud.dataplex.v1.GetLakeRequest.google.cloud.dataplex.v1.Lake"8‚Óä“+)/v1/{name=projects/*/locations/*/lakes/*}ÚAname¸
-ListLakeActions0.google.cloud.dataplex.v1.ListLakeActionsRequest-.google.cloud.dataplex.v1.ListActionsResponse"D‚Óä“53/v1/{parent=projects/*/locations/*/lakes/*}/actionsÚAparentË
+DeleteLake+.google.cloud.dataplex.v1.DeleteLakeRequest.google.longrunning.Operation"eÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“+*)/v1/{name=projects/*/locations/*/lakes/*} 
+	ListLakes*.google.cloud.dataplex.v1.ListLakesRequest+.google.cloud.dataplex.v1.ListLakesResponse":ÚAparent‚Óä“+)/v1/{parent=projects/*/locations/*}/lakes
+GetLake(.google.cloud.dataplex.v1.GetLakeRequest.google.cloud.dataplex.v1.Lake"8ÚAname‚Óä“+)/v1/{name=projects/*/locations/*/lakes/*}¸
+ListLakeActions0.google.cloud.dataplex.v1.ListLakeActionsRequest-.google.cloud.dataplex.v1.ListActionsResponse"DÚAparent‚Óä“53/v1/{parent=projects/*/locations/*/lakes/*}/actionsË
 
-CreateZone+.google.cloud.dataplex.v1.CreateZoneRequest.google.longrunning.Operation"q‚Óä“9"1/v1/{parent=projects/*/locations/*/lakes/*}/zones:zoneÚAparent,zone,zone_idÊA
-ZoneOperationMetadataÍ
+CreateZone+.google.cloud.dataplex.v1.CreateZoneRequest.google.longrunning.Operation"qÊA
+ZoneOperationMetadataÚAparent,zone,zone_id‚Óä“9"1/v1/{parent=projects/*/locations/*/lakes/*}/zones:zoneÍ
 
-UpdateZone+.google.cloud.dataplex.v1.UpdateZoneRequest.google.longrunning.Operation"s‚Óä“>26/v1/{zone.name=projects/*/locations/*/lakes/*/zones/*}:zoneÚAzone,update_maskÊA
-ZoneOperationMetadataÇ
+UpdateZone+.google.cloud.dataplex.v1.UpdateZoneRequest.google.longrunning.Operation"sÊA
+ZoneOperationMetadataÚAzone,update_mask‚Óä“>26/v1/{zone.name=projects/*/locations/*/lakes/*/zones/*}:zoneÇ
 
-DeleteZone+.google.cloud.dataplex.v1.DeleteZoneRequest.google.longrunning.Operation"m‚Óä“3*1/v1/{name=projects/*/locations/*/lakes/*/zones/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata¨
-	ListZones*.google.cloud.dataplex.v1.ListZonesRequest+.google.cloud.dataplex.v1.ListZonesResponse"B‚Óä“31/v1/{parent=projects/*/locations/*/lakes/*}/zonesÚAparent•
-GetZone(.google.cloud.dataplex.v1.GetZoneRequest.google.cloud.dataplex.v1.Zone"@‚Óä“31/v1/{name=projects/*/locations/*/lakes/*/zones/*}ÚAnameÀ
-ListZoneActions0.google.cloud.dataplex.v1.ListZoneActionsRequest-.google.cloud.dataplex.v1.ListActionsResponse"L‚Óä“=;/v1/{parent=projects/*/locations/*/lakes/*/zones/*}/actionsÚAparentÚ
-CreateAsset,.google.cloud.dataplex.v1.CreateAssetRequest.google.longrunning.Operation"~‚Óä“C":/v1/{parent=projects/*/locations/*/lakes/*/zones/*}/assets:assetÚAparent,asset,asset_idÊA
-AssetOperationMetadataÝ
-UpdateAsset,.google.cloud.dataplex.v1.UpdateAssetRequest.google.longrunning.Operation"€‚Óä“I2@/v1/{asset.name=projects/*/locations/*/lakes/*/zones/*/assets/*}:assetÚAasset,update_maskÊA
-AssetOperationMetadataÒ
-DeleteAsset,.google.cloud.dataplex.v1.DeleteAssetRequest.google.longrunning.Operation"v‚Óä“<*:/v1/{name=projects/*/locations/*/lakes/*/zones/*/assets/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata´
+DeleteZone+.google.cloud.dataplex.v1.DeleteZoneRequest.google.longrunning.Operation"mÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“3*1/v1/{name=projects/*/locations/*/lakes/*/zones/*}¨
+	ListZones*.google.cloud.dataplex.v1.ListZonesRequest+.google.cloud.dataplex.v1.ListZonesResponse"BÚAparent‚Óä“31/v1/{parent=projects/*/locations/*/lakes/*}/zones•
+GetZone(.google.cloud.dataplex.v1.GetZoneRequest.google.cloud.dataplex.v1.Zone"@ÚAname‚Óä“31/v1/{name=projects/*/locations/*/lakes/*/zones/*}À
+ListZoneActions0.google.cloud.dataplex.v1.ListZoneActionsRequest-.google.cloud.dataplex.v1.ListActionsResponse"LÚAparent‚Óä“=;/v1/{parent=projects/*/locations/*/lakes/*/zones/*}/actionsÚ
+CreateAsset,.google.cloud.dataplex.v1.CreateAssetRequest.google.longrunning.Operation"~ÊA
+AssetOperationMetadataÚAparent,asset,asset_id‚Óä“C":/v1/{parent=projects/*/locations/*/lakes/*/zones/*}/assets:assetÝ
+UpdateAsset,.google.cloud.dataplex.v1.UpdateAssetRequest.google.longrunning.Operation"€ÊA
+AssetOperationMetadataÚAasset,update_mask‚Óä“I2@/v1/{asset.name=projects/*/locations/*/lakes/*/zones/*/assets/*}:assetÒ
+DeleteAsset,.google.cloud.dataplex.v1.DeleteAssetRequest.google.longrunning.Operation"vÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“<*:/v1/{name=projects/*/locations/*/lakes/*/zones/*/assets/*}´
 
-ListAssets+.google.cloud.dataplex.v1.ListAssetsRequest,.google.cloud.dataplex.v1.ListAssetsResponse"K‚Óä“<:/v1/{parent=projects/*/locations/*/lakes/*/zones/*}/assetsÚAparent¡
-GetAsset).google.cloud.dataplex.v1.GetAssetRequest.google.cloud.dataplex.v1.Asset"I‚Óä“<:/v1/{name=projects/*/locations/*/lakes/*/zones/*/assets/*}ÚAnameË
-ListAssetActions1.google.cloud.dataplex.v1.ListAssetActionsRequest-.google.cloud.dataplex.v1.ListActionsResponse"U‚Óä“FD/v1/{parent=projects/*/locations/*/lakes/*/zones/*/assets/*}/actionsÚAparentË
+ListAssets+.google.cloud.dataplex.v1.ListAssetsRequest,.google.cloud.dataplex.v1.ListAssetsResponse"KÚAparent‚Óä“<:/v1/{parent=projects/*/locations/*/lakes/*/zones/*}/assets¡
+GetAsset).google.cloud.dataplex.v1.GetAssetRequest.google.cloud.dataplex.v1.Asset"IÚAname‚Óä“<:/v1/{name=projects/*/locations/*/lakes/*/zones/*/assets/*}Ë
+ListAssetActions1.google.cloud.dataplex.v1.ListAssetActionsRequest-.google.cloud.dataplex.v1.ListActionsResponse"UÚAparent‚Óä“FD/v1/{parent=projects/*/locations/*/lakes/*/zones/*/assets/*}/actionsË
 
-CreateTask+.google.cloud.dataplex.v1.CreateTaskRequest.google.longrunning.Operation"q‚Óä“9"1/v1/{parent=projects/*/locations/*/lakes/*}/tasks:taskÚAparent,task,task_idÊA
-TaskOperationMetadataÍ
+CreateTask+.google.cloud.dataplex.v1.CreateTaskRequest.google.longrunning.Operation"qÊA
+TaskOperationMetadataÚAparent,task,task_id‚Óä“9"1/v1/{parent=projects/*/locations/*/lakes/*}/tasks:taskÍ
 
-UpdateTask+.google.cloud.dataplex.v1.UpdateTaskRequest.google.longrunning.Operation"s‚Óä“>26/v1/{task.name=projects/*/locations/*/lakes/*/tasks/*}:taskÚAtask,update_maskÊA
-TaskOperationMetadataÇ
+UpdateTask+.google.cloud.dataplex.v1.UpdateTaskRequest.google.longrunning.Operation"sÊA
+TaskOperationMetadataÚAtask,update_mask‚Óä“>26/v1/{task.name=projects/*/locations/*/lakes/*/tasks/*}:taskÇ
 
-DeleteTask+.google.cloud.dataplex.v1.DeleteTaskRequest.google.longrunning.Operation"m‚Óä“3*1/v1/{name=projects/*/locations/*/lakes/*/tasks/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata¨
-	ListTasks*.google.cloud.dataplex.v1.ListTasksRequest+.google.cloud.dataplex.v1.ListTasksResponse"B‚Óä“31/v1/{parent=projects/*/locations/*/lakes/*}/tasksÚAparent•
-GetTask(.google.cloud.dataplex.v1.GetTaskRequest.google.cloud.dataplex.v1.Task"@‚Óä“31/v1/{name=projects/*/locations/*/lakes/*/tasks/*}ÚAname¬
-ListJobs).google.cloud.dataplex.v1.ListJobsRequest*.google.cloud.dataplex.v1.ListJobsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/lakes/*/tasks/*}/jobsÚAparent§
-RunTask(.google.cloud.dataplex.v1.RunTaskRequest).google.cloud.dataplex.v1.RunTaskResponse"G‚Óä“:"5/v1/{name=projects/*/locations/*/lakes/*/tasks/*}:run:*ÚAname™
-GetJob\'.google.cloud.dataplex.v1.GetJobRequest.google.cloud.dataplex.v1.Job"G‚Óä“:8/v1/{name=projects/*/locations/*/lakes/*/tasks/*/jobs/*}ÚAname¢
-	CancelJob*.google.cloud.dataplex.v1.CancelJobRequest.google.protobuf.Empty"Q‚Óä“D"?/v1/{name=projects/*/locations/*/lakes/*/tasks/*/jobs/*}:cancel:*ÚAnameý
-CreateEnvironment2.google.cloud.dataplex.v1.CreateEnvironmentRequest.google.longrunning.Operation"”‚Óä“G"8/v1/{parent=projects/*/locations/*/lakes/*}/environments:environmentÚA!parent,environment,environment_idÊA 
-EnvironmentOperationMetadataÿ
-UpdateEnvironment2.google.cloud.dataplex.v1.UpdateEnvironmentRequest.google.longrunning.Operation"–‚Óä“S2D/v1/{environment.name=projects/*/locations/*/lakes/*/environments/*}:environmentÚAenvironment,update_maskÊA 
-EnvironmentOperationMetadataÜ
-DeleteEnvironment2.google.cloud.dataplex.v1.DeleteEnvironmentRequest.google.longrunning.Operation"t‚Óä“:*8/v1/{name=projects/*/locations/*/lakes/*/environments/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataÄ
-ListEnvironments1.google.cloud.dataplex.v1.ListEnvironmentsRequest2.google.cloud.dataplex.v1.ListEnvironmentsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/lakes/*}/environmentsÚAparent±
-GetEnvironment/.google.cloud.dataplex.v1.GetEnvironmentRequest%.google.cloud.dataplex.v1.Environment"G‚Óä“:8/v1/{name=projects/*/locations/*/lakes/*/environments/*}ÚAnameÃ
-ListSessions-.google.cloud.dataplex.v1.ListSessionsRequest..google.cloud.dataplex.v1.ListSessionsResponse"T‚Óä“EC/v1/{parent=projects/*/locations/*/lakes/*/environments/*}/sessionsÚAparentKÊAdataplex.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBh
+DeleteTask+.google.cloud.dataplex.v1.DeleteTaskRequest.google.longrunning.Operation"mÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“3*1/v1/{name=projects/*/locations/*/lakes/*/tasks/*}¨
+	ListTasks*.google.cloud.dataplex.v1.ListTasksRequest+.google.cloud.dataplex.v1.ListTasksResponse"BÚAparent‚Óä“31/v1/{parent=projects/*/locations/*/lakes/*}/tasks•
+GetTask(.google.cloud.dataplex.v1.GetTaskRequest.google.cloud.dataplex.v1.Task"@ÚAname‚Óä“31/v1/{name=projects/*/locations/*/lakes/*/tasks/*}¬
+ListJobs).google.cloud.dataplex.v1.ListJobsRequest*.google.cloud.dataplex.v1.ListJobsResponse"IÚAparent‚Óä“:8/v1/{parent=projects/*/locations/*/lakes/*/tasks/*}/jobs§
+RunTask(.google.cloud.dataplex.v1.RunTaskRequest).google.cloud.dataplex.v1.RunTaskResponse"GÚAname‚Óä“:"5/v1/{name=projects/*/locations/*/lakes/*/tasks/*}:run:*™
+GetJob\'.google.cloud.dataplex.v1.GetJobRequest.google.cloud.dataplex.v1.Job"GÚAname‚Óä“:8/v1/{name=projects/*/locations/*/lakes/*/tasks/*/jobs/*}¢
+	CancelJob*.google.cloud.dataplex.v1.CancelJobRequest.google.protobuf.Empty"QÚAname‚Óä“D"?/v1/{name=projects/*/locations/*/lakes/*/tasks/*/jobs/*}:cancel:*ý
+CreateEnvironment2.google.cloud.dataplex.v1.CreateEnvironmentRequest.google.longrunning.Operation"”ÊA 
+EnvironmentOperationMetadataÚA!parent,environment,environment_id‚Óä“G"8/v1/{parent=projects/*/locations/*/lakes/*}/environments:environmentÿ
+UpdateEnvironment2.google.cloud.dataplex.v1.UpdateEnvironmentRequest.google.longrunning.Operation"–ÊA 
+EnvironmentOperationMetadataÚAenvironment,update_mask‚Óä“S2D/v1/{environment.name=projects/*/locations/*/lakes/*/environments/*}:environmentÜ
+DeleteEnvironment2.google.cloud.dataplex.v1.DeleteEnvironmentRequest.google.longrunning.Operation"tÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“:*8/v1/{name=projects/*/locations/*/lakes/*/environments/*}Ä
+ListEnvironments1.google.cloud.dataplex.v1.ListEnvironmentsRequest2.google.cloud.dataplex.v1.ListEnvironmentsResponse"IÚAparent‚Óä“:8/v1/{parent=projects/*/locations/*/lakes/*}/environments±
+GetEnvironment/.google.cloud.dataplex.v1.GetEnvironmentRequest%.google.cloud.dataplex.v1.Environment"GÚAname‚Óä“:8/v1/{name=projects/*/locations/*/lakes/*/environments/*}Ã
+ListSessions-.google.cloud.dataplex.v1.ListSessionsRequest..google.cloud.dataplex.v1.ListSessionsResponse"TÚAparent‚Óä“EC/v1/{parent=projects/*/locations/*/lakes/*/environments/*}/sessionsKÊAdataplex.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBh
 com.google.cloud.dataplex.v1BServiceProtoPZ8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpbbproto3'
         , true);
 

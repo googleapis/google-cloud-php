@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbilling_v1_generated_CloudBilling_GetProjectBillingInfo_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
+use Google\Cloud\Billing\V1\GetProjectBillingInfoRequest;
 use Google\Cloud\Billing\V1\ProjectBillingInfo;
 
 /**
@@ -43,10 +44,14 @@ function get_project_billing_info_sample(string $formattedName): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
+    // Prepare the request message.
+    $request = (new GetProjectBillingInfoRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ProjectBillingInfo $response */
-        $response = $cloudBillingClient->getProjectBillingInfo($formattedName);
+        $response = $cloudBillingClient->getProjectBillingInfo($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

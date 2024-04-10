@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.firestore.admin.v1.FirestoreAdmin' => [
+            'CreateBackupSchedule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*}/backupSchedules',
+                'body' => 'backup_schedule',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/databases',
@@ -30,6 +42,39 @@ return [
                     ],
                 ],
             ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupSchedule' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/backupSchedules/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDatabase' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteIndex' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/indexes/*}',
@@ -45,6 +90,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*}:exportDocuments',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupSchedule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/backupSchedules/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -98,6 +165,28 @@ return [
                     ],
                 ],
             ],
+            'ListBackupSchedules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*}/backupSchedules',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDatabases' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/databases',
@@ -127,6 +216,31 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RestoreDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/databases:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackupSchedule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{backup_schedule.name=projects/*/databases/*/backupSchedules/*}',
+                'body' => 'backup_schedule',
+                'placeholders' => [
+                    'backup_schedule.name' => [
+                        'getters' => [
+                            'getBackupSchedule',
+                            'getName',
                         ],
                     ],
                 ],

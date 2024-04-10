@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_GroupService_ListGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\GroupServiceClient;
 use Google\Cloud\Monitoring\V3\Group;
-use Google\Cloud\Monitoring\V3\GroupServiceClient;
+use Google\Cloud\Monitoring\V3\ListGroupsRequest;
 
 /**
  * Lists the existing groups.
@@ -41,10 +42,14 @@ function list_groups_sample(string $name): void
     // Create a client.
     $groupServiceClient = new GroupServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListGroupsRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $groupServiceClient->listGroups($name);
+        $response = $groupServiceClient->listGroups($request);
 
         /** @var Group $element */
         foreach ($response as $element) {

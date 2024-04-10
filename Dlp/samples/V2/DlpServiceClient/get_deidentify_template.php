@@ -24,17 +24,19 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_GetDeidentifyTemplate_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 
 /**
  * Gets a DeidentifyTemplate.
- * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
- * more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+ * to learn more.
  *
- * @param string $formattedName Resource name of the organization and deidentify template to be read, for
- *                              example `organizations/433245324/deidentifyTemplates/432452342` or
- *                              projects/project-id/deidentifyTemplates/432452342. Please see
+ * @param string $formattedName Resource name of the organization and deidentify template to be
+ *                              read, for example `organizations/433245324/deidentifyTemplates/432452342`
+ *                              or projects/project-id/deidentifyTemplates/432452342. Please see
  *                              {@see DlpServiceClient::deidentifyTemplateName()} for help formatting this field.
  */
 function get_deidentify_template_sample(string $formattedName): void
@@ -42,10 +44,14 @@ function get_deidentify_template_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetDeidentifyTemplateRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DeidentifyTemplate $response */
-        $response = $dlpServiceClient->getDeidentifyTemplate($formattedName);
+        $response = $dlpServiceClient->getDeidentifyTemplate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

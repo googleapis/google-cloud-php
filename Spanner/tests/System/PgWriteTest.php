@@ -53,6 +53,7 @@ class PgWriteTest extends SpannerPgTestCase
                 bytesfield bytea,
                 datefield date,
                 floatfield float,
+                float4field float4,
                 intfield bigint,
                 stringfield varchar(1024),
                 timestampfield timestamptz,
@@ -61,6 +62,7 @@ class PgWriteTest extends SpannerPgTestCase
                 arrayfield bigint[],
                 arrayboolfield boolean[],
                 arrayfloatfield float[],
+                arrayfloat4field float4[],
                 arraystringfield varchar(1024)[],
                 arraybytesfield bytea[],
                 arraytimestampfield timestamptz[],
@@ -85,6 +87,9 @@ class PgWriteTest extends SpannerPgTestCase
             [$this->randId(), 'floatfield', 3.1415],
             [$this->randId(), 'floatfield', INF],
             [$this->randId(), 'floatfield', -INF],
+            [$this->randId(), 'float4field', 3.1415],
+            [$this->randId(), 'float4field', INF],
+            [$this->randId(), 'float4field', -INF],
             [$this->randId(), 'datefield', new Date(new \DateTime('1981-01-20'))],
             [$this->randId(), 'intfield', 787878787],
             [$this->randId(), 'stringfield', 'foo bar'],
@@ -115,7 +120,7 @@ class PgWriteTest extends SpannerPgTestCase
         if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
-            $this->assertEquals($value, $row[$field]);
+            $this->assertValues($value, $row[$field]);
         }
 
         // test result from executeSql
@@ -129,7 +134,7 @@ class PgWriteTest extends SpannerPgTestCase
         if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
-            $this->assertEquals($value, $row[$field]);
+            $this->assertValues($value, $row[$field]);
         }
     }
 
@@ -242,6 +247,10 @@ class PgWriteTest extends SpannerPgTestCase
             [$this->randId(), 'arrayfloatfield', []],
             [$this->randId(), 'arrayfloatfield', [1.1, null, 1.3]],
             [$this->randId(), 'arrayfloatfield', null],
+            [$this->randId(), 'arrayfloat4field', [1.1, 1.2, 1.3]],
+            [$this->randId(), 'arrayfloat4field', []],
+            [$this->randId(), 'arrayfloat4field', [1.1, null, 1.3]],
+            [$this->randId(), 'arrayfloat4field', null],
             [$this->randId(), 'arraystringfield', ['foo','bar','baz']],
             [$this->randId(), 'arraystringfield', []],
             [$this->randId(), 'arraystringfield', ['foo',null,'baz']],
@@ -276,7 +285,7 @@ class PgWriteTest extends SpannerPgTestCase
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
         $row = $read->rows()->current();
 
-        $this->assertEquals($value, $row[$field]);
+        $this->assertValues($value, $row[$field]);
 
         // test result from executeSql
         $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = $1', $field, self::TABLE_NAME), [
@@ -290,7 +299,7 @@ class PgWriteTest extends SpannerPgTestCase
         if ($value instanceof Bytes) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
-            $this->assertEquals($value, $row[$field]);
+            $this->assertValues($value, $row[$field]);
         }
     }
 
@@ -395,10 +404,6 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function randomBytesProvider()
     {
-        if (version_compare(phpversion(), 7) === -1) {
-            $this->markTestSkipped('This test can only be run on php 7+');
-        }
-
         return [
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
@@ -431,10 +436,6 @@ class PgWriteTest extends SpannerPgTestCase
 
     public function randomNumericProvider()
     {
-        if (version_compare(phpversion(), 7) === -1) {
-            $this->markTestSkipped('This test can only be run on php 7+');
-        }
-
         return [
             [$this->randId(), new PgNumeric((string)rand(100, 9999))],
             [$this->randId(), new PgNumeric((string)rand(100, 9999))],
@@ -1114,5 +1115,19 @@ class PgWriteTest extends SpannerPgTestCase
         $this->assertEquals([1, 1], $res->rowCounts());
         $this->assertEquals(Code::INVALID_ARGUMENT, $res->error()['status']['code']);
         $this->assertEquals($statements[2], $res->error()['statement']);
+    }
+
+    private function assertValues($expected, $actual, $delta = 0.000001)
+    {
+        if (is_float($expected)) {
+            $this->assertEqualsWithDelta($expected, $actual, $delta);
+        } elseif (is_array($expected)) {
+            $this->assertCount(count($expected), $actual);
+            foreach ($expected as $key => $value) {
+                $this->assertValues($value, $actual[$key]);
+            }
+        } else {
+            $this->assertEquals($expected, $actual);
+        }
     }
 }

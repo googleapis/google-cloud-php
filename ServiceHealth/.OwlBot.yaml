@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/servicehealth/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/ServiceHealth/$1/$2
+api-name: ServiceHealth

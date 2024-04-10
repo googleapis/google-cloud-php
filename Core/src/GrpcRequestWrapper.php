@@ -20,14 +20,8 @@ namespace Google\Cloud\Core;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\Exception;
 use Google\ApiCore\ApiException;
-use Google\ApiCore\OperationResponse;
-use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Serializer;
-use Google\ApiCore\ServerStream;
-use Google\Protobuf\Internal\Message;
-use Google\Rpc\BadRequest;
 use Google\Rpc\Code;
-use Google\Rpc\RetryInfo;
 
 /**
  * The GrpcRequestWrapper is responsible for delivering gRPC requests.
@@ -35,6 +29,7 @@ use Google\Rpc\RetryInfo;
 class GrpcRequestWrapper
 {
     use RequestWrapperTrait;
+    use RequestProcessorTrait;
 
     /**
      * @var callable A handler used to deliver Psr7 requests specifically for
@@ -61,14 +56,6 @@ class GrpcRequestWrapper
         Code::INTERNAL,
         Code::UNAVAILABLE,
         Code::DATA_LOSS
-    ];
-
-    /**
-     * @var array Map of error metadata types to RPC wrappers.
-     */
-    private $metadataTypes = [
-        'google.rpc.retryinfo-bin' => RetryInfo::class,
-        'google.rpc.badrequest-bin' => BadRequest::class
     ];
 
     /**
@@ -153,113 +140,5 @@ class GrpcRequestWrapper
 
             throw $ex;
         }
-    }
-
-    /**
-     * Serializes a gRPC response.
-     *
-     * @param mixed $response
-     * @return \Generator|OperationResponse|array|null
-     */
-    private function handleResponse($response)
-    {
-        if ($response instanceof PagedListResponse) {
-            $response = $response->getPage()->getResponseObject();
-        }
-
-        if ($response instanceof Message) {
-            return $this->serializer->encodeMessage($response);
-        }
-
-        if ($response instanceof OperationResponse) {
-            return $response;
-        }
-
-        if ($response instanceof ServerStream) {
-            return $this->handleStream($response);
-        }
-
-        return null;
-    }
-
-    /**
-     * Handles a streaming response.
-     *
-     * @param ServerStream $response
-     * @return \Generator|array|null
-     * @throws Exception\ServiceException
-     */
-    private function handleStream($response)
-    {
-        try {
-            foreach ($response->readAll() as $count => $result) {
-                $res = $this->serializer->encodeMessage($result);
-                yield $res;
-            }
-        } catch (\Exception $ex) {
-            throw $this->convertToGoogleException($ex);
-        }
-    }
-
-    /**
-     * Convert a ApiCore exception to a Google Exception.
-     *
-     * @param \Exception $ex
-     * @return Exception\ServiceException
-     */
-    private function convertToGoogleException($ex)
-    {
-        switch ($ex->getCode()) {
-            case Code::INVALID_ARGUMENT:
-                $exception = Exception\BadRequestException::class;
-                break;
-
-            case Code::NOT_FOUND:
-            case Code::UNIMPLEMENTED:
-                $exception = Exception\NotFoundException::class;
-                break;
-
-            case Code::ALREADY_EXISTS:
-                $exception = Exception\ConflictException::class;
-                break;
-
-            case Code::FAILED_PRECONDITION:
-                $exception = Exception\FailedPreconditionException::class;
-                break;
-
-            case Code::UNKNOWN:
-                $exception = Exception\ServerException::class;
-                break;
-
-            case Code::INTERNAL:
-                $exception = Exception\ServerException::class;
-                break;
-
-            case Code::ABORTED:
-                $exception = Exception\AbortedException::class;
-                break;
-
-            case Code::DEADLINE_EXCEEDED:
-                $exception = Exception\DeadlineExceededException::class;
-                break;
-
-            default:
-                $exception = Exception\ServiceException::class;
-                break;
-        }
-
-        $metadata = [];
-        if ($ex->getMetadata()) {
-            foreach ($ex->getMetadata() as $type => $binaryValue) {
-                if (!isset($this->metadataTypes[$type])) {
-                    continue;
-                }
-                $metadataElement = new $this->metadataTypes[$type];
-                $metadataElement->mergeFromString($binaryValue[0]);
-                $metadata[] = $this->serializer->encodeMessage($metadataElement);
-            }
-        }
-
-        return new $exception($ex->getMessage(), $ex->getCode(), $ex, $metadata);
     }
 }

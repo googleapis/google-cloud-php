@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Messages
  * A request message for InstanceGroupManagers.AbandonInstances. See the method description for details.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AbandonInstancesInstanceGroupManagerRequest</code>

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_DeleteSession_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 
 /**
  * Ends a session, releasing server resources associated with it. This will
@@ -39,9 +40,13 @@ function delete_session_sample(string $formattedName): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSessionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $spannerClient->deleteSession($formattedName);
+        $spannerClient->deleteSession($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

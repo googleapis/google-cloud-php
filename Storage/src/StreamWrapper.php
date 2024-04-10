@@ -120,12 +120,43 @@ class StreamWrapper
     }
 
     /**
-     * Starting PHP 7.4, this is called when include/require is used on a stream.
-     * Absence of this method presents a warning.
-     * https://www.php.net/manual/en/migration74.incompatible.php
+     * This is called when include/require is used on a stream.
      */
     public function stream_set_option()
     {
+        return false;
+    }
+
+    /**
+     * This is called when touch is used on a stream. See:
+     * https://www.php.net/manual/en/streamwrapper.stream-metadata.php
+     */
+    public function stream_metadata($path, $option, $value)
+    {
+        if ($option == STREAM_META_TOUCH) {
+            $this->openPath($path);
+            return $this->touch();
+        }
+
+        return false;
+    }
+
+    /**
+     * Creates an empty file if it does not exist.
+     * @return bool Returns true if file exists or has been created, false otherwise.
+     */
+    private function touch()
+    {
+        $object = $this->bucket->object($this->file);
+        try {
+            if (!$object->exists()) {
+                $this->bucket->upload('', [
+                    'name' => $this->file
+                ]);
+            }
+            return true;
+        } catch (NotFoundException $e) {
+        }
         return false;
     }
 
@@ -188,7 +219,7 @@ class StreamWrapper
      */
     public function stream_open($path, $mode, $flags, &$openedPath)
     {
-        $client = $this->openPath($path);
+        $this->openPath($path);
 
         // strip off 'b' or 't' from the mode
         $mode = rtrim($mode, 'bt');

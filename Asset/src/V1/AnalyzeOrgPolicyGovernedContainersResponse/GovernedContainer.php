@@ -54,6 +54,36 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicy policy_bundle = 4;</code>
      */
     private $policy_bundle;
+    /**
+     * The project that this resource belongs to, in the format of
+     * projects/{PROJECT_NUMBER}. This field is available when the resource
+     * belongs to a project.
+     *
+     * Generated from protobuf field <code>string project = 5;</code>
+     */
+    private $project = '';
+    /**
+     * The folder(s) that this resource belongs to, in the format of
+     * folders/{FOLDER_NUMBER}. This field is available when the resource
+     * belongs (directly or cascadingly) to one or more folders.
+     *
+     * Generated from protobuf field <code>repeated string folders = 6;</code>
+     */
+    private $folders;
+    /**
+     * The organization that this resource belongs to, in the format of
+     * organizations/{ORGANIZATION_NUMBER}. This field is available when the
+     * resource belongs (directly or cascadingly) to an organization.
+     *
+     * Generated from protobuf field <code>string organization = 7;</code>
+     */
+    private $organization = '';
+    /**
+     * The effective tags on this resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 8;</code>
+     */
+    private $effective_tags;
 
     /**
      * Constructor.
@@ -82,6 +112,20 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *           to the scope specified in the request.
      *           If the constraint is defined with default policy, it will also appear in
      *           the list.
+     *     @type string $project
+     *           The project that this resource belongs to, in the format of
+     *           projects/{PROJECT_NUMBER}. This field is available when the resource
+     *           belongs to a project.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
+     *           The folder(s) that this resource belongs to, in the format of
+     *           folders/{FOLDER_NUMBER}. This field is available when the resource
+     *           belongs (directly or cascadingly) to one or more folders.
+     *     @type string $organization
+     *           The organization that this resource belongs to, in the format of
+     *           organizations/{ORGANIZATION_NUMBER}. This field is available when the
+     *           resource belongs (directly or cascadingly) to an organization.
+     *     @type array<\Google\Cloud\Asset\V1\EffectiveTagDetails>|\Google\Protobuf\Internal\RepeatedField $effective_tags
+     *           The effective tags on this resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,6 +269,122 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\AnalyzerOrgPolicy::class);
         $this->policy_bundle = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The project that this resource belongs to, in the format of
+     * projects/{PROJECT_NUMBER}. This field is available when the resource
+     * belongs to a project.
+     *
+     * Generated from protobuf field <code>string project = 5;</code>
+     * @return string
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * The project that this resource belongs to, in the format of
+     * projects/{PROJECT_NUMBER}. This field is available when the resource
+     * belongs to a project.
+     *
+     * Generated from protobuf field <code>string project = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * The folder(s) that this resource belongs to, in the format of
+     * folders/{FOLDER_NUMBER}. This field is available when the resource
+     * belongs (directly or cascadingly) to one or more folders.
+     *
+     * Generated from protobuf field <code>repeated string folders = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFolders()
+    {
+        return $this->folders;
+    }
+
+    /**
+     * The folder(s) that this resource belongs to, in the format of
+     * folders/{FOLDER_NUMBER}. This field is available when the resource
+     * belongs (directly or cascadingly) to one or more folders.
+     *
+     * Generated from protobuf field <code>repeated string folders = 6;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFolders($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->folders = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The organization that this resource belongs to, in the format of
+     * organizations/{ORGANIZATION_NUMBER}. This field is available when the
+     * resource belongs (directly or cascadingly) to an organization.
+     *
+     * Generated from protobuf field <code>string organization = 7;</code>
+     * @return string
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
+     * The organization that this resource belongs to, in the format of
+     * organizations/{ORGANIZATION_NUMBER}. This field is available when the
+     * resource belongs (directly or cascadingly) to an organization.
+     *
+     * Generated from protobuf field <code>string organization = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrganization($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->organization = $var;
+
+        return $this;
+    }
+
+    /**
+     * The effective tags on this resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEffectiveTags()
+    {
+        return $this->effective_tags;
+    }
+
+    /**
+     * The effective tags on this resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 8;</code>
+     * @param array<\Google\Cloud\Asset\V1\EffectiveTagDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEffectiveTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\EffectiveTagDetails::class);
+        $this->effective_tags = $arr;
 
         return $this;
     }

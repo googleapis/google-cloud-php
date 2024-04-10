@@ -17,10 +17,11 @@ class DeliverypipelineNotificationPayload
         \GPBMetadata\Google\Cloud\Deploy\V1\LogEnums::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ß
-Bgoogle/cloud/deploy/v1/deliverypipeline_notification_payload.protogoogle.cloud.deploy.v1"{
+ö
+Bgoogle/cloud/deploy/v1/deliverypipeline_notification_payload.protogoogle.cloud.deploy.v1"‘
 !DeliveryPipelineNotificationEvent
-message (	
+message (	
+pipeline_uid (	
 delivery_pipeline (	*
 type (2.google.cloud.deploy.v1.TypeB|
 com.google.cloud.deploy.v1B(DeliveryPipelineNotificationPayloadProtoPZ2cloud.google.com/go/deploy/apiv1/deploypb;deploypbbproto3'

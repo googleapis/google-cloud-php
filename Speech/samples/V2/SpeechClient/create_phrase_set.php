@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_CreatePhraseSet_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
+use Google\Cloud\Speech\V2\CreatePhraseSetRequest;
 use Google\Cloud\Speech\V2\PhraseSet;
-use Google\Cloud\Speech\V2\SpeechClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,16 @@ function create_phrase_set_sample(string $formattedParent): void
     // Create a client.
     $speechClient = new SpeechClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $phraseSet = new PhraseSet();
+    $request = (new CreatePhraseSetRequest())
+        ->setPhraseSet($phraseSet)
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $speechClient->createPhraseSet($phraseSet, $formattedParent);
+        $response = $speechClient->createPhraseSet($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

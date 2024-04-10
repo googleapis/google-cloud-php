@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iap_v1_generated_IdentityAwareProxyAdminService_DeleteTunnelDestGroup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iap\V1\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iap\V1\DeleteTunnelDestGroupRequest;
 
 /**
  * Deletes a TunnelDestGroup.
@@ -39,9 +40,13 @@ function delete_tunnel_dest_group_sample(string $formattedName): void
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTunnelDestGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $identityAwareProxyAdminServiceClient->deleteTunnelDestGroup($formattedName);
+        $identityAwareProxyAdminServiceClient->deleteTunnelDestGroup($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

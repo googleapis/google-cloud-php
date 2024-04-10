@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START vision_v1_generated_ProductSearch_PurgeProducts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Vision\V1\ProductSearchClient;
+use Google\Cloud\Vision\V1\Client\ProductSearchClient;
+use Google\Cloud\Vision\V1\PurgeProductsRequest;
 use Google\Rpc\Status;
 
 /**
@@ -50,8 +51,8 @@ use Google\Rpc\Status;
  * ProductSet, you must wait until the PurgeProducts operation has finished
  * for that ProductSet.
  *
- * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
- * progress and results of the request.
+ * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+ * used to keep track of the progress and results of the request.
  * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
  *
  * @param string $formattedParent The project and location in which the Products should be deleted.
@@ -64,10 +65,14 @@ function purge_products_sample(string $formattedParent): void
     // Create a client.
     $productSearchClient = new ProductSearchClient();
 
+    // Prepare the request message.
+    $request = (new PurgeProductsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $productSearchClient->purgeProducts($formattedParent);
+        $response = $productSearchClient->purgeProducts($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,11 +24,11 @@ class AssuredworkloadsService
 Á
 Dgoogle/cloud/assuredworkloads/v1beta1/assuredworkloads_service.proto%google.cloud.assuredworkloads.v1beta1google/api/client.proto<google/cloud/assuredworkloads/v1beta1/assuredworkloads.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto2
 AssuredWorkloadsServiceù
-CreateWorkload<.google.cloud.assuredworkloads.v1beta1.CreateWorkloadRequest.google.longrunning.Operation"‰‚Óä“C"7/v1beta1/{parent=organizations/*/locations/*}/workloads:workloadÚAparent,workloadÊA+
-WorkloadCreateWorkloadOperationMetadata˜
+CreateWorkload<.google.cloud.assuredworkloads.v1beta1.CreateWorkloadRequest.google.longrunning.Operation"‰ÊA+
+WorkloadCreateWorkloadOperationMetadataÚAparent,workload‚Óä“C"7/v1beta1/{parent=organizations/*/locations/*}/workloads:workload˜
 UpdateWorkload<.google.cloud.assuredworkloads.v1beta1.UpdateWorkloadRequest/.google.cloud.assuredworkloads.v1beta1.Workload"ÚAworkload,update_maskˆ
 RestrictAllowedResourcesF.google.cloud.assuredworkloads.v1beta1.RestrictAllowedResourcesRequestG.google.cloud.assuredworkloads.v1beta1.RestrictAllowedResourcesResponse"[‚Óä“U"P/v1beta1/{name=organizations/*/locations/*/workloads/*}:restrictAllowedResources:*®
-DeleteWorkload<.google.cloud.assuredworkloads.v1beta1.DeleteWorkloadRequest.google.protobuf.Empty"F‚Óä“9*7/v1beta1/{name=organizations/*/locations/*/workloads/*}ÚAname‚
+DeleteWorkload<.google.cloud.assuredworkloads.v1beta1.DeleteWorkloadRequest.google.protobuf.Empty"FÚAname‚Óä“9*7/v1beta1/{name=organizations/*/locations/*/workloads/*}‚
 GetWorkload9.google.cloud.assuredworkloads.v1beta1.GetWorkloadRequest/.google.cloud.assuredworkloads.v1beta1.Workload"ÚAname¯
 AnalyzeWorkloadMoveA.google.cloud.assuredworkloads.v1beta1.AnalyzeWorkloadMoveRequestB.google.cloud.assuredworkloads.v1beta1.AnalyzeWorkloadMoveResponse"ÚAproject,target•
 ListWorkloads;.google.cloud.assuredworkloads.v1beta1.ListWorkloadsRequest<.google.cloud.assuredworkloads.v1beta1.ListWorkloadsResponse"	ÚAparentSÊAassuredworkloads.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB

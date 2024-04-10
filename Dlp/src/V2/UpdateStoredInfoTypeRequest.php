@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of organization and storedInfoType to be updated, for
-     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * Required. Resource name of organization and storedInfoType to be updated,
+     * for example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -39,8 +39,8 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param string                                    $name       Required. Resource name of organization and storedInfoType to be updated, for
-     *                                                              example `organizations/433245324/storedInfoTypes/432452342` or
+     * @param string                                    $name       Required. Resource name of organization and storedInfoType to be updated,
+     *                                                              for example `organizations/433245324/storedInfoTypes/432452342` or
      *                                                              projects/project-id/storedInfoTypes/432452342. Please see
      *                                                              {@see DlpServiceClient::storedInfoTypeName()} for help formatting this field.
      * @param \Google\Cloud\Dlp\V2\StoredInfoTypeConfig $config     Updated configuration for the storedInfoType. If not provided, a new
@@ -67,8 +67,8 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of organization and storedInfoType to be updated, for
-     *           example `organizations/433245324/storedInfoTypes/432452342` or
+     *           Required. Resource name of organization and storedInfoType to be updated,
+     *           for example `organizations/433245324/storedInfoTypes/432452342` or
      *           projects/project-id/storedInfoTypes/432452342.
      *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeConfig $config
      *           Updated configuration for the storedInfoType. If not provided, a new
@@ -84,8 +84,8 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of organization and storedInfoType to be updated, for
-     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * Required. Resource name of organization and storedInfoType to be updated,
+     * for example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -97,8 +97,8 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of organization and storedInfoType to be updated, for
-     * example `organizations/433245324/storedInfoTypes/432452342` or
+     * Required. Resource name of organization and storedInfoType to be updated,
+     * for example `organizations/433245324/storedInfoTypes/432452342` or
      * projects/project-id/storedInfoTypes/432452342.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

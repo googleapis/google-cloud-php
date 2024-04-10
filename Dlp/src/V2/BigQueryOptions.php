@@ -46,23 +46,35 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * 100 means no limit. Defaults to 0. Only one of rows_limit and
      * rows_limit_percent can be specified. Cannot be used in conjunction with
      * TimespanConfig.
+     * Caution: A [known
+     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+     * is causing the `rowsLimitPercent` field to behave unexpectedly. We
+     * recommend using `rowsLimit` instead.
      *
      * Generated from protobuf field <code>int32 rows_limit_percent = 6;</code>
      */
     private $rows_limit_percent = 0;
     /**
+     * How to sample the data.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryOptions.SampleMethod sample_method = 4;</code>
      */
     private $sample_method = 0;
     /**
      * References to fields excluded from scanning. This allows you to skip
      * inspection of entire columns which you know have no findings.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
      */
     private $excluded_fields;
     /**
      * Limit scanning only to these fields.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId included_fields = 7;</code>
      */
@@ -93,12 +105,23 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *           100 means no limit. Defaults to 0. Only one of rows_limit and
      *           rows_limit_percent can be specified. Cannot be used in conjunction with
      *           TimespanConfig.
+     *           Caution: A [known
+     *           issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+     *           is causing the `rowsLimitPercent` field to behave unexpectedly. We
+     *           recommend using `rowsLimit` instead.
      *     @type int $sample_method
+     *           How to sample the data.
      *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $excluded_fields
      *           References to fields excluded from scanning. This allows you to skip
      *           inspection of entire columns which you know have no findings.
+     *           When inspecting a table, we recommend that you inspect all columns.
+     *           Otherwise, findings might be affected because hints from excluded columns
+     *           will not be used.
      *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $included_fields
      *           Limit scanning only to these fields.
+     *           When inspecting a table, we recommend that you inspect all columns.
+     *           Otherwise, findings might be affected because hints from excluded columns
+     *           will not be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -214,6 +237,10 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * 100 means no limit. Defaults to 0. Only one of rows_limit and
      * rows_limit_percent can be specified. Cannot be used in conjunction with
      * TimespanConfig.
+     * Caution: A [known
+     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+     * is causing the `rowsLimitPercent` field to behave unexpectedly. We
+     * recommend using `rowsLimit` instead.
      *
      * Generated from protobuf field <code>int32 rows_limit_percent = 6;</code>
      * @return int
@@ -229,6 +256,10 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * 100 means no limit. Defaults to 0. Only one of rows_limit and
      * rows_limit_percent can be specified. Cannot be used in conjunction with
      * TimespanConfig.
+     * Caution: A [known
+     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-sampling)
+     * is causing the `rowsLimitPercent` field to behave unexpectedly. We
+     * recommend using `rowsLimit` instead.
      *
      * Generated from protobuf field <code>int32 rows_limit_percent = 6;</code>
      * @param int $var
@@ -243,6 +274,8 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * How to sample the data.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryOptions.SampleMethod sample_method = 4;</code>
      * @return int
      */
@@ -252,6 +285,8 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * How to sample the data.
+     *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryOptions.SampleMethod sample_method = 4;</code>
      * @param int $var
      * @return $this
@@ -267,6 +302,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     /**
      * References to fields excluded from scanning. This allows you to skip
      * inspection of entire columns which you know have no findings.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -279,6 +317,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
     /**
      * References to fields excluded from scanning. This allows you to skip
      * inspection of entire columns which you know have no findings.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
      * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
@@ -294,6 +335,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Limit scanning only to these fields.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId included_fields = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -305,6 +349,9 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Limit scanning only to these fields.
+     * When inspecting a table, we recommend that you inspect all columns.
+     * Otherwise, findings might be affected because hints from excluded columns
+     * will not be used.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId included_fields = 7;</code>
      * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var

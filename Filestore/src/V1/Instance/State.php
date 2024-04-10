@@ -78,6 +78,12 @@ class State
      * Generated from protobuf enum <code>RESUMING = 10;</code>
      */
     const RESUMING = 10;
+    /**
+     * The instance is reverting to a snapshot.
+     *
+     * Generated from protobuf enum <code>REVERTING = 12;</code>
+     */
+    const REVERTING = 12;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -90,6 +96,7 @@ class State
         self::SUSPENDED => 'SUSPENDED',
         self::SUSPENDING => 'SUSPENDING',
         self::RESUMING => 'RESUMING',
+        self::REVERTING => 'REVERTING',
     ];
 
     public static function name($value)

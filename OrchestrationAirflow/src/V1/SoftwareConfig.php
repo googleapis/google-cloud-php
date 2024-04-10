@@ -115,6 +115,21 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 scheduler_count = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $scheduler_count = 0;
+    /**
+     * Optional. The configuration for Cloud Data Lineage integration.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.CloudDataLineageIntegration cloud_data_lineage_integration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cloud_data_lineage_integration = null;
+    /**
+     * Optional. Whether or not the web server uses custom plugins.
+     * If unspecified, the field defaults to `PLUGINS_ENABLED`.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig.WebServerPluginsMode web_server_plugins_mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $web_server_plugins_mode = 0;
 
     /**
      * Constructor.
@@ -198,6 +213,13 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The number of schedulers for Airflow.
      *           This field is supported for Cloud Composer environments in versions
      *           composer-1.*.*-airflow-2.*.*.
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\CloudDataLineageIntegration $cloud_data_lineage_integration
+     *           Optional. The configuration for Cloud Data Lineage integration.
+     *     @type int $web_server_plugins_mode
+     *           Optional. Whether or not the web server uses custom plugins.
+     *           If unspecified, the field defaults to `PLUGINS_ENABLED`.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-3.*.*-airflow-*.*.* and newer.
      * }
      */
     public function __construct($data = NULL) {
@@ -485,6 +507,74 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->scheduler_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The configuration for Cloud Data Lineage integration.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.CloudDataLineageIntegration cloud_data_lineage_integration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\CloudDataLineageIntegration|null
+     */
+    public function getCloudDataLineageIntegration()
+    {
+        return $this->cloud_data_lineage_integration;
+    }
+
+    public function hasCloudDataLineageIntegration()
+    {
+        return isset($this->cloud_data_lineage_integration);
+    }
+
+    public function clearCloudDataLineageIntegration()
+    {
+        unset($this->cloud_data_lineage_integration);
+    }
+
+    /**
+     * Optional. The configuration for Cloud Data Lineage integration.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.CloudDataLineageIntegration cloud_data_lineage_integration = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\CloudDataLineageIntegration $var
+     * @return $this
+     */
+    public function setCloudDataLineageIntegration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Orchestration\Airflow\Service\V1\CloudDataLineageIntegration::class);
+        $this->cloud_data_lineage_integration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether or not the web server uses custom plugins.
+     * If unspecified, the field defaults to `PLUGINS_ENABLED`.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig.WebServerPluginsMode web_server_plugins_mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getWebServerPluginsMode()
+    {
+        return $this->web_server_plugins_mode;
+    }
+
+    /**
+     * Optional. Whether or not the web server uses custom plugins.
+     * If unspecified, the field defaults to `PLUGINS_ENABLED`.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>.google.cloud.orchestration.airflow.service.v1.SoftwareConfig.WebServerPluginsMode web_server_plugins_mode = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setWebServerPluginsMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Orchestration\Airflow\Service\V1\SoftwareConfig\WebServerPluginsMode::class);
+        $this->web_server_plugins_mode = $var;
 
         return $this;
     }

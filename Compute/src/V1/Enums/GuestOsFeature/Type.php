@@ -36,6 +36,8 @@ class Type
 
     const GVNIC = 'GVNIC';
 
+    const IDPF = 'IDPF';
+
     const MULTI_IP_SUBNET = 'MULTI_IP_SUBNET';
 
     const SECURE_BOOT = 'SECURE_BOOT';
@@ -43,6 +45,8 @@ class Type
     const SEV_CAPABLE = 'SEV_CAPABLE';
 
     const SEV_LIVE_MIGRATABLE = 'SEV_LIVE_MIGRATABLE';
+
+    const SEV_LIVE_MIGRATABLE_V2 = 'SEV_LIVE_MIGRATABLE_V2';
 
     const SEV_SNP_CAPABLE = 'SEV_SNP_CAPABLE';
 

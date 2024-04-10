@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_GetCustomerRepricingConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
+use Google\Cloud\Channel\V1\GetCustomerRepricingConfigRequest;
 
 /**
  * Gets information about how a Reseller modifies their bill before sending
@@ -56,10 +57,14 @@ function get_customer_repricing_config_sample(string $formattedName): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetCustomerRepricingConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CustomerRepricingConfig $response */
-        $response = $cloudChannelServiceClient->getCustomerRepricingConfig($formattedName);
+        $response = $cloudChannelServiceClient->getCustomerRepricingConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

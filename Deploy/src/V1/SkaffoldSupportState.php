@@ -20,19 +20,19 @@ class SkaffoldSupportState
      */
     const SKAFFOLD_SUPPORT_STATE_UNSPECIFIED = 0;
     /**
-     * This skaffold version is currently supported.
+     * This Skaffold version is currently supported.
      *
      * Generated from protobuf enum <code>SKAFFOLD_SUPPORT_STATE_SUPPORTED = 1;</code>
      */
     const SKAFFOLD_SUPPORT_STATE_SUPPORTED = 1;
     /**
-     * This skaffold version is in maintenance mode.
+     * This Skaffold version is in maintenance mode.
      *
      * Generated from protobuf enum <code>SKAFFOLD_SUPPORT_STATE_MAINTENANCE_MODE = 2;</code>
      */
     const SKAFFOLD_SUPPORT_STATE_MAINTENANCE_MODE = 2;
     /**
-     * This skaffold version is no longer supported.
+     * This Skaffold version is no longer supported.
      *
      * Generated from protobuf enum <code>SKAFFOLD_SUPPORT_STATE_UNSUPPORTED = 3;</code>
      */

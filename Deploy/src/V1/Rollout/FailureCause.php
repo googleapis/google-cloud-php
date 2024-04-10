@@ -53,7 +53,7 @@ class FailureCause
      */
     const RELEASE_ABANDONED = 5;
     /**
-     * No skaffold verify configuration was found.
+     * No Skaffold verify configuration was found.
      *
      * Generated from protobuf enum <code>VERIFICATION_CONFIG_NOT_FOUND = 6;</code>
      */
@@ -65,6 +65,12 @@ class FailureCause
      * Generated from protobuf enum <code>CLOUD_BUILD_REQUEST_FAILED = 7;</code>
      */
     const CLOUD_BUILD_REQUEST_FAILED = 7;
+    /**
+     * A Rollout operation had a feature configured that is not supported.
+     *
+     * Generated from protobuf enum <code>OPERATION_FEATURE_NOT_SUPPORTED = 8;</code>
+     */
+    const OPERATION_FEATURE_NOT_SUPPORTED = 8;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
@@ -75,6 +81,7 @@ class FailureCause
         self::RELEASE_ABANDONED => 'RELEASE_ABANDONED',
         self::VERIFICATION_CONFIG_NOT_FOUND => 'VERIFICATION_CONFIG_NOT_FOUND',
         self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
+        self::OPERATION_FEATURE_NOT_SUPPORTED => 'OPERATION_FEATURE_NOT_SUPPORTED',
     ];
 
     public static function name($value)

@@ -64,7 +64,7 @@ class CompetitiveVisibilityCompetitorView extends \Google\Protobuf\Internal\Mess
      * Traffic source of impressions.
      * Required in the `SELECT` clause.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.TrafficSource traffic_source = 6;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.TrafficSource.TrafficSourceEnum traffic_source = 6;</code>
      */
     protected $traffic_source = null;
     /**
@@ -390,7 +390,7 @@ class CompetitiveVisibilityCompetitorView extends \Google\Protobuf\Internal\Mess
      * Traffic source of impressions.
      * Required in the `SELECT` clause.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.TrafficSource traffic_source = 6;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.TrafficSource.TrafficSourceEnum traffic_source = 6;</code>
      * @return int
      */
     public function getTrafficSource()
@@ -412,13 +412,13 @@ class CompetitiveVisibilityCompetitorView extends \Google\Protobuf\Internal\Mess
      * Traffic source of impressions.
      * Required in the `SELECT` clause.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.TrafficSource traffic_source = 6;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.TrafficSource.TrafficSourceEnum traffic_source = 6;</code>
      * @param int $var
      * @return $this
      */
     public function setTrafficSource($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\TrafficSource::class);
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\TrafficSource\TrafficSourceEnum::class);
         $this->traffic_source = $var;
 
         return $this;

@@ -33,6 +33,12 @@ class SummarizationFeedback extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string summary_text = 3;</code>
      */
     private $summary_text = '';
+    /**
+     * Optional. Actual text sections of submitted summary.
+     *
+     * Generated from protobuf field <code>map<string, string> text_sections = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $text_sections;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class SummarizationFeedback extends \Google\Protobuf\Internal\Message
      *           Timestamp when the summary was submitted.
      *     @type string $summary_text
      *           Text of actual submitted summary.
+     *     @type array|\Google\Protobuf\Internal\MapField $text_sections
+     *           Optional. Actual text sections of submitted summary.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +155,32 @@ class SummarizationFeedback extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->summary_text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Actual text sections of submitted summary.
+     *
+     * Generated from protobuf field <code>map<string, string> text_sections = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTextSections()
+    {
+        return $this->text_sections;
+    }
+
+    /**
+     * Optional. Actual text sections of submitted summary.
+     *
+     * Generated from protobuf field <code>map<string, string> text_sections = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTextSections($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->text_sections = $arr;
 
         return $this;
     }

@@ -44,6 +44,12 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      */
     private $end_time = null;
+    /**
+     * The expected fulfillment period of this create operation.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FulfillmentPeriod expected_fulfillment_period = 5;</code>
+     */
+    private $expected_fulfillment_period = 0;
 
     /**
      * Constructor.
@@ -63,6 +69,8 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      *           cannot be cancelled again.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           The time at which this operation failed or was completed successfully.
+     *     @type int $expected_fulfillment_period
+     *           The expected fulfillment period of this create operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -218,6 +226,32 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The expected fulfillment period of this create operation.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FulfillmentPeriod expected_fulfillment_period = 5;</code>
+     * @return int
+     */
+    public function getExpectedFulfillmentPeriod()
+    {
+        return $this->expected_fulfillment_period;
+    }
+
+    /**
+     * The expected fulfillment period of this create operation.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.FulfillmentPeriod expected_fulfillment_period = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExpectedFulfillmentPeriod($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Instance\V1\FulfillmentPeriod::class);
+        $this->expected_fulfillment_period = $var;
 
         return $this;
     }

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationDatasets_CreateConversationDataset_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\Client\ConversationDatasetsClient;
 use Google\Cloud\Dialogflow\V2\ConversationDataset;
-use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
+use Google\Cloud\Dialogflow\V2\CreateConversationDatasetRequest;
 use Google\Rpc\Status;
 
 /**
@@ -52,14 +53,17 @@ function create_conversation_dataset_sample(
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversationDataset = (new ConversationDataset())
         ->setDisplayName($conversationDatasetDisplayName);
+    $request = (new CreateConversationDatasetRequest())
+        ->setParent($parent)
+        ->setConversationDataset($conversationDataset);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationDatasetsClient->createConversationDataset($parent, $conversationDataset);
+        $response = $conversationDatasetsClient->createConversationDataset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

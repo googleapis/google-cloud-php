@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -161,6 +162,36 @@ class OperationTest extends TestCase
         $this->assertEquals([
             'commitTimestamp' => self::TIMESTAMP,
             'commitStats' => ['mutationCount' => 1]
+        ], $res[1]);
+    }
+
+    public function testCommitWithMaxCommitDelay()
+    {
+        $duration = new Duration(0, 100000000);
+        $mutations = [
+            $this->operation->mutation(Operation::OP_INSERT, 'Posts', [
+                'foo' => 'bar'
+            ])
+        ];
+
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('mutations', $mutations),
+            Argument::withEntry('transactionId', 'foo'),
+            Argument::withEntry('maxCommitDelay', $duration)
+        ))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => self::TIMESTAMP,
+        ]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->operation->commitWithResponse($this->session, $mutations, [
+            'transactionId' => 'foo',
+            'maxCommitDelay' => $duration,
+        ]);
+
+        $this->assertInstanceOf(Timestamp::class, $res[0]);
+        $this->assertEquals([
+            'commitTimestamp' => self::TIMESTAMP,
         ], $res[1]);
     }
 

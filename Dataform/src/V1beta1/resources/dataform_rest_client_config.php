@@ -15,10 +15,33 @@ return [
                     ],
                 ],
             ],
+            'CommitRepositoryChanges' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:commit',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CommitWorkspaceChanges' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:commit',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ComputeRepositoryAccessTokenStatus' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:computeAccessTokenStatus',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -39,6 +62,21 @@ return [
                     ],
                 ],
             ],
+            'CreateReleaseConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/repositories/*}/releaseConfigs',
+                'body' => 'release_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'release_config_id',
+                ],
+            ],
             'CreateRepository' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/repositories',
@@ -52,6 +90,21 @@ return [
                 ],
                 'queryParams' => [
                     'repository_id',
+                ],
+            ],
+            'CreateWorkflowConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/repositories/*}/workflowConfigs',
+                'body' => 'workflow_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'workflow_config_id',
                 ],
             ],
             'CreateWorkflowInvocation' => [
@@ -81,9 +134,31 @@ return [
                     'workspace_id',
                 ],
             ],
+            'DeleteReleaseConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/releaseConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteRepository' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteWorkflowConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workflowConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -158,6 +233,17 @@ return [
                     ],
                 ],
             ],
+            'FetchRepositoryHistory' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:fetchHistory',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCompilationResult' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/compilationResults/*}',
@@ -169,9 +255,31 @@ return [
                     ],
                 ],
             ],
+            'GetReleaseConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/releaseConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRepository' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetWorkflowConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workflowConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -225,9 +333,31 @@ return [
                     ],
                 ],
             ],
+            'ListReleaseConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/repositories/*}/releaseConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListRepositories' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/repositories',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListWorkflowConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/repositories/*}/workflowConfigs',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -340,6 +470,17 @@ return [
                     ],
                 ],
             ],
+            'QueryRepositoryDirectoryContents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:queryDirectoryContents',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'QueryWorkflowInvocationActions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workflowInvocations/*}:query',
@@ -358,6 +499,17 @@ return [
                     'workspace' => [
                         'getters' => [
                             'getWorkspace',
+                        ],
+                    ],
+                ],
+            ],
+            'ReadRepositoryFile' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:readFile',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -398,6 +550,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateReleaseConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{release_config.name=projects/*/locations/*/repositories/*/releaseConfigs/*}',
+                'body' => 'release_config',
+                'placeholders' => [
+                    'release_config.name' => [
+                        'getters' => [
+                            'getReleaseConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateRepository' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta1/{repository.name=projects/*/locations/*/repositories/*}',
@@ -406,6 +571,19 @@ return [
                     'repository.name' => [
                         'getters' => [
                             'getRepository',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateWorkflowConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{workflow_config.name=projects/*/locations/*/repositories/*/workflowConfigs/*}',
+                'body' => 'workflow_config',
+                'placeholders' => [
+                    'workflow_config.name' => [
+                        'getters' => [
+                            'getWorkflowConfig',
                             'getName',
                         ],
                     ],
@@ -443,6 +621,77 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.iam.v1.IAMPolicy' => [
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/collections/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:getIamPolicy',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:setIamPolicy',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/collections/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*}:testIamPermissions',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/collections/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/repositories/*/workspaces/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],

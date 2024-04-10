@@ -3,6 +3,30 @@
 return [
     'interfaces' => [
         'google.cloud.discoveryengine.v1beta.ConversationalSearchService' => [
+            'AnswerQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{serving_config=projects/*/locations/*/dataStores/*/servingConfigs/*}:answer',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{serving_config=projects/*/locations/*/collections/*/dataStores/*/servingConfigs/*}:answer',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{serving_config=projects/*/locations/*/collections/*/engines/*/servingConfigs/*}:answer',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'serving_config' => [
+                        'getters' => [
+                            'getServingConfig',
+                        ],
+                    ],
+                ],
+            ],
             'ConverseConversation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/dataStores/*/conversations/*}:converse',
@@ -11,6 +35,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}:converse',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}:converse',
                         'body' => '*',
                     ],
                 ],
@@ -32,6 +61,35 @@ return [
                         'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversations',
                         'body' => 'conversation',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/engines/*}/conversations',
+                        'body' => 'conversation',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSession' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/dataStores/*}/sessions',
+                'body' => 'session',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/sessions',
+                        'body' => 'session',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/engines/*}/sessions',
+                        'body' => 'session',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -48,6 +106,52 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSession' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/dataStores/*/sessions/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/sessions/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/sessions/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAnswer' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/dataStores/*/sessions/*/answers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/sessions/*/answers/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/sessions/*/answers/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -66,6 +170,31 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSession' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/dataStores/*/sessions/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/sessions/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/engines/*/sessions/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -82,6 +211,31 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/conversations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/engines/*}/conversations',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSessions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/dataStores/*}/sessions',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/sessions',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/engines/*}/sessions',
                     ],
                 ],
                 'placeholders' => [
@@ -102,6 +256,11 @@ return [
                         'uriTemplate' => '/v1beta/{conversation.name=projects/*/locations/*/collections/*/dataStores/*/conversations/*}',
                         'body' => 'conversation',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1beta/{conversation.name=projects/*/locations/*/collections/*/engines/*/conversations/*}',
+                        'body' => 'conversation',
+                    ],
                 ],
                 'placeholders' => [
                     'conversation.name' => [
@@ -112,12 +271,41 @@ return [
                     ],
                 ],
             ],
+            'UpdateSession' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta/{session.name=projects/*/locations/*/dataStores/*/sessions/*}',
+                'body' => 'session',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1beta/{session.name=projects/*/locations/*/collections/*/dataStores/*/sessions/*}',
+                        'body' => 'session',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1beta/{session.name=projects/*/locations/*/collections/*/engines/*/sessions/*}',
+                        'body' => 'session',
+                    ],
+                ],
+                'placeholders' => [
+                    'session.name' => [
+                        'getters' => [
+                            'getSession',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataConnector/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/models/*/operations/*}',
@@ -177,8 +365,12 @@ return [
             ],
             'ListOperations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*}/operations',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataConnector}/operations',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*}/operations',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/models/*}/operations',

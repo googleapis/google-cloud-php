@@ -142,9 +142,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient} to
- * use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient}.
  */
 class CertificateAuthorityServiceGapicClient
 {
@@ -153,8 +151,15 @@ class CertificateAuthorityServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.security.privateca.v1.CertificateAuthorityService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'privateca.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'privateca.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -1085,7 +1090,7 @@ class CertificateAuthorityServiceGapicClient
      *     @type bool $ignoreDependentResources
      *           Optional. This field allows this pool to be deleted even if it's being
      *           depended on by another resource. However, doing so may result in unintended
-     *           and unrecoverable effects on any dependent resource(s) since the pool will
+     *           and unrecoverable effects on any dependent resources since the pool will
      *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1184,9 +1189,9 @@ class CertificateAuthorityServiceGapicClient
      *           soon as possible without a 30-day grace period where undeletion would have
      *           been allowed. If you proceed, there will be no way to recover this CA.
      *     @type bool $ignoreDependentResources
-     *           Optional. This field allows this ca to be deleted even if it's being
+     *           Optional. This field allows this CA to be deleted even if it's being
      *           depended on by another resource. However, doing so may result in unintended
-     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           and unrecoverable effects on any dependent resources since the CA will
      *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1371,7 +1376,7 @@ class CertificateAuthorityServiceGapicClient
      *     @type bool $ignoreDependentResources
      *           Optional. This field allows this CA to be disabled even if it's being
      *           depended on by another resource. However, doing so may result in unintended
-     *           and unrecoverable effects on any dependent resource(s) since the CA will
+     *           and unrecoverable effects on any dependent resources since the CA will
      *           no longer be able to issue certificates.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1490,9 +1495,8 @@ class CertificateAuthorityServiceGapicClient
     /**
      * FetchCaCerts returns the current trust anchor for the
      * [CaPool][google.cloud.security.privateca.v1.CaPool]. This will include CA
-     * certificate chains for all ACTIVE
-     * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * resources in the [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * certificate chains for all certificate authorities in the ENABLED,
+     * DISABLED, or STAGED states.
      *
      * Sample code:
      * ```

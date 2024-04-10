@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START privateca_v1_generated_CertificateAuthorityService_CreateCertificateTemplate_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateTemplate;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\CreateCertificateTemplateRequest;
 use Google\Rpc\Status;
 
 /**
@@ -48,17 +49,17 @@ function create_certificate_template_sample(
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $certificateTemplate = new CertificateTemplate();
+    $request = (new CreateCertificateTemplateRequest())
+        ->setParent($formattedParent)
+        ->setCertificateTemplateId($certificateTemplateId)
+        ->setCertificateTemplate($certificateTemplate);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->createCertificateTemplate(
-            $formattedParent,
-            $certificateTemplateId,
-            $certificateTemplate
-        );
+        $response = $certificateAuthorityServiceClient->createCertificateTemplate($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

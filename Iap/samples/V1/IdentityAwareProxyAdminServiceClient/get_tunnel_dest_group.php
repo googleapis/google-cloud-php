@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iap_v1_generated_IdentityAwareProxyAdminService_GetTunnelDestGroup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iap\V1\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iap\V1\GetTunnelDestGroupRequest;
 use Google\Cloud\Iap\V1\TunnelDestGroup;
 
 /**
@@ -40,10 +41,14 @@ function get_tunnel_dest_group_sample(string $formattedName): void
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetTunnelDestGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var TunnelDestGroup $response */
-        $response = $identityAwareProxyAdminServiceClient->getTunnelDestGroup($formattedName);
+        $response = $identityAwareProxyAdminServiceClient->getTunnelDestGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

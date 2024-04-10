@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The public key for a given
+ * The public keys for a given
  * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
  * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
  *
@@ -18,10 +18,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class PublicKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The public key, encoded in PEM format. For more information, see the
-     * [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for
-     * [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
-     * [Textual Encoding of Subject Public Key Info]
+     * A public key encoded in PEM format, populated only when
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * returns one key. For more information, see the [RFC
+     * 7468](https://tools.ietf.org/html/rfc7468) sections for [General
+     * Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual
+     * Encoding of Subject Public Key Info]
      * (https://tools.ietf.org/html/rfc7468#section-13).
      *
      * Generated from protobuf field <code>string pem = 1;</code>
@@ -36,8 +38,10 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      */
     private $algorithm = 0;
     /**
-     * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * Integrity verification field: A CRC32C checksum of the returned
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. It is only populated
+     * when [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * returns one key. An integrity check of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
      * computing the CRC32C checksum of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
@@ -77,18 +81,22 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $pem
-     *           The public key, encoded in PEM format. For more information, see the
-     *           [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for
-     *           [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
-     *           [Textual Encoding of Subject Public Key Info]
+     *           A public key encoded in PEM format, populated only when
+     *           [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     *           returns one key. For more information, see the [RFC
+     *           7468](https://tools.ietf.org/html/rfc7468) sections for [General
+     *           Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual
+     *           Encoding of Subject Public Key Info]
      *           (https://tools.ietf.org/html/rfc7468#section-13).
      *     @type int $algorithm
      *           The
      *           [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
      *           associated with this key.
      *     @type \Google\Protobuf\Int64Value $pem_crc32c
-     *           Integrity verification field. A CRC32C checksum of the returned
-     *           [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     *           Integrity verification field: A CRC32C checksum of the returned
+     *           [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. It is only populated
+     *           when [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     *           returns one key. An integrity check of
      *           [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
      *           computing the CRC32C checksum of
      *           [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
@@ -116,10 +124,12 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The public key, encoded in PEM format. For more information, see the
-     * [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for
-     * [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
-     * [Textual Encoding of Subject Public Key Info]
+     * A public key encoded in PEM format, populated only when
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * returns one key. For more information, see the [RFC
+     * 7468](https://tools.ietf.org/html/rfc7468) sections for [General
+     * Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual
+     * Encoding of Subject Public Key Info]
      * (https://tools.ietf.org/html/rfc7468#section-13).
      *
      * Generated from protobuf field <code>string pem = 1;</code>
@@ -131,10 +141,12 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The public key, encoded in PEM format. For more information, see the
-     * [RFC 7468](https://tools.ietf.org/html/rfc7468) sections for
-     * [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
-     * [Textual Encoding of Subject Public Key Info]
+     * A public key encoded in PEM format, populated only when
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * returns one key. For more information, see the [RFC
+     * 7468](https://tools.ietf.org/html/rfc7468) sections for [General
+     * Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual
+     * Encoding of Subject Public Key Info]
      * (https://tools.ietf.org/html/rfc7468#section-13).
      *
      * Generated from protobuf field <code>string pem = 1;</code>
@@ -180,8 +192,10 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * Integrity verification field: A CRC32C checksum of the returned
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. It is only populated
+     * when [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * returns one key. An integrity check of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
      * computing the CRC32C checksum of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
@@ -215,8 +229,10 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getPemCrc32C()</code>
 
-     * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * Integrity verification field: A CRC32C checksum of the returned
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. It is only populated
+     * when [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * returns one key. An integrity check of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
      * computing the CRC32C checksum of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
@@ -238,8 +254,10 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * Integrity verification field: A CRC32C checksum of the returned
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. It is only populated
+     * when [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * returns one key. An integrity check of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
      * computing the CRC32C checksum of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your
@@ -267,8 +285,10 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
-     * Integrity verification field. A CRC32C checksum of the returned
-     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. An integrity check of
+     * Integrity verification field: A CRC32C checksum of the returned
+     * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem]. It is only populated
+     * when [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * returns one key. An integrity check of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] can be performed by
      * computing the CRC32C checksum of
      * [PublicKey.pem][google.cloud.kms.v1.PublicKey.pem] and comparing your

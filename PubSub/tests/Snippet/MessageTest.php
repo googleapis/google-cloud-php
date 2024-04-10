@@ -17,12 +17,14 @@
 
 namespace Google\Cloud\PubSub\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -66,28 +68,34 @@ class MessageTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connection = $this->prophesize(ConnectionInterface::class);
-        $connection->pull(Argument::withEntry('subscription', self::SUBSCRIPTION))
-            ->shouldBeCalled()
-            ->willReturn([
-                'receivedMessages' => [
-                    [
-                        'message' => [
-                            'data' => 'hello world'
-                        ]
+        $requestHandler = $this->prophesize(RequestHandler::class);
+        $requestHandler->sendRequest(
+            SubscriberClient::class,
+            'pull',
+            Argument::cetera()
+        )->shouldBeCalled()
+        ->willReturn([
+            'receivedMessages' => [
+                [
+                    'message' => [
+                        'data' => 'hello world'
                     ]
                 ]
-            ]);
-
-        $connection->getTopic(Argument::any())
-            ->willReturn([
-                'topic' => self::TOPIC,
-            ]);
-
-        $client = TestHelpers::stub(PubSubClient::class, [], [
-            'connection', 'encode'
+            ]
         ]);
-        $client->___setProperty('connection', $connection->reveal());
+
+        $requestHandler->sendRequest(
+            PublisherClient::class,
+            'getTopic',
+            Argument::cetera()
+        )->willReturn([
+            'topic' => self::TOPIC,
+        ]);
+
+        $client = TestHelpers::stub(PubSubClient::class, [['projectId' => 'test']], [
+            'requestHandler', 'encode'
+        ]);
+        $client->___setProperty('requestHandler', $requestHandler->reveal());
         $client->___setProperty('encode', false);
 
         $snippet = $this->snippetFromClass(Message::class);

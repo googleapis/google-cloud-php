@@ -24,12 +24,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Publisher_CreateTopic_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Google\Cloud\PubSub\V1\Topic;
 
 /**
  * Creates the given topic with the given name. See the [resource name rules]
- * (https://cloud.google.com/pubsub/docs/admin#resource_names).
+ * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
  *
  * @param string $name The name of the topic. It must have the format
  *                     `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
@@ -43,10 +43,14 @@ function create_topic_sample(string $name): void
     // Create a client.
     $publisherClient = new PublisherClient();
 
+    // Prepare the request message.
+    $request = (new Topic())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var Topic $response */
-        $response = $publisherClient->createTopic($name);
+        $response = $publisherClient->createTopic($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

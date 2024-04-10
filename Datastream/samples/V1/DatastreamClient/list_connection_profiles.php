@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_ListConnectionProfiles_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
 use Google\Cloud\Datastream\V1\ConnectionProfile;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\ListConnectionProfilesRequest;
 
 /**
  * Use this method to list connection profiles created in a project and
@@ -40,10 +41,14 @@ function list_connection_profiles_sample(string $formattedParent): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
+    // Prepare the request message.
+    $request = (new ListConnectionProfilesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $datastreamClient->listConnectionProfiles($formattedParent);
+        $response = $datastreamClient->listConnectionProfiles($request);
 
         /** @var ConnectionProfile $element */
         foreach ($response as $element) {

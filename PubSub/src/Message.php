@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\ArrayTrait;
 
 /**
  * Represents a PubSub Message.

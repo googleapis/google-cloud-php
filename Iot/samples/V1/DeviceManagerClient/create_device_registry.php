@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_CreateDeviceRegistry_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
+use Google\Cloud\Iot\V1\CreateDeviceRegistryRequest;
 use Google\Cloud\Iot\V1\DeviceRegistry;
 
 /**
@@ -39,13 +40,16 @@ function create_device_registry_sample(string $formattedParent): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deviceRegistry = new DeviceRegistry();
+    $request = (new CreateDeviceRegistryRequest())
+        ->setParent($formattedParent)
+        ->setDeviceRegistry($deviceRegistry);
 
     // Call the API and handle any network failures.
     try {
         /** @var DeviceRegistry $response */
-        $response = $deviceManagerClient->createDeviceRegistry($formattedParent, $deviceRegistry);
+        $response = $deviceManagerClient->createDeviceRegistry($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

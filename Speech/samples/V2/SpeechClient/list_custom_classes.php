@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_ListCustomClasses_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\V2\CustomClass;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\ListCustomClassesRequest;
 
 /**
  * Lists CustomClasses.
@@ -40,10 +41,14 @@ function list_custom_classes_sample(string $formattedParent): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = (new ListCustomClassesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $speechClient->listCustomClasses($formattedParent);
+        $response = $speechClient->listCustomClasses($request);
 
         /** @var CustomClass $element */
         foreach ($response as $element) {

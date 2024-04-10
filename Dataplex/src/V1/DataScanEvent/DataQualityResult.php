@@ -36,6 +36,34 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, bool> dimension_passed = 3;</code>
      */
     private $dimension_passed;
+    /**
+     * The table-level data quality score for the data scan job.
+     * The data quality score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>float score = 4;</code>
+     */
+    private $score = 0.0;
+    /**
+     * The score of each dimension for data quality result.
+     * The key of the map is the name of the dimension.
+     * The value is the data quality score for the dimension.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>map<string, float> dimension_score = 5;</code>
+     */
+    private $dimension_score;
+    /**
+     * The score of each column scanned in the data scan job.
+     * The key of the map is the name of the column.
+     * The value is the data quality score for the column.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>map<string, float> column_score = 6;</code>
+     */
+    private $column_score;
 
     /**
      * Constructor.
@@ -52,6 +80,22 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *           The key of the map is the name of the dimension.
      *           The value is the bool value depicting whether the dimension result was
      *           `pass` or not.
+     *     @type float $score
+     *           The table-level data quality score for the data scan job.
+     *           The data quality score ranges between [0, 100] (up to two decimal
+     *           points).
+     *     @type array|\Google\Protobuf\Internal\MapField $dimension_score
+     *           The score of each dimension for data quality result.
+     *           The key of the map is the name of the dimension.
+     *           The value is the data quality score for the dimension.
+     *           The score ranges between [0, 100] (up to two decimal
+     *           points).
+     *     @type array|\Google\Protobuf\Internal\MapField $column_score
+     *           The score of each column scanned in the data scan job.
+     *           The key of the map is the name of the column.
+     *           The value is the data quality score for the column.
+     *           The score ranges between [0, 100] (up to two decimal
+     *           points).
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +183,104 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::BOOL);
         $this->dimension_passed = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The table-level data quality score for the data scan job.
+     * The data quality score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>float score = 4;</code>
+     * @return float
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * The table-level data quality score for the data scan job.
+     * The data quality score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>float score = 4;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setScore($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->score = $var;
+
+        return $this;
+    }
+
+    /**
+     * The score of each dimension for data quality result.
+     * The key of the map is the name of the dimension.
+     * The value is the data quality score for the dimension.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>map<string, float> dimension_score = 5;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getDimensionScore()
+    {
+        return $this->dimension_score;
+    }
+
+    /**
+     * The score of each dimension for data quality result.
+     * The key of the map is the name of the dimension.
+     * The value is the data quality score for the dimension.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>map<string, float> dimension_score = 5;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setDimensionScore($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::FLOAT);
+        $this->dimension_score = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The score of each column scanned in the data scan job.
+     * The key of the map is the name of the column.
+     * The value is the data quality score for the column.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>map<string, float> column_score = 6;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getColumnScore()
+    {
+        return $this->column_score;
+    }
+
+    /**
+     * The score of each column scanned in the data scan job.
+     * The key of the map is the name of the column.
+     * The value is the data quality score for the column.
+     * The score ranges between [0, 100] (up to two decimal
+     * points).
+     *
+     * Generated from protobuf field <code>map<string, float> column_score = 6;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setColumnScore($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::FLOAT);
+        $this->column_score = $arr;
 
         return $this;
     }

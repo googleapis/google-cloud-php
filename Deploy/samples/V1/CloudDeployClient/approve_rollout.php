@@ -32,8 +32,7 @@ use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
  * Approves a Rollout.
  *
  * @param string $formattedName Name of the Rollout. Format is
- *                              projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
- *                              releases/{release}/rollouts/{rollout}. Please see
+ *                              `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
  *                              {@see CloudDeployClient::rolloutName()} for help formatting this field.
  * @param bool   $approved      True = approve; false = reject
  */

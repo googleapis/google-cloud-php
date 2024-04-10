@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_AutoMl_CreateModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\CreateModelRequest;
 use Google\Cloud\AutoMl\V1\Model;
 use Google\Rpc\Status;
 
@@ -44,13 +45,16 @@ function create_model_sample(string $formattedParent): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $model = new Model();
+    $request = (new CreateModelRequest())
+        ->setParent($formattedParent)
+        ->setModel($model);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->createModel($formattedParent, $model);
+        $response = $autoMlClient->createModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

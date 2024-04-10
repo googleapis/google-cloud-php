@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_ExecuteSql_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\ResultSet;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Executes an SQL statement, returning all results in a single reply. This
@@ -35,10 +36,12 @@ use Google\Cloud\Spanner\V1\SpannerClient;
  *
  * Operations inside read-write transactions might return `ABORTED`. If
  * this occurs, the application should restart the transaction from
- * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+ * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+ * details.
  *
  * Larger result sets can be fetched in streaming fashion by calling
- * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] instead.
+ * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql]
+ * instead.
  *
  * @param string $formattedSession The session in which the SQL query should be performed. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.
@@ -49,10 +52,15 @@ function execute_sql_sample(string $formattedSession, string $sql): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
+    // Prepare the request message.
+    $request = (new ExecuteSqlRequest())
+        ->setSession($formattedSession)
+        ->setSql($sql);
+
     // Call the API and handle any network failures.
     try {
         /** @var ResultSet $response */
-        $response = $spannerClient->executeSql($formattedSession, $sql);
+        $response = $spannerClient->executeSql($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

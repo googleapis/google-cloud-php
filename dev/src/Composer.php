@@ -27,7 +27,7 @@ use vierbergenlars\SemVer\version;
  */
 class Composer
 {
-    private const REQUIRE_PHP = '>=7.4';
+    private const REQUIRE_PHP = '^8.0';
 
     /**
      * @var array

@@ -9,26 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A `constraint` describes a way to restrict resource's configuration. For
- * example, you could enforce a constraint that controls which cloud services
- * can be activated across an organization, or whether a Compute Engine instance
- * can have serial port connections established. `Constraints` can be configured
- * by the organization's policy administrator to fit the needs of the
- * organization by setting a `policy` that includes `constraints` at different
+ * A constraint describes a way to restrict resource's configuration. For
+ * example, you could enforce a constraint that controls which Google Cloud
+ * services can be activated across an organization, or whether a Compute Engine
+ * instance can have serial port connections established. Constraints can be
+ * configured by the organization policy administrator to fit the needs of the
+ * organization by setting a policy that includes constraints at different
  * locations in the organization's resource hierarchy. Policies are inherited
  * down the resource hierarchy from higher levels, but can also be overridden.
  * For details about the inheritance rules please read about
  * [`policies`][google.cloud.OrgPolicy.v2.Policy].
- * `Constraints` have a default behavior determined by the `constraint_default`
+ * Constraints have a default behavior determined by the `constraint_default`
  * field, which is the enforcement behavior that is used in the absence of a
- * `policy` being defined or inherited for the resource in question.
+ * policy being defined or inherited for the resource in question.
  *
  * Generated from protobuf message <code>google.cloud.orgpolicy.v2.Constraint</code>
  */
 class Constraint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The resource name of the Constraint. Must be in one of
+     * Immutable. The resource name of the constraint. Must be in one of
      * the following forms:
      * * `projects/{project_number}/constraints/{constraint_name}`
      * * `folders/{folder_id}/constraints/{constraint_name}`
@@ -46,7 +46,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Detailed description of what this `Constraint` controls as well as how and
+     * Detailed description of what this constraint controls as well as how and
      * where it is enforced.
      * Mutable.
      *
@@ -54,11 +54,17 @@ class Constraint extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * The evaluation behavior of this constraint in the absence of 'Policy'.
+     * The evaluation behavior of this constraint in the absence of a policy.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.ConstraintDefault constraint_default = 4;</code>
      */
     private $constraint_default = 0;
+    /**
+     * Shows if dry run is supported for this constraint or not.
+     *
+     * Generated from protobuf field <code>bool supports_dry_run = 7;</code>
+     */
+    private $supports_dry_run = false;
     protected $constraint_type;
 
     /**
@@ -68,7 +74,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Immutable. The resource name of the Constraint. Must be in one of
+     *           Immutable. The resource name of the constraint. Must be in one of
      *           the following forms:
      *           * `projects/{project_number}/constraints/{constraint_name}`
      *           * `folders/{folder_id}/constraints/{constraint_name}`
@@ -78,15 +84,17 @@ class Constraint extends \Google\Protobuf\Internal\Message
      *           The human readable name.
      *           Mutable.
      *     @type string $description
-     *           Detailed description of what this `Constraint` controls as well as how and
+     *           Detailed description of what this constraint controls as well as how and
      *           where it is enforced.
      *           Mutable.
      *     @type int $constraint_default
-     *           The evaluation behavior of this constraint in the absence of 'Policy'.
+     *           The evaluation behavior of this constraint in the absence of a policy.
      *     @type \Google\Cloud\OrgPolicy\V2\Constraint\ListConstraint $list_constraint
      *           Defines this constraint as being a ListConstraint.
      *     @type \Google\Cloud\OrgPolicy\V2\Constraint\BooleanConstraint $boolean_constraint
      *           Defines this constraint as being a BooleanConstraint.
+     *     @type bool $supports_dry_run
+     *           Shows if dry run is supported for this constraint or not.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,7 +103,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of the Constraint. Must be in one of
+     * Immutable. The resource name of the constraint. Must be in one of
      * the following forms:
      * * `projects/{project_number}/constraints/{constraint_name}`
      * * `folders/{folder_id}/constraints/{constraint_name}`
@@ -111,7 +119,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of the Constraint. Must be in one of
+     * Immutable. The resource name of the constraint. Must be in one of
      * the following forms:
      * * `projects/{project_number}/constraints/{constraint_name}`
      * * `folders/{folder_id}/constraints/{constraint_name}`
@@ -159,7 +167,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detailed description of what this `Constraint` controls as well as how and
+     * Detailed description of what this constraint controls as well as how and
      * where it is enforced.
      * Mutable.
      *
@@ -172,7 +180,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detailed description of what this `Constraint` controls as well as how and
+     * Detailed description of what this constraint controls as well as how and
      * where it is enforced.
      * Mutable.
      *
@@ -189,7 +197,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The evaluation behavior of this constraint in the absence of 'Policy'.
+     * The evaluation behavior of this constraint in the absence of a policy.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.ConstraintDefault constraint_default = 4;</code>
      * @return int
@@ -200,7 +208,7 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The evaluation behavior of this constraint in the absence of 'Policy'.
+     * The evaluation behavior of this constraint in the absence of a policy.
      *
      * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.Constraint.ConstraintDefault constraint_default = 4;</code>
      * @param int $var
@@ -272,6 +280,32 @@ class Constraint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OrgPolicy\V2\Constraint\BooleanConstraint::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Shows if dry run is supported for this constraint or not.
+     *
+     * Generated from protobuf field <code>bool supports_dry_run = 7;</code>
+     * @return bool
+     */
+    public function getSupportsDryRun()
+    {
+        return $this->supports_dry_run;
+    }
+
+    /**
+     * Shows if dry run is supported for this constraint or not.
+     *
+     * Generated from protobuf field <code>bool supports_dry_run = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportsDryRun($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->supports_dry_run = $var;
 
         return $this;
     }

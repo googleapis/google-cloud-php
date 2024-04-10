@@ -34,7 +34,8 @@ use Google\Rpc\Status;
  * Creates a new DeliveryPipeline in a given project and location.
  *
  * @param string $formattedParent    The parent collection in which the `DeliveryPipeline` should be
- *                                   created. Format should be projects/{project_id}/locations/{location_name}. Please see
+ *                                   created. Format should be
+ *                                   `projects/{project_id}/locations/{location_name}`. Please see
  *                                   {@see CloudDeployClient::locationName()} for help formatting this field.
  * @param string $deliveryPipelineId ID of the `DeliveryPipeline`.
  */

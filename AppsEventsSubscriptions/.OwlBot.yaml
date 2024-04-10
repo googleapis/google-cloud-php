@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/apps/events/subscriptions/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/AppsEventsSubscriptions/$1/$2
+api-name: AppsEventsSubscriptions

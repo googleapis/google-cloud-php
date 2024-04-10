@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Contexts_GetContext_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ContextsClient;
 use Google\Cloud\Dialogflow\V2\Context;
-use Google\Cloud\Dialogflow\V2\ContextsClient;
+use Google\Cloud\Dialogflow\V2\GetContextRequest;
 
 /**
  * Retrieves the specified context.
@@ -43,10 +44,14 @@ function get_context_sample(string $formattedName): void
     // Create a client.
     $contextsClient = new ContextsClient();
 
+    // Prepare the request message.
+    $request = (new GetContextRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Context $response */
-        $response = $contextsClient->getContext($formattedName);
+        $response = $contextsClient->getContext($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

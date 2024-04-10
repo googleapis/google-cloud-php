@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
 use Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
@@ -147,9 +148,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient} to
- * use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient}.
  */
 class ContactCenterInsightsGapicClient
 {
@@ -158,8 +157,15 @@ class ContactCenterInsightsGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.contactcenterinsights.v1.ContactCenterInsights';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'contactcenterinsights.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'contactcenterinsights.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -905,6 +911,101 @@ class ContactCenterInsightsGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'BulkAnalyzeConversations',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes multiple conversations in a single request.
+     *
+     * Sample code:
+     * ```
+     * $contactCenterInsightsClient = new ContactCenterInsightsClient();
+     * try {
+     *     $formattedParent = $contactCenterInsightsClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $contactCenterInsightsClient->bulkDeleteConversations($formattedParent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $contactCenterInsightsClient->resumeOperation($operationName, 'bulkDeleteConversations');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $contactCenterInsightsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource to delete conversations from.
+     *                             Format:
+     *                             projects/{project}/locations/{location}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Filter used to select the subset of conversations to delete.
+     *     @type int $maxDeleteCount
+     *           Maximum number of conversations to delete.
+     *     @type bool $force
+     *           If set to true, all of this conversation's analyses will also be deleted.
+     *           Otherwise, the request will only succeed if the conversation has no
+     *           analyses.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function bulkDeleteConversations($parent, array $optionalArgs = [])
+    {
+        $request = new BulkDeleteConversationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['maxDeleteCount'])) {
+            $request->setMaxDeleteCount($optionalArgs['maxDeleteCount']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'BulkDeleteConversations',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -2228,6 +2329,12 @@ class ContactCenterInsightsGapicClient
      *           Configuration for when `source` contains conversation transcripts.
      *     @type ConversationConfig $conversationConfig
      *           Configuration that applies to all conversations.
+     *     @type RedactionConfig $redactionConfig
+     *           Optional. DLP settings for transcript redaction. Optional, will default to
+     *           the config specified in Settings.
+     *     @type SpeechConfig $speechConfig
+     *           Optional. Default Speech-to-Text configuration. Optional, will default to
+     *           the config specified in Settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2258,6 +2365,14 @@ class ContactCenterInsightsGapicClient
             $request->setConversationConfig(
                 $optionalArgs['conversationConfig']
             );
+        }
+
+        if (isset($optionalArgs['redactionConfig'])) {
+            $request->setRedactionConfig($optionalArgs['redactionConfig']);
+        }
+
+        if (isset($optionalArgs['speechConfig'])) {
+            $request->setSpeechConfig($optionalArgs['speechConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -3161,11 +3276,11 @@ class ContactCenterInsightsGapicClient
      *           This value should be 4-64 characters and must match the regular
      *           expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`
      *     @type RedactionConfig $redactionConfig
-     *           Optional. DLP settings for transcript redaction. Optional, will default to
-     *           the config specified in Settings.
+     *           Optional. DLP settings for transcript redaction. Will default to the config
+     *           specified in Settings.
      *     @type SpeechConfig $speechConfig
-     *           Optional. Default Speech-to-Text configuration. Optional, will default to
-     *           the config specified in Settings.
+     *           Optional. Speech-to-Text configuration. Will default to the config
+     *           specified in Settings.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

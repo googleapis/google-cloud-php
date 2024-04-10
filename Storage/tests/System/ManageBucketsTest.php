@@ -117,6 +117,32 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($options['website'], $info['website']);
     }
 
+    public function testSoftDeletePolicy()
+    {
+        $durationSecond = 8*24*60*60;
+        // set soft delete policy
+        self::$bucket->update([
+            'softDeletePolicy' => [
+                'retentionDurationSeconds' => $durationSecond
+                ]
+            ]);
+        $this->assertArrayHasKey('softDeletePolicy', self::$bucket->info());
+        $this->assertEquals(
+            $durationSecond,
+            self::$bucket->info()['softDeletePolicy']['retentionDurationSeconds']
+        );
+
+        // remove soft delete policy
+        self::$bucket->update([
+            'softDeletePolicy' => []
+        ]);
+        $this->assertArrayHasKey('softDeletePolicy', self::$bucket->info());
+        $this->assertEquals(
+            0,
+            self::$bucket->info()['softDeletePolicy']['retentionDurationSeconds']
+        );
+    }
+
     /**
      * @group storage-bucket-lifecycle
      * @dataProvider lifecycleRules
@@ -129,6 +155,31 @@ class ManageBucketsTest extends StorageTestCase
 
         $lifecycle = Bucket::lifecycle();
         $lifecycle->addDeleteRule($rule);
+
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), [
+            'lifecycle' => $lifecycle
+        ]);
+
+        $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
+    }
+
+    /**
+     * @group storage-bucket-lifecycle
+     * @dataProvider lifecycleRules
+     */
+    public function testCreateBucketWithLifecycleAbortIncompleteMultipartUploadRule(array $rule, $isError = false)
+    {
+        $supportedRules = [
+            'age',
+            'matchesPrefix',
+            'matchesSuffix'
+        ];
+        if ($isError || !in_array(array_key_first($rule), $supportedRules)) {
+            $this->expectException(BadRequestException::class);
+        }
+
+        $lifecycle = Bucket::lifecycle();
+        $lifecycle->addAbortIncompleteMultipartUploadRule($rule);
 
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), [
             'lifecycle' => $lifecycle
@@ -160,13 +211,12 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
     }
 
-    public function testUpdateBucketWithAutoclassConfig()
+    /**
+     * @dataProvider autoclassConfigs
+     */
+    public function testCreateAndUpdateBucketWithAutoclassConfig($autoclassConfig)
     {
-        $autoclassConfig = [
-            'autoclass' => [
-                'enabled' => true,
-            ],
-        ];
+        $autoclassConfig = ['autoclass' => $autoclassConfig];
 
         $bucket = self::createBucket(
             self::$client,
@@ -174,13 +224,50 @@ class ManageBucketsTest extends StorageTestCase
             $autoclassConfig
         );
         $this->assertArrayHasKey('autoclass', $bucket->info());
-        $this->assertTrue($bucket->info()['autoclass']['enabled']);
+        $autoclassInfo = $bucket->info()['autoclass'];
+        $this->assertTrue($autoclassInfo['enabled']);
+        $this->assertArrayHasKey('toggleTime', $autoclassInfo);
+        $this->assertArrayHasKey('terminalStorageClass', $autoclassInfo);
+        if (array_key_exists('terminalStorageClass', $autoclassConfig)) {
+            $this->assertEquals(
+                $autoclassConfig['terminalStorageClass'],
+                $autoclassInfo['terminalStorageClass']
+            );
+        }
+        $this->assertArrayHasKey('terminalStorageClassUpdateTime', $autoclassInfo);
 
         // test disabling autoclass
-        $autoclassConfig['autoclass']['enabled'] = false;
+        $autoclassConfig = ['autoclass' => ['enabled' => false]];
         $bucket->update($autoclassConfig);
         $this->assertArrayHasKey('autoclass', $bucket->info());
         $this->assertFalse($bucket->info()['autoclass']['enabled']);
+    }
+
+    /**
+     * @dataProvider autoclassConfigs
+     */
+    public function testUpdateExisitngBucketWithAutoclassConfig($autoclassConfig)
+    {
+        $bucket = self::createBucket(
+            self::$client,
+            uniqid(self::TESTING_PREFIX),
+        );
+        $autoclassConfig = ['autoclass' => $autoclassConfig];
+        $this->assertArrayNotHasKey('autoclass', $bucket->info());
+
+        $bucket->update($autoclassConfig);
+        $this->assertArrayHasKey('autoclass', $bucket->info());
+        $autoclassInfo = $bucket->info()['autoclass'];
+        $this->assertTrue($autoclassInfo['enabled']);
+        $this->assertArrayHasKey('toggleTime', $autoclassInfo);
+        $this->assertArrayHasKey('terminalStorageClass', $autoclassInfo);
+        if (array_key_exists('terminalStorageClass', $autoclassConfig)) {
+            $this->assertEquals(
+                $autoclassConfig['terminalStorageClass'],
+                $autoclassInfo['terminalStorageClass']
+            );
+        }
+        $this->assertArrayHasKey('terminalStorageClassUpdateTime', $autoclassInfo);
     }
 
     public function lifecycleRules()
@@ -366,6 +453,15 @@ class ManageBucketsTest extends StorageTestCase
                 'dual-region',
                 'STANDARD'
             ]
+        ];
+    }
+
+    public function autoclassConfigs()
+    {
+        return [
+            [['enabled' => true]],
+            [['enabled' => true, 'terminalStorageClass' => 'NEARLINE']],
+            [['enabled' => true, 'terminalStorageClass' => 'ARCHIVE']],
         ];
     }
 }

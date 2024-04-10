@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_CreateRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\CreateRouteRequest;
 use Google\Cloud\Datastream\V1\Route;
 use Google\Rpc\Status;
 
@@ -48,15 +49,19 @@ function create_route_sample(
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $route = (new Route())
         ->setDisplayName($routeDisplayName)
         ->setDestinationAddress($routeDestinationAddress);
+    $request = (new CreateRouteRequest())
+        ->setParent($formattedParent)
+        ->setRouteId($routeId)
+        ->setRoute($route);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastreamClient->createRoute($formattedParent, $routeId, $route);
+        $response = $datastreamClient->createRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

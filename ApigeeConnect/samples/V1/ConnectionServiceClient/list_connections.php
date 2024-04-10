@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigeeconnect_v1_generated_ConnectionService_ListConnections_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ApigeeConnect\V1\Client\ConnectionServiceClient;
 use Google\Cloud\ApigeeConnect\V1\Connection;
-use Google\Cloud\ApigeeConnect\V1\ConnectionServiceClient;
+use Google\Cloud\ApigeeConnect\V1\ListConnectionsRequest;
 
 /**
  * Lists connections that are currently active for the given Apigee Connect
@@ -41,10 +42,14 @@ function list_connections_sample(string $formattedParent): void
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListConnectionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $connectionServiceClient->listConnections($formattedParent);
+        $response = $connectionServiceClient->listConnections($request);
 
         /** @var Connection $element */
         foreach ($response as $element) {

@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\GkeMultiCloud\V1\AzureAuthorization;
 use Google\Cloud\GkeMultiCloud\V1\AzureCluster;
 use Google\Cloud\GkeMultiCloud\V1\AzureClusterNetworking;
-use Google\Cloud\GkeMultiCloud\V1\AzureClusterUser;
 use Google\Cloud\GkeMultiCloud\V1\AzureControlPlane;
 use Google\Cloud\GkeMultiCloud\V1\AzureSshConfig;
 use Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient;
@@ -82,7 +81,6 @@ use Google\Rpc\Status;
  * @param string $azureClusterControlPlaneSshConfigAuthorizedKey        The SSH public key data for VMs managed by Anthos. This accepts
  *                                                                      the authorized_keys file format used in OpenSSH according to the sshd(8)
  *                                                                      manual page.
- * @param string $azureClusterAuthorizationAdminUsersUsername           The name of the user, e.g. `my-gcp-id&#64;gmail.com`.
  * @param string $azureClusterFleetProject                              The name of the Fleet host project where this cluster will be
  *                                                                      registered.
  *
@@ -97,7 +95,6 @@ function update_azure_cluster_sample(
     string $azureClusterNetworkingServiceAddressCidrBlocksElement,
     string $azureClusterControlPlaneVersion,
     string $azureClusterControlPlaneSshConfigAuthorizedKey,
-    string $azureClusterAuthorizationAdminUsersUsername,
     string $azureClusterFleetProject
 ): void {
     // Create a client.
@@ -119,11 +116,7 @@ function update_azure_cluster_sample(
     $azureClusterControlPlane = (new AzureControlPlane())
         ->setVersion($azureClusterControlPlaneVersion)
         ->setSshConfig($azureClusterControlPlaneSshConfig);
-    $azureClusterUser = (new AzureClusterUser())
-        ->setUsername($azureClusterAuthorizationAdminUsersUsername);
-    $azureClusterAuthorizationAdminUsers = [$azureClusterUser,];
-    $azureClusterAuthorization = (new AzureAuthorization())
-        ->setAdminUsers($azureClusterAuthorizationAdminUsers);
+    $azureClusterAuthorization = new AzureAuthorization();
     $azureClusterFleet = (new Fleet())
         ->setProject($azureClusterFleetProject);
     $azureCluster = (new AzureCluster())
@@ -176,7 +169,6 @@ function callSample(): void
     $azureClusterNetworkingServiceAddressCidrBlocksElement = '[SERVICE_ADDRESS_CIDR_BLOCKS]';
     $azureClusterControlPlaneVersion = '[VERSION]';
     $azureClusterControlPlaneSshConfigAuthorizedKey = '[AUTHORIZED_KEY]';
-    $azureClusterAuthorizationAdminUsersUsername = '[USERNAME]';
     $azureClusterFleetProject = '[PROJECT]';
 
     update_azure_cluster_sample(
@@ -187,7 +179,6 @@ function callSample(): void
         $azureClusterNetworkingServiceAddressCidrBlocksElement,
         $azureClusterControlPlaneVersion,
         $azureClusterControlPlaneSshConfigAuthorizedKey,
-        $azureClusterAuthorizationAdminUsersUsername,
         $azureClusterFleetProject
     );
 }

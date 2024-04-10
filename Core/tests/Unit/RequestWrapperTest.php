@@ -21,6 +21,8 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\GetUniverseDomainInterface;
+use Google\Auth\UpdateMetadataInterface;
 use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
@@ -273,7 +275,7 @@ class RequestWrapperTest extends TestCase
         $accessToken = 'abc';
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) use ($accessToken) {
-                $authHeader = $request->getHeaderLine('Authorization');
+                $authHeader = $request->getHeaderLine('authorization');
                 $this->assertEquals('Bearer ' . $accessToken, $authHeader);
                 return new Response(200);
             },
@@ -290,7 +292,7 @@ class RequestWrapperTest extends TestCase
         $version = '1.0.0';
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) use ($version) {
-                $authHeader = $request->getHeaderLine('Authorization');
+                $authHeader = $request->getHeaderLine('authorization');
                 $userAgent = $request->getHeaderLine('User-Agent');
                 $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
                 $this->assertEquals('gcloud-php/' . $version, $userAgent);
@@ -480,7 +482,7 @@ class RequestWrapperTest extends TestCase
         ]);
         $requestWrapper->send(new Request('GET', 'http://www.example.com'));
 
-        $this->assertArrayNotHasKey('Authorization', $headers);
+        $this->assertArrayNotHasKey('authorization', $headers);
     }
 
     public function testDefaultToAnonymousCredentialsWhenNoOthersExist()
@@ -667,6 +669,221 @@ class RequestWrapperTest extends TestCase
 
         $this->assertTrue($retryFunctionCalled);
         $this->assertTrue($retryListenerCalled);
+    }
+
+    public function testAuthHandlerPassingWithFetchAuthTokenInterface()
+    {
+        $authHttpHandler = function ($request, $options = []) {
+        };
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $fetcher->fetchAuthToken($authHttpHandler)
+            ->shouldBeCalledOnce()
+            ->willReturn(['access_token' => 'xyz']);
+        $fetcher->getCacheKey()
+            ->shouldBeCalledTimes(2)
+            ->willReturn(null);
+        $wrapper = new RequestWrapper([
+            'authHttpHandler' => $authHttpHandler,
+            'credentialsFetcher' => $fetcher->reveal(),
+        ]);
+
+        $wrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
+    public function testAuthHandlerPassingWithUpdateMetadataInterface()
+    {
+        $authHttpHandler = function ($request, $options = []) {
+        };
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $fetcher->willImplement(UpdateMetadataInterface::class);
+        $fetcher->updateMetadata(Argument::any(), Argument::any(), $authHttpHandler)
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer abc']
+            ]);
+
+        $fetcher = $this->prophesizeUpdateMetadataFetcher($fetcher);
+
+        $wrapper = new RequestWrapper([
+            'authHttpHandler' => $authHttpHandler,
+            'credentialsFetcher' => $fetcher->reveal(),
+        ]);
+
+        $wrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
+    /**
+     * Test to verify auth related headers fetching and updation if
+     * credential fetcher implements UpdateMetadataInterface too, else
+     * going ahead with access_code fetching followed by auth header
+     * creation and updation.
+     */
+    public function testFetchingCredentialAsAuthHeader()
+    {
+        $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $credentialsFetcher->willImplement(UpdateMetadataInterface::class);
+
+        $accessToken = 'abc';
+        $credentialsFetcher->updateMetadata(Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer ' . $accessToken]
+            ]);
+
+        $credentialsFetcher = $this->prophesizeUpdateMetadataFetcher($credentialsFetcher);
+
+        $requestWrapper = new RequestWrapper([
+            'credentialsFetcher' => $credentialsFetcher->reveal(),
+            'httpHandler' => function ($request, $options = []) use ($accessToken) {
+                $authHeader = $request->getHeaderLine('authorization');
+                $this->assertEquals('Bearer ' . $accessToken, $authHeader);
+                return new Response(200);
+            }
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com')
+        );
+    }
+
+    public function testFetchingCredentialAsAuthHeaderWithOverlappingHeaders()
+    {
+        $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        $credentialsFetcher->willImplement(UpdateMetadataInterface::class);
+
+        $accessToken = 'abc';
+        $credentialsFetcher->updateMetadata(Argument::that(function ($arg) {
+            return array_key_exists('x-goog-api-client', $arg);
+        }), Argument::cetera())
+            ->shouldBeCalledOnce()
+            ->willReturn([
+                'authorization' => ['Bearer ' . $accessToken],
+                'x-goog-api-client' => ['xyz']
+            ]);
+
+        $credentialsFetcher = $this->prophesizeUpdateMetadataFetcher($credentialsFetcher);
+
+        $requestWrapper = new RequestWrapper([
+            'credentialsFetcher' => $credentialsFetcher->reveal(),
+            'httpHandler' => function ($request, $options = []) use ($accessToken) {
+                $authHeader = $request->getHeaderLine('authorization');
+                $this->assertEquals('Bearer ' . $accessToken, $authHeader);
+                return new Response(200);
+            },
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com')
+        );
+    }
+
+    /**
+     * @dataProvider provideCheckUniverseDomainFails
+     */
+    public function testCheckUniverseDomainFails(
+        ?string $universeDomain,
+        ?string $credentialsUniverse,
+        string $message = null
+    ) {
+        $this->expectException(GoogleException::class);
+        $this->expectExceptionMessage($message ?: sprintf(
+            'The configured universe domain (%s) does not match the credential universe domain (%s)',
+            is_null($universeDomain) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $universeDomain,
+            is_null($credentialsUniverse) ? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN : $credentialsUniverse,
+        ));
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
+        if (!is_null($credentialsUniverse)) {
+            $fetcher->willImplement(GetUniverseDomainInterface::class);
+            $fetcher->getUniverseDomain()->willReturn($credentialsUniverse);
+        }
+        $fetcher->getLastReceivedToken()->willReturn(null);
+
+        $config = ['credentialsFetcher' => $fetcher->reveal()];
+        // A null value here represents not passing in a universeDomain
+        if (!is_null($universeDomain)) {
+            $config['universeDomain'] = $universeDomain;
+        }
+        $requestWrapper = new RequestWrapper($config);
+        // Send a fake request
+        $requestWrapper->send(new Request('GET', 'http://www.example.com'));
+    }
+
+    public function provideCheckUniverseDomainFails()
+    {
+        return [
+            ['foo.com', 'googleapis.com'],
+            ['googleapis.com', 'foo.com'],
+            ['googleapis.com', ''],
+            ['', 'googleapis.com', 'The universe domain cannot be empty'],
+            [null, 'foo.com'], // null in RequestWrapper will default to "googleapis.com"
+            ['foo.com', null], // Credentials not implementing `GetUniverseDomainInterface` will have default universe
+        ];
+    }
+
+    /**
+     * @dataProvider provideCheckUniverseDomainPasses
+     */
+    public function testCheckUniverseDomainPasses(?string $universeDomain, ?string $credentialsUniverse)
+    {
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class);
+        // When the $credentialsUniverse is null, the fetcher doesn't implement GetUniverseDomainInterface
+        if (!is_null($credentialsUniverse)) {
+            $fetcher->willImplement(GetUniverseDomainInterface::class);
+            $fetcher->getUniverseDomain()->shouldBeCalledOnce()->willReturn($credentialsUniverse);
+        }
+        $fetcher->getLastReceivedToken()->willReturn(null);
+        $fetcher->fetchAuthToken(Argument::any())->willReturn(['access_token' => 'abc']);
+        $fetcher->getCacheKey()
+            ->shouldBeCalledTimes(2)
+            ->willReturn(null);
+
+        $called = false;
+        $config = [
+            'credentialsFetcher' => $fetcher->reveal(),
+            'httpHandler' => function (Request $request) use (&$called) {
+                $headers = $request->getHeaders();
+                $this->assertArrayHasKey('authorization', $headers);
+                $this->assertEquals('Bearer abc', $headers['authorization'][0]);
+                $called = true;
+            }
+        ];
+        // A null value here represents not passing in a universeDomain
+        if (!is_null($universeDomain)) {
+            $config['universeDomain'] = $universeDomain;
+        }
+        $requestWrapper = new RequestWrapper($config);
+
+        // send a fake request
+        $requestWrapper->send(new Request('GET', 'http://www.example.com'));
+        $this->assertTrue($called);
+    }
+
+    public function provideCheckUniverseDomainPasses()
+    {
+        return [
+            [null, 'googleapis.com'], // null will default to "googleapis.com"
+            ['foo.com', 'foo.com'],
+            ['googleapis.com', 'googleapis.com'],
+            ['googleapis.com', null],
+        ];
+    }
+
+    private function prophesizeUpdateMetadataFetcher($credentialsFetcher)
+    {
+        // We have to mock this message because RequestWrapper wraps the credentials using the
+        // FetchAuthTokenCache class
+        $credentialsFetcher->getCacheKey()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+
+        // We have to mock this message because FetchAuthTokenCache class' updateMetadata()
+        // internally calls getLastReceivedToken() as a part of token fetching.
+        $credentialsFetcher->getLastReceivedToken()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+
+        return $credentialsFetcher;
     }
 }
 

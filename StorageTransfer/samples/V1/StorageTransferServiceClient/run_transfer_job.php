@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START storagetransfer_v1_generated_StorageTransferService_RunTransferJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\RunTransferJobRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,15 @@ function run_transfer_job_sample(string $jobName, string $projectId): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new RunTransferJobRequest())
+        ->setJobName($jobName)
+        ->setProjectId($projectId);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $storageTransferServiceClient->runTransferJob($jobName, $projectId);
+        $response = $storageTransferServiceClient->runTransferJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

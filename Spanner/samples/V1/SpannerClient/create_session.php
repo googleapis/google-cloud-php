@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_CreateSession_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\Session;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Creates a new session. A session can be used to perform
@@ -56,10 +57,14 @@ function create_session_sample(string $formattedDatabase): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
+    // Prepare the request message.
+    $request = (new CreateSessionRequest())
+        ->setDatabase($formattedDatabase);
+
     // Call the API and handle any network failures.
     try {
         /** @var Session $response */
-        $response = $spannerClient->createSession($formattedDatabase);
+        $response = $spannerClient->createSession($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

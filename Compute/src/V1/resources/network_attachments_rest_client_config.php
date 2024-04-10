@@ -110,6 +110,28 @@ return [
                     ],
                 ],
             ],
+            'Patch' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
+                'body' => 'network_attachment_resource',
+                'placeholders' => [
+                    'network_attachment' => [
+                        'getters' => [
+                            'getNetworkAttachment',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkAttachments/{resource}/setIamPolicy',

@@ -24,7 +24,6 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
@@ -176,9 +175,6 @@ class ServiceBuilderTest extends TestCase
             ], [
                 'language',
                 LanguageClient::class
-            ], [
-                'pubsub',
-                PubSubClient::class
             ], [
                 'spanner',
                 SpannerClient::class,

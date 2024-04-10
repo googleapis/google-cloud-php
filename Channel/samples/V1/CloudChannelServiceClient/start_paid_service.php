@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_StartPaidService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Entitlement;
+use Google\Cloud\Channel\V1\StartPaidServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -64,10 +65,14 @@ function start_paid_service_sample(string $name): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new StartPaidServiceRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelServiceClient->startPaidService($name);
+        $response = $cloudChannelServiceClient->startPaidService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

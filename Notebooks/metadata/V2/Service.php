@@ -93,27 +93,27 @@ request_id (	BàA")
 diagnostic_config (2+.google.cloud.notebooks.v2.DiagnosticConfigBàA
 timeout_minutes (BàA2ú
 NotebookService²
-ListInstances/.google.cloud.notebooks.v2.ListInstancesRequest0.google.cloud.notebooks.v2.ListInstancesResponse">‚Óä“/-/v2/{parent=projects/*/locations/*}/instancesÚAparentŸ
-GetInstance-.google.cloud.notebooks.v2.GetInstanceRequest#.google.cloud.notebooks.v2.Instance"<‚Óä“/-/v2/{name=projects/*/locations/*/instances/*}ÚAnameà
-CreateInstance0.google.cloud.notebooks.v2.CreateInstanceRequest.google.longrunning.Operation"}‚Óä“9"-/v2/{parent=projects/*/locations/*}/instances:instanceÚAparent,instance,instance_idÊA
-InstanceOperationMetadataâ
-UpdateInstance0.google.cloud.notebooks.v2.UpdateInstanceRequest.google.longrunning.Operation"‚Óä“B26/v2/{instance.name=projects/*/locations/*/instances/*}:instanceÚAinstance,update_maskÊA
-InstanceOperationMetadataÌ
-DeleteInstance0.google.cloud.notebooks.v2.DeleteInstanceRequest.google.longrunning.Operation"i‚Óä“/*-/v2/{name=projects/*/locations/*/instances/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata¿
-StartInstance/.google.cloud.notebooks.v2.StartInstanceRequest.google.longrunning.Operation"^‚Óä“8"3/v2/{name=projects/*/locations/*/instances/*}:start:*ÊA
-InstanceOperationMetadata¼
-StopInstance..google.cloud.notebooks.v2.StopInstanceRequest.google.longrunning.Operation"]‚Óä“7"2/v2/{name=projects/*/locations/*/instances/*}:stop:*ÊA
-InstanceOperationMetadata¿
-ResetInstance/.google.cloud.notebooks.v2.ResetInstanceRequest.google.longrunning.Operation"^‚Óä“8"3/v2/{name=projects/*/locations/*/instances/*}:reset:*ÊA
-InstanceOperationMetadatað
+ListInstances/.google.cloud.notebooks.v2.ListInstancesRequest0.google.cloud.notebooks.v2.ListInstancesResponse">ÚAparent‚Óä“/-/v2/{parent=projects/*/locations/*}/instancesŸ
+GetInstance-.google.cloud.notebooks.v2.GetInstanceRequest#.google.cloud.notebooks.v2.Instance"<ÚAname‚Óä“/-/v2/{name=projects/*/locations/*/instances/*}à
+CreateInstance0.google.cloud.notebooks.v2.CreateInstanceRequest.google.longrunning.Operation"}ÊA
+InstanceOperationMetadataÚAparent,instance,instance_id‚Óä“9"-/v2/{parent=projects/*/locations/*}/instances:instanceâ
+UpdateInstance0.google.cloud.notebooks.v2.UpdateInstanceRequest.google.longrunning.Operation"ÊA
+InstanceOperationMetadataÚAinstance,update_mask‚Óä“B26/v2/{instance.name=projects/*/locations/*/instances/*}:instanceÌ
+DeleteInstance0.google.cloud.notebooks.v2.DeleteInstanceRequest.google.longrunning.Operation"iÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“/*-/v2/{name=projects/*/locations/*/instances/*}¿
+StartInstance/.google.cloud.notebooks.v2.StartInstanceRequest.google.longrunning.Operation"^ÊA
+InstanceOperationMetadata‚Óä“8"3/v2/{name=projects/*/locations/*/instances/*}:start:*¼
+StopInstance..google.cloud.notebooks.v2.StopInstanceRequest.google.longrunning.Operation"]ÊA
+InstanceOperationMetadata‚Óä“7"2/v2/{name=projects/*/locations/*/instances/*}:stop:*¿
+ResetInstance/.google.cloud.notebooks.v2.ResetInstanceRequest.google.longrunning.Operation"^ÊA
+InstanceOperationMetadata‚Óä“8"3/v2/{name=projects/*/locations/*/instances/*}:reset:*ð
 CheckInstanceUpgradability<.google.cloud.notebooks.v2.CheckInstanceUpgradabilityRequest=.google.cloud.notebooks.v2.CheckInstanceUpgradabilityResponse"U‚Óä“OM/v2/{notebook_instance=projects/*/locations/*/instances/*}:checkUpgradabilityÅ
-UpgradeInstance1.google.cloud.notebooks.v2.UpgradeInstanceRequest.google.longrunning.Operation"`‚Óä“:"5/v2/{name=projects/*/locations/*/instances/*}:upgrade:*ÊA
-InstanceOperationMetadataÈ
-RollbackInstance2.google.cloud.notebooks.v2.RollbackInstanceRequest.google.longrunning.Operation"a‚Óä“;"6/v2/{name=projects/*/locations/*/instances/*}:rollback:*ÊA
-InstanceOperationMetadataá
-DiagnoseInstance2.google.cloud.notebooks.v2.DiagnoseInstanceRequest.google.longrunning.Operation"z‚Óä“;"6/v2/{name=projects/*/locations/*/instances/*}:diagnose:*ÚAname,diagnostic_configÊA
-InstanceOperationMetadataLÊAnotebooks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÃ
+UpgradeInstance1.google.cloud.notebooks.v2.UpgradeInstanceRequest.google.longrunning.Operation"`ÊA
+InstanceOperationMetadata‚Óä“:"5/v2/{name=projects/*/locations/*/instances/*}:upgrade:*È
+RollbackInstance2.google.cloud.notebooks.v2.RollbackInstanceRequest.google.longrunning.Operation"aÊA
+InstanceOperationMetadata‚Óä“;"6/v2/{name=projects/*/locations/*/instances/*}:rollback:*á
+DiagnoseInstance2.google.cloud.notebooks.v2.DiagnoseInstanceRequest.google.longrunning.Operation"zÊA
+InstanceOperationMetadataÚAname,diagnostic_config‚Óä“;"6/v2/{name=projects/*/locations/*/instances/*}:diagnose:*LÊAnotebooks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÃ
 com.google.cloud.notebooks.v2BServiceProtoPZ;cloud.google.com/go/notebooks/apiv2/notebookspb;notebookspbªGoogle.Cloud.Notebooks.V2ÊGoogle\\Cloud\\Notebooks\\V2êGoogle::Cloud::Notebooks::V2bproto3'
         , true);
 

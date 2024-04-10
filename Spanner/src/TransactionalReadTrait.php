@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 trait TransactionalReadTrait
 {
     use TransactionConfigurationTrait;
+    use RequestHeaderTrait;
 
     /**
      * @var Operation
@@ -71,6 +72,11 @@ trait TransactionalReadTrait
      * @var string
      */
     private $tag = null;
+
+    /**
+     * @var array
+     */
+    private $directedReadOptions = [];
 
     /**
      * Run a query.
@@ -252,12 +258,16 @@ trait TransactionalReadTrait
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
      *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
-     *         been set when creating the transaction.
+     *           For more information on available options, please see
+     *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           Please note, if using the `priority` setting you may utilize the constants available
+     *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *           Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *           been set when creating the transaction.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -267,7 +277,11 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $options['transactionId'] = $this->transactionId;
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
         $options['transactionType'] = $this->context;
         $options['seqno'] = $this->seqno;
         $this->seqno++;
@@ -284,7 +298,18 @@ trait TransactionalReadTrait
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        return $this->operation->execute($this->session, $sql, $options);
+        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
+            $options,
+            $this->directedReadOptions ?? []
+        );
+
+        $options = $this->addLarHeader($options, true, $this->context);
+
+        $result = $this->operation->execute($this->session, $sql, $options);
+        if (empty($this->id()) && $result->transaction()) {
+            $this->setId($result->transaction()->id());
+        }
+        return $result;
     }
 
     /**
@@ -316,12 +341,16 @@ trait TransactionalReadTrait
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
      *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
-     *         been set when creating the transaction.
+     *           For more information on available options, please see
+     *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           Please note, if using the `priority` setting you may utilize the constants available
+     *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *           Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *           been set when creating the transaction.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return Result
      */
@@ -330,7 +359,11 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $options['transactionId'] = $this->transactionId;
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
         $options['transactionType'] = $this->context;
         $options += $this->options;
         $selector = $this->transactionSelector($options, $this->options);
@@ -345,7 +378,18 @@ trait TransactionalReadTrait
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        return $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
+            $options,
+            $this->directedReadOptions ?? []
+        );
+
+        $options = $this->addLarHeader($options, true, $this->context);
+
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        if (empty($this->id()) && $result->transaction()) {
+            $this->setId($result->transaction()->id());
+        }
+        return $result;
     }
 
     /**
@@ -361,6 +405,14 @@ trait TransactionalReadTrait
     public function id()
     {
         return $this->transactionId;
+    }
+
+    /**
+     * Set the transaction ID.
+     */
+    public function setId(?string $transactionId)
+    {
+        $this->transactionId = $transactionId;
     }
 
     /**

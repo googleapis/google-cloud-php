@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Postdeploy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A sequence of skaffold custom actions to invoke during execution
+     * Optional. A sequence of Skaffold custom actions to invoke during execution
      * of the postdeploy job.
      *
      * Generated from protobuf field <code>repeated string actions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -30,7 +30,7 @@ class Postdeploy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $actions
-     *           Optional. A sequence of skaffold custom actions to invoke during execution
+     *           Optional. A sequence of Skaffold custom actions to invoke during execution
      *           of the postdeploy job.
      * }
      */
@@ -40,7 +40,7 @@ class Postdeploy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A sequence of skaffold custom actions to invoke during execution
+     * Optional. A sequence of Skaffold custom actions to invoke during execution
      * of the postdeploy job.
      *
      * Generated from protobuf field <code>repeated string actions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -52,7 +52,7 @@ class Postdeploy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A sequence of skaffold custom actions to invoke during execution
+     * Optional. A sequence of Skaffold custom actions to invoke during execution
      * of the postdeploy job.
      *
      * Generated from protobuf field <code>repeated string actions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>

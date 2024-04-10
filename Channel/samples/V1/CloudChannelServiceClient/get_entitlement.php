@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_GetEntitlement_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Entitlement;
+use Google\Cloud\Channel\V1\GetEntitlementRequest;
 
 /**
  * Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement]
@@ -50,10 +51,14 @@ function get_entitlement_sample(string $formattedName): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetEntitlementRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Entitlement $response */
-        $response = $cloudChannelServiceClient->getEntitlement($formattedName);
+        $response = $cloudChannelServiceClient->getEntitlement($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

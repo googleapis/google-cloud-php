@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START webrisk_v1_generated_WebRiskService_SubmitUri_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\WebRisk\V1\Client\WebRiskServiceClient;
 use Google\Cloud\WebRisk\V1\Submission;
-use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
+use Google\Cloud\WebRisk\V1\SubmitUriRequest;
 use Google\Rpc\Status;
 
 /**
@@ -52,14 +53,17 @@ function submit_uri_sample(string $formattedParent, string $submissionUri): void
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $submission = (new Submission())
         ->setUri($submissionUri);
+    $request = (new SubmitUriRequest())
+        ->setParent($formattedParent)
+        ->setSubmission($submission);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $webRiskServiceClient->submitUri($formattedParent, $submission);
+        $response = $webRiskServiceClient->submitUri($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

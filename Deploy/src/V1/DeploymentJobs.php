@@ -28,15 +28,13 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
      */
     private $verify_job = null;
     /**
-     * Output only. The predeploy Job. This is the predeploy job in the phase.
-     * This is the first job of the phase.
+     * Output only. The predeploy Job, which is the first job on the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job predeploy_job = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $predeploy_job = null;
     /**
-     * Output only. The postdeploy Job. This is the postdeploy job in the phase.
-     * This is the last job of the phase.
+     * Output only. The postdeploy Job, which is the last job on the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job postdeploy_job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -53,11 +51,9 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\Job $verify_job
      *           Output only. The verify Job. Runs after a deploy if the deploy succeeds.
      *     @type \Google\Cloud\Deploy\V1\Job $predeploy_job
-     *           Output only. The predeploy Job. This is the predeploy job in the phase.
-     *           This is the first job of the phase.
+     *           Output only. The predeploy Job, which is the first job on the phase.
      *     @type \Google\Cloud\Deploy\V1\Job $postdeploy_job
-     *           Output only. The postdeploy Job. This is the postdeploy job in the phase.
-     *           This is the last job of the phase.
+     *           Output only. The postdeploy Job, which is the last job on the phase.
      * }
      */
     public function __construct($data = NULL) {
@@ -138,8 +134,7 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The predeploy Job. This is the predeploy job in the phase.
-     * This is the first job of the phase.
+     * Output only. The predeploy Job, which is the first job on the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job predeploy_job = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Deploy\V1\Job|null
@@ -160,8 +155,7 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The predeploy Job. This is the predeploy job in the phase.
-     * This is the first job of the phase.
+     * Output only. The predeploy Job, which is the first job on the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job predeploy_job = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Deploy\V1\Job $var
@@ -176,8 +170,7 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The postdeploy Job. This is the postdeploy job in the phase.
-     * This is the last job of the phase.
+     * Output only. The postdeploy Job, which is the last job on the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job postdeploy_job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Deploy\V1\Job|null
@@ -198,8 +191,7 @@ class DeploymentJobs extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The postdeploy Job. This is the postdeploy job in the phase.
-     * This is the last job of the phase.
+     * Output only. The postdeploy Job, which is the last job on the phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Job postdeploy_job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Deploy\V1\Job $var

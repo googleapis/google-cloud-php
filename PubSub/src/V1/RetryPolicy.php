@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A policy that specifies how Cloud Pub/Sub retries message delivery.
+ * A policy that specifies how Pub/Sub retries message delivery.
  * Retry delay will be exponential based on provided minimum and maximum
  * backoffs. https://en.wikipedia.org/wiki/Exponential_backoff.
  * RetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded
@@ -23,17 +23,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class RetryPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The minimum delay between consecutive deliveries of a given message.
-     * Value should be between 0 and 600 seconds. Defaults to 10 seconds.
+     * Optional. The minimum delay between consecutive deliveries of a given
+     * message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration minimum_backoff = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration minimum_backoff = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $minimum_backoff = null;
     /**
-     * The maximum delay between consecutive deliveries of a given message.
-     * Value should be between 0 and 600 seconds. Defaults to 600 seconds.
+     * Optional. The maximum delay between consecutive deliveries of a given
+     * message. Value should be between 0 and 600 seconds. Defaults to 600
+     * seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration maximum_backoff = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration maximum_backoff = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $maximum_backoff = null;
 
@@ -44,11 +45,12 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $minimum_backoff
-     *           The minimum delay between consecutive deliveries of a given message.
-     *           Value should be between 0 and 600 seconds. Defaults to 10 seconds.
+     *           Optional. The minimum delay between consecutive deliveries of a given
+     *           message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
      *     @type \Google\Protobuf\Duration $maximum_backoff
-     *           The maximum delay between consecutive deliveries of a given message.
-     *           Value should be between 0 and 600 seconds. Defaults to 600 seconds.
+     *           Optional. The maximum delay between consecutive deliveries of a given
+     *           message. Value should be between 0 and 600 seconds. Defaults to 600
+     *           seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,10 +59,10 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum delay between consecutive deliveries of a given message.
-     * Value should be between 0 and 600 seconds. Defaults to 10 seconds.
+     * Optional. The minimum delay between consecutive deliveries of a given
+     * message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration minimum_backoff = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration minimum_backoff = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getMinimumBackoff()
@@ -79,10 +81,10 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The minimum delay between consecutive deliveries of a given message.
-     * Value should be between 0 and 600 seconds. Defaults to 10 seconds.
+     * Optional. The minimum delay between consecutive deliveries of a given
+     * message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration minimum_backoff = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration minimum_backoff = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -95,10 +97,11 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum delay between consecutive deliveries of a given message.
-     * Value should be between 0 and 600 seconds. Defaults to 600 seconds.
+     * Optional. The maximum delay between consecutive deliveries of a given
+     * message. Value should be between 0 and 600 seconds. Defaults to 600
+     * seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration maximum_backoff = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration maximum_backoff = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getMaximumBackoff()
@@ -117,10 +120,11 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum delay between consecutive deliveries of a given message.
-     * Value should be between 0 and 600 seconds. Defaults to 600 seconds.
+     * Optional. The maximum delay between consecutive deliveries of a given
+     * message. Value should be between 0 and 600 seconds. Defaults to 600
+     * seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration maximum_backoff = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration maximum_backoff = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */

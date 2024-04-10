@@ -42,6 +42,14 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue failover_target = 3;</code>
      */
     private $failover_target = null;
+    /**
+     * Optional. Specifies if a SQL Server replica is a cascadable replica. A
+     * cascadable replica is a SQL Server cross region replica that supports
+     * replica(s) under it.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue cascadable_replica = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cascadable_replica = null;
 
     /**
      * Constructor.
@@ -64,6 +72,10 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *           primary instance fails, the replica instance will be promoted as the new
      *           primary instance. Only one replica can be specified as failover target, and
      *           the replica has to be in different zone with the primary instance.
+     *     @type \Google\Protobuf\BoolValue $cascadable_replica
+     *           Optional. Specifies if a SQL Server replica is a cascadable replica. A
+     *           cascadable replica is a SQL Server cross region replica that supports
+     *           replica(s) under it.
      * }
      */
     public function __construct($data = NULL) {
@@ -220,6 +232,77 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
     public function setFailoverTargetValue($var)
     {
         $this->writeWrapperValue("failover_target", $var);
+        return $this;}
+
+    /**
+     * Optional. Specifies if a SQL Server replica is a cascadable replica. A
+     * cascadable replica is a SQL Server cross region replica that supports
+     * replica(s) under it.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue cascadable_replica = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getCascadableReplica()
+    {
+        return $this->cascadable_replica;
+    }
+
+    public function hasCascadableReplica()
+    {
+        return isset($this->cascadable_replica);
+    }
+
+    public function clearCascadableReplica()
+    {
+        unset($this->cascadable_replica);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getCascadableReplica()</code>
+
+     * Optional. Specifies if a SQL Server replica is a cascadable replica. A
+     * cascadable replica is a SQL Server cross region replica that supports
+     * replica(s) under it.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue cascadable_replica = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getCascadableReplicaValue()
+    {
+        return $this->readWrapperValue("cascadable_replica");
+    }
+
+    /**
+     * Optional. Specifies if a SQL Server replica is a cascadable replica. A
+     * cascadable replica is a SQL Server cross region replica that supports
+     * replica(s) under it.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue cascadable_replica = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setCascadableReplica($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->cascadable_replica = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. Specifies if a SQL Server replica is a cascadable replica. A
+     * cascadable replica is a SQL Server cross region replica that supports
+     * replica(s) under it.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue cascadable_replica = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setCascadableReplicaValue($var)
+    {
+        $this->writeWrapperValue("cascadable_replica", $var);
         return $this;}
 
 }

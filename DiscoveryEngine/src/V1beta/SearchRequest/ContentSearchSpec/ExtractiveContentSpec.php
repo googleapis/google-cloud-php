@@ -25,7 +25,7 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching answers is less than the
      * `max_extractive_answer_count`, return all of the answers. Otherwise,
      * return the `max_extractive_answer_count`.
-     * At most one answer is returned for each
+     * At most five answers are returned for each
      * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
@@ -53,7 +53,9 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
     protected $max_extractive_segment_count = 0;
     /**
      * Specifies whether to return the confidence score from the extractive
-     * segments in each search result. The default value is `false`.
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
      *
      * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
      */
@@ -90,7 +92,7 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      *           If the number of matching answers is less than the
      *           `max_extractive_answer_count`, return all of the answers. Otherwise,
      *           return the `max_extractive_answer_count`.
-     *           At most one answer is returned for each
+     *           At most five answers are returned for each
      *           [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *     @type int $max_extractive_segment_count
      *           The max number of extractive segments returned in each search result.
@@ -110,7 +112,9 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      *           return the `max_extractive_segment_count`.
      *     @type bool $return_extractive_segment_score
      *           Specifies whether to return the confidence score from the extractive
-     *           segments in each search result. The default value is `false`.
+     *           segments in each search result. This feature is available only for new
+     *           or allowlisted data stores. To allowlist your data store,
+     *           contact your Customer Engineer. The default value is `false`.
      *     @type int $num_previous_segments
      *           Specifies whether to also include the adjacent from each selected
      *           segments.
@@ -135,7 +139,7 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching answers is less than the
      * `max_extractive_answer_count`, return all of the answers. Otherwise,
      * return the `max_extractive_answer_count`.
-     * At most one answer is returned for each
+     * At most five answers are returned for each
      * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
@@ -155,7 +159,7 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching answers is less than the
      * `max_extractive_answer_count`, return all of the answers. Otherwise,
      * return the `max_extractive_answer_count`.
-     * At most one answer is returned for each
+     * At most five answers are returned for each
      * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
@@ -226,7 +230,9 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies whether to return the confidence score from the extractive
-     * segments in each search result. The default value is `false`.
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
      *
      * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
      * @return bool
@@ -238,7 +244,9 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies whether to return the confidence score from the extractive
-     * segments in each search result. The default value is `false`.
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
      *
      * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
      * @param bool $var

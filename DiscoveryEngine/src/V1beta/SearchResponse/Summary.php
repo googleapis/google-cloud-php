@@ -35,6 +35,12 @@ class Summary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SafetyAttributes safety_attributes = 3;</code>
      */
     protected $safety_attributes = null;
+    /**
+     * Summary with metadata information.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SummaryWithMetadata summary_with_metadata = 4;</code>
+     */
+    protected $summary_with_metadata = null;
 
     /**
      * Constructor.
@@ -50,6 +56,8 @@ class Summary extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SafetyAttributes $safety_attributes
      *           A collection of Safety Attribute categories and their associated
      *           confidence scores.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SummaryWithMetadata $summary_with_metadata
+     *           Summary with metadata information.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,6 +153,42 @@ class Summary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SafetyAttributes::class);
         $this->safety_attributes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Summary with metadata information.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SummaryWithMetadata summary_with_metadata = 4;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SummaryWithMetadata|null
+     */
+    public function getSummaryWithMetadata()
+    {
+        return $this->summary_with_metadata;
+    }
+
+    public function hasSummaryWithMetadata()
+    {
+        return isset($this->summary_with_metadata);
+    }
+
+    public function clearSummaryWithMetadata()
+    {
+        unset($this->summary_with_metadata);
+    }
+
+    /**
+     * Summary with metadata information.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.Summary.SummaryWithMetadata summary_with_metadata = 4;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SummaryWithMetadata $var
+     * @return $this
+     */
+    public function setSummaryWithMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\SummaryWithMetadata::class);
+        $this->summary_with_metadata = $var;
 
         return $this;
     }

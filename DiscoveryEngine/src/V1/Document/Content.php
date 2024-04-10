@@ -46,7 +46,7 @@ class Content extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           The URI of the content. Only Cloud Storage URIs (e.g.
      *           `gs://bucket-name/path/to/file`) are supported. The maximum file size
-     *           is 100 MB.
+     *           is 2.5 MB for text-based formats, 100 MB for other formats.
      *     @type string $mime_type
      *           The MIME type of the content. Supported types:
      *           * `application/pdf` (PDF, only native PDFs are supported for now)
@@ -108,7 +108,7 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * The URI of the content. Only Cloud Storage URIs (e.g.
      * `gs://bucket-name/path/to/file`) are supported. The maximum file size
-     * is 100 MB.
+     * is 2.5 MB for text-based formats, 100 MB for other formats.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      * @return string
@@ -126,7 +126,7 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * The URI of the content. Only Cloud Storage URIs (e.g.
      * `gs://bucket-name/path/to/file`) are supported. The maximum file size
-     * is 100 MB.
+     * is 2.5 MB for text-based formats, 100 MB for other formats.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      * @param string $var

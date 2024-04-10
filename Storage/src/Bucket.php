@@ -246,10 +246,8 @@ class Bucket
      *           are `true`, `false`, `md5` and `crc32`. If true, either md5 or
      *           crc32c will be chosen based on your platform. If false, no
      *           validation hash will be sent. Choose either `md5` or `crc32` to
-     *           force a hash method regardless of performance implications. In
-     *           PHP versions earlier than 7.4, performance will be very
-     *           adversely impacted by using crc32c unless you install the
-     *           `crc32c` PHP extension. **Defaults to** `true`.
+     *           force a hash method regardless of performance implications.
+     *           **Defaults to** `true`.
      *     @type int $chunkSize If provided the upload will be done in chunks.
      *           The size must be in multiples of 262144 bytes. With chunking
      *           you have increased reliability at the risk of higher overhead.
@@ -267,6 +265,13 @@ class Bucket
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
+     *     @type array $retention The full list of available options are outlined
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type string $retention.retainUntilTime The earliest time in RFC 3339
+     *           UTC "Zulu" format that the object can be deleted or replaced.
+     *           This is the retention configuration set for this object.
+     *     @type string $retention.mode The mode of the retention configuration,
+     *           which can be either `"Unlocked"` or `"Locked"`.
      *     @type array $metadata The full list of available options are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type array $metadata.metadata User-provided metadata, in key/value pairs.
@@ -358,10 +363,8 @@ class Bucket
      *           are `true`, `false`, `md5` and `crc32`. If true, either md5 or
      *           crc32c will be chosen based on your platform. If false, no
      *           validation hash will be sent. Choose either `md5` or `crc32` to
-     *           force a hash method regardless of performance implications. In
-     *           PHP versions earlier than 7.4, performance will be very
-     *           adversely impacted by using crc32c unless you install the
-     *           `crc32c` PHP extension. **Defaults to** `true`.ß
+     *           force a hash method regardless of performance implications.
+     *           **Defaults to** `true`.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
@@ -612,6 +615,48 @@ class Bucket
     }
 
     /**
+     * Restores an object.
+     *
+     * Example:
+     * ```
+     * $object = $bucket->restore('file.txt');
+     * ```
+     *
+     * @param string $name The name of the object to restore.
+     * @param string $generation Request a specific generation of the object.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $ifGenerationMatch Makes the operation conditional on whether
+     *           the object's current generation matches the given value.
+     *     @type string $ifGenerationNotMatch Makes the operation conditional on whether
+     *           the object's current generation matches the given value.
+     *     @type string $ifMetagenerationMatch If set, only restores
+     *           if its metageneration matches this value.
+     *     @type string $ifMetagenerationNotMatch If set, only restores
+     *           if its metageneration does not match this value.
+     * }
+     * @return StorageObject
+     */
+    public function restore($name, $generation, array $options = [])
+    {
+        $res = $this->connection->restoreObject([
+            'bucket' => $this->identity['bucket'],
+            'generation' => $generation,
+            'object' => $name,
+        ] + $options);
+        return new StorageObject(
+            $this->connection,
+            $name,
+            $this->identity['bucket'],
+            $res['generation'], // restored object will have a new generation
+            $res + array_filter([
+                'requesterProjectId' => $this->identity['userProject']
+            ])
+        );
+    }
+
+    /**
      * Fetches all objects in the bucket.
      *
      * Example:
@@ -638,6 +683,9 @@ class Bucket
      *           from the prefix, contain delimiter will have their name,
      *           truncated after the delimiter, returned in prefixes. Duplicate
      *           prefixes are omitted.
+     *     @type bool $includeFoldersAsPrefixes If true, will also include folders
+     *           and managed folders (besides objects) in the returned prefixes.
+     *           Only applicable if delimiter is set to '/'.
      *     @type int $maxResults Maximum number of results to return per
      *           request. **Defaults to** `1000`.
      *     @type int $resultLimit Limit the number of results returned in total.
@@ -957,6 +1005,8 @@ class Bucket
      *           Buckets can have either StorageClass OLM rules or Autoclass,
      *           but not both. When Autoclass is enabled on a bucket, adding
      *           StorageClass OLM rules will result in failure.
+     *           For more information, refer to
+     *           [Storage Autoclass](https://cloud.google.com/storage/docs/autoclass)
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
      *     @type array $billing The bucket's billing configuration.

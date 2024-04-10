@@ -25,6 +25,13 @@ class NodePoolAutoConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NetworkTags network_tags = 1;</code>
      */
     private $network_tags = null;
+    /**
+     * Resource manager tag keys and values to be attached to the nodes
+     * for managing Compute Engine firewalls using Network Firewall Policies.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 2;</code>
+     */
+    private $resource_manager_tags = null;
 
     /**
      * Constructor.
@@ -37,6 +44,9 @@ class NodePoolAutoConfig extends \Google\Protobuf\Internal\Message
      *           valid sources or targets for network firewalls and are specified by
      *           the client during cluster creation. Each tag within the list
      *           must comply with RFC1035.
+     *     @type \Google\Cloud\Container\V1\ResourceManagerTags $resource_manager_tags
+     *           Resource manager tag keys and values to be attached to the nodes
+     *           for managing Compute Engine firewalls using Network Firewall Policies.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,6 +92,44 @@ class NodePoolAutoConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTags::class);
         $this->network_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource manager tag keys and values to be attached to the nodes
+     * for managing Compute Engine firewalls using Network Firewall Policies.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 2;</code>
+     * @return \Google\Cloud\Container\V1\ResourceManagerTags|null
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    public function hasResourceManagerTags()
+    {
+        return isset($this->resource_manager_tags);
+    }
+
+    public function clearResourceManagerTags()
+    {
+        unset($this->resource_manager_tags);
+    }
+
+    /**
+     * Resource manager tag keys and values to be attached to the nodes
+     * for managing Compute Engine firewalls using Network Firewall Policies.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 2;</code>
+     * @param \Google\Cloud\Container\V1\ResourceManagerTags $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
+        $this->resource_manager_tags = $var;
 
         return $this;
     }

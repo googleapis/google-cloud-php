@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_EnableProcessor_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\EnableProcessorRequest;
 use Google\Cloud\DocumentAI\V1\EnableProcessorResponse;
 use Google\Rpc\Status;
 
@@ -40,10 +41,14 @@ function enable_processor_sample(string $formattedName): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new EnableProcessorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentProcessorServiceClient->enableProcessor($formattedName);
+        $response = $documentProcessorServiceClient->enableProcessor($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

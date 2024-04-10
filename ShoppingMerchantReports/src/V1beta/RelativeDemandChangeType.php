@@ -4,66 +4,31 @@
 
 namespace Google\Shopping\Merchant\Reports\V1beta;
 
-use UnexpectedValueException;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Relative demand of a product cluster or brand in the Best sellers report
  * compared to the previous time period.
  *
- * Protobuf type <code>google.shopping.merchant.reports.v1beta.RelativeDemandChangeType</code>
+ * Generated from protobuf message <code>google.shopping.merchant.reports.v1beta.RelativeDemandChangeType</code>
  */
-class RelativeDemandChangeType
+class RelativeDemandChangeType extends \Google\Protobuf\Internal\Message
 {
-    /**
-     * Not specified.
-     *
-     * Generated from protobuf enum <code>RELATIVE_DEMAND_CHANGE_TYPE_UNSPECIFIED = 0;</code>
-     */
-    const RELATIVE_DEMAND_CHANGE_TYPE_UNSPECIFIED = 0;
-    /**
-     * Relative demand is lower than the previous time period.
-     *
-     * Generated from protobuf enum <code>SINKER = 1;</code>
-     */
-    const SINKER = 1;
-    /**
-     * Relative demand is equal to the previous time period.
-     *
-     * Generated from protobuf enum <code>FLAT = 2;</code>
-     */
-    const FLAT = 2;
-    /**
-     * Relative demand is higher than the previous time period.
-     *
-     * Generated from protobuf enum <code>RISER = 3;</code>
-     */
-    const RISER = 3;
 
-    private static $valueToName = [
-        self::RELATIVE_DEMAND_CHANGE_TYPE_UNSPECIFIED => 'RELATIVE_DEMAND_CHANGE_TYPE_UNSPECIFIED',
-        self::SINKER => 'SINKER',
-        self::FLAT => 'FLAT',
-        self::RISER => 'RISER',
-    ];
-
-    public static function name($value)
-    {
-        if (!isset(self::$valueToName[$value])) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no name defined for value %s', __CLASS__, $value));
-        }
-        return self::$valueToName[$value];
+    /**
+     * Constructor.
+     *
+     * @param array $data {
+     *     Optional. Data for populating the Message object.
+     *
+     * }
+     */
+    public function __construct($data = NULL) {
+        \GPBMetadata\Google\Shopping\Merchant\Reports\V1Beta\Reports::initOnce();
+        parent::__construct($data);
     }
 
-
-    public static function value($name)
-    {
-        $const = __CLASS__ . '::' . strtoupper($name);
-        if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
-        }
-        return constant($const);
-    }
 }
 

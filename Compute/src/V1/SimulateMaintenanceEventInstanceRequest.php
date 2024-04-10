@@ -34,6 +34,12 @@ class SimulateMaintenanceEventInstanceRequest extends \Google\Protobuf\Internal\
      */
     private $request_id = null;
     /**
+     * Determines whether the customers receive notifications before migration. Only applicable to SF vms.
+     *
+     * Generated from protobuf field <code>optional bool with_extended_notifications = 405957627;</code>
+     */
+    private $with_extended_notifications = null;
+    /**
      * The name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
@@ -69,6 +75,8 @@ class SimulateMaintenanceEventInstanceRequest extends \Google\Protobuf\Internal\
      *           Project ID for this request.
      *     @type string $request_id
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type bool $with_extended_notifications
+     *           Determines whether the customers receive notifications before migration. Only applicable to SF vms.
      *     @type string $zone
      *           The name of the zone for this request.
      * }
@@ -162,6 +170,42 @@ class SimulateMaintenanceEventInstanceRequest extends \Google\Protobuf\Internal\
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Determines whether the customers receive notifications before migration. Only applicable to SF vms.
+     *
+     * Generated from protobuf field <code>optional bool with_extended_notifications = 405957627;</code>
+     * @return bool
+     */
+    public function getWithExtendedNotifications()
+    {
+        return isset($this->with_extended_notifications) ? $this->with_extended_notifications : false;
+    }
+
+    public function hasWithExtendedNotifications()
+    {
+        return isset($this->with_extended_notifications);
+    }
+
+    public function clearWithExtendedNotifications()
+    {
+        unset($this->with_extended_notifications);
+    }
+
+    /**
+     * Determines whether the customers receive notifications before migration. Only applicable to SF vms.
+     *
+     * Generated from protobuf field <code>optional bool with_extended_notifications = 405957627;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setWithExtendedNotifications($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->with_extended_notifications = $var;
 
         return $this;
     }

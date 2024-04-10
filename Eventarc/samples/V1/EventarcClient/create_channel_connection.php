@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Eventarc\V1\ChannelConnection;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\CreateChannelConnectionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -51,19 +52,19 @@ function create_channel_connection_sample(
     // Create a client.
     $eventarcClient = new EventarcClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channelConnection = (new ChannelConnection())
         ->setName($channelConnectionName)
         ->setChannel($formattedChannelConnectionChannel);
+    $request = (new CreateChannelConnectionRequest())
+        ->setParent($formattedParent)
+        ->setChannelConnection($channelConnection)
+        ->setChannelConnectionId($channelConnectionId);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $eventarcClient->createChannelConnection(
-            $formattedParent,
-            $channelConnection,
-            $channelConnectionId
-        );
+        $response = $eventarcClient->createChannelConnection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

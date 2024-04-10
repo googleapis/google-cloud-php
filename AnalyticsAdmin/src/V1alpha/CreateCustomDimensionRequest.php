@@ -29,6 +29,22 @@ class CreateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
     private $custom_dimension = null;
 
     /**
+     * @param string                                          $parent          Required. Example format: properties/1234
+     *                                                                         Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+     * @param \Google\Analytics\Admin\V1alpha\CustomDimension $customDimension Required. The CustomDimension to create.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Admin\V1alpha\CustomDimension $customDimension): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCustomDimension($customDimension);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

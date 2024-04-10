@@ -24,14 +24,20 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProductView extends \Google\Protobuf\Internal\Message
 {
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId.
-     * Merchant API methods that operate on products take this as their `name`
-     * parameter.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Merchant API methods that operate
+     * on products take this as their `name` parameter.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 1;</code>
      */
     protected $id = null;
+    /**
+     * Channel of the product. Can be `ONLINE` or `LOCAL`.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Channel.ChannelEnum channel = 28;</code>
+     */
+    protected $channel = null;
     /**
      * Language code of the product in BCP 47 format.
      *
@@ -193,11 +199,11 @@ class ProductView extends \Google\Protobuf\Internal\Message
      */
     protected $expiration_date = null;
     /**
-     * Aggregated destination status.
+     * Aggregated status.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.AggregatedDestinationStatus aggregated_destination_status = 26;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.AggregatedReportingContextStatus aggregated_reporting_context_status = 26;</code>
      */
-    protected $aggregated_destination_status = null;
+    protected $aggregated_reporting_context_status = null;
     /**
      * List of item issues for the product.
      * **This field cannot be used for sorting the results.**
@@ -208,6 +214,21 @@ class ProductView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ProductView.ItemIssue item_issues = 27;</code>
      */
     private $item_issues;
+    /**
+     * Estimated performance potential compared to highest performing products of
+     * the merchant.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.ProductView.ClickPotential click_potential = 29;</code>
+     */
+    protected $click_potential = 0;
+    /**
+     * Rank of the product based on its click potential. A product with
+     * `click_potential_rank` 1 has the highest click potential among the
+     * merchant's products that fulfill the search query conditions.
+     *
+     * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
+     */
+    protected $click_potential_rank = null;
 
     /**
      * Constructor.
@@ -216,10 +237,12 @@ class ProductView extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           REST ID of the product, in the form of languageCode~feedLabel~offerId.
-     *           Merchant API methods that operate on products take this as their `name`
-     *           parameter.
+     *           REST ID of the product, in the form of
+     *           `channel~languageCode~feedLabel~offerId`. Merchant API methods that operate
+     *           on products take this as their `name` parameter.
      *           Required in the `SELECT` clause.
+     *     @type int $channel
+     *           Channel of the product. Can be `ONLINE` or `LOCAL`.
      *     @type string $language_code
      *           Language code of the product in BCP 47 format.
      *     @type string $feed_label
@@ -284,14 +307,21 @@ class ProductView extends \Google\Protobuf\Internal\Message
      *           The time the merchant created the product in timestamp seconds.
      *     @type \Google\Type\Date $expiration_date
      *           Expiration date for the product, specified on insertion.
-     *     @type int $aggregated_destination_status
-     *           Aggregated destination status.
+     *     @type int $aggregated_reporting_context_status
+     *           Aggregated status.
      *     @type array<\Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue>|\Google\Protobuf\Internal\RepeatedField $item_issues
      *           List of item issues for the product.
      *           **This field cannot be used for sorting the results.**
      *           **Only selected attributes of this field (for example,
      *           `item_issues.severity.aggregated_severity`) can be used for filtering the
      *           results.**
+     *     @type int $click_potential
+     *           Estimated performance potential compared to highest performing products of
+     *           the merchant.
+     *     @type int|string $click_potential_rank
+     *           Rank of the product based on its click potential. A product with
+     *           `click_potential_rank` 1 has the highest click potential among the
+     *           merchant's products that fulfill the search query conditions.
      * }
      */
     public function __construct($data = NULL) {
@@ -300,9 +330,9 @@ class ProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId.
-     * Merchant API methods that operate on products take this as their `name`
-     * parameter.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Merchant API methods that operate
+     * on products take this as their `name` parameter.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 1;</code>
@@ -324,9 +354,9 @@ class ProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * REST ID of the product, in the form of languageCode~feedLabel~offerId.
-     * Merchant API methods that operate on products take this as their `name`
-     * parameter.
+     * REST ID of the product, in the form of
+     * `channel~languageCode~feedLabel~offerId`. Merchant API methods that operate
+     * on products take this as their `name` parameter.
      * Required in the `SELECT` clause.
      *
      * Generated from protobuf field <code>optional string id = 1;</code>
@@ -337,6 +367,42 @@ class ProductView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Channel of the product. Can be `ONLINE` or `LOCAL`.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Channel.ChannelEnum channel = 28;</code>
+     * @return int
+     */
+    public function getChannel()
+    {
+        return isset($this->channel) ? $this->channel : 0;
+    }
+
+    public function hasChannel()
+    {
+        return isset($this->channel);
+    }
+
+    public function clearChannel()
+    {
+        unset($this->channel);
+    }
+
+    /**
+     * Channel of the product. Can be `ONLINE` or `LOCAL`.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Channel.ChannelEnum channel = 28;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setChannel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Type\Channel\ChannelEnum::class);
+        $this->channel = $var;
 
         return $this;
     }
@@ -1228,37 +1294,37 @@ class ProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Aggregated destination status.
+     * Aggregated status.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.AggregatedDestinationStatus aggregated_destination_status = 26;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.AggregatedReportingContextStatus aggregated_reporting_context_status = 26;</code>
      * @return int
      */
-    public function getAggregatedDestinationStatus()
+    public function getAggregatedReportingContextStatus()
     {
-        return isset($this->aggregated_destination_status) ? $this->aggregated_destination_status : 0;
+        return isset($this->aggregated_reporting_context_status) ? $this->aggregated_reporting_context_status : 0;
     }
 
-    public function hasAggregatedDestinationStatus()
+    public function hasAggregatedReportingContextStatus()
     {
-        return isset($this->aggregated_destination_status);
+        return isset($this->aggregated_reporting_context_status);
     }
 
-    public function clearAggregatedDestinationStatus()
+    public function clearAggregatedReportingContextStatus()
     {
-        unset($this->aggregated_destination_status);
+        unset($this->aggregated_reporting_context_status);
     }
 
     /**
-     * Aggregated destination status.
+     * Aggregated status.
      *
-     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.AggregatedDestinationStatus aggregated_destination_status = 26;</code>
+     * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.ProductView.AggregatedReportingContextStatus aggregated_reporting_context_status = 26;</code>
      * @param int $var
      * @return $this
      */
-    public function setAggregatedDestinationStatus($var)
+    public function setAggregatedReportingContextStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\ProductView\AggregatedDestinationStatus::class);
-        $this->aggregated_destination_status = $var;
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\ProductView\AggregatedReportingContextStatus::class);
+        $this->aggregated_reporting_context_status = $var;
 
         return $this;
     }
@@ -1293,6 +1359,74 @@ class ProductView extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Reports\V1beta\ProductView\ItemIssue::class);
         $this->item_issues = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Estimated performance potential compared to highest performing products of
+     * the merchant.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.ProductView.ClickPotential click_potential = 29;</code>
+     * @return int
+     */
+    public function getClickPotential()
+    {
+        return $this->click_potential;
+    }
+
+    /**
+     * Estimated performance potential compared to highest performing products of
+     * the merchant.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.ProductView.ClickPotential click_potential = 29;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClickPotential($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\ProductView\ClickPotential::class);
+        $this->click_potential = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rank of the product based on its click potential. A product with
+     * `click_potential_rank` 1 has the highest click potential among the
+     * merchant's products that fulfill the search query conditions.
+     *
+     * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
+     * @return int|string
+     */
+    public function getClickPotentialRank()
+    {
+        return isset($this->click_potential_rank) ? $this->click_potential_rank : 0;
+    }
+
+    public function hasClickPotentialRank()
+    {
+        return isset($this->click_potential_rank);
+    }
+
+    public function clearClickPotentialRank()
+    {
+        unset($this->click_potential_rank);
+    }
+
+    /**
+     * Rank of the product based on its click potential. A product with
+     * `click_potential_rank` 1 has the highest click potential among the
+     * merchant's products that fulfill the search query conditions.
+     *
+     * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setClickPotentialRank($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->click_potential_rank = $var;
 
         return $this;
     }

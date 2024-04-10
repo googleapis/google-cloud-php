@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * The field in a record to transform.
+ *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RecordTransformation</code>
  */
 class RecordTransformation extends \Google\Protobuf\Internal\Message

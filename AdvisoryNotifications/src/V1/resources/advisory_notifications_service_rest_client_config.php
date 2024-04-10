@@ -6,6 +6,12 @@ return [
             'GetNotification' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/notifications/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/notifications/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -17,6 +23,12 @@ return [
             'GetSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/settings}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/settings}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -28,6 +40,12 @@ return [
             'ListNotifications' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/notifications',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/notifications',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -40,6 +58,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{settings.name=organizations/*/locations/*/settings}',
                 'body' => 'settings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{settings.name=projects/*/locations/*/settings}',
+                        'body' => 'settings',
+                    ],
+                ],
                 'placeholders' => [
                     'settings.name' => [
                         'getters' => [

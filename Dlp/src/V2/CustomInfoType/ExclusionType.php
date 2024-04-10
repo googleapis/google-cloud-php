@@ -7,6 +7,8 @@ namespace Google\Cloud\Dlp\V2\CustomInfoType;
 use UnexpectedValueException;
 
 /**
+ * Type of exclusion rule.
+ *
  * Protobuf type <code>google.privacy.dlp.v2.CustomInfoType.ExclusionType</code>
  */
 class ExclusionType

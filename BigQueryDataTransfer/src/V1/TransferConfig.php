@@ -58,8 +58,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Data transfer schedule.
      * If the data source does not support a custom schedule, this should be
-     * empty. If it is empty, the default value for the data source will be
-     * used.
+     * empty. If it is empty, the default value for the data source will be used.
      * The specified times are in UTC.
      * Examples of valid format:
      * `1st,3rd monday of month 15:30`,
@@ -84,15 +83,15 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * For example, if `data_refresh_window_days = 10`, then every day
      * BigQuery reingests data for [today-10, today-1], rather than ingesting data
      * for just [today-1].
-     * Only valid if the data source supports the feature. Set the value to  0
+     * Only valid if the data source supports the feature. Set the value to 0
      * to use the default value.
      *
      * Generated from protobuf field <code>int32 data_refresh_window_days = 12;</code>
      */
     private $data_refresh_window_days = 0;
     /**
-     * Is this config disabled. When set to true, no runs are scheduled
-     * for a given transfer.
+     * Is this config disabled. When set to true, no runs will be scheduled for
+     * this transfer config.
      *
      * Generated from protobuf field <code>bool disabled = 13;</code>
      */
@@ -131,7 +130,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
      * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
+     * `projects/{project_id}/topics/{topic_id}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      */
@@ -193,8 +192,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *     @type string $schedule
      *           Data transfer schedule.
      *           If the data source does not support a custom schedule, this should be
-     *           empty. If it is empty, the default value for the data source will be
-     *           used.
+     *           empty. If it is empty, the default value for the data source will be used.
      *           The specified times are in UTC.
      *           Examples of valid format:
      *           `1st,3rd monday of month 15:30`,
@@ -211,11 +209,11 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           For example, if `data_refresh_window_days = 10`, then every day
      *           BigQuery reingests data for [today-10, today-1], rather than ingesting data
      *           for just [today-1].
-     *           Only valid if the data source supports the feature. Set the value to  0
+     *           Only valid if the data source supports the feature. Set the value to 0
      *           to use the default value.
      *     @type bool $disabled
-     *           Is this config disabled. When set to true, no runs are scheduled
-     *           for a given transfer.
+     *           Is this config disabled. When set to true, no runs will be scheduled for
+     *           this transfer config.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Data transfer modification time. Ignored by server on input.
      *     @type \Google\Protobuf\Timestamp $next_run_time
@@ -230,7 +228,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *           Pub/Sub topic where notifications will be sent after transfer runs
      *           associated with this transfer config finish.
      *           The format for specifying a pubsub topic is:
-     *           `projects/{project}/topics/{topic}`
+     *           `projects/{project_id}/topics/{topic_id}`
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $email_preferences
      *           Email notifications will be sent according to these preferences
      *           to the email address of the user who owns this transfer config.
@@ -421,8 +419,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Data transfer schedule.
      * If the data source does not support a custom schedule, this should be
-     * empty. If it is empty, the default value for the data source will be
-     * used.
+     * empty. If it is empty, the default value for the data source will be used.
      * The specified times are in UTC.
      * Examples of valid format:
      * `1st,3rd monday of month 15:30`,
@@ -444,8 +441,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Data transfer schedule.
      * If the data source does not support a custom schedule, this should be
-     * empty. If it is empty, the default value for the data source will be
-     * used.
+     * empty. If it is empty, the default value for the data source will be used.
      * The specified times are in UTC.
      * Examples of valid format:
      * `1st,3rd monday of month 15:30`,
@@ -509,7 +505,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * For example, if `data_refresh_window_days = 10`, then every day
      * BigQuery reingests data for [today-10, today-1], rather than ingesting data
      * for just [today-1].
-     * Only valid if the data source supports the feature. Set the value to  0
+     * Only valid if the data source supports the feature. Set the value to 0
      * to use the default value.
      *
      * Generated from protobuf field <code>int32 data_refresh_window_days = 12;</code>
@@ -525,7 +521,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * For example, if `data_refresh_window_days = 10`, then every day
      * BigQuery reingests data for [today-10, today-1], rather than ingesting data
      * for just [today-1].
-     * Only valid if the data source supports the feature. Set the value to  0
+     * Only valid if the data source supports the feature. Set the value to 0
      * to use the default value.
      *
      * Generated from protobuf field <code>int32 data_refresh_window_days = 12;</code>
@@ -541,8 +537,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Is this config disabled. When set to true, no runs are scheduled
-     * for a given transfer.
+     * Is this config disabled. When set to true, no runs will be scheduled for
+     * this transfer config.
      *
      * Generated from protobuf field <code>bool disabled = 13;</code>
      * @return bool
@@ -553,8 +549,8 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Is this config disabled. When set to true, no runs are scheduled
-     * for a given transfer.
+     * Is this config disabled. When set to true, no runs will be scheduled for
+     * this transfer config.
      *
      * Generated from protobuf field <code>bool disabled = 13;</code>
      * @param bool $var
@@ -722,7 +718,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
      * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
+     * `projects/{project_id}/topics/{topic_id}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      * @return string
@@ -736,7 +732,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
      * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
+     * `projects/{project_id}/topics/{topic_id}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      * @param string $var

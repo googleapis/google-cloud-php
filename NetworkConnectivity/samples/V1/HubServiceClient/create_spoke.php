@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_HubService_CreateSpoke_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\CreateSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 use Google\Rpc\Status;
 
@@ -41,13 +42,17 @@ function create_spoke_sample(string $formattedParent, string $spokeId): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $spoke = new Spoke();
+    $request = (new CreateSpokeRequest())
+        ->setParent($formattedParent)
+        ->setSpokeId($spokeId)
+        ->setSpoke($spoke);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $hubServiceClient->createSpoke($formattedParent, $spokeId, $spoke);
+        $response = $hubServiceClient->createSpoke($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -20,25 +20,32 @@ class LaunchStage
      */
     const LAUNCH_STAGE_UNSPECIFIED = 0;
     /**
-     * Used to indicate the PublisherModel is at Experimental launch stage.
+     * Used to indicate the PublisherModel is at Experimental launch stage,
+     * available to a small set of customers.
      *
      * Generated from protobuf enum <code>EXPERIMENTAL = 1;</code>
      */
     const EXPERIMENTAL = 1;
     /**
-     * Used to indicate the PublisherModel is at Private Preview launch stage.
+     * Used to indicate the PublisherModel is at Private Preview launch stage,
+     * only available to a small set of customers, although a larger set of
+     * customers than an Experimental launch. Previews are the first launch
+     * stage used to get feedback from customers.
      *
      * Generated from protobuf enum <code>PRIVATE_PREVIEW = 2;</code>
      */
     const PRIVATE_PREVIEW = 2;
     /**
-     * Used to indicate the PublisherModel is at Public Preview launch stage.
+     * Used to indicate the PublisherModel is at Public Preview launch stage,
+     * available to all customers, although not supported for production
+     * workloads.
      *
      * Generated from protobuf enum <code>PUBLIC_PREVIEW = 3;</code>
      */
     const PUBLIC_PREVIEW = 3;
     /**
-     * Used to indicate the PublisherModel is at GA launch stage.
+     * Used to indicate the PublisherModel is at GA launch stage, available to
+     * all customers and ready for production workload.
      *
      * Generated from protobuf enum <code>GA = 4;</code>
      */

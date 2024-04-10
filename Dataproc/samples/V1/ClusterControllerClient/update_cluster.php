@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_ClusterController_UpdateCluster_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dataproc\V1\Client\ClusterControllerClient;
 use Google\Cloud\Dataproc\V1\Cluster;
-use Google\Cloud\Dataproc\V1\ClusterControllerClient;
+use Google\Cloud\Dataproc\V1\UpdateClusterRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -58,22 +59,22 @@ function update_cluster_sample(
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $cluster = (new Cluster())
         ->setProjectId($clusterProjectId)
         ->setClusterName($clusterClusterName);
     $updateMask = new FieldMask();
+    $request = (new UpdateClusterRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setClusterName($clusterName)
+        ->setCluster($cluster)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $clusterControllerClient->updateCluster(
-            $projectId,
-            $region,
-            $clusterName,
-            $cluster,
-            $updateMask
-        );
+        $response = $clusterControllerClient->updateCluster($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

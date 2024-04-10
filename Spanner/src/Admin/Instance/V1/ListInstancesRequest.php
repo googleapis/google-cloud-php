@@ -60,6 +60,17 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 4;</code>
      */
     private $filter = '';
+    /**
+     * Deadline used while retrieving metadata for instances.
+     * Instances whose metadata cannot be retrieved within this deadline will be
+     * added to
+     * [unreachable][google.spanner.admin.instance.v1.ListInstancesResponse.unreachable]
+     * in
+     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_deadline = 5;</code>
+     */
+    private $instance_deadline = null;
 
     /**
      * @param string $parent Required. The name of the project for which a list of instances is
@@ -110,6 +121,13 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *             * `name:howl labels.env:dev` --> The instance's name contains "howl" and
      *                                            it has the label "env" with its value
      *                                            containing "dev".
+     *     @type \Google\Protobuf\Timestamp $instance_deadline
+     *           Deadline used while retrieving metadata for instances.
+     *           Instances whose metadata cannot be retrieved within this deadline will be
+     *           added to
+     *           [unreachable][google.spanner.admin.instance.v1.ListInstancesResponse.unreachable]
+     *           in
+     *           [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      * }
      */
     public function __construct($data = NULL) {
@@ -257,6 +275,52 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Deadline used while retrieving metadata for instances.
+     * Instances whose metadata cannot be retrieved within this deadline will be
+     * added to
+     * [unreachable][google.spanner.admin.instance.v1.ListInstancesResponse.unreachable]
+     * in
+     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_deadline = 5;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getInstanceDeadline()
+    {
+        return $this->instance_deadline;
+    }
+
+    public function hasInstanceDeadline()
+    {
+        return isset($this->instance_deadline);
+    }
+
+    public function clearInstanceDeadline()
+    {
+        unset($this->instance_deadline);
+    }
+
+    /**
+     * Deadline used while retrieving metadata for instances.
+     * Instances whose metadata cannot be retrieved within this deadline will be
+     * added to
+     * [unreachable][google.spanner.admin.instance.v1.ListInstancesResponse.unreachable]
+     * in
+     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp instance_deadline = 5;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setInstanceDeadline($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->instance_deadline = $var;
 
         return $this;
     }

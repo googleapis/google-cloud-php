@@ -40,7 +40,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      */
     private $medical = 0;
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may
+     * include death, serious harm, or injury to individuals or groups of
+     * individuals.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
@@ -72,7 +74,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      *     @type int $medical
      *           Likelihood that this is a medical image.
      *     @type int $violence
-     *           Likelihood that this image contains violent content.
+     *           Likelihood that this image contains violent content. Violent content may
+     *           include death, serious harm, or injury to individuals or groups of
+     *           individuals.
      *     @type int $racy
      *           Likelihood that the request image contains racy content. Racy content may
      *           include (but is not limited to) skimpy or sheer clothing, strategically
@@ -172,7 +176,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may
+     * include death, serious harm, or injury to individuals or groups of
+     * individuals.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      * @return int
@@ -183,7 +189,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Likelihood that this image contains violent content.
+     * Likelihood that this image contains violent content. Violent content may
+     * include death, serious harm, or injury to individuals or groups of
+     * individuals.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      * @param int $var

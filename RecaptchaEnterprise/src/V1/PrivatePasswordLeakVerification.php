@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
+     * Required. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
      * username. It is used to look up password leaks associated with that hash
      * prefix.
      *
-     * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $lookup_hash_prefix = '';
     /**
@@ -55,7 +55,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $lookup_hash_prefix
-     *           Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
+     *           Required. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
      *           username. It is used to look up password leaks associated with that hash
      *           prefix.
      *     @type string $encrypted_user_credentials_hash
@@ -78,11 +78,11 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
+     * Required. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
      * username. It is used to look up password leaks associated with that hash
      * prefix.
      *
-     * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getLookupHashPrefix()
@@ -91,11 +91,11 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
+     * Required. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
      * username. It is used to look up password leaks associated with that hash
      * prefix.
      *
-     * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

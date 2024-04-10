@@ -78,6 +78,21 @@ return [
                     'dns_authorization_id',
                 ],
             ],
+            'CreateTrustConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/trustConfigs',
+                'body' => 'trust_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'trust_config_id',
+                ],
+            ],
             'DeleteCertificate' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/certificates/*}',
@@ -125,6 +140,17 @@ return [
             'DeleteDnsAuthorization' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/dnsAuthorizations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTrustConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/trustConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -188,6 +214,17 @@ return [
                     ],
                 ],
             ],
+            'GetTrustConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/trustConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListCertificateIssuanceConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/certificateIssuanceConfigs',
@@ -235,6 +272,17 @@ return [
             'ListDnsAuthorizations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dnsAuthorizations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTrustConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/trustConfigs',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -299,6 +347,22 @@ return [
                     'dns_authorization.name' => [
                         'getters' => [
                             'getDnsAuthorization',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateTrustConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{trust_config.name=projects/*/locations/*/trustConfigs/*}',
+                'body' => 'trust_config',
+                'placeholders' => [
+                    'trust_config.name' => [
+                        'getters' => [
+                            'getTrustConfig',
                             'getName',
                         ],
                     ],

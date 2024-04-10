@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\BigQuery\Reservation\V1\Assignment;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsRequest;
 
 /**
  * Lists assignments.
@@ -65,10 +66,14 @@ function list_assignments_sample(string $formattedParent): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAssignmentsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $reservationServiceClient->listAssignments($formattedParent);
+        $response = $reservationServiceClient->listAssignments($request);
 
         /** @var Assignment $element */
         foreach ($response as $element) {

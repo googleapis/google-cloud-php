@@ -91,17 +91,20 @@ class EntityMapperTest extends TestCase
         $this->assertTrue($res['foo']);
     }
 
-    public function testResponseToPropertiesDoubleValue()
+    /**
+     * @dataProvider datastoreToSimpleDoubleValueCases
+     */
+    public function testResponseToPropertiesDoubleValue($input, $expected)
     {
         $data = [
             'foo' => [
-                'doubleValue' => 1.1
+                'doubleValue' => $input
             ]
         ];
 
         $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
-        $this->assertEquals(1.1, $res['foo']);
+        $this->compareResult($expected, $res['foo']);
     }
 
     public function testResponseToPropertiesTimestampValue()
@@ -563,14 +566,17 @@ class EntityMapperTest extends TestCase
         $this->assertEquals(['prop'], $res[Entity::EXCLUDE_FROM_INDEXES]);
     }
 
-    public function testConvertValueDouble()
+    /**
+     * @dataProvider datastoreToSimpleDoubleValueCases
+     */
+    public function testConvertValueDouble($input, $expected)
     {
         $type = 'doubleValue';
-        $val = 1.1;
+        $val = $input;
 
         $res = $this->mapper->convertValue($type, $val);
         $this->assertIsFloat($res);
-        $this->assertEquals(1.1, $res);
+        $this->compareResult($expected, $res);
     }
 
     public function testConvertValueDoubleWithCast()
@@ -670,11 +676,24 @@ class EntityMapperTest extends TestCase
         $this->assertEquals(1, $int['integerValue']);
     }
 
-    public function testValueObjectDouble()
+    /**
+     * @dataProvider valueObjectDoubleCases
+     */
+    public function testValueObjectDoubleForGrpcClient($input, $expected)
     {
-        $double = $this->mapper->valueObject(1.1);
+        $double = $this->mapper->valueObject($input);
 
-        $this->assertEquals(1.1, $double['doubleValue']);
+        $this->compareResult($expected, $double['doubleValue']);
+    }
+
+    /**
+     * @dataProvider valueObjectDoubleForRestCases
+     */
+    public function testValueObjectDoubleForRestClient($input, $expected)
+    {
+        $mapper = new EntityMapper('foo', true, false, 'rest');
+        $double = $mapper->valueObject($input);
+        $this->compareResult($expected, $double['doubleValue']);
     }
 
     public function testValueObjectString()
@@ -897,5 +916,56 @@ class EntityMapperTest extends TestCase
         $this->assertEquals([
             'integerValue' => $int64->get()
         ], $res);
+    }
+
+    public function datastoreToSimpleDoubleValueCases()
+    {
+        return [
+            [1.1, 1.1],
+
+            // Happens when using rest client
+            ['Infinity', INF],
+            ['-Infinity', -INF],
+            ['NaN', NAN],
+
+            // Happens when using grpc client
+            [INF, INF],
+            [-INF, -INF],
+            [NAN, NAN]
+        ];
+    }
+
+    public function valueObjectDoubleCases()
+    {
+        return [
+            [INF, INF],
+            [1.1, 1.1],
+            [-INF, -INF],
+            [NAN, NAN]
+        ];
+    }
+
+    public function valueObjectDoubleForRestCases()
+    {
+        return [
+            [INF, 'Infinity'],
+            [1.1, 1.1],
+            [-INF, '-Infinity'],
+            [NAN, 'NaN']
+        ];
+    }
+
+    private function compareResult($expected, $actual)
+    {
+        if (is_float($expected)) {
+            if (is_nan($expected)) {
+                $this->assertNan($actual);
+            } else {
+                $this->assertEqualsWithDelta($expected, $actual, 0.01);
+            }
+        } else {
+            // Used because assertEquals(null, '') doesn't fails
+            $this->assertSame($expected, $actual);
+        }
     }
 }

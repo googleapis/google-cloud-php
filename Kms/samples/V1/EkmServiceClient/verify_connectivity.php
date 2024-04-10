@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_EkmService_VerifyConnectivity_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Kms\V1\EkmServiceClient;
+use Google\Cloud\Kms\V1\Client\EkmServiceClient;
+use Google\Cloud\Kms\V1\VerifyConnectivityRequest;
 use Google\Cloud\Kms\V1\VerifyConnectivityResponse;
 
 /**
@@ -43,10 +44,14 @@ function verify_connectivity_sample(string $formattedName): void
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
+    // Prepare the request message.
+    $request = (new VerifyConnectivityRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var VerifyConnectivityResponse $response */
-        $response = $ekmServiceClient->verifyConnectivity($formattedName);
+        $response = $ekmServiceClient->verifyConnectivity($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

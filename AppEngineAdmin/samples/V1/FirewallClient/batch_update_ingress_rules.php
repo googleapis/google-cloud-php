@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START appengine_v1_generated_Firewall_BatchUpdateIngressRules_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\AppEngine\V1\BatchUpdateIngressRulesRequest;
 use Google\Cloud\AppEngine\V1\BatchUpdateIngressRulesResponse;
-use Google\Cloud\AppEngine\V1\FirewallClient;
+use Google\Cloud\AppEngine\V1\Client\FirewallClient;
 
 /**
  * Replaces the entire firewall ruleset in one bulk operation. This overrides
@@ -45,10 +46,13 @@ function batch_update_ingress_rules_sample(): void
     // Create a client.
     $firewallClient = new FirewallClient();
 
+    // Prepare the request message.
+    $request = new BatchUpdateIngressRulesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var BatchUpdateIngressRulesResponse $response */
-        $response = $firewallClient->batchUpdateIngressRules();
+        $response = $firewallClient->batchUpdateIngressRules($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

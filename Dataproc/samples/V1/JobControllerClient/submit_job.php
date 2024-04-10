@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataproc_v1_generated_JobController_SubmitJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataproc\V1\Client\JobControllerClient;
 use Google\Cloud\Dataproc\V1\Job;
-use Google\Cloud\Dataproc\V1\JobControllerClient;
 use Google\Cloud\Dataproc\V1\JobPlacement;
+use Google\Cloud\Dataproc\V1\SubmitJobRequest;
 
 /**
  * Submits a job to a cluster.
@@ -44,16 +45,20 @@ function submit_job_sample(
     // Create a client.
     $jobControllerClient = new JobControllerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobPlacement = (new JobPlacement())
         ->setClusterName($jobPlacementClusterName);
     $job = (new Job())
         ->setPlacement($jobPlacement);
+    $request = (new SubmitJobRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setJob($job);
 
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $jobControllerClient->submitJob($projectId, $region, $job);
+        $response = $jobControllerClient->submitJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

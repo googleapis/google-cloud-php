@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_UpdateConnectionProfile_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
 use Google\Cloud\Datastream\V1\ConnectionProfile;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\UpdateConnectionProfileRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,14 +40,16 @@ function update_connection_profile_sample(string $connectionProfileDisplayName):
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $connectionProfile = (new ConnectionProfile())
         ->setDisplayName($connectionProfileDisplayName);
+    $request = (new UpdateConnectionProfileRequest())
+        ->setConnectionProfile($connectionProfile);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $datastreamClient->updateConnectionProfile($connectionProfile);
+        $response = $datastreamClient->updateConnectionProfile($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

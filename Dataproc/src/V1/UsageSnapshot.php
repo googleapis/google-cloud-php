@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The usage snaphot represents the resources consumed by a workload at a
+ * The usage snapshot represents the resources consumed by a workload at a
  * specified time.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.UsageSnapshot</code>
@@ -32,6 +32,35 @@ class UsageSnapshot extends \Google\Protobuf\Internal\Message
      */
     private $shuffle_storage_gb = 0;
     /**
+     * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at
+     * premium tier (see [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing)).
+     *
+     * Generated from protobuf field <code>int64 milli_dcu_premium = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $milli_dcu_premium = 0;
+    /**
+     * Optional. Shuffle Storage in gigabytes (GB) charged at premium tier. (see
+     * [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing))
+     *
+     * Generated from protobuf field <code>int64 shuffle_storage_gb_premium = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $shuffle_storage_gb_premium = 0;
+    /**
+     * Optional. Milli (one-thousandth) accelerator. (see [Dataproc
+     * Serverless pricing] (https://cloud.google.com/dataproc-serverless/pricing))
+     *
+     * Generated from protobuf field <code>int64 milli_accelerator = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $milli_accelerator = 0;
+    /**
+     * Optional. Accelerator type being used, if any
+     *
+     * Generated from protobuf field <code>string accelerator_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $accelerator_type = '';
+    /**
      * Optional. The timestamp of the usage snapshot.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -51,6 +80,19 @@ class UsageSnapshot extends \Google\Protobuf\Internal\Message
      *     @type int|string $shuffle_storage_gb
      *           Optional. Shuffle Storage in gigabytes (GB). (see [Dataproc Serverless
      *           pricing] (https://cloud.google.com/dataproc-serverless/pricing))
+     *     @type int|string $milli_dcu_premium
+     *           Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at
+     *           premium tier (see [Dataproc Serverless pricing]
+     *           (https://cloud.google.com/dataproc-serverless/pricing)).
+     *     @type int|string $shuffle_storage_gb_premium
+     *           Optional. Shuffle Storage in gigabytes (GB) charged at premium tier. (see
+     *           [Dataproc Serverless pricing]
+     *           (https://cloud.google.com/dataproc-serverless/pricing))
+     *     @type int|string $milli_accelerator
+     *           Optional. Milli (one-thousandth) accelerator. (see [Dataproc
+     *           Serverless pricing] (https://cloud.google.com/dataproc-serverless/pricing))
+     *     @type string $accelerator_type
+     *           Optional. Accelerator type being used, if any
      *     @type \Google\Protobuf\Timestamp $snapshot_time
      *           Optional. The timestamp of the usage snapshot.
      * }
@@ -114,6 +156,120 @@ class UsageSnapshot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->shuffle_storage_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at
+     * premium tier (see [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing)).
+     *
+     * Generated from protobuf field <code>int64 milli_dcu_premium = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMilliDcuPremium()
+    {
+        return $this->milli_dcu_premium;
+    }
+
+    /**
+     * Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at
+     * premium tier (see [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing)).
+     *
+     * Generated from protobuf field <code>int64 milli_dcu_premium = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMilliDcuPremium($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->milli_dcu_premium = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Shuffle Storage in gigabytes (GB) charged at premium tier. (see
+     * [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing))
+     *
+     * Generated from protobuf field <code>int64 shuffle_storage_gb_premium = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getShuffleStorageGbPremium()
+    {
+        return $this->shuffle_storage_gb_premium;
+    }
+
+    /**
+     * Optional. Shuffle Storage in gigabytes (GB) charged at premium tier. (see
+     * [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing))
+     *
+     * Generated from protobuf field <code>int64 shuffle_storage_gb_premium = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setShuffleStorageGbPremium($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->shuffle_storage_gb_premium = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Milli (one-thousandth) accelerator. (see [Dataproc
+     * Serverless pricing] (https://cloud.google.com/dataproc-serverless/pricing))
+     *
+     * Generated from protobuf field <code>int64 milli_accelerator = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMilliAccelerator()
+    {
+        return $this->milli_accelerator;
+    }
+
+    /**
+     * Optional. Milli (one-thousandth) accelerator. (see [Dataproc
+     * Serverless pricing] (https://cloud.google.com/dataproc-serverless/pricing))
+     *
+     * Generated from protobuf field <code>int64 milli_accelerator = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMilliAccelerator($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->milli_accelerator = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Accelerator type being used, if any
+     *
+     * Generated from protobuf field <code>string accelerator_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAcceleratorType()
+    {
+        return $this->accelerator_type;
+    }
+
+    /**
+     * Optional. Accelerator type being used, if any
+     *
+     * Generated from protobuf field <code>string accelerator_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAcceleratorType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->accelerator_type = $var;
 
         return $this;
     }

@@ -22,9 +22,47 @@ return [
                     ],
                 ],
             ],
+            'CreatePreview' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\Preview',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '300000',
+                    'pollDelayMultiplier' => '1.25',
+                    'maxPollDelayMillis' => '3600000',
+                    'totalPollTimeoutMillis' => '43200000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDeployment' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Config\V1\Deployment',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '300000',
+                    'pollDelayMultiplier' => '1.25',
+                    'maxPollDelayMillis' => '3600000',
+                    'totalPollTimeoutMillis' => '43200000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeletePreview' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\Preview',
                     'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
                     'initialPollDelayMillis' => '300000',
                     'pollDelayMultiplier' => '1.25',
@@ -135,6 +173,18 @@ return [
                     ],
                 ],
             ],
+            'ExportPreviewResult' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ExportPreviewResultResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ExportRevisionStatefile' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Statefile',
@@ -159,6 +209,18 @@ return [
                     ],
                 ],
             ],
+            'GetPreview' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\Preview',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetResource' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Resource',
@@ -174,6 +236,18 @@ return [
             'GetRevision' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Revision',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTerraformVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\TerraformVersion',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -215,6 +289,26 @@ return [
                     ],
                 ],
             ],
+            'ListPreviews' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getPreviews',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ListPreviewsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListResources' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -246,6 +340,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\ListRevisionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTerraformVersions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTerraformVersions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ListTerraformVersionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -331,9 +445,11 @@ return [
             'templateMap' => [
                 'deployment' => 'projects/{project}/locations/{location}/deployments/{deployment}',
                 'location' => 'projects/{project}/locations/{location}',
+                'preview' => 'projects/{project}/locations/{location}/previews/{preview}',
                 'resource' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}',
                 'revision' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}',
                 'serviceAccount' => 'projects/{project}/serviceAccounts/{service_account}',
+                'terraformVersion' => 'projects/{project}/locations/{location}/terraformVersions/{terraform_version}',
                 'workerPool' => 'projects/{project}/locations/{location}/workerPools/{worker_pool}',
             ],
         ],

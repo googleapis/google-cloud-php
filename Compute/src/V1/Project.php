@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Project extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output Only] The Cloud Armor tier for this project. It can be one of the following values: CA_STANDARD, CA_ENTERPRISE_PAYGO. If this field is not specified, it is assumed to be CA_STANDARD.
+     * Check the CloudArmorTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string cloud_armor_tier = 4427052;</code>
+     */
+    private $cloud_armor_tier = null;
+    /**
      * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
@@ -109,6 +116,9 @@ class Project extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $cloud_armor_tier
+     *           [Output Only] The Cloud Armor tier for this project. It can be one of the following values: CA_STANDARD, CA_ENTERPRISE_PAYGO. If this field is not specified, it is assumed to be CA_STANDARD.
+     *           Check the CloudArmorTier enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\Metadata $common_instance_metadata
      *           Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
      *     @type string $creation_timestamp
@@ -145,6 +155,44 @@ class Project extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output Only] The Cloud Armor tier for this project. It can be one of the following values: CA_STANDARD, CA_ENTERPRISE_PAYGO. If this field is not specified, it is assumed to be CA_STANDARD.
+     * Check the CloudArmorTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string cloud_armor_tier = 4427052;</code>
+     * @return string
+     */
+    public function getCloudArmorTier()
+    {
+        return isset($this->cloud_armor_tier) ? $this->cloud_armor_tier : '';
+    }
+
+    public function hasCloudArmorTier()
+    {
+        return isset($this->cloud_armor_tier);
+    }
+
+    public function clearCloudArmorTier()
+    {
+        unset($this->cloud_armor_tier);
+    }
+
+    /**
+     * [Output Only] The Cloud Armor tier for this project. It can be one of the following values: CA_STANDARD, CA_ENTERPRISE_PAYGO. If this field is not specified, it is assumed to be CA_STANDARD.
+     * Check the CloudArmorTier enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string cloud_armor_tier = 4427052;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCloudArmorTier($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cloud_armor_tier = $var;
+
+        return $this;
     }
 
     /**

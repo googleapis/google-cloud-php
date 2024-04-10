@@ -160,6 +160,8 @@ class LifecycleTest extends TestCase
 
         $result = $this->lifecycle->toArray();
 
+        $this->assertEquals('SetStorageClass', $result['rule'][0]['action']['type']);
+
         $this->assertEquals(
             $dateString,
             $result['rule'][0]['condition'][$rule]
@@ -185,6 +187,39 @@ class LifecycleTest extends TestCase
         ]);
 
         $result = $this->lifecycle->toArray();
+
+        $this->assertEquals('Delete', $result['rule'][0]['action']['type']);
+
+        $this->assertEquals(
+            $dateString,
+            $result['rule'][0]['condition'][$rule]
+        );
+
+        $this->assertEquals(
+            $dateString,
+            $result['rule'][1]['condition'][$rule]
+        );
+    }
+
+    /**
+     * @dataProvider dateTimeRules
+     */
+    public function testAddAbortIncompleteMultipartUploadRule($rule, \DateTimeInterface $dt, $dateString)
+    {
+        $this->lifecycle->addAbortIncompleteMultipartUploadRule([
+            $rule => $dt
+        ]);
+
+        $this->lifecycle->addAbortIncompleteMultipartUploadRule([
+            $rule => $dateString
+        ]);
+
+        $result = $this->lifecycle->toArray();
+
+        $this->assertEquals(
+            'AbortIncompleteMultipartUpload',
+            $result['rule'][0]['action']['type']
+        );
 
         $this->assertEquals(
             $dateString,

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatatransfer_v1_generated_DataTransferService_GetDataSource_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
 use Google\Cloud\BigQuery\DataTransfer\V1\DataSource;
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\GetDataSourceRequest;
 
 /**
  * Retrieves a supported data source and returns its settings.
@@ -40,10 +41,14 @@ function get_data_source_sample(string $formattedName): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetDataSourceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DataSource $response */
-        $response = $dataTransferServiceClient->getDataSource($formattedName);
+        $response = $dataTransferServiceClient->getDataSource($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

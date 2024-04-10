@@ -21,6 +21,12 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string bucket_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $bucket_uri = '';
+    /**
+     * Optional. Specifies the type of the objects in `bucket_uri`.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.GcsSource.BucketObjectType bucket_object_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $bucket_object_type = 0;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *
      *     @type string $bucket_uri
      *           Required. The Cloud Storage bucket containing source objects.
+     *     @type int $bucket_object_type
+     *           Optional. Specifies the type of the objects in `bucket_uri`.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->bucket_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the type of the objects in `bucket_uri`.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.GcsSource.BucketObjectType bucket_object_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getBucketObjectType()
+    {
+        return $this->bucket_object_type;
+    }
+
+    /**
+     * Optional. Specifies the type of the objects in `bucket_uri`.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.GcsSource.BucketObjectType bucket_object_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBucketObjectType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\GcsSource\BucketObjectType::class);
+        $this->bucket_object_type = $var;
 
         return $this;
     }

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Eventarc\V1\Channel;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\DeleteChannelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,15 @@ function delete_channel_sample(string $formattedName, bool $validateOnly): void
     // Create a client.
     $eventarcClient = new EventarcClient();
 
+    // Prepare the request message.
+    $request = (new DeleteChannelRequest())
+        ->setName($formattedName)
+        ->setValidateOnly($validateOnly);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $eventarcClient->deleteChannel($formattedName, $validateOnly);
+        $response = $eventarcClient->deleteChannel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

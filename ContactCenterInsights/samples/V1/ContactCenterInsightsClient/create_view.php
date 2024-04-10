@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_CreateView_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\CreateViewRequest;
 use Google\Cloud\ContactCenterInsights\V1\View;
 
 /**
@@ -41,13 +42,16 @@ function create_view_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $view = new View();
+    $request = (new CreateViewRequest())
+        ->setParent($formattedParent)
+        ->setView($view);
 
     // Call the API and handle any network failures.
     try {
         /** @var View $response */
-        $response = $contactCenterInsightsClient->createView($formattedParent, $view);
+        $response = $contactCenterInsightsClient->createView($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

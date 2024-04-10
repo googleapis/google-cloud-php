@@ -62,9 +62,7 @@ use Google\Cloud\AdvisoryNotifications\V1\UpdateSettingsRequest;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient}
- * to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AdvisoryNotifications\V1\Client\AdvisoryNotificationsServiceClient}.
  */
 class AdvisoryNotificationsServiceGapicClient
 {
@@ -73,8 +71,15 @@ class AdvisoryNotificationsServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.advisorynotifications.v1.AdvisoryNotificationsService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'advisorynotifications.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'advisorynotifications.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -90,6 +95,18 @@ class AdvisoryNotificationsServiceGapicClient
     private static $locationNameTemplate;
 
     private static $notificationNameTemplate;
+
+    private static $organizationLocationNameTemplate;
+
+    private static $organizationLocationNotificationNameTemplate;
+
+    private static $organizationLocationSettingsNameTemplate;
+
+    private static $projectLocationNameTemplate;
+
+    private static $projectLocationNotificationNameTemplate;
+
+    private static $projectLocationSettingsNameTemplate;
 
     private static $settingsNameTemplate;
 
@@ -145,6 +162,72 @@ class AdvisoryNotificationsServiceGapicClient
         return self::$notificationNameTemplate;
     }
 
+    private static function getOrganizationLocationNameTemplate()
+    {
+        if (self::$organizationLocationNameTemplate == null) {
+            self::$organizationLocationNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}'
+            );
+        }
+
+        return self::$organizationLocationNameTemplate;
+    }
+
+    private static function getOrganizationLocationNotificationNameTemplate()
+    {
+        if (self::$organizationLocationNotificationNameTemplate == null) {
+            self::$organizationLocationNotificationNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/notifications/{notification}'
+            );
+        }
+
+        return self::$organizationLocationNotificationNameTemplate;
+    }
+
+    private static function getOrganizationLocationSettingsNameTemplate()
+    {
+        if (self::$organizationLocationSettingsNameTemplate == null) {
+            self::$organizationLocationSettingsNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/settings'
+            );
+        }
+
+        return self::$organizationLocationSettingsNameTemplate;
+    }
+
+    private static function getProjectLocationNameTemplate()
+    {
+        if (self::$projectLocationNameTemplate == null) {
+            self::$projectLocationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
+        }
+
+        return self::$projectLocationNameTemplate;
+    }
+
+    private static function getProjectLocationNotificationNameTemplate()
+    {
+        if (self::$projectLocationNotificationNameTemplate == null) {
+            self::$projectLocationNotificationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/notifications/{notification}'
+            );
+        }
+
+        return self::$projectLocationNotificationNameTemplate;
+    }
+
+    private static function getProjectLocationSettingsNameTemplate()
+    {
+        if (self::$projectLocationSettingsNameTemplate == null) {
+            self::$projectLocationSettingsNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/settings'
+            );
+        }
+
+        return self::$projectLocationSettingsNameTemplate;
+    }
+
     private static function getSettingsNameTemplate()
     {
         if (self::$settingsNameTemplate == null) {
@@ -162,6 +245,12 @@ class AdvisoryNotificationsServiceGapicClient
             self::$pathTemplateMap = [
                 'location' => self::getLocationNameTemplate(),
                 'notification' => self::getNotificationNameTemplate(),
+                'organizationLocation' => self::getOrganizationLocationNameTemplate(),
+                'organizationLocationNotification' => self::getOrganizationLocationNotificationNameTemplate(),
+                'organizationLocationSettings' => self::getOrganizationLocationSettingsNameTemplate(),
+                'projectLocation' => self::getProjectLocationNameTemplate(),
+                'projectLocationNotification' => self::getProjectLocationNotificationNameTemplate(),
+                'projectLocationSettings' => self::getProjectLocationSettingsNameTemplate(),
                 'settings' => self::getSettingsNameTemplate(),
             ];
         }
@@ -209,6 +298,120 @@ class AdvisoryNotificationsServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted organization_location resource.
+     */
+    public static function organizationLocationName($organization, $location)
+    {
+        return self::getOrganizationLocationNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_notification resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $notification
+     *
+     * @return string The formatted organization_location_notification resource.
+     */
+    public static function organizationLocationNotificationName(
+        $organization,
+        $location,
+        $notification
+    ) {
+        return self::getOrganizationLocationNotificationNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'notification' => $notification,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_settings resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted organization_location_settings resource.
+     */
+    public static function organizationLocationSettingsName(
+        $organization,
+        $location
+    ) {
+        return self::getOrganizationLocationSettingsNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location resource.
+     */
+    public static function projectLocationName($project, $location)
+    {
+        return self::getProjectLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_notification resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $notification
+     *
+     * @return string The formatted project_location_notification resource.
+     */
+    public static function projectLocationNotificationName(
+        $project,
+        $location,
+        $notification
+    ) {
+        return self::getProjectLocationNotificationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'notification' => $notification,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_settings resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_settings resource.
+     */
+    public static function projectLocationSettingsName($project, $location)
+    {
+        return self::getProjectLocationSettingsNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a settings
      * resource.
      *
@@ -231,6 +434,12 @@ class AdvisoryNotificationsServiceGapicClient
      * Template: Pattern
      * - location: organizations/{organization}/locations/{location}
      * - notification: organizations/{organization}/locations/{location}/notifications/{notification}
+     * - organizationLocation: organizations/{organization}/locations/{location}
+     * - organizationLocationNotification: organizations/{organization}/locations/{location}/notifications/{notification}
+     * - organizationLocationSettings: organizations/{organization}/locations/{location}/settings
+     * - projectLocation: projects/{project}/locations/{location}
+     * - projectLocationNotification: projects/{project}/locations/{location}/notifications/{notification}
+     * - projectLocationSettings: projects/{project}/locations/{location}/settings
      * - settings: organizations/{organization}/locations/{location}/settings
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -348,7 +557,8 @@ class AdvisoryNotificationsServiceGapicClient
      *
      * @param string $name         Required. A name of the notification to retrieve.
      *                             Format:
-     *                             organizations/{organization}/locations/{location}/notifications/{notification}.
+     *                             organizations/{organization}/locations/{location}/notifications/{notification}
+     *                             or projects/{projects}/locations/{location}/notifications/{notification}.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -408,7 +618,8 @@ class AdvisoryNotificationsServiceGapicClient
      *
      * @param string $name         Required. The resource name of the settings to retrieve.
      *                             Format:
-     *                             organizations/{organization}/locations/{location}/settings.
+     *                             organizations/{organization}/locations/{location}/settings or
+     *                             projects/{projects}/locations/{location}/settings.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -469,7 +680,8 @@ class AdvisoryNotificationsServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of notifications.
-     *                             Must be of the form "organizations/{organization}/locations/{location}".
+     *                             Must be of the form "organizations/{organization}/locations/{location}"
+     *                             or "projects/{project}/locations/{location}".
      * @param array  $optionalArgs {
      *     Optional.
      *

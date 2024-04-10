@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicemanagement_v1_generated_ServiceManager_DeleteService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\DeleteServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -47,10 +48,14 @@ function delete_service_sample(string $serviceName): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteServiceRequest())
+        ->setServiceName($serviceName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $serviceManagerClient->deleteService($serviceName);
+        $response = $serviceManagerClient->deleteService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

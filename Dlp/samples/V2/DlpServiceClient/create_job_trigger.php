@@ -24,20 +24,23 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_CreateJobTrigger_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\CreateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\JobTrigger;
 use Google\Cloud\Dlp\V2\JobTrigger\Status;
 
 /**
  * Creates a job trigger to run DLP actions such as scanning storage for
  * sensitive information on a set schedule.
- * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+ * to learn more.
  *
  * @param string $formattedParent  Parent resource name.
  *
  *                                 The format of this value varies depending on whether you have [specified a
  *                                 processing
- *                                 location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                 location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                 + Projects scope, location specified:<br/>
  *                                 `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -57,14 +60,17 @@ function create_job_trigger_sample(string $formattedParent, int $jobTriggerStatu
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $jobTrigger = (new JobTrigger())
         ->setStatus($jobTriggerStatus);
+    $request = (new CreateJobTriggerRequest())
+        ->setParent($formattedParent)
+        ->setJobTrigger($jobTrigger);
 
     // Call the API and handle any network failures.
     try {
         /** @var JobTrigger $response */
-        $response = $dlpServiceClient->createJobTrigger($formattedParent, $jobTrigger);
+        $response = $dlpServiceClient->createJobTrigger($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

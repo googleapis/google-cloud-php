@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigquerydatatransfer_v1_generated_DataTransferService_ListTransferConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 
 /**
@@ -42,10 +43,14 @@ function list_transfer_configs_sample(string $formattedParent): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTransferConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataTransferServiceClient->listTransferConfigs($formattedParent);
+        $response = $dataTransferServiceClient->listTransferConfigs($request);
 
         /** @var TransferConfig $element */
         foreach ($response as $element) {

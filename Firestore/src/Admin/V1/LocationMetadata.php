@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The metadata message for [google.cloud.location.Location.metadata][google.cloud.location.Location.metadata].
+ * The metadata message for
+ * [google.cloud.location.Location.metadata][google.cloud.location.Location.metadata].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.LocationMetadata</code>
  */

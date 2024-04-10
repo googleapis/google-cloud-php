@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicedirectory_v1_generated_RegistrationService_ListEndpoints_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
 use Google\Cloud\ServiceDirectory\V1\Endpoint;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\ListEndpointsRequest;
 
 /**
  * Lists all endpoints.
@@ -40,10 +41,14 @@ function list_endpoints_sample(string $formattedParent): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEndpointsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $registrationServiceClient->listEndpoints($formattedParent);
+        $response = $registrationServiceClient->listEndpoints($request);
 
         /** @var Endpoint $element */
         foreach ($response as $element) {

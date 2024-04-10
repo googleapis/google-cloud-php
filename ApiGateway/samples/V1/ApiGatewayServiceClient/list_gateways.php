@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigateway_v1_generated_ApiGatewayService_ListGateways_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
 use Google\Cloud\ApiGateway\V1\Gateway;
+use Google\Cloud\ApiGateway\V1\ListGatewaysRequest;
 
 /**
  * Lists Gateways in a given project and location.
@@ -40,10 +41,14 @@ function list_gateways_sample(string $formattedParent): void
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListGatewaysRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $apiGatewayServiceClient->listGateways($formattedParent);
+        $response = $apiGatewayServiceClient->listGateways($request);
 
         /** @var Gateway $element */
         foreach ($response as $element) {

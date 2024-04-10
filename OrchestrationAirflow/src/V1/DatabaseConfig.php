@@ -26,6 +26,16 @@ class DatabaseConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string machine_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $machine_type = '';
+    /**
+     * Optional. The Compute Engine zone where the Airflow database is created. If
+     * zone is provided, it must be in the region selected for the environment. If
+     * zone is not provided, a zone is automatically selected. The zone can only
+     * be set during environment creation. Supported for Cloud Composer
+     * environments in versions composer-2.*.*-airflow-*.*.*.
+     *
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $zone = '';
 
     /**
      * Constructor.
@@ -39,6 +49,12 @@ class DatabaseConfig extends \Google\Protobuf\Internal\Message
      *           or db-n1-standard-16. If not specified, db-n1-standard-2 will be used.
      *           Supported for Cloud Composer environments in versions
      *           composer-1.*.*-airflow-*.*.*.
+     *     @type string $zone
+     *           Optional. The Compute Engine zone where the Airflow database is created. If
+     *           zone is provided, it must be in the region selected for the environment. If
+     *           zone is not provided, a zone is automatically selected. The zone can only
+     *           be set during environment creation. Supported for Cloud Composer
+     *           environments in versions composer-2.*.*-airflow-*.*.*.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,6 +92,40 @@ class DatabaseConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->machine_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Compute Engine zone where the Airflow database is created. If
+     * zone is provided, it must be in the region selected for the environment. If
+     * zone is not provided, a zone is automatically selected. The zone can only
+     * be set during environment creation. Supported for Cloud Composer
+     * environments in versions composer-2.*.*-airflow-*.*.*.
+     *
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * Optional. The Compute Engine zone where the Airflow database is created. If
+     * zone is provided, it must be in the region selected for the environment. If
+     * zone is not provided, a zone is automatically selected. The zone can only
+     * be set during environment creation. Supported for Cloud Composer
+     * environments in versions composer-2.*.*-airflow-*.*.*.
+     *
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->zone = $var;
 
         return $this;
     }

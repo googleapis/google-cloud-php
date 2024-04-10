@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_DeleteDeviceRegistry_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
+use Google\Cloud\Iot\V1\DeleteDeviceRegistryRequest;
 
 /**
  * Deletes a device registry configuration.
@@ -38,9 +39,13 @@ function delete_device_registry_sample(string $formattedName): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDeviceRegistryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $deviceManagerClient->deleteDeviceRegistry($formattedName);
+        $deviceManagerClient->deleteDeviceRegistry($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

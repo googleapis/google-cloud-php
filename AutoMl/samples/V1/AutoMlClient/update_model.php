@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START automl_v1_generated_AutoMl_UpdateModel_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
 use Google\Cloud\AutoMl\V1\Model;
+use Google\Cloud\AutoMl\V1\UpdateModelRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -42,14 +43,17 @@ function update_model_sample(): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $model = new Model();
     $updateMask = new FieldMask();
+    $request = (new UpdateModelRequest())
+        ->setModel($model)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Model $response */
-        $response = $autoMlClient->updateModel($model, $updateMask);
+        $response = $autoMlClient->updateModel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

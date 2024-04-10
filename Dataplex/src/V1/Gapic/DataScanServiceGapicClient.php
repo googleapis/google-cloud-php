@@ -40,6 +40,8 @@ use Google\Cloud\Dataplex\V1\CreateDataScanRequest;
 use Google\Cloud\Dataplex\V1\DataScan;
 use Google\Cloud\Dataplex\V1\DataScanJob;
 use Google\Cloud\Dataplex\V1\DeleteDataScanRequest;
+use Google\Cloud\Dataplex\V1\GenerateDataQualityRulesRequest;
+use Google\Cloud\Dataplex\V1\GenerateDataQualityRulesResponse;
 use Google\Cloud\Dataplex\V1\GetDataScanJobRequest;
 use Google\Cloud\Dataplex\V1\GetDataScanRequest;
 use Google\Cloud\Dataplex\V1\ListDataScanJobsRequest;
@@ -112,8 +114,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Dataplex\V1\Client\DataScanServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Dataplex\V1\Client\DataScanServiceClient}.
  */
 class DataScanServiceGapicClient
 {
@@ -122,8 +123,15 @@ class DataScanServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dataplex.v1.DataScanService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'dataplex.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dataplex.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -631,6 +639,57 @@ class DataScanServiceGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Generates recommended DataQualityRule from a data profiling DataScan.
+     *
+     * Sample code:
+     * ```
+     * $dataScanServiceClient = new DataScanServiceClient();
+     * try {
+     *     $name = 'name';
+     *     $response = $dataScanServiceClient->generateDataQualityRules($name);
+     * } finally {
+     *     $dataScanServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name should be either
+     *                             * the name of a datascan with at least one successful completed data
+     *                             profiling job, or
+     *                             * the name of a successful completed data profiling datascan job.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dataplex\V1\GenerateDataQualityRulesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateDataQualityRules($name, array $optionalArgs = [])
+    {
+        $request = new GenerateDataQualityRulesRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GenerateDataQualityRules',
+            GenerateDataQualityRulesResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 

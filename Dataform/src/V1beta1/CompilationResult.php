@@ -22,12 +22,19 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Immutable. If set, fields of `code_compilation_overrides` override the default
+     * Immutable. If set, fields of `code_compilation_config` override the default
      * compilation settings that are specified in dataform.json.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResult.CodeCompilationConfig code_compilation_config = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CodeCompilationConfig code_compilation_config = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $code_compilation_config = null;
+    /**
+     * Output only. The fully resolved Git commit SHA of the code that was
+     * compiled. Not set for compilation results whose source is a workspace.
+     *
+     * Generated from protobuf field <code>string resolved_git_commit_sha = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $resolved_git_commit_sha = '';
     /**
      * Output only. The version of `&#64;dataform/core` that was used for compilation.
      *
@@ -51,18 +58,25 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The compilation result's name.
      *     @type string $git_commitish
-     *           Immutable. Git commit/tag/branch name at which the repository should be compiled.
-     *           Must exist in the remote repository.
-     *           Examples:
+     *           Immutable. Git commit/tag/branch name at which the repository should be
+     *           compiled. Must exist in the remote repository. Examples:
      *           - a commit SHA: `12ade345`
      *           - a tag: `tag1`
      *           - a branch name: `branch1`
      *     @type string $workspace
      *           Immutable. The name of the workspace to compile. Must be in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workspaces/&#42;`.
-     *     @type \Google\Cloud\Dataform\V1beta1\CompilationResult\CodeCompilationConfig $code_compilation_config
-     *           Immutable. If set, fields of `code_compilation_overrides` override the default
+     *     @type string $release_config
+     *           Immutable. The name of the release config to compile. The release
+     *           config's 'current_compilation_result' field will be updated to this
+     *           compilation result. Must be in the format
+     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     *     @type \Google\Cloud\Dataform\V1beta1\CodeCompilationConfig $code_compilation_config
+     *           Immutable. If set, fields of `code_compilation_config` override the default
      *           compilation settings that are specified in dataform.json.
+     *     @type string $resolved_git_commit_sha
+     *           Output only. The fully resolved Git commit SHA of the code that was
+     *           compiled. Not set for compilation results whose source is a workspace.
      *     @type string $dataform_core_version
      *           Output only. The version of `&#64;dataform/core` that was used for compilation.
      *     @type array<\Google\Cloud\Dataform\V1beta1\CompilationResult\CompilationError>|\Google\Protobuf\Internal\RepeatedField $compilation_errors
@@ -101,9 +115,8 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Git commit/tag/branch name at which the repository should be compiled.
-     * Must exist in the remote repository.
-     * Examples:
+     * Immutable. Git commit/tag/branch name at which the repository should be
+     * compiled. Must exist in the remote repository. Examples:
      * - a commit SHA: `12ade345`
      * - a tag: `tag1`
      * - a branch name: `branch1`
@@ -122,9 +135,8 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Git commit/tag/branch name at which the repository should be compiled.
-     * Must exist in the remote repository.
-     * Examples:
+     * Immutable. Git commit/tag/branch name at which the repository should be
+     * compiled. Must exist in the remote repository. Examples:
      * - a commit SHA: `12ade345`
      * - a tag: `tag1`
      * - a branch name: `branch1`
@@ -175,11 +187,48 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. If set, fields of `code_compilation_overrides` override the default
+     * Immutable. The name of the release config to compile. The release
+     * config's 'current_compilation_result' field will be updated to this
+     * compilation result. Must be in the format
+     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     *
+     * Generated from protobuf field <code>string release_config = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getReleaseConfig()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasReleaseConfig()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Immutable. The name of the release config to compile. The release
+     * config's 'current_compilation_result' field will be updated to this
+     * compilation result. Must be in the format
+     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     *
+     * Generated from protobuf field <code>string release_config = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReleaseConfig($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Immutable. If set, fields of `code_compilation_config` override the default
      * compilation settings that are specified in dataform.json.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResult.CodeCompilationConfig code_compilation_config = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\Dataform\V1beta1\CompilationResult\CodeCompilationConfig|null
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CodeCompilationConfig code_compilation_config = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\CodeCompilationConfig|null
      */
     public function getCodeCompilationConfig()
     {
@@ -197,17 +246,45 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. If set, fields of `code_compilation_overrides` override the default
+     * Immutable. If set, fields of `code_compilation_config` override the default
      * compilation settings that are specified in dataform.json.
      *
-     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CompilationResult.CodeCompilationConfig code_compilation_config = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param \Google\Cloud\Dataform\V1beta1\CompilationResult\CodeCompilationConfig $var
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.CodeCompilationConfig code_compilation_config = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\CodeCompilationConfig $var
      * @return $this
      */
     public function setCodeCompilationConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\CompilationResult\CodeCompilationConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\CodeCompilationConfig::class);
         $this->code_compilation_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The fully resolved Git commit SHA of the code that was
+     * compiled. Not set for compilation results whose source is a workspace.
+     *
+     * Generated from protobuf field <code>string resolved_git_commit_sha = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getResolvedGitCommitSha()
+    {
+        return $this->resolved_git_commit_sha;
+    }
+
+    /**
+     * Output only. The fully resolved Git commit SHA of the code that was
+     * compiled. Not set for compilation results whose source is a workspace.
+     *
+     * Generated from protobuf field <code>string resolved_git_commit_sha = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResolvedGitCommitSha($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resolved_git_commit_sha = $var;
 
         return $this;
     }

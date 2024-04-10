@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicemanagement_v1_generated_ServiceManager_ListServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\ServiceManagement\V1\Client\ServiceManagerClient;
+use Google\Cloud\ServiceManagement\V1\ListServicesRequest;
 use Google\Cloud\ServiceManagement\V1\ManagedService;
-use Google\Cloud\ServiceManagement\V1\ServiceManagerClient;
 
 /**
  * Lists managed services.
@@ -46,10 +47,13 @@ function list_services_sample(): void
     // Create a client.
     $serviceManagerClient = new ServiceManagerClient();
 
+    // Prepare the request message.
+    $request = new ListServicesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $serviceManagerClient->listServices();
+        $response = $serviceManagerClient->listServices($request);
 
         /** @var ManagedService $element */
         foreach ($response as $element) {

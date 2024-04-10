@@ -17,8 +17,19 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\ApiCore\Serializer;
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\CommitSchemaRequest;
+use Google\Cloud\PubSub\V1\DeleteSchemaRequest;
+use Google\Cloud\PubSub\V1\DeleteSchemaRevisionRequest;
+use Google\Cloud\PubSub\V1\GetSchemaRequest;
+use Google\Cloud\PubSub\V1\ListSchemaRevisionsRequest;
+use Google\Cloud\PubSub\V1\SchemaView;
+use Google\Cloud\PubSub\V1\Schema as SchemaProto;
+use Google\Cloud\PubSub\V1\Schema\Type;
 
 /**
  * Represents a Pub/Sub Schema resource.
@@ -32,17 +43,23 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $client = new PubSubClient();
+ * $client = new PubSubClient(['projectId' => 'my-project']);
  * $schema = $client->schema('my-schema');
  * ```
  */
 class Schema
 {
+    use ArrayTrait;
+
+    private const DEFAULT_VIEW = 'FULL';
+
     /**
-     * @var ConnectionInterface
      * @internal
+     * The request handler that is responsible for sending a request and
+     * serializing responses into relevant classes.
      */
-    private $connection;
+    private RequestHandler $requestHandler;
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -55,18 +72,20 @@ class Schema
     private $info;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
-     *        This object is created by PubSubClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $name The schema name.
      * @param array $info [optional] Schema data.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         $name,
         array $info = []
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->name = $name;
         $this->info = $info;
     }
@@ -99,9 +118,17 @@ class Schema
      */
     public function delete(array $options = [])
     {
-        return $this->connection->deleteSchema([
-            'name' => $this->name
-        ] + $options);
+        $request = $this->serializer->decodeMessage(
+            new DeleteSchemaRequest(),
+            ['name' => $this->name]
+        );
+
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'deleteSchema',
+            $request,
+            $options
+        );
     }
 
     /**
@@ -166,13 +193,18 @@ class Schema
      */
     public function reload(array $options = [])
     {
-        $options += [
-            'view' => 'FULL',
-        ];
+        $view = $this->getViewFromOptions($options);
+        $request = $this->serializer->decodeMessage(
+            new GetSchemaRequest(),
+            ['name' => $this->name, 'view' => $view]
+        );
 
-        return $this->info = $this->connection->getSchema([
-            'name' => $this->name,
-        ] + $options);
+        return $this->info = $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'getSchema',
+            $request,
+            $options
+        );
     }
 
     /**
@@ -196,5 +228,122 @@ class Schema
         } catch (NotFoundException $e) {
             return false;
         }
+    }
+
+    /**
+     * Get list  schema revisions.
+     *
+     * Example:
+     * ```
+     * $revisions = $schema->listRevisions();
+     * foreach ($revisions['schemas'] as $revision) {
+     *     echo $revisions['definition'];
+     * }
+     * ```
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/listRevisions List revisions
+     * @param array $options [optional] Configuration Options
+     * @return array
+     */
+    public function listRevisions(array $options = [])
+    {
+        $data = $this->pluckArray(['page_token', 'page_size'], $options);
+        $data['name'] = $this->name;
+        $data['view'] = $this->getViewFromOptions($options);
+
+        $request = $this->serializer->decodeMessage(new ListSchemaRevisionsRequest(), $data);
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'listSchemaRevisions',
+            $request,
+            $options
+        );
+    }
+
+    /**
+     * Commit schema revision.
+     *
+     * Example:
+     * ```
+     * $definition = file_get_contents('my-schema.txt');
+     * $revision = $schema->commit($definition, 'AVRO);
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/commit Commit Schema revision.
+     * ```
+     *
+     * @param string $definition The definition of the schema. This should
+     *     contain a string representing the full definition of the schema that
+     *     is a valid schema definition of the type specified in `type`. See
+     *     [Schema](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas#Schema)
+     *     for details.
+     * @param string $type The schema type. Allowed values are `AVRO` and `PROTOCOL_BUFFER`.
+     * @param array $options [optional] Configuration options
+     * @return array revision created
+     */
+    public function commit($definition, $type, array $options = [])
+    {
+        $schemaObj = new SchemaProto([
+            'name' => $this->name,
+            'definition' => $definition,
+            'type' => Type::value($type),
+        ]);
+
+        $data = ['name' => $this->name, 'schema' => $schemaObj];
+        $request = $this->serializer->decodeMessage(new CommitSchemaRequest(), $data);
+
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'commitSchema',
+            $request,
+            $options
+        );
+    }
+
+    /**
+     * Delete a schema revision
+     *
+     * Example:
+     * ```
+     * $schema->delete($revisionId);
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/deleteRevision Delete revision.
+     * ```
+     *
+     * @param string $revisionId The revisionId
+     * @return array deleted revision
+     */
+    public function deleteRevision($revisionId, $options = [])
+    {
+        $revisionName = $this->name .'@' . $revisionId;
+
+        $request = $this->serializer->decodeMessage(
+            new DeleteSchemaRevisionRequest(),
+            ['name' => $revisionName]
+        );
+
+        return $this->requestHandler->sendRequest(
+            SchemaServiceClient::class,
+            'deleteSchemaRevision',
+            $request,
+            $options
+        );
+    }
+
+    /**
+     * Helper function to return the value of 'view' from the options array.
+     * If a view key isn't specified, the default is returned.
+     *
+     * @param array $options The options array to extract the view from.
+     *
+     * @return int The integer value of the view specified as per Google\Cloud\PubSub\V1\SchemaView
+     */
+    private function getViewFromOptions(array &$options)
+    {
+        $view = $this->pluck('view', $options, false) ?: self::DEFAULT_VIEW;
+
+        if (isset($view) && is_string($view)) {
+            $view = SchemaView::value($view);
+        }
+
+        return $view;
     }
 }

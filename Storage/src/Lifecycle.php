@@ -140,6 +140,79 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Adds a AbortIncompleteMultipartUpload lifecycle rule to Object Lifecycle.
+     *
+     * Example:
+     * ```
+     * $lifecycle->addAbortIncompleteMultipartUploadRule([
+     *     'age' => 50,
+     *     'isLive' => true
+     * ]);
+     * ```
+     *
+     * @param array $condition {
+     *     The condition(s) where the rule will apply.
+     *
+     *     @type int $age Age of an object (in days). This condition is
+     *           satisfied when an object reaches the specified age.
+     *     @type \DateTimeInterface|string $createdBefore This condition is
+     *           satisfied when an object is created before midnight of the
+     *           specified date in UTC. If a string is given, it must be a date
+     *           in RFC 3339 format with only the date part (for instance,
+     *           "2013-01-15").
+     *     @type \DateTimeInterface|string $customTimeBefore This condition is
+     *           satisfied when the custom time on an object is before this date
+     *           in UTC. If a string is given, it must be a date in RFC 3339
+     *           format with only the date part (for instance, "2013-01-15").
+     *     @type int $daysSinceCustomTime Number of days elapsed since the
+     *           user-specified timestamp set on an object. The condition is
+     *           satisfied if the days elapsed is at least this number. If no
+     *           custom timestamp is specified on an object, the condition does
+     *           not apply.
+     *     @type int $daysSinceNoncurrentTime Number of days elapsed since the
+     *           noncurrent timestamp of an object. The condition is satisfied
+     *           if the days elapsed is at least this number. This condition is
+     *           relevant only for versioned objects. The value of the field
+     *           must be a nonnegative integer. If it's zero, the object version
+     *           will become eligible for Lifecycle action as soon as it becomes
+     *           noncurrent.
+     *     @type bool $isLive Relevant only for versioned objects. If the value
+     *           is `true`, this condition matches live objects; if the value is
+     *           `false`, it matches archived objects.
+     *     @type string[] $matchesStorageClass Objects having any of the storage
+     *           classes specified by this condition will be matched. Values
+     *           include `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`,
+     *           `"ARCHIVE"`, `"COLDLINE"`, `"STANDARD"`, and
+     *           `"DURABLE_REDUCED_AVAILABILITY"`.
+     *     @type \DateTimeInterface|string $noncurrentTimeBefore This condition
+     *           is satisfied when the noncurrent time on an object is before
+     *           this timestamp. This condition is relevant only for versioned
+     *           objects. If a string is given, it must be a date in RFC 3339
+     *           format with only the date part (for instance, "2013-01-15").
+     *     @type int $numNewerVersions Relevant only for versioned objects. If
+     *           the value is N, this condition is satisfied when there are at
+     *           least N versions (including the live version) newer than this
+     *           version of the object.
+     *     @type string[] $matchesPrefix Objects having names which start with
+     *           values specified by this condition will be matched.
+     *     @type string[] $matchesSuffix Objects having names which end with
+     *           values specified by this condition will be matched.
+     * }
+     * @return Lifecycle
+     */
+    public function addAbortIncompleteMultipartUploadRule(array $condition)
+    {
+        $this->lifecycle['rule'][] = [
+            'action' => [
+                'type' => 'AbortIncompleteMultipartUpload'
+            ],
+            'condition' => $this->formatCondition($condition)
+        ];
+
+        return $this;
+    }
+
+    /**
      * Adds an Object Lifecycle Set Storage Class Rule.
      *
      * Example:

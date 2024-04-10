@@ -25,8 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Sessions_StreamingDetectIntent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\Cloud\Dialogflow\V2\Client\SessionsClient;
 use Google\Cloud\Dialogflow\V2\QueryInput;
-use Google\Cloud\Dialogflow\V2\SessionsClient;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentRequest;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentResponse;
 
@@ -70,7 +70,7 @@ function streaming_detect_intent_sample(string $formattedSession): void
     // Create a client.
     $sessionsClient = new SessionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $queryInput = new QueryInput();
     $request = (new StreamingDetectIntentRequest())
         ->setSession($formattedSession)

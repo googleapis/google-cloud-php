@@ -25,14 +25,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_ListRelatedAccountGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroup;
 
 /**
  * List groups of related accounts.
  *
  * @param string $formattedParent The name of the project to list related account groups from, in
- *                                the format "projects/{project}". Please see
+ *                                the format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
  */
 function list_related_account_groups_sample(string $formattedParent): void
@@ -40,10 +41,14 @@ function list_related_account_groups_sample(string $formattedParent): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListRelatedAccountGroupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $recaptchaEnterpriseServiceClient->listRelatedAccountGroups($formattedParent);
+        $response = $recaptchaEnterpriseServiceClient->listRelatedAccountGroups($request);
 
         /** @var RelatedAccountGroup $element */
         foreach ($response as $element) {

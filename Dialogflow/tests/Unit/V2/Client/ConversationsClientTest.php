@@ -525,7 +525,9 @@ class ConversationsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $rewrittenQuery = 'rewrittenQuery-1113584563';
         $expectedResponse = new SearchKnowledgeResponse();
+        $expectedResponse->setRewrittenQuery($rewrittenQuery);
         $transport->addResponse($expectedResponse);
         // Mock request
         $query = new TextInput();

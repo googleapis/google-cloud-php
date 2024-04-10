@@ -97,21 +97,21 @@ page_token (	
 ListFindingTypeStatsResponseT
 finding_type_stats (28.google.cloud.websecurityscanner.v1beta.FindingTypeStats2Ž
 WebSecurityScannerÚ
-CreateScanConfig?.google.cloud.websecurityscanner.v1beta.CreateScanConfigRequest2.google.cloud.websecurityscanner.v1beta.ScanConfig"Q‚Óä“6"\'/v1beta/{parent=projects/*}/scanConfigs:scan_configÚAparent,scan_config£
-DeleteScanConfig?.google.cloud.websecurityscanner.v1beta.DeleteScanConfigRequest.google.protobuf.Empty"6‚Óä“)*\'/v1beta/{name=projects/*/scanConfigs/*}ÚAname¹
-GetScanConfig<.google.cloud.websecurityscanner.v1beta.GetScanConfigRequest2.google.cloud.websecurityscanner.v1beta.ScanConfig"6‚Óä“)\'/v1beta/{name=projects/*/scanConfigs/*}ÚAnameÌ
-ListScanConfigs>.google.cloud.websecurityscanner.v1beta.ListScanConfigsRequest?.google.cloud.websecurityscanner.v1beta.ListScanConfigsResponse"8‚Óä“)\'/v1beta/{parent=projects/*}/scanConfigsÚAparentë
-UpdateScanConfig?.google.cloud.websecurityscanner.v1beta.UpdateScanConfigRequest2.google.cloud.websecurityscanner.v1beta.ScanConfig"b‚Óä“B23/v1beta/{scan_config.name=projects/*/scanConfigs/*}:scan_configÚAscan_config,update_mask½
-StartScanRun;.google.cloud.websecurityscanner.v1beta.StartScanRunRequest/.google.cloud.websecurityscanner.v1beta.ScanRun"?‚Óä“2"-/v1beta/{name=projects/*/scanConfigs/*}:start:*ÚAname»
+CreateScanConfig?.google.cloud.websecurityscanner.v1beta.CreateScanConfigRequest2.google.cloud.websecurityscanner.v1beta.ScanConfig"QÚAparent,scan_config‚Óä“6"\'/v1beta/{parent=projects/*}/scanConfigs:scan_config£
+DeleteScanConfig?.google.cloud.websecurityscanner.v1beta.DeleteScanConfigRequest.google.protobuf.Empty"6ÚAname‚Óä“)*\'/v1beta/{name=projects/*/scanConfigs/*}¹
+GetScanConfig<.google.cloud.websecurityscanner.v1beta.GetScanConfigRequest2.google.cloud.websecurityscanner.v1beta.ScanConfig"6ÚAname‚Óä“)\'/v1beta/{name=projects/*/scanConfigs/*}Ì
+ListScanConfigs>.google.cloud.websecurityscanner.v1beta.ListScanConfigsRequest?.google.cloud.websecurityscanner.v1beta.ListScanConfigsResponse"8ÚAparent‚Óä“)\'/v1beta/{parent=projects/*}/scanConfigsë
+UpdateScanConfig?.google.cloud.websecurityscanner.v1beta.UpdateScanConfigRequest2.google.cloud.websecurityscanner.v1beta.ScanConfig"bÚAscan_config,update_mask‚Óä“B23/v1beta/{scan_config.name=projects/*/scanConfigs/*}:scan_config½
+StartScanRun;.google.cloud.websecurityscanner.v1beta.StartScanRunRequest/.google.cloud.websecurityscanner.v1beta.ScanRun"?ÚAname‚Óä“2"-/v1beta/{name=projects/*/scanConfigs/*}:start:*»
 
-GetScanRun9.google.cloud.websecurityscanner.v1beta.GetScanRunRequest/.google.cloud.websecurityscanner.v1beta.ScanRun"A‚Óä“42/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*}ÚAnameÎ
-ListScanRuns;.google.cloud.websecurityscanner.v1beta.ListScanRunsRequest<.google.cloud.websecurityscanner.v1beta.ListScanRunsResponse"C‚Óä“42/v1beta/{parent=projects/*/scanConfigs/*}/scanRunsÚAparentÅ
-StopScanRun:.google.cloud.websecurityscanner.v1beta.StopScanRunRequest/.google.cloud.websecurityscanner.v1beta.ScanRun"I‚Óä“<"7/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*}:stop:*ÚAnameå
-ListCrawledUrls>.google.cloud.websecurityscanner.v1beta.ListCrawledUrlsRequest?.google.cloud.websecurityscanner.v1beta.ListCrawledUrlsResponse"Q‚Óä“B@/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/crawledUrlsÚAparentÆ
+GetScanRun9.google.cloud.websecurityscanner.v1beta.GetScanRunRequest/.google.cloud.websecurityscanner.v1beta.ScanRun"AÚAname‚Óä“42/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*}Î
+ListScanRuns;.google.cloud.websecurityscanner.v1beta.ListScanRunsRequest<.google.cloud.websecurityscanner.v1beta.ListScanRunsResponse"CÚAparent‚Óä“42/v1beta/{parent=projects/*/scanConfigs/*}/scanRunsÅ
+StopScanRun:.google.cloud.websecurityscanner.v1beta.StopScanRunRequest/.google.cloud.websecurityscanner.v1beta.ScanRun"IÚAname‚Óä“<"7/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*}:stop:*å
+ListCrawledUrls>.google.cloud.websecurityscanner.v1beta.ListCrawledUrlsRequest?.google.cloud.websecurityscanner.v1beta.ListCrawledUrlsResponse"QÚAparent‚Óä“B@/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/crawledUrlsÆ
 
-GetFinding9.google.cloud.websecurityscanner.v1beta.GetFindingRequest/.google.cloud.websecurityscanner.v1beta.Finding"L‚Óä“?=/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*/findings/*}ÚAnameà
-ListFindings;.google.cloud.websecurityscanner.v1beta.ListFindingsRequest<.google.cloud.websecurityscanner.v1beta.ListFindingsResponse"U‚Óä“?=/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingsÚAparent,filterù
-ListFindingTypeStatsC.google.cloud.websecurityscanner.v1beta.ListFindingTypeStatsRequestD.google.cloud.websecurityscanner.v1beta.ListFindingTypeStatsResponse"V‚Óä“GE/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingTypeStatsÚAparentUÊA!websecurityscanner.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¡
+GetFinding9.google.cloud.websecurityscanner.v1beta.GetFindingRequest/.google.cloud.websecurityscanner.v1beta.Finding"LÚAname‚Óä“?=/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*/findings/*}à
+ListFindings;.google.cloud.websecurityscanner.v1beta.ListFindingsRequest<.google.cloud.websecurityscanner.v1beta.ListFindingsResponse"UÚAparent,filter‚Óä“?=/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingsù
+ListFindingTypeStatsC.google.cloud.websecurityscanner.v1beta.ListFindingTypeStatsRequestD.google.cloud.websecurityscanner.v1beta.ListFindingTypeStatsResponse"VÚAparent‚Óä“GE/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingTypeStatsUÊA!websecurityscanner.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¡
 *com.google.cloud.websecurityscanner.v1betaBWebSecurityScannerProtoPZZcloud.google.com/go/websecurityscanner/apiv1beta/websecurityscannerpb;websecurityscannerpbª&Google.Cloud.WebSecurityScanner.V1BetaÊ&Google\\Cloud\\WebSecurityScanner\\V1betaê)Google::Cloud::WebSecurityScanner::V1betabproto3'
         , true);
 

@@ -125,6 +125,8 @@ class Note extends \Google\Protobuf\Internal\Message
      *           A note describing a dsse attestation note.
      *     @type \Grafeas\V1\VulnerabilityAssessmentNote $vulnerability_assessment
      *           A note describing a vulnerability assessment.
+     *     @type \Grafeas\V1\SBOMReferenceNote $sbom_reference
+     *           A note describing an SBOM reference.
      * }
      */
     public function __construct($data = NULL) {
@@ -741,6 +743,37 @@ class Note extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\VulnerabilityAssessmentNote::class);
         $this->writeOneof(20, $var);
+
+        return $this;
+    }
+
+    /**
+     * A note describing an SBOM reference.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.SBOMReferenceNote sbom_reference = 21;</code>
+     * @return \Grafeas\V1\SBOMReferenceNote|null
+     */
+    public function getSbomReference()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasSbomReference()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * A note describing an SBOM reference.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.SBOMReferenceNote sbom_reference = 21;</code>
+     * @param \Grafeas\V1\SBOMReferenceNote $var
+     * @return $this
+     */
+    public function setSbomReference($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\SBOMReferenceNote::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }

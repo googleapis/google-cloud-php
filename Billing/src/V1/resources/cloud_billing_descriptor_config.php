@@ -6,6 +6,14 @@ return [
             'CreateBillingAccount' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Billing\V1\BillingAccount',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'GetBillingAccount' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -54,6 +62,14 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Billing\V1\ListBillingAccountsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'ListProjectBillingInfo' => [
                 'pageStreaming' => [
@@ -67,6 +83,24 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Billing\V1\ListProjectBillingInfoResponse',
                 'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MoveBillingAccount' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Billing\V1\BillingAccount',
+                'headerParams' => [
+                    [
+                        'keyName' => 'destination_parent',
+                        'fieldAccessors' => [
+                            'getDestinationParent',
+                        ],
+                    ],
                     [
                         'keyName' => 'name',
                         'fieldAccessors' => [
@@ -125,6 +159,8 @@ return [
             ],
             'templateMap' => [
                 'billingAccount' => 'billingAccounts/{billing_account}',
+                'organization' => 'organizations/{organization}',
+                'organizationBillingAccount' => 'organizations/{organization}/billingAccounts/{billing_account}',
                 'project' => 'projects/{project}',
                 'projectBillingInfo' => 'projects/{project}/billingInfo',
             ],

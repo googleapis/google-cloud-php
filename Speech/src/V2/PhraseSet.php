@@ -18,10 +18,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class PhraseSet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the PhraseSet.
+     * Output only. Identifier. The resource name of the PhraseSet.
      * Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -133,7 +133,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the PhraseSet.
+     *           Output only. Identifier. The resource name of the PhraseSet.
      *           Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
      *     @type string $uid
      *           Output only. System-assigned unique identifier for the PhraseSet.
@@ -188,10 +188,10 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the PhraseSet.
+     * Output only. Identifier. The resource name of the PhraseSet.
      * Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -200,10 +200,10 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the PhraseSet.
+     * Output only. Identifier. The resource name of the PhraseSet.
      * Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

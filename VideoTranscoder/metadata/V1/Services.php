@@ -72,15 +72,15 @@ page_token (	
 next_page_token (	
 unreachable (	2í
 TranscoderService™
-	CreateJob2.google.cloud.video.transcoder.v1.CreateJobRequest%.google.cloud.video.transcoder.v1.Job"BÇ”‰ì/"(/v1/{parent=projects/*/locations/*}/jobs:job⁄A
-parent,job¨
-ListJobs1.google.cloud.video.transcoder.v1.ListJobsRequest2.google.cloud.video.transcoder.v1.ListJobsResponse"9Ç”‰ì*(/v1/{parent=projects/*/locations/*}/jobs⁄Aparentô
-GetJob/.google.cloud.video.transcoder.v1.GetJobRequest%.google.cloud.video.transcoder.v1.Job"7Ç”‰ì*(/v1/{name=projects/*/locations/*/jobs/*}⁄Anameê
-	DeleteJob2.google.cloud.video.transcoder.v1.DeleteJobRequest.google.protobuf.Empty"7Ç”‰ì**(/v1/{name=projects/*/locations/*/jobs/*}⁄AnameÏ
-CreateJobTemplate:.google.cloud.video.transcoder.v1.CreateJobTemplateRequest-.google.cloud.video.transcoder.v1.JobTemplate"lÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/jobTemplates:job_template⁄A#parent,job_template,job_template_idÃ
-ListJobTemplates9.google.cloud.video.transcoder.v1.ListJobTemplatesRequest:.google.cloud.video.transcoder.v1.ListJobTemplatesResponse"AÇ”‰ì20/v1/{parent=projects/*/locations/*}/jobTemplates⁄Aparentπ
-GetJobTemplate7.google.cloud.video.transcoder.v1.GetJobTemplateRequest-.google.cloud.video.transcoder.v1.JobTemplate"?Ç”‰ì20/v1/{name=projects/*/locations/*/jobTemplates/*}⁄Aname®
-DeleteJobTemplate:.google.cloud.video.transcoder.v1.DeleteJobTemplateRequest.google.protobuf.Empty"?Ç”‰ì2*0/v1/{name=projects/*/locations/*/jobTemplates/*}⁄AnameM Atranscoder.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÍ
+	CreateJob2.google.cloud.video.transcoder.v1.CreateJobRequest%.google.cloud.video.transcoder.v1.Job"B⁄A
+parent,jobÇ”‰ì/"(/v1/{parent=projects/*/locations/*}/jobs:job¨
+ListJobs1.google.cloud.video.transcoder.v1.ListJobsRequest2.google.cloud.video.transcoder.v1.ListJobsResponse"9⁄AparentÇ”‰ì*(/v1/{parent=projects/*/locations/*}/jobsô
+GetJob/.google.cloud.video.transcoder.v1.GetJobRequest%.google.cloud.video.transcoder.v1.Job"7⁄AnameÇ”‰ì*(/v1/{name=projects/*/locations/*/jobs/*}ê
+	DeleteJob2.google.cloud.video.transcoder.v1.DeleteJobRequest.google.protobuf.Empty"7⁄AnameÇ”‰ì**(/v1/{name=projects/*/locations/*/jobs/*}Ï
+CreateJobTemplate:.google.cloud.video.transcoder.v1.CreateJobTemplateRequest-.google.cloud.video.transcoder.v1.JobTemplate"l⁄A#parent,job_template,job_template_idÇ”‰ì@"0/v1/{parent=projects/*/locations/*}/jobTemplates:job_templateÃ
+ListJobTemplates9.google.cloud.video.transcoder.v1.ListJobTemplatesRequest:.google.cloud.video.transcoder.v1.ListJobTemplatesResponse"A⁄AparentÇ”‰ì20/v1/{parent=projects/*/locations/*}/jobTemplatesπ
+GetJobTemplate7.google.cloud.video.transcoder.v1.GetJobTemplateRequest-.google.cloud.video.transcoder.v1.JobTemplate"?⁄AnameÇ”‰ì20/v1/{name=projects/*/locations/*/jobTemplates/*}®
+DeleteJobTemplate:.google.cloud.video.transcoder.v1.DeleteJobTemplateRequest.google.protobuf.Empty"?⁄AnameÇ”‰ì2*0/v1/{name=projects/*/locations/*/jobTemplates/*}M Atranscoder.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÍ
 $com.google.cloud.video.transcoder.v1BServicesProtoPZDcloud.google.com/go/video/transcoder/apiv1/transcoderpb;transcoderpb™ Google.Cloud.Video.Transcoder.V1  Google\\Cloud\\Video\\Transcoder\\V1Í$Google::Cloud::Video::Transcoder::V1bproto3'
         , true);
 

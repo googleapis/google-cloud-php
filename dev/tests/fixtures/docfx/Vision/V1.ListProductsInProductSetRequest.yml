@@ -21,6 +21,7 @@ items:
       - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setPageSize()'
       - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::getPageToken()'
       - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setPageToken()'
+      - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::__construct()'
     name: __construct
@@ -149,3 +150,25 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: string
+          description: |-
+            Required. The ProductSet resource for which to retrieve Products.
+
+            Format is:
+            `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+            Please see <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()">Google\Cloud\Vision\V1\ProductSearchClient::productSetName()</xref> for help formatting this field.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ListProductsInProductSetRequest">Google\Cloud\Vision\V1\ListProductsInProductSetRequest</xref>'

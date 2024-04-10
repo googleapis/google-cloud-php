@@ -80,6 +80,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateAttachedClusterAgentToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterAgentTokenResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'attached_cluster',
+                        'fieldAccessors' => [
+                            'getAttachedCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateAttachedClusterInstallManifest' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestResponse',

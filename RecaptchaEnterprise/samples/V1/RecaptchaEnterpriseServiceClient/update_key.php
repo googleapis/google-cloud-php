@@ -24,11 +24,38 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_UpdateKey_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
 
 /**
  * Updates the specified key.
+ *
+ * @param string $keyDisplayName Human-readable display name of this key. Modifiable by user.
+ */
+function update_key_sample(string $keyDisplayName): void
+{
+    // Create a client.
+    $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+
+    // Prepare the request message.
+    $key = (new Key())
+        ->setDisplayName($keyDisplayName);
+    $request = (new UpdateKeyRequest())
+        ->setKey($key);
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var Key $response */
+        $response = $recaptchaEnterpriseServiceClient->updateKey($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -36,21 +63,10 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function update_key_sample(): void
+function callSample(): void
 {
-    // Create a client.
-    $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+    $keyDisplayName = '[DISPLAY_NAME]';
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $key = new Key();
-
-    // Call the API and handle any network failures.
-    try {
-        /** @var Key $response */
-        $response = $recaptchaEnterpriseServiceClient->updateKey($key);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
-    } catch (ApiException $ex) {
-        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
-    }
+    update_key_sample($keyDisplayName);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_UpdateKey_sync]

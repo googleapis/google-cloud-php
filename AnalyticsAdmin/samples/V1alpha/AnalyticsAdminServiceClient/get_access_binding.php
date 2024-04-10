@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetAccessBinding_sync]
 use Google\Analytics\Admin\V1alpha\AccessBinding;
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\GetAccessBindingRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -41,10 +42,14 @@ function get_access_binding_sample(string $formattedName): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetAccessBindingRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var AccessBinding $response */
-        $response = $analyticsAdminServiceClient->getAccessBinding($formattedName);
+        $response = $analyticsAdminServiceClient->getAccessBinding($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
