@@ -91,7 +91,7 @@ class PsrLoggerBatchTest extends TestCase
     /**
      * @dataProvider traceIdProvider
      */
-    public function testTraceIdLabelOnGAEFlex(
+    public function testTraceIdLabelOnServerlessPlatforms(
         $traceId,
         $metadataProviderClass,
         $labels,
