@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,12 +22,12 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\LongRunning\Gapic;
+namespace Google\LongRunning\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\RequestParamsHeaderDescriptor;
+use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -36,11 +36,9 @@ use Google\LongRunning\CancelOperationRequest;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\ListOperationsRequest;
-use Google\LongRunning\ListOperationsResponse;
 use Google\LongRunning\Operation;
 use Google\LongRunning\WaitOperationRequest;
-use Google\Protobuf\Duration;
-use Google\Protobuf\GPBEmpty;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Service Description: Manages long-running operations with an API service.
@@ -54,42 +52,36 @@ use Google\Protobuf\GPBEmpty;
  * so developers can have a consistent client experience.
  *
  * This class provides the ability to make remote calls to the backing service through method
- * calls that map to API methods. Sample code to get started:
+ * calls that map to API methods.
  *
- * ```
- * $operationsClient = new OperationsClient();
- * try {
- *     $name = 'name';
- *     $operationsClient->cancelOperation($name);
- * } finally {
- *     $operationsClient->close();
- * }
- * ```
- *
- * @deprecated Please use the new service client {@see \Google\LongRunning\Client\OperationsClient}.
+ * @method PromiseInterface cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteOperationAsync(DeleteOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getOperationAsync(GetOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listOperationsAsync(ListOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface waitOperationAsync(WaitOperationRequest $request, array $optionalArgs = [])
  */
-class OperationsGapicClient
+class OperationsClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    const SERVICE_NAME = 'google.longrunning.Operations';
+    private const SERVICE_NAME = 'google.longrunning.Operations';
 
     /**
      * The default address of the service.
      *
      * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
      */
-    const SERVICE_ADDRESS = 'longrunning.googleapis.com';
+    private const SERVICE_ADDRESS = 'longrunning.googleapis.com';
 
     /** The address template of the service. */
     private const SERVICE_ADDRESS_TEMPLATE = 'longrunning.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
-    const DEFAULT_SERVICE_PORT = 443;
+    private const DEFAULT_SERVICE_PORT = 443;
 
     /** The name of the code generator, to be included in the agent header. */
-    const CODEGEN_NAME = 'gapic';
+    private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [];
@@ -98,22 +90,16 @@ class OperationsGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/operations_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/operations_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/operations_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/operations_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/operations_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/operations_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/operations_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/operations_rest_client_config.php',
                 ],
             ],
         ];
@@ -179,6 +165,17 @@ class OperationsGapicClient
         $this->setClientOptions($clientOptions);
     }
 
+    /** Handles execution of the async variants for each documented method. */
+    public function __call($method, $args)
+    {
+        if (substr($method, -5) !== 'Async') {
+            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
+        }
+
+        array_unshift($args, substr($method, 0, -5));
+        return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
     /**
      * Starts asynchronous cancellation on a long-running operation.  The server
      * makes a best effort to cancel the operation, but success is not
@@ -191,19 +188,12 @@ class OperationsGapicClient
      * an [Operation.error][google.longrunning.Operation.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
-     * Sample code:
-     * ```
-     * $operationsClient = new OperationsClient();
-     * try {
-     *     $name = 'name';
-     *     $operationsClient->cancelOperation($name);
-     * } finally {
-     *     $operationsClient->close();
-     * }
-     * ```
+     * The async variant is {@see OperationsClient::cancelOperationAsync()} .
      *
-     * @param string $name         The name of the operation resource to be cancelled.
-     * @param array  $optionalArgs {
+     * @example samples/OperationsClient/cancel_operation.php
+     *
+     * @param CancelOperationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -212,26 +202,11 @@ class OperationsGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function cancelOperation($name, array $optionalArgs = [])
+    public function cancelOperation(CancelOperationRequest $request, array $callOptions = []): void
     {
-        $request = new CancelOperationRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'CancelOperation',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $this->startApiCall('CancelOperation', $request, $callOptions)->wait();
     }
 
     /**
@@ -240,19 +215,12 @@ class OperationsGapicClient
      * operation. If the server doesn't support this method, it returns
      * `google.rpc.Code.UNIMPLEMENTED`.
      *
-     * Sample code:
-     * ```
-     * $operationsClient = new OperationsClient();
-     * try {
-     *     $name = 'name';
-     *     $operationsClient->deleteOperation($name);
-     * } finally {
-     *     $operationsClient->close();
-     * }
-     * ```
+     * The async variant is {@see OperationsClient::deleteOperationAsync()} .
      *
-     * @param string $name         The name of the operation resource to be deleted.
-     * @param array  $optionalArgs {
+     * @example samples/OperationsClient/delete_operation.php
+     *
+     * @param DeleteOperationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -261,26 +229,11 @@ class OperationsGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteOperation($name, array $optionalArgs = [])
+    public function deleteOperation(DeleteOperationRequest $request, array $callOptions = []): void
     {
-        $request = new DeleteOperationRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'DeleteOperation',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $this->startApiCall('DeleteOperation', $request, $callOptions)->wait();
     }
 
     /**
@@ -288,19 +241,12 @@ class OperationsGapicClient
      * method to poll the operation result at intervals as recommended by the API
      * service.
      *
-     * Sample code:
-     * ```
-     * $operationsClient = new OperationsClient();
-     * try {
-     *     $name = 'name';
-     *     $response = $operationsClient->getOperation($name);
-     * } finally {
-     *     $operationsClient->close();
-     * }
-     * ```
+     * The async variant is {@see OperationsClient::getOperationAsync()} .
      *
-     * @param string $name         The name of the operation resource.
-     * @param array  $optionalArgs {
+     * @example samples/OperationsClient/get_operation.php
+     *
+     * @param GetOperationRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -309,28 +255,13 @@ class OperationsGapicClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\LongRunning\Operation
+     * @return Operation
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function getOperation($name, array $optionalArgs = [])
+    public function getOperation(GetOperationRequest $request, array $callOptions = []): Operation
     {
-        $request = new GetOperationRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetOperation',
-            Operation::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startApiCall('GetOperation', $request, $callOptions)->wait();
     }
 
     /**
@@ -345,81 +276,27 @@ class OperationsGapicClient
      * collection id, however overriding users must ensure the name binding
      * is the parent resource, without the operations collection id.
      *
-     * Sample code:
-     * ```
-     * $operationsClient = new OperationsClient();
-     * try {
-     *     $name = 'name';
-     *     $filter = 'filter';
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $operationsClient->listOperations($name, $filter);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $operationsClient->listOperations($name, $filter);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $operationsClient->close();
-     * }
-     * ```
+     * The async variant is {@see OperationsClient::listOperationsAsync()} .
      *
-     * @param string $name         The name of the operation's parent resource.
-     * @param string $filter       The standard list filter.
-     * @param array  $optionalArgs {
+     * @example samples/OperationsClient/list_operations.php
+     *
+     * @param ListOperationsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
      *     Optional.
      *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\PagedListResponse
+     * @return PagedListResponse
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function listOperations($name, $filter, array $optionalArgs = [])
+    public function listOperations(ListOperationsRequest $request, array $callOptions = []): PagedListResponse
     {
-        $request = new ListOperationsRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $request->setFilter($filter);
-        $requestParamHeaders['name'] = $name;
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListOperations',
-            $optionalArgs,
-            ListOperationsResponse::class,
-            $request
-        );
+        return $this->startApiCall('ListOperations', $request, $callOptions);
     }
 
     /**
@@ -433,51 +310,26 @@ class OperationsGapicClient
      * state before the specified timeout (including immediately), meaning even an
      * immediate response is no guarantee that the operation is done.
      *
-     * Sample code:
-     * ```
-     * $operationsClient = new OperationsClient();
-     * try {
-     *     $response = $operationsClient->waitOperation();
-     * } finally {
-     *     $operationsClient->close();
-     * }
-     * ```
+     * The async variant is {@see OperationsClient::waitOperationAsync()} .
      *
-     * @param array $optionalArgs {
+     * @example samples/OperationsClient/wait_operation.php
+     *
+     * @param WaitOperationRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
      *     Optional.
      *
-     *     @type string $name
-     *           The name of the operation resource to wait on.
-     *     @type Duration $timeout
-     *           The maximum duration to wait before timing out. If left blank, the wait
-     *           will be at most the time permitted by the underlying HTTP/RPC protocol.
-     *           If RPC context deadline is also specified, the shorter one will be used.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\LongRunning\Operation
+     * @return Operation
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function waitOperation(array $optionalArgs = [])
+    public function waitOperation(WaitOperationRequest $request, array $callOptions = []): Operation
     {
-        $request = new WaitOperationRequest();
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-        }
-
-        if (isset($optionalArgs['timeout'])) {
-            $request->setTimeout($optionalArgs['timeout']);
-        }
-
-        return $this->startCall(
-            'WaitOperation',
-            Operation::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startApiCall('WaitOperation', $request, $callOptions)->wait();
     }
 }

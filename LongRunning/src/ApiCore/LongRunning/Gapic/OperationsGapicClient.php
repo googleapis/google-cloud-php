@@ -9,9 +9,13 @@ if (false) {
      * This class is deprecated. Use Google\LongRunning\OperationsClient instead.
      * @deprecated
      */
-    class OperationsGapicClient extends OperationsGapicClient {}
+    class OperationsGapicClient extends OperationsGapicClient
+    {
+    }
 }
 // Autoload the class and its alias
 class_exists('\Google\LongRunning\Gapic\OperationsGapicClient');
-@trigger_error('Google\LongRunning\ApiCore\OperationsGapicClient is deprecated and will be removed in the next major release. Use Google\LongRunning\OperationsClient instead', E_USER_DEPRECATED);
-
+@trigger_error(
+    'Google\LongRunning\ApiCore\OperationsGapicClient is deprecated and will be removed in the next major release. Use Google\LongRunning\OperationsClient instead',
+    E_USER_DEPRECATED
+);
