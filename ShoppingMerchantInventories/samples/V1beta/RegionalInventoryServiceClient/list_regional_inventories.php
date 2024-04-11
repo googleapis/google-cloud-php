@@ -37,17 +37,18 @@ use Google\Shopping\Merchant\Inventories\V1beta\RegionalInventory;
  *
  * `RegionalInventory` resources are listed per product for a given account.
  *
- * @param string $parent The `name` of the parent product to list `RegionalInventory`
- *                       resources for. Format: `accounts/{account}/products/{product}`
+ * @param string $formattedParent The `name` of the parent product to list `RegionalInventory`
+ *                                resources for. Format: `accounts/{account}/products/{product}`
+ *                                Please see {@see RegionalInventoryServiceClient::productName()} for help formatting this field.
  */
-function list_regional_inventories_sample(string $parent): void
+function list_regional_inventories_sample(string $formattedParent): void
 {
     // Create a client.
     $regionalInventoryServiceClient = new RegionalInventoryServiceClient();
 
     // Prepare the request message.
     $request = (new ListRegionalInventoriesRequest())
-        ->setParent($parent);
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -74,8 +75,8 @@ function list_regional_inventories_sample(string $parent): void
  */
 function callSample(): void
 {
-    $parent = '[PARENT]';
+    $formattedParent = RegionalInventoryServiceClient::productName('[ACCOUNT]', '[PRODUCT]');
 
-    list_regional_inventories_sample($parent);
+    list_regional_inventories_sample($formattedParent);
 }
 // [END merchantapi_v1beta_generated_RegionalInventoryService_ListRegionalInventories_sync]
