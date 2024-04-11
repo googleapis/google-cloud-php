@@ -1,0 +1,241 @@
+<?php
+
+return [
+    'interfaces' => [
+        'google.chat.v1.ChatService' => [
+            'CompleteImportSpace' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=spaces/*}:completeImport',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateMembership' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=spaces/*}/members',
+                'body' => 'membership',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateMessage' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=spaces/*}/messages',
+                'body' => 'message',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateReaction' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=spaces/*/messages/*}/reactions',
+                'body' => 'reaction',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSpace' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/spaces',
+                'body' => 'space',
+            ],
+            'DeleteMembership' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=spaces/*/members/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMessage' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=spaces/*/messages/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteReaction' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=spaces/*/messages/*/reactions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSpace' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=spaces/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FindDirectMessage' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/spaces:findDirectMessage',
+            ],
+            'GetAttachment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=spaces/*/messages/*/attachments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMembership' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=spaces/*/members/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMessage' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=spaces/*/messages/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSpace' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=spaces/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMemberships' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=spaces/*}/members',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMessages' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=spaces/*}/messages',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListReactions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=spaces/*/messages/*}/reactions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSpaces' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/spaces',
+            ],
+            'SetUpSpace' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/spaces:setup',
+                'body' => '*',
+            ],
+            'UpdateMessage' => [
+                'method' => 'put',
+                'uriTemplate' => '/v1/{message.name=spaces/*/messages/*}',
+                'body' => 'message',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{message.name=spaces/*/messages/*}',
+                        'body' => 'message',
+                    ],
+                ],
+                'placeholders' => [
+                    'message.name' => [
+                        'getters' => [
+                            'getMessage',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateSpace' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{space.name=spaces/*}',
+                'body' => 'space',
+                'placeholders' => [
+                    'space.name' => [
+                        'getters' => [
+                            'getSpace',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UploadAttachment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=spaces/*}/attachments:upload',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'numericEnums' => true,
+];
