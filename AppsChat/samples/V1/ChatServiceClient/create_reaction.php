@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START chat_v1_generated_ChatService_CreateReaction_sync]
 use Google\ApiCore\ApiException;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\CreateReactionRequest;
 use Google\Apps\Chat\V1\Reaction;
 
 /**
@@ -45,13 +46,16 @@ function create_reaction_sample(string $formattedParent): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $reaction = new Reaction();
+    $request = (new CreateReactionRequest())
+        ->setParent($formattedParent)
+        ->setReaction($reaction);
 
     // Call the API and handle any network failures.
     try {
         /** @var Reaction $response */
-        $response = $chatServiceClient->createReaction($formattedParent, $reaction);
+        $response = $chatServiceClient->createReaction($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

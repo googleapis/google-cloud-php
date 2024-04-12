@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START chat_v1_generated_ChatService_UploadAttachment_sync]
 use Google\ApiCore\ApiException;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\UploadAttachmentRequest;
 use Google\Apps\Chat\V1\UploadAttachmentResponse;
 
 /**
@@ -48,10 +49,15 @@ function upload_attachment_sample(string $formattedParent, string $filename): vo
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
+    // Prepare the request message.
+    $request = (new UploadAttachmentRequest())
+        ->setParent($formattedParent)
+        ->setFilename($filename);
+
     // Call the API and handle any network failures.
     try {
         /** @var UploadAttachmentResponse $response */
-        $response = $chatServiceClient->uploadAttachment($formattedParent, $filename);
+        $response = $chatServiceClient->uploadAttachment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

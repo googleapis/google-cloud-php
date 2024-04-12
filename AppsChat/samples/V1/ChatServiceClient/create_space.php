@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START chat_v1_generated_ChatService_CreateSpace_sync]
 use Google\ApiCore\ApiException;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\CreateSpaceRequest;
 use Google\Apps\Chat\V1\Space;
 
 /**
@@ -50,13 +51,15 @@ function create_space_sample(): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $space = new Space();
+    $request = (new CreateSpaceRequest())
+        ->setSpace($space);
 
     // Call the API and handle any network failures.
     try {
         /** @var Space $response */
-        $response = $chatServiceClient->createSpace($space);
+        $response = $chatServiceClient->createSpace($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

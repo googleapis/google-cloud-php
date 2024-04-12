@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START chat_v1_generated_ChatService_DeleteSpace_sync]
 use Google\ApiCore\ApiException;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\DeleteSpaceRequest;
 
 /**
  * Deletes a named space. Always performs a cascading delete, which means
@@ -46,9 +47,13 @@ function delete_space_sample(string $formattedName): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSpaceRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $chatServiceClient->deleteSpace($formattedName);
+        $chatServiceClient->deleteSpace($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

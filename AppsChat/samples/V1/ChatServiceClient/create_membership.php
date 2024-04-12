@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START chat_v1_generated_ChatService_CreateMembership_sync]
 use Google\ApiCore\ApiException;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\CreateMembershipRequest;
 use Google\Apps\Chat\V1\Membership;
 
 /**
@@ -64,13 +65,16 @@ function create_membership_sample(string $formattedParent): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $membership = new Membership();
+    $request = (new CreateMembershipRequest())
+        ->setParent($formattedParent)
+        ->setMembership($membership);
 
     // Call the API and handle any network failures.
     try {
         /** @var Membership $response */
-        $response = $chatServiceClient->createMembership($formattedParent, $membership);
+        $response = $chatServiceClient->createMembership($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

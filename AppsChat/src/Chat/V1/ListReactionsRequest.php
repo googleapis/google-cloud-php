@@ -82,6 +82,22 @@ class ListReactionsRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
+     * @param string $parent Required. The message users reacted to.
+     *
+     *                       Format: `spaces/{space}/messages/{message}`
+     *                       Please see {@see ChatServiceClient::messageName()} for help formatting this field.
+     *
+     * @return \Google\Apps\Chat\V1\ListReactionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,6 +24,22 @@ class DeleteReactionRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Name of the reaction to delete.
+     *
+     *                     Format: `spaces/{space}/messages/{message}/reactions/{reaction}`
+     *                     Please see {@see ChatServiceClient::reactionName()} for help formatting this field.
+     *
+     * @return \Google\Apps\Chat\V1\DeleteReactionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

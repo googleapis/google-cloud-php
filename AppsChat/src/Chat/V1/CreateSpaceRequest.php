@@ -38,6 +38,27 @@ class CreateSpaceRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param \Google\Apps\Chat\V1\Space $space Required. The `displayName` and `spaceType` fields must be populated.  Only
+     *                                          `SpaceType.SPACE` is supported.
+     *
+     *                                          If you receive the error message `ALREADY_EXISTS` when creating a space,
+     *                                          try a different `displayName`. An existing space within the Google
+     *                                          Workspace organization might already use this display name.
+     *
+     *                                          The space `name` is assigned on the server so anything specified in this
+     *                                          field will be ignored.
+     *
+     * @return \Google\Apps\Chat\V1\CreateSpaceRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Apps\Chat\V1\Space $space): self
+    {
+        return (new self())
+            ->setSpace($space);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

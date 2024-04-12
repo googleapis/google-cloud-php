@@ -75,6 +75,40 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
     protected $message_id = '';
 
     /**
+     * @param string                       $parent    Required. The resource name of the space in which to create a message.
+     *
+     *                                                Format: `spaces/{space}`
+     *                                                Please see {@see ChatServiceClient::spaceName()} for help formatting this field.
+     * @param \Google\Apps\Chat\V1\Message $message   Required. Message body.
+     * @param string                       $messageId Optional. A custom ID for a message. Lets Chat apps get, update, or delete
+     *                                                a message without needing to store the system-assigned ID in the message's
+     *                                                resource name (represented in the message `name` field).
+     *
+     *                                                The value for this field must meet the following requirements:
+     *
+     *                                                * Begins with `client-`. For example, `client-custom-name` is a valid
+     *                                                custom ID, but `custom-name` is not.
+     *                                                * Contains up to 63 characters and only lowercase letters, numbers, and
+     *                                                hyphens.
+     *                                                * Is unique within a space. A Chat app can't use the same custom ID for
+     *                                                different messages.
+     *
+     *                                                For details, see [Name a
+     *                                                message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     *
+     * @return \Google\Apps\Chat\V1\CreateMessageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Apps\Chat\V1\Message $message, string $messageId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setMessage($message)
+            ->setMessageId($messageId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

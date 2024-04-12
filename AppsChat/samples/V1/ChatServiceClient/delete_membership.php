@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START chat_v1_generated_ChatService_DeleteMembership_sync]
 use Google\ApiCore\ApiException;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\DeleteMembershipRequest;
 use Google\Apps\Chat\V1\Membership;
 
 /**
@@ -56,10 +57,14 @@ function delete_membership_sample(string $formattedName): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteMembershipRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Membership $response */
-        $response = $chatServiceClient->deleteMembership($formattedName);
+        $response = $chatServiceClient->deleteMembership($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

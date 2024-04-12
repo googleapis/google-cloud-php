@@ -20,23 +20,45 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Apps\Chat\Tests\Unit\V1;
+namespace Google\Apps\Chat\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Apps\Chat\V1\Attachment;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\CompleteImportSpaceRequest;
 use Google\Apps\Chat\V1\CompleteImportSpaceResponse;
+use Google\Apps\Chat\V1\CreateMembershipRequest;
+use Google\Apps\Chat\V1\CreateMessageRequest;
+use Google\Apps\Chat\V1\CreateReactionRequest;
+use Google\Apps\Chat\V1\CreateSpaceRequest;
+use Google\Apps\Chat\V1\DeleteMembershipRequest;
+use Google\Apps\Chat\V1\DeleteMessageRequest;
+use Google\Apps\Chat\V1\DeleteReactionRequest;
+use Google\Apps\Chat\V1\DeleteSpaceRequest;
+use Google\Apps\Chat\V1\FindDirectMessageRequest;
+use Google\Apps\Chat\V1\GetAttachmentRequest;
+use Google\Apps\Chat\V1\GetMembershipRequest;
+use Google\Apps\Chat\V1\GetMessageRequest;
+use Google\Apps\Chat\V1\GetSpaceRequest;
+use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\ListMembershipsResponse;
+use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListMessagesResponse;
+use Google\Apps\Chat\V1\ListReactionsRequest;
 use Google\Apps\Chat\V1\ListReactionsResponse;
+use Google\Apps\Chat\V1\ListSpacesRequest;
 use Google\Apps\Chat\V1\ListSpacesResponse;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
+use Google\Apps\Chat\V1\UpdateMessageRequest;
+use Google\Apps\Chat\V1\UpdateSpaceRequest;
+use Google\Apps\Chat\V1\UploadAttachmentRequest;
 use Google\Apps\Chat\V1\UploadAttachmentResponse;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -58,7 +80,9 @@ class ChatServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ChatServiceClient */
@@ -83,7 +107,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->spaceName('[SPACE]');
-        $response = $gapicClient->completeImportSpace($formattedName);
+        $request = (new CompleteImportSpaceRequest())->setName($formattedName);
+        $response = $gapicClient->completeImportSpace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -106,17 +131,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->spaceName('[SPACE]');
+        $request = (new CompleteImportSpaceRequest())->setName($formattedName);
         try {
-            $gapicClient->completeImportSpace($formattedName);
+            $gapicClient->completeImportSpace($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -144,7 +173,8 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
         $membership = new Membership();
-        $response = $gapicClient->createMembership($formattedParent, $membership);
+        $request = (new CreateMembershipRequest())->setParent($formattedParent)->setMembership($membership);
+        $response = $gapicClient->createMembership($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -169,18 +199,22 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
         $membership = new Membership();
+        $request = (new CreateMembershipRequest())->setParent($formattedParent)->setMembership($membership);
         try {
-            $gapicClient->createMembership($formattedParent, $membership);
+            $gapicClient->createMembership($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -220,7 +254,8 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
         $message = new Message();
-        $response = $gapicClient->createMessage($formattedParent, $message);
+        $request = (new CreateMessageRequest())->setParent($formattedParent)->setMessage($message);
+        $response = $gapicClient->createMessage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -245,18 +280,22 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
         $message = new Message();
+        $request = (new CreateMessageRequest())->setParent($formattedParent)->setMessage($message);
         try {
-            $gapicClient->createMessage($formattedParent, $message);
+            $gapicClient->createMessage($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -284,7 +323,8 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
         $reaction = new Reaction();
-        $response = $gapicClient->createReaction($formattedParent, $reaction);
+        $request = (new CreateReactionRequest())->setParent($formattedParent)->setReaction($reaction);
+        $response = $gapicClient->createReaction($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -309,18 +349,22 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
         $reaction = new Reaction();
+        $request = (new CreateReactionRequest())->setParent($formattedParent)->setReaction($reaction);
         try {
-            $gapicClient->createReaction($formattedParent, $reaction);
+            $gapicClient->createReaction($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -359,7 +403,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $space = new Space();
-        $response = $gapicClient->createSpace($space);
+        $request = (new CreateSpaceRequest())->setSpace($space);
+        $response = $gapicClient->createSpace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -382,17 +427,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $space = new Space();
+        $request = (new CreateSpaceRequest())->setSpace($space);
         try {
-            $gapicClient->createSpace($space);
+            $gapicClient->createSpace($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -419,7 +468,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->membershipName('[SPACE]', '[MEMBER]');
-        $response = $gapicClient->deleteMembership($formattedName);
+        $request = (new DeleteMembershipRequest())->setName($formattedName);
+        $response = $gapicClient->deleteMembership($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -442,17 +492,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->membershipName('[SPACE]', '[MEMBER]');
+        $request = (new DeleteMembershipRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteMembership($formattedName);
+            $gapicClient->deleteMembership($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -477,7 +531,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
-        $gapicClient->deleteMessage($formattedName);
+        $request = (new DeleteMessageRequest())->setName($formattedName);
+        $gapicClient->deleteMessage($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -499,17 +554,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
+        $request = (new DeleteMessageRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteMessage($formattedName);
+            $gapicClient->deleteMessage($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -534,7 +593,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reactionName('[SPACE]', '[MESSAGE]', '[REACTION]');
-        $gapicClient->deleteReaction($formattedName);
+        $request = (new DeleteReactionRequest())->setName($formattedName);
+        $gapicClient->deleteReaction($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -556,17 +616,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->reactionName('[SPACE]', '[MESSAGE]', '[REACTION]');
+        $request = (new DeleteReactionRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteReaction($formattedName);
+            $gapicClient->deleteReaction($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -591,7 +655,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->spaceName('[SPACE]');
-        $gapicClient->deleteSpace($formattedName);
+        $request = (new DeleteSpaceRequest())->setName($formattedName);
+        $gapicClient->deleteSpace($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -613,17 +678,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->spaceName('[SPACE]');
+        $request = (new DeleteSpaceRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteSpace($formattedName);
+            $gapicClient->deleteSpace($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -662,7 +731,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $gapicClient->findDirectMessage($name);
+        $request = (new FindDirectMessageRequest())->setName($name);
+        $response = $gapicClient->findDirectMessage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -685,17 +755,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
+        $request = (new FindDirectMessageRequest())->setName($name);
         try {
-            $gapicClient->findDirectMessage($name);
+            $gapicClient->findDirectMessage($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -730,7 +804,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->attachmentName('[SPACE]', '[MESSAGE]', '[ATTACHMENT]');
-        $response = $gapicClient->getAttachment($formattedName);
+        $request = (new GetAttachmentRequest())->setName($formattedName);
+        $response = $gapicClient->getAttachment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -753,17 +828,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->attachmentName('[SPACE]', '[MESSAGE]', '[ATTACHMENT]');
+        $request = (new GetAttachmentRequest())->setName($formattedName);
         try {
-            $gapicClient->getAttachment($formattedName);
+            $gapicClient->getAttachment($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -790,7 +869,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->membershipName('[SPACE]', '[MEMBER]');
-        $response = $gapicClient->getMembership($formattedName);
+        $request = (new GetMembershipRequest())->setName($formattedName);
+        $response = $gapicClient->getMembership($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -813,17 +893,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->membershipName('[SPACE]', '[MEMBER]');
+        $request = (new GetMembershipRequest())->setName($formattedName);
         try {
-            $gapicClient->getMembership($formattedName);
+            $gapicClient->getMembership($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -862,7 +946,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
-        $response = $gapicClient->getMessage($formattedName);
+        $request = (new GetMessageRequest())->setName($formattedName);
+        $response = $gapicClient->getMessage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -885,17 +970,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
+        $request = (new GetMessageRequest())->setName($formattedName);
         try {
-            $gapicClient->getMessage($formattedName);
+            $gapicClient->getMessage($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -934,7 +1023,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->spaceName('[SPACE]');
-        $response = $gapicClient->getSpace($formattedName);
+        $request = (new GetSpaceRequest())->setName($formattedName);
+        $response = $gapicClient->getSpace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -957,17 +1047,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->spaceName('[SPACE]');
+        $request = (new GetSpaceRequest())->setName($formattedName);
         try {
-            $gapicClient->getSpace($formattedName);
+            $gapicClient->getSpace($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -990,16 +1084,15 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $membershipsElement = new Membership();
-        $memberships = [
-            $membershipsElement,
-        ];
+        $memberships = [$membershipsElement];
         $expectedResponse = new ListMembershipsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMemberships($memberships);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
-        $response = $gapicClient->listMemberships($formattedParent);
+        $request = (new ListMembershipsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listMemberships($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1025,17 +1118,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $request = (new ListMembershipsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listMemberships($formattedParent);
+            $gapicClient->listMemberships($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1058,16 +1155,15 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $messagesElement = new Message();
-        $messages = [
-            $messagesElement,
-        ];
+        $messages = [$messagesElement];
         $expectedResponse = new ListMessagesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMessages($messages);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
-        $response = $gapicClient->listMessages($formattedParent);
+        $request = (new ListMessagesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listMessages($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1093,17 +1189,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $request = (new ListMessagesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listMessages($formattedParent);
+            $gapicClient->listMessages($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1126,16 +1226,15 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $reactionsElement = new Reaction();
-        $reactions = [
-            $reactionsElement,
-        ];
+        $reactions = [$reactionsElement];
         $expectedResponse = new ListReactionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReactions($reactions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
-        $response = $gapicClient->listReactions($formattedParent);
+        $request = (new ListReactionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listReactions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1161,17 +1260,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->messageName('[SPACE]', '[MESSAGE]');
+        $request = (new ListReactionsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listReactions($formattedParent);
+            $gapicClient->listReactions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1194,14 +1297,13 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $spacesElement = new Space();
-        $spaces = [
-            $spacesElement,
-        ];
+        $spaces = [$spacesElement];
         $expectedResponse = new ListSpacesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSpaces($spaces);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listSpaces();
+        $request = new ListSpacesRequest();
+        $response = $gapicClient->listSpaces($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1225,15 +1327,19 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new ListSpacesRequest();
         try {
-            $gapicClient->listSpaces();
+            $gapicClient->listSpaces($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1272,7 +1378,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $space = new Space();
-        $response = $gapicClient->setUpSpace($space);
+        $request = (new SetUpSpaceRequest())->setSpace($space);
+        $response = $gapicClient->setUpSpace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1295,17 +1402,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $space = new Space();
+        $request = (new SetUpSpaceRequest())->setSpace($space);
         try {
-            $gapicClient->setUpSpace($space);
+            $gapicClient->setUpSpace($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1344,7 +1455,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $message = new Message();
-        $response = $gapicClient->updateMessage($message);
+        $request = (new UpdateMessageRequest())->setMessage($message);
+        $response = $gapicClient->updateMessage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1367,17 +1479,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $message = new Message();
+        $request = (new UpdateMessageRequest())->setMessage($message);
         try {
-            $gapicClient->updateMessage($message);
+            $gapicClient->updateMessage($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1416,7 +1532,8 @@ class ChatServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $space = new Space();
-        $response = $gapicClient->updateSpace($space);
+        $request = (new UpdateSpaceRequest())->setSpace($space);
+        $response = $gapicClient->updateSpace($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1439,17 +1556,21 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $space = new Space();
+        $request = (new UpdateSpaceRequest())->setSpace($space);
         try {
-            $gapicClient->updateSpace($space);
+            $gapicClient->updateSpace($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1475,7 +1596,8 @@ class ChatServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
         $filename = 'filename-734768633';
-        $response = $gapicClient->uploadAttachment($formattedParent, $filename);
+        $request = (new UploadAttachmentRequest())->setParent($formattedParent)->setFilename($filename);
+        $response = $gapicClient->uploadAttachment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1500,18 +1622,22 @@ class ChatServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->spaceName('[SPACE]');
         $filename = 'filename-734768633';
+        $request = (new UploadAttachmentRequest())->setParent($formattedParent)->setFilename($filename);
         try {
-            $gapicClient->uploadAttachment($formattedParent, $filename);
+            $gapicClient->uploadAttachment($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1520,6 +1646,32 @@ class ChatServiceClientTest extends GeneratedTest
         }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function completeImportSpaceAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new CompleteImportSpaceResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->spaceName('[SPACE]');
+        $request = (new CompleteImportSpaceRequest())->setName($formattedName);
+        $response = $gapicClient->completeImportSpaceAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/CompleteImportSpace', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

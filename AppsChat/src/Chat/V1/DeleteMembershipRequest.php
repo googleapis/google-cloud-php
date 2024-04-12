@@ -31,6 +31,33 @@ class DeleteMembershipRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Resource name of the membership to delete. Chat apps can delete
+     *                     human users' or their own memberships. Chat apps can't delete other apps'
+     *                     memberships.
+     *
+     *                     When deleting a human membership, requires the `chat.memberships` scope and
+     *                     `spaces/{space}/members/{member}` format. You can use the email as an
+     *                     alias for `{member}`. For example,
+     *                     `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     *                     email of the Google Chat user.
+     *
+     *                     When deleting an app membership, requires the `chat.memberships.app` scope
+     *                     and `spaces/{space}/members/app` format.
+     *
+     *                     Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`. Please see
+     *                     {@see ChatServiceClient::membershipName()} for help formatting this field.
+     *
+     * @return \Google\Apps\Chat\V1\DeleteMembershipRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

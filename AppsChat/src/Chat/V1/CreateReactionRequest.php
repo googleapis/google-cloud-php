@@ -30,6 +30,24 @@ class CreateReactionRequest extends \Google\Protobuf\Internal\Message
     protected $reaction = null;
 
     /**
+     * @param string                        $parent   Required. The message where the reaction is created.
+     *
+     *                                                Format: `spaces/{space}/messages/{message}`
+     *                                                Please see {@see ChatServiceClient::messageName()} for help formatting this field.
+     * @param \Google\Apps\Chat\V1\Reaction $reaction Required. The reaction to create.
+     *
+     * @return \Google\Apps\Chat\V1\CreateReactionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Apps\Chat\V1\Reaction $reaction): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setReaction($reaction);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

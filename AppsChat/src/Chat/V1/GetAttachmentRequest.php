@@ -22,6 +22,21 @@ class GetAttachmentRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Resource name of the attachment, in the form
+     *                     `spaces/&#42;/messages/&#42;/attachments/*`. Please see
+     *                     {@see ChatServiceClient::attachmentName()} for help formatting this field.
+     *
+     * @return \Google\Apps\Chat\V1\GetAttachmentRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

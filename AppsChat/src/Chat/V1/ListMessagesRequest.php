@@ -95,6 +95,22 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     protected $show_deleted = false;
 
     /**
+     * @param string $parent Required. The resource name of the space to list messages from.
+     *
+     *                       Format: `spaces/{space}`
+     *                       Please see {@see ChatServiceClient::spaceName()} for help formatting this field.
+     *
+     * @return \Google\Apps\Chat\V1\ListMessagesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

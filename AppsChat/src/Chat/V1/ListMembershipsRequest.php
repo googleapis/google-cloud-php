@@ -94,6 +94,23 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     protected $show_invited = false;
 
     /**
+     * @param string $parent Required. The resource name of the space for which to fetch a membership
+     *                       list.
+     *
+     *                       Format: spaces/{space}
+     *                       Please see {@see ChatServiceClient::spaceName()} for help formatting this field.
+     *
+     * @return \Google\Apps\Chat\V1\ListMembershipsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

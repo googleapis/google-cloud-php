@@ -46,6 +46,37 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
     protected $allow_missing = false;
 
     /**
+     * @param \Google\Apps\Chat\V1\Message $message    Required. Message with fields updated.
+     * @param \Google\Protobuf\FieldMask   $updateMask Required. The field paths to update. Separate multiple values with commas
+     *                                                 or use `*` to update all field paths.
+     *
+     *                                                 Currently supported field paths:
+     *
+     *                                                 - `text`
+     *
+     *                                                 - `attachment`
+     *
+     *                                                 - `cards` (Requires [app
+     *                                                 authentication](/chat/api/guides/auth/service-accounts).)
+     *
+     *                                                 - `cards_v2`  (Requires [app
+     *                                                 authentication](/chat/api/guides/auth/service-accounts).)
+     *
+     *                                                 - `accessory_widgets`  (Requires [app
+     *                                                 authentication](/chat/api/guides/auth/service-accounts).)
+     *
+     * @return \Google\Apps\Chat\V1\UpdateMessageRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Apps\Chat\V1\Message $message, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setMessage($message)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START chat_v1_generated_ChatService_UpdateMessage_sync]
 use Google\ApiCore\ApiException;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
 use Google\Apps\Chat\V1\Message;
+use Google\Apps\Chat\V1\UpdateMessageRequest;
 
 /**
  * Updates a message. There's a difference between the `patch` and `update`
@@ -56,13 +57,15 @@ function update_message_sample(): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $message = new Message();
+    $request = (new UpdateMessageRequest())
+        ->setMessage($message);
 
     // Call the API and handle any network failures.
     try {
         /** @var Message $response */
-        $response = $chatServiceClient->updateMessage($message);
+        $response = $chatServiceClient->updateMessage($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

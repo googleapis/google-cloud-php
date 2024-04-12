@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START chat_v1_generated_ChatService_GetAttachment_sync]
 use Google\ApiCore\ApiException;
 use Google\Apps\Chat\V1\Attachment;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\GetAttachmentRequest;
 
 /**
  * Gets the metadata of a message attachment. The attachment data is fetched
@@ -46,10 +47,14 @@ function get_attachment_sample(string $formattedName): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetAttachmentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Attachment $response */
-        $response = $chatServiceClient->getAttachment($formattedName);
+        $response = $chatServiceClient->getAttachment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

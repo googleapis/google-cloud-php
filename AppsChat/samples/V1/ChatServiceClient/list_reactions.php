@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START chat_v1_generated_ChatService_ListReactions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\ListReactionsRequest;
 use Google\Apps\Chat\V1\Reaction;
 
 /**
@@ -45,10 +46,14 @@ function list_reactions_sample(string $formattedParent): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListReactionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $chatServiceClient->listReactions($formattedParent);
+        $response = $chatServiceClient->listReactions($request);
 
         /** @var Reaction $element */
         foreach ($response as $element) {

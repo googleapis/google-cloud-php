@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START chat_v1_generated_ChatService_ListSpaces_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\ListSpacesRequest;
 use Google\Apps\Chat\V1\Space;
 
 /**
@@ -56,10 +57,13 @@ function list_spaces_sample(): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
+    // Prepare the request message.
+    $request = new ListSpacesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $chatServiceClient->listSpaces();
+        $response = $chatServiceClient->listSpaces($request);
 
         /** @var Space $element */
         foreach ($response as $element) {

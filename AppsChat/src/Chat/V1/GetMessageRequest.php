@@ -26,6 +26,27 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Resource name of the message.
+     *
+     *                     Format: `spaces/{space}/messages/{message}`
+     *
+     *                     If you've set a custom ID for your message, you can use the value from the
+     *                     `clientAssignedMessageId` field for `{message}`. For details, see [Name a
+     *                     message]
+     *                     (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message). Please see
+     *                     {@see ChatServiceClient::messageName()} for help formatting this field.
+     *
+     * @return \Google\Apps\Chat\V1\GetMessageRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

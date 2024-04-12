@@ -44,6 +44,40 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
     protected $membership = null;
 
     /**
+     * @param string                          $parent     Required. The resource name of the space for which to create the
+     *                                                    membership.
+     *
+     *                                                    Format: spaces/{space}
+     *                                                    Please see {@see ChatServiceClient::spaceName()} for help formatting this field.
+     * @param \Google\Apps\Chat\V1\Membership $membership Required. The membership relation to create.
+     *                                                    The `memberType` field must contain a user with the `user.name` and
+     *                                                    `user.type` fields populated. The server will assign a resource name
+     *                                                    and overwrite anything specified.
+     *                                                    When a Chat app creates a membership relation for a human user, it must use
+     *                                                    the `chat.memberships` scope, set `user.type` to `HUMAN`, and set
+     *                                                    `user.name` with format `users/{user}`, where `{user}` can be the email
+     *                                                    address for the user. For users in the same Workspace organization `{user}`
+     *                                                    can also be the `id` of the
+     *                                                    [person](https://developers.google.com/people/api/rest/v1/people) from the
+     *                                                    People API, or the `id` for the user in the Directory API. For example, if
+     *                                                    the People API Person profile ID for `user&#64;example.com` is `123456789`, you
+     *                                                    can add the user to the space by setting the `membership.member.name` to
+     *                                                    `users/user&#64;example.com` or `users/123456789`. When a Chat app creates a
+     *                                                    membership relation for itself, it must use the `chat.memberships.app`
+     *                                                    scope, set `user.type` to `BOT`, and set `user.name` to `users/app`.
+     *
+     * @return \Google\Apps\Chat\V1\CreateMembershipRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Apps\Chat\V1\Membership $membership): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setMembership($membership);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

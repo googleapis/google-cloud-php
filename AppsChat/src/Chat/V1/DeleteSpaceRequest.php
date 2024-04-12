@@ -24,6 +24,22 @@ class DeleteSpaceRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Resource name of the space to delete.
+     *
+     *                     Format: `spaces/{space}`
+     *                     Please see {@see ChatServiceClient::spaceName()} for help formatting this field.
+     *
+     * @return \Google\Apps\Chat\V1\DeleteSpaceRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

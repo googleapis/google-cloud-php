@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START chat_v1_generated_ChatService_ListMessages_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Apps\Chat\V1\ChatServiceClient;
+use Google\Apps\Chat\V1\Client\ChatServiceClient;
+use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\Message;
 
 /**
@@ -45,10 +46,14 @@ function list_messages_sample(string $formattedParent): void
     // Create a client.
     $chatServiceClient = new ChatServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListMessagesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $chatServiceClient->listMessages($formattedParent);
+        $response = $chatServiceClient->listMessages($request);
 
         /** @var Message $element */
         foreach ($response as $element) {
