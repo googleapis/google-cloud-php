@@ -29,12 +29,14 @@ use Google\Cloud\SecretManager\V1\GetSecretVersionRequest;
 use Google\Cloud\SecretManager\V1\SecretVersion;
 
 /**
- * Gets metadata for a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+ * Gets metadata for a
+ * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
  *
  * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
  * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
  *
- * @param string $formattedName The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+ * @param string $formattedName The resource name of the
+ *                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
  *                              `projects/&#42;/secrets/&#42;/versions/*`.
  *
  *                              `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently

@@ -9,22 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [SecretManagerService.ListSecrets][google.cloud.secretmanager.v1.SecretManagerService.ListSecrets].
+ * Response message for
+ * [SecretManagerService.ListSecrets][google.cloud.secretmanager.v1.SecretManagerService.ListSecrets].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.ListSecretsResponse</code>
  */
 class ListSecretsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in reverse by create_time (newest
-     * first).
+     * The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in
+     * reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Secret secrets = 1;</code>
      */
     private $secrets;
     /**
      * A token to retrieve the next page of results. Pass this value in
-     * [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token] to retrieve the next page.
+     * [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token]
+     * to retrieve the next page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -43,11 +45,12 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\SecretManager\V1\Secret>|\Google\Protobuf\Internal\RepeatedField $secrets
-     *           The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in reverse by create_time (newest
-     *           first).
+     *           The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in
+     *           reverse by create_time (newest first).
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. Pass this value in
-     *           [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token] to retrieve the next page.
+     *           [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token]
+     *           to retrieve the next page.
      *     @type int $total_size
      *           The total number of [Secrets][google.cloud.secretmanager.v1.Secret].
      * }
@@ -58,8 +61,8 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in reverse by create_time (newest
-     * first).
+     * The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in
+     * reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Secret secrets = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -70,8 +73,8 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in reverse by create_time (newest
-     * first).
+     * The list of [Secrets][google.cloud.secretmanager.v1.Secret] sorted in
+     * reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Secret secrets = 1;</code>
      * @param array<\Google\Cloud\SecretManager\V1\Secret>|\Google\Protobuf\Internal\RepeatedField $var
@@ -87,7 +90,8 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results. Pass this value in
-     * [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token] to retrieve the next page.
+     * [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token]
+     * to retrieve the next page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -99,7 +103,8 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results. Pass this value in
-     * [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token] to retrieve the next page.
+     * [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token]
+     * to retrieve the next page.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

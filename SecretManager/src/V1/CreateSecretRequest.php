@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SecretManagerService.CreateSecret][google.cloud.secretmanager.v1.SecretManagerService.CreateSecret].
+ * Request message for
+ * [SecretManagerService.CreateSecret][google.cloud.secretmanager.v1.SecretManagerService.CreateSecret].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.CreateSecretRequest</code>
  */
@@ -32,7 +33,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     private $secret_id = '';
     /**
-     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     * field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,7 +49,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *                                                        A secret ID is a string with a maximum length of 255 characters and can
      *                                                        contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
      *                                                        underscore (`_`) characters.
-     * @param \Google\Cloud\SecretManager\V1\Secret $secret   Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * @param \Google\Cloud\SecretManager\V1\Secret $secret   Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     *                                                        field values.
      *
      * @return \Google\Cloud\SecretManager\V1\CreateSecretRequest
      *
@@ -76,7 +79,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *           contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
      *           underscore (`_`) characters.
      *     @type \Google\Cloud\SecretManager\V1\Secret $secret
-     *           Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     *           Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     *           field values.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,7 +149,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     * field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecretManager\V1\Secret|null
@@ -166,7 +171,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     * field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecretManager\V1\Secret $var
