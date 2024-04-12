@@ -37,12 +37,21 @@ class SolutionType
      * Generated from protobuf enum <code>SOLUTION_TYPE_CHAT = 3;</code>
      */
     const SOLUTION_TYPE_CHAT = 3;
+    /**
+     * Used for use cases related to the Generative Chat agent.
+     * It's used for Generative chat engine only, the associated data stores
+     * must enrolled with `SOLUTION_TYPE_CHAT` solution.
+     *
+     * Generated from protobuf enum <code>SOLUTION_TYPE_GENERATIVE_CHAT = 4;</code>
+     */
+    const SOLUTION_TYPE_GENERATIVE_CHAT = 4;
 
     private static $valueToName = [
         self::SOLUTION_TYPE_UNSPECIFIED => 'SOLUTION_TYPE_UNSPECIFIED',
         self::SOLUTION_TYPE_RECOMMENDATION => 'SOLUTION_TYPE_RECOMMENDATION',
         self::SOLUTION_TYPE_SEARCH => 'SOLUTION_TYPE_SEARCH',
         self::SOLUTION_TYPE_CHAT => 'SOLUTION_TYPE_CHAT',
+        self::SOLUTION_TYPE_GENERATIVE_CHAT => 'SOLUTION_TYPE_GENERATIVE_CHAT',
     ];
 
     public static function name($value)
