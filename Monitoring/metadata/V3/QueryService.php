@@ -15,12 +15,12 @@ class QueryService
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
+        \GPBMetadata\Google\Monitoring\V3\MetricService::initOnce();
         $pool->internalAddGeneratedFile(
             '
 ¼
-(google/monitoring/v3/query_service.protogoogle.monitoring.v3)google/monitoring/v3/metric_service.protogoogle/api/client.proto2Þ
+(google/monitoring/v3/query_service.protogoogle.monitoring.v3google/api/client.proto)google/monitoring/v3/metric_service.proto2Þ
 QueryService¡
 QueryTimeSeries,.google.monitoring.v3.QueryTimeSeriesRequest-.google.monitoring.v3.QueryTimeSeriesResponse"1‚Óä“+"&/v3/{name=projects/*}/timeSeries:query:*©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÌ
 com.google.monitoring.v3BQueryServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'

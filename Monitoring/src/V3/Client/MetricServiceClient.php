@@ -423,10 +423,11 @@ final class MetricServiceClient
 
     /**
      * Creates a new metric descriptor.
-     * The creation is executed asynchronously and callers may check the returned
-     * operation to track its progress.
+     * The creation is executed asynchronously.
      * User-created metric descriptors define
      * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
+     * The metric descriptor is updated if it already exists,
+     * except that metric labels are never removed.
      *
      * The async variant is {@see MetricServiceClient::createMetricDescriptorAsync()} .
      *
@@ -489,6 +490,9 @@ final class MetricServiceClient
      * The response is empty if all time series in the request were written.
      * If any time series could not be written, a corresponding failure message is
      * included in the error response.
+     * This method does not support
+     * [resource locations constraint of an organization
+     * policy](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations#setting_the_organization_policy).
      *
      * The async variant is {@see MetricServiceClient::createTimeSeriesAsync()} .
      *
@@ -538,7 +542,7 @@ final class MetricServiceClient
     }
 
     /**
-     * Gets a single metric descriptor. This method does not require a Workspace.
+     * Gets a single metric descriptor.
      *
      * The async variant is {@see MetricServiceClient::getMetricDescriptorAsync()} .
      *
@@ -564,7 +568,7 @@ final class MetricServiceClient
     }
 
     /**
-     * Gets a single monitored resource descriptor. This method does not require a Workspace.
+     * Gets a single monitored resource descriptor.
      *
      * The async variant is
      * {@see MetricServiceClient::getMonitoredResourceDescriptorAsync()} .
@@ -591,7 +595,7 @@ final class MetricServiceClient
     }
 
     /**
-     * Lists metric descriptors that match a filter. This method does not require a Workspace.
+     * Lists metric descriptors that match a filter.
      *
      * The async variant is {@see MetricServiceClient::listMetricDescriptorsAsync()} .
      *
@@ -617,7 +621,7 @@ final class MetricServiceClient
     }
 
     /**
-     * Lists monitored resource descriptors that match a filter. This method does not require a Workspace.
+     * Lists monitored resource descriptors that match a filter.
      *
      * The async variant is
      * {@see MetricServiceClient::listMonitoredResourceDescriptorsAsync()} .
@@ -644,7 +648,7 @@ final class MetricServiceClient
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a Workspace.
+     * Lists time series that match a filter.
      *
      * The async variant is {@see MetricServiceClient::listTimeSeriesAsync()} .
      *

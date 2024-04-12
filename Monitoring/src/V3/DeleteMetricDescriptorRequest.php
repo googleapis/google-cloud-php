@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The metric descriptor on which to execute the request. The format is:
+     * Required. The metric descriptor on which to execute the request. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      * An example of `[METRIC_ID]` is:
      * `"custom.googleapis.com/my_test_metric"`.
@@ -26,7 +27,8 @@ class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The metric descriptor on which to execute the request. The format is:
+     * @param string $name Required. The metric descriptor on which to execute the request. The format
+     *                     is:
      *
      *                     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      *
@@ -51,7 +53,8 @@ class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The metric descriptor on which to execute the request. The format is:
+     *           Required. The metric descriptor on which to execute the request. The format
+     *           is:
      *               projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      *           An example of `[METRIC_ID]` is:
      *           `"custom.googleapis.com/my_test_metric"`.
@@ -63,7 +66,8 @@ class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The metric descriptor on which to execute the request. The format is:
+     * Required. The metric descriptor on which to execute the request. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      * An example of `[METRIC_ID]` is:
      * `"custom.googleapis.com/my_test_metric"`.
@@ -77,7 +81,8 @@ class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The metric descriptor on which to execute the request. The format is:
+     * Required. The metric descriptor on which to execute the request. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
      * An example of `[METRIC_ID]` is:
      * `"custom.googleapis.com/my_test_metric"`.
