@@ -206,6 +206,34 @@ final class DataStoreServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_schema resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $schema
+     *
+     * @return string The formatted project_location_collection_data_store_schema resource.
+     */
+    public static function projectLocationCollectionDataStoreSchemaName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $schema
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreSchema')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'schema' => $schema,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store resource.
      *
      * @param string $project
@@ -224,13 +252,62 @@ final class DataStoreServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_schema resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $schema
+     *
+     * @return string The formatted project_location_data_store_schema resource.
+     */
+    public static function projectLocationDataStoreSchemaName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $schema
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreSchema')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'schema' => $schema,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a schema
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $schema
+     *
+     * @return string The formatted schema resource.
+     */
+    public static function schemaName(string $project, string $location, string $dataStore, string $schema): string
+    {
+        return self::getPathTemplate('schema')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'schema' => $schema,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - collection: projects/{project}/locations/{location}/collections/{collection}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
+     * - projectLocationCollectionDataStoreSchema: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - projectLocationDataStoreSchema: projects/{project}/locations/{location}/dataStores/{data_store}/schemas/{schema}
+     * - schema: projects/{project}/locations/{location}/dataStores/{data_store}/schemas/{schema}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

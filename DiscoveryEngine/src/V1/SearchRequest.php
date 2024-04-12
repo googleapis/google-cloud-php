@@ -51,9 +51,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     protected $image_query = null;
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
-     * return. If unspecified, defaults to a reasonable value. The maximum allowed
-     * value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
@@ -82,6 +85,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 offset = 6;</code>
      */
     protected $offset = 0;
+    /**
+     * A list of data store specs to apply on a search call.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     */
+    private $data_store_specs;
     /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the documents being filtered. Filter
@@ -256,9 +265,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           Raw image query.
      *     @type int $page_size
      *           Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
-     *           return. If unspecified, defaults to a reasonable value. The maximum allowed
-     *           value is 100. Values above 100 are coerced to 100.
-     *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *           return. The maximum allowed value depends on the data type. Values above
+     *           the maximum value are coerced to the maximum value.
+     *           * Websites with basic indexing: Default `10`, Maximum `25`.
+     *           * Websites with advanced indexing: Default `25`, Maximum `50`.
+     *           * Other: Default `50`, Maximum `100`.
+     *           If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *     @type string $page_token
      *           A page token received from a previous
      *           [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
@@ -275,6 +287,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           [page_token][google.cloud.discoveryengine.v1.SearchRequest.page_token] is
      *           unset.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *           A list of data store specs to apply on a search call.
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the documents being filtered. Filter
@@ -511,9 +525,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
-     * return. If unspecified, defaults to a reasonable value. The maximum allowed
-     * value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @return int
@@ -525,9 +542,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
-     * return. If unspecified, defaults to a reasonable value. The maximum allowed
-     * value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @param int $var
@@ -613,6 +633,32 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->offset = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of data store specs to apply on a search call.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataStoreSpecs()
+    {
+        return $this->data_store_specs;
+    }
+
+    /**
+     * A list of data store specs to apply on a search call.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataStoreSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec::class);
+        $this->data_store_specs = $arr;
 
         return $this;
     }

@@ -60,7 +60,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *   [Document.struct_data][google.cloud.discoveryengine.v1.Document.struct_data].
      * * `custom`: One custom data per row in arbitrary format that conforms to
      *   the defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
-     *   store. This can only be used by Gen App Builder.
+     *   store. This can only be used by the GENERIC Data Store vertical.
      *
      * Generated from protobuf field <code>string data_schema = 6;</code>
      */
@@ -104,7 +104,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *             [Document.struct_data][google.cloud.discoveryengine.v1.Document.struct_data].
      *           * `custom`: One custom data per row in arbitrary format that conforms to
      *             the defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
-     *             store. This can only be used by Gen App Builder.
+     *             store. This can only be used by the GENERIC Data Store vertical.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,7 +274,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *   [Document.struct_data][google.cloud.discoveryengine.v1.Document.struct_data].
      * * `custom`: One custom data per row in arbitrary format that conforms to
      *   the defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
-     *   store. This can only be used by Gen App Builder.
+     *   store. This can only be used by the GENERIC Data Store vertical.
      *
      * Generated from protobuf field <code>string data_schema = 6;</code>
      * @return string
@@ -299,7 +299,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *   [Document.struct_data][google.cloud.discoveryengine.v1.Document.struct_data].
      * * `custom`: One custom data per row in arbitrary format that conforms to
      *   the defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
-     *   store. This can only be used by Gen App Builder.
+     *   store. This can only be used by the GENERIC Data Store vertical.
      *
      * Generated from protobuf field <code>string data_schema = 6;</code>
      * @param string $var

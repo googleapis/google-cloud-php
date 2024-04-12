@@ -195,6 +195,27 @@ final class DocumentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a fhir_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $fhirStore
+     *
+     * @return string The formatted fhir_store resource.
+     */
+    public static function fhirStoreName(string $project, string $location, string $dataset, string $fhirStore): string
+    {
+        return self::getPathTemplate('fhirStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'fhir_store' => $fhirStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_data_store_branch resource.
      *
@@ -312,6 +333,7 @@ final class DocumentServiceClient
      * Template: Pattern
      * - branch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - fhirStore: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}
      * - projectLocationCollectionDataStoreBranch: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationDataStoreBranch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
