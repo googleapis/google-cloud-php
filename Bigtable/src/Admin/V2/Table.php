@@ -76,6 +76,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool deletion_protection = 9;</code>
      */
     private $deletion_protection = false;
+    protected $automated_backup_config;
 
     /**
      * Constructor.
@@ -115,6 +116,9 @@ class Table extends \Google\Protobuf\Internal\Message
      *           * The column families in the table.
      *           * The instance containing the table.
      *           Note one can still delete the data stored in the table through Data APIs.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy $automated_backup_policy
+     *           If specified, automated backups are enabled for this table.
+     *           Otherwise, automated backups are disabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -358,6 +362,47 @@ class Table extends \Google\Protobuf\Internal\Message
         $this->deletion_protection = $var;
 
         return $this;
+    }
+
+    /**
+     * If specified, automated backups are enabled for this table.
+     * Otherwise, automated backups are disabled.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.AutomatedBackupPolicy automated_backup_policy = 13;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy|null
+     */
+    public function getAutomatedBackupPolicy()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasAutomatedBackupPolicy()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * If specified, automated backups are enabled for this table.
+     * Otherwise, automated backups are disabled.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.AutomatedBackupPolicy automated_backup_policy = 13;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy $var
+     * @return $this
+     */
+    public function setAutomatedBackupPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutomatedBackupConfig()
+    {
+        return $this->whichOneof("automated_backup_config");
     }
 
 }

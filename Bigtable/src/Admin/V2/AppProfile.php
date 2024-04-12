@@ -76,6 +76,9 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation $standard_isolation
      *           The standard options used for isolating this app profile's traffic from
      *           other use cases.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\DataBoostIsolationReadOnly $data_boost_isolation_read_only
+     *           Specifies that this app profile is intended for read-only usage via the
+     *           Data Boost feature.
      * }
      */
     public function __construct($data = NULL) {
@@ -308,6 +311,39 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Specifies that this app profile is intended for read-only usage via the
+     * Data Boost feature.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.DataBoostIsolationReadOnly data_boost_isolation_read_only = 10;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\DataBoostIsolationReadOnly|null
+     */
+    public function getDataBoostIsolationReadOnly()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasDataBoostIsolationReadOnly()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Specifies that this app profile is intended for read-only usage via the
+     * Data Boost feature.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.DataBoostIsolationReadOnly data_boost_isolation_read_only = 10;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile\DataBoostIsolationReadOnly $var
+     * @return $this
+     */
+    public function setDataBoostIsolationReadOnly($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\DataBoostIsolationReadOnly::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

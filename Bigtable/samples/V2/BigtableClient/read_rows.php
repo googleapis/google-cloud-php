@@ -36,7 +36,8 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
  * atomicity of each row will still be preserved. See the
  * ReadRowsResponse documentation for details.
  *
- * @param string $formattedTableName The unique name of the table from which to read.
+ * @param string $formattedTableName Optional. The unique name of the table from which to read.
+ *
  *                                   Values are of the form
  *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
