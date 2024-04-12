@@ -35,12 +35,13 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      */
     protected $account = 0;
     /**
-     * Required. Store code (the store ID from your Business Profile) of the
-     * physical store the product is sold in. See the [Local product inventory
-     * feed specification](https://support.google.com/merchants/answer/3061342)
-     * for more information.
+     * Required. Immutable. Store code (the store ID from your Business Profile)
+     * of the physical store the product is sold in. See the [Local product
+     * inventory feed
+     * specification](https://support.google.com/merchants/answer/3061342) for
+     * more information.
      *
-     * Generated from protobuf field <code>string store_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string store_code = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $store_code = '';
     /**
@@ -128,10 +129,11 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *           Output only. The account that owns the product. This field will be ignored
      *           if set by the client.
      *     @type string $store_code
-     *           Required. Store code (the store ID from your Business Profile) of the
-     *           physical store the product is sold in. See the [Local product inventory
-     *           feed specification](https://support.google.com/merchants/answer/3061342)
-     *           for more information.
+     *           Required. Immutable. Store code (the store ID from your Business Profile)
+     *           of the physical store the product is sold in. See the [Local product
+     *           inventory feed
+     *           specification](https://support.google.com/merchants/answer/3061342) for
+     *           more information.
      *     @type \Google\Shopping\Type\Price $price
      *           Price of the product at this store.
      *     @type \Google\Shopping\Type\Price $sale_price
@@ -232,12 +234,13 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Store code (the store ID from your Business Profile) of the
-     * physical store the product is sold in. See the [Local product inventory
-     * feed specification](https://support.google.com/merchants/answer/3061342)
-     * for more information.
+     * Required. Immutable. Store code (the store ID from your Business Profile)
+     * of the physical store the product is sold in. See the [Local product
+     * inventory feed
+     * specification](https://support.google.com/merchants/answer/3061342) for
+     * more information.
      *
-     * Generated from protobuf field <code>string store_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string store_code = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getStoreCode()
@@ -246,12 +249,13 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Store code (the store ID from your Business Profile) of the
-     * physical store the product is sold in. See the [Local product inventory
-     * feed specification](https://support.google.com/merchants/answer/3061342)
-     * for more information.
+     * Required. Immutable. Store code (the store ID from your Business Profile)
+     * of the physical store the product is sold in. See the [Local product
+     * inventory feed
+     * specification](https://support.google.com/merchants/answer/3061342) for
+     * more information.
      *
-     * Generated from protobuf field <code>string store_code = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string store_code = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

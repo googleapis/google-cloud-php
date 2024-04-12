@@ -48,6 +48,7 @@ return [
                 ],
             ],
             'templateMap' => [
+                'product' => 'accounts/{account}/products/{product}',
                 'regionalInventory' => 'accounts/{account}/products/{product}/regionalInventories/{region}',
             ],
         ],

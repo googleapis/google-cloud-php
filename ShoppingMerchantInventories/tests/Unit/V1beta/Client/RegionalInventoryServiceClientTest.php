@@ -145,12 +145,12 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $expectedResponse->setAvailability($availability);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
         $regionalInventory = new RegionalInventory();
         $regionalInventoryRegion = 'regionalInventoryRegion-40810671';
         $regionalInventory->setRegion($regionalInventoryRegion);
         $request = (new InsertRegionalInventoryRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setRegionalInventory($regionalInventory);
         $response = $gapicClient->insertRegionalInventory($request);
         $this->assertEquals($expectedResponse, $response);
@@ -160,7 +160,7 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.inventories.v1beta.RegionalInventoryService/InsertRegionalInventory', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getRegionalInventory();
         $this->assertProtobufEquals($regionalInventory, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -185,12 +185,12 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
         $regionalInventory = new RegionalInventory();
         $regionalInventoryRegion = 'regionalInventoryRegion-40810671';
         $regionalInventory->setRegion($regionalInventoryRegion);
         $request = (new InsertRegionalInventoryRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setRegionalInventory($regionalInventory);
         try {
             $gapicClient->insertRegionalInventory($request);
@@ -224,9 +224,9 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $expectedResponse->setRegionalInventories($regionalInventories);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
         $request = (new ListRegionalInventoriesRequest())
-            ->setParent($parent);
+            ->setParent($formattedParent);
         $response = $gapicClient->listRegionalInventories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -238,7 +238,7 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.inventories.v1beta.RegionalInventoryService/ListRegionalInventories', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -261,9 +261,9 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
         $request = (new ListRegionalInventoriesRequest())
-            ->setParent($parent);
+            ->setParent($formattedParent);
         try {
             $gapicClient->listRegionalInventories($request);
             // If the $gapicClient method call did not throw, fail the test
