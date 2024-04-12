@@ -303,7 +303,8 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Accesses a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. This call returns the secret data.
+     * Accesses a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * This call returns the secret data.
      *
      * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -333,8 +334,9 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] containing secret data and attaches
-     * it to an existing [Secret][google.cloud.secretmanager.v1.Secret].
+     * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]
+     * containing secret data and attaches it to an existing
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * The async variant is {@see SecretManagerServiceClient::addSecretVersionAsync()}
      * .
@@ -361,7 +363,8 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
      *
      * The async variant is {@see SecretManagerServiceClient::createSecretAsync()} .
      *
@@ -413,9 +416,10 @@ final class SecretManagerServiceClient
     /**
      * Destroys a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
-     * [DESTROYED][google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED] and irrevocably destroys the
-     * secret data.
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * [DESTROYED][google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED]
+     * and irrevocably destroys the secret data.
      *
      * The async variant is
      * {@see SecretManagerServiceClient::destroySecretVersionAsync()} .
@@ -444,7 +448,8 @@ final class SecretManagerServiceClient
     /**
      * Disables a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
      * [DISABLED][google.cloud.secretmanager.v1.SecretVersion.State.DISABLED].
      *
      * The async variant is
@@ -474,7 +479,8 @@ final class SecretManagerServiceClient
     /**
      * Enables a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
      * [ENABLED][google.cloud.secretmanager.v1.SecretVersion.State.ENABLED].
      *
      * The async variant is
@@ -555,7 +561,8 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Gets metadata for a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * Gets metadata for a
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -585,8 +592,8 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This call does not return secret
-     * data.
+     * Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This
+     * call does not return secret data.
      *
      * The async variant is
      * {@see SecretManagerServiceClient::listSecretVersionsAsync()} .
@@ -642,8 +649,10 @@ final class SecretManagerServiceClient
      * Sets the access control policy on the specified secret. Replaces any
      * existing policy.
      *
-     * Permissions on [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced according
-     * to the policy set on the associated [Secret][google.cloud.secretmanager.v1.Secret].
+     * Permissions on
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced
+     * according to the policy set on the associated
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * The async variant is {@see SecretManagerServiceClient::setIamPolicyAsync()} .
      *
@@ -702,7 +711,8 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Updates metadata of an existing [Secret][google.cloud.secretmanager.v1.Secret].
+     * Updates metadata of an existing
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * The async variant is {@see SecretManagerServiceClient::updateSecretAsync()} .
      *
