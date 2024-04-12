@@ -33,8 +33,10 @@ use Google\Cloud\Bigtable\V2\Mutation;
  * Mutates a row atomically. Cells already present in the row are left
  * unchanged unless explicitly changed by `mutation`.
  *
- * @param string $formattedTableName The unique name of the table to which the mutation should be
- *                                   applied. Values are of the form
+ * @param string $formattedTableName Optional. The unique name of the table to which the mutation should be
+ *                                   applied.
+ *
+ *                                   Values are of the form
  *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
  * @param string $rowKey             The key of the row to which the mutation should be applied.
