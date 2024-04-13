@@ -1,0 +1,153 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.dataflow.v1beta3",
+    "libraryPackage": "Google\\Cloud\\Dataflow\\V1beta3",
+    "services": {
+        "SnapshotsV1Beta3": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SnapshotsV1Beta3GapicClient",
+                    "rpcs": {
+                        "DeleteSnapshot": {
+                            "methods": [
+                                "deleteSnapshot"
+                            ]
+                        },
+                        "GetSnapshot": {
+                            "methods": [
+                                "getSnapshot"
+                            ]
+                        },
+                        "ListSnapshots": {
+                            "methods": [
+                                "listSnapshots"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "JobsV1Beta3": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "JobsV1Beta3GapicClient",
+                    "rpcs": {
+                        "AggregatedListJobs": {
+                            "methods": [
+                                "aggregatedListJobs"
+                            ]
+                        },
+                        "CheckActiveJobs": {
+                            "methods": [
+                                "checkActiveJobs"
+                            ]
+                        },
+                        "CreateJob": {
+                            "methods": [
+                                "createJob"
+                            ]
+                        },
+                        "GetJob": {
+                            "methods": [
+                                "getJob"
+                            ]
+                        },
+                        "ListJobs": {
+                            "methods": [
+                                "listJobs"
+                            ]
+                        },
+                        "SnapshotJob": {
+                            "methods": [
+                                "snapshotJob"
+                            ]
+                        },
+                        "UpdateJob": {
+                            "methods": [
+                                "updateJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MessagesV1Beta3": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MessagesV1Beta3GapicClient",
+                    "rpcs": {
+                        "ListJobMessages": {
+                            "methods": [
+                                "listJobMessages"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MetricsV1Beta3": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MetricsV1Beta3GapicClient",
+                    "rpcs": {
+                        "GetJobExecutionDetails": {
+                            "methods": [
+                                "getJobExecutionDetails"
+                            ]
+                        },
+                        "GetJobMetrics": {
+                            "methods": [
+                                "getJobMetrics"
+                            ]
+                        },
+                        "GetStageExecutionDetails": {
+                            "methods": [
+                                "getStageExecutionDetails"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TemplatesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TemplatesServiceGapicClient",
+                    "rpcs": {
+                        "CreateJobFromTemplate": {
+                            "methods": [
+                                "createJobFromTemplate"
+                            ]
+                        },
+                        "GetTemplate": {
+                            "methods": [
+                                "getTemplate"
+                            ]
+                        },
+                        "LaunchTemplate": {
+                            "methods": [
+                                "launchTemplate"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "FlexTemplatesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FlexTemplatesServiceGapicClient",
+                    "rpcs": {
+                        "LaunchFlexTemplate": {
+                            "methods": [
+                                "launchFlexTemplate"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
