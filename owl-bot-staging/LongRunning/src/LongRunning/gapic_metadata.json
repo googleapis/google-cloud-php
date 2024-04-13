@@ -1,0 +1,43 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.longrunning",
+    "libraryPackage": "Google\\LongRunning",
+    "services": {
+        "Operations": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OperationsGapicClient",
+                    "rpcs": {
+                        "CancelOperation": {
+                            "methods": [
+                                "cancelOperation"
+                            ]
+                        },
+                        "DeleteOperation": {
+                            "methods": [
+                                "deleteOperation"
+                            ]
+                        },
+                        "GetOperation": {
+                            "methods": [
+                                "getOperation"
+                            ]
+                        },
+                        "ListOperations": {
+                            "methods": [
+                                "listOperations"
+                            ]
+                        },
+                        "WaitOperation": {
+                            "methods": [
+                                "waitOperation"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
