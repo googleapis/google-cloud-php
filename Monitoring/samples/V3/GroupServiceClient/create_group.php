@@ -31,8 +31,9 @@ use Google\Cloud\Monitoring\V3\Group;
 /**
  * Creates a new group.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
- *                     which to create the group. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+ *                     to create the group. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  */

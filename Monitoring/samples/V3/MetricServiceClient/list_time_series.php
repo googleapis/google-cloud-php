@@ -32,19 +32,21 @@ use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
 
 /**
- * Lists time series that match a filter. This method does not require a Workspace.
+ * Lists time series that match a filter.
  *
- * @param string $formattedName The [project](https://cloud.google.com/monitoring/api/v3#project_name),
+ * @param string $formattedName The
+ *                              [project](https://cloud.google.com/monitoring/api/v3#project_name),
  *                              organization or folder on which to execute the request. The format is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]
  *                              organizations/[ORGANIZATION_ID]
  *                              folders/[FOLDER_ID]
  *                              Please see {@see MetricServiceClient::workspaceName()} for help formatting this field.
- * @param string $filter        A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
- *                              that specifies which time series should be returned.  The filter must
- *                              specify a single metric type, and can additionally specify metric labels
- *                              and other information. For example:
+ * @param string $filter        A [monitoring
+ *                              filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies
+ *                              which time series should be returned.  The filter must specify a single
+ *                              metric type, and can additionally specify metric labels and other
+ *                              information. For example:
  *
  *                              metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
  *                              metric.labels.instance_name = "my-instance-name"

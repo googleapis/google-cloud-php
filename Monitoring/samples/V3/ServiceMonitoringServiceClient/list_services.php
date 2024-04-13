@@ -30,11 +30,11 @@ use Google\Cloud\Monitoring\V3\ListServicesRequest;
 use Google\Cloud\Monitoring\V3\Service;
 
 /**
- * List `Service`s for this workspace.
+ * List `Service`s for this Metrics Scope.
  *
- * @param string $parent Resource name of the parent containing the listed services, either a
- *                       [project](https://cloud.google.com/monitoring/api/v3#project_name) or a
- *                       Monitoring Workspace. The formats are:
+ * @param string $parent Resource name of the parent containing the listed services,
+ *                       either a [project](https://cloud.google.com/monitoring/api/v3#project_name)
+ *                       or a Monitoring Metrics Scope. The formats are:
  *
  *                       projects/[PROJECT_ID_OR_NUMBER]
  *                       workspaces/[HOST_PROJECT_ID_OR_NUMBER]

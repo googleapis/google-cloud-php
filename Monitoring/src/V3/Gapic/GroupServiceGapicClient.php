@@ -376,12 +376,13 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *                             which to create the group. The format is:
+     * @param string $name         Required. The
+     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *                             to create the group. The format is:
      *
      *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param Group  $group        Required. A group definition. It is an error to define the `name` field because
-     *                             the system assigns the name.
+     * @param Group  $group        Required. A group definition. It is an error to define the `name` field
+     *                             because the system assigns the name.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -619,8 +620,9 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
-     *                             whose groups are to be listed. The format is:
+     * @param string $name         Required. The
+     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *                             groups are to be listed. The format is:
      *
      *                             projects/[PROJECT_ID_OR_NUMBER]
      * @param array  $optionalArgs {
@@ -715,8 +717,9 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param Group $group        Required. The new definition of the group.  All fields of the existing group,
-     *                            excepting `name`, are replaced with the corresponding fields of this group.
+     * @param Group $group        Required. The new definition of the group.  All fields of the existing
+     *                            group, excepting `name`, are replaced with the corresponding fields of this
+     *                            group.
      * @param array $optionalArgs {
      *     Optional.
      *

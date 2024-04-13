@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The new definition of the group.  All fields of the existing group,
-     * excepting `name`, are replaced with the corresponding fields of this group.
+     * Required. The new definition of the group.  All fields of the existing
+     * group, excepting `name`, are replaced with the corresponding fields of this
+     * group.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +31,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     private $validate_only = false;
 
     /**
-     * @param \Google\Cloud\Monitoring\V3\Group $group Required. The new definition of the group.  All fields of the existing group,
-     *                                                 excepting `name`, are replaced with the corresponding fields of this group.
+     * @param \Google\Cloud\Monitoring\V3\Group $group Required. The new definition of the group.  All fields of the existing
+     *                                                 group, excepting `name`, are replaced with the corresponding fields of this
+     *                                                 group.
      *
      * @return \Google\Cloud\Monitoring\V3\UpdateGroupRequest
      *
@@ -50,8 +52,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Monitoring\V3\Group $group
-     *           Required. The new definition of the group.  All fields of the existing group,
-     *           excepting `name`, are replaced with the corresponding fields of this group.
+     *           Required. The new definition of the group.  All fields of the existing
+     *           group, excepting `name`, are replaced with the corresponding fields of this
+     *           group.
      *     @type bool $validate_only
      *           If true, validate this request but do not update the existing group.
      * }
@@ -62,8 +65,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new definition of the group.  All fields of the existing group,
-     * excepting `name`, are replaced with the corresponding fields of this group.
+     * Required. The new definition of the group.  All fields of the existing
+     * group, excepting `name`, are replaced with the corresponding fields of this
+     * group.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Monitoring\V3\Group|null
@@ -84,8 +88,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new definition of the group.  All fields of the existing group,
-     * excepting `name`, are replaced with the corresponding fields of this group.
+     * Required. The new definition of the group.  All fields of the existing
+     * group, excepting `name`, are replaced with the corresponding fields of this
+     * group.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Monitoring\V3\Group $var
