@@ -377,13 +377,18 @@ class DataTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new EnrollDataSourcesRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new EnrollDataSourcesRequest())
+            ->setName($name);
         $gapicClient->enrollDataSources($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/EnrollDataSources', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -405,7 +410,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new EnrollDataSourcesRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new EnrollDataSourcesRequest())
+            ->setName($name);
         try {
             $gapicClient->enrollDataSources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1034,7 +1042,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new StartManualTransferRunsResponse();
         $transport->addResponse($expectedResponse);
-        $request = new StartManualTransferRunsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $request = (new StartManualTransferRunsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->startManualTransferRuns($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1042,6 +1053,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/StartManualTransferRuns', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1063,7 +1076,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new StartManualTransferRunsRequest();
+        // Mock request
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $request = (new StartManualTransferRunsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->startManualTransferRuns($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1088,13 +1104,18 @@ class DataTransferServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $request = new UnenrollDataSourcesRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new UnenrollDataSourcesRequest())
+            ->setName($name);
         $gapicClient->unenrollDataSources($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.bigquery.datatransfer.v1.DataTransferService/UnenrollDataSources', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1116,7 +1137,10 @@ class DataTransferServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-        $request = new UnenrollDataSourcesRequest();
+        // Mock request
+        $name = 'name3373707';
+        $request = (new UnenrollDataSourcesRequest())
+            ->setName($name);
         try {
             $gapicClient->unenrollDataSources($request);
             // If the $gapicClient method call did not throw, fail the test
