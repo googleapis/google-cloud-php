@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.api.cloudquotas.v1",
+    "libraryPackage": "Google\\Cloud\\CloudQuotas\\V1",
+    "services": {
+        "CloudQuotas": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudQuotasGapicClient",
+                    "rpcs": {
+                        "CreateQuotaPreference": {
+                            "methods": [
+                                "createQuotaPreference"
+                            ]
+                        },
+                        "GetQuotaInfo": {
+                            "methods": [
+                                "getQuotaInfo"
+                            ]
+                        },
+                        "GetQuotaPreference": {
+                            "methods": [
+                                "getQuotaPreference"
+                            ]
+                        },
+                        "ListQuotaInfos": {
+                            "methods": [
+                                "listQuotaInfos"
+                            ]
+                        },
+                        "ListQuotaPreferences": {
+                            "methods": [
+                                "listQuotaPreferences"
+                            ]
+                        },
+                        "UpdateQuotaPreference": {
+                            "methods": [
+                                "updateQuotaPreference"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

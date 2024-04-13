@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.parallelstore.v1beta",
+    "libraryPackage": "Google\\Cloud\\Parallelstore\\V1beta",
+    "services": {
+        "Parallelstore": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ParallelstoreGapicClient",
+                    "rpcs": {
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

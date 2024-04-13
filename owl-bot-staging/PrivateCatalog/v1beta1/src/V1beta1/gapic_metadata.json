@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.privatecatalog.v1beta1",
+    "libraryPackage": "Google\\Cloud\\PrivateCatalog\\V1beta1",
+    "services": {
+        "PrivateCatalog": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PrivateCatalogGapicClient",
+                    "rpcs": {
+                        "SearchCatalogs": {
+                            "methods": [
+                                "searchCatalogs"
+                            ]
+                        },
+                        "SearchProducts": {
+                            "methods": [
+                                "searchProducts"
+                            ]
+                        },
+                        "SearchVersions": {
+                            "methods": [
+                                "searchVersions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
