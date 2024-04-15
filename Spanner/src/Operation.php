@@ -245,6 +245,7 @@ class Operation
         // Initially with begin, transactionId will be null.
         // Once transaction is generated, even in the case of stream failure,
         // transaction will be passed to this callable by the Result class.
+        // TODO: Discuss executestreamingsql and streamingRead does NOT have retrySettings
         $call = function ($resumeToken = null, $transaction = null) use (
             $session,
             $sql,
@@ -447,6 +448,7 @@ class Operation
 
         $context = $this->pluck('transactionContext', $options);
 
+        // TODO: Discuss executestreamingsql and streamingRead does NOT have retrySettings
         $call = function ($resumeToken = null, $transaction = null) use (
             $table,
             $session,

@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Retry;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
@@ -31,7 +33,6 @@ use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\LongRunning\LROManagerTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
@@ -440,6 +441,10 @@ class Database
      *     Configuration Options
      *
      *     @type string[] $statements Additional DDL statements.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      * @return LongRunningOperationManager<Database>
      */
@@ -975,17 +980,16 @@ class Database
             return $transaction;
         };
 
-        $delayFn = function (\Exception $e) {
-            if ($e instanceof AbortedException) {
-                return $e->getRetryDelay();
-            }
-            if ($e instanceof ServiceException &&
+        $delayFn = fn(int $attempts, \Exception $e) => $e->getRetryDelay();
+        $retryFn = function(\Exception $e) {
+            if (
+                $e instanceof AbortedException || ($e instanceof ServiceException &&
                 $e->getCode() === Code::INTERNAL &&
-                strpos($e->getMessage(), 'RST_STREAM') !== false
+                strpos($e->getMessage(), 'RST_STREAM') !== false)
             ) {
-                return $e->getRetryDelay();
+                return true;
             }
-            throw $e;
+            return false;
         };
 
         $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {
@@ -1012,7 +1016,13 @@ class Database
             return $res;
         };
 
-        $retry = new Retry($options['maxRetries'], $delayFn);
+        $retrySetting = new RetrySetting([
+            'retriesEnabled' => true,
+            'maxRetries' => $options['maxRetries'],
+            'retryFunction' => $retryFn,
+            'delayFunction' => $delayFn
+        ]);
+        $retry = new Retry($retrySetting);
 
         try {
             return $retry->execute($transactionFn, [$operation, $session, $options]);

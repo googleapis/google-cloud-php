@@ -182,6 +182,15 @@ class SpannerClient
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request. Used only
      *           with default backoff strategy. **Defaults to** `3`.
+     *           TODO: Discuss the need of removing this option. This used to go to the GrpcRequestWrapper and used
+     *           here: https://github.com/googleapis/google-cloud-php/blob/main/Core/src/RequestWrapperTrait.php#L124.
+     *           I dont think it get used in the requestHandler at constructor level, because these options directly been
+     *           send to the V1/Client classes and they expects retry options in the constructor under ClientOptions.
+     *           However, I don't see the use of this maxRetries anywhere. See any V1/Client constructors for more details.
+     *           Furthermore, I see that some APIs does not have the retry capability, eg: SpannerClient.streamingRead and
+     *           settting this at constructor level of requestHandler may not be the correct way. 2 Options:
+     *           1. SpannerClient pass this config to all the APIs internally
+     *           2. Remove maxRetries from here and enable it at API level (eg: see lateset Database.create implementaiton).
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
@@ -203,10 +212,6 @@ class SpannerClient
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
-     *     @type bool $useDiscreteBackoffs `false`: use default backoff strategy
-     *           (retry every failed request up to `retries` times).
-     *           `true`: use discrete backoff settings based on called method name.
-     *           **Defaults to** `false`.
      *     @type array $directedReadOptions Directed read options.
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
@@ -230,24 +235,8 @@ class SpannerClient
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
-            'queryOptions' => [],
-            'transportConfig' => [
-                'grpc' => [
-                    // increase default limit to 4MB to prevent metadata exhausted errors
-                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
-                ]
-            ]
+            'queryOptions' => []
         ];
-
-        # Check this to see it needs to be removed, for now keep it.
-        if (!empty($config['useDiscreteBackoffs'])) {
-            $config = array_merge_recursive($config, [
-                'retries' => 0,
-                'grpcOptions' => [
-                    'retrySettings' => [],
-                ],
-            ]);
-        }
 
         # TODO: Remove the connection related objects
         $this->connection = new Grpc($this->configureAuthentication($config));

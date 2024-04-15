@@ -86,7 +86,8 @@ class Transaction implements TransactionalReadInterface
      * @param Session $session The session to use for spanner interactions.
      * @param string $transactionId [optional] The Transaction ID. If no ID is
      *        provided, the Transaction will be a Single-Use Transaction.
-     * @param bool $isRetry Whether the transaction will automatically retry or not.
+     * @param bool $isRetry Indicates whether the current transaction is
+     *         the result of a retry operation.
      * @param string $tag A transaction tag. Requests made using this transaction will
      *        use this as the transaction tag.
      * @param array $options [optional] {

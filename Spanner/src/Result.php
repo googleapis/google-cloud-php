@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Retry;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryMode;
@@ -50,6 +50,8 @@ class Result implements \IteratorAggregate
     const MODE_NORMAL = QueryMode::NORMAL;
     const MODE_PLAN = QueryMode::PLAN;
     const MODE_PROFILE = QueryMode::PROFILE;
+
+    const MAX_DELAY_MICROSECONDS = 60000000;
 
     /**
      * @var array
@@ -227,13 +229,21 @@ class Result implements \IteratorAggregate
                 $valid = $this->generator->valid();
             } catch (ServiceException $ex) {
                 if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
-                    $backoff = new ExponentialBackoff($this->retries, function ($ex) {
-                        return $ex instanceof ServiceException &&
-                            $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
-                    });
+                    $retryFn = function(\Exception $e) {
+                        return $e instanceof ServiceException &&
+                            $e->getCode() === Grpc\STATUS_UNAVAILABLE;
+                    };
+                    $delayFn = fn($attempts, \Exception $e) => mt_rand(0, 1000) + (pow(2, $attempt) * 1000);
+                    $retrySetting = new RetrySetting([
+                        'retriesEnabled' => true,
+                        'maxRetries' => $this->retries,
+                        'retryFunction' => $retryFn,
+                        'delayFunction' => $delayFn
+                    ]);
+                    $retry = new Retry($retrySetting);
                     // Attempt to resume using the last stored resume token and the transaction.
                     // If we successfully resume, flush the buffer.
-                    $this->generator = $backoff->execute($call, [$this->resumeToken, $this->transaction()]);
+                    $this->generator = $retry->execute($call, [$this->resumeToken, $this->transaction]);
                     $bufferedResults = [];
 
                     continue;
@@ -524,13 +534,20 @@ class Result implements \IteratorAggregate
         }
         $call = $this->call;
         $generator = null;
+        $retryFn = function(\Exception $e) {
+            return $e instanceof ServiceException &&
+                $e->getCode() === Grpc\STATUS_UNAVAILABLE;
+        };
+        $delayFn = fn($attempts, \Exception $e) => mt_rand(0, 1000) + (pow(2, $attempt) * 1000);
+        $retrySetting = new RetrySetting([
+            'retriesEnabled' => true,
+            'maxRetries' => $this->retries,
+            'retryFunction' => $retryFn,
+            'delayFunction' => $delayFn
+        ]);
+        $retry = new Retry($retrySetting);
 
-        $backoff = new ExponentialBackoff($this->retries, function ($ex) {
-            return $ex instanceof ServiceException &&
-                $ex->getCode() === Grpc\STATUS_UNAVAILABLE;
-        });
-
-        $valid = $backoff->execute(function () use ($call, &$generator) {
+        $valid = $retry->execute(function () use ($call, &$generator) {
             $generator = $call();
             return $generator->valid();
         });
