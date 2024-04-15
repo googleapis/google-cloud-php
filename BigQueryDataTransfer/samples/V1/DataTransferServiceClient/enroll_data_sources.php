@@ -37,17 +37,19 @@ use Google\Cloud\BigQuery\DataTransfer\V1\EnrollDataSourcesRequest;
  * [Data Transfer
  * Service](https://cloud.google.com/bigquery/docs/working-with-transfers).
  *
- * @param string $name The name of the project resource in the form:
- *                     `projects/{project_id}`
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
  */
-function enroll_data_sources_sample(string $name): void
+function enroll_data_sources_sample(): void
 {
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
     // Prepare the request message.
-    $request = (new EnrollDataSourcesRequest())
-        ->setName($name);
+    $request = new EnrollDataSourcesRequest();
 
     // Call the API and handle any network failures.
     try {
@@ -56,21 +58,5 @@ function enroll_data_sources_sample(string $name): void
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
-}
-
-/**
- * Helper to execute the sample.
- *
- * This sample has been automatically generated and should be regarded as a code
- * template only. It will require modifications to work:
- *  - It may require correct/in-range values for request initialization.
- *  - It may require specifying regional endpoints when creating the service client,
- *    please see the apiEndpoint client configuration option for more details.
- */
-function callSample(): void
-{
-    $name = '[NAME]';
-
-    enroll_data_sources_sample($name);
 }
 // [END bigquerydatatransfer_v1_generated_DataTransferService_EnrollDataSources_sync]

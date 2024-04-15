@@ -825,18 +825,17 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $name = 'name';
-     *     $dataTransferServiceClient->enrollDataSources($name);
+     *     $dataTransferServiceClient->enrollDataSources();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the project resource in the form:
-     *                             `projects/{project_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the project resource in the form: `projects/{project_id}`
      *     @type string[] $dataSourceIds
      *           Data sources that are enrolled. It is required to provide at least one
      *           data source id.
@@ -848,12 +847,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function enrollDataSources($name, array $optionalArgs = [])
+    public function enrollDataSources(array $optionalArgs = [])
     {
         $request = new EnrollDataSourcesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['dataSourceIds'])) {
             $request->setDataSourceIds($optionalArgs['dataSourceIds']);
         }
@@ -1362,19 +1364,19 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $formattedParent = $dataTransferServiceClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-     *     $response = $dataTransferServiceClient->startManualTransferRuns($formattedParent);
+     *     $response = $dataTransferServiceClient->startManualTransferRuns();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent       Required. Transfer configuration name in the form:
-     *                             `projects/{project_id}/transferConfigs/{config_id}` or
-     *                             `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $parent
+     *           Transfer configuration name in the form:
+     *           `projects/{project_id}/transferConfigs/{config_id}` or
+     *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type TimeRange $requestedTimeRange
      *           A time_range start and end timestamp for historical data files or reports
      *           that are scheduled to be transferred by the scheduled transfer run.
@@ -1395,12 +1397,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function startManualTransferRuns($parent, array $optionalArgs = [])
+    public function startManualTransferRuns(array $optionalArgs = [])
     {
         $request = new StartManualTransferRunsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
         if (isset($optionalArgs['requestedTimeRange'])) {
             $request->setRequestedTimeRange($optionalArgs['requestedTimeRange']);
         }
@@ -1425,18 +1430,17 @@ class DataTransferServiceGapicClient
      * ```
      * $dataTransferServiceClient = new DataTransferServiceClient();
      * try {
-     *     $name = 'name';
-     *     $dataTransferServiceClient->unenrollDataSources($name);
+     *     $dataTransferServiceClient->unenrollDataSources();
      * } finally {
      *     $dataTransferServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The name of the project resource in the form:
-     *                             `projects/{project_id}`
-     * @param array  $optionalArgs {
+     * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type string $name
+     *           The name of the project resource in the form: `projects/{project_id}`
      *     @type string[] $dataSourceIds
      *           Data sources that are unenrolled. It is required to provide at least one
      *           data source id.
@@ -1448,12 +1452,15 @@ class DataTransferServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function unenrollDataSources($name, array $optionalArgs = [])
+    public function unenrollDataSources(array $optionalArgs = [])
     {
         $request = new UnenrollDataSourcesRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
         if (isset($optionalArgs['dataSourceIds'])) {
             $request->setDataSourceIds($optionalArgs['dataSourceIds']);
         }

@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class TransferRun extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of the transfer run.
+     * The resource name of the transfer run.
      * Transfer run names have the form
      * `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
      * The name is ignored when creating a transfer run.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
@@ -127,7 +127,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of the transfer run.
+     *           The resource name of the transfer run.
      *           Transfer run names have the form
      *           `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
      *           The name is ignored when creating a transfer run.
@@ -183,12 +183,12 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the transfer run.
+     * The resource name of the transfer run.
      * Transfer run names have the form
      * `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
      * The name is ignored when creating a transfer run.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -197,12 +197,12 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the transfer run.
+     * The resource name of the transfer run.
      * Transfer run names have the form
      * `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`.
      * The name is ignored when creating a transfer run.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */
