@@ -17,8 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Style extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      */
@@ -79,8 +78,7 @@ class Style extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\TextAnchor $text_anchor
-     *           Text anchor indexing into the
-     *           [Document.text][google.cloud.documentai.v1.Document.text].
+     *           Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type \Google\Type\Color $color
      *           Text color.
      *     @type \Google\Type\Color $background_color
@@ -109,8 +107,7 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\TextAnchor|null
@@ -131,8 +128,7 @@ class Style extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\TextAnchor $var

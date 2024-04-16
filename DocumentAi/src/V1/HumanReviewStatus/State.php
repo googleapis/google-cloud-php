@@ -41,8 +41,7 @@ class State
     const IN_PROGRESS = 3;
     /**
      * Some error happened during triggering human review, see the
-     * [state_message][google.cloud.documentai.v1.HumanReviewStatus.state_message]
-     * for details.
+     * [state_message][google.cloud.documentai.v1.HumanReviewStatus.state_message] for details.
      *
      * Generated from protobuf enum <code>ERROR = 4;</code>
      */

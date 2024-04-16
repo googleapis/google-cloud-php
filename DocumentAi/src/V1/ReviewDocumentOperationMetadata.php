@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The long-running operation metadata for the
- * [ReviewDocument][google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument]
- * method.
+ * [ReviewDocument][google.cloud.documentai.v1.DocumentProcessorService.ReviewDocument] method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ReviewDocumentOperationMetadata</code>
  */

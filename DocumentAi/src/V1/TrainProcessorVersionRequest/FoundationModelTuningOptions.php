@@ -21,7 +21,7 @@ class FoundationModelTuningOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 train_steps = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $train_steps = 0;
+    private $train_steps = 0;
     /**
      * Optional. The multiplier to apply to the recommended learning rate. Valid values
      * are between 0.1 and 10. If not provided, recommended learning rate will
@@ -29,7 +29,7 @@ class FoundationModelTuningOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float learning_rate_multiplier = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $learning_rate_multiplier = 0.0;
+    private $learning_rate_multiplier = 0.0;
 
     /**
      * Constructor.
@@ -111,6 +111,4 @@ class FoundationModelTuningOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FoundationModelTuningOptions::class, \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest_FoundationModelTuningOptions::class);
 

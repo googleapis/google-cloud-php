@@ -77,6 +77,7 @@ use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\FoundationModelTuningOptions;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
 use Google\Cloud\Location\GetLocationRequest;
@@ -610,8 +611,7 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of
-     *                             [Processor][google.cloud.documentai.v1.Processor] or
+     * @param string $name         Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
      *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
      *                             or
@@ -692,9 +692,8 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Creates a processor from the
-     * [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided. The
-     * processor will be at `ENABLED` state by default after its creation.
+     * Creates a processor from the [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided.
+     * The processor will be at `ENABLED` state by default after its creation.
      *
      * Sample code:
      * ```
@@ -708,13 +707,10 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The parent (project and location) under which to create the
-     *                                processor. Format: `projects/{project}/locations/{location}`
-     * @param Processor $processor    Required. The processor to be created, requires
-     *                                [Processor.type][google.cloud.documentai.v1.Processor.type] and
-     *                                [Processor.display_name][google.cloud.documentai.v1.Processor.display_name]
-     *                                to be set. Also, the
-     *                                [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
+     * @param string    $parent       Required. The parent (project and location) under which to create the processor.
+     *                                Format: `projects/{project}/locations/{location}`
+     * @param Processor $processor    Required. The processor to be created, requires [Processor.type][google.cloud.documentai.v1.Processor.type] and
+     *                                [Processor.display_name][google.cloud.documentai.v1.Processor.display_name] to be set. Also, the [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
      *                                field must be set if the processor is under CMEK.
      * @param array     $optionalArgs {
      *     Optional.
@@ -1156,16 +1152,14 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $processorVersion Required. The resource name of the
-     *                                 [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
-     *                                 evaluate.
+     * @param string $processorVersion Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to evaluate.
      *                                 `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      * @param array  $optionalArgs     {
      *     Optional.
      *
      *     @type BatchDocumentsInputConfig $evaluationDocuments
-     *           Optional. The documents used in the evaluation. If unspecified, use the
-     *           processor's dataset as evaluation input.
+     *           Optional. The documents used in the evaluation. If unspecified, use the processor's
+     *           dataset as evaluation input.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1205,8 +1199,7 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Fetches processor types. Note that we don't use
-     * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+     * Fetches processor types. Note that we don't use [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
      * here, because it isn't paginated.
      *
      * Sample code:
@@ -1269,8 +1262,7 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the
-     *                             [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+     * @param string $name         Required. The resource name of the [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
      *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1475,9 +1467,7 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the
-     *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
-     *                             evaluations for.
+     * @param string $parent       Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list evaluations for.
      *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1633,9 +1623,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project, location and processor) to list all
-     *                             versions. Format:
-     *                             `projects/{project}/locations/{location}/processors/{processor}`
+     * @param string $parent       Required. The parent (project, location and processor) to list all versions.
+     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1712,8 +1701,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project and location) which owns this collection of
-     *                             Processors. Format: `projects/{project}/locations/{location}`
+     * @param string $parent       Required. The parent (project and location) which owns this collection of Processors.
+     *                             Format: `projects/{project}/locations/{location}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1778,15 +1767,11 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the
-     *                             [Processor][google.cloud.documentai.v1.Processor] or
+     * @param string $name         Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
      *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     *                             to use for processing. If a
-     *                             [Processor][google.cloud.documentai.v1.Processor] is specified, the server
-     *                             will use its [default
-     *                             version][google.cloud.documentai.v1.Processor.default_processor_version].
-     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
-     *                             or
+     *                             to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
+     *                             its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
+     *                             `projects/{project}/locations/{location}/processors/{processor}`, or
      *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      * @param array  $optionalArgs {
      *     Optional.
@@ -1801,8 +1786,7 @@ class DocumentProcessorServiceGapicClient
      *           Whether human review should be skipped for this request. Default to
      *           `false`.
      *     @type FieldMask $fieldMask
-     *           Specifies which fields to include in the
-     *           [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     *           Specifies which fields to include in the [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
      *           output. Only supports top-level document and pages field, so it must be in
      *           the form of `{document_field_name}` or `pages.{page_field_name}`.
      *     @type ProcessOptions $processOptions
@@ -1912,9 +1896,8 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $humanReviewConfig Required. The resource name of the
-     *                                  [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the
-     *                                  document will be reviewed with.
+     * @param string $humanReviewConfig Required. The resource name of the [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the document will be
+     *                                  reviewed with.
      * @param array  $optionalArgs      {
      *     Optional.
      *
@@ -1976,10 +1959,8 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Set the default (active) version of a
-     * [Processor][google.cloud.documentai.v1.Processor] that will be used in
-     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
-     * and
+     * Set the default (active) version of a [Processor][google.cloud.documentai.v1.Processor] that will be used in
+     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] and
      * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
      *
      * Sample code:
@@ -2019,12 +2000,9 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $processor               Required. The resource name of the
-     *                                        [Processor][google.cloud.documentai.v1.Processor] to change default
-     *                                        version.
-     * @param string $defaultProcessorVersion Required. The resource name of child
-     *                                        [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
-     *                                        default. Format:
+     * @param string $processor               Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version.
+     * @param string $defaultProcessorVersion Required. The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
+     *                                        Format:
      *                                        `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
      * @param array  $optionalArgs            {
      *     Optional.
@@ -2105,23 +2083,23 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent           Required. The parent (project, location and processor) to create the new
-     *                                           version for. Format:
-     *                                           `projects/{project}/locations/{location}/processors/{processor}`.
+     * @param string           $parent           Required. The parent (project, location and processor) to create the new version for.
+     *                                           Format: `projects/{project}/locations/{location}/processors/{processor}`.
      * @param ProcessorVersion $processorVersion Required. The processor version to be created.
      * @param array            $optionalArgs     {
      *     Optional.
      *
      *     @type CustomDocumentExtractionOptions $customDocumentExtractionOptions
      *           Options to control Custom Document Extraction (CDE) Processor.
+     *     @type FoundationModelTuningOptions $foundationModelTuningOptions
+     *           Options to control foundation model tuning of a processor.
      *     @type DocumentSchema $documentSchema
      *           Optional. The schema the processor version will be trained with.
      *     @type InputData $inputData
-     *           Optional. The input data used to train the
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     *           Optional. The input data used to train the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *     @type string $baseProcessorVersion
-     *           Optional. The processor version to use as a base for training. This
-     *           processor version must be a child of `parent`. Format:
+     *           Optional. The processor version to use as a base for training. This processor version
+     *           must be a child of `parent`. Format:
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -2146,6 +2124,12 @@ class DocumentProcessorServiceGapicClient
         if (isset($optionalArgs['customDocumentExtractionOptions'])) {
             $request->setCustomDocumentExtractionOptions(
                 $optionalArgs['customDocumentExtractionOptions']
+            );
+        }
+
+        if (isset($optionalArgs['foundationModelTuningOptions'])) {
+            $request->setFoundationModelTuningOptions(
+                $optionalArgs['foundationModelTuningOptions']
             );
         }
 
