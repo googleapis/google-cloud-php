@@ -8,17 +8,17 @@ use UnexpectedValueException;
 
 /**
  * Optional. Required when opening a
- * [dialog](https://developers.google.com/chat/how-tos/dialogs).
+ * [dialog](https://developers.google.com/workspace/chat/dialogs).
  * What to do in response to an interaction with a user, such as a user
  * clicking a button in a card message.
  * If unspecified, the app responds by executing an `action`—like opening a
  * link or running a function—as normal.
  * By specifying an `interaction`, the app can respond in special interactive
  * ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can
- * open a [dialog](https://developers.google.com/chat/how-tos/dialogs).
+ * open a [dialog](https://developers.google.com/workspace/chat/dialogs).
  * When specified, a loading indicator isn't shown. If specified for
  * an add-on, the entire card is stripped and nothing is shown in the client.
- * [Google Chat apps](https://developers.google.com/chat):
+ * [Google Chat apps](https://developers.google.com/workspace/chat):
  *
  * Protobuf type <code>google.apps.card.v1.Action.Interaction</code>
  */
@@ -31,13 +31,13 @@ class Interaction
      */
     const INTERACTION_UNSPECIFIED = 0;
     /**
-     * Opens a [dialog](https://developers.google.com/chat/how-tos/dialogs), a
+     * Opens a [dialog](https://developers.google.com/workspace/chat/dialogs), a
      * windowed, card-based interface that Chat apps use to interact with users.
      * Only supported by Chat apps in response to button-clicks on card
      * messages. If specified for
      * an add-on, the entire card is stripped and nothing is shown in the
      * client.
-     * [Google Chat apps](https://developers.google.com/chat):
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
      *
      * Generated from protobuf enum <code>OPEN_DIALOG = 1;</code>
      */

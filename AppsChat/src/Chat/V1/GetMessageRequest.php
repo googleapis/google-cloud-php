@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request to get a message.
+ *
  * Generated from protobuf message <code>google.chat.v1.GetMessageRequest</code>
  */
 class GetMessageRequest extends \Google\Protobuf\Internal\Message
@@ -19,7 +21,7 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
      * If you've set a custom ID for your message, you can use the value from the
      * `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      * message]
-     * (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,7 +35,7 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
      *                     If you've set a custom ID for your message, you can use the value from the
      *                     `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      *                     message]
-     *                     (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message). Please see
+     *                     (https://developers.google.com/workspace/chat/create-messages#name_a_created_message). Please see
      *                     {@see ChatServiceClient::messageName()} for help formatting this field.
      *
      * @return \Google\Apps\Chat\V1\GetMessageRequest
@@ -58,7 +60,7 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
      *           If you've set a custom ID for your message, you can use the value from the
      *           `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      *           message]
-     *           (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     *           (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +74,7 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
      * If you've set a custom ID for your message, you can use the value from the
      * `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      * message]
-     * (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +90,7 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
      * If you've set a custom ID for your message, you can use the value from the
      * `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      * message]
-     * (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

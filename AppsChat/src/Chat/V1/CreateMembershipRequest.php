@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request message for creating a membership.
+ *
  * Generated from protobuf message <code>google.chat.v1.CreateMembershipRequest</code>
  */
 class CreateMembershipRequest extends \Google\Protobuf\Internal\Message

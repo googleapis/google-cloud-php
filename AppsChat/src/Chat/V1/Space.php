@@ -55,7 +55,7 @@ class Space extends \Google\Protobuf\Internal\Message
     protected $threaded = false;
     /**
      * The space's display name. Required when [creating a
-     * space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create).
+     * space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create).
      * If you receive the error message `ALREADY_EXISTS` when creating a space or
      * updating the `displayName`, try a different `displayName`. An
      * existing space within the Google Workspace organization might already use
@@ -70,12 +70,17 @@ class Space extends \Google\Protobuf\Internal\Message
      * Immutable. Whether this space permits any Google Chat user as a member.
      * Input when creating a space in a Google Workspace organization. Omit this
      * field when creating spaces in the following conditions:
-     *   * The authenticated user uses a Google Account. By default,
-     *     the space permits any Google Chat user.
+     *   * The authenticated user uses a consumer account (unmanaged user
+     *     account). By default, a space created by a consumer account permits any
+     *     Google Chat user.
      *   * The space is used to [import data to Google Chat]
-     *     (https://developers.google.com/chat/api/guides/import-data-overview).
-     *     Import mode spaces must only permit members from the same Google
-     *     Workspace organization.
+     *     (https://developers.google.com/chat/api/guides/import-data-overview)
+     *     because import mode spaces must only permit members from the same
+     *     Google Workspace organization. However, as part of the [Google
+     *     Workspace Developer Preview
+     *     Program](https://developers.google.com/workspace/preview), import mode
+     *     spaces can permit any Google Chat user so this field can then be set
+     *     for import mode spaces.
      * For existing spaces, this field is output only.
      *
      * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -153,7 +158,7 @@ class Space extends \Google\Protobuf\Internal\Message
      *           Whether messages are threaded in this space.
      *     @type string $display_name
      *           The space's display name. Required when [creating a
-     *           space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create).
+     *           space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create).
      *           If you receive the error message `ALREADY_EXISTS` when creating a space or
      *           updating the `displayName`, try a different `displayName`. An
      *           existing space within the Google Workspace organization might already use
@@ -164,12 +169,17 @@ class Space extends \Google\Protobuf\Internal\Message
      *           Immutable. Whether this space permits any Google Chat user as a member.
      *           Input when creating a space in a Google Workspace organization. Omit this
      *           field when creating spaces in the following conditions:
-     *             * The authenticated user uses a Google Account. By default,
-     *               the space permits any Google Chat user.
+     *             * The authenticated user uses a consumer account (unmanaged user
+     *               account). By default, a space created by a consumer account permits any
+     *               Google Chat user.
      *             * The space is used to [import data to Google Chat]
-     *               (https://developers.google.com/chat/api/guides/import-data-overview).
-     *               Import mode spaces must only permit members from the same Google
-     *               Workspace organization.
+     *               (https://developers.google.com/chat/api/guides/import-data-overview)
+     *               because import mode spaces must only permit members from the same
+     *               Google Workspace organization. However, as part of the [Google
+     *               Workspace Developer Preview
+     *               Program](https://developers.google.com/workspace/preview), import mode
+     *               spaces can permit any Google Chat user so this field can then be set
+     *               for import mode spaces.
      *           For existing spaces, this field is output only.
      *     @type int $space_threading_state
      *           Output only. The threading state in the Chat space.
@@ -352,7 +362,7 @@ class Space extends \Google\Protobuf\Internal\Message
 
     /**
      * The space's display name. Required when [creating a
-     * space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create).
+     * space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create).
      * If you receive the error message `ALREADY_EXISTS` when creating a space or
      * updating the `displayName`, try a different `displayName`. An
      * existing space within the Google Workspace organization might already use
@@ -370,7 +380,7 @@ class Space extends \Google\Protobuf\Internal\Message
 
     /**
      * The space's display name. Required when [creating a
-     * space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create).
+     * space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create).
      * If you receive the error message `ALREADY_EXISTS` when creating a space or
      * updating the `displayName`, try a different `displayName`. An
      * existing space within the Google Workspace organization might already use
@@ -394,12 +404,17 @@ class Space extends \Google\Protobuf\Internal\Message
      * Immutable. Whether this space permits any Google Chat user as a member.
      * Input when creating a space in a Google Workspace organization. Omit this
      * field when creating spaces in the following conditions:
-     *   * The authenticated user uses a Google Account. By default,
-     *     the space permits any Google Chat user.
+     *   * The authenticated user uses a consumer account (unmanaged user
+     *     account). By default, a space created by a consumer account permits any
+     *     Google Chat user.
      *   * The space is used to [import data to Google Chat]
-     *     (https://developers.google.com/chat/api/guides/import-data-overview).
-     *     Import mode spaces must only permit members from the same Google
-     *     Workspace organization.
+     *     (https://developers.google.com/chat/api/guides/import-data-overview)
+     *     because import mode spaces must only permit members from the same
+     *     Google Workspace organization. However, as part of the [Google
+     *     Workspace Developer Preview
+     *     Program](https://developers.google.com/workspace/preview), import mode
+     *     spaces can permit any Google Chat user so this field can then be set
+     *     for import mode spaces.
      * For existing spaces, this field is output only.
      *
      * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -414,12 +429,17 @@ class Space extends \Google\Protobuf\Internal\Message
      * Immutable. Whether this space permits any Google Chat user as a member.
      * Input when creating a space in a Google Workspace organization. Omit this
      * field when creating spaces in the following conditions:
-     *   * The authenticated user uses a Google Account. By default,
-     *     the space permits any Google Chat user.
+     *   * The authenticated user uses a consumer account (unmanaged user
+     *     account). By default, a space created by a consumer account permits any
+     *     Google Chat user.
      *   * The space is used to [import data to Google Chat]
-     *     (https://developers.google.com/chat/api/guides/import-data-overview).
-     *     Import mode spaces must only permit members from the same Google
-     *     Workspace organization.
+     *     (https://developers.google.com/chat/api/guides/import-data-overview)
+     *     because import mode spaces must only permit members from the same
+     *     Google Workspace organization. However, as part of the [Google
+     *     Workspace Developer Preview
+     *     Program](https://developers.google.com/workspace/preview), import mode
+     *     spaces can permit any Google Chat user so this field can then be set
+     *     for import mode spaces.
      * For existing spaces, this field is output only.
      *
      * Generated from protobuf field <code>bool external_user_allowed = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>

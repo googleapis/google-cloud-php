@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * An image that is specified by a URL and can have an `onClick` action. For an
- * example, see [Image](https://developers.google.com/chat/ui/widgets/image).
+ * example, see [Add an
+ * image](https://developers.google.com/workspace/chat/add-text-image-card-dialog#add_an_image).
  * [Google Workspace Add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
@@ -22,7 +23,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * The HTTPS URL that hosts the image.
      * For example:
      * ```
-     * https://developers.google.com/chat/images/quickstart-app-avatar.png
+     * https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png
      * ```
      *
      * Generated from protobuf field <code>string image_url = 1;</code>
@@ -51,7 +52,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           The HTTPS URL that hosts the image.
      *           For example:
      *           ```
-     *           https://developers.google.com/chat/images/quickstart-app-avatar.png
+     *           https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png
      *           ```
      *     @type \Google\Apps\Card\V1\OnClick $on_click
      *           When a user clicks the image, the click triggers this action.
@@ -68,7 +69,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * The HTTPS URL that hosts the image.
      * For example:
      * ```
-     * https://developers.google.com/chat/images/quickstart-app-avatar.png
+     * https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png
      * ```
      *
      * Generated from protobuf field <code>string image_url = 1;</code>
@@ -83,7 +84,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * The HTTPS URL that hosts the image.
      * For example:
      * ```
-     * https://developers.google.com/chat/images/quickstart-app-avatar.png
+     * https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png
      * ```
      *
      * Generated from protobuf field <code>string image_url = 1;</code>

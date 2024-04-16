@@ -30,11 +30,11 @@ use Google\Apps\Chat\V1\CompleteImportSpaceResponse;
 
 /**
  * Completes the
- * [import process](https://developers.google.com/chat/api/guides/import-data)
+ * [import process](https://developers.google.com/workspace/chat/import-data)
  * for the specified space and makes it visible to users.
  * Requires app authentication and domain-wide delegation. For more
  * information, see [Authorize Google Chat apps to import
- * data](https://developers.google.com/chat/api/guides/authorize-import).
+ * data](https://developers.google.com/workspace/chat/authorize-import).
  *
  * @param string $formattedName Resource name of the import mode space.
  *

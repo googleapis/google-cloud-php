@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A list of buttons layed out horizontally. For an example in
  * Google Chat apps, see
- * [Button list](https://developers.google.com/chat/ui/widgets/button-list).
+ * [Add a
+ * button](https://developers.google.com/workspace/chat/design-interactive-card-dialog#add_a_button).
  * [Google Workspace Add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *

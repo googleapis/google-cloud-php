@@ -30,15 +30,16 @@ use Google\Apps\Chat\V1\Space;
 
 /**
  * Returns details about a space. For an example, see
- * [Get a space](https://developers.google.com/chat/api/guides/v1/spaces/get).
+ * [Get details about a
+ * space](https://developers.google.com/workspace/chat/get-spaces).
  *
  * Requires
- * [authentication](https://developers.google.com/chat/api/guides/auth).
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
  * Supports
  * [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * and [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * @param string $formattedName Resource name of the space, in the form "spaces/*".
  *

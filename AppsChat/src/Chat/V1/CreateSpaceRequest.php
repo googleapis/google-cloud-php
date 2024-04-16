@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A request to create a named space.
+ *
  * Generated from protobuf message <code>google.chat.v1.CreateSpaceRequest</code>
  */
 class CreateSpaceRequest extends \Google\Protobuf\Internal\Message

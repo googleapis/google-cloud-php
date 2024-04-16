@@ -17,7 +17,7 @@ class DriveLinkData extends \Google\Protobuf\Internal\Message
 {
     /**
      * A
-     * [DriveDataRef](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref)
+     * [DriveDataRef](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref)
      * which references a Google Drive file.
      *
      * Generated from protobuf field <code>.google.chat.v1.DriveDataRef drive_data_ref = 1;</code>
@@ -38,7 +38,7 @@ class DriveLinkData extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Apps\Chat\V1\DriveDataRef $drive_data_ref
      *           A
-     *           [DriveDataRef](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref)
+     *           [DriveDataRef](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref)
      *           which references a Google Drive file.
      *     @type string $mime_type
      *           The mime type of the linked Google Drive resource.
@@ -51,7 +51,7 @@ class DriveLinkData extends \Google\Protobuf\Internal\Message
 
     /**
      * A
-     * [DriveDataRef](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref)
+     * [DriveDataRef](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref)
      * which references a Google Drive file.
      *
      * Generated from protobuf field <code>.google.chat.v1.DriveDataRef drive_data_ref = 1;</code>
@@ -74,7 +74,7 @@ class DriveLinkData extends \Google\Protobuf\Internal\Message
 
     /**
      * A
-     * [DriveDataRef](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref)
+     * [DriveDataRef](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages.attachments#drivedataref)
      * which references a Google Drive file.
      *
      * Generated from protobuf field <code>.google.chat.v1.DriveDataRef drive_data_ref = 1;</code>

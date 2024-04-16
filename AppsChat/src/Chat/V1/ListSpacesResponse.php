@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * The response for a list spaces request.
+ *
  * Generated from protobuf message <code>google.chat.v1.ListSpacesResponse</code>
  */
 class ListSpacesResponse extends \Google\Protobuf\Internal\Message

@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Lets users input a date, a time, or both a date and a time. For an example in
- * Google Chat apps, see [Date time
- * picker](https://developers.google.com/chat/ui/widgets/date-time-picker).
+ * Google Chat apps, see [Let a user pick a date and
+ * time](https://developers.google.com/workspace/chat/design-interactive-card-dialog#let_a_user_pick_a_date_and_time).
  * Users can input text or use the picker to select dates and times. If users
  * input an invalid date or time, the picker shows an error that prompts users
  * to input the information correctly.
@@ -25,7 +25,7 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the `DateTimePicker` is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -83,7 +83,7 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name by which the `DateTimePicker` is identified in a form input event.
      *           For details about working with form inputs, see [Receive form
-     *           data](https://developers.google.com/chat/ui/read-form-data).
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type string $label
      *           The text that prompts users to input a date, a time, or a date and time.
      *           For example, if users are scheduling an appointment, use a label such as
@@ -117,7 +117,7 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the `DateTimePicker` is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -130,7 +130,7 @@ class DateTimePicker extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the `DateTimePicker` is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

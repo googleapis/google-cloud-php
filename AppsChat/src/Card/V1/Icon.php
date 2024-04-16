@@ -10,11 +10,12 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * An icon displayed in a widget on a card. For an example in Google Chat apps,
- * see [Icon](https://developers.google.com/chat/ui/widgets/icon).
+ * see [Add an
+ * icon](https://developers.google.com/workspace/chat/add-text-image-card-dialog#add_an_icon).
  * Supports
- * [built-in](https://developers.google.com/chat/format-messages#builtinicons)
+ * [built-in](https://developers.google.com/workspace/chat/format-messages#builtinicons)
  * and
- * [custom](https://developers.google.com/chat/format-messages#customicons)
+ * [custom](https://developers.google.com/workspace/chat/format-messages#customicons)
  * icons.
  * [Google Workspace Add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
@@ -29,7 +30,7 @@ class Icon extends \Google\Protobuf\Internal\Message
      * you should set a helpful description for what the icon displays, and if
      * applicable, what it does. For example, `A user's account portrait`, or
      * `Opens a new browser tab and navigates to the Google Chat developer
-     * documentation at https://developers.google.com/chat`.
+     * documentation at https://developers.google.com/workspace/chat`.
      * If the icon is set in a [`Button`][google.apps.card.v1.Button], the
      * `altText` appears as helper text when the user hovers over the button.
      * However, if the button also sets `text`, the icon's `altText` is ignored.
@@ -58,22 +59,34 @@ class Icon extends \Google\Protobuf\Internal\Message
      *           For example, to display an airplane icon, specify `AIRPLANE`.
      *           For a bus, specify `BUS`.
      *           For a full list of supported icons, see [built-in
-     *           icons](https://developers.google.com/chat/format-messages#builtinicons).
+     *           icons](https://developers.google.com/workspace/chat/format-messages#builtinicons).
      *     @type string $icon_url
      *           Display a custom icon hosted at an HTTPS URL.
      *           For example:
      *           ```
      *           "iconUrl":
-     *           "https://developers.google.com/chat/images/quickstart-app-avatar.png"
+     *           "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png"
      *           ```
      *           Supported file types include `.png` and `.jpg`.
+     *     @type \Google\Apps\Card\V1\MaterialIcon $material_icon
+     *           Display one of the [Google Material
+     *           Icons](https://fonts.google.com/icons).
+     *           For example, to display a [checkbox
+     *           icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048),
+     *           use
+     *           ```
+     *           "material_icon": {
+     *             "name": "check_box"
+     *           }
+     *           ```
+     *           [Google Chat apps](https://developers.google.com/workspace/chat):
      *     @type string $alt_text
      *           Optional. A description of the icon used for accessibility.
      *           If unspecified, the default value `Button` is provided. As a best practice,
      *           you should set a helpful description for what the icon displays, and if
      *           applicable, what it does. For example, `A user's account portrait`, or
      *           `Opens a new browser tab and navigates to the Google Chat developer
-     *           documentation at https://developers.google.com/chat`.
+     *           documentation at https://developers.google.com/workspace/chat`.
      *           If the icon is set in a [`Button`][google.apps.card.v1.Button], the
      *           `altText` appears as helper text when the user hovers over the button.
      *           However, if the button also sets `text`, the icon's `altText` is ignored.
@@ -93,7 +106,7 @@ class Icon extends \Google\Protobuf\Internal\Message
      * For example, to display an airplane icon, specify `AIRPLANE`.
      * For a bus, specify `BUS`.
      * For a full list of supported icons, see [built-in
-     * icons](https://developers.google.com/chat/format-messages#builtinicons).
+     * icons](https://developers.google.com/workspace/chat/format-messages#builtinicons).
      *
      * Generated from protobuf field <code>string known_icon = 1;</code>
      * @return string
@@ -113,7 +126,7 @@ class Icon extends \Google\Protobuf\Internal\Message
      * For example, to display an airplane icon, specify `AIRPLANE`.
      * For a bus, specify `BUS`.
      * For a full list of supported icons, see [built-in
-     * icons](https://developers.google.com/chat/format-messages#builtinicons).
+     * icons](https://developers.google.com/workspace/chat/format-messages#builtinicons).
      *
      * Generated from protobuf field <code>string known_icon = 1;</code>
      * @param string $var
@@ -132,7 +145,7 @@ class Icon extends \Google\Protobuf\Internal\Message
      * For example:
      * ```
      * "iconUrl":
-     * "https://developers.google.com/chat/images/quickstart-app-avatar.png"
+     * "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png"
      * ```
      * Supported file types include `.png` and `.jpg`.
      *
@@ -154,7 +167,7 @@ class Icon extends \Google\Protobuf\Internal\Message
      * For example:
      * ```
      * "iconUrl":
-     * "https://developers.google.com/chat/images/quickstart-app-avatar.png"
+     * "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png"
      * ```
      * Supported file types include `.png` and `.jpg`.
      *
@@ -171,12 +184,63 @@ class Icon extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Display one of the [Google Material
+     * Icons](https://fonts.google.com/icons).
+     * For example, to display a [checkbox
+     * icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048),
+     * use
+     * ```
+     * "material_icon": {
+     *   "name": "check_box"
+     * }
+     * ```
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.MaterialIcon material_icon = 5;</code>
+     * @return \Google\Apps\Card\V1\MaterialIcon|null
+     */
+    public function getMaterialIcon()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasMaterialIcon()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Display one of the [Google Material
+     * Icons](https://fonts.google.com/icons).
+     * For example, to display a [checkbox
+     * icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048),
+     * use
+     * ```
+     * "material_icon": {
+     *   "name": "check_box"
+     * }
+     * ```
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
+     *
+     * Generated from protobuf field <code>.google.apps.card.v1.MaterialIcon material_icon = 5;</code>
+     * @param \Google\Apps\Card\V1\MaterialIcon $var
+     * @return $this
+     */
+    public function setMaterialIcon($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Card\V1\MaterialIcon::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. A description of the icon used for accessibility.
      * If unspecified, the default value `Button` is provided. As a best practice,
      * you should set a helpful description for what the icon displays, and if
      * applicable, what it does. For example, `A user's account portrait`, or
      * `Opens a new browser tab and navigates to the Google Chat developer
-     * documentation at https://developers.google.com/chat`.
+     * documentation at https://developers.google.com/workspace/chat`.
      * If the icon is set in a [`Button`][google.apps.card.v1.Button], the
      * `altText` appears as helper text when the user hovers over the button.
      * However, if the button also sets `text`, the icon's `altText` is ignored.
@@ -195,7 +259,7 @@ class Icon extends \Google\Protobuf\Internal\Message
      * you should set a helpful description for what the icon displays, and if
      * applicable, what it does. For example, `A user's account portrait`, or
      * `Opens a new browser tab and navigates to the Google Chat developer
-     * documentation at https://developers.google.com/chat`.
+     * documentation at https://developers.google.com/workspace/chat`.
      * If the icon is set in a [`Button`][google.apps.card.v1.Button], the
      * `altText` appears as helper text when the user hovers over the button.
      * However, if the button also sets `text`, the icon's `altText` is ignored.

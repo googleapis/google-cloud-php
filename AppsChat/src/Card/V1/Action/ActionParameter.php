@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * or snooze next week. You might use `action method = snooze()`, passing the
  * snooze type and snooze time in the list of string parameters.
  * To learn more, see
- * [`CommonEventObject`](https://developers.google.com/chat/api/reference/rest/v1/Event#commoneventobject).
+ * [`CommonEventObject`](https://developers.google.com/workspace/chat/api/reference/rest/v1/Event#commoneventobject).
  * [Google Workspace Add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *

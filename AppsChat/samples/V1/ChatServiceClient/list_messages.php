@@ -34,7 +34,7 @@ use Google\Apps\Chat\V1\Message;
  * messages from blocked members and spaces. For an example, see
  * [List messages](/chat/api/guides/v1/messages/list).
  * Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * @param string $formattedParent The resource name of the space to list messages from.
  *

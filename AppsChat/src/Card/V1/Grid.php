@@ -12,7 +12,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * Displays a grid with a collection of items. Items can only include text or
  * images. For responsive columns, or to include more than text or images, use
  * [`Columns`][google.apps.card.v1.Columns]. For an example in Google Chat apps,
- * see [Grid](https://developers.google.com/chat/ui/widgets/grid).
+ * see [Display a Grid with a collection of
+ * items](https://developers.google.com/workspace/chat/format-structure-card-dialog#display_a_grid_with_a_collection_of_items).
  * A grid supports any number of columns and items. The number of rows is
  * determined by items divided by columns. A grid with
  * 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns

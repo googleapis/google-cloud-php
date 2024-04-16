@@ -29,12 +29,12 @@ use Google\Apps\Chat\V1\CreateMessageRequest;
 use Google\Apps\Chat\V1\Message;
 
 /**
- * Creates a message in a Google Chat space. For an example, see [Create a
- * message](https://developers.google.com/chat/api/guides/v1/messages/create).
+ * Creates a message in a Google Chat space. For an example, see [Send a
+ * message](https://developers.google.com/workspace/chat/create-messages).
  *
  * Calling this method requires
- * [authentication](https://developers.google.com/chat/api/guides/auth) and
- * supports the following authentication types:
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize)
+ * and supports the following authentication types:
  *
  * - For text messages, user authentication or app authentication are
  * supported.

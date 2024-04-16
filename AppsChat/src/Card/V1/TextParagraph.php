@@ -10,12 +10,12 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A paragraph of text that supports formatting. For an example in
- * Google Chat apps, see [Text
- * paragraph](https://developers.google.com/chat/ui/widgets/text-paragraph).
+ * Google Chat apps, see [Add a paragraph of formatted
+ * text](https://developers.google.com/workspace/chat/add-text-image-card-dialog#add_a_paragraph_of_formatted_text).
  * For more information
  * about formatting text, see
  * [Formatting text in Google Chat
- * apps](https://developers.google.com/chat/format-messages#card-formatting)
+ * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
  * and
  * [Formatting
  * text in Google Workspace

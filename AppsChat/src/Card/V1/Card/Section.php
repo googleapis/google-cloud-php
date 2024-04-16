@@ -23,7 +23,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * Supports simple HTML formatted text. For more information
      * about formatting text, see
      * [Formatting text in Google Chat
-     * apps](https://developers.google.com/chat/format-messages#card-formatting)
+     * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      * and
      * [Formatting
      * text in Google Workspace
@@ -74,7 +74,7 @@ class Section extends \Google\Protobuf\Internal\Message
      *           Supports simple HTML formatted text. For more information
      *           about formatting text, see
      *           [Formatting text in Google Chat
-     *           apps](https://developers.google.com/chat/format-messages#card-formatting)
+     *           apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      *           and
      *           [Formatting
      *           text in Google Workspace
@@ -109,7 +109,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * Supports simple HTML formatted text. For more information
      * about formatting text, see
      * [Formatting text in Google Chat
-     * apps](https://developers.google.com/chat/format-messages#card-formatting)
+     * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      * and
      * [Formatting
      * text in Google Workspace
@@ -128,7 +128,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * Supports simple HTML formatted text. For more information
      * about formatting text, see
      * [Formatting text in Google Chat
-     * apps](https://developers.google.com/chat/format-messages#card-formatting)
+     * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      * and
      * [Formatting
      * text in Google Workspace

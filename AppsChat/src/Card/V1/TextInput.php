@@ -10,11 +10,12 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A field in which users can enter text. Supports suggestions and on-change
- * actions. For an example in Google Chat apps, see [Text
- * input](https://developers.google.com/chat/ui/widgets/text-input).
+ * actions. For an example in Google Chat apps, see [Add a field in which a user
+ * can enter
+ * text](https://developers.google.com/workspace/chat/design-interactive-card-dialog#add_a_field_in_which_a_user_can_enter_text).
  * Chat apps receive and can process the value of entered text during form input
  * events. For details about working with form inputs, see [Receive form
- * data](https://developers.google.com/chat/ui/read-form-data).
+ * data](https://developers.google.com/workspace/chat/read-form-data).
  * When you need to collect undefined or abstract data from users,
  * use a text input. To collect defined or enumerated data from users, use the
  * [SelectionInput][google.apps.card.v1.SelectionInput] widget.
@@ -28,7 +29,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the text input is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -54,7 +55,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     /**
      * The value entered by a user, returned as part of a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 4;</code>
      */
@@ -70,7 +71,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * What to do when a change occurs in the text input field. For example, a
      * user adding to the field or deleting text.
      * Examples of actions to take include running a custom function or opening
-     * a [dialog](https://developers.google.com/chat/how-tos/dialogs)
+     * a [dialog](https://developers.google.com/workspace/chat/dialogs)
      * in Google Chat.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action on_change_action = 6;</code>
@@ -112,7 +113,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * Text that appears in the text input field when the field is empty.
      * Use this text to prompt users to enter a value. For example, `Enter a
      * number from 0 to 100`.
-     * [Google Chat apps](https://developers.google.com/chat):
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
      *
      * Generated from protobuf field <code>string placeholder_text = 12;</code>
      */
@@ -127,7 +128,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name by which the text input is identified in a form input event.
      *           For details about working with form inputs, see [Receive form
-     *           data](https://developers.google.com/chat/ui/read-form-data).
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type string $label
      *           The text that appears above the text input field in the user interface.
      *           Specify text that helps the user enter the information your app needs.
@@ -141,7 +142,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *     @type string $value
      *           The value entered by a user, returned as part of a form input event.
      *           For details about working with form inputs, see [Receive form
-     *           data](https://developers.google.com/chat/ui/read-form-data).
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type int $type
      *           How a text input field appears in the user interface.
      *           For example, whether the field is single or multi-line.
@@ -149,7 +150,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *           What to do when a change occurs in the text input field. For example, a
      *           user adding to the field or deleting text.
      *           Examples of actions to take include running a custom function or opening
-     *           a [dialog](https://developers.google.com/chat/how-tos/dialogs)
+     *           a [dialog](https://developers.google.com/workspace/chat/dialogs)
      *           in Google Chat.
      *     @type \Google\Apps\Card\V1\Suggestions $initial_suggestions
      *           Suggested values that users can enter. These values appear when users click
@@ -179,7 +180,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      *           Text that appears in the text input field when the field is empty.
      *           Use this text to prompt users to enter a value. For example, `Enter a
      *           number from 0 to 100`.
-     *           [Google Chat apps](https://developers.google.com/chat):
+     *           [Google Chat apps](https://developers.google.com/workspace/chat):
      * }
      */
     public function __construct($data = NULL) {
@@ -190,7 +191,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the text input is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -203,7 +204,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the text input is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -284,7 +285,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     /**
      * The value entered by a user, returned as part of a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 4;</code>
      * @return string
@@ -297,7 +298,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
     /**
      * The value entered by a user, returned as part of a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 4;</code>
      * @param string $var
@@ -343,7 +344,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * What to do when a change occurs in the text input field. For example, a
      * user adding to the field or deleting text.
      * Examples of actions to take include running a custom function or opening
-     * a [dialog](https://developers.google.com/chat/how-tos/dialogs)
+     * a [dialog](https://developers.google.com/workspace/chat/dialogs)
      * in Google Chat.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action on_change_action = 6;</code>
@@ -368,7 +369,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * What to do when a change occurs in the text input field. For example, a
      * user adding to the field or deleting text.
      * Examples of actions to take include running a custom function or opening
-     * a [dialog](https://developers.google.com/chat/how-tos/dialogs)
+     * a [dialog](https://developers.google.com/workspace/chat/dialogs)
      * in Google Chat.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action on_change_action = 6;</code>
@@ -499,7 +500,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * Text that appears in the text input field when the field is empty.
      * Use this text to prompt users to enter a value. For example, `Enter a
      * number from 0 to 100`.
-     * [Google Chat apps](https://developers.google.com/chat):
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
      *
      * Generated from protobuf field <code>string placeholder_text = 12;</code>
      * @return string
@@ -513,7 +514,7 @@ class TextInput extends \Google\Protobuf\Internal\Message
      * Text that appears in the text input field when the field is empty.
      * Use this text to prompt users to enter a value. For example, `Enter a
      * number from 0 to 100`.
-     * [Google Chat apps](https://developers.google.com/chat):
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
      *
      * Generated from protobuf field <code>string placeholder_text = 12;</code>
      * @param string $var

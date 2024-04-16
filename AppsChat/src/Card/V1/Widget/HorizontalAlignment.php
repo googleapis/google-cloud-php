@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Specifies whether widgets align to the left, right, or center of a column.
- * [Google Chat apps](https://developers.google.com/chat):
+ * [Google Chat apps](https://developers.google.com/workspace/chat):
  *
  * Protobuf type <code>google.apps.card.v1.Widget.HorizontalAlignment</code>
  */

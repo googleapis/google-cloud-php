@@ -75,9 +75,9 @@ class Membership extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Chat\V1\User $member
      *           The Google Chat user or app the membership corresponds to.
      *           If your Chat app [authenticates as a
-     *           user](https://developers.google.com/chat/api/guides/auth/users), the
-     *           output populates the
-     *           [user](https://developers.google.com/chat/api/reference/rest/v1/User)
+     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *           the output populates the
+     *           [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
      *           `name` and `type`.
      *     @type \Google\Apps\Chat\V1\Group $group_member
      *           The Google Group the membership corresponds to.
@@ -187,9 +187,9 @@ class Membership extends \Google\Protobuf\Internal\Message
     /**
      * The Google Chat user or app the membership corresponds to.
      * If your Chat app [authenticates as a
-     * user](https://developers.google.com/chat/api/guides/auth/users), the
-     * output populates the
-     * [user](https://developers.google.com/chat/api/reference/rest/v1/User)
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * the output populates the
+     * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
      * `name` and `type`.
      *
      * Generated from protobuf field <code>.google.chat.v1.User member = 3;</code>
@@ -208,9 +208,9 @@ class Membership extends \Google\Protobuf\Internal\Message
     /**
      * The Google Chat user or app the membership corresponds to.
      * If your Chat app [authenticates as a
-     * user](https://developers.google.com/chat/api/guides/auth/users), the
-     * output populates the
-     * [user](https://developers.google.com/chat/api/reference/rest/v1/User)
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * the output populates the
+     * [user](https://developers.google.com/workspace/chat/api/reference/rest/v1/User)
      * `name` and `type`.
      *
      * Generated from protobuf field <code>.google.chat.v1.User member = 3;</code>

@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request to get a membership of a space.
+ *
  * Generated from protobuf message <code>google.chat.v1.GetMembershipRequest</code>
  */
 class GetMembershipRequest extends \Google\Protobuf\Internal\Message
@@ -19,8 +21,8 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      * When [authenticated as a
-     * user](https://developers.google.com/chat/api/guides/auth/users), you can
-     * use the user's email as an alias for `{member}`. For example,
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * you can use the user's email as an alias for `{member}`. For example,
      * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      * email of the Google Chat user.
      *
@@ -37,8 +39,8 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      *                     Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      *
      *                     When [authenticated as a
-     *                     user](https://developers.google.com/chat/api/guides/auth/users), you can
-     *                     use the user's email as an alias for `{member}`. For example,
+     *                     user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *                     you can use the user's email as an alias for `{member}`. For example,
      *                     `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      *                     email of the Google Chat user. Please see
      *                     {@see ChatServiceClient::membershipName()} for help formatting this field.
@@ -65,8 +67,8 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      *           `spaces/{space}/members/app`.
      *           Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      *           When [authenticated as a
-     *           user](https://developers.google.com/chat/api/guides/auth/users), you can
-     *           use the user's email as an alias for `{member}`. For example,
+     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *           you can use the user's email as an alias for `{member}`. For example,
      *           `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      *           email of the Google Chat user.
      * }
@@ -82,8 +84,8 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      * When [authenticated as a
-     * user](https://developers.google.com/chat/api/guides/auth/users), you can
-     * use the user's email as an alias for `{member}`. For example,
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * you can use the user's email as an alias for `{member}`. For example,
      * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      * email of the Google Chat user.
      *
@@ -101,8 +103,8 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      * When [authenticated as a
-     * user](https://developers.google.com/chat/api/guides/auth/users), you can
-     * use the user's email as an alias for `{member}`. For example,
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * you can use the user's email as an alias for `{member}`. For example,
      * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
      * email of the Google Chat user.
      *

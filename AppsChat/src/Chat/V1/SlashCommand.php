@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [slash command](https://developers.google.com/chat/how-tos/slash-commands)
- * in Google Chat.
+ * A [slash
+ * command](https://developers.google.com/workspace/chat/slash-commands) in
+ * Google Chat.
  *
  * Generated from protobuf message <code>google.chat.v1.SlashCommand</code>
  */

@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request to create a space and add specified users to it.
+ *
  * Generated from protobuf message <code>google.chat.v1.SetUpSpaceRequest</code>
  */
 class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message

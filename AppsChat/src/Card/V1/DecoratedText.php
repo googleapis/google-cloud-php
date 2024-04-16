@@ -12,8 +12,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * A widget that displays text with optional decorations such as a label above
  * or below the text, an icon in front of the text, a selection widget, or a
  * button after the text. For an example in
- * Google Chat apps, see [Decorated
- * text](https://developers.google.com/chat/ui/widgets/decorated-text).
+ * Google Chat apps, see [Display text with decorative
+ * text](https://developers.google.com/workspace/chat/add-text-image-card-dialog#display_text_with_decorative_elements).
  * [Google Workspace Add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *
@@ -45,7 +45,7 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      * Supports simple formatting. For more information
      * about formatting text, see
      * [Formatting text in Google Chat
-     * apps](https://developers.google.com/chat/format-messages#card-formatting)
+     * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      * and
      * [Formatting
      * text in Google Workspace
@@ -93,7 +93,7 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      *           Supports simple formatting. For more information
      *           about formatting text, see
      *           [Formatting text in Google Chat
-     *           apps](https://developers.google.com/chat/format-messages#card-formatting)
+     *           apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      *           and
      *           [Formatting
      *           text in Google Workspace
@@ -114,9 +114,9 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Card\V1\Icon $end_icon
      *           An icon displayed after the text.
      *           Supports
-     *           [built-in](https://developers.google.com/chat/format-messages#builtinicons)
+     *           [built-in](https://developers.google.com/workspace/chat/format-messages#builtinicons)
      *           and
-     *           [custom](https://developers.google.com/chat/format-messages#customicons)
+     *           [custom](https://developers.google.com/workspace/chat/format-messages#customicons)
      *           icons.
      * }
      */
@@ -234,7 +234,7 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      * Supports simple formatting. For more information
      * about formatting text, see
      * [Formatting text in Google Chat
-     * apps](https://developers.google.com/chat/format-messages#card-formatting)
+     * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      * and
      * [Formatting
      * text in Google Workspace
@@ -253,7 +253,7 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
      * Supports simple formatting. For more information
      * about formatting text, see
      * [Formatting text in Google Chat
-     * apps](https://developers.google.com/chat/format-messages#card-formatting)
+     * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      * and
      * [Formatting
      * text in Google Workspace
@@ -430,9 +430,9 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
     /**
      * An icon displayed after the text.
      * Supports
-     * [built-in](https://developers.google.com/chat/format-messages#builtinicons)
+     * [built-in](https://developers.google.com/workspace/chat/format-messages#builtinicons)
      * and
-     * [custom](https://developers.google.com/chat/format-messages#customicons)
+     * [custom](https://developers.google.com/workspace/chat/format-messages#customicons)
      * icons.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Icon end_icon = 11;</code>
@@ -451,9 +451,9 @@ class DecoratedText extends \Google\Protobuf\Internal\Message
     /**
      * An icon displayed after the text.
      * Supports
-     * [built-in](https://developers.google.com/chat/format-messages#builtinicons)
+     * [built-in](https://developers.google.com/workspace/chat/format-messages#builtinicons)
      * and
-     * [custom](https://developers.google.com/chat/format-messages#customicons)
+     * [custom](https://developers.google.com/workspace/chat/format-messages#customicons)
      * icons.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Icon end_icon = 11;</code>

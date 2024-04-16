@@ -56,13 +56,13 @@ class SelectionType
      *    Workspace, such as Google Workspace users or Google Chat spaces.
      *  * External data: Items are populated from an external data
      *    source outside of Google Workspace.
-     * For examples of how to implement multiselect menus, see the
-     * [`SelectionInput` widget
-     * page](https://developers.google.com/chat/ui/widgets/selection-input#multiselect-menu).
+     * For examples of how to implement multiselect menus, see
+     * [Add a multiselect
+     * menu](https://developers.google.com/workspace/chat/design-interactive-card-dialog#multiselect-menu).
      * [Google Workspace Add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
-     * multiselect for Google Workspace Add-ons are in
-     * [Developer Preview](https://developers.google.com/workspace/preview).
+     * Multiselect for Google Workspace Add-ons are in
+     * Developer Preview.
      *
      * Generated from protobuf enum <code>MULTI_SELECT = 4;</code>
      */

@@ -34,15 +34,15 @@ use Google\Apps\Chat\V1\UpdateMessageRequest;
  * method uses a `patch` request while the `update` method uses a `put`
  * request. We recommend using the `patch` method. For an example, see
  * [Update a
- * message](https://developers.google.com/chat/api/guides/v1/messages/update).
+ * message](https://developers.google.com/workspace/chat/update-messages).
  *
  * Requires
- * [authentication](https://developers.google.com/chat/api/guides/auth).
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
  * Supports
  * [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * and [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  * When using app authentication, requests can only update messages
  * created by the calling Chat app.
  *

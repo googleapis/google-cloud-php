@@ -21,7 +21,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the switch widget is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -29,7 +29,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
     /**
      * The value entered by a user, returned as part of a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 2;</code>
      */
@@ -65,11 +65,11 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name by which the switch widget is identified in a form input event.
      *           For details about working with form inputs, see [Receive form
-     *           data](https://developers.google.com/chat/ui/read-form-data).
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type string $value
      *           The value entered by a user, returned as part of a form input event.
      *           For details about working with form inputs, see [Receive form
-     *           data](https://developers.google.com/chat/ui/read-form-data).
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type bool $selected
      *           When `true`, the switch is selected.
      *     @type \Google\Apps\Card\V1\Action $on_change_action
@@ -89,7 +89,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the switch widget is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -102,7 +102,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
     /**
      * The name by which the switch widget is identified in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -119,7 +119,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
     /**
      * The value entered by a user, returned as part of a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 2;</code>
      * @return string
@@ -132,7 +132,7 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
     /**
      * The value entered by a user, returned as part of a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 2;</code>
      * @param string $var

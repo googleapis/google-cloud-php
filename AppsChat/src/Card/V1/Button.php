@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A text, icon, or text and icon button that users can click. For an example in
  * Google Chat apps, see
- * [Button list](https://developers.google.com/chat/ui/widgets/button-list).
+ * [Add a
+ * button](https://developers.google.com/workspace/chat/design-interactive-card-dialog#add_a_button).
  * To make an image a clickable button, specify an
  * [`Image`][google.apps.card.v1.Image] (not an
  * [`ImageComponent`][google.apps.card.v1.ImageComponent]) and set an
@@ -85,7 +86,7 @@ class Button extends \Google\Protobuf\Internal\Message
      * Set descriptive text that lets users know what the button does. For
      * example, if a button opens a hyperlink, you might write: "Opens a new
      * browser tab and navigates to the Google Chat developer documentation at
-     * https://developers.google.com/chat".
+     * https://developers.google.com/workspace/chat".
      *
      * Generated from protobuf field <code>string alt_text = 6;</code>
      */
@@ -139,7 +140,7 @@ class Button extends \Google\Protobuf\Internal\Message
      *           Set descriptive text that lets users know what the button does. For
      *           example, if a button opens a hyperlink, you might write: "Opens a new
      *           browser tab and navigates to the Google Chat developer documentation at
-     *           https://developers.google.com/chat".
+     *           https://developers.google.com/workspace/chat".
      * }
      */
     public function __construct($data = NULL) {
@@ -366,7 +367,7 @@ class Button extends \Google\Protobuf\Internal\Message
      * Set descriptive text that lets users know what the button does. For
      * example, if a button opens a hyperlink, you might write: "Opens a new
      * browser tab and navigates to the Google Chat developer documentation at
-     * https://developers.google.com/chat".
+     * https://developers.google.com/workspace/chat".
      *
      * Generated from protobuf field <code>string alt_text = 6;</code>
      * @return string
@@ -381,7 +382,7 @@ class Button extends \Google\Protobuf\Internal\Message
      * Set descriptive text that lets users know what the button does. For
      * example, if a button opens a hyperlink, you might write: "Opens a new
      * browser tab and navigates to the Google Chat developer documentation at
-     * https://developers.google.com/chat".
+     * https://developers.google.com/workspace/chat".
      *
      * Generated from protobuf field <code>string alt_text = 6;</code>
      * @param string $var

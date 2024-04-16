@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Response of uploading an attachment.
+ *
  * Generated from protobuf message <code>google.chat.v1.UploadAttachmentResponse</code>
  */
 class UploadAttachmentResponse extends \Google\Protobuf\Internal\Message

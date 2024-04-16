@@ -10,7 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The supported widgets that you can include in a column.
- * [Google Chat apps](https://developers.google.com/chat):
+ * [Google Workspace Add-ons and Chat
+ * apps](https://developers.google.com/workspace/extend):
+ * Columns for Google Workspace Add-ons are in
+ * Developer Preview.
  *
  * Generated from protobuf message <code>google.apps.card.v1.Columns.Column.Widgets</code>
  */

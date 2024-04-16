@@ -31,12 +31,12 @@ use Google\Apps\Chat\V1\GetAttachmentRequest;
 /**
  * Gets the metadata of a message attachment. The attachment data is fetched
  * using the [media
- * API](https://developers.google.com/chat/api/reference/rest/v1/media/download).
+ * API](https://developers.google.com/workspace/chat/api/reference/rest/v1/media/download).
  * For an example, see
- * [Get a message
- * attachment](https://developers.google.com/chat/api/guides/v1/media-and-attachments/get).
+ * [Get metadata about a message
+ * attachment](https://developers.google.com/workspace/chat/get-media-attachments).
  * Requires [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
  *
  * @param string $formattedName Resource name of the attachment, in the form
  *                              `spaces/&#42;/messages/&#42;/attachments/*`. Please see

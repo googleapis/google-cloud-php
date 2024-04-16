@@ -30,11 +30,11 @@ use Google\Apps\Chat\V1\Membership;
 
 /**
  * Deletes a membership. For an example, see
- * [Delete a
- * membership](https://developers.google.com/chat/api/guides/v1/members/delete).
+ * [Remove a user or a Google Chat app from a
+ * space](https://developers.google.com/workspace/chat/delete-members).
  *
  * Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * @param string $formattedName Resource name of the membership to delete. Chat apps can delete
  *                              human users' or their own memberships. Chat apps can't delete other apps'

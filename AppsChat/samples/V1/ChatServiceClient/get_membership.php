@@ -30,16 +30,16 @@ use Google\Apps\Chat\V1\Membership;
 
 /**
  * Returns details about a membership. For an example, see
- * [Get a
- * membership](https://developers.google.com/chat/api/guides/v1/members/get).
+ * [Get details about a user's or Google Chat app's
+ * membership](https://developers.google.com/workspace/chat/get-members).
  *
  * Requires
- * [authentication](https://developers.google.com/chat/api/guides/auth).
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
  * Supports
  * [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * and [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * @param string $formattedName Resource name of the membership to retrieve.
  *
@@ -49,8 +49,8 @@ use Google\Apps\Chat\V1\Membership;
  *                              Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
  *
  *                              When [authenticated as a
- *                              user](https://developers.google.com/chat/api/guides/auth/users), you can
- *                              use the user's email as an alias for `{member}`. For example,
+ *                              user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+ *                              you can use the user's email as an alias for `{member}`. For example,
  *                              `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
  *                              email of the Google Chat user. Please see
  *                              {@see ChatServiceClient::membershipName()} for help formatting this field.

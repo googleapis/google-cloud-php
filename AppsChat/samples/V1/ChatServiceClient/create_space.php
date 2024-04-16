@@ -31,14 +31,14 @@ use Google\Apps\Chat\V1\Space;
 /**
  * Creates a named space. Spaces grouped by topics aren't supported. For an
  * example, see [Create a
- * space](https://developers.google.com/chat/api/guides/v1/spaces/create).
+ * space](https://developers.google.com/workspace/chat/create-spaces).
  *
  * If you receive the error message `ALREADY_EXISTS` when creating
  * a space, try a different `displayName`. An existing space within
  * the Google Workspace organization might already use this display name.
  *
  * Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

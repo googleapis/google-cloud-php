@@ -31,13 +31,13 @@ use Google\Apps\Chat\V1\Membership;
 /**
  * Creates a human membership or app membership for the calling app. Creating
  * memberships for other apps isn't supported. For an example, see
- * [ Create a
- * membership](https://developers.google.com/chat/api/guides/v1/members/create).
+ * [Invite or add a user or a Google Chat app to a
+ * space](https://developers.google.com/workspace/chat/create-members).
  * When creating a membership, if the specified member has their auto-accept
  * policy turned off, then they're invited, and must accept the space
  * invitation before joining. Otherwise, creating a membership adds the member
  * directly to the specified space. Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * To specify the member to add, set the `membership.member.name` in the
  * `CreateMembershipRequest`:

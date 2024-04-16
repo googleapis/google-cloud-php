@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request to delete a message.
+ *
  * Generated from protobuf message <code>google.chat.v1.DeleteMessageRequest</code>
  */
 class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
@@ -19,7 +21,7 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      * If you've set a custom ID for your message, you can use the value from the
      * `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      * message]
-     * (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -28,9 +30,9 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      * When `true`, deleting a message also deletes its threaded replies. When
      * `false`, if a message has threaded replies, deletion fails.
      * Only applies when [authenticating as a
-     * user](https://developers.google.com/chat/api/guides/auth/users). Has no
-     * effect when [authenticating as a Chat app]
-     * (https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Has no effect when [authenticating as a Chat app]
+     * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
      * Generated from protobuf field <code>bool force = 2;</code>
      */
@@ -44,7 +46,7 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      *                     If you've set a custom ID for your message, you can use the value from the
      *                     `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      *                     message]
-     *                     (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message). Please see
+     *                     (https://developers.google.com/workspace/chat/create-messages#name_a_created_message). Please see
      *                     {@see ChatServiceClient::messageName()} for help formatting this field.
      *
      * @return \Google\Apps\Chat\V1\DeleteMessageRequest
@@ -69,14 +71,14 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      *           If you've set a custom ID for your message, you can use the value from the
      *           `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      *           message]
-     *           (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     *           (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *     @type bool $force
      *           When `true`, deleting a message also deletes its threaded replies. When
      *           `false`, if a message has threaded replies, deletion fails.
      *           Only applies when [authenticating as a
-     *           user](https://developers.google.com/chat/api/guides/auth/users). Has no
-     *           effect when [authenticating as a Chat app]
-     *           (https://developers.google.com/chat/api/guides/auth/service-accounts).
+     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *           Has no effect when [authenticating as a Chat app]
+     *           (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      * }
      */
     public function __construct($data = NULL) {
@@ -90,7 +92,7 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      * If you've set a custom ID for your message, you can use the value from the
      * `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      * message]
-     * (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -106,7 +108,7 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      * If you've set a custom ID for your message, you can use the value from the
      * `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      * message]
-     * (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -124,9 +126,9 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      * When `true`, deleting a message also deletes its threaded replies. When
      * `false`, if a message has threaded replies, deletion fails.
      * Only applies when [authenticating as a
-     * user](https://developers.google.com/chat/api/guides/auth/users). Has no
-     * effect when [authenticating as a Chat app]
-     * (https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Has no effect when [authenticating as a Chat app]
+     * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
      * Generated from protobuf field <code>bool force = 2;</code>
      * @return bool
@@ -140,9 +142,9 @@ class DeleteMessageRequest extends \Google\Protobuf\Internal\Message
      * When `true`, deleting a message also deletes its threaded replies. When
      * `false`, if a message has threaded replies, deletion fails.
      * Only applies when [authenticating as a
-     * user](https://developers.google.com/chat/api/guides/auth/users). Has no
-     * effect when [authenticating as a Chat app]
-     * (https://developers.google.com/chat/api/guides/auth/service-accounts).
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Has no effect when [authenticating as a Chat app]
+     * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
      * Generated from protobuf field <code>bool force = 2;</code>
      * @param bool $var

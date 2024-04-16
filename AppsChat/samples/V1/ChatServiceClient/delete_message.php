@@ -30,15 +30,15 @@ use Google\Apps\Chat\V1\DeleteMessageRequest;
 /**
  * Deletes a message.
  * For an example, see [Delete a
- * message](https://developers.google.com/chat/api/guides/v1/messages/delete).
+ * message](https://developers.google.com/workspace/chat/delete-messages).
  *
  * Requires
- * [authentication](https://developers.google.com/chat/api/guides/auth).
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
  * Supports
  * [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * and [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  * When using app authentication, requests can only delete messages
  * created by the calling Chat app.
  *
@@ -49,7 +49,7 @@ use Google\Apps\Chat\V1\DeleteMessageRequest;
  *                              If you've set a custom ID for your message, you can use the value from the
  *                              `clientAssignedMessageId` field for `{message}`. For details, see [Name a
  *                              message]
- *                              (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message). Please see
+ *                              (https://developers.google.com/workspace/chat/create-messages#name_a_created_message). Please see
  *                              {@see ChatServiceClient::messageName()} for help formatting this field.
  */
 function delete_message_sample(string $formattedName): void

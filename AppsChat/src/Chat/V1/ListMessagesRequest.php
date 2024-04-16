@@ -26,8 +26,8 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of messages returned. The service might return fewer
      * messages than this value.
      * If unspecified, at most 25 are returned.
-     * The maximum value is 1,000. If you use a value more than 1,000, it's
-     * automatically changed to 1,000.
+     * The maximum value is 1000. If you use a value more than 1000, it's
+     * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -123,8 +123,8 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of messages returned. The service might return fewer
      *           messages than this value.
      *           If unspecified, at most 25 are returned.
-     *           The maximum value is 1,000. If you use a value more than 1,000, it's
-     *           automatically changed to 1,000.
+     *           The maximum value is 1000. If you use a value more than 1000, it's
+     *           automatically changed to 1000.
      *           Negative values return an `INVALID_ARGUMENT` error.
      *     @type string $page_token
      *           Optional, if resuming from a previous query.
@@ -209,8 +209,8 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of messages returned. The service might return fewer
      * messages than this value.
      * If unspecified, at most 25 are returned.
-     * The maximum value is 1,000. If you use a value more than 1,000, it's
-     * automatically changed to 1,000.
+     * The maximum value is 1000. If you use a value more than 1000, it's
+     * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -225,8 +225,8 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of messages returned. The service might return fewer
      * messages than this value.
      * If unspecified, at most 25 are returned.
-     * The maximum value is 1,000. If you use a value more than 1,000, it's
-     * automatically changed to 1,000.
+     * The maximum value is 1000. If you use a value more than 1000, it's
+     * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>

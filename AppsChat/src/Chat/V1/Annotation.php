@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Output only. Annotations associated with the plain-text body of the message.
  * To add basic formatting to a text message, see
  * [Format text
- * messages](https://developers.google.com/chat/format-messages).
+ * messages](https://developers.google.com/workspace/chat/format-messages).
  * Example plain-text message body:
  * ```
  * Hello &#64;FooBot how are you!"

@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Contains a
- * [dialog](https://developers.google.com/chat/how-tos/dialogs) and request
+ * [dialog](https://developers.google.com/workspace/chat/dialogs) and request
  * status code.
  *
  * Generated from protobuf message <code>google.chat.v1.DialogAction</code>
@@ -19,7 +19,7 @@ class DialogAction extends \Google\Protobuf\Internal\Message
 {
     /**
      * Input only. Status for a request to either invoke or submit a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs). Displays
+     * [dialog](https://developers.google.com/workspace/chat/dialogs). Displays
      * a status and message to users, if necessary.
      * For example, in case of an error or success.
      *
@@ -35,11 +35,12 @@ class DialogAction extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Chat\V1\Dialog $dialog
-     *           Input only. [Dialog](https://developers.google.com/chat/how-tos/dialogs)
-     *           for the request.
+     *           Input only.
+     *           [Dialog](https://developers.google.com/workspace/chat/dialogs) for the
+     *           request.
      *     @type \Google\Apps\Chat\V1\ActionStatus $action_status
      *           Input only. Status for a request to either invoke or submit a
-     *           [dialog](https://developers.google.com/chat/how-tos/dialogs). Displays
+     *           [dialog](https://developers.google.com/workspace/chat/dialogs). Displays
      *           a status and message to users, if necessary.
      *           For example, in case of an error or success.
      * }
@@ -50,8 +51,9 @@ class DialogAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. [Dialog](https://developers.google.com/chat/how-tos/dialogs)
-     * for the request.
+     * Input only.
+     * [Dialog](https://developers.google.com/workspace/chat/dialogs) for the
+     * request.
      *
      * Generated from protobuf field <code>.google.chat.v1.Dialog dialog = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Apps\Chat\V1\Dialog|null
@@ -67,8 +69,9 @@ class DialogAction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. [Dialog](https://developers.google.com/chat/how-tos/dialogs)
-     * for the request.
+     * Input only.
+     * [Dialog](https://developers.google.com/workspace/chat/dialogs) for the
+     * request.
      *
      * Generated from protobuf field <code>.google.chat.v1.Dialog dialog = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param \Google\Apps\Chat\V1\Dialog $var
@@ -84,7 +87,7 @@ class DialogAction extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. Status for a request to either invoke or submit a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs). Displays
+     * [dialog](https://developers.google.com/workspace/chat/dialogs). Displays
      * a status and message to users, if necessary.
      * For example, in case of an error or success.
      *
@@ -108,7 +111,7 @@ class DialogAction extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. Status for a request to either invoke or submit a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs). Displays
+     * [dialog](https://developers.google.com/workspace/chat/dialogs). Displays
      * a status and message to users, if necessary.
      * For example, in case of an error or success.
      *

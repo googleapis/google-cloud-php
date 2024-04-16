@@ -22,8 +22,8 @@ class Action extends \Google\Protobuf\Internal\Message
     /**
      * A custom function to invoke when the containing element is
      * clicked or othrwise activated.
-     * For example usage, see [Create interactive
-     * cards](https://developers.google.com/chat/how-tos/cards-onclick).
+     * For example usage, see [Read form
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string function = 1;</code>
      */
@@ -48,11 +48,11 @@ class Action extends \Google\Protobuf\Internal\Message
      * user make changes while the action is being processed, set
      * [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator)
      * to `NONE`. For [card
-     * messages](https://developers.google.com/chat/api/guides/v1/messages/create#create)
+     * messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/create#create)
      * in Chat apps, you must also set the action's
-     * [`ResponseType`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#responsetype)
+     * [`ResponseType`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#responsetype)
      * to `UPDATE_MESSAGE` and use the same
-     * [`card_id`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#CardWithId)
+     * [`card_id`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#CardWithId)
      * from the card that contained the action.
      * If `false`, the form values are cleared when the action is triggered.
      * To prevent the user from making changes while the action is being
@@ -65,17 +65,17 @@ class Action extends \Google\Protobuf\Internal\Message
     protected $persist_values = false;
     /**
      * Optional. Required when opening a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs).
+     * [dialog](https://developers.google.com/workspace/chat/dialogs).
      * What to do in response to an interaction with a user, such as a user
      * clicking a button in a card message.
      * If unspecified, the app responds by executing an `action`—like opening a
      * link or running a function—as normal.
      * By specifying an `interaction`, the app can respond in special interactive
      * ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can
-     * open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When
+     * open a [dialog](https://developers.google.com/workspace/chat/dialogs). When
      * specified, a loading indicator isn't shown. If specified for
      * an add-on, the entire card is stripped and nothing is shown in the client.
-     * [Google Chat apps](https://developers.google.com/chat):
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action.Interaction interaction = 5;</code>
      */
@@ -90,8 +90,8 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type string $function
      *           A custom function to invoke when the containing element is
      *           clicked or othrwise activated.
-     *           For example usage, see [Create interactive
-     *           cards](https://developers.google.com/chat/how-tos/cards-onclick).
+     *           For example usage, see [Read form
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type array<\Google\Apps\Card\V1\Action\ActionParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           List of action parameters.
      *     @type int $load_indicator
@@ -104,11 +104,11 @@ class Action extends \Google\Protobuf\Internal\Message
      *           user make changes while the action is being processed, set
      *           [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator)
      *           to `NONE`. For [card
-     *           messages](https://developers.google.com/chat/api/guides/v1/messages/create#create)
+     *           messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/create#create)
      *           in Chat apps, you must also set the action's
-     *           [`ResponseType`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#responsetype)
+     *           [`ResponseType`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#responsetype)
      *           to `UPDATE_MESSAGE` and use the same
-     *           [`card_id`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#CardWithId)
+     *           [`card_id`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#CardWithId)
      *           from the card that contained the action.
      *           If `false`, the form values are cleared when the action is triggered.
      *           To prevent the user from making changes while the action is being
@@ -117,17 +117,17 @@ class Action extends \Google\Protobuf\Internal\Message
      *           to `SPINNER`.
      *     @type int $interaction
      *           Optional. Required when opening a
-     *           [dialog](https://developers.google.com/chat/how-tos/dialogs).
+     *           [dialog](https://developers.google.com/workspace/chat/dialogs).
      *           What to do in response to an interaction with a user, such as a user
      *           clicking a button in a card message.
      *           If unspecified, the app responds by executing an `action`—like opening a
      *           link or running a function—as normal.
      *           By specifying an `interaction`, the app can respond in special interactive
      *           ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can
-     *           open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When
+     *           open a [dialog](https://developers.google.com/workspace/chat/dialogs). When
      *           specified, a loading indicator isn't shown. If specified for
      *           an add-on, the entire card is stripped and nothing is shown in the client.
-     *           [Google Chat apps](https://developers.google.com/chat):
+     *           [Google Chat apps](https://developers.google.com/workspace/chat):
      * }
      */
     public function __construct($data = NULL) {
@@ -138,8 +138,8 @@ class Action extends \Google\Protobuf\Internal\Message
     /**
      * A custom function to invoke when the containing element is
      * clicked or othrwise activated.
-     * For example usage, see [Create interactive
-     * cards](https://developers.google.com/chat/how-tos/cards-onclick).
+     * For example usage, see [Read form
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string function = 1;</code>
      * @return string
@@ -152,8 +152,8 @@ class Action extends \Google\Protobuf\Internal\Message
     /**
      * A custom function to invoke when the containing element is
      * clicked or othrwise activated.
-     * For example usage, see [Create interactive
-     * cards](https://developers.google.com/chat/how-tos/cards-onclick).
+     * For example usage, see [Read form
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string function = 1;</code>
      * @param string $var
@@ -228,11 +228,11 @@ class Action extends \Google\Protobuf\Internal\Message
      * user make changes while the action is being processed, set
      * [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator)
      * to `NONE`. For [card
-     * messages](https://developers.google.com/chat/api/guides/v1/messages/create#create)
+     * messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/create#create)
      * in Chat apps, you must also set the action's
-     * [`ResponseType`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#responsetype)
+     * [`ResponseType`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#responsetype)
      * to `UPDATE_MESSAGE` and use the same
-     * [`card_id`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#CardWithId)
+     * [`card_id`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#CardWithId)
      * from the card that contained the action.
      * If `false`, the form values are cleared when the action is triggered.
      * To prevent the user from making changes while the action is being
@@ -255,11 +255,11 @@ class Action extends \Google\Protobuf\Internal\Message
      * user make changes while the action is being processed, set
      * [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator)
      * to `NONE`. For [card
-     * messages](https://developers.google.com/chat/api/guides/v1/messages/create#create)
+     * messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/create#create)
      * in Chat apps, you must also set the action's
-     * [`ResponseType`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#responsetype)
+     * [`ResponseType`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#responsetype)
      * to `UPDATE_MESSAGE` and use the same
-     * [`card_id`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#CardWithId)
+     * [`card_id`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages#CardWithId)
      * from the card that contained the action.
      * If `false`, the form values are cleared when the action is triggered.
      * To prevent the user from making changes while the action is being
@@ -281,17 +281,17 @@ class Action extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Required when opening a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs).
+     * [dialog](https://developers.google.com/workspace/chat/dialogs).
      * What to do in response to an interaction with a user, such as a user
      * clicking a button in a card message.
      * If unspecified, the app responds by executing an `action`—like opening a
      * link or running a function—as normal.
      * By specifying an `interaction`, the app can respond in special interactive
      * ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can
-     * open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When
+     * open a [dialog](https://developers.google.com/workspace/chat/dialogs). When
      * specified, a loading indicator isn't shown. If specified for
      * an add-on, the entire card is stripped and nothing is shown in the client.
-     * [Google Chat apps](https://developers.google.com/chat):
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action.Interaction interaction = 5;</code>
      * @return int
@@ -303,17 +303,17 @@ class Action extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Required when opening a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs).
+     * [dialog](https://developers.google.com/workspace/chat/dialogs).
      * What to do in response to an interaction with a user, such as a user
      * clicking a button in a card message.
      * If unspecified, the app responds by executing an `action`—like opening a
      * link or running a function—as normal.
      * By specifying an `interaction`, the app can respond in special interactive
      * ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can
-     * open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When
+     * open a [dialog](https://developers.google.com/workspace/chat/dialogs). When
      * specified, a loading indicator isn't shown. If specified for
      * an add-on, the entire card is stripped and nothing is shown in the client.
-     * [Google Chat apps](https://developers.google.com/chat):
+     * [Google Chat apps](https://developers.google.com/workspace/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action.Interaction interaction = 5;</code>
      * @param int $var

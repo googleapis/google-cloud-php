@@ -28,7 +28,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      * The value associated with this item. The client should use this as a form
      * input value.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 2;</code>
      */
@@ -45,7 +45,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      * For multiselect menus, the URL for the icon displayed next to
      * the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS`
      * URL. For example,
-     * `https://developers.google.com/chat/images/quickstart-app-avatar.png`.
+     * `https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png`.
      *
      * Generated from protobuf field <code>string start_icon_uri = 4;</code>
      */
@@ -70,7 +70,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      *           The value associated with this item. The client should use this as a form
      *           input value.
      *           For details about working with form inputs, see [Receive form
-     *           data](https://developers.google.com/chat/ui/read-form-data).
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type bool $selected
      *           Whether the item is selected by default. If the selection input only
      *           accepts one value (such as for radio buttons or a dropdown menu), only
@@ -79,7 +79,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      *           For multiselect menus, the URL for the icon displayed next to
      *           the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS`
      *           URL. For example,
-     *           `https://developers.google.com/chat/images/quickstart-app-avatar.png`.
+     *           `https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png`.
      *     @type string $bottom_text
      *           For multiselect menus, a text description or label that's
      *           displayed below the item's `text` field.
@@ -120,7 +120,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      * The value associated with this item. The client should use this as a form
      * input value.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 2;</code>
      * @return string
@@ -134,7 +134,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      * The value associated with this item. The client should use this as a form
      * input value.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string value = 2;</code>
      * @param string $var
@@ -182,7 +182,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      * For multiselect menus, the URL for the icon displayed next to
      * the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS`
      * URL. For example,
-     * `https://developers.google.com/chat/images/quickstart-app-avatar.png`.
+     * `https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png`.
      *
      * Generated from protobuf field <code>string start_icon_uri = 4;</code>
      * @return string
@@ -196,7 +196,7 @@ class SelectionItem extends \Google\Protobuf\Internal\Message
      * For multiselect menus, the URL for the icon displayed next to
      * the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS`
      * URL. For example,
-     * `https://developers.google.com/chat/images/quickstart-app-avatar.png`.
+     * `https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png`.
      *
      * Generated from protobuf field <code>string start_icon_uri = 4;</code>
      * @param string $var

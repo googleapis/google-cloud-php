@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a card header. For an example in Google Chat apps, see [Card
- * header](https://developers.google.com/chat/ui/widgets/card-header).
+ * Represents a card header. For an example in Google Chat apps, see [Add a
+ * header](https://developers.google.com/workspace/chat/design-components-card-dialog#add_a_header).
  * [Google Workspace Add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  *

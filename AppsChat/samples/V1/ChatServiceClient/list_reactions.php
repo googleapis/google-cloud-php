@@ -31,10 +31,10 @@ use Google\Apps\Chat\V1\Reaction;
 
 /**
  * Lists reactions to a message. For an example, see
- * [List
- * reactions](https://developers.google.com/chat/api/guides/v1/reactions/list).
+ * [List reactions for a
+ * message](https://developers.google.com/workspace/chat/list-reactions).
  * Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * @param string $formattedParent The message users reacted to.
  *

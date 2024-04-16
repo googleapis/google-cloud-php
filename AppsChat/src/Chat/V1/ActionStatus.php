@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents the status for a request to either invoke or submit a
- * [dialog](https://developers.google.com/chat/how-tos/dialogs).
+ * [dialog](https://developers.google.com/workspace/chat/dialogs).
  *
  * Generated from protobuf message <code>google.chat.v1.ActionStatus</code>
  */

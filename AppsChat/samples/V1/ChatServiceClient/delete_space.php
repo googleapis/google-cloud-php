@@ -32,9 +32,9 @@ use Google\Apps\Chat\V1\DeleteSpaceRequest;
  * that the space's child resources—like messages posted in the space and
  * memberships in the space—are also deleted. For an example, see
  * [Delete a
- * space](https://developers.google.com/chat/api/guides/v1/spaces/delete).
+ * space](https://developers.google.com/workspace/chat/delete-spaces).
  * Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
  * from a user who has permission to delete the space.
  *
  * @param string $formattedName Resource name of the space to delete.

@@ -30,25 +30,25 @@ use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\Membership;
 
 /**
- * Lists memberships in a space. For an example, see [List
- * memberships](https://developers.google.com/chat/api/guides/v1/members/list).
- * Listing memberships with
- * [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts)
+ * Lists memberships in a space. For an example, see [List users and Google
+ * Chat apps in a
+ * space](https://developers.google.com/workspace/chat/list-members). Listing
+ * memberships with [app
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * lists memberships in spaces that the Chat app has
  * access to, but excludes Chat app memberships,
  * including its own. Listing memberships with
  * [User
- * authentication](https://developers.google.com/chat/api/guides/auth/users)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
  * lists memberships in spaces that the authenticated user has access to.
  *
  * Requires
- * [authentication](https://developers.google.com/chat/api/guides/auth).
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
  * Supports
  * [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * and [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * @param string $formattedParent The resource name of the space for which to fetch a membership
  *                                list.

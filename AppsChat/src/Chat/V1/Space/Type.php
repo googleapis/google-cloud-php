@@ -14,6 +14,8 @@ use UnexpectedValueException;
 class Type
 {
     /**
+     * Reserved.
+     *
      * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
      */
     const TYPE_UNSPECIFIED = 0;

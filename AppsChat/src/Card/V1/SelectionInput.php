@@ -12,11 +12,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * A widget that creates one or more UI items that users can select.
  * For example, a dropdown menu or checkboxes. You can use this widget to
  * collect data that can be predicted or enumerated. For an example in Google
- * Chat apps, see [Selection
- * input](https://developers.google.com/chat/ui/widgets/selection-input).
+ * Chat apps, see [Add selectable UI
+ * elements](/workspace/chat/design-interactive-card-dialog#add_selectable_ui_elements).
  * Chat apps can process the value of items that users select or input. For
  * details about working with form inputs, see [Receive form
- * data](https://developers.google.com/chat/ui/read-form-data).
+ * data](https://developers.google.com/workspace/chat/read-form-data).
  * To collect undefined or abstract data from users, use
  * the [TextInput][google.apps.card.v1.TextInput] widget.
  * [Google Workspace Add-ons
@@ -29,7 +29,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
     /**
      * The name that identifies the selection input in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -64,7 +64,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      * If specified, the form is submitted when the selection changes. If not
      * specified, you must specify a separate button that submits the form.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action on_change_action = 5;</code>
      */
@@ -78,7 +78,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
     protected $multi_select_max_selected_items = 0;
     /**
      * For multiselect menus, the number of text characters that a user inputs
-     * before the Chat app queries autocomplete and displays suggested items
+     * before the app queries autocomplete and displays suggested items
      * in the menu.
      * If unspecified, defaults to 0 characters for static data sources and 3
      * characters for external data sources.
@@ -97,7 +97,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name that identifies the selection input in a form input event.
      *           For details about working with form inputs, see [Receive form
-     *           data](https://developers.google.com/chat/ui/read-form-data).
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type string $label
      *           The text that appears above the selection input field in the user
      *           interface.
@@ -116,13 +116,13 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      *           If specified, the form is submitted when the selection changes. If not
      *           specified, you must specify a separate button that submits the form.
      *           For details about working with form inputs, see [Receive form
-     *           data](https://developers.google.com/chat/ui/read-form-data).
+     *           data](https://developers.google.com/workspace/chat/read-form-data).
      *     @type int $multi_select_max_selected_items
      *           For multiselect menus, the maximum number of items that a user can select.
      *           Minimum value is 1 item. If unspecified, defaults to 3 items.
      *     @type int $multi_select_min_query_length
      *           For multiselect menus, the number of text characters that a user inputs
-     *           before the Chat app queries autocomplete and displays suggested items
+     *           before the app queries autocomplete and displays suggested items
      *           in the menu.
      *           If unspecified, defaults to 0 characters for static data sources and 3
      *           characters for external data sources.
@@ -140,7 +140,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
     /**
      * The name that identifies the selection input in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -153,7 +153,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
     /**
      * The name that identifies the selection input in a form input event.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -265,7 +265,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      * If specified, the form is submitted when the selection changes. If not
      * specified, you must specify a separate button that submits the form.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action on_change_action = 5;</code>
      * @return \Google\Apps\Card\V1\Action|null
@@ -289,7 +289,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      * If specified, the form is submitted when the selection changes. If not
      * specified, you must specify a separate button that submits the form.
      * For details about working with form inputs, see [Receive form
-     * data](https://developers.google.com/chat/ui/read-form-data).
+     * data](https://developers.google.com/workspace/chat/read-form-data).
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Action on_change_action = 5;</code>
      * @param \Google\Apps\Card\V1\Action $var
@@ -333,7 +333,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
 
     /**
      * For multiselect menus, the number of text characters that a user inputs
-     * before the Chat app queries autocomplete and displays suggested items
+     * before the app queries autocomplete and displays suggested items
      * in the menu.
      * If unspecified, defaults to 0 characters for static data sources and 3
      * characters for external data sources.
@@ -348,7 +348,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
 
     /**
      * For multiselect menus, the number of text characters that a user inputs
-     * before the Chat app queries autocomplete and displays suggested items
+     * before the app queries autocomplete and displays suggested items
      * in the menu.
      * If unspecified, defaults to 0 characters for static data sources and 3
      * characters for external data sources.

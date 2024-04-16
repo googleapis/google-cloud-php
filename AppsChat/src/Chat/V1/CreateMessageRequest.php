@@ -35,7 +35,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      * a message and specify a `threadKey` or the
      * [thread.name][google.chat.v1.Thread.name]. For example usage, see [Start or
      * reply to a message
-     * thread](https://developers.google.com/chat/api/guides/v1/messages/create#create-message-thread).
+     * thread](https://developers.google.com/workspace/chat/create-messages#create-message-thread).
      *
      * Generated from protobuf field <code>string thread_key = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @deprecated
@@ -68,7 +68,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      * * Is unique within a space. A Chat app can't use the same custom ID for
      * different messages.
      * For details, see [Name a
-     * message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string message_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -94,7 +94,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      *                                                different messages.
      *
      *                                                For details, see [Name a
-     *                                                message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     *                                                message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * @return \Google\Apps\Chat\V1\CreateMessageRequest
      *
@@ -126,7 +126,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      *           a message and specify a `threadKey` or the
      *           [thread.name][google.chat.v1.Thread.name]. For example usage, see [Start or
      *           reply to a message
-     *           thread](https://developers.google.com/chat/api/guides/v1/messages/create#create-message-thread).
+     *           thread](https://developers.google.com/workspace/chat/create-messages#create-message-thread).
      *     @type string $request_id
      *           Optional. A unique request ID for this message. Specifying an existing
      *           request ID returns the message created with that ID instead of creating a
@@ -146,7 +146,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      *           * Is unique within a space. A Chat app can't use the same custom ID for
      *           different messages.
      *           For details, see [Name a
-     *           message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     *           message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      * }
      */
     public function __construct($data = NULL) {
@@ -225,7 +225,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      * a message and specify a `threadKey` or the
      * [thread.name][google.chat.v1.Thread.name]. For example usage, see [Start or
      * reply to a message
-     * thread](https://developers.google.com/chat/api/guides/v1/messages/create#create-message-thread).
+     * thread](https://developers.google.com/workspace/chat/create-messages#create-message-thread).
      *
      * Generated from protobuf field <code>string thread_key = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -244,7 +244,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      * a message and specify a `threadKey` or the
      * [thread.name][google.chat.v1.Thread.name]. For example usage, see [Start or
      * reply to a message
-     * thread](https://developers.google.com/chat/api/guides/v1/messages/create#create-message-thread).
+     * thread](https://developers.google.com/workspace/chat/create-messages#create-message-thread).
      *
      * Generated from protobuf field <code>string thread_key = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -330,7 +330,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      * * Is unique within a space. A Chat app can't use the same custom ID for
      * different messages.
      * For details, see [Name a
-     * message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string message_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -352,7 +352,7 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      * * Is unique within a space. A Chat app can't use the same custom ID for
      * different messages.
      * For details, see [Name a
-     * message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
+     * message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *
      * Generated from protobuf field <code>string message_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

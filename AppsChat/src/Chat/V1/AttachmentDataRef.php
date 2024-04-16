@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A reference to the attachment data.
+ *
  * Generated from protobuf message <code>google.chat.v1.AttachmentDataRef</code>
  */
 class AttachmentDataRef extends \Google\Protobuf\Internal\Message

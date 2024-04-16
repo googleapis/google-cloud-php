@@ -30,7 +30,7 @@ class ActionResponse extends \Google\Protobuf\Internal\Message
     protected $url = '';
     /**
      * Input only. A response to an interaction event related to a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs). Must be
+     * [dialog](https://developers.google.com/workspace/chat/dialogs). Must be
      * accompanied by `ResponseType.Dialog`.
      *
      * Generated from protobuf field <code>.google.chat.v1.DialogAction dialog_action = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -56,7 +56,7 @@ class ActionResponse extends \Google\Protobuf\Internal\Message
      *           `REQUEST_CONFIG` response types.)
      *     @type \Google\Apps\Chat\V1\DialogAction $dialog_action
      *           Input only. A response to an interaction event related to a
-     *           [dialog](https://developers.google.com/chat/how-tos/dialogs). Must be
+     *           [dialog](https://developers.google.com/workspace/chat/dialogs). Must be
      *           accompanied by `ResponseType.Dialog`.
      *     @type \Google\Apps\Chat\V1\ActionResponse\UpdatedWidget $updated_widget
      *           Input only. The response of the updated widget.
@@ -123,7 +123,7 @@ class ActionResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. A response to an interaction event related to a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs). Must be
+     * [dialog](https://developers.google.com/workspace/chat/dialogs). Must be
      * accompanied by `ResponseType.Dialog`.
      *
      * Generated from protobuf field <code>.google.chat.v1.DialogAction dialog_action = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
@@ -146,7 +146,7 @@ class ActionResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. A response to an interaction event related to a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs). Must be
+     * [dialog](https://developers.google.com/workspace/chat/dialogs). Must be
      * accompanied by `ResponseType.Dialog`.
      *
      * Generated from protobuf field <code>.google.chat.v1.DialogAction dialog_action = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>

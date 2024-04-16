@@ -7,19 +7,27 @@ namespace Google\Apps\Chat\V1\Attachment;
 use UnexpectedValueException;
 
 /**
+ * The source of the attachment.
+ *
  * Protobuf type <code>google.chat.v1.Attachment.Source</code>
  */
 class Source
 {
     /**
+     * Reserved.
+     *
      * Generated from protobuf enum <code>SOURCE_UNSPECIFIED = 0;</code>
      */
     const SOURCE_UNSPECIFIED = 0;
     /**
+     * The file is a Google Drive file.
+     *
      * Generated from protobuf enum <code>DRIVE_FILE = 1;</code>
      */
     const DRIVE_FILE = 1;
     /**
+     * The file is uploaded to Chat.
+     *
      * Generated from protobuf enum <code>UPLOADED_CONTENT = 2;</code>
      */
     const UPLOADED_CONTENT = 2;

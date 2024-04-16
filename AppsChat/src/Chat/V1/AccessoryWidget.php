@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A borderless widget attached to the bottom of an app's message.
+ * One or more interactive widgets that appear at the bottom of a message. For
+ * details, see [Add interactive widgets at the bottom of a
+ * message](https://developers.google.com/workspace/chat/create-messages#add-accessory-widgets).
  *
  * Generated from protobuf message <code>google.chat.v1.AccessoryWidget</code>
  */
@@ -24,7 +26,7 @@ class AccessoryWidget extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Apps\Card\V1\ButtonList $button_list
-     *           A list of buttons that are displayed under the message.
+     *           A list of buttons.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,7 +35,7 @@ class AccessoryWidget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of buttons that are displayed under the message.
+     * A list of buttons.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.ButtonList button_list = 1;</code>
      * @return \Google\Apps\Card\V1\ButtonList|null
@@ -49,7 +51,7 @@ class AccessoryWidget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of buttons that are displayed under the message.
+     * A list of buttons.
      *
      * Generated from protobuf field <code>.google.apps.card.v1.ButtonList button_list = 1;</code>
      * @param \Google\Apps\Card\V1\ButtonList $var

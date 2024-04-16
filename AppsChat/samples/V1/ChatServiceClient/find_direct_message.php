@@ -35,19 +35,19 @@ use Google\Apps\Chat\V1\Space;
  * [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message).
  *
  * With [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users),
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
  * returns the direct message space between the specified user and the
  * authenticated user.
  *
  * With [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts),
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app),
  * returns the direct message space between the specified user and the calling
  * Chat app.
  *
  * Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
  * or [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
  *
  * @param string $name Resource name of the user to find direct message with.
  *
@@ -58,8 +58,8 @@ use Google\Apps\Chat\V1\Space;
  *                     in the Directory API. For example, if the People API profile ID is
  *                     `123456789`, you can find a direct message with that person by using
  *                     `users/123456789` as the `name`. When [authenticated as a
- *                     user](https://developers.google.com/chat/api/guides/auth/users), you can
- *                     use the email as an alias for `{user}`. For example,
+ *                     user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+ *                     you can use the email as an alias for `{user}`. For example,
  *                     `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
  *                     Google Chat user.
  */

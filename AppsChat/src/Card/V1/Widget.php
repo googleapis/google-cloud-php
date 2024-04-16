@@ -35,7 +35,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *           Displays a text paragraph. Supports simple HTML formatted text. For more
      *           information about formatting text, see
      *           [Formatting text in Google Chat
-     *           apps](https://developers.google.com/chat/format-messages#card-formatting)
+     *           apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      *           and
      *           [Formatting
      *           text in Google Workspace
@@ -52,7 +52,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *           ```
      *           "image": {
      *             "imageUrl":
-     *             "https://developers.google.com/chat/images/quickstart-app-avatar.png",
+     *             "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png",
      *             "altText": "Chat app avatar"
      *           }
      *           ```
@@ -282,7 +282,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      * Displays a text paragraph. Supports simple HTML formatted text. For more
      * information about formatting text, see
      * [Formatting text in Google Chat
-     * apps](https://developers.google.com/chat/format-messages#card-formatting)
+     * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      * and
      * [Formatting
      * text in Google Workspace
@@ -311,7 +311,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      * Displays a text paragraph. Supports simple HTML formatted text. For more
      * information about formatting text, see
      * [Formatting text in Google Chat
-     * apps](https://developers.google.com/chat/format-messages#card-formatting)
+     * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
      * and
      * [Formatting
      * text in Google Workspace
@@ -341,7 +341,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      * ```
      * "image": {
      *   "imageUrl":
-     *   "https://developers.google.com/chat/images/quickstart-app-avatar.png",
+     *   "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png",
      *   "altText": "Chat app avatar"
      * }
      * ```
@@ -365,7 +365,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      * ```
      * "image": {
      *   "imageUrl":
-     *   "https://developers.google.com/chat/images/quickstart-app-avatar.png",
+     *   "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png",
      *   "altText": "Chat app avatar"
      * }
      * ```

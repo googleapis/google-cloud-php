@@ -48,7 +48,7 @@ class ResponseType
     const REQUEST_CONFIG = 3;
     /**
      * Presents a
-     * [dialog](https://developers.google.com/chat/how-tos/dialogs).
+     * [dialog](https://developers.google.com/workspace/chat/dialogs).
      *
      * Generated from protobuf enum <code>DIALOG = 4;</code>
      */

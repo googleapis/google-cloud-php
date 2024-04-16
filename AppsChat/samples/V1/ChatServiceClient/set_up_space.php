@@ -32,8 +32,8 @@ use Google\Apps\Chat\V1\Space;
  * Creates a space and adds specified users to it. The calling user is
  * automatically added to the space, and shouldn't be specified as a
  * membership in the request. For an example, see
- * [Set up a
- * space](https://developers.google.com/chat/api/guides/v1/spaces/set-up).
+ * [Set up a space with initial
+ * members](https://developers.google.com/workspace/chat/set-up-spaces).
  *
  * To specify the human members to add, add memberships with the appropriate
  * `member.name` in the `SetUpSpaceRequest`. To add a human user, use
@@ -57,8 +57,8 @@ use Google\Apps\Chat\V1\Space;
  * can only use this method to set up a DM with the calling app. To add the
  * calling app as a member of a space or an existing DM between two human
  * users, see
- * [create a
- * membership](https://developers.google.com/chat/api/guides/v1/members/create).
+ * [Invite or add a user or app to a
+ * space](https://developers.google.com/workspace/chat/create-members).
  *
  * If a DM already exists between two users, even when one user blocks the
  * other at the time a request is made, then the existing DM is returned.
@@ -69,7 +69,7 @@ use Google\Apps\Chat\V1\Space;
  * might already use this display name.
  *
  * Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

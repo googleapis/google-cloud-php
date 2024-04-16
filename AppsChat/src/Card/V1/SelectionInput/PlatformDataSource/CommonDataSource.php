@@ -9,8 +9,8 @@ use UnexpectedValueException;
 /**
  * A data source shared by all [Google Workspace
  * applications]
- * (https://developers.google.com/chat/api/reference/rest/v1/HostApp).
- * [Google Chat apps](https://developers.google.com/chat):
+ * (https://developers.google.com/workspace/chat/api/reference/rest/v1/HostApp).
+ * [Google Chat apps](https://developers.google.com/workspace/chat):
  *
  * Protobuf type <code>google.apps.card.v1.SelectionInput.PlatformDataSource.CommonDataSource</code>
  */

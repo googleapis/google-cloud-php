@@ -9,7 +9,10 @@ use UnexpectedValueException;
 /**
  * Specifies whether widgets align to the top, bottom, or center of a
  * column.
- * [Google Chat apps](https://developers.google.com/chat):
+ * [Google Workspace Add-ons and Chat
+ * apps](https://developers.google.com/workspace/extend):
+ * Columns for Google Workspace Add-ons are in
+ * Developer Preview.
  *
  * Protobuf type <code>google.apps.card.v1.Columns.Column.VerticalAlignment</code>
  */

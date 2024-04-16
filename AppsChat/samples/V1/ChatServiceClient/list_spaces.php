@@ -33,15 +33,15 @@ use Google\Apps\Chat\V1\Space;
  * Lists spaces the caller is a member of. Group chats and DMs aren't listed
  * until the first message is sent. For an example, see
  * [List
- * spaces](https://developers.google.com/chat/api/guides/v1/spaces/list).
+ * spaces](https://developers.google.com/workspace/chat/list-spaces).
  *
  * Requires
- * [authentication](https://developers.google.com/chat/api/guides/auth).
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
  * Supports
  * [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * and [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * Lists spaces visible to the caller or authenticated user. Group chats
  * and DMs aren't listed until the first message is sent.

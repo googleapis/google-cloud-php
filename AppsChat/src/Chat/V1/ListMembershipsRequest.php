@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request message for listing memberships.
+ *
  * Generated from protobuf message <code>google.chat.v1.ListMembershipsRequest</code>
  */
 class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
@@ -25,8 +27,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of memberships to return. The service might
      * return fewer than this value.
      * If unspecified, at most 100 memberships are returned.
-     * The maximum value is 1,000. If you use a value more than 1,000, it's
-     * automatically changed to 1,000.
+     * The maximum value is 1000. If you use a value more than 1000, it's
+     * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -45,9 +47,9 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A query filter.
      * You can filter memberships by a member's role
-     * ([`role`](https://developers.google.com/chat/api/reference/rest/v1/spaces.members#membershiprole))
+     * ([`role`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.members#membershiprole))
      * and type
-     * ([`member.type`](https://developers.google.com/chat/api/reference/rest/v1/User#type)).
+     * ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
      * To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
      * To filter by type, set `member.type` to `HUMAN` or `BOT`.
      * To filter by both role and type, use the `AND` operator. To filter by
@@ -87,7 +89,7 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * [invited][google.chat.v1.Membership.MembershipState.INVITED] memberships
      * that don't match the filter criteria aren't returned.
      * Currently requires [user
-     * authentication](https://developers.google.com/chat/api/guides/auth/users).
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>bool show_invited = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -124,8 +126,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The maximum number of memberships to return. The service might
      *           return fewer than this value.
      *           If unspecified, at most 100 memberships are returned.
-     *           The maximum value is 1,000. If you use a value more than 1,000, it's
-     *           automatically changed to 1,000.
+     *           The maximum value is 1000. If you use a value more than 1000, it's
+     *           automatically changed to 1000.
      *           Negative values return an `INVALID_ARGUMENT` error.
      *     @type string $page_token
      *           Optional. A page token, received from a previous call to list memberships.
@@ -136,9 +138,9 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Optional. A query filter.
      *           You can filter memberships by a member's role
-     *           ([`role`](https://developers.google.com/chat/api/reference/rest/v1/spaces.members#membershiprole))
+     *           ([`role`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.members#membershiprole))
      *           and type
-     *           ([`member.type`](https://developers.google.com/chat/api/reference/rest/v1/User#type)).
+     *           ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
      *           To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
      *           To filter by type, set `member.type` to `HUMAN` or `BOT`.
      *           To filter by both role and type, use the `AND` operator. To filter by
@@ -170,7 +172,7 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      *           [invited][google.chat.v1.Membership.MembershipState.INVITED] memberships
      *           that don't match the filter criteria aren't returned.
      *           Currently requires [user
-     *           authentication](https://developers.google.com/chat/api/guides/auth/users).
+     *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      * }
      */
     public function __construct($data = NULL) {
@@ -212,8 +214,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of memberships to return. The service might
      * return fewer than this value.
      * If unspecified, at most 100 memberships are returned.
-     * The maximum value is 1,000. If you use a value more than 1,000, it's
-     * automatically changed to 1,000.
+     * The maximum value is 1000. If you use a value more than 1000, it's
+     * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -228,8 +230,8 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The maximum number of memberships to return. The service might
      * return fewer than this value.
      * If unspecified, at most 100 memberships are returned.
-     * The maximum value is 1,000. If you use a value more than 1,000, it's
-     * automatically changed to 1,000.
+     * The maximum value is 1000. If you use a value more than 1000, it's
+     * automatically changed to 1000.
      * Negative values return an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -281,9 +283,9 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A query filter.
      * You can filter memberships by a member's role
-     * ([`role`](https://developers.google.com/chat/api/reference/rest/v1/spaces.members#membershiprole))
+     * ([`role`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.members#membershiprole))
      * and type
-     * ([`member.type`](https://developers.google.com/chat/api/reference/rest/v1/User#type)).
+     * ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
      * To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
      * To filter by type, set `member.type` to `HUMAN` or `BOT`.
      * To filter by both role and type, use the `AND` operator. To filter by
@@ -312,9 +314,9 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A query filter.
      * You can filter memberships by a member's role
-     * ([`role`](https://developers.google.com/chat/api/reference/rest/v1/spaces.members#membershiprole))
+     * ([`role`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.members#membershiprole))
      * and type
-     * ([`member.type`](https://developers.google.com/chat/api/reference/rest/v1/User#type)).
+     * ([`member.type`](https://developers.google.com/workspace/chat/api/reference/rest/v1/User#type)).
      * To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`.
      * To filter by type, set `member.type` to `HUMAN` or `BOT`.
      * To filter by both role and type, use the `AND` operator. To filter by
@@ -388,7 +390,7 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * [invited][google.chat.v1.Membership.MembershipState.INVITED] memberships
      * that don't match the filter criteria aren't returned.
      * Currently requires [user
-     * authentication](https://developers.google.com/chat/api/guides/auth/users).
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>bool show_invited = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -406,7 +408,7 @@ class ListMembershipsRequest extends \Google\Protobuf\Internal\Message
      * [invited][google.chat.v1.Membership.MembershipState.INVITED] memberships
      * that don't match the filter criteria aren't returned.
      * Currently requires [user
-     * authentication](https://developers.google.com/chat/api/guides/auth/users).
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * Generated from protobuf field <code>bool show_invited = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

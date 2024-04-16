@@ -30,16 +30,16 @@ use Google\Apps\Chat\V1\Message;
 
 /**
  * Returns details about a message.
- * For an example, see [Read a
- * message](https://developers.google.com/chat/api/guides/v1/messages/get).
+ * For an example, see [Get details about a
+ * message](https://developers.google.com/workspace/chat/get-messages).
  *
  * Requires
- * [authentication](https://developers.google.com/chat/api/guides/auth).
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize).
  * Supports
  * [app
- * authentication](https://developers.google.com/chat/api/guides/auth/service-accounts)
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * and [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * Note: Might return a message from a blocked member or space.
  *
@@ -50,7 +50,7 @@ use Google\Apps\Chat\V1\Message;
  *                              If you've set a custom ID for your message, you can use the value from the
  *                              `clientAssignedMessageId` field for `{message}`. For details, see [Name a
  *                              message]
- *                              (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message). Please see
+ *                              (https://developers.google.com/workspace/chat/create-messages#name_a_created_message). Please see
  *                              {@see ChatServiceClient::messageName()} for help formatting this field.
  */
 function get_message_sample(string $formattedName): void

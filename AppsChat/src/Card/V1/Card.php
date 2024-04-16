@@ -17,13 +17,13 @@ use Google\Protobuf\Internal\GPBUtil;
  * [Card builder](https://addons.gsuite.google.com/uikit/builder)
  * To learn how
  * to build cards, see the following documentation:
- * * For Google Chat apps, see [Design dynamic, interactive, and consistent UIs
- * with cards](https://developers.google.com/chat/ui).
+ * * For Google Chat apps, see [Design the components of a card or
+ *   dialog](https://developers.google.com/workspace/chat/design-components-card-dialog).
  * * For Google Workspace Add-ons, see [Card-based
  * interfaces](https://developers.google.com/apps-script/add-ons/concepts/cards).
  * **Example: Card message for a Google Chat app**
  * ![Example contact
- * card](https://developers.google.com/chat/images/card_api_reference.png)
+ * card](https://developers.google.com/workspace/chat/images/card_api_reference.png)
  * To create the sample card message in Google Chat, use the following JSON:
  * ```
  * {
@@ -32,77 +32,77 @@ use Google\Protobuf\Internal\GPBUtil;
  *       "cardId": "unique-card-id",
  *       "card": {
  *         "header": {
- *           "title": "Sasha",
- *           "subtitle": "Software Engineer",
- *           "imageUrl":
- *           "https://developers.google.com/chat/images/quickstart-app-avatar.png",
- *           "imageType": "CIRCLE",
- *           "imageAltText": "Avatar for Sasha",
- *         },
- *         "sections": [
- *           {
- *             "header": "Contact Info",
- *             "collapsible": true,
- *             "uncollapsibleWidgetsCount": 1,
- *             "widgets": [
- *               {
- *                 "decoratedText": {
- *                   "startIcon": {
- *                     "knownIcon": "EMAIL",
- *                   },
- *                   "text": "sasha&#64;example.com",
- *                 }
- *               },
- *               {
- *                 "decoratedText": {
- *                   "startIcon": {
- *                     "knownIcon": "PERSON",
- *                   },
- *                   "text": "<font color=\"#80e27e\">Online</font>",
- *                 },
- *               },
- *               {
- *                 "decoratedText": {
- *                   "startIcon": {
- *                     "knownIcon": "PHONE",
- *                   },
- *                   "text": "+1 (555) 555-1234",
- *                 }
- *               },
- *               {
- *                 "buttonList": {
- *                   "buttons": [
- *                     {
- *                       "text": "Share",
- *                       "onClick": {
+ *            "title": "Sasha",
+ *            "subtitle": "Software Engineer",
+ *            "imageUrl":
+ *            "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png",
+ *            "imageType": "CIRCLE",
+ *            "imageAltText": "Avatar for Sasha"
+ *          },
+ *          "sections": [
+ *            {
+ *              "header": "Contact Info",
+ *              "collapsible": true,
+ *              "uncollapsibleWidgetsCount": 1,
+ *              "widgets": [
+ *                {
+ *                  "decoratedText": {
+ *                    "startIcon": {
+ *                      "knownIcon": "EMAIL"
+ *                    },
+ *                    "text": "sasha&#64;example.com"
+ *                  }
+ *                },
+ *                {
+ *                  "decoratedText": {
+ *                    "startIcon": {
+ *                      "knownIcon": "PERSON"
+ *                    },
+ *                    "text": "<font color=\"#80e27e\">Online</font>"
+ *                  }
+ *                },
+ *                {
+ *                  "decoratedText": {
+ *                    "startIcon": {
+ *                      "knownIcon": "PHONE"
+ *                    },
+ *                    "text": "+1 (555) 555-1234"
+ *                  }
+ *                },
+ *                {
+ *                  "buttonList": {
+ *                    "buttons": [
+ *                      {
+ *                        "text": "Share",
+ *                        "onClick": {
  *                         "openLink": {
- *                           "url": "https://example.com/share",
- *                         }
- *                       }
- *                     },
- *                     {
- *                       "text": "Edit",
- *                       "onClick": {
- *                         "action": {
- *                           "function": "goToView",
- *                           "parameters": [
- *                             {
- *                               "key": "viewType",
- *                               "value": "EDIT",
- *                             }
- *                           ],
- *                         }
- *                       }
- *                     },
- *                   ],
- *                 }
- *               },
- *             ],
- *           },
- *         ],
- *       },
+ *                            "url": "https://example.com/share"
+ *                          }
+ *                        }
+ *                      },
+ *                      {
+ *                        "text": "Edit",
+ *                        "onClick": {
+ *                          "action": {
+ *                            "function": "goToView",
+ *                            "parameters": [
+ *                              {
+ *                                "key": "viewType",
+ *                                "value": "EDIT"
+ *                              }
+ *                            ]
+ *                          }
+ *                        }
+ *                      }
+ *                    ]
+ *                  }
+ *                }
+ *              ]
+ *            }
+ *          ]
+ *        }
  *     }
- *   ],
+ *   ]
  * }
  * ```
  *
@@ -120,8 +120,8 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Contains a collection of widgets. Each section has its own, optional
      * header. Sections are visually separated by a line divider. For an example
-     * in Google Chat apps, see [Card
-     * section](https://developers.google.com/chat/ui/widgets/card-section).
+     * in Google Chat apps, see [Define a section of a
+     * card](https://developers.google.com/workspace/chat/design-components-card-dialog#define_a_section_of_a_card).
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.Section sections = 2;</code>
      */
@@ -182,9 +182,9 @@ class Card extends \Google\Protobuf\Internal\Message
      * Setting `fixedFooter` without specifying a `primaryButton` or a
      * `secondaryButton` causes an error. For Chat apps, you can use fixed footers
      * in
-     * [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not
+     * [dialogs](https://developers.google.com/workspace/chat/dialogs), but not
      * [card
-     * messages](https://developers.google.com/chat/api/guides/v1/messages/create#create).
+     * messages](https://developers.google.com/workspace/chat/create-messages#create).
      * [Google Workspace Add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *
@@ -223,8 +223,8 @@ class Card extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Apps\Card\V1\Card\Section>|\Google\Protobuf\Internal\RepeatedField $sections
      *           Contains a collection of widgets. Each section has its own, optional
      *           header. Sections are visually separated by a line divider. For an example
-     *           in Google Chat apps, see [Card
-     *           section](https://developers.google.com/chat/ui/widgets/card-section).
+     *           in Google Chat apps, see [Define a section of a
+     *           card](https://developers.google.com/workspace/chat/design-components-card-dialog#define_a_section_of_a_card).
      *     @type int $section_divider_style
      *           The divider style between sections.
      *     @type array<\Google\Apps\Card\V1\Card\CardAction>|\Google\Protobuf\Internal\RepeatedField $card_actions
@@ -269,9 +269,9 @@ class Card extends \Google\Protobuf\Internal\Message
      *           Setting `fixedFooter` without specifying a `primaryButton` or a
      *           `secondaryButton` causes an error. For Chat apps, you can use fixed footers
      *           in
-     *           [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not
+     *           [dialogs](https://developers.google.com/workspace/chat/dialogs), but not
      *           [card
-     *           messages](https://developers.google.com/chat/api/guides/v1/messages/create#create).
+     *           messages](https://developers.google.com/workspace/chat/create-messages#create).
      *           [Google Workspace Add-ons and Chat
      *           apps](https://developers.google.com/workspace/extend):
      *     @type int $display_style
@@ -333,8 +333,8 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Contains a collection of widgets. Each section has its own, optional
      * header. Sections are visually separated by a line divider. For an example
-     * in Google Chat apps, see [Card
-     * section](https://developers.google.com/chat/ui/widgets/card-section).
+     * in Google Chat apps, see [Define a section of a
+     * card](https://developers.google.com/workspace/chat/design-components-card-dialog#define_a_section_of_a_card).
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.Section sections = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -347,8 +347,8 @@ class Card extends \Google\Protobuf\Internal\Message
     /**
      * Contains a collection of widgets. Each section has its own, optional
      * header. Sections are visually separated by a line divider. For an example
-     * in Google Chat apps, see [Card
-     * section](https://developers.google.com/chat/ui/widgets/card-section).
+     * in Google Chat apps, see [Define a section of a
+     * card](https://developers.google.com/workspace/chat/design-components-card-dialog#define_a_section_of_a_card).
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.Section sections = 2;</code>
      * @param array<\Google\Apps\Card\V1\Card\Section>|\Google\Protobuf\Internal\RepeatedField $var
@@ -511,9 +511,9 @@ class Card extends \Google\Protobuf\Internal\Message
      * Setting `fixedFooter` without specifying a `primaryButton` or a
      * `secondaryButton` causes an error. For Chat apps, you can use fixed footers
      * in
-     * [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not
+     * [dialogs](https://developers.google.com/workspace/chat/dialogs), but not
      * [card
-     * messages](https://developers.google.com/chat/api/guides/v1/messages/create#create).
+     * messages](https://developers.google.com/workspace/chat/create-messages#create).
      * [Google Workspace Add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *
@@ -540,9 +540,9 @@ class Card extends \Google\Protobuf\Internal\Message
      * Setting `fixedFooter` without specifying a `primaryButton` or a
      * `secondaryButton` causes an error. For Chat apps, you can use fixed footers
      * in
-     * [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not
+     * [dialogs](https://developers.google.com/workspace/chat/dialogs), but not
      * [card
-     * messages](https://developers.google.com/chat/api/guides/v1/messages/create#create).
+     * messages](https://developers.google.com/workspace/chat/create-messages#create).
      * [Google Workspace Add-ons and Chat
      * apps](https://developers.google.com/workspace/extend):
      *

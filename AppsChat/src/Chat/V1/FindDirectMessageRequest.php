@@ -24,8 +24,8 @@ class FindDirectMessageRequest extends \Google\Protobuf\Internal\Message
      * in the Directory API. For example, if the People API profile ID is
      * `123456789`, you can find a direct message with that person by using
      * `users/123456789` as the `name`. When [authenticated as a
-     * user](https://developers.google.com/chat/api/guides/auth/users), you can
-     * use the email as an alias for `{user}`. For example,
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * you can use the email as an alias for `{user}`. For example,
      * `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
      * Google Chat user.
      *
@@ -48,8 +48,8 @@ class FindDirectMessageRequest extends \Google\Protobuf\Internal\Message
      *           in the Directory API. For example, if the People API profile ID is
      *           `123456789`, you can find a direct message with that person by using
      *           `users/123456789` as the `name`. When [authenticated as a
-     *           user](https://developers.google.com/chat/api/guides/auth/users), you can
-     *           use the email as an alias for `{user}`. For example,
+     *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     *           you can use the email as an alias for `{user}`. For example,
      *           `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
      *           Google Chat user.
      * }
@@ -68,8 +68,8 @@ class FindDirectMessageRequest extends \Google\Protobuf\Internal\Message
      * in the Directory API. For example, if the People API profile ID is
      * `123456789`, you can find a direct message with that person by using
      * `users/123456789` as the `name`. When [authenticated as a
-     * user](https://developers.google.com/chat/api/guides/auth/users), you can
-     * use the email as an alias for `{user}`. For example,
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * you can use the email as an alias for `{user}`. For example,
      * `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
      * Google Chat user.
      *
@@ -90,8 +90,8 @@ class FindDirectMessageRequest extends \Google\Protobuf\Internal\Message
      * in the Directory API. For example, if the People API profile ID is
      * `123456789`, you can find a direct message with that person by using
      * `users/123456789` as the `name`. When [authenticated as a
-     * user](https://developers.google.com/chat/api/guides/auth/users), you can
-     * use the email as an alias for `{user}`. For example,
+     * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+     * you can use the email as an alias for `{user}`. For example,
      * `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
      * Google Chat user.
      *

@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Response message for listing messages.
+ *
  * Generated from protobuf message <code>google.chat.v1.ListMessagesResponse</code>
  */
 class ListMessagesResponse extends \Google\Protobuf\Internal\Message

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [`SelectionInput`][google.apps.card.v1.SelectionInput] widget that uses a
  * multiselect menu, a data source from Google Workspace. Used to populate
  * items in a multiselect menu.
- * [Google Chat apps](https://developers.google.com/chat):
+ * [Google Chat apps](https://developers.google.com/workspace/chat):
  *
  * Generated from protobuf message <code>google.apps.card.v1.SelectionInput.PlatformDataSource</code>
  */

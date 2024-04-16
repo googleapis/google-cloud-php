@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Response message for completing the import process for a space.
+ *
  * Generated from protobuf message <code>google.chat.v1.CompleteImportSpaceResponse</code>
  */
 class CompleteImportSpaceResponse extends \Google\Protobuf\Internal\Message

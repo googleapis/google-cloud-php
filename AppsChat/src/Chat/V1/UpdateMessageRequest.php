@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request to update a message.
+ *
  * Generated from protobuf message <code>google.chat.v1.UpdateMessageRequest</code>
  */
 class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
@@ -38,7 +40,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If `true` and the message isn't found, a new message is created
      * and `updateMask` is ignored. The specified message ID must be
-     * [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message)
+     * [client-assigned](https://developers.google.com/workspace/chat/create-messages#name_a_created_message)
      * or the request fails.
      *
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -99,7 +101,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $allow_missing
      *           Optional. If `true` and the message isn't found, a new message is created
      *           and `updateMask` is ignored. The specified message ID must be
-     *           [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message)
+     *           [client-assigned](https://developers.google.com/workspace/chat/create-messages#name_a_created_message)
      *           or the request fails.
      * }
      */
@@ -203,7 +205,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If `true` and the message isn't found, a new message is created
      * and `updateMask` is ignored. The specified message ID must be
-     * [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message)
+     * [client-assigned](https://developers.google.com/workspace/chat/create-messages#name_a_created_message)
      * or the request fails.
      *
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -217,7 +219,7 @@ class UpdateMessageRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If `true` and the message isn't found, a new message is created
      * and `updateMask` is ignored. The specified message ID must be
-     * [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message)
+     * [client-assigned](https://developers.google.com/workspace/chat/create-messages#name_a_created_message)
      * or the request fails.
      *
      * Generated from protobuf field <code>bool allow_missing = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

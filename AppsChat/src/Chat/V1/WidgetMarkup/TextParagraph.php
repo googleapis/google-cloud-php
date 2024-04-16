@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A paragraph of text. Formatted text supported. For more information
  * about formatting text, see
  * [Formatting text in Google Chat
- * apps](https://developers.google.com/chat/format-messages#card-formatting)
+ * apps](https://developers.google.com/workspace/chat/format-messages#card-formatting)
  * and
  * [Formatting
  * text in Google Workspace

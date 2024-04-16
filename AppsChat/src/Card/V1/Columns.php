@@ -12,7 +12,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `Columns` widget displays up to 2 columns in a card or dialog. You can
  * add widgets to each column; the widgets appear in the order that they are
  * specified. For an example in Google Chat apps, see
- * [Columns](https://developers.google.com/chat/ui/widgets/columns).
+ * [Display cards and dialogs in
+ * columns](https://developers.google.com/workspace/chat/format-structure-card-dialog#display_cards_and_dialogs_in_columns).
  * The height of each column is determined by the taller column. For example, if
  * the first column is taller than the second column, both columns have the
  * height of the first column. Because each column can contain a different
@@ -32,7 +33,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [Google Workspace Add-ons and Chat
  * apps](https://developers.google.com/workspace/extend):
  * Columns for Google Workspace Add-ons are in
- * [Developer Preview](https://developers.google.com/workspace/preview).
+ * Developer Preview.
  *
  * Generated from protobuf message <code>google.apps.card.v1.Columns</code>
  */

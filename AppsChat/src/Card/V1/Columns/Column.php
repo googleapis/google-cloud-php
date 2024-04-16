@@ -10,7 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A column.
- * [Google Chat apps](https://developers.google.com/chat):
+ * [Google Workspace Add-ons and Chat
+ * apps](https://developers.google.com/workspace/extend):
+ * Columns for Google Workspace Add-ons are in
+ * Developer Preview.
  *
  * Generated from protobuf message <code>google.apps.card.v1.Columns.Column</code>
  */
@@ -18,7 +21,6 @@ class Column extends \Google\Protobuf\Internal\Message
 {
     /**
      * Specifies how a column fills the width of the card.
-     * [Google Chat apps](https://developers.google.com/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Columns.Column.HorizontalSizeStyle horizontal_size_style = 1;</code>
      */
@@ -33,7 +35,6 @@ class Column extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether widgets align to the top, bottom, or center of a
      * column.
-     * [Google Chat apps](https://developers.google.com/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Columns.Column.VerticalAlignment vertical_alignment = 3;</code>
      */
@@ -54,14 +55,12 @@ class Column extends \Google\Protobuf\Internal\Message
      *
      *     @type int $horizontal_size_style
      *           Specifies how a column fills the width of the card.
-     *           [Google Chat apps](https://developers.google.com/chat):
      *     @type int $horizontal_alignment
      *           Specifies whether widgets align to the left, right, or center of a
      *           column.
      *     @type int $vertical_alignment
      *           Specifies whether widgets align to the top, bottom, or center of a
      *           column.
-     *           [Google Chat apps](https://developers.google.com/chat):
      *     @type array<\Google\Apps\Card\V1\Columns\Column\Widgets>|\Google\Protobuf\Internal\RepeatedField $widgets
      *           An array of widgets included in a column. Widgets appear in the order
      *           that they are specified.
@@ -74,7 +73,6 @@ class Column extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies how a column fills the width of the card.
-     * [Google Chat apps](https://developers.google.com/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Columns.Column.HorizontalSizeStyle horizontal_size_style = 1;</code>
      * @return int
@@ -86,7 +84,6 @@ class Column extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies how a column fills the width of the card.
-     * [Google Chat apps](https://developers.google.com/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Columns.Column.HorizontalSizeStyle horizontal_size_style = 1;</code>
      * @param int $var
@@ -131,7 +128,6 @@ class Column extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether widgets align to the top, bottom, or center of a
      * column.
-     * [Google Chat apps](https://developers.google.com/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Columns.Column.VerticalAlignment vertical_alignment = 3;</code>
      * @return int
@@ -144,7 +140,6 @@ class Column extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether widgets align to the top, bottom, or center of a
      * column.
-     * [Google Chat apps](https://developers.google.com/chat):
      *
      * Generated from protobuf field <code>.google.apps.card.v1.Columns.Column.VerticalAlignment vertical_alignment = 3;</code>
      * @param int $var
