@@ -1,0 +1,6 @@
+deep-copy-regex:
+    - source: /google/chat/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/AppsChat/$1/$2
+    - source: /google/apps/card/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/AppsChat/card-protos/$1/$2
+api-name: AppsChat

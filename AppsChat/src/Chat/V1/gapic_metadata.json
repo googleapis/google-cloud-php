@@ -1,0 +1,128 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.chat.v1",
+    "libraryPackage": "Google\\Apps\\Chat\\V1",
+    "services": {
+        "ChatService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ChatServiceGapicClient",
+                    "rpcs": {
+                        "CompleteImportSpace": {
+                            "methods": [
+                                "completeImportSpace"
+                            ]
+                        },
+                        "CreateMembership": {
+                            "methods": [
+                                "createMembership"
+                            ]
+                        },
+                        "CreateMessage": {
+                            "methods": [
+                                "createMessage"
+                            ]
+                        },
+                        "CreateReaction": {
+                            "methods": [
+                                "createReaction"
+                            ]
+                        },
+                        "CreateSpace": {
+                            "methods": [
+                                "createSpace"
+                            ]
+                        },
+                        "DeleteMembership": {
+                            "methods": [
+                                "deleteMembership"
+                            ]
+                        },
+                        "DeleteMessage": {
+                            "methods": [
+                                "deleteMessage"
+                            ]
+                        },
+                        "DeleteReaction": {
+                            "methods": [
+                                "deleteReaction"
+                            ]
+                        },
+                        "DeleteSpace": {
+                            "methods": [
+                                "deleteSpace"
+                            ]
+                        },
+                        "FindDirectMessage": {
+                            "methods": [
+                                "findDirectMessage"
+                            ]
+                        },
+                        "GetAttachment": {
+                            "methods": [
+                                "getAttachment"
+                            ]
+                        },
+                        "GetMembership": {
+                            "methods": [
+                                "getMembership"
+                            ]
+                        },
+                        "GetMessage": {
+                            "methods": [
+                                "getMessage"
+                            ]
+                        },
+                        "GetSpace": {
+                            "methods": [
+                                "getSpace"
+                            ]
+                        },
+                        "ListMemberships": {
+                            "methods": [
+                                "listMemberships"
+                            ]
+                        },
+                        "ListMessages": {
+                            "methods": [
+                                "listMessages"
+                            ]
+                        },
+                        "ListReactions": {
+                            "methods": [
+                                "listReactions"
+                            ]
+                        },
+                        "ListSpaces": {
+                            "methods": [
+                                "listSpaces"
+                            ]
+                        },
+                        "SetUpSpace": {
+                            "methods": [
+                                "setUpSpace"
+                            ]
+                        },
+                        "UpdateMessage": {
+                            "methods": [
+                                "updateMessage"
+                            ]
+                        },
+                        "UpdateSpace": {
+                            "methods": [
+                                "updateSpace"
+                            ]
+                        },
+                        "UploadAttachment": {
+                            "methods": [
+                                "uploadAttachment"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
