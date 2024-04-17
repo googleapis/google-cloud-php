@@ -23,7 +23,7 @@ jobs:
                     extensions: "protobuf,grpc"
                     tools: "pecl"
                   - php: "8.0"
-                    composerflags: " --prefer-lowest"
+                    composerflags: "--prefer-lowest"
         name: "PHP ${{ matrix.php }} Unit Test ${{ matrix.extensions }}${{ matrix.composerflags }}"
         steps:
             - uses: actions/checkout@v4
