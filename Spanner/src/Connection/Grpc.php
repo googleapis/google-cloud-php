@@ -1090,47 +1090,7 @@ class Grpc implements ConnectionInterface
     {
         $inputMutations = $this->pluck('mutations', $args);
 
-        $mutations = [];
-        if (is_array($inputMutations)) {
-            foreach ($inputMutations as $mutation) {
-                $type = array_keys($mutation)[0];
-                $data = $mutation[$type];
-
-                switch ($type) {
-                    case Operation::OP_DELETE:
-                        if (isset($data['keySet'])) {
-                            $data['keySet'] = $this->formatKeySet($data['keySet']);
-                        }
-
-                        $operation = $this->serializer->decodeMessage(
-                            new Delete,
-                            $data
-                        );
-                        break;
-                    default:
-                        $operation = new Write;
-                        $operation->setTable($data['table']);
-                        $operation->setColumns($data['columns']);
-
-                        $modifiedData = [];
-                        foreach ($data['values'] as $key => $param) {
-                            $modifiedData[$key] = $this->fieldValue($param);
-                        }
-
-                        $list = new ListValue;
-                        $list->setValues($modifiedData);
-                        $values = [$list];
-                        $operation->setValues($values);
-
-                        break;
-                }
-
-                $setterName = $this->mutationSetters[$type];
-                $mutation = new Mutation;
-                $mutation->$setterName($operation);
-                $mutations[] = $mutation;
-            }
-        }
+        $mutations = $this->parseMutations($inputMutations);
 
         if (isset($args['singleUseTransaction'])) {
             $readWrite = $this->serializer->decodeMessage(
@@ -1158,6 +1118,10 @@ class Grpc implements ConnectionInterface
             $mutations,
             $this->addResourcePrefixHeader($args, $databaseName)
         ]);
+    }
+
+    public function batchWrite(array $args) {
+
     }
 
     /**
@@ -1619,5 +1583,53 @@ class Grpc implements ConnectionInterface
                 $directedReadOptions
             );
         }
+    }
+
+    private function parseMutations($rawMutations)
+    {
+        if (!is_array($rawMutations)) {
+            return [];
+        }
+
+        $mutations = [];
+        foreach ($rawMutations as $mutation) {
+            $type = array_keys($mutation)[0];
+            $data = $mutation[$type];
+
+            switch ($type) {
+                case Operation::OP_DELETE:
+                    if (isset($data['keySet'])) {
+                        $data['keySet'] = $this->formatKeySet($data['keySet']);
+                    }
+
+                    $operation = $this->serializer->decodeMessage(
+                        new Delete,
+                        $data
+                    );
+                    break;
+                default:
+                    $operation = new Write;
+                    $operation->setTable($data['table']);
+                    $operation->setColumns($data['columns']);
+
+                    $modifiedData = [];
+                    foreach ($data['values'] as $key => $param) {
+                        $modifiedData[$key] = $this->fieldValue($param);
+                    }
+
+                    $list = new ListValue;
+                    $list->setValues($modifiedData);
+                    $values = [$list];
+                    $operation->setValues($values);
+
+                    break;
+            }
+
+            $setterName = $this->mutationSetters[$type];
+            $mutation = new Mutation;
+            $mutation->$setterName($operation);
+            $mutations[] = $mutation;
+        }
+        return $mutations;
     }
 }
