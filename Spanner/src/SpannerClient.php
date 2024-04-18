@@ -21,15 +21,13 @@ use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Serializer;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTraitV2;
+use Google\Cloud\Core\LongRunning\LROManagerTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -123,10 +121,8 @@ class SpannerClient
 {
     use ApiHelperTrait;
     use ClientOptionsTrait;
-    use ArrayTrait;
     use ClientTrait;
-    use DetectProjectIdTrait;
-    use LROTraitV2;
+    use LROManagerTrait;
     use ValidateTrait;
     use RequestTrait;
 
@@ -145,19 +141,6 @@ class SpannerClient
      * @var Connection\ConnectionInterface
      */
     protected $connection;
-
-    /**
-     * @var RequestHandler
-     * @internal
-     * The request handler that is responsible for sending a request and
-     * serializing responses into relevant classes.
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
 
     /**
      * @var bool
@@ -314,14 +297,6 @@ class SpannerClient
                 }
             ]
         ];
-
-        $this->setLroProperties(
-            $this->requestHandler,
-            $this->serializer,
-            $lroCallables,
-            self::$lroResponseMappers
-        );
-
         $this->directedReadOptions = $config['directedReadOptions'] ?? [];
 
         // Configure GAPIC client options
@@ -346,11 +321,16 @@ class SpannerClient
                 return $this->formatTimestampFromApi($v);
             }
         ]);
-
         $this->requestHandler = new RequestHandler(
             $this->serializer,
             self::GAPIC_KEYS,
             $config
+        );
+        $this->setLroProperties(
+            $this->requestHandler,
+            $this->serializer,
+            $lroCallables,
+            $this->lroResponseMappers
         );
     }
 

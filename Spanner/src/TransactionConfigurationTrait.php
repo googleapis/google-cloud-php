@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**

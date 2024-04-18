@@ -28,7 +28,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\InsecureCredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -67,6 +66,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -184,6 +184,9 @@ final class DatabaseAdminClient
     public function resumeOperation($operationName, $methodName = null)
     {
         $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        // OperationResponse is a V1 surface class, we need V2 surface class.
+        // [V2 LongRunning/Client/OperationsClient, getOperation]
+        // Other clients have also used the OperationResponse similarly.
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -379,7 +382,11 @@ final class DatabaseAdminClient
         $options = $options + $this->getDefaultEmulatorConfig();
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        $this->operationsClient = $this->createOperationsClient($clientOptions);
+        // TODO: [Remove this] Added this here for demonstrating the
+        // generated code changes for V2 OperationsClient usage.
+        $this->operationsClient = $this->createOperationsClient(
+            $clientOptions + ['operationsClientClass' => OperationsClient::class]
+        );
     }
 
     /** Handles execution of the async variants for each documented method. */
