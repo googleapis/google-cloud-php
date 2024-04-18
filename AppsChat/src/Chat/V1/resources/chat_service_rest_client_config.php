@@ -210,6 +210,22 @@ return [
                 'uriTemplate' => '/v1/spaces:setup',
                 'body' => '*',
             ],
+            'UpdateMembership' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{membership.name=spaces/*/members/*}',
+                'body' => 'membership',
+                'placeholders' => [
+                    'membership.name' => [
+                        'getters' => [
+                            'getMembership',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateMessage' => [
                 'method' => 'put',
                 'uriTemplate' => '/v1/{message.name=spaces/*/messages/*}',

@@ -32,7 +32,6 @@ class Membership extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User's role within a Chat space, which determines their permitted
      * actions in the space.
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * This field can only be used as input in `UpdateMembership`.
      *
      * Generated from protobuf field <code>.google.chat.v1.Membership.MembershipRole role = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -70,7 +69,6 @@ class Membership extends \Google\Protobuf\Internal\Message
      *     @type int $role
      *           Optional. User's role within a Chat space, which determines their permitted
      *           actions in the space.
-     *           [Developer Preview](https://developers.google.com/workspace/preview):
      *           This field can only be used as input in `UpdateMembership`.
      *     @type \Google\Apps\Chat\V1\User $member
      *           The Google Chat user or app the membership corresponds to.
@@ -155,7 +153,6 @@ class Membership extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User's role within a Chat space, which determines their permitted
      * actions in the space.
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * This field can only be used as input in `UpdateMembership`.
      *
      * Generated from protobuf field <code>.google.chat.v1.Membership.MembershipRole role = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -169,7 +166,6 @@ class Membership extends \Google\Protobuf\Internal\Message
     /**
      * Optional. User's role within a Chat space, which determines their permitted
      * actions in the space.
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * This field can only be used as input in `UpdateMembership`.
      *
      * Generated from protobuf field <code>.google.chat.v1.Membership.MembershipRole role = 7 [(.google.api.field_behavior) = OPTIONAL];</code>

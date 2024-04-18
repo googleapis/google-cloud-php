@@ -57,6 +57,7 @@ use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\Reaction;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
+use Google\Apps\Chat\V1\UpdateMembershipRequest;
 use Google\Apps\Chat\V1\UpdateMessageRequest;
 use Google\Apps\Chat\V1\UpdateSpaceRequest;
 use Google\Apps\Chat\V1\UploadAttachmentRequest;
@@ -95,6 +96,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface uploadAttachmentAsync(UploadAttachmentRequest $request, array $optionalArgs = [])
@@ -1094,6 +1096,33 @@ final class ChatServiceClient
     public function setUpSpace(SetUpSpaceRequest $request, array $callOptions = []): Space
     {
         return $this->startApiCall('SetUpSpace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a membership. Requires [user
+     * authentication](https://developers.google.com/chat/api/guides/auth/users).
+     *
+     * The async variant is {@see ChatServiceClient::updateMembershipAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/update_membership.php
+     *
+     * @param UpdateMembershipRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Membership
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMembership(UpdateMembershipRequest $request, array $callOptions = []): Membership
+    {
+        return $this->startApiCall('UpdateMembership', $request, $callOptions)->wait();
     }
 
     /**

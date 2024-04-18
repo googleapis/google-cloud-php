@@ -105,6 +105,11 @@
                                 "setUpSpace"
                             ]
                         },
+                        "UpdateMembership": {
+                            "methods": [
+                                "updateMembership"
+                            ]
+                        },
                         "UpdateMessage": {
                             "methods": [
                                 "updateMessage"

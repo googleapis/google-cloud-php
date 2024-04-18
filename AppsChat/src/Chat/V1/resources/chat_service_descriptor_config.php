@@ -251,6 +251,19 @@ return [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Space',
             ],
+            'UpdateMembership' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Membership',
+                'headerParams' => [
+                    [
+                        'keyName' => 'membership.name',
+                        'fieldAccessors' => [
+                            'getMembership',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateMessage' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Message',
