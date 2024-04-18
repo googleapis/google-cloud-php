@@ -1120,8 +1120,27 @@ class Grpc implements ConnectionInterface
         ]);
     }
 
-    public function batchWrite(array $args) {
+    /**
+     * @param array $args
+     * @return \Generator
+     */
+    public function batchWrite(array $args)
+    {
+        $databaseName = $this->pluck('database', $args);
+        $mutationGroups = $this->parseMutations($this->pluck('mutationGroups', $args));
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
+        }
 
+        return $this->send([$this->spannerClient, 'batchWrite'], [
+            $this->pluck('session', $args),
+            $mutationGroups,
+            $this->addResourcePrefixHeader($args, $databaseName)
+        ]);
     }
 
     /**
