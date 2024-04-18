@@ -28,7 +28,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
-use Google\Cloud\Core\LongRunning\LROTraitV2;
+use Google\Cloud\Core\LongRunning\LROManagerTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
@@ -105,7 +105,7 @@ use Google\Rpc\Code;
  */
 class Database
 {
-    use LROTraitV2;
+    use LROManagerTrait;
     use TransactionConfigurationTrait;
     use RequestTrait;
     use ApiHelperTrait;
@@ -136,19 +136,6 @@ class Database
      * @internal
      */
     private $connection;
-
-    /**
-     * @var RequestHandler
-     * @internal
-     * The request handler that is responsible for sending a request and
-     * serializing responses into relevant classes.
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
 
     /**
      * @var Instance
@@ -257,7 +244,7 @@ class Database
             $requestHandler,
             $serializer,
             $lroCallables,
-            self::$lroResponseMappers,
+            $this->lroResponseMappers,
             $this->name,
             DatabaseAdminClient::class
         );
@@ -483,7 +470,7 @@ class Database
         $operation = $this->operationToArray(
             $res,
             $this->serializer,
-            self::$lroResponseMappers
+            $this->lroResponseMappers
         );
         return $this->resumeOperation(
             $operation['name'],

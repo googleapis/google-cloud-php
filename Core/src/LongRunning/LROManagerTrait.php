@@ -21,7 +21,6 @@ use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
-# TODO: Point to the correct request class
 use Google\LongRunning\ListOperationsRequest;
 
 /**
@@ -29,7 +28,7 @@ use Google\LongRunning\ListOperationsRequest;
  *
  * This trait should be used by a user-facing client which implements LRO.
  */
-trait LROTraitV2
+trait LROManagerTrait
 {
     /**
      * @var RequestHandler
@@ -57,6 +56,11 @@ trait LROTraitV2
     private $clientClass;
 
     /**
+     * @var array
+     */
+    private $lroResponseMapper;
+
+    /**
      * Populate required LRO properties.
      *
      * @param RequestHandler The request handler that is responsible for sending a request
@@ -75,14 +79,14 @@ trait LROTraitV2
         RequestHandler $requestHandler,
         Serializer $serializer,
         array $lroCallables,
-        array $lroResponseMappers,
+        array $lroResponseMapper,
         string $lroResource = null,
         string $clientClass = null
     ) {
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->lroCallables = $lroCallables;
-        $this->lroResponseMappers = $lroResponseMappers;
+        $this->lroResponseMapper = $lroResponseMapper;
         $this->lroResource = $lroResource;
         $this->clientClass = $clientClass;
     }
@@ -101,7 +105,8 @@ trait LROTraitV2
             $this->requestHandler,
             $this->serializer,
             $this->lroCallables,
-            $this->lroResponseMappers,
+            $this->lroResponseMapper,
+            $this->clientClass,
             $operationName,
             $info
         );
@@ -135,7 +140,7 @@ trait LROTraitV2
 
         $client = $this->requestHandler->getClientObject($this->clientClass);
         $operationsClient = $client->getOperationsClient();
-        if (is_null($client) || is_null($operationsClient)) {
+        if (is_null($operationsClient)) {
             throw new \BadMethodCallException('This service does not support listing operations.');
         }
         $this->requestHandler->addClientObject(get_class($operationsClient), $operationsClient);
@@ -151,7 +156,6 @@ trait LROTraitV2
                         $request->setPageToken($callOptions['pageToken']);
                     }
 
-                    # TODO: Correct the usage of the operations client and its usage.
                     return $this->requestHandler->sendRequest(
                         get_class($operationsClient),
                         'listOperations',

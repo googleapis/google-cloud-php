@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2024 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\LongRunning;
 
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\RequestHandler;
 
@@ -25,6 +26,7 @@ use Google\Cloud\Core\RequestHandler;
  */
 class LongRunningOperationManager
 {
+    use ArrayTrait;
     use OperationResponseTrait;
 
     const WAIT_INTERVAL = 1.0;
@@ -74,6 +76,11 @@ class LongRunningOperationManager
     private $lroResponseMappers;
 
     /**
+     * @var string
+     */
+    private $clientClass;
+
+    /**
      * @param RequestHandler The request handler that is responsible for sending a request
      *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
@@ -82,6 +89,7 @@ class LongRunningOperationManager
      *        callable Type should correspond to an expected value of
      *        operation.metadata.typeUrl.
      * @param array $lroResponseMappers A list of mappers for deserializing operation results.
+     * @param string $clientClass The request will be forwarded to this client class.
      * @param string $name The Operation name.
      * @param array $info [optional] The operation info.
      */
@@ -90,6 +98,7 @@ class LongRunningOperationManager
         Serializer $serializer,
         array $callablesMap,
         array $lroResponseMappers,
+        $clientClass,
         $name,
         array $info = []
     ) {
@@ -97,6 +106,7 @@ class LongRunningOperationManager
         $this->requestHandler = $requestHandler;
         $this->callablesMap = $callablesMap;
         $this->lroResponseMappers = $lroResponseMappers;
+        $this->clientClass = $clientClass;
         $this->name = $name;
         $this->info = $info;
     }
@@ -246,6 +256,171 @@ class LongRunningOperationManager
      */
     public function info(array $options = [])
     {
-        return $this->info;
+        return $this->info ?: $this->reload($options);
+    }
+
+    /**
+     * Reload the Operation to check its status.
+     *
+     * Example:
+     * ```
+     * $result = $operation->reload();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @param array $options [optional] Configuration Options.
+     * @return array [google.longrunning.Operation](https://cloud.google.com/spanner/docs/reference/rpc/google.longrunning#google.longrunning.Operation)
+     * @codingStandardsIgnoreEnd
+     */
+    public function reload(array $options = [])
+    {
+        $operation = $this->getOperationByName(
+            $this->getClient(),
+            $this->name
+        );
+        $res = $this->operationToArray($operation, $this->serializer, $this->lroResponseMappers);
+
+        $this->result = null;
+        $this->error = null;
+        if (isset($res['done']) && $res['done']) {
+            $type = $res['metadata']['typeUrl'];
+            $this->result = $this->executeDoneCallback($type, $res['response']);
+            $this->error = (isset($res['error']))
+                ? $res['error']
+                : null;
+        }
+
+        return $this->info = $res;
+    }
+
+    /**
+     * Reload the operation until it is complete.
+     *
+     * The return type of this method is dictated by the type of Operation. If
+     * `$options.maxPollingDurationSeconds` is set, and the poll exceeds the
+     * limit, the return will be `null`.
+     *
+     * Example:
+     * ```
+     * $result = $operation->pollUntilComplete();
+     * ```
+     *
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type float $pollingIntervalSeconds The polling interval to use, in
+     *           seconds. **Defaults to** `1.0`.
+     *     @type float $maxPollingDurationSeconds The maximum amount of time to
+     *           continue polling. **Defaults to** `0.0`.
+     * }
+     * @return mixed|null
+     */
+    public function pollUntilComplete(array $options = [])
+    {
+        $options += [
+            'pollingIntervalSeconds' => $this::WAIT_INTERVAL,
+            'maxPollingDurationSeconds' => 0.0,
+        ];
+
+        $pollingIntervalMicros = $options['pollingIntervalSeconds'] * 1000000;
+        $maxPollingDuration = $options['maxPollingDurationSeconds'];
+        $hasMaxPollingDuration = $maxPollingDuration > 0.0;
+        $endTime = microtime(true) + $maxPollingDuration;
+
+        do {
+            usleep($pollingIntervalMicros);
+            $this->reload($options);
+        } while (!$this->done() && (!$hasMaxPollingDuration || microtime(true) < $endTime));
+
+        return $this->result;
+    }
+
+    /**
+     * Cancel a Long Running Operation.
+     *
+     * Example:
+     * ```
+     * $operation->cancel();
+     * ```
+     *
+     * @param array $options Configuration options.
+     * @return void
+     */
+    public function cancel(array $options = [])
+    {
+        $method = $this->pluck('method', $options, false);
+
+        $operation = $this->getOperationByName($this->getClient(), $this->name, $method);
+        $operation->cancel();
+    }
+
+    /**
+     * Delete a Long Running Operation.
+     *
+     * Example:
+     * ```
+     * $operation->delete();
+     * ```
+     *
+     * @param array $options Configuration Options.
+     * @return void
+     */
+    public function delete(array $options = [])
+    {
+        $method = $this->pluck('method', $options, false);
+
+        $operation = $this->getOperationByName($this->getClient(), $this->name, $method);
+        $operation->delete();
+    }
+
+    /**
+     * When the Operation is complete, there may be a callback enqueued to
+     * handle the response. If so, execute it and return the result.
+     *
+     * @param string $type The response type.
+     * @param mixed $response The response data.
+     * @return mixed
+     */
+    private function executeDoneCallback($type, $response)
+    {
+        if (is_null($response)) {
+            return null;
+        }
+
+        $callables = array_filter($this->callablesMap, function ($callable) use ($type) {
+            return $callable['typeUrl'] === $type;
+        });
+
+        if (count($callables) === 0) {
+            return $response;
+        }
+
+        $callable = current($callables);
+        $fn = $callable['callable'];
+
+        return call_user_func($fn, $response);
+    }
+
+    /**
+     * Get the client object.
+     *
+     * @return mixed
+     */
+    public function getClient()
+    {
+        return $this->requestHandler->getClientObject($this->clientClass);
+    }
+
+    /**
+     * @access private
+     */
+    public function __debugInfo()
+    {
+        return [
+            'requestHandler' => $this->requestHandler,
+            'name' => $this->name,
+            'callablesMap' => array_keys($this->callablesMap),
+            'info' => $this->info
+        ];
     }
 }

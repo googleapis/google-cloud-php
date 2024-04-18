@@ -41,9 +41,9 @@ use Google\Protobuf\GPBEmpty;
  */
 trait RequestTrait
 {
-    private static $larHeader = 'x-goog-spanner-route-to-leader';
-    private static $resourcePrefixHeader = 'google-cloud-resource-prefix';
-    private static $lroResponseMappers = [
+    private $larHeader = 'x-goog-spanner-route-to-leader';
+    private $resourcePrefixHeader = 'google-cloud-resource-prefix';
+    private $lroResponseMappers = [
         [
             'method' => 'updateDatabaseDdl',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata',
@@ -137,7 +137,7 @@ trait RequestTrait
         }
         // If value is true and context is READWRITE, set LAR header.
         if ($context === SessionPoolInterface::CONTEXT_READWRITE) {
-            $args['headers'][self::$larHeader] = ['true'];
+            $args['headers'][$this->larHeader] = ['true'];
         }
         return $args;
     }
@@ -154,7 +154,7 @@ trait RequestTrait
         bool $value = true
     ) {
         if (!$value) {
-            unset($args['headers'][self::$larHeader]);
+            unset($args['headers'][$this->larHeader]);
         }
         return $args;
     }
@@ -168,7 +168,7 @@ trait RequestTrait
      */
     private function addResourcePrefixHeader(array $args, string $value)
     {
-        $args['headers'][self::$resourcePrefixHeader] = [$value];
+        $args['headers'][$this->resourcePrefixHeader] = [$value];
         return $args;
     }
 }
