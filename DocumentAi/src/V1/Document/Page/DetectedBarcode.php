@@ -16,15 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class DetectedBarcode extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
     private $layout = null;
     /**
-     * Detailed barcode information of the
-     * [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
+     * Detailed barcode information of the [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Barcode barcode = 2;</code>
      */
@@ -37,11 +35,9 @@ class DetectedBarcode extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     *           [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
+     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      *     @type \Google\Cloud\DocumentAI\V1\Barcode $barcode
-     *           Detailed barcode information of the
-     *           [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
+     *           Detailed barcode information of the [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      * }
      */
     public function __construct($data = NULL) {
@@ -50,8 +46,7 @@ class DetectedBarcode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -72,8 +67,7 @@ class DetectedBarcode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var
@@ -88,8 +82,7 @@ class DetectedBarcode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detailed barcode information of the
-     * [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
+     * Detailed barcode information of the [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Barcode barcode = 2;</code>
      * @return \Google\Cloud\DocumentAI\V1\Barcode|null
@@ -110,8 +103,7 @@ class DetectedBarcode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detailed barcode information of the
-     * [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
+     * Detailed barcode information of the [DetectedBarcode][google.cloud.documentai.v1.Document.Page.DetectedBarcode].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Barcode barcode = 2;</code>
      * @param \Google\Cloud\DocumentAI\V1\Barcode $var
