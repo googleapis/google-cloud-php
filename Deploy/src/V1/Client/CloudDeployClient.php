@@ -478,6 +478,27 @@ final class CloudDeployClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a repository
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     * @param string $repository
+     *
+     * @return string The formatted repository resource.
+     */
+    public static function repositoryName(string $project, string $location, string $connection, string $repository): string
+    {
+        return self::getPathTemplate('repository')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+            'repository' => $repository,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a rollout
      * resource.
      *
@@ -573,6 +594,7 @@ final class CloudDeployClient
      * - location: projects/{project}/locations/{location}
      * - membership: projects/{project}/locations/{location}/memberships/{membership}
      * - release: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}
+     * - repository: projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}
      * - rollout: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}
      * - service: projects/{project}/locations/{location}/services/{service}
      * - target: projects/{project}/locations/{location}/targets/{target}
