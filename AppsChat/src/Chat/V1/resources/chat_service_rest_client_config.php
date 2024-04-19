@@ -168,6 +168,28 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceReadState' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*/spaces/*/spaceReadState}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetThreadReadState' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*/spaces/*/threads/*/threadReadState}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListMemberships' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=spaces/*}/members',
@@ -257,6 +279,22 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'UpdateSpaceReadState' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{space_read_state.name=users/*/spaces/*/spaceReadState}',
+                'body' => 'space_read_state',
+                'placeholders' => [
+                    'space_read_state.name' => [
+                        'getters' => [
+                            'getSpaceReadState',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UploadAttachment' => [

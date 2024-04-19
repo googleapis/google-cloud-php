@@ -175,6 +175,30 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceReadState' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SpaceReadState',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetThreadReadState' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ThreadReadState',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListMemberships' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -290,6 +314,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateSpaceReadState' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\SpaceReadState',
+                'headerParams' => [
+                    [
+                        'keyName' => 'space_read_state.name',
+                        'fieldAccessors' => [
+                            'getSpaceReadState',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UploadAttachment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\UploadAttachmentResponse',
@@ -309,7 +346,9 @@ return [
                 'quotedMessageMetadata' => 'spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}',
                 'reaction' => 'spaces/{space}/messages/{message}/reactions/{reaction}',
                 'space' => 'spaces/{space}',
+                'spaceReadState' => 'users/{user}/spaces/{space}/spaceReadState',
                 'thread' => 'spaces/{space}/threads/{thread}',
+                'threadReadState' => 'users/{user}/spaces/{space}/threads/{thread}/threadReadState',
             ],
         ],
     ],
