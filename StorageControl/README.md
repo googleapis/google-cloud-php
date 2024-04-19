@@ -20,15 +20,11 @@ Now, install this component:
 $ composer require google/cloud-storage-control
 ```
 
-This component requires the gRPC extension. Please see our [gRPC installation guide](https://cloud.google.com/php/grpc)
-for more information on how to configure the extension.
-
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
 > for PHP
 
-This component supports both REST over HTTP/1.1 and gRPC. In order to take advantage of the benefits
-offered by gRPC (such as streaming methods) please see our
-[gRPC installation guide](https://cloud.google.com/php/grpc).
+This component requires the gRPC extension. Please see our [gRPC installation guide](https://cloud.google.com/php/grpc)
+for more information on how to configure the extension.
 
 ### Authentication
 
