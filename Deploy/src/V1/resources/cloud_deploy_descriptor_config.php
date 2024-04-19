@@ -755,6 +755,7 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'membership' => 'projects/{project}/locations/{location}/memberships/{membership}',
                 'release' => 'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}',
+                'repository' => 'projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}',
                 'rollout' => 'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}',
                 'service' => 'projects/{project}/locations/{location}/services/{service}',
                 'target' => 'projects/{project}/locations/{location}/targets/{target}',

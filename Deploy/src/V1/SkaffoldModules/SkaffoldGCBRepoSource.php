@@ -9,26 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Git repository containing Skaffold Config modules.
+ * Cloud Build V2 Repository containing Skaffold Configs.
  *
- * Generated from protobuf message <code>google.cloud.deploy.v1.SkaffoldModules.SkaffoldGitSource</code>
+ * Generated from protobuf message <code>google.cloud.deploy.v1.SkaffoldModules.SkaffoldGCBRepoSource</code>
  */
-class SkaffoldGitSource extends \Google\Protobuf\Internal\Message
+class SkaffoldGCBRepoSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Git repository the package should be cloned from.
+     * Required. Name of the Cloud Build V2 Repository.
+     * Format is
+     * projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}.
      *
-     * Generated from protobuf field <code>string repo = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string repository = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $repo = '';
+    private $repository = '';
     /**
-     * Optional. Relative path from the repository root to the Skaffold file.
+     * Optional. Relative path from the repository root to the Skaffold Config
+     * file.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $path = '';
     /**
-     * Optional. Git branch or tag to use when cloning the repository.
+     * Optional. Branch or tag to use when cloning the repository.
      *
      * Generated from protobuf field <code>string ref = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,12 +43,15 @@ class SkaffoldGitSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $repo
-     *           Required. Git repository the package should be cloned from.
+     *     @type string $repository
+     *           Required. Name of the Cloud Build V2 Repository.
+     *           Format is
+     *           projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}.
      *     @type string $path
-     *           Optional. Relative path from the repository root to the Skaffold file.
+     *           Optional. Relative path from the repository root to the Skaffold Config
+     *           file.
      *     @type string $ref
-     *           Optional. Git branch or tag to use when cloning the repository.
+     *           Optional. Branch or tag to use when cloning the repository.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,33 +60,38 @@ class SkaffoldGitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Git repository the package should be cloned from.
+     * Required. Name of the Cloud Build V2 Repository.
+     * Format is
+     * projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}.
      *
-     * Generated from protobuf field <code>string repo = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string repository = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
-    public function getRepo()
+    public function getRepository()
     {
-        return $this->repo;
+        return $this->repository;
     }
 
     /**
-     * Required. Git repository the package should be cloned from.
+     * Required. Name of the Cloud Build V2 Repository.
+     * Format is
+     * projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}.
      *
-     * Generated from protobuf field <code>string repo = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string repository = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setRepo($var)
+    public function setRepository($var)
     {
         GPBUtil::checkString($var, True);
-        $this->repo = $var;
+        $this->repository = $var;
 
         return $this;
     }
 
     /**
-     * Optional. Relative path from the repository root to the Skaffold file.
+     * Optional. Relative path from the repository root to the Skaffold Config
+     * file.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -91,7 +102,8 @@ class SkaffoldGitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Relative path from the repository root to the Skaffold file.
+     * Optional. Relative path from the repository root to the Skaffold Config
+     * file.
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -106,7 +118,7 @@ class SkaffoldGitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Git branch or tag to use when cloning the repository.
+     * Optional. Branch or tag to use when cloning the repository.
      *
      * Generated from protobuf field <code>string ref = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -117,7 +129,7 @@ class SkaffoldGitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Git branch or tag to use when cloning the repository.
+     * Optional. Branch or tag to use when cloning the repository.
      *
      * Generated from protobuf field <code>string ref = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
