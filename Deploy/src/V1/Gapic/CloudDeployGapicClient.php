@@ -192,6 +192,8 @@ class CloudDeployGapicClient
 
     private static $releaseNameTemplate;
 
+    private static $repositoryNameTemplate;
+
     private static $rolloutNameTemplate;
 
     private static $serviceNameTemplate;
@@ -361,6 +363,17 @@ class CloudDeployGapicClient
         return self::$releaseNameTemplate;
     }
 
+    private static function getRepositoryNameTemplate()
+    {
+        if (self::$repositoryNameTemplate == null) {
+            self::$repositoryNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}'
+            );
+        }
+
+        return self::$repositoryNameTemplate;
+    }
+
     private static function getRolloutNameTemplate()
     {
         if (self::$rolloutNameTemplate == null) {
@@ -421,6 +434,7 @@ class CloudDeployGapicClient
                 'location' => self::getLocationNameTemplate(),
                 'membership' => self::getMembershipNameTemplate(),
                 'release' => self::getReleaseNameTemplate(),
+                'repository' => self::getRepositoryNameTemplate(),
                 'rollout' => self::getRolloutNameTemplate(),
                 'service' => self::getServiceNameTemplate(),
                 'target' => self::getTargetNameTemplate(),
@@ -692,6 +706,31 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a repository
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     * @param string $repository
+     *
+     * @return string The formatted repository resource.
+     */
+    public static function repositoryName(
+        $project,
+        $location,
+        $connection,
+        $repository
+    ) {
+        return self::getRepositoryNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+            'repository' => $repository,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a rollout
      * resource.
      *
@@ -792,6 +831,7 @@ class CloudDeployGapicClient
      * - location: projects/{project}/locations/{location}
      * - membership: projects/{project}/locations/{location}/memberships/{membership}
      * - release: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}
+     * - repository: projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}
      * - rollout: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}
      * - service: projects/{project}/locations/{location}/services/{service}
      * - target: projects/{project}/locations/{location}/targets/{target}

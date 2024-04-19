@@ -33,11 +33,18 @@ class IndustryVertical
      * Generated from protobuf enum <code>MEDIA = 2;</code>
      */
     const MEDIA = 2;
+    /**
+     * The healthcare FHIR vertical.
+     *
+     * Generated from protobuf enum <code>HEALTHCARE_FHIR = 7;</code>
+     */
+    const HEALTHCARE_FHIR = 7;
 
     private static $valueToName = [
         self::INDUSTRY_VERTICAL_UNSPECIFIED => 'INDUSTRY_VERTICAL_UNSPECIFIED',
         self::GENERIC => 'GENERIC',
         self::MEDIA => 'MEDIA',
+        self::HEALTHCARE_FHIR => 'HEALTHCARE_FHIR',
     ];
 
     public static function name($value)

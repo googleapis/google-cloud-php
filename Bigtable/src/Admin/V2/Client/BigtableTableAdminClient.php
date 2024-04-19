@@ -35,23 +35,28 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Bigtable\Admin\V2\AuthorizedView;
 use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest;
 use Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse;
 use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupMetadata;
 use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest;
 use Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse;
+use Google\Cloud\Bigtable\Admin\V2\GetAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListAuthorizedViewsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListTablesRequest;
@@ -62,6 +67,7 @@ use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateAuthorizedViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -89,18 +95,22 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface checkConsistencyAsync(CheckConsistencyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createAuthorizedViewAsync(CreateAuthorizedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTableAsync(CreateTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTableFromSnapshotAsync(CreateTableFromSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteAuthorizedViewAsync(DeleteAuthorizedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteSnapshotAsync(DeleteSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteTableAsync(DeleteTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface dropRowRangeAsync(DropRowRangeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateConsistencyTokenAsync(GenerateConsistencyTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAuthorizedViewAsync(GetAuthorizedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSnapshotAsync(GetSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getTableAsync(GetTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listAuthorizedViewsAsync(ListAuthorizedViewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listTablesAsync(ListTablesRequest $request, array $optionalArgs = [])
@@ -110,6 +120,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface snapshotTableAsync(SnapshotTableRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface undeleteTableAsync(UndeleteTableRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateAuthorizedViewAsync(UpdateAuthorizedViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateTableAsync(UpdateTableRequest $request, array $optionalArgs = [])
  */
@@ -195,6 +206,27 @@ final class BigtableTableAdminClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * authorized_view resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $table
+     * @param string $authorizedView
+     *
+     * @return string The formatted authorized_view resource.
+     */
+    public static function authorizedViewName(string $project, string $instance, string $table, string $authorizedView): string
+    {
+        return self::getPathTemplate('authorizedView')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'table' => $table,
+            'authorized_view' => $authorizedView,
+        ]);
     }
 
     /**
@@ -321,6 +353,7 @@ final class BigtableTableAdminClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - authorizedView: projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}
      * - backup: projects/{project}/instances/{instance}/clusters/{cluster}/backups/{backup}
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
@@ -474,6 +507,33 @@ final class BigtableTableAdminClient
     }
 
     /**
+     * Creates a new AuthorizedView in a table.
+     *
+     * The async variant is
+     * {@see BigtableTableAdminClient::createAuthorizedViewAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/create_authorized_view.php
+     *
+     * @param CreateAuthorizedViewRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAuthorizedView(CreateAuthorizedViewRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateAuthorizedView', $request, $callOptions)->wait();
+    }
+
+    /**
      * Starts creating a new Cloud Bigtable Backup.  The returned backup
      * [long-running operation][google.longrunning.Operation] can be used to
      * track creation of the backup. The
@@ -566,6 +626,31 @@ final class BigtableTableAdminClient
     public function createTableFromSnapshot(CreateTableFromSnapshotRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateTableFromSnapshot', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Permanently deletes a specified AuthorizedView.
+     *
+     * The async variant is
+     * {@see BigtableTableAdminClient::deleteAuthorizedViewAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/delete_authorized_view.php
+     *
+     * @param DeleteAuthorizedViewRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAuthorizedView(DeleteAuthorizedViewRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteAuthorizedView', $request, $callOptions)->wait();
     }
 
     /**
@@ -703,6 +788,32 @@ final class BigtableTableAdminClient
     }
 
     /**
+     * Gets information from a specified AuthorizedView.
+     *
+     * The async variant is {@see BigtableTableAdminClient::getAuthorizedViewAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/get_authorized_view.php
+     *
+     * @param GetAuthorizedViewRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AuthorizedView
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAuthorizedView(GetAuthorizedViewRequest $request, array $callOptions = []): AuthorizedView
+    {
+        return $this->startApiCall('GetAuthorizedView', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets metadata on a pending or completed Cloud Bigtable Backup.
      *
      * The async variant is {@see BigtableTableAdminClient::getBackupAsync()} .
@@ -812,6 +923,33 @@ final class BigtableTableAdminClient
     public function getTable(GetTableRequest $request, array $callOptions = []): Table
     {
         return $this->startApiCall('GetTable', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all AuthorizedViews from a specific table.
+     *
+     * The async variant is {@see BigtableTableAdminClient::listAuthorizedViewsAsync()}
+     * .
+     *
+     * @example samples/V2/BigtableTableAdminClient/list_authorized_views.php
+     *
+     * @param ListAuthorizedViewsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAuthorizedViews(ListAuthorizedViewsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAuthorizedViews', $request, $callOptions);
     }
 
     /**
@@ -1073,6 +1211,33 @@ final class BigtableTableAdminClient
     public function undeleteTable(UndeleteTableRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UndeleteTable', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an AuthorizedView in a table.
+     *
+     * The async variant is
+     * {@see BigtableTableAdminClient::updateAuthorizedViewAsync()} .
+     *
+     * @example samples/V2/BigtableTableAdminClient/update_authorized_view.php
+     *
+     * @param UpdateAuthorizedViewRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAuthorizedView(UpdateAuthorizedViewRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateAuthorizedView', $request, $callOptions)->wait();
     }
 
     /**

@@ -31,7 +31,8 @@ use Google\Cloud\SecretManager\V1\UpdateSecretRequest;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates metadata of an existing [Secret][google.cloud.secretmanager.v1.Secret].
+ * Updates metadata of an existing
+ * [Secret][google.cloud.secretmanager.v1.Secret].
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

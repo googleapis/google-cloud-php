@@ -94,6 +94,17 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelSpec model_spec = 7;</code>
      */
     protected $model_spec = null;
+    /**
+     * If true, answer will be generated from most relevant chunks from top
+     * search results. This feature will improve summary quality.
+     * Note that with this feature enabled, not all top search results
+     * will be referenced and included in the reference list, so the citation
+     * source index only points to the search results listed in the reference
+     * list.
+     *
+     * Generated from protobuf field <code>bool use_semantic_chunks = 8;</code>
+     */
+    protected $use_semantic_chunks = false;
 
     /**
      * Constructor.
@@ -151,6 +162,13 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec $model_spec
      *           If specified, the spec will be used to modify the model specification
      *           provided to the LLM.
+     *     @type bool $use_semantic_chunks
+     *           If true, answer will be generated from most relevant chunks from top
+     *           search results. This feature will improve summary quality.
+     *           Note that with this feature enabled, not all top search results
+     *           will be referenced and included in the reference list, so the citation
+     *           source index only points to the search results listed in the reference
+     *           list.
      * }
      */
     public function __construct($data = NULL) {
@@ -428,6 +446,42 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec::class);
         $this->model_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, answer will be generated from most relevant chunks from top
+     * search results. This feature will improve summary quality.
+     * Note that with this feature enabled, not all top search results
+     * will be referenced and included in the reference list, so the citation
+     * source index only points to the search results listed in the reference
+     * list.
+     *
+     * Generated from protobuf field <code>bool use_semantic_chunks = 8;</code>
+     * @return bool
+     */
+    public function getUseSemanticChunks()
+    {
+        return $this->use_semantic_chunks;
+    }
+
+    /**
+     * If true, answer will be generated from most relevant chunks from top
+     * search results. This feature will improve summary quality.
+     * Note that with this feature enabled, not all top search results
+     * will be referenced and included in the reference list, so the citation
+     * source index only points to the search results listed in the reference
+     * list.
+     *
+     * Generated from protobuf field <code>bool use_semantic_chunks = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseSemanticChunks($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_semantic_chunks = $var;
 
         return $this;
     }

@@ -29,9 +29,10 @@ use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
 use Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest;
 
 /**
- * Gets a single metric descriptor. This method does not require a Workspace.
+ * Gets a single metric descriptor.
  *
- * @param string $formattedName The metric descriptor on which to execute the request. The format is:
+ * @param string $formattedName The metric descriptor on which to execute the request. The format
+ *                              is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
  *

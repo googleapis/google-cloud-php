@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     * Required. Resource name of the `ServiceLevelObjective` to get. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -33,7 +34,8 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
-     * @param string $name Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     * @param string $name Required. Resource name of the `ServiceLevelObjective` to get. The format
+     *                     is:
      *
      *                     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *                     Please see {@see ServiceMonitoringServiceClient::serviceLevelObjectiveName()} for help formatting this field.
@@ -55,7 +57,8 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     *           Required. Resource name of the `ServiceLevelObjective` to get. The format
+     *           is:
      *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *     @type int $view
      *           View of the `ServiceLevelObjective` to return. If `DEFAULT`, return the
@@ -70,7 +73,8 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     * Required. Resource name of the `ServiceLevelObjective` to get. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -82,7 +86,8 @@ class GetServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the `ServiceLevelObjective` to get. The format is:
+     * Required. Resource name of the `ServiceLevelObjective` to get. The format
+     * is:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

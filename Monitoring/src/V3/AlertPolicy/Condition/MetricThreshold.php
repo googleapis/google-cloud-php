@@ -127,7 +127,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     private $trigger = null;
     /**
      * A condition control that determines how metric-threshold conditions
-     * are evaluated when data stops arriving.
+     * are evaluated when data stops arriving. To use this control, the value
+     * of the `duration` field must be greater than or equal to 60 seconds.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.EvaluationMissingData evaluation_missing_data = 11;</code>
      */
@@ -214,7 +215,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           are specified.
      *     @type int $evaluation_missing_data
      *           A condition control that determines how metric-threshold conditions
-     *           are evaluated when data stops arriving.
+     *           are evaluated when data stops arriving. To use this control, the value
+     *           of the `duration` field must be greater than or equal to 60 seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -598,7 +600,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
 
     /**
      * A condition control that determines how metric-threshold conditions
-     * are evaluated when data stops arriving.
+     * are evaluated when data stops arriving. To use this control, the value
+     * of the `duration` field must be greater than or equal to 60 seconds.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.EvaluationMissingData evaluation_missing_data = 11;</code>
      * @return int
@@ -610,7 +613,8 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
 
     /**
      * A condition control that determines how metric-threshold conditions
-     * are evaluated when data stops arriving.
+     * are evaluated when data stops arriving. To use this control, the value
+     * of the `duration` field must be greater than or equal to 60 seconds.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.EvaluationMissingData evaluation_missing_data = 11;</code>
      * @param int $var

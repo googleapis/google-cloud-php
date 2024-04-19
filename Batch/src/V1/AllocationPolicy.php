@@ -30,7 +30,16 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     private $instances;
     /**
-     * Service account that VMs will run as.
+     * Defines the service account for Batch-created VMs. If omitted, the [default
+     * Compute Engine service
+     * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
+     * is used. Must match the service account specified in any used instance
+     * template configured in the Batch job.
+     * Includes the following fields:
+     *  * email: The service account's email address. If not set, the default
+     *  Compute Engine service account is used.
+     *  * scopes: Additional OAuth scopes to grant the service account, beyond the
+     *  default cloud-platform scope. (list of strings)
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.ServiceAccount service_account = 9;</code>
      */
@@ -84,7 +93,16 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Describe instances that can be created by this AllocationPolicy.
      *           Only instances[0] is supported now.
      *     @type \Google\Cloud\Batch\V1\ServiceAccount $service_account
-     *           Service account that VMs will run as.
+     *           Defines the service account for Batch-created VMs. If omitted, the [default
+     *           Compute Engine service
+     *           account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
+     *           is used. Must match the service account specified in any used instance
+     *           template configured in the Batch job.
+     *           Includes the following fields:
+     *            * email: The service account's email address. If not set, the default
+     *            Compute Engine service account is used.
+     *            * scopes: Additional OAuth scopes to grant the service account, beyond the
+     *            default cloud-platform scope. (list of strings)
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels applied to all VM instances and other resources
      *           created by AllocationPolicy.
@@ -177,7 +195,16 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Service account that VMs will run as.
+     * Defines the service account for Batch-created VMs. If omitted, the [default
+     * Compute Engine service
+     * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
+     * is used. Must match the service account specified in any used instance
+     * template configured in the Batch job.
+     * Includes the following fields:
+     *  * email: The service account's email address. If not set, the default
+     *  Compute Engine service account is used.
+     *  * scopes: Additional OAuth scopes to grant the service account, beyond the
+     *  default cloud-platform scope. (list of strings)
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.ServiceAccount service_account = 9;</code>
      * @return \Google\Cloud\Batch\V1\ServiceAccount|null
@@ -198,7 +225,16 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Service account that VMs will run as.
+     * Defines the service account for Batch-created VMs. If omitted, the [default
+     * Compute Engine service
+     * account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
+     * is used. Must match the service account specified in any used instance
+     * template configured in the Batch job.
+     * Includes the following fields:
+     *  * email: The service account's email address. If not set, the default
+     *  Compute Engine service account is used.
+     *  * scopes: Additional OAuth scopes to grant the service account, beyond the
+     *  default cloud-platform scope. (list of strings)
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.ServiceAccount service_account = 9;</code>
      * @param \Google\Cloud\Batch\V1\ServiceAccount $var

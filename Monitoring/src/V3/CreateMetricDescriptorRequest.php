@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      * 4
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -25,20 +26,21 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     * descriptor.
+     * Required. The new [custom
+     * metric](https://cloud.google.com/monitoring/custom-metrics) descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $metric_descriptor = null;
 
     /**
-     * @param string                       $name             Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                                                       which to execute the request. The format is:
+     * @param string                       $name             Required. The
+     *                                                       [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     *                                                       to execute the request. The format is:
      *                                                       4
      *                                                       projects/[PROJECT_ID_OR_NUMBER]
-     * @param \Google\Api\MetricDescriptor $metricDescriptor Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     *                                                       descriptor.
+     * @param \Google\Api\MetricDescriptor $metricDescriptor Required. The new [custom
+     *                                                       metric](https://cloud.google.com/monitoring/custom-metrics) descriptor.
      *
      * @return \Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest
      *
@@ -58,13 +60,14 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *           which to execute the request. The format is:
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     *           to execute the request. The format is:
      *           4
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type \Google\Api\MetricDescriptor $metric_descriptor
-     *           Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     *           descriptor.
+     *           Required. The new [custom
+     *           metric](https://cloud.google.com/monitoring/custom-metrics) descriptor.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,8 +76,9 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      * 4
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -87,8 +91,9 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      * 4
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
@@ -105,8 +110,8 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     * descriptor.
+     * Required. The new [custom
+     * metric](https://cloud.google.com/monitoring/custom-metrics) descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Api\MetricDescriptor|null
@@ -127,8 +132,8 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
-     * descriptor.
+     * Required. The new [custom
+     * metric](https://cloud.google.com/monitoring/custom-metrics) descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Api\MetricDescriptor $var

@@ -32,8 +32,9 @@ use Google\Cloud\Monitoring\V3\ListGroupsRequest;
 /**
  * Lists the existing groups.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name)
- *                     whose groups are to be listed. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+ *                     groups are to be listed. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  */

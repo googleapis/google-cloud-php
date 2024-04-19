@@ -30,7 +30,8 @@ use Google\Cloud\SecretManager\V1\Replication;
 use Google\Cloud\SecretManager\V1\Secret;
 
 /**
- * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+ * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no
+ * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
  *
  * @param string $formattedParent The resource name of the project to associate with the
  *                                [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see

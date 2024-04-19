@@ -18,7 +18,7 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
     /**
      * The search feature tier of this engine.
      * Different tiers might have different
-     * pricing. To learn more, please check the pricing documentation.
+     * pricing. To learn more, check the pricing documentation.
      * Defaults to
      * [SearchTier.SEARCH_TIER_STANDARD][google.cloud.discoveryengine.v1beta.SearchTier.SEARCH_TIER_STANDARD]
      * if not specified.
@@ -42,7 +42,7 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
      *     @type int $search_tier
      *           The search feature tier of this engine.
      *           Different tiers might have different
-     *           pricing. To learn more, please check the pricing documentation.
+     *           pricing. To learn more, check the pricing documentation.
      *           Defaults to
      *           [SearchTier.SEARCH_TIER_STANDARD][google.cloud.discoveryengine.v1beta.SearchTier.SEARCH_TIER_STANDARD]
      *           if not specified.
@@ -58,7 +58,7 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
     /**
      * The search feature tier of this engine.
      * Different tiers might have different
-     * pricing. To learn more, please check the pricing documentation.
+     * pricing. To learn more, check the pricing documentation.
      * Defaults to
      * [SearchTier.SEARCH_TIER_STANDARD][google.cloud.discoveryengine.v1beta.SearchTier.SEARCH_TIER_STANDARD]
      * if not specified.
@@ -74,7 +74,7 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
     /**
      * The search feature tier of this engine.
      * Different tiers might have different
-     * pricing. To learn more, please check the pricing documentation.
+     * pricing. To learn more, check the pricing documentation.
      * Defaults to
      * [SearchTier.SEARCH_TIER_STANDARD][google.cloud.discoveryengine.v1beta.SearchTier.SEARCH_TIER_STANDARD]
      * if not specified.

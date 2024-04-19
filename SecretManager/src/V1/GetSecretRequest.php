@@ -9,21 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SecretManagerService.GetSecret][google.cloud.secretmanager.v1.SecretManagerService.GetSecret].
+ * Request message for
+ * [SecretManagerService.GetSecret][google.cloud.secretmanager.v1.SecretManagerService.GetSecret].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.GetSecretRequest</code>
  */
 class GetSecretRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret], in the format
+     * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
     /**
-     * @param string $name Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;/secrets/*`. Please see
+     * @param string $name Required. The resource name of the
+     *                     [Secret][google.cloud.secretmanager.v1.Secret], in the format
+     *                     `projects/&#42;/secrets/*`. Please see
      *                     {@see SecretManagerServiceClient::secretName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecretManager\V1\GetSecretRequest
@@ -43,7 +48,9 @@ class GetSecretRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;&#47;secrets/&#42;`.
+     *           Required. The resource name of the
+     *           [Secret][google.cloud.secretmanager.v1.Secret], in the format
+     *           `projects/&#42;&#47;secrets/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -52,7 +59,9 @@ class GetSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret], in the format
+     * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,7 +72,9 @@ class GetSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret], in the format
+     * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

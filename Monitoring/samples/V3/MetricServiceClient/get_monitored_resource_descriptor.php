@@ -29,7 +29,7 @@ use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
 use Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
 
 /**
- * Gets a single monitored resource descriptor. This method does not require a Workspace.
+ * Gets a single monitored resource descriptor.
  *
  * @param string $formattedName The monitored resource descriptor to get.  The format is:
  *

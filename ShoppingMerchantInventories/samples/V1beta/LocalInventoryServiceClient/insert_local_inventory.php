@@ -39,15 +39,19 @@ use Google\Shopping\Merchant\Inventories\V1beta\LocalInventory;
  * It might take up to 30 minutes for the new or updated `LocalInventory`
  * resource to appear in products.
  *
- * @param string $parent                  The account and product where this inventory will be inserted.
+ * @param string $formattedParent         The account and product where this inventory will be inserted.
  *                                        Format: `accounts/{account}/products/{product}`
- * @param string $localInventoryStoreCode Store code (the store ID from your Business Profile) of the
- *                                        physical store the product is sold in. See the [Local product inventory
- *                                        feed specification](https://support.google.com/merchants/answer/3061342)
- *                                        for more information.
+ *                                        Please see {@see LocalInventoryServiceClient::productName()} for help formatting this field.
+ * @param string $localInventoryStoreCode Immutable. Store code (the store ID from your Business Profile)
+ *                                        of the physical store the product is sold in. See the [Local product
+ *                                        inventory feed
+ *                                        specification](https://support.google.com/merchants/answer/3061342) for
+ *                                        more information.
  */
-function insert_local_inventory_sample(string $parent, string $localInventoryStoreCode): void
-{
+function insert_local_inventory_sample(
+    string $formattedParent,
+    string $localInventoryStoreCode
+): void {
     // Create a client.
     $localInventoryServiceClient = new LocalInventoryServiceClient();
 
@@ -55,7 +59,7 @@ function insert_local_inventory_sample(string $parent, string $localInventorySto
     $localInventory = (new LocalInventory())
         ->setStoreCode($localInventoryStoreCode);
     $request = (new InsertLocalInventoryRequest())
-        ->setParent($parent)
+        ->setParent($formattedParent)
         ->setLocalInventory($localInventory);
 
     // Call the API and handle any network failures.
@@ -79,9 +83,9 @@ function insert_local_inventory_sample(string $parent, string $localInventorySto
  */
 function callSample(): void
 {
-    $parent = '[PARENT]';
+    $formattedParent = LocalInventoryServiceClient::productName('[ACCOUNT]', '[PRODUCT]');
     $localInventoryStoreCode = '[STORE_CODE]';
 
-    insert_local_inventory_sample($parent, $localInventoryStoreCode);
+    insert_local_inventory_sample($formattedParent, $localInventoryStoreCode);
 }
 // [END merchantapi_v1beta_generated_LocalInventoryService_InsertLocalInventory_sync]

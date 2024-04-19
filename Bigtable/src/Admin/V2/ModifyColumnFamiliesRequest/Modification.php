@@ -21,6 +21,14 @@ class Modification extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string id = 1;</code>
      */
     private $id = '';
+    /**
+     * Optional. A mask specifying which fields (e.g. `gc_rule`) in the `update`
+     * mod should be updated, ignored for other modification types. If unset or
+     * empty, we treat it as updating `gc_rule` to be backward compatible.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $update_mask = null;
     protected $mod;
 
     /**
@@ -40,6 +48,10 @@ class Modification extends \Google\Protobuf\Internal\Message
      *     @type bool $drop
      *           Drop (delete) the column family with the given ID, or fail if no such
      *           family exists.
+     *     @type \Google\Protobuf\FieldMask $update_mask
+     *           Optional. A mask specifying which fields (e.g. `gc_rule`) in the `update`
+     *           mod should be updated, ignored for other modification types. If unset or
+     *           empty, we treat it as updating `gc_rule` to be backward compatible.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,6 +180,46 @@ class Modification extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. A mask specifying which fields (e.g. `gc_rule`) in the `update`
+     * mod should be updated, ignored for other modification types. If unset or
+     * empty, we treat it as updating `gc_rule` to be backward compatible.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getUpdateMask()
+    {
+        return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
+    /**
+     * Optional. A mask specifying which fields (e.g. `gc_rule`) in the `update`
+     * mod should be updated, ignored for other modification types. If unset or
+     * empty, we treat it as updating `gc_rule` to be backward compatible.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setUpdateMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->update_mask = $var;
 
         return $this;
     }

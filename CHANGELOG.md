@@ -1,5 +1,176 @@
 # Changelog
 
+## 0.241.0
+
+<details><summary>google/cloud-batch 0.16.5</summary>
+
+
+
+### Documentation
+
+* Update comments on ServiceAccount email and scopes fields ([#7209](https://github.com/googleapis/google-cloud-php/issues/7209)) ([b053b15](https://github.com/googleapis/google-cloud-php/commit/b053b154a6f843cecf8d9353ffe92337b4f7fffb))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.31.0</summary>
+
+
+
+### Features
+
+* Add authorized view bindings to Cloud Bigtable data APIs and messages ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+* Cloud Bigtable Authorized Views admin APIs protos ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+* Publish Automated Backups protos ([#7118](https://github.com/googleapis/google-cloud-php/issues/7118)) ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+
+
+### Documentation
+
+* The field `table_name` in message `.google.bigtable.v2.CheckAndMutateRowRequest` is changed from required to optional ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+* The field `table_name` in message `.google.bigtable.v2.MutateRowRequest` is changed from required to optional ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+* The field `table_name` in message `.google.bigtable.v2.MutateRowsRequest` is changed from required to optional ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+* The field `table_name` in message `.google.bigtable.v2.ReadModifyWriteRowRequest` is changed from required to optional ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+* The field `table_name` in message `.google.bigtable.v2.ReadRowsRequest` is changed from required to optional ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+* The field `table_name` in message `.google.bigtable.v2.SampleRowKeysRequest` is changed from required to optional ([e64fcf9](https://github.com/googleapis/google-cloud-php/commit/e64fcf9344377ddfc229ce674d744cbd2bbf0511))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.8.4</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/grafeas to ^0.10.0 ([#7192](https://github.com/googleapis/google-cloud-php/issues/7192)) ([11a8069](https://github.com/googleapis/google-cloud-php/commit/11a8069c4f1faa99c350ce690b077d3812f27566))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.5.4</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/grafeas to ^0.10.0 ([#7192](https://github.com/googleapis/google-cloud-php/issues/7192)) ([11a8069](https://github.com/googleapis/google-cloud-php/commit/11a8069c4f1faa99c350ce690b077d3812f27566))
+
+</details>
+
+<details><summary>google/cloud-core 1.57.0</summary>
+
+
+
+### Features
+
+* Add new LongRunning client, rename LongRunning namespace (and add alias for BC) ([#6675](https://github.com/googleapis/google-cloud-php/issues/6675)) ([2fe9eaf](https://github.com/googleapis/google-cloud-php/commit/2fe9eaf0aecc1da7c1ff5d42e4b4bd0030f3cc96))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.11.0</summary>
+
+
+
+### Features
+
+* Add advanced engine model APIs ([0c2ecdb](https://github.com/googleapis/google-cloud-php/commit/0c2ecdb41bf4c917181b0c489cdead319dfd0fde))
+* Add answer generation APIs ([0c2ecdb](https://github.com/googleapis/google-cloud-php/commit/0c2ecdb41bf4c917181b0c489cdead319dfd0fde))
+* Add standalone grounding API ([0c2ecdb](https://github.com/googleapis/google-cloud-php/commit/0c2ecdb41bf4c917181b0c489cdead319dfd0fde))
+* Add standalone ranking API ([0c2ecdb](https://github.com/googleapis/google-cloud-php/commit/0c2ecdb41bf4c917181b0c489cdead319dfd0fde))
+* Promote blending search to v1 ([83c87e2](https://github.com/googleapis/google-cloud-php/commit/83c87e27dcfe04ae197a847d065f38901e74972e))
+* Promote healthcare search to v1 ([83c87e2](https://github.com/googleapis/google-cloud-php/commit/83c87e27dcfe04ae197a847d065f38901e74972e))
+* Promote online chunking search to v1 ([83c87e2](https://github.com/googleapis/google-cloud-php/commit/83c87e27dcfe04ae197a847d065f38901e74972e))
+* Promote recommendation service to v1 ([#7216](https://github.com/googleapis/google-cloud-php/issues/7216)) ([83c87e2](https://github.com/googleapis/google-cloud-php/commit/83c87e27dcfe04ae197a847d065f38901e74972e))
+* Support advanced search boosting ([0c2ecdb](https://github.com/googleapis/google-cloud-php/commit/0c2ecdb41bf4c917181b0c489cdead319dfd0fde))
+* Support boost/bury on multi-turn search ([83c87e2](https://github.com/googleapis/google-cloud-php/commit/83c87e27dcfe04ae197a847d065f38901e74972e))
+* Support import data from Cloud Spanner, BigTable, SQL and Firestore ([83c87e2](https://github.com/googleapis/google-cloud-php/commit/83c87e27dcfe04ae197a847d065f38901e74972e))
+* Support import data from Cloud Spanner, BigTable, SQL and Firestore ([#7211](https://github.com/googleapis/google-cloud-php/issues/7211)) ([0c2ecdb](https://github.com/googleapis/google-cloud-php/commit/0c2ecdb41bf4c917181b0c489cdead319dfd0fde))
+
+
+### Documentation
+
+* Keep the API doc up-to-date with recent changes ([83c87e2](https://github.com/googleapis/google-cloud-php/commit/83c87e27dcfe04ae197a847d065f38901e74972e))
+* Keep the API doc up-to-date with recent changes ([0c2ecdb](https://github.com/googleapis/google-cloud-php/commit/0c2ecdb41bf4c917181b0c489cdead319dfd0fde))
+
+</details>
+
+<details><summary>google/cloud-logging 1.29.4</summary>
+
+
+
+</details>
+
+<details><summary>google/longrunning 0.4.0</summary>
+
+
+
+### Features
+
+* Add new LongRunning client, rename LongRunning namespace (and add alias for BC) ([#6675](https://github.com/googleapis/google-cloud-php/issues/6675)) ([2fe9eaf](https://github.com/googleapis/google-cloud-php/commit/2fe9eaf0aecc1da7c1ff5d42e4b4bd0030f3cc96))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-css 0.2.3</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.3.0 ([#7221](https://github.com/googleapis/google-cloud-php/issues/7221)) ([0fcd580](https://github.com/googleapis/google-cloud-php/commit/0fcd58035e4706e4d3505d2489f51f25ad082c52))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.4.0</summary>
+
+
+
+### Features
+
+* Fix inventories sub-API publication by adding correct child_type in the API proto ([#7214](https://github.com/googleapis/google-cloud-php/issues/7214)) ([d537750](https://github.com/googleapis/google-cloud-php/commit/d537750244c7783b4845bfcdd7d158d74b1a5852))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.3.0 ([#7221](https://github.com/googleapis/google-cloud-php/issues/7221)) ([0fcd580](https://github.com/googleapis/google-cloud-php/commit/0fcd58035e4706e4d3505d2489f51f25ad082c52))
+
+
+### Documentation
+
+* A comment for field `region` in message `.google.shopping.merchant.inventories.v1beta.RegionalInventory` is changed ([d537750](https://github.com/googleapis/google-cloud-php/commit/d537750244c7783b4845bfcdd7d158d74b1a5852))
+* A comment for field `store_code` in message `.google.shopping.merchant.inventories.v1beta.LocalInventory` is changed ([d537750](https://github.com/googleapis/google-cloud-php/commit/d537750244c7783b4845bfcdd7d158d74b1a5852))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.7.0</summary>
+
+
+
+### Features
+
+* Add click potential to Reports sub-API publication ([#7208](https://github.com/googleapis/google-cloud-php/issues/7208)) ([4932980](https://github.com/googleapis/google-cloud-php/commit/4932980eca54d99baf0563c1058e64e2ccb5fa56))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.3.0 ([#7221](https://github.com/googleapis/google-cloud-php/issues/7221)) ([0fcd580](https://github.com/googleapis/google-cloud-php/commit/0fcd58035e4706e4d3505d2489f51f25ad082c52))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.75.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 1.41.2</summary>
+
+
+
+</details>
+
 ## 0.240.0
 
 <details><summary>google/cloud-advisorynotifications 0.8.0</summary>

@@ -35,7 +35,8 @@ use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
  * which can be used to break up the data for distributed tasks like
  * mapreduces.
  *
- * @param string $formattedTableName The unique name of the table from which to sample row keys.
+ * @param string $formattedTableName Optional. The unique name of the table from which to sample row keys.
+ *
  *                                   Values are of the form
  *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
