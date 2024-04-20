@@ -9,17 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Retrieves a list of evaluations for a given
- * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+ * Retrieves a list of evaluations for a given [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ListEvaluationsRequest</code>
  */
 class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
-     * evaluations for.
+     * Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list evaluations for.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -42,9 +39,7 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
 
     /**
-     * @param string $parent Required. The resource name of the
-     *                       [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
-     *                       evaluations for.
+     * @param string $parent Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list evaluations for.
      *                       `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *                       Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
      *
@@ -65,9 +60,7 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
-     *           evaluations for.
+     *           Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list evaluations for.
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type int $page_size
      *           The standard list page size.
@@ -84,9 +77,7 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
-     * evaluations for.
+     * Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list evaluations for.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -98,9 +89,7 @@ class ListEvaluationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
-     * evaluations for.
+     * Required. The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list evaluations for.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

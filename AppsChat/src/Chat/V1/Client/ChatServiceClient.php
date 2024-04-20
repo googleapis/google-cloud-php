@@ -47,7 +47,9 @@ use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
+use Google\Apps\Chat\V1\GetSpaceReadStateRequest;
 use Google\Apps\Chat\V1\GetSpaceRequest;
+use Google\Apps\Chat\V1\GetThreadReadStateRequest;
 use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListReactionsRequest;
@@ -57,7 +59,11 @@ use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\Reaction;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
+use Google\Apps\Chat\V1\SpaceReadState;
+use Google\Apps\Chat\V1\ThreadReadState;
+use Google\Apps\Chat\V1\UpdateMembershipRequest;
 use Google\Apps\Chat\V1\UpdateMessageRequest;
+use Google\Apps\Chat\V1\UpdateSpaceReadStateRequest;
 use Google\Apps\Chat\V1\UpdateSpaceRequest;
 use Google\Apps\Chat\V1\UploadAttachmentRequest;
 use Google\Apps\Chat\V1\UploadAttachmentResponse;
@@ -90,13 +96,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSpaceAsync(GetSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getSpaceReadStateAsync(GetSpaceReadStateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getThreadReadStateAsync(GetThreadReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateSpaceReadStateAsync(UpdateSpaceReadStateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface uploadAttachmentAsync(UploadAttachmentRequest $request, array $optionalArgs = [])
  */
 final class ChatServiceClient
@@ -140,6 +150,8 @@ final class ChatServiceClient
         'https://www.googleapis.com/auth/chat.spaces',
         'https://www.googleapis.com/auth/chat.spaces.create',
         'https://www.googleapis.com/auth/chat.spaces.readonly',
+        'https://www.googleapis.com/auth/chat.users.readstate',
+        'https://www.googleapis.com/auth/chat.users.readstate.readonly',
     ];
 
     private static function getClientDefaults()
@@ -271,6 +283,23 @@ final class ChatServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * space_read_state resource.
+     *
+     * @param string $user
+     * @param string $space
+     *
+     * @return string The formatted space_read_state resource.
+     */
+    public static function spaceReadStateName(string $user, string $space): string
+    {
+        return self::getPathTemplate('spaceReadState')->render([
+            'user' => $user,
+            'space' => $space,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a thread
      * resource.
      *
@@ -288,6 +317,25 @@ final class ChatServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * thread_read_state resource.
+     *
+     * @param string $user
+     * @param string $space
+     * @param string $thread
+     *
+     * @return string The formatted thread_read_state resource.
+     */
+    public static function threadReadStateName(string $user, string $space, string $thread): string
+    {
+        return self::getPathTemplate('threadReadState')->render([
+            'user' => $user,
+            'space' => $space,
+            'thread' => $thread,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -297,7 +345,9 @@ final class ChatServiceClient
      * - quotedMessageMetadata: spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}
      * - reaction: spaces/{space}/messages/{message}/reactions/{reaction}
      * - space: spaces/{space}
+     * - spaceReadState: users/{user}/spaces/{space}/spaceReadState
      * - thread: spaces/{space}/threads/{thread}
+     * - threadReadState: users/{user}/spaces/{space}/threads/{thread}/threadReadState
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -887,6 +937,66 @@ final class ChatServiceClient
     }
 
     /**
+     * Returns details about a user's read state within a space, used to identify
+     * read and unread messages.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is {@see ChatServiceClient::getSpaceReadStateAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/get_space_read_state.php
+     *
+     * @param GetSpaceReadStateRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SpaceReadState
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSpaceReadState(GetSpaceReadStateRequest $request, array $callOptions = []): SpaceReadState
+    {
+        return $this->startApiCall('GetSpaceReadState', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns details about a user's read state within a thread, used to identify
+     * read and unread messages.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is {@see ChatServiceClient::getThreadReadStateAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/get_thread_read_state.php
+     *
+     * @param GetThreadReadStateRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ThreadReadState
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getThreadReadState(GetThreadReadStateRequest $request, array $callOptions = []): ThreadReadState
+    {
+        return $this->startApiCall('GetThreadReadState', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists memberships in a space. For an example, see [List users and Google
      * Chat apps in a
      * space](https://developers.google.com/workspace/chat/list-members). Listing
@@ -1097,6 +1207,33 @@ final class ChatServiceClient
     }
 
     /**
+     * Updates a membership. Requires [user
+     * authentication](https://developers.google.com/chat/api/guides/auth/users).
+     *
+     * The async variant is {@see ChatServiceClient::updateMembershipAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/update_membership.php
+     *
+     * @param UpdateMembershipRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Membership
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMembership(UpdateMembershipRequest $request, array $callOptions = []): Membership
+    {
+        return $this->startApiCall('UpdateMembership', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a message. There's a difference between the `patch` and `update`
      * methods. The `patch`
      * method uses a `patch` request while the `update` method uses a `put`
@@ -1170,6 +1307,36 @@ final class ChatServiceClient
     public function updateSpace(UpdateSpaceRequest $request, array $callOptions = []): Space
     {
         return $this->startApiCall('UpdateSpace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a user's read state within a space, used to identify read and
+     * unread messages.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *
+     * The async variant is {@see ChatServiceClient::updateSpaceReadStateAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/update_space_read_state.php
+     *
+     * @param UpdateSpaceReadStateRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SpaceReadState
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSpaceReadState(UpdateSpaceReadStateRequest $request, array $callOptions = []): SpaceReadState
+    {
+        return $this->startApiCall('UpdateSpaceReadState', $request, $callOptions)->wait();
     }
 
     /**

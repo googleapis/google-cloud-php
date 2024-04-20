@@ -436,9 +436,8 @@ final class DocumentProcessorServiceClient
     }
 
     /**
-     * Creates a processor from the
-     * [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided. The
-     * processor will be at `ENABLED` state by default after its creation.
+     * Creates a processor from the [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided.
+     * The processor will be at `ENABLED` state by default after its creation.
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::createProcessorAsync()} .
@@ -630,8 +629,7 @@ final class DocumentProcessorServiceClient
     }
 
     /**
-     * Fetches processor types. Note that we don't use
-     * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+     * Fetches processor types. Note that we don't use [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
      * here, because it isn't paginated.
      *
      * The async variant is
@@ -930,10 +928,8 @@ final class DocumentProcessorServiceClient
     }
 
     /**
-     * Set the default (active) version of a
-     * [Processor][google.cloud.documentai.v1.Processor] that will be used in
-     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
-     * and
+     * Set the default (active) version of a [Processor][google.cloud.documentai.v1.Processor] that will be used in
+     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] and
      * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
      *
      * The async variant is

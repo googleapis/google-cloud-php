@@ -80,6 +80,16 @@
                                 "getSpace"
                             ]
                         },
+                        "GetSpaceReadState": {
+                            "methods": [
+                                "getSpaceReadState"
+                            ]
+                        },
+                        "GetThreadReadState": {
+                            "methods": [
+                                "getThreadReadState"
+                            ]
+                        },
                         "ListMemberships": {
                             "methods": [
                                 "listMemberships"
@@ -105,6 +115,11 @@
                                 "setUpSpace"
                             ]
                         },
+                        "UpdateMembership": {
+                            "methods": [
+                                "updateMembership"
+                            ]
+                        },
                         "UpdateMessage": {
                             "methods": [
                                 "updateMessage"
@@ -113,6 +128,11 @@
                         "UpdateSpace": {
                             "methods": [
                                 "updateSpace"
+                            ]
+                        },
+                        "UpdateSpaceReadState": {
+                            "methods": [
+                                "updateSpaceReadState"
                             ]
                         },
                         "UploadAttachment": {

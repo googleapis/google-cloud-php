@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The long-running operation metadata for the
- * [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]
- * method.
+ * [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor] method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.DisableProcessorMetadata</code>
  */

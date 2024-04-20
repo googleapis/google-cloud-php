@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A unique resource name for this Uptime check configuration. The format is:
+     * Identifier. A unique resource name for this Uptime check configuration. The
+     * format is:
      *      projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      * `[PROJECT_ID_OR_NUMBER]` is the Workspace host project associated with the
      * Uptime check.
@@ -25,7 +26,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * on create, the resource name is assigned by the server and included in the
      * response.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -119,7 +120,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A unique resource name for this Uptime check configuration. The format is:
+     *           Identifier. A unique resource name for this Uptime check configuration. The
+     *           format is:
      *                projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      *           `[PROJECT_ID_OR_NUMBER]` is the Workspace host project associated with the
      *           Uptime check.
@@ -145,6 +147,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *             `cloud_run_revision`
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup $resource_group
      *           The group resource associated with the configuration.
+     *     @type \Google\Cloud\Monitoring\V3\SyntheticMonitorTarget $synthetic_monitor
+     *           Specifies a Synthetic Monitor to invoke.
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck $http_check
      *           Contains information needed to make an HTTP or HTTPS check.
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck $tcp_check
@@ -196,7 +200,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique resource name for this Uptime check configuration. The format is:
+     * Identifier. A unique resource name for this Uptime check configuration. The
+     * format is:
      *      projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      * `[PROJECT_ID_OR_NUMBER]` is the Workspace host project associated with the
      * Uptime check.
@@ -204,7 +209,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * on create, the resource name is assigned by the server and included in the
      * response.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -213,7 +218,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique resource name for this Uptime check configuration. The format is:
+     * Identifier. A unique resource name for this Uptime check configuration. The
+     * format is:
      *      projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
      * `[PROJECT_ID_OR_NUMBER]` is the Workspace host project associated with the
      * Uptime check.
@@ -221,7 +227,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * on create, the resource name is assigned by the server and included in the
      * response.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -343,6 +349,37 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Specifies a Synthetic Monitor to invoke.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.SyntheticMonitorTarget synthetic_monitor = 21;</code>
+     * @return \Google\Cloud\Monitoring\V3\SyntheticMonitorTarget|null
+     */
+    public function getSyntheticMonitor()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasSyntheticMonitor()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * Specifies a Synthetic Monitor to invoke.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.SyntheticMonitorTarget synthetic_monitor = 21;</code>
+     * @param \Google\Cloud\Monitoring\V3\SyntheticMonitorTarget $var
+     * @return $this
+     */
+    public function setSyntheticMonitor($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\SyntheticMonitorTarget::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }
