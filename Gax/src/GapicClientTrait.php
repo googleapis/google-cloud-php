@@ -629,6 +629,13 @@ trait GapicClientTrait
                 'X-Goog-User-Project' => [$quotaProject]
             ];
         }
+        
+        if (isset($this->apiVersion)) {
+            $fixedHeaders += [
+                'X-Goog-Api-Version' => [$this->apiVersion]
+            ];
+        }
+
         $callStack = function (Call $call, array $options) {
             $startCallMethod = $this->transportCallMethods[$call->getCallType()];
             return $this->transport->$startCallMethod($call, $options);

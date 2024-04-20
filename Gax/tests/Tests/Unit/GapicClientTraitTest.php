@@ -135,6 +135,71 @@ class GapicClientTraitTest extends TestCase
         );
     }
 
+    public function testVersionedHeadersOverwriteBehavion()
+    {
+        $unaryDescriptors = [
+            'callType' => Call::UNARY_CALL,
+            'responseType' => 'decodeType',
+            'headerParams' => [
+                [
+                    'fieldAccessors' => ['getName'],
+                    'keyName' => 'name'
+                ]
+            ]
+        ];
+        $request = new MockRequestBody(['name' => 'foos/123/bars/456']);
+        $header = AgentHeader::buildAgentHeader([
+            'libName' => 'gccl',
+            'libVersion' => '0.0.0',
+            'gapicVersion' => '0.9.0',
+            'apiCoreVersion' => '1.0.0',
+            'phpVersion' => '5.5.0',
+            'grpcVersion' => '1.0.1',
+            'protobufVersion' => '6.6.6',
+        ]);
+        $headers = [
+            'x-goog-api-client' => ['this-should-not-be-used'],
+            'new-header' => ['this-should-be-used'],
+            'X-Goog-Api-Version' => ['this-should-not-be-used'],
+        ];
+        $expectedHeaders = [
+            'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1 rest/1.0.0 pb/6.6.6'],
+            'new-header' => ['this-should-be-used'],
+            'X-Goog-Api-Version' => ['20240418'],
+            'x-goog-request-params' => ['name=foos%2F123%2Fbars%2F456'],
+        ];
+        $transport = $this->getMockBuilder(TransportInterface::class)->disableOriginalConstructor()->getMock();
+        $credentialsWrapper = CredentialsWrapper::build([
+            'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+        ]);
+        $transport->expects($this->once())
+            ->method('startUnaryCall')
+            ->with(
+                $this->isInstanceOf(Call::class),
+                $this->equalTo([
+                    'headers' => $expectedHeaders,
+                    'credentialsWrapper' => $credentialsWrapper,
+                ])
+            )
+            ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
+        $client = new VersionedStubGapicClient();
+        $client->set('agentHeader', $header);
+        $client->set('retrySettings', [
+            'method' => $this->getMockBuilder(RetrySettings::class)
+                ->disableOriginalConstructor()
+                ->getMock()
+            ]
+        );
+        $client->set('transport', $transport);
+        $client->set('credentialsWrapper', $credentialsWrapper);
+        $client->set('descriptors', ['method' => $unaryDescriptors]);
+        $client->startApiCall(
+            'method',
+            $request,
+            ['headers' => $headers]
+        );
+    }
+
     public function testConfigureCallConstructionOptions()
     {
         $client = new StubGapicClient();
@@ -1544,6 +1609,14 @@ class StubGapicClient
             ],
         ];
     }
+}
+
+class VersionedStubGapicClient extends StubGapicClient
+{
+    // The API version will come from the client library who uses the GapicClientTrait
+    // so in that one it will be private vs Protected. In this case I used protected so
+    // the parent class can see it.
+    protected $apiVersion = '20240418';
 }
 
 trait GapicClientStubTrait
