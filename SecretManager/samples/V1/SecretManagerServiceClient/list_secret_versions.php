@@ -36,7 +36,7 @@ use Google\Cloud\SecretManager\V1\SecretVersion;
  * @param string $formattedParent The resource name of the
  *                                [Secret][google.cloud.secretmanager.v1.Secret] associated with the
  *                                [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in
- *                                the format `projects/&#42;/secrets/*`. Please see
+ *                                the format `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
  *                                {@see SecretManagerServiceClient::secretName()} for help formatting this field.
  */
 function list_secret_versions_sample(string $formattedParent): void

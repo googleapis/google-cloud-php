@@ -75,6 +75,26 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool client_specified_payload_checksum = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $client_specified_payload_checksum = false;
+    /**
+     * Optional. Output only. Scheduled destroy time for secret version.
+     * This is a part of the Delayed secret version destroy feature. For a
+     * Secret with a valid version destroy TTL, when a secert version is
+     * destroyed, the version is moved to disabled state and it is scheduled for
+     * destruction. The version is destroyed only after the
+     * `scheduled_destroy_time`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_destroy_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $scheduled_destroy_time = null;
+    /**
+     * Output only. The customer-managed encryption status of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. Only
+     * populated if customer-managed encryption is used and
+     * [Secret][google.cloud.secretmanager.v1.Secret] is a Regionalised Secret.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryptionStatus customer_managed_encryption = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $customer_managed_encryption = null;
 
     /**
      * Constructor.
@@ -114,6 +134,18 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *           [SecretManagerService][google.cloud.secretmanager.v1.SecretManagerService]
      *           on
      *           [SecretManagerService.AddSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion].
+     *     @type \Google\Protobuf\Timestamp $scheduled_destroy_time
+     *           Optional. Output only. Scheduled destroy time for secret version.
+     *           This is a part of the Delayed secret version destroy feature. For a
+     *           Secret with a valid version destroy TTL, when a secert version is
+     *           destroyed, the version is moved to disabled state and it is scheduled for
+     *           destruction. The version is destroyed only after the
+     *           `scheduled_destroy_time`.
+     *     @type \Google\Cloud\SecretManager\V1\CustomerManagedEncryptionStatus $customer_managed_encryption
+     *           Output only. The customer-managed encryption status of the
+     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. Only
+     *           populated if customer-managed encryption is used and
+     *           [Secret][google.cloud.secretmanager.v1.Secret] is a Regionalised Secret.
      * }
      */
     public function __construct($data = NULL) {
@@ -365,6 +397,94 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->client_specified_payload_checksum = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Output only. Scheduled destroy time for secret version.
+     * This is a part of the Delayed secret version destroy feature. For a
+     * Secret with a valid version destroy TTL, when a secert version is
+     * destroyed, the version is moved to disabled state and it is scheduled for
+     * destruction. The version is destroyed only after the
+     * `scheduled_destroy_time`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_destroy_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getScheduledDestroyTime()
+    {
+        return $this->scheduled_destroy_time;
+    }
+
+    public function hasScheduledDestroyTime()
+    {
+        return isset($this->scheduled_destroy_time);
+    }
+
+    public function clearScheduledDestroyTime()
+    {
+        unset($this->scheduled_destroy_time);
+    }
+
+    /**
+     * Optional. Output only. Scheduled destroy time for secret version.
+     * This is a part of the Delayed secret version destroy feature. For a
+     * Secret with a valid version destroy TTL, when a secert version is
+     * destroyed, the version is moved to disabled state and it is scheduled for
+     * destruction. The version is destroyed only after the
+     * `scheduled_destroy_time`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_destroy_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setScheduledDestroyTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->scheduled_destroy_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The customer-managed encryption status of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. Only
+     * populated if customer-managed encryption is used and
+     * [Secret][google.cloud.secretmanager.v1.Secret] is a Regionalised Secret.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryptionStatus customer_managed_encryption = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\SecretManager\V1\CustomerManagedEncryptionStatus|null
+     */
+    public function getCustomerManagedEncryption()
+    {
+        return $this->customer_managed_encryption;
+    }
+
+    public function hasCustomerManagedEncryption()
+    {
+        return isset($this->customer_managed_encryption);
+    }
+
+    public function clearCustomerManagedEncryption()
+    {
+        unset($this->customer_managed_encryption);
+    }
+
+    /**
+     * Output only. The customer-managed encryption status of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. Only
+     * populated if customer-managed encryption is used and
+     * [Secret][google.cloud.secretmanager.v1.Secret] is a Regionalised Secret.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryptionStatus customer_managed_encryption = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\SecretManager\V1\CustomerManagedEncryptionStatus $var
+     * @return $this
+     */
+    public function setCustomerManagedEncryption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\CustomerManagedEncryptionStatus::class);
+        $this->customer_managed_encryption = $var;
 
         return $this;
     }
