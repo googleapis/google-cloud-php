@@ -369,7 +369,8 @@ class CredentialsWrapperTest extends TestCase
      */
     public function testGetAuthorizationHeaderCallback($fetcher, $expectedCallbackResponse)
     {
-        $credentialsWrapper = new CredentialsWrapper($fetcher);
+        $httpHandler = function () {};
+        $credentialsWrapper = new CredentialsWrapper($fetcher, $httpHandler);
         $callback = $credentialsWrapper->getAuthorizationHeaderCallback('audience');
         $actualResponse = $callback();
         $this->assertSame($expectedCallbackResponse, $actualResponse);
@@ -385,7 +386,7 @@ class CredentialsWrapperTest extends TestCase
                 'access_token' => 123,
                 'expires_at' => time() - 1
             ]);
-        $expiredFetcher->updateMetadata(Argument::any(), 'audience')
+        $expiredFetcher->updateMetadata(Argument::any(), 'audience', Argument::type('callable'))
             ->willReturn(['authorization' => ['Bearer 456']]);
         $expiredInvalidFetcher = $this->prophesize(FetchAuthTokenInterface::class);
         $expiredInvalidFetcher->getLastReceivedToken()
