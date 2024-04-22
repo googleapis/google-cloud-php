@@ -74,7 +74,7 @@ be found for Mac or Windows.
 3.  Run tests.
 
     ```sh
-    > vendor/bin/phpunit --bootstrap tests/bootstrap.php tests
+    > vendor/bin/phpunit
     ```
 
 4.  Updating dependencies after changing `composer.json`:
