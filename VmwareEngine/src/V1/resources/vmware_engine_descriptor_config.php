@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -22,9 +42,104 @@ return [
                     ],
                 ],
             ],
+            'CreateExternalAccessRule' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\ExternalAccessRule',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateExternalAddress' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\ExternalAddress',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateHcxActivationKey' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\HcxActivationKey',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateLoggingServer' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\LoggingServer',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateManagementDnsZoneBinding' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\ManagementDnsZoneBinding',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateNetworkPeering' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\NetworkPeering',
                     'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -136,6 +251,101 @@ return [
                     ],
                 ],
             ],
+            'DeleteExternalAccessRule' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteExternalAddress' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteLoggingServer' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteManagementDnsZoneBinding' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteNetworkPeering' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteNetworkPolicy' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -212,6 +422,44 @@ return [
                     ],
                 ],
             ],
+            'GrantDnsBindPermission' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\DnsBindPermission',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RepairManagementDnsZoneBinding' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\ManagementDnsZoneBinding',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ResetNsxCredentials' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\PrivateCloud',
@@ -250,6 +498,25 @@ return [
                     ],
                 ],
             ],
+            'RevokeDnsBindPermission' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\DnsBindPermission',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UndeletePrivateCloud' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\PrivateCloud',
@@ -284,6 +551,126 @@ return [
                         'keyName' => 'cluster.name',
                         'fieldAccessors' => [
                             'getCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDnsForwarding' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\DnsForwarding',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'dns_forwarding.name',
+                        'fieldAccessors' => [
+                            'getDnsForwarding',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateExternalAccessRule' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\ExternalAccessRule',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'external_access_rule.name',
+                        'fieldAccessors' => [
+                            'getExternalAccessRule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateExternalAddress' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\ExternalAddress',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'external_address.name',
+                        'fieldAccessors' => [
+                            'getExternalAddress',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateLoggingServer' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\LoggingServer',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'logging_server.name',
+                        'fieldAccessors' => [
+                            'getLoggingServer',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateManagementDnsZoneBinding' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\ManagementDnsZoneBinding',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'management_dns_zone_binding.name',
+                        'fieldAccessors' => [
+                            'getManagementDnsZoneBinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNetworkPeering' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VmwareEngine\V1\NetworkPeering',
+                    'metadataReturnType' => '\Google\Cloud\VmwareEngine\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'network_peering.name',
+                        'fieldAccessors' => [
+                            'getNetworkPeering',
                             'getName',
                         ],
                     ],
@@ -389,9 +776,77 @@ return [
                     ],
                 ],
             ],
+            'FetchNetworkPolicyExternalAddresses' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getExternalAddresses',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\FetchNetworkPolicyExternalAddressesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'network_policy',
+                        'fieldAccessors' => [
+                            'getNetworkPolicy',
+                        ],
+                    ],
+                ],
+            ],
             'GetCluster' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\VmwareEngine\V1\Cluster',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDnsBindPermission' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\DnsBindPermission',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDnsForwarding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\DnsForwarding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetExternalAccessRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ExternalAccessRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetExternalAddress' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ExternalAddress',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -413,9 +868,57 @@ return [
                     ],
                 ],
             ],
+            'GetLoggingServer' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\LoggingServer',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetManagementDnsZoneBinding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ManagementDnsZoneBinding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNetworkPeering' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\NetworkPeering',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetNetworkPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\VmwareEngine\V1\NetworkPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNode' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\Node',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -505,6 +1008,46 @@ return [
                     ],
                 ],
             ],
+            'ListExternalAccessRules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getExternalAccessRules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListExternalAccessRulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListExternalAddresses' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getExternalAddresses',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListExternalAddressesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListHcxActivationKeys' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -516,6 +1059,66 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\VmwareEngine\V1\ListHcxActivationKeysResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLoggingServers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLoggingServers',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListLoggingServersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListManagementDnsZoneBindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getManagementDnsZoneBindings',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListManagementDnsZoneBindingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNetworkPeerings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getNetworkPeerings',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListNetworkPeeringsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -556,6 +1159,46 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\VmwareEngine\V1\ListNodeTypesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNodes' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getNodes',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListNodesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPeeringRoutes' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getPeeringRoutes',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\VmwareEngine\V1\ListPeeringRoutesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -764,10 +1407,18 @@ return [
             ],
             'templateMap' => [
                 'cluster' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}/clusters/{cluster}',
+                'dnsBindPermission' => 'projects/{project}/locations/{location}/dnsBindPermission',
+                'dnsForwarding' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}/dnsForwarding',
+                'externalAccessRule' => 'projects/{project}/locations/{location}/networkPolicies/{network_policy}/externalAccessRules/{external_access_rule}',
+                'externalAddress' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}/externalAddresses/{external_address}',
                 'hcxActivationKey' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}/hcxActivationKeys/{hcx_activation_key}',
                 'location' => 'projects/{project}/locations/{location}',
+                'loggingServer' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}/loggingServers/{logging_server}',
+                'managementDnsZoneBinding' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}/managementDnsZoneBindings/{management_dns_zone_binding}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'networkPeering' => 'projects/{project}/locations/{location}/networkPeerings/{network_peering}',
                 'networkPolicy' => 'projects/{project}/locations/{location}/networkPolicies/{network_policy}',
+                'node' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}/clusters/{cluster}/nodes/{node}',
                 'nodeType' => 'projects/{project}/locations/{location}/nodeTypes/{node_type}',
                 'privateCloud' => 'projects/{project}/locations/{location}/privateClouds/{private_cloud}',
                 'privateConnection' => 'projects/{project}/locations/{location}/privateConnections/{private_connection}',

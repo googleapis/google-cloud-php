@@ -74,13 +74,23 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      * possible for a request to be subject to thresholding thresholding and no
      * data is absent from the report, and this happens when all data is above the
      * thresholds. To learn more, see [Data
-     * thresholds](https://support.google.com/analytics/answer/9383630) and [About
-     * Demographics and
-     * Interests](https://support.google.com/analytics/answer/2799357).
+     * thresholds](https://support.google.com/analytics/answer/9383630).
      *
      * Generated from protobuf field <code>optional bool subject_to_thresholding = 8;</code>
      */
     private $subject_to_thresholding = null;
+    /**
+     * If this report results is
+     * [sampled](https://support.google.com/analytics/answer/13331292), this
+     * describes the percentage of events used in this report. One
+     * `samplingMetadatas` is populated for each date range. Each
+     * `samplingMetadatas` corresponds to a date range in order that date ranges
+     * were specified in the request.
+     * However if the results are not sampled, this field will not be defined.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.SamplingMetadata sampling_metadatas = 9;</code>
+     */
+    private $sampling_metadatas;
 
     /**
      * Constructor.
@@ -127,9 +137,15 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *           possible for a request to be subject to thresholding thresholding and no
      *           data is absent from the report, and this happens when all data is above the
      *           thresholds. To learn more, see [Data
-     *           thresholds](https://support.google.com/analytics/answer/9383630) and [About
-     *           Demographics and
-     *           Interests](https://support.google.com/analytics/answer/2799357).
+     *           thresholds](https://support.google.com/analytics/answer/9383630).
+     *     @type array<\Google\Analytics\Data\V1beta\SamplingMetadata>|\Google\Protobuf\Internal\RepeatedField $sampling_metadatas
+     *           If this report results is
+     *           [sampled](https://support.google.com/analytics/answer/13331292), this
+     *           describes the percentage of events used in this report. One
+     *           `samplingMetadatas` is populated for each date range. Each
+     *           `samplingMetadatas` corresponds to a date range in order that date ranges
+     *           were specified in the request.
+     *           However if the results are not sampled, this field will not be defined.
      * }
      */
     public function __construct($data = NULL) {
@@ -359,9 +375,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      * possible for a request to be subject to thresholding thresholding and no
      * data is absent from the report, and this happens when all data is above the
      * thresholds. To learn more, see [Data
-     * thresholds](https://support.google.com/analytics/answer/9383630) and [About
-     * Demographics and
-     * Interests](https://support.google.com/analytics/answer/2799357).
+     * thresholds](https://support.google.com/analytics/answer/9383630).
      *
      * Generated from protobuf field <code>optional bool subject_to_thresholding = 8;</code>
      * @return bool
@@ -387,9 +401,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      * possible for a request to be subject to thresholding thresholding and no
      * data is absent from the report, and this happens when all data is above the
      * thresholds. To learn more, see [Data
-     * thresholds](https://support.google.com/analytics/answer/9383630) and [About
-     * Demographics and
-     * Interests](https://support.google.com/analytics/answer/2799357).
+     * thresholds](https://support.google.com/analytics/answer/9383630).
      *
      * Generated from protobuf field <code>optional bool subject_to_thresholding = 8;</code>
      * @param bool $var
@@ -399,6 +411,44 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->subject_to_thresholding = $var;
+
+        return $this;
+    }
+
+    /**
+     * If this report results is
+     * [sampled](https://support.google.com/analytics/answer/13331292), this
+     * describes the percentage of events used in this report. One
+     * `samplingMetadatas` is populated for each date range. Each
+     * `samplingMetadatas` corresponds to a date range in order that date ranges
+     * were specified in the request.
+     * However if the results are not sampled, this field will not be defined.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.SamplingMetadata sampling_metadatas = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSamplingMetadatas()
+    {
+        return $this->sampling_metadatas;
+    }
+
+    /**
+     * If this report results is
+     * [sampled](https://support.google.com/analytics/answer/13331292), this
+     * describes the percentage of events used in this report. One
+     * `samplingMetadatas` is populated for each date range. Each
+     * `samplingMetadatas` corresponds to a date range in order that date ranges
+     * were specified in the request.
+     * However if the results are not sampled, this field will not be defined.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.SamplingMetadata sampling_metadatas = 9;</code>
+     * @param array<\Google\Analytics\Data\V1beta\SamplingMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSamplingMetadatas($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1beta\SamplingMetadata::class);
+        $this->sampling_metadatas = $arr;
 
         return $this;
     }

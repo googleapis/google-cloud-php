@@ -1,0 +1,118 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.securitycentermanagement.v1",
+    "libraryPackage": "Google\\Cloud\\SecurityCenterManagement\\V1",
+    "services": {
+        "SecurityCenterManagement": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SecurityCenterManagementGapicClient",
+                    "rpcs": {
+                        "CreateEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "createEventThreatDetectionCustomModule"
+                            ]
+                        },
+                        "CreateSecurityHealthAnalyticsCustomModule": {
+                            "methods": [
+                                "createSecurityHealthAnalyticsCustomModule"
+                            ]
+                        },
+                        "DeleteEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "deleteEventThreatDetectionCustomModule"
+                            ]
+                        },
+                        "DeleteSecurityHealthAnalyticsCustomModule": {
+                            "methods": [
+                                "deleteSecurityHealthAnalyticsCustomModule"
+                            ]
+                        },
+                        "GetEffectiveEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "getEffectiveEventThreatDetectionCustomModule"
+                            ]
+                        },
+                        "GetEffectiveSecurityHealthAnalyticsCustomModule": {
+                            "methods": [
+                                "getEffectiveSecurityHealthAnalyticsCustomModule"
+                            ]
+                        },
+                        "GetEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "getEventThreatDetectionCustomModule"
+                            ]
+                        },
+                        "GetSecurityHealthAnalyticsCustomModule": {
+                            "methods": [
+                                "getSecurityHealthAnalyticsCustomModule"
+                            ]
+                        },
+                        "ListDescendantEventThreatDetectionCustomModules": {
+                            "methods": [
+                                "listDescendantEventThreatDetectionCustomModules"
+                            ]
+                        },
+                        "ListDescendantSecurityHealthAnalyticsCustomModules": {
+                            "methods": [
+                                "listDescendantSecurityHealthAnalyticsCustomModules"
+                            ]
+                        },
+                        "ListEffectiveEventThreatDetectionCustomModules": {
+                            "methods": [
+                                "listEffectiveEventThreatDetectionCustomModules"
+                            ]
+                        },
+                        "ListEffectiveSecurityHealthAnalyticsCustomModules": {
+                            "methods": [
+                                "listEffectiveSecurityHealthAnalyticsCustomModules"
+                            ]
+                        },
+                        "ListEventThreatDetectionCustomModules": {
+                            "methods": [
+                                "listEventThreatDetectionCustomModules"
+                            ]
+                        },
+                        "ListSecurityHealthAnalyticsCustomModules": {
+                            "methods": [
+                                "listSecurityHealthAnalyticsCustomModules"
+                            ]
+                        },
+                        "SimulateSecurityHealthAnalyticsCustomModule": {
+                            "methods": [
+                                "simulateSecurityHealthAnalyticsCustomModule"
+                            ]
+                        },
+                        "UpdateEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "updateEventThreatDetectionCustomModule"
+                            ]
+                        },
+                        "UpdateSecurityHealthAnalyticsCustomModule": {
+                            "methods": [
+                                "updateSecurityHealthAnalyticsCustomModule"
+                            ]
+                        },
+                        "ValidateEventThreatDetectionCustomModule": {
+                            "methods": [
+                                "validateEventThreatDetectionCustomModule"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

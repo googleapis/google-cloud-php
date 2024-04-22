@@ -80,9 +80,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     private $glossaries;
     /**
-     * Optional. File format conversion map to be applied to all input files.
-     * Map's key is the original mime_type. Map's value is the target mime_type of
-     * translated documents.
+     * Optional. The file format conversion map that is applied to all input
+     * files. The map key is the original mime_type. The map value is the target
+     * mime_type of translated documents.
      * Supported file format conversion includes:
      * - `application/pdf` to
      *   `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
@@ -198,9 +198,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $glossaries
      *           Optional. Glossaries to be applied. It's keyed by target language code.
      *     @type array|\Google\Protobuf\Internal\MapField $format_conversions
-     *           Optional. File format conversion map to be applied to all input files.
-     *           Map's key is the original mime_type. Map's value is the target mime_type of
-     *           translated documents.
+     *           Optional. The file format conversion map that is applied to all input
+     *           files. The map key is the original mime_type. The map value is the target
+     *           mime_type of translated documents.
      *           Supported file format conversion includes:
      *           - `application/pdf` to
      *             `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
@@ -462,9 +462,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. File format conversion map to be applied to all input files.
-     * Map's key is the original mime_type. Map's value is the target mime_type of
-     * translated documents.
+     * Optional. The file format conversion map that is applied to all input
+     * files. The map key is the original mime_type. The map value is the target
+     * mime_type of translated documents.
      * Supported file format conversion includes:
      * - `application/pdf` to
      *   `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
@@ -480,9 +480,9 @@ class BatchTranslateDocumentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. File format conversion map to be applied to all input files.
-     * Map's key is the original mime_type. Map's value is the target mime_type of
-     * translated documents.
+     * Optional. The file format conversion map that is applied to all input
+     * files. The map key is the original mime_type. The map value is the target
+     * mime_type of translated documents.
      * Supported file format conversion includes:
      * - `application/pdf` to
      *   `application/vnd.openxmlformats-officedocument.wordprocessingml.document`

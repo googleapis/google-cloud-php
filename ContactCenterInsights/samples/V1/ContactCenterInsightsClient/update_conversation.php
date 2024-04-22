@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_UpdateConversation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\Conversation;
+use Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest;
 
 /**
  * Updates a conversation.
@@ -41,13 +42,15 @@ function update_conversation_sample(): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversation = new Conversation();
+    $request = (new UpdateConversationRequest())
+        ->setConversation($conversation);
 
     // Call the API and handle any network failures.
     try {
         /** @var Conversation $response */
-        $response = $contactCenterInsightsClient->updateConversation($conversation);
+        $response = $contactCenterInsightsClient->updateConversation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -71,6 +71,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $error = null;
     /**
+     * An Admin API warning message.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ApiWarning api_warning = 19;</code>
+     */
+    private $api_warning = null;
+    /**
      * The type of the operation. Valid values are:
      * *  `CREATE`
      * *  `DELETE`
@@ -161,6 +167,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1\OperationErrors $error
      *           If errors occurred during processing of this operation, this field will be
      *           populated.
+     *     @type \Google\Cloud\Sql\V1\ApiWarning $api_warning
+     *           An Admin API warning message.
      *     @type int $operation_type
      *           The type of the operation. Valid values are:
      *           *  `CREATE`
@@ -452,6 +460,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\OperationErrors::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * An Admin API warning message.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ApiWarning api_warning = 19;</code>
+     * @return \Google\Cloud\Sql\V1\ApiWarning|null
+     */
+    public function getApiWarning()
+    {
+        return $this->api_warning;
+    }
+
+    public function hasApiWarning()
+    {
+        return isset($this->api_warning);
+    }
+
+    public function clearApiWarning()
+    {
+        unset($this->api_warning);
+    }
+
+    /**
+     * An Admin API warning message.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ApiWarning api_warning = 19;</code>
+     * @param \Google\Cloud\Sql\V1\ApiWarning $var
+     * @return $this
+     */
+    public function setApiWarning($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ApiWarning::class);
+        $this->api_warning = $var;
 
         return $this;
     }

@@ -285,10 +285,12 @@ class DatasetServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
+        $displayName = 'displayName1615086568';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
+        $expectedResponse->setDisplayName($displayName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -299,6 +301,8 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $datasetVersion = new DatasetVersion();
+        $datasetVersionMetadata = new Value();
+        $datasetVersion->setMetadata($datasetVersionMetadata);
         $request = (new CreateDatasetVersionRequest())
             ->setParent($formattedParent)
             ->setDatasetVersion($datasetVersion);
@@ -369,6 +373,8 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $datasetVersion = new DatasetVersion();
+        $datasetVersionMetadata = new Value();
+        $datasetVersion->setMetadata($datasetVersionMetadata);
         $request = (new CreateDatasetVersionRequest())
             ->setParent($formattedParent)
             ->setDatasetVersion($datasetVersion);
@@ -1040,10 +1046,12 @@ class DatasetServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
+        $displayName = 'displayName1615086568';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
+        $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
@@ -1607,10 +1615,12 @@ class DatasetServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
+        $displayName = 'displayName1615086568';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
+        $expectedResponse->setDisplayName($displayName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

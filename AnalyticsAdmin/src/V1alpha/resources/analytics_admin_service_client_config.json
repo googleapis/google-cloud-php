@@ -64,50 +64,25 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "AuditUserLinks": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
                 "BatchCreateAccessBindings": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
-                },
-                "BatchCreateUserLinks": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
                 },
                 "BatchDeleteAccessBindings": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "BatchDeleteUserLinks": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
                 "BatchGetAccessBindings": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "BatchGetUserLinks": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
                 "BatchUpdateAccessBindings": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
-                },
-                "BatchUpdateUserLinks": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
                 },
                 "CancelDisplayVideo360AdvertiserLinkProposal": {
                     "timeout_millis": 60000,
@@ -125,6 +100,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "CreateAudience": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "CreateCalculatedMetric": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -199,6 +179,16 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "CreateRollupProperty": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "CreateRollupPropertySourceLink": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "CreateSKAdNetworkConversionValueSchema": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -209,10 +199,15 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "CreateUserLink": {
+                "CreateSubproperty": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "CreateSubpropertyEventFilter": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "DeleteAccessBinding": {
                     "timeout_millis": 60000,
@@ -225,6 +220,11 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "DeleteAdSenseLink": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "DeleteCalculatedMetric": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -289,6 +289,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "DeleteRollupPropertySourceLink": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "DeleteSKAdNetworkConversionValueSchema": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -299,10 +304,10 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "DeleteUserLink": {
+                "DeleteSubpropertyEventFilter": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "FetchAutomatedGa4ConfigurationOptOut": {
                     "timeout_millis": 60000,
@@ -344,6 +349,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetCalculatedMetric": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetChannelGroup": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -360,6 +370,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "GetCustomMetric": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetDataRedactionSettings": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -424,6 +439,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "GetRollupPropertySourceLink": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetSKAdNetworkConversionValueSchema": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -434,10 +454,10 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "GetUserLink": {
+                "GetSubpropertyEventFilter": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "ListAccessBindings": {
                     "timeout_millis": 60000,
@@ -465,6 +485,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "ListBigQueryLinks": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListCalculatedMetrics": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -539,6 +564,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "ListRollupPropertySourceLinks": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListSKAdNetworkConversionValueSchemas": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -549,10 +579,10 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "ListUserLinks": {
+                "ListSubpropertyEventFilters": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 },
                 "ProvisionAccountTicket": {
                     "timeout_millis": 60000,
@@ -594,6 +624,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "UpdateCalculatedMetric": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "UpdateChannelGroup": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -610,6 +645,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "UpdateCustomMetric": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateDataRedactionSettings": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -674,10 +714,10 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "UpdateUserLink": {
+                "UpdateSubpropertyEventFilter": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 }
             }
         }

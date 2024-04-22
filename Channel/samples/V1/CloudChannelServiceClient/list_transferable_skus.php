@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListTransferableSkus_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListTransferableSkusRequest;
 use Google\Cloud\Channel\V1\TransferableSku;
 
 /**
@@ -57,10 +58,14 @@ function list_transferable_skus_sample(string $parent): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListTransferableSkusRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listTransferableSkus($parent);
+        $response = $cloudChannelServiceClient->listTransferableSkus($request);
 
         /** @var TransferableSku $element */
         foreach ($response as $element) {

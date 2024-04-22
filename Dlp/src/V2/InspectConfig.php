@@ -20,10 +20,10 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Restricts what info_types to look for. The values must correspond to
      * InfoType values returned by ListInfoTypes or listed at
-     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
-     * system may automatically choose what detectors to run. By default this may
-     * be all types, but may change over time as detectors are updated.
+     * system may automatically choose a default list of detectors to run, which
+     * may change over time.
      * If you need precise control and predictability as to what detectors are
      * run you should specify specific InfoTypes listed in the reference,
      * otherwise a default list will be used, which may change over time.
@@ -32,13 +32,25 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      */
     private $info_types;
     /**
-     * Only returns findings equal or above this threshold. The default is
+     * Only returns findings equal to or above this threshold. The default is
      * POSSIBLE.
-     * See https://cloud.google.com/dlp/docs/likelihood to learn more.
+     * In general, the highest likelihood setting yields the fewest findings in
+     * results and the lowest chance of a false positive. For more information,
+     * see [Match
+     * likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      */
     private $min_likelihood = 0;
+    /**
+     * Minimum likelihood per infotype. For each infotype, a user can specify a
+     * minimum likelihood. The system only returns a finding if its likelihood is
+     * above this threshold. If this field is not set, the system uses the
+     * InspectConfig min_likelihood.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.InfoTypeLikelihood min_likelihood_per_info_type = 11;</code>
+     */
+    private $min_likelihood_per_info_type;
     /**
      * Configuration to control the number of findings returned.
      * This is not used for data profiling.
@@ -47,14 +59,21 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * redacted. Don't include finding limits in
      * [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
      * requests. Otherwise, Cloud DLP returns an error.
+     * When set within an
+     * [InspectJobConfig][google.privacy.dlp.v2.InspectJobConfig], the specified
+     * maximum values aren't hard limits. If an inspection job reaches these
+     * limits, the job ends gradually, not abruptly. Therefore, the actual number
+     * of findings that Cloud DLP returns can be multiple times higher than these
+     * maximum values.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      */
     private $limits = null;
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
-     * This is not used for data profiling.
+     * included in the response; see
+     * [Finding.quote][google.privacy.dlp.v2.Finding.quote]. This is not used for
+     * data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
      */
@@ -68,7 +87,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     private $exclude_info_types = false;
     /**
      * CustomInfoTypes provided by the user. See
-     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+     * to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      */
@@ -97,17 +117,25 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $info_types
      *           Restricts what info_types to look for. The values must correspond to
      *           InfoType values returned by ListInfoTypes or listed at
-     *           https://cloud.google.com/dlp/docs/infotypes-reference.
+     *           https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
      *           When no InfoTypes or CustomInfoTypes are specified in a request, the
-     *           system may automatically choose what detectors to run. By default this may
-     *           be all types, but may change over time as detectors are updated.
+     *           system may automatically choose a default list of detectors to run, which
+     *           may change over time.
      *           If you need precise control and predictability as to what detectors are
      *           run you should specify specific InfoTypes listed in the reference,
      *           otherwise a default list will be used, which may change over time.
      *     @type int $min_likelihood
-     *           Only returns findings equal or above this threshold. The default is
+     *           Only returns findings equal to or above this threshold. The default is
      *           POSSIBLE.
-     *           See https://cloud.google.com/dlp/docs/likelihood to learn more.
+     *           In general, the highest likelihood setting yields the fewest findings in
+     *           results and the lowest chance of a false positive. For more information,
+     *           see [Match
+     *           likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
+     *     @type array<\Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood>|\Google\Protobuf\Internal\RepeatedField $min_likelihood_per_info_type
+     *           Minimum likelihood per infotype. For each infotype, a user can specify a
+     *           minimum likelihood. The system only returns a finding if its likelihood is
+     *           above this threshold. If this field is not set, the system uses the
+     *           InspectConfig min_likelihood.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $limits
      *           Configuration to control the number of findings returned.
      *           This is not used for data profiling.
@@ -116,16 +144,24 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *           redacted. Don't include finding limits in
      *           [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
      *           requests. Otherwise, Cloud DLP returns an error.
+     *           When set within an
+     *           [InspectJobConfig][google.privacy.dlp.v2.InspectJobConfig], the specified
+     *           maximum values aren't hard limits. If an inspection job reaches these
+     *           limits, the job ends gradually, not abruptly. Therefore, the actual number
+     *           of findings that Cloud DLP returns can be multiple times higher than these
+     *           maximum values.
      *     @type bool $include_quote
      *           When true, a contextual quote from the data that triggered a finding is
-     *           included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
-     *           This is not used for data profiling.
+     *           included in the response; see
+     *           [Finding.quote][google.privacy.dlp.v2.Finding.quote]. This is not used for
+     *           data profiling.
      *     @type bool $exclude_info_types
      *           When true, excludes type information of the findings.
      *           This is not used for data profiling.
      *     @type array<\Google\Cloud\Dlp\V2\CustomInfoType>|\Google\Protobuf\Internal\RepeatedField $custom_info_types
      *           CustomInfoTypes provided by the user. See
-     *           https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     *           https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+     *           to learn more.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $content_options
      *           Deprecated and unused.
      *     @type array<\Google\Cloud\Dlp\V2\InspectionRuleSet>|\Google\Protobuf\Internal\RepeatedField $rule_set
@@ -142,10 +178,10 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Restricts what info_types to look for. The values must correspond to
      * InfoType values returned by ListInfoTypes or listed at
-     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
-     * system may automatically choose what detectors to run. By default this may
-     * be all types, but may change over time as detectors are updated.
+     * system may automatically choose a default list of detectors to run, which
+     * may change over time.
      * If you need precise control and predictability as to what detectors are
      * run you should specify specific InfoTypes listed in the reference,
      * otherwise a default list will be used, which may change over time.
@@ -161,10 +197,10 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Restricts what info_types to look for. The values must correspond to
      * InfoType values returned by ListInfoTypes or listed at
-     * https://cloud.google.com/dlp/docs/infotypes-reference.
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
      * When no InfoTypes or CustomInfoTypes are specified in a request, the
-     * system may automatically choose what detectors to run. By default this may
-     * be all types, but may change over time as detectors are updated.
+     * system may automatically choose a default list of detectors to run, which
+     * may change over time.
      * If you need precise control and predictability as to what detectors are
      * run you should specify specific InfoTypes listed in the reference,
      * otherwise a default list will be used, which may change over time.
@@ -182,9 +218,12 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only returns findings equal or above this threshold. The default is
+     * Only returns findings equal to or above this threshold. The default is
      * POSSIBLE.
-     * See https://cloud.google.com/dlp/docs/likelihood to learn more.
+     * In general, the highest likelihood setting yields the fewest findings in
+     * results and the lowest chance of a false positive. For more information,
+     * see [Match
+     * likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      * @return int
@@ -195,9 +234,12 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only returns findings equal or above this threshold. The default is
+     * Only returns findings equal to or above this threshold. The default is
      * POSSIBLE.
-     * See https://cloud.google.com/dlp/docs/likelihood to learn more.
+     * In general, the highest likelihood setting yields the fewest findings in
+     * results and the lowest chance of a false positive. For more information,
+     * see [Match
+     * likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Likelihood min_likelihood = 2;</code>
      * @param int $var
@@ -212,6 +254,38 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Minimum likelihood per infotype. For each infotype, a user can specify a
+     * minimum likelihood. The system only returns a finding if its likelihood is
+     * above this threshold. If this field is not set, the system uses the
+     * InspectConfig min_likelihood.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.InfoTypeLikelihood min_likelihood_per_info_type = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMinLikelihoodPerInfoType()
+    {
+        return $this->min_likelihood_per_info_type;
+    }
+
+    /**
+     * Minimum likelihood per infotype. For each infotype, a user can specify a
+     * minimum likelihood. The system only returns a finding if its likelihood is
+     * above this threshold. If this field is not set, the system uses the
+     * InspectConfig min_likelihood.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.InfoTypeLikelihood min_likelihood_per_info_type = 11;</code>
+     * @param array<\Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMinLikelihoodPerInfoType($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood::class);
+        $this->min_likelihood_per_info_type = $arr;
+
+        return $this;
+    }
+
+    /**
      * Configuration to control the number of findings returned.
      * This is not used for data profiling.
      * When redacting sensitive data from images, finding limits don't apply. They
@@ -219,6 +293,12 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * redacted. Don't include finding limits in
      * [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
      * requests. Otherwise, Cloud DLP returns an error.
+     * When set within an
+     * [InspectJobConfig][google.privacy.dlp.v2.InspectJobConfig], the specified
+     * maximum values aren't hard limits. If an inspection job reaches these
+     * limits, the job ends gradually, not abruptly. Therefore, the actual number
+     * of findings that Cloud DLP returns can be multiple times higher than these
+     * maximum values.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      * @return \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits|null
@@ -246,6 +326,12 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * redacted. Don't include finding limits in
      * [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
      * requests. Otherwise, Cloud DLP returns an error.
+     * When set within an
+     * [InspectJobConfig][google.privacy.dlp.v2.InspectJobConfig], the specified
+     * maximum values aren't hard limits. If an inspection job reaches these
+     * limits, the job ends gradually, not abruptly. Therefore, the actual number
+     * of findings that Cloud DLP returns can be multiple times higher than these
+     * maximum values.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      * @param \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $var
@@ -261,8 +347,9 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
-     * This is not used for data profiling.
+     * included in the response; see
+     * [Finding.quote][google.privacy.dlp.v2.Finding.quote]. This is not used for
+     * data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
      * @return bool
@@ -274,8 +361,9 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
-     * This is not used for data profiling.
+     * included in the response; see
+     * [Finding.quote][google.privacy.dlp.v2.Finding.quote]. This is not used for
+     * data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
      * @param bool $var
@@ -319,7 +407,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * CustomInfoTypes provided by the user. See
-     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+     * to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -331,7 +420,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * CustomInfoTypes provided by the user. See
-     * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
+     * to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
      * @param array<\Google\Cloud\Dlp\V2\CustomInfoType>|\Google\Protobuf\Internal\RepeatedField $var

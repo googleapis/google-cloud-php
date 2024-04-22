@@ -1,8 +1,47 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
         'google.devtools.artifactregistry.v1.ArtifactRegistry' => [
+            'BatchDeleteVersions' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\ArtifactRegistry\V1\BatchDeleteVersionsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRepository' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\ArtifactRegistry\V1\Repository',
@@ -585,7 +624,9 @@ return [
                 'projectSettings' => 'projects/{project}/projectSettings',
                 'pythonPackage' => 'projects/{project}/locations/{location}/repositories/{repository}/pythonPackages/{python_package}',
                 'repository' => 'projects/{project}/locations/{location}/repositories/{repository}',
+                'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'tag' => 'projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}',
+                'version' => 'projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}',
                 'vpcscConfig' => 'projects/{project}/locations/{location}/vpcscConfig',
             ],
         ],

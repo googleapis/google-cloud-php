@@ -52,11 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dialogflow\V2\FulfillmentsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface getFulfillmentAsync(GetFulfillmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateFulfillmentAsync(UpdateFulfillmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -70,8 +65,15 @@ final class FulfillmentsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dialogflow.v2.Fulfillments';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -253,6 +255,8 @@ final class FulfillmentsClient
      *
      * The async variant is {@see FulfillmentsClient::getFulfillmentAsync()} .
      *
+     * @example samples/V2/FulfillmentsClient/get_fulfillment.php
+     *
      * @param GetFulfillmentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -276,6 +280,8 @@ final class FulfillmentsClient
      * Updates the fulfillment.
      *
      * The async variant is {@see FulfillmentsClient::updateFulfillmentAsync()} .
+     *
+     * @example samples/V2/FulfillmentsClient/update_fulfillment.php
      *
      * @param UpdateFulfillmentRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -301,6 +307,8 @@ final class FulfillmentsClient
      *
      * The async variant is {@see FulfillmentsClient::getLocationAsync()} .
      *
+     * @example samples/V2/FulfillmentsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -324,6 +332,8 @@ final class FulfillmentsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see FulfillmentsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/FulfillmentsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class NamespacedNames extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of namespaced Kubernetes resources.
+     * Optional. A list of namespaced Kubernetes resources.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $namespaced_names;
 
@@ -29,7 +29,7 @@ class NamespacedNames extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\GkeBackup\V1\NamespacedName>|\Google\Protobuf\Internal\RepeatedField $namespaced_names
-     *           A list of namespaced Kubernetes resources.
+     *           Optional. A list of namespaced Kubernetes resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class NamespacedNames extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of namespaced Kubernetes resources.
+     * Optional. A list of namespaced Kubernetes resources.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNamespacedNames()
@@ -49,9 +49,9 @@ class NamespacedNames extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of namespaced Kubernetes resources.
+     * Optional. A list of namespaced Kubernetes resources.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\GkeBackup\V1\NamespacedName>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

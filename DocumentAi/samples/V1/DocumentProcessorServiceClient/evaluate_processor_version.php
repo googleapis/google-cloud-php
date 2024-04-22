@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_EvaluateProcessorVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\EvaluateProcessorVersionResponse;
 use Google\Rpc\Status;
 
@@ -33,9 +34,7 @@ use Google\Rpc\Status;
  * Evaluates a ProcessorVersion against annotated documents, producing an
  * Evaluation.
  *
- * @param string $formattedProcessorVersion The resource name of the
- *                                          [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to
- *                                          evaluate.
+ * @param string $formattedProcessorVersion The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to evaluate.
  *                                          `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
  *                                          Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
  */
@@ -44,10 +43,14 @@ function evaluate_processor_version_sample(string $formattedProcessorVersion): v
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new EvaluateProcessorVersionRequest())
+        ->setProcessorVersion($formattedProcessorVersion);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentProcessorServiceClient->evaluateProcessorVersion($formattedProcessorVersion);
+        $response = $documentProcessorServiceClient->evaluateProcessorVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

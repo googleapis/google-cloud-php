@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class FinishDlpJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the DlpJob resource to be cancelled.
+     * Required. The name of the DlpJob resource to be finished.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +29,7 @@ class FinishDlpJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the DlpJob resource to be cancelled.
+     *           Required. The name of the DlpJob resource to be finished.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class FinishDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the DlpJob resource to be cancelled.
+     * Required. The name of the DlpJob resource to be finished.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +49,7 @@ class FinishDlpJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the DlpJob resource to be cancelled.
+     * Required. The name of the DlpJob resource to be finished.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

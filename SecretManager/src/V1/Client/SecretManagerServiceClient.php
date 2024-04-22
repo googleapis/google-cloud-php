@@ -72,12 +72,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\SecretManager\V1\SecretManagerServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface accessSecretVersionAsync(AccessSecretVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface addSecretVersionAsync(AddSecretVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSecretAsync(CreateSecretRequest $request, array $optionalArgs = [])
@@ -102,8 +96,15 @@ final class SecretManagerServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.secretmanager.v1.SecretManagerService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'secretmanager.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'secretmanager.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -302,13 +303,16 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Accesses a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. This call returns the secret data.
+     * Accesses a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * This call returns the secret data.
      *
      * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * The async variant is
      * {@see SecretManagerServiceClient::accessSecretVersionAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/access_secret_version.php
      *
      * @param AccessSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -330,11 +334,14 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] containing secret data and attaches
-     * it to an existing [Secret][google.cloud.secretmanager.v1.Secret].
+     * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]
+     * containing secret data and attaches it to an existing
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * The async variant is {@see SecretManagerServiceClient::addSecretVersionAsync()}
      * .
+     *
+     * @example samples/V1/SecretManagerServiceClient/add_secret_version.php
      *
      * @param AddSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -356,9 +363,12 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
      *
      * The async variant is {@see SecretManagerServiceClient::createSecretAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/create_secret.php
      *
      * @param CreateSecretRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -384,6 +394,8 @@ final class SecretManagerServiceClient
      *
      * The async variant is {@see SecretManagerServiceClient::deleteSecretAsync()} .
      *
+     * @example samples/V1/SecretManagerServiceClient/delete_secret.php
+     *
      * @param DeleteSecretRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -404,12 +416,15 @@ final class SecretManagerServiceClient
     /**
      * Destroys a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
-     * [DESTROYED][google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED] and irrevocably destroys the
-     * secret data.
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * [DESTROYED][google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED]
+     * and irrevocably destroys the secret data.
      *
      * The async variant is
      * {@see SecretManagerServiceClient::destroySecretVersionAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/destroy_secret_version.php
      *
      * @param DestroySecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -433,11 +448,14 @@ final class SecretManagerServiceClient
     /**
      * Disables a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
      * [DISABLED][google.cloud.secretmanager.v1.SecretVersion.State.DISABLED].
      *
      * The async variant is
      * {@see SecretManagerServiceClient::disableSecretVersionAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/disable_secret_version.php
      *
      * @param DisableSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -461,11 +479,14 @@ final class SecretManagerServiceClient
     /**
      * Enables a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
      * [ENABLED][google.cloud.secretmanager.v1.SecretVersion.State.ENABLED].
      *
      * The async variant is
      * {@see SecretManagerServiceClient::enableSecretVersionAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/enable_secret_version.php
      *
      * @param EnableSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -492,6 +513,8 @@ final class SecretManagerServiceClient
      *
      * The async variant is {@see SecretManagerServiceClient::getIamPolicyAsync()} .
      *
+     * @example samples/V1/SecretManagerServiceClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -516,6 +539,8 @@ final class SecretManagerServiceClient
      *
      * The async variant is {@see SecretManagerServiceClient::getSecretAsync()} .
      *
+     * @example samples/V1/SecretManagerServiceClient/get_secret.php
+     *
      * @param GetSecretRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -536,13 +561,16 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Gets metadata for a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * Gets metadata for a
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * The async variant is {@see SecretManagerServiceClient::getSecretVersionAsync()}
      * .
+     *
+     * @example samples/V1/SecretManagerServiceClient/get_secret_version.php
      *
      * @param GetSecretVersionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -564,11 +592,13 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This call does not return secret
-     * data.
+     * Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This
+     * call does not return secret data.
      *
      * The async variant is
      * {@see SecretManagerServiceClient::listSecretVersionsAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/list_secret_versions.php
      *
      * @param ListSecretVersionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -594,6 +624,8 @@ final class SecretManagerServiceClient
      *
      * The async variant is {@see SecretManagerServiceClient::listSecretsAsync()} .
      *
+     * @example samples/V1/SecretManagerServiceClient/list_secrets.php
+     *
      * @param ListSecretsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -617,10 +649,14 @@ final class SecretManagerServiceClient
      * Sets the access control policy on the specified secret. Replaces any
      * existing policy.
      *
-     * Permissions on [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced according
-     * to the policy set on the associated [Secret][google.cloud.secretmanager.v1.Secret].
+     * Permissions on
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced
+     * according to the policy set on the associated
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * The async variant is {@see SecretManagerServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -653,6 +689,8 @@ final class SecretManagerServiceClient
      * The async variant is
      * {@see SecretManagerServiceClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/SecretManagerServiceClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -673,9 +711,12 @@ final class SecretManagerServiceClient
     }
 
     /**
-     * Updates metadata of an existing [Secret][google.cloud.secretmanager.v1.Secret].
+     * Updates metadata of an existing
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * The async variant is {@see SecretManagerServiceClient::updateSecretAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/update_secret.php
      *
      * @param UpdateSecretRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {

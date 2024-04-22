@@ -16,6 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomJobSpec extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. The ID of the PersistentResource in the same Project and Location
+     * which to run
+     * If this is specified, the job will be run on existing machines held by the
+     * PersistentResource instead of on-demand short-live machines.
+     * The network and CMEK configs on the job should be consistent with those on
+     * the PersistentResource, otherwise, the job will be rejected.
+     *
+     * Generated from protobuf field <code>string persistent_resource_id = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $persistent_resource_id = '';
+    /**
      * Required. The spec of the worker pools including machine type and Docker
      * image. All worker pools except the first one are optional and can be
      * skipped by providing an empty value.
@@ -88,6 +99,15 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      */
     private $base_output_directory = null;
     /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     */
+    private $protected_artifact_location_id = '';
+    /**
      * Optional. The name of a Vertex AI
      * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
      * this CustomJob will upload Tensorboard logs. Format:
@@ -141,6 +161,23 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string experiment_run = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $experiment_run = '';
+    /**
+     * Optional. The name of the Model resources for which to generate a mapping
+     * to artifact URIs. Applicable only to some of the Google-provided custom
+     * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
+     *
+     * Generated from protobuf field <code>repeated string models = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $models;
 
     /**
      * Constructor.
@@ -148,6 +185,13 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $persistent_resource_id
+     *           Optional. The ID of the PersistentResource in the same Project and Location
+     *           which to run
+     *           If this is specified, the job will be run on existing machines held by the
+     *           PersistentResource instead of on-demand short-live machines.
+     *           The network and CMEK configs on the job should be consistent with those on
+     *           the PersistentResource, otherwise, the job will be rejected.
      *     @type array<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>|\Google\Protobuf\Internal\RepeatedField $worker_pool_specs
      *           Required. The spec of the worker pools including machine type and Docker
      *           image. All worker pools except the first one are optional and can be
@@ -196,6 +240,11 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *             * AIP_MODEL_DIR = `<base_output_directory>/<trial_id>/model/`
      *             * AIP_CHECKPOINT_DIR = `<base_output_directory>/<trial_id>/checkpoints/`
      *             * AIP_TENSORBOARD_LOG_DIR = `<base_output_directory>/<trial_id>/logs/`
+     *     @type string $protected_artifact_location_id
+     *           The ID of the location to store protected artifacts. e.g. us-central1.
+     *           Populate only when the location is different than CustomJob location.
+     *           List of supported locations:
+     *           https://cloud.google.com/vertex-ai/docs/general/locations
      *     @type string $tensorboard
      *           Optional. The name of a Vertex AI
      *           [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
@@ -230,11 +279,60 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           Optional. The Experiment Run associated with this job.
      *           Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $models
+     *           Optional. The name of the Model resources for which to generate a mapping
+     *           to artifact URIs. Applicable only to some of the Google-provided custom
+     *           jobs. Format: `projects/{project}/locations/{location}/models/{model}`
+     *           In order to retrieve a specific version of the model, also provide
+     *           the version ID or version alias.
+     *             Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                        or
+     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *           If no version ID or alias is specified, the "default" version will be
+     *           returned. The "default" version alias is created for the first version of
+     *           the model, and can be moved to other versions later on. There will be
+     *           exactly one default version.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\CustomJob::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. The ID of the PersistentResource in the same Project and Location
+     * which to run
+     * If this is specified, the job will be run on existing machines held by the
+     * PersistentResource instead of on-demand short-live machines.
+     * The network and CMEK configs on the job should be consistent with those on
+     * the PersistentResource, otherwise, the job will be rejected.
+     *
+     * Generated from protobuf field <code>string persistent_resource_id = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getPersistentResourceId()
+    {
+        return $this->persistent_resource_id;
+    }
+
+    /**
+     * Optional. The ID of the PersistentResource in the same Project and Location
+     * which to run
+     * If this is specified, the job will be run on existing machines held by the
+     * PersistentResource instead of on-demand short-live machines.
+     * The network and CMEK configs on the job should be consistent with those on
+     * the PersistentResource, otherwise, the job will be rejected.
+     *
+     * Generated from protobuf field <code>string persistent_resource_id = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPersistentResourceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->persistent_resource_id = $var;
+
+        return $this;
     }
 
     /**
@@ -486,6 +584,38 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     * @return string
+     */
+    public function getProtectedArtifactLocationId()
+    {
+        return $this->protected_artifact_location_id;
+    }
+
+    /**
+     * The ID of the location to store protected artifacts. e.g. us-central1.
+     * Populate only when the location is different than CustomJob location.
+     * List of supported locations:
+     * https://cloud.google.com/vertex-ai/docs/general/locations
+     *
+     * Generated from protobuf field <code>string protected_artifact_location_id = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtectedArtifactLocationId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->protected_artifact_location_id = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The name of a Vertex AI
      * [Tensorboard][google.cloud.aiplatform.v1.Tensorboard] resource to which
      * this CustomJob will upload Tensorboard logs. Format:
@@ -659,6 +789,54 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->experiment_run = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the Model resources for which to generate a mapping
+     * to artifact URIs. Applicable only to some of the Google-provided custom
+     * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
+     *
+     * Generated from protobuf field <code>repeated string models = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getModels()
+    {
+        return $this->models;
+    }
+
+    /**
+     * Optional. The name of the Model resources for which to generate a mapping
+     * to artifact URIs. Applicable only to some of the Google-provided custom
+     * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
+     *
+     * Generated from protobuf field <code>repeated string models = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setModels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->models = $arr;
 
         return $this;
     }

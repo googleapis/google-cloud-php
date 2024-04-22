@@ -16,7 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class FileShareConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the file share (must be 16 characters or less).
+     * Required. The name of the file share. Must use 1-16 characters for the
+     * basic service tier and 1-63 characters for all other service tiers.
+     * Must use lowercase letters, numbers, or underscores `[a-z0-9_]`. Must
+     * start with a letter. Immutable.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -44,7 +47,10 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the file share (must be 16 characters or less).
+     *           Required. The name of the file share. Must use 1-16 characters for the
+     *           basic service tier and 1-63 characters for all other service tiers.
+     *           Must use lowercase letters, numbers, or underscores `[a-z0-9_]`. Must
+     *           start with a letter. Immutable.
      *     @type int|string $capacity_gb
      *           File share capacity in gigabytes (GB).
      *           Filestore defines 1 GB as 1024^3 bytes.
@@ -63,7 +69,10 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the file share (must be 16 characters or less).
+     * Required. The name of the file share. Must use 1-16 characters for the
+     * basic service tier and 1-63 characters for all other service tiers.
+     * Must use lowercase letters, numbers, or underscores `[a-z0-9_]`. Must
+     * start with a letter. Immutable.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -74,7 +83,10 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the file share (must be 16 characters or less).
+     * Required. The name of the file share. Must use 1-16 characters for the
+     * basic service tier and 1-63 characters for all other service tiers.
+     * Must use lowercase letters, numbers, or underscores `[a-z0-9_]`. Must
+     * start with a letter. Immutable.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

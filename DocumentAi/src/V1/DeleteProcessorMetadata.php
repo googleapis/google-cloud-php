@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The long-running operation metadata for the
- * [DeleteProcessor][google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessor]
- * method.
+ * [DeleteProcessor][google.cloud.documentai.v1.DocumentProcessorService.DeleteProcessor] method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.DeleteProcessorMetadata</code>
  */

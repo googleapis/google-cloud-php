@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START speech_v2_generated_Speech_UndeleteRecognizer_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Speech\V2\Recognizer;
-use Google\Cloud\Speech\V2\SpeechClient;
+use Google\Cloud\Speech\V2\UndeleteRecognizerRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,10 +42,14 @@ function undelete_recognizer_sample(string $formattedName): void
     // Create a client.
     $speechClient = new SpeechClient();
 
+    // Prepare the request message.
+    $request = (new UndeleteRecognizerRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $speechClient->undeleteRecognizer($formattedName);
+        $response = $speechClient->undeleteRecognizer($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ServingConfigService_RemoveControl_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\Client\ServingConfigServiceClient;
+use Google\Cloud\Retail\V2\RemoveControlRequest;
 use Google\Cloud\Retail\V2\ServingConfig;
-use Google\Cloud\Retail\V2\ServingConfigServiceClient;
 
 /**
  * Disables a Control on the specified ServingConfig.
@@ -44,10 +45,15 @@ function remove_control_sample(string $formattedServingConfig, string $controlId
     // Create a client.
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
+    // Prepare the request message.
+    $request = (new RemoveControlRequest())
+        ->setServingConfig($formattedServingConfig)
+        ->setControlId($controlId);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServingConfig $response */
-        $response = $servingConfigServiceClient->removeControl($formattedServingConfig, $controlId);
+        $response = $servingConfigServiceClient->removeControl($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

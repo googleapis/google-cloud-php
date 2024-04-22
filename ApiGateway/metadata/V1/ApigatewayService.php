@@ -23,33 +23,33 @@ class ApigatewayService
 æ
 3google/cloud/apigateway/v1/apigateway_service.protogoogle.cloud.apigateway.v1google/api/client.proto+google/cloud/apigateway/v1/apigateway.proto#google/longrunning/operations.proto2à
 ApiGatewayService°
-ListGateways/.google.cloud.apigateway.v1.ListGatewaysRequest0.google.cloud.apigateway.v1.ListGatewaysResponse"=‚Óä“.,/v1/{parent=projects/*/locations/*}/gatewaysÚAparent
+ListGateways/.google.cloud.apigateway.v1.ListGatewaysRequest0.google.cloud.apigateway.v1.ListGatewaysResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/gateways
 
-GetGateway-.google.cloud.apigateway.v1.GetGatewayRequest#.google.cloud.apigateway.v1.Gateway";‚Óä“.,/v1/{name=projects/*/locations/*/gateways/*}ÚAnameÚ
-CreateGateway0.google.cloud.apigateway.v1.CreateGatewayRequest.google.longrunning.Operation"x‚Óä“7",/v1/{parent=projects/*/locations/*}/gateways:gatewayÚAparent,gateway,gateway_idÊA
-GatewayOperationMetadataÜ
-UpdateGateway0.google.cloud.apigateway.v1.UpdateGatewayRequest.google.longrunning.Operation"z‚Óä“?24/v1/{gateway.name=projects/*/locations/*/gateways/*}:gatewayÚAgateway,update_maskÊA
-GatewayOperationMetadataÊ
-DeleteGateway0.google.cloud.apigateway.v1.DeleteGatewayRequest.google.longrunning.Operation"h‚Óä“.*,/v1/{name=projects/*/locations/*/gateways/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata 
-ListApis+.google.cloud.apigateway.v1.ListApisRequest,.google.cloud.apigateway.v1.ListApisResponse"9‚Óä“*(/v1/{parent=projects/*/locations/*}/apisÚAparent
-GetApi).google.cloud.apigateway.v1.GetApiRequest.google.cloud.apigateway.v1.Api"7‚Óä“*(/v1/{name=projects/*/locations/*/apis/*}ÚAname¾
-	CreateApi,.google.cloud.apigateway.v1.CreateApiRequest.google.longrunning.Operation"d‚Óä“/"(/v1/{parent=projects/*/locations/*}/apis:apiÚAparent,api,api_idÊA
-ApiOperationMetadataÀ
-	UpdateApi,.google.cloud.apigateway.v1.UpdateApiRequest.google.longrunning.Operation"f‚Óä“32,/v1/{api.name=projects/*/locations/*/apis/*}:apiÚAapi,update_maskÊA
-ApiOperationMetadata¾
-	DeleteApi,.google.cloud.apigateway.v1.DeleteApiRequest.google.longrunning.Operation"d‚Óä“**(/v1/{name=projects/*/locations/*/apis/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadata¼
-ListApiConfigs1.google.cloud.apigateway.v1.ListApiConfigsRequest2.google.cloud.apigateway.v1.ListApiConfigsResponse"C‚Óä“42/v1/{parent=projects/*/locations/*/apis/*}/configsÚAparent©
-GetApiConfig/.google.cloud.apigateway.v1.GetApiConfigRequest%.google.cloud.apigateway.v1.ApiConfig"A‚Óä“42/v1/{name=projects/*/locations/*/apis/*/configs/*}ÚAnameð
-CreateApiConfig2.google.cloud.apigateway.v1.CreateApiConfigRequest.google.longrunning.Operation"‰‚Óä“@"2/v1/{parent=projects/*/locations/*/apis/*}/configs:
-api_configÚAparent,api_config,api_config_idÊA
-	ApiConfigOperationMetadataò
-UpdateApiConfig2.google.cloud.apigateway.v1.UpdateApiConfigRequest.google.longrunning.Operation"‹‚Óä“K2=/v1/{api_config.name=projects/*/locations/*/apis/*/configs/*}:
-api_configÚAapi_config,update_maskÊA
-	ApiConfigOperationMetadataÔ
-DeleteApiConfig2.google.cloud.apigateway.v1.DeleteApiConfigRequest.google.longrunning.Operation"n‚Óä“4*2/v1/{name=projects/*/locations/*/apis/*/configs/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataMÊAapigateway.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
+GetGateway-.google.cloud.apigateway.v1.GetGatewayRequest#.google.cloud.apigateway.v1.Gateway";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/gateways/*}Ú
+CreateGateway0.google.cloud.apigateway.v1.CreateGatewayRequest.google.longrunning.Operation"xÊA
+GatewayOperationMetadataÚAparent,gateway,gateway_id‚Óä“7",/v1/{parent=projects/*/locations/*}/gateways:gatewayÜ
+UpdateGateway0.google.cloud.apigateway.v1.UpdateGatewayRequest.google.longrunning.Operation"zÊA
+GatewayOperationMetadataÚAgateway,update_mask‚Óä“?24/v1/{gateway.name=projects/*/locations/*/gateways/*}:gatewayÊ
+DeleteGateway0.google.cloud.apigateway.v1.DeleteGatewayRequest.google.longrunning.Operation"hÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“.*,/v1/{name=projects/*/locations/*/gateways/*} 
+ListApis+.google.cloud.apigateway.v1.ListApisRequest,.google.cloud.apigateway.v1.ListApisResponse"9ÚAparent‚Óä“*(/v1/{parent=projects/*/locations/*}/apis
+GetApi).google.cloud.apigateway.v1.GetApiRequest.google.cloud.apigateway.v1.Api"7ÚAname‚Óä“*(/v1/{name=projects/*/locations/*/apis/*}¾
+	CreateApi,.google.cloud.apigateway.v1.CreateApiRequest.google.longrunning.Operation"dÊA
+ApiOperationMetadataÚAparent,api,api_id‚Óä“/"(/v1/{parent=projects/*/locations/*}/apis:apiÀ
+	UpdateApi,.google.cloud.apigateway.v1.UpdateApiRequest.google.longrunning.Operation"fÊA
+ApiOperationMetadataÚAapi,update_mask‚Óä“32,/v1/{api.name=projects/*/locations/*/apis/*}:api¾
+	DeleteApi,.google.cloud.apigateway.v1.DeleteApiRequest.google.longrunning.Operation"dÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“**(/v1/{name=projects/*/locations/*/apis/*}¼
+ListApiConfigs1.google.cloud.apigateway.v1.ListApiConfigsRequest2.google.cloud.apigateway.v1.ListApiConfigsResponse"CÚAparent‚Óä“42/v1/{parent=projects/*/locations/*/apis/*}/configs©
+GetApiConfig/.google.cloud.apigateway.v1.GetApiConfigRequest%.google.cloud.apigateway.v1.ApiConfig"AÚAname‚Óä“42/v1/{name=projects/*/locations/*/apis/*/configs/*}ð
+CreateApiConfig2.google.cloud.apigateway.v1.CreateApiConfigRequest.google.longrunning.Operation"‰ÊA
+	ApiConfigOperationMetadataÚAparent,api_config,api_config_id‚Óä“@"2/v1/{parent=projects/*/locations/*/apis/*}/configs:
+api_configò
+UpdateApiConfig2.google.cloud.apigateway.v1.UpdateApiConfigRequest.google.longrunning.Operation"‹ÊA
+	ApiConfigOperationMetadataÚAapi_config,update_mask‚Óä“K2=/v1/{api_config.name=projects/*/locations/*/apis/*/configs/*}:
+api_configÔ
+DeleteApiConfig2.google.cloud.apigateway.v1.DeleteApiConfigRequest.google.longrunning.Operation"nÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“4*2/v1/{name=projects/*/locations/*/apis/*/configs/*}MÊAapigateway.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¼
 com.google.cloud.apigateway.v1PZ>cloud.google.com/go/apigateway/apiv1/apigatewaypb;apigatewaypbªGoogle.Cloud.ApiGateway.V1ÊGoogle\\Cloud\\ApiGateway\\V1êGoogle::Cloud::ApiGateway::V1bproto3'
         , true);
 

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudshell_v1_generated_CloudShellService_AuthorizeEnvironment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Shell\V1\AuthorizeEnvironmentRequest;
 use Google\Cloud\Shell\V1\AuthorizeEnvironmentResponse;
-use Google\Cloud\Shell\V1\CloudShellServiceClient;
+use Google\Cloud\Shell\V1\Client\CloudShellServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -46,10 +47,13 @@ function authorize_environment_sample(): void
     // Create a client.
     $cloudShellServiceClient = new CloudShellServiceClient();
 
+    // Prepare the request message.
+    $request = new AuthorizeEnvironmentRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudShellServiceClient->authorizeEnvironment();
+        $response = $cloudShellServiceClient->authorizeEnvironment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

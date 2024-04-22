@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_AcknowledgeUserDataCollection_sync]
+use Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionRequest;
 use Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionResponse;
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
@@ -52,13 +53,15 @@ function acknowledge_user_data_collection_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new AcknowledgeUserDataCollectionRequest())
+        ->setProperty($formattedProperty)
+        ->setAcknowledgement($acknowledgement);
+
     // Call the API and handle any network failures.
     try {
         /** @var AcknowledgeUserDataCollectionResponse $response */
-        $response = $analyticsAdminServiceClient->acknowledgeUserDataCollection(
-            $formattedProperty,
-            $acknowledgement
-        );
+        $response = $analyticsAdminServiceClient->acknowledgeUserDataCollection($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -59,12 +59,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dataproc\V1\NodeGroupControllerClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createNodeGroupAsync(CreateNodeGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getNodeGroupAsync(GetNodeGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resizeNodeGroupAsync(ResizeNodeGroupRequest $request, array $optionalArgs = [])
@@ -80,8 +74,15 @@ final class NodeGroupControllerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dataproc.v1.NodeGroupController';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dataproc.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dataproc.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -288,6 +289,8 @@ final class NodeGroupControllerClient
      *
      * The async variant is {@see NodeGroupControllerClient::createNodeGroupAsync()} .
      *
+     * @example samples/V1/NodeGroupControllerClient/create_node_group.php
+     *
      * @param CreateNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -312,6 +315,8 @@ final class NodeGroupControllerClient
      * cluster.
      *
      * The async variant is {@see NodeGroupControllerClient::getNodeGroupAsync()} .
+     *
+     * @example samples/V1/NodeGroupControllerClient/get_node_group.php
      *
      * @param GetNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -339,6 +344,8 @@ final class NodeGroupControllerClient
      *
      * The async variant is {@see NodeGroupControllerClient::resizeNodeGroupAsync()} .
      *
+     * @example samples/V1/NodeGroupControllerClient/resize_node_group.php
+     *
      * @param ResizeNodeGroupRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -363,6 +370,8 @@ final class NodeGroupControllerClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see NodeGroupControllerClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/NodeGroupControllerClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -391,6 +400,8 @@ final class NodeGroupControllerClient
     errors.
      *
      * The async variant is {@see NodeGroupControllerClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/NodeGroupControllerClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -422,6 +433,8 @@ final class NodeGroupControllerClient
      *
      * The async variant is {@see NodeGroupControllerClient::testIamPermissionsAsync()}
      * .
+     *
+     * @example samples/V1/NodeGroupControllerClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

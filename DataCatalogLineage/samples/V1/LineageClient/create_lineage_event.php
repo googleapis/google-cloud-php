@@ -27,6 +27,7 @@ use Google\ApiCore\ApiException;
 use Google\Cloud\DataCatalog\Lineage\V1\Client\LineageClient;
 use Google\Cloud\DataCatalog\Lineage\V1\CreateLineageEventRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\LineageEvent;
+use Google\Protobuf\Timestamp;
 
 /**
  * Creates a new lineage event.
@@ -40,7 +41,9 @@ function create_lineage_event_sample(string $formattedParent): void
     $lineageClient = new LineageClient();
 
     // Prepare the request message.
-    $lineageEvent = new LineageEvent();
+    $lineageEventStartTime = new Timestamp();
+    $lineageEvent = (new LineageEvent())
+        ->setStartTime($lineageEventStartTime);
     $request = (new CreateLineageEventRequest())
         ->setParent($formattedParent)
         ->setLineageEvent($lineageEvent);

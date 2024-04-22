@@ -65,6 +65,18 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $download_bytes = null;
     /**
+     * Whether this snapshot is created from a confidential compute mode disk. [Output Only]: This field is not set by user, but from source disk.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     */
+    private $enable_confidential_compute = null;
+    /**
+     * [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
+     */
+    private $guest_os_features;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -113,6 +125,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     */
+    private $satisfies_pzi = null;
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -150,11 +168,35 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $source_disk_encryption_key = null;
     /**
+     * The source disk whose recovery checkpoint will be used to create this snapshot.
+     *
+     * Generated from protobuf field <code>optional string source_disk_for_recovery_checkpoint = 359837950;</code>
+     */
+    private $source_disk_for_recovery_checkpoint = null;
+    /**
      * [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
      *
      * Generated from protobuf field <code>optional string source_disk_id = 454190809;</code>
      */
     private $source_disk_id = null;
+    /**
+     * The source instant snapshot used to create this snapshot. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instantSnapshots/instantSnapshot - projects/project/zones/zone/instantSnapshots/instantSnapshot - zones/zone/instantSnapshots/instantSnapshot 
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot = 219202054;</code>
+     */
+    private $source_instant_snapshot = null;
+    /**
+     * Customer provided encryption key when creating Snapshot from Instant Snapshot.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_instant_snapshot_encryption_key = 436536060;</code>
+     */
+    private $source_instant_snapshot_encryption_key = null;
+    /**
+     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_id = 287582708;</code>
+     */
+    private $source_instant_snapshot_id = null;
     /**
      * [Output Only] URL of the resource policy which created this scheduled snapshot.
      *
@@ -217,6 +259,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           [Output Only] Size of the source disk, specified in GB.
      *     @type int|string $download_bytes
      *           [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
+     *     @type bool $enable_confidential_compute
+     *           Whether this snapshot is created from a confidential compute mode disk. [Output Only]: This field is not set by user, but from source disk.
+     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *           [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -233,6 +279,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           An opaque location hint used to place the snapshot close to other resources. This field is for use by internal tools that use the public API.
      *     @type string $name
      *           Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
@@ -246,8 +294,16 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           The source disk used to create this snapshot.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_disk_encryption_key
      *           The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
+     *     @type string $source_disk_for_recovery_checkpoint
+     *           The source disk whose recovery checkpoint will be used to create this snapshot.
      *     @type string $source_disk_id
      *           [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
+     *     @type string $source_instant_snapshot
+     *           The source instant snapshot used to create this snapshot. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instantSnapshots/instantSnapshot - projects/project/zones/zone/instantSnapshots/instantSnapshot - zones/zone/instantSnapshots/instantSnapshot 
+     *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_instant_snapshot_encryption_key
+     *           Customer provided encryption key when creating Snapshot from Instant Snapshot.
+     *     @type string $source_instant_snapshot_id
+     *           [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
      *     @type string $source_snapshot_schedule_policy
      *           [Output Only] URL of the resource policy which created this scheduled snapshot.
      *     @type string $source_snapshot_schedule_policy_id
@@ -560,6 +616,68 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Whether this snapshot is created from a confidential compute mode disk. [Output Only]: This field is not set by user, but from source disk.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     * @return bool
+     */
+    public function getEnableConfidentialCompute()
+    {
+        return isset($this->enable_confidential_compute) ? $this->enable_confidential_compute : false;
+    }
+
+    public function hasEnableConfidentialCompute()
+    {
+        return isset($this->enable_confidential_compute);
+    }
+
+    public function clearEnableConfidentialCompute()
+    {
+        unset($this->enable_confidential_compute);
+    }
+
+    /**
+     * Whether this snapshot is created from a confidential compute mode disk. [Output Only]: This field is not set by user, but from source disk.
+     *
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableConfidentialCompute($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_confidential_compute = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGuestOsFeatures()
+    {
+        return $this->guest_os_features;
+    }
+
+    /**
+     * [Output Only] A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
+     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGuestOsFeatures($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\GuestOsFeature::class);
+        $this->guest_os_features = $arr;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
@@ -818,6 +936,42 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi) ? $this->satisfies_pzi : false;
+    }
+
+    public function hasSatisfiesPzi()
+    {
+        return isset($this->satisfies_pzi);
+    }
+
+    public function clearSatisfiesPzi()
+    {
+        unset($this->satisfies_pzi);
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzi = 480964257;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -1036,6 +1190,42 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The source disk whose recovery checkpoint will be used to create this snapshot.
+     *
+     * Generated from protobuf field <code>optional string source_disk_for_recovery_checkpoint = 359837950;</code>
+     * @return string
+     */
+    public function getSourceDiskForRecoveryCheckpoint()
+    {
+        return isset($this->source_disk_for_recovery_checkpoint) ? $this->source_disk_for_recovery_checkpoint : '';
+    }
+
+    public function hasSourceDiskForRecoveryCheckpoint()
+    {
+        return isset($this->source_disk_for_recovery_checkpoint);
+    }
+
+    public function clearSourceDiskForRecoveryCheckpoint()
+    {
+        unset($this->source_disk_for_recovery_checkpoint);
+    }
+
+    /**
+     * The source disk whose recovery checkpoint will be used to create this snapshot.
+     *
+     * Generated from protobuf field <code>optional string source_disk_for_recovery_checkpoint = 359837950;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceDiskForRecoveryCheckpoint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_disk_for_recovery_checkpoint = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
      *
      * Generated from protobuf field <code>optional string source_disk_id = 454190809;</code>
@@ -1067,6 +1257,114 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->source_disk_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The source instant snapshot used to create this snapshot. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instantSnapshots/instantSnapshot - projects/project/zones/zone/instantSnapshots/instantSnapshot - zones/zone/instantSnapshots/instantSnapshot 
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot = 219202054;</code>
+     * @return string
+     */
+    public function getSourceInstantSnapshot()
+    {
+        return isset($this->source_instant_snapshot) ? $this->source_instant_snapshot : '';
+    }
+
+    public function hasSourceInstantSnapshot()
+    {
+        return isset($this->source_instant_snapshot);
+    }
+
+    public function clearSourceInstantSnapshot()
+    {
+        unset($this->source_instant_snapshot);
+    }
+
+    /**
+     * The source instant snapshot used to create this snapshot. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instantSnapshots/instantSnapshot - projects/project/zones/zone/instantSnapshots/instantSnapshot - zones/zone/instantSnapshots/instantSnapshot 
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot = 219202054;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceInstantSnapshot($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_instant_snapshot = $var;
+
+        return $this;
+    }
+
+    /**
+     * Customer provided encryption key when creating Snapshot from Instant Snapshot.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_instant_snapshot_encryption_key = 436536060;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
+     */
+    public function getSourceInstantSnapshotEncryptionKey()
+    {
+        return $this->source_instant_snapshot_encryption_key;
+    }
+
+    public function hasSourceInstantSnapshotEncryptionKey()
+    {
+        return isset($this->source_instant_snapshot_encryption_key);
+    }
+
+    public function clearSourceInstantSnapshotEncryptionKey()
+    {
+        unset($this->source_instant_snapshot_encryption_key);
+    }
+
+    /**
+     * Customer provided encryption key when creating Snapshot from Instant Snapshot.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_instant_snapshot_encryption_key = 436536060;</code>
+     * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
+     * @return $this
+     */
+    public function setSourceInstantSnapshotEncryptionKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CustomerEncryptionKey::class);
+        $this->source_instant_snapshot_encryption_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_id = 287582708;</code>
+     * @return string
+     */
+    public function getSourceInstantSnapshotId()
+    {
+        return isset($this->source_instant_snapshot_id) ? $this->source_instant_snapshot_id : '';
+    }
+
+    public function hasSourceInstantSnapshotId()
+    {
+        return isset($this->source_instant_snapshot_id);
+    }
+
+    public function clearSourceInstantSnapshotId()
+    {
+        unset($this->source_instant_snapshot_id);
+    }
+
+    /**
+     * [Output Only] The unique ID of the instant snapshot used to create this snapshot. This value identifies the exact instant snapshot that was used to create this persistent disk. For example, if you created the persistent disk from an instant snapshot that was later deleted and recreated under the same name, the source instant snapshot ID would identify the exact instant snapshot that was used.
+     *
+     * Generated from protobuf field <code>optional string source_instant_snapshot_id = 287582708;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceInstantSnapshotId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_instant_snapshot_id = $var;
 
         return $this;
     }

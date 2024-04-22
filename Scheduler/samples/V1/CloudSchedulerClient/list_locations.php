@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudscheduler_v1_generated_CloudScheduler_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
+use Google\Cloud\Scheduler\V1\Client\CloudSchedulerClient;
 
 /**
  * Lists information about the supported locations for this service.
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $cloudSchedulerClient = new CloudSchedulerClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudSchedulerClient->listLocations();
+        $response = $cloudSchedulerClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

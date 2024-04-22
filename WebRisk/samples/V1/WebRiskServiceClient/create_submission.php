@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START webrisk_v1_generated_WebRiskService_CreateSubmission_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\WebRisk\V1\Client\WebRiskServiceClient;
+use Google\Cloud\WebRisk\V1\CreateSubmissionRequest;
 use Google\Cloud\WebRisk\V1\Submission;
-use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
 
 /**
  * Creates a Submission of a URI suspected of containing phishing content to
@@ -47,14 +48,17 @@ function create_submission_sample(string $formattedParent, string $submissionUri
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $submission = (new Submission())
         ->setUri($submissionUri);
+    $request = (new CreateSubmissionRequest())
+        ->setParent($formattedParent)
+        ->setSubmission($submission);
 
     // Call the API and handle any network failures.
     try {
         /** @var Submission $response */
-        $response = $webRiskServiceClient->createSubmission($formattedParent, $submission);
+        $response = $webRiskServiceClient->createSubmission($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

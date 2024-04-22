@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateEventCreateRule_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\CreateEventCreateRuleRequest;
 use Google\Analytics\Admin\V1alpha\EventCreateRule;
 use Google\Analytics\Admin\V1alpha\MatchingCondition;
 use Google\Analytics\Admin\V1alpha\MatchingCondition\ComparisonType;
@@ -61,7 +62,7 @@ function create_event_create_rule_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $matchingCondition = (new MatchingCondition())
         ->setField($eventCreateRuleEventConditionsField)
         ->setComparisonType($eventCreateRuleEventConditionsComparisonType)
@@ -70,11 +71,14 @@ function create_event_create_rule_sample(
     $eventCreateRule = (new EventCreateRule())
         ->setDestinationEvent($eventCreateRuleDestinationEvent)
         ->setEventConditions($eventCreateRuleEventConditions);
+    $request = (new CreateEventCreateRuleRequest())
+        ->setParent($formattedParent)
+        ->setEventCreateRule($eventCreateRule);
 
     // Call the API and handle any network failures.
     try {
         /** @var EventCreateRule $response */
-        $response = $analyticsAdminServiceClient->createEventCreateRule($formattedParent, $eventCreateRule);
+        $response = $analyticsAdminServiceClient->createEventCreateRule($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

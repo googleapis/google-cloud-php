@@ -23,17 +23,17 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * Maximum number of topics to return.
+     * Optional. Maximum number of topics to return.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * The value returned by the last `ListTopicsResponse`; indicates that this is
-     * a continuation of a prior `ListTopics` call, and that the system should
-     * return the next page of data.
+     * Optional. The value returned by the last `ListTopicsResponse`; indicates
+     * that this is a continuation of a prior `ListTopics` call, and that the
+     * system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
 
@@ -62,11 +62,11 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the project in which to list topics.
      *           Format is `projects/{project-id}`.
      *     @type int $page_size
-     *           Maximum number of topics to return.
+     *           Optional. Maximum number of topics to return.
      *     @type string $page_token
-     *           The value returned by the last `ListTopicsResponse`; indicates that this is
-     *           a continuation of a prior `ListTopics` call, and that the system should
-     *           return the next page of data.
+     *           Optional. The value returned by the last `ListTopicsResponse`; indicates
+     *           that this is a continuation of a prior `ListTopics` call, and that the
+     *           system should return the next page of data.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,9 +103,9 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of topics to return.
+     * Optional. Maximum number of topics to return.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -114,9 +114,9 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum number of topics to return.
+     * Optional. Maximum number of topics to return.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -129,11 +129,11 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListTopicsResponse`; indicates that this is
-     * a continuation of a prior `ListTopics` call, and that the system should
-     * return the next page of data.
+     * Optional. The value returned by the last `ListTopicsResponse`; indicates
+     * that this is a continuation of a prior `ListTopics` call, and that the
+     * system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -142,11 +142,11 @@ class ListTopicsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value returned by the last `ListTopicsResponse`; indicates that this is
-     * a continuation of a prior `ListTopics` call, and that the system should
-     * return the next page of data.
+     * Optional. The value returned by the last `ListTopicsResponse`; indicates
+     * that this is a continuation of a prior `ListTopics` call, and that the
+     * system should return the next page of data.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -24,16 +24,18 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_PartitionQuery_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionResponse;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Creates a set of partition tokens that can be used to execute a query
  * operation in parallel.  Each of the returned partition tokens can be used
- * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
- * of the query result to read.  The same session and read-only transaction
- * must be used by the PartitionQueryRequest used to create the
- * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+ * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to
+ * specify a subset of the query result to read.  The same session and
+ * read-only transaction must be used by the PartitionQueryRequest used to
+ * create the partition tokens and the ExecuteSqlRequests that use the
+ * partition tokens.
  *
  * Partition tokens become invalid when the session used to create them
  * is deleted, is idle for too long, begins a new transaction, or becomes too
@@ -42,15 +44,17 @@ use Google\Cloud\Spanner\V1\SpannerClient;
  *
  * @param string $formattedSession The session used to create the partitions. Please see
  *                                 {@see SpannerClient::sessionName()} for help formatting this field.
- * @param string $sql              The query request to generate partitions for. The request will fail if
- *                                 the query is not root partitionable. The query plan of a root
- *                                 partitionable query has a single distributed union operator. A distributed
- *                                 union operator conceptually divides one or more tables into multiple
- *                                 splits, remotely evaluates a subquery independently on each split, and
- *                                 then unions all results.
+ * @param string $sql              The query request to generate partitions for. The request will
+ *                                 fail if the query is not root partitionable. For a query to be root
+ *                                 partitionable, it needs to satisfy a few conditions. For example, if the
+ *                                 query execution plan contains a distributed union operator, then it must be
+ *                                 the first operator in the plan. For more information about other
+ *                                 conditions, see [Read data in
+ *                                 parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel).
  *
- *                                 This must not contain DML commands, such as INSERT, UPDATE, or
- *                                 DELETE. Use [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
+ *                                 The query request must not contain DML commands, such as INSERT, UPDATE, or
+ *                                 DELETE. Use
+ *                                 [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] with a
  *                                 PartitionedDml transaction for large, partition-friendly DML operations.
  */
 function partition_query_sample(string $formattedSession, string $sql): void
@@ -58,10 +62,15 @@ function partition_query_sample(string $formattedSession, string $sql): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
+    // Prepare the request message.
+    $request = (new PartitionQueryRequest())
+        ->setSession($formattedSession)
+        ->setSql($sql);
+
     // Call the API and handle any network failures.
     try {
         /** @var PartitionResponse $response */
-        $response = $spannerClient->partitionQuery($formattedSession, $sql);
+        $response = $spannerClient->partitionQuery($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

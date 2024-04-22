@@ -33,36 +33,42 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\OrgPolicy\V2\CreateCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\CreatePolicyRequest;
+use Google\Cloud\OrgPolicy\V2\CustomConstraint;
+use Google\Cloud\OrgPolicy\V2\DeleteCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\DeletePolicyRequest;
+use Google\Cloud\OrgPolicy\V2\GetCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\GetEffectivePolicyRequest;
 use Google\Cloud\OrgPolicy\V2\GetPolicyRequest;
 use Google\Cloud\OrgPolicy\V2\ListConstraintsRequest;
+use Google\Cloud\OrgPolicy\V2\ListCustomConstraintsRequest;
 use Google\Cloud\OrgPolicy\V2\ListPoliciesRequest;
 use Google\Cloud\OrgPolicy\V2\Policy;
+use Google\Cloud\OrgPolicy\V2\UpdateCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Service Description: An interface for managing organization policies.
  *
- * The Cloud Org Policy service provides a simple mechanism for organizations to
- * restrict the allowed configurations across their entire Cloud Resource
- * hierarchy.
+ * The Organization Policy Service provides a simple mechanism for
+ * organizations to restrict the allowed configurations across their entire
+ * resource hierarchy.
  *
- * You can use a `policy` to configure restrictions in Cloud resources. For
- * example, you can enforce a `policy` that restricts which Google
- * Cloud Platform APIs can be activated in a certain part of your resource
- * hierarchy, or prevents serial port access to VM instances in a particular
- * folder.
+ * You can use a policy to configure restrictions on resources. For
+ * example, you can enforce a policy that restricts which Google
+ * Cloud APIs can be activated in a certain part of your resource
+ * hierarchy, or prevents serial port access to VM instances in a
+ * particular folder.
  *
- * `Policies` are inherited down through the resource hierarchy. A `policy`
+ * Policies are inherited down through the resource hierarchy. A policy
  * applied to a parent resource automatically applies to all its child resources
- * unless overridden with a `policy` lower in the hierarchy.
+ * unless overridden with a policy lower in the hierarchy.
  *
- * A `constraint` defines an aspect of a resource's configuration that can be
- * controlled by an organization's policy administrator. `Policies` are a
- * collection of `constraints` that defines their allowable configuration on a
+ * A constraint defines an aspect of a resource's configuration that can be
+ * controlled by an organization's policy administrator. Policies are a
+ * collection of constraints that defines their allowable configuration on a
  * particular resource and its child resources.
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -73,17 +79,17 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\OrgPolicy\V2\OrgPolicyClient} for the stable implementation
- *
- * @experimental
- *
+ * @method PromiseInterface createCustomConstraintAsync(CreateCustomConstraintRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createPolicyAsync(CreatePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteCustomConstraintAsync(DeleteCustomConstraintRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePolicyAsync(DeletePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getCustomConstraintAsync(GetCustomConstraintRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getEffectivePolicyAsync(GetEffectivePolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getPolicyAsync(GetPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConstraintsAsync(ListConstraintsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listCustomConstraintsAsync(ListCustomConstraintsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listPoliciesAsync(ListPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateCustomConstraintAsync(UpdateCustomConstraintRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
  */
 final class OrgPolicyClient
@@ -94,8 +100,15 @@ final class OrgPolicyClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.orgpolicy.v2.OrgPolicy';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'orgpolicy.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'orgpolicy.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -125,6 +138,23 @@ final class OrgPolicyClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_constraint resource.
+     *
+     * @param string $organization
+     * @param string $customConstraint
+     *
+     * @return string The formatted custom_constraint resource.
+     */
+    public static function customConstraintName(string $organization, string $customConstraint): string
+    {
+        return self::getPathTemplate('customConstraint')->render([
+            'organization' => $organization,
+            'custom_constraint' => $customConstraint,
+        ]);
     }
 
     /**
@@ -244,6 +274,7 @@ final class OrgPolicyClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - customConstraint: organizations/{organization}/customConstraints/{custom_constraint}
      * - folder: folders/{folder}
      * - folderPolicy: folders/{folder}/policies/{policy}
      * - organization: organizations/{organization}
@@ -342,12 +373,43 @@ final class OrgPolicyClient
     }
 
     /**
-     * Creates a Policy.
+     * Creates a custom constraint.
+     *
+     * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+     * organization does not exist.
+     * Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
+     * constraint already exists on the given organization.
+     *
+     * The async variant is {@see OrgPolicyClient::createCustomConstraintAsync()} .
+     *
+     * @example samples/V2/OrgPolicyClient/create_custom_constraint.php
+     *
+     * @param CreateCustomConstraintRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomConstraint
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createCustomConstraint(CreateCustomConstraintRequest $request, array $callOptions = []): CustomConstraint
+    {
+        return $this->startApiCall('CreateCustomConstraint', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a policy.
      *
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
      * constraint does not exist.
      * Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
-     * policy already exists on the given Cloud resource.
+     * policy already exists on the given Google Cloud resource.
      *
      * The async variant is {@see OrgPolicyClient::createPolicyAsync()} .
      *
@@ -373,10 +435,37 @@ final class OrgPolicyClient
     }
 
     /**
-     * Deletes a Policy.
+     * Deletes a custom constraint.
      *
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
-     * constraint or Org Policy does not exist.
+     * constraint does not exist.
+     *
+     * The async variant is {@see OrgPolicyClient::deleteCustomConstraintAsync()} .
+     *
+     * @example samples/V2/OrgPolicyClient/delete_custom_constraint.php
+     *
+     * @param DeleteCustomConstraintRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteCustomConstraint(DeleteCustomConstraintRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteCustomConstraint', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a policy.
+     *
+     * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+     * constraint or organization policy does not exist.
      *
      * The async variant is {@see OrgPolicyClient::deletePolicyAsync()} .
      *
@@ -400,10 +489,39 @@ final class OrgPolicyClient
     }
 
     /**
-     * Gets the effective `Policy` on a resource. This is the result of merging
-     * `Policies` in the resource hierarchy and evaluating conditions. The
-     * returned `Policy` will not have an `etag` or `condition` set because it is
-     * a computed `Policy` across multiple resources.
+     * Gets a custom constraint.
+     *
+     * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+     * custom constraint does not exist.
+     *
+     * The async variant is {@see OrgPolicyClient::getCustomConstraintAsync()} .
+     *
+     * @example samples/V2/OrgPolicyClient/get_custom_constraint.php
+     *
+     * @param GetCustomConstraintRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomConstraint
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getCustomConstraint(GetCustomConstraintRequest $request, array $callOptions = []): CustomConstraint
+    {
+        return $this->startApiCall('GetCustomConstraint', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the effective policy on a resource. This is the result of merging
+     * policies in the resource hierarchy and evaluating conditions. The
+     * returned policy will not have an `etag` or `condition` set because it is
+     * an evaluated policy across multiple resources.
      * Subtrees of Resource Manager resource hierarchy with 'under:' prefix will
      * not be expanded.
      *
@@ -431,11 +549,11 @@ final class OrgPolicyClient
     }
 
     /**
-     * Gets a `Policy` on a resource.
+     * Gets a policy on a resource.
      *
-     * If no `Policy` is set on the resource, NOT_FOUND is returned. The
+     * If no policy is set on the resource, `NOT_FOUND` is returned. The
      * `etag` value can be used with `UpdatePolicy()` to update a
-     * `Policy` during read-modify-write.
+     * policy during read-modify-write.
      *
      * The async variant is {@see OrgPolicyClient::getPolicyAsync()} .
      *
@@ -461,7 +579,7 @@ final class OrgPolicyClient
     }
 
     /**
-     * Lists `Constraints` that could be applied on the specified resource.
+     * Lists constraints that could be applied on the specified resource.
      *
      * The async variant is {@see OrgPolicyClient::listConstraintsAsync()} .
      *
@@ -487,7 +605,34 @@ final class OrgPolicyClient
     }
 
     /**
-     * Retrieves all of the `Policies` that exist on a particular resource.
+     * Retrieves all of the custom constraints that exist on a particular
+     * organization resource.
+     *
+     * The async variant is {@see OrgPolicyClient::listCustomConstraintsAsync()} .
+     *
+     * @example samples/V2/OrgPolicyClient/list_custom_constraints.php
+     *
+     * @param ListCustomConstraintsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listCustomConstraints(ListCustomConstraintsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListCustomConstraints', $request, $callOptions);
+    }
+
+    /**
+     * Retrieves all of the policies that exist on a particular resource.
      *
      * The async variant is {@see OrgPolicyClient::listPoliciesAsync()} .
      *
@@ -513,7 +658,39 @@ final class OrgPolicyClient
     }
 
     /**
-     * Updates a Policy.
+     * Updates a custom constraint.
+     *
+     * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+     * constraint does not exist.
+     *
+     * Note: the supplied policy will perform a full overwrite of all
+     * fields.
+     *
+     * The async variant is {@see OrgPolicyClient::updateCustomConstraintAsync()} .
+     *
+     * @example samples/V2/OrgPolicyClient/update_custom_constraint.php
+     *
+     * @param UpdateCustomConstraintRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomConstraint
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCustomConstraint(UpdateCustomConstraintRequest $request, array $callOptions = []): CustomConstraint
+    {
+        return $this->startApiCall('UpdateCustomConstraint', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a policy.
      *
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
      * constraint or the policy do not exist.

@@ -3,14 +3,15 @@
     "description": "Google LongRunning Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
+    "version": "0.4.1",
     "autoload": {
         "psr-4": {
             "Google\\ApiCore\\LongRunning\\": "src/ApiCore/LongRunning",
             "Google\\LongRunning\\": "src/LongRunning",
             "GPBMetadata\\Google\\Longrunning\\": "metadata/Longrunning"
         }
-   },
-   "extra": {
+    },
+    "extra": {
         "component": {
             "id": "longrunning",
             "path": "LongRunning",
@@ -19,7 +20,7 @@
         }
     },
     "require-dev": {
-        "google/gax": "^1.13.0",
+        "google/gax": "^1.30",
         "phpunit/phpunit": "^9.0"
     }
 }

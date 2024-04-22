@@ -57,11 +57,11 @@ page_token (	"t
 next_page_token (	2½
 
 UptimeCheckServiceÀ
-ListUptimeCheckConfigs3.google.monitoring.v3.ListUptimeCheckConfigsRequest4.google.monitoring.v3.ListUptimeCheckConfigsResponse";‚Óä“,*/v3/{parent=projects/*}/uptimeCheckConfigsÚAparent­
-GetUptimeCheckConfig1.google.monitoring.v3.GetUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"9‚Óä“,*/v3/{name=projects/*/uptimeCheckConfigs/*}ÚAnameÞ
-CreateUptimeCheckConfig4.google.monitoring.v3.CreateUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"d‚Óä“A"*/v3/{parent=projects/*}/uptimeCheckConfigs:uptime_check_configÚAparent,uptime_check_configë
-UpdateUptimeCheckConfig4.google.monitoring.v3.UpdateUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"q‚Óä“U2>/v3/{uptime_check_config.name=projects/*/uptimeCheckConfigs/*}:uptime_check_configÚAuptime_check_config¢
-DeleteUptimeCheckConfig4.google.monitoring.v3.DeleteUptimeCheckConfigRequest.google.protobuf.Empty"9‚Óä“,**/v3/{name=projects/*/uptimeCheckConfigs/*}ÚAname“
+ListUptimeCheckConfigs3.google.monitoring.v3.ListUptimeCheckConfigsRequest4.google.monitoring.v3.ListUptimeCheckConfigsResponse";ÚAparent‚Óä“,*/v3/{parent=projects/*}/uptimeCheckConfigs­
+GetUptimeCheckConfig1.google.monitoring.v3.GetUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"9ÚAname‚Óä“,*/v3/{name=projects/*/uptimeCheckConfigs/*}Þ
+CreateUptimeCheckConfig4.google.monitoring.v3.CreateUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"dÚAparent,uptime_check_config‚Óä“A"*/v3/{parent=projects/*}/uptimeCheckConfigs:uptime_check_configë
+UpdateUptimeCheckConfig4.google.monitoring.v3.UpdateUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"qÚAuptime_check_config‚Óä“U2>/v3/{uptime_check_config.name=projects/*/uptimeCheckConfigs/*}:uptime_check_config¢
+DeleteUptimeCheckConfig4.google.monitoring.v3.DeleteUptimeCheckConfigRequest.google.protobuf.Empty"9ÚAname‚Óä“,**/v3/{name=projects/*/uptimeCheckConfigs/*}“
 ListUptimeCheckIps/.google.monitoring.v3.ListUptimeCheckIpsRequest0.google.monitoring.v3.ListUptimeCheckIpsResponse"‚Óä“/v3/uptimeCheckIps©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÍ
 com.google.monitoring.v3BUptimeServiceProtoPZAcloud.google.com/go/monitoring/apiv3/v2/monitoringpb;monitoringpbªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
         , true);

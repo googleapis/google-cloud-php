@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExpirationPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies the "time-to-live" duration for an associated resource. The
-     * resource expires if it is not active for a period of `ttl`. The definition
-     * of "activity" depends on the type of the associated resource. The minimum
-     * and maximum allowed values for `ttl` depend on the type of the associated
-     * resource, as well. If `ttl` is not set, the associated resource never
-     * expires.
+     * Optional. Specifies the "time-to-live" duration for an associated resource.
+     * The resource expires if it is not active for a period of `ttl`. The
+     * definition of "activity" depends on the type of the associated resource.
+     * The minimum and maximum allowed values for `ttl` depend on the type of the
+     * associated resource, as well. If `ttl` is not set, the associated resource
+     * never expires.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ttl = null;
 
@@ -35,12 +35,12 @@ class ExpirationPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $ttl
-     *           Specifies the "time-to-live" duration for an associated resource. The
-     *           resource expires if it is not active for a period of `ttl`. The definition
-     *           of "activity" depends on the type of the associated resource. The minimum
-     *           and maximum allowed values for `ttl` depend on the type of the associated
-     *           resource, as well. If `ttl` is not set, the associated resource never
-     *           expires.
+     *           Optional. Specifies the "time-to-live" duration for an associated resource.
+     *           The resource expires if it is not active for a period of `ttl`. The
+     *           definition of "activity" depends on the type of the associated resource.
+     *           The minimum and maximum allowed values for `ttl` depend on the type of the
+     *           associated resource, as well. If `ttl` is not set, the associated resource
+     *           never expires.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,14 +49,14 @@ class ExpirationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the "time-to-live" duration for an associated resource. The
-     * resource expires if it is not active for a period of `ttl`. The definition
-     * of "activity" depends on the type of the associated resource. The minimum
-     * and maximum allowed values for `ttl` depend on the type of the associated
-     * resource, as well. If `ttl` is not set, the associated resource never
-     * expires.
+     * Optional. Specifies the "time-to-live" duration for an associated resource.
+     * The resource expires if it is not active for a period of `ttl`. The
+     * definition of "activity" depends on the type of the associated resource.
+     * The minimum and maximum allowed values for `ttl` depend on the type of the
+     * associated resource, as well. If `ttl` is not set, the associated resource
+     * never expires.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getTtl()
@@ -75,14 +75,14 @@ class ExpirationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the "time-to-live" duration for an associated resource. The
-     * resource expires if it is not active for a period of `ttl`. The definition
-     * of "activity" depends on the type of the associated resource. The minimum
-     * and maximum allowed values for `ttl` depend on the type of the associated
-     * resource, as well. If `ttl` is not set, the associated resource never
-     * expires.
+     * Optional. Specifies the "time-to-live" duration for an associated resource.
+     * The resource expires if it is not active for a period of `ttl`. The
+     * definition of "activity" depends on the type of the associated resource.
+     * The minimum and maximum allowed values for `ttl` depend on the type of the
+     * associated resource, as well. If `ttl` is not set, the associated resource
+     * never expires.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_ReviewDocument_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentResponse;
 use Google\Rpc\Status;
 
@@ -33,9 +34,8 @@ use Google\Rpc\Status;
  * Send a document for Human Review. The input document should be processed by
  * the specified processor.
  *
- * @param string $formattedHumanReviewConfig The resource name of the
- *                                           [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the
- *                                           document will be reviewed with. Please see
+ * @param string $formattedHumanReviewConfig The resource name of the [HumanReviewConfig][google.cloud.documentai.v1.HumanReviewConfig] that the document will be
+ *                                           reviewed with. Please see
  *                                           {@see DocumentProcessorServiceClient::humanReviewConfigName()} for help formatting this field.
  */
 function review_document_sample(string $formattedHumanReviewConfig): void
@@ -43,10 +43,14 @@ function review_document_sample(string $formattedHumanReviewConfig): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new ReviewDocumentRequest())
+        ->setHumanReviewConfig($formattedHumanReviewConfig);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentProcessorServiceClient->reviewDocument($formattedHumanReviewConfig);
+        $response = $documentProcessorServiceClient->reviewDocument($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

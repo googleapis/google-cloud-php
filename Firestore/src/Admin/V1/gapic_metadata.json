@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "FirestoreAdminGapicClient",
                     "rpcs": {
+                        "CreateBackupSchedule": {
+                            "methods": [
+                                "createBackupSchedule"
+                            ]
+                        },
                         "CreateDatabase": {
                             "methods": [
                                 "createDatabase"
@@ -20,6 +25,21 @@
                                 "createIndex"
                             ]
                         },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteBackupSchedule": {
+                            "methods": [
+                                "deleteBackupSchedule"
+                            ]
+                        },
+                        "DeleteDatabase": {
+                            "methods": [
+                                "deleteDatabase"
+                            ]
+                        },
                         "DeleteIndex": {
                             "methods": [
                                 "deleteIndex"
@@ -28,6 +48,16 @@
                         "ExportDocuments": {
                             "methods": [
                                 "exportDocuments"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupSchedule": {
+                            "methods": [
+                                "getBackupSchedule"
                             ]
                         },
                         "GetDatabase": {
@@ -50,6 +80,16 @@
                                 "importDocuments"
                             ]
                         },
+                        "ListBackupSchedules": {
+                            "methods": [
+                                "listBackupSchedules"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
                         "ListDatabases": {
                             "methods": [
                                 "listDatabases"
@@ -63,6 +103,16 @@
                         "ListIndexes": {
                             "methods": [
                                 "listIndexes"
+                            ]
+                        },
+                        "RestoreDatabase": {
+                            "methods": [
+                                "restoreDatabase"
+                            ]
+                        },
+                        "UpdateBackupSchedule": {
+                            "methods": [
+                                "updateBackupSchedule"
                             ]
                         },
                         "UpdateDatabase": {

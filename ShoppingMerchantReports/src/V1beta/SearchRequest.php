@@ -33,7 +33,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     protected $query = '';
     /**
      * Optional. Number of `ReportRows` to retrieve in a single page. Defaults to
-     * the maximum of 1000. Values above 1000 are coerced to 1000.
+     * 1000. Values above 5000 are coerced to 5000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -78,7 +78,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           fields.
      *     @type int $page_size
      *           Optional. Number of `ReportRows` to retrieve in a single page. Defaults to
-     *           the maximum of 1000. Values above 1000 are coerced to 1000.
+     *           1000. Values above 5000 are coerced to 5000.
      *     @type string $page_token
      *           Optional. Token of the page to retrieve. If not specified, the first page
      *           of results is returned. In order to request the next page of results, the
@@ -153,7 +153,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Number of `ReportRows` to retrieve in a single page. Defaults to
-     * the maximum of 1000. Values above 1000 are coerced to 1000.
+     * 1000. Values above 5000 are coerced to 5000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -165,7 +165,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Number of `ReportRows` to retrieve in a single page. Defaults to
-     * the maximum of 1000. Values above 1000 are coerced to 1000.
+     * 1000. Values above 5000 are coerced to 5000.
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

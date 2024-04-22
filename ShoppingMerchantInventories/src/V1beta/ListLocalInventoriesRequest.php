@@ -20,7 +20,7 @@ class ListLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * Format:
      * `accounts/{account}/products/{product}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
@@ -49,6 +49,7 @@ class ListLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The `name` of the parent product to list local inventories for.
      *                       Format:
      *                       `accounts/{account}/products/{product}`
+     *                       Please see {@see LocalInventoryServiceClient::productName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Inventories\V1beta\ListLocalInventoriesRequest
      *
@@ -95,7 +96,7 @@ class ListLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * Format:
      * `accounts/{account}/products/{product}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -108,7 +109,7 @@ class ListLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * Format:
      * `accounts/{account}/products/{product}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

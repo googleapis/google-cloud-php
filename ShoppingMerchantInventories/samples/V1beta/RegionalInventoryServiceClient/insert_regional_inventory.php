@@ -39,15 +39,18 @@ use Google\Shopping\Merchant\Inventories\V1beta\RegionalInventory;
  * It might take up to 30 minutes for the new or updated `RegionalInventory`
  * resource to appear in products.
  *
- * @param string $parent                  The account and product where this inventory will be inserted.
+ * @param string $formattedParent         The account and product where this inventory will be inserted.
  *                                        Format: `accounts/{account}/products/{product}`
- * @param string $regionalInventoryRegion ID of the region for this
+ *                                        Please see {@see RegionalInventoryServiceClient::productName()} for help formatting this field.
+ * @param string $regionalInventoryRegion Immutable. ID of the region for this
  *                                        `RegionalInventory` resource. See the [Regional availability and
  *                                        pricing](https://support.google.com/merchants/answer/9698880) for more
  *                                        details.
  */
-function insert_regional_inventory_sample(string $parent, string $regionalInventoryRegion): void
-{
+function insert_regional_inventory_sample(
+    string $formattedParent,
+    string $regionalInventoryRegion
+): void {
     // Create a client.
     $regionalInventoryServiceClient = new RegionalInventoryServiceClient();
 
@@ -55,7 +58,7 @@ function insert_regional_inventory_sample(string $parent, string $regionalInvent
     $regionalInventory = (new RegionalInventory())
         ->setRegion($regionalInventoryRegion);
     $request = (new InsertRegionalInventoryRequest())
-        ->setParent($parent)
+        ->setParent($formattedParent)
         ->setRegionalInventory($regionalInventory);
 
     // Call the API and handle any network failures.
@@ -79,9 +82,9 @@ function insert_regional_inventory_sample(string $parent, string $regionalInvent
  */
 function callSample(): void
 {
-    $parent = '[PARENT]';
+    $formattedParent = RegionalInventoryServiceClient::productName('[ACCOUNT]', '[PRODUCT]');
     $regionalInventoryRegion = '[REGION]';
 
-    insert_regional_inventory_sample($parent, $regionalInventoryRegion);
+    insert_regional_inventory_sample($formattedParent, $regionalInventoryRegion);
 }
 // [END merchantapi_v1beta_generated_RegionalInventoryService_InsertRegionalInventory_sync]

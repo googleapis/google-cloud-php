@@ -24,13 +24,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_CreateDlpJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
 use Google\Cloud\Dlp\V2\DlpJob;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
 
 /**
  * Creates a new job to inspect storage or calculate risk metrics.
- * See https://cloud.google.com/dlp/docs/inspecting-storage and
- * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+ * and
+ * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+ * to learn more.
  *
  * When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
  * system will automatically choose what detectors to run. By default this may
@@ -40,7 +44,7 @@ use Google\Cloud\Dlp\V2\DlpServiceClient;
  *
  *                                The format of this value varies depending on whether you have [specified a
  *                                processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                + Projects scope, location specified:<br/>
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -59,10 +63,14 @@ function create_dlp_job_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new CreateDlpJobRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var DlpJob $response */
-        $response = $dlpServiceClient->createDlpJob($formattedParent);
+        $response = $dlpServiceClient->createDlpJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

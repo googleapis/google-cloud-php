@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START securitycenter_v1_generated_SecurityCenter_DeleteMuteConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 
 /**
  * Deletes an existing mute config.
@@ -40,9 +41,13 @@ function delete_mute_config_sample(string $formattedName): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new DeleteMuteConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $securityCenterClient->deleteMuteConfig($formattedName);
+        $securityCenterClient->deleteMuteConfig($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

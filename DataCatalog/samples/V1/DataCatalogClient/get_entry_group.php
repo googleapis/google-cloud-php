@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_GetEntryGroup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\EntryGroup;
+use Google\Cloud\DataCatalog\V1\GetEntryGroupRequest;
 
 /**
  * Gets an entry group.
@@ -38,10 +39,14 @@ function get_entry_group_sample(string $formattedName): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new GetEntryGroupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var EntryGroup $response */
-        $response = $dataCatalogClient->getEntryGroup($formattedName);
+        $response = $dataCatalogClient->getEntryGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

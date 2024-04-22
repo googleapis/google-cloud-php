@@ -15,6 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class RecognitionOutputConfig extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. Configuration for the format of the results stored to `output`.
+     * If unspecified transcripts will be written in the `NATIVE` format only.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.OutputFormatConfig output_format_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $output_format_config = null;
     protected $output;
 
     /**
@@ -32,6 +39,9 @@ class RecognitionOutputConfig extends \Google\Protobuf\Internal\Message
      *           message of the Operation when completed. This is only supported when
      *           calling [BatchRecognize][google.cloud.speech.v2.Speech.BatchRecognize]
      *           with just one audio file.
+     *     @type \Google\Cloud\Speech\V2\OutputFormatConfig $output_format_config
+     *           Optional. Configuration for the format of the results stored to `output`.
+     *           If unspecified transcripts will be written in the `NATIVE` format only.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,6 +117,44 @@ class RecognitionOutputConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\InlineOutputConfig::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the format of the results stored to `output`.
+     * If unspecified transcripts will be written in the `NATIVE` format only.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.OutputFormatConfig output_format_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Speech\V2\OutputFormatConfig|null
+     */
+    public function getOutputFormatConfig()
+    {
+        return $this->output_format_config;
+    }
+
+    public function hasOutputFormatConfig()
+    {
+        return isset($this->output_format_config);
+    }
+
+    public function clearOutputFormatConfig()
+    {
+        unset($this->output_format_config);
+    }
+
+    /**
+     * Optional. Configuration for the format of the results stored to `output`.
+     * If unspecified transcripts will be written in the `NATIVE` format only.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v2.OutputFormatConfig output_format_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Speech\V2\OutputFormatConfig $var
+     * @return $this
+     */
+    public function setOutputFormatConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V2\OutputFormatConfig::class);
+        $this->output_format_config = $var;
 
         return $this;
     }

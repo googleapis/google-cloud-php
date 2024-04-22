@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_IngestConversations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\IngestConversationsResponse;
 use Google\Rpc\Status;
 
@@ -41,10 +42,14 @@ function ingest_conversations_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new IngestConversationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $contactCenterInsightsClient->ingestConversations($formattedParent);
+        $response = $contactCenterInsightsClient->ingestConversations($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

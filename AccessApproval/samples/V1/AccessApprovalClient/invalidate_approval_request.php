@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START accessapproval_v1_generated_AccessApproval_InvalidateApprovalRequest_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\AccessApproval\V1\AccessApprovalClient;
 use Google\Cloud\AccessApproval\V1\ApprovalRequest;
+use Google\Cloud\AccessApproval\V1\Client\AccessApprovalClient;
+use Google\Cloud\AccessApproval\V1\InvalidateApprovalRequestMessage;
 
 /**
  * Invalidates an existing ApprovalRequest. Returns the updated
@@ -48,10 +49,13 @@ function invalidate_approval_request_sample(): void
     // Create a client.
     $accessApprovalClient = new AccessApprovalClient();
 
+    // Prepare the request message.
+    $request = new InvalidateApprovalRequestMessage();
+
     // Call the API and handle any network failures.
     try {
         /** @var ApprovalRequest $response */
-        $response = $accessApprovalClient->invalidateApprovalRequest();
+        $response = $accessApprovalClient->invalidateApprovalRequest($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

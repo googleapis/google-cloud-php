@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START firestore_v1_generated_Firestore_Rollback_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Firestore\V1\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\RollbackRequest;
 
 /**
  * Rolls back a transaction.
@@ -38,9 +39,14 @@ function rollback_sample(string $database, string $transaction): void
     // Create a client.
     $firestoreClient = new FirestoreClient();
 
+    // Prepare the request message.
+    $request = (new RollbackRequest())
+        ->setDatabase($database)
+        ->setTransaction($transaction);
+
     // Call the API and handle any network failures.
     try {
-        $firestoreClient->rollback($database, $transaction);
+        $firestoreClient->rollback($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

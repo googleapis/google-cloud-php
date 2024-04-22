@@ -51,6 +51,15 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 management_ip_address_layout_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $management_ip_address_layout_version = 0;
+    /**
+     * Output only. DNS Server IP of the Private Cloud.
+     * All DNS queries can be forwarded to this address for name resolution of
+     * Private Cloud's management entities like vCenter, NSX-T Manager and
+     * ESXi hosts.
+     *
+     * Generated from protobuf field <code>string dns_server_ip = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $dns_server_ip = '';
 
     /**
      * Constructor.
@@ -77,6 +86,11 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           * `managementIpAddressLayoutVersion=2`: Indicates the latest IP address
      *           layout used by all newly created private clouds. This version supports all
      *           current features.
+     *     @type string $dns_server_ip
+     *           Output only. DNS Server IP of the Private Cloud.
+     *           All DNS queries can be forwarded to this address for name resolution of
+     *           Private Cloud's management entities like vCenter, NSX-T Manager and
+     *           ESXi hosts.
      * }
      */
     public function __construct($data = NULL) {
@@ -206,6 +220,38 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->management_ip_address_layout_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. DNS Server IP of the Private Cloud.
+     * All DNS queries can be forwarded to this address for name resolution of
+     * Private Cloud's management entities like vCenter, NSX-T Manager and
+     * ESXi hosts.
+     *
+     * Generated from protobuf field <code>string dns_server_ip = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDnsServerIp()
+    {
+        return $this->dns_server_ip;
+    }
+
+    /**
+     * Output only. DNS Server IP of the Private Cloud.
+     * All DNS queries can be forwarded to this address for name resolution of
+     * Private Cloud's management entities like vCenter, NSX-T Manager and
+     * ESXi hosts.
+     *
+     * Generated from protobuf field <code>string dns_server_ip = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDnsServerIp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dns_server_ip = $var;
 
         return $this;
     }

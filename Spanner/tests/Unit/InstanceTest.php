@@ -34,6 +34,9 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 
 /**
  * @group spanner
@@ -43,7 +46,9 @@ class InstanceTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use ResultGeneratorTrait;
     use StubCreationTrait;
+    use ResultGeneratorTrait;
 
     const PROJECT_ID = 'test-project';
     const NAME = 'instance-name';
@@ -54,18 +59,31 @@ class InstanceTest extends TestCase
     private $connection;
     private $instance;
     private $lroConnection;
+    private $directedReadOptionsIncludeReplicas;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->getConnStub();
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
             self::PROJECT_ID,
-            self::NAME
+            self::NAME,
+            false,
+            [],
+            ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         ], [
             'info',
             'connection'
@@ -568,6 +586,7 @@ class InstanceTest extends TestCase
 
     public function testInstanceDatabaseRole()
     {
+        $sql = 'SELECT * FROM Table';
         $database = $this->instance->database($this::DATABASE, ['databaseRole' => 'Reader']);
 
         $this->connection->createSession(Argument::withEntry(
@@ -578,9 +597,70 @@ class InstanceTest extends TestCase
         ->willReturn([
                 'name' => self::SESSION
             ]);
+        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
+            ->shouldBeCalled()->willReturn($this->resultGenerator());
+
+        $database->execute($sql);
+    }
+
+    public function testInstanceExecuteWithDirectedRead()
+    {
+        $database = $this->instance->database(
+            $this::DATABASE
+        );
+        $this->connection->createSession(Argument::any())
+        ->shouldBeCalled()
+        ->willReturn([
+                'name' => self::SESSION
+        ]);
+
+        $this->connection->executeStreamingSql(Argument::withEntry(
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
+        ))
+        ->shouldBeCalled()
+        ->willReturn(
+            $this->resultGenerator()
+        );
 
         $sql = 'SELECT * FROM Table';
-        $database->execute($sql);
+        $res = $database->execute($sql);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
+    }
+
+    public function testInstanceReadWithDirectedRead()
+    {
+        $table = 'foo';
+        $keys = [10, 'bar'];
+        $columns = ['id', 'name'];
+        $database = $this->instance->database(
+            $this::DATABASE,
+        );
+        $this->connection->createSession(Argument::any())
+        ->shouldBeCalled()
+        ->willReturn([
+                'name' => self::SESSION
+        ]);
+
+        $this->connection->streamingRead(Argument::withEntry(
+            'directedReadOptions',
+            $this->directedReadOptionsIncludeReplicas
+        ))
+        ->shouldBeCalled()
+        ->willReturn(
+            $this->resultGenerator()
+        );
+
+        $res = $database->read(
+            $table,
+            new KeySet(['keys' => $keys]),
+            $columns
+        );
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertCount(1, $rows);
     }
 
     // ************** //

@@ -66,16 +66,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * Service Description: Manages Products and ProductSets of reference images for use in product
  * search. It uses the following resource model:
  *
- * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet] resources, named
- * `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way to put different
- * products into groups to limit identification.
+ * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet]
+ * resources, named `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way
+ * to put different products into groups to limit identification.
  *
  * In parallel,
  *
- * - The API has a collection of [Product][google.cloud.vision.v1.Product] resources, named
+ * - The API has a collection of [Product][google.cloud.vision.v1.Product]
+ * resources, named
  * `projects/&#42;/locations/&#42;/products/*`
  *
- * - Each [Product][google.cloud.vision.v1.Product] has a collection of [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
+ * - Each [Product][google.cloud.vision.v1.Product] has a collection of
+ * [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
  * `projects/&#42;/locations/&#42;/products/&#42;/referenceImages/*`
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -85,11 +87,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
- *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Vision\V1\ProductSearchClient} for the stable implementation
- *
- * @experimental
  *
  * @method PromiseInterface addProductToProductSetAsync(AddProductToProductSetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createProductAsync(CreateProductRequest $request, array $optionalArgs = [])
@@ -119,8 +116,15 @@ final class ProductSearchClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.vision.v1.ProductSearch';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'vision.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'vision.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -371,6 +375,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::addProductToProductSetAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/add_product_to_product_set.php
+     *
      * @param AddProductToProductSetRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -400,6 +406,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::createProductAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/create_product.php
+     *
      * @param CreateProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -428,6 +436,8 @@ final class ProductSearchClient
      * 4096 characters.
      *
      * The async variant is {@see ProductSearchClient::createProductSetAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/create_product_set.php
      *
      * @param CreateProductSetRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -471,6 +481,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::createReferenceImageAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/create_reference_image.php
+     *
      * @param CreateReferenceImageRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -499,6 +511,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::deleteProductAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/delete_product.php
+     *
      * @param DeleteProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -523,6 +537,8 @@ final class ProductSearchClient
      * The actual image files are not deleted from Google Cloud Storage.
      *
      * The async variant is {@see ProductSearchClient::deleteProductSetAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/delete_product_set.php
      *
      * @param DeleteProductSetRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -552,6 +568,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::deleteReferenceImageAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/delete_reference_image.php
+     *
      * @param DeleteReferenceImageRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -577,6 +595,8 @@ final class ProductSearchClient
      * * Returns NOT_FOUND if the Product does not exist.
      *
      * The async variant is {@see ProductSearchClient::getProductAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/get_product.php
      *
      * @param GetProductRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -606,6 +626,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::getProductSetAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/get_product_set.php
+     *
      * @param GetProductSetRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -634,6 +656,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::getReferenceImageAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/get_reference_image.php
+     *
      * @param GetReferenceImageRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -657,8 +681,8 @@ final class ProductSearchClient
      * Asynchronous API that imports a list of reference images to specified
      * product sets based on a list of image information.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
-     * progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+     * used to keep track of the progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      * `Operation.response` contains `ImportProductSetsResponse`. (results)
      *
@@ -667,6 +691,8 @@ final class ProductSearchClient
      * [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
      *
      * The async variant is {@see ProductSearchClient::importProductSetsAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/import_product_sets.php
      *
      * @param ImportProductSetsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -697,6 +723,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::listProductSetsAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/list_product_sets.php
+     *
      * @param ListProductSetsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -724,6 +752,8 @@ final class ProductSearchClient
      * * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      *
      * The async variant is {@see ProductSearchClient::listProductsAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/list_products.php
      *
      * @param ListProductsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -756,6 +786,8 @@ final class ProductSearchClient
      * The async variant is {@see ProductSearchClient::listProductsInProductSetAsync()}
      * .
      *
+     * @example samples/V1/ProductSearchClient/list_products_in_product_set.php
+     *
      * @param ListProductsInProductSetRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -785,6 +817,8 @@ final class ProductSearchClient
      * than 1.
      *
      * The async variant is {@see ProductSearchClient::listReferenceImagesAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/list_reference_images.php
      *
      * @param ListReferenceImagesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -827,11 +861,13 @@ final class ProductSearchClient
      * ProductSet, you must wait until the PurgeProducts operation has finished
      * for that ProductSet.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
-     * progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+     * used to keep track of the progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      *
      * The async variant is {@see ProductSearchClient::purgeProductsAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/purge_products.php
      *
      * @param PurgeProductsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -857,6 +893,8 @@ final class ProductSearchClient
      *
      * The async variant is
      * {@see ProductSearchClient::removeProductFromProductSetAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/remove_product_from_product_set.php
      *
      * @param RemoveProductFromProductSetRequest $request     A request to house fields associated with the call.
      * @param array                              $callOptions {
@@ -894,6 +932,8 @@ final class ProductSearchClient
      *
      * The async variant is {@see ProductSearchClient::updateProductAsync()} .
      *
+     * @example samples/V1/ProductSearchClient/update_product.php
+     *
      * @param UpdateProductRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -924,6 +964,8 @@ final class ProductSearchClient
      * missing from the request or longer than 4096 characters.
      *
      * The async variant is {@see ProductSearchClient::updateProductSetAsync()} .
+     *
+     * @example samples/V1/ProductSearchClient/update_product_set.php
      *
      * @param UpdateProductSetRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {

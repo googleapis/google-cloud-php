@@ -25,6 +25,22 @@ class DeleteSKAdNetworkConversionValueSchemaRequest extends \Google\Protobuf\Int
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the SKAdNetworkConversionValueSchema to delete.
+     *                     Format:
+     *                     properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}
+     *                     Please see {@see AnalyticsAdminServiceClient::sKAdNetworkConversionValueSchemaName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DeleteSKAdNetworkConversionValueSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

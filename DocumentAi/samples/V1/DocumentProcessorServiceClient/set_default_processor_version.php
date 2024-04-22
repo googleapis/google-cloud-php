@@ -25,24 +25,20 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_SetDefaultProcessorVersion_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionResponse;
 use Google\Rpc\Status;
 
 /**
- * Set the default (active) version of a
- * [Processor][google.cloud.documentai.v1.Processor] that will be used in
- * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
- * and
+ * Set the default (active) version of a [Processor][google.cloud.documentai.v1.Processor] that will be used in
+ * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] and
  * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
  *
- * @param string $formattedProcessor               The resource name of the
- *                                                 [Processor][google.cloud.documentai.v1.Processor] to change default
- *                                                 version. Please see
+ * @param string $formattedProcessor               The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version. Please see
  *                                                 {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
- * @param string $formattedDefaultProcessorVersion The resource name of child
- *                                                 [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as
- *                                                 default. Format:
+ * @param string $formattedDefaultProcessorVersion The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
+ *                                                 Format:
  *                                                 `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
  *                                                 Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
  */
@@ -53,13 +49,15 @@ function set_default_processor_version_sample(
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new SetDefaultProcessorVersionRequest())
+        ->setProcessor($formattedProcessor)
+        ->setDefaultProcessorVersion($formattedDefaultProcessorVersion);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentProcessorServiceClient->setDefaultProcessorVersion(
-            $formattedProcessor,
-            $formattedDefaultProcessorVersion
-        );
+        $response = $documentProcessorServiceClient->setDefaultProcessorVersion($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

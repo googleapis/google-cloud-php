@@ -27,6 +27,7 @@ namespace Google\Cloud\Spanner\Admin\Database\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
@@ -67,6 +68,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\LongRunning\Operation;
+use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -85,12 +87,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
- *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient} for the stable
- * implementation
- *
- * @experimental
  *
  * @method PromiseInterface copyBackupAsync(CopyBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
@@ -121,8 +117,15 @@ final class DatabaseAdminClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.spanner.admin.database.v1.DatabaseAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'spanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'spanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -316,6 +319,10 @@ final class DatabaseAdminClient
     /**
      * Constructor.
      *
+     * Setting the "SPANNER_EMULATOR_HOST" environment variable will automatically set
+     * the API Endpoint to the value specified in the variable, as well as ensure that
+     * empty credentials are used in the transport layer.
+     *
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
@@ -369,6 +376,7 @@ final class DatabaseAdminClient
      */
     public function __construct(array $options = [])
     {
+        $options = $options + $this->getDefaultEmulatorConfig();
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -400,6 +408,8 @@ final class DatabaseAdminClient
      * Concurrent CopyBackup requests can run on the same source backup.
      *
      * The async variant is {@see DatabaseAdminClient::copyBackupAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/copy_backup.php
      *
      * @param CopyBackupRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -436,6 +446,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::createBackupAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/create_backup.php
+     *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -467,6 +479,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::createDatabaseAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/create_database.php
+     *
      * @param CreateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -490,6 +504,8 @@ final class DatabaseAdminClient
      * Deletes a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
      * The async variant is {@see DatabaseAdminClient::deleteBackupAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/delete_backup.php
      *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -517,6 +533,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::dropDatabaseAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/drop_database.php
+     *
      * @param DropDatabaseRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -538,6 +556,8 @@ final class DatabaseAdminClient
      * Gets metadata on a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
      * The async variant is {@see DatabaseAdminClient::getBackupAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_backup.php
      *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -562,6 +582,8 @@ final class DatabaseAdminClient
      * Gets the state of a Cloud Spanner database.
      *
      * The async variant is {@see DatabaseAdminClient::getDatabaseAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_database.php
      *
      * @param GetDatabaseRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -588,6 +610,8 @@ final class DatabaseAdminClient
      * be queried using the [Operations][google.longrunning.Operations] API.
      *
      * The async variant is {@see DatabaseAdminClient::getDatabaseDdlAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_database_ddl.php
      *
      * @param GetDatabaseDdlRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -619,6 +643,8 @@ final class DatabaseAdminClient
      * permission on [resource][google.iam.v1.GetIamPolicyRequest.resource].
      *
      * The async variant is {@see DatabaseAdminClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -653,6 +679,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::listBackupOperationsAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/list_backup_operations.php
+     *
      * @param ListBackupOperationsRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -678,6 +706,8 @@ final class DatabaseAdminClient
      * starting from the most recent `create_time`.
      *
      * The async variant is {@see DatabaseAdminClient::listBackupsAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/list_backups.php
      *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -710,6 +740,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::listDatabaseOperationsAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/list_database_operations.php
+     *
      * @param ListDatabaseOperationsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -734,6 +766,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::listDatabaseRolesAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/list_database_roles.php
+     *
      * @param ListDatabaseRolesRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -757,6 +791,8 @@ final class DatabaseAdminClient
      * Lists Cloud Spanner databases.
      *
      * The async variant is {@see DatabaseAdminClient::listDatabasesAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/list_databases.php
      *
      * @param ListDatabasesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -798,6 +834,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::restoreDatabaseAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/restore_database.php
+     *
      * @param RestoreDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -827,6 +865,8 @@ final class DatabaseAdminClient
      * permission on [resource][google.iam.v1.SetIamPolicyRequest.resource].
      *
      * The async variant is {@see DatabaseAdminClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -861,6 +901,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::testIamPermissionsAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/test_iam_permissions.php
+     *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -884,6 +926,8 @@ final class DatabaseAdminClient
      * Updates a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      *
      * The async variant is {@see DatabaseAdminClient::updateBackupAsync()} .
+     *
+     * @example samples/V1/DatabaseAdminClient/update_backup.php
      *
      * @param UpdateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -944,6 +988,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::updateDatabaseAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/update_database.php
+     *
      * @param UpdateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -974,6 +1020,8 @@ final class DatabaseAdminClient
      *
      * The async variant is {@see DatabaseAdminClient::updateDatabaseDdlAsync()} .
      *
+     * @example samples/V1/DatabaseAdminClient/update_database_ddl.php
+     *
      * @param UpdateDatabaseDdlRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -991,5 +1039,31 @@ final class DatabaseAdminClient
     public function updateDatabaseDdl(UpdateDatabaseDdlRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateDatabaseDdl', $request, $callOptions)->wait();
+    }
+
+    /** Configure the gapic configuration to use a service emulator. */
+    private function getDefaultEmulatorConfig(): array
+    {
+        $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
+        if (empty($emulatorHost)) {
+            return [];
+        }
+
+        if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
+            $search = $scheme . '://';
+            $emulatorHost = str_replace($search, '', $emulatorHost);
+        }
+
+        return [
+            'apiEndpoint' => $emulatorHost,
+            'transportConfig' => [
+                'grpc' => [
+                    'stubOpts' => [
+                        'credentials' => ChannelCredentials::createInsecure(),
+                    ],
+                ],
+            ],
+            'credentials' => new InsecureCredentialsWrapper(),
+        ];
     }
 }

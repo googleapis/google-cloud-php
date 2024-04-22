@@ -48,34 +48,73 @@ use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Cloud\VmwareEngine\V1\Cluster;
 use Google\Cloud\VmwareEngine\V1\CreateClusterRequest;
+use Google\Cloud\VmwareEngine\V1\CreateExternalAccessRuleRequest;
+use Google\Cloud\VmwareEngine\V1\CreateExternalAddressRequest;
 use Google\Cloud\VmwareEngine\V1\CreateHcxActivationKeyRequest;
+use Google\Cloud\VmwareEngine\V1\CreateLoggingServerRequest;
+use Google\Cloud\VmwareEngine\V1\CreateManagementDnsZoneBindingRequest;
+use Google\Cloud\VmwareEngine\V1\CreateNetworkPeeringRequest;
 use Google\Cloud\VmwareEngine\V1\CreateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\CreatePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\CreatePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\CreateVmwareEngineNetworkRequest;
 use Google\Cloud\VmwareEngine\V1\Credentials;
 use Google\Cloud\VmwareEngine\V1\DeleteClusterRequest;
+use Google\Cloud\VmwareEngine\V1\DeleteExternalAccessRuleRequest;
+use Google\Cloud\VmwareEngine\V1\DeleteExternalAddressRequest;
+use Google\Cloud\VmwareEngine\V1\DeleteLoggingServerRequest;
+use Google\Cloud\VmwareEngine\V1\DeleteManagementDnsZoneBindingRequest;
+use Google\Cloud\VmwareEngine\V1\DeleteNetworkPeeringRequest;
 use Google\Cloud\VmwareEngine\V1\DeleteNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\DeletePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\DeletePrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\DeleteVmwareEngineNetworkRequest;
+use Google\Cloud\VmwareEngine\V1\DnsBindPermission;
+use Google\Cloud\VmwareEngine\V1\DnsForwarding;
+use Google\Cloud\VmwareEngine\V1\ExternalAccessRule;
+use Google\Cloud\VmwareEngine\V1\ExternalAddress;
+use Google\Cloud\VmwareEngine\V1\FetchNetworkPolicyExternalAddressesRequest;
+use Google\Cloud\VmwareEngine\V1\FetchNetworkPolicyExternalAddressesResponse;
 use Google\Cloud\VmwareEngine\V1\GetClusterRequest;
+use Google\Cloud\VmwareEngine\V1\GetDnsBindPermissionRequest;
+use Google\Cloud\VmwareEngine\V1\GetDnsForwardingRequest;
+use Google\Cloud\VmwareEngine\V1\GetExternalAccessRuleRequest;
+use Google\Cloud\VmwareEngine\V1\GetExternalAddressRequest;
 use Google\Cloud\VmwareEngine\V1\GetHcxActivationKeyRequest;
+use Google\Cloud\VmwareEngine\V1\GetLoggingServerRequest;
+use Google\Cloud\VmwareEngine\V1\GetManagementDnsZoneBindingRequest;
+use Google\Cloud\VmwareEngine\V1\GetNetworkPeeringRequest;
 use Google\Cloud\VmwareEngine\V1\GetNetworkPolicyRequest;
+use Google\Cloud\VmwareEngine\V1\GetNodeRequest;
 use Google\Cloud\VmwareEngine\V1\GetNodeTypeRequest;
 use Google\Cloud\VmwareEngine\V1\GetPrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\GetPrivateConnectionRequest;
 use Google\Cloud\VmwareEngine\V1\GetSubnetRequest;
 use Google\Cloud\VmwareEngine\V1\GetVmwareEngineNetworkRequest;
+use Google\Cloud\VmwareEngine\V1\GrantDnsBindPermissionRequest;
 use Google\Cloud\VmwareEngine\V1\HcxActivationKey;
 use Google\Cloud\VmwareEngine\V1\ListClustersRequest;
 use Google\Cloud\VmwareEngine\V1\ListClustersResponse;
+use Google\Cloud\VmwareEngine\V1\ListExternalAccessRulesRequest;
+use Google\Cloud\VmwareEngine\V1\ListExternalAccessRulesResponse;
+use Google\Cloud\VmwareEngine\V1\ListExternalAddressesRequest;
+use Google\Cloud\VmwareEngine\V1\ListExternalAddressesResponse;
 use Google\Cloud\VmwareEngine\V1\ListHcxActivationKeysRequest;
 use Google\Cloud\VmwareEngine\V1\ListHcxActivationKeysResponse;
+use Google\Cloud\VmwareEngine\V1\ListLoggingServersRequest;
+use Google\Cloud\VmwareEngine\V1\ListLoggingServersResponse;
+use Google\Cloud\VmwareEngine\V1\ListManagementDnsZoneBindingsRequest;
+use Google\Cloud\VmwareEngine\V1\ListManagementDnsZoneBindingsResponse;
+use Google\Cloud\VmwareEngine\V1\ListNetworkPeeringsRequest;
+use Google\Cloud\VmwareEngine\V1\ListNetworkPeeringsResponse;
 use Google\Cloud\VmwareEngine\V1\ListNetworkPoliciesRequest;
 use Google\Cloud\VmwareEngine\V1\ListNetworkPoliciesResponse;
 use Google\Cloud\VmwareEngine\V1\ListNodeTypesRequest;
 use Google\Cloud\VmwareEngine\V1\ListNodeTypesResponse;
+use Google\Cloud\VmwareEngine\V1\ListNodesRequest;
+use Google\Cloud\VmwareEngine\V1\ListNodesResponse;
+use Google\Cloud\VmwareEngine\V1\ListPeeringRoutesRequest;
+use Google\Cloud\VmwareEngine\V1\ListPeeringRoutesResponse;
 use Google\Cloud\VmwareEngine\V1\ListPrivateCloudsRequest;
 use Google\Cloud\VmwareEngine\V1\ListPrivateCloudsResponse;
 use Google\Cloud\VmwareEngine\V1\ListPrivateConnectionPeeringRoutesRequest;
@@ -86,17 +125,30 @@ use Google\Cloud\VmwareEngine\V1\ListSubnetsRequest;
 use Google\Cloud\VmwareEngine\V1\ListSubnetsResponse;
 use Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksRequest;
 use Google\Cloud\VmwareEngine\V1\ListVmwareEngineNetworksResponse;
+use Google\Cloud\VmwareEngine\V1\LoggingServer;
+use Google\Cloud\VmwareEngine\V1\ManagementDnsZoneBinding;
+use Google\Cloud\VmwareEngine\V1\NetworkPeering;
 use Google\Cloud\VmwareEngine\V1\NetworkPolicy;
+use Google\Cloud\VmwareEngine\V1\Node;
 use Google\Cloud\VmwareEngine\V1\NodeType;
+use Google\Cloud\VmwareEngine\V1\Principal;
 use Google\Cloud\VmwareEngine\V1\PrivateCloud;
 use Google\Cloud\VmwareEngine\V1\PrivateConnection;
+use Google\Cloud\VmwareEngine\V1\RepairManagementDnsZoneBindingRequest;
 use Google\Cloud\VmwareEngine\V1\ResetNsxCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ResetVcenterCredentialsRequest;
+use Google\Cloud\VmwareEngine\V1\RevokeDnsBindPermissionRequest;
 use Google\Cloud\VmwareEngine\V1\ShowNsxCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\ShowVcenterCredentialsRequest;
 use Google\Cloud\VmwareEngine\V1\Subnet;
 use Google\Cloud\VmwareEngine\V1\UndeletePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateClusterRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateDnsForwardingRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateExternalAccessRuleRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateExternalAddressRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateLoggingServerRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateManagementDnsZoneBindingRequest;
+use Google\Cloud\VmwareEngine\V1\UpdateNetworkPeeringRequest;
 use Google\Cloud\VmwareEngine\V1\UpdateNetworkPolicyRequest;
 use Google\Cloud\VmwareEngine\V1\UpdatePrivateCloudRequest;
 use Google\Cloud\VmwareEngine\V1\UpdatePrivateConnectionRequest;
@@ -154,8 +206,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient}.
  */
 class VmwareEngineGapicClient
 {
@@ -164,8 +215,15 @@ class VmwareEngineGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.vmwareengine.v1.VmwareEngine';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'vmwareengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'vmwareengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -180,13 +238,29 @@ class VmwareEngineGapicClient
 
     private static $clusterNameTemplate;
 
+    private static $dnsBindPermissionNameTemplate;
+
+    private static $dnsForwardingNameTemplate;
+
+    private static $externalAccessRuleNameTemplate;
+
+    private static $externalAddressNameTemplate;
+
     private static $hcxActivationKeyNameTemplate;
 
     private static $locationNameTemplate;
 
+    private static $loggingServerNameTemplate;
+
+    private static $managementDnsZoneBindingNameTemplate;
+
     private static $networkNameTemplate;
 
+    private static $networkPeeringNameTemplate;
+
     private static $networkPolicyNameTemplate;
+
+    private static $nodeNameTemplate;
 
     private static $nodeTypeNameTemplate;
 
@@ -238,6 +312,50 @@ class VmwareEngineGapicClient
         return self::$clusterNameTemplate;
     }
 
+    private static function getDnsBindPermissionNameTemplate()
+    {
+        if (self::$dnsBindPermissionNameTemplate == null) {
+            self::$dnsBindPermissionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/dnsBindPermission'
+            );
+        }
+
+        return self::$dnsBindPermissionNameTemplate;
+    }
+
+    private static function getDnsForwardingNameTemplate()
+    {
+        if (self::$dnsForwardingNameTemplate == null) {
+            self::$dnsForwardingNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/privateClouds/{private_cloud}/dnsForwarding'
+            );
+        }
+
+        return self::$dnsForwardingNameTemplate;
+    }
+
+    private static function getExternalAccessRuleNameTemplate()
+    {
+        if (self::$externalAccessRuleNameTemplate == null) {
+            self::$externalAccessRuleNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/networkPolicies/{network_policy}/externalAccessRules/{external_access_rule}'
+            );
+        }
+
+        return self::$externalAccessRuleNameTemplate;
+    }
+
+    private static function getExternalAddressNameTemplate()
+    {
+        if (self::$externalAddressNameTemplate == null) {
+            self::$externalAddressNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/privateClouds/{private_cloud}/externalAddresses/{external_address}'
+            );
+        }
+
+        return self::$externalAddressNameTemplate;
+    }
+
     private static function getHcxActivationKeyNameTemplate()
     {
         if (self::$hcxActivationKeyNameTemplate == null) {
@@ -260,6 +378,28 @@ class VmwareEngineGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getLoggingServerNameTemplate()
+    {
+        if (self::$loggingServerNameTemplate == null) {
+            self::$loggingServerNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/privateClouds/{private_cloud}/loggingServers/{logging_server}'
+            );
+        }
+
+        return self::$loggingServerNameTemplate;
+    }
+
+    private static function getManagementDnsZoneBindingNameTemplate()
+    {
+        if (self::$managementDnsZoneBindingNameTemplate == null) {
+            self::$managementDnsZoneBindingNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/privateClouds/{private_cloud}/managementDnsZoneBindings/{management_dns_zone_binding}'
+            );
+        }
+
+        return self::$managementDnsZoneBindingNameTemplate;
+    }
+
     private static function getNetworkNameTemplate()
     {
         if (self::$networkNameTemplate == null) {
@@ -271,6 +411,17 @@ class VmwareEngineGapicClient
         return self::$networkNameTemplate;
     }
 
+    private static function getNetworkPeeringNameTemplate()
+    {
+        if (self::$networkPeeringNameTemplate == null) {
+            self::$networkPeeringNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/networkPeerings/{network_peering}'
+            );
+        }
+
+        return self::$networkPeeringNameTemplate;
+    }
+
     private static function getNetworkPolicyNameTemplate()
     {
         if (self::$networkPolicyNameTemplate == null) {
@@ -280,6 +431,17 @@ class VmwareEngineGapicClient
         }
 
         return self::$networkPolicyNameTemplate;
+    }
+
+    private static function getNodeNameTemplate()
+    {
+        if (self::$nodeNameTemplate == null) {
+            self::$nodeNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/privateClouds/{private_cloud}/clusters/{cluster}/nodes/{node}'
+            );
+        }
+
+        return self::$nodeNameTemplate;
     }
 
     private static function getNodeTypeNameTemplate()
@@ -342,10 +504,18 @@ class VmwareEngineGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'cluster' => self::getClusterNameTemplate(),
+                'dnsBindPermission' => self::getDnsBindPermissionNameTemplate(),
+                'dnsForwarding' => self::getDnsForwardingNameTemplate(),
+                'externalAccessRule' => self::getExternalAccessRuleNameTemplate(),
+                'externalAddress' => self::getExternalAddressNameTemplate(),
                 'hcxActivationKey' => self::getHcxActivationKeyNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'loggingServer' => self::getLoggingServerNameTemplate(),
+                'managementDnsZoneBinding' => self::getManagementDnsZoneBindingNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
+                'networkPeering' => self::getNetworkPeeringNameTemplate(),
                 'networkPolicy' => self::getNetworkPolicyNameTemplate(),
+                'node' => self::getNodeNameTemplate(),
                 'nodeType' => self::getNodeTypeNameTemplate(),
                 'privateCloud' => self::getPrivateCloudNameTemplate(),
                 'privateConnection' => self::getPrivateConnectionNameTemplate(),
@@ -379,6 +549,92 @@ class VmwareEngineGapicClient
             'location' => $location,
             'private_cloud' => $privateCloud,
             'cluster' => $cluster,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * dns_bind_permission resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted dns_bind_permission resource.
+     */
+    public static function dnsBindPermissionName($project, $location)
+    {
+        return self::getDnsBindPermissionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * dns_forwarding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateCloud
+     *
+     * @return string The formatted dns_forwarding resource.
+     */
+    public static function dnsForwardingName($project, $location, $privateCloud)
+    {
+        return self::getDnsForwardingNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'private_cloud' => $privateCloud,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * external_access_rule resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $networkPolicy
+     * @param string $externalAccessRule
+     *
+     * @return string The formatted external_access_rule resource.
+     */
+    public static function externalAccessRuleName(
+        $project,
+        $location,
+        $networkPolicy,
+        $externalAccessRule
+    ) {
+        return self::getExternalAccessRuleNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'network_policy' => $networkPolicy,
+            'external_access_rule' => $externalAccessRule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * external_address resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateCloud
+     * @param string $externalAddress
+     *
+     * @return string The formatted external_address resource.
+     */
+    public static function externalAddressName(
+        $project,
+        $location,
+        $privateCloud,
+        $externalAddress
+    ) {
+        return self::getExternalAddressNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'private_cloud' => $privateCloud,
+            'external_address' => $externalAddress,
         ]);
     }
 
@@ -425,6 +681,56 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * logging_server resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateCloud
+     * @param string $loggingServer
+     *
+     * @return string The formatted logging_server resource.
+     */
+    public static function loggingServerName(
+        $project,
+        $location,
+        $privateCloud,
+        $loggingServer
+    ) {
+        return self::getLoggingServerNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'private_cloud' => $privateCloud,
+            'logging_server' => $loggingServer,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * management_dns_zone_binding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateCloud
+     * @param string $managementDnsZoneBinding
+     *
+     * @return string The formatted management_dns_zone_binding resource.
+     */
+    public static function managementDnsZoneBindingName(
+        $project,
+        $location,
+        $privateCloud,
+        $managementDnsZoneBinding
+    ) {
+        return self::getManagementDnsZoneBindingNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'private_cloud' => $privateCloud,
+            'management_dns_zone_binding' => $managementDnsZoneBinding,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a network
      * resource.
      *
@@ -438,6 +744,28 @@ class VmwareEngineGapicClient
         return self::getNetworkNameTemplate()->render([
             'project' => $project,
             'network' => $network,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * network_peering resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $networkPeering
+     *
+     * @return string The formatted network_peering resource.
+     */
+    public static function networkPeeringName(
+        $project,
+        $location,
+        $networkPeering
+    ) {
+        return self::getNetworkPeeringNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'network_peering' => $networkPeering,
         ]);
     }
 
@@ -460,6 +788,34 @@ class VmwareEngineGapicClient
             'project' => $project,
             'location' => $location,
             'network_policy' => $networkPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a node
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $privateCloud
+     * @param string $cluster
+     * @param string $node
+     *
+     * @return string The formatted node resource.
+     */
+    public static function nodeName(
+        $project,
+        $location,
+        $privateCloud,
+        $cluster,
+        $node
+    ) {
+        return self::getNodeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'private_cloud' => $privateCloud,
+            'cluster' => $cluster,
+            'node' => $node,
         ]);
     }
 
@@ -575,10 +931,18 @@ class VmwareEngineGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - cluster: projects/{project}/locations/{location}/privateClouds/{private_cloud}/clusters/{cluster}
+     * - dnsBindPermission: projects/{project}/locations/{location}/dnsBindPermission
+     * - dnsForwarding: projects/{project}/locations/{location}/privateClouds/{private_cloud}/dnsForwarding
+     * - externalAccessRule: projects/{project}/locations/{location}/networkPolicies/{network_policy}/externalAccessRules/{external_access_rule}
+     * - externalAddress: projects/{project}/locations/{location}/privateClouds/{private_cloud}/externalAddresses/{external_address}
      * - hcxActivationKey: projects/{project}/locations/{location}/privateClouds/{private_cloud}/hcxActivationKeys/{hcx_activation_key}
      * - location: projects/{project}/locations/{location}
+     * - loggingServer: projects/{project}/locations/{location}/privateClouds/{private_cloud}/loggingServers/{logging_server}
+     * - managementDnsZoneBinding: projects/{project}/locations/{location}/privateClouds/{private_cloud}/managementDnsZoneBindings/{management_dns_zone_binding}
      * - network: projects/{project}/global/networks/{network}
+     * - networkPeering: projects/{project}/locations/{location}/networkPeerings/{network_peering}
      * - networkPolicy: projects/{project}/locations/{location}/networkPolicies/{network_policy}
+     * - node: projects/{project}/locations/{location}/privateClouds/{private_cloud}/clusters/{cluster}/nodes/{node}
      * - nodeType: projects/{project}/locations/{location}/nodeTypes/{node_type}
      * - privateCloud: projects/{project}/locations/{location}/privateClouds/{private_cloud}
      * - privateConnection: projects/{project}/locations/{location}/privateConnections/{private_connection}
@@ -835,6 +1199,242 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Creates a new external access rule in a given network policy.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
+     *     $externalAccessRule = new ExternalAccessRule();
+     *     $externalAccessRuleId = 'external_access_rule_id';
+     *     $operationResponse = $vmwareEngineClient->createExternalAccessRule($formattedParent, $externalAccessRule, $externalAccessRuleId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->createExternalAccessRule($formattedParent, $externalAccessRule, $externalAccessRuleId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'createExternalAccessRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string             $parent               Required. The resource name of the network policy
+     *                                                 to create a new external access firewall rule in.
+     *                                                 Resource names are schemeless URIs that follow the conventions in
+     *                                                 https://cloud.google.com/apis/design/resource_names.
+     *                                                 For example:
+     *                                                 `projects/my-project/locations/us-central1/networkPolicies/my-policy`
+     * @param ExternalAccessRule $externalAccessRule   Required. The initial description of a new external access rule.
+     * @param string             $externalAccessRuleId Required. The user-provided identifier of the `ExternalAccessRule` to be
+     *                                                 created. This identifier must be unique among `ExternalAccessRule`
+     *                                                 resources within the parent and becomes the final token in the name URI.
+     *                                                 The identifier must meet the following requirements:
+     *
+     *                                                 * Only contains 1-63 alphanumeric characters and hyphens
+     *                                                 * Begins with an alphabetical character
+     *                                                 * Ends with a non-hyphen character
+     *                                                 * Not formatted as a UUID
+     *                                                 * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                                 (section 3.5)
+     * @param array              $optionalArgs         {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if the original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createExternalAccessRule(
+        $parent,
+        $externalAccessRule,
+        $externalAccessRuleId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateExternalAccessRuleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setExternalAccessRule($externalAccessRule);
+        $request->setExternalAccessRuleId($externalAccessRuleId);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateExternalAccessRule',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates a new `ExternalAddress` resource in a given private cloud. The
+     * network policy that corresponds to the private cloud must have the external
+     * IP address network service enabled (`NetworkPolicy.external_ip`).
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
+     *     $externalAddress = new ExternalAddress();
+     *     $externalAddressId = 'external_address_id';
+     *     $operationResponse = $vmwareEngineClient->createExternalAddress($formattedParent, $externalAddress, $externalAddressId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->createExternalAddress($formattedParent, $externalAddress, $externalAddressId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'createExternalAddress');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string          $parent            Required. The resource name of the private cloud
+     *                                           to create a new external IP address in.
+     *                                           Resource names are schemeless URIs that follow the conventions in
+     *                                           https://cloud.google.com/apis/design/resource_names.
+     *                                           For example:
+     *                                           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     * @param ExternalAddress $externalAddress   Required. The initial description of a new external IP address.
+     * @param string          $externalAddressId Required. The user-provided identifier of the `ExternalAddress` to be
+     *                                           created. This identifier must be unique among `ExternalAddress` resources
+     *                                           within the parent and becomes the final token in the name URI. The
+     *                                           identifier must meet the following requirements:
+     *
+     *                                           * Only contains 1-63 alphanumeric characters and hyphens
+     *                                           * Begins with an alphabetical character
+     *                                           * Ends with a non-hyphen character
+     *                                           * Not formatted as a UUID
+     *                                           * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                           (section 3.5)
+     * @param array           $optionalArgs      {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if the original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createExternalAddress(
+        $parent,
+        $externalAddress,
+        $externalAddressId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateExternalAddressRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setExternalAddress($externalAddress);
+        $request->setExternalAddressId($externalAddressId);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateExternalAddress',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Creates a new HCX activation key in a given private cloud.
      *
      * Sample code:
@@ -945,6 +1545,365 @@ class VmwareEngineGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'CreateHcxActivationKey',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Create a new logging server for a given private cloud.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
+     *     $loggingServer = new LoggingServer();
+     *     $loggingServerId = 'logging_server_id';
+     *     $operationResponse = $vmwareEngineClient->createLoggingServer($formattedParent, $loggingServer, $loggingServerId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->createLoggingServer($formattedParent, $loggingServer, $loggingServerId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'createLoggingServer');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string        $parent          Required. The resource name of the private cloud
+     *                                       to create a new Logging Server in.
+     *                                       Resource names are schemeless URIs that follow the conventions in
+     *                                       https://cloud.google.com/apis/design/resource_names.
+     *                                       For example:
+     *                                       `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     * @param LoggingServer $loggingServer   Required. The initial description of a new logging server.
+     * @param string        $loggingServerId Required. The user-provided identifier of the `LoggingServer` to be
+     *                                       created. This identifier must be unique among `LoggingServer` resources
+     *                                       within the parent and becomes the final token in the name URI.
+     *                                       The identifier must meet the following requirements:
+     *
+     *                                       * Only contains 1-63 alphanumeric characters and hyphens
+     *                                       * Begins with an alphabetical character
+     *                                       * Ends with a non-hyphen character
+     *                                       * Not formatted as a UUID
+     *                                       * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                       (section 3.5)
+     * @param array         $optionalArgs    {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createLoggingServer(
+        $parent,
+        $loggingServer,
+        $loggingServerId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateLoggingServerRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setLoggingServer($loggingServer);
+        $request->setLoggingServerId($loggingServerId);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateLoggingServer',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates a new `ManagementDnsZoneBinding` resource in a private cloud.
+     * This RPC creates the DNS binding and the resource that represents the
+     * DNS binding of the consumer VPC network to the management DNS zone. A
+     * management DNS zone is the Cloud DNS cross-project binding zone that
+     * VMware Engine creates for each private cloud. It contains FQDNs and
+     * corresponding IP addresses for the private cloud's ESXi hosts and
+     * management VM appliances like vCenter and NSX Manager.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
+     *     $managementDnsZoneBinding = new ManagementDnsZoneBinding();
+     *     $managementDnsZoneBindingId = 'management_dns_zone_binding_id';
+     *     $operationResponse = $vmwareEngineClient->createManagementDnsZoneBinding($formattedParent, $managementDnsZoneBinding, $managementDnsZoneBindingId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->createManagementDnsZoneBinding($formattedParent, $managementDnsZoneBinding, $managementDnsZoneBindingId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'createManagementDnsZoneBinding');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string                   $parent                     Required. The resource name of the private cloud
+     *                                                             to create a new management DNS zone binding for.
+     *                                                             Resource names are schemeless URIs that follow the conventions in
+     *                                                             https://cloud.google.com/apis/design/resource_names.
+     *                                                             For example:
+     *                                                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     * @param ManagementDnsZoneBinding $managementDnsZoneBinding   Required. The initial values for a new management DNS zone binding.
+     * @param string                   $managementDnsZoneBindingId Required. The user-provided identifier of the `ManagementDnsZoneBinding`
+     *                                                             resource to be created. This identifier must be unique among
+     *                                                             `ManagementDnsZoneBinding` resources within the parent and becomes the
+     *                                                             final token in the name URI. The identifier must meet the following
+     *                                                             requirements:
+     *
+     *                                                             * Only contains 1-63 alphanumeric characters and hyphens
+     *                                                             * Begins with an alphabetical character
+     *                                                             * Ends with a non-hyphen character
+     *                                                             * Not formatted as a UUID
+     *                                                             * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                                             (section 3.5)
+     * @param array                    $optionalArgs               {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if the original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createManagementDnsZoneBinding(
+        $parent,
+        $managementDnsZoneBinding,
+        $managementDnsZoneBindingId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateManagementDnsZoneBindingRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setManagementDnsZoneBinding($managementDnsZoneBinding);
+        $request->setManagementDnsZoneBindingId($managementDnsZoneBindingId);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateManagementDnsZoneBinding',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates a new network peering between the peer network and VMware Engine
+     * network provided in a `NetworkPeering` resource. NetworkPeering is a
+     * global resource and location can only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $networkPeeringId = 'network_peering_id';
+     *     $networkPeering = new NetworkPeering();
+     *     $operationResponse = $vmwareEngineClient->createNetworkPeering($formattedParent, $networkPeeringId, $networkPeering);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->createNetworkPeering($formattedParent, $networkPeeringId, $networkPeering);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'createNetworkPeering');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent           Required. The resource name of the location to create the new network
+     *                                         peering in. This value is always `global`, because `NetworkPeering` is a
+     *                                         global resource. Resource names are schemeless URIs that follow the
+     *                                         conventions in https://cloud.google.com/apis/design/resource_names. For
+     *                                         example: `projects/my-project/locations/global`
+     * @param string         $networkPeeringId Required. The user-provided identifier of the new `NetworkPeering`.
+     *                                         This identifier must be unique among `NetworkPeering` resources within the
+     *                                         parent and becomes the final token in the name URI.
+     *                                         The identifier must meet the following requirements:
+     *
+     *                                         * Only contains 1-63 alphanumeric characters and hyphens
+     *                                         * Begins with an alphabetical character
+     *                                         * Ends with a non-hyphen character
+     *                                         * Not formatted as a UUID
+     *                                         * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034)
+     *                                         (section 3.5)
+     * @param NetworkPeering $networkPeering   Required. The initial description of the new network peering.
+     * @param array          $optionalArgs     {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createNetworkPeering(
+        $parent,
+        $networkPeeringId,
+        $networkPeering,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateNetworkPeeringRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setNetworkPeeringId($networkPeeringId);
+        $request->setNetworkPeering($networkPeering);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateNetworkPeering',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -1073,9 +2032,9 @@ class VmwareEngineGapicClient
 
     /**
      * Creates a new `PrivateCloud` resource in a given project and location.
-     * Private clouds can only be created in zones, regional private clouds are
-     * not supported.
-     *
+     * Private clouds of type `STANDARD` and
+     * `TIME_LIMITED` are zonal resources, `STRETCHED` private clouds are
+     * regional.
      * Creating a private cloud also creates a [management
      * cluster](https://cloud.google.com/vmware-engine/docs/concepts-vmware-components)
      * for that private cloud.
@@ -1512,6 +2471,485 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Deletes a single external access rule.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->externalAccessRuleName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]', '[EXTERNAL_ACCESS_RULE]');
+     *     $operationResponse = $vmwareEngineClient->deleteExternalAccessRule($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->deleteExternalAccessRule($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'deleteExternalAccessRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the external access firewall rule to delete.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if the original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteExternalAccessRule($name, array $optionalArgs = [])
+    {
+        $request = new DeleteExternalAccessRuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteExternalAccessRule',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a single external IP address. When you delete an external IP
+     * address, connectivity between the external IP address and the corresponding
+     * internal IP address is lost.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->externalAddressName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[EXTERNAL_ADDRESS]');
+     *     $operationResponse = $vmwareEngineClient->deleteExternalAddress($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->deleteExternalAddress($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'deleteExternalAddress');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the external IP address to delete.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-ip`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if the original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteExternalAddress($name, array $optionalArgs = [])
+    {
+        $request = new DeleteExternalAddressRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteExternalAddress',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a single logging server.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->loggingServerName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[LOGGING_SERVER]');
+     *     $operationResponse = $vmwareEngineClient->deleteLoggingServer($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->deleteLoggingServer($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'deleteLoggingServer');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the logging server to delete.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteLoggingServer($name, array $optionalArgs = [])
+    {
+        $request = new DeleteLoggingServerRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteLoggingServer',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a `ManagementDnsZoneBinding` resource. When a management DNS zone
+     * binding is deleted, the corresponding consumer VPC network is no longer
+     * bound to the management DNS zone.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
+     *     $operationResponse = $vmwareEngineClient->deleteManagementDnsZoneBinding($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->deleteManagementDnsZoneBinding($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'deleteManagementDnsZoneBinding');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the management DNS zone binding to delete.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if the original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteManagementDnsZoneBinding(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new DeleteManagementDnsZoneBindingRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteManagementDnsZoneBinding',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a `NetworkPeering` resource. When a network peering is deleted for
+     * a VMware Engine network, the peer network becomes inaccessible to that
+     * VMware Engine network. NetworkPeering is a global resource and location can
+     * only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
+     *     $operationResponse = $vmwareEngineClient->deleteNetworkPeering($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->deleteNetworkPeering($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'deleteNetworkPeering');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the network peering to be deleted.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/global/networkPeerings/my-peering`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteNetworkPeering($name, array $optionalArgs = [])
+    {
+        $request = new DeleteNetworkPeeringRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteNetworkPeering',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes a `NetworkPolicy` resource. A network policy cannot be deleted
      * when `NetworkService.state` is set to `RECONCILING` for either its external
      * IP or internet access service.
@@ -1931,6 +3369,90 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Lists external IP addresses assigned to VMware workload VMs within the
+     * scope of the given network policy.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedNetworkPolicy = $vmwareEngineClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->fetchNetworkPolicyExternalAddresses($formattedNetworkPolicy);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->fetchNetworkPolicyExternalAddresses($formattedNetworkPolicy);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $networkPolicy Required. The resource name of the network policy to query for assigned
+     *                              external IP addresses. Resource names are schemeless URIs that follow the
+     *                              conventions in https://cloud.google.com/apis/design/resource_names. For
+     *                              example:
+     *                              `projects/my-project/locations/us-central1/networkPolicies/my-policy`
+     * @param array  $optionalArgs  {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function fetchNetworkPolicyExternalAddresses(
+        $networkPolicy,
+        array $optionalArgs = []
+    ) {
+        $request = new FetchNetworkPolicyExternalAddressesRequest();
+        $requestParamHeaders = [];
+        $request->setNetworkPolicy($networkPolicy);
+        $requestParamHeaders['network_policy'] = $networkPolicy;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'FetchNetworkPolicyExternalAddresses',
+            $optionalArgs,
+            FetchNetworkPolicyExternalAddressesResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Retrieves a `Cluster` resource by its resource name.
      *
      * Sample code:
@@ -1977,6 +3499,217 @@ class VmwareEngineGapicClient
         return $this->startCall(
             'GetCluster',
             Cluster::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets all the principals having bind permission on the intranet VPC
+     * associated with the consumer project granted by the Grant API.
+     * DnsBindPermission is a global resource and location can only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
+     *     $response = $vmwareEngineClient->getDnsBindPermission($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the resource which stores the users/service accounts
+     *                             having the permission to bind to the corresponding intranet VPC of the
+     *                             consumer project. DnsBindPermission is a global resource. Resource names
+     *                             are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names. For example:
+     *                             `projects/my-project/locations/global/dnsBindPermission`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\DnsBindPermission
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getDnsBindPermission($name, array $optionalArgs = [])
+    {
+        $request = new GetDnsBindPermissionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDnsBindPermission',
+            DnsBindPermission::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details of the `DnsForwarding` config.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->dnsForwardingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
+     *     $response = $vmwareEngineClient->getDnsForwarding($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of a `DnsForwarding` to retrieve.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\DnsForwarding
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getDnsForwarding($name, array $optionalArgs = [])
+    {
+        $request = new GetDnsForwardingRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDnsForwarding',
+            DnsForwarding::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details of a single external access rule.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->externalAccessRuleName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]', '[EXTERNAL_ACCESS_RULE]');
+     *     $response = $vmwareEngineClient->getExternalAccessRule($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the external access firewall rule to
+     *                             retrieve. Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1/networkPolicies/my-policy/externalAccessRules/my-rule`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\ExternalAccessRule
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getExternalAccessRule($name, array $optionalArgs = [])
+    {
+        $request = new GetExternalAccessRuleRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetExternalAccessRule',
+            ExternalAccessRule::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details of a single external IP address.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->externalAddressName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[EXTERNAL_ADDRESS]');
+     *     $response = $vmwareEngineClient->getExternalAddress($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the external IP address to retrieve.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-ip`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\ExternalAddress
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getExternalAddress($name, array $optionalArgs = [])
+    {
+        $request = new GetExternalAddressRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetExternalAddress',
+            ExternalAddress::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2035,6 +3768,165 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Gets details of a logging server.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->loggingServerName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[LOGGING_SERVER]');
+     *     $response = $vmwareEngineClient->getLoggingServer($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the Logging Server to retrieve.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/loggingServers/my-logging-server`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\LoggingServer
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLoggingServer($name, array $optionalArgs = [])
+    {
+        $request = new GetLoggingServerRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLoggingServer',
+            LoggingServer::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieves a 'ManagementDnsZoneBinding' resource by its resource name.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
+     *     $response = $vmwareEngineClient->getManagementDnsZoneBinding($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the management DNS zone binding to
+     *                             retrieve. Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\ManagementDnsZoneBinding
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getManagementDnsZoneBinding($name, array $optionalArgs = [])
+    {
+        $request = new GetManagementDnsZoneBindingRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetManagementDnsZoneBinding',
+            ManagementDnsZoneBinding::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieves a `NetworkPeering` resource by its resource name. The resource
+     * contains details of the network peering, such as peered
+     * networks, import and export custom route configurations, and peering state.
+     * NetworkPeering is a global resource and location can only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
+     *     $response = $vmwareEngineClient->getNetworkPeering($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the network peering to retrieve.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/global/networkPeerings/my-peering`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\NetworkPeering
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNetworkPeering($name, array $optionalArgs = [])
+    {
+        $request = new GetNetworkPeeringRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetNetworkPeering',
+            NetworkPeering::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Retrieves a `NetworkPolicy` resource by its resource name.
      *
      * Sample code:
@@ -2081,6 +3973,56 @@ class VmwareEngineGapicClient
         return $this->startCall(
             'GetNetworkPolicy',
             NetworkPolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets details of a single node.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->nodeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]', '[NODE]');
+     *     $response = $vmwareEngineClient->getNode($formattedName);
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the node to retrieve.
+     *                             For example:
+     *                             `projects/{project}/locations/{location}/privateClouds/{private_cloud}/clusters/{cluster}/nodes/{node}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\VmwareEngine\V1\Node
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getNode($name, array $optionalArgs = [])
+    {
+        $request = new GetNodeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetNode',
+            Node::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2352,6 +4294,114 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Grants the bind permission to the customer provided principal(user /
+     * service account) to bind their DNS zone with the intranet VPC associated
+     * with the project. DnsBindPermission is a global resource and location can
+     * only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
+     *     $principal = new Principal();
+     *     $operationResponse = $vmwareEngineClient->grantDnsBindPermission($formattedName, $principal);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->grantDnsBindPermission($formattedName, $principal);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'grantDnsBindPermission');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string    $name         Required. The name of the resource which stores the users/service accounts
+     *                                having the permission to bind to the corresponding intranet VPC of the
+     *                                consumer project. DnsBindPermission is a global resource. Resource names
+     *                                are schemeless URIs that follow the conventions in
+     *                                https://cloud.google.com/apis/design/resource_names. For example:
+     *                                `projects/my-project/locations/global/dnsBindPermission`
+     * @param Principal $principal    Required. The consumer provided user/service account which needs to be
+     *                                granted permission to bind with the intranet VPC corresponding to the
+     *                                consumer project.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function grantDnsBindPermission(
+        $name,
+        $principal,
+        array $optionalArgs = []
+    ) {
+        $request = new GrantDnsBindPermissionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setPrincipal($principal);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'GrantDnsBindPermission',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Lists `Cluster` resources in a given private cloud.
      *
      * Sample code:
@@ -2462,6 +4512,250 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Lists `ExternalAccessRule` resources in the specified network policy.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->networkPolicyName('[PROJECT]', '[LOCATION]', '[NETWORK_POLICY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listExternalAccessRules($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listExternalAccessRules($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the network policy to query for external
+     *                             access firewall rules. Resource names are schemeless URIs that follow the
+     *                             conventions in https://cloud.google.com/apis/design/resource_names. For
+     *                             example:
+     *                             `projects/my-project/locations/us-central1/networkPolicies/my-policy`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that matches resources returned in the response.
+     *           The expression must specify the field name, a comparison
+     *           operator, and the value that you want to use for filtering. The value
+     *           must be a string, a number, or a boolean. The comparison operator
+     *           must be `=`, `!=`, `>`, or `<`.
+     *
+     *           For example, if you are filtering a list of external access rules, you can
+     *           exclude the ones named `example-rule` by specifying
+     *           `name != "example-rule"`.
+     *
+     *           To filter on multiple expressions, provide each separate expression within
+     *           parentheses. For example:
+     *           ```
+     *           (name = "example-rule")
+     *           (createTime > "2021-04-12T08:15:10.40Z")
+     *           ```
+     *
+     *           By default, each expression is an `AND` expression. However, you
+     *           can include `AND` and `OR` expressions explicitly.
+     *           For example:
+     *           ```
+     *           (name = "example-rule-1") AND
+     *           (createTime > "2021-04-12T08:15:10.40Z") OR
+     *           (name = "example-rule-2")
+     *           ```
+     *     @type string $orderBy
+     *           Sorts list results by a certain order. By default, returned results
+     *           are ordered by `name` in ascending order.
+     *           You can also sort results in descending order based on the `name` value
+     *           using `orderBy="name desc"`.
+     *           Currently, only ordering by `name` is supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listExternalAccessRules($parent, array $optionalArgs = [])
+    {
+        $request = new ListExternalAccessRulesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListExternalAccessRules',
+            $optionalArgs,
+            ListExternalAccessRulesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists external IP addresses assigned to VMware workload VMs in a given
+     * private cloud.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listExternalAddresses($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listExternalAddresses($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the private cloud to be queried for
+     *                             external IP addresses.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that matches resources returned in the response.
+     *           The expression must specify the field name, a comparison
+     *           operator, and the value that you want to use for filtering. The value
+     *           must be a string, a number, or a boolean. The comparison operator
+     *           must be `=`, `!=`, `>`, or `<`.
+     *
+     *           For example, if you are filtering a list of IP addresses, you can
+     *           exclude the ones named `example-ip` by specifying
+     *           `name != "example-ip"`.
+     *
+     *           To filter on multiple expressions, provide each separate expression within
+     *           parentheses. For example:
+     *           ```
+     *           (name = "example-ip")
+     *           (createTime > "2021-04-12T08:15:10.40Z")
+     *           ```
+     *
+     *           By default, each expression is an `AND` expression. However, you
+     *           can include `AND` and `OR` expressions explicitly.
+     *           For example:
+     *           ```
+     *           (name = "example-ip-1") AND
+     *           (createTime > "2021-04-12T08:15:10.40Z") OR
+     *           (name = "example-ip-2")
+     *           ```
+     *     @type string $orderBy
+     *           Sorts list results by a certain order. By default, returned results
+     *           are ordered by `name` in ascending order.
+     *           You can also sort results in descending order based on the `name` value
+     *           using `orderBy="name desc"`.
+     *           Currently, only ordering by `name` is supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listExternalAddresses($parent, array $optionalArgs = [])
+    {
+        $request = new ListExternalAddressesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListExternalAddresses',
+            $optionalArgs,
+            ListExternalAddressesResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists `HcxActivationKey` resources in a given private cloud.
      *
      * Sample code:
@@ -2539,6 +4833,374 @@ class VmwareEngineGapicClient
             'ListHcxActivationKeys',
             $optionalArgs,
             ListHcxActivationKeysResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists logging servers configured for a given private
+     * cloud.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listLoggingServers($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listLoggingServers($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the private cloud to be queried for
+     *                             logging servers.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that matches resources returned in the response.
+     *           The expression must specify the field name, a comparison
+     *           operator, and the value that you want to use for filtering. The value
+     *           must be a string, a number, or a boolean. The comparison operator
+     *           must be `=`, `!=`, `>`, or `<`.
+     *
+     *           For example, if you are filtering a list of logging servers, you can
+     *           exclude the ones named `example-server` by specifying
+     *           `name != "example-server"`.
+     *
+     *           To filter on multiple expressions, provide each separate expression within
+     *           parentheses. For example:
+     *           ```
+     *           (name = "example-server")
+     *           (createTime > "2021-04-12T08:15:10.40Z")
+     *           ```
+     *
+     *           By default, each expression is an `AND` expression. However, you
+     *           can include `AND` and `OR` expressions explicitly.
+     *           For example:
+     *           ```
+     *           (name = "example-server-1") AND
+     *           (createTime > "2021-04-12T08:15:10.40Z") OR
+     *           (name = "example-server-2")
+     *           ```
+     *     @type string $orderBy
+     *           Sorts list results by a certain order. By default, returned results
+     *           are ordered by `name` in ascending order.
+     *           You can also sort results in descending order based on the `name` value
+     *           using `orderBy="name desc"`.
+     *           Currently, only ordering by `name` is supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLoggingServers($parent, array $optionalArgs = [])
+    {
+        $request = new ListLoggingServersRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLoggingServers',
+            $optionalArgs,
+            ListLoggingServersResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists Consumer VPCs bound to Management DNS Zone of a given private cloud.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->privateCloudName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listManagementDnsZoneBindings($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listManagementDnsZoneBindings($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the private cloud to be queried for
+     *                             management DNS zone bindings.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that matches resources returned in the response.
+     *           The expression must specify the field name, a comparison
+     *           operator, and the value that you want to use for filtering. The value
+     *           must be a string, a number, or a boolean. The comparison operator
+     *           must be `=`, `!=`, `>`, or `<`.
+     *
+     *           For example, if you are filtering a list of Management DNS Zone Bindings,
+     *           you can exclude the ones named `example-management-dns-zone-binding` by
+     *           specifying `name != "example-management-dns-zone-binding"`.
+     *
+     *           To filter on multiple expressions, provide each separate expression within
+     *           parentheses. For example:
+     *           ```
+     *           (name = "example-management-dns-zone-binding")
+     *           (createTime > "2021-04-12T08:15:10.40Z")
+     *           ```
+     *
+     *           By default, each expression is an `AND` expression. However, you
+     *           can include `AND` and `OR` expressions explicitly.
+     *           For example:
+     *           ```
+     *           (name = "example-management-dns-zone-binding-1") AND
+     *           (createTime > "2021-04-12T08:15:10.40Z") OR
+     *           (name = "example-management-dns-zone-binding-2")
+     *           ```
+     *     @type string $orderBy
+     *           Sorts list results by a certain order. By default, returned results
+     *           are ordered by `name` in ascending order.
+     *           You can also sort results in descending order based on the `name` value
+     *           using `orderBy="name desc"`.
+     *           Currently, only ordering by `name` is supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listManagementDnsZoneBindings(
+        $parent,
+        array $optionalArgs = []
+    ) {
+        $request = new ListManagementDnsZoneBindingsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListManagementDnsZoneBindings',
+            $optionalArgs,
+            ListManagementDnsZoneBindingsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists `NetworkPeering` resources in a given project. NetworkPeering is a
+     * global resource and location can only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listNetworkPeerings($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listNetworkPeerings($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the location (global) to query for
+     *                             network peerings. Resource names are schemeless URIs that follow the
+     *                             conventions in https://cloud.google.com/apis/design/resource_names. For
+     *                             example: `projects/my-project/locations/global`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that matches resources returned in the response.
+     *           The expression must specify the field name, a comparison
+     *           operator, and the value that you want to use for filtering. The value
+     *           must be a string, a number, or a boolean. The comparison operator
+     *           must be `=`, `!=`, `>`, or `<`.
+     *
+     *           For example, if you are filtering a list of network peerings, you can
+     *           exclude the ones named `example-peering` by specifying
+     *           `name != "example-peering"`.
+     *
+     *           To filter on multiple expressions, provide each separate expression within
+     *           parentheses. For example:
+     *           ```
+     *           (name = "example-peering")
+     *           (createTime > "2021-04-12T08:15:10.40Z")
+     *           ```
+     *
+     *           By default, each expression is an `AND` expression. However, you
+     *           can include `AND` and `OR` expressions explicitly.
+     *           For example:
+     *           ```
+     *           (name = "example-peering-1") AND
+     *           (createTime > "2021-04-12T08:15:10.40Z") OR
+     *           (name = "example-peering-2")
+     *           ```
+     *     @type string $orderBy
+     *           Sorts list results by a certain order. By default, returned results
+     *           are ordered by `name` in ascending order.
+     *           You can also sort results in descending order based on the `name` value
+     *           using `orderBy="name desc"`.
+     *           Currently, only ordering by `name` is supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listNetworkPeerings($parent, array $optionalArgs = [])
+    {
+        $request = new ListNetworkPeeringsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListNetworkPeerings',
+            $optionalArgs,
+            ListNetworkPeeringsResponse::class,
             $request
         );
     }
@@ -2770,6 +5432,178 @@ class VmwareEngineGapicClient
             'ListNodeTypes',
             $optionalArgs,
             ListNodeTypesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists nodes in a given cluster.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->clusterName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[CLUSTER]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listNodes($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listNodes($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the cluster to be queried for nodes.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listNodes($parent, array $optionalArgs = [])
+    {
+        $request = new ListNodesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListNodes',
+            $optionalArgs,
+            ListNodesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists the network peering routes exchanged over a peering connection.
+     * NetworkPeering is a global resource and location can only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedParent = $vmwareEngineClient->networkPeeringName('[PROJECT]', '[LOCATION]', '[NETWORK_PEERING]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $vmwareEngineClient->listPeeringRoutes($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $vmwareEngineClient->listPeeringRoutes($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the network peering to retrieve peering
+     *                             routes from. Resource names are schemeless URIs that follow the conventions
+     *                             in https://cloud.google.com/apis/design/resource_names. For example:
+     *                             `projects/my-project/locations/global/networkPeerings/my-peering`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           A filter expression that matches resources returned in the response.
+     *           Currently, only filtering on the `direction` field is supported. To return
+     *           routes imported from the peer network, provide "direction=INCOMING". To
+     *           return routes exported from the VMware Engine network, provide
+     *           "direction=OUTGOING". Other filter expressions return an error.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listPeeringRoutes($parent, array $optionalArgs = [])
+    {
+        $request = new ListPeeringRoutesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListPeeringRoutes',
+            $optionalArgs,
+            ListPeeringRoutesResponse::class,
             $request
         );
     }
@@ -3301,6 +6135,105 @@ class VmwareEngineGapicClient
     }
 
     /**
+     * Retries to create a `ManagementDnsZoneBinding` resource that is
+     * in failed state.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->managementDnsZoneBindingName('[PROJECT]', '[LOCATION]', '[PRIVATE_CLOUD]', '[MANAGEMENT_DNS_ZONE_BINDING]');
+     *     $operationResponse = $vmwareEngineClient->repairManagementDnsZoneBinding($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->repairManagementDnsZoneBinding($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'repairManagementDnsZoneBinding');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the management DNS zone binding to repair.
+     *                             Resource names are schemeless URIs that follow the conventions in
+     *                             https://cloud.google.com/apis/design/resource_names.
+     *                             For example:
+     *                             `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/managementDnsZoneBindings/my-management-dns-zone-binding`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if the original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function repairManagementDnsZoneBinding(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new RepairManagementDnsZoneBindingRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RepairManagementDnsZoneBinding',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Resets credentials of the NSX appliance.
      *
      * Sample code:
@@ -3460,6 +6393,16 @@ class VmwareEngineGapicClient
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type string $username
+     *           Optional. The username of the user to be to reset the credentials.
+     *           The default value of this field is CloudOwner&#64;gve.local.
+     *           The provided value should be one of the following:
+     *           solution-user-01&#64;gve.local,
+     *           solution-user-02&#64;gve.local,
+     *           solution-user-03&#64;gve.local,
+     *           solution-user-04&#64;gve.local,
+     *           solution-user-05&#64;gve.local,
+     *           zertoadmin&#64;gve.local.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3482,6 +6425,10 @@ class VmwareEngineGapicClient
             $request->setRequestId($optionalArgs['requestId']);
         }
 
+        if (isset($optionalArgs['username'])) {
+            $request->setUsername($optionalArgs['username']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3490,6 +6437,113 @@ class VmwareEngineGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'ResetVcenterCredentials',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Revokes the bind permission from the customer provided principal(user /
+     * service account) on the intranet VPC associated with the consumer project.
+     * DnsBindPermission is a global resource and location can only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $formattedName = $vmwareEngineClient->dnsBindPermissionName('[PROJECT]', '[LOCATION]');
+     *     $principal = new Principal();
+     *     $operationResponse = $vmwareEngineClient->revokeDnsBindPermission($formattedName, $principal);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->revokeDnsBindPermission($formattedName, $principal);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'revokeDnsBindPermission');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param string    $name         Required. The name of the resource which stores the users/service accounts
+     *                                having the permission to bind to the corresponding intranet VPC of the
+     *                                consumer project. DnsBindPermission is a global resource. Resource names
+     *                                are schemeless URIs that follow the conventions in
+     *                                https://cloud.google.com/apis/design/resource_names. For example:
+     *                                `projects/my-project/locations/global/dnsBindPermission`
+     * @param Principal $principal    Required. The consumer provided user/service account which needs to be
+     *                                granted permission to bind with the intranet VPC corresponding to the
+     *                                consumer project.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function revokeDnsBindPermission(
+        $name,
+        $principal,
+        array $optionalArgs = []
+    ) {
+        $request = new RevokeDnsBindPermissionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setPrincipal($principal);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RevokeDnsBindPermission',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -3572,6 +6626,17 @@ class VmwareEngineGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $username
+     *           Optional. The username of the user to be queried for credentials.
+     *           The default value of this field is CloudOwner&#64;gve.local.
+     *           The provided value must be one of the following:
+     *           CloudOwner&#64;gve.local,
+     *           solution-user-01&#64;gve.local,
+     *           solution-user-02&#64;gve.local,
+     *           solution-user-03&#64;gve.local,
+     *           solution-user-04&#64;gve.local,
+     *           solution-user-05&#64;gve.local,
+     *           zertoadmin&#64;gve.local.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3590,6 +6655,10 @@ class VmwareEngineGapicClient
         $requestParamHeaders = [];
         $request->setPrivateCloud($privateCloud);
         $requestParamHeaders['private_cloud'] = $privateCloud;
+        if (isset($optionalArgs['username'])) {
+            $request->setUsername($optionalArgs['username']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3692,8 +6761,7 @@ class VmwareEngineGapicClient
     }
 
     /**
-     * Modifies a `Cluster` resource. Only the following fields can be updated:
-     * `node_type_configs.*.node_count`. Only fields specified in `updateMask` are
+     * Modifies a `Cluster` resource. Only fields specified in `updateMask` are
      * applied.
      *
      * During operation processing, the resource is temporarily in the `ACTIVE`
@@ -3789,6 +6857,638 @@ class VmwareEngineGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'UpdateCluster',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the parameters of the `DnsForwarding` config, like associated
+     * domains. Only fields specified in `update_mask` are applied.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $dnsForwarding = new DnsForwarding();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $vmwareEngineClient->updateDnsForwarding($dnsForwarding, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->updateDnsForwarding($dnsForwarding, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'updateDnsForwarding');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param DnsForwarding $dnsForwarding Required. DnsForwarding config details.
+     * @param FieldMask     $updateMask    Required. Field mask is used to specify the fields to be overwritten in the
+     *                                     `DnsForwarding` resource by the update.
+     *                                     The fields specified in the `update_mask` are relative to the resource, not
+     *                                     the full request. A field will be overwritten if it is in the mask. If the
+     *                                     user does not provide a mask then all fields will be overwritten.
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateDnsForwarding(
+        $dnsForwarding,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateDnsForwardingRequest();
+        $requestParamHeaders = [];
+        $request->setDnsForwarding($dnsForwarding);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['dns_forwarding.name'] = $dnsForwarding->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateDnsForwarding',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the parameters of a single external access rule.
+     * Only fields specified in `update_mask` are applied.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $externalAccessRule = new ExternalAccessRule();
+     *     $operationResponse = $vmwareEngineClient->updateExternalAccessRule($updateMask, $externalAccessRule);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->updateExternalAccessRule($updateMask, $externalAccessRule);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'updateExternalAccessRule');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask          $updateMask         Required. Field mask is used to specify the fields to be overwritten in the
+     *                                               `ExternalAccessRule` resource by the update.
+     *                                               The fields specified in the `update_mask` are relative to the resource, not
+     *                                               the full request. A field will be overwritten if it is in the mask. If the
+     *                                               user does not provide a mask then all fields will be overwritten.
+     * @param ExternalAccessRule $externalAccessRule Required. Description of the external access rule.
+     * @param array              $optionalArgs       {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if the original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateExternalAccessRule(
+        $updateMask,
+        $externalAccessRule,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateExternalAccessRuleRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setExternalAccessRule($externalAccessRule);
+        $requestParamHeaders[
+            'external_access_rule.name'
+        ] = $externalAccessRule->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateExternalAccessRule',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the parameters of a single external IP address.
+     * Only fields specified in `update_mask` are applied.
+     *
+     * During operation processing, the resource is temporarily in the `ACTIVE`
+     * state before the operation fully completes. For that period of time, you
+     * can't update the resource. Use the operation status to determine when the
+     * processing fully completes.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $externalAddress = new ExternalAddress();
+     *     $operationResponse = $vmwareEngineClient->updateExternalAddress($updateMask, $externalAddress);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->updateExternalAddress($updateMask, $externalAddress);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'updateExternalAddress');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask       $updateMask      Required. Field mask is used to specify the fields to be overwritten in the
+     *                                         `ExternalAddress` resource by the update.
+     *                                         The fields specified in the `update_mask` are relative to the resource, not
+     *                                         the full request. A field will be overwritten if it is in the mask. If the
+     *                                         user does not provide a mask then all fields will be overwritten.
+     * @param ExternalAddress $externalAddress Required. External IP address description.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if the original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateExternalAddress(
+        $updateMask,
+        $externalAddress,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateExternalAddressRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setExternalAddress($externalAddress);
+        $requestParamHeaders[
+            'external_address.name'
+        ] = $externalAddress->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateExternalAddress',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates the parameters of a single logging server.
+     * Only fields specified in `update_mask` are applied.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $loggingServer = new LoggingServer();
+     *     $operationResponse = $vmwareEngineClient->updateLoggingServer($updateMask, $loggingServer);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->updateLoggingServer($updateMask, $loggingServer);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'updateLoggingServer');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask     $updateMask    Required. Field mask is used to specify the fields to be overwritten in the
+     *                                     `LoggingServer` resource by the update.
+     *                                     The fields specified in the `update_mask` are relative to the resource, not
+     *                                     the full request. A field will be overwritten if it is in the mask. If the
+     *                                     user does not provide a mask then all fields will be overwritten.
+     * @param LoggingServer $loggingServer Required. Logging server description.
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateLoggingServer(
+        $updateMask,
+        $loggingServer,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateLoggingServerRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setLoggingServer($loggingServer);
+        $requestParamHeaders['logging_server.name'] = $loggingServer->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateLoggingServer',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates a `ManagementDnsZoneBinding` resource.
+     * Only fields specified in `update_mask` are applied.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $managementDnsZoneBinding = new ManagementDnsZoneBinding();
+     *     $operationResponse = $vmwareEngineClient->updateManagementDnsZoneBinding($updateMask, $managementDnsZoneBinding);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->updateManagementDnsZoneBinding($updateMask, $managementDnsZoneBinding);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'updateManagementDnsZoneBinding');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask                $updateMask               Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                           `ManagementDnsZoneBinding` resource by the update.
+     *                                                           The fields specified in the `update_mask` are relative to the resource, not
+     *                                                           the full request. A field will be overwritten if it is in the mask. If the
+     *                                                           user does not provide a mask then all fields will be overwritten.
+     * @param ManagementDnsZoneBinding $managementDnsZoneBinding Required. New values to update the management DNS zone binding with.
+     * @param array                    $optionalArgs             {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request ID,
+     *           the server can check if the original operation with the same request ID was
+     *           received, and if so, will ignore the second request. This prevents clients
+     *           from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateManagementDnsZoneBinding(
+        $updateMask,
+        $managementDnsZoneBinding,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateManagementDnsZoneBindingRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        $request->setManagementDnsZoneBinding($managementDnsZoneBinding);
+        $requestParamHeaders[
+            'management_dns_zone_binding.name'
+        ] = $managementDnsZoneBinding->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateManagementDnsZoneBinding',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Modifies a `NetworkPeering` resource. Only the `description` field can be
+     * updated. Only fields specified in `updateMask` are applied. NetworkPeering
+     * is a global resource and location can only be global.
+     *
+     * Sample code:
+     * ```
+     * $vmwareEngineClient = new VmwareEngineClient();
+     * try {
+     *     $networkPeering = new NetworkPeering();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $vmwareEngineClient->updateNetworkPeering($networkPeering, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmwareEngineClient->updateNetworkPeering($networkPeering, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmwareEngineClient->resumeOperation($operationName, 'updateNetworkPeering');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmwareEngineClient->close();
+     * }
+     * ```
+     *
+     * @param NetworkPeering $networkPeering Required. Network peering description.
+     * @param FieldMask      $updateMask     Required. Field mask is used to specify the fields to be overwritten in the
+     *                                       `NetworkPeering` resource by the update.
+     *                                       The fields specified in the `update_mask` are relative to the resource, not
+     *                                       the full request. A field will be overwritten if it is in the mask. If the
+     *                                       user does not provide a mask then all fields will be overwritten.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server guarantees that a
+     *           request doesn't result in creation of duplicate commitments for at least 60
+     *           minutes.
+     *
+     *           For example, consider a situation where you make an initial request and the
+     *           request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateNetworkPeering(
+        $networkPeering,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateNetworkPeeringRequest();
+        $requestParamHeaders = [];
+        $request->setNetworkPeering($networkPeering);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'network_peering.name'
+        ] = $networkPeering->getName();
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateNetworkPeering',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

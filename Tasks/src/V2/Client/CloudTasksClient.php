@@ -70,9 +70,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Tasks\V2\CloudTasksClient} for the stable implementation
- *
  * @method PromiseInterface createQueueAsync(CreateQueueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteQueueAsync(DeleteQueueRequest $request, array $optionalArgs = [])
@@ -100,8 +97,15 @@ final class CloudTasksClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.tasks.v2.CloudTasks';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudtasks.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudtasks.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -303,6 +307,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::createQueueAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/create_queue.php
+     *
      * @param CreateQueueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -330,6 +336,8 @@ final class CloudTasksClient
      * * The maximum task size is 100KB.
      *
      * The async variant is {@see CloudTasksClient::createTaskAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/create_task.php
      *
      * @param CreateTaskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -367,6 +375,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::deleteQueueAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/delete_queue.php
+     *
      * @param DeleteQueueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -392,6 +402,8 @@ final class CloudTasksClient
      * failed.
      *
      * The async variant is {@see CloudTasksClient::deleteTaskAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/delete_task.php
      *
      * @param DeleteTaskRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -423,6 +435,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::getIamPolicyAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/get_iam_policy.php
+     *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -447,6 +461,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::getQueueAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/get_queue.php
+     *
      * @param GetQueueRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -470,6 +486,8 @@ final class CloudTasksClient
      * Gets a task.
      *
      * The async variant is {@see CloudTasksClient::getTaskAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/get_task.php
      *
      * @param GetTaskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -496,6 +514,8 @@ final class CloudTasksClient
      * Queues are returned in lexicographical order.
      *
      * The async variant is {@see CloudTasksClient::listQueuesAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/list_queues.php
      *
      * @param ListQueuesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -529,6 +549,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::listTasksAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/list_tasks.php
+     *
      * @param ListTasksRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -560,6 +582,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::pauseQueueAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/pause_queue.php
+     *
      * @param PauseQueueRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -588,6 +612,8 @@ final class CloudTasksClient
      * might be dispatched before the purge takes effect. A purge is irreversible.
      *
      * The async variant is {@see CloudTasksClient::purgeQueueAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/purge_queue.php
      *
      * @param PurgeQueueRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -625,6 +651,8 @@ final class CloudTasksClient
      * Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
      *
      * The async variant is {@see CloudTasksClient::resumeQueueAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/resume_queue.php
      *
      * @param ResumeQueueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -675,6 +703,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::runTaskAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/run_task.php
+     *
      * @param RunTaskRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.
@@ -709,6 +739,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::setIamPolicyAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -739,6 +771,8 @@ final class CloudTasksClient
      * may "fail open" without warning.
      *
      * The async variant is {@see CloudTasksClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -778,6 +812,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::updateQueueAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/update_queue.php
+     *
      * @param UpdateQueueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -802,6 +838,8 @@ final class CloudTasksClient
      *
      * The async variant is {@see CloudTasksClient::getLocationAsync()} .
      *
+     * @example samples/V2/CloudTasksClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -825,6 +863,8 @@ final class CloudTasksClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see CloudTasksClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/CloudTasksClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

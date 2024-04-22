@@ -107,7 +107,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * The metadata of the ModelEvaluation.
      * For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
      * structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
-     * "evaluation_dataset_path".
+     * "evaluation_dataset_path", "row_based_metrics_path".
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 11;</code>
      */
@@ -170,7 +170,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *           The metadata of the ModelEvaluation.
      *           For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
      *           structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
-     *           "evaluation_dataset_path".
+     *           "evaluation_dataset_path", "row_based_metrics_path".
      * }
      */
     public function __construct($data = NULL) {
@@ -526,7 +526,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * The metadata of the ModelEvaluation.
      * For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
      * structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
-     * "evaluation_dataset_path".
+     * "evaluation_dataset_path", "row_based_metrics_path".
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 11;</code>
      * @return \Google\Protobuf\Value|null
@@ -550,7 +550,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * The metadata of the ModelEvaluation.
      * For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
      * structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
-     * "evaluation_dataset_path".
+     * "evaluation_dataset_path", "row_based_metrics_path".
      *
      * Generated from protobuf field <code>.google.protobuf.Value metadata = 11;</code>
      * @param \Google\Protobuf\Value $var

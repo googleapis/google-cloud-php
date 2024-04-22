@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudkms_v1_generated_KeyManagementService_ListImportJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\ImportJob;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\ListImportJobsRequest;
 
 /**
  * Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
@@ -40,10 +41,14 @@ function list_import_jobs_sample(string $formattedParent): void
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListImportJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $keyManagementServiceClient->listImportJobs($formattedParent);
+        $response = $keyManagementServiceClient->listImportJobs($request);
 
         /** @var ImportJob $element */
         foreach ($response as $element) {

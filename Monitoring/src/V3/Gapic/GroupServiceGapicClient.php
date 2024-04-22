@@ -78,8 +78,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Monitoring\V3\Client\GroupServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Monitoring\V3\Client\GroupServiceClient}.
  */
 class GroupServiceGapicClient
 {
@@ -88,8 +87,15 @@ class GroupServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.monitoring.v3.GroupService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'monitoring.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -370,12 +376,13 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
-     *                             which to create the group. The format is:
+     * @param string $name         Required. The
+     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+     *                             to create the group. The format is:
      *
      *                             projects/[PROJECT_ID_OR_NUMBER]
-     * @param Group  $group        Required. A group definition. It is an error to define the `name` field because
-     *                             the system assigns the name.
+     * @param Group  $group        Required. A group definition. It is an error to define the `name` field
+     *                             because the system assigns the name.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -613,8 +620,9 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
-     *                             whose groups are to be listed. The format is:
+     * @param string $name         Required. The
+     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+     *                             groups are to be listed. The format is:
      *
      *                             projects/[PROJECT_ID_OR_NUMBER]
      * @param array  $optionalArgs {
@@ -709,8 +717,9 @@ class GroupServiceGapicClient
      * }
      * ```
      *
-     * @param Group $group        Required. The new definition of the group.  All fields of the existing group,
-     *                            excepting `name`, are replaced with the corresponding fields of this group.
+     * @param Group $group        Required. The new definition of the group.  All fields of the existing
+     *                            group, excepting `name`, are replaced with the corresponding fields of this
+     *                            group.
      * @param array $optionalArgs {
      *     Optional.
      *

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datamigration_v1_generated_DataMigrationService_DeleteMappingRule_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\DeleteMappingRuleRequest;
 
 /**
  * Deletes a single mapping rule.
@@ -37,9 +38,13 @@ function delete_mapping_rule_sample(string $formattedName): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteMappingRuleRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dataMigrationServiceClient->deleteMappingRule($formattedName);
+        $dataMigrationServiceClient->deleteMappingRule($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

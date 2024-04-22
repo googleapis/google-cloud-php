@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_UptimeCheckService_CreateUptimeCheckConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\UptimeCheckServiceClient;
+use Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest;
 use Google\Cloud\Monitoring\V3\UptimeCheckConfig;
-use Google\Cloud\Monitoring\V3\UptimeCheckServiceClient;
 
 /**
  * Creates a new Uptime check configuration.
@@ -41,13 +42,16 @@ function create_uptime_check_config_sample(string $parent): void
     // Create a client.
     $uptimeCheckServiceClient = new UptimeCheckServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $uptimeCheckConfig = new UptimeCheckConfig();
+    $request = (new CreateUptimeCheckConfigRequest())
+        ->setParent($parent)
+        ->setUptimeCheckConfig($uptimeCheckConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var UptimeCheckConfig $response */
-        $response = $uptimeCheckServiceClient->createUptimeCheckConfig($parent, $uptimeCheckConfig);
+        $response = $uptimeCheckServiceClient->createUptimeCheckConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

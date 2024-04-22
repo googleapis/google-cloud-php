@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_DeleteCustomer_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\DeleteCustomerRequest;
 
 /**
  * Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
@@ -46,9 +47,13 @@ function delete_customer_sample(string $formattedName): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCustomerRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $cloudChannelServiceClient->deleteCustomer($formattedName);
+        $cloudChannelServiceClient->deleteCustomer($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

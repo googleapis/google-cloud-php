@@ -32,7 +32,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      *     @type string $subscription
      *           Required. The subscription to affect.
      *     @type \Google\Protobuf\Timestamp $time
-     *           The time to seek to.
+     *           Optional. The time to seek to.
      *           Messages retained in the subscription that were published before this
      *           time are marked as acknowledged, and messages retained in the
      *           subscription that were published after this time are marked as
@@ -44,9 +44,9 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      *           creation time), only retained messages will be marked as unacknowledged,
      *           and already-expunged messages will not be restored.
      *     @type string $snapshot
-     *           The snapshot to seek to. The snapshot's topic must be the same as that of
-     *           the provided subscription.
-     *           Format is `projects/{project}/snapshots/{snap}`.
+     *           Optional. The snapshot to seek to. The snapshot's topic must be the same
+     *           as that of the provided subscription. Format is
+     *           `projects/{project}/snapshots/{snap}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +81,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time to seek to.
+     * Optional. The time to seek to.
      * Messages retained in the subscription that were published before this
      * time are marked as acknowledged, and messages retained in the
      * subscription that were published after this time are marked as
@@ -93,7 +93,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * creation time), only retained messages will be marked as unacknowledged,
      * and already-expunged messages will not be restored.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getTime()
@@ -107,7 +107,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time to seek to.
+     * Optional. The time to seek to.
      * Messages retained in the subscription that were published before this
      * time are marked as acknowledged, and messages retained in the
      * subscription that were published after this time are marked as
@@ -119,7 +119,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * creation time), only retained messages will be marked as unacknowledged,
      * and already-expunged messages will not be restored.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -132,11 +132,11 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The snapshot to seek to. The snapshot's topic must be the same as that of
-     * the provided subscription.
-     * Format is `projects/{project}/snapshots/{snap}`.
+     * Optional. The snapshot to seek to. The snapshot's topic must be the same
+     * as that of the provided subscription. Format is
+     * `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string snapshot = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSnapshot()
@@ -150,11 +150,11 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The snapshot to seek to. The snapshot's topic must be the same as that of
-     * the provided subscription.
-     * Format is `projects/{project}/snapshots/{snap}`.
+     * Optional. The snapshot to seek to. The snapshot's topic must be the same
+     * as that of the provided subscription. Format is
+     * `projects/{project}/snapshots/{snap}`.
      *
-     * Generated from protobuf field <code>string snapshot = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string snapshot = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

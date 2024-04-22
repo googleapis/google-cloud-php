@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_CreateTagTemplateField_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\CreateTagTemplateFieldRequest;
 use Google\Cloud\DataCatalog\V1\FieldType;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
 
@@ -54,19 +55,19 @@ function create_tag_template_field_sample(
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $tagTemplateFieldType = new FieldType();
     $tagTemplateField = (new TagTemplateField())
         ->setType($tagTemplateFieldType);
+    $request = (new CreateTagTemplateFieldRequest())
+        ->setParent($formattedParent)
+        ->setTagTemplateFieldId($tagTemplateFieldId)
+        ->setTagTemplateField($tagTemplateField);
 
     // Call the API and handle any network failures.
     try {
         /** @var TagTemplateField $response */
-        $response = $dataCatalogClient->createTagTemplateField(
-            $formattedParent,
-            $tagTemplateFieldId,
-            $tagTemplateField
-        );
+        $response = $dataCatalogClient->createTagTemplateField($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class PushConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A URL locating the endpoint to which messages should be pushed.
+     * Optional. A URL locating the endpoint to which messages should be pushed.
      * For example, a Webhook endpoint might use `https://example.com/push`.
      *
-     * Generated from protobuf field <code>string push_endpoint = 1;</code>
+     * Generated from protobuf field <code>string push_endpoint = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $push_endpoint = '';
     /**
-     * Endpoint configuration attributes that can be used to control different
-     * aspects of the message delivery.
+     * Optional. Endpoint configuration attributes that can be used to control
+     * different aspects of the message delivery.
      * The only currently supported attribute is `x-goog-version`, which you can
      * use to change the format of the pushed message. This attribute
      * indicates the version of the data expected by the endpoint. This
@@ -40,7 +40,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * For example:
      * `attributes { "x-goog-version": "v1" }`
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $attributes;
     protected $authentication_method;
@@ -53,11 +53,11 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $push_endpoint
-     *           A URL locating the endpoint to which messages should be pushed.
+     *           Optional. A URL locating the endpoint to which messages should be pushed.
      *           For example, a Webhook endpoint might use `https://example.com/push`.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
-     *           Endpoint configuration attributes that can be used to control different
-     *           aspects of the message delivery.
+     *           Optional. Endpoint configuration attributes that can be used to control
+     *           different aspects of the message delivery.
      *           The only currently supported attribute is `x-goog-version`, which you can
      *           use to change the format of the pushed message. This attribute
      *           indicates the version of the data expected by the endpoint. This
@@ -73,14 +73,15 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      *           For example:
      *           `attributes { "x-goog-version": "v1" }`
      *     @type \Google\Cloud\PubSub\V1\PushConfig\OidcToken $oidc_token
-     *           If specified, Pub/Sub will generate and attach an OIDC JWT token as an
-     *           `Authorization` header in the HTTP request for every pushed message.
+     *           Optional. If specified, Pub/Sub will generate and attach an OIDC JWT
+     *           token as an `Authorization` header in the HTTP request for every pushed
+     *           message.
      *     @type \Google\Cloud\PubSub\V1\PushConfig\PubsubWrapper $pubsub_wrapper
-     *           When set, the payload to the push endpoint is in the form of the JSON
-     *           representation of a PubsubMessage
+     *           Optional. When set, the payload to the push endpoint is in the form of
+     *           the JSON representation of a PubsubMessage
      *           (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      *     @type \Google\Cloud\PubSub\V1\PushConfig\NoWrapper $no_wrapper
-     *           When set, the payload to the push endpoint is not wrapped.
+     *           Optional. When set, the payload to the push endpoint is not wrapped.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,10 +90,10 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URL locating the endpoint to which messages should be pushed.
+     * Optional. A URL locating the endpoint to which messages should be pushed.
      * For example, a Webhook endpoint might use `https://example.com/push`.
      *
-     * Generated from protobuf field <code>string push_endpoint = 1;</code>
+     * Generated from protobuf field <code>string push_endpoint = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPushEndpoint()
@@ -101,10 +102,10 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URL locating the endpoint to which messages should be pushed.
+     * Optional. A URL locating the endpoint to which messages should be pushed.
      * For example, a Webhook endpoint might use `https://example.com/push`.
      *
-     * Generated from protobuf field <code>string push_endpoint = 1;</code>
+     * Generated from protobuf field <code>string push_endpoint = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -117,8 +118,8 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Endpoint configuration attributes that can be used to control different
-     * aspects of the message delivery.
+     * Optional. Endpoint configuration attributes that can be used to control
+     * different aspects of the message delivery.
      * The only currently supported attribute is `x-goog-version`, which you can
      * use to change the format of the pushed message. This attribute
      * indicates the version of the data expected by the endpoint. This
@@ -134,7 +135,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * For example:
      * `attributes { "x-goog-version": "v1" }`
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAttributes()
@@ -143,8 +144,8 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Endpoint configuration attributes that can be used to control different
-     * aspects of the message delivery.
+     * Optional. Endpoint configuration attributes that can be used to control
+     * different aspects of the message delivery.
      * The only currently supported attribute is `x-goog-version`, which you can
      * use to change the format of the pushed message. This attribute
      * indicates the version of the data expected by the endpoint. This
@@ -160,7 +161,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * For example:
      * `attributes { "x-goog-version": "v1" }`
      *
-     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -173,10 +174,11 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an
-     * `Authorization` header in the HTTP request for every pushed message.
+     * Optional. If specified, Pub/Sub will generate and attach an OIDC JWT
+     * token as an `Authorization` header in the HTTP request for every pushed
+     * message.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.OidcToken oidc_token = 3;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.OidcToken oidc_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig\OidcToken|null
      */
     public function getOidcToken()
@@ -190,10 +192,11 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If specified, Pub/Sub will generate and attach an OIDC JWT token as an
-     * `Authorization` header in the HTTP request for every pushed message.
+     * Optional. If specified, Pub/Sub will generate and attach an OIDC JWT
+     * token as an `Authorization` header in the HTTP request for every pushed
+     * message.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.OidcToken oidc_token = 3;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.OidcToken oidc_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig\OidcToken $var
      * @return $this
      */
@@ -206,11 +209,11 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When set, the payload to the push endpoint is in the form of the JSON
-     * representation of a PubsubMessage
+     * Optional. When set, the payload to the push endpoint is in the form of
+     * the JSON representation of a PubsubMessage
      * (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.PubsubWrapper pubsub_wrapper = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.PubsubWrapper pubsub_wrapper = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig\PubsubWrapper|null
      */
     public function getPubsubWrapper()
@@ -224,11 +227,11 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When set, the payload to the push endpoint is in the form of the JSON
-     * representation of a PubsubMessage
+     * Optional. When set, the payload to the push endpoint is in the form of
+     * the JSON representation of a PubsubMessage
      * (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.PubsubWrapper pubsub_wrapper = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.PubsubWrapper pubsub_wrapper = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig\PubsubWrapper $var
      * @return $this
      */
@@ -241,9 +244,9 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When set, the payload to the push endpoint is not wrapped.
+     * Optional. When set, the payload to the push endpoint is not wrapped.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.NoWrapper no_wrapper = 5;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.NoWrapper no_wrapper = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig\NoWrapper|null
      */
     public function getNoWrapper()
@@ -257,9 +260,9 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When set, the payload to the push endpoint is not wrapped.
+     * Optional. When set, the payload to the push endpoint is not wrapped.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.NoWrapper no_wrapper = 5;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.NoWrapper no_wrapper = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig\NoWrapper $var
      * @return $this
      */

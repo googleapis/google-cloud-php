@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_CatalogService_UpdateAttributesConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Retail\V2\AttributesConfig;
-use Google\Cloud\Retail\V2\CatalogServiceClient;
+use Google\Cloud\Retail\V2\Client\CatalogServiceClient;
+use Google\Cloud\Retail\V2\UpdateAttributesConfigRequest;
 
 /**
  * Updates the [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
@@ -45,14 +46,16 @@ function update_attributes_config_sample(string $attributesConfigName): void
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $attributesConfig = (new AttributesConfig())
         ->setName($attributesConfigName);
+    $request = (new UpdateAttributesConfigRequest())
+        ->setAttributesConfig($attributesConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var AttributesConfig $response */
-        $response = $catalogServiceClient->updateAttributesConfig($attributesConfig);
+        $response = $catalogServiceClient->updateAttributesConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

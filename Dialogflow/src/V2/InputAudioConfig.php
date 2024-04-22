@@ -75,22 +75,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     private $speech_contexts;
     /**
-     * Which Speech model to select for the given request. Select the
-     * model best suited to your domain to get best results. If a model is not
-     * explicitly specified, then we auto-select a model based on the parameters
-     * in the InputAudioConfig.
-     * If enhanced speech model is enabled for the agent and an enhanced
-     * version of the specified model for the language does not exist, then the
-     * speech is recognized using the standard version of the specified model.
-     * Refer to
-     * [Cloud Speech API
-     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
-     * for more details.
-     * If you specify a model, the following models typically have the best
-     * performance:
-     * - phone_call (best for Agent Assist and telephony)
-     * - latest_short (best for Dialogflow non-telephony)
-     * - command_and_search (best for very short utterances and commands)
+     * Optional. Which Speech model to select for the given request.
+     * For more information, see
+     * [Speech models](https://cloud.google.com/dialogflow/es/docs/speech-models).
      *
      * Generated from protobuf field <code>string model = 7;</code>
      */
@@ -134,6 +121,15 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 17;</code>
      */
     private $enable_automatic_punctuation = false;
+    /**
+     * If `true`, the request will opt out for STT conformer model migration.
+     * This field will be deprecated once force migration takes place in June
+     * 2024. Please refer to [Dialogflow ES Speech model
+     * migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
+     *
+     * Generated from protobuf field <code>bool opt_out_conformer_model_migration = 26;</code>
+     */
+    private $opt_out_conformer_model_migration = false;
 
     /**
      * Constructor.
@@ -176,22 +172,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
      *           for more details.
      *     @type string $model
-     *           Which Speech model to select for the given request. Select the
-     *           model best suited to your domain to get best results. If a model is not
-     *           explicitly specified, then we auto-select a model based on the parameters
-     *           in the InputAudioConfig.
-     *           If enhanced speech model is enabled for the agent and an enhanced
-     *           version of the specified model for the language does not exist, then the
-     *           speech is recognized using the standard version of the specified model.
-     *           Refer to
-     *           [Cloud Speech API
-     *           documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
-     *           for more details.
-     *           If you specify a model, the following models typically have the best
-     *           performance:
-     *           - phone_call (best for Agent Assist and telephony)
-     *           - latest_short (best for Dialogflow non-telephony)
-     *           - command_and_search (best for very short utterances and commands)
+     *           Optional. Which Speech model to select for the given request.
+     *           For more information, see
+     *           [Speech models](https://cloud.google.com/dialogflow/es/docs/speech-models).
      *     @type int $model_variant
      *           Which variant of the [Speech
      *           model][google.cloud.dialogflow.v2.InputAudioConfig.model] to use.
@@ -215,6 +198,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
      *     @type bool $enable_automatic_punctuation
      *           Enable automatic punctuation option at the speech backend.
+     *     @type bool $opt_out_conformer_model_migration
+     *           If `true`, the request will opt out for STT conformer model migration.
+     *           This field will be deprecated once force migration takes place in June
+     *           2024. Please refer to [Dialogflow ES Speech model
+     *           migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
      * }
      */
     public function __construct($data = NULL) {
@@ -427,22 +415,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which Speech model to select for the given request. Select the
-     * model best suited to your domain to get best results. If a model is not
-     * explicitly specified, then we auto-select a model based on the parameters
-     * in the InputAudioConfig.
-     * If enhanced speech model is enabled for the agent and an enhanced
-     * version of the specified model for the language does not exist, then the
-     * speech is recognized using the standard version of the specified model.
-     * Refer to
-     * [Cloud Speech API
-     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
-     * for more details.
-     * If you specify a model, the following models typically have the best
-     * performance:
-     * - phone_call (best for Agent Assist and telephony)
-     * - latest_short (best for Dialogflow non-telephony)
-     * - command_and_search (best for very short utterances and commands)
+     * Optional. Which Speech model to select for the given request.
+     * For more information, see
+     * [Speech models](https://cloud.google.com/dialogflow/es/docs/speech-models).
      *
      * Generated from protobuf field <code>string model = 7;</code>
      * @return string
@@ -453,22 +428,9 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which Speech model to select for the given request. Select the
-     * model best suited to your domain to get best results. If a model is not
-     * explicitly specified, then we auto-select a model based on the parameters
-     * in the InputAudioConfig.
-     * If enhanced speech model is enabled for the agent and an enhanced
-     * version of the specified model for the language does not exist, then the
-     * speech is recognized using the standard version of the specified model.
-     * Refer to
-     * [Cloud Speech API
-     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
-     * for more details.
-     * If you specify a model, the following models typically have the best
-     * performance:
-     * - phone_call (best for Agent Assist and telephony)
-     * - latest_short (best for Dialogflow non-telephony)
-     * - command_and_search (best for very short utterances and commands)
+     * Optional. Which Speech model to select for the given request.
+     * For more information, see
+     * [Speech models](https://cloud.google.com/dialogflow/es/docs/speech-models).
      *
      * Generated from protobuf field <code>string model = 7;</code>
      * @param string $var
@@ -612,6 +574,38 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_automatic_punctuation = $var;
+
+        return $this;
+    }
+
+    /**
+     * If `true`, the request will opt out for STT conformer model migration.
+     * This field will be deprecated once force migration takes place in June
+     * 2024. Please refer to [Dialogflow ES Speech model
+     * migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
+     *
+     * Generated from protobuf field <code>bool opt_out_conformer_model_migration = 26;</code>
+     * @return bool
+     */
+    public function getOptOutConformerModelMigration()
+    {
+        return $this->opt_out_conformer_model_migration;
+    }
+
+    /**
+     * If `true`, the request will opt out for STT conformer model migration.
+     * This field will be deprecated once force migration takes place in June
+     * 2024. Please refer to [Dialogflow ES Speech model
+     * migration](https://cloud.google.com/dialogflow/es/docs/speech-model-migration).
+     *
+     * Generated from protobuf field <code>bool opt_out_conformer_model_migration = 26;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setOptOutConformerModelMigration($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->opt_out_conformer_model_migration = $var;
 
         return $this;
     }

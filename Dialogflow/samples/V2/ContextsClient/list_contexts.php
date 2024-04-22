@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Contexts_ListContexts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\ContextsClient;
 use Google\Cloud\Dialogflow\V2\Context;
-use Google\Cloud\Dialogflow\V2\ContextsClient;
+use Google\Cloud\Dialogflow\V2\ListContextsRequest;
 
 /**
  * Returns the list of all contexts in the specified session.
@@ -44,10 +45,14 @@ function list_contexts_sample(string $formattedParent): void
     // Create a client.
     $contextsClient = new ContextsClient();
 
+    // Prepare the request message.
+    $request = (new ListContextsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $contextsClient->listContexts($formattedParent);
+        $response = $contextsClient->listContexts($request);
 
         /** @var Context $element */
         foreach ($response as $element) {

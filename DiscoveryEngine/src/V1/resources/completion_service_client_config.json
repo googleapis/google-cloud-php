@@ -32,6 +32,16 @@
                     "timeout_millis": 5000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "ImportSuggestionDenyListEntries": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "PurgeSuggestionDenyListEntries": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 }
             }
         }

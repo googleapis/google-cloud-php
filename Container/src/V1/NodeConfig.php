@@ -313,6 +313,30 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.SoleTenantConfig sole_tenant_config = 42;</code>
      */
     private $sole_tenant_config = null;
+    /**
+     * A map of resource manager tag keys and values to be attached to the nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
+     */
+    private $resource_manager_tags = null;
+    /**
+     * Optional. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool enable_confidential_storage = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_confidential_storage = false;
+    /**
+     * List of secondary boot disks attached to the nodes.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
+     */
+    private $secondary_boot_disks;
+    /**
+     * Secondary boot disk update strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
+     */
+    private $secondary_boot_disk_update_strategy = null;
 
     /**
      * Constructor.
@@ -478,6 +502,14 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           If unspecified, ephemeral storage is backed by the boot disk.
      *     @type \Google\Cloud\Container\V1\SoleTenantConfig $sole_tenant_config
      *           Parameters for node pools to be backed by shared sole tenant node groups.
+     *     @type \Google\Cloud\Container\V1\ResourceManagerTags $resource_manager_tags
+     *           A map of resource manager tag keys and values to be attached to the nodes.
+     *     @type bool $enable_confidential_storage
+     *           Optional. Reserved for future use.
+     *     @type array<\Google\Cloud\Container\V1\SecondaryBootDisk>|\Google\Protobuf\Internal\RepeatedField $secondary_boot_disks
+     *           List of secondary boot disks attached to the nodes.
+     *     @type \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy $secondary_boot_disk_update_strategy
+     *           Secondary boot disk update strategy.
      * }
      */
     public function __construct($data = NULL) {
@@ -1705,6 +1737,130 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SoleTenantConfig::class);
         $this->sole_tenant_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * A map of resource manager tag keys and values to be attached to the nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
+     * @return \Google\Cloud\Container\V1\ResourceManagerTags|null
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    public function hasResourceManagerTags()
+    {
+        return isset($this->resource_manager_tags);
+    }
+
+    public function clearResourceManagerTags()
+    {
+        unset($this->resource_manager_tags);
+    }
+
+    /**
+     * A map of resource manager tag keys and values to be attached to the nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceManagerTags resource_manager_tags = 45;</code>
+     * @param \Google\Cloud\Container\V1\ResourceManagerTags $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceManagerTags::class);
+        $this->resource_manager_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool enable_confidential_storage = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableConfidentialStorage()
+    {
+        return $this->enable_confidential_storage;
+    }
+
+    /**
+     * Optional. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool enable_confidential_storage = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableConfidentialStorage($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_confidential_storage = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of secondary boot disks attached to the nodes.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSecondaryBootDisks()
+    {
+        return $this->secondary_boot_disks;
+    }
+
+    /**
+     * List of secondary boot disks attached to the nodes.
+     *
+     * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
+     * @param array<\Google\Cloud\Container\V1\SecondaryBootDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSecondaryBootDisks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\SecondaryBootDisk::class);
+        $this->secondary_boot_disks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Secondary boot disk update strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
+     * @return \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy|null
+     */
+    public function getSecondaryBootDiskUpdateStrategy()
+    {
+        return $this->secondary_boot_disk_update_strategy;
+    }
+
+    public function hasSecondaryBootDiskUpdateStrategy()
+    {
+        return isset($this->secondary_boot_disk_update_strategy);
+    }
+
+    public function clearSecondaryBootDiskUpdateStrategy()
+    {
+        unset($this->secondary_boot_disk_update_strategy);
+    }
+
+    /**
+     * Secondary boot disk update strategy.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.SecondaryBootDiskUpdateStrategy secondary_boot_disk_update_strategy = 50;</code>
+     * @param \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy $var
+     * @return $this
+     */
+    public function setSecondaryBootDiskUpdateStrategy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy::class);
+        $this->secondary_boot_disk_update_strategy = $var;
 
         return $this;
     }

@@ -41,6 +41,16 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string service_address_cidr_blocks = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $service_address_cidr_blocks;
+    /**
+     * Optional. Disable the per node pool subnet security group rules on the
+     * control plane security group. When set to true, you must also provide one
+     * or more security groups that ensure node pools are able to send requests to
+     * the control plane on TCP/443 and TCP/8132. Failure to do so may result in
+     * unavailable node pools.
+     *
+     * Generated from protobuf field <code>bool per_node_pool_sg_rules_disabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $per_node_pool_sg_rules_disabled = false;
 
     /**
      * Constructor.
@@ -60,6 +70,12 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      *           Required. All services in the cluster are assigned an IPv4 address from
      *           these ranges. Only a single range is supported. This field cannot be
      *           changed after creation.
+     *     @type bool $per_node_pool_sg_rules_disabled
+     *           Optional. Disable the per node pool subnet security group rules on the
+     *           control plane security group. When set to true, you must also provide one
+     *           or more security groups that ensure node pools are able to send requests to
+     *           the control plane on TCP/443 and TCP/8132. Failure to do so may result in
+     *           unavailable node pools.
      * }
      */
     public function __construct($data = NULL) {
@@ -153,6 +169,40 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->service_address_cidr_blocks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Disable the per node pool subnet security group rules on the
+     * control plane security group. When set to true, you must also provide one
+     * or more security groups that ensure node pools are able to send requests to
+     * the control plane on TCP/443 and TCP/8132. Failure to do so may result in
+     * unavailable node pools.
+     *
+     * Generated from protobuf field <code>bool per_node_pool_sg_rules_disabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getPerNodePoolSgRulesDisabled()
+    {
+        return $this->per_node_pool_sg_rules_disabled;
+    }
+
+    /**
+     * Optional. Disable the per node pool subnet security group rules on the
+     * control plane security group. When set to true, you must also provide one
+     * or more security groups that ensure node pools are able to send requests to
+     * the control plane on TCP/443 and TCP/8132. Failure to do so may result in
+     * unavailable node pools.
+     *
+     * Generated from protobuf field <code>bool per_node_pool_sg_rules_disabled = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPerNodePoolSgRulesDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->per_node_pool_sg_rules_disabled = $var;
 
         return $this;
     }

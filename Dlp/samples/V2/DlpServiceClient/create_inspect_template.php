@@ -24,19 +24,22 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_CreateInspectTemplate_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\CreateInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\InspectTemplate;
 
 /**
  * Creates an InspectTemplate for reusing frequently used configuration
  * for inspecting content, images, and storage.
- * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+ * to learn more.
  *
  * @param string $formattedParent Parent resource name.
  *
  *                                The format of this value varies depending on the scope of the request
  *                                (project or organization) and whether you have [specified a processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                + Projects scope, location specified:<br/>
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -59,13 +62,16 @@ function create_inspect_template_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inspectTemplate = new InspectTemplate();
+    $request = (new CreateInspectTemplateRequest())
+        ->setParent($formattedParent)
+        ->setInspectTemplate($inspectTemplate);
 
     // Call the API and handle any network failures.
     try {
         /** @var InspectTemplate $response */
-        $response = $dlpServiceClient->createInspectTemplate($formattedParent, $inspectTemplate);
+        $response = $dlpServiceClient->createInspectTemplate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

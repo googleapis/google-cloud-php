@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Participants_StreamingAnalyzeContent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\Cloud\Dialogflow\V2\ParticipantsClient;
+use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
 use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentRequest;
 use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse;
 
@@ -56,7 +56,7 @@ function streaming_analyze_content_sample(string $formattedParticipant): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = (new StreamingAnalyzeContentRequest())
         ->setParticipant($formattedParticipant);
 

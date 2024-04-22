@@ -43,6 +43,14 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 3;</code>
      */
     private $read_time = null;
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunAggregationQueryRequest.explain_options][google.firestore.v1.RunAggregationQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainMetrics explain_metrics = 10;</code>
+     */
+    private $explain_metrics = null;
 
     /**
      * Constructor.
@@ -65,6 +73,10 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
      *           If the query returns no results, a response with `read_time` and no
      *           `result` will be sent, and this represents the time at which the query
      *           was run.
+     *     @type \Google\Cloud\Firestore\V1\ExplainMetrics $explain_metrics
+     *           Query explain metrics. This is only present when the
+     *           [RunAggregationQueryRequest.explain_options][google.firestore.v1.RunAggregationQueryRequest.explain_options]
+     *           is provided, and it is sent only once with the last response in the stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,6 +196,46 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->read_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunAggregationQueryRequest.explain_options][google.firestore.v1.RunAggregationQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainMetrics explain_metrics = 10;</code>
+     * @return \Google\Cloud\Firestore\V1\ExplainMetrics|null
+     */
+    public function getExplainMetrics()
+    {
+        return $this->explain_metrics;
+    }
+
+    public function hasExplainMetrics()
+    {
+        return isset($this->explain_metrics);
+    }
+
+    public function clearExplainMetrics()
+    {
+        unset($this->explain_metrics);
+    }
+
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunAggregationQueryRequest.explain_options][google.firestore.v1.RunAggregationQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.ExplainMetrics explain_metrics = 10;</code>
+     * @param \Google\Cloud\Firestore\V1\ExplainMetrics $var
+     * @return $this
+     */
+    public function setExplainMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\ExplainMetrics::class);
+        $this->explain_metrics = $var;
 
         return $this;
     }

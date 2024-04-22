@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START eventarc_v1_generated_Eventarc_GetChannelConnection_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Eventarc\V1\ChannelConnection;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\GetChannelConnectionRequest;
 
 /**
  * Get a single ChannelConnection.
@@ -38,10 +39,14 @@ function get_channel_connection_sample(string $formattedName): void
     // Create a client.
     $eventarcClient = new EventarcClient();
 
+    // Prepare the request message.
+    $request = (new GetChannelConnectionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ChannelConnection $response */
-        $response = $eventarcClient->getChannelConnection($formattedName);
+        $response = $eventarcClient->getChannelConnection($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

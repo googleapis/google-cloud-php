@@ -72,11 +72,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Functions\V2\FunctionServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createFunctionAsync(CreateFunctionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteFunctionAsync(DeleteFunctionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateDownloadUrlAsync(GenerateDownloadUrlRequest $request, array $optionalArgs = [])
@@ -98,8 +93,15 @@ final class FunctionServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.functions.v2.FunctionService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudfunctions.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudfunctions.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -482,6 +484,8 @@ final class FunctionServiceClient
      *
      * The async variant is {@see FunctionServiceClient::createFunctionAsync()} .
      *
+     * @example samples/V2/FunctionServiceClient/create_function.php
+     *
      * @param CreateFunctionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -507,6 +511,8 @@ final class FunctionServiceClient
      * remove this function.
      *
      * The async variant is {@see FunctionServiceClient::deleteFunctionAsync()} .
+     *
+     * @example samples/V2/FunctionServiceClient/delete_function.php
      *
      * @param DeleteFunctionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -535,6 +541,8 @@ final class FunctionServiceClient
      * https://cloud.google.com/storage/docs/access-control/signed-urls
      *
      * The async variant is {@see FunctionServiceClient::generateDownloadUrlAsync()} .
+     *
+     * @example samples/V2/FunctionServiceClient/generate_download_url.php
      *
      * @param GenerateDownloadUrlRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -582,6 +590,8 @@ final class FunctionServiceClient
      *
      * The async variant is {@see FunctionServiceClient::generateUploadUrlAsync()} .
      *
+     * @example samples/V2/FunctionServiceClient/generate_upload_url.php
+     *
      * @param GenerateUploadUrlRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -605,6 +615,8 @@ final class FunctionServiceClient
      * Returns a function with the given name from the requested project.
      *
      * The async variant is {@see FunctionServiceClient::getFunctionAsync()} .
+     *
+     * @example samples/V2/FunctionServiceClient/get_function.php
      *
      * @param GetFunctionRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -630,6 +642,8 @@ final class FunctionServiceClient
      *
      * The async variant is {@see FunctionServiceClient::listFunctionsAsync()} .
      *
+     * @example samples/V2/FunctionServiceClient/list_functions.php
+     *
      * @param ListFunctionsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -653,6 +667,8 @@ final class FunctionServiceClient
      * Returns a list of runtimes that are supported for the requested project.
      *
      * The async variant is {@see FunctionServiceClient::listRuntimesAsync()} .
+     *
+     * @example samples/V2/FunctionServiceClient/list_runtimes.php
      *
      * @param ListRuntimesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -678,6 +694,8 @@ final class FunctionServiceClient
      *
      * The async variant is {@see FunctionServiceClient::updateFunctionAsync()} .
      *
+     * @example samples/V2/FunctionServiceClient/update_function.php
+     *
      * @param UpdateFunctionRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -701,6 +719,8 @@ final class FunctionServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see FunctionServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/FunctionServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -726,6 +746,8 @@ final class FunctionServiceClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see FunctionServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V2/FunctionServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -754,6 +776,8 @@ final class FunctionServiceClient
     errors.
      *
      * The async variant is {@see FunctionServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V2/FunctionServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -784,6 +808,8 @@ final class FunctionServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see FunctionServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V2/FunctionServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

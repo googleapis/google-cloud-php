@@ -25,16 +25,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START documentai_v1_generated_DocumentProcessorService_BatchProcessDocuments_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\DocumentAI\V1\BatchProcessRequest;
 use Google\Cloud\DocumentAI\V1\BatchProcessResponse;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
 use Google\Rpc\Status;
 
 /**
  * LRO endpoint to batch process many documents. The output is written
  * to Cloud Storage as JSON in the [Document] format.
  *
- * @param string $name The resource name of
- *                     [Processor][google.cloud.documentai.v1.Processor] or
+ * @param string $name The resource name of [Processor][google.cloud.documentai.v1.Processor] or
  *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
  *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
  *                     or
@@ -45,10 +45,14 @@ function batch_process_documents_sample(string $name): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new BatchProcessRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $documentProcessorServiceClient->batchProcessDocuments($name);
+        $response = $documentProcessorServiceClient->batchProcessDocuments($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

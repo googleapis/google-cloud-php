@@ -13,6 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [FetchReportResultsRequest.report_job][google.cloud.channel.v1.FetchReportResultsRequest.report_job]
  * and the status of the operation.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.channel.v1.ReportJob</code>
  */
 class ReportJob extends \Google\Protobuf\Internal\Message

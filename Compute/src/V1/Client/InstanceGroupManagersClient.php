@@ -63,12 +63,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\InstanceGroupManagersClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface abandonInstancesAsync(AbandonInstancesInstanceGroupManagerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface aggregatedListAsync(AggregatedListInstanceGroupManagersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface applyUpdatesToInstancesAsync(ApplyUpdatesToInstancesInstanceGroupManagerRequest $request, array $optionalArgs = [])
@@ -97,8 +91,15 @@ final class InstanceGroupManagersClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.InstanceGroupManagers';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -140,8 +141,8 @@ final class InstanceGroupManagersClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements GapicClientTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -291,7 +292,7 @@ final class InstanceGroupManagersClient
     }
 
     /**
-     * Retrieves the list of managed instance groups and groups them by zone.
+     * Retrieves the list of managed instance groups and groups them by zone. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see InstanceGroupManagersClient::aggregatedListAsync()} .
      *
@@ -535,7 +536,7 @@ final class InstanceGroupManagersClient
     }
 
     /**
-     * Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action. The orderBy query parameter is not supported. The `pageToken` query parameter is supported only in the alpha and beta API and only if the group's `listManagedInstancesResults` field is set to `PAGINATED`.
+     * Lists all of the instances in the managed instance group. Each instance in the list has a currentAction, which indicates the action that the managed instance group is performing on the instance. For example, if the group is still creating an instance, the currentAction is CREATING. If a previous action failed, the list displays the errors for that failed action. The orderBy query parameter is not supported. The `pageToken` query parameter is supported only if the group's `listManagedInstancesResults` field is set to `PAGINATED`.
      *
      * The async variant is
      * {@see InstanceGroupManagersClient::listManagedInstancesAsync()} .

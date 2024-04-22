@@ -138,9 +138,7 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\FeaturestoreServiceClient}.
  */
 class FeaturestoreServiceGapicClient
 {
@@ -149,8 +147,15 @@ class FeaturestoreServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.FeaturestoreService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -167,9 +172,15 @@ class FeaturestoreServiceGapicClient
 
     private static $featureNameTemplate;
 
+    private static $featureGroupNameTemplate;
+
     private static $featurestoreNameTemplate;
 
     private static $locationNameTemplate;
+
+    private static $projectLocationFeatureGroupFeatureNameTemplate;
+
+    private static $projectLocationFeaturestoreEntityTypeFeatureNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -224,6 +235,17 @@ class FeaturestoreServiceGapicClient
         return self::$featureNameTemplate;
     }
 
+    private static function getFeatureGroupNameTemplate()
+    {
+        if (self::$featureGroupNameTemplate == null) {
+            self::$featureGroupNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/featureGroups/{feature_group}'
+            );
+        }
+
+        return self::$featureGroupNameTemplate;
+    }
+
     private static function getFeaturestoreNameTemplate()
     {
         if (self::$featurestoreNameTemplate == null) {
@@ -246,14 +268,42 @@ class FeaturestoreServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getProjectLocationFeatureGroupFeatureNameTemplate()
+    {
+        if (self::$projectLocationFeatureGroupFeatureNameTemplate == null) {
+            self::$projectLocationFeatureGroupFeatureNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}'
+            );
+        }
+
+        return self::$projectLocationFeatureGroupFeatureNameTemplate;
+    }
+
+    private static function getProjectLocationFeaturestoreEntityTypeFeatureNameTemplate()
+    {
+        if (
+            self::$projectLocationFeaturestoreEntityTypeFeatureNameTemplate ==
+            null
+        ) {
+            self::$projectLocationFeaturestoreEntityTypeFeatureNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}'
+            );
+        }
+
+        return self::$projectLocationFeaturestoreEntityTypeFeatureNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'entityType' => self::getEntityTypeNameTemplate(),
                 'feature' => self::getFeatureNameTemplate(),
+                'featureGroup' => self::getFeatureGroupNameTemplate(),
                 'featurestore' => self::getFeaturestoreNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'projectLocationFeatureGroupFeature' => self::getProjectLocationFeatureGroupFeatureNameTemplate(),
+                'projectLocationFeaturestoreEntityTypeFeature' => self::getProjectLocationFeaturestoreEntityTypeFeatureNameTemplate(),
             ];
         }
 
@@ -314,6 +364,25 @@ class FeaturestoreServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * feature_group resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $featureGroup
+     *
+     * @return string The formatted feature_group resource.
+     */
+    public static function featureGroupName($project, $location, $featureGroup)
+    {
+        return self::getFeatureGroupNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'feature_group' => $featureGroup,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a featurestore
      * resource.
      *
@@ -350,13 +419,73 @@ class FeaturestoreServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_feature_group_feature resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $featureGroup
+     * @param string $feature
+     *
+     * @return string The formatted project_location_feature_group_feature resource.
+     */
+    public static function projectLocationFeatureGroupFeatureName(
+        $project,
+        $location,
+        $featureGroup,
+        $feature
+    ) {
+        return self::getProjectLocationFeatureGroupFeatureNameTemplate()->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'feature_group' => $featureGroup,
+                'feature' => $feature,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_featurestore_entity_type_feature resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $featurestore
+     * @param string $entityType
+     * @param string $feature
+     *
+     * @return string The formatted project_location_featurestore_entity_type_feature resource.
+     */
+    public static function projectLocationFeaturestoreEntityTypeFeatureName(
+        $project,
+        $location,
+        $featurestore,
+        $entityType,
+        $feature
+    ) {
+        return self::getProjectLocationFeaturestoreEntityTypeFeatureNameTemplate()->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'featurestore' => $featurestore,
+                'entity_type' => $entityType,
+                'feature' => $feature,
+            ]
+        );
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - entityType: projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}
      * - feature: projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}
+     * - featureGroup: projects/{project}/locations/{location}/featureGroups/{feature_group}
      * - featurestore: projects/{project}/locations/{location}/featurestores/{featurestore}
      * - location: projects/{project}/locations/{location}
+     * - projectLocationFeatureGroupFeature: projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}
+     * - projectLocationFeaturestoreEntityTypeFeature: projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -860,9 +989,11 @@ class FeaturestoreServiceGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The resource name of the EntityType to create a Feature.
-     *                              Format:
+     * @param string  $parent       Required. The resource name of the EntityType or FeatureGroup to create a
+     *                              Feature. Format for entity_type as parent:
      *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                              Format for feature_group as parent:
+     *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      * @param Feature $feature      Required. The Feature to create.
      * @param string  $featureId    Required. The ID to use for the Feature, which will become the final
      *                              component of the Feature's resource name.
@@ -870,7 +1001,7 @@ class FeaturestoreServiceGapicClient
      *                              This value may be up to 128 characters, and valid characters are
      *                              `[a-z0-9_]`. The first character cannot be a number.
      *
-     *                              The value must be unique within an EntityType.
+     *                              The value must be unique within an EntityType/FeatureGroup.
      * @param array   $optionalArgs {
      *     Optional.
      *
@@ -1122,6 +1253,7 @@ class FeaturestoreServiceGapicClient
      * @param string $name         Required. The name of the Features to be deleted.
      *                             Format:
      *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1506,8 +1638,10 @@ class FeaturestoreServiceGapicClient
      * ```
      *
      * @param string $name         Required. The name of the Feature resource.
-     *                             Format:
+     *                             Format for entity_type as parent:
      *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                             Format for feature_group as parent:
+     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1904,8 +2038,10 @@ class FeaturestoreServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the Location to list Features.
-     *                             Format:
+     *                             Format for entity_type as parent:
      *                             `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
+     *                             Format for feature_group as parent:
+     *                             `projects/{project}/locations/{location}/featureGroups/{feature_group}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1945,12 +2081,13 @@ class FeaturestoreServiceGapicClient
      *           Supported fields:
      *
      *           * `feature_id`
-     *           * `value_type`
+     *           * `value_type` (Not supported for FeatureRegistry Feature)
      *           * `create_time`
      *           * `update_time`
      *     @type FieldMask $readMask
      *           Mask specifying which fields to read.
      *     @type int $latestStatsCount
+     *           Only applicable for Vertex AI Feature Store (Legacy).
      *           If set, return the most recent
      *           [ListFeaturesRequest.latest_stats_count][google.cloud.aiplatform.v1.ListFeaturesRequest.latest_stats_count]
      *           of stats for each Feature in response. Valid value is [0, 10]. If number of
@@ -2369,6 +2506,7 @@ class FeaturestoreServiceGapicClient
      *                              updated.
      *                              Format:
      *                              `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *                              `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      * @param array   $optionalArgs {
      *     Optional.
      *
@@ -2385,7 +2523,7 @@ class FeaturestoreServiceGapicClient
      *
      *           * `description`
      *           * `labels`
-     *           * `disable_monitoring`
+     *           * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

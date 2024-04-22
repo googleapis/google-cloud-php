@@ -34,7 +34,7 @@ class EvaluationValue
     /**
      * The evaluation result is `conditional` when the condition expression
      * contains variables that are either missing input values or have not been
-     * supported by Analyzer yet.
+     * supported by Policy Analyzer yet.
      *
      * Generated from protobuf enum <code>CONDITIONAL = 3;</code>
      */

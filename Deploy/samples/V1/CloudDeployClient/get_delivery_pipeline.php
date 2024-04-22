@@ -32,7 +32,7 @@ use Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest;
  * Gets details of a single DeliveryPipeline.
  *
  * @param string $formattedName Name of the `DeliveryPipeline`. Format must be
- *                              projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}. Please see
+ *                              `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`. Please see
  *                              {@see CloudDeployClient::deliveryPipelineName()} for help formatting this field.
  */
 function get_delivery_pipeline_sample(string $formattedName): void

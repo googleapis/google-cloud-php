@@ -114,24 +114,24 @@ $CheckTrialEarlyStoppingStateResponse
 ListOptimalTrialsResponse9
 optimal_trials (2!.google.cloud.aiplatform.v1.Trial2Ô
 VizierService«
-CreateStudy..google.cloud.aiplatform.v1.CreateStudyRequest!.google.cloud.aiplatform.v1.Study"I‚Óä“4"+/v1/{parent=projects/*/locations/*}/studies:studyÚAparent,study–
-GetStudy+.google.cloud.aiplatform.v1.GetStudyRequest!.google.cloud.aiplatform.v1.Study":‚Óä“-+/v1/{name=projects/*/locations/*/studies/*}ÚAname¬
-ListStudies..google.cloud.aiplatform.v1.ListStudiesRequest/.google.cloud.aiplatform.v1.ListStudiesResponse"<‚Óä“-+/v1/{parent=projects/*/locations/*}/studiesÚAparent‘
-DeleteStudy..google.cloud.aiplatform.v1.DeleteStudyRequest.google.protobuf.Empty":‚Óä“-*+/v1/{name=projects/*/locations/*/studies/*}ÚAname¨
-LookupStudy..google.cloud.aiplatform.v1.LookupStudyRequest!.google.cloud.aiplatform.v1.Study"F‚Óä“7"2/v1/{parent=projects/*/locations/*}/studies:lookup:*ÚAparentÚ
-SuggestTrials0.google.cloud.aiplatform.v1.SuggestTrialsRequest.google.longrunning.Operation"x‚Óä“A"</v1/{parent=projects/*/locations/*/studies/*}/trials:suggest:*ÊA.
-SuggestTrialsResponseSuggestTrialsMetadata´
-CreateTrial..google.cloud.aiplatform.v1.CreateTrialRequest!.google.cloud.aiplatform.v1.Trial"R‚Óä“="4/v1/{parent=projects/*/locations/*/studies/*}/trials:trialÚAparent,trialŸ
-GetTrial+.google.cloud.aiplatform.v1.GetTrialRequest!.google.cloud.aiplatform.v1.Trial"C‚Óä“64/v1/{name=projects/*/locations/*/studies/*/trials/*}ÚAname²
+CreateStudy..google.cloud.aiplatform.v1.CreateStudyRequest!.google.cloud.aiplatform.v1.Study"IÚAparent,study‚Óä“4"+/v1/{parent=projects/*/locations/*}/studies:study–
+GetStudy+.google.cloud.aiplatform.v1.GetStudyRequest!.google.cloud.aiplatform.v1.Study":ÚAname‚Óä“-+/v1/{name=projects/*/locations/*/studies/*}¬
+ListStudies..google.cloud.aiplatform.v1.ListStudiesRequest/.google.cloud.aiplatform.v1.ListStudiesResponse"<ÚAparent‚Óä“-+/v1/{parent=projects/*/locations/*}/studies‘
+DeleteStudy..google.cloud.aiplatform.v1.DeleteStudyRequest.google.protobuf.Empty":ÚAname‚Óä“-*+/v1/{name=projects/*/locations/*/studies/*}¨
+LookupStudy..google.cloud.aiplatform.v1.LookupStudyRequest!.google.cloud.aiplatform.v1.Study"FÚAparent‚Óä“7"2/v1/{parent=projects/*/locations/*}/studies:lookup:*Ú
+SuggestTrials0.google.cloud.aiplatform.v1.SuggestTrialsRequest.google.longrunning.Operation"xÊA.
+SuggestTrialsResponseSuggestTrialsMetadata‚Óä“A"</v1/{parent=projects/*/locations/*/studies/*}/trials:suggest:*´
+CreateTrial..google.cloud.aiplatform.v1.CreateTrialRequest!.google.cloud.aiplatform.v1.Trial"RÚAparent,trial‚Óä“="4/v1/{parent=projects/*/locations/*/studies/*}/trials:trialŸ
+GetTrial+.google.cloud.aiplatform.v1.GetTrialRequest!.google.cloud.aiplatform.v1.Trial"CÚAname‚Óä“64/v1/{name=projects/*/locations/*/studies/*/trials/*}²
 
-ListTrials-.google.cloud.aiplatform.v1.ListTrialsRequest..google.cloud.aiplatform.v1.ListTrialsResponse"E‚Óä“64/v1/{parent=projects/*/locations/*/studies/*}/trialsÚAparentË
+ListTrials-.google.cloud.aiplatform.v1.ListTrialsRequest..google.cloud.aiplatform.v1.ListTrialsResponse"EÚAparent‚Óä“64/v1/{parent=projects/*/locations/*/studies/*}/trialsË
 AddTrialMeasurement6.google.cloud.aiplatform.v1.AddTrialMeasurementRequest!.google.cloud.aiplatform.v1.Trial"Y‚Óä“S"N/v1/{trial_name=projects/*/locations/*/studies/*/trials/*}:addTrialMeasurement:*®
 CompleteTrial0.google.cloud.aiplatform.v1.CompleteTrialRequest!.google.cloud.aiplatform.v1.Trial"H‚Óä“B"=/v1/{name=projects/*/locations/*/studies/*/trials/*}:complete:*š
-DeleteTrial..google.cloud.aiplatform.v1.DeleteTrialRequest.google.protobuf.Empty"C‚Óä“6*4/v1/{name=projects/*/locations/*/studies/*/trials/*}ÚAname³
-CheckTrialEarlyStoppingState?.google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateRequest.google.longrunning.Operation"²‚Óä“\\"W/v1/{trial_name=projects/*/locations/*/studies/*/trials/*}:checkTrialEarlyStoppingState:*ÊAM
-$CheckTrialEarlyStoppingStateResponse%CheckTrialEarlyStoppingStateMetatdata¢
+DeleteTrial..google.cloud.aiplatform.v1.DeleteTrialRequest.google.protobuf.Empty"CÚAname‚Óä“6*4/v1/{name=projects/*/locations/*/studies/*/trials/*}³
+CheckTrialEarlyStoppingState?.google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateRequest.google.longrunning.Operation"²ÊAM
+$CheckTrialEarlyStoppingStateResponse%CheckTrialEarlyStoppingStateMetatdata‚Óä“\\"W/v1/{trial_name=projects/*/locations/*/studies/*/trials/*}:checkTrialEarlyStoppingState:*¢
 	StopTrial,.google.cloud.aiplatform.v1.StopTrialRequest!.google.cloud.aiplatform.v1.Trial"D‚Óä“>"9/v1/{name=projects/*/locations/*/studies/*/trials/*}:stop:*Ü
-ListOptimalTrials4.google.cloud.aiplatform.v1.ListOptimalTrialsRequest5.google.cloud.aiplatform.v1.ListOptimalTrialsResponse"Z‚Óä“K"F/v1/{parent=projects/*/locations/*/studies/*}/trials:listOptimalTrials:*ÚAparentMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
+ListOptimalTrials4.google.cloud.aiplatform.v1.ListOptimalTrialsRequest5.google.cloud.aiplatform.v1.ListOptimalTrialsResponse"ZÚAparent‚Óä“K"F/v1/{parent=projects/*/locations/*/studies/*}/trials:listOptimalTrials:*MÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÐ
 com.google.cloud.aiplatform.v1BVizierServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

@@ -153,12 +153,12 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $expectedResponse->setInstoreProductLocation($instoreProductLocation);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
         $localInventory = new LocalInventory();
         $localInventoryStoreCode = 'localInventoryStoreCode1126909757';
         $localInventory->setStoreCode($localInventoryStoreCode);
         $request = (new InsertLocalInventoryRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setLocalInventory($localInventory);
         $response = $gapicClient->insertLocalInventory($request);
         $this->assertEquals($expectedResponse, $response);
@@ -168,7 +168,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.inventories.v1beta.LocalInventoryService/InsertLocalInventory', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getLocalInventory();
         $this->assertProtobufEquals($localInventory, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -193,12 +193,12 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
         $localInventory = new LocalInventory();
         $localInventoryStoreCode = 'localInventoryStoreCode1126909757';
         $localInventory->setStoreCode($localInventoryStoreCode);
         $request = (new InsertLocalInventoryRequest())
-            ->setParent($parent)
+            ->setParent($formattedParent)
             ->setLocalInventory($localInventory);
         try {
             $gapicClient->insertLocalInventory($request);
@@ -232,9 +232,9 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $expectedResponse->setLocalInventories($localInventories);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
         $request = (new ListLocalInventoriesRequest())
-            ->setParent($parent);
+            ->setParent($formattedParent);
         $response = $gapicClient->listLocalInventories($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -246,7 +246,7 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.shopping.merchant.inventories.v1beta.LocalInventoryService/ListLocalInventories', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -269,9 +269,9 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
         $request = (new ListLocalInventoriesRequest())
-            ->setParent($parent);
+            ->setParent($formattedParent);
         try {
             $gapicClient->listLocalInventories($request);
             // If the $gapicClient method call did not throw, fail the test

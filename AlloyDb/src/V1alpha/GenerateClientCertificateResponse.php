@@ -18,7 +18,8 @@ class GenerateClientCertificateResponse extends \Google\Protobuf\Internal\Messag
     /**
      * Output only. The pem-encoded, signed X.509 certificate.
      *
-     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_certificate = 1 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $pem_certificate = '';
     /**
@@ -58,23 +59,27 @@ class GenerateClientCertificateResponse extends \Google\Protobuf\Internal\Messag
     /**
      * Output only. The pem-encoded, signed X.509 certificate.
      *
-     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_certificate = 1 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
+     * @deprecated
      */
     public function getPemCertificate()
     {
+        @trigger_error('pem_certificate is deprecated.', E_USER_DEPRECATED);
         return $this->pem_certificate;
     }
 
     /**
      * Output only. The pem-encoded, signed X.509 certificate.
      *
-     * Generated from protobuf field <code>string pem_certificate = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string pem_certificate = 1 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setPemCertificate($var)
     {
+        @trigger_error('pem_certificate is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->pem_certificate = $var;
 

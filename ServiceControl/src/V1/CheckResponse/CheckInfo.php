@@ -29,6 +29,14 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.api.servicecontrol.v1.CheckResponse.ConsumerInfo consumer_info = 2;</code>
      */
     private $consumer_info = null;
+    /**
+     * The unique id of the api key in the format of "apikey:<UID>".
+     * This field will be populated when the consumer passed to Service Control
+     * is an API key and all the API key related validations are successful.
+     *
+     * Generated from protobuf field <code>string api_key_uid = 5;</code>
+     */
+    private $api_key_uid = '';
 
     /**
      * Constructor.
@@ -42,6 +50,10 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      *           performance and allow better aggregation.
      *     @type \Google\Cloud\ServiceControl\V1\CheckResponse\ConsumerInfo $consumer_info
      *           Consumer info of this check.
+     *     @type string $api_key_uid
+     *           The unique id of the api key in the format of "apikey:<UID>".
+     *           This field will be populated when the consumer passed to Service Control
+     *           is an API key and all the API key related validations are successful.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +123,36 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ServiceControl\V1\CheckResponse\ConsumerInfo::class);
         $this->consumer_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The unique id of the api key in the format of "apikey:<UID>".
+     * This field will be populated when the consumer passed to Service Control
+     * is an API key and all the API key related validations are successful.
+     *
+     * Generated from protobuf field <code>string api_key_uid = 5;</code>
+     * @return string
+     */
+    public function getApiKeyUid()
+    {
+        return $this->api_key_uid;
+    }
+
+    /**
+     * The unique id of the api key in the format of "apikey:<UID>".
+     * This field will be populated when the consumer passed to Service Control
+     * is an API key and all the API key related validations are successful.
+     *
+     * Generated from protobuf field <code>string api_key_uid = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setApiKeyUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->api_key_uid = $var;
 
         return $this;
     }

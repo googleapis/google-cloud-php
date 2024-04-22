@@ -268,6 +268,9 @@ class Component
         $paths = array_map(fn ($file) => $file->getRelativePathname(), iterator_to_array($result));
         $paths = array_reverse(array_values($paths));
         usort($paths, [$this, 'versionCompare']);
+        if (empty($paths)) {
+            $paths = [''];
+        }
         return $paths;
     }
 

@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Transfer configuration name in the form:
+     * Required. Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     protected $time;
@@ -32,7 +32,7 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Transfer configuration name in the form:
+     *           Required. Transfer configuration name in the form:
      *           `projects/{project_id}/transferConfigs/{config_id}` or
      *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRange $requested_time_range
@@ -53,11 +53,11 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Transfer configuration name in the form:
+     * Required. Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -66,11 +66,11 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Transfer configuration name in the form:
+     * Required. Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}` or
      * `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

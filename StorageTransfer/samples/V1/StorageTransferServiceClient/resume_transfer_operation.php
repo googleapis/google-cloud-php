@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START storagetransfer_v1_generated_StorageTransferService_ResumeTransferOperation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\ResumeTransferOperationRequest;
 
 /**
  * Resumes a transfer operation that is paused.
@@ -36,9 +37,13 @@ function resume_transfer_operation_sample(string $name): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
+    // Prepare the request message.
+    $request = (new ResumeTransferOperationRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
-        $storageTransferServiceClient->resumeTransferOperation($name);
+        $storageTransferServiceClient->resumeTransferOperation($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Describes the progress of the operation.
- * Unit of work is generic and must be interpreted based on where [Progress][google.firestore.admin.v1.Progress]
- * is used.
+ * Unit of work is generic and must be interpreted based on where
+ * [Progress][google.firestore.admin.v1.Progress] is used.
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.Progress</code>
  */

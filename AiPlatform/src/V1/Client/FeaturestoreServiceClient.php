@@ -81,12 +81,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchCreateFeaturesAsync(BatchCreateFeaturesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchReadFeatureValuesAsync(BatchReadFeatureValuesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createEntityTypeAsync(CreateEntityTypeRequest $request, array $optionalArgs = [])
@@ -122,8 +116,15 @@ final class FeaturestoreServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.aiplatform.v1.FeaturestoreService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -231,6 +232,25 @@ final class FeaturestoreServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * feature_group resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $featureGroup
+     *
+     * @return string The formatted feature_group resource.
+     */
+    public static function featureGroupName(string $project, string $location, string $featureGroup): string
+    {
+        return self::getPathTemplate('featureGroup')->render([
+            'project' => $project,
+            'location' => $location,
+            'feature_group' => $featureGroup,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a featurestore
      * resource.
      *
@@ -267,13 +287,60 @@ final class FeaturestoreServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_feature_group_feature resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $featureGroup
+     * @param string $feature
+     *
+     * @return string The formatted project_location_feature_group_feature resource.
+     */
+    public static function projectLocationFeatureGroupFeatureName(string $project, string $location, string $featureGroup, string $feature): string
+    {
+        return self::getPathTemplate('projectLocationFeatureGroupFeature')->render([
+            'project' => $project,
+            'location' => $location,
+            'feature_group' => $featureGroup,
+            'feature' => $feature,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_featurestore_entity_type_feature resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $featurestore
+     * @param string $entityType
+     * @param string $feature
+     *
+     * @return string The formatted project_location_featurestore_entity_type_feature resource.
+     */
+    public static function projectLocationFeaturestoreEntityTypeFeatureName(string $project, string $location, string $featurestore, string $entityType, string $feature): string
+    {
+        return self::getPathTemplate('projectLocationFeaturestoreEntityTypeFeature')->render([
+            'project' => $project,
+            'location' => $location,
+            'featurestore' => $featurestore,
+            'entity_type' => $entityType,
+            'feature' => $feature,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - entityType: projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}
      * - feature: projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}
+     * - featureGroup: projects/{project}/locations/{location}/featureGroups/{feature_group}
      * - featurestore: projects/{project}/locations/{location}/featurestores/{featurestore}
      * - location: projects/{project}/locations/{location}
+     * - projectLocationFeatureGroupFeature: projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}
+     * - projectLocationFeaturestoreEntityTypeFeature: projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

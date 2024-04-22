@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datacatalog_v1_generated_DataCatalog_ListEntries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\Entry;
+use Google\Cloud\DataCatalog\V1\ListEntriesRequest;
 
 /**
  * Lists entries.
@@ -45,10 +46,14 @@ function list_entries_sample(string $formattedParent): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new ListEntriesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataCatalogClient->listEntries($formattedParent);
+        $response = $dataCatalogClient->listEntries($request);
 
         /** @var Entry $element */
         foreach ($response as $element) {

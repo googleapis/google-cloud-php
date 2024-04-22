@@ -23,8 +23,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * When requesting a page of resources, 'page_size' specifies number of
-     * resources to return. If unspecified or set to 0, all resources will be
-     * returned.
+     * resources to return. If unspecified, at most 500 will be returned. The
+     * maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -94,8 +94,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *           'projects/{project_id}/locations/{location}'.
      *     @type int $page_size
      *           When requesting a page of resources, 'page_size' specifies number of
-     *           resources to return. If unspecified or set to 0, all resources will be
-     *           returned.
+     *           resources to return. If unspecified, at most 500 will be returned. The
+     *           maximum value is 1000.
      *     @type string $page_token
      *           Token returned by previous call to 'ListDeployments' which specifies the
      *           position in the list from where to continue listing the resources.
@@ -159,8 +159,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * When requesting a page of resources, 'page_size' specifies number of
-     * resources to return. If unspecified or set to 0, all resources will be
-     * returned.
+     * resources to return. If unspecified, at most 500 will be returned. The
+     * maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -172,8 +172,8 @@ class ListDeploymentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * When requesting a page of resources, 'page_size' specifies number of
-     * resources to return. If unspecified or set to 0, all resources will be
-     * returned.
+     * resources to return. If unspecified, at most 500 will be returned. The
+     * maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -513,6 +533,18 @@ return [
                     ],
                 ],
             ],
+            'SimulateSecurityHealthAnalyticsCustomModule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
@@ -650,6 +682,7 @@ return [
                 'finding' => 'organizations/{organization}/sources/{source}/findings/{finding}',
                 'folder' => 'folders/{folder}',
                 'folderAssetSecurityMarks' => 'folders/{folder}/assets/{asset}/securityMarks',
+                'folderConstraintName' => 'folders/{folder}/policies/{constraint_name}',
                 'folderCustomModule' => 'folders/{folder}/securityHealthAnalyticsSettings/customModules/{custom_module}',
                 'folderEffectiveCustomModule' => 'folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}',
                 'folderExport' => 'folders/{folder}/bigQueryExports/{export}',
@@ -664,6 +697,7 @@ return [
                 'notificationConfig' => 'organizations/{organization}/notificationConfigs/{notification_config}',
                 'organization' => 'organizations/{organization}',
                 'organizationAssetSecurityMarks' => 'organizations/{organization}/assets/{asset}/securityMarks',
+                'organizationConstraintName' => 'organizations/{organization}/policies/{constraint_name}',
                 'organizationCustomModule' => 'organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}',
                 'organizationEffectiveCustomModule' => 'organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}',
                 'organizationExport' => 'organizations/{organization}/bigQueryExports/{export}',
@@ -675,8 +709,10 @@ return [
                 'organizationSourceFinding' => 'organizations/{organization}/sources/{source}/findings/{finding}',
                 'organizationSourceFindingExternalsystem' => 'organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}',
                 'organizationSourceFindingSecurityMarks' => 'organizations/{organization}/sources/{source}/findings/{finding}/securityMarks',
+                'policy' => 'organizations/{organization}/policies/{constraint_name}',
                 'project' => 'projects/{project}',
                 'projectAssetSecurityMarks' => 'projects/{project}/assets/{asset}/securityMarks',
+                'projectConstraintName' => 'projects/{project}/policies/{constraint_name}',
                 'projectCustomModule' => 'projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}',
                 'projectDlpJob' => 'projects/{project}/dlpJobs/{dlp_job}',
                 'projectEffectiveCustomModule' => 'projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}',

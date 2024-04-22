@@ -81,11 +81,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Eventarc\V1\EventarcClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createChannelAsync(CreateChannelRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createChannelConnectionAsync(CreateChannelConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTriggerAsync(CreateTriggerRequest $request, array $optionalArgs = [])
@@ -118,8 +113,15 @@ final class EventarcClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.eventarc.v1.Eventarc';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'eventarc.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'eventarc.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -478,6 +480,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::createChannelAsync()} .
      *
+     * @example samples/V1/EventarcClient/create_channel.php
+     *
      * @param CreateChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -501,6 +505,8 @@ final class EventarcClient
      * Create a new ChannelConnection in a particular project and location.
      *
      * The async variant is {@see EventarcClient::createChannelConnectionAsync()} .
+     *
+     * @example samples/V1/EventarcClient/create_channel_connection.php
      *
      * @param CreateChannelConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -526,6 +532,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::createTriggerAsync()} .
      *
+     * @example samples/V1/EventarcClient/create_trigger.php
+     *
      * @param CreateTriggerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -549,6 +557,8 @@ final class EventarcClient
      * Delete a single channel.
      *
      * The async variant is {@see EventarcClient::deleteChannelAsync()} .
+     *
+     * @example samples/V1/EventarcClient/delete_channel.php
      *
      * @param DeleteChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -574,6 +584,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::deleteChannelConnectionAsync()} .
      *
+     * @example samples/V1/EventarcClient/delete_channel_connection.php
+     *
      * @param DeleteChannelConnectionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -597,6 +609,8 @@ final class EventarcClient
      * Delete a single trigger.
      *
      * The async variant is {@see EventarcClient::deleteTriggerAsync()} .
+     *
+     * @example samples/V1/EventarcClient/delete_trigger.php
      *
      * @param DeleteTriggerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -622,6 +636,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::getChannelAsync()} .
      *
+     * @example samples/V1/EventarcClient/get_channel.php
+     *
      * @param GetChannelRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -645,6 +661,8 @@ final class EventarcClient
      * Get a single ChannelConnection.
      *
      * The async variant is {@see EventarcClient::getChannelConnectionAsync()} .
+     *
+     * @example samples/V1/EventarcClient/get_channel_connection.php
      *
      * @param GetChannelConnectionRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -670,6 +688,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::getGoogleChannelConfigAsync()} .
      *
+     * @example samples/V1/EventarcClient/get_google_channel_config.php
+     *
      * @param GetGoogleChannelConfigRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -693,6 +713,8 @@ final class EventarcClient
      * Get a single Provider.
      *
      * The async variant is {@see EventarcClient::getProviderAsync()} .
+     *
+     * @example samples/V1/EventarcClient/get_provider.php
      *
      * @param GetProviderRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -718,6 +740,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::getTriggerAsync()} .
      *
+     * @example samples/V1/EventarcClient/get_trigger.php
+     *
      * @param GetTriggerRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -741,6 +765,8 @@ final class EventarcClient
      * List channel connections.
      *
      * The async variant is {@see EventarcClient::listChannelConnectionsAsync()} .
+     *
+     * @example samples/V1/EventarcClient/list_channel_connections.php
      *
      * @param ListChannelConnectionsRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -766,6 +792,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::listChannelsAsync()} .
      *
+     * @example samples/V1/EventarcClient/list_channels.php
+     *
      * @param ListChannelsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -789,6 +817,8 @@ final class EventarcClient
      * List providers.
      *
      * The async variant is {@see EventarcClient::listProvidersAsync()} .
+     *
+     * @example samples/V1/EventarcClient/list_providers.php
      *
      * @param ListProvidersRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -814,6 +844,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::listTriggersAsync()} .
      *
+     * @example samples/V1/EventarcClient/list_triggers.php
+     *
      * @param ListTriggersRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -837,6 +869,8 @@ final class EventarcClient
      * Update a single channel.
      *
      * The async variant is {@see EventarcClient::updateChannelAsync()} .
+     *
+     * @example samples/V1/EventarcClient/update_channel.php
      *
      * @param UpdateChannelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -862,6 +896,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::updateGoogleChannelConfigAsync()} .
      *
+     * @example samples/V1/EventarcClient/update_google_channel_config.php
+     *
      * @param UpdateGoogleChannelConfigRequest $request     A request to house fields associated with the call.
      * @param array                            $callOptions {
      *     Optional.
@@ -885,6 +921,8 @@ final class EventarcClient
      * Update a single trigger.
      *
      * The async variant is {@see EventarcClient::updateTriggerAsync()} .
+     *
+     * @example samples/V1/EventarcClient/update_trigger.php
      *
      * @param UpdateTriggerRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -910,6 +948,8 @@ final class EventarcClient
      *
      * The async variant is {@see EventarcClient::getLocationAsync()} .
      *
+     * @example samples/V1/EventarcClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -933,6 +973,8 @@ final class EventarcClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see EventarcClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/EventarcClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -958,6 +1000,8 @@ final class EventarcClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see EventarcClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/EventarcClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -986,6 +1030,8 @@ final class EventarcClient
     errors.
      *
      * The async variant is {@see EventarcClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/EventarcClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1016,6 +1062,8 @@ final class EventarcClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see EventarcClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/EventarcClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

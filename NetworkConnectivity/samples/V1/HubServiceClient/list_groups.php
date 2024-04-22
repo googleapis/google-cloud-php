@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_HubService_ListGroups_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
 use Google\Cloud\NetworkConnectivity\V1\Group;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\ListGroupsRequest;
 
 /**
  * Lists groups in a given hub.
@@ -39,10 +40,14 @@ function list_groups_sample(string $formattedParent): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListGroupsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $hubServiceClient->listGroups($formattedParent);
+        $response = $hubServiceClient->listGroups($request);
 
         /** @var Group $element */
         foreach ($response as $element) {

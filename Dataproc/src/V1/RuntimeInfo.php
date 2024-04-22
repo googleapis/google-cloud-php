@@ -36,9 +36,16 @@ class RuntimeInfo extends \Google\Protobuf\Internal\Message
      */
     private $diagnostic_output_uri = '';
     /**
-     * Output only. Approximate workload resource usage calculated after workload
-     * finishes (see [Dataproc Serverless pricing]
+     * Output only. Approximate workload resource usage, calculated when
+     * the workload completes (see [Dataproc Serverless pricing]
      * (https://cloud.google.com/dataproc-serverless/pricing)).
+     * **Note:** This metric calculation may change in the future, for
+     * example, to capture cumulative workload resource
+     * consumption during workload execution (see the
+     * [Dataproc Serverless release notes]
+     * (https://cloud.google.com/dataproc-serverless/docs/release-notes)
+     * for announcements, changes, fixes
+     * and other Dataproc developments).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.UsageMetrics approximate_usage = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -65,9 +72,16 @@ class RuntimeInfo extends \Google\Protobuf\Internal\Message
      *     @type string $diagnostic_output_uri
      *           Output only. A URI pointing to the location of the diagnostics tarball.
      *     @type \Google\Cloud\Dataproc\V1\UsageMetrics $approximate_usage
-     *           Output only. Approximate workload resource usage calculated after workload
-     *           finishes (see [Dataproc Serverless pricing]
+     *           Output only. Approximate workload resource usage, calculated when
+     *           the workload completes (see [Dataproc Serverless pricing]
      *           (https://cloud.google.com/dataproc-serverless/pricing)).
+     *           **Note:** This metric calculation may change in the future, for
+     *           example, to capture cumulative workload resource
+     *           consumption during workload execution (see the
+     *           [Dataproc Serverless release notes]
+     *           (https://cloud.google.com/dataproc-serverless/docs/release-notes)
+     *           for announcements, changes, fixes
+     *           and other Dataproc developments).
      *     @type \Google\Cloud\Dataproc\V1\UsageSnapshot $current_usage
      *           Output only. Snapshot of current workload resource usage.
      * }
@@ -160,9 +174,16 @@ class RuntimeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Approximate workload resource usage calculated after workload
-     * finishes (see [Dataproc Serverless pricing]
+     * Output only. Approximate workload resource usage, calculated when
+     * the workload completes (see [Dataproc Serverless pricing]
      * (https://cloud.google.com/dataproc-serverless/pricing)).
+     * **Note:** This metric calculation may change in the future, for
+     * example, to capture cumulative workload resource
+     * consumption during workload execution (see the
+     * [Dataproc Serverless release notes]
+     * (https://cloud.google.com/dataproc-serverless/docs/release-notes)
+     * for announcements, changes, fixes
+     * and other Dataproc developments).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.UsageMetrics approximate_usage = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataproc\V1\UsageMetrics|null
@@ -183,9 +204,16 @@ class RuntimeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Approximate workload resource usage calculated after workload
-     * finishes (see [Dataproc Serverless pricing]
+     * Output only. Approximate workload resource usage, calculated when
+     * the workload completes (see [Dataproc Serverless pricing]
      * (https://cloud.google.com/dataproc-serverless/pricing)).
+     * **Note:** This metric calculation may change in the future, for
+     * example, to capture cumulative workload resource
+     * consumption during workload execution (see the
+     * [Dataproc Serverless release notes]
+     * (https://cloud.google.com/dataproc-serverless/docs/release-notes)
+     * for announcements, changes, fixes
+     * and other Dataproc developments).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.UsageMetrics approximate_usage = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataproc\V1\UsageMetrics $var

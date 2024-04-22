@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for [google.longrunning.Operation][google.longrunning.Operation] results from
+ * Metadata for [google.longrunning.Operation][google.longrunning.Operation]
+ * results from
  * [FirestoreAdmin.ImportDocuments][google.firestore.admin.v1.FirestoreAdmin.ImportDocuments].
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.ImportDocumentsMetadata</code>
@@ -59,6 +60,12 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string input_uri_prefix = 7;</code>
      */
     private $input_uri_prefix = '';
+    /**
+     * Which namespace ids are being imported.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     */
+    private $namespace_ids;
 
     /**
      * Constructor.
@@ -81,6 +88,8 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *           Which collection ids are being imported.
      *     @type string $input_uri_prefix
      *           The location of the documents being imported.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *           Which namespace ids are being imported.
      * }
      */
     public function __construct($data = NULL) {
@@ -308,6 +317,32 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->input_uri_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which namespace ids are being imported.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNamespaceIds()
+    {
+        return $this->namespace_ids;
+    }
+
+    /**
+     * Which namespace ids are being imported.
+     *
+     * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNamespaceIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->namespace_ids = $arr;
 
         return $this;
     }

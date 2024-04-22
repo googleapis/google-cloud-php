@@ -83,12 +83,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\NetworkConnectivity\V1\HubServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface acceptHubSpokeAsync(AcceptHubSpokeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createHubAsync(CreateHubRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSpokeAsync(CreateSpokeRequest $request, array $optionalArgs = [])
@@ -122,8 +116,15 @@ final class HubServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.networkconnectivity.v1.HubService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'networkconnectivity.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'networkconnectivity.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -483,6 +484,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::acceptHubSpokeAsync()} .
      *
+     * @example samples/V1/HubServiceClient/accept_hub_spoke.php
+     *
      * @param AcceptHubSpokeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -506,6 +509,8 @@ final class HubServiceClient
      * Creates a new Network Connectivity Center hub in the specified project.
      *
      * The async variant is {@see HubServiceClient::createHubAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/create_hub.php
      *
      * @param CreateHubRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -531,6 +536,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::createSpokeAsync()} .
      *
+     * @example samples/V1/HubServiceClient/create_spoke.php
+     *
      * @param CreateSpokeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -554,6 +561,8 @@ final class HubServiceClient
      * Deletes a Network Connectivity Center hub.
      *
      * The async variant is {@see HubServiceClient::deleteHubAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/delete_hub.php
      *
      * @param DeleteHubRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -579,6 +588,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::deleteSpokeAsync()} .
      *
+     * @example samples/V1/HubServiceClient/delete_spoke.php
+     *
      * @param DeleteSpokeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -602,6 +613,8 @@ final class HubServiceClient
      * Gets details about a Network Connectivity Center group.
      *
      * The async variant is {@see HubServiceClient::getGroupAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/get_group.php
      *
      * @param GetGroupRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -627,6 +640,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::getHubAsync()} .
      *
+     * @example samples/V1/HubServiceClient/get_hub.php
+     *
      * @param GetHubRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -650,6 +665,8 @@ final class HubServiceClient
      * Gets details about the specified route.
      *
      * The async variant is {@see HubServiceClient::getRouteAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/get_route.php
      *
      * @param GetRouteRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -675,6 +692,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::getRouteTableAsync()} .
      *
+     * @example samples/V1/HubServiceClient/get_route_table.php
+     *
      * @param GetRouteTableRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -699,6 +718,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::getSpokeAsync()} .
      *
+     * @example samples/V1/HubServiceClient/get_spoke.php
+     *
      * @param GetSpokeRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -722,6 +743,8 @@ final class HubServiceClient
      * Lists groups in a given hub.
      *
      * The async variant is {@see HubServiceClient::listGroupsAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/list_groups.php
      *
      * @param ListGroupsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -749,6 +772,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::listHubSpokesAsync()} .
      *
+     * @example samples/V1/HubServiceClient/list_hub_spokes.php
+     *
      * @param ListHubSpokesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -772,6 +797,8 @@ final class HubServiceClient
      * Lists the Network Connectivity Center hubs associated with a given project.
      *
      * The async variant is {@see HubServiceClient::listHubsAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/list_hubs.php
      *
      * @param ListHubsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -797,6 +824,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::listRouteTablesAsync()} .
      *
+     * @example samples/V1/HubServiceClient/list_route_tables.php
+     *
      * @param ListRouteTablesRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -820,6 +849,8 @@ final class HubServiceClient
      * Lists routes in a given project.
      *
      * The async variant is {@see HubServiceClient::listRoutesAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/list_routes.php
      *
      * @param ListRoutesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -845,6 +876,8 @@ final class HubServiceClient
      * location.
      *
      * The async variant is {@see HubServiceClient::listSpokesAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/list_spokes.php
      *
      * @param ListSpokesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -873,6 +906,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::rejectHubSpokeAsync()} .
      *
+     * @example samples/V1/HubServiceClient/reject_hub_spoke.php
+     *
      * @param RejectHubSpokeRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -898,6 +933,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::updateHubAsync()} .
      *
+     * @example samples/V1/HubServiceClient/update_hub.php
+     *
      * @param UpdateHubRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -921,6 +958,8 @@ final class HubServiceClient
      * Updates the parameters of a Network Connectivity Center spoke.
      *
      * The async variant is {@see HubServiceClient::updateSpokeAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/update_spoke.php
      *
      * @param UpdateSpokeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -946,6 +985,8 @@ final class HubServiceClient
      *
      * The async variant is {@see HubServiceClient::getLocationAsync()} .
      *
+     * @example samples/V1/HubServiceClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -969,6 +1010,8 @@ final class HubServiceClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see HubServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -994,6 +1037,8 @@ final class HubServiceClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see HubServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1022,6 +1067,8 @@ final class HubServiceClient
     errors.
      *
      * The async variant is {@see HubServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1052,6 +1099,8 @@ final class HubServiceClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see HubServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/HubServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

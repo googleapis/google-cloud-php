@@ -33,6 +33,25 @@ class UpdateAccountRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1alpha\Account $account    Required. The account to update.
+     *                                                            The account's `name` field is used to identify the account.
+     * @param \Google\Protobuf\FieldMask              $updateMask Required. The list of fields to be updated. Field names must be in snake
+     *                                                            case (for example, "field_to_update"). Omitted fields will not be updated.
+     *                                                            To replace the entire entity, use one path with the string "*" to match all
+     *                                                            fields.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\UpdateAccountRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1alpha\Account $account, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAccount($account)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

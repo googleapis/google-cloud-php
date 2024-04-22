@@ -26,10 +26,10 @@ use Google\Protobuf\Internal\GPBUtil;
  * Dictionary words containing a large number of characters that are not
  * letters or digits may result in unexpected findings because such characters
  * are treated as whitespace. The
- * [limits](https://cloud.google.com/dlp/limits) page contains details about
- * the size limits of dictionaries. For dictionaries that do not fit within
- * these constraints, consider using `LargeCustomDictionaryConfig` in the
- * `StoredInfoType` API.
+ * [limits](https://cloud.google.com/sensitive-data-protection/limits) page
+ * contains details about the size limits of dictionaries. For dictionaries
+ * that do not fit within these constraints, consider using
+ * `LargeCustomDictionaryConfig` in the `StoredInfoType` API.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.Dictionary</code>
  */

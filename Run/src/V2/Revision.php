@@ -220,6 +220,12 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     private $session_affinity = false;
     /**
+     * Output only. The current effective scaling settings for the revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScalingStatus scaling_status = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $scaling_status = null;
+    /**
      * Output only. A system-generated fingerprint for this version of the
      * resource. May be used to detect modification conflict during updates.
      *
@@ -323,6 +329,8 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type bool $session_affinity
      *           Enable session affinity.
+     *     @type \Google\Cloud\Run\V2\RevisionScalingStatus $scaling_status
+     *           Output only. The current effective scaling settings for the revision.
      *     @type string $etag
      *           Output only. A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
@@ -1205,6 +1213,42 @@ class Revision extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->session_affinity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current effective scaling settings for the revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScalingStatus scaling_status = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Run\V2\RevisionScalingStatus|null
+     */
+    public function getScalingStatus()
+    {
+        return $this->scaling_status;
+    }
+
+    public function hasScalingStatus()
+    {
+        return isset($this->scaling_status);
+    }
+
+    public function clearScalingStatus()
+    {
+        unset($this->scaling_status);
+    }
+
+    /**
+     * Output only. The current effective scaling settings for the revision.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.RevisionScalingStatus scaling_status = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Run\V2\RevisionScalingStatus $var
+     * @return $this
+     */
+    public function setScalingStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\RevisionScalingStatus::class);
+        $this->scaling_status = $var;
 
         return $this;
     }

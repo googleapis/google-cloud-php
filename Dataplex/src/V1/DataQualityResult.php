@@ -22,11 +22,28 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      */
     private $passed = false;
     /**
+     * Output only. The overall data quality score.
+     * The score ranges between [0, 100] (up to two decimal points).
+     *
+     * Generated from protobuf field <code>optional float score = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $score = null;
+    /**
      * A list of results at the dimension level.
+     * A dimension will have a corresponding `DataQualityDimensionResult` if and
+     * only if there is at least one rule with the 'dimension' field set to it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      */
     private $dimensions;
+    /**
+     * Output only. A list of results at the column level.
+     * A column will have a corresponding `DataQualityColumnResult` if and only if
+     * there is at least one rule with the 'column' field set to it.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityColumnResult columns = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $columns;
     /**
      * A list of all the rules in a job, and their results.
      *
@@ -60,8 +77,17 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $passed
      *           Overall data quality result -- `true` if all rules passed.
+     *     @type float $score
+     *           Output only. The overall data quality score.
+     *           The score ranges between [0, 100] (up to two decimal points).
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $dimensions
      *           A list of results at the dimension level.
+     *           A dimension will have a corresponding `DataQualityDimensionResult` if and
+     *           only if there is at least one rule with the 'dimension' field set to it.
+     *     @type array<\Google\Cloud\Dataplex\V1\DataQualityColumnResult>|\Google\Protobuf\Internal\RepeatedField $columns
+     *           Output only. A list of results at the column level.
+     *           A column will have a corresponding `DataQualityColumnResult` if and only if
+     *           there is at least one rule with the 'column' field set to it.
      *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRuleResult>|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of all the rules in a job, and their results.
      *     @type int|string $row_count
@@ -104,7 +130,47 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The overall data quality score.
+     * The score ranges between [0, 100] (up to two decimal points).
+     *
+     * Generated from protobuf field <code>optional float score = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getScore()
+    {
+        return isset($this->score) ? $this->score : 0.0;
+    }
+
+    public function hasScore()
+    {
+        return isset($this->score);
+    }
+
+    public function clearScore()
+    {
+        unset($this->score);
+    }
+
+    /**
+     * Output only. The overall data quality score.
+     * The score ranges between [0, 100] (up to two decimal points).
+     *
+     * Generated from protobuf field <code>optional float score = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setScore($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->score = $var;
+
+        return $this;
+    }
+
+    /**
      * A list of results at the dimension level.
+     * A dimension will have a corresponding `DataQualityDimensionResult` if and
+     * only if there is at least one rule with the 'dimension' field set to it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -116,6 +182,8 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of results at the dimension level.
+     * A dimension will have a corresponding `DataQualityDimensionResult` if and
+     * only if there is at least one rule with the 'dimension' field set to it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2;</code>
      * @param array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $var
@@ -125,6 +193,36 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataplex\V1\DataQualityDimensionResult::class);
         $this->dimensions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A list of results at the column level.
+     * A column will have a corresponding `DataQualityColumnResult` if and only if
+     * there is at least one rule with the 'column' field set to it.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityColumnResult columns = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getColumns()
+    {
+        return $this->columns;
+    }
+
+    /**
+     * Output only. A list of results at the column level.
+     * A column will have a corresponding `DataQualityColumnResult` if and only if
+     * there is at least one rule with the 'column' field set to it.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityColumnResult columns = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Dataplex\V1\DataQualityColumnResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setColumns($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataplex\V1\DataQualityColumnResult::class);
+        $this->columns = $arr;
 
         return $this;
     }

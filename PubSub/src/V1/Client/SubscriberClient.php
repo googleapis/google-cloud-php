@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,11 +72,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\PubSub\V1\SubscriberClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface acknowledgeAsync(AcknowledgeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSnapshotAsync(CreateSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSubscriptionAsync(Subscription $request, array $optionalArgs = [])
@@ -104,8 +99,15 @@ final class SubscriberClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.pubsub.v1.Subscriber';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'pubsub.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'pubsub.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -343,6 +345,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::acknowledgeAsync()} .
      *
+     * @example samples/V1/SubscriberClient/acknowledge.php
+     *
      * @param AcknowledgeRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -374,11 +378,13 @@ final class SubscriberClient
      * the request, the server will assign a random
      * name for this snapshot on the same project as the subscription, conforming
      * to the [resource name format]
-     * (https://cloud.google.com/pubsub/docs/admin#resource_names). The
+     * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The
      * generated name is populated in the returned Snapshot object. Note that for
      * REST API requests, you must specify a name in the request.
      *
      * The async variant is {@see SubscriberClient::createSnapshotAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/create_snapshot.php
      *
      * @param CreateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -401,18 +407,20 @@ final class SubscriberClient
 
     /**
      * Creates a subscription to a given topic. See the [resource name rules]
-     * (https://cloud.google.com/pubsub/docs/admin#resource_names).
+     * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
      * If the subscription already exists, returns `ALREADY_EXISTS`.
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
      * If the name is not provided in the request, the server will assign a random
      * name for this subscription on the same project as the topic, conforming
      * to the [resource name format]
-     * (https://cloud.google.com/pubsub/docs/admin#resource_names). The generated
-     * name is populated in the returned Subscription object. Note that for REST
-     * API requests, you must specify a name in the request.
+     * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The
+     * generated name is populated in the returned Subscription object. Note that
+     * for REST API requests, you must specify a name in the request.
      *
      * The async variant is {@see SubscriberClient::createSubscriptionAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/create_subscription.php
      *
      * @param Subscription $request     A request to house fields associated with the call.
      * @param array        $callOptions {
@@ -446,6 +454,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::deleteSnapshotAsync()} .
      *
+     * @example samples/V1/SubscriberClient/delete_snapshot.php
+     *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -471,6 +481,8 @@ final class SubscriberClient
      * subscription or its topic unless the same topic is specified.
      *
      * The async variant is {@see SubscriberClient::deleteSubscriptionAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/delete_subscription.php
      *
      * @param DeleteSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -498,6 +510,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::getSnapshotAsync()} .
      *
+     * @example samples/V1/SubscriberClient/get_snapshot.php
+     *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -521,6 +535,8 @@ final class SubscriberClient
      * Gets the configuration details of a subscription.
      *
      * The async variant is {@see SubscriberClient::getSubscriptionAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/get_subscription.php
      *
      * @param GetSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -550,6 +566,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::listSnapshotsAsync()} .
      *
+     * @example samples/V1/SubscriberClient/list_snapshots.php
+     *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -573,6 +591,8 @@ final class SubscriberClient
      * Lists matching subscriptions.
      *
      * The async variant is {@see SubscriberClient::listSubscriptionsAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/list_subscriptions.php
      *
      * @param ListSubscriptionsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -602,6 +622,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::modifyAckDeadlineAsync()} .
      *
+     * @example samples/V1/SubscriberClient/modify_ack_deadline.php
+     *
      * @param ModifyAckDeadlineRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -629,6 +651,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::modifyPushConfigAsync()} .
      *
+     * @example samples/V1/SubscriberClient/modify_push_config.php
+     *
      * @param ModifyPushConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -650,6 +674,8 @@ final class SubscriberClient
      * Pulls messages from the server.
      *
      * The async variant is {@see SubscriberClient::pullAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/pull.php
      *
      * @param PullRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -681,6 +707,8 @@ final class SubscriberClient
      *
      * The async variant is {@see SubscriberClient::seekAsync()} .
      *
+     * @example samples/V1/SubscriberClient/seek.php
+     *
      * @param SeekRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
      *     Optional.
@@ -709,6 +737,8 @@ final class SubscriberClient
      * re-establish the stream. Flow control can be achieved by configuring the
      * underlying RPC channel.
      *
+     * @example samples/V1/SubscriberClient/streaming_pull.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -726,13 +756,16 @@ final class SubscriberClient
     }
 
     /**
-     * Updates an existing snapshot. Snapshots are used in
+     * Updates an existing snapshot by updating the fields specified in the update
+     * mask. Snapshots are used in
      * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
      * which allow you to manage message acknowledgments in bulk. That is, you can
      * set the acknowledgment state of messages in an existing subscription to the
      * state captured by a snapshot.
      *
      * The async variant is {@see SubscriberClient::updateSnapshotAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/update_snapshot.php
      *
      * @param UpdateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -754,10 +787,13 @@ final class SubscriberClient
     }
 
     /**
-     * Updates an existing subscription. Note that certain properties of a
-     * subscription, such as its topic, are not modifiable.
+     * Updates an existing subscription by updating the fields specified in the
+     * update mask. Note that certain properties of a subscription, such as its
+     * topic, are not modifiable.
      *
      * The async variant is {@see SubscriberClient::updateSubscriptionAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/update_subscription.php
      *
      * @param UpdateSubscriptionRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -783,6 +819,8 @@ final class SubscriberClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see SubscriberClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -811,6 +849,8 @@ final class SubscriberClient
     errors.
      *
      * The async variant is {@see SubscriberClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -841,6 +881,8 @@ final class SubscriberClient
     checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see SubscriberClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/SubscriberClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

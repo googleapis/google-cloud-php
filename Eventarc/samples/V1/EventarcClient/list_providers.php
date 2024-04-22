@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START eventarc_v1_generated_Eventarc_ListProviders_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\ListProvidersRequest;
 use Google\Cloud\Eventarc\V1\Provider;
 
 /**
@@ -39,10 +40,14 @@ function list_providers_sample(string $formattedParent): void
     // Create a client.
     $eventarcClient = new EventarcClient();
 
+    // Prepare the request message.
+    $request = (new ListProvidersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $eventarcClient->listProviders($formattedParent);
+        $response = $eventarcClient->listProviders($request);
 
         /** @var Provider $element */
         foreach ($response as $element) {

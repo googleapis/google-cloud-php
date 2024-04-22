@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dataproc\V1\Batch;
-use Google\Cloud\Dataproc\V1\BatchControllerClient;
+use Google\Cloud\Dataproc\V1\Client\BatchControllerClient;
+use Google\Cloud\Dataproc\V1\ListBatchesRequest;
 
 /**
  * Lists batch workloads.
@@ -39,10 +40,14 @@ function list_batches_sample(string $formattedParent): void
     // Create a client.
     $batchControllerClient = new BatchControllerClient();
 
+    // Prepare the request message.
+    $request = (new ListBatchesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $batchControllerClient->listBatches($formattedParent);
+        $response = $batchControllerClient->listBatches($request);
 
         /** @var Batch $element */
         foreach ($response as $element) {

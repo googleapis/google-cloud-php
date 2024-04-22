@@ -36,7 +36,7 @@ use Google\Cloud\Monitoring\V3\QueryTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\QueryTimeSeriesResponse;
 
 /**
- * Service Description: The QueryService API is used to manage time series data in Stackdriver
+ * Service Description: The QueryService API is used to manage time series data in Cloud
  * Monitoring. Time series data is a collection of data points that describes
  * the time-varying values of a metric.
  *
@@ -66,8 +66,7 @@ use Google\Cloud\Monitoring\V3\QueryTimeSeriesResponse;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Monitoring\V3\Client\QueryServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Monitoring\V3\Client\QueryServiceClient}.
  */
 class QueryServiceGapicClient
 {
@@ -76,8 +75,15 @@ class QueryServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.monitoring.v3.QueryService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'monitoring.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -172,7 +178,7 @@ class QueryServiceGapicClient
     }
 
     /**
-     * Queries time series using Monitoring Query Language. This method does not require a Workspace.
+     * Queries time series using Monitoring Query Language.
      *
      * Sample code:
      * ```
@@ -198,8 +204,9 @@ class QueryServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                             which to execute the request. The format is:
+     * @param string $name         Required. The
+     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     *                             to execute the request. The format is:
      *
      *                             projects/[PROJECT_ID_OR_NUMBER]
      * @param string $query        Required. The query in the [Monitoring Query

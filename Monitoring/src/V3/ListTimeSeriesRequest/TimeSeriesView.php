@@ -7,7 +7,7 @@ namespace Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
 use UnexpectedValueException;
 
 /**
- * Controls which fields are returned by `ListTimeSeries`.
+ * Controls which fields are returned by `ListTimeSeries*`.
  *
  * Protobuf type <code>google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView</code>
  */

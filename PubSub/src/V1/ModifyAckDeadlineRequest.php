@@ -36,7 +36,8 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * delivery to another subscriber client. This typically results in an
      * increase in the rate of message redeliveries (that is, duplicates).
      * The minimum deadline you can specify is 0 seconds.
-     * The maximum deadline you can specify is 600 seconds (10 minutes).
+     * The maximum deadline you can specify in a single request is 600 seconds
+     * (10 minutes).
      *
      * Generated from protobuf field <code>int32 ack_deadline_seconds = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,7 +55,8 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      *                                     delivery to another subscriber client. This typically results in an
      *                                     increase in the rate of message redeliveries (that is, duplicates).
      *                                     The minimum deadline you can specify is 0 seconds.
-     *                                     The maximum deadline you can specify is 600 seconds (10 minutes).
+     *                                     The maximum deadline you can specify in a single request is 600 seconds
+     *                                     (10 minutes).
      *
      * @return \Google\Cloud\PubSub\V1\ModifyAckDeadlineRequest
      *
@@ -87,7 +89,8 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      *           delivery to another subscriber client. This typically results in an
      *           increase in the rate of message redeliveries (that is, duplicates).
      *           The minimum deadline you can specify is 0 seconds.
-     *           The maximum deadline you can specify is 600 seconds (10 minutes).
+     *           The maximum deadline you can specify in a single request is 600 seconds
+     *           (10 minutes).
      * }
      */
     public function __construct($data = NULL) {
@@ -157,7 +160,8 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * delivery to another subscriber client. This typically results in an
      * increase in the rate of message redeliveries (that is, duplicates).
      * The minimum deadline you can specify is 0 seconds.
-     * The maximum deadline you can specify is 600 seconds (10 minutes).
+     * The maximum deadline you can specify in a single request is 600 seconds
+     * (10 minutes).
      *
      * Generated from protobuf field <code>int32 ack_deadline_seconds = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -175,7 +179,8 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * delivery to another subscriber client. This typically results in an
      * increase in the rate of message redeliveries (that is, duplicates).
      * The minimum deadline you can specify is 0 seconds.
-     * The maximum deadline you can specify is 600 seconds (10 minutes).
+     * The maximum deadline you can specify in a single request is 600 seconds
+     * (10 minutes).
      *
      * Generated from protobuf field <code>int32 ack_deadline_seconds = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

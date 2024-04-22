@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ChangeParameters_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ChangeParametersRequest;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Entitlement;
 use Google\Cloud\Channel\V1\Parameter;
 use Google\Rpc\Status;
@@ -64,13 +65,16 @@ function change_parameters_sample(string $name): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $parameters = [new Parameter()];
+    $request = (new ChangeParametersRequest())
+        ->setName($name)
+        ->setParameters($parameters);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelServiceClient->changeParameters($name, $parameters);
+        $response = $cloudChannelServiceClient->changeParameters($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iap_v1_generated_IdentityAwareProxyAdminService_UpdateIapSettings_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyAdminServiceClient;
 use Google\Cloud\Iap\V1\IapSettings;
-use Google\Cloud\Iap\V1\IdentityAwareProxyAdminServiceClient;
+use Google\Cloud\Iap\V1\UpdateIapSettingsRequest;
 
 /**
  * Updates the IAP settings on a particular IAP protected resource. It
@@ -38,14 +39,16 @@ function update_iap_settings_sample(string $iapSettingsName): void
     // Create a client.
     $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $iapSettings = (new IapSettings())
         ->setName($iapSettingsName);
+    $request = (new UpdateIapSettingsRequest())
+        ->setIapSettings($iapSettings);
 
     // Call the API and handle any network failures.
     try {
         /** @var IapSettings $response */
-        $response = $identityAwareProxyAdminServiceClient->updateIapSettings($iapSettings);
+        $response = $identityAwareProxyAdminServiceClient->updateIapSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

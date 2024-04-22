@@ -55,6 +55,18 @@ class Format
      * Generated from protobuf enum <code>PYTHON = 8;</code>
      */
     const PYTHON = 8;
+    /**
+     * Kubeflow Pipelines package format.
+     *
+     * Generated from protobuf enum <code>KFP = 9;</code>
+     */
+    const KFP = 9;
+    /**
+     * Go package format.
+     *
+     * Generated from protobuf enum <code>GO = 10;</code>
+     */
+    const GO = 10;
 
     private static $valueToName = [
         self::FORMAT_UNSPECIFIED => 'FORMAT_UNSPECIFIED',
@@ -64,6 +76,8 @@ class Format
         self::APT => 'APT',
         self::YUM => 'YUM',
         self::PYTHON => 'PYTHON',
+        self::KFP => 'KFP',
+        self::GO => 'GO',
     ];
 
     public static function name($value)

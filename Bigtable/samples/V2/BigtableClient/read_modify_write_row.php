@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigtable_v2_generated_Bigtable_ReadModifyWriteRow_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
 
@@ -35,8 +36,10 @@ use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
  * timestamp is the greater of the existing timestamp or the current server
  * time. The method returns the new contents of all modified cells.
  *
- * @param string $formattedTableName The unique name of the table to which the read/modify/write rules
- *                                   should be applied. Values are of the form
+ * @param string $formattedTableName Optional. The unique name of the table to which the read/modify/write rules
+ *                                   should be applied.
+ *
+ *                                   Values are of the form
  *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
  * @param string $rowKey             The key of the row to which the read/modify/write rules should be
@@ -47,13 +50,17 @@ function read_modify_write_row_sample(string $formattedTableName, string $rowKey
     // Create a client.
     $bigtableClient = new BigtableClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $rules = [new ReadModifyWriteRule()];
+    $request = (new ReadModifyWriteRowRequest())
+        ->setTableName($formattedTableName)
+        ->setRowKey($rowKey)
+        ->setRules($rules);
 
     // Call the API and handle any network failures.
     try {
         /** @var ReadModifyWriteRowResponse $response */
-        $response = $bigtableClient->readModifyWriteRow($formattedTableName, $rowKey, $rules);
+        $response = $bigtableClient->readModifyWriteRow($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

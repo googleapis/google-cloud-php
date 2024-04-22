@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_CreateConversionWorkspace_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\ConversionWorkspace;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\CreateConversionWorkspaceRequest;
 use Google\Cloud\CloudDms\V1\DatabaseEngine;
 use Google\Cloud\CloudDms\V1\DatabaseEngineInfo;
 use Google\Rpc\Status;
@@ -53,7 +54,7 @@ function create_conversion_workspace_sample(
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $conversionWorkspaceSource = (new DatabaseEngineInfo())
         ->setEngine($conversionWorkspaceSourceEngine)
         ->setVersion($conversionWorkspaceSourceVersion);
@@ -63,15 +64,15 @@ function create_conversion_workspace_sample(
     $conversionWorkspace = (new ConversionWorkspace())
         ->setSource($conversionWorkspaceSource)
         ->setDestination($conversionWorkspaceDestination);
+    $request = (new CreateConversionWorkspaceRequest())
+        ->setParent($formattedParent)
+        ->setConversionWorkspaceId($conversionWorkspaceId)
+        ->setConversionWorkspace($conversionWorkspace);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->createConversionWorkspace(
-            $formattedParent,
-            $conversionWorkspaceId,
-            $conversionWorkspace
-        );
+        $response = $dataMigrationServiceClient->createConversionWorkspace($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

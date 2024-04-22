@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_SessionEntityTypes_ListSessionEntityTypes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dialogflow\V2\Client\SessionEntityTypesClient;
+use Google\Cloud\Dialogflow\V2\ListSessionEntityTypesRequest;
 use Google\Cloud\Dialogflow\V2\SessionEntityType;
-use Google\Cloud\Dialogflow\V2\SessionEntityTypesClient;
 
 /**
  * Returns the list of all session entity types in the specified session.
@@ -48,10 +49,14 @@ function list_session_entity_types_sample(string $formattedParent): void
     // Create a client.
     $sessionEntityTypesClient = new SessionEntityTypesClient();
 
+    // Prepare the request message.
+    $request = (new ListSessionEntityTypesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $sessionEntityTypesClient->listSessionEntityTypes($formattedParent);
+        $response = $sessionEntityTypesClient->listSessionEntityTypes($request);
 
         /** @var SessionEntityType $element */
         foreach ($response as $element) {

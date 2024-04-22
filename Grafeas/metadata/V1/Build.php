@@ -19,17 +19,18 @@ class Build
         \GPBMetadata\Grafeas\V1\Provenance::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
+ü
 grafeas/v1/build.proto
 grafeas.v1!grafeas/v1/intoto_statement.protografeas/v1/provenance.proto"$
 	BuildNote
-builder_version (	"Ì
+builder_version (	"”
 BuildOccurrence/
 
 provenance (2.grafeas.v1.BuildProvenance
 provenance_bytes (	7
 intoto_provenance (2.grafeas.v1.InTotoProvenance5
-intoto_statement (2.grafeas.v1.InTotoStatementBQ
+intoto_statement (2.grafeas.v1.InTotoStatementF
+in_toto_slsa_provenance_v1 (2".grafeas.v1.InTotoSlsaProvenanceV1BQ
 io.grafeas.v1PZ8google.golang.org/genproto/googleapis/grafeas/v1;grafeas¢GRAbproto3'
         , true);
 

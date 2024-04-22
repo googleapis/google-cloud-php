@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START webrisk_v1_generated_WebRiskService_SearchHashes_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\WebRisk\V1\Client\WebRiskServiceClient;
+use Google\Cloud\WebRisk\V1\SearchHashesRequest;
 use Google\Cloud\WebRisk\V1\SearchHashesResponse;
 use Google\Cloud\WebRisk\V1\ThreatType;
-use Google\Cloud\WebRisk\V1\WebRiskServiceClient;
 
 /**
  * Gets the full hashes that match the requested hash prefix.
@@ -43,13 +44,15 @@ function search_hashes_sample(int $threatTypesElement): void
     // Create a client.
     $webRiskServiceClient = new WebRiskServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $threatTypes = [$threatTypesElement,];
+    $request = (new SearchHashesRequest())
+        ->setThreatTypes($threatTypes);
 
     // Call the API and handle any network failures.
     try {
         /** @var SearchHashesResponse $response */
-        $response = $webRiskServiceClient->searchHashes($threatTypes);
+        $response = $webRiskServiceClient->searchHashes($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

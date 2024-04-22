@@ -11,7 +11,6 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents both a request to Restore some portion of a Backup into
  * a target GKE cluster and a record of the restore operation itself.
- * Next id: 18
  *
  * Generated from protobuf message <code>google.cloud.gkebackup.v1.Restore</code>
  */

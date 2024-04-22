@@ -18,7 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 /**
- * Represents Count Aggregation properties.
+ * Represents Aggregation properties.
  *
  * Example:
  * ```
@@ -28,6 +28,8 @@ namespace Google\Cloud\Datastore\Query;
  *
  * echo json_encode($count->getProps());
  * ```
+ *
+ * Aggregations considers non existing property name as an empty query set
  */
 class Aggregation
 {
@@ -35,6 +37,16 @@ class Aggregation
      * Default placeholder for all count aggregation props.
      */
     private const TYPE_COUNT = 'count';
+
+    /**
+     * Default placeholder for all sum aggregation props.
+     */
+    private const TYPE_SUM = 'sum';
+
+    /**
+     * Default placeholder for all average aggregation props.
+     */
+    private const TYPE_AVG = 'avg';
 
     /**
      * @var array Properties for an aggregation query.
@@ -67,9 +79,63 @@ class Aggregation
      */
     public static function count()
     {
-        $count = new Aggregation(self::TYPE_COUNT);
-        $count->props[$count->aggregationType] = [];
-        return $count;
+        return self::createAggregation(self::TYPE_COUNT);
+    }
+
+    /**
+     * Creates sum aggregation properties.
+     *
+     * Example:
+     * ```
+     * $sum = Aggregate::sum('property_to_aggregate_upon');
+     * ```
+     * Result of SUM aggregation can be a integer or a float.
+     * Sum of integers which exceed maxinum integer value returns a float.
+     * Sum of numbers exceeding max float value returns `INF`.
+     * Sum of data which contains `NaN` returns `NaN`.
+     * Non numeric values are ignored.
+     *
+     * @param string $property The relative path of the field to aggregate upon.
+     * @return Aggregation
+     */
+    public static function sum($property)
+    {
+        return self::createAggregation(self::TYPE_SUM, $property);
+    }
+
+    /**
+     * Creates average aggregation properties.
+     *
+     * Example:
+     * ```
+     * $avg = Aggregate::avg('property_to_aggregate_upon');
+     * ```
+     * Result of AVG aggregation can be a float or a null.
+     * Average of empty valid data set return `null`.
+     * Average of numbers exceeding max float value returns `INF`.
+     * Average of data which contains `NaN` returns `NaN`.
+     * Non numeric values are ignored.
+     *
+     * @param string $property The relative path of the field to aggregate upon.
+     * @return Aggregation
+     */
+    public static function avg($property)
+    {
+        return self::createAggregation(self::TYPE_AVG, $property);
+    }
+
+    private static function createAggregation(string $type, $property = null)
+    {
+        $aggregation = new Aggregation($type);
+        $aggregation->props[$aggregation->aggregationType] = [];
+        if (!is_null($property)) {
+            $aggregation->props[$aggregation->aggregationType] = [
+                'property' => [
+                    'name' => $property
+                ]
+            ];
+        }
+        return $aggregation;
     }
 
     /**

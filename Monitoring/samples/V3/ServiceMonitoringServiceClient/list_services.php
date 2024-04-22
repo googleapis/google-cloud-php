@@ -25,15 +25,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_ServiceMonitoringService_ListServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\ServiceMonitoringServiceClient;
+use Google\Cloud\Monitoring\V3\ListServicesRequest;
 use Google\Cloud\Monitoring\V3\Service;
-use Google\Cloud\Monitoring\V3\ServiceMonitoringServiceClient;
 
 /**
- * List `Service`s for this workspace.
+ * List `Service`s for this Metrics Scope.
  *
- * @param string $parent Resource name of the parent containing the listed services, either a
- *                       [project](https://cloud.google.com/monitoring/api/v3#project_name) or a
- *                       Monitoring Workspace. The formats are:
+ * @param string $parent Resource name of the parent containing the listed services,
+ *                       either a [project](https://cloud.google.com/monitoring/api/v3#project_name)
+ *                       or a Monitoring Metrics Scope. The formats are:
  *
  *                       projects/[PROJECT_ID_OR_NUMBER]
  *                       workspaces/[HOST_PROJECT_ID_OR_NUMBER]
@@ -43,10 +44,14 @@ function list_services_sample(string $parent): void
     // Create a client.
     $serviceMonitoringServiceClient = new ServiceMonitoringServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListServicesRequest())
+        ->setParent($parent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $serviceMonitoringServiceClient->listServices($parent);
+        $response = $serviceMonitoringServiceClient->listServices($request);
 
         /** @var Service $element */
         foreach ($response as $element) {

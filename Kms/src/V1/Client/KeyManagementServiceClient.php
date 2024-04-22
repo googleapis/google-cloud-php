@@ -107,11 +107,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Kms\V1\KeyManagementServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface asymmetricDecryptAsync(AsymmetricDecryptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface asymmetricSignAsync(AsymmetricSignRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createCryptoKeyAsync(CreateCryptoKeyRequest $request, array $optionalArgs = [])
@@ -154,8 +149,15 @@ final class KeyManagementServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.kms.v1.KeyManagementService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudkms.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudkms.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -398,6 +400,8 @@ final class KeyManagementServiceClient
      * The async variant is {@see KeyManagementServiceClient::asymmetricDecryptAsync()}
      * .
      *
+     * @example samples/V1/KeyManagementServiceClient/asymmetric_decrypt.php
+     *
      * @param AsymmetricDecryptRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -425,6 +429,8 @@ final class KeyManagementServiceClient
      * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
      *
      * The async variant is {@see KeyManagementServiceClient::asymmetricSignAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/asymmetric_sign.php
      *
      * @param AsymmetricSignRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -454,6 +460,8 @@ final class KeyManagementServiceClient
      * are required.
      *
      * The async variant is {@see KeyManagementServiceClient::createCryptoKeyAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/create_crypto_key.php
      *
      * @param CreateCryptoKeyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -485,6 +493,8 @@ final class KeyManagementServiceClient
      * The async variant is
      * {@see KeyManagementServiceClient::createCryptoKeyVersionAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/create_crypto_key_version.php
+     *
      * @param CreateCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -513,6 +523,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is {@see KeyManagementServiceClient::createImportJobAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/create_import_job.php
+     *
      * @param CreateImportJobRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -537,6 +549,8 @@ final class KeyManagementServiceClient
      * Location.
      *
      * The async variant is {@see KeyManagementServiceClient::createKeyRingAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/create_key_ring.php
      *
      * @param CreateKeyRingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -564,6 +578,8 @@ final class KeyManagementServiceClient
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * The async variant is {@see KeyManagementServiceClient::decryptAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/decrypt.php
      *
      * @param DecryptRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -610,6 +626,8 @@ final class KeyManagementServiceClient
      * The async variant is
      * {@see KeyManagementServiceClient::destroyCryptoKeyVersionAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/destroy_crypto_key_version.php
+     *
      * @param DestroyCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -637,6 +655,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is {@see KeyManagementServiceClient::encryptAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/encrypt.php
+     *
      * @param EncryptRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
      *     Optional.
@@ -662,6 +682,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is
      * {@see KeyManagementServiceClient::generateRandomBytesAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/generate_random_bytes.php
      *
      * @param GenerateRandomBytesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -689,6 +711,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is {@see KeyManagementServiceClient::getCryptoKeyAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/get_crypto_key.php
+     *
      * @param GetCryptoKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -715,6 +739,8 @@ final class KeyManagementServiceClient
      * The async variant is
      * {@see KeyManagementServiceClient::getCryptoKeyVersionAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/get_crypto_key_version.php
+     *
      * @param GetCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -739,6 +765,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is {@see KeyManagementServiceClient::getImportJobAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/get_import_job.php
+     *
      * @param GetImportJobRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -762,6 +790,8 @@ final class KeyManagementServiceClient
      * Returns metadata for a given [KeyRing][google.cloud.kms.v1.KeyRing].
      *
      * The async variant is {@see KeyManagementServiceClient::getKeyRingAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/get_key_ring.php
      *
      * @param GetKeyRingRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -791,6 +821,8 @@ final class KeyManagementServiceClient
      * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
      *
      * The async variant is {@see KeyManagementServiceClient::getPublicKeyAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/get_public_key.php
      *
      * @param GetPublicKeyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -824,6 +856,8 @@ final class KeyManagementServiceClient
      * The async variant is
      * {@see KeyManagementServiceClient::importCryptoKeyVersionAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/import_crypto_key_version.php
+     *
      * @param ImportCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -849,6 +883,8 @@ final class KeyManagementServiceClient
      * The async variant is
      * {@see KeyManagementServiceClient::listCryptoKeyVersionsAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/list_crypto_key_versions.php
+     *
      * @param ListCryptoKeyVersionsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -872,6 +908,8 @@ final class KeyManagementServiceClient
      * Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
      * The async variant is {@see KeyManagementServiceClient::listCryptoKeysAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/list_crypto_keys.php
      *
      * @param ListCryptoKeysRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -897,6 +935,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is {@see KeyManagementServiceClient::listImportJobsAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/list_import_jobs.php
+     *
      * @param ListImportJobsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -920,6 +960,8 @@ final class KeyManagementServiceClient
      * Lists [KeyRings][google.cloud.kms.v1.KeyRing].
      *
      * The async variant is {@see KeyManagementServiceClient::listKeyRingsAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/list_key_rings.php
      *
      * @param ListKeyRingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -946,6 +988,8 @@ final class KeyManagementServiceClient
      * producing a tag that can be verified by another source with the same key.
      *
      * The async variant is {@see KeyManagementServiceClient::macSignAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/mac_sign.php
      *
      * @param MacSignRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -974,6 +1018,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is {@see KeyManagementServiceClient::macVerifyAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/mac_verify.php
+     *
      * @param MacVerifyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -1000,6 +1046,8 @@ final class KeyManagementServiceClient
      * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
      *
      * The async variant is {@see KeyManagementServiceClient::rawDecryptAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/raw_decrypt.php
      *
      * @param RawDecryptRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1029,6 +1077,8 @@ final class KeyManagementServiceClient
      * [RAW_ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.RAW_ENCRYPT_DECRYPT].
      *
      * The async variant is {@see KeyManagementServiceClient::rawEncryptAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/raw_encrypt.php
      *
      * @param RawEncryptRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1063,6 +1113,8 @@ final class KeyManagementServiceClient
      * The async variant is
      * {@see KeyManagementServiceClient::restoreCryptoKeyVersionAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/restore_crypto_key_version.php
+     *
      * @param RestoreCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -1086,6 +1138,8 @@ final class KeyManagementServiceClient
      * Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * The async variant is {@see KeyManagementServiceClient::updateCryptoKeyAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/update_crypto_key.php
      *
      * @param UpdateCryptoKeyRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -1116,6 +1170,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is
      * {@see KeyManagementServiceClient::updateCryptoKeyPrimaryVersionAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/update_crypto_key_primary_version.php
      *
      * @param UpdateCryptoKeyPrimaryVersionRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
@@ -1153,6 +1209,8 @@ final class KeyManagementServiceClient
      * The async variant is
      * {@see KeyManagementServiceClient::updateCryptoKeyVersionAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/update_crypto_key_version.php
+     *
      * @param UpdateCryptoKeyVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -1176,6 +1234,8 @@ final class KeyManagementServiceClient
      * Gets information about a location.
      *
      * The async variant is {@see KeyManagementServiceClient::getLocationAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1201,6 +1261,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is {@see KeyManagementServiceClient::listLocationsAsync()} .
      *
+     * @example samples/V1/KeyManagementServiceClient/list_locations.php
+     *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -1225,6 +1287,8 @@ final class KeyManagementServiceClient
     if the resource exists and does not have a policy set.
      *
      * The async variant is {@see KeyManagementServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1253,6 +1317,8 @@ final class KeyManagementServiceClient
     errors.
      *
      * The async variant is {@see KeyManagementServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/set_iam_policy.php
      *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1284,6 +1350,8 @@ final class KeyManagementServiceClient
      *
      * The async variant is
      * {@see KeyManagementServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/KeyManagementServiceClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

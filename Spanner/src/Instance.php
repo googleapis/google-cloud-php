@@ -123,6 +123,11 @@ class Instance
     private $iam;
 
     /**
+     * @var array
+     */
+    private $directedReadOptions;
+
+    /**
      * Create an object representing a Cloud Spanner instance.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -137,6 +142,14 @@ class Instance
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit platform
      *        compatibility. **Defaults to** false.
      * @param array $info [optional] A representation of the instance object.
+     * @param array $options [optional]{
+     *     Instance options
+     *
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     * }
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -145,7 +158,8 @@ class Instance
         $projectId,
         $name,
         $returnInt64AsObject = false,
-        array $info = []
+        array $info = [],
+        array $options = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
@@ -154,6 +168,7 @@ class Instance
         $this->info = $info;
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
+        $this->directedReadOptions = $options['directedReadOptions'] ?? [];
     }
 
     /**
@@ -793,5 +808,20 @@ class Instance
             'name' => $this->name,
             'info' => $this->info
         ];
+    }
+
+    /**
+     * Return the directed read options.
+     *
+     * Example:
+     * ```
+     * $name = $instance->directedReadOptions();
+     * ```
+     *
+     * @return array
+     */
+    public function directedReadOptions()
+    {
+        return $this->directedReadOptions;
     }
 }

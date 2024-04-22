@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_Services_DeleteService_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AppEngine\V1\ServicesClient;
+use Google\Cloud\AppEngine\V1\Client\ServicesClient;
+use Google\Cloud\AppEngine\V1\DeleteServiceRequest;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,13 @@ function delete_service_sample(): void
     // Create a client.
     $servicesClient = new ServicesClient();
 
+    // Prepare the request message.
+    $request = new DeleteServiceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $servicesClient->deleteService();
+        $response = $servicesClient->deleteService($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START iap_v1_generated_IdentityAwareProxyOAuthService_CreateBrand_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Iap\V1\Brand;
-use Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\CreateBrandRequest;
 
 /**
  * Constructs a new OAuth brand for the project if one does not exist.
@@ -45,13 +46,16 @@ function create_brand_sample(string $parent): void
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $brand = new Brand();
+    $request = (new CreateBrandRequest())
+        ->setParent($parent)
+        ->setBrand($brand);
 
     // Call the API and handle any network failures.
     try {
         /** @var Brand $response */
-        $response = $identityAwareProxyOAuthServiceClient->createBrand($parent, $brand);
+        $response = $identityAwareProxyOAuthServiceClient->createBrand($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

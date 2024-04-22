@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class MarkRecommendationDismissedRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,7 +35,7 @@ class MarkRecommendationDismissedRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the recommendation.
+     *           Required. Name of the recommendation.
      *     @type string $etag
      *           Fingerprint of the Recommendation. Provides optimistic locking.
      * }
@@ -46,7 +46,7 @@ class MarkRecommendationDismissedRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -57,7 +57,7 @@ class MarkRecommendationDismissedRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

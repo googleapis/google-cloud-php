@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output Only] The version of BYOIP API.
+     * Check the ByoipApiVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
+     */
+    private $byoip_api_version = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -101,6 +108,9 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $byoip_api_version
+     *           [Output Only] The version of BYOIP API.
+     *           Check the ByoipApiVersion enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -133,6 +143,44 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output Only] The version of BYOIP API.
+     * Check the ByoipApiVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
+     * @return string
+     */
+    public function getByoipApiVersion()
+    {
+        return isset($this->byoip_api_version) ? $this->byoip_api_version : '';
+    }
+
+    public function hasByoipApiVersion()
+    {
+        return isset($this->byoip_api_version);
+    }
+
+    public function clearByoipApiVersion()
+    {
+        unset($this->byoip_api_version);
+    }
+
+    /**
+     * [Output Only] The version of BYOIP API.
+     * Check the ByoipApiVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string byoip_api_version = 162683283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setByoipApiVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->byoip_api_version = $var;
+
+        return $this;
     }
 
     /**

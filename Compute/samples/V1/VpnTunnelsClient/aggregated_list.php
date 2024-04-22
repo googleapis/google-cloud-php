@@ -28,7 +28,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\VpnTunnelsClient;
 
 /**
- * Retrieves an aggregated list of VPN tunnels.
+ * Retrieves an aggregated list of VPN tunnels. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Project ID for this request.
  */

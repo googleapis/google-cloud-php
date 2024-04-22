@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -79,6 +99,25 @@ return [
                     ],
                 ],
             ],
+            'RollbackAwsNodePoolUpdate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\GkeMultiCloud\V1\AwsNodePool',
+                    'metadataReturnType' => '\Google\Cloud\GkeMultiCloud\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateAwsCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\GkeMultiCloud\V1\AwsCluster',
@@ -131,6 +170,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateAwsClusterAgentToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'aws_cluster',
+                        'fieldAccessors' => [
+                            'getAwsCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetAwsCluster' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AwsCluster',
@@ -143,6 +194,18 @@ return [
                     ],
                 ],
             ],
+            'GetAwsJsonWebKeys' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AwsJsonWebKeys',
+                'headerParams' => [
+                    [
+                        'keyName' => 'aws_cluster',
+                        'fieldAccessors' => [
+                            'getAwsCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetAwsNodePool' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AwsNodePool',
@@ -151,6 +214,18 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAwsOpenIdConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GkeMultiCloud\V1\AwsOpenIdConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'aws_cluster',
+                        'fieldAccessors' => [
+                            'getAwsCluster',
                         ],
                     ],
                 ],

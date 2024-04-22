@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START servicedirectory_v1_generated_RegistrationService_ListServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\Client\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\ListServicesRequest;
 use Google\Cloud\ServiceDirectory\V1\Service;
 
 /**
@@ -40,10 +41,14 @@ function list_services_sample(string $formattedParent): void
     // Create a client.
     $registrationServiceClient = new RegistrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListServicesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $registrationServiceClient->listServices($formattedParent);
+        $response = $registrationServiceClient->listServices($request);
 
         /** @var Service $element */
         foreach ($response as $element) {

@@ -50,6 +50,7 @@ use Google\Cloud\Filestore\V1\ListBackupsRequest;
 use Google\Cloud\Filestore\V1\ListInstancesRequest;
 use Google\Cloud\Filestore\V1\ListSnapshotsRequest;
 use Google\Cloud\Filestore\V1\RestoreInstanceRequest;
+use Google\Cloud\Filestore\V1\RevertInstanceRequest;
 use Google\Cloud\Filestore\V1\Snapshot;
 use Google\Cloud\Filestore\V1\UpdateBackupRequest;
 use Google\Cloud\Filestore\V1\UpdateInstanceRequest;
@@ -86,12 +87,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Filestore\V1\CloudFilestoreManagerClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createBackupAsync(CreateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createSnapshotAsync(CreateSnapshotRequest $request, array $optionalArgs = [])
@@ -105,6 +100,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSnapshotsAsync(ListSnapshotsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface restoreInstanceAsync(RestoreInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface revertInstanceAsync(RevertInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateBackupAsync(UpdateBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSnapshotAsync(UpdateSnapshotRequest $request, array $optionalArgs = [])
@@ -117,8 +113,15 @@ final class CloudFilestoreManagerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.filestore.v1.CloudFilestoreManager';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'file.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'file.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -361,6 +364,8 @@ final class CloudFilestoreManagerClient
      *
      * The async variant is {@see CloudFilestoreManagerClient::createBackupAsync()} .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/create_backup.php
+     *
      * @param CreateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -388,6 +393,8 @@ final class CloudFilestoreManagerClient
      *
      * The async variant is {@see CloudFilestoreManagerClient::createInstanceAsync()} .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/create_instance.php
+     *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -411,6 +418,8 @@ final class CloudFilestoreManagerClient
      * Creates a snapshot.
      *
      * The async variant is {@see CloudFilestoreManagerClient::createSnapshotAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/create_snapshot.php
      *
      * @param CreateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -436,6 +445,8 @@ final class CloudFilestoreManagerClient
      *
      * The async variant is {@see CloudFilestoreManagerClient::deleteBackupAsync()} .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/delete_backup.php
+     *
      * @param DeleteBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -459,6 +470,8 @@ final class CloudFilestoreManagerClient
      * Deletes an instance.
      *
      * The async variant is {@see CloudFilestoreManagerClient::deleteInstanceAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/delete_instance.php
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -484,6 +497,8 @@ final class CloudFilestoreManagerClient
      *
      * The async variant is {@see CloudFilestoreManagerClient::deleteSnapshotAsync()} .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/delete_snapshot.php
+     *
      * @param DeleteSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -507,6 +522,8 @@ final class CloudFilestoreManagerClient
      * Gets the details of a specific backup.
      *
      * The async variant is {@see CloudFilestoreManagerClient::getBackupAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/get_backup.php
      *
      * @param GetBackupRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -532,6 +549,8 @@ final class CloudFilestoreManagerClient
      *
      * The async variant is {@see CloudFilestoreManagerClient::getInstanceAsync()} .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/get_instance.php
+     *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -555,6 +574,8 @@ final class CloudFilestoreManagerClient
      * Gets the details of a specific snapshot.
      *
      * The async variant is {@see CloudFilestoreManagerClient::getSnapshotAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/get_snapshot.php
      *
      * @param GetSnapshotRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -581,6 +602,8 @@ final class CloudFilestoreManagerClient
      *
      * The async variant is {@see CloudFilestoreManagerClient::listBackupsAsync()} .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/list_backups.php
+     *
      * @param ListBackupsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -606,6 +629,8 @@ final class CloudFilestoreManagerClient
      *
      * The async variant is {@see CloudFilestoreManagerClient::listInstancesAsync()} .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/list_instances.php
+     *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -630,6 +655,8 @@ final class CloudFilestoreManagerClient
      * or for all locations.
      *
      * The async variant is {@see CloudFilestoreManagerClient::listSnapshotsAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/list_snapshots.php
      *
      * @param ListSnapshotsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -660,6 +687,8 @@ final class CloudFilestoreManagerClient
      * The async variant is {@see CloudFilestoreManagerClient::restoreInstanceAsync()}
      * .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/restore_instance.php
+     *
      * @param RestoreInstanceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -680,9 +709,37 @@ final class CloudFilestoreManagerClient
     }
 
     /**
+     * Revert an existing instance's file system to a specified snapshot.
+     *
+     * The async variant is {@see CloudFilestoreManagerClient::revertInstanceAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/revert_instance.php
+     *
+     * @param RevertInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function revertInstance(RevertInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RevertInstance', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the settings of a specific backup.
      *
      * The async variant is {@see CloudFilestoreManagerClient::updateBackupAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/update_backup.php
      *
      * @param UpdateBackupRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -708,6 +765,8 @@ final class CloudFilestoreManagerClient
      *
      * The async variant is {@see CloudFilestoreManagerClient::updateInstanceAsync()} .
      *
+     * @example samples/V1/CloudFilestoreManagerClient/update_instance.php
+     *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -731,6 +790,8 @@ final class CloudFilestoreManagerClient
      * Updates the settings of a specific snapshot.
      *
      * The async variant is {@see CloudFilestoreManagerClient::updateSnapshotAsync()} .
+     *
+     * @example samples/V1/CloudFilestoreManagerClient/update_snapshot.php
      *
      * @param UpdateSnapshotRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {

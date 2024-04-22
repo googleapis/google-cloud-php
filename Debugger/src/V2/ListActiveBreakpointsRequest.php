@@ -42,6 +42,19 @@ class ListActiveBreakpointsRequest extends \Google\Protobuf\Internal\Message
     private $success_on_timeout = false;
 
     /**
+     * @param string $debuggeeId Required. Identifies the debuggee.
+     *
+     * @return \Google\Cloud\Debugger\V2\ListActiveBreakpointsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $debuggeeId): self
+    {
+        return (new self())
+            ->setDebuggeeId($debuggeeId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

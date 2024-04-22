@@ -37,6 +37,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
 use Google\Cloud\ContactCenterInsights\V1\BulkAnalyzeConversationsRequest;
+use Google\Cloud\ContactCenterInsights\V1\BulkDeleteConversationsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsRequest;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest;
@@ -98,13 +99,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface bulkAnalyzeConversationsAsync(BulkAnalyzeConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface bulkDeleteConversationsAsync(BulkDeleteConversationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface calculateIssueModelStatsAsync(CalculateIssueModelStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface calculateStatsAsync(CalculateStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAnalysisAsync(CreateAnalysisRequest $request, array $optionalArgs = [])
@@ -151,8 +147,15 @@ final class ContactCenterInsightsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.contactcenterinsights.v1.ContactCenterInsights';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'contactcenterinsights.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'contactcenterinsights.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -578,6 +581,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::bulkAnalyzeConversationsAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/bulk_analyze_conversations.php
+     *
      * @param BulkAnalyzeConversationsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -598,10 +603,39 @@ final class ContactCenterInsightsClient
     }
 
     /**
+     * Deletes multiple conversations in a single request.
+     *
+     * The async variant is
+     * {@see ContactCenterInsightsClient::bulkDeleteConversationsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/bulk_delete_conversations.php
+     *
+     * @param BulkDeleteConversationsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function bulkDeleteConversations(BulkDeleteConversationsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BulkDeleteConversations', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets an issue model's statistics.
      *
      * The async variant is
      * {@see ContactCenterInsightsClient::calculateIssueModelStatsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/calculate_issue_model_stats.php
      *
      * @param CalculateIssueModelStatsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -626,6 +660,8 @@ final class ContactCenterInsightsClient
      * Gets conversation statistics.
      *
      * The async variant is {@see ContactCenterInsightsClient::calculateStatsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/calculate_stats.php
      *
      * @param CalculateStatsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -652,6 +688,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is {@see ContactCenterInsightsClient::createAnalysisAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/create_analysis.php
+     *
      * @param CreateAnalysisRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -676,6 +714,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is
      * {@see ContactCenterInsightsClient::createConversationAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/create_conversation.php
      *
      * @param CreateConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -702,6 +742,8 @@ final class ContactCenterInsightsClient
      * The async variant is {@see ContactCenterInsightsClient::createIssueModelAsync()}
      * .
      *
+     * @example samples/V1/ContactCenterInsightsClient/create_issue_model.php
+     *
      * @param CreateIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -727,6 +769,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::createPhraseMatcherAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/create_phrase_matcher.php
+     *
      * @param CreatePhraseMatcherRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -750,6 +794,8 @@ final class ContactCenterInsightsClient
      * Creates a view.
      *
      * The async variant is {@see ContactCenterInsightsClient::createViewAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/create_view.php
      *
      * @param CreateViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -775,6 +821,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is {@see ContactCenterInsightsClient::deleteAnalysisAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/delete_analysis.php
+     *
      * @param DeleteAnalysisRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -798,6 +846,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::deleteConversationAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/delete_conversation.php
+     *
      * @param DeleteConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -819,6 +869,8 @@ final class ContactCenterInsightsClient
      * Deletes an issue.
      *
      * The async variant is {@see ContactCenterInsightsClient::deleteIssueAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/delete_issue.php
      *
      * @param DeleteIssueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -842,6 +894,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is {@see ContactCenterInsightsClient::deleteIssueModelAsync()}
      * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/delete_issue_model.php
      *
      * @param DeleteIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -868,6 +922,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::deletePhraseMatcherAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/delete_phrase_matcher.php
+     *
      * @param DeletePhraseMatcherRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -889,6 +945,8 @@ final class ContactCenterInsightsClient
      * Deletes a view.
      *
      * The async variant is {@see ContactCenterInsightsClient::deleteViewAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/delete_view.php
      *
      * @param DeleteViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -913,6 +971,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is {@see ContactCenterInsightsClient::deployIssueModelAsync()}
      * .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/deploy_issue_model.php
      *
      * @param DeployIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -939,6 +999,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::exportInsightsDataAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/export_insights_data.php
+     *
      * @param ExportInsightsDataRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -962,6 +1024,8 @@ final class ContactCenterInsightsClient
      * Gets an analysis.
      *
      * The async variant is {@see ContactCenterInsightsClient::getAnalysisAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_analysis.php
      *
      * @param GetAnalysisRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -988,6 +1052,8 @@ final class ContactCenterInsightsClient
      * The async variant is {@see ContactCenterInsightsClient::getConversationAsync()}
      * .
      *
+     * @example samples/V1/ContactCenterInsightsClient/get_conversation.php
+     *
      * @param GetConversationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1012,6 +1078,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is {@see ContactCenterInsightsClient::getIssueAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/get_issue.php
+     *
      * @param GetIssueRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -1035,6 +1103,8 @@ final class ContactCenterInsightsClient
      * Gets an issue model.
      *
      * The async variant is {@see ContactCenterInsightsClient::getIssueModelAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_issue_model.php
      *
      * @param GetIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -1061,6 +1131,8 @@ final class ContactCenterInsightsClient
      * The async variant is {@see ContactCenterInsightsClient::getPhraseMatcherAsync()}
      * .
      *
+     * @example samples/V1/ContactCenterInsightsClient/get_phrase_matcher.php
+     *
      * @param GetPhraseMatcherRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1085,6 +1157,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is {@see ContactCenterInsightsClient::getSettingsAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/get_settings.php
+     *
      * @param GetSettingsRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -1108,6 +1182,8 @@ final class ContactCenterInsightsClient
      * Gets a view.
      *
      * The async variant is {@see ContactCenterInsightsClient::getViewAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/get_view.php
      *
      * @param GetViewRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -1135,6 +1211,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::ingestConversationsAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/ingest_conversations.php
+     *
      * @param IngestConversationsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1158,6 +1236,8 @@ final class ContactCenterInsightsClient
      * Lists analyses.
      *
      * The async variant is {@see ContactCenterInsightsClient::listAnalysesAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_analyses.php
      *
      * @param ListAnalysesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -1184,6 +1264,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::listConversationsAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/list_conversations.php
+     *
      * @param ListConversationsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -1209,6 +1291,8 @@ final class ContactCenterInsightsClient
      * The async variant is {@see ContactCenterInsightsClient::listIssueModelsAsync()}
      * .
      *
+     * @example samples/V1/ContactCenterInsightsClient/list_issue_models.php
+     *
      * @param ListIssueModelsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -1232,6 +1316,8 @@ final class ContactCenterInsightsClient
      * Lists issues.
      *
      * The async variant is {@see ContactCenterInsightsClient::listIssuesAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_issues.php
      *
      * @param ListIssuesRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1258,6 +1344,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::listPhraseMatchersAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/list_phrase_matchers.php
+     *
      * @param ListPhraseMatchersRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1281,6 +1369,8 @@ final class ContactCenterInsightsClient
      * Lists views.
      *
      * The async variant is {@see ContactCenterInsightsClient::listViewsAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/list_views.php
      *
      * @param ListViewsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -1308,6 +1398,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::undeployIssueModelAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/undeploy_issue_model.php
+     *
      * @param UndeployIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1333,6 +1425,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::updateConversationAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/update_conversation.php
+     *
      * @param UpdateConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -1356,6 +1450,8 @@ final class ContactCenterInsightsClient
      * Updates an issue.
      *
      * The async variant is {@see ContactCenterInsightsClient::updateIssueAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/update_issue.php
      *
      * @param UpdateIssueRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1382,6 +1478,8 @@ final class ContactCenterInsightsClient
      * The async variant is {@see ContactCenterInsightsClient::updateIssueModelAsync()}
      * .
      *
+     * @example samples/V1/ContactCenterInsightsClient/update_issue_model.php
+     *
      * @param UpdateIssueModelRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -1407,6 +1505,8 @@ final class ContactCenterInsightsClient
      * The async variant is
      * {@see ContactCenterInsightsClient::updatePhraseMatcherAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/update_phrase_matcher.php
+     *
      * @param UpdatePhraseMatcherRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -1431,6 +1531,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is {@see ContactCenterInsightsClient::updateSettingsAsync()} .
      *
+     * @example samples/V1/ContactCenterInsightsClient/update_settings.php
+     *
      * @param UpdateSettingsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -1454,6 +1556,8 @@ final class ContactCenterInsightsClient
      * Updates a view.
      *
      * The async variant is {@see ContactCenterInsightsClient::updateViewAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/update_view.php
      *
      * @param UpdateViewRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -1481,6 +1585,8 @@ final class ContactCenterInsightsClient
      *
      * The async variant is
      * {@see ContactCenterInsightsClient::uploadConversationAsync()} .
+     *
+     * @example samples/V1/ContactCenterInsightsClient/upload_conversation.php
      *
      * @param UploadConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {

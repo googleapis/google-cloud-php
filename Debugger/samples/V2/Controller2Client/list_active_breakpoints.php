@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddebugger_v2_generated_Controller2_ListActiveBreakpoints_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Debugger\V2\Controller2Client;
+use Google\Cloud\Debugger\V2\Client\Controller2Client;
+use Google\Cloud\Debugger\V2\ListActiveBreakpointsRequest;
 use Google\Cloud\Debugger\V2\ListActiveBreakpointsResponse;
 
 /**
@@ -49,10 +50,14 @@ function list_active_breakpoints_sample(string $debuggeeId): void
     // Create a client.
     $controller2Client = new Controller2Client();
 
+    // Prepare the request message.
+    $request = (new ListActiveBreakpointsRequest())
+        ->setDebuggeeId($debuggeeId);
+
     // Call the API and handle any network failures.
     try {
         /** @var ListActiveBreakpointsResponse $response */
-        $response = $controller2Client->listActiveBreakpoints($debuggeeId);
+        $response = $controller2Client->listActiveBreakpoints($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START container_v1_generated_ClusterManager_SetMonitoringService_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 use Google\Cloud\Container\V1\Operation;
+use Google\Cloud\Container\V1\SetMonitoringServiceRequest;
 
 /**
  * Sets the monitoring service for a specific cluster.
@@ -47,10 +48,14 @@ function set_monitoring_service_sample(string $monitoringService): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
+    // Prepare the request message.
+    $request = (new SetMonitoringServiceRequest())
+        ->setMonitoringService($monitoringService);
+
     // Call the API and handle any network failures.
     try {
         /** @var Operation $response */
-        $response = $clusterManagerClient->setMonitoringService($monitoringService);
+        $response = $clusterManagerClient->setMonitoringService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Eventarc\V1\ChannelConnection;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\ListChannelConnectionsRequest;
 
 /**
  * List channel connections.
@@ -39,10 +40,14 @@ function list_channel_connections_sample(string $formattedParent): void
     // Create a client.
     $eventarcClient = new EventarcClient();
 
+    // Prepare the request message.
+    $request = (new ListChannelConnectionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $eventarcClient->listChannelConnections($formattedParent);
+        $response = $eventarcClient->listChannelConnections($request);
 
         /** @var ChannelConnection $element */
         foreach ($response as $element) {

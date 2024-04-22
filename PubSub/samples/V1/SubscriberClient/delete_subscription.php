@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_DeleteSubscription_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\DeleteSubscriptionRequest;
 
 /**
  * Deletes an existing subscription. All messages retained in the subscription
@@ -42,9 +43,13 @@ function delete_subscription_sample(string $formattedSubscription): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSubscriptionRequest())
+        ->setSubscription($formattedSubscription);
+
     // Call the API and handle any network failures.
     try {
-        $subscriberClient->deleteSubscription($formattedSubscription);
+        $subscriberClient->deleteSubscription($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

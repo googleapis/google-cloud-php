@@ -30,6 +30,23 @@ class CreateSKAdNetworkConversionValueSchemaRequest extends \Google\Protobuf\Int
     private $skadnetwork_conversion_value_schema = null;
 
     /**
+     * @param string                                                           $parent                           Required. The parent resource where this schema will be created.
+     *                                                                                                           Format: properties/{property}/dataStreams/{dataStream}
+     *                                                                                                           Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
+     * @param \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema Required. SKAdNetwork conversion value schema to create.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CreateSKAdNetworkConversionValueSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema $skadnetworkConversionValueSchema): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSkadnetworkConversionValueSchema($skadnetworkConversionValueSchema);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

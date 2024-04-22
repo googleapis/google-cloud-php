@@ -24,11 +24,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudprofiler_v2_generated_ProfilerService_CreateProfile_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Profiler\V2\Client\ProfilerServiceClient;
+use Google\Cloud\Profiler\V2\CreateProfileRequest;
 use Google\Cloud\Profiler\V2\Profile;
-use Google\Cloud\Profiler\V2\ProfilerServiceClient;
 
 /**
  * CreateProfile creates a new profile resource in the online mode.
+ *
+ * _Direct use of this API is discouraged, please use a [supported
+ * profiler
+ * agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+ * instead for profile collection._
  *
  * The server ensures that the new profiles are created at a constant rate per
  * deployment, so the creation request may hang for some time until the next
@@ -54,10 +60,13 @@ function create_profile_sample(): void
     // Create a client.
     $profilerServiceClient = new ProfilerServiceClient();
 
+    // Prepare the request message.
+    $request = new CreateProfileRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Profile $response */
-        $response = $profilerServiceClient->createProfile();
+        $response = $profilerServiceClient->createProfile($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

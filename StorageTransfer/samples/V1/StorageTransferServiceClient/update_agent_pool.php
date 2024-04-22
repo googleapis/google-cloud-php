@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START storagetransfer_v1_generated_StorageTransferService_UpdateAgentPool_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\StorageTransfer\V1\AgentPool;
-use Google\Cloud\StorageTransfer\V1\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\Client\StorageTransferServiceClient;
+use Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest;
 
 /**
  * Updates an existing agent pool resource.
@@ -39,14 +40,16 @@ function update_agent_pool_sample(string $agentPoolName): void
     // Create a client.
     $storageTransferServiceClient = new StorageTransferServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $agentPool = (new AgentPool())
         ->setName($agentPoolName);
+    $request = (new UpdateAgentPoolRequest())
+        ->setAgentPool($agentPool);
 
     // Call the API and handle any network failures.
     try {
         /** @var AgentPool $response */
-        $response = $storageTransferServiceClient->updateAgentPool($agentPool);
+        $response = $storageTransferServiceClient->updateAgentPool($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

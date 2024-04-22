@@ -21,7 +21,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\GitHub;
 use Google\Cloud\Dev\RunShell;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -58,7 +58,7 @@ class GitHubTest extends TestCase
             $this->guzzle->reveal(),
             self::TOKEN
         ], ['shell', 'client']);
-        $this->exception = $this->prophesize(BadResponseException::class);
+        $this->exception = $this->prophesize(RequestException::class);
     }
 
     public function testGetDefaultBranch()

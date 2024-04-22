@@ -53,12 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\NetworkEndpointGroupsClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface aggregatedListAsync(AggregatedListNetworkEndpointGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface attachNetworkEndpointsAsync(AttachNetworkEndpointsNetworkEndpointGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteNetworkEndpointGroupRequest $request, array $optionalArgs = [])
@@ -76,8 +70,15 @@ final class NetworkEndpointGroupsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.NetworkEndpointGroups';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -119,8 +120,8 @@ final class NetworkEndpointGroupsClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements GapicClientTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -245,7 +246,7 @@ final class NetworkEndpointGroupsClient
     }
 
     /**
-     * Retrieves the list of network endpoint groups and sorts them by zone.
+     * Retrieves the list of network endpoint groups and sorts them by zone. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see NetworkEndpointGroupsClient::aggregatedListAsync()} .
      *

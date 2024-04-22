@@ -55,9 +55,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
     private $enable_symbol = false;
     /**
      * Turn on font identification model and return font style information.
-     * Deprecated, use
-     * [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info]
-     * instead.
+     * Deprecated, use [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info] instead.
      *
      * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
      * @deprecated
@@ -65,7 +63,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
     protected $compute_style_info = false;
     /**
      * Turn off character box detector in OCR engine. Character box detection is
-     * enabled by default in OCR 2.0+ processors.
+     * enabled by default in OCR 2.0 (and later) processors.
      *
      * Generated from protobuf field <code>bool disable_character_boxes_detection = 10;</code>
      */
@@ -103,12 +101,10 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      *           Includes symbol level OCR information if set to true.
      *     @type bool $compute_style_info
      *           Turn on font identification model and return font style information.
-     *           Deprecated, use
-     *           [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info]
-     *           instead.
+     *           Deprecated, use [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info] instead.
      *     @type bool $disable_character_boxes_detection
      *           Turn off character box detector in OCR engine. Character box detection is
-     *           enabled by default in OCR 2.0+ processors.
+     *           enabled by default in OCR 2.0 (and later) processors.
      *     @type \Google\Cloud\DocumentAI\V1\OcrConfig\PremiumFeatures $premium_features
      *           Configurations for premium OCR features.
      * }
@@ -276,9 +272,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Turn on font identification model and return font style information.
-     * Deprecated, use
-     * [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info]
-     * instead.
+     * Deprecated, use [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info] instead.
      *
      * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
      * @return bool
@@ -292,9 +286,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Turn on font identification model and return font style information.
-     * Deprecated, use
-     * [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info]
-     * instead.
+     * Deprecated, use [PremiumFeatures.compute_style_info][google.cloud.documentai.v1.OcrConfig.PremiumFeatures.compute_style_info] instead.
      *
      * Generated from protobuf field <code>bool compute_style_info = 8 [deprecated = true];</code>
      * @param bool $var
@@ -312,7 +304,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Turn off character box detector in OCR engine. Character box detection is
-     * enabled by default in OCR 2.0+ processors.
+     * enabled by default in OCR 2.0 (and later) processors.
      *
      * Generated from protobuf field <code>bool disable_character_boxes_detection = 10;</code>
      * @return bool
@@ -324,7 +316,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Turn off character box detector in OCR engine. Character box detection is
-     * enabled by default in OCR 2.0+ processors.
+     * enabled by default in OCR 2.0 (and later) processors.
      *
      * Generated from protobuf field <code>bool disable_character_boxes_detection = 10;</code>
      * @param bool $var

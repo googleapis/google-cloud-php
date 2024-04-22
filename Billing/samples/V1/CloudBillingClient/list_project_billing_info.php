@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbilling_v1_generated_CloudBilling_ListProjectBillingInfo_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
+use Google\Cloud\Billing\V1\ListProjectBillingInfoRequest;
 use Google\Cloud\Billing\V1\ProjectBillingInfo;
 
 /**
@@ -44,10 +45,14 @@ function list_project_billing_info_sample(string $formattedName): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
+    // Prepare the request message.
+    $request = (new ListProjectBillingInfoRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudBillingClient->listProjectBillingInfo($formattedName);
+        $response = $cloudBillingClient->listProjectBillingInfo($request);
 
         /** @var ProjectBillingInfo $element */
         foreach ($response as $element) {

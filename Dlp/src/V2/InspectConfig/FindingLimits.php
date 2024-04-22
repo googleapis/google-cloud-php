@@ -22,18 +22,28 @@ use Google\Protobuf\Internal\GPBUtil;
 class FindingLimits extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Max number of findings that will be returned for each item scanned.
-     * When set within `InspectJobConfig`,
-     * the maximum returned is 2000 regardless if this is set higher.
-     * When set within `InspectContentRequest`, this field is ignored.
+     * Max number of findings that are returned for each item scanned.
+     * When set within an
+     * [InspectContentRequest][google.privacy.dlp.v2.InspectContentRequest],
+     * this field is ignored.
+     * This value isn't a hard limit. If the number of findings for an item
+     * reaches this limit, the inspection of that item ends gradually, not
+     * abruptly. Therefore, the actual number of findings that Cloud DLP returns
+     * for the item can be multiple times higher than this value.
      *
      * Generated from protobuf field <code>int32 max_findings_per_item = 1;</code>
      */
     private $max_findings_per_item = 0;
     /**
-     * Max number of findings that will be returned per request/job.
-     * When set within `InspectContentRequest`, the maximum returned is 2000
-     * regardless if this is set higher.
+     * Max number of findings that are returned per request or job.
+     * If you set this field in an
+     * [InspectContentRequest][google.privacy.dlp.v2.InspectContentRequest], the
+     * resulting maximum value is the value that you set or 3,000, whichever is
+     * lower.
+     * This value isn't a hard limit. If an inspection reaches this limit, the
+     * inspection ends gradually, not abruptly. Therefore, the actual number of
+     * findings that Cloud DLP returns can be multiple times higher than this
+     * value.
      *
      * Generated from protobuf field <code>int32 max_findings_per_request = 2;</code>
      */
@@ -52,14 +62,24 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $max_findings_per_item
-     *           Max number of findings that will be returned for each item scanned.
-     *           When set within `InspectJobConfig`,
-     *           the maximum returned is 2000 regardless if this is set higher.
-     *           When set within `InspectContentRequest`, this field is ignored.
+     *           Max number of findings that are returned for each item scanned.
+     *           When set within an
+     *           [InspectContentRequest][google.privacy.dlp.v2.InspectContentRequest],
+     *           this field is ignored.
+     *           This value isn't a hard limit. If the number of findings for an item
+     *           reaches this limit, the inspection of that item ends gradually, not
+     *           abruptly. Therefore, the actual number of findings that Cloud DLP returns
+     *           for the item can be multiple times higher than this value.
      *     @type int $max_findings_per_request
-     *           Max number of findings that will be returned per request/job.
-     *           When set within `InspectContentRequest`, the maximum returned is 2000
-     *           regardless if this is set higher.
+     *           Max number of findings that are returned per request or job.
+     *           If you set this field in an
+     *           [InspectContentRequest][google.privacy.dlp.v2.InspectContentRequest], the
+     *           resulting maximum value is the value that you set or 3,000, whichever is
+     *           lower.
+     *           This value isn't a hard limit. If an inspection reaches this limit, the
+     *           inspection ends gradually, not abruptly. Therefore, the actual number of
+     *           findings that Cloud DLP returns can be multiple times higher than this
+     *           value.
      *     @type array<\Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit>|\Google\Protobuf\Internal\RepeatedField $max_findings_per_info_type
      *           Configuration of findings limit given for specified infoTypes.
      * }
@@ -70,10 +90,14 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max number of findings that will be returned for each item scanned.
-     * When set within `InspectJobConfig`,
-     * the maximum returned is 2000 regardless if this is set higher.
-     * When set within `InspectContentRequest`, this field is ignored.
+     * Max number of findings that are returned for each item scanned.
+     * When set within an
+     * [InspectContentRequest][google.privacy.dlp.v2.InspectContentRequest],
+     * this field is ignored.
+     * This value isn't a hard limit. If the number of findings for an item
+     * reaches this limit, the inspection of that item ends gradually, not
+     * abruptly. Therefore, the actual number of findings that Cloud DLP returns
+     * for the item can be multiple times higher than this value.
      *
      * Generated from protobuf field <code>int32 max_findings_per_item = 1;</code>
      * @return int
@@ -84,10 +108,14 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max number of findings that will be returned for each item scanned.
-     * When set within `InspectJobConfig`,
-     * the maximum returned is 2000 regardless if this is set higher.
-     * When set within `InspectContentRequest`, this field is ignored.
+     * Max number of findings that are returned for each item scanned.
+     * When set within an
+     * [InspectContentRequest][google.privacy.dlp.v2.InspectContentRequest],
+     * this field is ignored.
+     * This value isn't a hard limit. If the number of findings for an item
+     * reaches this limit, the inspection of that item ends gradually, not
+     * abruptly. Therefore, the actual number of findings that Cloud DLP returns
+     * for the item can be multiple times higher than this value.
      *
      * Generated from protobuf field <code>int32 max_findings_per_item = 1;</code>
      * @param int $var
@@ -102,9 +130,15 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max number of findings that will be returned per request/job.
-     * When set within `InspectContentRequest`, the maximum returned is 2000
-     * regardless if this is set higher.
+     * Max number of findings that are returned per request or job.
+     * If you set this field in an
+     * [InspectContentRequest][google.privacy.dlp.v2.InspectContentRequest], the
+     * resulting maximum value is the value that you set or 3,000, whichever is
+     * lower.
+     * This value isn't a hard limit. If an inspection reaches this limit, the
+     * inspection ends gradually, not abruptly. Therefore, the actual number of
+     * findings that Cloud DLP returns can be multiple times higher than this
+     * value.
      *
      * Generated from protobuf field <code>int32 max_findings_per_request = 2;</code>
      * @return int
@@ -115,9 +149,15 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max number of findings that will be returned per request/job.
-     * When set within `InspectContentRequest`, the maximum returned is 2000
-     * regardless if this is set higher.
+     * Max number of findings that are returned per request or job.
+     * If you set this field in an
+     * [InspectContentRequest][google.privacy.dlp.v2.InspectContentRequest], the
+     * resulting maximum value is the value that you set or 3,000, whichever is
+     * lower.
+     * This value isn't a hard limit. If an inspection reaches this limit, the
+     * inspection ends gradually, not abruptly. Therefore, the actual number of
+     * findings that Cloud DLP returns can be multiple times higher than this
+     * value.
      *
      * Generated from protobuf field <code>int32 max_findings_per_request = 2;</code>
      * @param int $var

@@ -679,6 +679,43 @@ class DatastoreClientTest extends TestCase
         $this->assertInstanceOf(AggregationQueryResult::class, $res);
     }
 
+    /**
+     * @dataProvider aggregationReturnTypesCases
+     */
+    public function testAggregationQueryWithDifferentReturnTypes($response, $expected)
+    {
+        $this->connection->runAggregationQuery(Argument::allOf(
+            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
+            Argument::withEntry('gqlQuery', [
+                'queryString' => 'foo bar'
+            ])
+        ))->shouldBeCalled()->willReturn([
+            'batch' => [
+                'aggregationResults' => [
+                    [
+                        'aggregateProperties' => ['property_1' => $response]
+                    ]
+                ],
+                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+            ]
+        ]);
+
+        $this->refreshOperation($this->client, $this->connection->reveal(), [
+            'projectId' => self::PROJECT
+        ]);
+
+        $query = $this->prophesize(AggregationQuery::class);
+        $query->queryObject()->willReturn([
+            'gqlQuery' => [
+                'queryString' => 'foo bar'
+            ]
+        ]);
+
+        $res = $this->client->runAggregationQuery($query->reveal());
+        $this->assertInstanceOf(AggregationQueryResult::class, $res);
+        $this->compareResult($expected, $res->get('property_1'));
+    }
+
     public function testRunQueryWithReadTime()
     {
         $key = $this->client->key('Person', 'John');
@@ -708,6 +745,27 @@ class DatastoreClientTest extends TestCase
 
         $res = iterator_to_array($this->client->runQuery($query->reveal(), ['readTime' => $time]));
         $this->assertContainsOnlyInstancesOf(Entity::class, $res);
+    }
+
+    public function aggregationReturnTypesCases()
+    {
+        return [
+            [['integerValue' => 1], 1],
+            [['doubleValue' => 1.1], 1.1],
+
+            // Returned incase of grpc client
+            [['doubleValue' => INF], INF],
+            [['doubleValue' => -INF], -INF],
+            [['doubleValue' => NAN], NAN],
+
+            // Returned incase of rest client
+            [['doubleValue' => 'Infinity'], INF],
+            [['doubleValue' => '-Infinity'], -INF],
+            [['doubleValue' => 'NaN'], NAN],
+
+
+            [['nullValue' => ''], null],
+        ];
     }
 
     private function commitResponse()
@@ -748,5 +806,19 @@ class DatastoreClientTest extends TestCase
             ['update', $mutation, clone $key, $id],
             ['upsert', $mutation, clone $key, $id],
         ];
+    }
+
+    private function compareResult($expected, $actual)
+    {
+        if (is_float($expected)) {
+            if (is_nan($expected)) {
+                $this->assertNan($actual);
+            } else {
+                $this->assertEqualsWithDelta($expected, $actual, 0.01);
+            }
+        } else {
+            // Used because assertEquals(null, '') doesn't fails
+            $this->assertSame($expected, $actual);
+        }
     }
 }

@@ -48,7 +48,7 @@ class TranslationServiceSmokeTest extends SystemTestCase
         );
 
         $this->assertEquals(
-            'una',
+            'uno',
             $res->getTranslations()[0]->getTranslatedText()
         );
     }

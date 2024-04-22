@@ -30,6 +30,9 @@ class FirewallAction extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction\BlockAction $block
      *           This action will deny access to a given page. The user will get an HTTP
      *           error code.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction\IncludeRecaptchaScriptAction $include_recaptcha_script
+     *           This action will inject reCAPTCHA JavaScript code into the HTML page
+     *           returned by the site backend.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction\RedirectAction $redirect
      *           This action will redirect the request to a ReCaptcha interstitial to
      *           attach a token.
@@ -108,6 +111,39 @@ class FirewallAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction\BlockAction::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * This action will inject reCAPTCHA JavaScript code into the HTML page
+     * returned by the site backend.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallAction.IncludeRecaptchaScriptAction include_recaptcha_script = 6;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction\IncludeRecaptchaScriptAction|null
+     */
+    public function getIncludeRecaptchaScript()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasIncludeRecaptchaScript()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * This action will inject reCAPTCHA JavaScript code into the HTML page
+     * returned by the site backend.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.FirewallAction.IncludeRecaptchaScriptAction include_recaptcha_script = 6;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction\IncludeRecaptchaScriptAction $var
+     * @return $this
+     */
+    public function setIncludeRecaptchaScript($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction\IncludeRecaptchaScriptAction::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

@@ -56,9 +56,9 @@ class PredictionService
 key (	
 value (	:82…
 PredictionService¯
-Predict&.google.cloud.automl.v1.PredictRequest\'.google.cloud.automl.v1.PredictResponse"S‚Óä“7"2/v1/{name=projects/*/locations/*/models/*}:predict:*ÚAname,payload,paramsò
-BatchPredict+.google.cloud.automl.v1.BatchPredictRequest.google.longrunning.Operation"•‚Óä“<"7/v1/{name=projects/*/locations/*/models/*}:batchPredict:*ÚA&name,input_config,output_config,paramsÊA\'
-BatchPredictResultOperationMetadataIÊAautoml.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¸
+Predict&.google.cloud.automl.v1.PredictRequest\'.google.cloud.automl.v1.PredictResponse"SÚAname,payload,params‚Óä“7"2/v1/{name=projects/*/locations/*/models/*}:predict:*ò
+BatchPredict+.google.cloud.automl.v1.BatchPredictRequest.google.longrunning.Operation"•ÊA\'
+BatchPredictResultOperationMetadataÚA&name,input_config,output_config,params‚Óä“<"7/v1/{name=projects/*/locations/*/models/*}:batchPredict:*IÊAautoml.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¸
 com.google.cloud.automl.v1BPredictionServiceProtoPZ2cloud.google.com/go/automl/apiv1/automlpb;automlpbªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
         , true);
 

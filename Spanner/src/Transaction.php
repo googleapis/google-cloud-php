@@ -89,6 +89,12 @@ class Transaction implements TransactionalReadInterface
      * @param bool $isRetry Whether the transaction will automatically retry or not.
      * @param string $tag A transaction tag. Requests made using this transaction will
      *        use this as the transaction tag.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type array $begin The begin Transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     * }
      * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
@@ -96,14 +102,15 @@ class Transaction implements TransactionalReadInterface
         Session $session,
         $transactionId = null,
         $isRetry = false,
-        $tag = null
+        $tag = null,
+        $options = []
     ) {
         $this->operation = $operation;
         $this->session = $session;
         $this->transactionId = $transactionId;
         $this->isRetry = $isRetry;
 
-        $this->type = $transactionId
+        $this->type = ($transactionId || isset($options['begin']))
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
 
@@ -115,6 +122,7 @@ class Transaction implements TransactionalReadInterface
         $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        $this->options = $options;
     }
 
     /**
@@ -430,16 +438,7 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdate($sql, array $options = [])
     {
-        unset($options['requestOptions']['transactionTag']);
-        if (isset($this->tag)) {
-            $options += [
-                'requestOptions' => []
-            ];
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
-        $options['seqno'] = $this->seqno;
-        $this->seqno++;
-
+        $options = $this->buildUpdateOptions($options);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);
     }
@@ -529,18 +528,14 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdateBatch(array $statements, array $options = [])
     {
-        unset($options['requestOptions']['transactionTag']);
-        if (isset($this->tag)) {
-            $options += [
-                'requestOptions' => []
-            ];
-            $options['requestOptions']['transactionTag'] = $this->tag;
-        }
-        $options['seqno'] = $this->seqno;
-        $this->seqno++;
-
+        $options = $this->buildUpdateOptions($options);
         return $this->operation
-            ->executeUpdateBatch($this->session, $this, $statements, $options);
+            ->executeUpdateBatch(
+                $this->session,
+                $this,
+                $statements,
+                $options
+            );
     }
 
     /**
@@ -598,6 +593,9 @@ class Transaction implements TransactionalReadInterface
      *     @type bool $returnCommitStats If true, commit statistics will be
      *           returned and accessible via {@see \Google\Cloud\Spanner\Transaction::getCommitStats()}.
      *           **Defaults to** `false`.
+     *     @type Duration $maxCommitDelay The amount of latency this request
+     *           is willing to incur in order to improve throughput.
+     *           **Defaults to** null.
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
@@ -613,6 +611,21 @@ class Transaction implements TransactionalReadInterface
     {
         if ($this->state !== self::STATE_ACTIVE) {
             throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
+        }
+
+        // For commit, A transaction ID is mandatory for non-single-use transactions,
+        // and the `begin` option is not supported.
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
+            // Since the begin option is not supported in commit, unset it.
+            unset($this->options['begin']);
+
+            // A transaction ID is mandatory for non-single-use transactions.
+            if ($this->type !== self::TYPE_SINGLE_USE) {
+                // Execute the beginTransaction RPC.
+                $transaction = $this->operation->transaction($this->session, $this->options);
+                // Set the transaction ID of the current transaction.
+                $this->transactionId = $transaction->id();
+            }
         }
 
         if (!$this->singleUseState()) {
@@ -703,5 +716,32 @@ class Transaction implements TransactionalReadInterface
                 $this->mutations[] = $this->operation->mutation($op, $table, $data);
             }
         }
+    }
+
+    /**
+     * Build the update options.
+     *
+     * @param array $options The update options
+     * @return array
+     */
+    private function buildUpdateOptions(array $options): array
+    {
+        unset($options['requestOptions']['transactionTag']);
+        if (isset($this->tag)) {
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
+        $options['seqno'] = $this->seqno;
+        $this->seqno++;
+
+        $options['transactionType'] = $this->context;
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
+        $selector = $this->transactionSelector($options);
+        $options['transaction'] = $selector[0];
+
+        return $this->addLarHeader($options);
     }
 }

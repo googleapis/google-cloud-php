@@ -48,11 +48,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AppEngine\V1\InstancesClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface debugInstanceAsync(DebugInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
@@ -65,8 +60,15 @@ final class InstancesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.appengine.v1.Instances';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'appengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'appengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -215,6 +217,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::debugInstanceAsync()} .
      *
+     * @example samples/V1/InstancesClient/debug_instance.php
+     *
      * @param DebugInstanceRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -250,6 +254,8 @@ final class InstancesClient
      *
      * The async variant is {@see InstancesClient::deleteInstanceAsync()} .
      *
+     * @example samples/V1/InstancesClient/delete_instance.php
+     *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -273,6 +279,8 @@ final class InstancesClient
      * Gets instance information.
      *
      * The async variant is {@see InstancesClient::getInstanceAsync()} .
+     *
+     * @example samples/V1/InstancesClient/get_instance.php
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -300,6 +308,8 @@ final class InstancesClient
      * [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
      *
      * The async variant is {@see InstancesClient::listInstancesAsync()} .
+     *
+     * @example samples/V1/InstancesClient/list_instances.php
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

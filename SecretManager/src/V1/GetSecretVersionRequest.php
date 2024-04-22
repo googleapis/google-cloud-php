@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SecretManagerService.GetSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.GetSecretVersion].
+ * Request message for
+ * [SecretManagerService.GetSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.GetSecretVersion].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.GetSecretVersionRequest</code>
  */
 class GetSecretVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     * Required. The resource name of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -26,7 +28,8 @@ class GetSecretVersionRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     * @param string $name Required. The resource name of the
+     *                     [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
      *                     `projects/&#42;/secrets/&#42;/versions/*`.
      *
      *                     `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
@@ -50,7 +53,8 @@ class GetSecretVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *           Required. The resource name of the
+     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
      *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      *           `projects/&#42;&#47;secrets/&#42;&#47;versions/latest` is an alias to the most recently
      *           created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -62,7 +66,8 @@ class GetSecretVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     * Required. The resource name of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -76,7 +81,8 @@ class GetSecretVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     * Required. The resource name of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
      * `projects/&#42;&#47;secrets/&#42;&#47;versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].

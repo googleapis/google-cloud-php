@@ -53,11 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dialogflow\V2\AnswerRecordsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface listAnswerRecordsAsync(ListAnswerRecordsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAnswerRecordAsync(UpdateAnswerRecordRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class AnswerRecordsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dialogflow.v2.AnswerRecords';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -615,6 +617,8 @@ final class AnswerRecordsClient
      *
      * The async variant is {@see AnswerRecordsClient::listAnswerRecordsAsync()} .
      *
+     * @example samples/V2/AnswerRecordsClient/list_answer_records.php
+     *
      * @param ListAnswerRecordsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -638,6 +642,8 @@ final class AnswerRecordsClient
      * Updates the specified answer record.
      *
      * The async variant is {@see AnswerRecordsClient::updateAnswerRecordAsync()} .
+     *
+     * @example samples/V2/AnswerRecordsClient/update_answer_record.php
      *
      * @param UpdateAnswerRecordRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -663,6 +669,8 @@ final class AnswerRecordsClient
      *
      * The async variant is {@see AnswerRecordsClient::getLocationAsync()} .
      *
+     * @example samples/V2/AnswerRecordsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -686,6 +694,8 @@ final class AnswerRecordsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see AnswerRecordsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/AnswerRecordsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

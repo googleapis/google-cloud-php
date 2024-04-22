@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START recommender_v1_generated_Recommender_ListInsights_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
 use Google\Cloud\Recommender\V1\Insight;
-use Google\Cloud\Recommender\V1\RecommenderClient;
+use Google\Cloud\Recommender\V1\ListInsightsRequest;
 
 /**
  * Lists insights for the specified Cloud Resource. Requires the
@@ -56,10 +57,14 @@ function list_insights_sample(string $formattedParent): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
+    // Prepare the request message.
+    $request = (new ListInsightsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $recommenderClient->listInsights($formattedParent);
+        $response = $recommenderClient->listInsights($request);
 
         /** @var Insight $element */
         foreach ($response as $element) {

@@ -112,6 +112,11 @@
                                 "delete"
                             ]
                         },
+                        "Demote": {
+                            "methods": [
+                                "demote"
+                            ]
+                        },
                         "DemoteMaster": {
                             "methods": [
                                 "demoteMaster"
@@ -225,6 +230,11 @@
                         "StopReplica": {
                             "methods": [
                                 "stopReplica"
+                            ]
+                        },
+                        "Switchover": {
+                            "methods": [
+                                "switchover"
                             ]
                         },
                         "TruncateLog": {

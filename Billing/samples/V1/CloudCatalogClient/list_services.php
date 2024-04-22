@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbilling_v1_generated_CloudCatalog_ListServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Billing\V1\CloudCatalogClient;
+use Google\Cloud\Billing\V1\Client\CloudCatalogClient;
+use Google\Cloud\Billing\V1\ListServicesRequest;
 use Google\Cloud\Billing\V1\Service;
 
 /**
@@ -42,10 +43,13 @@ function list_services_sample(): void
     // Create a client.
     $cloudCatalogClient = new CloudCatalogClient();
 
+    // Prepare the request message.
+    $request = new ListServicesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudCatalogClient->listServices();
+        $response = $cloudCatalogClient->listServices($request);
 
         /** @var Service $element */
         foreach ($response as $element) {

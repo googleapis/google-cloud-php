@@ -35,6 +35,8 @@ use Google\Cloud\Compute\V1\InsertTargetInstanceRequest;
 use Google\Cloud\Compute\V1\ListTargetInstancesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\SecurityPolicyReference;
+use Google\Cloud\Compute\V1\SetSecurityPolicyTargetInstanceRequest;
 use Google\Cloud\Compute\V1\TargetInstance;
 use Google\Cloud\Compute\V1\TargetInstanceAggregatedList;
 use Google\Cloud\Compute\V1\TargetInstanceList;
@@ -294,6 +296,7 @@ class TargetInstancesClientTest extends GeneratedTest
         $name = 'name3373707';
         $natPolicy = 'natPolicy-1637703152';
         $network = 'network1843485230';
+        $securityPolicy = 'securityPolicy1781695249';
         $selfLink = 'selfLink-1691268851';
         $zone2 = 'zone2-696322977';
         $expectedResponse = new TargetInstance();
@@ -305,6 +308,7 @@ class TargetInstancesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setNatPolicy($natPolicy);
         $expectedResponse->setNetwork($network);
+        $expectedResponse->setSecurityPolicy($securityPolicy);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
@@ -580,6 +584,139 @@ class TargetInstancesClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setSecurityPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setSecurityPolicyTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/setSecurityPolicyTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $project = 'project-309310695';
+        $securityPolicyReferenceResource = new SecurityPolicyReference();
+        $targetInstance = 'targetInstance826640259';
+        $zone = 'zone3744684';
+        $request = (new SetSecurityPolicyTargetInstanceRequest())
+            ->setProject($project)
+            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource)
+            ->setTargetInstance($targetInstance)
+            ->setZone($zone);
+        $response = $gapicClient->setSecurityPolicy($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.TargetInstances/SetSecurityPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyReferenceResource();
+        $this->assertProtobufEquals($securityPolicyReferenceResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getTargetInstance();
+        $this->assertProtobufEquals($targetInstance, $actualValue);
+        $actualValue = $actualApiRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setZone($zone);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function setSecurityPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new ZoneOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setSecurityPolicyExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $securityPolicyReferenceResource = new SecurityPolicyReference();
+        $targetInstance = 'targetInstance826640259';
+        $zone = 'zone3744684';
+        $request = (new SetSecurityPolicyTargetInstanceRequest())
+            ->setProject($project)
+            ->setSecurityPolicyReferenceResource($securityPolicyReferenceResource)
+            ->setTargetInstance($targetInstance)
+            ->setZone($zone);
+        $response = $gapicClient->setSecurityPolicy($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */

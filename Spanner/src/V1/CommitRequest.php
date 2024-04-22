@@ -31,12 +31,22 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     private $mutations;
     /**
      * If `true`, then statistics related to the transaction will be included in
-     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
-     * `false`.
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
+     * Default value is `false`.
      *
      * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
      */
     private $return_commit_stats = false;
+    /**
+     * Optional. The amount of latency this request is willing to incur in order
+     * to improve throughput. If this field is not set, Spanner assumes requests
+     * are relatively latency sensitive and automatically determines an
+     * appropriate delay time. You can specify a batching delay value between 0
+     * and 500 ms.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_commit_delay = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $max_commit_delay = null;
     /**
      * Common options for this request.
      *
@@ -119,8 +129,14 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           this list.
      *     @type bool $return_commit_stats
      *           If `true`, then statistics related to the transaction will be included in
-     *           the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
-     *           `false`.
+     *           the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
+     *           Default value is `false`.
+     *     @type \Google\Protobuf\Duration $max_commit_delay
+     *           Optional. The amount of latency this request is willing to incur in order
+     *           to improve throughput. If this field is not set, Spanner assumes requests
+     *           are relatively latency sensitive and automatically determines an
+     *           appropriate delay time. You can specify a batching delay value between 0
+     *           and 500 ms.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
      * }
@@ -266,8 +282,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If `true`, then statistics related to the transaction will be included in
-     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
-     * `false`.
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
+     * Default value is `false`.
      *
      * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
      * @return bool
@@ -279,8 +295,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If `true`, then statistics related to the transaction will be included in
-     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
-     * `false`.
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats].
+     * Default value is `false`.
      *
      * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
      * @param bool $var
@@ -290,6 +306,50 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->return_commit_stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The amount of latency this request is willing to incur in order
+     * to improve throughput. If this field is not set, Spanner assumes requests
+     * are relatively latency sensitive and automatically determines an
+     * appropriate delay time. You can specify a batching delay value between 0
+     * and 500 ms.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_commit_delay = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMaxCommitDelay()
+    {
+        return $this->max_commit_delay;
+    }
+
+    public function hasMaxCommitDelay()
+    {
+        return isset($this->max_commit_delay);
+    }
+
+    public function clearMaxCommitDelay()
+    {
+        unset($this->max_commit_delay);
+    }
+
+    /**
+     * Optional. The amount of latency this request is willing to incur in order
+     * to improve throughput. If this field is not set, Spanner assumes requests
+     * are relatively latency sensitive and automatically determines an
+     * appropriate delay time. You can specify a batching delay value between 0
+     * and 500 ms.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_commit_delay = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMaxCommitDelay($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->max_commit_delay = $var;
 
         return $this;
     }

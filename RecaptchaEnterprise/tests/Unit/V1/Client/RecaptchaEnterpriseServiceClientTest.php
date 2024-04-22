@@ -53,6 +53,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroup;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
@@ -323,6 +325,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $request = (new CreateKeyRequest())
             ->setParent($formattedParent)
             ->setKey($key);
@@ -361,6 +365,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $request = (new CreateKeyRequest())
             ->setParent($formattedParent)
             ->setKey($key);
@@ -1054,6 +1060,78 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function reorderFirewallPoliciesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ReorderFirewallPoliciesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $formattedNames = [
+            $gapicClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]'),
+        ];
+        $request = (new ReorderFirewallPoliciesRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        $response = $gapicClient->reorderFirewallPolicies($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ReorderFirewallPolicies', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function reorderFirewallPoliciesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $formattedNames = [
+            $gapicClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]'),
+        ];
+        $request = (new ReorderFirewallPoliciesRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        try {
+            $gapicClient->reorderFirewallPolicies($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function retrieveLegacySecretKeyTest()
     {
         $transport = $this->createTransport();
@@ -1136,7 +1214,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setRelatedAccountGroupMemberships($relatedAccountGroupMemberships);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         $request = (new SearchRelatedAccountGroupMembershipsRequest())
             ->setProject($formattedProject);
         $response = $gapicClient->searchRelatedAccountGroupMemberships($request);
@@ -1173,7 +1251,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedProject = $gapicClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         $request = (new SearchRelatedAccountGroupMembershipsRequest())
             ->setProject($formattedProject);
         try {
@@ -1276,6 +1354,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $request = (new UpdateKeyRequest())
             ->setKey($key);
         $response = $gapicClient->updateKey($request);
@@ -1310,6 +1390,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $key = new Key();
+        $keyDisplayName = 'keyDisplayName-302940530';
+        $key->setDisplayName($keyDisplayName);
         $request = (new UpdateKeyRequest())
             ->setKey($key);
         try {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START composer_v1_generated_Environments_UpdateEnvironment_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient;
 use Google\Cloud\Orchestration\Airflow\Service\V1\Environment;
-use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
+use Google\Cloud\Orchestration\Airflow\Service\V1\UpdateEnvironmentRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,13 @@ function update_environment_sample(): void
     // Create a client.
     $environmentsClient = new EnvironmentsClient();
 
+    // Prepare the request message.
+    $request = new UpdateEnvironmentRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $environmentsClient->updateEnvironment();
+        $response = $environmentsClient->updateEnvironment($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

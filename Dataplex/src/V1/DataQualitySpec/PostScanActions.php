@@ -22,6 +22,13 @@ class PostScanActions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.BigQueryExport bigquery_export = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $bigquery_export = null;
+    /**
+     * Optional. If set, results will be sent to the provided notification
+     * receipts upon triggers.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.NotificationReport notification_report = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $notification_report = null;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class PostScanActions extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions\BigQueryExport $bigquery_export
      *           Optional. If set, results will be exported to the provided BigQuery
      *           table.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions\NotificationReport $notification_report
+     *           Optional. If set, results will be sent to the provided notification
+     *           receipts upon triggers.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,6 +83,44 @@ class PostScanActions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions\BigQueryExport::class);
         $this->bigquery_export = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, results will be sent to the provided notification
+     * receipts upon triggers.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.NotificationReport notification_report = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions\NotificationReport|null
+     */
+    public function getNotificationReport()
+    {
+        return $this->notification_report;
+    }
+
+    public function hasNotificationReport()
+    {
+        return isset($this->notification_report);
+    }
+
+    public function clearNotificationReport()
+    {
+        unset($this->notification_report);
+    }
+
+    /**
+     * Optional. If set, results will be sent to the provided notification
+     * receipts upon triggers.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualitySpec.PostScanActions.NotificationReport notification_report = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions\NotificationReport $var
+     * @return $this
+     */
+    public function setNotificationReport($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions\NotificationReport::class);
+        $this->notification_report = $var;
 
         return $this;
     }

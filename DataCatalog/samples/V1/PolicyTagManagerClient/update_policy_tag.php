@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_PolicyTagManager_UpdatePolicyTag_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\DataCatalog\V1\Client\PolicyTagManagerClient;
 use Google\Cloud\DataCatalog\V1\PolicyTag;
-use Google\Cloud\DataCatalog\V1\PolicyTagManagerClient;
+use Google\Cloud\DataCatalog\V1\UpdatePolicyTagRequest;
 
 /**
  * Updates a policy tag, including its display
@@ -42,10 +43,13 @@ function update_policy_tag_sample(): void
     // Create a client.
     $policyTagManagerClient = new PolicyTagManagerClient();
 
+    // Prepare the request message.
+    $request = new UpdatePolicyTagRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PolicyTag $response */
-        $response = $policyTagManagerClient->updatePolicyTag();
+        $response = $policyTagManagerClient->updatePolicyTag($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Api\MonitoredResource;
-use Google\Cloud\Monitoring\V3\GroupServiceClient;
+use Google\Cloud\Monitoring\V3\Client\GroupServiceClient;
+use Google\Cloud\Monitoring\V3\ListGroupMembersRequest;
 
 /**
  * Lists the monitored resources that are members of a group.
@@ -41,10 +42,14 @@ function list_group_members_sample(string $formattedName): void
     // Create a client.
     $groupServiceClient = new GroupServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListGroupMembersRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $groupServiceClient->listGroupMembers($formattedName);
+        $response = $groupServiceClient->listGroupMembers($request);
 
         /** @var MonitoredResource $element */
         foreach ($response as $element) {

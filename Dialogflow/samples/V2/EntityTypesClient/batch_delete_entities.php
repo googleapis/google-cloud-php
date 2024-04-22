@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_EntityTypes_BatchDeleteEntities_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Dialogflow\V2\EntityTypesClient;
+use Google\Cloud\Dialogflow\V2\BatchDeleteEntitiesRequest;
+use Google\Cloud\Dialogflow\V2\Client\EntityTypesClient;
 use Google\Rpc\Status;
 
 /**
@@ -56,13 +57,16 @@ function batch_delete_entities_sample(string $formattedParent, string $entityVal
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entityValues = [$entityValuesElement,];
+    $request = (new BatchDeleteEntitiesRequest())
+        ->setParent($formattedParent)
+        ->setEntityValues($entityValues);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $entityTypesClient->batchDeleteEntities($formattedParent, $entityValues);
+        $response = $entityTypesClient->batchDeleteEntities($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

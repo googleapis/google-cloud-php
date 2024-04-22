@@ -33,12 +33,14 @@ use Google\Cloud\AlloyDb\V1beta\BatchCreateInstancesResponse;
 use Google\Cloud\AlloyDb\V1beta\Cluster;
 use Google\Cloud\AlloyDb\V1beta\ConnectionInfo;
 use Google\Cloud\AlloyDb\V1beta\CreateInstanceRequests;
+use Google\Cloud\AlloyDb\V1beta\Database;
 use Google\Cloud\AlloyDb\V1beta\GenerateClientCertificateResponse;
 use Google\Cloud\AlloyDb\V1beta\InjectFaultRequest\FaultType;
 use Google\Cloud\AlloyDb\V1beta\Instance;
 use Google\Cloud\AlloyDb\V1beta\Instance\InstanceType;
 use Google\Cloud\AlloyDb\V1beta\ListBackupsResponse;
 use Google\Cloud\AlloyDb\V1beta\ListClustersResponse;
+use Google\Cloud\AlloyDb\V1beta\ListDatabasesResponse;
 use Google\Cloud\AlloyDb\V1beta\ListInstancesResponse;
 use Google\Cloud\AlloyDb\V1beta\ListSupportedDatabaseFlagsResponse;
 use Google\Cloud\AlloyDb\V1beta\ListUsersResponse;
@@ -236,6 +238,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $reconciling = false;
         $etag = 'etag3123477';
         $sizeBytes = 1796325715;
+        $satisfiesPzs = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -246,6 +249,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -380,6 +384,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $network = 'network1843485230';
         $etag = 'etag3123477';
         $reconciling = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -387,6 +392,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -520,16 +526,20 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -664,6 +674,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $network = 'network1843485230';
         $etag = 'etag3123477';
         $reconciling = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -671,6 +682,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -804,16 +816,20 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1425,16 +1441,20 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1610,6 +1630,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $reconciling = false;
         $etag = 'etag3123477';
         $sizeBytes = 1796325715;
+        $satisfiesPzs = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1620,6 +1641,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
@@ -1683,6 +1705,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $network = 'network1843485230';
         $etag = 'etag3123477';
         $reconciling = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1690,6 +1713,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
@@ -1749,11 +1773,15 @@ class AlloyDBAdminClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $instanceUid = 'instanceUid-737331802';
+        $pscDnsName = 'pscDnsName-691071360';
         $expectedResponse = new ConnectionInfo();
         $expectedResponse->setName($name);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setInstanceUid($instanceUid);
+        $expectedResponse->setPscDnsName($pscDnsName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
@@ -1816,16 +1844,20 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[CLUSTER]', '[INSTANCE]');
@@ -1962,16 +1994,20 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2196,6 +2232,74 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
             $gapicClient->listClusters($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDatabasesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $databasesElement = new Database();
+        $databases = [
+            $databasesElement,
+        ];
+        $expectedResponse = new ListDatabasesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDatabases($databases);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        $response = $gapicClient->listDatabases($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDatabases()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.alloydb.v1beta.AlloyDBAdmin/ListDatabases', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listDatabasesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+        try {
+            $gapicClient->listDatabases($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2438,6 +2542,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $network = 'network1843485230';
         $etag2 = 'etag2-1293302904';
         $reconciling = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -2445,6 +2550,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEtag($etag2);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2566,16 +2672,20 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2698,6 +2808,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $network = 'network1843485230';
         $etag = 'etag3123477';
         $reconciling = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -2705,6 +2816,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2842,6 +2954,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $reconciling = false;
         $etag = 'etag3123477';
         $sizeBytes = 1796325715;
+        $satisfiesPzs = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -2852,6 +2965,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setSizeBytes($sizeBytes);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2978,6 +3092,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $network = 'network1843485230';
         $etag = 'etag3123477';
         $reconciling = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -2985,6 +3100,7 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setReconciling($reconciling);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3110,16 +3226,20 @@ class AlloyDBAdminClientTest extends GeneratedTest
         $uid = 'uid115792';
         $gceZone = 'gceZone-227587294';
         $ipAddress = 'ipAddress1480014044';
+        $publicIpAddress = 'publicIpAddress2014408818';
         $reconciling = false;
         $etag = 'etag3123477';
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setUid($uid);
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setPublicIpAddress($publicIpAddress);
         $expectedResponse->setReconciling($reconciling);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

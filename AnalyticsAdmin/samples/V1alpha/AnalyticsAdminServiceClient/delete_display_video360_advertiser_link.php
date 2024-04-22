@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_DeleteDisplayVideo360AdvertiserLink_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest;
 use Google\ApiCore\ApiException;
 
 /**
@@ -38,9 +39,13 @@ function delete_display_video360_advertiser_link_sample(string $formattedName): 
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteDisplayVideo360AdvertiserLinkRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $analyticsAdminServiceClient->deleteDisplayVideo360AdvertiserLink($formattedName);
+        $analyticsAdminServiceClient->deleteDisplayVideo360AdvertiserLink($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

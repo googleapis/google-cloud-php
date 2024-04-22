@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START securitycenter_v1_generated_SecurityCenter_GroupFindings_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\GroupFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\GroupResult;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
  * Filters an organization or source's findings and  groups them by their
@@ -66,10 +67,15 @@ function group_findings_sample(string $formattedParent, string $groupBy): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new GroupFindingsRequest())
+        ->setParent($formattedParent)
+        ->setGroupBy($groupBy);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $securityCenterClient->groupFindings($formattedParent, $groupBy);
+        $response = $securityCenterClient->groupFindings($request);
 
         /** @var GroupResult $element */
         foreach ($response as $element) {

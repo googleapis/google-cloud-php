@@ -52,6 +52,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsReques
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
@@ -70,12 +72,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient} for the
- * stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface annotateAssessmentAsync(AnnotateAssessmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAssessmentAsync(CreateAssessmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createFirewallPolicyAsync(CreateFirewallPolicyRequest $request, array $optionalArgs = [])
@@ -90,6 +86,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listRelatedAccountGroupMembershipsAsync(ListRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRelatedAccountGroupsAsync(ListRelatedAccountGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface migrateKeyAsync(MigrateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface reorderFirewallPoliciesAsync(ReorderFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface retrieveLegacySecretKeyAsync(RetrieveLegacySecretKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchRelatedAccountGroupMembershipsAsync(SearchRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateFirewallPolicyAsync(UpdateFirewallPolicyRequest $request, array $optionalArgs = [])
@@ -103,8 +100,15 @@ final class RecaptchaEnterpriseServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'recaptchaenterprise.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'recaptchaenterprise.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -343,6 +347,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::annotateAssessmentAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/annotate_assessment.php
+     *
      * @param AnnotateAssessmentRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -367,6 +373,8 @@ final class RecaptchaEnterpriseServiceClient
      *
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::createAssessmentAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/create_assessment.php
      *
      * @param CreateAssessmentRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -395,6 +403,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::createFirewallPolicyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/create_firewall_policy.php
+     *
      * @param CreateFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -418,6 +428,8 @@ final class RecaptchaEnterpriseServiceClient
      * Creates a new reCAPTCHA Enterprise key.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::createKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/create_key.php
      *
      * @param CreateKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -444,6 +456,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::deleteFirewallPolicyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/delete_firewall_policy.php
+     *
      * @param DeleteFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -465,6 +479,8 @@ final class RecaptchaEnterpriseServiceClient
      * Deletes the specified key.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::deleteKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/delete_key.php
      *
      * @param DeleteKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -489,6 +505,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::getFirewallPolicyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/get_firewall_policy.php
+     *
      * @param GetFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -512,6 +530,8 @@ final class RecaptchaEnterpriseServiceClient
      * Returns the specified key.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::getKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/get_key.php
      *
      * @param GetKeyRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -539,6 +559,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is {@see RecaptchaEnterpriseServiceClient::getMetricsAsync()}
      * .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/get_metrics.php
+     *
      * @param GetMetricsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -564,6 +586,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::listFirewallPoliciesAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_firewall_policies.php
+     *
      * @param ListFirewallPoliciesRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -587,6 +611,8 @@ final class RecaptchaEnterpriseServiceClient
      * Returns the list of all keys that belong to a project.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::listKeysAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_keys.php
      *
      * @param ListKeysRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -614,6 +640,8 @@ final class RecaptchaEnterpriseServiceClient
      * {@see RecaptchaEnterpriseServiceClient::listRelatedAccountGroupMembershipsAsync()}
      * .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_related_account_group_memberships.php
+     *
      * @param ListRelatedAccountGroupMembershipsRequest $request     A request to house fields associated with the call.
      * @param array                                     $callOptions {
      *     Optional.
@@ -638,6 +666,8 @@ final class RecaptchaEnterpriseServiceClient
      *
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::listRelatedAccountGroupsAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/list_related_account_groups.php
      *
      * @param ListRelatedAccountGroupsRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -669,6 +699,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is {@see RecaptchaEnterpriseServiceClient::migrateKeyAsync()}
      * .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/migrate_key.php
+     *
      * @param MigrateKeyRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -689,12 +721,41 @@ final class RecaptchaEnterpriseServiceClient
     }
 
     /**
+     * Reorders all firewall policies.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::reorderFirewallPoliciesAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/reorder_firewall_policies.php
+     *
+     * @param ReorderFirewallPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReorderFirewallPoliciesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function reorderFirewallPolicies(ReorderFirewallPoliciesRequest $request, array $callOptions = []): ReorderFirewallPoliciesResponse
+    {
+        return $this->startApiCall('ReorderFirewallPolicies', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the secret key related to the specified public key.
      * You must use the legacy secret key only in a 3rd party integration with
      * legacy reCAPTCHA.
      *
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::retrieveLegacySecretKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/retrieve_legacy_secret_key.php
      *
      * @param RetrieveLegacySecretKeyRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -722,6 +783,8 @@ final class RecaptchaEnterpriseServiceClient
      * {@see RecaptchaEnterpriseServiceClient::searchRelatedAccountGroupMembershipsAsync()}
      * .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/search_related_account_group_memberships.php
+     *
      * @param SearchRelatedAccountGroupMembershipsRequest $request     A request to house fields associated with the call.
      * @param array                                       $callOptions {
      *     Optional.
@@ -747,6 +810,8 @@ final class RecaptchaEnterpriseServiceClient
      * The async variant is
      * {@see RecaptchaEnterpriseServiceClient::updateFirewallPolicyAsync()} .
      *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/update_firewall_policy.php
+     *
      * @param UpdateFirewallPolicyRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -770,6 +835,8 @@ final class RecaptchaEnterpriseServiceClient
      * Updates the specified key.
      *
      * The async variant is {@see RecaptchaEnterpriseServiceClient::updateKeyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/update_key.php
      *
      * @param UpdateKeyRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {

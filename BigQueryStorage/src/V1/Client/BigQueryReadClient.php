@@ -53,12 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BigQuery\Storage\V1\BigQueryReadClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createReadSessionAsync(CreateReadSessionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface splitReadStreamAsync(SplitReadStreamRequest $request, array $optionalArgs = [])
  */
@@ -70,8 +64,15 @@ final class BigQueryReadClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.bigquery.storage.v1.BigQueryRead';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigquerystorage.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigquerystorage.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -299,6 +300,8 @@ final class BigQueryReadClient
      *
      * The async variant is {@see BigQueryReadClient::createReadSessionAsync()} .
      *
+     * @example samples/V1/BigQueryReadClient/create_read_session.php
+     *
      * @param CreateReadSessionRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -326,6 +329,8 @@ final class BigQueryReadClient
      *
      * Each request also returns a set of stream statistics reflecting the current
      * state of the stream.
+     *
+     * @example samples/V1/BigQueryReadClient/read_rows.php
      *
      * @param ReadRowsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -359,6 +364,8 @@ final class BigQueryReadClient
      * completion.
      *
      * The async variant is {@see BigQueryReadClient::splitReadStreamAsync()} .
+     *
+     * @example samples/V1/BigQueryReadClient/split_read_stream.php
      *
      * @param SplitReadStreamRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

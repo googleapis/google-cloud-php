@@ -59,6 +59,15 @@ class WriteTest extends StreamWrapperTestCase
         $this->assertFileExists($this->fileUrl);
     }
 
+    public function testTouch()
+    {
+        $this->assertFileDoesNotExist($this->fileUrl);
+
+        $this->assertTrue(touch($this->fileUrl));
+
+        $this->assertFileExists($this->fileUrl);
+    }
+
     public function testStreamingWrite()
     {
         $this->assertFileDoesNotExist($this->fileUrl);

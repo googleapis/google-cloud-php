@@ -29,8 +29,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * Output only. True if the billing account is open, and will therefore be
      * charged for any usage on associated projects. False if the billing account
-     * is closed, and therefore projects associated with it will be unable to use
-     * paid services.
+     * is closed, and therefore projects associated with it are unable to use paid
+     * services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -52,6 +52,19 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string master_billing_account = 4;</code>
      */
     private $master_billing_account = '';
+    /**
+     * Output only. The billing account's parent resource identifier.
+     * Use the `MoveBillingAccount` method to update the account's parent resource
+     * if it is a organization.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *     `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $parent = '';
 
     /**
      * Constructor.
@@ -67,8 +80,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *     @type bool $open
      *           Output only. True if the billing account is open, and will therefore be
      *           charged for any usage on associated projects. False if the billing account
-     *           is closed, and therefore projects associated with it will be unable to use
-     *           paid services.
+     *           is closed, and therefore projects associated with it are unable to use paid
+     *           services.
      *     @type string $display_name
      *           The display name given to the billing account, such as `My Billing
      *           Account`. This name is displayed in the Google Cloud Console.
@@ -78,6 +91,15 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *           will be the resource name of the parent billing account that it is being
      *           resold through.
      *           Otherwise this will be empty.
+     *     @type string $parent
+     *           Output only. The billing account's parent resource identifier.
+     *           Use the `MoveBillingAccount` method to update the account's parent resource
+     *           if it is a organization.
+     *           Format:
+     *             - `organizations/{organization_id}`, for example,
+     *               `organizations/12345678`
+     *             - `billingAccounts/{billing_account_id}`, for example,
+     *               `billingAccounts/012345-567890-ABCDEF`
      * }
      */
     public function __construct($data = NULL) {
@@ -120,8 +142,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * Output only. True if the billing account is open, and will therefore be
      * charged for any usage on associated projects. False if the billing account
-     * is closed, and therefore projects associated with it will be unable to use
-     * paid services.
+     * is closed, and therefore projects associated with it are unable to use paid
+     * services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -134,8 +156,8 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * Output only. True if the billing account is open, and will therefore be
      * charged for any usage on associated projects. False if the billing account
-     * is closed, and therefore projects associated with it will be unable to use
-     * paid services.
+     * is closed, and therefore projects associated with it are unable to use paid
+     * services.
      *
      * Generated from protobuf field <code>bool open = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -207,6 +229,46 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->master_billing_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The billing account's parent resource identifier.
+     * Use the `MoveBillingAccount` method to update the account's parent resource
+     * if it is a organization.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *     `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Output only. The billing account's parent resource identifier.
+     * Use the `MoveBillingAccount` method to update the account's parent resource
+     * if it is a organization.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *     `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
 
         return $this;
     }

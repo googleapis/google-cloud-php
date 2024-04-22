@@ -36,12 +36,12 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
      */
     protected $account = 0;
     /**
-     * Required. ID of the region for this
+     * Required. Immutable. ID of the region for this
      * `RegionalInventory` resource. See the [Regional availability and
      * pricing](https://support.google.com/merchants/answer/9698880) for more
      * details.
      *
-     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $region = '';
     /**
@@ -96,7 +96,7 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
      *           Output only. The account that owns the product. This field will be ignored
      *           if set by the client.
      *     @type string $region
-     *           Required. ID of the region for this
+     *           Required. Immutable. ID of the region for this
      *           `RegionalInventory` resource. See the [Regional availability and
      *           pricing](https://support.google.com/merchants/answer/9698880) for more
      *           details.
@@ -183,12 +183,12 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the region for this
+     * Required. Immutable. ID of the region for this
      * `RegionalInventory` resource. See the [Regional availability and
      * pricing](https://support.google.com/merchants/answer/9698880) for more
      * details.
      *
-     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getRegion()
@@ -197,12 +197,12 @@ class RegionalInventory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. ID of the region for this
+     * Required. Immutable. ID of the region for this
      * `RegionalInventory` resource. See the [Regional availability and
      * pricing](https://support.google.com/merchants/answer/9698880) for more
      * details.
      *
-     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

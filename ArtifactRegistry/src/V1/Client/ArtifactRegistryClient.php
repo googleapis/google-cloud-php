@@ -35,6 +35,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\ArtifactRegistry\V1\BatchDeleteVersionsRequest;
 use Google\Cloud\ArtifactRegistry\V1\CreateRepositoryRequest;
 use Google\Cloud\ArtifactRegistry\V1\CreateTagRequest;
 use Google\Cloud\ArtifactRegistry\V1\DeletePackageRequest;
@@ -112,10 +113,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
- *
+ * @method PromiseInterface batchDeleteVersionsAsync(BatchDeleteVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createRepositoryAsync(CreateRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createTagAsync(CreateTagRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deletePackageAsync(DeletePackageRequest $request, array $optionalArgs = [])
@@ -162,8 +160,15 @@ final class ArtifactRegistryClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.devtools.artifactregistry.v1.ArtifactRegistry';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'artifactregistry.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'artifactregistry.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -405,6 +410,25 @@ final class ArtifactRegistryClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName(string $project, string $secret, string $secretVersion): string
+    {
+        return self::getPathTemplate('secretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a tag
      * resource.
      *
@@ -424,6 +448,29 @@ final class ArtifactRegistryClient
             'repository' => $repository,
             'package' => $package,
             'tag' => $tag,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a version
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     * @param string $package
+     * @param string $version
+     *
+     * @return string The formatted version resource.
+     */
+    public static function versionName(string $project, string $location, string $repository, string $package, string $version): string
+    {
+        return self::getPathTemplate('version')->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+            'package' => $package,
+            'version' => $version,
         ]);
     }
 
@@ -457,7 +504,9 @@ final class ArtifactRegistryClient
      * - projectSettings: projects/{project}/projectSettings
      * - pythonPackage: projects/{project}/locations/{location}/repositories/{repository}/pythonPackages/{python_package}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - tag: projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}
+     * - version: projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}
      * - vpcscConfig: projects/{project}/locations/{location}/vpcscConfig
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -548,6 +597,33 @@ final class ArtifactRegistryClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Deletes multiple versions across a repository. The returned operation will
+     * complete once the versions have been deleted.
+     *
+     * The async variant is {@see ArtifactRegistryClient::batchDeleteVersionsAsync()} .
+     *
+     * @example samples/V1/ArtifactRegistryClient/batch_delete_versions.php
+     *
+     * @param BatchDeleteVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeleteVersions(BatchDeleteVersionsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BatchDeleteVersions', $request, $callOptions)->wait();
     }
 
     /**

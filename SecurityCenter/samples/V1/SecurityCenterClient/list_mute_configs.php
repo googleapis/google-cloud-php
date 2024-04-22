@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START securitycenter_v1_generated_SecurityCenter_ListMuteConfigs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient;
+use Google\Cloud\SecurityCenter\V1\ListMuteConfigsRequest;
 use Google\Cloud\SecurityCenter\V1\MuteConfig;
-use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
  * Lists mute configs.
@@ -41,10 +42,14 @@ function list_mute_configs_sample(string $formattedParent): void
     // Create a client.
     $securityCenterClient = new SecurityCenterClient();
 
+    // Prepare the request message.
+    $request = (new ListMuteConfigsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $securityCenterClient->listMuteConfigs($formattedParent);
+        $response = $securityCenterClient->listMuteConfigs($request);
 
         /** @var MuteConfig $element */
         foreach ($response as $element) {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_CreateKey_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 
 /**
  * Creates a new reCAPTCHA Enterprise key.
@@ -33,19 +34,24 @@ use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
  * @param string $formattedParent The name of the project in which the key will be created, in the
  *                                format `projects/{project}`. Please see
  *                                {@see RecaptchaEnterpriseServiceClient::projectName()} for help formatting this field.
+ * @param string $keyDisplayName  Human-readable display name of this key. Modifiable by user.
  */
-function create_key_sample(string $formattedParent): void
+function create_key_sample(string $formattedParent, string $keyDisplayName): void
 {
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $key = new Key();
+    // Prepare the request message.
+    $key = (new Key())
+        ->setDisplayName($keyDisplayName);
+    $request = (new CreateKeyRequest())
+        ->setParent($formattedParent)
+        ->setKey($key);
 
     // Call the API and handle any network failures.
     try {
         /** @var Key $response */
-        $response = $recaptchaEnterpriseServiceClient->createKey($formattedParent, $key);
+        $response = $recaptchaEnterpriseServiceClient->createKey($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -64,7 +70,8 @@ function create_key_sample(string $formattedParent): void
 function callSample(): void
 {
     $formattedParent = RecaptchaEnterpriseServiceClient::projectName('[PROJECT]');
+    $keyDisplayName = '[DISPLAY_NAME]';
 
-    create_key_sample($formattedParent);
+    create_key_sample($formattedParent, $keyDisplayName);
 }
 // [END recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_CreateKey_sync]

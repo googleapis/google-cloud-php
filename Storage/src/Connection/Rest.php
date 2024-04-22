@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Connection;
 
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
@@ -64,7 +65,12 @@ class Rest implements ConnectionInterface
      */
     const BASE_URI = 'https://storage.googleapis.com/storage/v1/';
 
+    /**
+     * @deprecated
+     */
     const DEFAULT_API_ENDPOINT = 'https://storage.googleapis.com';
+
+    const DEFAULT_API_ENDPOINT_TEMPLATE = 'https://storage.UNIVERSE_DOMAIN';
 
     /**
      * @deprecated
@@ -104,13 +110,17 @@ class Rest implements ConnectionInterface
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json',
             'componentVersion' => StorageClient::VERSION,
-            'apiEndpoint' => self::DEFAULT_API_ENDPOINT,
+            'apiEndpoint' => null,
+            // If the user has not supplied a universe domain, use the environment variable if set.
+            // Otherwise, use the default ("googleapis.com").
+            'universeDomain' => getenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN')
+                ?: GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
             // Cloud Storage needs to provide a default scope because the Storage
             // API does not accept JWTs with "audience"
             'scopes' => StorageClient::FULL_CONTROL_SCOPE,
         ];
 
-        $this->apiEndpoint = $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config);
+        $this->apiEndpoint = $this->getApiEndpoint(null, $config, self::DEFAULT_API_ENDPOINT_TEMPLATE);
 
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
@@ -216,6 +226,14 @@ class Rest implements ConnectionInterface
     public function deleteObject(array $args = [])
     {
         return $this->send('objects', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function restoreObject(array $args = [])
+    {
+        return $this->send('objects', 'restore', $args);
     }
 
     /**
@@ -431,6 +449,12 @@ class Rest implements ConnectionInterface
         }
 
         $args['metadata']['name'] = $args['name'];
+        if (isset($args['retention'])) {
+            // during object creation retention properties go into metadata
+            // but not into request body
+            $args['metadata']['retention'] = $args['retention'];
+            unset($args['retention']);
+        }
         unset($args['name']);
         $args['contentType'] = $args['metadata']['contentType']
             ?? MimeType::fromFilename($args['metadata']['name']);
@@ -598,14 +622,22 @@ class Rest implements ConnectionInterface
             'restDelayFunction' => null
         ]);
 
+        $queryOptions = [
+            'generation' => $args['generation'],
+            'alt' => 'media',
+            'userProject' => $args['userProject'],
+        ];
+        if (isset($args['softDeleted'])) {
+            // alt param cannot be specified with softDeleted param. See:
+            // https://cloud.google.com/storage/docs/json_api/v1/objects/get
+            unset($args['alt']);
+            $queryOptions['softDeleted'] = $args['softDeleted'];
+        }
+
         $uri = $this->expandUri($this->apiEndpoint . self::DOWNLOAD_PATH, [
             'bucket' => $args['bucket'],
             'object' => $args['object'],
-            'query' => [
-                'generation' => $args['generation'],
-                'alt' => 'media',
-                'userProject' => $args['userProject']
-            ]
+            'query' => $queryOptions,
         ]);
 
         return [

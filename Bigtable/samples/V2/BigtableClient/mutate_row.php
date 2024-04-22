@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigtable_v2_generated_Bigtable_MutateRow_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
 
@@ -32,8 +33,10 @@ use Google\Cloud\Bigtable\V2\Mutation;
  * Mutates a row atomically. Cells already present in the row are left
  * unchanged unless explicitly changed by `mutation`.
  *
- * @param string $formattedTableName The unique name of the table to which the mutation should be
- *                                   applied. Values are of the form
+ * @param string $formattedTableName Optional. The unique name of the table to which the mutation should be
+ *                                   applied.
+ *
+ *                                   Values are of the form
  *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
  * @param string $rowKey             The key of the row to which the mutation should be applied.
@@ -43,13 +46,17 @@ function mutate_row_sample(string $formattedTableName, string $rowKey): void
     // Create a client.
     $bigtableClient = new BigtableClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $mutations = [new Mutation()];
+    $request = (new MutateRowRequest())
+        ->setTableName($formattedTableName)
+        ->setRowKey($rowKey)
+        ->setMutations($mutations);
 
     // Call the API and handle any network failures.
     try {
         /** @var MutateRowResponse $response */
-        $response = $bigtableClient->mutateRow($formattedTableName, $rowKey, $mutations);
+        $response = $bigtableClient->mutateRow($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

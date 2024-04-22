@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationProfiles_SetSuggestionFeatureConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\Client\ConversationProfilesClient;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
-use Google\Cloud\Dialogflow\V2\ConversationProfilesClient;
 use Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig;
 use Google\Cloud\Dialogflow\V2\Participant\Role;
+use Google\Cloud\Dialogflow\V2\SetSuggestionFeatureConfigRequest;
 use Google\Rpc\Status;
 
 /**
@@ -64,17 +65,17 @@ function set_suggestion_feature_config_sample(
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $suggestionFeatureConfig = new SuggestionFeatureConfig();
+    $request = (new SetSuggestionFeatureConfigRequest())
+        ->setConversationProfile($conversationProfile)
+        ->setParticipantRole($participantRole)
+        ->setSuggestionFeatureConfig($suggestionFeatureConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationProfilesClient->setSuggestionFeatureConfig(
-            $conversationProfile,
-            $participantRole,
-            $suggestionFeatureConfig
-        );
+        $response = $conversationProfilesClient->setSuggestionFeatureConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

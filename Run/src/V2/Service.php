@@ -54,11 +54,10 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $generation = 0;
     /**
-     * Unstructured key value map that can be used to organize and categorize
-     * objects.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Optional. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
@@ -66,13 +65,13 @@ class Service extends \Google\Protobuf\Internal\Message
      * namespaces, and they will be rejected. All system labels in v1 now have a
      * corresponding field in v2 Service.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 5;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * Unstructured key value map that may be set by external tools to store and
-     * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects.
+     * Optional. Unstructured key value map that may be set by external tools to
+     * store and arbitrary metadata. They are not queryable and should be
+     * preserved when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected in new resources. All system
@@ -80,7 +79,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * <p>This field follows Kubernetes
      * annotations' namespacing, limits, and rules.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotations;
     /**
@@ -175,6 +174,18 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19;</code>
      */
     private $traffic;
+    /**
+     * Optional. Specifies service-level scaling settings
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceScaling scaling = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $scaling = null;
+    /**
+     * Optional. Disables public resolution of the default URI of this service.
+     *
+     * Generated from protobuf field <code>bool default_uri_disabled = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_uri_disabled = false;
     /**
      * Output only. The generation of this Service currently serving traffic. See
      * comments in `reconciling` for additional information on reconciliation
@@ -306,11 +317,10 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Please note that unlike v1, this is an int64 value. As with most Google
      *           APIs, its JSON representation will be a `string` instead of an `integer`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Unstructured key value map that can be used to organize and categorize
-     *           objects.
-     *           User-provided labels are shared with Google's billing system, so they can
-     *           be used to filter, or break down billing charges by team, component,
-     *           environment, state, etc. For more information, visit
+     *           Optional. Unstructured key value map that can be used to organize and
+     *           categorize objects. User-provided labels are shared with Google's billing
+     *           system, so they can be used to filter, or break down billing charges by
+     *           team, component, environment, state, etc. For more information, visit
      *           https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      *           https://cloud.google.com/run/docs/configuring/labels.
      *           <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
@@ -318,9 +328,9 @@ class Service extends \Google\Protobuf\Internal\Message
      *           namespaces, and they will be rejected. All system labels in v1 now have a
      *           corresponding field in v2 Service.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
-     *           Unstructured key value map that may be set by external tools to store and
-     *           arbitrary metadata. They are not queryable and should be preserved
-     *           when modifying objects.
+     *           Optional. Unstructured key value map that may be set by external tools to
+     *           store and arbitrary metadata. They are not queryable and should be
+     *           preserved when modifying objects.
      *           <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      *           `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      *           namespaces, and they will be rejected in new resources. All system
@@ -367,6 +377,10 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Specifies how to distribute traffic over a collection of Revisions
      *           belonging to the Service. If traffic is empty or not provided, defaults to
      *           100% traffic to the latest `Ready` Revision.
+     *     @type \Google\Cloud\Run\V2\ServiceScaling $scaling
+     *           Optional. Specifies service-level scaling settings
+     *     @type bool $default_uri_disabled
+     *           Optional. Disables public resolution of the default URI of this service.
      *     @type int|string $observed_generation
      *           Output only. The generation of this Service currently serving traffic. See
      *           comments in `reconciling` for additional information on reconciliation
@@ -560,11 +574,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unstructured key value map that can be used to organize and categorize
-     * objects.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Optional. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
@@ -572,7 +585,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * namespaces, and they will be rejected. All system labels in v1 now have a
      * corresponding field in v2 Service.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 5;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -581,11 +594,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unstructured key value map that can be used to organize and categorize
-     * objects.
-     * User-provided labels are shared with Google's billing system, so they can
-     * be used to filter, or break down billing charges by team, component,
-     * environment, state, etc. For more information, visit
+     * Optional. Unstructured key value map that can be used to organize and
+     * categorize objects. User-provided labels are shared with Google's billing
+     * system, so they can be used to filter, or break down billing charges by
+     * team, component, environment, state, etc. For more information, visit
      * https://cloud.google.com/resource-manager/docs/creating-managing-labels or
      * https://cloud.google.com/run/docs/configuring/labels.
      * <p>Cloud Run API v2 does not support labels with  `run.googleapis.com`,
@@ -593,7 +605,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * namespaces, and they will be rejected. All system labels in v1 now have a
      * corresponding field in v2 Service.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 5;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -606,9 +618,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unstructured key value map that may be set by external tools to store and
-     * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects.
+     * Optional. Unstructured key value map that may be set by external tools to
+     * store and arbitrary metadata. They are not queryable and should be
+     * preserved when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected in new resources. All system
@@ -616,7 +628,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * <p>This field follows Kubernetes
      * annotations' namespacing, limits, and rules.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getAnnotations()
@@ -625,9 +637,9 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unstructured key value map that may be set by external tools to store and
-     * arbitrary metadata. They are not queryable and should be preserved
-     * when modifying objects.
+     * Optional. Unstructured key value map that may be set by external tools to
+     * store and arbitrary metadata. They are not queryable and should be
+     * preserved when modifying objects.
      * <p>Cloud Run API v2 does not support annotations with `run.googleapis.com`,
      * `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev`
      * namespaces, and they will be rejected in new resources. All system
@@ -635,7 +647,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * <p>This field follows Kubernetes
      * annotations' namespacing, limits, and rules.
      *
-     * Generated from protobuf field <code>map<string, string> annotations = 6;</code>
+     * Generated from protobuf field <code>map<string, string> annotations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -1069,6 +1081,68 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Run\V2\TrafficTarget::class);
         $this->traffic = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies service-level scaling settings
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceScaling scaling = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Run\V2\ServiceScaling|null
+     */
+    public function getScaling()
+    {
+        return $this->scaling;
+    }
+
+    public function hasScaling()
+    {
+        return isset($this->scaling);
+    }
+
+    public function clearScaling()
+    {
+        unset($this->scaling);
+    }
+
+    /**
+     * Optional. Specifies service-level scaling settings
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.ServiceScaling scaling = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Run\V2\ServiceScaling $var
+     * @return $this
+     */
+    public function setScaling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\ServiceScaling::class);
+        $this->scaling = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Disables public resolution of the default URI of this service.
+     *
+     * Generated from protobuf field <code>bool default_uri_disabled = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDefaultUriDisabled()
+    {
+        return $this->default_uri_disabled;
+    }
+
+    /**
+     * Optional. Disables public resolution of the default URI of this service.
+     *
+     * Generated from protobuf field <code>bool default_uri_disabled = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDefaultUriDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->default_uri_disabled = $var;
 
         return $this;
     }

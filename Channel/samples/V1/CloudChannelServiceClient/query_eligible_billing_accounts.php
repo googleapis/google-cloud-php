@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_QueryEligibleBillingAccounts_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsRequest;
 use Google\Cloud\Channel\V1\QueryEligibleBillingAccountsResponse;
 
 /**
@@ -54,13 +55,16 @@ function query_eligible_billing_accounts_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $skus = [$skusElement,];
+    $request = (new QueryEligibleBillingAccountsRequest())
+        ->setCustomer($formattedCustomer)
+        ->setSkus($skus);
 
     // Call the API and handle any network failures.
     try {
         /** @var QueryEligibleBillingAccountsResponse $response */
-        $response = $cloudChannelServiceClient->queryEligibleBillingAccounts($formattedCustomer, $skus);
+        $response = $cloudChannelServiceClient->queryEligibleBillingAccounts($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -56,11 +56,7 @@ class SchemaTest extends PubSubTestCase
         $this->assertEquals($schema->name(), $schema->reload()['name']);
         $this->assertEquals(trim($definition), trim($schema->info()['definition']));
 
-        if ($client instanceof PubSubClientGrpc) {
-            $this->assertEquals(Type::AVRO, $schema->info()['type']);
-        } else {
-            $this->assertEquals('AVRO', $schema->info()['type']);
-        }
+        $this->assertEquals(Type::AVRO, $schema->info()['type']);
 
         $schemas = $client->schemas();
         $hasSchema = false;
@@ -93,11 +89,7 @@ class SchemaTest extends PubSubTestCase
         $this->assertEquals($schema->name(), $schema->reload()['name']);
         $this->assertEquals(trim($definition), trim($schema->info()['definition']));
 
-        if ($client instanceof PubSubClientGrpc) {
-            $this->assertEquals(Type::PROTOCOL_BUFFER, $schema->info()['type']);
-        } else {
-            $this->assertEquals('PROTOCOL_BUFFER', $schema->info()['type']);
-        }
+        $this->assertEquals(Type::PROTOCOL_BUFFER, $schema->info()['type']);
 
         $schemas = $client->schemas();
         $hasSchema = false;
@@ -116,9 +108,6 @@ class SchemaTest extends PubSubTestCase
      */
     public function testPublishWithAvroSchemaBinary(PubSubClient $client)
     {
-        if (version_compare(phpversion(), '7.3.0') === -1) {
-            $this->markTestSkipped('This test can only be run on php 7.3+');
-        }
         $definition = file_get_contents(__DIR__ . '/testdata/schema.avsc');
         $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
@@ -147,9 +136,10 @@ class SchemaTest extends PubSubTestCase
         $encoder = new \AvroIOBinaryEncoder($io);
         $writer->write($data, $encoder);
 
-        $topic->publish(new Message([
+        $messageIds = $topic->publish(new Message([
             'data' => $io->string(),
         ]));
+        $this->assertNotEmpty($messageIds);
     }
 
     /**

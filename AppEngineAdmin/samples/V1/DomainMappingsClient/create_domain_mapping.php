@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appengine_v1_generated_DomainMappings_CreateDomainMapping_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\AppEngine\V1\Client\DomainMappingsClient;
+use Google\Cloud\AppEngine\V1\CreateDomainMappingRequest;
 use Google\Cloud\AppEngine\V1\DomainMapping;
-use Google\Cloud\AppEngine\V1\DomainMappingsClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,13 @@ function create_domain_mapping_sample(): void
     // Create a client.
     $domainMappingsClient = new DomainMappingsClient();
 
+    // Prepare the request message.
+    $request = new CreateDomainMappingRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $domainMappingsClient->createDomainMapping();
+        $response = $domainMappingsClient->createDomainMapping($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

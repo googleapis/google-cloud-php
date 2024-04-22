@@ -84,12 +84,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchProcessDocumentsAsync(BatchProcessRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createProcessorAsync(CreateProcessorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteProcessorAsync(DeleteProcessorRequest $request, array $optionalArgs = [])
@@ -123,8 +117,15 @@ final class DocumentProcessorServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.documentai.v1.DocumentProcessorService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'documentai.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'documentai.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -413,6 +414,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::batchProcessDocumentsAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/batch_process_documents.php
+     *
      * @param BatchProcessRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -433,12 +436,13 @@ final class DocumentProcessorServiceClient
     }
 
     /**
-     * Creates a processor from the
-     * [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided. The
-     * processor will be at `ENABLED` state by default after its creation.
+     * Creates a processor from the [ProcessorType][google.cloud.documentai.v1.ProcessorType] provided.
+     * The processor will be at `ENABLED` state by default after its creation.
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::createProcessorAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/create_processor.php
      *
      * @param CreateProcessorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -466,6 +470,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::deleteProcessorAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/delete_processor.php
+     *
      * @param DeleteProcessorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -492,6 +498,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::deleteProcessorVersionAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/delete_processor_version.php
+     *
      * @param DeleteProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
      *     Optional.
@@ -516,6 +524,8 @@ final class DocumentProcessorServiceClient
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::deployProcessorVersionAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/deploy_processor_version.php
      *
      * @param DeployProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                         $callOptions {
@@ -542,6 +552,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::disableProcessorAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/disable_processor.php
+     *
      * @param DisableProcessorRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -566,6 +578,8 @@ final class DocumentProcessorServiceClient
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::enableProcessorAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/enable_processor.php
      *
      * @param EnableProcessorRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -593,6 +607,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::evaluateProcessorVersionAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/evaluate_processor_version.php
+     *
      * @param EvaluateProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -613,12 +629,13 @@ final class DocumentProcessorServiceClient
     }
 
     /**
-     * Fetches processor types. Note that we don't use
-     * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+     * Fetches processor types. Note that we don't use [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
      * here, because it isn't paginated.
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::fetchProcessorTypesAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/fetch_processor_types.php
      *
      * @param FetchProcessorTypesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -645,6 +662,8 @@ final class DocumentProcessorServiceClient
      * The async variant is {@see DocumentProcessorServiceClient::getEvaluationAsync()}
      * .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/get_evaluation.php
+     *
      * @param GetEvaluationRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -669,6 +688,8 @@ final class DocumentProcessorServiceClient
      *
      * The async variant is {@see DocumentProcessorServiceClient::getProcessorAsync()}
      * .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/get_processor.php
      *
      * @param GetProcessorRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -695,6 +716,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::getProcessorTypeAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/get_processor_type.php
+     *
      * @param GetProcessorTypeRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -719,6 +742,8 @@ final class DocumentProcessorServiceClient
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::getProcessorVersionAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/get_processor_version.php
      *
      * @param GetProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -745,6 +770,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::listEvaluationsAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/list_evaluations.php
+     *
      * @param ListEvaluationsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -769,6 +796,8 @@ final class DocumentProcessorServiceClient
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::listProcessorTypesAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/list_processor_types.php
      *
      * @param ListProcessorTypesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -795,6 +824,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::listProcessorVersionsAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/list_processor_versions.php
+     *
      * @param ListProcessorVersionsRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -820,6 +851,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::listProcessorsAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/list_processors.php
+     *
      * @param ListProcessorsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -844,6 +877,8 @@ final class DocumentProcessorServiceClient
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::processDocumentAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/process_document.php
      *
      * @param ProcessRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -871,6 +906,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::reviewDocumentAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/review_document.php
+     *
      * @param ReviewDocumentRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -891,14 +928,14 @@ final class DocumentProcessorServiceClient
     }
 
     /**
-     * Set the default (active) version of a
-     * [Processor][google.cloud.documentai.v1.Processor] that will be used in
-     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
-     * and
+     * Set the default (active) version of a [Processor][google.cloud.documentai.v1.Processor] that will be used in
+     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] and
      * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
      *
      * The async variant is
      * {@see DocumentProcessorServiceClient::setDefaultProcessorVersionAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/set_default_processor_version.php
      *
      * @param SetDefaultProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
@@ -927,6 +964,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::trainProcessorVersionAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/train_processor_version.php
+     *
      * @param TrainProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -952,6 +991,8 @@ final class DocumentProcessorServiceClient
      * The async variant is
      * {@see DocumentProcessorServiceClient::undeployProcessorVersionAsync()} .
      *
+     * @example samples/V1/DocumentProcessorServiceClient/undeploy_processor_version.php
+     *
      * @param UndeployProcessorVersionRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -975,6 +1016,8 @@ final class DocumentProcessorServiceClient
      * Gets information about a location.
      *
      * The async variant is {@see DocumentProcessorServiceClient::getLocationAsync()} .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/get_location.php
      *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -1000,6 +1043,8 @@ final class DocumentProcessorServiceClient
      *
      * The async variant is {@see DocumentProcessorServiceClient::listLocationsAsync()}
      * .
+     *
+     * @example samples/V1/DocumentProcessorServiceClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
