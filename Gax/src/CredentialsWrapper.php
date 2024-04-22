@@ -250,7 +250,7 @@ class CredentialsWrapper implements ProjectIdProviderInterface
 
                 // Call updateMetadata to take advantage of self-signed JWTs
                 if ($this->credentialsFetcher instanceof UpdateMetadataInterface) {
-                    return $this->credentialsFetcher->updateMetadata([], $audience);
+                    return $this->credentialsFetcher->updateMetadata([], $audience, $this->authHttpHandler);
                 }
 
                 // In case a custom fetcher is provided (unlikely) which doesn't
