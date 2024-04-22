@@ -69,8 +69,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+      - name: Install Dependencies
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: composer install
       - name: Run Script
         run: |
-          composer install
-          composer global require phpstan/phpstan
-          ~/.composer/vendor/bin/phpstan analyse
+          vendor/bin/phpstan analyse
