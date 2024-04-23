@@ -982,11 +982,9 @@ class Database
 
         $delayFn = fn(int $attempts, \Exception $e) => $e->getRetryDelay();
         $retryFn = function(\Exception $e) {
-            if (
-                $e instanceof AbortedException || ($e instanceof ServiceException &&
-                $e->getCode() === Code::INTERNAL &&
-                strpos($e->getMessage(), 'RST_STREAM') !== false)
-            ) {
+            if ($e instanceof AbortedException || ($e instanceof ServiceException
+                && $e->getCode() === Code::INTERNAL
+                && strpos($e->getMessage(), 'RST_STREAM') !== false)) {
                 return true;
             }
             return false;
