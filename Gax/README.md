@@ -67,28 +67,27 @@ be found for Mac or Windows.
 
     ```sh
     > cd /path/to/gax-php
-    > cp ~/composer.phar ./
-    > php composer.phar install
+    > composer install
     ```
 
 3.  Run tests.
 
     ```sh
-    > vendor/bin/phpunit
+    > composer test
     ```
 
 4.  Updating dependencies after changing `composer.json`:
 
     ```sh
-    > php composer.phar update
+    > composer update
     `
     ```
 
 5.  Formatting source:
 
     ```sh
-    > vendor/bin/phpcbf -s --standard=./ruleset.xml
-    > vendor/bin/phpcs -s --standard=./ruleset.xml
+    > composer cs-lint
+    > composer cs-fix
     ```
 
 ## License

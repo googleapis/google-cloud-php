@@ -40,6 +40,9 @@
         }
     },
     "scripts": {
-        "regenerate-test-protos": "dev/sh/regenerate-test-protos.sh"
+        "regenerate-test-protos": "dev/sh/regenerate-test-protos.sh",
+        "test": "./vendor/bin/phpunit",
+        "cs-lint": "vendor/bin/phpcs --standard=./ruleset.xml",
+        "cs-fix": "vendor/bin/phpcbf --standard=./ruleset.xml"
     }
 }
