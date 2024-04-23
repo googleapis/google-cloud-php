@@ -172,6 +172,15 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.config.v1.QuotaValidation quota_validation = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $quota_validation = 0;
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identify deployments during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $annotations;
     protected $blueprint;
 
     /**
@@ -255,6 +264,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           Optional. Input to control quota checks for resources in terraform
      *           configuration files. There are limited resources on which quota validation
      *           applies.
+     *     @type array|\Google\Protobuf\Internal\MapField $annotations
+     *           Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     *           identify deployments during automation. See
+     *           https://google.aip.dev/148#annotations for details on format and size
+     *           limitations.
      * }
      */
     public function __construct($data = NULL) {
@@ -977,6 +991,38 @@ class Deployment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Config\V1\QuotaValidation::class);
         $this->quota_validation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identify deployments during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    /**
+     * Optional. Arbitrary key-value metadata storage e.g. to help client tools
+     * identify deployments during automation. See
+     * https://google.aip.dev/148#annotations for details on format and size
+     * limitations.
+     *
+     * Generated from protobuf field <code>map<string, string> annotations = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->annotations = $arr;
 
         return $this;
     }
