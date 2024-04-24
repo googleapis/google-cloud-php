@@ -7,7 +7,7 @@
         "php": "^8.0",
         "ext-grpc": "*",
         "google/cloud-core": "^1.52.7",
-        "google/gax": "^1.30"
+        "google/gax": "dev-add-custom-encoders as 1.31"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
