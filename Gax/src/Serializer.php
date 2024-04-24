@@ -69,6 +69,11 @@ class Serializer
     private $messageTypeTransformers;
     private $decodeFieldTransformers;
     private $decodeMessageTypeTransformers;
+    // Array of key-value pairs which specify a custom encoding function.
+    // The key is the proto class and the value is the function
+    // which will be used to convert the proto instead of the
+    // encodeMessage method from the Serializer class.
+    private $customEncoders;
 
     private $descriptorMaps = [];
 
@@ -84,12 +89,14 @@ class Serializer
         $fieldTransformers = [],
         $messageTypeTransformers = [],
         $decodeFieldTransformers = [],
-        $decodeMessageTypeTransformers = []
+        $decodeMessageTypeTransformers = [],
+        $customEncoders = [],
     ) {
         $this->fieldTransformers = $fieldTransformers;
         $this->messageTypeTransformers = $messageTypeTransformers;
         $this->decodeFieldTransformers = $decodeFieldTransformers;
         $this->decodeMessageTypeTransformers = $decodeMessageTypeTransformers;
+        $this->customEncoders = $customEncoders;
     }
 
     /**
@@ -101,6 +108,14 @@ class Serializer
      */
     public function encodeMessage($message)
     {
+        $cls = get_class($message);
+
+        // If we have supplied a customEncoder for this class type,
+        // then we use that instead of the general encodeMessage definition.
+        if (array_key_exists($cls, $this->customEncoders)) {
+            $func = $this->customEncoders[$cls];
+            return call_user_func($func, $message);
+        }
         // Get message descriptor
         $pool = DescriptorPool::getGeneratedPool();
         $messageType = $pool->getDescriptorByClassName(get_class($message));

@@ -291,4 +291,64 @@ class SerializerTest extends TestCase
         $this->assertEqualsWithDelta($data['blue'], $array['blue'], 0.0000001);
         $this->assertEqualsWithDelta($data['alpha']['value'], $array['alpha']['value'], 0.0000001);
     }
+
+    /**
+     * @dataProvider customEncoderProvider
+     */
+    public function testCustomEncoderForEncodeMessage($customEncoder, $protoObj, $expectedData)
+    {
+        $serializer = new Serializer([], [], [], [], $customEncoder);
+
+        $data = $serializer->encodeMessage($protoObj);
+        array_walk($expectedData, function ($val, $key, $expectedData) {
+            $this->assertEquals($val, $expectedData[$key]);
+        }, $expectedData);
+    }
+
+    public function customEncoderProvider()
+    {
+        $original = [
+            'red' => 50.0,
+            'blue' => 50.0
+        ];
+
+        $expected = [
+            'red' => 100.0,
+            'blue' => 100.0
+        ];
+
+        return  [
+            [
+                [
+                    Color::class => function ($message) {
+                        return [
+                            'red' => $message->getRed() * 2,
+                            'blue' => $message->getBlue() * 2
+                        ];
+                    }
+                ],
+                new Color($original),
+                $expected
+            ],
+            [
+                // When no custom encoder is supplied, the encodeMessage will return the data
+                // that is passed into the proto
+                [
+                ],
+                new Color($original),
+                $original
+            ],
+            [
+                // When a custom encoder for a different protois supplied,
+                // the encodeMessage will return the data as if no custom encoder was supplied
+                [
+                    Status::class => function ($message) {
+                        return ['foo' => 'bar'];
+                    }
+                ],
+                new Color($original),
+                $original
+            ]
+        ];
+    }
 }
