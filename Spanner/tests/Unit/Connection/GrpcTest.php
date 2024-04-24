@@ -21,6 +21,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -1418,6 +1419,30 @@ class GrpcTest extends TestCase
         ];
     }
 
+    public function testSerializerCustomEncoder()
+    {
+        $grpc = new GrpcStub();
+        $msg = new MockResponse(['name' => 'foo']);
+        $serializer = new Serializer([], [], [], [], [
+            MockResponse::class => function ($msg) {
+                return ['name' => 'bar'];
+            }
+        ]);
+        $grpc->setSerializer($serializer);
+        $arr = $grpc->callEncodeMessage($msg);
+        $this->assertEquals('bar', $arr['name']);
+    }
+
+    public function testSerializerWithoutCustomEncoder()
+    {
+        $grpc = new GrpcStub();
+        $msg = new MockResponse(['name' => 'foo']);
+        $serializer = new Serializer();
+        $grpc->setSerializer($serializer);
+        $arr = $grpc->callEncodeMessage($msg);
+        $this->assertEquals('foo', $arr['name']);
+    }
+
     private function assertCallCorrect(
         $method,
         array $args,
@@ -1578,12 +1603,22 @@ class GrpcTest extends TestCase
 class GrpcStub extends Grpc
 {
     public $config;
+    private $serializer;
 
     protected function constructGapic($gapicName, array $config)
     {
         $this->config = $config;
 
         return parent::constructGapic($gapicName, $config);
+    }
+
+    public function callEncodeMessage($msg) {
+        return $this->serializer->encodeMessage($msg);
+    }
+
+    public function setSerializer(Serializer $serializer)
+    {
+        $this->serializer = $serializer;
     }
 }
 //@codingStandardsIgnoreEnd
