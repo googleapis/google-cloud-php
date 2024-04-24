@@ -63,9 +63,7 @@ class AddComponentCommandTest extends TestCase
     public function testAddComponent()
     {
         self::$commandTester->setInputs([
-            'Y',                                                            // Does this information look correct? [Y/n]
-            'https://cloud.google.com/secret-manager/docs/reference/rest/', // What is the product documentation URL?
-            'https://cloud.google.com/secret-manager',                     // What is the product homepage?
+            'Y'    // Does this information look correct? [Y/n]
         ]);
 
         self::$commandTester->execute([
@@ -189,9 +187,7 @@ class AddComponentCommandTest extends TestCase
 
         $commandTester = new CommandTester($application->get('add-component'));
         $commandTester->setInputs([
-            'Y',                                                            // Does this information look correct? [Y/n]
-            'https://cloud.google.com/secret-manager/docs/reference/rest/', // What is the product documentation URL?
-            'https://cloud.google.com/secret-manager',                     // What is the product homepage?
+            'Y'    // Does this information look correct? [Y/n]
         ]);
 
         $commandTester->execute([
