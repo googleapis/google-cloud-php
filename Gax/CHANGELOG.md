@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.0](https://github.com/googleapis/gax-php/compare/v1.31.0...v1.32.0) (2024-04-24)
+
+
+### Features
+
+* Add a custom encoder in Serializer ([#554](https://github.com/googleapis/gax-php/issues/554)) ([be28b5a](https://github.com/googleapis/gax-php/commit/be28b5a859b674a3d398bdaab7ed86b93dd7a593))
+
 ## [1.31.0](https://github.com/googleapis/gax-php/compare/v1.30.1...v1.31.0) (2024-04-22)
 
 
