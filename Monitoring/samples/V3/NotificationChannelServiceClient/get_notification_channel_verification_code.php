@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_NotificationChannelService_GetNotificationChannelVerificationCode_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeRequest;
 use Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeResponse;
-use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 
 /**
  * Requests a verification code for an already verified channel that can then
@@ -50,9 +51,9 @@ use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
  * GetVerificationCode() will typically return a much longer, websafe base
  * 64 encoded string that has a longer expiration time.
  *
- * @param string $formattedName The notification channel for which a verification code is to be generated
- *                              and retrieved. This must name a channel that is already verified; if
- *                              the specified channel is not verified, the request will fail. Please see
+ * @param string $formattedName The notification channel for which a verification code is to be
+ *                              generated and retrieved. This must name a channel that is already verified;
+ *                              if the specified channel is not verified, the request will fail. Please see
  *                              {@see NotificationChannelServiceClient::notificationChannelName()} for help formatting this field.
  */
 function get_notification_channel_verification_code_sample(string $formattedName): void
@@ -60,12 +61,14 @@ function get_notification_channel_verification_code_sample(string $formattedName
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetNotificationChannelVerificationCodeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var GetNotificationChannelVerificationCodeResponse $response */
-        $response = $notificationChannelServiceClient->getNotificationChannelVerificationCode(
-            $formattedName
-        );
+        $response = $notificationChannelServiceClient->getNotificationChannelVerificationCode($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full resource name of the resource associated with this IAM policy.
+     * The full resource name of the resource on which this IAM policy is set.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
@@ -57,6 +57,18 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string organization = 7;</code>
      */
     private $organization = '';
+    /**
+     * The asset type of the
+     * [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource].
+     * Example:
+     * `cloudresourcemanager.googleapis.com/Project`
+     * See [Cloud Asset Inventory Supported Asset
+     * Types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+     * for all supported asset types.
+     *
+     * Generated from protobuf field <code>string asset_type = 8;</code>
+     */
+    private $asset_type = '';
 
     /**
      * Constructor.
@@ -65,7 +77,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $attached_resource
-     *           The full resource name of the resource associated with this IAM policy.
+     *           The full resource name of the resource on which this IAM policy is set.
      *           Example:
      *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      *           See [Cloud Asset Inventory Resource Name
@@ -85,6 +97,14 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *           The organization that this IAM policy belongs to, in the format of
      *           organizations/{ORGANIZATION_NUMBER}. This field is available when the
      *           IAM policy belongs (directly or cascadingly) to an organization.
+     *     @type string $asset_type
+     *           The asset type of the
+     *           [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource].
+     *           Example:
+     *           `cloudresourcemanager.googleapis.com/Project`
+     *           See [Cloud Asset Inventory Supported Asset
+     *           Types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+     *           for all supported asset types.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,7 +113,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name of the resource associated with this IAM policy.
+     * The full resource name of the resource on which this IAM policy is set.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
@@ -109,7 +129,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name of the resource associated with this IAM policy.
+     * The full resource name of the resource on which this IAM policy is set.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      * See [Cloud Asset Inventory Resource Name
@@ -250,6 +270,44 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->organization = $var;
+
+        return $this;
+    }
+
+    /**
+     * The asset type of the
+     * [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource].
+     * Example:
+     * `cloudresourcemanager.googleapis.com/Project`
+     * See [Cloud Asset Inventory Supported Asset
+     * Types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+     * for all supported asset types.
+     *
+     * Generated from protobuf field <code>string asset_type = 8;</code>
+     * @return string
+     */
+    public function getAssetType()
+    {
+        return $this->asset_type;
+    }
+
+    /**
+     * The asset type of the
+     * [AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedIamPolicy.attached_resource].
+     * Example:
+     * `cloudresourcemanager.googleapis.com/Project`
+     * See [Cloud Asset Inventory Supported Asset
+     * Types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+     * for all supported asset types.
+     *
+     * Generated from protobuf field <code>string asset_type = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssetType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->asset_type = $var;
 
         return $this;
     }

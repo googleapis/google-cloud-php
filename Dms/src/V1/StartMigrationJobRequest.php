@@ -21,6 +21,13 @@ class StartMigrationJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. Start the migration job without running prior configuration
+     * verification. Defaults to `false`.
+     *
+     * Generated from protobuf field <code>bool skip_validation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $skip_validation = false;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class StartMigrationJobRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Name of the migration job resource to start.
+     *     @type bool $skip_validation
+     *           Optional. Start the migration job without running prior configuration
+     *           verification. Defaults to `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +69,34 @@ class StartMigrationJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Start the migration job without running prior configuration
+     * verification. Defaults to `false`.
+     *
+     * Generated from protobuf field <code>bool skip_validation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSkipValidation()
+    {
+        return $this->skip_validation;
+    }
+
+    /**
+     * Optional. Start the migration job without running prior configuration
+     * verification. Defaults to `false`.
+     *
+     * Generated from protobuf field <code>bool skip_validation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipValidation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_validation = $var;
 
         return $this;
     }

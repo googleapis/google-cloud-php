@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_DeleteSnapshot_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\DeleteSnapshotRequest;
 
 /**
  * Removes an existing snapshot. Snapshots are used in [Seek]
@@ -46,9 +47,13 @@ function delete_snapshot_sample(string $formattedSnapshot): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSnapshotRequest())
+        ->setSnapshot($formattedSnapshot);
+
     // Call the API and handle any network failures.
     try {
-        $subscriberClient->deleteSnapshot($formattedSnapshot);
+        $subscriberClient->deleteSnapshot($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -26,11 +26,16 @@ class JsonParsing
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;
+    /**
+     * Generated from protobuf enum <code>STANDARD_WITH_GRAPHQL = 106979218;</code>
+     */
+    const STANDARD_WITH_GRAPHQL = 106979218;
 
     private static $valueToName = [
         self::UNDEFINED_JSON_PARSING => 'UNDEFINED_JSON_PARSING',
         self::DISABLED => 'DISABLED',
         self::STANDARD => 'STANDARD',
+        self::STANDARD_WITH_GRAPHQL => 'STANDARD_WITH_GRAPHQL',
     ];
 
     public static function name($value)

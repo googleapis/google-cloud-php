@@ -9,13 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Feature flags supported by a client.
+ * Feature flags supported or enabled by a client.
  * This is intended to be sent as part of request metadata to assure the server
  * that certain behaviors are safe to enable. This proto is meant to be
  * serialized and websafe-base64 encoded under the `bigtable-features` metadata
  * key. The value will remain constant for the lifetime of a client and due to
  * HTTP2's HPACK compression, the request overhead will be tiny.
- * This is an internal implementation detail and should not be used by endusers
+ * This is an internal implementation detail and should not be used by end users
  * directly.
  *
  * Generated from protobuf message <code>google.bigtable.v2.FeatureFlags</code>
@@ -31,18 +31,47 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     private $reverse_scans = false;
     /**
      * Notify the server that the client enables batch write flow control by
-     * requesting RateLimitInfo from MutateRowsResponse.
+     * requesting RateLimitInfo from MutateRowsResponse. Due to technical reasons,
+     * this disables partial retries.
      *
      * Generated from protobuf field <code>bool mutate_rows_rate_limit = 3;</code>
      */
     private $mutate_rows_rate_limit = false;
     /**
+     * Notify the server that the client enables batch write flow control by
+     * requesting RateLimitInfo from MutateRowsResponse. With partial retries
+     * enabled.
+     *
+     * Generated from protobuf field <code>bool mutate_rows_rate_limit2 = 5;</code>
+     */
+    private $mutate_rows_rate_limit2 = false;
+    /**
      * Notify the server that the client supports the last_scanned_row field
-     * in ReadRowsResponse for long-running sparse scans.
+     * in ReadRowsResponse for long-running scans.
      *
      * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
      */
     private $last_scanned_row_responses = false;
+    /**
+     * Notify the server that the client supports using encoded routing cookie
+     * strings to retry requests with.
+     *
+     * Generated from protobuf field <code>bool routing_cookie = 6;</code>
+     */
+    private $routing_cookie = false;
+    /**
+     * Notify the server that the client supports using retry info back off
+     * durations to retry requests with.
+     *
+     * Generated from protobuf field <code>bool retry_info = 7;</code>
+     */
+    private $retry_info = false;
+    /**
+     * Notify the server that the client has client side metrics enabled.
+     *
+     * Generated from protobuf field <code>bool client_side_metrics_enabled = 8;</code>
+     */
+    private $client_side_metrics_enabled = false;
 
     /**
      * Constructor.
@@ -55,10 +84,23 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *           reject ReadRowsRequests with the reverse bit set when this is absent.
      *     @type bool $mutate_rows_rate_limit
      *           Notify the server that the client enables batch write flow control by
-     *           requesting RateLimitInfo from MutateRowsResponse.
+     *           requesting RateLimitInfo from MutateRowsResponse. Due to technical reasons,
+     *           this disables partial retries.
+     *     @type bool $mutate_rows_rate_limit2
+     *           Notify the server that the client enables batch write flow control by
+     *           requesting RateLimitInfo from MutateRowsResponse. With partial retries
+     *           enabled.
      *     @type bool $last_scanned_row_responses
      *           Notify the server that the client supports the last_scanned_row field
-     *           in ReadRowsResponse for long-running sparse scans.
+     *           in ReadRowsResponse for long-running scans.
+     *     @type bool $routing_cookie
+     *           Notify the server that the client supports using encoded routing cookie
+     *           strings to retry requests with.
+     *     @type bool $retry_info
+     *           Notify the server that the client supports using retry info back off
+     *           durations to retry requests with.
+     *     @type bool $client_side_metrics_enabled
+     *           Notify the server that the client has client side metrics enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +138,8 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
 
     /**
      * Notify the server that the client enables batch write flow control by
-     * requesting RateLimitInfo from MutateRowsResponse.
+     * requesting RateLimitInfo from MutateRowsResponse. Due to technical reasons,
+     * this disables partial retries.
      *
      * Generated from protobuf field <code>bool mutate_rows_rate_limit = 3;</code>
      * @return bool
@@ -108,7 +151,8 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
 
     /**
      * Notify the server that the client enables batch write flow control by
-     * requesting RateLimitInfo from MutateRowsResponse.
+     * requesting RateLimitInfo from MutateRowsResponse. Due to technical reasons,
+     * this disables partial retries.
      *
      * Generated from protobuf field <code>bool mutate_rows_rate_limit = 3;</code>
      * @param bool $var
@@ -123,8 +167,38 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Notify the server that the client enables batch write flow control by
+     * requesting RateLimitInfo from MutateRowsResponse. With partial retries
+     * enabled.
+     *
+     * Generated from protobuf field <code>bool mutate_rows_rate_limit2 = 5;</code>
+     * @return bool
+     */
+    public function getMutateRowsRateLimit2()
+    {
+        return $this->mutate_rows_rate_limit2;
+    }
+
+    /**
+     * Notify the server that the client enables batch write flow control by
+     * requesting RateLimitInfo from MutateRowsResponse. With partial retries
+     * enabled.
+     *
+     * Generated from protobuf field <code>bool mutate_rows_rate_limit2 = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMutateRowsRateLimit2($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->mutate_rows_rate_limit2 = $var;
+
+        return $this;
+    }
+
+    /**
      * Notify the server that the client supports the last_scanned_row field
-     * in ReadRowsResponse for long-running sparse scans.
+     * in ReadRowsResponse for long-running scans.
      *
      * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
      * @return bool
@@ -136,7 +210,7 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
 
     /**
      * Notify the server that the client supports the last_scanned_row field
-     * in ReadRowsResponse for long-running sparse scans.
+     * in ReadRowsResponse for long-running scans.
      *
      * Generated from protobuf field <code>bool last_scanned_row_responses = 4;</code>
      * @param bool $var
@@ -146,6 +220,88 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->last_scanned_row_responses = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client supports using encoded routing cookie
+     * strings to retry requests with.
+     *
+     * Generated from protobuf field <code>bool routing_cookie = 6;</code>
+     * @return bool
+     */
+    public function getRoutingCookie()
+    {
+        return $this->routing_cookie;
+    }
+
+    /**
+     * Notify the server that the client supports using encoded routing cookie
+     * strings to retry requests with.
+     *
+     * Generated from protobuf field <code>bool routing_cookie = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRoutingCookie($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->routing_cookie = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client supports using retry info back off
+     * durations to retry requests with.
+     *
+     * Generated from protobuf field <code>bool retry_info = 7;</code>
+     * @return bool
+     */
+    public function getRetryInfo()
+    {
+        return $this->retry_info;
+    }
+
+    /**
+     * Notify the server that the client supports using retry info back off
+     * durations to retry requests with.
+     *
+     * Generated from protobuf field <code>bool retry_info = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRetryInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->retry_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client has client side metrics enabled.
+     *
+     * Generated from protobuf field <code>bool client_side_metrics_enabled = 8;</code>
+     * @return bool
+     */
+    public function getClientSideMetricsEnabled()
+    {
+        return $this->client_side_metrics_enabled;
+    }
+
+    /**
+     * Notify the server that the client has client side metrics enabled.
+     *
+     * Generated from protobuf field <code>bool client_side_metrics_enabled = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setClientSideMetricsEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->client_side_metrics_enabled = $var;
 
         return $this;
     }

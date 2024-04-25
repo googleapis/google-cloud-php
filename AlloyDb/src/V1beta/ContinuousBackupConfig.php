@@ -23,9 +23,9 @@ class ContinuousBackupConfig extends \Google\Protobuf\Internal\Message
      */
     protected $enabled = null;
     /**
-     * The number of days backups and logs will be retained, which determines the
-     * window of time that data is recoverable for. If not set, it defaults to 14
-     * days.
+     * The number of days that are eligible to restore from using PITR. To support
+     * the entire recovery window, backups and logs are retained for one day more
+     * than the recovery window. If not set, defaults to 14 days.
      *
      * Generated from protobuf field <code>int32 recovery_window_days = 4;</code>
      */
@@ -49,9 +49,9 @@ class ContinuousBackupConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enabled
      *           Whether ContinuousBackup is enabled.
      *     @type int $recovery_window_days
-     *           The number of days backups and logs will be retained, which determines the
-     *           window of time that data is recoverable for. If not set, it defaults to 14
-     *           days.
+     *           The number of days that are eligible to restore from using PITR. To support
+     *           the entire recovery window, backups and logs are retained for one day more
+     *           than the recovery window. If not set, defaults to 14 days.
      *     @type \Google\Cloud\AlloyDb\V1beta\EncryptionConfig $encryption_config
      *           The encryption config can be specified to encrypt the
      *           backups with a customer-managed encryption key (CMEK). When this field is
@@ -101,9 +101,9 @@ class ContinuousBackupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of days backups and logs will be retained, which determines the
-     * window of time that data is recoverable for. If not set, it defaults to 14
-     * days.
+     * The number of days that are eligible to restore from using PITR. To support
+     * the entire recovery window, backups and logs are retained for one day more
+     * than the recovery window. If not set, defaults to 14 days.
      *
      * Generated from protobuf field <code>int32 recovery_window_days = 4;</code>
      * @return int
@@ -114,9 +114,9 @@ class ContinuousBackupConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of days backups and logs will be retained, which determines the
-     * window of time that data is recoverable for. If not set, it defaults to 14
-     * days.
+     * The number of days that are eligible to restore from using PITR. To support
+     * the entire recovery window, backups and logs are retained for one day more
+     * than the recovery window. If not set, defaults to 14 days.
      *
      * Generated from protobuf field <code>int32 recovery_window_days = 4;</code>
      * @param int $var

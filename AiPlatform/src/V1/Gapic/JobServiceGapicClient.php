@@ -123,8 +123,7 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\JobServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\JobServiceClient}.
  */
 class JobServiceGapicClient
 {
@@ -133,8 +132,15 @@ class JobServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.JobService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -173,6 +179,10 @@ class JobServiceGapicClient
     private static $nasTrialDetailNameTemplate;
 
     private static $networkNameTemplate;
+
+    private static $notificationChannelNameTemplate;
+
+    private static $persistentResourceNameTemplate;
 
     private static $projectLocationEndpointNameTemplate;
 
@@ -354,6 +364,28 @@ class JobServiceGapicClient
         return self::$networkNameTemplate;
     }
 
+    private static function getNotificationChannelNameTemplate()
+    {
+        if (self::$notificationChannelNameTemplate == null) {
+            self::$notificationChannelNameTemplate = new PathTemplate(
+                'projects/{project}/notificationChannels/{notification_channel}'
+            );
+        }
+
+        return self::$notificationChannelNameTemplate;
+    }
+
+    private static function getPersistentResourceNameTemplate()
+    {
+        if (self::$persistentResourceNameTemplate == null) {
+            self::$persistentResourceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/persistentResources/{persistent_resource}'
+            );
+        }
+
+        return self::$persistentResourceNameTemplate;
+    }
+
     private static function getProjectLocationEndpointNameTemplate()
     {
         if (self::$projectLocationEndpointNameTemplate == null) {
@@ -415,6 +447,8 @@ class JobServiceGapicClient
                 'nasJob' => self::getNasJobNameTemplate(),
                 'nasTrialDetail' => self::getNasTrialDetailNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
+                'notificationChannel' => self::getNotificationChannelNameTemplate(),
+                'persistentResource' => self::getPersistentResourceNameTemplate(),
                 'projectLocationEndpoint' => self::getProjectLocationEndpointNameTemplate(),
                 'projectLocationPublisherModel' => self::getProjectLocationPublisherModelNameTemplate(),
                 'tensorboard' => self::getTensorboardNameTemplate(),
@@ -694,6 +728,47 @@ class JobServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * notification_channel resource.
+     *
+     * @param string $project
+     * @param string $notificationChannel
+     *
+     * @return string The formatted notification_channel resource.
+     */
+    public static function notificationChannelName(
+        $project,
+        $notificationChannel
+    ) {
+        return self::getNotificationChannelNameTemplate()->render([
+            'project' => $project,
+            'notification_channel' => $notificationChannel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * persistent_resource resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $persistentResource
+     *
+     * @return string The formatted persistent_resource resource.
+     */
+    public static function persistentResourceName(
+        $project,
+        $location,
+        $persistentResource
+    ) {
+        return self::getPersistentResourceNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'persistent_resource' => $persistentResource,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_endpoint resource.
      *
      * @param string $project
@@ -796,6 +871,8 @@ class JobServiceGapicClient
      * - nasJob: projects/{project}/locations/{location}/nasJobs/{nas_job}
      * - nasTrialDetail: projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}
      * - network: projects/{project}/global/networks/{network}
+     * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
+     * - persistentResource: projects/{project}/locations/{location}/persistentResources/{persistent_resource}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - tensorboard: projects/{project}/locations/{location}/tensorboards/{tensorboard}

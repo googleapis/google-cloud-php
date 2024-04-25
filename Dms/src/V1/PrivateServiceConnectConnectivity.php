@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Private Service Connect connectivity
- * (https://cloud.google.com/vpc/docs/private-service-connect#service-attachments)
+ * [Private Service Connect
+ * connectivity](https://cloud.google.com/vpc/docs/private-service-connect#service-attachments)
  *
  * Generated from protobuf message <code>google.cloud.clouddms.v1.PrivateServiceConnectConnectivity</code>
  */

@@ -24,16 +24,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_AnnotateAssessment_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
 
 /**
  * Annotates a previously created Assessment to provide additional information
  * on whether the event turned out to be authentic or fraudulent.
  *
  * @param string $formattedName The resource name of the Assessment, in the format
- *                              "projects/{project}/assessments/{assessment}". Please see
+ *                              `projects/{project}/assessments/{assessment}`. Please see
  *                              {@see RecaptchaEnterpriseServiceClient::assessmentName()} for help formatting this field.
  * @param int    $annotation    Optional. The annotation that will be assigned to the Event. This field can
  *                              be left empty to provide reasons that apply to an event without concluding
@@ -44,10 +45,15 @@ function annotate_assessment_sample(string $formattedName, int $annotation): voi
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new AnnotateAssessmentRequest())
+        ->setName($formattedName)
+        ->setAnnotation($annotation);
+
     // Call the API and handle any network failures.
     try {
         /** @var AnnotateAssessmentResponse $response */
-        $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName, $annotation);
+        $response = $recaptchaEnterpriseServiceClient->annotateAssessment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

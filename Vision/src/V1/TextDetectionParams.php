@@ -25,7 +25,12 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
      */
     private $enable_text_detection_confidence_score = false;
     /**
-     * A list of advanced OCR options to fine-tune OCR behavior.
+     * A list of advanced OCR options to further fine-tune OCR behavior.
+     * Current valid values are:
+     * - `legacy_layout`: a heuristics layout detection algorithm, which serves as
+     * an alternative to the current ML-based layout detection algorithm.
+     * Customers can choose the best suitable layout algorithm based on their
+     * situation.
      *
      * Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
      */
@@ -42,7 +47,12 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
      *           DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
      *           score for TEXT_DETECTION as well.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advanced_ocr_options
-     *           A list of advanced OCR options to fine-tune OCR behavior.
+     *           A list of advanced OCR options to further fine-tune OCR behavior.
+     *           Current valid values are:
+     *           - `legacy_layout`: a heuristics layout detection algorithm, which serves as
+     *           an alternative to the current ML-based layout detection algorithm.
+     *           Customers can choose the best suitable layout algorithm based on their
+     *           situation.
      * }
      */
     public function __construct($data = NULL) {
@@ -81,7 +91,12 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of advanced OCR options to fine-tune OCR behavior.
+     * A list of advanced OCR options to further fine-tune OCR behavior.
+     * Current valid values are:
+     * - `legacy_layout`: a heuristics layout detection algorithm, which serves as
+     * an alternative to the current ML-based layout detection algorithm.
+     * Customers can choose the best suitable layout algorithm based on their
+     * situation.
      *
      * Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -92,7 +107,12 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of advanced OCR options to fine-tune OCR behavior.
+     * A list of advanced OCR options to further fine-tune OCR behavior.
+     * Current valid values are:
+     * - `legacy_layout`: a heuristics layout detection algorithm, which serves as
+     * an alternative to the current ML-based layout detection algorithm.
+     * Customers can choose the best suitable layout algorithm based on their
+     * situation.
      *
      * Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -21,7 +21,7 @@ namespace Google\Cloud\Firestore\FieldValue;
  * Represents an increment DocumentTransform.
  *
  * This class is not intended to be used directly. See
- * {@see Google\Cloud\Firestore\FieldValue::increment()} for usage.
+ * {@see \Google\Cloud\Firestore\FieldValue::increment()} for usage.
  *
  * @internal
  */

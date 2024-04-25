@@ -1,6 +1,6 @@
 # Google Cloud Config for PHP
 
-> Idiomatic PHP client for [Google Cloud Config]().
+> Idiomatic PHP client for [Google Cloud Config](https://cloud.google.com/infrastructure-manager).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-config/v/stable)](https://packagist.org/packages/google/cloud-config) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-config.svg)](https://packagist.org/packages/google/cloud-config)
 

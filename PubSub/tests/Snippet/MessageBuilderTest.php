@@ -17,12 +17,13 @@
 
 namespace Google\Cloud\PubSub\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\MessageBuilder;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\V1\Client\PublisherClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -42,15 +43,23 @@ class MessageBuilderTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connection = $this->prophesize(ConnectionInterface::class);
-        $connection->publishMessage(Argument::any())->willReturn([]);
-        $connection->getTopic(Argument::any())
-            ->willReturn([
-                'topic' => '',
-            ]);
+        $requestHandler = $this->prophesize(RequestHandler::class);
+        $requestHandler->sendRequest(
+            PublisherClient::class,
+            'publish',
+            Argument::cetera()
+        )->willReturn([]);
 
-        $client = TestHelpers::stub(PubSubClient::class);
-        $client->___setProperty('connection', $connection->reveal());
+        $requestHandler->sendRequest(
+            PublisherClient::class,
+            'getTopic',
+            Argument::cetera()
+        )->willReturn([
+            'topic' => '',
+        ]);
+
+        $client = TestHelpers::stub(PubSubClient::class, [['projectId' => 'test']], ['requestHandler']);
+        $client->___setProperty('requestHandler', $requestHandler->reveal());
 
         $snippet = $this->snippetFromClass(MessageBuilder::class);
         $snippet->replace('$client = new PubSubClient();', '');

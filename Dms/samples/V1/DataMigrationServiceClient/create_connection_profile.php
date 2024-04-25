@@ -25,15 +25,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_CreateConnectionProfile_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\ConnectionProfile;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\CreateConnectionProfileRequest;
 use Google\Rpc\Status;
 
 /**
  * Creates a new connection profile in a given project and location.
  *
  * @param string $formattedParent     The parent which owns this collection of connection profiles. Please see
- *                                    {@see DataMigrationServiceClient::connectionProfileName()} for help formatting this field.
+ *                                    {@see DataMigrationServiceClient::locationName()} for help formatting this field.
  * @param string $connectionProfileId The connection profile identifier.
  */
 function create_connection_profile_sample(
@@ -43,17 +44,17 @@ function create_connection_profile_sample(
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $connectionProfile = new ConnectionProfile();
+    $request = (new CreateConnectionProfileRequest())
+        ->setParent($formattedParent)
+        ->setConnectionProfileId($connectionProfileId)
+        ->setConnectionProfile($connectionProfile);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->createConnectionProfile(
-            $formattedParent,
-            $connectionProfileId,
-            $connectionProfile
-        );
+        $response = $dataMigrationServiceClient->createConnectionProfile($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -81,11 +82,7 @@ function create_connection_profile_sample(
  */
 function callSample(): void
 {
-    $formattedParent = DataMigrationServiceClient::connectionProfileName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[CONNECTION_PROFILE]'
-    );
+    $formattedParent = DataMigrationServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $connectionProfileId = '[CONNECTION_PROFILE_ID]';
 
     create_connection_profile_sample($formattedParent, $connectionProfileId);

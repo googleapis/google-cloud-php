@@ -20,25 +20,25 @@ class LoadBalancingScheme
      */
     const UNDEFINED_LOAD_BALANCING_SCHEME = 0;
     /**
-     * Signifies that this will be used for external HTTP(S), SSL Proxy, TCP Proxy, or Network Load Balancing
+     * Signifies that this will be used for classic Application Load Balancers, global external proxy Network Load Balancers, or external passthrough Network Load Balancers.
      *
      * Generated from protobuf enum <code>EXTERNAL = 35607499;</code>
      */
     const EXTERNAL = 35607499;
     /**
-     * Signifies that this will be used for External Managed HTTP(S) Load Balancing.
+     * Signifies that this will be used for global external Application Load Balancers, regional external Application Load Balancers, or regional external proxy Network Load Balancers.
      *
      * Generated from protobuf enum <code>EXTERNAL_MANAGED = 512006923;</code>
      */
     const EXTERNAL_MANAGED = 512006923;
     /**
-     * Signifies that this will be used for Internal TCP/UDP Load Balancing.
+     * Signifies that this will be used for internal passthrough Network Load Balancers.
      *
      * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */
     const INTERNAL = 279295677;
     /**
-     * Signifies that this will be used for Internal HTTP(S) Load Balancing.
+     * Signifies that this will be used for internal Application Load Balancers.
      *
      * Generated from protobuf enum <code>INTERNAL_MANAGED = 37350397;</code>
      */

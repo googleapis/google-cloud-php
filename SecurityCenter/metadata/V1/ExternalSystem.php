@@ -18,14 +18,30 @@ class ExternalSystem
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-“
-4google/cloud/securitycenter/v1/external_system.protogoogle.cloud.securitycenter.v1google/protobuf/timestamp.proto"‡
+Ù	
+4google/cloud/securitycenter/v1/external_system.protogoogle.cloud.securitycenter.v1google/protobuf/timestamp.proto"Ç
 ExternalSystem
 name (	
 	assignees (	
 external_uid (	
 status (	?
-external_system_update_time (2.google.protobuf.Timestamp:≈ÍA¡
+external_system_update_time (2.google.protobuf.Timestamp
+case_uri (	
+case_priority (	,
+case_sla	 (2.google.protobuf.Timestamp4
+case_create_time
+ (2.google.protobuf.Timestamp3
+case_close_time (2.google.protobuf.TimestampN
+ticket_info (29.google.cloud.securitycenter.v1.ExternalSystem.TicketInfoç
+
+TicketInfo
+
+id (	
+assignee (	
+description (	
+uri (	
+status (	/
+update_time (2.google.protobuf.Timestamp:≈ÍA¡
 ,securitycenter.googleapis.com/ExternalSystemaorganizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}Ufolders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}Wprojects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}BÌ
 "com.google.cloud.securitycenter.v1BExternalSystemProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpb™Google.Cloud.SecurityCenter.V1 Google\\Cloud\\SecurityCenter\\V1Í!Google::Cloud::SecurityCenter::V1bproto3'
         , true);

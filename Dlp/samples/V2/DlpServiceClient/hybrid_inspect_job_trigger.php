@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_HybridInspectJobTrigger_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest;
 use Google\Cloud\Dlp\V2\HybridInspectResponse;
 
 /**
@@ -32,8 +33,8 @@ use Google\Cloud\Dlp\V2\HybridInspectResponse;
  * will be processed asynchronously. To review the findings monitor the
  * jobs within the trigger.
  *
- * @param string $formattedName Resource name of the trigger to execute a hybrid inspect on, for example
- *                              `projects/dlp-test-project/jobTriggers/53234423`. Please see
+ * @param string $formattedName Resource name of the trigger to execute a hybrid inspect on, for
+ *                              example `projects/dlp-test-project/jobTriggers/53234423`. Please see
  *                              {@see DlpServiceClient::jobTriggerName()} for help formatting this field.
  */
 function hybrid_inspect_job_trigger_sample(string $formattedName): void
@@ -41,10 +42,14 @@ function hybrid_inspect_job_trigger_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new HybridInspectJobTriggerRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var HybridInspectResponse $response */
-        $response = $dlpServiceClient->hybridInspectJobTrigger($formattedName);
+        $response = $dlpServiceClient->hybridInspectJobTrigger($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

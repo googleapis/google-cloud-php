@@ -5,65 +5,6 @@
     "protoPackage": "google.cloud.dataplex.v1",
     "libraryPackage": "Google\\Cloud\\Dataplex\\V1",
     "services": {
-        "ContentService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "ContentServiceGapicClient",
-                    "rpcs": {
-                        "CreateContent": {
-                            "methods": [
-                                "createContent"
-                            ]
-                        },
-                        "DeleteContent": {
-                            "methods": [
-                                "deleteContent"
-                            ]
-                        },
-                        "GetContent": {
-                            "methods": [
-                                "getContent"
-                            ]
-                        },
-                        "GetIamPolicy": {
-                            "methods": [
-                                "getIamPolicy"
-                            ]
-                        },
-                        "ListContent": {
-                            "methods": [
-                                "listContent"
-                            ]
-                        },
-                        "SetIamPolicy": {
-                            "methods": [
-                                "setIamPolicy"
-                            ]
-                        },
-                        "TestIamPermissions": {
-                            "methods": [
-                                "testIamPermissions"
-                            ]
-                        },
-                        "UpdateContent": {
-                            "methods": [
-                                "updateContent"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
         "DataplexService": {
             "clients": {
                 "grpc": {
@@ -263,6 +204,209 @@
                 }
             }
         },
+        "CatalogService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CatalogServiceGapicClient",
+                    "rpcs": {
+                        "CreateAspectType": {
+                            "methods": [
+                                "createAspectType"
+                            ]
+                        },
+                        "CreateEntry": {
+                            "methods": [
+                                "createEntry"
+                            ]
+                        },
+                        "CreateEntryGroup": {
+                            "methods": [
+                                "createEntryGroup"
+                            ]
+                        },
+                        "CreateEntryType": {
+                            "methods": [
+                                "createEntryType"
+                            ]
+                        },
+                        "DeleteAspectType": {
+                            "methods": [
+                                "deleteAspectType"
+                            ]
+                        },
+                        "DeleteEntry": {
+                            "methods": [
+                                "deleteEntry"
+                            ]
+                        },
+                        "DeleteEntryGroup": {
+                            "methods": [
+                                "deleteEntryGroup"
+                            ]
+                        },
+                        "DeleteEntryType": {
+                            "methods": [
+                                "deleteEntryType"
+                            ]
+                        },
+                        "GetAspectType": {
+                            "methods": [
+                                "getAspectType"
+                            ]
+                        },
+                        "GetEntry": {
+                            "methods": [
+                                "getEntry"
+                            ]
+                        },
+                        "GetEntryGroup": {
+                            "methods": [
+                                "getEntryGroup"
+                            ]
+                        },
+                        "GetEntryType": {
+                            "methods": [
+                                "getEntryType"
+                            ]
+                        },
+                        "ListAspectTypes": {
+                            "methods": [
+                                "listAspectTypes"
+                            ]
+                        },
+                        "ListEntries": {
+                            "methods": [
+                                "listEntries"
+                            ]
+                        },
+                        "ListEntryGroups": {
+                            "methods": [
+                                "listEntryGroups"
+                            ]
+                        },
+                        "ListEntryTypes": {
+                            "methods": [
+                                "listEntryTypes"
+                            ]
+                        },
+                        "LookupEntry": {
+                            "methods": [
+                                "lookupEntry"
+                            ]
+                        },
+                        "SearchEntries": {
+                            "methods": [
+                                "searchEntries"
+                            ]
+                        },
+                        "UpdateAspectType": {
+                            "methods": [
+                                "updateAspectType"
+                            ]
+                        },
+                        "UpdateEntry": {
+                            "methods": [
+                                "updateEntry"
+                            ]
+                        },
+                        "UpdateEntryGroup": {
+                            "methods": [
+                                "updateEntryGroup"
+                            ]
+                        },
+                        "UpdateEntryType": {
+                            "methods": [
+                                "updateEntryType"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ContentService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ContentServiceGapicClient",
+                    "rpcs": {
+                        "CreateContent": {
+                            "methods": [
+                                "createContent"
+                            ]
+                        },
+                        "DeleteContent": {
+                            "methods": [
+                                "deleteContent"
+                            ]
+                        },
+                        "GetContent": {
+                            "methods": [
+                                "getContent"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "ListContent": {
+                            "methods": [
+                                "listContent"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateContent": {
+                            "methods": [
+                                "updateContent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DataTaxonomyService": {
             "clients": {
                 "grpc": {
@@ -385,6 +529,11 @@
                         "DeleteDataScan": {
                             "methods": [
                                 "deleteDataScan"
+                            ]
+                        },
+                        "GenerateDataQualityRules": {
+                            "methods": [
+                                "generateDataQualityRules"
                             ]
                         },
                         "GetDataScan": {

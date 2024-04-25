@@ -29,27 +29,39 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Config\V1\Client\ConfigClient;
 use Google\Cloud\Config\V1\CreateDeploymentRequest;
+use Google\Cloud\Config\V1\CreatePreviewRequest;
 use Google\Cloud\Config\V1\DeleteDeploymentRequest;
+use Google\Cloud\Config\V1\DeletePreviewRequest;
 use Google\Cloud\Config\V1\DeleteStatefileRequest;
 use Google\Cloud\Config\V1\Deployment;
 use Google\Cloud\Config\V1\ExportDeploymentStatefileRequest;
 use Google\Cloud\Config\V1\ExportLockInfoRequest;
+use Google\Cloud\Config\V1\ExportPreviewResultRequest;
+use Google\Cloud\Config\V1\ExportPreviewResultResponse;
 use Google\Cloud\Config\V1\ExportRevisionStatefileRequest;
 use Google\Cloud\Config\V1\GetDeploymentRequest;
+use Google\Cloud\Config\V1\GetPreviewRequest;
 use Google\Cloud\Config\V1\GetResourceRequest;
 use Google\Cloud\Config\V1\GetRevisionRequest;
+use Google\Cloud\Config\V1\GetTerraformVersionRequest;
 use Google\Cloud\Config\V1\ImportStatefileRequest;
 use Google\Cloud\Config\V1\ListDeploymentsRequest;
 use Google\Cloud\Config\V1\ListDeploymentsResponse;
+use Google\Cloud\Config\V1\ListPreviewsRequest;
+use Google\Cloud\Config\V1\ListPreviewsResponse;
 use Google\Cloud\Config\V1\ListResourcesRequest;
 use Google\Cloud\Config\V1\ListResourcesResponse;
 use Google\Cloud\Config\V1\ListRevisionsRequest;
 use Google\Cloud\Config\V1\ListRevisionsResponse;
+use Google\Cloud\Config\V1\ListTerraformVersionsRequest;
+use Google\Cloud\Config\V1\ListTerraformVersionsResponse;
 use Google\Cloud\Config\V1\LockDeploymentRequest;
 use Google\Cloud\Config\V1\LockInfo;
+use Google\Cloud\Config\V1\Preview;
 use Google\Cloud\Config\V1\Resource;
 use Google\Cloud\Config\V1\Revision;
 use Google\Cloud\Config\V1\Statefile;
+use Google\Cloud\Config\V1\TerraformVersion;
 use Google\Cloud\Config\V1\UnlockDeploymentRequest;
 use Google\Cloud\Config\V1\UpdateDeploymentRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -84,7 +96,9 @@ class ConfigClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ConfigClient */
@@ -127,6 +141,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -138,6 +154,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -212,12 +230,15 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -232,6 +253,152 @@ class ConfigClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/createDeploymentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createPreviewTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createPreviewTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $deployment = 'deployment1939520197';
+        $serviceAccount = 'serviceAccount-1948028253';
+        $artifactsGcsBucket = 'artifactsGcsBucket696146480';
+        $workerPool = 'workerPool982219837';
+        $build = 'build94094958';
+        $errorLogs = 'errorLogs1635955078';
+        $logs = 'logs3327407';
+        $tfVersion = 'tfVersion1712341003';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $expectedResponse = new Preview();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDeployment($deployment);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setArtifactsGcsBucket($artifactsGcsBucket);
+        $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setBuild($build);
+        $expectedResponse->setErrorLogs($errorLogs);
+        $expectedResponse->setLogs($logs);
+        $expectedResponse->setTfVersion($tfVersion);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createPreviewTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $preview = new Preview();
+        $request = (new CreatePreviewRequest())->setParent($formattedParent)->setPreview($preview);
+        $response = $gapicClient->createPreview($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/CreatePreview', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getPreview();
+        $this->assertProtobufEquals($preview, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createPreviewTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createPreviewExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createPreviewTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $preview = new Preview();
+        $request = (new CreatePreviewRequest())->setParent($formattedParent)->setPreview($preview);
+        $response = $gapicClient->createPreview($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createPreviewTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -280,6 +447,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -291,6 +460,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -300,8 +471,7 @@ class ConfigClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new DeleteDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->deleteDeployment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -357,22 +527,166 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new DeleteDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->deleteDeployment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteDeploymentTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deletePreviewTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deletePreviewTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $deployment = 'deployment1939520197';
+        $serviceAccount = 'serviceAccount-1948028253';
+        $artifactsGcsBucket = 'artifactsGcsBucket696146480';
+        $workerPool = 'workerPool982219837';
+        $build = 'build94094958';
+        $errorLogs = 'errorLogs1635955078';
+        $logs = 'logs3327407';
+        $tfVersion = 'tfVersion1712341003';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $expectedResponse = new Preview();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDeployment($deployment);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setArtifactsGcsBucket($artifactsGcsBucket);
+        $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setBuild($build);
+        $expectedResponse->setErrorLogs($errorLogs);
+        $expectedResponse->setLogs($logs);
+        $expectedResponse->setTfVersion($tfVersion);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deletePreviewTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new DeletePreviewRequest())->setName($formattedName);
+        $response = $gapicClient->deletePreview($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/DeletePreview', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deletePreviewTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deletePreviewExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deletePreviewTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new DeletePreviewRequest())->setName($formattedName);
+        $response = $gapicClient->deletePreview($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deletePreviewTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -404,9 +718,7 @@ class ConfigClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         $lockId = 338696367;
-        $request = (new DeleteStatefileRequest())
-            ->setName($formattedName)
-            ->setLockId($lockId);
+        $request = (new DeleteStatefileRequest())->setName($formattedName)->setLockId($lockId);
         $gapicClient->deleteStatefile($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -431,19 +743,20 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         $lockId = 338696367;
-        $request = (new DeleteStatefileRequest())
-            ->setName($formattedName)
-            ->setLockId($lockId);
+        $request = (new DeleteStatefileRequest())->setName($formattedName)->setLockId($lockId);
         try {
             $gapicClient->deleteStatefile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -472,8 +785,7 @@ class ConfigClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new ExportDeploymentStatefileRequest())
-            ->setParent($formattedParent);
+        $request = (new ExportDeploymentStatefileRequest())->setParent($formattedParent);
         $response = $gapicClient->exportDeploymentStatefile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -497,17 +809,19 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new ExportDeploymentStatefileRequest())
-            ->setParent($formattedParent);
+        $request = (new ExportDeploymentStatefileRequest())->setParent($formattedParent);
         try {
             $gapicClient->exportDeploymentStatefile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -544,8 +858,7 @@ class ConfigClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new ExportLockInfoRequest())
-            ->setName($formattedName);
+        $request = (new ExportLockInfoRequest())->setName($formattedName);
         $response = $gapicClient->exportLockInfo($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -569,19 +882,84 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new ExportLockInfoRequest())
-            ->setName($formattedName);
+        $request = (new ExportLockInfoRequest())->setName($formattedName);
         try {
             $gapicClient->exportLockInfo($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function exportPreviewResultTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ExportPreviewResultResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new ExportPreviewResultRequest())->setParent($formattedParent);
+        $response = $gapicClient->exportPreviewResult($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/ExportPreviewResult', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function exportPreviewResultExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new ExportPreviewResultRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->exportPreviewResult($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -608,8 +986,7 @@ class ConfigClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]');
-        $request = (new ExportRevisionStatefileRequest())
-            ->setParent($formattedParent);
+        $request = (new ExportRevisionStatefileRequest())->setParent($formattedParent);
         $response = $gapicClient->exportRevisionStatefile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -633,17 +1010,19 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]');
-        $request = (new ExportRevisionStatefileRequest())
-            ->setParent($formattedParent);
+        $request = (new ExportRevisionStatefileRequest())->setParent($formattedParent);
         try {
             $gapicClient->exportRevisionStatefile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -676,6 +1055,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -687,11 +1068,12 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new GetDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new GetDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->getDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -715,19 +1097,104 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new GetDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new GetDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->getDeployment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPreviewTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $deployment = 'deployment1939520197';
+        $serviceAccount = 'serviceAccount-1948028253';
+        $artifactsGcsBucket = 'artifactsGcsBucket696146480';
+        $workerPool = 'workerPool982219837';
+        $build = 'build94094958';
+        $errorLogs = 'errorLogs1635955078';
+        $logs = 'logs3327407';
+        $tfVersion = 'tfVersion1712341003';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $expectedResponse = new Preview();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDeployment($deployment);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setArtifactsGcsBucket($artifactsGcsBucket);
+        $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setBuild($build);
+        $expectedResponse->setErrorLogs($errorLogs);
+        $expectedResponse->setLogs($logs);
+        $expectedResponse->setTfVersion($tfVersion);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new GetPreviewRequest())->setName($formattedName);
+        $response = $gapicClient->getPreview($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/GetPreview', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPreviewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');
+        $request = (new GetPreviewRequest())->setName($formattedName);
+        try {
+            $gapicClient->getPreview($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -753,9 +1220,14 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->resourceName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]', '[RESOURCE]');
-        $request = (new GetResourceRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->resourceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DEPLOYMENT]',
+            '[REVISION]',
+            '[RESOURCE]'
+        );
+        $request = (new GetResourceRequest())->setName($formattedName);
         $response = $gapicClient->getResource($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -779,17 +1251,25 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->resourceName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]', '[RESOURCE]');
-        $request = (new GetResourceRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->resourceName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DEPLOYMENT]',
+            '[REVISION]',
+            '[RESOURCE]'
+        );
+        $request = (new GetResourceRequest())->setName($formattedName);
         try {
             $gapicClient->getResource($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -820,6 +1300,9 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
+        $quotaValidationResults = 'quotaValidationResults220555095';
         $expectedResponse = new Revision();
         $expectedResponse->setName($name2);
         $expectedResponse->setStateDetail($stateDetail);
@@ -829,11 +1312,13 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
+        $expectedResponse->setQuotaValidationResults($quotaValidationResults);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]');
-        $request = (new GetRevisionRequest())
-            ->setName($formattedName);
+        $request = (new GetRevisionRequest())->setName($formattedName);
         $response = $gapicClient->getRevision($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -857,19 +1342,86 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]');
-        $request = (new GetRevisionRequest())
-            ->setName($formattedName);
+        $request = (new GetRevisionRequest())->setName($formattedName);
         try {
             $gapicClient->getRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getTerraformVersionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new TerraformVersion();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->terraformVersionName('[PROJECT]', '[LOCATION]', '[TERRAFORM_VERSION]');
+        $request = (new GetTerraformVersionRequest())->setName($formattedName);
+        $response = $gapicClient->getTerraformVersion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/GetTerraformVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getTerraformVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->terraformVersionName('[PROJECT]', '[LOCATION]', '[TERRAFORM_VERSION]');
+        $request = (new GetTerraformVersionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getTerraformVersion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -897,9 +1449,7 @@ class ConfigClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         $lockId = 338696367;
-        $request = (new ImportStatefileRequest())
-            ->setParent($formattedParent)
-            ->setLockId($lockId);
+        $request = (new ImportStatefileRequest())->setParent($formattedParent)->setLockId($lockId);
         $response = $gapicClient->importStatefile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -925,19 +1475,20 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         $lockId = 338696367;
-        $request = (new ImportStatefileRequest())
-            ->setParent($formattedParent)
-            ->setLockId($lockId);
+        $request = (new ImportStatefileRequest())->setParent($formattedParent)->setLockId($lockId);
         try {
             $gapicClient->importStatefile($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -962,17 +1513,14 @@ class ConfigClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $deploymentsElement = new Deployment();
-        $deployments = [
-            $deploymentsElement,
-        ];
+        $deployments = [$deploymentsElement];
         $expectedResponse = new ListDeploymentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDeployments($deployments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -999,19 +1547,92 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListDeploymentsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDeploymentsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDeployments($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listPreviewsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $previewsElement = new Preview();
+        $previews = [$previewsElement];
+        $expectedResponse = new ListPreviewsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setPreviews($previews);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListPreviewsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listPreviews($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getPreviews()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/ListPreviews', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listPreviewsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListPreviewsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listPreviews($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1034,17 +1655,14 @@ class ConfigClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $resourcesElement = new Resource();
-        $resources = [
-            $resourcesElement,
-        ];
+        $resources = [$resourcesElement];
         $expectedResponse = new ListResourcesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResources($resources);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]');
-        $request = (new ListResourcesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListResourcesRequest())->setParent($formattedParent);
         $response = $gapicClient->listResources($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1071,17 +1689,19 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->revisionName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[REVISION]');
-        $request = (new ListResourcesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListResourcesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listResources($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1106,17 +1726,14 @@ class ConfigClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $revisionsElement = new Revision();
-        $revisions = [
-            $revisionsElement,
-        ];
+        $revisions = [$revisionsElement];
         $expectedResponse = new ListRevisionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRevisions($revisions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new ListRevisionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRevisionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1143,19 +1760,92 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new ListRevisionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRevisionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRevisions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listTerraformVersionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $terraformVersionsElement = new TerraformVersion();
+        $terraformVersions = [$terraformVersionsElement];
+        $expectedResponse = new ListTerraformVersionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTerraformVersions($terraformVersions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListTerraformVersionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listTerraformVersions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getTerraformVersions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.config.v1.Config/ListTerraformVersions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listTerraformVersionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListTerraformVersionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listTerraformVersions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1198,6 +1888,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -1209,6 +1901,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1218,8 +1912,7 @@ class ConfigClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new LockDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new LockDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->lockDeployment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1275,17 +1968,19 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $request = (new LockDeploymentRequest())
-            ->setName($formattedName);
+        $request = (new LockDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->lockDeployment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1339,6 +2034,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name2);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -1350,6 +2047,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1360,9 +2059,7 @@ class ConfigClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         $lockId = 338696367;
-        $request = (new UnlockDeploymentRequest())
-            ->setName($formattedName)
-            ->setLockId($lockId);
+        $request = (new UnlockDeploymentRequest())->setName($formattedName)->setLockId($lockId);
         $response = $gapicClient->unlockDeployment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1420,19 +2117,20 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->deploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         $lockId = 338696367;
-        $request = (new UnlockDeploymentRequest())
-            ->setName($formattedName)
-            ->setLockId($lockId);
+        $request = (new UnlockDeploymentRequest())->setName($formattedName)->setLockId($lockId);
         $response = $gapicClient->unlockDeployment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1486,6 +2184,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -1497,6 +2197,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1506,8 +2208,7 @@ class ConfigClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $deployment = new Deployment();
-        $request = (new UpdateDeploymentRequest())
-            ->setDeployment($deployment);
+        $request = (new UpdateDeploymentRequest())->setDeployment($deployment);
         $response = $gapicClient->updateDeployment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1563,17 +2264,19 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $deployment = new Deployment();
-        $request = (new UpdateDeploymentRequest())
-            ->setDeployment($deployment);
+        $request = (new UpdateDeploymentRequest())->setDeployment($deployment);
         $response = $gapicClient->updateDeployment($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1635,12 +2338,15 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -1667,9 +2373,7 @@ class ConfigClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -1699,12 +2403,15 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
@@ -1737,8 +2444,7 @@ class ConfigClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1762,17 +2468,19 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1804,9 +2512,7 @@ class ConfigClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1832,19 +2538,20 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1872,9 +2579,7 @@ class ConfigClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1900,19 +2605,20 @@ class ConfigClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1957,6 +2663,8 @@ class ConfigClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $importExistingResources = false;
         $workerPool = 'workerPool982219837';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
+        $tfVersion = 'tfVersion1712341003';
         $expectedResponse = new Deployment();
         $expectedResponse->setName($name);
         $expectedResponse->setLatestRevision($latestRevision);
@@ -1968,6 +2676,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setImportExistingResources($importExistingResources);
         $expectedResponse->setWorkerPool($workerPool);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
+        $expectedResponse->setTfVersion($tfVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

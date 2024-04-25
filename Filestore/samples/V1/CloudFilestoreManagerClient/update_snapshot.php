@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START file_v1_generated_CloudFilestoreManager_UpdateSnapshot_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
 use Google\Cloud\Filestore\V1\Snapshot;
+use Google\Cloud\Filestore\V1\UpdateSnapshotRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,14 +45,17 @@ function update_snapshot_sample(): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $snapshot = new Snapshot();
+    $request = (new UpdateSnapshotRequest())
+        ->setUpdateMask($updateMask)
+        ->setSnapshot($snapshot);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudFilestoreManagerClient->updateSnapshot($updateMask, $snapshot);
+        $response = $cloudFilestoreManagerClient->updateSnapshot($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

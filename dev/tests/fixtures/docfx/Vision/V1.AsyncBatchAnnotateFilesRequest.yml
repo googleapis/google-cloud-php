@@ -20,6 +20,7 @@ items:
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::setRequests()'
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::getParent()'
       - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::__construct()'
     name: __construct
@@ -123,3 +124,20 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: requests
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest">Google\Cloud\Vision\V1\AsyncAnnotateFileRequest</xref>&gt;'
+          description: 'Required. Individual async file annotation requests for this batch.'
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest">Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest</xref>'

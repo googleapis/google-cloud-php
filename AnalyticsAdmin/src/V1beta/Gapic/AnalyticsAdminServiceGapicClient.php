@@ -97,6 +97,7 @@ use Google\Analytics\Admin\V1beta\RunAccessReportResponse;
 use Google\Analytics\Admin\V1beta\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1beta\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1beta\UpdateAccountRequest;
+use Google\Analytics\Admin\V1beta\UpdateConversionEventRequest;
 use Google\Analytics\Admin\V1beta\UpdateCustomDimensionRequest;
 use Google\Analytics\Admin\V1beta\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\UpdateDataRetentionSettingsRequest;
@@ -139,11 +140,9 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient} to use the
- * new surface.
- *
  * @experimental
+ *
+ * @deprecated Please use the new service client {@see \Google\Analytics\Admin\V1beta\Client\AnalyticsAdminServiceClient}.
  */
 class AnalyticsAdminServiceGapicClient
 {
@@ -152,8 +151,15 @@ class AnalyticsAdminServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.analytics.admin.v1beta.AnalyticsAdminService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'analyticsadmin.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'analyticsadmin.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -2925,6 +2931,54 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Updates a conversion event with the specified attributes.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $conversionEvent = new ConversionEvent();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateConversionEvent($conversionEvent, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param ConversionEvent $conversionEvent Required. The conversion event to update.
+     *                                         The `name` field is used to identify the settings to be updated.
+     * @param FieldMask       $updateMask      Required. The list of fields to be updated. Field names must be in snake
+     *                                         case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                         replace the entire entity, use one path with the string "*" to match all
+     *                                         fields.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1beta\ConversionEvent
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateConversionEvent($conversionEvent, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateConversionEventRequest();
+        $requestParamHeaders = [];
+        $request->setConversionEvent($conversionEvent);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['conversion_event.name'] = $conversionEvent->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateConversionEvent', ConversionEvent::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates a CustomDimension on a property.
      *
      * Sample code:
@@ -3173,18 +3227,19 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $measurementProtocolSecret = new MeasurementProtocolSecret();
-     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($measurementProtocolSecret);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
      * @param MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to update.
+     * @param FieldMask                 $updateMask                Required. The list of fields to be updated. Omitted fields will not be
+     *                                                             updated.
      * @param array                     $optionalArgs              {
      *     Optional.
      *
-     *     @type FieldMask $updateMask
-     *           The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -3197,16 +3252,13 @@ class AnalyticsAdminServiceGapicClient
      *
      * @experimental
      */
-    public function updateMeasurementProtocolSecret($measurementProtocolSecret, array $optionalArgs = [])
+    public function updateMeasurementProtocolSecret($measurementProtocolSecret, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateMeasurementProtocolSecretRequest();
         $requestParamHeaders = [];
         $request->setMeasurementProtocolSecret($measurementProtocolSecret);
+        $request->setUpdateMask($updateMask);
         $requestParamHeaders['measurement_protocol_secret.name'] = $measurementProtocolSecret->getName();
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
-
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();

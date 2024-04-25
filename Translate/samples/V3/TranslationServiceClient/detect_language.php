@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START translate_v3_generated_TranslationService_DetectLanguage_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\DetectLanguageRequest;
 use Google\Cloud\Translate\V3\DetectLanguageResponse;
-use Google\Cloud\Translate\V3\TranslationServiceClient;
 
 /**
  * Detects the language of text within a request.
@@ -48,10 +49,14 @@ function detect_language_sample(string $formattedParent): void
     // Create a client.
     $translationServiceClient = new TranslationServiceClient();
 
+    // Prepare the request message.
+    $request = (new DetectLanguageRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var DetectLanguageResponse $response */
-        $response = $translationServiceClient->detectLanguage($formattedParent);
+        $response = $translationServiceClient->detectLanguage($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

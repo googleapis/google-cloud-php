@@ -21,7 +21,7 @@ class Proximity extends \Google\Protobuf\Internal\Message
      * if you want to modify the likelihood of an entire column of findngs,
      * set this to 1. For more information, see
      * [Hotword example: Set the match likelihood of a table column]
-     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
+     * (https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>int32 window_before = 1;</code>
      */
@@ -44,7 +44,7 @@ class Proximity extends \Google\Protobuf\Internal\Message
      *           if you want to modify the likelihood of an entire column of findngs,
      *           set this to 1. For more information, see
      *           [Hotword example: Set the match likelihood of a table column]
-     *           (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
+     *           (https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
      *     @type int $window_after
      *           Number of characters after the finding to consider.
      * }
@@ -59,7 +59,7 @@ class Proximity extends \Google\Protobuf\Internal\Message
      * if you want to modify the likelihood of an entire column of findngs,
      * set this to 1. For more information, see
      * [Hotword example: Set the match likelihood of a table column]
-     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
+     * (https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>int32 window_before = 1;</code>
      * @return int
@@ -74,7 +74,7 @@ class Proximity extends \Google\Protobuf\Internal\Message
      * if you want to modify the likelihood of an entire column of findngs,
      * set this to 1. For more information, see
      * [Hotword example: Set the match likelihood of a table column]
-     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
+     * (https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>int32 window_before = 1;</code>
      * @param int $var

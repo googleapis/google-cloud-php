@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START eventarc_v1_generated_Eventarc_GetProvider_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\GetProviderRequest;
 use Google\Cloud\Eventarc\V1\Provider;
 
 /**
@@ -38,10 +39,14 @@ function get_provider_sample(string $formattedName): void
     // Create a client.
     $eventarcClient = new EventarcClient();
 
+    // Prepare the request message.
+    $request = (new GetProviderRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Provider $response */
-        $response = $eventarcClient->getProvider($formattedName);
+        $response = $eventarcClient->getProvider($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

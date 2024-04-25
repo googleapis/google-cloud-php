@@ -17,8 +17,7 @@ class AbandonReleaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the Release. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -26,8 +25,7 @@ class AbandonReleaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the Release. Format is
-     *                     projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                     releases/{release}. Please see
+     *                     `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`. Please see
      *                     {@see CloudDeployClient::releaseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\AbandonReleaseRequest
@@ -48,8 +46,7 @@ class AbandonReleaseRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the Release. Format is
-     *           projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/{release}.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,8 +56,7 @@ class AbandonReleaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Release. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -72,8 +68,7 @@ class AbandonReleaseRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Release. Format is
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

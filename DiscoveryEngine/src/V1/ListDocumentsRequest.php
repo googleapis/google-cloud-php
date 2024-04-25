@@ -22,9 +22,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      * Use `default_branch` as the branch ID, to list documents under the default
      * branch.
-     * If the caller does not have permission to list [Documents][]s under this
-     * branch, regardless of whether or not this branch exists, a
-     * `PERMISSION_DENIED` error is returned.
+     * If the caller does not have permission to list
+     * [Document][google.cloud.discoveryengine.v1.Document]s under this branch,
+     * regardless of whether or not this branch exists, a `PERMISSION_DENIED`
+     * error is returned.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,9 +60,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *                       Use `default_branch` as the branch ID, to list documents under the default
      *                       branch.
      *
-     *                       If the caller does not have permission to list [Documents][]s under this
-     *                       branch, regardless of whether or not this branch exists, a
-     *                       `PERMISSION_DENIED` error is returned. Please see
+     *                       If the caller does not have permission to list
+     *                       [Document][google.cloud.discoveryengine.v1.Document]s under this branch,
+     *                       regardless of whether or not this branch exists, a `PERMISSION_DENIED`
+     *                       error is returned. Please see
      *                       {@see DocumentServiceClient::branchName()} for help formatting this field.
      *
      * @return \Google\Cloud\DiscoveryEngine\V1\ListDocumentsRequest
@@ -85,9 +87,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      *           Use `default_branch` as the branch ID, to list documents under the default
      *           branch.
-     *           If the caller does not have permission to list [Documents][]s under this
-     *           branch, regardless of whether or not this branch exists, a
-     *           `PERMISSION_DENIED` error is returned.
+     *           If the caller does not have permission to list
+     *           [Document][google.cloud.discoveryengine.v1.Document]s under this branch,
+     *           regardless of whether or not this branch exists, a `PERMISSION_DENIED`
+     *           error is returned.
      *     @type int $page_size
      *           Maximum number of [Document][google.cloud.discoveryengine.v1.Document]s to
      *           return. If unspecified, defaults to 100. The maximum allowed value is 1000.
@@ -115,9 +118,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      * Use `default_branch` as the branch ID, to list documents under the default
      * branch.
-     * If the caller does not have permission to list [Documents][]s under this
-     * branch, regardless of whether or not this branch exists, a
-     * `PERMISSION_DENIED` error is returned.
+     * If the caller does not have permission to list
+     * [Document][google.cloud.discoveryengine.v1.Document]s under this branch,
+     * regardless of whether or not this branch exists, a `PERMISSION_DENIED`
+     * error is returned.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -132,9 +136,10 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`.
      * Use `default_branch` as the branch ID, to list documents under the default
      * branch.
-     * If the caller does not have permission to list [Documents][]s under this
-     * branch, regardless of whether or not this branch exists, a
-     * `PERMISSION_DENIED` error is returned.
+     * If the caller does not have permission to list
+     * [Document][google.cloud.discoveryengine.v1.Document]s under this branch,
+     * regardless of whether or not this branch exists, a `PERMISSION_DENIED`
+     * error is returned.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

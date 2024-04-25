@@ -18,7 +18,6 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Exception\GoogleException;
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
 
 /**
  * Provides a factory to build messages.
@@ -29,12 +28,11 @@ trait IncomingMessageTrait
      * Create a Message instance from an incoming message.
      *
      * @param array $message The message data
-     * @param ConnectionInterface $connection The service connection.
      * @param string $projectId The current project ID.
      * @param bool $encode Whether to base64_encode.
      * @return Message
      */
-    private function messageFactory(array $message, ConnectionInterface $connection, $projectId, $encode)
+    private function messageFactory(array $message, $projectId, $encode)
     {
         if (!isset($message['message'])) {
             throw new GoogleException('Invalid message data.');
@@ -47,7 +45,8 @@ trait IncomingMessageTrait
         $subscription = null;
         if (isset($message['subscription'])) {
             $subscription = new Subscription(
-                $connection,
+                $this->requestHandler,
+                $this->serializer,
                 $projectId,
                 $message['subscription'],
                 null,

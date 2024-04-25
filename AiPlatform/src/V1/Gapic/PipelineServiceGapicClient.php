@@ -36,6 +36,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\BatchCancelPipelineJobsRequest;
+use Google\Cloud\AIPlatform\V1\BatchDeletePipelineJobsRequest;
 use Google\Cloud\AIPlatform\V1\CancelPipelineJobRequest;
 use Google\Cloud\AIPlatform\V1\CancelTrainingPipelineRequest;
 use Google\Cloud\AIPlatform\V1\CreatePipelineJobRequest;
@@ -75,8 +77,36 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $pipelineServiceClient = new PipelineServiceClient();
  * try {
- *     $formattedName = $pipelineServiceClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');
- *     $pipelineServiceClient->cancelPipelineJob($formattedName);
+ *     $formattedParent = $pipelineServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $formattedNames = [
+ *         $pipelineServiceClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]'),
+ *     ];
+ *     $operationResponse = $pipelineServiceClient->batchCancelPipelineJobs($formattedParent, $formattedNames);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $pipelineServiceClient->batchCancelPipelineJobs($formattedParent, $formattedNames);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $pipelineServiceClient->resumeOperation($operationName, 'batchCancelPipelineJobs');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
  * } finally {
  *     $pipelineServiceClient->close();
  * }
@@ -87,9 +117,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\PipelineServiceClient}.
  */
 class PipelineServiceGapicClient
 {
@@ -98,8 +126,15 @@ class PipelineServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.PipelineService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -764,6 +799,184 @@ class PipelineServiceGapicClient
     }
 
     /**
+     * Batch cancel PipelineJobs.
+     * Firstly the server will check if all the jobs are in non-terminal states,
+     * and skip the jobs that are already terminated.
+     * If the operation failed, none of the pipeline jobs are cancelled.
+     * The server will poll the states of all the pipeline jobs periodically
+     * to check the cancellation status.
+     * This operation will return an LRO.
+     *
+     * Sample code:
+     * ```
+     * $pipelineServiceClient = new PipelineServiceClient();
+     * try {
+     *     $formattedParent = $pipelineServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedNames = [
+     *         $pipelineServiceClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]'),
+     *     ];
+     *     $operationResponse = $pipelineServiceClient->batchCancelPipelineJobs($formattedParent, $formattedNames);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $pipelineServiceClient->batchCancelPipelineJobs($formattedParent, $formattedNames);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $pipelineServiceClient->resumeOperation($operationName, 'batchCancelPipelineJobs');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $pipelineServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the PipelineJobs' parent resource.
+     *                               Format: `projects/{project}/locations/{location}`
+     * @param string[] $names        Required. The names of the PipelineJobs to cancel.
+     *                               A maximum of 32 PipelineJobs can be cancelled in a batch.
+     *                               Format:
+     *                               `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchCancelPipelineJobs(
+        $parent,
+        $names,
+        array $optionalArgs = []
+    ) {
+        $request = new BatchCancelPipelineJobsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setNames($names);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'BatchCancelPipelineJobs',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Batch deletes PipelineJobs
+     * The Operation is atomic. If it fails, none of the PipelineJobs are deleted.
+     * If it succeeds, all of the PipelineJobs are deleted.
+     *
+     * Sample code:
+     * ```
+     * $pipelineServiceClient = new PipelineServiceClient();
+     * try {
+     *     $formattedParent = $pipelineServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $formattedNames = [
+     *         $pipelineServiceClient->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]'),
+     *     ];
+     *     $operationResponse = $pipelineServiceClient->batchDeletePipelineJobs($formattedParent, $formattedNames);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $pipelineServiceClient->batchDeletePipelineJobs($formattedParent, $formattedNames);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $pipelineServiceClient->resumeOperation($operationName, 'batchDeletePipelineJobs');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $pipelineServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the PipelineJobs' parent resource.
+     *                               Format: `projects/{project}/locations/{location}`
+     * @param string[] $names        Required. The names of the PipelineJobs to delete.
+     *                               A maximum of 32 PipelineJobs can be deleted in a batch.
+     *                               Format:
+     *                               `projects/{project}/locations/{location}/pipelineJobs/{pipelineJob}`
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchDeletePipelineJobs(
+        $parent,
+        $names,
+        array $optionalArgs = []
+    ) {
+        $request = new BatchDeletePipelineJobsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setNames($names);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'BatchDeletePipelineJobs',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Cancels a PipelineJob.
      * Starts asynchronous cancellation on the PipelineJob. The server
      * makes a best effort to cancel the pipeline, but success is not
@@ -911,7 +1124,7 @@ class PipelineServiceGapicClient
      *           generated.
      *
      *           This value should be less than 128 characters, and valid characters
-     *           are /[a-z][0-9]-/.
+     *           are `/[a-z][0-9]-/`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

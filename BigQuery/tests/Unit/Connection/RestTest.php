@@ -28,6 +28,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
+use UnexpectedValueException;
 
 /**
  * @group bigquery
@@ -45,21 +46,53 @@ class RestTest extends TestCase
         $this->successBody = '{"canI":"kickIt"}';
     }
 
-    public function testApiEndpoint()
-    {
-        $endpoint = 'https://foobar.com/';
-        $rest = TestHelpers::stub(Rest::class, [
-            [
-                'apiEndpoint' => $endpoint
-            ]
-        ], ['requestBuilder']);
+    /**
+     * @dataProvider provideApiEndpointForUniverseDomain
+     */
+    public function testApiEndpointForUniverseDomain(
+        array $config,
+        string $expectedEndpoint,
+        string $envUniverse = null
+    ) {
+        if ($envUniverse) {
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $envUniverse);
+        }
+        $rest = new Rest($config);
 
-        $rb = $rest->___getProperty('requestBuilder');
-        $r = new \ReflectionObject($rb);
-        $p = $r->getProperty('baseUri');
+        $r = new \ReflectionClass($rest);
+        $p = $r->getProperty('apiEndpoint');
         $p->setAccessible(true);
 
-        $this->assertEquals($endpoint . 'bigquery/v2/', $p->getValue($rb));
+        if ($envUniverse) {
+            // We have to do this instead of using "@runInSeparateProcess" because in the case of
+            // an error, PHPUnit throws a "Serialization of 'ReflectionClass' is not allowed" error.
+            // @TODO: Remove this once we've updated to PHPUnit 10.
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+        }
+
+        $this->assertEquals($expectedEndpoint, $p->getValue($rest));
+    }
+
+    public function provideApiEndpointForUniverseDomain()
+    {
+        return [
+            [[], 'https://bigquery.googleapis.com/'], // default
+            [['apiEndpoint' => 'https://foobar.com'], 'https://foobar.com/'],
+            [['universeDomain' => 'googleapis.com'], 'https://bigquery.googleapis.com/'],
+            [['universeDomain' => 'abc.def.ghi'], 'https://bigquery.abc.def.ghi/'],
+            [[], 'https://bigquery.abc.def.ghi/', 'abc.def.ghi'],
+            [['universeDomain' => 'googleapis.com'], 'https://bigquery.googleapis.com/', 'abc.def.ghi'],
+        ];
+    }
+
+    public function testApiEndpointForUniverseDomainThrowsException()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage(
+            'The "universeDomain" config value must be set to use the default API endpoint template.'
+        );
+
+        new Rest(['universeDomain' => null]);
     }
 
     /**

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START clouddebugger_v2_generated_Debugger2_DeleteBreakpoint_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Debugger\V2\Debugger2Client;
+use Google\Cloud\Debugger\V2\Client\Debugger2Client;
+use Google\Cloud\Debugger\V2\DeleteBreakpointRequest;
 
 /**
  * Deletes the breakpoint from the debuggee.
@@ -42,9 +43,15 @@ function delete_breakpoint_sample(
     // Create a client.
     $debugger2Client = new Debugger2Client();
 
+    // Prepare the request message.
+    $request = (new DeleteBreakpointRequest())
+        ->setDebuggeeId($debuggeeId)
+        ->setBreakpointId($breakpointId)
+        ->setClientVersion($clientVersion);
+
     // Call the API and handle any network failures.
     try {
-        $debugger2Client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+        $debugger2Client->deleteBreakpoint($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

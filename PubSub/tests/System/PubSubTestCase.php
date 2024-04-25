@@ -51,11 +51,11 @@ class PubSubTestCase extends SystemTestCase
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$restClient = new PubSubClientRest([
-            'keyFilePath' => $keyFilePath,
+            'credentials' => $keyFilePath,
             'transport' => 'rest',
         ]);
         self::$grpcClient = new PubSubClientGrpc([
-            'keyFilePath' => $keyFilePath,
+            'credentials' => $keyFilePath,
             'transport' => 'grpc',
         ]);
         self::setUsingEmulatorForClassPrefix((bool) getenv('PUBSUB_EMULATOR_HOST'));

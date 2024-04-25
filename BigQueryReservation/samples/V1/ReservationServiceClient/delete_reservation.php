@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigqueryreservation_v1_generated_ReservationService_DeleteReservation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest;
 
 /**
  * Deletes a reservation.
@@ -40,9 +41,13 @@ function delete_reservation_sample(string $formattedName): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteReservationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $reservationServiceClient->deleteReservation($formattedName);
+        $reservationServiceClient->deleteReservation($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

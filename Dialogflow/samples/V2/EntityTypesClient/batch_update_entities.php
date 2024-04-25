@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_EntityTypes_BatchUpdateEntities_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\BatchUpdateEntitiesRequest;
+use Google\Cloud\Dialogflow\V2\Client\EntityTypesClient;
 use Google\Cloud\Dialogflow\V2\EntityType\Entity;
-use Google\Cloud\Dialogflow\V2\EntityTypesClient;
 use Google\Rpc\Status;
 
 /**
@@ -79,17 +80,20 @@ function batch_update_entities_sample(
     // Create a client.
     $entityTypesClient = new EntityTypesClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entitiesSynonyms = [$entitiesSynonymsElement,];
     $entity = (new Entity())
         ->setValue($entitiesValue)
         ->setSynonyms($entitiesSynonyms);
     $entities = [$entity,];
+    $request = (new BatchUpdateEntitiesRequest())
+        ->setParent($formattedParent)
+        ->setEntities($entities);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $entityTypesClient->batchUpdateEntities($formattedParent, $entities);
+        $response = $entityTypesClient->batchUpdateEntities($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

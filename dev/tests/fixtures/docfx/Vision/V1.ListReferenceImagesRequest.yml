@@ -21,6 +21,7 @@ items:
       - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setPageSize()'
       - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getPageToken()'
       - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setPageToken()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::build()'
   -
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::__construct()'
     name: __construct
@@ -157,3 +158,25 @@ items:
       returns:
         -
           var_type: $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::build()'
+    name: 'static::build'
+    id: build
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: parent
+          var_type: string
+          description: |-
+            Required. Resource name of the product containing the reference images.
+
+            Format is
+            `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. Please see
+            <xref uid="\Google\Cloud\Vision\V1\ProductSearchClient::productName()">Google\Cloud\Vision\V1\ProductSearchClient::productName()</xref> for help formatting this field.
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ListReferenceImagesRequest">Google\Cloud\Vision\V1\ListReferenceImagesRequest</xref>'

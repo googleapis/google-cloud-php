@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_PolicyTagManager_CreatePolicyTag_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\DataCatalog\V1\Client\PolicyTagManagerClient;
+use Google\Cloud\DataCatalog\V1\CreatePolicyTagRequest;
 use Google\Cloud\DataCatalog\V1\PolicyTag;
-use Google\Cloud\DataCatalog\V1\PolicyTagManagerClient;
 
 /**
  * Creates a policy tag in a taxonomy.
@@ -38,10 +39,14 @@ function create_policy_tag_sample(string $formattedParent): void
     // Create a client.
     $policyTagManagerClient = new PolicyTagManagerClient();
 
+    // Prepare the request message.
+    $request = (new CreatePolicyTagRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PolicyTag $response */
-        $response = $policyTagManagerClient->createPolicyTag($formattedParent);
+        $response = $policyTagManagerClient->createPolicyTag($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

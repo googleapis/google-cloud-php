@@ -57,13 +57,21 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
-     * Output only. Represents time when the task was created by the job
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the task was created by the system.
+     * It is not guaranteed to be set in happens-before order across separate
+     * operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
+    /**
+     * Output only. Represents time when the task was scheduled to run by the
+     * system. It is not guaranteed to be set in happens-before order across
+     * separate operations.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_time = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $scheduled_time = null;
     /**
      * Output only. Represents time when the task started to run.
      * It is not guaranteed to be set in happens-before order across separate
@@ -260,8 +268,12 @@ class Task extends \Google\Protobuf\Internal\Message
      *           They are not queryable and should be preserved
      *           when modifying objects.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Represents time when the task was created by the job
-     *           controller. It is not guaranteed to be set in happens-before order across
+     *           Output only. Represents time when the task was created by the system.
+     *           It is not guaranteed to be set in happens-before order across separate
+     *           operations.
+     *     @type \Google\Protobuf\Timestamp $scheduled_time
+     *           Output only. Represents time when the task was scheduled to run by the
+     *           system. It is not guaranteed to be set in happens-before order across
      *           separate operations.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. Represents time when the task started to run.
@@ -494,9 +506,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the task was created by the job
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the task was created by the system.
+     * It is not guaranteed to be set in happens-before order across separate
+     * operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -517,9 +529,9 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the task was created by the job
-     * controller. It is not guaranteed to be set in happens-before order across
-     * separate operations.
+     * Output only. Represents time when the task was created by the system.
+     * It is not guaranteed to be set in happens-before order across separate
+     * operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -529,6 +541,46 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Represents time when the task was scheduled to run by the
+     * system. It is not guaranteed to be set in happens-before order across
+     * separate operations.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_time = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getScheduledTime()
+    {
+        return $this->scheduled_time;
+    }
+
+    public function hasScheduledTime()
+    {
+        return isset($this->scheduled_time);
+    }
+
+    public function clearScheduledTime()
+    {
+        unset($this->scheduled_time);
+    }
+
+    /**
+     * Output only. Represents time when the task was scheduled to run by the
+     * system. It is not guaranteed to be set in happens-before order across
+     * separate operations.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp scheduled_time = 34 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setScheduledTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->scheduled_time = $var;
 
         return $this;
     }

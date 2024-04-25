@@ -41,6 +41,7 @@ use Google\Cloud\Billing\V1\ListBillingAccountsRequest;
 use Google\Cloud\Billing\V1\ListBillingAccountsResponse;
 use Google\Cloud\Billing\V1\ListProjectBillingInfoRequest;
 use Google\Cloud\Billing\V1\ListProjectBillingInfoResponse;
+use Google\Cloud\Billing\V1\MoveBillingAccountRequest;
 use Google\Cloud\Billing\V1\ProjectBillingInfo;
 use Google\Cloud\Billing\V1\UpdateBillingAccountRequest;
 use Google\Cloud\Billing\V1\UpdateProjectBillingInfoRequest;
@@ -74,8 +75,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Billing\V1\Client\CloudBillingClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Billing\V1\Client\CloudBillingClient}.
  */
 class CloudBillingGapicClient
 {
@@ -84,8 +84,15 @@ class CloudBillingGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.billing.v1.CloudBilling';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'cloudbilling.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudbilling.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -101,6 +108,12 @@ class CloudBillingGapicClient
     ];
 
     private static $billingAccountNameTemplate;
+
+    private static $organizationNameTemplate;
+
+    private static $organizationBillingAccountNameTemplate;
+
+    private static $projectNameTemplate;
 
     private static $projectBillingInfoNameTemplate;
 
@@ -142,6 +155,37 @@ class CloudBillingGapicClient
         return self::$billingAccountNameTemplate;
     }
 
+    private static function getOrganizationNameTemplate()
+    {
+        if (self::$organizationNameTemplate == null) {
+            self::$organizationNameTemplate = new PathTemplate(
+                'organizations/{organization}'
+            );
+        }
+
+        return self::$organizationNameTemplate;
+    }
+
+    private static function getOrganizationBillingAccountNameTemplate()
+    {
+        if (self::$organizationBillingAccountNameTemplate == null) {
+            self::$organizationBillingAccountNameTemplate = new PathTemplate(
+                'organizations/{organization}/billingAccounts/{billing_account}'
+            );
+        }
+
+        return self::$organizationBillingAccountNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getProjectBillingInfoNameTemplate()
     {
         if (self::$projectBillingInfoNameTemplate == null) {
@@ -158,6 +202,9 @@ class CloudBillingGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'billingAccount' => self::getBillingAccountNameTemplate(),
+                'organization' => self::getOrganizationNameTemplate(),
+                'organizationBillingAccount' => self::getOrganizationBillingAccountNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
                 'projectBillingInfo' => self::getProjectBillingInfoNameTemplate(),
             ];
         }
@@ -181,6 +228,55 @@ class CloudBillingGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a organization
+     * resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     */
+    public static function organizationName($organization)
+    {
+        return self::getOrganizationNameTemplate()->render([
+            'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_billing_account resource.
+     *
+     * @param string $organization
+     * @param string $billingAccount
+     *
+     * @return string The formatted organization_billing_account resource.
+     */
+    public static function organizationBillingAccountName(
+        $organization,
+        $billingAccount
+    ) {
+        return self::getOrganizationBillingAccountNameTemplate()->render([
+            'organization' => $organization,
+            'billing_account' => $billingAccount,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_billing_info resource.
      *
@@ -200,6 +296,9 @@ class CloudBillingGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - billingAccount: billingAccounts/{billing_account}
+     * - organization: organizations/{organization}
+     * - organizationBillingAccount: organizations/{organization}/billingAccounts/{billing_account}
+     * - project: projects/{project}
      * - projectBillingInfo: projects/{project}/billingInfo
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -316,7 +415,7 @@ class CloudBillingGapicClient
      * typically given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
      * This method will return an error if the parent account has not been
-     * provisioned as a reseller account.
+     * provisioned for subaccounts.
      *
      * Sample code:
      * ```
@@ -336,6 +435,11 @@ class CloudBillingGapicClient
      * @param array          $optionalArgs   {
      *     Optional.
      *
+     *     @type string $parent
+     *           Optional. The parent to create a billing account from.
+     *           Format:
+     *           - `billingAccounts/{billing_account_id}`, for example,
+     *           `billingAccounts/012345-567890-ABCDEF`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -351,7 +455,19 @@ class CloudBillingGapicClient
         array $optionalArgs = []
     ) {
         $request = new CreateBillingAccountRequest();
+        $requestParamHeaders = [];
         $request->setBillingAccount($billingAccount);
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'CreateBillingAccount',
             BillingAccount::class,
@@ -481,7 +597,7 @@ class CloudBillingGapicClient
      * ```
      * $cloudBillingClient = new CloudBillingClient();
      * try {
-     *     $formattedName = $cloudBillingClient->projectBillingInfoName('[PROJECT]');
+     *     $formattedName = $cloudBillingClient->projectName('[PROJECT]');
      *     $response = $cloudBillingClient->getProjectBillingInfo($formattedName);
      * } finally {
      *     $cloudBillingClient->close();
@@ -564,11 +680,19 @@ class CloudBillingGapicClient
      *           been generated by a previous call to the API.
      *     @type string $filter
      *           Options for how to filter the returned billing accounts.
-     *           Currently this only supports filtering for
+     *           This only supports filtering for
      *           [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     *           single provided reseller billing account.
-     *           (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
+     *           single provided parent billing account.
+     *           (for example,
+     *           `master_billing_account=billingAccounts/012345-678901-ABCDEF`).
      *           Boolean algebra and other fields are not currently supported.
+     *     @type string $parent
+     *           Optional. The parent resource to list billing accounts from.
+     *           Format:
+     *           - `organizations/{organization_id}`, for example,
+     *           `organizations/12345678`
+     *           - `billingAccounts/{billing_account_id}`, for example,
+     *           `billingAccounts/012345-567890-ABCDEF`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -582,6 +706,7 @@ class CloudBillingGapicClient
     public function listBillingAccounts(array $optionalArgs = [])
     {
         $request = new ListBillingAccountsRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -594,6 +719,17 @@ class CloudBillingGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->getPagedListResponse(
             'ListBillingAccounts',
             $optionalArgs,
@@ -682,6 +818,66 @@ class CloudBillingGapicClient
             ListProjectBillingInfoResponse::class,
             $request
         );
+    }
+
+    /**
+     * Changes which parent organization a billing account belongs to.
+     *
+     * Sample code:
+     * ```
+     * $cloudBillingClient = new CloudBillingClient();
+     * try {
+     *     $formattedName = $cloudBillingClient->billingAccountName('[BILLING_ACCOUNT]');
+     *     $formattedDestinationParent = $cloudBillingClient->organizationName('[ORGANIZATION]');
+     *     $response = $cloudBillingClient->moveBillingAccount($formattedName, $formattedDestinationParent);
+     * } finally {
+     *     $cloudBillingClient->close();
+     * }
+     * ```
+     *
+     * @param string $name              Required. The resource name of the billing account to move.
+     *                                  Must be of the form `billingAccounts/{billing_account_id}`.
+     *                                  The specified billing account cannot be a subaccount, since a subaccount
+     *                                  always belongs to the same organization as its parent account.
+     * @param string $destinationParent Required. The resource name of the Organization to move
+     *                                  the billing account under.
+     *                                  Must be of the form `organizations/{organization_id}`.
+     * @param array  $optionalArgs      {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Billing\V1\BillingAccount
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function moveBillingAccount(
+        $name,
+        $destinationParent,
+        array $optionalArgs = []
+    ) {
+        $request = new MoveBillingAccountRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setDestinationParent($destinationParent);
+        $requestParamHeaders['name'] = $name;
+        $requestParamHeaders['destination_parent'] = $destinationParent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'MoveBillingAccount',
+            BillingAccount::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -894,7 +1090,8 @@ class CloudBillingGapicClient
      * account, even if the charge occurred before the new billing account was
      * assigned to the project.
      *
-     * The current authenticated user must have ownership privileges for both the
+     * The current authenticated user must have ownership privileges for both
+     * the
      * [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
      * ) and the [billing
      * account](https://cloud.google.com/billing/docs/how-to/billing-access).

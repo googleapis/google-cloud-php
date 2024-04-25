@@ -150,6 +150,22 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $expiry_time = null;
+    /**
+     * Output only. The QuantityBasedExpiry of the backup, specified by the
+     * backup's retention policy. Once the expiry quantity is over retention, the
+     * backup is eligible to be garbage collected.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Backup.QuantityBasedExpiry expiry_quantity = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $expiry_quantity = null;
+    /**
+     * Output only. The database engine major version of the cluster this backup
+     * was created from. Any restored cluster created from this backup will have
+     * the same database version.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.DatabaseVersion database_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $database_version = 0;
 
     /**
      * Constructor.
@@ -216,6 +232,14 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The time at which after the backup is eligible to be garbage
      *           collected. It is the duration specified by the backup's retention policy,
      *           added to the backup's create_time.
+     *     @type \Google\Cloud\AlloyDb\V1\Backup\QuantityBasedExpiry $expiry_quantity
+     *           Output only. The QuantityBasedExpiry of the backup, specified by the
+     *           backup's retention policy. Once the expiry quantity is over retention, the
+     *           backup is eligible to be garbage collected.
+     *     @type int $database_version
+     *           Output only. The database engine major version of the cluster this backup
+     *           was created from. Any restored cluster created from this backup will have
+     *           the same database version.
      * }
      */
     public function __construct($data = NULL) {
@@ -815,6 +839,76 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->expiry_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The QuantityBasedExpiry of the backup, specified by the
+     * backup's retention policy. Once the expiry quantity is over retention, the
+     * backup is eligible to be garbage collected.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Backup.QuantityBasedExpiry expiry_quantity = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AlloyDb\V1\Backup\QuantityBasedExpiry|null
+     */
+    public function getExpiryQuantity()
+    {
+        return $this->expiry_quantity;
+    }
+
+    public function hasExpiryQuantity()
+    {
+        return isset($this->expiry_quantity);
+    }
+
+    public function clearExpiryQuantity()
+    {
+        unset($this->expiry_quantity);
+    }
+
+    /**
+     * Output only. The QuantityBasedExpiry of the backup, specified by the
+     * backup's retention policy. Once the expiry quantity is over retention, the
+     * backup is eligible to be garbage collected.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.Backup.QuantityBasedExpiry expiry_quantity = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AlloyDb\V1\Backup\QuantityBasedExpiry $var
+     * @return $this
+     */
+    public function setExpiryQuantity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1\Backup\QuantityBasedExpiry::class);
+        $this->expiry_quantity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The database engine major version of the cluster this backup
+     * was created from. Any restored cluster created from this backup will have
+     * the same database version.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.DatabaseVersion database_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDatabaseVersion()
+    {
+        return $this->database_version;
+    }
+
+    /**
+     * Output only. The database engine major version of the cluster this backup
+     * was created from. Any restored cluster created from this backup will have
+     * the same database version.
+     *
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1.DatabaseVersion database_version = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseVersion($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AlloyDb\V1\DatabaseVersion::class);
+        $this->database_version = $var;
 
         return $this;
     }

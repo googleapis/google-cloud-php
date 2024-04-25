@@ -30,6 +30,7 @@ trait LROTrait
 {
     /**
      * @var LongRunningConnectionInterface
+     * @internal
      */
     private $lroConnection;
 
@@ -47,6 +48,8 @@ trait LROTrait
      * Populate required LRO properties.
      *
      * @param LongRunningConnectionInterface $lroConnection The LRO Connection.
+     *        This object is created by internal classes,
+     *        and should not be instantiated outside of this context.
      * @param array $callablesMap An collection of form [(string) typeUrl, (callable) callable]
      *        providing a function to invoke when an operation completes. The
      *        callable Type should correspond to an expected value of

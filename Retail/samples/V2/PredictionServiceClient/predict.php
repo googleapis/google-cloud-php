@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_PredictionService_Predict_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\Client\PredictionServiceClient;
+use Google\Cloud\Retail\V2\PredictRequest;
 use Google\Cloud\Retail\V2\PredictResponse;
-use Google\Cloud\Retail\V2\PredictionServiceClient;
 use Google\Cloud\Retail\V2\UserEvent;
 
 /**
@@ -83,15 +84,18 @@ function predict_sample(
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $userEvent = (new UserEvent())
         ->setEventType($userEventEventType)
         ->setVisitorId($userEventVisitorId);
+    $request = (new PredictRequest())
+        ->setPlacement($placement)
+        ->setUserEvent($userEvent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PredictResponse $response */
-        $response = $predictionServiceClient->predict($placement, $userEvent);
+        $response = $predictionServiceClient->predict($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

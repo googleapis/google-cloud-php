@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -25,6 +45,21 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'CreateAuthorizedView' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/tables/*}/authorizedViews',
+                'body' => 'authorized_view',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'authorized_view_id',
                 ],
             ],
             'CreateBackup' => [
@@ -62,6 +97,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAuthorizedView' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*/authorizedViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -123,6 +169,17 @@ return [
                     ],
                 ],
             ],
+            'GetAuthorizedView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*/authorizedViews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/backups/*}',
@@ -171,6 +228,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuthorizedViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/tables/*}/authorizedViews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -289,6 +357,19 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAuthorizedView' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{authorized_view.name=projects/*/instances/*/tables/*/authorizedViews/*}',
+                'body' => 'authorized_view',
+                'placeholders' => [
+                    'authorized_view.name' => [
+                        'getters' => [
+                            'getAuthorizedView',
                             'getName',
                         ],
                     ],

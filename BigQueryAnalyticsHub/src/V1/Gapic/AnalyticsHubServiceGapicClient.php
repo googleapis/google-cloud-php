@@ -27,6 +27,8 @@ namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -38,18 +40,29 @@ use Google\Cloud\BigQuery\AnalyticsHub\V1\CreateListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DataExchange;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\DeleteSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\DestinationDataset;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\GetListingRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\GetSubscriptionRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListDataExchangesResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListListingsResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\ListOrgDataExchangesResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSharedResourceSubscriptionsResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\ListSubscriptionsResponse;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\RefreshSubscriptionRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionRequest;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\SubscribeListingResponse;
+use Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateDataExchangeRequest;
 use Google\Cloud\BigQuery\AnalyticsHub\V1\UpdateListingRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -58,6 +71,7 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -89,9 +103,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient} to use
- * the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient}.
  */
 class AnalyticsHubServiceGapicClient
 {
@@ -100,8 +112,15 @@ class AnalyticsHubServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.bigquery.analyticshub.v1.AnalyticsHubService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'analyticshub.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'analyticshub.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -123,7 +142,13 @@ class AnalyticsHubServiceGapicClient
 
     private static $locationNameTemplate;
 
+    private static $subscriptionNameTemplate;
+
+    private static $tableNameTemplate;
+
     private static $pathTemplateMap;
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -197,6 +222,28 @@ class AnalyticsHubServiceGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getSubscriptionNameTemplate()
+    {
+        if (self::$subscriptionNameTemplate == null) {
+            self::$subscriptionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/subscriptions/{subscription}'
+            );
+        }
+
+        return self::$subscriptionNameTemplate;
+    }
+
+    private static function getTableNameTemplate()
+    {
+        if (self::$tableNameTemplate == null) {
+            self::$tableNameTemplate = new PathTemplate(
+                'projects/{project}/datasets/{dataset}/tables/{table}'
+            );
+        }
+
+        return self::$tableNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -205,6 +252,8 @@ class AnalyticsHubServiceGapicClient
                 'dataset' => self::getDatasetNameTemplate(),
                 'listing' => self::getListingNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'subscription' => self::getSubscriptionNameTemplate(),
+                'table' => self::getTableNameTemplate(),
             ];
         }
 
@@ -290,6 +339,44 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a subscription
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $subscription
+     *
+     * @return string The formatted subscription resource.
+     */
+    public static function subscriptionName($project, $location, $subscription)
+    {
+        return self::getSubscriptionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'subscription' => $subscription,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a table
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     * @param string $table
+     *
+     * @return string The formatted table resource.
+     */
+    public static function tableName($project, $dataset, $table)
+    {
+        return self::getTableNameTemplate()->render([
+            'project' => $project,
+            'dataset' => $dataset,
+            'table' => $table,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -297,6 +384,8 @@ class AnalyticsHubServiceGapicClient
      * - dataset: projects/{project}/datasets/{dataset}
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
+     * - subscription: projects/{project}/locations/{location}/subscriptions/{subscription}
+     * - table: projects/{project}/datasets/{dataset}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -335,6 +424,41 @@ class AnalyticsHubServiceGapicClient
         throw new ValidationException(
             "Input did not match any known format. Input: $formattedName"
         );
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
+        $operation->reload();
+        return $operation;
     }
 
     /**
@@ -395,6 +519,7 @@ class AnalyticsHubServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -537,8 +662,8 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The full name of the data exchange resource that you want to delete.
-     *                             For example, `projects/myproject/locations/US/dataExchanges/123`.
+     * @param string $name         Required. The full name of the data exchange resource that you want to
+     *                             delete. For example, `projects/myproject/locations/US/dataExchanges/123`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -614,6 +739,78 @@ class AnalyticsHubServiceGapicClient
             GPBEmpty::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a subscription.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     $formattedName = $analyticsHubServiceClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+     *     $operationResponse = $analyticsHubServiceClient->deleteSubscription($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $analyticsHubServiceClient->deleteSubscription($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $analyticsHubServiceClient->resumeOperation($operationName, 'deleteSubscription');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the subscription to delete.
+     *                             e.g. projects/123/locations/US/subscriptions/456
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteSubscription($name, array $optionalArgs = [])
+    {
+        $request = new DeleteSubscriptionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteSubscription',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -766,6 +963,55 @@ class AnalyticsHubServiceGapicClient
         return $this->startCall(
             'GetListing',
             Listing::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets the details of a Subscription.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     $formattedName = $analyticsHubServiceClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+     *     $response = $analyticsHubServiceClient->getSubscription($formattedName);
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the subscription.
+     *                             e.g. projects/123/locations/US/subscriptions/456
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getSubscription($name, array $optionalArgs = [])
+    {
+        $request = new GetSubscriptionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetSubscription',
+            Subscription::class,
             $optionalArgs,
             $request
         )->wait();
@@ -954,8 +1200,8 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param string $organization Required. The organization resource path of the projects containing DataExchanges.
-     *                             e.g. `organizations/myorg/locations/US`.
+     * @param string $organization Required. The organization resource path of the projects containing
+     *                             DataExchanges. e.g. `organizations/myorg/locations/US`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1006,6 +1252,306 @@ class AnalyticsHubServiceGapicClient
             ListOrgDataExchangesResponse::class,
             $request
         );
+    }
+
+    /**
+     * Lists all subscriptions on a given Data Exchange or Listing.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsHubServiceClient->listSharedResourceSubscriptions($resource);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsHubServiceClient->listSharedResourceSubscriptions($resource);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     Required. Resource name of the requested target. This resource may be
+     *                             either a Listing or a DataExchange. e.g.
+     *                             projects/123/locations/US/dataExchanges/456 OR e.g.
+     *                             projects/123/locations/US/dataExchanges/456/listings/789
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $includeDeletedSubscriptions
+     *           If selected, includes deleted subscriptions in the response
+     *           (up to 63 days after deletion).
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSharedResourceSubscriptions(
+        $resource,
+        array $optionalArgs = []
+    ) {
+        $request = new ListSharedResourceSubscriptionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['includeDeletedSubscriptions'])) {
+            $request->setIncludeDeletedSubscriptions(
+                $optionalArgs['includeDeletedSubscriptions']
+            );
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListSharedResourceSubscriptions',
+            $optionalArgs,
+            ListSharedResourceSubscriptionsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists all subscriptions in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     $formattedParent = $analyticsHubServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsHubServiceClient->listSubscriptions($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsHubServiceClient->listSubscriptions($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource path of the subscription.
+     *                             e.g. projects/myproject/locations/US
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           The filter expression may be used to filter by Data Exchange or Listing.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listSubscriptions($parent, array $optionalArgs = [])
+    {
+        $request = new ListSubscriptionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListSubscriptions',
+            $optionalArgs,
+            ListSubscriptionsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Refreshes a Subscription to a Data Exchange. A Data Exchange can become
+     * stale when a publisher adds or removes data. This is a long-running
+     * operation as it may create many linked datasets.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     $formattedName = $analyticsHubServiceClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+     *     $operationResponse = $analyticsHubServiceClient->refreshSubscription($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $analyticsHubServiceClient->refreshSubscription($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $analyticsHubServiceClient->resumeOperation($operationName, 'refreshSubscription');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the Subscription to refresh.
+     *                             e.g. `projects/subscriberproject/locations/US/subscriptions/123`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function refreshSubscription($name, array $optionalArgs = [])
+    {
+        $request = new RefreshSubscriptionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RefreshSubscription',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Revokes a given subscription.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     $formattedName = $analyticsHubServiceClient->subscriptionName('[PROJECT]', '[LOCATION]', '[SUBSCRIPTION]');
+     *     $response = $analyticsHubServiceClient->revokeSubscription($formattedName);
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the subscription to revoke.
+     *                             e.g. projects/123/locations/US/subscriptions/456
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BigQuery\AnalyticsHub\V1\RevokeSubscriptionResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function revokeSubscription($name, array $optionalArgs = [])
+    {
+        $request = new RevokeSubscriptionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RevokeSubscription',
+            RevokeSubscriptionResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1070,6 +1616,99 @@ class AnalyticsHubServiceGapicClient
             Policy::class,
             $optionalArgs,
             $request
+        )->wait();
+    }
+
+    /**
+     * Creates a Subscription to a Data Exchange. This is a long-running operation
+     * as it will create one or more linked datasets.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     $formattedName = $analyticsHubServiceClient->dataExchangeName('[PROJECT]', '[LOCATION]', '[DATA_EXCHANGE]');
+     *     $formattedDestination = $analyticsHubServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $subscription = 'subscription';
+     *     $operationResponse = $analyticsHubServiceClient->subscribeDataExchange($formattedName, $formattedDestination, $subscription);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $analyticsHubServiceClient->subscribeDataExchange($formattedName, $formattedDestination, $subscription);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $analyticsHubServiceClient->resumeOperation($operationName, 'subscribeDataExchange');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the Data Exchange.
+     *                             e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     * @param string $destination  Required. The parent resource path of the Subscription.
+     *                             e.g. `projects/subscriberproject/locations/US`
+     * @param string $subscription Required. Name of the subscription to create.
+     *                             e.g. `subscription1`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $subscriberContact
+     *           Email of the subscriber.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function subscribeDataExchange(
+        $name,
+        $destination,
+        $subscription,
+        array $optionalArgs = []
+    ) {
+        $request = new SubscribeDataExchangeRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setDestination($destination);
+        $request->setSubscription($subscription);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['subscriberContact'])) {
+            $request->setSubscriberContact($optionalArgs['subscriberContact']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'SubscribeDataExchange',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
         )->wait();
     }
 
@@ -1264,9 +1903,9 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Field mask specifies the fields to update in the listing resource. The
-     *                                fields specified in the `updateMask` are relative to the resource and are
-     *                                not a full request.
+     * @param FieldMask $updateMask   Required. Field mask specifies the fields to update in the listing
+     *                                resource. The fields specified in the `updateMask` are relative to the
+     *                                resource and are not a full request.
      * @param Listing   $listing      Required. The listing to update.
      * @param array     $optionalArgs {
      *     Optional.

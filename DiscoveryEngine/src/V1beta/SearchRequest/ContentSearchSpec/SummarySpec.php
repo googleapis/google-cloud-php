@@ -20,7 +20,7 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * The number of top results to generate the summary from. If the number
      * of results returned is less than `summaryResultCount`, the summary is
      * generated from all of the results.
-     * At most five results can be used to generate a summary.
+     * At most 10 results can be used to generate a summary.
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      */
@@ -72,6 +72,39 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool ignore_non_summary_seeking_query = 4;</code>
      */
     protected $ignore_non_summary_seeking_query = false;
+    /**
+     * If specified, the spec will be used to modify the prompt provided to
+     * the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelPromptSpec model_prompt_spec = 5;</code>
+     */
+    protected $model_prompt_spec = null;
+    /**
+     * Language code for Summary. Use language tags defined by
+     * [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
+     * Note: This is an experimental feature.
+     *
+     * Generated from protobuf field <code>string language_code = 6;</code>
+     */
+    protected $language_code = '';
+    /**
+     * If specified, the spec will be used to modify the model specification
+     * provided to the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelSpec model_spec = 7;</code>
+     */
+    protected $model_spec = null;
+    /**
+     * If true, answer will be generated from most relevant chunks from top
+     * search results. This feature will improve summary quality.
+     * Note that with this feature enabled, not all top search results
+     * will be referenced and included in the reference list, so the citation
+     * source index only points to the search results listed in the reference
+     * list.
+     *
+     * Generated from protobuf field <code>bool use_semantic_chunks = 8;</code>
+     */
+    protected $use_semantic_chunks = false;
 
     /**
      * Constructor.
@@ -83,7 +116,7 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           The number of top results to generate the summary from. If the number
      *           of results returned is less than `summaryResultCount`, the summary is
      *           generated from all of the results.
-     *           At most five results can be used to generate a summary.
+     *           At most 10 results can be used to generate a summary.
      *     @type bool $include_citations
      *           Specifies whether to include citations in the summary. The default
      *           value is `false`.
@@ -119,6 +152,23 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      *           navigational queries. If this field is set to `true`, we skip
      *           generating summaries for non-summary seeking queries and return
      *           fallback messages instead.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec $model_prompt_spec
+     *           If specified, the spec will be used to modify the prompt provided to
+     *           the LLM.
+     *     @type string $language_code
+     *           Language code for Summary. Use language tags defined by
+     *           [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
+     *           Note: This is an experimental feature.
+     *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec $model_spec
+     *           If specified, the spec will be used to modify the model specification
+     *           provided to the LLM.
+     *     @type bool $use_semantic_chunks
+     *           If true, answer will be generated from most relevant chunks from top
+     *           search results. This feature will improve summary quality.
+     *           Note that with this feature enabled, not all top search results
+     *           will be referenced and included in the reference list, so the citation
+     *           source index only points to the search results listed in the reference
+     *           list.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,7 +180,7 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * The number of top results to generate the summary from. If the number
      * of results returned is less than `summaryResultCount`, the summary is
      * generated from all of the results.
-     * At most five results can be used to generate a summary.
+     * At most 10 results can be used to generate a summary.
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      * @return int
@@ -144,7 +194,7 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
      * The number of top results to generate the summary from. If the number
      * of results returned is less than `summaryResultCount`, the summary is
      * generated from all of the results.
-     * At most five results can be used to generate a summary.
+     * At most 10 results can be used to generate a summary.
      *
      * Generated from protobuf field <code>int32 summary_result_count = 1;</code>
      * @param int $var
@@ -290,6 +340,148 @@ class SummarySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_non_summary_seeking_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * If specified, the spec will be used to modify the prompt provided to
+     * the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelPromptSpec model_prompt_spec = 5;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec|null
+     */
+    public function getModelPromptSpec()
+    {
+        return $this->model_prompt_spec;
+    }
+
+    public function hasModelPromptSpec()
+    {
+        return isset($this->model_prompt_spec);
+    }
+
+    public function clearModelPromptSpec()
+    {
+        unset($this->model_prompt_spec);
+    }
+
+    /**
+     * If specified, the spec will be used to modify the prompt provided to
+     * the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelPromptSpec model_prompt_spec = 5;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec $var
+     * @return $this
+     */
+    public function setModelPromptSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelPromptSpec::class);
+        $this->model_prompt_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Language code for Summary. Use language tags defined by
+     * [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
+     * Note: This is an experimental feature.
+     *
+     * Generated from protobuf field <code>string language_code = 6;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Language code for Summary. Use language tags defined by
+     * [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
+     * Note: This is an experimental feature.
+     *
+     * Generated from protobuf field <code>string language_code = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * If specified, the spec will be used to modify the model specification
+     * provided to the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelSpec model_spec = 7;</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec|null
+     */
+    public function getModelSpec()
+    {
+        return $this->model_spec;
+    }
+
+    public function hasModelSpec()
+    {
+        return isset($this->model_spec);
+    }
+
+    public function clearModelSpec()
+    {
+        unset($this->model_spec);
+    }
+
+    /**
+     * If specified, the spec will be used to modify the model specification
+     * provided to the LLM.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.ContentSearchSpec.SummarySpec.ModelSpec model_spec = 7;</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec $var
+     * @return $this
+     */
+    public function setModelSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\ContentSearchSpec\SummarySpec\ModelSpec::class);
+        $this->model_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, answer will be generated from most relevant chunks from top
+     * search results. This feature will improve summary quality.
+     * Note that with this feature enabled, not all top search results
+     * will be referenced and included in the reference list, so the citation
+     * source index only points to the search results listed in the reference
+     * list.
+     *
+     * Generated from protobuf field <code>bool use_semantic_chunks = 8;</code>
+     * @return bool
+     */
+    public function getUseSemanticChunks()
+    {
+        return $this->use_semantic_chunks;
+    }
+
+    /**
+     * If true, answer will be generated from most relevant chunks from top
+     * search results. This feature will improve summary quality.
+     * Note that with this feature enabled, not all top search results
+     * will be referenced and included in the reference list, so the citation
+     * source index only points to the search results listed in the reference
+     * list.
+     *
+     * Generated from protobuf field <code>bool use_semantic_chunks = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseSemanticChunks($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_semantic_chunks = $var;
 
         return $this;
     }

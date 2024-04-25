@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class KmsConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Name of the KmsConfig.
+     * Identifier. Name of the KmsConfig.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -80,7 +80,7 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Name of the KmsConfig.
+     *           Identifier. Name of the KmsConfig.
      *     @type string $crypto_key_name
      *           Required. Customer managed crypto key resource full name. Format:
      *           projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{key}.
@@ -108,9 +108,9 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the KmsConfig.
+     * Identifier. Name of the KmsConfig.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -119,9 +119,9 @@ class KmsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Name of the KmsConfig.
+     * Identifier. Name of the KmsConfig.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

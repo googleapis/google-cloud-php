@@ -36,6 +36,13 @@ class ModelDeploymentMonitoringBigQueryTable extends \Google\Protobuf\Internal\M
      * Generated from protobuf field <code>string bigquery_table_path = 3;</code>
      */
     private $bigquery_table_path = '';
+    /**
+     * Output only. The schema version of the request/response logging BigQuery
+     * table. Default to v1 if unset.
+     *
+     * Generated from protobuf field <code>string request_response_logging_schema_version = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $request_response_logging_schema_version = '';
 
     /**
      * Constructor.
@@ -51,6 +58,9 @@ class ModelDeploymentMonitoringBigQueryTable extends \Google\Protobuf\Internal\M
      *           The created BigQuery table to store logs. Customer could do their own query
      *           & analysis. Format:
      *           `bq://<project_id>.model_deployment_monitoring_<endpoint_id>.<tolower(log_source)>_<tolower(log_type)>`
+     *     @type string $request_response_logging_schema_version
+     *           Output only. The schema version of the request/response logging BigQuery
+     *           table. Default to v1 if unset.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,6 +146,34 @@ class ModelDeploymentMonitoringBigQueryTable extends \Google\Protobuf\Internal\M
     {
         GPBUtil::checkString($var, True);
         $this->bigquery_table_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The schema version of the request/response logging BigQuery
+     * table. Default to v1 if unset.
+     *
+     * Generated from protobuf field <code>string request_response_logging_schema_version = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRequestResponseLoggingSchemaVersion()
+    {
+        return $this->request_response_logging_schema_version;
+    }
+
+    /**
+     * Output only. The schema version of the request/response logging BigQuery
+     * table. Default to v1 if unset.
+     *
+     * Generated from protobuf field <code>string request_response_logging_schema_version = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestResponseLoggingSchemaVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_response_logging_schema_version = $var;
 
         return $this;
     }

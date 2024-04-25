@@ -24,14 +24,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigtable_v2_generated_Bigtable_CheckAndMutateRow_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 
 /**
  * Mutates a row atomically based on the output of a predicate Reader filter.
  *
- * @param string $formattedTableName The unique name of the table to which the conditional mutation
- *                                   should be applied. Values are of the form
+ * @param string $formattedTableName Optional. The unique name of the table to which the conditional mutation
+ *                                   should be applied.
+ *
+ *                                   Values are of the form
  *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
  * @param string $rowKey             The key of the row to which the conditional mutation should be
@@ -42,10 +45,15 @@ function check_and_mutate_row_sample(string $formattedTableName, string $rowKey)
     // Create a client.
     $bigtableClient = new BigtableClient();
 
+    // Prepare the request message.
+    $request = (new CheckAndMutateRowRequest())
+        ->setTableName($formattedTableName)
+        ->setRowKey($rowKey);
+
     // Call the API and handle any network failures.
     try {
         /** @var CheckAndMutateRowResponse $response */
-        $response = $bigtableClient->checkAndMutateRow($formattedTableName, $rowKey);
+        $response = $bigtableClient->checkAndMutateRow($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

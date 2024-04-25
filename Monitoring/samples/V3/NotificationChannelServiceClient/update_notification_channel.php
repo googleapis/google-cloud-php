@@ -24,12 +24,18 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_NotificationChannelService_UpdateNotificationChannel_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\NotificationChannelServiceClient;
 use Google\Cloud\Monitoring\V3\NotificationChannel;
-use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\UpdateNotificationChannelRequest;
 
 /**
  * Updates a notification channel. Fields not specified in the field mask
  * remain unchanged.
+ *
+ * Design your application to single-thread API calls that modify the state of
+ * notification channels in a single project. This includes calls to
+ * CreateNotificationChannel, DeleteNotificationChannel and
+ * UpdateNotificationChannel.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -42,13 +48,15 @@ function update_notification_channel_sample(): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $notificationChannel = new NotificationChannel();
+    $request = (new UpdateNotificationChannelRequest())
+        ->setNotificationChannel($notificationChannel);
 
     // Call the API and handle any network failures.
     try {
         /** @var NotificationChannel $response */
-        $response = $notificationChannelServiceClient->updateNotificationChannel($notificationChannel);
+        $response = $notificationChannelServiceClient->updateNotificationChannel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -26,6 +26,19 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_private_environment = false;
     /**
+     * Optional. If `true`, builds performed during operations that install Python
+     * packages have only private connectivity to Google services (including
+     * Artifact Registry) and VPC network (if either `NodeConfig.network` and
+     * `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment`
+     * field are specified). If `false`, the builds also have access to the
+     * internet.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>bool enable_private_builds_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_private_builds_only = false;
+    /**
      * Optional. Configuration for the private GKE cluster for a Private IP
      * Cloud Composer environment.
      *
@@ -115,6 +128,15 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      *           If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be
      *           set to true for Cloud Composer environments in versions
      *           composer-1.*.*-airflow-*.*.*.
+     *     @type bool $enable_private_builds_only
+     *           Optional. If `true`, builds performed during operations that install Python
+     *           packages have only private connectivity to Google services (including
+     *           Artifact Registry) and VPC network (if either `NodeConfig.network` and
+     *           `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment`
+     *           field are specified). If `false`, the builds also have access to the
+     *           internet.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-3.*.*-airflow-*.*.* and newer.
      *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\PrivateClusterConfig $private_cluster_config
      *           Optional. Configuration for the private GKE cluster for a Private IP
      *           Cloud Composer environment.
@@ -192,6 +214,46 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_private_environment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If `true`, builds performed during operations that install Python
+     * packages have only private connectivity to Google services (including
+     * Artifact Registry) and VPC network (if either `NodeConfig.network` and
+     * `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment`
+     * field are specified). If `false`, the builds also have access to the
+     * internet.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>bool enable_private_builds_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnablePrivateBuildsOnly()
+    {
+        return $this->enable_private_builds_only;
+    }
+
+    /**
+     * Optional. If `true`, builds performed during operations that install Python
+     * packages have only private connectivity to Google services (including
+     * Artifact Registry) and VPC network (if either `NodeConfig.network` and
+     * `NodeConfig.subnetwork` fields or `NodeConfig.composer_network_attachment`
+     * field are specified). If `false`, the builds also have access to the
+     * internet.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>bool enable_private_builds_only = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnablePrivateBuildsOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_private_builds_only = $var;
 
         return $this;
     }

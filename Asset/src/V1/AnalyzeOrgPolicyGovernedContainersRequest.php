@@ -35,12 +35,16 @@ class AnalyzeOrgPolicyGovernedContainersRequest extends \Google\Protobuf\Interna
      */
     private $constraint = '';
     /**
-     * The expression to filter the governed containers in result.
-     * The only supported field is `parent`, and the only supported operator is
-     * `=`.
-     * Example:
-     * parent="//cloudresourcemanager.googleapis.com/folders/001" will return all
-     * containers under "folders/001".
+     * The expression to filter
+     * [AnalyzeOrgPolicyGovernedContainersResponse.governed_containers][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.governed_containers].
+     * Filtering is currently available for bare literal values and the following
+     * fields:
+     * * parent
+     * * consolidated_policy.rules.enforce
+     * When filtering by a specific field, the only supported operator is `=`.
+     * For example, filtering by
+     * parent="//cloudresourcemanager.googleapis.com/folders/001"
+     * will return all the containers under "folders/001".
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
@@ -70,13 +74,17 @@ class AnalyzeOrgPolicyGovernedContainersRequest extends \Google\Protobuf\Interna
      * @param string $constraint Required. The name of the constraint to analyze governed containers for.
      *                           The analysis only contains organization policies for the provided
      *                           constraint.
-     * @param string $filter     The expression to filter the governed containers in result.
-     *                           The only supported field is `parent`, and the only supported operator is
-     *                           `=`.
+     * @param string $filter     The expression to filter
+     *                           [AnalyzeOrgPolicyGovernedContainersResponse.governed_containers][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.governed_containers].
+     *                           Filtering is currently available for bare literal values and the following
+     *                           fields:
+     *                           * parent
+     *                           * consolidated_policy.rules.enforce
      *
-     *                           Example:
-     *                           parent="//cloudresourcemanager.googleapis.com/folders/001" will return all
-     *                           containers under "folders/001".
+     *                           When filtering by a specific field, the only supported operator is `=`.
+     *                           For example, filtering by
+     *                           parent="//cloudresourcemanager.googleapis.com/folders/001"
+     *                           will return all the containers under "folders/001".
      *
      * @return \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersRequest
      *
@@ -107,12 +115,16 @@ class AnalyzeOrgPolicyGovernedContainersRequest extends \Google\Protobuf\Interna
      *           The analysis only contains organization policies for the provided
      *           constraint.
      *     @type string $filter
-     *           The expression to filter the governed containers in result.
-     *           The only supported field is `parent`, and the only supported operator is
-     *           `=`.
-     *           Example:
-     *           parent="//cloudresourcemanager.googleapis.com/folders/001" will return all
-     *           containers under "folders/001".
+     *           The expression to filter
+     *           [AnalyzeOrgPolicyGovernedContainersResponse.governed_containers][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.governed_containers].
+     *           Filtering is currently available for bare literal values and the following
+     *           fields:
+     *           * parent
+     *           * consolidated_policy.rules.enforce
+     *           When filtering by a specific field, the only supported operator is `=`.
+     *           For example, filtering by
+     *           parent="//cloudresourcemanager.googleapis.com/folders/001"
+     *           will return all the containers under "folders/001".
      *     @type int $page_size
      *           The maximum number of items to return per page. If unspecified,
      *           [AnalyzeOrgPolicyGovernedContainersResponse.governed_containers][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.governed_containers]
@@ -191,12 +203,16 @@ class AnalyzeOrgPolicyGovernedContainersRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * The expression to filter the governed containers in result.
-     * The only supported field is `parent`, and the only supported operator is
-     * `=`.
-     * Example:
-     * parent="//cloudresourcemanager.googleapis.com/folders/001" will return all
-     * containers under "folders/001".
+     * The expression to filter
+     * [AnalyzeOrgPolicyGovernedContainersResponse.governed_containers][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.governed_containers].
+     * Filtering is currently available for bare literal values and the following
+     * fields:
+     * * parent
+     * * consolidated_policy.rules.enforce
+     * When filtering by a specific field, the only supported operator is `=`.
+     * For example, filtering by
+     * parent="//cloudresourcemanager.googleapis.com/folders/001"
+     * will return all the containers under "folders/001".
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @return string
@@ -207,12 +223,16 @@ class AnalyzeOrgPolicyGovernedContainersRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * The expression to filter the governed containers in result.
-     * The only supported field is `parent`, and the only supported operator is
-     * `=`.
-     * Example:
-     * parent="//cloudresourcemanager.googleapis.com/folders/001" will return all
-     * containers under "folders/001".
+     * The expression to filter
+     * [AnalyzeOrgPolicyGovernedContainersResponse.governed_containers][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.governed_containers].
+     * Filtering is currently available for bare literal values and the following
+     * fields:
+     * * parent
+     * * consolidated_policy.rules.enforce
+     * When filtering by a specific field, the only supported operator is `=`.
+     * For example, filtering by
+     * parent="//cloudresourcemanager.googleapis.com/folders/001"
+     * will return all the containers under "folders/001".
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @param string $var

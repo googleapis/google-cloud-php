@@ -16,25 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource link for the VPC network in which cluster
+     * Optional. The resource link for the VPC network in which cluster
      * resources are created and from which they are accessible via Private IP.
      * The network must belong to the same project as the cluster. It is
      * specified in the form:
      * "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be
-     * removed.
+     * required to create a cluster.
      *
-     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $network = '';
     /**
-     * Optional. The name of the allocated IP range for the private IP AlloyDB
-     * cluster. For example: "google-managed-services-default". If set, the
+     * Optional. Name of the allocated IP range for the private IP AlloyDB
+     * cluster, for example: "google-managed-services-default". If set, the
      * instance IPs for this cluster will be created in the allocated range. The
      * range name must comply with RFC 1035. Specifically, the name must be 1-63
      * characters long and match the regular expression
-     * [a-z]([-a-z0-9]*[a-z0-9])?.
-     * Field name is intended to be consistent with CloudSQL.
+     * `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     * Field name is intended to be consistent with Cloud SQL.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,21 +46,20 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $network
-     *           Required. The resource link for the VPC network in which cluster
+     *           Optional. The resource link for the VPC network in which cluster
      *           resources are created and from which they are accessible via Private IP.
      *           The network must belong to the same project as the cluster. It is
      *           specified in the form:
      *           "projects/{project_number}/global/networks/{network_id}". This is
-     *           required to create a cluster. It can be updated, but it cannot be
-     *           removed.
+     *           required to create a cluster.
      *     @type string $allocated_ip_range
-     *           Optional. The name of the allocated IP range for the private IP AlloyDB
-     *           cluster. For example: "google-managed-services-default". If set, the
+     *           Optional. Name of the allocated IP range for the private IP AlloyDB
+     *           cluster, for example: "google-managed-services-default". If set, the
      *           instance IPs for this cluster will be created in the allocated range. The
      *           range name must comply with RFC 1035. Specifically, the name must be 1-63
      *           characters long and match the regular expression
-     *           [a-z]([-a-z0-9]*[a-z0-9])?.
-     *           Field name is intended to be consistent with CloudSQL.
+     *           `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *           Field name is intended to be consistent with Cloud SQL.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,15 +68,14 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource link for the VPC network in which cluster
+     * Optional. The resource link for the VPC network in which cluster
      * resources are created and from which they are accessible via Private IP.
      * The network must belong to the same project as the cluster. It is
      * specified in the form:
      * "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be
-     * removed.
+     * required to create a cluster.
      *
-     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -87,15 +84,14 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource link for the VPC network in which cluster
+     * Optional. The resource link for the VPC network in which cluster
      * resources are created and from which they are accessible via Private IP.
      * The network must belong to the same project as the cluster. It is
      * specified in the form:
      * "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be
-     * removed.
+     * required to create a cluster.
      *
-     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -108,13 +104,13 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the allocated IP range for the private IP AlloyDB
-     * cluster. For example: "google-managed-services-default". If set, the
+     * Optional. Name of the allocated IP range for the private IP AlloyDB
+     * cluster, for example: "google-managed-services-default". If set, the
      * instance IPs for this cluster will be created in the allocated range. The
      * range name must comply with RFC 1035. Specifically, the name must be 1-63
      * characters long and match the regular expression
-     * [a-z]([-a-z0-9]*[a-z0-9])?.
-     * Field name is intended to be consistent with CloudSQL.
+     * `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     * Field name is intended to be consistent with Cloud SQL.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -125,13 +121,13 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the allocated IP range for the private IP AlloyDB
-     * cluster. For example: "google-managed-services-default". If set, the
+     * Optional. Name of the allocated IP range for the private IP AlloyDB
+     * cluster, for example: "google-managed-services-default". If set, the
      * instance IPs for this cluster will be created in the allocated range. The
      * range name must comply with RFC 1035. Specifically, the name must be 1-63
      * characters long and match the regular expression
-     * [a-z]([-a-z0-9]*[a-z0-9])?.
-     * Field name is intended to be consistent with CloudSQL.
+     * `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     * Field name is intended to be consistent with Cloud SQL.
      *
      * Generated from protobuf field <code>string allocated_ip_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

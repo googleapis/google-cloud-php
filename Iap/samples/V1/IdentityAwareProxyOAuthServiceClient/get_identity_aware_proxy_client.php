@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iap_v1_generated_IdentityAwareProxyOAuthService_GetIdentityAwareProxyClient_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iap\V1\Client\IdentityAwareProxyOAuthServiceClient;
+use Google\Cloud\Iap\V1\GetIdentityAwareProxyClientRequest;
 use Google\Cloud\Iap\V1\IdentityAwareProxyClient;
-use Google\Cloud\Iap\V1\IdentityAwareProxyOAuthServiceClient;
 
 /**
  * Retrieves an Identity Aware Proxy (IAP) OAuth client.
@@ -40,10 +41,14 @@ function get_identity_aware_proxy_client_sample(string $name): void
     // Create a client.
     $identityAwareProxyOAuthServiceClient = new IdentityAwareProxyOAuthServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetIdentityAwareProxyClientRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var IdentityAwareProxyClient $response */
-        $response = $identityAwareProxyOAuthServiceClient->getIdentityAwareProxyClient($name);
+        $response = $identityAwareProxyOAuthServiceClient->getIdentityAwareProxyClient($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

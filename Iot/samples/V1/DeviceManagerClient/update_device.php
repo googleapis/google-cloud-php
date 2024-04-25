@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_UpdateDevice_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
 use Google\Cloud\Iot\V1\Device;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\UpdateDeviceRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -42,14 +43,17 @@ function update_device_sample(): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $device = new Device();
     $updateMask = new FieldMask();
+    $request = (new UpdateDeviceRequest())
+        ->setDevice($device)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Device $response */
-        $response = $deviceManagerClient->updateDevice($device, $updateMask);
+        $response = $deviceManagerClient->updateDevice($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

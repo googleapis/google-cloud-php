@@ -45,6 +45,7 @@ use Google\Cloud\Firestore\V1\CreateDocumentRequest;
 use Google\Cloud\Firestore\V1\DeleteDocumentRequest;
 use Google\Cloud\Firestore\V1\Document;
 use Google\Cloud\Firestore\V1\DocumentMask;
+use Google\Cloud\Firestore\V1\ExplainOptions;
 use Google\Cloud\Firestore\V1\GetDocumentRequest;
 use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
@@ -98,8 +99,7 @@ use Google\Protobuf\Timestamp;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Firestore\V1\Client\FirestoreClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Firestore\V1\Client\FirestoreClient}.
  */
 class FirestoreGapicClient
 {
@@ -108,8 +108,15 @@ class FirestoreGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.firestore.v1.Firestore';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'firestore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'firestore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -1108,6 +1115,9 @@ class FirestoreGapicClient
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type ExplainOptions $explainOptions
+     *           Optional. Explain options for the query. If set, additional query
+     *           statistics will be returned. If not, only query results will be returned.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1136,6 +1146,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['explainOptions'])) {
+            $request->setExplainOptions($optionalArgs['explainOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1187,6 +1201,9 @@ class FirestoreGapicClient
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type ExplainOptions $explainOptions
+     *           Optional. Explain options for the query. If set, additional query
+     *           statistics will be returned. If not, only query results will be returned.
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1215,6 +1232,10 @@ class FirestoreGapicClient
 
         if (isset($optionalArgs['readTime'])) {
             $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['explainOptions'])) {
+            $request->setExplainOptions($optionalArgs['explainOptions']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

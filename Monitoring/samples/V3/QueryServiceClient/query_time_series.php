@@ -25,14 +25,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_QueryService_QueryTimeSeries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Monitoring\V3\QueryServiceClient;
+use Google\Cloud\Monitoring\V3\Client\QueryServiceClient;
+use Google\Cloud\Monitoring\V3\QueryTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\TimeSeriesData;
 
 /**
- * Queries time series using Monitoring Query Language. This method does not require a Workspace.
+ * Queries time series using Monitoring Query Language.
  *
- * @param string $name  The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                      which to execute the request. The format is:
+ * @param string $name  The
+ *                      [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                      to execute the request. The format is:
  *
  *                      projects/[PROJECT_ID_OR_NUMBER]
  * @param string $query The query in the [Monitoring Query
@@ -44,10 +46,15 @@ function query_time_series_sample(string $name, string $query): void
     // Create a client.
     $queryServiceClient = new QueryServiceClient();
 
+    // Prepare the request message.
+    $request = (new QueryTimeSeriesRequest())
+        ->setName($name)
+        ->setQuery($query);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $queryServiceClient->queryTimeSeries($name, $query);
+        $response = $queryServiceClient->queryTimeSeries($request);
 
         /** @var TimeSeriesData $element */
         foreach ($response as $element) {

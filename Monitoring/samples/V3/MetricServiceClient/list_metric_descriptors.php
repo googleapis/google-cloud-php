@@ -26,13 +26,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Api\MetricDescriptor;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest;
 
 /**
- * Lists metric descriptors that match a filter. This method does not require a Workspace.
+ * Lists metric descriptors that match a filter.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                     which to execute the request. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                     to execute the request. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  */
@@ -41,10 +43,14 @@ function list_metric_descriptors_sample(string $name): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListMetricDescriptorsRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metricServiceClient->listMetricDescriptors($name);
+        $response = $metricServiceClient->listMetricDescriptors($request);
 
         /** @var MetricDescriptor $element */
         foreach ($response as $element) {

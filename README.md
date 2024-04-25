@@ -5,9 +5,9 @@
 
 PHP Version  | Status
 ------------ | ------
-PHP 7.4 | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php74.svg)](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php74.html)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud) | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php74.svg)](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php74.html)
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud)
+
 
 View the [list of supported APIs and Services](https://cloud.google.com/php/docs/reference).
 
@@ -131,7 +131,7 @@ $spanner = new SpannerClient([
 
 ## PHP Versions Supported
 
-All client libraries support PHP 7.4 and above.
+All client libraries support PHP 8.0 and above.
 
 ## Versioning
 

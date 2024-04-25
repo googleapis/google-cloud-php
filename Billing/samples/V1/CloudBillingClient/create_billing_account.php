@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudbilling_v1_generated_CloudBilling_CreateBillingAccount_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Billing\V1\BillingAccount;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
+use Google\Cloud\Billing\V1\CreateBillingAccountRequest;
 
 /**
  * This method creates [billing
@@ -42,7 +43,7 @@ use Google\Cloud\Billing\V1\CloudBillingClient;
  * typically given to billing account
  * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
  * This method will return an error if the parent account has not been
- * provisioned as a reseller account.
+ * provisioned for subaccounts.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -55,13 +56,15 @@ function create_billing_account_sample(): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $billingAccount = new BillingAccount();
+    $request = (new CreateBillingAccountRequest())
+        ->setBillingAccount($billingAccount);
 
     // Call the API and handle any network failures.
     try {
         /** @var BillingAccount $response */
-        $response = $cloudBillingClient->createBillingAccount($billingAccount);
+        $response = $cloudBillingClient->createBillingAccount($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

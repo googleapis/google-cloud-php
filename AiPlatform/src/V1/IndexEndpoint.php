@@ -128,6 +128,14 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string public_endpoint_domain_name = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $public_endpoint_domain_name = '';
+    /**
+     * Immutable. Customer-managed encryption key spec for an IndexEndpoint. If
+     * set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be
+     * secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $encryption_spec = null;
 
     /**
      * Constructor.
@@ -194,6 +202,10 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *           [public_endpoint_enabled][google.cloud.aiplatform.v1.IndexEndpoint.public_endpoint_enabled]
      *           is true, this field will be populated with the domain name to use for this
      *           index endpoint.
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Immutable. Customer-managed encryption key spec for an IndexEndpoint. If
+     *           set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be
+     *           secured by this key.
      * }
      */
     public function __construct($data = NULL) {
@@ -635,6 +647,46 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->public_endpoint_domain_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Customer-managed encryption key spec for an IndexEndpoint. If
+     * set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be
+     * secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Immutable. Customer-managed encryption key spec for an IndexEndpoint. If
+     * set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be
+     * secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 15 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }

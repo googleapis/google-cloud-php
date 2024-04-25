@@ -54,6 +54,12 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      */
     private $last_attempt = null;
     /**
+     * [Output Only] The name of the instance. The name always exists even if the instance has not yet been created.
+     *
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     */
+    private $name = null;
+    /**
      * [Output Only] Preserved state applied from per-instance config for this instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
@@ -92,6 +98,8 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *           Check the InstanceStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ManagedInstanceLastAttempt $last_attempt
      *           [Output Only] Information about the last attempt to create or delete the instance.
+     *     @type string $name
+     *           [Output Only] The name of the instance. The name always exists even if the instance has not yet been created.
      *     @type \Google\Cloud\Compute\V1\PreservedState $preserved_state_from_config
      *           [Output Only] Preserved state applied from per-instance config for this instance.
      *     @type \Google\Cloud\Compute\V1\PreservedState $preserved_state_from_policy
@@ -311,6 +319,42 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ManagedInstanceLastAttempt::class);
         $this->last_attempt = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The name of the instance. The name always exists even if the instance has not yet been created.
+     *
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
+    }
+
+    /**
+     * [Output Only] The name of the instance. The name always exists even if the instance has not yet been created.
+     *
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
 
         return $this;
     }

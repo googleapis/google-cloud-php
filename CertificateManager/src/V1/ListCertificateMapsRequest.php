@@ -45,7 +45,7 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A list of Certificate Map field names used to specify the order of the
      * returned results. The default sorting order is ascending. To specify
-     * descending order for a field, add a suffix " desc".
+     * descending order for a field, add a suffix `" desc"`.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      */
@@ -86,7 +86,7 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $order_by
      *           A list of Certificate Map field names used to specify the order of the
      *           returned results. The default sorting order is ascending. To specify
-     *           descending order for a field, add a suffix " desc".
+     *           descending order for a field, add a suffix `" desc"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -207,7 +207,7 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A list of Certificate Map field names used to specify the order of the
      * returned results. The default sorting order is ascending. To specify
-     * descending order for a field, add a suffix " desc".
+     * descending order for a field, add a suffix `" desc"`.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      * @return string
@@ -220,7 +220,7 @@ class ListCertificateMapsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A list of Certificate Map field names used to specify the order of the
      * returned results. The default sorting order is ascending. To specify
-     * descending order for a field, add a suffix " desc".
+     * descending order for a field, add a suffix `" desc"`.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
      * @param string $var

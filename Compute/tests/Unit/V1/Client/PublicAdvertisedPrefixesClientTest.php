@@ -26,6 +26,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\AnnouncePublicAdvertisedPrefixeRequest;
 use Google\Cloud\Compute\V1\Client\PublicAdvertisedPrefixesClient;
 use Google\Cloud\Compute\V1\DeletePublicAdvertisedPrefixeRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
@@ -38,6 +39,7 @@ use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchPublicAdvertisedPrefixeRequest;
 use Google\Cloud\Compute\V1\PublicAdvertisedPrefix;
 use Google\Cloud\Compute\V1\PublicAdvertisedPrefixList;
+use Google\Cloud\Compute\V1\WithdrawPublicAdvertisedPrefixeRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -67,6 +69,126 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new PublicAdvertisedPrefixesClient($options);
+    }
+
+    /** @test */
+    public function announceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/announceTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/announceTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $project = 'project-309310695';
+        $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
+        $request = (new AnnouncePublicAdvertisedPrefixeRequest())
+            ->setProject($project)
+            ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
+        $response = $gapicClient->announce($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.PublicAdvertisedPrefixes/Announce', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getPublicAdvertisedPrefix();
+        $this->assertProtobufEquals($publicAdvertisedPrefix, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function announceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/announceExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
+        $request = (new AnnouncePublicAdvertisedPrefixeRequest())
+            ->setProject($project)
+            ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
+        $response = $gapicClient->announce($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -198,6 +320,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $byoipApiVersion = 'byoipApiVersion162683283';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $dnsVerificationIp = 'dnsVerificationIp-1906472267';
@@ -206,10 +329,12 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         $ipCidrRange = 'ipCidrRange-2049366326';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $pdpScope = 'pdpScope1061135697';
         $selfLink = 'selfLink-1691268851';
         $sharedSecret = 'sharedSecret-154938422';
         $status = 'status-892481550';
         $expectedResponse = new PublicAdvertisedPrefix();
+        $expectedResponse->setByoipApiVersion($byoipApiVersion);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setDnsVerificationIp($dnsVerificationIp);
@@ -218,6 +343,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setIpCidrRange($ipCidrRange);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setPdpScope($pdpScope);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSharedSecret($sharedSecret);
         $expectedResponse->setStatus($status);
@@ -604,7 +730,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteAsyncTest()
+    public function withdrawTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
@@ -621,20 +747,20 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/deleteAsyncTest');
+        $incompleteOperation->setName('customOperations/withdrawTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/deleteAsyncTest');
+        $completeOperation->setName('customOperations/withdrawTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
         $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
-        $request = (new DeletePublicAdvertisedPrefixeRequest())
+        $request = (new WithdrawPublicAdvertisedPrefixeRequest())
             ->setProject($project)
             ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
-        $response = $gapicClient->delete($request);
+        $response = $gapicClient->withdraw($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -642,7 +768,127 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.PublicAdvertisedPrefixes/Delete', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.PublicAdvertisedPrefixes/Withdraw', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getPublicAdvertisedPrefix();
+        $this->assertProtobufEquals($publicAdvertisedPrefix, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function withdrawExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/withdrawExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
+        $request = (new WithdrawPublicAdvertisedPrefixeRequest())
+            ->setProject($project)
+            ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
+        $response = $gapicClient->withdraw($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function announceAsyncTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/announceAsyncTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/announceAsyncTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $project = 'project-309310695';
+        $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
+        $request = (new AnnouncePublicAdvertisedPrefixeRequest())
+            ->setProject($project)
+            ->setPublicAdvertisedPrefix($publicAdvertisedPrefix);
+        $response = $gapicClient->announce($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.PublicAdvertisedPrefixes/Announce', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualApiRequestObject->getPublicAdvertisedPrefix();

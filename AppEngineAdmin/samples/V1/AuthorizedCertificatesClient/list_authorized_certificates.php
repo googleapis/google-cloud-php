@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\AppEngine\V1\AuthorizedCertificate;
-use Google\Cloud\AppEngine\V1\AuthorizedCertificatesClient;
+use Google\Cloud\AppEngine\V1\Client\AuthorizedCertificatesClient;
+use Google\Cloud\AppEngine\V1\ListAuthorizedCertificatesRequest;
 
 /**
  * Lists all SSL certificates the user is authorized to administer.
@@ -42,10 +43,13 @@ function list_authorized_certificates_sample(): void
     // Create a client.
     $authorizedCertificatesClient = new AuthorizedCertificatesClient();
 
+    // Prepare the request message.
+    $request = new ListAuthorizedCertificatesRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $authorizedCertificatesClient->listAuthorizedCertificates();
+        $response = $authorizedCertificatesClient->listAuthorizedCertificates($request);
 
         /** @var AuthorizedCertificate $element */
         foreach ($response as $element) {

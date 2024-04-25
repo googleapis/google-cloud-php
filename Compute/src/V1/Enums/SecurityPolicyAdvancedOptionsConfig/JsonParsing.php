@@ -36,4 +36,6 @@ class JsonParsing
     const DISABLED = 'DISABLED';
 
     const STANDARD = 'STANDARD';
+
+    const STANDARD_WITH_GRAPHQL = 'STANDARD_WITH_GRAPHQL';
 }

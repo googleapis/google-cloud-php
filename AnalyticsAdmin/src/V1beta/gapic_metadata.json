@@ -215,6 +215,11 @@
                                 "updateAccount"
                             ]
                         },
+                        "UpdateConversionEvent": {
+                            "methods": [
+                                "updateConversionEvent"
+                            ]
+                        },
                         "UpdateCustomDimension": {
                             "methods": [
                                 "updateCustomDimension"

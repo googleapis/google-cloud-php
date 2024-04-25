@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_CatalogService_RemoveCatalogAttribute_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Retail\V2\AttributesConfig;
-use Google\Cloud\Retail\V2\CatalogServiceClient;
+use Google\Cloud\Retail\V2\Client\CatalogServiceClient;
+use Google\Cloud\Retail\V2\RemoveCatalogAttributeRequest;
 
 /**
  * Removes the specified
@@ -46,10 +47,15 @@ function remove_catalog_attribute_sample(string $formattedAttributesConfig, stri
     // Create a client.
     $catalogServiceClient = new CatalogServiceClient();
 
+    // Prepare the request message.
+    $request = (new RemoveCatalogAttributeRequest())
+        ->setAttributesConfig($formattedAttributesConfig)
+        ->setKey($key);
+
     // Call the API and handle any network failures.
     try {
         /** @var AttributesConfig $response */
-        $response = $catalogServiceClient->removeCatalogAttribute($formattedAttributesConfig, $key);
+        $response = $catalogServiceClient->removeCatalogAttribute($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

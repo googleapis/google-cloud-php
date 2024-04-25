@@ -40,6 +40,7 @@ class TransactionConfigurationTraitTest extends TestCase
     private $ts;
     private $duration;
     private $dur = [];
+    private $directedReadOptionsIncludeReplicas;
 
     public function setUp(): void
     {
@@ -48,6 +49,13 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->impl = new TransactionConfigurationTraitImplementation;
         $this->duration = new Duration(10, 1);
         $this->dur = ['seconds' => 10, 'nanos' => 1];
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1'
+                ]
+            ]
+        ];
     }
 
     public function testTransactionSelectorBasicSnapshot()
@@ -181,6 +189,42 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->impl->proxyConfigureSnapshotOptions($args);
     }
 
+    public function testRequestLevelConfigureDirectedReadOptions()
+    {
+        $requestOptions = [
+            'transaction' => ['singleUse' => true],
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
+        ];
+        $clientOptions = [];
+        $res = $this->impl->proxyConfigureDirectedReadOptions($requestOptions, $clientOptions);
+        $this->assertEquals($res, $requestOptions['directedReadOptions']);
+    }
+
+    public function testClientLevelConfigureDirectedReadOptions()
+    {
+        $requestOptions = ['transaction' => ['singleUse' => true]];
+        $clientOptions = $this->directedReadOptionsIncludeReplicas;
+        $res = $this->impl->proxyConfigureDirectedReadOptions($requestOptions, $clientOptions);
+        $this->assertEquals($res, $clientOptions);
+    }
+
+    public function testPrioritizeRequestLevelConfigureDirectedReadOptions()
+    {
+        $requestOptions = [
+            'transaction' => ['singleUse' => true],
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
+        ];
+        $clientOptions = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central2'
+                ]
+            ]
+        ];
+        $res = $this->impl->proxyConfigureDirectedReadOptions($requestOptions, $clientOptions);
+        $this->assertEquals($res, $requestOptions['directedReadOptions']);
+    }
+
     public function timestamps()
     {
         return [
@@ -208,6 +252,11 @@ class TransactionConfigurationTraitImplementation
     public function proxyConfigureSnapshotOptions(array &$options)
     {
         return $this->configureSnapshotOptions($options);
+    }
+
+    public function proxyConfigureDirectedReadOptions(array $args1, array $args2)
+    {
+        return $this->configureDirectedReadOptions($args1, $args2);
     }
 }
 //@codingStandardsIgnoreEnd

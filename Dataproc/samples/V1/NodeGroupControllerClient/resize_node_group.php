@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dataproc_v1_generated_NodeGroupController_ResizeNodeGroup_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dataproc\V1\Client\NodeGroupControllerClient;
 use Google\Cloud\Dataproc\V1\NodeGroup;
-use Google\Cloud\Dataproc\V1\NodeGroupControllerClient;
+use Google\Cloud\Dataproc\V1\ResizeNodeGroupRequest;
 use Google\Rpc\Status;
 
 /**
@@ -46,10 +47,15 @@ function resize_node_group_sample(string $name, int $size): void
     // Create a client.
     $nodeGroupControllerClient = new NodeGroupControllerClient();
 
+    // Prepare the request message.
+    $request = (new ResizeNodeGroupRequest())
+        ->setName($name)
+        ->setSize($size);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $nodeGroupControllerClient->resizeNodeGroup($name, $size);
+        $response = $nodeGroupControllerClient->resizeNodeGroup($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

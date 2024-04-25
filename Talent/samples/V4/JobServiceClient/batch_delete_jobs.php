@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START jobs_v4_generated_JobService_BatchDeleteJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Talent\V4\BatchDeleteJobsRequest;
 use Google\Cloud\Talent\V4\BatchDeleteJobsResponse;
-use Google\Cloud\Talent\V4\JobServiceClient;
+use Google\Cloud\Talent\V4\Client\JobServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -45,10 +46,14 @@ function batch_delete_jobs_sample(string $formattedParent): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new BatchDeleteJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $jobServiceClient->batchDeleteJobs($formattedParent);
+        $response = $jobServiceClient->batchDeleteJobs($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

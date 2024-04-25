@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_ImportCustomer_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
-use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
+use Google\Cloud\Channel\V1\ImportCustomerRequest;
 
 /**
  * Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud
@@ -36,8 +36,11 @@ use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED: The reseller account making the request is different
- * from the reseller account in the API request.
+ * * PERMISSION_DENIED:
+ * * The reseller account making the request is different from the
+ * reseller account in the API request.
+ * * You are not authorized to import the customer. See
+ * https://support.google.com/channelservices/answer/9759265
  * * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
  * * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
  * expired or invalid.
@@ -47,34 +50,29 @@ use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
  * Return value:
  * The [Customer][google.cloud.channel.v1.Customer].
  *
- * @param string $customerIdentityDomain Customer domain.
- * @param string $parent                 The resource name of the reseller's account.
- *                                       Parent takes the format: accounts/{account_id} or
- *                                       accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
- * @param bool   $overwriteIfExists      Choose to overwrite an existing customer if found.
- *                                       This must be set to true if there is an existing customer with a
- *                                       conflicting region code or domain.
+ * @param string $domain            Customer domain.
+ * @param string $parent            The resource name of the reseller's account.
+ *                                  Parent takes the format: accounts/{account_id} or
+ *                                  accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
+ * @param bool   $overwriteIfExists Choose to overwrite an existing customer if found.
+ *                                  This must be set to true if there is an existing customer with a
+ *                                  conflicting region code or domain.
  */
-function import_customer_sample(
-    string $customerIdentityDomain,
-    string $parent,
-    bool $overwriteIfExists
-): void {
+function import_customer_sample(string $domain, string $parent, bool $overwriteIfExists): void
+{
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $customerIdentity = (new CustomerIdentityOneof())
-        ->setDomain($customerIdentityDomain);
+    // Prepare the request message.
+    $request = (new ImportCustomerRequest())
+        ->setDomain($domain)
+        ->setParent($parent)
+        ->setOverwriteIfExists($overwriteIfExists);
 
     // Call the API and handle any network failures.
     try {
         /** @var Customer $response */
-        $response = $cloudChannelServiceClient->importCustomer(
-            $customerIdentity,
-            $parent,
-            $overwriteIfExists
-        );
+        $response = $cloudChannelServiceClient->importCustomer($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -92,10 +90,10 @@ function import_customer_sample(
  */
 function callSample(): void
 {
-    $customerIdentityDomain = '[DOMAIN]';
+    $domain = '[DOMAIN]';
     $parent = '[PARENT]';
     $overwriteIfExists = false;
 
-    import_customer_sample($customerIdentityDomain, $parent, $overwriteIfExists);
+    import_customer_sample($domain, $parent, $overwriteIfExists);
 }
 // [END cloudchannel_v1_generated_CloudChannelService_ImportCustomer_sync]

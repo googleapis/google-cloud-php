@@ -23,12 +23,13 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_UpdateAttributionSettings_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\AttributionSettings;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\AcquisitionConversionEventLookbackWindow;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\AdsWebConversionDataExportScope;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\OtherConversionEventLookbackWindow;
 use Google\Analytics\Admin\V1alpha\AttributionSettings\ReportingAttributionModel;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\UpdateAttributionSettingsRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\FieldMask;
 
@@ -57,7 +58,7 @@ function update_attribution_settings_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $attributionSettings = (new AttributionSettings())
         ->setAcquisitionConversionEventLookbackWindow(
             $attributionSettingsAcquisitionConversionEventLookbackWindow
@@ -66,14 +67,14 @@ function update_attribution_settings_sample(
         ->setReportingAttributionModel($attributionSettingsReportingAttributionModel)
         ->setAdsWebConversionDataExportScope($attributionSettingsAdsWebConversionDataExportScope);
     $updateMask = new FieldMask();
+    $request = (new UpdateAttributionSettingsRequest())
+        ->setAttributionSettings($attributionSettings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var AttributionSettings $response */
-        $response = $analyticsAdminServiceClient->updateAttributionSettings(
-            $attributionSettings,
-            $updateMask
-        );
+        $response = $analyticsAdminServiceClient->updateAttributionSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

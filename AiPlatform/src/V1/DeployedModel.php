@@ -18,7 +18,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -78,6 +78,16 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     private $explanation_spec = null;
     /**
+     * If true, deploy the model without explainable feature, regardless the
+     * existence of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec].
+     *
+     * Generated from protobuf field <code>bool disable_explanations = 19;</code>
+     */
+    private $disable_explanations = false;
+    /**
      * The service account that the DeployedModel's container runs as. Specify the
      * email address of the service account. If this service account is not
      * specified, the container runs as a service account that doesn't have access
@@ -134,10 +144,14 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\AutomaticResources $automatic_resources
      *           A description of resources that to large degree are decided by Vertex
      *           AI, and require only a modest additional configuration.
+     *     @type string $shared_resources
+     *           The resource name of the shared DeploymentResourcePool to deploy on.
+     *           Format:
+     *           `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
      *     @type string $id
      *           Immutable. The ID of the DeployedModel. If not provided upon deployment,
      *           Vertex AI will generate a value for this ID.
-     *           This value should be 1-10 characters, and valid characters are /[0-9]/.
+     *           This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *     @type string $model
      *           Required. The resource name of the Model that this is the deployment of.
      *           Note that the Model may be in a different location than the DeployedModel's
@@ -172,6 +186,12 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           is not populated, all fields of the
      *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
      *           will be used for the explanation configuration.
+     *     @type bool $disable_explanations
+     *           If true, deploy the model without explainable feature, regardless the
+     *           existence of
+     *           [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     *           or
+     *           [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec].
      *     @type string $service_account
      *           The service account that the DeployedModel's container runs as. Specify the
      *           email address of the service account. If this service account is not
@@ -273,9 +293,44 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The resource name of the shared DeploymentResourcePool to deploy on.
+     * Format:
+     * `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
+     *
+     * Generated from protobuf field <code>string shared_resources = 17 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSharedResources()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasSharedResources()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * The resource name of the shared DeploymentResourcePool to deploy on.
+     * Format:
+     * `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`
+     *
+     * Generated from protobuf field <code>string shared_resources = 17 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSharedResources($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -288,7 +343,7 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The ID of the DeployedModel. If not provided upon deployment,
      * Vertex AI will generate a value for this ID.
-     * This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -496,6 +551,40 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ExplanationSpec::class);
         $this->explanation_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, deploy the model without explainable feature, regardless the
+     * existence of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec].
+     *
+     * Generated from protobuf field <code>bool disable_explanations = 19;</code>
+     * @return bool
+     */
+    public function getDisableExplanations()
+    {
+        return $this->disable_explanations;
+    }
+
+    /**
+     * If true, deploy the model without explainable feature, regardless the
+     * existence of
+     * [Model.explanation_spec][google.cloud.aiplatform.v1.Model.explanation_spec]
+     * or
+     * [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec].
+     *
+     * Generated from protobuf field <code>bool disable_explanations = 19;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableExplanations($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_explanations = $var;
 
         return $this;
     }

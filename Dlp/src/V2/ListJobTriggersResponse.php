@@ -22,8 +22,8 @@ class ListJobTriggersResponse extends \Google\Protobuf\Internal\Message
      */
     private $job_triggers;
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListJobTriggers request.
+     * If the next page is available then this value is the next page token to be
+     * used in the following ListJobTriggers request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -38,8 +38,8 @@ class ListJobTriggersResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Dlp\V2\JobTrigger>|\Google\Protobuf\Internal\RepeatedField $job_triggers
      *           List of triggeredJobs, up to page_size in ListJobTriggersRequest.
      *     @type string $next_page_token
-     *           If the next page is available then the next page token to be used
-     *           in following ListJobTriggers request.
+     *           If the next page is available then this value is the next page token to be
+     *           used in the following ListJobTriggers request.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +74,8 @@ class ListJobTriggersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListJobTriggers request.
+     * If the next page is available then this value is the next page token to be
+     * used in the following ListJobTriggers request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -86,8 +86,8 @@ class ListJobTriggersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the next page is available then the next page token to be used
-     * in following ListJobTriggers request.
+     * If the next page is available then this value is the next page token to be
+     * used in the following ListJobTriggers request.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

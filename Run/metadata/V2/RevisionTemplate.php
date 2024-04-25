@@ -14,14 +14,15 @@ class RevisionTemplate
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\K8SMin::initOnce();
         \GPBMetadata\Google\Cloud\Run\V2\VendorSettings::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         $pool->internalAddGeneratedFile(
             '
-≥
-+google/cloud/run/v2/revision_template.protogoogle.cloud.run.v2!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.proto"ô
+˜
++google/cloud/run/v2/revision_template.protogoogle.cloud.run.v2google/api/resource.proto!google/cloud/run/v2/k8s.min.proto)google/cloud/run/v2/vendor_settings.protogoogle/protobuf/duration.proto"¬
 RevisionTemplate2
 revision (	B ˙A
 run.googleapis.com/RevisionA
@@ -39,8 +40,9 @@ containers
 execution_environment (2).google.cloud.run.v2.ExecutionEnvironment>
 encryption_key (	B&˙A#
 !cloudkms.googleapis.com/CryptoKey(
- max_instance_request_concurrency (
-session_affinity (-
+ max_instance_request_concurrency (
+session_affinity (B‡A"
+health_check_disabled (B‡A-
 LabelsEntry
 key (	
 value (	:82

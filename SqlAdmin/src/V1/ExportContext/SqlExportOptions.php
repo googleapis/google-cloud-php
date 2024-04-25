@@ -31,6 +31,18 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.ExportContext.SqlExportOptions.MysqlExportOptions mysql_export_options = 3;</code>
      */
     private $mysql_export_options = null;
+    /**
+     * Optional. The number of threads to use for parallel export.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value threads = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $threads = null;
+    /**
+     * Optional. Whether or not the export should be parallel.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parallel = null;
 
     /**
      * Constructor.
@@ -45,6 +57,10 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\BoolValue $schema_only
      *           Export only schemas.
      *     @type \Google\Cloud\Sql\V1\ExportContext\SqlExportOptions\MysqlExportOptions $mysql_export_options
+     *     @type \Google\Protobuf\Int32Value $threads
+     *           Optional. The number of threads to use for parallel export.
+     *     @type \Google\Protobuf\BoolValue $parallel
+     *           Optional. Whether or not the export should be parallel.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,6 +192,132 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Optional. The number of threads to use for parallel export.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value threads = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Int32Value|null
+     */
+    public function getThreads()
+    {
+        return $this->threads;
+    }
+
+    public function hasThreads()
+    {
+        return isset($this->threads);
+    }
+
+    public function clearThreads()
+    {
+        unset($this->threads);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getThreads()</code>
+
+     * Optional. The number of threads to use for parallel export.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value threads = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|null
+     */
+    public function getThreadsValue()
+    {
+        return $this->readWrapperValue("threads");
+    }
+
+    /**
+     * Optional. The number of threads to use for parallel export.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value threads = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Int32Value $var
+     * @return $this
+     */
+    public function setThreads($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Int32Value::class);
+        $this->threads = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\Int32Value object.
+
+     * Optional. The number of threads to use for parallel export.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Int32Value threads = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|null $var
+     * @return $this
+     */
+    public function setThreadsValue($var)
+    {
+        $this->writeWrapperValue("threads", $var);
+        return $this;}
+
+    /**
+     * Optional. Whether or not the export should be parallel.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getParallel()
+    {
+        return $this->parallel;
+    }
+
+    public function hasParallel()
+    {
+        return isset($this->parallel);
+    }
+
+    public function clearParallel()
+    {
+        unset($this->parallel);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getParallel()</code>
+
+     * Optional. Whether or not the export should be parallel.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getParallelValue()
+    {
+        return $this->readWrapperValue("parallel");
+    }
+
+    /**
+     * Optional. Whether or not the export should be parallel.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setParallel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->parallel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. Whether or not the export should be parallel.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue parallel = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setParallelValue($var)
+    {
+        $this->writeWrapperValue("parallel", $var);
+        return $this;}
 
 }
 

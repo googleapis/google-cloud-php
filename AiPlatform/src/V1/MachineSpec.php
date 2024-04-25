@@ -44,6 +44,13 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 accelerator_count = 3;</code>
      */
     private $accelerator_count = 0;
+    /**
+     * Immutable. The topology of the TPUs. Corresponds to the TPU topologies
+     * available from GKE. (Example: tpu_topology: "2x2x1").
+     *
+     * Generated from protobuf field <code>string tpu_topology = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $tpu_topology = '';
 
     /**
      * Constructor.
@@ -68,6 +75,9 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
      *           [accelerator_count][google.cloud.aiplatform.v1.MachineSpec.accelerator_count].
      *     @type int $accelerator_count
      *           The number of accelerators to attach to the machine.
+     *     @type string $tpu_topology
+     *           Immutable. The topology of the TPUs. Corresponds to the TPU topologies
+     *           available from GKE. (Example: tpu_topology: "2x2x1").
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +181,34 @@ class MachineSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->accelerator_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The topology of the TPUs. Corresponds to the TPU topologies
+     * available from GKE. (Example: tpu_topology: "2x2x1").
+     *
+     * Generated from protobuf field <code>string tpu_topology = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getTpuTopology()
+    {
+        return $this->tpu_topology;
+    }
+
+    /**
+     * Immutable. The topology of the TPUs. Corresponds to the TPU topologies
+     * available from GKE. (Example: tpu_topology: "2x2x1").
+     *
+     * Generated from protobuf field <code>string tpu_topology = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTpuTopology($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tpu_topology = $var;
 
         return $this;
     }

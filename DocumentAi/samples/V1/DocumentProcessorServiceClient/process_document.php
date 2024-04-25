@@ -24,21 +24,18 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START documentai_v1_generated_DocumentProcessorService_ProcessDocument_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DocumentAI\V1\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient;
+use Google\Cloud\DocumentAI\V1\ProcessRequest;
 use Google\Cloud\DocumentAI\V1\ProcessResponse;
 
 /**
  * Processes a single document.
  *
- * @param string $name The resource name of the
- *                     [Processor][google.cloud.documentai.v1.Processor] or
+ * @param string $name The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
  *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
- *                     to use for processing. If a
- *                     [Processor][google.cloud.documentai.v1.Processor] is specified, the server
- *                     will use its [default
- *                     version][google.cloud.documentai.v1.Processor.default_processor_version].
- *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
- *                     or
+ *                     to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
+ *                     its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
+ *                     `projects/{project}/locations/{location}/processors/{processor}`, or
  *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
  */
 function process_document_sample(string $name): void
@@ -46,10 +43,14 @@ function process_document_sample(string $name): void
     // Create a client.
     $documentProcessorServiceClient = new DocumentProcessorServiceClient();
 
+    // Prepare the request message.
+    $request = (new ProcessRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var ProcessResponse $response */
-        $response = $documentProcessorServiceClient->processDocument($name);
+        $response = $documentProcessorServiceClient->processDocument($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

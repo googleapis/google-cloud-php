@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START logging_v2_generated_ConfigServiceV2_CreateBucketAsync_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\CreateBucketRequest;
 use Google\Cloud\Logging\V2\LogBucket;
 use Google\Rpc\Status;
 
@@ -51,13 +52,17 @@ function create_bucket_async_sample(string $formattedParent, string $bucketId): 
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $bucket = new LogBucket();
+    $request = (new CreateBucketRequest())
+        ->setParent($formattedParent)
+        ->setBucketId($bucketId)
+        ->setBucket($bucket);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $configServiceV2Client->createBucketAsync($formattedParent, $bucketId, $bucket);
+        $response = $configServiceV2Client->createBucketAsync($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

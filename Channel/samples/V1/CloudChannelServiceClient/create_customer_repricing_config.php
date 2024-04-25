@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_CreateCustomerRepricingConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\CreateCustomerRepricingConfigRequest;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
 use Google\Cloud\Channel\V1\RebillingBasis;
 use Google\Cloud\Channel\V1\RepricingAdjustment;
@@ -49,12 +50,12 @@ use Google\Type\Date;
  * * The new config will not modify exports used with other configs.
  * Changes to the config may be immediate, but may take up to 24 hours.
  * * There is a limit of ten configs for any
- * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement]
- * or
+ * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement],
+ * for any
  * [RepricingConfig.effective_invoice_month][google.cloud.channel.v1.RepricingConfig.effective_invoice_month].
  * * The contained
  * [CustomerRepricingConfig.repricing_config][google.cloud.channel.v1.CustomerRepricingConfig.repricing_config]
- * vaule must be different from the value used in the current config for a
+ * value must be different from the value used in the current config for a
  * [RepricingConfig.EntitlementGranularity.entitlement][google.cloud.channel.v1.RepricingConfig.EntitlementGranularity.entitlement].
  *
  * Possible Error Codes:
@@ -90,7 +91,7 @@ function create_customer_repricing_config_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customerRepricingConfigRepricingConfigEffectiveInvoiceMonth = new Date();
     $customerRepricingConfigRepricingConfigAdjustment = new RepricingAdjustment();
     $customerRepricingConfigRepricingConfig = (new RepricingConfig())
@@ -99,14 +100,14 @@ function create_customer_repricing_config_sample(
         ->setRebillingBasis($customerRepricingConfigRepricingConfigRebillingBasis);
     $customerRepricingConfig = (new CustomerRepricingConfig())
         ->setRepricingConfig($customerRepricingConfigRepricingConfig);
+    $request = (new CreateCustomerRepricingConfigRequest())
+        ->setParent($formattedParent)
+        ->setCustomerRepricingConfig($customerRepricingConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var CustomerRepricingConfig $response */
-        $response = $cloudChannelServiceClient->createCustomerRepricingConfig(
-            $formattedParent,
-            $customerRepricingConfig
-        );
+        $response = $cloudChannelServiceClient->createCustomerRepricingConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -128,6 +128,18 @@ class ChangeHistoryResourceType
      */
     const ENHANCED_MEASUREMENT_SETTINGS = 24;
     /**
+     * DataRedactionSettings resource
+     *
+     * Generated from protobuf enum <code>DATA_REDACTION_SETTINGS = 25;</code>
+     */
+    const DATA_REDACTION_SETTINGS = 25;
+    /**
+     * SKAdNetworkConversionValueSchema resource
+     *
+     * Generated from protobuf enum <code>SKADNETWORK_CONVERSION_VALUE_SCHEMA = 26;</code>
+     */
+    const SKADNETWORK_CONVERSION_VALUE_SCHEMA = 26;
+    /**
      * AdSenseLink resource
      *
      * Generated from protobuf enum <code>ADSENSE_LINK = 27;</code>
@@ -145,6 +157,12 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>EVENT_CREATE_RULE = 29;</code>
      */
     const EVENT_CREATE_RULE = 29;
+    /**
+     * CalculatedMetric resource
+     *
+     * Generated from protobuf enum <code>CALCULATED_METRIC = 31;</code>
+     */
+    const CALCULATED_METRIC = 31;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -166,9 +184,12 @@ class ChangeHistoryResourceType
         self::EXPANDED_DATA_SET => 'EXPANDED_DATA_SET',
         self::CHANNEL_GROUP => 'CHANNEL_GROUP',
         self::ENHANCED_MEASUREMENT_SETTINGS => 'ENHANCED_MEASUREMENT_SETTINGS',
+        self::DATA_REDACTION_SETTINGS => 'DATA_REDACTION_SETTINGS',
+        self::SKADNETWORK_CONVERSION_VALUE_SCHEMA => 'SKADNETWORK_CONVERSION_VALUE_SCHEMA',
         self::ADSENSE_LINK => 'ADSENSE_LINK',
         self::AUDIENCE => 'AUDIENCE',
         self::EVENT_CREATE_RULE => 'EVENT_CREATE_RULE',
+        self::CALCULATED_METRIC => 'CALCULATED_METRIC',
     ];
 
     public static function name($value)

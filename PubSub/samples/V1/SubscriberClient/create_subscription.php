@@ -24,21 +24,21 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_CreateSubscription_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
 
 /**
  * Creates a subscription to a given topic. See the [resource name rules]
- * (https://cloud.google.com/pubsub/docs/admin#resource_names).
+ * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names).
  * If the subscription already exists, returns `ALREADY_EXISTS`.
  * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
  *
  * If the name is not provided in the request, the server will assign a random
  * name for this subscription on the same project as the topic, conforming
  * to the [resource name format]
- * (https://cloud.google.com/pubsub/docs/admin#resource_names). The generated
- * name is populated in the returned Subscription object. Note that for REST
- * API requests, you must specify a name in the request.
+ * (https://cloud.google.com/pubsub/docs/pubsub-basics#resource_names). The
+ * generated name is populated in the returned Subscription object. Note that
+ * for REST API requests, you must specify a name in the request.
  *
  * @param string $name           The name of the subscription. It must have the format
  *                               `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
@@ -56,10 +56,15 @@ function create_subscription_sample(string $name, string $formattedTopic): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new Subscription())
+        ->setName($name)
+        ->setTopic($formattedTopic);
+
     // Call the API and handle any network failures.
     try {
         /** @var Subscription $response */
-        $response = $subscriberClient->createSubscription($name, $formattedTopic);
+        $response = $subscriberClient->createSubscription($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datamigration_v1_generated_DataMigrationService_SearchBackgroundJobs_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\SearchBackgroundJobsRequest;
 use Google\Cloud\CloudDms\V1\SearchBackgroundJobsResponse;
 
 /**
@@ -45,10 +46,14 @@ function search_background_jobs_sample(string $formattedConversionWorkspace): vo
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchBackgroundJobsRequest())
+        ->setConversionWorkspace($formattedConversionWorkspace);
+
     // Call the API and handle any network failures.
     try {
         /** @var SearchBackgroundJobsResponse $response */
-        $response = $dataMigrationServiceClient->searchBackgroundJobs($formattedConversionWorkspace);
+        $response = $dataMigrationServiceClient->searchBackgroundJobs($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -18,9 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Release extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `Release`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Release`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -115,6 +114,13 @@ class Release extends \Google\Protobuf\Internal\Message
      */
     private $target_snapshots;
     /**
+     * Output only. Snapshot of the custom target types referenced by the targets
+     * taken at release creation time.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomTargetType custom_target_type_snapshots = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $custom_target_type_snapshots;
+    /**
      * Output only. Current state of the render operation.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.RenderState render_state = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -171,9 +177,8 @@ class Release extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `Release`. Format is projects/{project}/
-     *           locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/[a-z][a-z0-9\-]{0,62}.
+     *           Optional. Name of the `Release`. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/[a-z][a-z0-9\-]{0,62}`.
      *     @type string $uid
      *           Output only. Unique identifier of the `Release`.
      *     @type string $description
@@ -211,6 +216,9 @@ class Release extends \Google\Protobuf\Internal\Message
      *           time.
      *     @type array<\Google\Cloud\Deploy\V1\Target>|\Google\Protobuf\Internal\RepeatedField $target_snapshots
      *           Output only. Snapshot of the targets taken at release creation time.
+     *     @type array<\Google\Cloud\Deploy\V1\CustomTargetType>|\Google\Protobuf\Internal\RepeatedField $custom_target_type_snapshots
+     *           Output only. Snapshot of the custom target types referenced by the targets
+     *           taken at release creation time.
      *     @type int $render_state
      *           Output only. Current state of the render operation.
      *     @type string $etag
@@ -240,9 +248,8 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Release`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Release`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -253,9 +260,8 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Release`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Release`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/[a-z][a-z0-9\-]{0,62}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -665,6 +671,34 @@ class Release extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\Target::class);
         $this->target_snapshots = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Snapshot of the custom target types referenced by the targets
+     * taken at release creation time.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomTargetType custom_target_type_snapshots = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCustomTargetTypeSnapshots()
+    {
+        return $this->custom_target_type_snapshots;
+    }
+
+    /**
+     * Output only. Snapshot of the custom target types referenced by the targets
+     * taken at release creation time.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomTargetType custom_target_type_snapshots = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Deploy\V1\CustomTargetType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCustomTargetTypeSnapshots($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Deploy\V1\CustomTargetType::class);
+        $this->custom_target_type_snapshots = $arr;
 
         return $this;
     }

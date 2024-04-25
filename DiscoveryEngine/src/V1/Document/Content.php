@@ -17,8 +17,11 @@ class Content extends \Google\Protobuf\Internal\Message
 {
     /**
      * The MIME type of the content. Supported types:
-     * * `application/pdf` (PDF)
+     * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
+     * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
+     * * `text/plain` (TXT)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
@@ -43,11 +46,14 @@ class Content extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           The URI of the content. Only Cloud Storage URIs (e.g.
      *           `gs://bucket-name/path/to/file`) are supported. The maximum file size
-     *           is 100 MB.
+     *           is 2.5 MB for text-based formats, 100 MB for other formats.
      *     @type string $mime_type
      *           The MIME type of the content. Supported types:
-     *           * `application/pdf` (PDF)
+     *           * `application/pdf` (PDF, only native PDFs are supported for now)
      *           * `text/html` (HTML)
+     *           * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
+     *           * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
+     *           * `text/plain` (TXT)
      *           See https://www.iana.org/assignments/media-types/media-types.xhtml.
      * }
      */
@@ -102,7 +108,7 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * The URI of the content. Only Cloud Storage URIs (e.g.
      * `gs://bucket-name/path/to/file`) are supported. The maximum file size
-     * is 100 MB.
+     * is 2.5 MB for text-based formats, 100 MB for other formats.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      * @return string
@@ -120,7 +126,7 @@ class Content extends \Google\Protobuf\Internal\Message
     /**
      * The URI of the content. Only Cloud Storage URIs (e.g.
      * `gs://bucket-name/path/to/file`) are supported. The maximum file size
-     * is 100 MB.
+     * is 2.5 MB for text-based formats, 100 MB for other formats.
      *
      * Generated from protobuf field <code>string uri = 3;</code>
      * @param string $var
@@ -136,8 +142,11 @@ class Content extends \Google\Protobuf\Internal\Message
 
     /**
      * The MIME type of the content. Supported types:
-     * * `application/pdf` (PDF)
+     * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
+     * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
+     * * `text/plain` (TXT)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>
@@ -150,8 +159,11 @@ class Content extends \Google\Protobuf\Internal\Message
 
     /**
      * The MIME type of the content. Supported types:
-     * * `application/pdf` (PDF)
+     * * `application/pdf` (PDF, only native PDFs are supported for now)
      * * `text/html` (HTML)
+     * * `application/vnd.openxmlformats-officedocument.wordprocessingml.document` (DOCX)
+     * * `application/vnd.openxmlformats-officedocument.presentationml.presentation` (PPTX)
+     * * `text/plain` (TXT)
      * See https://www.iana.org/assignments/media-types/media-types.xhtml.
      *
      * Generated from protobuf field <code>string mime_type = 1;</code>

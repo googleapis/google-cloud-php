@@ -45,6 +45,12 @@ class ComputeEngineShapeDescriptor extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string machine_type = 5;</code>
      */
     protected $machine_type = '';
+    /**
+     * Compute Engine storage. Never empty.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ComputeStorageDescriptor storage = 6;</code>
+     */
+    private $storage;
 
     /**
      * Constructor.
@@ -62,6 +68,8 @@ class ComputeEngineShapeDescriptor extends \Google\Protobuf\Internal\Message
      *           Compute Engine machine series.
      *     @type string $machine_type
      *           Compute Engine machine type.
+     *     @type array<\Google\Cloud\MigrationCenter\V1\ComputeStorageDescriptor>|\Google\Protobuf\Internal\RepeatedField $storage
+     *           Compute Engine storage. Never empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -195,6 +203,32 @@ class ComputeEngineShapeDescriptor extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->machine_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Compute Engine storage. Never empty.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ComputeStorageDescriptor storage = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getStorage()
+    {
+        return $this->storage;
+    }
+
+    /**
+     * Compute Engine storage. Never empty.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ComputeStorageDescriptor storage = 6;</code>
+     * @param array<\Google\Cloud\MigrationCenter\V1\ComputeStorageDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setStorage($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\MigrationCenter\V1\ComputeStorageDescriptor::class);
+        $this->storage = $arr;
 
         return $this;
     }

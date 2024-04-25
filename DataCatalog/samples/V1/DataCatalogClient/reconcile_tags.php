@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datacatalog_v1_generated_DataCatalog_ReconcileTags_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\ReconcileTagsRequest;
 use Google\Cloud\DataCatalog\V1\ReconcileTagsResponse;
 use Google\Rpc\Status;
 
@@ -54,10 +55,15 @@ function reconcile_tags_sample(string $formattedParent, string $formattedTagTemp
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new ReconcileTagsRequest())
+        ->setParent($formattedParent)
+        ->setTagTemplate($formattedTagTemplate);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataCatalogClient->reconcileTags($formattedParent, $formattedTagTemplate);
+        $response = $dataCatalogClient->reconcileTags($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

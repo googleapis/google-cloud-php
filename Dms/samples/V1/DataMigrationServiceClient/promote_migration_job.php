@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datamigration_v1_generated_DataMigrationService_PromoteMigrationJob_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\MigrationJob;
+use Google\Cloud\CloudDms\V1\PromoteMigrationJobRequest;
 use Google\Rpc\Status;
 
 /**
@@ -44,10 +45,13 @@ function promote_migration_job_sample(): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = new PromoteMigrationJobRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $dataMigrationServiceClient->promoteMigrationJob();
+        $response = $dataMigrationServiceClient->promoteMigrationJob($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

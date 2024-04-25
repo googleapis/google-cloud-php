@@ -142,6 +142,33 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_ip_masq_agent = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $enable_ip_masq_agent = false;
+    /**
+     * Optional. Network Attachment that Cloud Composer environment is connected
+     * to, which provides connectivity with a user's VPC network. Takes precedence
+     * over network and subnetwork settings. If not provided, but network and
+     * subnetwork are defined during environment, it will be provisioned. If not
+     * provided and network and subnetwork are also empty, then connectivity to
+     * user's VPC network is disabled. Network attachment must be provided in
+     * format
+     * projects/{project}/regions/{region}/networkAttachments/{networkAttachment}.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string composer_network_attachment = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $composer_network_attachment = '';
+    /**
+     * Optional. The IP range in CIDR notation to use internally by Cloud
+     * Composer. IP addresses are not reserved - and the same range can be used by
+     * multiple Cloud Composer environments. In case of overlap, IPs from this
+     * range will not be accessible in the user's VPC network. Cannot be updated.
+     * If not specified, the default value of '100.64.128.0/20' is used.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string composer_internal_ipv4_cidr_block = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $composer_internal_ipv4_cidr_block = '';
 
     /**
      * Constructor.
@@ -235,6 +262,25 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           all destination addresses, except between pods traffic.
      *           See:
      *           https://cloud.google.com/kubernetes-engine/docs/how-to/ip-masquerade-agent
+     *     @type string $composer_network_attachment
+     *           Optional. Network Attachment that Cloud Composer environment is connected
+     *           to, which provides connectivity with a user's VPC network. Takes precedence
+     *           over network and subnetwork settings. If not provided, but network and
+     *           subnetwork are defined during environment, it will be provisioned. If not
+     *           provided and network and subnetwork are also empty, then connectivity to
+     *           user's VPC network is disabled. Network attachment must be provided in
+     *           format
+     *           projects/{project}/regions/{region}/networkAttachments/{networkAttachment}.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-3.*.*-airflow-*.*.* and newer.
+     *     @type string $composer_internal_ipv4_cidr_block
+     *           Optional. The IP range in CIDR notation to use internally by Cloud
+     *           Composer. IP addresses are not reserved - and the same range can be used by
+     *           multiple Cloud Composer environments. In case of overlap, IPs from this
+     *           range will not be accessible in the user's VPC network. Cannot be updated.
+     *           If not specified, the default value of '100.64.128.0/20' is used.
+     *           This field is supported for Cloud Composer environments in versions
+     *           composer-3.*.*-airflow-*.*.* and newer.
      * }
      */
     public function __construct($data = NULL) {
@@ -640,6 +686,88 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_ip_masq_agent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Network Attachment that Cloud Composer environment is connected
+     * to, which provides connectivity with a user's VPC network. Takes precedence
+     * over network and subnetwork settings. If not provided, but network and
+     * subnetwork are defined during environment, it will be provisioned. If not
+     * provided and network and subnetwork are also empty, then connectivity to
+     * user's VPC network is disabled. Network attachment must be provided in
+     * format
+     * projects/{project}/regions/{region}/networkAttachments/{networkAttachment}.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string composer_network_attachment = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getComposerNetworkAttachment()
+    {
+        return $this->composer_network_attachment;
+    }
+
+    /**
+     * Optional. Network Attachment that Cloud Composer environment is connected
+     * to, which provides connectivity with a user's VPC network. Takes precedence
+     * over network and subnetwork settings. If not provided, but network and
+     * subnetwork are defined during environment, it will be provisioned. If not
+     * provided and network and subnetwork are also empty, then connectivity to
+     * user's VPC network is disabled. Network attachment must be provided in
+     * format
+     * projects/{project}/regions/{region}/networkAttachments/{networkAttachment}.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string composer_network_attachment = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setComposerNetworkAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->composer_network_attachment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The IP range in CIDR notation to use internally by Cloud
+     * Composer. IP addresses are not reserved - and the same range can be used by
+     * multiple Cloud Composer environments. In case of overlap, IPs from this
+     * range will not be accessible in the user's VPC network. Cannot be updated.
+     * If not specified, the default value of '100.64.128.0/20' is used.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string composer_internal_ipv4_cidr_block = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getComposerInternalIpv4CidrBlock()
+    {
+        return $this->composer_internal_ipv4_cidr_block;
+    }
+
+    /**
+     * Optional. The IP range in CIDR notation to use internally by Cloud
+     * Composer. IP addresses are not reserved - and the same range can be used by
+     * multiple Cloud Composer environments. In case of overlap, IPs from this
+     * range will not be accessible in the user's VPC network. Cannot be updated.
+     * If not specified, the default value of '100.64.128.0/20' is used.
+     * This field is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Generated from protobuf field <code>string composer_internal_ipv4_cidr_block = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setComposerInternalIpv4CidrBlock($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->composer_internal_ipv4_cidr_block = $var;
 
         return $this;
     }

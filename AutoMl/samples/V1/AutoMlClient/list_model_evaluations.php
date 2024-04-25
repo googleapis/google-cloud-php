@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_AutoMl_ListModelEvaluations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\ListModelEvaluationsRequest;
 use Google\Cloud\AutoMl\V1\ModelEvaluation;
 
 /**
@@ -52,10 +53,15 @@ function list_model_evaluations_sample(string $formattedParent, string $filter):
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare the request message.
+    $request = (new ListModelEvaluationsRequest())
+        ->setParent($formattedParent)
+        ->setFilter($filter);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $autoMlClient->listModelEvaluations($formattedParent, $filter);
+        $response = $autoMlClient->listModelEvaluations($request);
 
         /** @var ModelEvaluation $element */
         foreach ($response as $element) {

@@ -49,7 +49,9 @@ class SearchServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SearchServiceClient */
@@ -72,23 +74,27 @@ class SearchServiceClientTest extends GeneratedTest
         // Mock response
         $totalSize = 705419236;
         $attributionToken = 'attributionToken-729411015';
+        $redirectUri = 'redirectUri951230089';
         $nextPageToken = '';
         $correctedQuery = 'correctedQuery107869074';
         $resultsElement = new SearchResult();
-        $results = [
-            $resultsElement,
-        ];
+        $results = [$resultsElement];
         $expectedResponse = new SearchResponse();
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setAttributionToken($attributionToken);
+        $expectedResponse->setRedirectUri($redirectUri);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCorrectedQuery($correctedQuery);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SERVING_CONFIG]');
-        $request = (new SearchRequest())
-            ->setServingConfig($formattedServingConfig);
+        $formattedServingConfig = $gapicClient->servingConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[SERVING_CONFIG]'
+        );
+        $request = (new SearchRequest())->setServingConfig($formattedServingConfig);
         $response = $gapicClient->search($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -115,17 +121,24 @@ class SearchServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SERVING_CONFIG]');
-        $request = (new SearchRequest())
-            ->setServingConfig($formattedServingConfig);
+        $formattedServingConfig = $gapicClient->servingConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[SERVING_CONFIG]'
+        );
+        $request = (new SearchRequest())->setServingConfig($formattedServingConfig);
         try {
             $gapicClient->search($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -150,23 +163,27 @@ class SearchServiceClientTest extends GeneratedTest
         // Mock response
         $totalSize = 705419236;
         $attributionToken = 'attributionToken-729411015';
+        $redirectUri = 'redirectUri951230089';
         $nextPageToken = '';
         $correctedQuery = 'correctedQuery107869074';
         $resultsElement = new SearchResult();
-        $results = [
-            $resultsElement,
-        ];
+        $results = [$resultsElement];
         $expectedResponse = new SearchResponse();
         $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setAttributionToken($attributionToken);
+        $expectedResponse->setRedirectUri($redirectUri);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCorrectedQuery($correctedQuery);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedServingConfig = $gapicClient->servingConfigName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[SERVING_CONFIG]');
-        $request = (new SearchRequest())
-            ->setServingConfig($formattedServingConfig);
+        $formattedServingConfig = $gapicClient->servingConfigName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[DATA_STORE]',
+            '[SERVING_CONFIG]'
+        );
+        $request = (new SearchRequest())->setServingConfig($formattedServingConfig);
         $response = $gapicClient->searchAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());

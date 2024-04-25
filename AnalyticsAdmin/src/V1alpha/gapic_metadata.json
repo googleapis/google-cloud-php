@@ -35,19 +35,9 @@
                                 "archiveCustomMetric"
                             ]
                         },
-                        "AuditUserLinks": {
-                            "methods": [
-                                "auditUserLinks"
-                            ]
-                        },
                         "BatchCreateAccessBindings": {
                             "methods": [
                                 "batchCreateAccessBindings"
-                            ]
-                        },
-                        "BatchCreateUserLinks": {
-                            "methods": [
-                                "batchCreateUserLinks"
                             ]
                         },
                         "BatchDeleteAccessBindings": {
@@ -55,29 +45,14 @@
                                 "batchDeleteAccessBindings"
                             ]
                         },
-                        "BatchDeleteUserLinks": {
-                            "methods": [
-                                "batchDeleteUserLinks"
-                            ]
-                        },
                         "BatchGetAccessBindings": {
                             "methods": [
                                 "batchGetAccessBindings"
                             ]
                         },
-                        "BatchGetUserLinks": {
-                            "methods": [
-                                "batchGetUserLinks"
-                            ]
-                        },
                         "BatchUpdateAccessBindings": {
                             "methods": [
                                 "batchUpdateAccessBindings"
-                            ]
-                        },
-                        "BatchUpdateUserLinks": {
-                            "methods": [
-                                "batchUpdateUserLinks"
                             ]
                         },
                         "CancelDisplayVideo360AdvertiserLinkProposal": {
@@ -98,6 +73,11 @@
                         "CreateAudience": {
                             "methods": [
                                 "createAudience"
+                            ]
+                        },
+                        "CreateCalculatedMetric": {
+                            "methods": [
+                                "createCalculatedMetric"
                             ]
                         },
                         "CreateChannelGroup": {
@@ -170,14 +150,34 @@
                                 "createProperty"
                             ]
                         },
+                        "CreateRollupProperty": {
+                            "methods": [
+                                "createRollupProperty"
+                            ]
+                        },
+                        "CreateRollupPropertySourceLink": {
+                            "methods": [
+                                "createRollupPropertySourceLink"
+                            ]
+                        },
+                        "CreateSKAdNetworkConversionValueSchema": {
+                            "methods": [
+                                "createSKAdNetworkConversionValueSchema"
+                            ]
+                        },
                         "CreateSearchAds360Link": {
                             "methods": [
                                 "createSearchAds360Link"
                             ]
                         },
-                        "CreateUserLink": {
+                        "CreateSubproperty": {
                             "methods": [
-                                "createUserLink"
+                                "createSubproperty"
+                            ]
+                        },
+                        "CreateSubpropertyEventFilter": {
+                            "methods": [
+                                "createSubpropertyEventFilter"
                             ]
                         },
                         "DeleteAccessBinding": {
@@ -193,6 +193,11 @@
                         "DeleteAdSenseLink": {
                             "methods": [
                                 "deleteAdSenseLink"
+                            ]
+                        },
+                        "DeleteCalculatedMetric": {
+                            "methods": [
+                                "deleteCalculatedMetric"
                             ]
                         },
                         "DeleteChannelGroup": {
@@ -255,14 +260,24 @@
                                 "deleteProperty"
                             ]
                         },
+                        "DeleteRollupPropertySourceLink": {
+                            "methods": [
+                                "deleteRollupPropertySourceLink"
+                            ]
+                        },
+                        "DeleteSKAdNetworkConversionValueSchema": {
+                            "methods": [
+                                "deleteSKAdNetworkConversionValueSchema"
+                            ]
+                        },
                         "DeleteSearchAds360Link": {
                             "methods": [
                                 "deleteSearchAds360Link"
                             ]
                         },
-                        "DeleteUserLink": {
+                        "DeleteSubpropertyEventFilter": {
                             "methods": [
-                                "deleteUserLink"
+                                "deleteSubpropertyEventFilter"
                             ]
                         },
                         "FetchAutomatedGa4ConfigurationOptOut": {
@@ -305,6 +320,11 @@
                                 "getBigQueryLink"
                             ]
                         },
+                        "GetCalculatedMetric": {
+                            "methods": [
+                                "getCalculatedMetric"
+                            ]
+                        },
                         "GetChannelGroup": {
                             "methods": [
                                 "getChannelGroup"
@@ -323,6 +343,11 @@
                         "GetCustomMetric": {
                             "methods": [
                                 "getCustomMetric"
+                            ]
+                        },
+                        "GetDataRedactionSettings": {
+                            "methods": [
+                                "getDataRedactionSettings"
                             ]
                         },
                         "GetDataRetentionSettings": {
@@ -385,14 +410,24 @@
                                 "getProperty"
                             ]
                         },
+                        "GetRollupPropertySourceLink": {
+                            "methods": [
+                                "getRollupPropertySourceLink"
+                            ]
+                        },
+                        "GetSKAdNetworkConversionValueSchema": {
+                            "methods": [
+                                "getSKAdNetworkConversionValueSchema"
+                            ]
+                        },
                         "GetSearchAds360Link": {
                             "methods": [
                                 "getSearchAds360Link"
                             ]
                         },
-                        "GetUserLink": {
+                        "GetSubpropertyEventFilter": {
                             "methods": [
-                                "getUserLink"
+                                "getSubpropertyEventFilter"
                             ]
                         },
                         "ListAccessBindings": {
@@ -423,6 +458,11 @@
                         "ListBigQueryLinks": {
                             "methods": [
                                 "listBigQueryLinks"
+                            ]
+                        },
+                        "ListCalculatedMetrics": {
+                            "methods": [
+                                "listCalculatedMetrics"
                             ]
                         },
                         "ListChannelGroups": {
@@ -495,14 +535,24 @@
                                 "listProperties"
                             ]
                         },
+                        "ListRollupPropertySourceLinks": {
+                            "methods": [
+                                "listRollupPropertySourceLinks"
+                            ]
+                        },
+                        "ListSKAdNetworkConversionValueSchemas": {
+                            "methods": [
+                                "listSKAdNetworkConversionValueSchemas"
+                            ]
+                        },
                         "ListSearchAds360Links": {
                             "methods": [
                                 "listSearchAds360Links"
                             ]
                         },
-                        "ListUserLinks": {
+                        "ListSubpropertyEventFilters": {
                             "methods": [
-                                "listUserLinks"
+                                "listSubpropertyEventFilters"
                             ]
                         },
                         "ProvisionAccountTicket": {
@@ -545,6 +595,11 @@
                                 "updateAudience"
                             ]
                         },
+                        "UpdateCalculatedMetric": {
+                            "methods": [
+                                "updateCalculatedMetric"
+                            ]
+                        },
                         "UpdateChannelGroup": {
                             "methods": [
                                 "updateChannelGroup"
@@ -563,6 +618,11 @@
                         "UpdateCustomMetric": {
                             "methods": [
                                 "updateCustomMetric"
+                            ]
+                        },
+                        "UpdateDataRedactionSettings": {
+                            "methods": [
+                                "updateDataRedactionSettings"
                             ]
                         },
                         "UpdateDataRetentionSettings": {
@@ -615,14 +675,19 @@
                                 "updateProperty"
                             ]
                         },
+                        "UpdateSKAdNetworkConversionValueSchema": {
+                            "methods": [
+                                "updateSKAdNetworkConversionValueSchema"
+                            ]
+                        },
                         "UpdateSearchAds360Link": {
                             "methods": [
                                 "updateSearchAds360Link"
                             ]
                         },
-                        "UpdateUserLink": {
+                        "UpdateSubpropertyEventFilter": {
                             "methods": [
-                                "updateUserLink"
+                                "updateSubpropertyEventFilter"
                             ]
                         }
                     }

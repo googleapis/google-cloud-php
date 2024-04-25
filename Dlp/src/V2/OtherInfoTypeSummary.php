@@ -28,6 +28,13 @@ class OtherInfoTypeSummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 estimated_prevalence = 2;</code>
      */
     private $estimated_prevalence = 0;
+    /**
+     * Whether this infoType was excluded from sensitivity and risk analysis due
+     * to factors such as low prevalence (subject to change).
+     *
+     * Generated from protobuf field <code>bool excluded_from_analysis = 3;</code>
+     */
+    private $excluded_from_analysis = false;
 
     /**
      * Constructor.
@@ -40,6 +47,9 @@ class OtherInfoTypeSummary extends \Google\Protobuf\Internal\Message
      *     @type int $estimated_prevalence
      *           Approximate percentage of non-null rows that contained data detected by
      *           this infotype.
+     *     @type bool $excluded_from_analysis
+     *           Whether this infoType was excluded from sensitivity and risk analysis due
+     *           to factors such as low prevalence (subject to change).
      * }
      */
     public function __construct($data = NULL) {
@@ -107,6 +117,34 @@ class OtherInfoTypeSummary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->estimated_prevalence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether this infoType was excluded from sensitivity and risk analysis due
+     * to factors such as low prevalence (subject to change).
+     *
+     * Generated from protobuf field <code>bool excluded_from_analysis = 3;</code>
+     * @return bool
+     */
+    public function getExcludedFromAnalysis()
+    {
+        return $this->excluded_from_analysis;
+    }
+
+    /**
+     * Whether this infoType was excluded from sensitivity and risk analysis due
+     * to factors such as low prevalence (subject to change).
+     *
+     * Generated from protobuf field <code>bool excluded_from_analysis = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExcludedFromAnalysis($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->excluded_from_analysis = $var;
 
         return $this;
     }

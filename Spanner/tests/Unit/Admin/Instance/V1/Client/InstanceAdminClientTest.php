@@ -34,20 +34,29 @@ use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionOperationsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionOperationsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -384,6 +393,161 @@ class InstanceAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createInstancePartitionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createInstancePartitionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $config = 'config-1354792126';
+        $displayName = 'displayName1615086568';
+        $nodeCount = 1539922066;
+        $etag = 'etag3123477';
+        $expectedResponse = new InstancePartition();
+        $expectedResponse->setName($name);
+        $expectedResponse->setConfig($config);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setNodeCount($nodeCount);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createInstancePartitionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $instancePartitionId = 'instancePartitionId288435706';
+        $instancePartition = new InstancePartition();
+        $instancePartitionName = 'instancePartitionName1272312320';
+        $instancePartition->setName($instancePartitionName);
+        $instancePartitionConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instancePartition->setConfig($instancePartitionConfig);
+        $instancePartitionDisplayName = 'instancePartitionDisplayName1175388504';
+        $instancePartition->setDisplayName($instancePartitionDisplayName);
+        $request = (new CreateInstancePartitionRequest())
+            ->setParent($formattedParent)
+            ->setInstancePartitionId($instancePartitionId)
+            ->setInstancePartition($instancePartition);
+        $response = $gapicClient->createInstancePartition($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/CreateInstancePartition', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstancePartitionId();
+        $this->assertProtobufEquals($instancePartitionId, $actualValue);
+        $actualValue = $actualApiRequestObject->getInstancePartition();
+        $this->assertProtobufEquals($instancePartition, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createInstancePartitionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createInstancePartitionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createInstancePartitionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $instancePartitionId = 'instancePartitionId288435706';
+        $instancePartition = new InstancePartition();
+        $instancePartitionName = 'instancePartitionName1272312320';
+        $instancePartition->setName($instancePartitionName);
+        $instancePartitionConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instancePartition->setConfig($instancePartitionConfig);
+        $instancePartitionDisplayName = 'instancePartitionDisplayName1175388504';
+        $instancePartition->setDisplayName($instancePartitionDisplayName);
+        $request = (new CreateInstancePartitionRequest())
+            ->setParent($formattedParent)
+            ->setInstancePartitionId($instancePartitionId)
+            ->setInstancePartition($instancePartition);
+        $response = $gapicClient->createInstancePartition($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createInstancePartitionTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteInstanceTest()
     {
         $transport = $this->createTransport();
@@ -494,6 +658,67 @@ class InstanceAdminClientTest extends GeneratedTest
             ->setName($formattedName);
         try {
             $gapicClient->deleteInstanceConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteInstancePartitionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->instancePartitionName('[PROJECT]', '[INSTANCE]', '[INSTANCE_PARTITION]');
+        $request = (new DeleteInstancePartitionRequest())
+            ->setName($formattedName);
+        $gapicClient->deleteInstancePartition($request);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/DeleteInstancePartition', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteInstancePartitionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instancePartitionName('[PROJECT]', '[INSTANCE]', '[INSTANCE_PARTITION]');
+        $request = (new DeleteInstancePartitionRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->deleteInstancePartition($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -716,6 +941,78 @@ class InstanceAdminClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getInstancePartitionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $config = 'config-1354792126';
+        $displayName = 'displayName1615086568';
+        $nodeCount = 1539922066;
+        $etag = 'etag3123477';
+        $expectedResponse = new InstancePartition();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setConfig($config);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setNodeCount($nodeCount);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->instancePartitionName('[PROJECT]', '[INSTANCE]', '[INSTANCE_PARTITION]');
+        $request = (new GetInstancePartitionRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getInstancePartition($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstancePartition', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getInstancePartitionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instancePartitionName('[PROJECT]', '[INSTANCE]', '[INSTANCE_PARTITION]');
+        $request = (new GetInstancePartitionRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getInstancePartition($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listInstanceConfigOperationsTest()
     {
         $transport = $this->createTransport();
@@ -848,6 +1145,150 @@ class InstanceAdminClientTest extends GeneratedTest
             ->setParent($formattedParent);
         try {
             $gapicClient->listInstanceConfigs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listInstancePartitionOperationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $operationsElement = new Operation();
+        $operations = [
+            $operationsElement,
+        ];
+        $expectedResponse = new ListInstancePartitionOperationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setOperations($operations);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListInstancePartitionOperationsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listInstancePartitionOperations($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getOperations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstancePartitionOperations', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listInstancePartitionOperationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListInstancePartitionOperationsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listInstancePartitionOperations($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listInstancePartitionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $instancePartitionsElement = new InstancePartition();
+        $instancePartitions = [
+            $instancePartitionsElement,
+        ];
+        $expectedResponse = new ListInstancePartitionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setInstancePartitions($instancePartitions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListInstancePartitionsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listInstancePartitions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getInstancePartitions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstancePartitions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listInstancePartitionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
+        $request = (new ListInstancePartitionsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listInstancePartitions($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1340,6 +1781,155 @@ class InstanceAdminClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateInstanceConfigTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateInstancePartitionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateInstancePartitionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $config = 'config-1354792126';
+        $displayName = 'displayName1615086568';
+        $nodeCount = 1539922066;
+        $etag = 'etag3123477';
+        $expectedResponse = new InstancePartition();
+        $expectedResponse->setName($name);
+        $expectedResponse->setConfig($config);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setNodeCount($nodeCount);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateInstancePartitionTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instancePartition = new InstancePartition();
+        $instancePartitionName = 'instancePartitionName1272312320';
+        $instancePartition->setName($instancePartitionName);
+        $instancePartitionConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instancePartition->setConfig($instancePartitionConfig);
+        $instancePartitionDisplayName = 'instancePartitionDisplayName1175388504';
+        $instancePartition->setDisplayName($instancePartitionDisplayName);
+        $fieldMask = new FieldMask();
+        $request = (new UpdateInstancePartitionRequest())
+            ->setInstancePartition($instancePartition)
+            ->setFieldMask($fieldMask);
+        $response = $gapicClient->updateInstancePartition($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.admin.instance.v1.InstanceAdmin/UpdateInstancePartition', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstancePartition();
+        $this->assertProtobufEquals($instancePartition, $actualValue);
+        $actualValue = $actualApiRequestObject->getFieldMask();
+        $this->assertProtobufEquals($fieldMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateInstancePartitionTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateInstancePartitionExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateInstancePartitionTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instancePartition = new InstancePartition();
+        $instancePartitionName = 'instancePartitionName1272312320';
+        $instancePartition->setName($instancePartitionName);
+        $instancePartitionConfig = $gapicClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instancePartition->setConfig($instancePartitionConfig);
+        $instancePartitionDisplayName = 'instancePartitionDisplayName1175388504';
+        $instancePartition->setDisplayName($instancePartitionDisplayName);
+        $fieldMask = new FieldMask();
+        $request = (new UpdateInstancePartitionRequest())
+            ->setInstancePartition($instancePartition)
+            ->setFieldMask($fieldMask);
+        $response = $gapicClient->updateInstancePartition($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateInstancePartitionTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

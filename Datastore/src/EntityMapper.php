@@ -24,7 +24,7 @@ use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 
 /**
- * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
+ * Utility methods for mapping between datastore and {@see \Google\Cloud\Datastore\Entity}.
  */
 class EntityMapper
 {
@@ -50,19 +50,34 @@ class EntityMapper
     private $returnInt64AsObject;
 
     /**
+     * The connection type of the client. Required while mapping
+     * `INF`, `-INF` and `NAN` to datastore equivalent values.
+     *
+     * @var string
+     */
+    private $connectionType;
+
+    /**
      * Create an Entity Mapper
      *
      * @param string $projectId The datastore project ID
      * @param bool $encode Whether to encode blobs as base64.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
+     * @param string $connectionType [optional] The connection type of the client.
+     *        Can be `rest` or `grpc`, defaults to `grpc`.
      */
-    public function __construct($projectId, $encode, $returnInt64AsObject)
-    {
+    public function __construct(
+        $projectId,
+        $encode,
+        $returnInt64AsObject,
+        $connectionType = 'grpc'
+    ) {
         $this->projectId = $projectId;
         $this->encode = $encode;
         $this->returnInt64AsObject = $returnInt64AsObject;
+        $this->connectionType = $connectionType;
     }
 
     /**
@@ -70,10 +85,10 @@ class EntityMapper
      *
      * @param array $entityData The incoming entity
      * @param string $className The name of a class to use as the entity. Must
-     *        implement {@see Google\Cloud\Datastore\EntityInterface}.
+     *        implement {@see \Google\Cloud\Datastore\EntityInterface}.
      * @return array
      * @throws \InvalidArgumentException If the value of $className does not
-     *       implement {@see Google\Cloud\Datastore\EntityInterface}.
+     *       implement {@see \Google\Cloud\Datastore\EntityInterface}.
      * @throws \InvalidArgumentException If the custom entity type containts invalid
      *       mappings for embedded entities.
      */
@@ -189,6 +204,22 @@ class EntityMapper
                 break;
 
             case 'doubleValue':
+                // Flow will enter this logic only when REST transport is used
+                // because gRPC response values are always parsed correctly. Therefore
+                // the default $connectionType is set to 'grpc'
+                if (is_string($value)) {
+                    switch ($value) {
+                        case 'Infinity':
+                            $value = INF;
+                            break;
+                        case '-Infinity':
+                            $value = -INF;
+                            break;
+                        case 'NaN':
+                            $value = NAN;
+                            break;
+                    }
+                }
                 $result = (float) $value;
 
                 break;
@@ -328,6 +359,18 @@ class EntityMapper
                 break;
 
             case 'double':
+                // The mappings happen automatically for grpc hence
+                // this is required only incase of rest as grpc
+                // doesn't recognises 'Infinity', '-Infinity' and 'NaN'.
+                if ($this->connectionType == 'rest') {
+                    if ($value == INF) {
+                        $value = 'Infinity';
+                    } elseif ($value == -INF) {
+                        $value = '-Infinity';
+                    } elseif (is_nan($value)) {
+                        $value = 'NaN';
+                    }
+                }
                 $propertyValue = [
                     'doubleValue' => $value
                 ];

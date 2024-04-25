@@ -23,7 +23,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The maximum number of results per page that should be returned.
+     * The maximum number of results to return per page.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -35,7 +35,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * An expression that filters the results listed in the response.
+     * An expression that filters the list of results.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      */
@@ -70,11 +70,11 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource.
      *     @type int $page_size
-     *           The maximum number of results per page that should be returned.
+     *           The maximum number of results to return per page.
      *     @type string $page_token
      *           The page token.
      *     @type string $filter
-     *           An expression that filters the results listed in the response.
+     *           An expression that filters the list of results.
      *     @type string $order_by
      *           Sort the results by a certain order.
      * }
@@ -111,7 +111,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of results per page that should be returned.
+     * The maximum number of results to return per page.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -122,7 +122,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of results per page that should be returned.
+     * The maximum number of results to return per page.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -163,7 +163,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An expression that filters the results listed in the response.
+     * An expression that filters the list of results.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      * @return string
@@ -174,7 +174,7 @@ class ListSpokesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An expression that filters the results listed in the response.
+     * An expression that filters the list of results.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
      * @param string $var

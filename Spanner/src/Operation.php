@@ -26,16 +26,17 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Rpc\Code;
+use InvalidArgumentException;
 
 /**
  * Common interface for running operations against Cloud Spanner. This class is
  * intended for internal use by the client library only. Implementors should
- * access these operations via {@see Google\Cloud\Spanner\Database} or
- * {@see Google\Cloud\Spanner\Transaction}.
+ * access these operations via {@see \Google\Cloud\Spanner\Database} or
+ * {@see \Google\Cloud\Spanner\Transaction}.
  *
  * Usage examples may be found in classes making use of this class:
- * * {@see Google\Cloud\Spanner\Database}
- * * {@see Google\Cloud\Spanner\Transaction}
+ * * {@see \Google\Cloud\Spanner\Database}
+ * * {@see \Google\Cloud\Spanner\Transaction}
  */
 class Operation
 {
@@ -51,6 +52,7 @@ class Operation
 
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -61,9 +63,10 @@ class Operation
 
     /**
      * @param ConnectionInterface $connection A connection to Google Cloud
-     *        Spanner.
+     *        Spanner. This object is created by SpannerClient,
+     *        and should not be instantiated outside of this client.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
      */
     public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
@@ -121,11 +124,14 @@ class Operation
      *     @type string $transactionId The ID of the transaction.
      *     @type bool $returnCommitStats If true, return the full response.
      *           **Defaults to** `false`.
+     *     @type Duration $maxCommitDelay The amount of latency this request
+     *           is willing to incur in order to improve throughput.
+     *           **Defaults to** null.
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -148,13 +154,16 @@ class Operation
      *     @type string $transactionId The ID of the transaction.
      *     @type bool $returnCommitStats If true, return the full response.
      *           **Defaults to** `false`.
+     *     @type Duration $maxCommitDelay The amount of latency this request
+     *           is willing to incur in order to improve throughput.
+     *           **Defaults to** null.
      *     @type array $requestOptions Request options.
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
-     * @return array An array containing {@see Google\Cloud\Spanner\Timestamp}
+     * @return array An array containing {@see \Google\Cloud\Spanner\Timestamp}
      *               at index 0 and the commit response as an array at index 1.
      */
     public function commitWithResponse(Session $session, array $mutations, array $options = [])
@@ -182,9 +191,13 @@ class Operation
      * @param string $transactionId The transaction to roll back.
      * @param array $options [optional] Configuration Options.
      * @return void
+     * @throws InvalidArgumentException If the transaction is not yet initialized.
      */
     public function rollback(Session $session, $transactionId, array $options = [])
     {
+        if (empty($transactionId)) {
+            throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
+        }
         $this->connection->rollback([
             'transactionId' => $transactionId,
             'session' => $session->name(),
@@ -204,7 +217,14 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $transaction Transaction selector options.
+     *     @type array $transaction.begin The begin transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return Result
      */
@@ -222,7 +242,17 @@ class Operation
 
         $context = $this->pluck('transactionContext', $options);
 
-        $call = function ($resumeToken = null) use ($session, $sql, $options) {
+        // Initially with begin, transactionId will be null.
+        // Once transaction is generated, even in the case of stream failure,
+        // transaction will be passed to this callable by the Result class.
+        $call = function ($resumeToken = null, $transaction = null) use (
+            $session,
+            $sql,
+            $options
+        ) {
+            if ($transaction && !empty($transaction->id())) {
+                $options['transaction'] = ['id' => $transaction->id()];
+            }
             if ($resumeToken) {
                 $options['resumeToken'] = $resumeToken;
             }
@@ -250,10 +280,13 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $transaction Transaction selector options.
+     *     @type array $transaction.begin The begin transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return int
-     * @throws \InvalidArgumentException If the SQL string isn't an update operation.
+     * @throws InvalidArgumentException If the SQL string isn't an update operation.
      */
     public function executeUpdate(
         Session $session,
@@ -261,16 +294,20 @@ class Operation
         $sql,
         array $options = []
     ) {
-        $res = $this->execute($session, $sql, [
-            'transactionId' => $transaction->id()
-        ] + $options);
+        if (!isset($options['transaction']['begin'])) {
+            $options['transaction'] = ['id' => $transaction->id()];
+        }
+        $res = $this->execute($session, $sql, $options);
+        if (empty($transaction->id()) && $res->transaction()) {
+            $transaction->setId($res->transaction()->id());
+        }
 
         // Iterate through the result to ensure we have query statistics available.
         iterator_to_array($res->rows());
 
         $stats = $res->stats();
         if (!$stats) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Partitioned DML response missing stats, possible due to non-DML statement as input.'
             );
         }
@@ -284,7 +321,7 @@ class Operation
      * Execute multiple DML statements.
      *
      * For detailed usage instructions, see
-     * {@see Google\Cloud\Spanner\Transaction::executeUpdateBatch()}.
+     * {@see \Google\Cloud\Spanner\Transaction::executeUpdateBatch()}.
      *
      * @param Session $session The session in which the update operation should
      *        be executed.
@@ -298,14 +335,14 @@ class Operation
      *        infer types. Explicit type declarations are required in the case
      *        of struct parameters, or when a null value exists as a parameter.
      *        Accepted values for primitive types are defined as constants on
-     *        {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *        {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *        `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *        `Database::TYPE_DATE`, `Database::TYPE_STRING`,
      *        `Database::TYPE_BYTES`. If the value is an array, use
-     *        {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *        {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *        parameter types. Likewise, for structs, use
-     *        {@see Google\Cloud\Spanner\StructType}.
+     *        {@see \Google\Cloud\Spanner\StructType}.
      * @param array $options [optional] {
      *     Configuration Options.
      *
@@ -313,10 +350,13 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $transaction Transaction selector options.
+     *     @type array $transaction.begin The begin transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return BatchDmlResult
-     * @throws \InvalidArgumentException If any statement is missing the `sql` key.
+     * @throws InvalidArgumentException If any statement is missing the `sql` key.
      */
     public function executeUpdateBatch(
         Session $session,
@@ -327,7 +367,7 @@ class Operation
         $stmts = [];
         foreach ($statements as $statement) {
             if (!isset($statement['sql'])) {
-                throw new \InvalidArgumentException('Each statement must contain a SQL key.');
+                throw new InvalidArgumentException('Each statement must contain a SQL key.');
             }
 
             $parameters = $this->pluck('parameters', $statement, false) ?: [];
@@ -337,12 +377,22 @@ class Operation
             ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
         }
 
+        if (!isset($options['transaction']['begin'])) {
+            $options['transaction'] = ['id' => $transaction->id()];
+        }
+
         $res = $this->connection->executeBatchDml([
             'session' => $session->name(),
             'database' => $this->getDatabaseNameFromSession($session),
-            'transactionId' => $transaction->id(),
             'statements' => $stmts
         ] + $options);
+
+        if (empty($transaction->id())) {
+            // Get the transaction from array of ResultSets.
+            // ResultSet contains transaction in the metadata.
+            // @see https://cloud.google.com/spanner/docs/reference/rest/v1/ResultSet
+            $transaction->setId($res['resultSets'][0]['metadata']['transaction']['id'] ?? null);
+        }
 
         $errorStatement = null;
         if (isset($res['status']) && $res['status']['code'] !== Code::OK) {
@@ -370,12 +420,24 @@ class Operation
      *         For more information on available options, please see
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *     @type array $transaction Transaction selector options.
+     *     @type array $transaction.begin The begin transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return Result
      */
-    public function read(Session $session, $table, KeySet $keySet, array $columns, array $options = [])
-    {
+    public function read(
+        Session $session,
+        $table,
+        KeySet $keySet,
+        array $columns,
+        array $options = []
+    ) {
         $options += [
             'index' => null,
             'limit' => null,
@@ -385,7 +447,16 @@ class Operation
 
         $context = $this->pluck('transactionContext', $options);
 
-        $call = function ($resumeToken = null) use ($table, $session, $columns, $keySet, $options) {
+        $call = function ($resumeToken = null, $transaction = null) use (
+            $table,
+            $session,
+            $columns,
+            $keySet,
+            $options
+        ) {
+            if ($transaction && !empty($transaction->id())) {
+                $options['transaction'] = ['id' => $transaction->id()];
+            }
             if ($resumeToken) {
                 $options['resumeToken'] = $resumeToken;
             }
@@ -418,6 +489,8 @@ class Operation
      *     @type bool $isRetry If true, the resulting transaction will indicate
      *           that it is the result of a retry operation. **Defaults to**
      *           `false`.
+     *     @type array $begin The begin transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * }
      * @return Transaction
      */
@@ -433,13 +506,23 @@ class Operation
             $options['requestOptions']['transactionTag'] = $transactionTag;
         }
 
-        if (!$options['singleUse']) {
+        if (!$options['singleUse'] && (!isset($options['begin']) ||
+            isset($options['transactionOptions']['partitionedDml']))
+        ) {
             $res = $this->beginTransaction($session, $options);
         } else {
             $res = [];
         }
 
-        return $this->createTransaction($session, $res, ['tag' => $transactionTag]);
+        return $this->createTransaction(
+            $session,
+            $res,
+            [
+                'tag' => $transactionTag,
+                'isRetry' => $options['isRetry'],
+                'transactionOptions' => $options
+            ]
+        );
     }
 
     /**
@@ -448,6 +531,8 @@ class Operation
      * @param Session $session The session the transaction belongs to.
      * @param array $res [optional] The createTransaction response.
      * @param array $options [optional] Options for the transaction object.
+     *     @type array $begin The begin transaction options.
+     *           [Refer](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#transactionoptions)
      * @return Transaction
      */
     public function createTransaction(Session $session, array $res = [], array $options = [])
@@ -456,12 +541,20 @@ class Operation
             'id' => null
         ];
         $options += [
-            'tag' => null
+            'tag' => null,
+            'transactionOptions' => null
         ];
 
         $options['isRetry'] = $options['isRetry'] ?? false;
 
-        return new Transaction($this, $session, $res['id'], $options['isRetry'], $options['tag']);
+        return new Transaction(
+            $this,
+            $session,
+            $res['id'],
+            $options['isRetry'],
+            $options['tag'],
+            $options['transactionOptions']
+        );
     }
 
     /**
@@ -480,6 +573,10 @@ class Operation
      *     @type string $className If set, an instance of the given class will
      *           be instantiated. This setting is intended for internal use.
      *           **Defaults to** `Google\Cloud\Spanner\Snapshot`.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return mixed
      */
@@ -569,7 +666,7 @@ class Operation
     /**
      * Lazily instantiates a session. There are no network requests made at this
      * point. To see the operations that can be performed on a session please
-     * see {@see Google\Cloud\Spanner\Session\Session}.
+     * see {@see \Google\Cloud\Spanner\Session\Session}.
      *
      * Sessions are handled behind the scenes and this method does not need to
      * be called directly.
@@ -614,7 +711,7 @@ class Operation
      *           Generally, Google Cloud PHP can infer types. Explicit type
      *           definitions are only necessary for null parameter values.
      *           Accepted values are defined as constants on
-     *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+     *           {@see \Google\Cloud\Spanner\ValueMapper}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
@@ -739,6 +836,7 @@ class Operation
      *
      * @param Session $session The session to start the snapshot in.
      * @param array $options [optional] Configuration options.
+     *
      * @return array
      */
     private function beginTransaction(Session $session, array $options = [])

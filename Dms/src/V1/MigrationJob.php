@@ -163,6 +163,13 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cmek_key_name = 21;</code>
      */
     private $cmek_key_name = '';
+    /**
+     * Optional. Data dump parallelism settings used by the migration.
+     * Currently applicable only for MySQL to Cloud SQL for MySQL migrations only.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.PerformanceConfig performance_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $performance_config = null;
     protected $connectivity;
 
     /**
@@ -246,6 +253,9 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      *           connection profile instead).
      *           Each Cloud CMEK key has the following format:
      *           projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME]
+     *     @type \Google\Cloud\CloudDms\V1\MigrationJob\PerformanceConfig $performance_config
+     *           Optional. Data dump parallelism settings used by the migration.
+     *           Currently applicable only for MySQL to Cloud SQL for MySQL migrations only.
      * }
      */
     public function __construct($data = NULL) {
@@ -1010,6 +1020,44 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cmek_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Data dump parallelism settings used by the migration.
+     * Currently applicable only for MySQL to Cloud SQL for MySQL migrations only.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.PerformanceConfig performance_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\CloudDms\V1\MigrationJob\PerformanceConfig|null
+     */
+    public function getPerformanceConfig()
+    {
+        return $this->performance_config;
+    }
+
+    public function hasPerformanceConfig()
+    {
+        return isset($this->performance_config);
+    }
+
+    public function clearPerformanceConfig()
+    {
+        unset($this->performance_config);
+    }
+
+    /**
+     * Optional. Data dump parallelism settings used by the migration.
+     * Currently applicable only for MySQL to Cloud SQL for MySQL migrations only.
+     *
+     * Generated from protobuf field <code>.google.cloud.clouddms.v1.MigrationJob.PerformanceConfig performance_config = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\CloudDms\V1\MigrationJob\PerformanceConfig $var
+     * @return $this
+     */
+    public function setPerformanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudDms\V1\MigrationJob\PerformanceConfig::class);
+        $this->performance_config = $var;
 
         return $this;
     }

@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 trait TransactionalReadTrait
 {
     use TransactionConfigurationTrait;
+    use RequestHeaderTrait;
 
     /**
      * @var Operation
@@ -73,13 +74,18 @@ trait TransactionalReadTrait
     private $tag = null;
 
     /**
+     * @var array
+     */
+    private $directedReadOptions = [];
+
+    /**
      * Run a query.
      *
      * Google Cloud PHP will infer parameter types for all primitive types and
-     * all values implementing {@see Google\Cloud\Spanner\ValueInterface}, with
+     * all values implementing {@see \Google\Cloud\Spanner\ValueInterface}, with
      * the exception of `null`. Non-associative arrays will be interpreted as
      * a Spanner ARRAY type, and must contain only a single type of value.
-     * Associative arrays or values of type {@see Google\Cloud\Spanner\StructValue}
+     * Associative arrays or values of type {@see \Google\Cloud\Spanner\StructValue}
      * will be interpreted as Spanner STRUCT type. Structs MUST always explicitly
      * define their field types.
      *
@@ -87,18 +93,18 @@ trait TransactionalReadTrait
      * explicitly define the parameter's type.
      *
      * With the exception of arrays and structs, types are defined using a type
-     * constant defined on {@see Google\Cloud\Spanner\Database}. Examples include
+     * constant defined on {@see \Google\Cloud\Spanner\Database}. Examples include
      * but are not limited to `Database::TYPE_STRING` and `Database::TYPE_INT64`.
      *
      * Arrays, when explicitly typing, should use an instance of
-     * {@see Google\Cloud\Spanner\ArrayType} to declare their type and the types
+     * {@see \Google\Cloud\Spanner\ArrayType} to declare their type and the types
      * of any values contained within the array elements.
      *
      * Structs must always declare their type using an instance of
-     * {@see Google\Cloud\Spanner\StructType}. Struct values may be expressed as
+     * {@see \Google\Cloud\Spanner\StructType}. Struct values may be expressed as
      * an associative array, however if the struct contains any unnamed fields,
      * or any fields with duplicate names, the struct must be expressed using an
-     * instance of {@see Google\Cloud\Spanner\StructValue}. Struct value types
+     * instance of {@see \Google\Cloud\Spanner\StructValue}. Struct value types
      * may be inferred with the same caveats as top-level parameters (in other
      * words, so long as they are not nullable and do not contain nested structs).
      *
@@ -182,7 +188,7 @@ trait TransactionalReadTrait
      *
      * ```
      * // If a struct contains unnamed fields, or multiple fields with the same
-     * // name, it must be defined using {@see Google\Cloud\Spanner\StructValue}.
+     * // name, it must be defined using {@see \Google\Cloud\Spanner\StructValue}.
      * use Google\Cloud\Spanner\Database;
      * use Google\Cloud\Spanner\Result;
      * use Google\Cloud\Spanner\StructValue;
@@ -230,14 +236,14 @@ trait TransactionalReadTrait
      *           declarations are required in the case of struct parameters,
      *           or when a null value exists as a parameter.
      *           Accepted values for primitive types are defined as constants on
-     *           {@see Google\Cloud\Spanner\Database}, and are as follows:
+     *           {@see \Google\Cloud\Spanner\Database}, and are as follows:
      *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
      *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
      *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
      *           `Database::TYPE_BYTES`. If the value is an array, use
-     *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
+     *           {@see \Google\Cloud\Spanner\ArrayType} to declare the array
      *           parameter types. Likewise, for structs, use
-     *           {@see Google\Cloud\Spanner\StructType}.
+     *           {@see \Google\Cloud\Spanner\StructType}.
      *     @type array $queryOptions Query optimizer configuration.
      *     @type string $queryOptions.optimizerVersion An option to control the
      *           selection of optimizer version. This parameter allows
@@ -252,12 +258,16 @@ trait TransactionalReadTrait
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
      *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
-     *         been set when creating the transaction.
+     *           For more information on available options, please see
+     *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           Please note, if using the `priority` setting you may utilize the constants available
+     *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *           Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *           been set when creating the transaction.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -267,7 +277,11 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $options['transactionId'] = $this->transactionId;
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
         $options['transactionType'] = $this->context;
         $options['seqno'] = $this->seqno;
         $this->seqno++;
@@ -284,7 +298,18 @@ trait TransactionalReadTrait
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        return $this->operation->execute($this->session, $sql, $options);
+        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
+            $options,
+            $this->directedReadOptions ?? []
+        );
+
+        $options = $this->addLarHeader($options, true, $this->context);
+
+        $result = $this->operation->execute($this->session, $sql, $options);
+        if (empty($this->id()) && $result->transaction()) {
+            $this->setId($result->transaction()->id());
+        }
+        return $result;
     }
 
     /**
@@ -316,12 +341,16 @@ trait TransactionalReadTrait
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
      *     @type array $requestOptions Request options.
-     *         For more information on available options, please see
-     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
-     *         Please note, if using the `priority` setting you may utilize the constants available
-     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
-     *         been set when creating the transaction.
+     *           For more information on available options, please see
+     *           [RequestOptions](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *           Please note, if using the `priority` setting you may utilize the constants available
+     *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *           Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *           been set when creating the transaction.
+     *     @type array $directedReadOptions Directed read options.
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
+     *           If using the `replicaSelection::type` setting, utilize the constants available in
+     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return Result
      */
@@ -330,7 +359,11 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $options['transactionId'] = $this->transactionId;
+        if (empty($this->transactionId) && isset($this->options['begin'])) {
+            $options['begin'] = $this->options['begin'];
+        } else {
+            $options['transactionId'] = $this->transactionId;
+        }
         $options['transactionType'] = $this->context;
         $options += $this->options;
         $selector = $this->transactionSelector($options, $this->options);
@@ -345,7 +378,18 @@ trait TransactionalReadTrait
             $options['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        return $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
+            $options,
+            $this->directedReadOptions ?? []
+        );
+
+        $options = $this->addLarHeader($options, true, $this->context);
+
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $options);
+        if (empty($this->id()) && $result->transaction()) {
+            $this->setId($result->transaction()->id());
+        }
+        return $result;
     }
 
     /**
@@ -361,6 +405,14 @@ trait TransactionalReadTrait
     public function id()
     {
         return $this->transactionId;
+    }
+
+    /**
+     * Set the transaction ID.
+     */
+    public function setId(?string $transactionId)
+    {
+        $this->transactionId = $transactionId;
     }
 
     /**

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_SnoozeService_ListSnoozes_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\SnoozeServiceClient;
+use Google\Cloud\Monitoring\V3\ListSnoozesRequest;
 use Google\Cloud\Monitoring\V3\Snooze;
-use Google\Cloud\Monitoring\V3\SnoozeServiceClient;
 
 /**
  * Lists the `Snooze`s associated with a project. Can optionally pass in
@@ -44,10 +45,14 @@ function list_snoozes_sample(string $formattedParent): void
     // Create a client.
     $snoozeServiceClient = new SnoozeServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSnoozesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $snoozeServiceClient->listSnoozes($formattedParent);
+        $response = $snoozeServiceClient->listSnoozes($request);
 
         /** @var Snooze $element */
         foreach ($response as $element) {

@@ -572,6 +572,7 @@ class RegionDisksClientTest extends GeneratedTest
         $architecture = 'architecture839674195';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $enableConfidentialCompute = true;
         $id = 3355;
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
@@ -584,6 +585,7 @@ class RegionDisksClientTest extends GeneratedTest
         $provisionedIops = 1260510932;
         $provisionedThroughput = 1600266005;
         $region2 = 'region2-690338393';
+        $satisfiesPzi = false;
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $sizeGb = 2105542105;
@@ -593,6 +595,8 @@ class RegionDisksClientTest extends GeneratedTest
         $sourceDiskId = 'sourceDiskId-1693292839';
         $sourceImage = 'sourceImage1661056055';
         $sourceImageId = 'sourceImageId-2092155357';
+        $sourceInstantSnapshot = 'sourceInstantSnapshot-317668858';
+        $sourceInstantSnapshotId = 'sourceInstantSnapshotId-1859900940';
         $sourceSnapshot = 'sourceSnapshot-947679896';
         $sourceSnapshotId = 'sourceSnapshotId-1511650478';
         $sourceStorageObject = 'sourceStorageObject-303818201';
@@ -603,6 +607,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setArchitecture($architecture);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setEnableConfidentialCompute($enableConfidentialCompute);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setLabelFingerprint($labelFingerprint);
@@ -615,6 +620,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setProvisionedIops($provisionedIops);
         $expectedResponse->setProvisionedThroughput($provisionedThroughput);
         $expectedResponse->setRegion($region2);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSizeGb($sizeGb);
@@ -624,6 +630,8 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setSourceDiskId($sourceDiskId);
         $expectedResponse->setSourceImage($sourceImage);
         $expectedResponse->setSourceImageId($sourceImageId);
+        $expectedResponse->setSourceInstantSnapshot($sourceInstantSnapshot);
+        $expectedResponse->setSourceInstantSnapshotId($sourceInstantSnapshotId);
         $expectedResponse->setSourceSnapshot($sourceSnapshot);
         $expectedResponse->setSourceSnapshotId($sourceSnapshotId);
         $expectedResponse->setSourceStorageObject($sourceStorageObject);

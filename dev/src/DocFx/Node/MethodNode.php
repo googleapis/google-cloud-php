@@ -24,7 +24,9 @@ use SimpleXMLElement;
  */
 class MethodNode
 {
-    use DocblockTrait;
+    use DocblockTrait {
+        getContent as getDocblockContent;
+    }
     use ParentNodeTrait;
     use VisibilityTrait;
 
@@ -144,5 +146,32 @@ class MethodNode
     public function getDisplayName(): string
     {
         return $this->isStatic() ? 'static::' . $this->getName() : $this->getName();
+    }
+
+    public function getContent(): string
+    {
+        $content = $this->getDocblockContent();
+        $links = [];
+        if ($this->xmlNode->docblock) {
+            foreach ($this->xmlNode->docblock->tag as $tag) {
+                if ($tag['name'] == 'see') {
+                    $link = (string) $tag['link'];
+                    $description = ((string) $tag['description']) ?: $link;
+                    if (0 === strpos($link, 'http')) {
+                        $links[] = sprintf("<a href=\"%s\">%s</a>", $link, $description);
+                    } else {
+                        $links[] = $this->replaceUidWithLink($link, $description);
+                    }
+
+                }
+            }
+        }
+        if ($links) {
+            // Add links as an unordered list
+            $content = "\nSee also:";
+            $content .= "\n - " . implode("\n - ", $links);
+        }
+
+        return $content;
     }
 }

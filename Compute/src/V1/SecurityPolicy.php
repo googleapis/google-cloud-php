@@ -104,6 +104,12 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
     private $type = null;
+    /**
+     * Definitions of user-defined fields for CLOUD_ARMOR_NETWORK policies. A user-defined field consists of up to 4 bytes extracted from a fixed offset in the packet, relative to the IPv4, IPv6, TCP, or UDP header, with an optional mask to select certain bits. Rules may then specify matching values for these fields. Example: userDefinedFields: - name: "ipv4_fragment_offset" base: IPV4 offset: 6 size: 2 mask: "0x1fff"
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyUserDefinedField user_defined_fields = 28312739;</code>
+     */
+    private $user_defined_fields;
 
     /**
      * Constructor.
@@ -140,6 +146,8 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $type
      *           The type indicates the intended use of the security policy. - CLOUD_ARMOR: Cloud Armor backend security policies can be configured to filter incoming HTTP requests targeting backend services. They filter requests before they hit the origin servers. - CLOUD_ARMOR_EDGE: Cloud Armor edge security policies can be configured to filter incoming HTTP requests targeting backend services (including Cloud CDN-enabled) as well as backend buckets (Cloud Storage). They filter requests before the request is served from Google's cache. - CLOUD_ARMOR_INTERNAL_SERVICE: Cloud Armor internal service policies can be configured to filter HTTP requests targeting services managed by Traffic Director in a service mesh. They filter requests before the request is served from the application. - CLOUD_ARMOR_NETWORK: Cloud Armor network policies can be configured to filter packets targeting network load balancing resources such as backend services, target pools, target instances, and instances with external IPs. They filter requests before the request is served from the application. This field can be set only at resource creation time.
      *           Check the Type enum for the list of possible values.
+     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField>|\Google\Protobuf\Internal\RepeatedField $user_defined_fields
+     *           Definitions of user-defined fields for CLOUD_ARMOR_NETWORK policies. A user-defined field consists of up to 4 bytes extracted from a fixed offset in the packet, relative to the IPv4, IPv6, TCP, or UDP header, with an optional mask to select certain bits. Rules may then specify matching values for these fields. Example: userDefinedFields: - name: "ipv4_fragment_offset" base: IPV4 offset: 6 size: 2 mask: "0x1fff"
      * }
      */
     public function __construct($data = NULL) {
@@ -685,6 +693,32 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Definitions of user-defined fields for CLOUD_ARMOR_NETWORK policies. A user-defined field consists of up to 4 bytes extracted from a fixed offset in the packet, relative to the IPv4, IPv6, TCP, or UDP header, with an optional mask to select certain bits. Rules may then specify matching values for these fields. Example: userDefinedFields: - name: "ipv4_fragment_offset" base: IPV4 offset: 6 size: 2 mask: "0x1fff"
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyUserDefinedField user_defined_fields = 28312739;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUserDefinedFields()
+    {
+        return $this->user_defined_fields;
+    }
+
+    /**
+     * Definitions of user-defined fields for CLOUD_ARMOR_NETWORK policies. A user-defined field consists of up to 4 bytes extracted from a fixed offset in the packet, relative to the IPv4, IPv6, TCP, or UDP header, with an optional mask to select certain bits. Rules may then specify matching values for these fields. Example: userDefinedFields: - name: "ipv4_fragment_offset" base: IPV4 offset: 6 size: 2 mask: "0x1fff"
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyUserDefinedField user_defined_fields = 28312739;</code>
+     * @param array<\Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUserDefinedFields($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\SecurityPolicyUserDefinedField::class);
+        $this->user_defined_fields = $arr;
 
         return $this;
     }

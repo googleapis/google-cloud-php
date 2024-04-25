@@ -537,6 +537,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.K8sBetaAPIConfig enable_k8s_beta_apis = 143;</code>
      */
     private $enable_k8s_beta_apis = null;
+    /**
+     * GKE Enterprise Configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149;</code>
+     */
+    private $enterprise_config = null;
 
     /**
      * Constructor.
@@ -795,6 +801,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Enable/Disable Security Posture API features for the cluster.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $enable_k8s_beta_apis
      *           Beta APIs Config
+     *     @type \Google\Cloud\Container\V1\EnterpriseConfig $enterprise_config
+     *           GKE Enterprise Configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -3112,6 +3120,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\K8sBetaAPIConfig::class);
         $this->enable_k8s_beta_apis = $var;
+
+        return $this;
+    }
+
+    /**
+     * GKE Enterprise Configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149;</code>
+     * @return \Google\Cloud\Container\V1\EnterpriseConfig|null
+     */
+    public function getEnterpriseConfig()
+    {
+        return $this->enterprise_config;
+    }
+
+    public function hasEnterpriseConfig()
+    {
+        return isset($this->enterprise_config);
+    }
+
+    public function clearEnterpriseConfig()
+    {
+        unset($this->enterprise_config);
+    }
+
+    /**
+     * GKE Enterprise Configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.EnterpriseConfig enterprise_config = 149;</code>
+     * @param \Google\Cloud\Container\V1\EnterpriseConfig $var
+     * @return $this
+     */
+    public function setEnterpriseConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\EnterpriseConfig::class);
+        $this->enterprise_config = $var;
 
         return $this;
     }

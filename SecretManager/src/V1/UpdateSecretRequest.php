@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SecretManagerService.UpdateSecret][google.cloud.secretmanager.v1.SecretManagerService.UpdateSecret].
+ * Request message for
+ * [SecretManagerService.UpdateSecret][google.cloud.secretmanager.v1.SecretManagerService.UpdateSecret].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.UpdateSecretRequest</code>
  */
 class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
+     * Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,7 +31,8 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
-     * @param \Google\Cloud\SecretManager\V1\Secret $secret     Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
+     * @param \Google\Cloud\SecretManager\V1\Secret $secret     Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field
+     *                                                          values.
      * @param \Google\Protobuf\FieldMask            $updateMask Required. Specifies the fields to be updated.
      *
      * @return \Google\Cloud\SecretManager\V1\UpdateSecretRequest
@@ -50,7 +53,8 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\SecretManager\V1\Secret $secret
-     *           Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
+     *           Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field
+     *           values.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Specifies the fields to be updated.
      * }
@@ -61,7 +65,8 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
+     * Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecretManager\V1\Secret|null
@@ -82,7 +87,8 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
+     * Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecretManager\V1\Secret $var

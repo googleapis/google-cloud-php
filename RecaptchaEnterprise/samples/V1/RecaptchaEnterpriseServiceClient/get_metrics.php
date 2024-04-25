@@ -24,15 +24,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_GetMetrics_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 
 /**
  * Get some aggregated metrics for a Key. This data can be used to build
  * dashboards.
  *
  * @param string $formattedName The name of the requested metrics, in the format
- *                              "projects/{project}/keys/{key}/metrics". Please see
+ *                              `projects/{project}/keys/{key}/metrics`. Please see
  *                              {@see RecaptchaEnterpriseServiceClient::metricsName()} for help formatting this field.
  */
 function get_metrics_sample(string $formattedName): void
@@ -40,10 +41,14 @@ function get_metrics_sample(string $formattedName): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetMetricsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Metrics $response */
-        $response = $recaptchaEnterpriseServiceClient->getMetrics($formattedName);
+        $response = $recaptchaEnterpriseServiceClient->getMetrics($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

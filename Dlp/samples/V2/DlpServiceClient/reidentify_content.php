@@ -24,20 +24,21 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_ReidentifyContent_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ReidentifyContentRequest;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
 
 /**
  * Re-identifies content that has been de-identified.
  * See
- * https://cloud.google.com/dlp/docs/pseudonymization#re-identification_in_free_text_code_example
+ * https://cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
  * to learn more.
  *
  * @param string $formattedParent Parent resource name.
  *
  *                                The format of this value varies depending on whether you have [specified a
  *                                processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                + Projects scope, location specified:<br/>
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -56,10 +57,14 @@ function reidentify_content_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new ReidentifyContentRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var ReidentifyContentResponse $response */
-        $response = $dlpServiceClient->reidentifyContent($formattedParent);
+        $response = $dlpServiceClient->reidentifyContent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -10,23 +10,18 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for the
- * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]
- * method.
+ * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ProcessRequest</code>
  */
 class ProcessRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the
-     * [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a
-     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
-     * will use its [default
-     * version][google.cloud.documentai.v1.Processor.default_processor_version].
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
-     * or
+     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
+     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`, or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -40,8 +35,7 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      */
     private $skip_human_review = false;
     /**
-     * Specifies which fields to include in the
-     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * Specifies which fields to include in the [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
      * output. Only supports top-level document and pages field, so it must be in
      * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
@@ -54,18 +48,24 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
      */
     private $process_options = null;
+    /**
+     * Optional. The labels with user-defined metadata for the request.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
     protected $source;
 
     /**
-     * @param string $name Required. The resource name of the
-     *                     [Processor][google.cloud.documentai.v1.Processor] or
+     * @param string $name Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
      *                     [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     *                     to use for processing. If a
-     *                     [Processor][google.cloud.documentai.v1.Processor] is specified, the server
-     *                     will use its [default
-     *                     version][google.cloud.documentai.v1.Processor.default_processor_version].
-     *                     Format: `projects/{project}/locations/{location}/processors/{processor}`,
-     *                     or
+     *                     to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
+     *                     its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
+     *                     `projects/{project}/locations/{location}/processors/{processor}`, or
      *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * @return \Google\Cloud\DocumentAI\V1\ProcessRequest
@@ -91,26 +91,27 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\GcsDocument $gcs_document
      *           A raw document on Google Cloud Storage.
      *     @type string $name
-     *           Required. The resource name of the
-     *           [Processor][google.cloud.documentai.v1.Processor] or
+     *           Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
      *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     *           to use for processing. If a
-     *           [Processor][google.cloud.documentai.v1.Processor] is specified, the server
-     *           will use its [default
-     *           version][google.cloud.documentai.v1.Processor.default_processor_version].
-     *           Format: `projects/{project}/locations/{location}/processors/{processor}`,
-     *           or
+     *           to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
+     *           its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
+     *           `projects/{project}/locations/{location}/processors/{processor}`, or
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *     @type bool $skip_human_review
      *           Whether human review should be skipped for this request. Default to
      *           `false`.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Specifies which fields to include in the
-     *           [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     *           Specifies which fields to include in the [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
      *           output. Only supports top-level document and pages field, so it must be in
      *           the form of `{document_field_name}` or `pages.{page_field_name}`.
      *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions $process_options
      *           Inference-time options for the process API
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints) and can only contain lowercase letters, numeric
+     *           characters, underscores, and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      * }
      */
     public function __construct($data = NULL) {
@@ -212,15 +213,11 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the
-     * [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a
-     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
-     * will use its [default
-     * version][google.cloud.documentai.v1.Processor.default_processor_version].
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
-     * or
+     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
+     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`, or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -232,15 +229,11 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the
-     * [Processor][google.cloud.documentai.v1.Processor] or
+     * Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
-     * to use for processing. If a
-     * [Processor][google.cloud.documentai.v1.Processor] is specified, the server
-     * will use its [default
-     * version][google.cloud.documentai.v1.Processor.default_processor_version].
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`,
-     * or
+     * to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
+     * its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`, or
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -284,8 +277,7 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which fields to include in the
-     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * Specifies which fields to include in the [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
      * output. Only supports top-level document and pages field, so it must be in
      * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
@@ -308,8 +300,7 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies which fields to include in the
-     * [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
+     * Specifies which fields to include in the [ProcessResponse.document][google.cloud.documentai.v1.ProcessResponse.document]
      * output. Only supports top-level document and pages field, so it must be in
      * the form of `{document_field_name}` or `pages.{page_field_name}`.
      *
@@ -357,6 +348,40 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessOptions::class);
         $this->process_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The labels with user-defined metadata for the request.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. The labels with user-defined metadata for the request.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

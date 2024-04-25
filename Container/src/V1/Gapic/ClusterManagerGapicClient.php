@@ -74,10 +74,12 @@ use Google\Cloud\Container\V1\NodeNetworkConfig;
 use Google\Cloud\Container\V1\NodePool;
 use Google\Cloud\Container\V1\NodePoolAutoscaling;
 use Google\Cloud\Container\V1\NodePoolLoggingConfig;
+use Google\Cloud\Container\V1\NodePool\QueuedProvisioning;
 use Google\Cloud\Container\V1\NodePool\UpgradeSettings;
 use Google\Cloud\Container\V1\NodeTaints;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\ResourceLabels;
+use Google\Cloud\Container\V1\ResourceManagerTags;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\ServerConfig;
 use Google\Cloud\Container\V1\SetAddonsConfigRequest;
@@ -122,8 +124,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Container\V1\Client\ClusterManagerClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Container\V1\Client\ClusterManagerClient}.
  */
 class ClusterManagerGapicClient
 {
@@ -132,8 +133,15 @@ class ClusterManagerGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.container.v1.ClusterManager';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'container.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'container.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -915,8 +923,6 @@ class ClusterManagerGapicClient
     /**
      * Gets the public component of the cluster signing keys in
      * JSON Web Key format.
-     * This API is not yet intended for general use, and is not available for all
-     * clusters.
      *
      * Sample code:
      * ```
@@ -2820,6 +2826,12 @@ class ClusterManagerGapicClient
      *           The smallest allowed disk size is 10GB.
      *           Initiates an upgrade operation that migrates the nodes in the
      *           node pool to the specified disk size.
+     *     @type ResourceManagerTags $resourceManagerTags
+     *           Desired resource manager tag keys and values to be attached to the nodes
+     *           for managing Compute Engine firewalls using Network Firewall Policies.
+     *           Existing tags will be replaced with new values.
+     *     @type QueuedProvisioning $queuedProvisioning
+     *           Specifies the configuration of queued provisioning.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2939,6 +2951,14 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['diskSizeGb'])) {
             $request->setDiskSizeGb($optionalArgs['diskSizeGb']);
+        }
+
+        if (isset($optionalArgs['resourceManagerTags'])) {
+            $request->setResourceManagerTags($optionalArgs['resourceManagerTags']);
+        }
+
+        if (isset($optionalArgs['queuedProvisioning'])) {
+            $request->setQueuedProvisioning($optionalArgs['queuedProvisioning']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

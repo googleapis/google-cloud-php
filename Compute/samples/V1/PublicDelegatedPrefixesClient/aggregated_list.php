@@ -28,7 +28,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
 
 /**
- * Lists all PublicDelegatedPrefix resources owned by the specific project across all scopes.
+ * Lists all PublicDelegatedPrefix resources owned by the specific project across all scopes. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Name of the project scoping this request.
  */

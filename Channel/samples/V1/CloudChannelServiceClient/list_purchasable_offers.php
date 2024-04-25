@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ListPurchasableOffers_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\ListPurchasableOffersRequest;
 use Google\Cloud\Channel\V1\PurchasableOffer;
 
 /**
@@ -36,7 +37,10 @@ use Google\Cloud\Channel\V1\PurchasableOffer;
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED: The customer doesn't belong to the reseller
+ * * PERMISSION_DENIED:
+ * * The customer doesn't belong to the reseller
+ * * The reseller is not authorized to transact on this Product. See
+ * https://support.google.com/channelservices/answer/9759265
  * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
  *
  * @param string $formattedCustomer The resource name of the customer to list Offers for.
@@ -48,10 +52,14 @@ function list_purchasable_offers_sample(string $formattedCustomer): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListPurchasableOffersRequest())
+        ->setCustomer($formattedCustomer);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudChannelServiceClient->listPurchasableOffers($formattedCustomer);
+        $response = $cloudChannelServiceClient->listPurchasableOffers($request);
 
         /** @var PurchasableOffer $element */
         foreach ($response as $element) {

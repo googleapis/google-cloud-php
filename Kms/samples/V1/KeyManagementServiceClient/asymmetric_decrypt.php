@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_KeyManagementService_AsymmetricDecrypt_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Kms\V1\AsymmetricDecryptRequest;
 use Google\Cloud\Kms\V1\AsymmetricDecryptResponse;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
 
 /**
  * Decrypts data that was encrypted with a public key retrieved from
@@ -47,10 +48,15 @@ function asymmetric_decrypt_sample(string $formattedName, string $ciphertext): v
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
+    // Prepare the request message.
+    $request = (new AsymmetricDecryptRequest())
+        ->setName($formattedName)
+        ->setCiphertext($ciphertext);
+
     // Call the API and handle any network failures.
     try {
         /** @var AsymmetricDecryptResponse $response */
-        $response = $keyManagementServiceClient->asymmetricDecrypt($formattedName, $ciphertext);
+        $response = $keyManagementServiceClient->asymmetricDecrypt($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

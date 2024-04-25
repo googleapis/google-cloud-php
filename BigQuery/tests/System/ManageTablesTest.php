@@ -28,6 +28,22 @@ use Google\Cloud\Core\Exception\FailedPreconditionException;
  */
 class ManageTablesTest extends BigQueryTestCase
 {
+    const SOURCE_URIS_AVRO = [
+        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/a-twitter.avro",
+        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/b-twitter.avro",
+        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/c-twitter.avro",
+    ];
+    const SOURCE_URIS_PARQUET = [
+        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/a-twitter.parquet",
+        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/b-twitter.parquet",
+        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/c-twitter.parquet",
+    ];
+    const REFERENCE_FILE_SCHEMA_URI_AVRO =
+        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/a-twitter.avro";
+    const REFERENCE_FILE_SCHEMA_URI_PARQUET =
+        "gs://cloud-samples-data/bigquery/federated-formats-reference-file-schema/a-twitter.parquet";
+    const REFERENCE_SCHEMA = ['username', 'tweet', 'timestamp', 'likes'];
+
     public function testListTables()
     {
         $foundTables = [];
@@ -346,5 +362,93 @@ class ManageTablesTest extends BigQueryTestCase
         }
 
         $this->assertArrayNotHasKey('errorResult', $job->info()['status']);
+    }
+
+    /**
+     * @dataProvider referenceFileSchemaTestUris
+     */
+    public function testCreateTableWithReferenceFileSchemaUri($sourceUris, $refUri, $format)
+    {
+        $id = uniqid(self::TESTING_PREFIX);
+        $options = [
+            'externalDataConfiguration' => [
+                'sourceUris' => $sourceUris,
+                'referenceFileSchemaUri' => $refUri,
+                'sourceFormat' => $format
+            ]
+        ];
+
+        $table = self::$dataset->createTable($id, $options);
+
+        $this->assertTrue(self::$dataset->table($id)->exists());
+        $this->assertEquals($id, $table->id());
+
+        $columns = $table->info()['schema']['fields'];
+        $i = 0;
+        foreach ($columns as $column) {
+            $this->assertEquals(self::REFERENCE_SCHEMA[$i++], $column['name']);
+        }
+    }
+
+    /**
+     * @dataProvider referenceFileSchemaTestUris
+     */
+    public function testLoadTableWithReferenceFileSchemaUri($sourceUris, $refUri, $format)
+    {
+        $id = uniqid(self::TESTING_PREFIX);
+        $table = self::$dataset->table($id);
+        $loadConfig = $table->load('');
+        $loadConfig->sourceUris($sourceUris);
+        $loadConfig->referenceFileSchemaUri($refUri);
+        $loadConfig->sourceFormat($format);
+        $loadConfig->destinationTable($table);
+
+        $job = self::$client->runJob($loadConfig);
+
+        $this->assertTrue(self::$dataset->table($id)->exists());
+        $this->assertEquals($id, $table->id());
+
+        $columns = $table->info()['schema']['fields'];
+        $i = 0;
+        foreach ($columns as $column) {
+            $this->assertEquals(self::REFERENCE_SCHEMA[$i++], $column['name']);
+        }
+    }
+
+    /**
+     * @dataProvider referenceFileSchemaTestUris
+     */
+    public function testQueryTableWithReferenceFileSchemaUri($sourceUris, $refUri, $format)
+    {
+        $id = uniqid(self::TESTING_PREFIX);
+        $queryConfig = self::$client->query(sprintf('SELECT * FROM %s', $id));
+        $queryConfig->tableDefinitions([$id =>[
+            'sourceUris' => $sourceUris,
+            'referenceFileSchemaUri' => $refUri,
+            'sourceFormat' => $format
+        ]]);
+        $result = self::$client->runQuery($queryConfig);
+        $rows = $result->rows();
+
+        foreach ($rows as $row) {
+            $this->assertEquals(self::REFERENCE_SCHEMA, array_keys($row));
+        }
+        $this->assertGreaterThan(0, count(iterator_to_array($rows)));
+    }
+
+    public function referenceFileSchemaTestUris()
+    {
+        return [
+            [
+                self::SOURCE_URIS_PARQUET,
+                self::REFERENCE_FILE_SCHEMA_URI_PARQUET,
+                'PARQUET'
+            ],
+            [
+                self::SOURCE_URIS_AVRO,
+                self::REFERENCE_FILE_SCHEMA_URI_AVRO,
+                'AVRO'
+            ],
+        ];
     }
 }

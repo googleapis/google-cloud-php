@@ -19,7 +19,7 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
-     * events as the user is browsing the page. The `pageViewId` property should
+     * events as the user is browsing the page. The `pageview_id` property should
      * be kept the same for all these events so that they can be grouped together
      * properly.
      * When using the client side event reporting with JavaScript pixel and Google
@@ -31,13 +31,13 @@ class PageInfo extends \Google\Protobuf\Internal\Message
     /**
      * The most specific category associated with a category page.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
-     * "pageCategory" : "Sales > 2017 Black Friday Deals".
+     * `"pageCategory" : "Sales > 2017 Black Friday Deals"`.
      * Required for `view-category-page` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string page_category = 2;</code>
      */
@@ -71,7 +71,7 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      *           A unique ID of a web page view.
      *           This should be kept the same for all user events triggered from the same
      *           pageview. For example, an item detail page view could trigger multiple
-     *           events as the user is browsing the page. The `pageViewId` property should
+     *           events as the user is browsing the page. The `pageview_id` property should
      *           be kept the same for all these events so that they can be grouped together
      *           properly.
      *           When using the client side event reporting with JavaScript pixel and Google
@@ -79,13 +79,13 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      *     @type string $page_category
      *           The most specific category associated with a category page.
      *           To represent full path of category, use '>' sign to separate different
-     *           hierarchies. If '>' is part of the category name, please replace it with
+     *           hierarchies. If '>' is part of the category name, replace it with
      *           other character(s).
      *           Category pages include special pages such as sales or promotions. For
      *           instance, a special sale page may have the category hierarchy:
-     *           "pageCategory" : "Sales > 2017 Black Friday Deals".
+     *           `"pageCategory" : "Sales > 2017 Black Friday Deals"`.
      *           Required for `view-category-page` events. Other event types should not set
-     *           this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     @type string $uri
      *           Complete URL (window.location.href) of the user's current page.
      *           When using the client side event reporting with JavaScript pixel and Google
@@ -107,7 +107,7 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
-     * events as the user is browsing the page. The `pageViewId` property should
+     * events as the user is browsing the page. The `pageview_id` property should
      * be kept the same for all these events so that they can be grouped together
      * properly.
      * When using the client side event reporting with JavaScript pixel and Google
@@ -125,7 +125,7 @@ class PageInfo extends \Google\Protobuf\Internal\Message
      * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
-     * events as the user is browsing the page. The `pageViewId` property should
+     * events as the user is browsing the page. The `pageview_id` property should
      * be kept the same for all these events so that they can be grouped together
      * properly.
      * When using the client side event reporting with JavaScript pixel and Google
@@ -146,13 +146,13 @@ class PageInfo extends \Google\Protobuf\Internal\Message
     /**
      * The most specific category associated with a category page.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
-     * "pageCategory" : "Sales > 2017 Black Friday Deals".
+     * `"pageCategory" : "Sales > 2017 Black Friday Deals"`.
      * Required for `view-category-page` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string page_category = 2;</code>
      * @return string
@@ -165,13 +165,13 @@ class PageInfo extends \Google\Protobuf\Internal\Message
     /**
      * The most specific category associated with a category page.
      * To represent full path of category, use '>' sign to separate different
-     * hierarchies. If '>' is part of the category name, please replace it with
+     * hierarchies. If '>' is part of the category name, replace it with
      * other character(s).
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
-     * "pageCategory" : "Sales > 2017 Black Friday Deals".
+     * `"pageCategory" : "Sales > 2017 Black Friday Deals"`.
      * Required for `view-category-page` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>string page_category = 2;</code>
      * @param string $var

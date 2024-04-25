@@ -57,6 +57,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
+use Google\Type\Interval;
 
 /**
  * Service Description: The ClusterControllerService provides methods to manage clusters
@@ -107,9 +108,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Dataproc\V1\Client\ClusterControllerClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Dataproc\V1\Client\ClusterControllerClient}.
  */
 class ClusterControllerGapicClient
 {
@@ -118,8 +117,15 @@ class ClusterControllerGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dataproc.v1.ClusterController';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'dataproc.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dataproc.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -674,6 +680,19 @@ class ClusterControllerGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $tarballGcsDir
+     *           Optional. The output Cloud Storage directory for the diagnostic
+     *           tarball. If not specified, a task-specific directory in the cluster's
+     *           staging bucket will be used.
+     *     @type Interval $diagnosisInterval
+     *           Optional. Time interval in which diagnosis should be carried out on the
+     *           cluster.
+     *     @type string[] $jobs
+     *           Optional. Specifies a list of jobs on which diagnosis is to be performed.
+     *           Format: projects/{project}/regions/{region}/jobs/{job}
+     *     @type string[] $yarnApplicationIds
+     *           Optional. Specifies a list of yarn applications on which diagnosis is to be
+     *           performed.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -694,6 +713,22 @@ class ClusterControllerGapicClient
         $requestParamHeaders['project_id'] = $projectId;
         $requestParamHeaders['region'] = $region;
         $requestParamHeaders['cluster_name'] = $clusterName;
+        if (isset($optionalArgs['tarballGcsDir'])) {
+            $request->setTarballGcsDir($optionalArgs['tarballGcsDir']);
+        }
+
+        if (isset($optionalArgs['diagnosisInterval'])) {
+            $request->setDiagnosisInterval($optionalArgs['diagnosisInterval']);
+        }
+
+        if (isset($optionalArgs['jobs'])) {
+            $request->setJobs($optionalArgs['jobs']);
+        }
+
+        if (isset($optionalArgs['yarnApplicationIds'])) {
+            $request->setYarnApplicationIds($optionalArgs['yarnApplicationIds']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DiagnoseCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();

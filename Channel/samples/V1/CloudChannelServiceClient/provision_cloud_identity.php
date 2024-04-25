@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_ProvisionCloudIdentity_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
+use Google\Cloud\Channel\V1\ProvisionCloudIdentityRequest;
 use Google\Rpc\Status;
 
 /**
@@ -35,7 +36,10 @@ use Google\Rpc\Status;
  *
  * Possible error codes:
  *
- * *  PERMISSION_DENIED: The customer doesn't belong to the reseller.
+ * *  PERMISSION_DENIED:
+ * * The customer doesn't belong to the reseller.
+ * * You are not authorized to provision cloud identity id. See
+ * https://support.google.com/channelservices/answer/9759265
  * *  INVALID_ARGUMENT: Required request parameters are missing or invalid.
  * *  NOT_FOUND: The customer was not found.
  * *  ALREADY_EXISTS: The customer's primary email already exists. Retry
@@ -61,10 +65,14 @@ function provision_cloud_identity_sample(string $formattedCustomer): void
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ProvisionCloudIdentityRequest())
+        ->setCustomer($formattedCustomer);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelServiceClient->provisionCloudIdentity($formattedCustomer);
+        $response = $cloudChannelServiceClient->provisionCloudIdentity($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

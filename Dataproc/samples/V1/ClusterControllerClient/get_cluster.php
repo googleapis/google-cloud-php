@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dataproc_v1_generated_ClusterController_GetCluster_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dataproc\V1\Client\ClusterControllerClient;
 use Google\Cloud\Dataproc\V1\Cluster;
-use Google\Cloud\Dataproc\V1\ClusterControllerClient;
+use Google\Cloud\Dataproc\V1\GetClusterRequest;
 
 /**
  * Gets the resource representation for a cluster in a project.
@@ -40,10 +41,16 @@ function get_cluster_sample(string $projectId, string $region, string $clusterNa
     // Create a client.
     $clusterControllerClient = new ClusterControllerClient();
 
+    // Prepare the request message.
+    $request = (new GetClusterRequest())
+        ->setProjectId($projectId)
+        ->setRegion($region)
+        ->setClusterName($clusterName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Cluster $response */
-        $response = $clusterControllerClient->getCluster($projectId, $region, $clusterName);
+        $response = $clusterControllerClient->getCluster($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

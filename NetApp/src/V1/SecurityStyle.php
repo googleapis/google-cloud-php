@@ -26,7 +26,7 @@ class SecurityStyle
      */
     const NTFS = 1;
     /**
-     * SecurityStyle uses NTFS
+     * SecurityStyle uses UNIX
      *
      * Generated from protobuf enum <code>UNIX = 2;</code>
      */

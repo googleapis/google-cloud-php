@@ -81,11 +81,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $cluster_type = 0;
     /**
-     * Output only. The database engine major version. This is an output-only
-     * field and it's populated at the Cluster creation time. This field cannot be
-     * changed after cluster creation.
+     * Optional. The database engine major version. This is an optional field and
+     * it is populated at the Cluster creation time. If a database version is not
+     * supplied at cluster creation time, then a default database version will
+     * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $database_version = 0;
     /**
@@ -96,10 +97,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be removed.
+     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * to create a cluster. Deprecated, use network_config.network instead.
      *
-     * Generated from protobuf field <code>string network = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * @deprecated
      */
     protected $network = '';
     /**
@@ -191,6 +193,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Cluster.PrimaryConfig primary_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $primary_config = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
     protected $source;
 
     /**
@@ -231,16 +239,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           time. The cluster type is determined by which RPC was used to create
      *           the cluster (i.e. `CreateCluster` vs. `CreateSecondaryCluster`
      *     @type int $database_version
-     *           Output only. The database engine major version. This is an output-only
-     *           field and it's populated at the Cluster creation time. This field cannot be
-     *           changed after cluster creation.
+     *           Optional. The database engine major version. This is an optional field and
+     *           it is populated at the Cluster creation time. If a database version is not
+     *           supplied at cluster creation time, then a default database version will
+     *           be used.
      *     @type \Google\Cloud\AlloyDb\V1beta\Cluster\NetworkConfig $network_config
      *     @type string $network
      *           Required. The resource link for the VPC network in which cluster resources
      *           are created and from which they are accessible via Private IP. The network
      *           must belong to the same project as the cluster. It is specified in the
-     *           form: "projects/{project_number}/global/networks/{network_id}". This is
-     *           required to create a cluster. It can be updated, but it cannot be removed.
+     *           form: "projects/{project}/global/networks/{network_id}". This is required
+     *           to create a cluster. Deprecated, use network_config.network instead.
      *     @type string $etag
      *           For Resource freshness validation (https://google.aip.dev/154)
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
@@ -281,6 +290,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Cross Region replication config specific to SECONDARY cluster.
      *     @type \Google\Cloud\AlloyDb\V1beta\Cluster\PrimaryConfig $primary_config
      *           Output only. Cross Region replication config specific to PRIMARY cluster.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -633,11 +644,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The database engine major version. This is an output-only
-     * field and it's populated at the Cluster creation time. This field cannot be
-     * changed after cluster creation.
+     * Optional. The database engine major version. This is an optional field and
+     * it is populated at the Cluster creation time. If a database version is not
+     * supplied at cluster creation time, then a default database version will
+     * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getDatabaseVersion()
@@ -646,11 +658,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The database engine major version. This is an output-only
-     * field and it's populated at the Cluster creation time. This field cannot be
-     * changed after cluster creation.
+     * Optional. The database engine major version. This is an optional field and
+     * it is populated at the Cluster creation time. If a database version is not
+     * supplied at cluster creation time, then a default database version will
+     * be used.
      *
-     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.DatabaseVersion database_version = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -698,14 +711,16 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be removed.
+     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * to create a cluster. Deprecated, use network_config.network instead.
      *
-     * Generated from protobuf field <code>string network = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
+     * @deprecated
      */
     public function getNetwork()
     {
+        @trigger_error('network is deprecated.', E_USER_DEPRECATED);
         return $this->network;
     }
 
@@ -713,15 +728,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Required. The resource link for the VPC network in which cluster resources
      * are created and from which they are accessible via Private IP. The network
      * must belong to the same project as the cluster. It is specified in the
-     * form: "projects/{project_number}/global/networks/{network_id}". This is
-     * required to create a cluster. It can be updated, but it cannot be removed.
+     * form: "projects/{project}/global/networks/{network_id}". This is required
+     * to create a cluster. Deprecated, use network_config.network instead.
      *
-     * Generated from protobuf field <code>string network = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 10 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setNetwork($var)
     {
+        @trigger_error('network is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->network = $var;
 
@@ -1164,6 +1181,32 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1beta\Cluster\PrimaryConfig::class);
         $this->primary_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

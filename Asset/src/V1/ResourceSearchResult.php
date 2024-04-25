@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A result of Resource Search, containing information of a cloud resource.
- * Next ID: 32
+ * Next ID: 34
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ResourceSearchResult</code>
  */
@@ -141,8 +141,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * name or
      * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions)
      * name.
-     * This field only presents for the purpose of backward compatibility. Please
-     * use the `kms_keys` field to retrieve Cloud KMS key information. This field
+     * This field only presents for the purpose of backward compatibility.
+     * Use the `kms_keys` field to retrieve Cloud KMS key information. This field
      * is available only when the resource's Protobuf contains it and will only be
      * populated for [these resource
      * types](https://cloud.google.com/asset-inventory/docs/legacy-field-names#resource_types_with_the_to_be_deprecated_kmskey_field)
@@ -227,7 +227,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * metadata fields that are returned by the List or Get APIs provided by the
      * corresponding Google Cloud service (e.g., Compute Engine). see [API
      * references and supported searchable
-     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types)
+     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * to see which fields are included.
      * You can search values of these fields through free text search. However,
      * you should not consume the field programically as the field names and
@@ -286,6 +286,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     private $relationships;
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
      * To search against the `tagKeys`:
      * * Use a field query. Example:
@@ -295,10 +297,13 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example:
      *     - `env`
      *
-     * Generated from protobuf field <code>repeated string tag_keys = 23;</code>
+     * Generated from protobuf field <code>repeated string tag_keys = 23 [deprecated = true];</code>
+     * @deprecated
      */
     private $tag_keys;
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagValue namespaced names, in the format of
      * {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
      * To search against the `tagValues`:
@@ -310,21 +315,63 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example:
      *     - `prod`
      *
-     * Generated from protobuf field <code>repeated string tag_values = 25;</code>
+     * Generated from protobuf field <code>repeated string tag_values = 25 [deprecated = true];</code>
+     * @deprecated
      */
     private $tag_values;
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
      * To search against the `tagValueIds`:
      * * Use a field query. Example:
-     *     - `tagValueIds:"456"`
      *     - `tagValueIds="tagValues/456"`
      * * Use a free text query. Example:
      *     - `456`
      *
-     * Generated from protobuf field <code>repeated string tag_value_ids = 26;</code>
+     * Generated from protobuf field <code>repeated string tag_value_ids = 26 [deprecated = true];</code>
+     * @deprecated
      */
     private $tag_value_ids;
+    /**
+     * The tags directly attached to this resource.
+     * To search against the `tags`:
+     * * Use a field query. Example:
+     *     - `tagKeys:"123456789/env*"`
+     *     - `tagKeys="123456789/env"`
+     *     - `tagKeys:"env"`
+     *     - `tagKeyIds="tagKeys/123"`
+     *     - `tagValues:"env"`
+     *     - `tagValues:"env/prod"`
+     *     - `tagValues:"123456789/env/prod*"`
+     *     - `tagValues="123456789/env/prod"`
+     *     - `tagValueIds="tagValues/456"`
+     * * Use a free text query. Example:
+     *     - `env/prod`
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Tag tags = 29;</code>
+     */
+    private $tags;
+    /**
+     * The effective tags on this resource. All of the tags that are both attached
+     * to and inherited by a resource are collectively called the effective
+     * tags. For more information, see [tag
+     * inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
+     * To search against the `effective_tags`:
+     * * Use a field query. Example:
+     *     - `effectiveTagKeys:"123456789/env*"`
+     *     - `effectiveTagKeys="123456789/env"`
+     *     - `effectiveTagKeys:"env"`
+     *     - `effectiveTagKeyIds="tagKeys/123"`
+     *     - `effectiveTagValues:"env"`
+     *     - `effectiveTagValues:"env/prod"`
+     *     - `effectiveTagValues:"123456789/env/prod*"`
+     *     - `effectiveTagValues="123456789/env/prod"`
+     *     - `effectiveTagValueIds="tagValues/456"`
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 30;</code>
+     */
+    private $effective_tags;
     /**
      * The type of this resource's immediate parent, if there is one.
      * To search against the `parent_asset_type`:
@@ -336,6 +383,17 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent_asset_type = 103;</code>
      */
     private $parent_asset_type = '';
+    /**
+     * The actual content of Security Command Center security marks associated
+     * with the asset.
+     * To search against SCC SecurityMarks field:
+     *   * Use a field query:
+     *     - query by a given key value pair. Example: `sccSecurityMarks.foo=bar`
+     *     - query by a given key's existence. Example: `sccSecurityMarks.foo:*`
+     *
+     * Generated from protobuf field <code>map<string, string> scc_security_marks = 32;</code>
+     */
+    private $scc_security_marks;
 
     /**
      * Constructor.
@@ -428,8 +486,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           name or
      *           [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions)
      *           name.
-     *           This field only presents for the purpose of backward compatibility. Please
-     *           use the `kms_keys` field to retrieve Cloud KMS key information. This field
+     *           This field only presents for the purpose of backward compatibility.
+     *           Use the `kms_keys` field to retrieve Cloud KMS key information. This field
      *           is available only when the resource's Protobuf contains it and will only be
      *           populated for [these resource
      *           types](https://cloud.google.com/asset-inventory/docs/legacy-field-names#resource_types_with_the_to_be_deprecated_kmskey_field)
@@ -493,7 +551,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           metadata fields that are returned by the List or Get APIs provided by the
      *           corresponding Google Cloud service (e.g., Compute Engine). see [API
      *           references and supported searchable
-     *           attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types)
+     *           attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *           to see which fields are included.
      *           You can search values of these fields through free text search. However,
      *           you should not consume the field programically as the field names and
@@ -532,6 +590,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           See [supported relationship
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_keys
+     *           This field is only present for the purpose of backward compatibility.
+     *           Use the `tags` field instead.
      *           TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
      *           To search against the `tagKeys`:
      *           * Use a field query. Example:
@@ -541,6 +601,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * Use a free text query. Example:
      *               - `env`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_values
+     *           This field is only present for the purpose of backward compatibility.
+     *           Use the `tags` field instead.
      *           TagValue namespaced names, in the format of
      *           {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
      *           To search against the `tagValues`:
@@ -552,13 +614,45 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * Use a free text query. Example:
      *               - `prod`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_value_ids
+     *           This field is only present for the purpose of backward compatibility.
+     *           Use the `tags` field instead.
      *           TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
      *           To search against the `tagValueIds`:
      *           * Use a field query. Example:
-     *               - `tagValueIds:"456"`
      *               - `tagValueIds="tagValues/456"`
      *           * Use a free text query. Example:
      *               - `456`
+     *     @type array<\Google\Cloud\Asset\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *           The tags directly attached to this resource.
+     *           To search against the `tags`:
+     *           * Use a field query. Example:
+     *               - `tagKeys:"123456789/env*"`
+     *               - `tagKeys="123456789/env"`
+     *               - `tagKeys:"env"`
+     *               - `tagKeyIds="tagKeys/123"`
+     *               - `tagValues:"env"`
+     *               - `tagValues:"env/prod"`
+     *               - `tagValues:"123456789/env/prod*"`
+     *               - `tagValues="123456789/env/prod"`
+     *               - `tagValueIds="tagValues/456"`
+     *           * Use a free text query. Example:
+     *               - `env/prod`
+     *     @type array<\Google\Cloud\Asset\V1\EffectiveTagDetails>|\Google\Protobuf\Internal\RepeatedField $effective_tags
+     *           The effective tags on this resource. All of the tags that are both attached
+     *           to and inherited by a resource are collectively called the effective
+     *           tags. For more information, see [tag
+     *           inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
+     *           To search against the `effective_tags`:
+     *           * Use a field query. Example:
+     *               - `effectiveTagKeys:"123456789/env*"`
+     *               - `effectiveTagKeys="123456789/env"`
+     *               - `effectiveTagKeys:"env"`
+     *               - `effectiveTagKeyIds="tagKeys/123"`
+     *               - `effectiveTagValues:"env"`
+     *               - `effectiveTagValues:"env/prod"`
+     *               - `effectiveTagValues:"123456789/env/prod*"`
+     *               - `effectiveTagValues="123456789/env/prod"`
+     *               - `effectiveTagValueIds="tagValues/456"`
      *     @type string $parent_asset_type
      *           The type of this resource's immediate parent, if there is one.
      *           To search against the `parent_asset_type`:
@@ -566,6 +660,13 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           `parentAssetType:"cloudresourcemanager.googleapis.com/Project"`
      *           * Use a free text query. Example:
      *           `cloudresourcemanager.googleapis.com/Project`
+     *     @type array|\Google\Protobuf\Internal\MapField $scc_security_marks
+     *           The actual content of Security Command Center security marks associated
+     *           with the asset.
+     *           To search against SCC SecurityMarks field:
+     *             * Use a field query:
+     *               - query by a given key value pair. Example: `sccSecurityMarks.foo=bar`
+     *               - query by a given key's existence. Example: `sccSecurityMarks.foo:*`
      * }
      */
     public function __construct($data = NULL) {
@@ -957,8 +1058,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * name or
      * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions)
      * name.
-     * This field only presents for the purpose of backward compatibility. Please
-     * use the `kms_keys` field to retrieve Cloud KMS key information. This field
+     * This field only presents for the purpose of backward compatibility.
+     * Use the `kms_keys` field to retrieve Cloud KMS key information. This field
      * is available only when the resource's Protobuf contains it and will only be
      * populated for [these resource
      * types](https://cloud.google.com/asset-inventory/docs/legacy-field-names#resource_types_with_the_to_be_deprecated_kmskey_field)
@@ -983,8 +1084,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * name or
      * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions)
      * name.
-     * This field only presents for the purpose of backward compatibility. Please
-     * use the `kms_keys` field to retrieve Cloud KMS key information. This field
+     * This field only presents for the purpose of backward compatibility.
+     * Use the `kms_keys` field to retrieve Cloud KMS key information. This field
      * is available only when the resource's Protobuf contains it and will only be
      * populated for [these resource
      * types](https://cloud.google.com/asset-inventory/docs/legacy-field-names#resource_types_with_the_to_be_deprecated_kmskey_field)
@@ -1220,7 +1321,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * metadata fields that are returned by the List or Get APIs provided by the
      * corresponding Google Cloud service (e.g., Compute Engine). see [API
      * references and supported searchable
-     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types)
+     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * to see which fields are included.
      * You can search values of these fields through free text search. However,
      * you should not consume the field programically as the field names and
@@ -1256,7 +1357,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * metadata fields that are returned by the List or Get APIs provided by the
      * corresponding Google Cloud service (e.g., Compute Engine). see [API
      * references and supported searchable
-     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types)
+     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      * to see which fields are included.
      * You can search values of these fields through free text search. However,
      * you should not consume the field programically as the field names and
@@ -1424,6 +1525,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
      * To search against the `tagKeys`:
      * * Use a field query. Example:
@@ -1433,15 +1536,19 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example:
      *     - `env`
      *
-     * Generated from protobuf field <code>repeated string tag_keys = 23;</code>
+     * Generated from protobuf field <code>repeated string tag_keys = 23 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getTagKeys()
     {
+        @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
         return $this->tag_keys;
     }
 
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
      * To search against the `tagKeys`:
      * * Use a field query. Example:
@@ -1451,12 +1558,14 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example:
      *     - `env`
      *
-     * Generated from protobuf field <code>repeated string tag_keys = 23;</code>
+     * Generated from protobuf field <code>repeated string tag_keys = 23 [deprecated = true];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setTagKeys($var)
     {
+        @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->tag_keys = $arr;
 
@@ -1464,6 +1573,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagValue namespaced names, in the format of
      * {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
      * To search against the `tagValues`:
@@ -1475,15 +1586,19 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example:
      *     - `prod`
      *
-     * Generated from protobuf field <code>repeated string tag_values = 25;</code>
+     * Generated from protobuf field <code>repeated string tag_values = 25 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getTagValues()
     {
+        @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
         return $this->tag_values;
     }
 
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagValue namespaced names, in the format of
      * {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
      * To search against the `tagValues`:
@@ -1495,12 +1610,14 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example:
      *     - `prod`
      *
-     * Generated from protobuf field <code>repeated string tag_values = 25;</code>
+     * Generated from protobuf field <code>repeated string tag_values = 25 [deprecated = true];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setTagValues($var)
     {
+        @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->tag_values = $arr;
 
@@ -1508,39 +1625,151 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
      * To search against the `tagValueIds`:
      * * Use a field query. Example:
-     *     - `tagValueIds:"456"`
      *     - `tagValueIds="tagValues/456"`
      * * Use a free text query. Example:
      *     - `456`
      *
-     * Generated from protobuf field <code>repeated string tag_value_ids = 26;</code>
+     * Generated from protobuf field <code>repeated string tag_value_ids = 26 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getTagValueIds()
     {
+        @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
         return $this->tag_value_ids;
     }
 
     /**
+     * This field is only present for the purpose of backward compatibility.
+     * Use the `tags` field instead.
      * TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
      * To search against the `tagValueIds`:
      * * Use a field query. Example:
-     *     - `tagValueIds:"456"`
      *     - `tagValueIds="tagValues/456"`
      * * Use a free text query. Example:
      *     - `456`
      *
-     * Generated from protobuf field <code>repeated string tag_value_ids = 26;</code>
+     * Generated from protobuf field <code>repeated string tag_value_ids = 26 [deprecated = true];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setTagValueIds($var)
     {
+        @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->tag_value_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The tags directly attached to this resource.
+     * To search against the `tags`:
+     * * Use a field query. Example:
+     *     - `tagKeys:"123456789/env*"`
+     *     - `tagKeys="123456789/env"`
+     *     - `tagKeys:"env"`
+     *     - `tagKeyIds="tagKeys/123"`
+     *     - `tagValues:"env"`
+     *     - `tagValues:"env/prod"`
+     *     - `tagValues:"123456789/env/prod*"`
+     *     - `tagValues="123456789/env/prod"`
+     *     - `tagValueIds="tagValues/456"`
+     * * Use a free text query. Example:
+     *     - `env/prod`
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Tag tags = 29;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * The tags directly attached to this resource.
+     * To search against the `tags`:
+     * * Use a field query. Example:
+     *     - `tagKeys:"123456789/env*"`
+     *     - `tagKeys="123456789/env"`
+     *     - `tagKeys:"env"`
+     *     - `tagKeyIds="tagKeys/123"`
+     *     - `tagValues:"env"`
+     *     - `tagValues:"env/prod"`
+     *     - `tagValues:"123456789/env/prod*"`
+     *     - `tagValues="123456789/env/prod"`
+     *     - `tagValueIds="tagValues/456"`
+     * * Use a free text query. Example:
+     *     - `env/prod`
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Tag tags = 29;</code>
+     * @param array<\Google\Cloud\Asset\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\Tag::class);
+        $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The effective tags on this resource. All of the tags that are both attached
+     * to and inherited by a resource are collectively called the effective
+     * tags. For more information, see [tag
+     * inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
+     * To search against the `effective_tags`:
+     * * Use a field query. Example:
+     *     - `effectiveTagKeys:"123456789/env*"`
+     *     - `effectiveTagKeys="123456789/env"`
+     *     - `effectiveTagKeys:"env"`
+     *     - `effectiveTagKeyIds="tagKeys/123"`
+     *     - `effectiveTagValues:"env"`
+     *     - `effectiveTagValues:"env/prod"`
+     *     - `effectiveTagValues:"123456789/env/prod*"`
+     *     - `effectiveTagValues="123456789/env/prod"`
+     *     - `effectiveTagValueIds="tagValues/456"`
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 30;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEffectiveTags()
+    {
+        return $this->effective_tags;
+    }
+
+    /**
+     * The effective tags on this resource. All of the tags that are both attached
+     * to and inherited by a resource are collectively called the effective
+     * tags. For more information, see [tag
+     * inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
+     * To search against the `effective_tags`:
+     * * Use a field query. Example:
+     *     - `effectiveTagKeys:"123456789/env*"`
+     *     - `effectiveTagKeys="123456789/env"`
+     *     - `effectiveTagKeys:"env"`
+     *     - `effectiveTagKeyIds="tagKeys/123"`
+     *     - `effectiveTagValues:"env"`
+     *     - `effectiveTagValues:"env/prod"`
+     *     - `effectiveTagValues:"123456789/env/prod*"`
+     *     - `effectiveTagValues="123456789/env/prod"`
+     *     - `effectiveTagValueIds="tagValues/456"`
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 30;</code>
+     * @param array<\Google\Cloud\Asset\V1\EffectiveTagDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEffectiveTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\EffectiveTagDetails::class);
+        $this->effective_tags = $arr;
 
         return $this;
     }
@@ -1577,6 +1806,42 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent_asset_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The actual content of Security Command Center security marks associated
+     * with the asset.
+     * To search against SCC SecurityMarks field:
+     *   * Use a field query:
+     *     - query by a given key value pair. Example: `sccSecurityMarks.foo=bar`
+     *     - query by a given key's existence. Example: `sccSecurityMarks.foo:*`
+     *
+     * Generated from protobuf field <code>map<string, string> scc_security_marks = 32;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getSccSecurityMarks()
+    {
+        return $this->scc_security_marks;
+    }
+
+    /**
+     * The actual content of Security Command Center security marks associated
+     * with the asset.
+     * To search against SCC SecurityMarks field:
+     *   * Use a field query:
+     *     - query by a given key value pair. Example: `sccSecurityMarks.foo=bar`
+     *     - query by a given key's existence. Example: `sccSecurityMarks.foo:*`
+     *
+     * Generated from protobuf field <code>map<string, string> scc_security_marks = 32;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setSccSecurityMarks($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->scc_security_marks = $arr;
 
         return $this;
     }

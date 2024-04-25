@@ -39,6 +39,8 @@ items:
       assist with these names, this class includes a format method for each type of
       name, and additionally a parseName method to extract the individual identifiers
       contained within formatted names that are returned by the API.
+
+      This service has a new (beta) implementation. See <xref uid="\Google\Cloud\Vision\V1\Client\ProductSearchClient">Google\Cloud\Vision\V1\Client\ProductSearchClient</xref> to use the new surface.
     type: class
     namespace: 'Google \ Cloud \ Vision \ V1'
     langs:
@@ -1004,7 +1006,7 @@ items:
       Asynchronous API that imports a list of reference images to specified
       product sets based on a list of image information.
 
-      The <xref uid="\Google\Longrunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
+      The <xref uid="\Google\LongRunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
       progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
       `Operation.response` contains `ImportProductSetsResponse`. (results)
@@ -1506,7 +1508,7 @@ items:
       ProductSet, you must wait until the PurgeProducts operation has finished
       for that ProductSet.
 
-      The <xref uid="\Google\Longrunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
+      The <xref uid="\Google\LongRunning\Operation">google.longrunning.Operation</xref> API can be used to keep track of the
       progress and results of the request.
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
 

@@ -33,8 +33,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     protected $query = '';
     /**
-     * Selects data model of query suggestions for serving. Currently supported
-     * values:
+     * Specifies the autocomplete data model. This overrides any model specified
+     * in the Configuration > Autocomplete section of the Cloud console. Currently
+     * supported values:
      * * `document` - Using suggestions generated from user-imported documents.
      * * `search-history` - Using suggestions generated from the past history of
      * [SearchService.Search][google.cloud.discoveryengine.v1beta.SearchService.Search]
@@ -45,8 +46,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * user-imported document fields marked as completable.
      * Default values:
      * * `document` is the default model for regular dataStores.
-     * * `search-history` is the default model for
-     * [IndustryVertical.SITE_SEARCH][] dataStores.
+     * * `search-history` is the default model for site search dataStores.
      *
      * Generated from protobuf field <code>string query_model = 3;</code>
      */
@@ -91,8 +91,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           Required. The typeahead input used to fetch suggestions. Maximum length is
      *           128 characters.
      *     @type string $query_model
-     *           Selects data model of query suggestions for serving. Currently supported
-     *           values:
+     *           Specifies the autocomplete data model. This overrides any model specified
+     *           in the Configuration > Autocomplete section of the Cloud console. Currently
+     *           supported values:
      *           * `document` - Using suggestions generated from user-imported documents.
      *           * `search-history` - Using suggestions generated from the past history of
      *           [SearchService.Search][google.cloud.discoveryengine.v1beta.SearchService.Search]
@@ -103,8 +104,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           user-imported document fields marked as completable.
      *           Default values:
      *           * `document` is the default model for regular dataStores.
-     *           * `search-history` is the default model for
-     *           [IndustryVertical.SITE_SEARCH][] dataStores.
+     *           * `search-history` is the default model for site search dataStores.
      *     @type string $user_pseudo_id
      *           A unique identifier for tracking visitors. For example, this could be
      *           implemented with an HTTP cookie, which should be able to uniquely identify
@@ -188,8 +188,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Selects data model of query suggestions for serving. Currently supported
-     * values:
+     * Specifies the autocomplete data model. This overrides any model specified
+     * in the Configuration > Autocomplete section of the Cloud console. Currently
+     * supported values:
      * * `document` - Using suggestions generated from user-imported documents.
      * * `search-history` - Using suggestions generated from the past history of
      * [SearchService.Search][google.cloud.discoveryengine.v1beta.SearchService.Search]
@@ -200,8 +201,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * user-imported document fields marked as completable.
      * Default values:
      * * `document` is the default model for regular dataStores.
-     * * `search-history` is the default model for
-     * [IndustryVertical.SITE_SEARCH][] dataStores.
+     * * `search-history` is the default model for site search dataStores.
      *
      * Generated from protobuf field <code>string query_model = 3;</code>
      * @return string
@@ -212,8 +212,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Selects data model of query suggestions for serving. Currently supported
-     * values:
+     * Specifies the autocomplete data model. This overrides any model specified
+     * in the Configuration > Autocomplete section of the Cloud console. Currently
+     * supported values:
      * * `document` - Using suggestions generated from user-imported documents.
      * * `search-history` - Using suggestions generated from the past history of
      * [SearchService.Search][google.cloud.discoveryengine.v1beta.SearchService.Search]
@@ -224,8 +225,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * user-imported document fields marked as completable.
      * Default values:
      * * `document` is the default model for regular dataStores.
-     * * `search-history` is the default model for
-     * [IndustryVertical.SITE_SEARCH][] dataStores.
+     * * `search-history` is the default model for site search dataStores.
      *
      * Generated from protobuf field <code>string query_model = 3;</code>
      * @param string $var

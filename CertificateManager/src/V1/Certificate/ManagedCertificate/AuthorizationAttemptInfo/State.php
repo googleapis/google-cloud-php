@@ -20,8 +20,8 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * Certificate provisioning for this domain is under way. GCP will
-     * attempt to authorize the domain.
+     * Certificate provisioning for this domain is under way. Google Cloud
+     * will attempt to authorize the domain.
      *
      * Generated from protobuf enum <code>AUTHORIZING = 1;</code>
      */

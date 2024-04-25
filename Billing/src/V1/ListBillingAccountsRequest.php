@@ -32,15 +32,45 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
     /**
      * Options for how to filter the returned billing accounts.
-     * Currently this only supports filtering for
+     * This only supports filtering for
      * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     * single provided reseller billing account.
-     * (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
+     * single provided parent billing account.
+     * (for example,
+     * `master_billing_account=billingAccounts/012345-678901-ABCDEF`).
      * Boolean algebra and other fields are not currently supported.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
     private $filter = '';
+    /**
+     * Optional. The parent resource to list billing accounts from.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *     `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parent = '';
+
+    /**
+     * @param string $parent Optional. The parent resource to list billing accounts from.
+     *                       Format:
+     *                       - `organizations/{organization_id}`, for example,
+     *                       `organizations/12345678`
+     *                       - `billingAccounts/{billing_account_id}`, for example,
+     *                       `billingAccounts/012345-567890-ABCDEF`
+     *
+     * @return \Google\Cloud\Billing\V1\ListBillingAccountsRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParent(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
 
     /**
      * Constructor.
@@ -57,11 +87,19 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
      *           call. If unspecified, the first page of results is returned.
      *     @type string $filter
      *           Options for how to filter the returned billing accounts.
-     *           Currently this only supports filtering for
+     *           This only supports filtering for
      *           [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     *           single provided reseller billing account.
-     *           (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
+     *           single provided parent billing account.
+     *           (for example,
+     *           `master_billing_account=billingAccounts/012345-678901-ABCDEF`).
      *           Boolean algebra and other fields are not currently supported.
+     *     @type string $parent
+     *           Optional. The parent resource to list billing accounts from.
+     *           Format:
+     *             - `organizations/{organization_id}`, for example,
+     *               `organizations/12345678`
+     *             - `billingAccounts/{billing_account_id}`, for example,
+     *               `billingAccounts/012345-567890-ABCDEF`
      * }
      */
     public function __construct($data = NULL) {
@@ -129,10 +167,11 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Options for how to filter the returned billing accounts.
-     * Currently this only supports filtering for
+     * This only supports filtering for
      * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     * single provided reseller billing account.
-     * (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
+     * single provided parent billing account.
+     * (for example,
+     * `master_billing_account=billingAccounts/012345-678901-ABCDEF`).
      * Boolean algebra and other fields are not currently supported.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
@@ -145,10 +184,11 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Options for how to filter the returned billing accounts.
-     * Currently this only supports filtering for
+     * This only supports filtering for
      * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a
-     * single provided reseller billing account.
-     * (e.g. "master_billing_account=billingAccounts/012345-678901-ABCDEF").
+     * single provided parent billing account.
+     * (for example,
+     * `master_billing_account=billingAccounts/012345-678901-ABCDEF`).
      * Boolean algebra and other fields are not currently supported.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
@@ -159,6 +199,42 @@ class ListBillingAccountsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The parent resource to list billing accounts from.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *     `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Optional. The parent resource to list billing accounts from.
+     * Format:
+     *   - `organizations/{organization_id}`, for example,
+     *     `organizations/12345678`
+     *   - `billingAccounts/{billing_account_id}`, for example,
+     *     `billingAccounts/012345-567890-ABCDEF`
+     *
+     * Generated from protobuf field <code>string parent = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
 
         return $this;
     }

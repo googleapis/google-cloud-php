@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommender_v1_generated_Recommender_GetInsightTypeConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
+use Google\Cloud\Recommender\V1\GetInsightTypeConfigRequest;
 use Google\Cloud\Recommender\V1\InsightTypeConfig;
-use Google\Cloud\Recommender\V1\RecommenderClient;
 
 /**
  * Gets the requested InsightTypeConfig. There is only one instance of the
@@ -35,11 +36,13 @@ use Google\Cloud\Recommender\V1\RecommenderClient;
  *
  *                              Acceptable formats:
  *
- *                              * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+ *                              * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
  *
- *                              * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+ *                              * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
  *
- *                              * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+ *                              * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
+ *
+ *                              * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`
  *                              Please see {@see RecommenderClient::insightTypeConfigName()} for help formatting this field.
  */
 function get_insight_type_config_sample(string $formattedName): void
@@ -47,10 +50,14 @@ function get_insight_type_config_sample(string $formattedName): void
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
+    // Prepare the request message.
+    $request = (new GetInsightTypeConfigRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var InsightTypeConfig $response */
-        $response = $recommenderClient->getInsightTypeConfig($formattedName);
+        $response = $recommenderClient->getInsightTypeConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -22,13 +22,13 @@ class SkaffoldVersion extends \Google\Protobuf\Internal\Message
      */
     private $version = '';
     /**
-     * The time at which this version of skaffold will enter maintenance mode.
+     * The time at which this version of Skaffold will enter maintenance mode.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_mode_time = 3;</code>
      */
     private $maintenance_mode_time = null;
     /**
-     * The time at which this version of skaffold will no longer be supported.
+     * The time at which this version of Skaffold will no longer be supported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp support_expiration_time = 4;</code>
      */
@@ -49,9 +49,9 @@ class SkaffoldVersion extends \Google\Protobuf\Internal\Message
      *     @type string $version
      *           Release version number. For example, "1.20.3".
      *     @type \Google\Protobuf\Timestamp $maintenance_mode_time
-     *           The time at which this version of skaffold will enter maintenance mode.
+     *           The time at which this version of Skaffold will enter maintenance mode.
      *     @type \Google\Protobuf\Timestamp $support_expiration_time
-     *           The time at which this version of skaffold will no longer be supported.
+     *           The time at which this version of Skaffold will no longer be supported.
      *     @type \Google\Type\Date $support_end_date
      *           Date when this version is expected to no longer be supported.
      * }
@@ -88,7 +88,7 @@ class SkaffoldVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this version of skaffold will enter maintenance mode.
+     * The time at which this version of Skaffold will enter maintenance mode.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_mode_time = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -109,7 +109,7 @@ class SkaffoldVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this version of skaffold will enter maintenance mode.
+     * The time at which this version of Skaffold will enter maintenance mode.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp maintenance_mode_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -124,7 +124,7 @@ class SkaffoldVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this version of skaffold will no longer be supported.
+     * The time at which this version of Skaffold will no longer be supported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp support_expiration_time = 4;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -145,7 +145,7 @@ class SkaffoldVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which this version of skaffold will no longer be supported.
+     * The time at which this version of Skaffold will no longer be supported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp support_expiration_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var

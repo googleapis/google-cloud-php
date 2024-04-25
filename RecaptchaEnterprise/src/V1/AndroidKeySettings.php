@@ -16,18 +16,26 @@ use Google\Protobuf\Internal\GPBUtil;
 class AndroidKeySettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If set to true, allowed_package_names are not enforced.
+     * Optional. If set to true, allowed_package_names are not enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_package_names = 2;</code>
+     * Generated from protobuf field <code>bool allow_all_package_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allow_all_package_names = false;
     /**
-     * Android package names of apps allowed to use the key.
+     * Optional. Android package names of apps allowed to use the key.
      * Example: 'com.companyname.appname'
      *
-     * Generated from protobuf field <code>repeated string allowed_package_names = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_package_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_package_names;
+    /**
+     * Optional. Set to true for keys that are used in an Android application that
+     * is available for download in app stores in addition to the Google Play
+     * Store.
+     *
+     * Generated from protobuf field <code>bool support_non_google_app_store_distribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $support_non_google_app_store_distribution = false;
 
     /**
      * Constructor.
@@ -36,10 +44,14 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $allow_all_package_names
-     *           If set to true, allowed_package_names are not enforced.
+     *           Optional. If set to true, allowed_package_names are not enforced.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_package_names
-     *           Android package names of apps allowed to use the key.
+     *           Optional. Android package names of apps allowed to use the key.
      *           Example: 'com.companyname.appname'
+     *     @type bool $support_non_google_app_store_distribution
+     *           Optional. Set to true for keys that are used in an Android application that
+     *           is available for download in app stores in addition to the Google Play
+     *           Store.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +60,9 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, allowed_package_names are not enforced.
+     * Optional. If set to true, allowed_package_names are not enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_package_names = 2;</code>
+     * Generated from protobuf field <code>bool allow_all_package_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowAllPackageNames()
@@ -59,9 +71,9 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, allowed_package_names are not enforced.
+     * Optional. If set to true, allowed_package_names are not enforced.
      *
-     * Generated from protobuf field <code>bool allow_all_package_names = 2;</code>
+     * Generated from protobuf field <code>bool allow_all_package_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -74,10 +86,10 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Android package names of apps allowed to use the key.
+     * Optional. Android package names of apps allowed to use the key.
      * Example: 'com.companyname.appname'
      *
-     * Generated from protobuf field <code>repeated string allowed_package_names = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_package_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAllowedPackageNames()
@@ -86,10 +98,10 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Android package names of apps allowed to use the key.
+     * Optional. Android package names of apps allowed to use the key.
      * Example: 'com.companyname.appname'
      *
-     * Generated from protobuf field <code>repeated string allowed_package_names = 1;</code>
+     * Generated from protobuf field <code>repeated string allowed_package_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -97,6 +109,36 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->allowed_package_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set to true for keys that are used in an Android application that
+     * is available for download in app stores in addition to the Google Play
+     * Store.
+     *
+     * Generated from protobuf field <code>bool support_non_google_app_store_distribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSupportNonGoogleAppStoreDistribution()
+    {
+        return $this->support_non_google_app_store_distribution;
+    }
+
+    /**
+     * Optional. Set to true for keys that are used in an Android application that
+     * is available for download in app stores in addition to the Google Play
+     * Store.
+     *
+     * Generated from protobuf field <code>bool support_non_google_app_store_distribution = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportNonGoogleAppStoreDistribution($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->support_non_google_app_store_distribution = $var;
 
         return $this;
     }

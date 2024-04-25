@@ -57,7 +57,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
+     * of type `STRING` both appear in
+     * [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
@@ -69,18 +70,21 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this request is resuming a previously interrupted SQL statement
      * execution, `resume_token` should be copied from the last
-     * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
-     * enables the new SQL statement execution to resume where the last one left
-     * off. The rest of the request parameters must exactly match the
-     * request that yielded this token.
+     * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the
+     * interruption. Doing this enables the new SQL statement execution to resume
+     * where the last one left off. The rest of the request parameters must
+     * exactly match the request that yielded this token.
      *
      * Generated from protobuf field <code>bytes resume_token = 6;</code>
      */
     private $resume_token = '';
     /**
      * Used to control the amount of debugging information returned in
-     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
-     * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
+     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If
+     * [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is
+     * set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     * be set to
+     * [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      */
@@ -120,10 +124,16 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     private $request_options = null;
     /**
+     * Directed read options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions directed_read_options = 15;</code>
+     */
+    private $directed_read_options = null;
+    /**
      * If this is for a partitioned query and this field is set to `true`, the
-     * request will be executed via Spanner independent compute resources.
+     * request is executed with Spanner Data Boost independent compute resources.
      * If the field is set to `true` but the request does not set
-     * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      */
@@ -160,7 +170,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
      *           It is not always possible for Cloud Spanner to infer the right SQL type
      *           from a JSON value.  For example, values of type `BYTES` and values
-     *           of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
+     *           of type `STRING` both appear in
+     *           [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
      *           In these cases, `param_types` can be used to specify the exact
      *           SQL type for some or all of the SQL statement parameters. See the
      *           definition of [Type][google.spanner.v1.Type] for more information
@@ -168,14 +179,17 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *     @type string $resume_token
      *           If this request is resuming a previously interrupted SQL statement
      *           execution, `resume_token` should be copied from the last
-     *           [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
-     *           enables the new SQL statement execution to resume where the last one left
-     *           off. The rest of the request parameters must exactly match the
-     *           request that yielded this token.
+     *           [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the
+     *           interruption. Doing this enables the new SQL statement execution to resume
+     *           where the last one left off. The rest of the request parameters must
+     *           exactly match the request that yielded this token.
      *     @type int $query_mode
      *           Used to control the amount of debugging information returned in
-     *           [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
-     *           be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
+     *           [ResultSetStats][google.spanner.v1.ResultSetStats]. If
+     *           [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is
+     *           set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     *           be set to
+     *           [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *     @type string $partition_token
      *           If present, results will be restricted to the specified partition
      *           previously created using PartitionQuery().  There must be an exact
@@ -194,11 +208,13 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           Query optimizer configuration to use for the given query.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
+     *     @type \Google\Cloud\Spanner\V1\DirectedReadOptions $directed_read_options
+     *           Directed read options for this request.
      *     @type bool $data_boost_enabled
      *           If this is for a partitioned query and this field is set to `true`, the
-     *           request will be executed via Spanner independent compute resources.
+     *           request is executed with Spanner Data Boost independent compute resources.
      *           If the field is set to `true` but the request does not set
-     *           `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      * }
      */
     public function __construct($data = NULL) {
@@ -361,7 +377,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
+     * of type `STRING` both appear in
+     * [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
@@ -378,7 +395,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
-     * of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
+     * of type `STRING` both appear in
+     * [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
      * In these cases, `param_types` can be used to specify the exact
      * SQL type for some or all of the SQL statement parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
@@ -399,10 +417,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this request is resuming a previously interrupted SQL statement
      * execution, `resume_token` should be copied from the last
-     * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
-     * enables the new SQL statement execution to resume where the last one left
-     * off. The rest of the request parameters must exactly match the
-     * request that yielded this token.
+     * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the
+     * interruption. Doing this enables the new SQL statement execution to resume
+     * where the last one left off. The rest of the request parameters must
+     * exactly match the request that yielded this token.
      *
      * Generated from protobuf field <code>bytes resume_token = 6;</code>
      * @return string
@@ -415,10 +433,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     /**
      * If this request is resuming a previously interrupted SQL statement
      * execution, `resume_token` should be copied from the last
-     * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
-     * enables the new SQL statement execution to resume where the last one left
-     * off. The rest of the request parameters must exactly match the
-     * request that yielded this token.
+     * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the
+     * interruption. Doing this enables the new SQL statement execution to resume
+     * where the last one left off. The rest of the request parameters must
+     * exactly match the request that yielded this token.
      *
      * Generated from protobuf field <code>bytes resume_token = 6;</code>
      * @param string $var
@@ -434,8 +452,11 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Used to control the amount of debugging information returned in
-     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
-     * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
+     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If
+     * [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is
+     * set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     * be set to
+     * [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      * @return int
@@ -447,8 +468,11 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Used to control the amount of debugging information returned in
-     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
-     * be set to [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
+     * [ResultSetStats][google.spanner.v1.ResultSetStats]. If
+     * [partition_token][google.spanner.v1.ExecuteSqlRequest.partition_token] is
+     * set, [query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] can only
+     * be set to
+     * [QueryMode.NORMAL][google.spanner.v1.ExecuteSqlRequest.QueryMode.NORMAL].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      * @param int $var
@@ -607,10 +631,46 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Directed read options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions directed_read_options = 15;</code>
+     * @return \Google\Cloud\Spanner\V1\DirectedReadOptions|null
+     */
+    public function getDirectedReadOptions()
+    {
+        return $this->directed_read_options;
+    }
+
+    public function hasDirectedReadOptions()
+    {
+        return isset($this->directed_read_options);
+    }
+
+    public function clearDirectedReadOptions()
+    {
+        unset($this->directed_read_options);
+    }
+
+    /**
+     * Directed read options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.DirectedReadOptions directed_read_options = 15;</code>
+     * @param \Google\Cloud\Spanner\V1\DirectedReadOptions $var
+     * @return $this
+     */
+    public function setDirectedReadOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\DirectedReadOptions::class);
+        $this->directed_read_options = $var;
+
+        return $this;
+    }
+
+    /**
      * If this is for a partitioned query and this field is set to `true`, the
-     * request will be executed via Spanner independent compute resources.
+     * request is executed with Spanner Data Boost independent compute resources.
      * If the field is set to `true` but the request does not set
-     * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      * @return bool
@@ -622,9 +682,9 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If this is for a partitioned query and this field is set to `true`, the
-     * request will be executed via Spanner independent compute resources.
+     * request is executed with Spanner Data Boost independent compute resources.
      * If the field is set to `true` but the request does not set
-     * `partition_token`, the API will return an `INVALID_ARGUMENT` error.
+     * `partition_token`, the API returns an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>bool data_boost_enabled = 16;</code>
      * @param bool $var

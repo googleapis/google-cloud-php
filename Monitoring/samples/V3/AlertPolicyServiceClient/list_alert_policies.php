@@ -26,13 +26,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Monitoring\V3\AlertPolicy;
-use Google\Cloud\Monitoring\V3\AlertPolicyServiceClient;
+use Google\Cloud\Monitoring\V3\Client\AlertPolicyServiceClient;
+use Google\Cloud\Monitoring\V3\ListAlertPoliciesRequest;
 
 /**
  * Lists the existing alerting policies for the workspace.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name)
- *                     whose alert policies are to be listed. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) whose
+ *                     alert policies are to be listed. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  *
@@ -47,10 +49,14 @@ function list_alert_policies_sample(string $name): void
     // Create a client.
     $alertPolicyServiceClient = new AlertPolicyServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListAlertPoliciesRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $alertPolicyServiceClient->listAlertPolicies($name);
+        $response = $alertPolicyServiceClient->listAlertPolicies($request);
 
         /** @var AlertPolicy $element */
         foreach ($response as $element) {

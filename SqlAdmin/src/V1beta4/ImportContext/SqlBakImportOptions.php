@@ -48,15 +48,18 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      */
     private $bak_type = 0;
     /**
-     * Optional. StopAt keyword for transaction log import, Applies to Cloud SQL
-     * for SQL Server only
+     * Optional. The timestamp when the import should stop. This timestamp is in
+     * the [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example,
+     * `2023-10-01T16:19:00.094`). This field is equivalent to the STOPAT
+     * keyword and applies to Cloud SQL for SQL Server only.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp stop_at = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $stop_at = null;
     /**
-     * Optional. StopAtMark keyword for transaction log import, Applies to Cloud
-     * SQL for SQL Server only
+     * Optional. The marked transaction where the import should stop. This field
+     * is equivalent to the STOPATMARK keyword and applies to Cloud SQL for SQL
+     * Server only.
      *
      * Generated from protobuf field <code>string stop_at_mark = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -84,11 +87,14 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      *     @type int $bak_type
      *           Type of the bak content, FULL or DIFF.
      *     @type \Google\Protobuf\Timestamp $stop_at
-     *           Optional. StopAt keyword for transaction log import, Applies to Cloud SQL
-     *           for SQL Server only
+     *           Optional. The timestamp when the import should stop. This timestamp is in
+     *           the [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example,
+     *           `2023-10-01T16:19:00.094`). This field is equivalent to the STOPAT
+     *           keyword and applies to Cloud SQL for SQL Server only.
      *     @type string $stop_at_mark
-     *           Optional. StopAtMark keyword for transaction log import, Applies to Cloud
-     *           SQL for SQL Server only
+     *           Optional. The marked transaction where the import should stop. This field
+     *           is equivalent to the STOPATMARK keyword and applies to Cloud SQL for SQL
+     *           Server only.
      * }
      */
     public function __construct($data = NULL) {
@@ -368,8 +374,10 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. StopAt keyword for transaction log import, Applies to Cloud SQL
-     * for SQL Server only
+     * Optional. The timestamp when the import should stop. This timestamp is in
+     * the [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example,
+     * `2023-10-01T16:19:00.094`). This field is equivalent to the STOPAT
+     * keyword and applies to Cloud SQL for SQL Server only.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp stop_at = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -390,8 +398,10 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. StopAt keyword for transaction log import, Applies to Cloud SQL
-     * for SQL Server only
+     * Optional. The timestamp when the import should stop. This timestamp is in
+     * the [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example,
+     * `2023-10-01T16:19:00.094`). This field is equivalent to the STOPAT
+     * keyword and applies to Cloud SQL for SQL Server only.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp stop_at = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -406,8 +416,9 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. StopAtMark keyword for transaction log import, Applies to Cloud
-     * SQL for SQL Server only
+     * Optional. The marked transaction where the import should stop. This field
+     * is equivalent to the STOPATMARK keyword and applies to Cloud SQL for SQL
+     * Server only.
      *
      * Generated from protobuf field <code>string stop_at_mark = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -418,8 +429,9 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. StopAtMark keyword for transaction log import, Applies to Cloud
-     * SQL for SQL Server only
+     * Optional. The marked transaction where the import should stop. This field
+     * is equivalent to the STOPATMARK keyword and applies to Cloud SQL for SQL
+     * Server only.
      *
      * Generated from protobuf field <code>string stop_at_mark = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -21,7 +21,7 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * The resource's create operation is in progress
+     * The resource's create operation is in progress.
      *
      * Generated from protobuf enum <code>CREATING = 1;</code>
      */
@@ -33,24 +33,53 @@ class State
      */
     const ACTIVE = 2;
     /**
-     * The resource's Delete operation is in progress
+     * The resource's delete operation is in progress.
      *
      * Generated from protobuf enum <code>DELETING = 3;</code>
      */
     const DELETING = 3;
     /**
-     * The resource's Update operation is in progress
+     * The resource's accept operation is in progress.
+     *
+     * Generated from protobuf enum <code>ACCEPTING = 8;</code>
+     */
+    const ACCEPTING = 8;
+    /**
+     * The resource's reject operation is in progress.
+     *
+     * Generated from protobuf enum <code>REJECTING = 9;</code>
+     */
+    const REJECTING = 9;
+    /**
+     * The resource's update operation is in progress.
      *
      * Generated from protobuf enum <code>UPDATING = 6;</code>
      */
     const UPDATING = 6;
+    /**
+     * The resource is inactive.
+     *
+     * Generated from protobuf enum <code>INACTIVE = 7;</code>
+     */
+    const INACTIVE = 7;
+    /**
+     * The hub associated with this spoke resource has been deleted.
+     * This state applies to spoke resources only.
+     *
+     * Generated from protobuf enum <code>OBSOLETE = 10;</code>
+     */
+    const OBSOLETE = 10;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::CREATING => 'CREATING',
         self::ACTIVE => 'ACTIVE',
         self::DELETING => 'DELETING',
+        self::ACCEPTING => 'ACCEPTING',
+        self::REJECTING => 'REJECTING',
         self::UPDATING => 'UPDATING',
+        self::INACTIVE => 'INACTIVE',
+        self::OBSOLETE => 'OBSOLETE',
     ];
 
     public static function name($value)

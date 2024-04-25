@@ -61,6 +61,13 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $labels;
+    /**
+     * Output only. Start time for the profile.
+     * This output is only present in response from the ListProfiles method.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $start_time = null;
 
     /**
      * Constructor.
@@ -90,6 +97,9 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           Input only. Labels associated to this specific profile. These labels will
      *           get merged with the deployment labels for the final data set. See
      *           documentation on deployment labels for validation rules and limits.
+     *     @type \Google\Protobuf\Timestamp $start_time
+     *           Output only. Start time for the profile.
+     *           This output is only present in response from the ListProfiles method.
      * }
      */
     public function __construct($data = NULL) {
@@ -289,6 +299,44 @@ class Profile extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Start time for the profile.
+     * This output is only present in response from the ListProfiles method.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getStartTime()
+    {
+        return $this->start_time;
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
+    }
+
+    /**
+     * Output only. Start time for the profile.
+     * This output is only present in response from the ListProfiles method.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->start_time = $var;
 
         return $this;
     }

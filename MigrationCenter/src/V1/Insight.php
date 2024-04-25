@@ -25,6 +25,8 @@ class Insight extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\MigrationCenter\V1\MigrationInsight $migration_insight
      *           Output only. An insight about potential migrations for an asset.
+     *     @type \Google\Cloud\MigrationCenter\V1\GenericInsight $generic_insight
+     *           Output only. A generic insight about an asset
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +61,37 @@ class Insight extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\MigrationCenter\V1\MigrationInsight::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. A generic insight about an asset
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.GenericInsight generic_insight = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\MigrationCenter\V1\GenericInsight|null
+     */
+    public function getGenericInsight()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasGenericInsight()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Output only. A generic insight about an asset
+     *
+     * Generated from protobuf field <code>.google.cloud.migrationcenter.v1.GenericInsight generic_insight = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\MigrationCenter\V1\GenericInsight $var
+     * @return $this
+     */
+    public function setGenericInsight($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\MigrationCenter\V1\GenericInsight::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_CreateCustomer_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\CreateCustomerRequest;
 use Google\Cloud\Channel\V1\Customer;
 use Google\Type\PostalAddress;
 
@@ -34,8 +35,11 @@ use Google\Type\PostalAddress;
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED: The reseller account making the request is different
- * from the reseller account in the API request.
+ * * PERMISSION_DENIED:
+ * * The reseller account making the request is different from the
+ * reseller account in the API request.
+ * * You are not authorized to create a customer. See
+ * https://support.google.com/channelservices/answer/9759265
  * * INVALID_ARGUMENT:
  * * Required request parameters are missing or invalid.
  * * Domain field value doesn't match the primary email domain.
@@ -57,17 +61,20 @@ function create_customer_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customerOrgPostalAddress = new PostalAddress();
     $customer = (new Customer())
         ->setOrgDisplayName($customerOrgDisplayName)
         ->setOrgPostalAddress($customerOrgPostalAddress)
         ->setDomain($customerDomain);
+    $request = (new CreateCustomerRequest())
+        ->setParent($parent)
+        ->setCustomer($customer);
 
     // Call the API and handle any network failures.
     try {
         /** @var Customer $response */
-        $response = $cloudChannelServiceClient->createCustomer($parent, $customer);
+        $response = $cloudChannelServiceClient->createCustomer($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

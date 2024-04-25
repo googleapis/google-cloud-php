@@ -67,6 +67,9 @@
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
                 },
+                "BatchWrite": {
+                    "timeout_millis": 3600000
+                },
                 "BeginTransaction": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_3_codes",

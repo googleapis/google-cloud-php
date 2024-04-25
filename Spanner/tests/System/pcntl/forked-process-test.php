@@ -30,8 +30,6 @@ function setupIterationTracker($tmpFile)
 
         $h = fopen($tmpFile, 'r+');
         flock($h, LOCK_UN);
-
-        unlink($tmpFile);
     });
 
     file_put_contents($tmpFile, '0');
@@ -50,4 +48,5 @@ function updateIterationTracker($tmpFile, $iterations)
 
         flock($fp, LOCK_UN);
     }
+    fclose($fp);
 }

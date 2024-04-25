@@ -34,6 +34,26 @@ class UpdateChannelGroupRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1alpha\ChannelGroup $channelGroup Required. The ChannelGroup to update.
+     *                                                                   The resource's `name` field is used to identify the ChannelGroup to be
+     *                                                                   updated.
+     * @param \Google\Protobuf\FieldMask                   $updateMask   Required. The list of fields to be updated. Field names must be in snake
+     *                                                                   case (e.g., "field_to_update"). Omitted fields will not be updated. To
+     *                                                                   replace the entire entity, use one path with the string "*" to match all
+     *                                                                   fields.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\UpdateChannelGroupRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1alpha\ChannelGroup $channelGroup, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setChannelGroup($channelGroup)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

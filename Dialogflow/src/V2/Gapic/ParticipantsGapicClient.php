@@ -53,6 +53,7 @@ use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
+use Google\Cloud\Dialogflow\V2\SuggestionInput;
 use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
 use Google\Cloud\Location\GetLocationRequest;
@@ -83,8 +84,7 @@ use Google\Protobuf\Struct;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Dialogflow\V2\Client\ParticipantsClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Dialogflow\V2\Client\ParticipantsClient}.
  */
 class ParticipantsGapicClient
 {
@@ -93,8 +93,15 @@ class ParticipantsGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.dialogflow.v2.Participants';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -1062,6 +1069,8 @@ class ParticipantsGapicClient
      *           The natural language text to be processed.
      *     @type EventInput $eventInput
      *           An input event to send to Dialogflow.
+     *     @type SuggestionInput $suggestionInput
+     *           An input representing the selection of a suggestion.
      *     @type OutputAudioConfig $replyAudioConfig
      *           Speech synthesis configuration.
      *           The speech synthesis settings for a virtual agent that may be configured
@@ -1105,6 +1114,10 @@ class ParticipantsGapicClient
 
         if (isset($optionalArgs['eventInput'])) {
             $request->setEventInput($optionalArgs['eventInput']);
+        }
+
+        if (isset($optionalArgs['suggestionInput'])) {
+            $request->setSuggestionInput($optionalArgs['suggestionInput']);
         }
 
         if (isset($optionalArgs['replyAudioConfig'])) {

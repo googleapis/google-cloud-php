@@ -49,6 +49,7 @@ use Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSourceRequest;
+use Google\Cloud\SecurityCenter\V1\CustomConfig;
 use Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
@@ -95,6 +96,9 @@ use Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\SetFindingStateRequest;
 use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest\SimulatedResource;
+use Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest;
@@ -157,9 +161,7 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\SecurityCenter\V1\Client\SecurityCenterClient}.
  */
 class SecurityCenterGapicClient
 {
@@ -168,8 +170,15 @@ class SecurityCenterGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.securitycenter.v1.SecurityCenter';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'securitycenter.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'securitycenter.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -195,6 +204,8 @@ class SecurityCenterGapicClient
     private static $folderNameTemplate;
 
     private static $folderAssetSecurityMarksNameTemplate;
+
+    private static $folderConstraintNameNameTemplate;
 
     private static $folderCustomModuleNameTemplate;
 
@@ -224,6 +235,8 @@ class SecurityCenterGapicClient
 
     private static $organizationAssetSecurityMarksNameTemplate;
 
+    private static $organizationConstraintNameNameTemplate;
+
     private static $organizationCustomModuleNameTemplate;
 
     private static $organizationEffectiveCustomModuleNameTemplate;
@@ -246,9 +259,13 @@ class SecurityCenterGapicClient
 
     private static $organizationSourceFindingSecurityMarksNameTemplate;
 
+    private static $policyNameTemplate;
+
     private static $projectNameTemplate;
 
     private static $projectAssetSecurityMarksNameTemplate;
+
+    private static $projectConstraintNameNameTemplate;
 
     private static $projectCustomModuleNameTemplate;
 
@@ -374,6 +391,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$folderAssetSecurityMarksNameTemplate;
+    }
+
+    private static function getFolderConstraintNameNameTemplate()
+    {
+        if (self::$folderConstraintNameNameTemplate == null) {
+            self::$folderConstraintNameNameTemplate = new PathTemplate('folders/{folder}/policies/{constraint_name}');
+        }
+
+        return self::$folderConstraintNameNameTemplate;
     }
 
     private static function getFolderCustomModuleNameTemplate()
@@ -502,6 +528,15 @@ class SecurityCenterGapicClient
         return self::$organizationAssetSecurityMarksNameTemplate;
     }
 
+    private static function getOrganizationConstraintNameNameTemplate()
+    {
+        if (self::$organizationConstraintNameNameTemplate == null) {
+            self::$organizationConstraintNameNameTemplate = new PathTemplate('organizations/{organization}/policies/{constraint_name}');
+        }
+
+        return self::$organizationConstraintNameNameTemplate;
+    }
+
     private static function getOrganizationCustomModuleNameTemplate()
     {
         if (self::$organizationCustomModuleNameTemplate == null) {
@@ -601,6 +636,15 @@ class SecurityCenterGapicClient
         return self::$organizationSourceFindingSecurityMarksNameTemplate;
     }
 
+    private static function getPolicyNameTemplate()
+    {
+        if (self::$policyNameTemplate == null) {
+            self::$policyNameTemplate = new PathTemplate('organizations/{organization}/policies/{constraint_name}');
+        }
+
+        return self::$policyNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -617,6 +661,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$projectAssetSecurityMarksNameTemplate;
+    }
+
+    private static function getProjectConstraintNameNameTemplate()
+    {
+        if (self::$projectConstraintNameNameTemplate == null) {
+            self::$projectConstraintNameNameTemplate = new PathTemplate('projects/{project}/policies/{constraint_name}');
+        }
+
+        return self::$projectConstraintNameNameTemplate;
     }
 
     private static function getProjectCustomModuleNameTemplate()
@@ -810,6 +863,7 @@ class SecurityCenterGapicClient
                 'finding' => self::getFindingNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
                 'folderAssetSecurityMarks' => self::getFolderAssetSecurityMarksNameTemplate(),
+                'folderConstraintName' => self::getFolderConstraintNameNameTemplate(),
                 'folderCustomModule' => self::getFolderCustomModuleNameTemplate(),
                 'folderEffectiveCustomModule' => self::getFolderEffectiveCustomModuleNameTemplate(),
                 'folderExport' => self::getFolderExportNameTemplate(),
@@ -824,6 +878,7 @@ class SecurityCenterGapicClient
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
                 'organizationAssetSecurityMarks' => self::getOrganizationAssetSecurityMarksNameTemplate(),
+                'organizationConstraintName' => self::getOrganizationConstraintNameNameTemplate(),
                 'organizationCustomModule' => self::getOrganizationCustomModuleNameTemplate(),
                 'organizationEffectiveCustomModule' => self::getOrganizationEffectiveCustomModuleNameTemplate(),
                 'organizationExport' => self::getOrganizationExportNameTemplate(),
@@ -835,8 +890,10 @@ class SecurityCenterGapicClient
                 'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
                 'organizationSourceFindingExternalsystem' => self::getOrganizationSourceFindingExternalsystemNameTemplate(),
                 'organizationSourceFindingSecurityMarks' => self::getOrganizationSourceFindingSecurityMarksNameTemplate(),
+                'policy' => self::getPolicyNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAssetSecurityMarks' => self::getProjectAssetSecurityMarksNameTemplate(),
+                'projectConstraintName' => self::getProjectConstraintNameNameTemplate(),
                 'projectCustomModule' => self::getProjectCustomModuleNameTemplate(),
                 'projectDlpJob' => self::getProjectDlpJobNameTemplate(),
                 'projectEffectiveCustomModule' => self::getProjectEffectiveCustomModuleNameTemplate(),
@@ -983,6 +1040,23 @@ class SecurityCenterGapicClient
         return self::getFolderAssetSecurityMarksNameTemplate()->render([
             'folder' => $folder,
             'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_constraint_name resource.
+     *
+     * @param string $folder
+     * @param string $constraintName
+     *
+     * @return string The formatted folder_constraint_name resource.
+     */
+    public static function folderConstraintNameName($folder, $constraintName)
+    {
+        return self::getFolderConstraintNameNameTemplate()->render([
+            'folder' => $folder,
+            'constraint_name' => $constraintName,
         ]);
     }
 
@@ -1230,6 +1304,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_constraint_name resource.
+     *
+     * @param string $organization
+     * @param string $constraintName
+     *
+     * @return string The formatted organization_constraint_name resource.
+     */
+    public static function organizationConstraintNameName($organization, $constraintName)
+    {
+        return self::getOrganizationConstraintNameNameTemplate()->render([
+            'organization' => $organization,
+            'constraint_name' => $constraintName,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_custom_module resource.
      *
      * @param string $organization
@@ -1420,6 +1511,23 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a policy
+     * resource.
+     *
+     * @param string $organization
+     * @param string $constraintName
+     *
+     * @return string The formatted policy resource.
+     */
+    public static function policyName($organization, $constraintName)
+    {
+        return self::getPolicyNameTemplate()->render([
+            'organization' => $organization,
+            'constraint_name' => $constraintName,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -1448,6 +1556,23 @@ class SecurityCenterGapicClient
         return self::getProjectAssetSecurityMarksNameTemplate()->render([
             'project' => $project,
             'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_constraint_name resource.
+     *
+     * @param string $project
+     * @param string $constraintName
+     *
+     * @return string The formatted project_constraint_name resource.
+     */
+    public static function projectConstraintNameName($project, $constraintName)
+    {
+        return self::getProjectConstraintNameNameTemplate()->render([
+            'project' => $project,
+            'constraint_name' => $constraintName,
         ]);
     }
 
@@ -1810,6 +1935,7 @@ class SecurityCenterGapicClient
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - folder: folders/{folder}
      * - folderAssetSecurityMarks: folders/{folder}/assets/{asset}/securityMarks
+     * - folderConstraintName: folders/{folder}/policies/{constraint_name}
      * - folderCustomModule: folders/{folder}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - folderEffectiveCustomModule: folders/{folder}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - folderExport: folders/{folder}/bigQueryExports/{export}
@@ -1824,6 +1950,7 @@ class SecurityCenterGapicClient
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
      * - organizationAssetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
+     * - organizationConstraintName: organizations/{organization}/policies/{constraint_name}
      * - organizationCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - organizationEffectiveCustomModule: organizations/{organization}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
      * - organizationExport: organizations/{organization}/bigQueryExports/{export}
@@ -1835,8 +1962,10 @@ class SecurityCenterGapicClient
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
      * - organizationSourceFindingExternalsystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - organizationSourceFindingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
+     * - policy: organizations/{organization}/policies/{constraint_name}
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
+     * - projectConstraintName: projects/{project}/policies/{constraint_name}
      * - projectCustomModule: projects/{project}/securityHealthAnalyticsSettings/customModules/{custom_module}
      * - projectDlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - projectEffectiveCustomModule: projects/{project}/securityHealthAnalyticsSettings/effectiveCustomModules/{effective_custom_module}
@@ -4446,6 +4575,55 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetMute', Finding::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Simulates a given SecurityHealthAnalyticsCustomModule and Resource.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $parent = 'parent';
+     *     $customConfig = new CustomConfig();
+     *     $resource = new SimulatedResource();
+     *     $response = $securityCenterClient->simulateSecurityHealthAnalyticsCustomModule($parent, $customConfig, $resource);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string            $parent       Required. The relative resource name of the organization, project, or
+     *                                        folder. For more information about relative resource names, see [Relative
+     *                                        Resource
+     *                                        Name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *                                        Example: `organizations/{organization_id}`
+     * @param CustomConfig      $customConfig Required. The custom configuration that you need to test.
+     * @param SimulatedResource $resource     Required. Resource data to simulate custom module against.
+     * @param array             $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function simulateSecurityHealthAnalyticsCustomModule($parent, $customConfig, $resource, array $optionalArgs = [])
+    {
+        $request = new SimulateSecurityHealthAnalyticsCustomModuleRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setCustomConfig($customConfig);
+        $request->setResource($resource);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SimulateSecurityHealthAnalyticsCustomModule', SimulateSecurityHealthAnalyticsCustomModuleResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

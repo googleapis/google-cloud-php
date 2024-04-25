@@ -33,13 +33,16 @@ use Google\Cloud\GkeMultiCloud\V1\AzureCluster;
 use Google\Cloud\GkeMultiCloud\V1\AzureClusterNetworking;
 use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureControlPlane;
+use Google\Cloud\GkeMultiCloud\V1\AzureJsonWebKeys;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodeConfig;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePool;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePoolAutoscaling;
+use Google\Cloud\GkeMultiCloud\V1\AzureOpenIdConfig;
 use Google\Cloud\GkeMultiCloud\V1\AzureServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\AzureSshConfig;
 use Google\Cloud\GkeMultiCloud\V1\Fleet;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAzureAccessTokenResponse;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAzureClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\ListAzureClientsResponse;
 use Google\Cloud\GkeMultiCloud\V1\ListAzureClustersResponse;
 use Google\Cloud\GkeMultiCloud\V1\ListAzureNodePoolsResponse;
@@ -298,8 +301,6 @@ class AzureClustersClientTest extends GeneratedTest
         $azureClusterControlPlane->setSshConfig($controlPlaneSshConfig);
         $azureCluster->setControlPlane($azureClusterControlPlane);
         $azureClusterAuthorization = new AzureAuthorization();
-        $authorizationAdminUsers = [];
-        $azureClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $azureCluster->setAuthorization($azureClusterAuthorization);
         $azureClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';
@@ -396,8 +397,6 @@ class AzureClustersClientTest extends GeneratedTest
         $azureClusterControlPlane->setSshConfig($controlPlaneSshConfig);
         $azureCluster->setControlPlane($azureClusterControlPlane);
         $azureClusterAuthorization = new AzureAuthorization();
-        $authorizationAdminUsers = [];
-        $azureClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $azureCluster->setAuthorization($azureClusterAuthorization);
         $azureClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';
@@ -1017,6 +1016,82 @@ class AzureClustersClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function generateAzureClusterAgentTokenTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $accessToken = 'accessToken-1938933922';
+        $expiresIn = 833810928;
+        $tokenType = 'tokenType101507520';
+        $expectedResponse = new GenerateAzureClusterAgentTokenResponse();
+        $expectedResponse->setAccessToken($accessToken);
+        $expectedResponse->setExpiresIn($expiresIn);
+        $expectedResponse->setTokenType($tokenType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+        $subjectToken = 'subjectToken454811942';
+        $subjectTokenType = 'subjectTokenType-697160013';
+        $version = 'version351608024';
+        $response = $gapicClient->generateAzureClusterAgentToken($formattedAzureCluster, $subjectToken, $subjectTokenType, $version);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkemulticloud.v1.AzureClusters/GenerateAzureClusterAgentToken', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAzureCluster();
+        $this->assertProtobufEquals($formattedAzureCluster, $actualValue);
+        $actualValue = $actualRequestObject->getSubjectToken();
+        $this->assertProtobufEquals($subjectToken, $actualValue);
+        $actualValue = $actualRequestObject->getSubjectTokenType();
+        $this->assertProtobufEquals($subjectTokenType, $actualValue);
+        $actualValue = $actualRequestObject->getVersion();
+        $this->assertProtobufEquals($version, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateAzureClusterAgentTokenExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+        $subjectToken = 'subjectToken454811942';
+        $subjectTokenType = 'subjectTokenType-697160013';
+        $version = 'version351608024';
+        try {
+            $gapicClient->generateAzureClusterAgentToken($formattedAzureCluster, $subjectToken, $subjectTokenType, $version);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getAzureClientTest()
     {
         $transport = $this->createTransport();
@@ -1165,6 +1240,64 @@ class AzureClustersClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAzureJsonWebKeysTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AzureJsonWebKeys();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+        $response = $gapicClient->getAzureJsonWebKeys($formattedAzureCluster);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureJsonWebKeys', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAzureCluster();
+        $this->assertProtobufEquals($formattedAzureCluster, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAzureJsonWebKeysExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+        try {
+            $gapicClient->getAzureJsonWebKeys($formattedAzureCluster);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getAzureNodePoolTest()
     {
         $transport = $this->createTransport();
@@ -1225,6 +1358,68 @@ class AzureClustersClientTest extends GeneratedTest
         $formattedName = $gapicClient->azureNodePoolName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]', '[AZURE_NODE_POOL]');
         try {
             $gapicClient->getAzureNodePool($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAzureOpenIdConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $issuer = 'issuer-1179159879';
+        $jwksUri = 'jwksUri1465527714';
+        $expectedResponse = new AzureOpenIdConfig();
+        $expectedResponse->setIssuer($issuer);
+        $expectedResponse->setJwksUri($jwksUri);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+        $response = $gapicClient->getAzureOpenIdConfig($formattedAzureCluster);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkemulticloud.v1.AzureClusters/GetAzureOpenIdConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAzureCluster();
+        $this->assertProtobufEquals($formattedAzureCluster, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAzureOpenIdConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAzureCluster = $gapicClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+        try {
+            $gapicClient->getAzureOpenIdConfig($formattedAzureCluster);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1572,8 +1767,6 @@ class AzureClustersClientTest extends GeneratedTest
         $azureClusterControlPlane->setSshConfig($controlPlaneSshConfig);
         $azureCluster->setControlPlane($azureClusterControlPlane);
         $azureClusterAuthorization = new AzureAuthorization();
-        $authorizationAdminUsers = [];
-        $azureClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $azureCluster->setAuthorization($azureClusterAuthorization);
         $azureClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';
@@ -1667,8 +1860,6 @@ class AzureClustersClientTest extends GeneratedTest
         $azureClusterControlPlane->setSshConfig($controlPlaneSshConfig);
         $azureCluster->setControlPlane($azureClusterControlPlane);
         $azureClusterAuthorization = new AzureAuthorization();
-        $authorizationAdminUsers = [];
-        $azureClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $azureCluster->setAuthorization($azureClusterAuthorization);
         $azureClusterFleet = new Fleet();
         $fleetProject = 'fleetProject604893675';

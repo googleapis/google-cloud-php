@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ServingConfigService_UpdateServingConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\Client\ServingConfigServiceClient;
 use Google\Cloud\Retail\V2\ServingConfig;
-use Google\Cloud\Retail\V2\ServingConfigServiceClient;
 use Google\Cloud\Retail\V2\SolutionType;
+use Google\Cloud\Retail\V2\UpdateServingConfigRequest;
 
 /**
  * Updates a ServingConfig.
@@ -46,16 +47,18 @@ function update_serving_config_sample(
     // Create a client.
     $servingConfigServiceClient = new ServingConfigServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $servingConfigSolutionTypes = [$servingConfigSolutionTypesElement,];
     $servingConfig = (new ServingConfig())
         ->setDisplayName($servingConfigDisplayName)
         ->setSolutionTypes($servingConfigSolutionTypes);
+    $request = (new UpdateServingConfigRequest())
+        ->setServingConfig($servingConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var ServingConfig $response */
-        $response = $servingConfigServiceClient->updateServingConfig($servingConfig);
+        $response = $servingConfigServiceClient->updateServingConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

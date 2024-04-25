@@ -34,6 +34,12 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      * Generated from protobuf field <code>optional string log_level = 140582601;</code>
      */
     private $log_level = null;
+    /**
+     * An optional list of case-insensitive request header names to use for resolving the callers client IP address.
+     *
+     * Generated from protobuf field <code>repeated string user_ip_request_headers = 421050290;</code>
+     */
+    private $user_ip_request_headers;
 
     /**
      * Constructor.
@@ -49,6 +55,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      *     @type string $log_level
      *           
      *           Check the LogLevel enum for the list of possible values.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $user_ip_request_headers
+     *           An optional list of case-insensitive request header names to use for resolving the callers client IP address.
      * }
      */
     public function __construct($data = NULL) {
@@ -164,6 +172,32 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     {
         GPBUtil::checkString($var, True);
         $this->log_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * An optional list of case-insensitive request header names to use for resolving the callers client IP address.
+     *
+     * Generated from protobuf field <code>repeated string user_ip_request_headers = 421050290;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUserIpRequestHeaders()
+    {
+        return $this->user_ip_request_headers;
+    }
+
+    /**
+     * An optional list of case-insensitive request header names to use for resolving the callers client IP address.
+     *
+     * Generated from protobuf field <code>repeated string user_ip_request_headers = 421050290;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUserIpRequestHeaders($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_ip_request_headers = $arr;
 
         return $this;
     }

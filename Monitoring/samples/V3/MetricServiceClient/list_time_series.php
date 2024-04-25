@@ -25,25 +25,28 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_MetricService_ListTimeSeries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
 use Google\Cloud\Monitoring\V3\TimeInterval;
 use Google\Cloud\Monitoring\V3\TimeSeries;
 
 /**
- * Lists time series that match a filter. This method does not require a Workspace.
+ * Lists time series that match a filter.
  *
- * @param string $formattedName The [project](https://cloud.google.com/monitoring/api/v3#project_name),
+ * @param string $formattedName The
+ *                              [project](https://cloud.google.com/monitoring/api/v3#project_name),
  *                              organization or folder on which to execute the request. The format is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]
  *                              organizations/[ORGANIZATION_ID]
  *                              folders/[FOLDER_ID]
  *                              Please see {@see MetricServiceClient::workspaceName()} for help formatting this field.
- * @param string $filter        A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
- *                              that specifies which time series should be returned.  The filter must
- *                              specify a single metric type, and can additionally specify metric labels
- *                              and other information. For example:
+ * @param string $filter        A [monitoring
+ *                              filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies
+ *                              which time series should be returned.  The filter must specify a single
+ *                              metric type, and can additionally specify metric labels and other
+ *                              information. For example:
  *
  *                              metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
  *                              metric.labels.instance_name = "my-instance-name"
@@ -54,13 +57,18 @@ function list_time_series_sample(string $formattedName, string $filter, int $vie
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $interval = new TimeInterval();
+    $request = (new ListTimeSeriesRequest())
+        ->setName($formattedName)
+        ->setFilter($filter)
+        ->setInterval($interval)
+        ->setView($view);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $metricServiceClient->listTimeSeries($formattedName, $filter, $interval, $view);
+        $response = $metricServiceClient->listTimeSeries($request);
 
         /** @var TimeSeries $element */
         foreach ($response as $element) {

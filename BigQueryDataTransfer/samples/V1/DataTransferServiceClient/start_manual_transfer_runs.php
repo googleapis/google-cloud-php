@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigquerydatatransfer_v1_generated_DataTransferService_StartManualTransferRuns_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient;
+use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse;
 
 /**
@@ -44,10 +45,13 @@ function start_manual_transfer_runs_sample(): void
     // Create a client.
     $dataTransferServiceClient = new DataTransferServiceClient();
 
+    // Prepare the request message.
+    $request = new StartManualTransferRunsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var StartManualTransferRunsResponse $response */
-        $response = $dataTransferServiceClient->startManualTransferRuns();
+        $response = $dataTransferServiceClient->startManualTransferRuns($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

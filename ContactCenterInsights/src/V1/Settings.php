@@ -82,6 +82,13 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 10;</code>
      */
     private $redaction_config = null;
+    /**
+     * Optional. Default Speech-to-Text resources to be used while ingesting audio
+     * files. Optional, CCAI Insights will create a default if not provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $speech_config = null;
 
     /**
      * Constructor.
@@ -124,6 +131,9 @@ class Settings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ContactCenterInsights\V1\RedactionConfig $redaction_config
      *           Default DLP redaction resources to be applied while ingesting
      *           conversations.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\SpeechConfig $speech_config
+     *           Optional. Default Speech-to-Text resources to be used while ingesting audio
+     *           files. Optional, CCAI Insights will create a default if not provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -423,6 +433,44 @@ class Settings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\RedactionConfig::class);
         $this->redaction_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Default Speech-to-Text resources to be used while ingesting audio
+     * files. Optional, CCAI Insights will create a default if not provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\SpeechConfig|null
+     */
+    public function getSpeechConfig()
+    {
+        return $this->speech_config;
+    }
+
+    public function hasSpeechConfig()
+    {
+        return isset($this->speech_config);
+    }
+
+    public function clearSpeechConfig()
+    {
+        unset($this->speech_config);
+    }
+
+    /**
+     * Optional. Default Speech-to-Text resources to be used while ingesting audio
+     * files. Optional, CCAI Insights will create a default if not provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\SpeechConfig $var
+     * @return $this
+     */
+    public function setSpeechConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\SpeechConfig::class);
+        $this->speech_config = $var;
 
         return $this;
     }

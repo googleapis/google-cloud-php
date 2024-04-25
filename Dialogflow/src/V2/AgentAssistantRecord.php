@@ -27,6 +27,8 @@ class AgentAssistantRecord extends \Google\Protobuf\Internal\Message
      *           Output only. The article suggestion answer.
      *     @type \Google\Cloud\Dialogflow\V2\FaqAnswer $faq_answer
      *           Output only. The FAQ answer.
+     *     @type \Google\Cloud\Dialogflow\V2\DialogflowAssistAnswer $dialogflow_assist_answer
+     *           Output only. Dialogflow assist answer.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +94,37 @@ class AgentAssistantRecord extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\FaqAnswer::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Dialogflow assist answer.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DialogflowAssistAnswer dialogflow_assist_answer = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dialogflow\V2\DialogflowAssistAnswer|null
+     */
+    public function getDialogflowAssistAnswer()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasDialogflowAssistAnswer()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Output only. Dialogflow assist answer.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DialogflowAssistAnswer dialogflow_assist_answer = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dialogflow\V2\DialogflowAssistAnswer $var
+     * @return $this
+     */
+    public function setDialogflowAssistAnswer($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\DialogflowAssistAnswer::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

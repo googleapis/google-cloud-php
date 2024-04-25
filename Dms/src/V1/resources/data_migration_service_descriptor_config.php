@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -443,6 +463,30 @@ return [
                     ],
                 ],
             ],
+            'CreateMappingRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\CloudDms\V1\MappingRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMappingRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DescribeConversionWorkspaceRevisions' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsResponse',
@@ -507,6 +551,18 @@ return [
                     ],
                 ],
             ],
+            'GenerateTcpProxyScript' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\CloudDms\V1\TcpProxyScript',
+                'headerParams' => [
+                    [
+                        'keyName' => 'migration_job',
+                        'fieldAccessors' => [
+                            'getMigrationJob',
+                        ],
+                    ],
+                ],
+            ],
             'GetConnectionProfile' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\CloudDms\V1\ConnectionProfile',
@@ -522,6 +578,18 @@ return [
             'GetConversionWorkspace' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\CloudDms\V1\ConversionWorkspace',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMappingRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\CloudDms\V1\MappingRule',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -595,6 +663,26 @@ return [
                     ],
                 ],
             ],
+            'ListMappingRules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMappingRules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\CloudDms\V1\ListMappingRulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMigrationJobs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -651,6 +739,7 @@ return [
                 'connectionProfile' => 'projects/{project}/locations/{location}/connectionProfiles/{connection_profile}',
                 'conversionWorkspace' => 'projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}',
                 'location' => 'projects/{project}/locations/{location}',
+                'mappingRule' => 'projects/{project}/locations/{location}/conversionWorkspaces/{conversion_workspace}/mappingRules/{mapping_rule}',
                 'migrationJob' => 'projects/{project}/locations/{location}/migrationJobs/{migration_job}',
                 'networks' => 'projects/{project}/global/networks/{network}',
                 'privateConnection' => 'projects/{project}/locations/{location}/privateConnections/{private_connection}',

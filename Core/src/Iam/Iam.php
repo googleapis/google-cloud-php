@@ -23,7 +23,7 @@ namespace Google\Cloud\Core\Iam;
  * This class is not meant to be used directly. It should be accessed
  * through other objects which support IAM.
  *
- * Policies can be created using the {@see Google\Cloud\Core\Iam\PolicyBuilder}
+ * Policies can be created using the {@see \Google\Cloud\Core\Iam\PolicyBuilder}
  * to help ensure their validity.
  *
  * Example:
@@ -32,12 +32,12 @@ namespace Google\Cloud\Core\Iam;
  * // In this example, we'll use PubSub topics to demonstrate
  * // how IAM policies are managed.
  *
- * use Google\Cloud\PubSub\PubSubClient;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $pubsub = new PubSubClient();
- * $topic = $pubsub->topic('my-new-topic');
+ * $spanner = new SpannerClient();
+ * $instance = $spanner->instance('my-new-instance');
  *
- * $iam = $topic->iam();
+ * $iam = $instance->iam();
  * ```
  */
 class Iam
@@ -98,7 +98,7 @@ class Iam
      *
      * If a policy has already been retrieved from the API, it will be returned.
      * To fetch a fresh copy of the policy, use
-     * {@see Google\Cloud\Core\Iam\Iam::reload()}.
+     * {@see \Google\Cloud\Core\Iam\Iam::reload()}.
      *
      * Example:
      * ```
@@ -136,7 +136,7 @@ class Iam
      * ```
      *
      * @param  array|PolicyBuilder $policy The new policy, as an array or an
-     *         instance of {@see Google\Cloud\Core\Iam\PolicyBuilder}.
+     *         instance of {@see \Google\Cloud\Core\Iam\PolicyBuilder}.
      * @param  array $options Configuration Options
      * @return array An array of policy data
      * @throws \InvalidArgumentException If the given policy is not an array or PolicyBuilder.

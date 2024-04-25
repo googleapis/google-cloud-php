@@ -61,6 +61,12 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConversionEvent.ConversionCountingMethod counting_method = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $counting_method = 0;
+    /**
+     * Optional. Defines a default value/currency for a conversion event.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.admin.v1alpha.ConversionEvent.DefaultConversionValue default_conversion_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $default_conversion_value = null;
 
     /**
      * Constructor.
@@ -90,6 +96,8 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      *           Optional. The method by which conversions will be counted across multiple
      *           events within a session. If this value is not provided, it will be set to
      *           `ONCE_PER_EVENT`.
+     *     @type \Google\Analytics\Admin\V1alpha\ConversionEvent\DefaultConversionValue $default_conversion_value
+     *           Optional. Defines a default value/currency for a conversion event.
      * }
      */
     public function __construct($data = NULL) {
@@ -279,6 +287,42 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\ConversionEvent\ConversionCountingMethod::class);
         $this->counting_method = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Defines a default value/currency for a conversion event.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.admin.v1alpha.ConversionEvent.DefaultConversionValue default_conversion_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Analytics\Admin\V1alpha\ConversionEvent\DefaultConversionValue|null
+     */
+    public function getDefaultConversionValue()
+    {
+        return $this->default_conversion_value;
+    }
+
+    public function hasDefaultConversionValue()
+    {
+        return isset($this->default_conversion_value);
+    }
+
+    public function clearDefaultConversionValue()
+    {
+        unset($this->default_conversion_value);
+    }
+
+    /**
+     * Optional. Defines a default value/currency for a conversion event.
+     *
+     * Generated from protobuf field <code>optional .google.analytics.admin.v1alpha.ConversionEvent.DefaultConversionValue default_conversion_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Analytics\Admin\V1alpha\ConversionEvent\DefaultConversionValue $var
+     * @return $this
+     */
+    public function setDefaultConversionValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ConversionEvent\DefaultConversionValue::class);
+        $this->default_conversion_value = $var;
 
         return $this;
     }

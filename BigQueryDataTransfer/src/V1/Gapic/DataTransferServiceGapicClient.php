@@ -59,6 +59,7 @@ use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRan
 use Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig;
 use Google\Cloud\BigQuery\DataTransfer\V1\TransferRun;
+use Google\Cloud\BigQuery\DataTransfer\V1\UnenrollDataSourcesRequest;
 use Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
@@ -89,9 +90,7 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient} to use
- * the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\BigQuery\DataTransfer\V1\Client\DataTransferServiceClient}.
  */
 class DataTransferServiceGapicClient
 {
@@ -100,8 +99,15 @@ class DataTransferServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.bigquery.datatransfer.v1.DataTransferService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'bigquerydatatransfer.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigquerydatatransfer.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -829,7 +835,8 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type string $name
-     *           The name of the project resource in the form: `projects/{project_id}`
+     *           Required. The name of the project resource in the form:
+     *           `projects/{project_id}`
      *     @type string[] $dataSourceIds
      *           Data sources that are enrolled. It is required to provide at least one
      *           data source id.
@@ -1368,7 +1375,7 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type string $parent
-     *           Transfer configuration name in the form:
+     *           Required. Transfer configuration name in the form:
      *           `projects/{project_id}/transferConfigs/{config_id}` or
      *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type TimeRange $requestedTimeRange
@@ -1411,6 +1418,58 @@ class DataTransferServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('StartManualTransferRuns', StartManualTransferRunsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Unenroll data sources in a user project. This allows users to remove
+     * transfer configurations for these data sources. They will no longer appear
+     * in the ListDataSources RPC and will also no longer appear in the [BigQuery
+     * UI](https://console.cloud.google.com/bigquery). Data transfers
+     * configurations of unenrolled data sources will not be scheduled.
+     *
+     * Sample code:
+     * ```
+     * $dataTransferServiceClient = new DataTransferServiceClient();
+     * try {
+     *     $dataTransferServiceClient->unenrollDataSources();
+     * } finally {
+     *     $dataTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Required. The name of the project resource in the form:
+     *           `projects/{project_id}`
+     *     @type string[] $dataSourceIds
+     *           Data sources that are unenrolled. It is required to provide at least one
+     *           data source id.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function unenrollDataSources(array $optionalArgs = [])
+    {
+        $request = new UnenrollDataSourcesRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['dataSourceIds'])) {
+            $request->setDataSourceIds($optionalArgs['dataSourceIds']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UnenrollDataSources', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**

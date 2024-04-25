@@ -25,7 +25,7 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching answers is less than the
      * `max_extractive_answer_count`, return all of the answers. Otherwise,
      * return the `max_extractive_answer_count`.
-     * At most one answer is returned for each
+     * At most five answers are returned for each
      * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
@@ -47,12 +47,35 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching segments is less than
      * `max_extractive_segment_count`, return all of the segments. Otherwise,
      * return the `max_extractive_segment_count`.
-     * Currently one segment is returned for each
-     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_segment_count = 2;</code>
      */
     protected $max_extractive_segment_count = 0;
+    /**
+     * Specifies whether to return the confidence score from the extractive
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
+     *
+     * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
+     */
+    protected $return_extractive_segment_score = false;
+    /**
+     * Specifies whether to also include the adjacent from each selected
+     * segments.
+     * Return at most `num_previous_segments` segments before each selected
+     * segments.
+     *
+     * Generated from protobuf field <code>int32 num_previous_segments = 4;</code>
+     */
+    protected $num_previous_segments = 0;
+    /**
+     * Return at most `num_next_segments` segments after each selected
+     * segments.
+     *
+     * Generated from protobuf field <code>int32 num_next_segments = 5;</code>
+     */
+    protected $num_next_segments = 0;
 
     /**
      * Constructor.
@@ -69,7 +92,7 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      *           If the number of matching answers is less than the
      *           `max_extractive_answer_count`, return all of the answers. Otherwise,
      *           return the `max_extractive_answer_count`.
-     *           At most one answer is returned for each
+     *           At most five answers are returned for each
      *           [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *     @type int $max_extractive_segment_count
      *           The max number of extractive segments returned in each search result.
@@ -87,8 +110,19 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      *           If the number of matching segments is less than
      *           `max_extractive_segment_count`, return all of the segments. Otherwise,
      *           return the `max_extractive_segment_count`.
-     *           Currently one segment is returned for each
-     *           [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
+     *     @type bool $return_extractive_segment_score
+     *           Specifies whether to return the confidence score from the extractive
+     *           segments in each search result. This feature is available only for new
+     *           or allowlisted data stores. To allowlist your data store,
+     *           contact your Customer Engineer. The default value is `false`.
+     *     @type int $num_previous_segments
+     *           Specifies whether to also include the adjacent from each selected
+     *           segments.
+     *           Return at most `num_previous_segments` segments before each selected
+     *           segments.
+     *     @type int $num_next_segments
+     *           Return at most `num_next_segments` segments after each selected
+     *           segments.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,7 +139,7 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching answers is less than the
      * `max_extractive_answer_count`, return all of the answers. Otherwise,
      * return the `max_extractive_answer_count`.
-     * At most one answer is returned for each
+     * At most five answers are returned for each
      * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
@@ -125,7 +159,7 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching answers is less than the
      * `max_extractive_answer_count`, return all of the answers. Otherwise,
      * return the `max_extractive_answer_count`.
-     * At most one answer is returned for each
+     * At most five answers are returned for each
      * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_answer_count = 1;</code>
@@ -156,8 +190,6 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching segments is less than
      * `max_extractive_segment_count`, return all of the segments. Otherwise,
      * return the `max_extractive_segment_count`.
-     * Currently one segment is returned for each
-     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_segment_count = 2;</code>
      * @return int
@@ -183,8 +215,6 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
      * If the number of matching segments is less than
      * `max_extractive_segment_count`, return all of the segments. Otherwise,
      * return the `max_extractive_segment_count`.
-     * Currently one segment is returned for each
-     * [SearchResult][google.cloud.discoveryengine.v1beta.SearchResponse.SearchResult].
      *
      * Generated from protobuf field <code>int32 max_extractive_segment_count = 2;</code>
      * @param int $var
@@ -194,6 +224,98 @@ class ExtractiveContentSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_extractive_segment_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether to return the confidence score from the extractive
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
+     *
+     * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
+     * @return bool
+     */
+    public function getReturnExtractiveSegmentScore()
+    {
+        return $this->return_extractive_segment_score;
+    }
+
+    /**
+     * Specifies whether to return the confidence score from the extractive
+     * segments in each search result. This feature is available only for new
+     * or allowlisted data stores. To allowlist your data store,
+     * contact your Customer Engineer. The default value is `false`.
+     *
+     * Generated from protobuf field <code>bool return_extractive_segment_score = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnExtractiveSegmentScore($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_extractive_segment_score = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether to also include the adjacent from each selected
+     * segments.
+     * Return at most `num_previous_segments` segments before each selected
+     * segments.
+     *
+     * Generated from protobuf field <code>int32 num_previous_segments = 4;</code>
+     * @return int
+     */
+    public function getNumPreviousSegments()
+    {
+        return $this->num_previous_segments;
+    }
+
+    /**
+     * Specifies whether to also include the adjacent from each selected
+     * segments.
+     * Return at most `num_previous_segments` segments before each selected
+     * segments.
+     *
+     * Generated from protobuf field <code>int32 num_previous_segments = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNumPreviousSegments($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->num_previous_segments = $var;
+
+        return $this;
+    }
+
+    /**
+     * Return at most `num_next_segments` segments after each selected
+     * segments.
+     *
+     * Generated from protobuf field <code>int32 num_next_segments = 5;</code>
+     * @return int
+     */
+    public function getNumNextSegments()
+    {
+        return $this->num_next_segments;
+    }
+
+    /**
+     * Return at most `num_next_segments` segments after each selected
+     * segments.
+     *
+     * Generated from protobuf field <code>int32 num_next_segments = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNumNextSegments($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->num_next_segments = $var;
 
         return $this;
     }

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START retail_v2_generated_ControlService_ListControls_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Retail\V2\Client\ControlServiceClient;
 use Google\Cloud\Retail\V2\Control;
-use Google\Cloud\Retail\V2\ControlServiceClient;
+use Google\Cloud\Retail\V2\ListControlsRequest;
 
 /**
  * Lists all Controls by their parent
@@ -41,10 +42,14 @@ function list_controls_sample(string $formattedParent): void
     // Create a client.
     $controlServiceClient = new ControlServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListControlsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $controlServiceClient->listControls($formattedParent);
+        $response = $controlServiceClient->listControls($request);
 
         /** @var Control $element */
         foreach ($response as $element) {

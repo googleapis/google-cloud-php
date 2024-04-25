@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\ApiCore\CredentialsWrapper;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -28,6 +27,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use UnexpectedValueException;
 
 /**
  * @group core
@@ -197,227 +197,51 @@ class GrpcTraitTest extends TestCase
         );
     }
 
-    public function testFormatsTimestamp()
-    {
-        $timestamp = [
-            'seconds' => '1471242909',
-            'nanos' => '1'
-        ];
-
-        $this->assertEquals(
-            '2016-08-15T06:35:09.000000001Z',
-            $this->implementation->call('formatTimestampFromApi', [$timestamp])
-        );
-    }
-
-    public function testFormatsStruct()
-    {
-        $value = 'test';
-        $struct = [
-            $value => [
-                $value => $value
-            ]
-        ];
-
-        $expected = [
-            'fields' => [
-                $value => [
-                    'struct_value' => [
-                        'fields' => [
-                            $value => [
-                                'string_value' => $value
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        $this->assertEquals($expected, $this->implementation->call('formatStructForApi', [$struct]));
-    }
-
-    public function testFormatsList()
-    {
-        $value = 'test';
-        $list = [
-            $value,
-            $value
-        ];
-        $expected = [
-            'values' => [
-                [
-                    'string_value' => $value,
-                ],
-                [
-                    'string_value' => $value
-                ]
-            ]
-        ];
-
-        $this->assertEquals($expected, $this->implementation->call('formatListForApi', [$list]));
-    }
-
     /**
-     * @dataProvider timestampProvider
+     * @dataProvider provideGetGaxConfig
      */
-    public function testFormatTimestampForApi($timestamp, $expectedSeconds, $expectedNanos)
-    {
-        $result = $this->implementation->call(
-            'formatTimestampForApi',
-            [$timestamp]
-        );
+    public function testUniverseDomainFromGaxConfig(
+        ?string $universeDomain,
+        string $expectedUniverseDomain,
+        string $envUniverse = null
+    ) {
+        if ($envUniverse) {
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN=' . $envUniverse);
+        }
 
-        $this->assertEquals($expectedSeconds, $result['seconds']);
-        $this->assertEquals($expectedNanos, $result['nanos']);
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
+        $this->requestWrapper->getCredentialsFetcher()->willReturn($fetcher);
+
+        $impl = new class() {
+            use GrpcTrait {
+                getGaxConfig as public;
+            }
+        };
+        $impl->setRequestWrapper($this->requestWrapper->reveal());
+
+        $config = $impl->getGaxConfig('1.2.3', null, $universeDomain);
+        $refl = new \ReflectionClass($config['credentials']);
+        $prop = $refl->getProperty('universeDomain');
+        $prop->setAccessible(true);
+        $universeDomain = $prop->getValue($config['credentials']);
+
+        if ($envUniverse) {
+            // We have to do this instead of using "@runInSeparateProcess" because in the case of
+            // an error, PHPUnit throws a "Serialization of 'ReflectionClass' is not allowed" error.
+            // @TODO: Remove this once we've updated to PHPUnit 10.
+            putenv('GOOGLE_CLOUD_UNIVERSE_DOMAIN');
+        }
+
+        $this->assertEquals($expectedUniverseDomain, $universeDomain);
     }
 
-    public function timestampProvider()
+    public function provideGetGaxConfig()
     {
         return [
-            [
-                '2017-08-24T00:38:30.611529Z',
-                '1503535110',
-                '611529000'
-            ],
-            [
-                '2017-08-24T00:38:30.000000000Z',
-                '1503535110',
-                '0'
-            ],
-            [
-                '2017-08-24T00:38:30.000000001Z',
-                '1503535110',
-                '1'
-            ],
-            [
-                '2017-04-06T20:52:45.989898989Z',
-                '1491511965',
-                '989898989'
-            ]
-        ];
-    }
-
-    /**
-     * @dataProvider durationProvider
-     */
-    public function testFormatsDuration($value, $expected)
-    {
-        $this->assertEquals($expected, $this->implementation->call('formatDurationForApi', [$value]));
-    }
-
-    public function durationProvider()
-    {
-        return [
-            [
-                '1.0s',
-                ['seconds' => 1, 'nanos' => 0]
-            ], [
-                '5.11111111s',
-                ['seconds' => 5, 'nanos' => 111111110]
-            ], [
-                new Duration(1, 0),
-                ['seconds' => 1, 'nanos' => 0]
-            ], [
-                new Duration(1, 1),
-                ['seconds' => 1, 'nanos' => 1]
-            ], [
-                new Duration(1, 1e+9),
-                ['seconds' => 1, 'nanos' => 1e+9]
-            ]
-        ];
-    }
-
-    /**
-     * @dataProvider formatValueProvider
-     */
-    public function testFormatsValue($value, $expected)
-    {
-        $this->assertEquals($expected, $this->implementation->call('formatValueForApi', [$value]));
-    }
-
-    public function formatValueProvider()
-    {
-        return [
-            ['string', ['string_value' => 'string']],
-            [true, ['bool_value' => true]],
-            [1, ['number_value' => 1]],
-            [
-                ['1'],
-                [
-                    'list_value' => [
-                        'values' => [
-                            [
-                                'string_value' => '1'
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            [
-                ['test' => 'test'],
-                [
-                    'struct_value' => [
-                        'fields' => [
-                            'test' => [
-                                'string_value' => 'test'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
-    }
-
-    /**
-     * @dataProvider unpackValueProvider
-     */
-    public function testUnpackValue($expected, $value)
-    {
-        $this->assertEquals($expected, $this->implementation->call('unpackValue', [$value]));
-    }
-
-    public function unpackValueProvider()
-    {
-        return [
-            ['string', ['stringValue' => 'string']],
-            [
-                ['1'],
-                [
-                    'listValue' => [
-                        'values' => [
-                            [
-                                'stringValue' => '1'
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            [
-                [
-                    'test' =>'test',
-                    'nested' => [
-                        'test' => 'test'
-                    ]
-                ],
-                [
-                    'structValue' => [
-                        'fields' => [
-                            'test' => [
-                                'stringValue' => 'test'
-                            ],
-                            'nested' => [
-                                'structValue' => [
-                                    'fields' => [
-                                        'test' => [
-                                            'stringValue' => 'test'
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+            [null, 'googleapis.com'], // default
+            ['ab.cd', 'ab.cd'], // explicitly set
+            [null, 'ab.cd', 'ab.cd'], // from env var
+            ['googleapis.com', 'googleapis.com', 'ab.cd'], // explicitly set takes priority over env var
         ];
     }
 

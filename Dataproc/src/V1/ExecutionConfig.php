@@ -34,16 +34,35 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      */
     private $kms_key = '';
     /**
-     * Optional. The duration after which the workload will be terminated.
-     * When the workload passes this ttl, it will be unconditionally killed
-     * without waiting for ongoing work to finish.
-     * Minimum value is 10 minutes; maximum value is 14 days (see JSON
-     * representation of
+     * Optional. Applies to sessions only. The duration to keep the session alive
+     * while it's idling. Exceeding this threshold causes the session to
+     * terminate. This field cannot be set on a batch workload. Minimum value is
+     * 10 minutes; maximum value is 14 days (see JSON representation of
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-     * If both ttl and idle_ttl are specified, the conditions are treated as
-     * and OR: the workload will be terminated when it has been idle for idle_ttl
-     * or when the ttl has passed, whichever comes first.
-     * If ttl is not specified for a session, it defaults to 24h.
+     * Defaults to 1 hour if not set.
+     * If both `ttl` and `idle_ttl` are specified for an interactive session,
+     * the conditions are treated as `OR` conditions: the workload will be
+     * terminated when it has been idle for `idle_ttl` or when `ttl` has been
+     * exceeded, whichever occurs first.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_ttl = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $idle_ttl = null;
+    /**
+     * Optional. The duration after which the workload will be terminated,
+     * specified as the JSON representation for
+     * [Duration](https://protobuf.dev/programming-guides/proto3/#json).
+     * When the workload exceeds this duration, it will be unconditionally
+     * terminated without waiting for ongoing work to finish. If `ttl` is not
+     * specified for a batch workload, the workload will be allowed to run until
+     * it exits naturally (or run forever without exiting). If `ttl` is not
+     * specified for an interactive session, it defaults to 24 hours. If `ttl` is
+     * not specified for a batch that uses 2.1+ runtime version, it defaults to 4
+     * hours. Minimum value is 10 minutes; maximum value is 14 days. If both `ttl`
+     * and `idle_ttl` are specified (for an interactive session), the conditions
+     * are treated as `OR` conditions: the workload will be terminated when it has
+     * been idle for `idle_ttl` or when `ttl` has been exceeded, whichever occurs
+     * first.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,17 +98,32 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Tags used for network traffic control.
      *     @type string $kms_key
      *           Optional. The Cloud KMS key to use for encryption.
-     *     @type \Google\Protobuf\Duration $ttl
-     *           Optional. The duration after which the workload will be terminated.
-     *           When the workload passes this ttl, it will be unconditionally killed
-     *           without waiting for ongoing work to finish.
-     *           Minimum value is 10 minutes; maximum value is 14 days (see JSON
-     *           representation of
+     *     @type \Google\Protobuf\Duration $idle_ttl
+     *           Optional. Applies to sessions only. The duration to keep the session alive
+     *           while it's idling. Exceeding this threshold causes the session to
+     *           terminate. This field cannot be set on a batch workload. Minimum value is
+     *           10 minutes; maximum value is 14 days (see JSON representation of
      *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-     *           If both ttl and idle_ttl are specified, the conditions are treated as
-     *           and OR: the workload will be terminated when it has been idle for idle_ttl
-     *           or when the ttl has passed, whichever comes first.
-     *           If ttl is not specified for a session, it defaults to 24h.
+     *           Defaults to 1 hour if not set.
+     *           If both `ttl` and `idle_ttl` are specified for an interactive session,
+     *           the conditions are treated as `OR` conditions: the workload will be
+     *           terminated when it has been idle for `idle_ttl` or when `ttl` has been
+     *           exceeded, whichever occurs first.
+     *     @type \Google\Protobuf\Duration $ttl
+     *           Optional. The duration after which the workload will be terminated,
+     *           specified as the JSON representation for
+     *           [Duration](https://protobuf.dev/programming-guides/proto3/#json).
+     *           When the workload exceeds this duration, it will be unconditionally
+     *           terminated without waiting for ongoing work to finish. If `ttl` is not
+     *           specified for a batch workload, the workload will be allowed to run until
+     *           it exits naturally (or run forever without exiting). If `ttl` is not
+     *           specified for an interactive session, it defaults to 24 hours. If `ttl` is
+     *           not specified for a batch that uses 2.1+ runtime version, it defaults to 4
+     *           hours. Minimum value is 10 minutes; maximum value is 14 days. If both `ttl`
+     *           and `idle_ttl` are specified (for an interactive session), the conditions
+     *           are treated as `OR` conditions: the workload will be terminated when it has
+     *           been idle for `idle_ttl` or when `ttl` has been exceeded, whichever occurs
+     *           first.
      *     @type string $staging_bucket
      *           Optional. A Cloud Storage bucket used to stage workload dependencies,
      *           config files, and store workload output and other ephemeral data, such as
@@ -247,16 +281,74 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The duration after which the workload will be terminated.
-     * When the workload passes this ttl, it will be unconditionally killed
-     * without waiting for ongoing work to finish.
-     * Minimum value is 10 minutes; maximum value is 14 days (see JSON
-     * representation of
+     * Optional. Applies to sessions only. The duration to keep the session alive
+     * while it's idling. Exceeding this threshold causes the session to
+     * terminate. This field cannot be set on a batch workload. Minimum value is
+     * 10 minutes; maximum value is 14 days (see JSON representation of
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-     * If both ttl and idle_ttl are specified, the conditions are treated as
-     * and OR: the workload will be terminated when it has been idle for idle_ttl
-     * or when the ttl has passed, whichever comes first.
-     * If ttl is not specified for a session, it defaults to 24h.
+     * Defaults to 1 hour if not set.
+     * If both `ttl` and `idle_ttl` are specified for an interactive session,
+     * the conditions are treated as `OR` conditions: the workload will be
+     * terminated when it has been idle for `idle_ttl` or when `ttl` has been
+     * exceeded, whichever occurs first.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_ttl = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getIdleTtl()
+    {
+        return $this->idle_ttl;
+    }
+
+    public function hasIdleTtl()
+    {
+        return isset($this->idle_ttl);
+    }
+
+    public function clearIdleTtl()
+    {
+        unset($this->idle_ttl);
+    }
+
+    /**
+     * Optional. Applies to sessions only. The duration to keep the session alive
+     * while it's idling. Exceeding this threshold causes the session to
+     * terminate. This field cannot be set on a batch workload. Minimum value is
+     * 10 minutes; maximum value is 14 days (see JSON representation of
+     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     * Defaults to 1 hour if not set.
+     * If both `ttl` and `idle_ttl` are specified for an interactive session,
+     * the conditions are treated as `OR` conditions: the workload will be
+     * terminated when it has been idle for `idle_ttl` or when `ttl` has been
+     * exceeded, whichever occurs first.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration idle_ttl = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setIdleTtl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->idle_ttl = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The duration after which the workload will be terminated,
+     * specified as the JSON representation for
+     * [Duration](https://protobuf.dev/programming-guides/proto3/#json).
+     * When the workload exceeds this duration, it will be unconditionally
+     * terminated without waiting for ongoing work to finish. If `ttl` is not
+     * specified for a batch workload, the workload will be allowed to run until
+     * it exits naturally (or run forever without exiting). If `ttl` is not
+     * specified for an interactive session, it defaults to 24 hours. If `ttl` is
+     * not specified for a batch that uses 2.1+ runtime version, it defaults to 4
+     * hours. Minimum value is 10 minutes; maximum value is 14 days. If both `ttl`
+     * and `idle_ttl` are specified (for an interactive session), the conditions
+     * are treated as `OR` conditions: the workload will be terminated when it has
+     * been idle for `idle_ttl` or when `ttl` has been exceeded, whichever occurs
+     * first.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -277,16 +369,20 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The duration after which the workload will be terminated.
-     * When the workload passes this ttl, it will be unconditionally killed
-     * without waiting for ongoing work to finish.
-     * Minimum value is 10 minutes; maximum value is 14 days (see JSON
-     * representation of
-     * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
-     * If both ttl and idle_ttl are specified, the conditions are treated as
-     * and OR: the workload will be terminated when it has been idle for idle_ttl
-     * or when the ttl has passed, whichever comes first.
-     * If ttl is not specified for a session, it defaults to 24h.
+     * Optional. The duration after which the workload will be terminated,
+     * specified as the JSON representation for
+     * [Duration](https://protobuf.dev/programming-guides/proto3/#json).
+     * When the workload exceeds this duration, it will be unconditionally
+     * terminated without waiting for ongoing work to finish. If `ttl` is not
+     * specified for a batch workload, the workload will be allowed to run until
+     * it exits naturally (or run forever without exiting). If `ttl` is not
+     * specified for an interactive session, it defaults to 24 hours. If `ttl` is
+     * not specified for a batch that uses 2.1+ runtime version, it defaults to 4
+     * hours. Minimum value is 10 minutes; maximum value is 14 days. If both `ttl`
+     * and `idle_ttl` are specified (for an interactive session), the conditions
+     * are treated as `OR` conditions: the workload will be terminated when it has
+     * been idle for `idle_ttl` or when `ttl` has been exceeded, whichever occurs
+     * first.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var

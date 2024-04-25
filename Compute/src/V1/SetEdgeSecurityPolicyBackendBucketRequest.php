@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SetEdgeSecurityPolicyBackendBucketRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     * Name of the BackendBucket resource to which the security policy should be set. The name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string backend_bucket = 91714037 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,7 +42,7 @@ class SetEdgeSecurityPolicyBackendBucketRequest extends \Google\Protobuf\Interna
 
     /**
      * @param string                                           $project                         Project ID for this request.
-     * @param string                                           $backendBucket                   Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     * @param string                                           $backendBucket                   Name of the BackendBucket resource to which the security policy should be set. The name should conform to RFC1035.
      * @param \Google\Cloud\Compute\V1\SecurityPolicyReference $securityPolicyReferenceResource The body resource for this request
      *
      * @return \Google\Cloud\Compute\V1\SetEdgeSecurityPolicyBackendBucketRequest
@@ -64,7 +64,7 @@ class SetEdgeSecurityPolicyBackendBucketRequest extends \Google\Protobuf\Interna
      *     Optional. Data for populating the Message object.
      *
      *     @type string $backend_bucket
-     *           Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     *           Name of the BackendBucket resource to which the security policy should be set. The name should conform to RFC1035.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
@@ -79,7 +79,7 @@ class SetEdgeSecurityPolicyBackendBucketRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     * Name of the BackendBucket resource to which the security policy should be set. The name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string backend_bucket = 91714037 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -90,7 +90,7 @@ class SetEdgeSecurityPolicyBackendBucketRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     * Name of the BackendBucket resource to which the security policy should be set. The name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string backend_bucket = 91714037 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkmanagement_v1_generated_ReachabilityService_CreateConnectivityTest_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkManagement\V1\Client\ReachabilityServiceClient;
 use Google\Cloud\NetworkManagement\V1\ConnectivityTest;
+use Google\Cloud\NetworkManagement\V1\CreateConnectivityTestRequest;
 use Google\Cloud\NetworkManagement\V1\Endpoint;
-use Google\Cloud\NetworkManagement\V1\ReachabilityServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -56,7 +57,7 @@ use Google\Rpc\Status;
  *                             * Must end with a number or a letter.
  *                             * Must be unique within the customer project
  * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test}`
+ *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
  */
 function create_connectivity_test_sample(
     string $parent,
@@ -66,18 +67,22 @@ function create_connectivity_test_sample(
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $resourceSource = new Endpoint();
     $resourceDestination = new Endpoint();
     $resource = (new ConnectivityTest())
         ->setName($resourceName)
         ->setSource($resourceSource)
         ->setDestination($resourceDestination);
+    $request = (new CreateConnectivityTestRequest())
+        ->setParent($parent)
+        ->setTestId($testId)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $reachabilityServiceClient->createConnectivityTest($parent, $testId, $resource);
+        $response = $reachabilityServiceClient->createConnectivityTest($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

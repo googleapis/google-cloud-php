@@ -21,10 +21,9 @@ class Component
     const COMPONENT_UNSPECIFIED = 0;
     /**
      * The Anaconda python distribution. The Anaconda component is not supported
-     * in the Dataproc
-     * <a
-     * href="/dataproc/docs/concepts/versioning/dataproc-release-2.0">2.0
-     * image</a>. The 2.0 image is pre-installed with Miniconda.
+     * in the Dataproc [2.0 image]
+     * (/https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-release-2.0).
+     * The 2.0 image is pre-installed with Miniconda.
      *
      * Generated from protobuf enum <code>ANACONDA = 5;</code>
      */

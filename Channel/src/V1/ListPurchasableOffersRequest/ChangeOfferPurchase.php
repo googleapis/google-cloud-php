@@ -31,6 +31,16 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string new_sku = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $new_sku = '';
+    /**
+     * Optional. Resource name of the new target Billing Account. Provide this
+     * Billing Account when setting up billing for a trial subscription. Format:
+     * accounts/{account_id}/billingAccounts/{billing_account_id}.
+     * This field is only relevant for multi-currency accounts. It should be
+     * left empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $billing_account = '';
 
     /**
      * Constructor.
@@ -46,6 +56,12 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
      *           Optional. Resource name of the new target SKU. Provide this SKU when
      *           upgrading or downgrading an entitlement. Format:
      *           products/{product_id}/skus/{sku_id}
+     *     @type string $billing_account
+     *           Optional. Resource name of the new target Billing Account. Provide this
+     *           Billing Account when setting up billing for a trial subscription. Format:
+     *           accounts/{account_id}/billingAccounts/{billing_account_id}.
+     *           This field is only relevant for multi-currency accounts. It should be
+     *           left empty for single currency accounts.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +125,40 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->new_sku = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Resource name of the new target Billing Account. Provide this
+     * Billing Account when setting up billing for a trial subscription. Format:
+     * accounts/{account_id}/billingAccounts/{billing_account_id}.
+     * This field is only relevant for multi-currency accounts. It should be
+     * left empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBillingAccount()
+    {
+        return $this->billing_account;
+    }
+
+    /**
+     * Optional. Resource name of the new target Billing Account. Provide this
+     * Billing Account when setting up billing for a trial subscription. Format:
+     * accounts/{account_id}/billingAccounts/{billing_account_id}.
+     * This field is only relevant for multi-currency accounts. It should be
+     * left empty for single currency accounts.
+     *
+     * Generated from protobuf field <code>string billing_account = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBillingAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->billing_account = $var;
 
         return $this;
     }

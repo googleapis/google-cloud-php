@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Namespaces extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of Kubernetes Namespaces
+     * Optional. A list of Kubernetes Namespaces
      *
-     * Generated from protobuf field <code>repeated string namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $namespaces;
 
@@ -29,7 +29,7 @@ class Namespaces extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespaces
-     *           A list of Kubernetes Namespaces
+     *           Optional. A list of Kubernetes Namespaces
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class Namespaces extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Kubernetes Namespaces
+     * Optional. A list of Kubernetes Namespaces
      *
-     * Generated from protobuf field <code>repeated string namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNamespaces()
@@ -49,9 +49,9 @@ class Namespaces extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of Kubernetes Namespaces
+     * Optional. A list of Kubernetes Namespaces
      *
-     * Generated from protobuf field <code>repeated string namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

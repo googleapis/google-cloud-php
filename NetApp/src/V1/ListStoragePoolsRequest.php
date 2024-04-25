@@ -22,28 +22,29 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * The maximum number of items to return.
+     * Optional. The maximum number of items to return.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * The next_page_token value to use if there are additional
+     * Optional. The next_page_token value to use if there are additional
      * results to retrieve for this list request.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     * Optional. Sort results. Supported values are "name", "name desc" or ""
+     * (unsorted).
      *
-     * Generated from protobuf field <code>string order_by = 4;</code>
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
     /**
-     * List filter.
+     * Optional. List filter.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
 
@@ -70,14 +71,15 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent value
      *     @type int $page_size
-     *           The maximum number of items to return.
+     *           Optional. The maximum number of items to return.
      *     @type string $page_token
-     *           The next_page_token value to use if there are additional
+     *           Optional. The next_page_token value to use if there are additional
      *           results to retrieve for this list request.
      *     @type string $order_by
-     *           Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     *           Optional. Sort results. Supported values are "name", "name desc" or ""
+     *           (unsorted).
      *     @type string $filter
-     *           List filter.
+     *           Optional. List filter.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,9 +114,9 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of items to return.
+     * Optional. The maximum number of items to return.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -123,9 +125,9 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of items to return.
+     * Optional. The maximum number of items to return.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -138,10 +140,10 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The next_page_token value to use if there are additional
+     * Optional. The next_page_token value to use if there are additional
      * results to retrieve for this list request.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -150,10 +152,10 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The next_page_token value to use if there are additional
+     * Optional. The next_page_token value to use if there are additional
      * results to retrieve for this list request.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -166,9 +168,10 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     * Optional. Sort results. Supported values are "name", "name desc" or ""
+     * (unsorted).
      *
-     * Generated from protobuf field <code>string order_by = 4;</code>
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -177,9 +180,10 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     * Optional. Sort results. Supported values are "name", "name desc" or ""
+     * (unsorted).
      *
-     * Generated from protobuf field <code>string order_by = 4;</code>
+     * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -192,9 +196,9 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List filter.
+     * Optional. List filter.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -203,9 +207,9 @@ class ListStoragePoolsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List filter.
+     * Optional. List filter.
      *
-     * Generated from protobuf field <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

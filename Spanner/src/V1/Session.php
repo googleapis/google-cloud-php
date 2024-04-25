@@ -52,6 +52,18 @@ class Session extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string creator_role = 5;</code>
      */
     private $creator_role = '';
+    /**
+     * Optional. If true, specifies a multiplexed session. A multiplexed session
+     * may be used for multiple, concurrent read-only operations but can not be
+     * used for read-write transactions, partitioned reads, or partitioned
+     * queries. Multiplexed sessions can be created via
+     * [CreateSession][google.spanner.v1.Spanner.CreateSession] but not via
+     * [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions].
+     * Multiplexed sessions may not be deleted nor listed.
+     *
+     * Generated from protobuf field <code>bool multiplexed = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $multiplexed = false;
 
     /**
      * Constructor.
@@ -76,6 +88,14 @@ class Session extends \Google\Protobuf\Internal\Message
      *           typically earlier than the actual last use time.
      *     @type string $creator_role
      *           The database role which created this session.
+     *     @type bool $multiplexed
+     *           Optional. If true, specifies a multiplexed session. A multiplexed session
+     *           may be used for multiple, concurrent read-only operations but can not be
+     *           used for read-write transactions, partitioned reads, or partitioned
+     *           queries. Multiplexed sessions can be created via
+     *           [CreateSession][google.spanner.v1.Spanner.CreateSession] but not via
+     *           [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions].
+     *           Multiplexed sessions may not be deleted nor listed.
      * }
      */
     public function __construct($data = NULL) {
@@ -243,6 +263,44 @@ class Session extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->creator_role = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, specifies a multiplexed session. A multiplexed session
+     * may be used for multiple, concurrent read-only operations but can not be
+     * used for read-write transactions, partitioned reads, or partitioned
+     * queries. Multiplexed sessions can be created via
+     * [CreateSession][google.spanner.v1.Spanner.CreateSession] but not via
+     * [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions].
+     * Multiplexed sessions may not be deleted nor listed.
+     *
+     * Generated from protobuf field <code>bool multiplexed = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getMultiplexed()
+    {
+        return $this->multiplexed;
+    }
+
+    /**
+     * Optional. If true, specifies a multiplexed session. A multiplexed session
+     * may be used for multiple, concurrent read-only operations but can not be
+     * used for read-write transactions, partitioned reads, or partitioned
+     * queries. Multiplexed sessions can be created via
+     * [CreateSession][google.spanner.v1.Spanner.CreateSession] but not via
+     * [BatchCreateSessions][google.spanner.v1.Spanner.BatchCreateSessions].
+     * Multiplexed sessions may not be deleted nor listed.
+     *
+     * Generated from protobuf field <code>bool multiplexed = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMultiplexed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->multiplexed = $var;
 
         return $this;
     }

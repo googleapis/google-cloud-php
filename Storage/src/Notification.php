@@ -30,7 +30,7 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
  * and the object that changed.
  *
  * To utilize this class and see more examples, please see the relevant
- * notifications based methods exposed on {@see Google\Cloud\Storage\Bucket}.
+ * notifications based methods exposed on {@see Bucket}.
  *
  * Example:
  * ```
@@ -55,6 +55,7 @@ class Notification
 
     /**
      * @var ConnectionInterface Represents a connection to Cloud Storage.
+     * @internal
      */
     private $connection;
 
@@ -70,7 +71,8 @@ class Notification
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
-     *        Storage.
+     *        Storage. This object is created by StorageClient,
+     *        and should not be instantiated outside of this client.
      * @param string $id The notification's ID.
      * @param string $bucket The name of the bucket associated with this
      *        notification.

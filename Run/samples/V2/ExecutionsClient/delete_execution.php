@@ -35,8 +35,8 @@ use Google\Rpc\Status;
  *
  * @param string $formattedName The name of the Execution to delete.
  *                              Format:
- *                              projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
- *                              where {project} can be project id or number. Please see
+ *                              `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`,
+ *                              where `{project}` can be project id or number. Please see
  *                              {@see ExecutionsClient::executionName()} for help formatting this field.
  */
 function delete_execution_sample(string $formattedName): void

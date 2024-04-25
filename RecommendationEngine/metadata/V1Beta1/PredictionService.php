@@ -60,7 +60,7 @@ page_token (	BàA
 key (	%
 value (2.google.protobuf.Value:82â
 PredictionServiceó
-Predict9.google.cloud.recommendationengine.v1beta1.PredictRequest:.google.cloud.recommendationengine.v1beta1.PredictResponse"q‚Óä“Y"T/v1beta1/{name=projects/*/locations/*/catalogs/*/eventStores/*/placements/*}:predict:*ÚAname,user_eventWÊA#recommendationengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB£
+Predict9.google.cloud.recommendationengine.v1beta1.PredictRequest:.google.cloud.recommendationengine.v1beta1.PredictResponse"qÚAname,user_event‚Óä“Y"T/v1beta1/{name=projects/*/locations/*/catalogs/*/eventStores/*/placements/*}:predict:*WÊA#recommendationengine.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB£
 -com.google.cloud.recommendationengine.v1beta1PZacloud.google.com/go/recommendationengine/apiv1beta1/recommendationenginepb;recommendationenginepb¢RECAIª)Google.Cloud.RecommendationEngine.V1Beta1Ê)Google\\Cloud\\RecommendationEngine\\V1beta1ê,Google::Cloud::RecommendationEngine::V1beta1bproto3'
         , true);
 

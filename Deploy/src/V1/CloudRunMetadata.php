@@ -18,7 +18,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the Cloud Run Service that is associated with a
      * `Rollout`. Format is
-     * projects/{project}/locations/{location}/services/{service}.
+     * `projects/{project}/locations/{location}/services/{service}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -36,6 +36,14 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string revision = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $revision = '';
+    /**
+     * Output only. The name of the Cloud Run job that is associated with a
+     * `Rollout`. Format is
+     * `projects/{project}/locations/{location}/jobs/{job_name}`.
+     *
+     * Generated from protobuf field <code>string job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $job = '';
 
     /**
      * Constructor.
@@ -46,12 +54,16 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $service
      *           Output only. The name of the Cloud Run Service that is associated with a
      *           `Rollout`. Format is
-     *           projects/{project}/locations/{location}/services/{service}.
+     *           `projects/{project}/locations/{location}/services/{service}`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_urls
      *           Output only. The Cloud Run Service urls that are associated with a
      *           `Rollout`.
      *     @type string $revision
      *           Output only. The Cloud Run Revision id associated with a `Rollout`.
+     *     @type string $job
+     *           Output only. The name of the Cloud Run job that is associated with a
+     *           `Rollout`. Format is
+     *           `projects/{project}/locations/{location}/jobs/{job_name}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +74,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the Cloud Run Service that is associated with a
      * `Rollout`. Format is
-     * projects/{project}/locations/{location}/services/{service}.
+     * `projects/{project}/locations/{location}/services/{service}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +87,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The name of the Cloud Run Service that is associated with a
      * `Rollout`. Format is
-     * projects/{project}/locations/{location}/services/{service}.
+     * `projects/{project}/locations/{location}/services/{service}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -139,6 +151,36 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->revision = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the Cloud Run job that is associated with a
+     * `Rollout`. Format is
+     * `projects/{project}/locations/{location}/jobs/{job_name}`.
+     *
+     * Generated from protobuf field <code>string job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Output only. The name of the Cloud Run job that is associated with a
+     * `Rollout`. Format is
+     * `projects/{project}/locations/{location}/jobs/{job_name}`.
+     *
+     * Generated from protobuf field <code>string job = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setJob($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->job = $var;
 
         return $this;
     }

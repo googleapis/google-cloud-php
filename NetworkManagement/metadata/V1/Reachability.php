@@ -17,14 +17,16 @@ class Reachability
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Networkmanagement\V1\ConnectivityTest::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
+        \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
-4google/cloud/networkmanagement/v1/reachability.proto!google.cloud.networkmanagement.v1google/api/client.protogoogle/api/field_behavior.proto9google/cloud/networkmanagement/v1/connectivity_test.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"|
+›
+4google/cloud/networkmanagement/v1/reachability.proto!google.cloud.networkmanagement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto9google/cloud/networkmanagement/v1/connectivity_test.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"|
 ListConnectivityTestsRequest
 parent (	B‡A
 	page_size (
@@ -58,16 +60,16 @@ page_token (	
 cancel_requested (
 api_version (	2ñ
 ReachabilityServiceÁ
-ListConnectivityTests?.google.cloud.networkmanagement.v1.ListConnectivityTestsRequest@.google.cloud.networkmanagement.v1.ListConnectivityTestsResponse"KÇ”‰ì<:/v1/{parent=projects/*/locations/global}/connectivityTests⁄Aparent‘
-GetConnectivityTest=.google.cloud.networkmanagement.v1.GetConnectivityTestRequest3.google.cloud.networkmanagement.v1.ConnectivityTest"IÇ”‰ì<:/v1/{name=projects/*/locations/global/connectivityTests/*}⁄Aname¨
-CreateConnectivityTest@.google.cloud.networkmanagement.v1.CreateConnectivityTestRequest.google.longrunning.Operation"∞Ç”‰ìF":/v1/{parent=projects/*/locations/global}/connectivityTests:resource⁄Aparent,test_id,resource AG
-2google.cloud.networkmanagement.v1.ConnectivityTestOperationMetadata≤
-UpdateConnectivityTest@.google.cloud.networkmanagement.v1.UpdateConnectivityTestRequest.google.longrunning.Operation"∂Ç”‰ìO2C/v1/{resource.name=projects/*/locations/global/connectivityTests/*}:resource⁄Aupdate_mask,resource AG
-2google.cloud.networkmanagement.v1.ConnectivityTestOperationMetadataè
-RerunConnectivityTest?.google.cloud.networkmanagement.v1.RerunConnectivityTestRequest.google.longrunning.Operation"ïÇ”‰ìE"@/v1/{name=projects/*/locations/global/connectivityTests/*}:rerun:* AG
-2google.cloud.networkmanagement.v1.ConnectivityTestOperationMetadataÒ
-DeleteConnectivityTest@.google.cloud.networkmanagement.v1.DeleteConnectivityTestRequest.google.longrunning.Operation"vÇ”‰ì<*:/v1/{name=projects/*/locations/global/connectivityTests/*}⁄Aname A*
-google.protobuf.EmptyOperationMetadataT A networkmanagement.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBá
+ListConnectivityTests?.google.cloud.networkmanagement.v1.ListConnectivityTestsRequest@.google.cloud.networkmanagement.v1.ListConnectivityTestsResponse"K⁄AparentÇ”‰ì<:/v1/{parent=projects/*/locations/global}/connectivityTests‘
+GetConnectivityTest=.google.cloud.networkmanagement.v1.GetConnectivityTestRequest3.google.cloud.networkmanagement.v1.ConnectivityTest"I⁄AnameÇ”‰ì<:/v1/{name=projects/*/locations/global/connectivityTests/*}¨
+CreateConnectivityTest@.google.cloud.networkmanagement.v1.CreateConnectivityTestRequest.google.longrunning.Operation"∞ AG
+2google.cloud.networkmanagement.v1.ConnectivityTestOperationMetadata⁄Aparent,test_id,resourceÇ”‰ìF":/v1/{parent=projects/*/locations/global}/connectivityTests:resource≤
+UpdateConnectivityTest@.google.cloud.networkmanagement.v1.UpdateConnectivityTestRequest.google.longrunning.Operation"∂ AG
+2google.cloud.networkmanagement.v1.ConnectivityTestOperationMetadata⁄Aupdate_mask,resourceÇ”‰ìO2C/v1/{resource.name=projects/*/locations/global/connectivityTests/*}:resourceè
+RerunConnectivityTest?.google.cloud.networkmanagement.v1.RerunConnectivityTestRequest.google.longrunning.Operation"ï AG
+2google.cloud.networkmanagement.v1.ConnectivityTestOperationMetadataÇ”‰ìE"@/v1/{name=projects/*/locations/global/connectivityTests/*}:rerun:*Ò
+DeleteConnectivityTest@.google.cloud.networkmanagement.v1.DeleteConnectivityTestRequest.google.longrunning.Operation"v A*
+google.protobuf.EmptyOperationMetadata⁄AnameÇ”‰ì<*:/v1/{name=projects/*/locations/global/connectivityTests/*}T A networkmanagement.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBá
 %com.google.cloud.networkmanagement.v1BReachabilityServiceProtoPZScloud.google.com/go/networkmanagement/apiv1/networkmanagementpb;networkmanagementpb™!Google.Cloud.NetworkManagement.V1 !Google\\Cloud\\NetworkManagement\\V1Í$Google::Cloud::NetworkManagement::V1bproto3'
         , true);
 

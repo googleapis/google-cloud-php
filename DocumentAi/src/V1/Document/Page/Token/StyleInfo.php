@@ -22,9 +22,8 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      */
     private $font_size = 0;
     /**
-     * Font size in pixels, equal to _unrounded
-     * [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
-     * * _resolution_ ÷ `72.0`.
+     * Font size in pixels, equal to _unrounded [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_ *
+     * _resolution_ ÷ `72.0`.
      *
      * Generated from protobuf field <code>double pixel_font_size = 2;</code>
      */
@@ -42,9 +41,8 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      */
     private $font_type = '';
     /**
-     * Whether the text is bold (equivalent to
-     * [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
-     * is at least `700`).
+     * Whether the text is bold (equivalent to [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight] is at least
+     * `700`).
      *
      * Generated from protobuf field <code>bool bold = 5;</code>
      */
@@ -120,17 +118,15 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *     @type int $font_size
      *           Font size in points (`1` point is `¹⁄₇₂` inches).
      *     @type float $pixel_font_size
-     *           Font size in pixels, equal to _unrounded
-     *           [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
-     *           * _resolution_ ÷ `72.0`.
+     *           Font size in pixels, equal to _unrounded [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_ *
+     *           _resolution_ ÷ `72.0`.
      *     @type float $letter_spacing
      *           Letter spacing in points.
      *     @type string $font_type
      *           Name or style of the font.
      *     @type bool $bold
-     *           Whether the text is bold (equivalent to
-     *           [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
-     *           is at least `700`).
+     *           Whether the text is bold (equivalent to [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight] is at least
+     *           `700`).
      *     @type bool $italic
      *           Whether the text is italic.
      *     @type bool $underlined
@@ -186,9 +182,8 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Font size in pixels, equal to _unrounded
-     * [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
-     * * _resolution_ ÷ `72.0`.
+     * Font size in pixels, equal to _unrounded [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_ *
+     * _resolution_ ÷ `72.0`.
      *
      * Generated from protobuf field <code>double pixel_font_size = 2;</code>
      * @return float
@@ -199,9 +194,8 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Font size in pixels, equal to _unrounded
-     * [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_
-     * * _resolution_ ÷ `72.0`.
+     * Font size in pixels, equal to _unrounded [font_size][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_size]_ *
+     * _resolution_ ÷ `72.0`.
      *
      * Generated from protobuf field <code>double pixel_font_size = 2;</code>
      * @param float $var
@@ -268,9 +262,8 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is bold (equivalent to
-     * [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
-     * is at least `700`).
+     * Whether the text is bold (equivalent to [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight] is at least
+     * `700`).
      *
      * Generated from protobuf field <code>bool bold = 5;</code>
      * @return bool
@@ -281,9 +274,8 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is bold (equivalent to
-     * [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight]
-     * is at least `700`).
+     * Whether the text is bold (equivalent to [font_weight][google.cloud.documentai.v1.Document.Page.Token.StyleInfo.font_weight] is at least
+     * `700`).
      *
      * Generated from protobuf field <code>bool bold = 5;</code>
      * @param bool $var

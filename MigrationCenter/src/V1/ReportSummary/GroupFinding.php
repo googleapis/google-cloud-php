@@ -34,10 +34,10 @@ class GroupFinding extends \Google\Protobuf\Internal\Message
      */
     protected $asset_aggregate_stats = null;
     /**
-     * Count of the number of assets in this group which are also included
-     * in another group within the same report.
+     * This field is deprecated, do not rely on it having a value.
      *
-     * Generated from protobuf field <code>int64 overlapping_asset_count = 4;</code>
+     * Generated from protobuf field <code>int64 overlapping_asset_count = 4 [deprecated = true];</code>
+     * @deprecated
      */
     protected $overlapping_asset_count = 0;
     /**
@@ -60,8 +60,7 @@ class GroupFinding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\AssetAggregateStats $asset_aggregate_stats
      *           Summary statistics for all the assets in this group.
      *     @type int|string $overlapping_asset_count
-     *           Count of the number of assets in this group which are also included
-     *           in another group within the same report.
+     *           This field is deprecated, do not rely on it having a value.
      *     @type array<\Google\Cloud\MigrationCenter\V1\ReportSummary\GroupPreferenceSetFinding>|\Google\Protobuf\Internal\RepeatedField $preference_set_findings
      *           Findings for each of the PreferenceSets for this group.
      * }
@@ -160,27 +159,29 @@ class GroupFinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of the number of assets in this group which are also included
-     * in another group within the same report.
+     * This field is deprecated, do not rely on it having a value.
      *
-     * Generated from protobuf field <code>int64 overlapping_asset_count = 4;</code>
+     * Generated from protobuf field <code>int64 overlapping_asset_count = 4 [deprecated = true];</code>
      * @return int|string
+     * @deprecated
      */
     public function getOverlappingAssetCount()
     {
+        @trigger_error('overlapping_asset_count is deprecated.', E_USER_DEPRECATED);
         return $this->overlapping_asset_count;
     }
 
     /**
-     * Count of the number of assets in this group which are also included
-     * in another group within the same report.
+     * This field is deprecated, do not rely on it having a value.
      *
-     * Generated from protobuf field <code>int64 overlapping_asset_count = 4;</code>
+     * Generated from protobuf field <code>int64 overlapping_asset_count = 4 [deprecated = true];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setOverlappingAssetCount($var)
     {
+        @trigger_error('overlapping_asset_count is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->overlapping_asset_count = $var;
 

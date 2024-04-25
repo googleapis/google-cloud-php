@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response message for the
- * [ListProcessors][google.cloud.documentai.v1.DocumentProcessorService.ListProcessors]
- * method.
+ * [ListProcessors][google.cloud.documentai.v1.DocumentProcessorService.ListProcessors] method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ListProcessorsResponse</code>
  */

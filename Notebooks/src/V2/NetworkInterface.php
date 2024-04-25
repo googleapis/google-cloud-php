@@ -22,7 +22,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $network = '';
+    private $network = '';
     /**
      * Optional. The name of the subnet that this VM instance is in.
      * Format:
@@ -30,14 +30,14 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnet = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $subnet = '';
+    private $subnet = '';
     /**
      * Optional. The type of vNIC to be used on this interface. This may be gVNIC
      * or VirtioNet.
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v2.NetworkInterface.NicType nic_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $nic_type = 0;
+    private $nic_type = 0;
 
     /**
      * Constructor.

@@ -35,6 +35,7 @@ class AssetFrame extends \Google\Protobuf\Internal\Message
     private $attributes;
     /**
      * Asset performance data samples.
+     * Samples that are from more than 40 days ago or after tomorrow are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PerformanceSample performance_samples = 13;</code>
      */
@@ -64,6 +65,7 @@ class AssetFrame extends \Google\Protobuf\Internal\Message
      *           Generic asset attributes.
      *     @type array<\Google\Cloud\MigrationCenter\V1\PerformanceSample>|\Google\Protobuf\Internal\RepeatedField $performance_samples
      *           Asset performance data samples.
+     *           Samples that are from more than 40 days ago or after tomorrow are ignored.
      *     @type string $trace_token
      *           Optional. Trace token is optionally provided to assist with debugging and
      *           traceability.
@@ -195,6 +197,7 @@ class AssetFrame extends \Google\Protobuf\Internal\Message
 
     /**
      * Asset performance data samples.
+     * Samples that are from more than 40 days ago or after tomorrow are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PerformanceSample performance_samples = 13;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -206,6 +209,7 @@ class AssetFrame extends \Google\Protobuf\Internal\Message
 
     /**
      * Asset performance data samples.
+     * Samples that are from more than 40 days ago or after tomorrow are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PerformanceSample performance_samples = 13;</code>
      * @param array<\Google\Cloud\MigrationCenter\V1\PerformanceSample>|\Google\Protobuf\Internal\RepeatedField $var

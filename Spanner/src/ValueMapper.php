@@ -33,6 +33,7 @@ class ValueMapper
 
     const TYPE_BOOL = TypeCode::BOOL;
     const TYPE_INT64 = TypeCode::INT64;
+    const TYPE_FLOAT32 = TypeCode::FLOAT32;
     const TYPE_FLOAT64 = TypeCode::FLOAT64;
     const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
     const TYPE_DATE = TypeCode::DATE;
@@ -47,6 +48,7 @@ class ValueMapper
 
     /**
      * @var array
+     * @internal
      */
     public static $allowedTypes = [
         self::TYPE_BOOL,
@@ -62,6 +64,7 @@ class ValueMapper
         self::TYPE_JSON,
         self::TYPE_PG_NUMERIC,
         self::TYPE_PG_JSONB,
+        self::TYPE_FLOAT32,
     ];
 
     /*
@@ -324,6 +327,7 @@ class ValueMapper
                 }
                 break;
 
+            case self::TYPE_FLOAT32:
             case self::TYPE_FLOAT64:
                 // NaN, Infinite and -Infinite are possible FLOAT64 values,
                 // but when the gRPC response is decoded, they are represented
@@ -346,8 +350,9 @@ class ValueMapper
 
                         default:
                             throw new \RuntimeException(sprintf(
-                                'Unexpected string value %s encountered in FLOAT64 field.',
-                                $value
+                                'Unexpected string value %s encountered in %s field.',
+                                $value,
+                                TypeCode::name($type['code'])
                             ));
                     }
                 }

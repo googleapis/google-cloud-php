@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START bigqueryconnection_v1_generated_ConnectionService_CreateConnection_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\BigQuery\Connection\V1\Client\ConnectionServiceClient;
 use Google\Cloud\BigQuery\Connection\V1\Connection;
-use Google\Cloud\BigQuery\Connection\V1\ConnectionServiceClient;
+use Google\Cloud\BigQuery\Connection\V1\CreateConnectionRequest;
 
 /**
  * Creates a new connection.
@@ -39,13 +40,16 @@ function create_connection_sample(string $formattedParent): void
     // Create a client.
     $connectionServiceClient = new ConnectionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $connection = new Connection();
+    $request = (new CreateConnectionRequest())
+        ->setParent($formattedParent)
+        ->setConnection($connection);
 
     // Call the API and handle any network failures.
     try {
         /** @var Connection $response */
-        $response = $connectionServiceClient->createConnection($formattedParent, $connection);
+        $response = $connectionServiceClient->createConnection($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

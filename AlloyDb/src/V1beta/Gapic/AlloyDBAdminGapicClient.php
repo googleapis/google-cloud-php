@@ -70,6 +70,8 @@ use Google\Cloud\AlloyDb\V1beta\ListBackupsRequest;
 use Google\Cloud\AlloyDb\V1beta\ListBackupsResponse;
 use Google\Cloud\AlloyDb\V1beta\ListClustersRequest;
 use Google\Cloud\AlloyDb\V1beta\ListClustersResponse;
+use Google\Cloud\AlloyDb\V1beta\ListDatabasesRequest;
+use Google\Cloud\AlloyDb\V1beta\ListDatabasesResponse;
 use Google\Cloud\AlloyDb\V1beta\ListInstancesRequest;
 use Google\Cloud\AlloyDb\V1beta\ListInstancesResponse;
 use Google\Cloud\AlloyDb\V1beta\ListSupportedDatabaseFlagsRequest;
@@ -141,6 +143,8 @@ use Google\Protobuf\GPBEmpty;
  * contained within formatted names that are returned by the API.
  *
  * @experimental
+ *
+ * @deprecated This class will be removed in the next major version update.
  */
 class AlloyDBAdminGapicClient
 {
@@ -149,8 +153,15 @@ class AlloyDBAdminGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.alloydb.v1beta.AlloyDBAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'alloydb.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'alloydb.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -1873,10 +1884,10 @@ class AlloyDBAdminGapicClient
 
     /**
      * Generate a client certificate signed by a Cluster CA.
-     * The sole purpose of this endpoint is to support the Auth Proxy client and
-     * the endpoint's behavior is subject to change without notice, so do not rely
-     * on its behavior remaining constant. Future changes will not break the Auth
-     * Proxy client.
+     * The sole purpose of this endpoint is to support AlloyDB connectors and the
+     * Auth Proxy client. The endpoint's behavior is subject to change without
+     * notice, so do not rely on its behavior remaining constant. Future changes
+     * will not break AlloyDB connectors or the Auth Proxy client.
      *
      * Sample code:
      * ```
@@ -1909,7 +1920,8 @@ class AlloyDBAdminGapicClient
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
      *     @type string $pemCsr
-     *           Optional. A pem-encoded X.509 certificate signing request (CSR).
+     *           Optional. A pem-encoded X.509 certificate signing request (CSR). It is
+     *           recommended to use public_key instead.
      *     @type Duration $certDuration
      *           Optional. An optional hint to the endpoint to generate the client
      *           certificate with the requested duration. The duration can be from 1 hour to
@@ -1918,6 +1930,10 @@ class AlloyDBAdminGapicClient
      *           default duration.
      *     @type string $publicKey
      *           Optional. The public key from the client.
+     *     @type bool $useMetadataExchange
+     *           Optional. An optional hint to the endpoint to generate a client
+     *           ceritificate that can be used by AlloyDB connectors to exchange additional
+     *           metadata with the server after TLS handshake.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1950,6 +1966,12 @@ class AlloyDBAdminGapicClient
 
         if (isset($optionalArgs['publicKey'])) {
             $request->setPublicKey($optionalArgs['publicKey']);
+        }
+
+        if (isset($optionalArgs['useMetadataExchange'])) {
+            $request->setUseMetadataExchange(
+                $optionalArgs['useMetadataExchange']
+            );
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2541,6 +2563,92 @@ class AlloyDBAdminGapicClient
             'ListClusters',
             $optionalArgs,
             ListClustersResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists Databases in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $alloyDBAdminClient = new AlloyDBAdminClient();
+     * try {
+     *     $formattedParent = $alloyDBAdminClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $alloyDBAdminClient->listDatabases($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $alloyDBAdminClient->listDatabases($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $alloyDBAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent value for ListDatabasesRequest.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. Filtering results.
+     *           This field is currently not supported, its value will be ignored if passed.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listDatabases($parent, array $optionalArgs = [])
+    {
+        $request = new ListDatabasesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListDatabases',
+            $optionalArgs,
+            ListDatabasesResponse::class,
             $request
         );
     }

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START logging_v2_generated_ConfigServiceV2_UpdateCmekSettings_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\CmekSettings;
-use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\UpdateCmekSettingsRequest;
 
 /**
  * Updates the Log Router CMEK settings for the given resource.
@@ -55,10 +56,13 @@ function update_cmek_settings_sample(): void
     // Create a client.
     $configServiceV2Client = new ConfigServiceV2Client();
 
+    // Prepare the request message.
+    $request = new UpdateCmekSettingsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var CmekSettings $response */
-        $response = $configServiceV2Client->updateCmekSettings();
+        $response = $configServiceV2Client->updateCmekSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

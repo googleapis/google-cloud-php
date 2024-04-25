@@ -25,9 +25,24 @@
                                 "approveRollout"
                             ]
                         },
+                        "CancelAutomationRun": {
+                            "methods": [
+                                "cancelAutomationRun"
+                            ]
+                        },
                         "CancelRollout": {
                             "methods": [
                                 "cancelRollout"
+                            ]
+                        },
+                        "CreateAutomation": {
+                            "methods": [
+                                "createAutomation"
+                            ]
+                        },
+                        "CreateCustomTargetType": {
+                            "methods": [
+                                "createCustomTargetType"
                             ]
                         },
                         "CreateDeliveryPipeline": {
@@ -50,6 +65,16 @@
                                 "createTarget"
                             ]
                         },
+                        "DeleteAutomation": {
+                            "methods": [
+                                "deleteAutomation"
+                            ]
+                        },
+                        "DeleteCustomTargetType": {
+                            "methods": [
+                                "deleteCustomTargetType"
+                            ]
+                        },
                         "DeleteDeliveryPipeline": {
                             "methods": [
                                 "deleteDeliveryPipeline"
@@ -60,9 +85,24 @@
                                 "deleteTarget"
                             ]
                         },
+                        "GetAutomation": {
+                            "methods": [
+                                "getAutomation"
+                            ]
+                        },
+                        "GetAutomationRun": {
+                            "methods": [
+                                "getAutomationRun"
+                            ]
+                        },
                         "GetConfig": {
                             "methods": [
                                 "getConfig"
+                            ]
+                        },
+                        "GetCustomTargetType": {
+                            "methods": [
+                                "getCustomTargetType"
                             ]
                         },
                         "GetDeliveryPipeline": {
@@ -95,6 +135,21 @@
                                 "ignoreJob"
                             ]
                         },
+                        "ListAutomationRuns": {
+                            "methods": [
+                                "listAutomationRuns"
+                            ]
+                        },
+                        "ListAutomations": {
+                            "methods": [
+                                "listAutomations"
+                            ]
+                        },
+                        "ListCustomTargetTypes": {
+                            "methods": [
+                                "listCustomTargetTypes"
+                            ]
+                        },
                         "ListDeliveryPipelines": {
                             "methods": [
                                 "listDeliveryPipelines"
@@ -125,9 +180,24 @@
                                 "retryJob"
                             ]
                         },
+                        "RollbackTarget": {
+                            "methods": [
+                                "rollbackTarget"
+                            ]
+                        },
                         "TerminateJobRun": {
                             "methods": [
                                 "terminateJobRun"
+                            ]
+                        },
+                        "UpdateAutomation": {
+                            "methods": [
+                                "updateAutomation"
+                            ]
+                        },
+                        "UpdateCustomTargetType": {
+                            "methods": [
+                                "updateCustomTargetType"
                             ]
                         },
                         "UpdateDeliveryPipeline": {

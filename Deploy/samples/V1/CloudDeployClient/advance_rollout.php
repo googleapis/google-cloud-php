@@ -32,8 +32,7 @@ use Google\Cloud\Deploy\V1\Client\CloudDeployClient;
  * Advances a Rollout in a given project and location.
  *
  * @param string $formattedName Name of the Rollout. Format is
- *                              projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
- *                              releases/{release}/rollouts/{rollout}. Please see
+ *                              `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. Please see
  *                              {@see CloudDeployClient::rolloutName()} for help formatting this field.
  * @param string $phaseId       The phase ID to advance the `Rollout` to.
  */

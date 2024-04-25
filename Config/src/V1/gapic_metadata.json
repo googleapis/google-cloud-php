@@ -15,9 +15,19 @@
                                 "createDeployment"
                             ]
                         },
+                        "CreatePreview": {
+                            "methods": [
+                                "createPreview"
+                            ]
+                        },
                         "DeleteDeployment": {
                             "methods": [
                                 "deleteDeployment"
+                            ]
+                        },
+                        "DeletePreview": {
+                            "methods": [
+                                "deletePreview"
                             ]
                         },
                         "DeleteStatefile": {
@@ -35,6 +45,11 @@
                                 "exportLockInfo"
                             ]
                         },
+                        "ExportPreviewResult": {
+                            "methods": [
+                                "exportPreviewResult"
+                            ]
+                        },
                         "ExportRevisionStatefile": {
                             "methods": [
                                 "exportRevisionStatefile"
@@ -43,6 +58,11 @@
                         "GetDeployment": {
                             "methods": [
                                 "getDeployment"
+                            ]
+                        },
+                        "GetPreview": {
+                            "methods": [
+                                "getPreview"
                             ]
                         },
                         "GetResource": {
@@ -55,6 +75,11 @@
                                 "getRevision"
                             ]
                         },
+                        "GetTerraformVersion": {
+                            "methods": [
+                                "getTerraformVersion"
+                            ]
+                        },
                         "ImportStatefile": {
                             "methods": [
                                 "importStatefile"
@@ -65,6 +90,11 @@
                                 "listDeployments"
                             ]
                         },
+                        "ListPreviews": {
+                            "methods": [
+                                "listPreviews"
+                            ]
+                        },
                         "ListResources": {
                             "methods": [
                                 "listResources"
@@ -73,6 +103,11 @@
                         "ListRevisions": {
                             "methods": [
                                 "listRevisions"
+                            ]
+                        },
+                        "ListTerraformVersions": {
+                            "methods": [
+                                "listTerraformVersions"
                             ]
                         },
                         "LockDeployment": {

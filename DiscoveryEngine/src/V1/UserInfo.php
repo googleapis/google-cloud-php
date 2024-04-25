@@ -29,8 +29,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      */
     protected $user_id = '';
     /**
-     * User agent as included in the HTTP header. Required for getting
-     * [SearchResponse.sponsored_results][].
+     * User agent as included in the HTTP header.
      * The field must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * This should not be set when using the client side event reporting with
@@ -60,8 +59,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     @type string $user_agent
-     *           User agent as included in the HTTP header. Required for getting
-     *           [SearchResponse.sponsored_results][].
+     *           User agent as included in the HTTP header.
      *           The field must be a UTF-8 encoded string with a length limit of 1,000
      *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *           This should not be set when using the client side event reporting with
@@ -118,8 +116,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User agent as included in the HTTP header. Required for getting
-     * [SearchResponse.sponsored_results][].
+     * User agent as included in the HTTP header.
      * The field must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * This should not be set when using the client side event reporting with
@@ -138,8 +135,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User agent as included in the HTTP header. Required for getting
-     * [SearchResponse.sponsored_results][].
+     * User agent as included in the HTTP header.
      * The field must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
      * This should not be set when using the client side event reporting with

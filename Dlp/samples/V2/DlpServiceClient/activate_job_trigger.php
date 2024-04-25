@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_ActivateJobTrigger_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dlp\V2\ActivateJobTriggerRequest;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\DlpJob;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
 
 /**
  * Activate a job trigger. Causes the immediate execute of a trigger
@@ -40,10 +41,14 @@ function activate_job_trigger_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new ActivateJobTriggerRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DlpJob $response */
-        $response = $dlpServiceClient->activateJobTrigger($formattedName);
+        $response = $dlpServiceClient->activateJobTrigger($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

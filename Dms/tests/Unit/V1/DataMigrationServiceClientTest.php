@@ -33,18 +33,23 @@ use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
 use Google\Cloud\CloudDms\V1\DatabaseEngine;
 use Google\Cloud\CloudDms\V1\DatabaseEngineInfo;
 use Google\Cloud\CloudDms\V1\DatabaseEntity;
+use Google\Cloud\CloudDms\V1\DatabaseEntityType;
 use Google\Cloud\CloudDms\V1\DescribeConversionWorkspaceRevisionsResponse;
 use Google\Cloud\CloudDms\V1\DescribeDatabaseEntitiesResponse;
 use Google\Cloud\CloudDms\V1\FetchStaticIpsResponse;
 use Google\Cloud\CloudDms\V1\ListConnectionProfilesResponse;
 use Google\Cloud\CloudDms\V1\ListConversionWorkspacesResponse;
+use Google\Cloud\CloudDms\V1\ListMappingRulesResponse;
 use Google\Cloud\CloudDms\V1\ListMigrationJobsResponse;
 use Google\Cloud\CloudDms\V1\ListPrivateConnectionsResponse;
+use Google\Cloud\CloudDms\V1\MappingRule;
+use Google\Cloud\CloudDms\V1\MappingRuleFilter;
 use Google\Cloud\CloudDms\V1\MigrationJob;
 use Google\Cloud\CloudDms\V1\MigrationJob\Type;
 use Google\Cloud\CloudDms\V1\PrivateConnection;
 use Google\Cloud\CloudDms\V1\SearchBackgroundJobsResponse;
 use Google\Cloud\CloudDms\V1\SshScript;
+use Google\Cloud\CloudDms\V1\TcpProxyScript;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -484,7 +489,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $connectionProfileId = 'connectionProfileId1179884402';
         $connectionProfile = new ConnectionProfile();
         $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
@@ -554,7 +559,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $connectionProfileId = 'connectionProfileId1179884402';
         $connectionProfile = new ConnectionProfile();
         $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
@@ -734,6 +739,92 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createMappingRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $ruleOrder = 432188341;
+        $revisionId = 'revisionId513861631';
+        $expectedResponse = new MappingRule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setRuleOrder($ruleOrder);
+        $expectedResponse->setRevisionId($revisionId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+        $mappingRuleId = 'mappingRuleId675527373';
+        $mappingRule = new MappingRule();
+        $mappingRuleRuleScope = DatabaseEntityType::DATABASE_ENTITY_TYPE_UNSPECIFIED;
+        $mappingRule->setRuleScope($mappingRuleRuleScope);
+        $mappingRuleFilter = new MappingRuleFilter();
+        $mappingRule->setFilter($mappingRuleFilter);
+        $mappingRuleRuleOrder = 294717464;
+        $mappingRule->setRuleOrder($mappingRuleRuleOrder);
+        $response = $gapicClient->createMappingRule($formattedParent, $mappingRuleId, $mappingRule);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/CreateMappingRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getMappingRuleId();
+        $this->assertProtobufEquals($mappingRuleId, $actualValue);
+        $actualValue = $actualRequestObject->getMappingRule();
+        $this->assertProtobufEquals($mappingRule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createMappingRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+        $mappingRuleId = 'mappingRuleId675527373';
+        $mappingRule = new MappingRule();
+        $mappingRuleRuleScope = DatabaseEntityType::DATABASE_ENTITY_TYPE_UNSPECIFIED;
+        $mappingRule->setRuleScope($mappingRuleRuleScope);
+        $mappingRuleFilter = new MappingRuleFilter();
+        $mappingRule->setFilter($mappingRuleFilter);
+        $mappingRuleRuleOrder = 294717464;
+        $mappingRule->setRuleOrder($mappingRuleRuleOrder);
+        try {
+            $gapicClient->createMappingRule($formattedParent, $mappingRuleId, $mappingRule);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1251,6 +1342,63 @@ class DataMigrationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteMappingRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+        $gapicClient->deleteMappingRule($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/DeleteMappingRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteMappingRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+        try {
+            $gapicClient->deleteMappingRule($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function deleteMigrationJobTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1739,6 +1887,74 @@ class DataMigrationServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function generateTcpProxyScriptTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $script = 'script-907685685';
+        $expectedResponse = new TcpProxyScript();
+        $expectedResponse->setScript($script);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $vmName = 'vmName562937619';
+        $vmMachineType = 'vmMachineType-2033986374';
+        $vmSubnet = 'vmSubnet-21527067';
+        $response = $gapicClient->generateTcpProxyScript($vmName, $vmMachineType, $vmSubnet);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GenerateTcpProxyScript', $actualFuncCall);
+        $actualValue = $actualRequestObject->getVmName();
+        $this->assertProtobufEquals($vmName, $actualValue);
+        $actualValue = $actualRequestObject->getVmMachineType();
+        $this->assertProtobufEquals($vmMachineType, $actualValue);
+        $actualValue = $actualRequestObject->getVmSubnet();
+        $this->assertProtobufEquals($vmSubnet, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateTcpProxyScriptExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $vmName = 'vmName562937619';
+        $vmMachineType = 'vmMachineType-2033986374';
+        $vmSubnet = 'vmSubnet-21527067';
+        try {
+            $gapicClient->generateTcpProxyScript($vmName, $vmMachineType, $vmSubnet);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getConnectionProfileTest()
     {
         $transport = $this->createTransport();
@@ -1855,6 +2071,72 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $formattedName = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
         try {
             $gapicClient->getConversionWorkspace($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getMappingRuleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $ruleOrder = 432188341;
+        $revisionId = 'revisionId513861631';
+        $expectedResponse = new MappingRule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setRuleOrder($ruleOrder);
+        $expectedResponse->setRevisionId($revisionId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->mappingRuleName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]', '[MAPPING_RULE]');
+        $response = $gapicClient->getMappingRule($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/GetMappingRule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getMappingRuleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->mappingRuleName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]', '[MAPPING_RULE]');
+        try {
+            $gapicClient->getMappingRule($formattedName);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2250,6 +2532,74 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
             $gapicClient->listConversionWorkspaces($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listMappingRulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $mappingRulesElement = new MappingRule();
+        $mappingRules = [
+            $mappingRulesElement,
+        ];
+        $expectedResponse = new ListMappingRulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setMappingRules($mappingRules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+        $response = $gapicClient->listMappingRules($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getMappingRules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.clouddms.v1.DataMigrationService/ListMappingRules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listMappingRulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->conversionWorkspaceName('[PROJECT]', '[LOCATION]', '[CONVERSION_WORKSPACE]');
+        try {
+            $gapicClient->listMappingRules($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

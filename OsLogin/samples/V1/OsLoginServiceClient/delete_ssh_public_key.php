@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START oslogin_v1_generated_OsLoginService_DeleteSshPublicKey_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\OsLogin\V1\OsLoginServiceClient;
+use Google\Cloud\OsLogin\V1\Client\OsLoginServiceClient;
+use Google\Cloud\OsLogin\V1\DeleteSshPublicKeyRequest;
 
 /**
  * Deletes an SSH public key.
@@ -39,9 +40,13 @@ function delete_ssh_public_key_sample(string $formattedName): void
     // Create a client.
     $osLoginServiceClient = new OsLoginServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSshPublicKeyRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $osLoginServiceClient->deleteSshPublicKey($formattedName);
+        $osLoginServiceClient->deleteSshPublicKey($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

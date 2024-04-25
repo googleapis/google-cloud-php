@@ -74,9 +74,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Monitoring\V3\Client\UptimeCheckServiceClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Monitoring\V3\Client\UptimeCheckServiceClient}.
  */
 class UptimeCheckServiceGapicClient
 {
@@ -85,8 +83,15 @@ class UptimeCheckServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.monitoring.v3.UptimeCheckService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'monitoring.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'monitoring.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -102,6 +107,8 @@ class UptimeCheckServiceGapicClient
     ];
 
     private static $folderUptimeCheckConfigNameTemplate;
+
+    private static $functionNameTemplate;
 
     private static $organizationUptimeCheckConfigNameTemplate;
 
@@ -139,6 +146,15 @@ class UptimeCheckServiceGapicClient
         return self::$folderUptimeCheckConfigNameTemplate;
     }
 
+    private static function getFunctionNameTemplate()
+    {
+        if (self::$functionNameTemplate == null) {
+            self::$functionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/functions/{function}');
+        }
+
+        return self::$functionNameTemplate;
+    }
+
     private static function getOrganizationUptimeCheckConfigNameTemplate()
     {
         if (self::$organizationUptimeCheckConfigNameTemplate == null) {
@@ -171,6 +187,7 @@ class UptimeCheckServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'folderUptimeCheckConfig' => self::getFolderUptimeCheckConfigNameTemplate(),
+                'function' => self::getFunctionNameTemplate(),
                 'organizationUptimeCheckConfig' => self::getOrganizationUptimeCheckConfigNameTemplate(),
                 'projectUptimeCheckConfig' => self::getProjectUptimeCheckConfigNameTemplate(),
                 'uptimeCheckConfig' => self::getUptimeCheckConfigNameTemplate(),
@@ -194,6 +211,25 @@ class UptimeCheckServiceGapicClient
         return self::getFolderUptimeCheckConfigNameTemplate()->render([
             'folder' => $folder,
             'uptime_check_config' => $uptimeCheckConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a function
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $function
+     *
+     * @return string The formatted function resource.
+     */
+    public static function functionName($project, $location, $function)
+    {
+        return self::getFunctionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'function' => $function,
         ]);
     }
 
@@ -253,6 +289,7 @@ class UptimeCheckServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - folderUptimeCheckConfig: folders/{folder}/uptimeCheckConfigs/{uptime_check_config}
+     * - function: projects/{project}/locations/{location}/functions/{function}
      * - organizationUptimeCheckConfig: organizations/{organization}/uptimeCheckConfigs/{uptime_check_config}
      * - projectUptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}
      * - uptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}

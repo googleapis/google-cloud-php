@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata related to the progress of the ImportDocuments operation. This will
- * be returned by the google.longrunning.Operation.metadata field.
+ * Metadata related to the progress of the ImportDocuments operation. This is
+ * returned by the google.longrunning.Operation.metadata field.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.ImportDocumentsMetadata</code>
  */
@@ -41,6 +41,12 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 failure_count = 4;</code>
      */
     protected $failure_count = 0;
+    /**
+     * Total count of entries that were processed.
+     *
+     * Generated from protobuf field <code>int64 total_count = 5;</code>
+     */
+    protected $total_count = 0;
 
     /**
      * Constructor.
@@ -57,6 +63,8 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *           Count of entries that were processed successfully.
      *     @type int|string $failure_count
      *           Count of entries that encountered errors while processing.
+     *     @type int|string $total_count
+     *           Total count of entries that were processed.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,6 +194,32 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->failure_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Total count of entries that were processed.
+     *
+     * Generated from protobuf field <code>int64 total_count = 5;</code>
+     * @return int|string
+     */
+    public function getTotalCount()
+    {
+        return $this->total_count;
+    }
+
+    /**
+     * Total count of entries that were processed.
+     *
+     * Generated from protobuf field <code>int64 total_count = 5;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_count = $var;
 
         return $this;
     }

@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -27,6 +47,18 @@ return [
             ],
         ],
         'google.cloud.networkconnectivity.v1.HubService' => [
+            'AcceptHubSpoke' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:acceptSpoke',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateHub' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/global}/hubs',
@@ -79,9 +111,42 @@ return [
                     ],
                 ],
             ],
+            'GetGroup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*/groups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetHub' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRoute' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*/routeTables/*/routes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetRouteTable' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*/routeTables/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -101,9 +166,53 @@ return [
                     ],
                 ],
             ],
+            'ListGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/global/hubs/*}/groups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListHubSpokes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:listSpokes',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListHubs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/global}/hubs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRouteTables' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/global/hubs/*}/routeTables',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRoutes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/global/hubs/*/routeTables/*}/routes',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -119,6 +228,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RejectHubSpoke' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}:rejectSpoke',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -157,6 +278,10 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*/groups/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/spokes/*}:getIamPolicy',
                     ],
                     [
@@ -177,6 +302,11 @@ return [
                 'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*}:setIamPolicy',
                 'body' => '*',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*/groups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/spokes/*}:setIamPolicy',
@@ -201,6 +331,11 @@ return [
                 'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*}:testIamPermissions',
                 'body' => '*',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/hubs/*/groups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/spokes/*}:testIamPermissions',

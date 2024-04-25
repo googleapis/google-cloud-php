@@ -17,7 +17,7 @@ class Resource
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
+“	
 %google/cloud/speech/v1/resource.protogoogle.cloud.speech.v1"ü
 CustomClass
 name (	
@@ -41,7 +41,13 @@ class Resource
 custom_classes (2#.google.cloud.speech.v1.CustomClassJ
 abnf_grammar (24.google.cloud.speech.v1.SpeechAdaptation.ABNFGrammar#
 ABNFGrammar
-abnf_strings (	Bp
+abnf_strings (	"£
+TranscriptNormalizationF
+entries (25.google.cloud.speech.v1.TranscriptNormalization.Entry@
+Entry
+search (	
+replace (	
+case_sensitive (Bp
 com.google.cloud.speech.v1BSpeechResourceProtoPZ2cloud.google.com/go/speech/apiv1/speechpb;speechpbø¢GCSbproto3'
         , true);
 

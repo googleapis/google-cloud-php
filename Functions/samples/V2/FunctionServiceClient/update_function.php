@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudfunctions_v2_generated_FunctionService_UpdateFunction_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Functions\V2\FunctionServiceClient;
+use Google\Cloud\Functions\V2\Client\FunctionServiceClient;
 use Google\Cloud\Functions\V2\PBFunction;
+use Google\Cloud\Functions\V2\UpdateFunctionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,15 @@ function update_function_sample(): void
     // Create a client.
     $functionServiceClient = new FunctionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $function = new PBFunction();
+    $request = (new UpdateFunctionRequest())
+        ->setFunction($function);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $functionServiceClient->updateFunction($function);
+        $response = $functionServiceClient->updateFunction($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

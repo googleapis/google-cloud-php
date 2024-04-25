@@ -45,8 +45,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
     private $tags;
     /**
      * Optional. The OS image type to use on node pool instances.
-     * Can have a value of `ubuntu`, or `windows` if the cluster enables
-     * the Windows node pool preview feature.
+     * Can be unspecified, or have a value of `ubuntu`.
      * When unspecified, it defaults to `ubuntu`.
      *
      * Generated from protobuf field <code>string image_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -108,8 +107,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      *           255 Unicode characters.
      *     @type string $image_type
      *           Optional. The OS image type to use on node pool instances.
-     *           Can have a value of `ubuntu`, or `windows` if the cluster enables
-     *           the Windows node pool preview feature.
+     *           Can be unspecified, or have a value of `ubuntu`.
      *           When unspecified, it defaults to `ubuntu`.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureSshConfig $ssh_config
      *           Required. SSH configuration for how to access the node pool machines.
@@ -238,8 +236,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The OS image type to use on node pool instances.
-     * Can have a value of `ubuntu`, or `windows` if the cluster enables
-     * the Windows node pool preview feature.
+     * Can be unspecified, or have a value of `ubuntu`.
      * When unspecified, it defaults to `ubuntu`.
      *
      * Generated from protobuf field <code>string image_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -252,8 +249,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The OS image type to use on node pool instances.
-     * Can have a value of `ubuntu`, or `windows` if the cluster enables
-     * the Windows node pool preview feature.
+     * Can be unspecified, or have a value of `ubuntu`.
      * When unspecified, it defaults to `ubuntu`.
      *
      * Generated from protobuf field <code>string image_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>

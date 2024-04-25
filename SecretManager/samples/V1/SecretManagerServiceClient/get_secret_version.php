@@ -24,16 +24,19 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START secretmanager_v1_generated_SecretManagerService_GetSecretVersion_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\GetSecretVersionRequest;
 use Google\Cloud\SecretManager\V1\SecretVersion;
 
 /**
- * Gets metadata for a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+ * Gets metadata for a
+ * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
  *
  * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
  * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
  *
- * @param string $formattedName The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+ * @param string $formattedName The resource name of the
+ *                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
  *                              `projects/&#42;/secrets/&#42;/versions/*`.
  *
  *                              `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
@@ -45,10 +48,14 @@ function get_secret_version_sample(string $formattedName): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetSecretVersionRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var SecretVersion $response */
-        $response = $secretManagerServiceClient->getSecretVersion($formattedName);
+        $response = $secretManagerServiceClient->getSecretVersion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

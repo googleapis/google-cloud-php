@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAppProfileRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the requested app profile. Values are of the form
-     * `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * Required. The unique name of the requested app profile. Values are of the
+     * form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
     /**
-     * @param string $name Required. The unique name of the requested app profile. Values are of the form
-     *                     `projects/{project}/instances/{instance}/appProfiles/{app_profile}`. Please see
+     * @param string $name Required. The unique name of the requested app profile. Values are of the
+     *                     form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`. Please see
      *                     {@see BigtableInstanceAdminClient::appProfileName()} for help formatting this field.
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest
@@ -45,8 +45,8 @@ class GetAppProfileRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The unique name of the requested app profile. Values are of the form
-     *           `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     *           Required. The unique name of the requested app profile. Values are of the
+     *           form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +55,8 @@ class GetAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the requested app profile. Values are of the form
-     * `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * Required. The unique name of the requested app profile. Values are of the
+     * form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +67,8 @@ class GetAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the requested app profile. Values are of the form
-     * `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
+     * Required. The unique name of the requested app profile. Values are of the
+     * form `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

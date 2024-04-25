@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudbilling_v1_generated_CloudBilling_UpdateProjectBillingInfo_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Billing\V1\CloudBillingClient;
+use Google\Cloud\Billing\V1\Client\CloudBillingClient;
 use Google\Cloud\Billing\V1\ProjectBillingInfo;
+use Google\Cloud\Billing\V1\UpdateProjectBillingInfoRequest;
 
 /**
  * Sets or updates the billing account associated with a project. You specify
@@ -41,7 +42,8 @@ use Google\Cloud\Billing\V1\ProjectBillingInfo;
  * account, even if the charge occurred before the new billing account was
  * assigned to the project.
  *
- * The current authenticated user must have ownership privileges for both the
+ * The current authenticated user must have ownership privileges for both
+ * the
  * [project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
  * ) and the [billing
  * account](https://cloud.google.com/billing/docs/how-to/billing-access).
@@ -69,10 +71,14 @@ function update_project_billing_info_sample(string $name): void
     // Create a client.
     $cloudBillingClient = new CloudBillingClient();
 
+    // Prepare the request message.
+    $request = (new UpdateProjectBillingInfoRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var ProjectBillingInfo $response */
-        $response = $cloudBillingClient->updateProjectBillingInfo($name);
+        $response = $cloudBillingClient->updateProjectBillingInfo($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

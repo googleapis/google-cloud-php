@@ -38,23 +38,30 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\AnnotationSpec;
 use Google\Cloud\AIPlatform\V1\CreateDatasetRequest;
+use Google\Cloud\AIPlatform\V1\CreateDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\Dataset;
+use Google\Cloud\AIPlatform\V1\DatasetVersion;
 use Google\Cloud\AIPlatform\V1\DeleteDatasetRequest;
+use Google\Cloud\AIPlatform\V1\DeleteDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\DeleteSavedQueryRequest;
 use Google\Cloud\AIPlatform\V1\ExportDataConfig;
 use Google\Cloud\AIPlatform\V1\ExportDataRequest;
 use Google\Cloud\AIPlatform\V1\GetAnnotationSpecRequest;
 use Google\Cloud\AIPlatform\V1\GetDatasetRequest;
+use Google\Cloud\AIPlatform\V1\GetDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\ImportDataConfig;
 use Google\Cloud\AIPlatform\V1\ImportDataRequest;
 use Google\Cloud\AIPlatform\V1\ListAnnotationsRequest;
 use Google\Cloud\AIPlatform\V1\ListAnnotationsResponse;
 use Google\Cloud\AIPlatform\V1\ListDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\ListDataItemsResponse;
+use Google\Cloud\AIPlatform\V1\ListDatasetVersionsRequest;
+use Google\Cloud\AIPlatform\V1\ListDatasetVersionsResponse;
 use Google\Cloud\AIPlatform\V1\ListDatasetsRequest;
 use Google\Cloud\AIPlatform\V1\ListDatasetsResponse;
 use Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest;
 use Google\Cloud\AIPlatform\V1\ListSavedQueriesResponse;
+use Google\Cloud\AIPlatform\V1\RestoreDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest\OrderByAnnotation;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsResponse;
@@ -119,8 +126,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient}.
  */
 class DatasetServiceGapicClient
 {
@@ -129,8 +135,15 @@ class DatasetServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.DatasetService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -148,6 +161,8 @@ class DatasetServiceGapicClient
     private static $dataItemNameTemplate;
 
     private static $datasetNameTemplate;
+
+    private static $datasetVersionNameTemplate;
 
     private static $locationNameTemplate;
 
@@ -215,6 +230,17 @@ class DatasetServiceGapicClient
         return self::$datasetNameTemplate;
     }
 
+    private static function getDatasetVersionNameTemplate()
+    {
+        if (self::$datasetVersionNameTemplate == null) {
+            self::$datasetVersionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}'
+            );
+        }
+
+        return self::$datasetVersionNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -244,6 +270,7 @@ class DatasetServiceGapicClient
                 'annotationSpec' => self::getAnnotationSpecNameTemplate(),
                 'dataItem' => self::getDataItemNameTemplate(),
                 'dataset' => self::getDatasetNameTemplate(),
+                'datasetVersion' => self::getDatasetVersionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'savedQuery' => self::getSavedQueryNameTemplate(),
             ];
@@ -322,6 +349,31 @@ class DatasetServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * dataset_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataset
+     * @param string $datasetVersion
+     *
+     * @return string The formatted dataset_version resource.
+     */
+    public static function datasetVersionName(
+        $project,
+        $location,
+        $dataset,
+        $datasetVersion
+    ) {
+        return self::getDatasetVersionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dataset' => $dataset,
+            'dataset_version' => $datasetVersion,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -370,6 +422,7 @@ class DatasetServiceGapicClient
      * - annotationSpec: projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}
      * - dataItem: projects/{project}/locations/{location}/datasets/{dataset}/dataItems/{data_item}
      * - dataset: projects/{project}/locations/{location}/datasets/{dataset}
+     * - datasetVersion: projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}
      * - location: projects/{project}/locations/{location}
      * - savedQuery: projects/{project}/locations/{location}/datasets/{dataset}/savedQueries/{saved_query}
      *
@@ -586,6 +639,89 @@ class DatasetServiceGapicClient
     }
 
     /**
+     * Create a version from a Dataset.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $formattedParent = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     $datasetVersion = new DatasetVersion();
+     *     $operationResponse = $datasetServiceClient->createDatasetVersion($formattedParent, $datasetVersion);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $datasetServiceClient->createDatasetVersion($formattedParent, $datasetVersion);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'createDatasetVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent         Required. The name of the Dataset resource.
+     *                                       Format:
+     *                                       `projects/{project}/locations/{location}/datasets/{dataset}`
+     * @param DatasetVersion $datasetVersion Required. The version to be created. The same CMEK policies with the
+     *                                       original Dataset will be applied the dataset version. So here we don't need
+     *                                       to specify the EncryptionSpecType here.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createDatasetVersion(
+        $parent,
+        $datasetVersion,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateDatasetVersionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDatasetVersion($datasetVersion);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateDatasetVersion',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes a Dataset.
      *
      * Sample code:
@@ -652,6 +788,79 @@ class DatasetServiceGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'DeleteDataset',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a Dataset version.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $formattedName = $datasetServiceClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+     *     $operationResponse = $datasetServiceClient->deleteDatasetVersion($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $datasetServiceClient->deleteDatasetVersion($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'deleteDatasetVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the Dataset version to delete.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteDatasetVersion($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDatasetVersionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteDatasetVersion',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -914,6 +1123,62 @@ class DatasetServiceGapicClient
         return $this->startCall(
             'GetDataset',
             Dataset::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a Dataset version.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $formattedName = $datasetServiceClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+     *     $response = $datasetServiceClient->getDatasetVersion($formattedName);
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the Dataset version to delete.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $readMask
+     *           Mask specifying which fields to read.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DatasetVersion
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getDatasetVersion($name, array $optionalArgs = [])
+    {
+        $request = new GetDatasetVersionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['readMask'])) {
+            $request->setReadMask($optionalArgs['readMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDatasetVersion',
+            DatasetVersion::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1195,6 +1460,104 @@ class DatasetServiceGapicClient
     }
 
     /**
+     * Lists DatasetVersions in a Dataset.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $formattedParent = $datasetServiceClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $datasetServiceClient->listDatasetVersions($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $datasetServiceClient->listDatasetVersions($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the Dataset to list DatasetVersions from.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/datasets/{dataset}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Optional. The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type FieldMask $readMask
+     *           Optional. Mask specifying which fields to read.
+     *     @type string $orderBy
+     *           Optional. A comma-separated list of fields to order by, sorted in ascending
+     *           order. Use "desc" after a field name for descending.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listDatasetVersions($parent, array $optionalArgs = [])
+    {
+        $request = new ListDatasetVersionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['readMask'])) {
+            $request->setReadMask($optionalArgs['readMask']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListDatasetVersions',
+            $optionalArgs,
+            ListDatasetVersionsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists Datasets in a Location.
      *
      * Sample code:
@@ -1405,6 +1768,81 @@ class DatasetServiceGapicClient
             ListSavedQueriesResponse::class,
             $request
         );
+    }
+
+    /**
+     * Restores a dataset version.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $formattedName = $datasetServiceClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
+     *     $operationResponse = $datasetServiceClient->restoreDatasetVersion($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $datasetServiceClient->restoreDatasetVersion($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $datasetServiceClient->resumeOperation($operationName, 'restoreDatasetVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DatasetVersion resource.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function restoreDatasetVersion($name, array $optionalArgs = [])
+    {
+        $request = new RestoreDatasetVersionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RestoreDatasetVersion',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**

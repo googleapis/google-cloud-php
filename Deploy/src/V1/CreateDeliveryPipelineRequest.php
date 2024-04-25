@@ -17,7 +17,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent collection in which the `DeliveryPipeline` should be
-     * created. Format should be projects/{project_id}/locations/{location_name}.
+     * created. Format should be
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -36,9 +37,9 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
     private $delivery_pipeline = null;
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was
@@ -60,7 +61,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                   $parent             Required. The parent collection in which the `DeliveryPipeline` should be
-     *                                                                     created. Format should be projects/{project_id}/locations/{location_name}. Please see
+     *                                                                     created. Format should be
+     *                                                                     `projects/{project_id}/locations/{location_name}`. Please see
      *                                                                     {@see CloudDeployClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\Deploy\V1\DeliveryPipeline $deliveryPipeline   Required. The `DeliveryPipeline` to create.
      * @param string                                   $deliveryPipelineId Required. ID of the `DeliveryPipeline`.
@@ -85,16 +87,17 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent collection in which the `DeliveryPipeline` should be
-     *           created. Format should be projects/{project_id}/locations/{location_name}.
+     *           created. Format should be
+     *           `projects/{project_id}/locations/{location_name}`.
      *     @type string $delivery_pipeline_id
      *           Required. ID of the `DeliveryPipeline`.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline
      *           Required. The `DeliveryPipeline` to create.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes since the first request.
+     *           so that if you must retry your request, the server knows to ignore the
+     *           request if it has already been completed. The server guarantees that for
+     *           at least 60 minutes after the first request.
      *           For example, consider a situation where you make an initial request and the
      *           request times out. If you make the request again with the same request ID,
      *           the server can check if original operation with the same request ID was
@@ -114,7 +117,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent collection in which the `DeliveryPipeline` should be
-     * created. Format should be projects/{project_id}/locations/{location_name}.
+     * created. Format should be
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -126,7 +130,8 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent collection in which the `DeliveryPipeline` should be
-     * created. Format should be projects/{project_id}/locations/{location_name}.
+     * created. Format should be
+     * `projects/{project_id}/locations/{location_name}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -204,9 +209,9 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was
@@ -225,9 +230,9 @@ class CreateDeliveryPipelineRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes since the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was

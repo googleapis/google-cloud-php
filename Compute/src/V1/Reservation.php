@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Reservation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Reservation for aggregated resources, providing shape flexibility.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationAggregateReservation aggregate_reservation = 291567948;</code>
+     */
+    private $aggregate_reservation = null;
+    /**
      * [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *
      * Generated from protobuf field <code>optional string commitment = 482134805;</code>
@@ -113,6 +119,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\AllocationAggregateReservation $aggregate_reservation
+     *           Reservation for aggregated resources, providing shape flexibility.
      *     @type string $commitment
      *           [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *     @type string $creation_timestamp
@@ -149,6 +157,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Reservation for aggregated resources, providing shape flexibility.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationAggregateReservation aggregate_reservation = 291567948;</code>
+     * @return \Google\Cloud\Compute\V1\AllocationAggregateReservation|null
+     */
+    public function getAggregateReservation()
+    {
+        return $this->aggregate_reservation;
+    }
+
+    public function hasAggregateReservation()
+    {
+        return isset($this->aggregate_reservation);
+    }
+
+    public function clearAggregateReservation()
+    {
+        unset($this->aggregate_reservation);
+    }
+
+    /**
+     * Reservation for aggregated resources, providing shape flexibility.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationAggregateReservation aggregate_reservation = 291567948;</code>
+     * @param \Google\Cloud\Compute\V1\AllocationAggregateReservation $var
+     * @return $this
+     */
+    public function setAggregateReservation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AllocationAggregateReservation::class);
+        $this->aggregate_reservation = $var;
+
+        return $this;
     }
 
     /**

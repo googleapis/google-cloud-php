@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START iamcredentials_v1_generated_IAMCredentials_GenerateIdToken_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\Credentials\V1\Client\IAMCredentialsClient;
+use Google\Cloud\Iam\Credentials\V1\GenerateIdTokenRequest;
 use Google\Cloud\Iam\Credentials\V1\GenerateIdTokenResponse;
-use Google\Cloud\Iam\Credentials\V1\IAMCredentialsClient;
 
 /**
  * Generates an OpenID Connect ID token for a service account.
@@ -43,10 +44,15 @@ function generate_id_token_sample(string $formattedName, string $audience): void
     // Create a client.
     $iAMCredentialsClient = new IAMCredentialsClient();
 
+    // Prepare the request message.
+    $request = (new GenerateIdTokenRequest())
+        ->setName($formattedName)
+        ->setAudience($audience);
+
     // Call the API and handle any network failures.
     try {
         /** @var GenerateIdTokenResponse $response */
-        $response = $iAMCredentialsClient->generateIdToken($formattedName, $audience);
+        $response = $iAMCredentialsClient->generateIdToken($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

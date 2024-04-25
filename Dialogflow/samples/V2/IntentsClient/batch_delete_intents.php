@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Intents_BatchDeleteIntents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\BatchDeleteIntentsRequest;
+use Google\Cloud\Dialogflow\V2\Client\IntentsClient;
 use Google\Cloud\Dialogflow\V2\Intent;
-use Google\Cloud\Dialogflow\V2\IntentsClient;
 use Google\Rpc\Status;
 
 /**
@@ -55,15 +56,18 @@ function batch_delete_intents_sample(string $formattedParent, string $intentsDis
     // Create a client.
     $intentsClient = new IntentsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $intent = (new Intent())
         ->setDisplayName($intentsDisplayName);
     $intents = [$intent,];
+    $request = (new BatchDeleteIntentsRequest())
+        ->setParent($formattedParent)
+        ->setIntents($intents);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $intentsClient->batchDeleteIntents($formattedParent, $intents);
+        $response = $intentsClient->batchDeleteIntents($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

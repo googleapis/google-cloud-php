@@ -24,13 +24,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_GetDlpJob_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\DlpJob;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 
 /**
  * Gets the latest state of a long-running DlpJob.
- * See https://cloud.google.com/dlp/docs/inspecting-storage and
- * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+ * and
+ * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+ * to learn more.
  *
  * @param string $formattedName The name of the DlpJob resource. Please see
  *                              {@see DlpServiceClient::dlpJobName()} for help formatting this field.
@@ -40,10 +44,14 @@ function get_dlp_job_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetDlpJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DlpJob $response */
-        $response = $dlpServiceClient->getDlpJob($formattedName);
+        $response = $dlpServiceClient->getDlpJob($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

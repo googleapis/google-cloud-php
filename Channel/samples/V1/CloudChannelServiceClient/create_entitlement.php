@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudchannel_v1_generated_CloudChannelService_CreateEntitlement_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\CreateEntitlementRequest;
 use Google\Cloud\Channel\V1\Entitlement;
 use Google\Rpc\Status;
 
@@ -34,7 +35,10 @@ use Google\Rpc\Status;
  *
  * Possible error codes:
  *
- * * PERMISSION_DENIED: The customer doesn't belong to the reseller.
+ * * PERMISSION_DENIED:
+ * * The customer doesn't belong to the reseller.
+ * * The reseller is not authorized to transact on this Product. See
+ * https://support.google.com/channelservices/answer/9759265
  * * INVALID_ARGUMENT:
  * * Required request parameters are missing or invalid.
  * * There is already a customer entitlement for a SKU from the same
@@ -82,14 +86,17 @@ function create_entitlement_sample(
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $entitlement = (new Entitlement())
         ->setOffer($formattedEntitlementOffer);
+    $request = (new CreateEntitlementRequest())
+        ->setParent($formattedParent)
+        ->setEntitlement($entitlement);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudChannelServiceClient->createEntitlement($formattedParent, $entitlement);
+        $response = $cloudChannelServiceClient->createEntitlement($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

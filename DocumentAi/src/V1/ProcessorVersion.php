@@ -80,6 +80,12 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.DeprecationInfo deprecation_info = 13;</code>
      */
     private $deprecation_info = null;
+    /**
+     * Output only. The model type of this processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.ModelType model_type = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_type = 0;
 
     /**
      * Constructor.
@@ -109,6 +115,8 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *           Output only. Denotes that this `ProcessorVersion` is managed by Google.
      *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion\DeprecationInfo $deprecation_info
      *           If set, information about the eventual deprecation of this version.
+     *     @type int $model_type
+     *           Output only. The model type of this processor version.
      * }
      */
     public function __construct($data = NULL) {
@@ -416,6 +424,32 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessorVersion\DeprecationInfo::class);
         $this->deprecation_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The model type of this processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.ModelType model_type = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getModelType()
+    {
+        return $this->model_type;
+    }
+
+    /**
+     * Output only. The model type of this processor version.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.ModelType model_type = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setModelType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DocumentAI\V1\ProcessorVersion\ModelType::class);
+        $this->model_type = $var;
 
         return $this;
     }

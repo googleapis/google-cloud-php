@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_CreateDevice_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
+use Google\Cloud\Iot\V1\CreateDeviceRequest;
 use Google\Cloud\Iot\V1\Device;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
 
 /**
  * Creates a device in a device registry.
@@ -40,13 +41,16 @@ function create_device_sample(string $formattedParent): void
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $device = new Device();
+    $request = (new CreateDeviceRequest())
+        ->setParent($formattedParent)
+        ->setDevice($device);
 
     // Call the API and handle any network failures.
     try {
         /** @var Device $response */
-        $response = $deviceManagerClient->createDevice($formattedParent, $device);
+        $response = $deviceManagerClient->createDevice($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

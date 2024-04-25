@@ -33,11 +33,19 @@ class SolvingMode
     const VALIDATE_ONLY = 1;
     /**
      * Only populates
+     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
+     * or
      * [OptimizeToursResponse.skipped_shipments][google.cloud.optimization.v1.OptimizeToursResponse.skipped_shipments],
      * and doesn't actually solve the rest of the request (`status` and `routes`
      * are unset in the response).
+     * If infeasibilities in `injected_solution_constraint` routes are detected
+     * they are populated in the
+     * [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
+     * field and
+     * [OptimizeToursResponse.skipped_shipments][google.cloud.optimization.v1.OptimizeToursResponse.skipped_shipments]
+     * is left empty.
      * *IMPORTANT*: not all infeasible shipments are returned here, but only the
-     * ones that are detected as infeasible as a preprocessing.
+     * ones that are detected as infeasible during preprocessing.
      *
      * Generated from protobuf enum <code>DETECT_SOME_INFEASIBLE_SHIPMENTS = 2;</code>
      */

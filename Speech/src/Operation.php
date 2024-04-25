@@ -43,6 +43,7 @@ class Operation
 {
     /**
      * @var ConnectionInterface
+     * @internal
      */
     private $connection;
 
@@ -58,7 +59,8 @@ class Operation
 
     /**
      * @param ConnectionInterface $connection Represents a connection to the
-     *        Google Cloud Speech API.
+     *        Google Cloud Speech API. This object is created by SpeechClient,
+     *        and should not be instantiated outside of this client.
      * @param string $name The operation's name.
      * @param array $info [optional] The operation's data.
      */

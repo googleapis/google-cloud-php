@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudasset_v1_generated_AssetService_AnalyzeOrgPolicies_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Asset\V1\AnalyzeOrgPoliciesRequest;
 use Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse\OrgPolicyResult;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
 
 /**
  * Analyzes organization policies under a scope.
@@ -44,10 +45,15 @@ function analyze_org_policies_sample(string $scope, string $constraint): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
+    // Prepare the request message.
+    $request = (new AnalyzeOrgPoliciesRequest())
+        ->setScope($scope)
+        ->setConstraint($constraint);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $assetServiceClient->analyzeOrgPolicies($scope, $constraint);
+        $response = $assetServiceClient->analyzeOrgPolicies($request);
 
         /** @var OrgPolicyResult $element */
         foreach ($response as $element) {

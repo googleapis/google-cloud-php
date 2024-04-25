@@ -69,18 +69,18 @@ tag_values (2).google.cloud.resourcemanager.v3.TagValue
 etag (	BàA"
 DeleteTagValueMetadata2¬
 	TagValues
-ListTagValues5.google.cloud.resourcemanager.v3.ListTagValuesRequest6.google.cloud.resourcemanager.v3.ListTagValuesResponse"‚Óä“/v3/tagValuesÚAparent”
-GetTagValue3.google.cloud.resourcemanager.v3.GetTagValueRequest).google.cloud.resourcemanager.v3.TagValue"%‚Óä“/v3/{name=tagValues/*}ÚAnameª
-GetNamespacedTagValue=.google.cloud.resourcemanager.v3.GetNamespacedTagValueRequest).google.cloud.resourcemanager.v3.TagValue"\'‚Óä“/v3/tagValues/namespacedÚAnameº
-CreateTagValue6.google.cloud.resourcemanager.v3.CreateTagValueRequest.google.longrunning.Operation"Q‚Óä“"/v3/tagValues:	tag_valueÚA	tag_valueÊA"
-TagValueCreateTagValueMetadataÙ
-UpdateTagValue6.google.cloud.resourcemanager.v3.UpdateTagValueRequest.google.longrunning.Operation"p‚Óä“-2 /v3/{tag_value.name=tagValues/*}:	tag_valueÚAtag_value,update_maskÊA"
-TagValueUpdateTagValueMetadata³
-DeleteTagValue6.google.cloud.resourcemanager.v3.DeleteTagValueRequest.google.longrunning.Operation"J‚Óä“*/v3/{name=tagValues/*}ÚAnameÊA"
-TagValueDeleteTagValueMetadataˆ
-GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"=‚Óä“,"\'/v3/{resource=tagValues/*}:getIamPolicy:*ÚAresource
-SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"D‚Óä“,"\'/v3/{resource=tagValues/*}:setIamPolicy:*ÚAresource,policyº
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"O‚Óä“2"-/v3/{resource=tagValues/*}:testIamPermissions:*ÚAresource,permissionsÊA#cloudresourcemanager.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBï
+ListTagValues5.google.cloud.resourcemanager.v3.ListTagValuesRequest6.google.cloud.resourcemanager.v3.ListTagValuesResponse"ÚAparent‚Óä“/v3/tagValues”
+GetTagValue3.google.cloud.resourcemanager.v3.GetTagValueRequest).google.cloud.resourcemanager.v3.TagValue"%ÚAname‚Óä“/v3/{name=tagValues/*}ª
+GetNamespacedTagValue=.google.cloud.resourcemanager.v3.GetNamespacedTagValueRequest).google.cloud.resourcemanager.v3.TagValue"\'ÚAname‚Óä“/v3/tagValues/namespacedº
+CreateTagValue6.google.cloud.resourcemanager.v3.CreateTagValueRequest.google.longrunning.Operation"QÊA"
+TagValueCreateTagValueMetadataÚA	tag_value‚Óä“"/v3/tagValues:	tag_valueÙ
+UpdateTagValue6.google.cloud.resourcemanager.v3.UpdateTagValueRequest.google.longrunning.Operation"pÊA"
+TagValueUpdateTagValueMetadataÚAtag_value,update_mask‚Óä“-2 /v3/{tag_value.name=tagValues/*}:	tag_value³
+DeleteTagValue6.google.cloud.resourcemanager.v3.DeleteTagValueRequest.google.longrunning.Operation"JÊA"
+TagValueDeleteTagValueMetadataÚAname‚Óä“*/v3/{name=tagValues/*}ˆ
+GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"=ÚAresource‚Óä“,"\'/v3/{resource=tagValues/*}:getIamPolicy:*
+SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"DÚAresource,policy‚Óä“,"\'/v3/{resource=tagValues/*}:setIamPolicy:*º
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"OÚAresource,permissions‚Óä“2"-/v3/{resource=tagValues/*}:testIamPermissions:*ÊA#cloudresourcemanager.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBï
 #com.google.cloud.resourcemanager.v3BTagValuesProtoPZMcloud.google.com/go/resourcemanager/apiv3/resourcemanagerpb;resourcemanagerpbªGoogle.Cloud.ResourceManager.V3ÊGoogle\\Cloud\\ResourceManager\\V3ê"Google::Cloud::ResourceManager::V3bproto3'
         , true);
 

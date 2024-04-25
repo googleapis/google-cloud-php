@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START privateca_v1_generated_CertificateAuthorityService_ActivateCertificateAuthority_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Security\PrivateCA\V1\ActivateCertificateAuthorityRequest;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\SubordinateConfig;
 use Google\Rpc\Status;
 
@@ -65,18 +66,18 @@ function activate_certificate_authority_sample(
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $subordinateConfig = (new SubordinateConfig())
         ->setCertificateAuthority($formattedSubordinateConfigCertificateAuthority);
+    $request = (new ActivateCertificateAuthorityRequest())
+        ->setName($formattedName)
+        ->setPemCaCertificate($pemCaCertificate)
+        ->setSubordinateConfig($subordinateConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->activateCertificateAuthority(
-            $formattedName,
-            $pemCaCertificate,
-            $subordinateConfig
-        );
+        $response = $certificateAuthorityServiceClient->activateCertificateAuthority($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

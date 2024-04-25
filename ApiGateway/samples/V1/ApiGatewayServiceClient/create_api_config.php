@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\ApiGateway\V1\ApiConfig;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\CreateApiConfigRequest;
 use Google\Rpc\Status;
 
 /**
@@ -43,13 +44,17 @@ function create_api_config_sample(string $formattedParent, string $apiConfigId):
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $apiConfig = new ApiConfig();
+    $request = (new CreateApiConfigRequest())
+        ->setParent($formattedParent)
+        ->setApiConfigId($apiConfigId)
+        ->setApiConfig($apiConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiGatewayServiceClient->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
+        $response = $apiGatewayServiceClient->createApiConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

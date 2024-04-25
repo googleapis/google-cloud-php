@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START servicecontrol_v1_generated_QuotaController_AllocateQuota_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceControl\V1\AllocateQuotaRequest;
 use Google\Cloud\ServiceControl\V1\AllocateQuotaResponse;
-use Google\Cloud\ServiceControl\V1\QuotaControllerClient;
+use Google\Cloud\ServiceControl\V1\Client\QuotaControllerClient;
 
 /**
  * Attempts to allocate quota for the specified consumer. It should be called
@@ -51,10 +52,13 @@ function allocate_quota_sample(): void
     // Create a client.
     $quotaControllerClient = new QuotaControllerClient();
 
+    // Prepare the request message.
+    $request = new AllocateQuotaRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var AllocateQuotaResponse $response */
-        $response = $quotaControllerClient->allocateQuota();
+        $response = $quotaControllerClient->allocateQuota($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

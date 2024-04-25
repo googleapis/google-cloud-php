@@ -36,6 +36,7 @@ class Sink
 {
     /**
      * @var ConnectionInterface Represents a connection to Stackdriver Logging.
+     * @internal
      */
     protected $connection;
 
@@ -56,7 +57,8 @@ class Sink
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
-     *        Logging.
+     *        Logging. This object is created by LoggingClient,
+     *        and should not be instantiated outside of this client.
      * @param string $name The sink's name.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The sink's metadata.

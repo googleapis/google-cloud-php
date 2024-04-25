@@ -39,6 +39,14 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes transaction = 5;</code>
      */
     private $transaction = '';
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.ExplainMetrics explain_metrics = 9;</code>
+     */
+    private $explain_metrics = null;
 
     /**
      * Constructor.
@@ -57,6 +65,10 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *           [ReadOptions.new_transaction][google.datastore.v1.ReadOptions.new_transaction]
      *           was set in
      *           [RunQueryRequest.read_options][google.datastore.v1.RunQueryRequest.read_options].
+     *     @type \Google\Cloud\Datastore\V1\ExplainMetrics $explain_metrics
+     *           Query explain metrics. This is only present when the
+     *           [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
+     *           is provided, and it is sent only once with the last response in the stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,6 +180,46 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->transaction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.ExplainMetrics explain_metrics = 9;</code>
+     * @return \Google\Cloud\Datastore\V1\ExplainMetrics|null
+     */
+    public function getExplainMetrics()
+    {
+        return $this->explain_metrics;
+    }
+
+    public function hasExplainMetrics()
+    {
+        return isset($this->explain_metrics);
+    }
+
+    public function clearExplainMetrics()
+    {
+        unset($this->explain_metrics);
+    }
+
+    /**
+     * Query explain metrics. This is only present when the
+     * [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
+     * is provided, and it is sent only once with the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.ExplainMetrics explain_metrics = 9;</code>
+     * @param \Google\Cloud\Datastore\V1\ExplainMetrics $var
+     * @return $this
+     */
+    public function setExplainMetrics($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\ExplainMetrics::class);
+        $this->explain_metrics = $var;
 
         return $this;
     }

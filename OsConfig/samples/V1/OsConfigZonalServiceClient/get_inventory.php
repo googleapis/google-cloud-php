@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START osconfig_v1_generated_OsConfigZonalService_GetInventory_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\GetInventoryRequest;
 use Google\Cloud\OsConfig\V1\Inventory;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
 
 /**
  * Get inventory data for the specified VM instance. If the VM has no
@@ -46,10 +47,14 @@ function get_inventory_sample(string $formattedName): void
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetInventoryRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Inventory $response */
-        $response = $osConfigZonalServiceClient->getInventory($formattedName);
+        $response = $osConfigZonalServiceClient->getInventory($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

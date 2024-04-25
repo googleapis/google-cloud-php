@@ -35,7 +35,7 @@ class LimitFilter
     /**
      * Matches only the first N cells of each row. If duplicate cells are
      * present, as is possible when using an
-     * {@see Google\Cloud\Bigtable\Filter\InterleaveFilter}, each copy of the
+     * {@see \Google\Cloud\Bigtable\Filter\InterleaveFilter}, each copy of the
      * cell is counted separately.
      *
      * Example:
@@ -59,7 +59,7 @@ class LimitFilter
      * timestamps 10 and 9 skip all earlier cells in `foo:bar`, and then begin
      * matching again in column `foo:bar2`. If duplicate cells are present, as
      * is possible when using an
-     * {@see Google\Cloud\Bigtable\Filter\InterleaveFilter}, each copy of the
+     * {@see \Google\Cloud\Bigtable\Filter\InterleaveFilter}, each copy of the
      * cell is counted separately.
      *
      * Example:

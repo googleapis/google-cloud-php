@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datamigration_v1_generated_DataMigrationService_GenerateSshScript_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CloudDms\V1\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\Client\DataMigrationServiceClient;
+use Google\Cloud\CloudDms\V1\GenerateSshScriptRequest;
 use Google\Cloud\CloudDms\V1\SshScript;
 
 /**
@@ -38,10 +39,14 @@ function generate_ssh_script_sample(string $vm): void
     // Create a client.
     $dataMigrationServiceClient = new DataMigrationServiceClient();
 
+    // Prepare the request message.
+    $request = (new GenerateSshScriptRequest())
+        ->setVm($vm);
+
     // Call the API and handle any network failures.
     try {
         /** @var SshScript $response */
-        $response = $dataMigrationServiceClient->generateSshScript($vm);
+        $response = $dataMigrationServiceClient->generateSshScript($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

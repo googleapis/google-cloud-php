@@ -102,8 +102,7 @@ use Google\Protobuf\Duration;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Optimization\V1\Client\FleetRoutingClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Optimization\V1\Client\FleetRoutingClient}.
  */
 class FleetRoutingGapicClient
 {
@@ -112,8 +111,15 @@ class FleetRoutingGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.optimization.v1.FleetRouting';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'cloudoptimization.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudoptimization.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -389,14 +395,6 @@ class FleetRoutingGapicClient
      *     @type int $solvingMode
      *           By default, the solving mode is `DEFAULT_SOLVE` (0).
      *           For allowed values, use constants defined on {@see \Google\Cloud\Optimization\V1\OptimizeToursRequest\SolvingMode}
-     *     @type int $maxValidationErrors
-     *           Truncates the number of validation errors returned. These errors are
-     *           typically attached to an INVALID_ARGUMENT error payload as a BadRequest
-     *           error detail (https://cloud.google.com/apis/design/errors#error_details),
-     *           unless solving_mode=VALIDATE_ONLY: see the
-     *           [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
-     *           field.
-     *           This defaults to 100 and is capped at 10,000.
      *     @type int $searchMode
      *           Search mode used to solve the request.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Optimization\V1\OptimizeToursRequest\SearchMode}
@@ -552,6 +550,14 @@ class FleetRoutingGapicClient
      *           When `use_geodesic_distances` is true, this field must be set and defines
      *           the speed applied to compute travel times. Its value must be at least 1.0
      *           meters/seconds.
+     *     @type int $maxValidationErrors
+     *           Truncates the number of validation errors returned. These errors are
+     *           typically attached to an INVALID_ARGUMENT error payload as a BadRequest
+     *           error detail (https://cloud.google.com/apis/design/errors#error_details),
+     *           unless solving_mode=VALIDATE_ONLY: see the
+     *           [OptimizeToursResponse.validation_errors][google.cloud.optimization.v1.OptimizeToursResponse.validation_errors]
+     *           field.
+     *           This defaults to 100 and is capped at 10,000.
      *     @type string $label
      *           Label that may be used to identify this request, reported back in the
      *           [OptimizeToursResponse.request_label][google.cloud.optimization.v1.OptimizeToursResponse.request_label].
@@ -588,12 +594,6 @@ class FleetRoutingGapicClient
 
         if (isset($optionalArgs['solvingMode'])) {
             $request->setSolvingMode($optionalArgs['solvingMode']);
-        }
-
-        if (isset($optionalArgs['maxValidationErrors'])) {
-            $request->setMaxValidationErrors(
-                $optionalArgs['maxValidationErrors']
-            );
         }
 
         if (isset($optionalArgs['searchMode'])) {
@@ -655,6 +655,12 @@ class FleetRoutingGapicClient
         if (isset($optionalArgs['geodesicMetersPerSecond'])) {
             $request->setGeodesicMetersPerSecond(
                 $optionalArgs['geodesicMetersPerSecond']
+            );
+        }
+
+        if (isset($optionalArgs['maxValidationErrors'])) {
+            $request->setMaxValidationErrors(
+                $optionalArgs['maxValidationErrors']
             );
         }
 

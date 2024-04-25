@@ -25,16 +25,18 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START secretmanager_v1_generated_SecretManagerService_ListSecretVersions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\ListSecretVersionsRequest;
 use Google\Cloud\SecretManager\V1\SecretVersion;
 
 /**
- * Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This call does not return secret
- * data.
+ * Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This
+ * call does not return secret data.
  *
- * @param string $formattedParent The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] associated with the
- *                                [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in the format
- *                                `projects/&#42;/secrets/*`. Please see
+ * @param string $formattedParent The resource name of the
+ *                                [Secret][google.cloud.secretmanager.v1.Secret] associated with the
+ *                                [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in
+ *                                the format `projects/&#42;/secrets/*`. Please see
  *                                {@see SecretManagerServiceClient::secretName()} for help formatting this field.
  */
 function list_secret_versions_sample(string $formattedParent): void
@@ -42,10 +44,14 @@ function list_secret_versions_sample(string $formattedParent): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSecretVersionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $secretManagerServiceClient->listSecretVersions($formattedParent);
+        $response = $secretManagerServiceClient->listSecretVersions($request);
 
         /** @var SecretVersion $element */
         foreach ($response as $element) {

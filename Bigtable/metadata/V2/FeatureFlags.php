@@ -16,12 +16,17 @@ class FeatureFlags
         }
         $pool->internalAddGeneratedFile(
             '
-ï
-&google/bigtable/v2/feature_flags.protogoogle.bigtable.v2"i
+â
+&google/bigtable/v2/feature_flags.protogoogle.bigtable.v2"Û
 FeatureFlags
 reverse_scans (
-mutate_rows_rate_limit ("
-last_scanned_row_responses (B½
+mutate_rows_rate_limit (
+mutate_rows_rate_limit2 ("
+last_scanned_row_responses (
+routing_cookie (
+
+retry_info (#
+client_side_metrics_enabled (B½
 com.google.bigtable.v2BFeatureFlagsProtoPZ:google.golang.org/genproto/googleapis/bigtable/v2;bigtableªGoogle.Cloud.Bigtable.V2ÊGoogle\\Cloud\\Bigtable\\V2êGoogle::Cloud::Bigtable::V2bproto3'
         , true);
 

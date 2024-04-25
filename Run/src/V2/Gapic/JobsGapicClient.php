@@ -49,6 +49,7 @@ use Google\Cloud\Run\V2\Job;
 use Google\Cloud\Run\V2\ListJobsRequest;
 use Google\Cloud\Run\V2\ListJobsResponse;
 use Google\Cloud\Run\V2\RunJobRequest;
+use Google\Cloud\Run\V2\RunJobRequest\Overrides;
 use Google\Cloud\Run\V2\UpdateJobRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -101,8 +102,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Run\V2\Client\JobsClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Run\V2\Client\JobsClient}.
  */
 class JobsGapicClient
 {
@@ -111,8 +111,15 @@ class JobsGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.run.v2.Jobs';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'run.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'run.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -614,7 +621,7 @@ class JobsGapicClient
         $request->setParent($parent);
         $request->setJob($job);
         $request->setJobId($jobId);
-        $requestParamHeaders['parent'] = $parent;
+        $requestParamHeaders['location'] = $parent;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -699,7 +706,7 @@ class JobsGapicClient
         $request = new DeleteJobRequest();
         $requestParamHeaders = [];
         $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        $requestParamHeaders['location'] = $name;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
@@ -814,7 +821,7 @@ class JobsGapicClient
         $request = new GetJobRequest();
         $requestParamHeaders = [];
         $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        $requestParamHeaders['location'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -887,7 +894,7 @@ class JobsGapicClient
         $request = new ListJobsRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        $requestParamHeaders['location'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -965,6 +972,9 @@ class JobsGapicClient
      *     @type string $etag
      *           A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
+     *     @type Overrides $overrides
+     *           Overrides specification for a given execution of a job. If provided,
+     *           overrides will be applied to update the execution or task spec.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -980,13 +990,17 @@ class JobsGapicClient
         $request = new RunJobRequest();
         $requestParamHeaders = [];
         $request->setName($name);
-        $requestParamHeaders['name'] = $name;
+        $requestParamHeaders['location'] = $name;
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
+        }
+
+        if (isset($optionalArgs['overrides'])) {
+            $request->setOverrides($optionalArgs['overrides']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1194,7 +1208,7 @@ class JobsGapicClient
         $request = new UpdateJobRequest();
         $requestParamHeaders = [];
         $request->setJob($job);
-        $requestParamHeaders['job.name'] = $job->getName();
+        $requestParamHeaders['location'] = $job->getName();
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }

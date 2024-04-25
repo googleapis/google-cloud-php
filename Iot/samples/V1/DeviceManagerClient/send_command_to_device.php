@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_SendCommandToDevice_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
+use Google\Cloud\Iot\V1\SendCommandToDeviceRequest;
 use Google\Cloud\Iot\V1\SendCommandToDeviceResponse;
 
 /**
@@ -53,10 +54,15 @@ function send_command_to_device_sample(string $formattedName, string $binaryData
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
+    // Prepare the request message.
+    $request = (new SendCommandToDeviceRequest())
+        ->setName($formattedName)
+        ->setBinaryData($binaryData);
+
     // Call the API and handle any network failures.
     try {
         /** @var SendCommandToDeviceResponse $response */
-        $response = $deviceManagerClient->sendCommandToDevice($formattedName, $binaryData);
+        $response = $deviceManagerClient->sendCommandToDevice($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

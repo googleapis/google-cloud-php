@@ -58,8 +58,8 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *   [Document.json_data][google.cloud.discoveryengine.v1.Document.json_data]
      *   or
      *   [Document.struct_data][google.cloud.discoveryengine.v1.Document.struct_data].
-     * * `custom`: One custom data per row in arbitrary format that conforms the
-     *   defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
+     * * `custom`: One custom data per row in arbitrary format that conforms to
+     *   the defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
      *   store. This can only be used by the GENERIC Data Store vertical.
      *
      * Generated from protobuf field <code>string data_schema = 6;</code>
@@ -102,8 +102,8 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *             [Document.json_data][google.cloud.discoveryengine.v1.Document.json_data]
      *             or
      *             [Document.struct_data][google.cloud.discoveryengine.v1.Document.struct_data].
-     *           * `custom`: One custom data per row in arbitrary format that conforms the
-     *             defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
+     *           * `custom`: One custom data per row in arbitrary format that conforms to
+     *             the defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
      *             store. This can only be used by the GENERIC Data Store vertical.
      * }
      */
@@ -272,8 +272,8 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *   [Document.json_data][google.cloud.discoveryengine.v1.Document.json_data]
      *   or
      *   [Document.struct_data][google.cloud.discoveryengine.v1.Document.struct_data].
-     * * `custom`: One custom data per row in arbitrary format that conforms the
-     *   defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
+     * * `custom`: One custom data per row in arbitrary format that conforms to
+     *   the defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
      *   store. This can only be used by the GENERIC Data Store vertical.
      *
      * Generated from protobuf field <code>string data_schema = 6;</code>
@@ -297,8 +297,8 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *   [Document.json_data][google.cloud.discoveryengine.v1.Document.json_data]
      *   or
      *   [Document.struct_data][google.cloud.discoveryengine.v1.Document.struct_data].
-     * * `custom`: One custom data per row in arbitrary format that conforms the
-     *   defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
+     * * `custom`: One custom data per row in arbitrary format that conforms to
+     *   the defined [Schema][google.cloud.discoveryengine.v1.Schema] of the data
      *   store. This can only be used by the GENERIC Data Store vertical.
      *
      * Generated from protobuf field <code>string data_schema = 6;</code>

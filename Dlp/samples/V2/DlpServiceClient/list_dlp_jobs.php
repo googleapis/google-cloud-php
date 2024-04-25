@@ -25,19 +25,23 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dlp_v2_generated_DlpService_ListDlpJobs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
 use Google\Cloud\Dlp\V2\DlpJob;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\ListDlpJobsRequest;
 
 /**
  * Lists DlpJobs that match the specified filter in the request.
- * See https://cloud.google.com/dlp/docs/inspecting-storage and
- * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+ * and
+ * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+ * to learn more.
  *
  * @param string $formattedParent Parent resource name.
  *
  *                                The format of this value varies depending on whether you have [specified a
  *                                processing
- *                                location](https://cloud.google.com/dlp/docs/specifying-location):
+ *                                location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                + Projects scope, location specified:<br/>
  *                                `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -56,10 +60,14 @@ function list_dlp_jobs_sample(string $formattedParent): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListDlpJobsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listDlpJobs($formattedParent);
+        $response = $dlpServiceClient->listDlpJobs($request);
 
         /** @var DlpJob $element */
         foreach ($response as $element) {

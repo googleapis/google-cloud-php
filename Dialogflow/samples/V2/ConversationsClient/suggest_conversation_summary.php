@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Conversations_SuggestConversationSummary_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\V2\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\Client\ConversationsClient;
+use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryRequest;
 use Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse;
 
 /**
@@ -42,10 +43,14 @@ function suggest_conversation_summary_sample(string $formattedConversation): voi
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
+    // Prepare the request message.
+    $request = (new SuggestConversationSummaryRequest())
+        ->setConversation($formattedConversation);
+
     // Call the API and handle any network failures.
     try {
         /** @var SuggestConversationSummaryResponse $response */
-        $response = $conversationsClient->suggestConversationSummary($formattedConversation);
+        $response = $conversationsClient->suggestConversationSummary($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

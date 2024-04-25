@@ -28,10 +28,18 @@ class Type
      * Generated from protobuf enum <code>TIME_LIMITED = 1;</code>
      */
     const TIME_LIMITED = 1;
+    /**
+     * Stretched private cloud is a regional resource with redundancy,
+     * with a minimum of 6 nodes, nodes count has to be even.
+     *
+     * Generated from protobuf enum <code>STRETCHED = 2;</code>
+     */
+    const STRETCHED = 2;
 
     private static $valueToName = [
         self::STANDARD => 'STANDARD',
         self::TIME_LIMITED => 'TIME_LIMITED',
+        self::STRETCHED => 'STRETCHED',
     ];
 
     public static function name($value)

@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START pubsub_v1_generated_Subscriber_StreamingPull_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\StreamingPullRequest;
 use Google\Cloud\PubSub\V1\StreamingPullResponse;
-use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Establishes a stream with the server, which sends messages down to the
@@ -53,7 +53,7 @@ function streaming_pull_sample(string $formattedSubscription, int $streamAckDead
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = (new StreamingPullRequest())
         ->setSubscription($formattedSubscription)
         ->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);

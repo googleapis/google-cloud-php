@@ -16,13 +16,14 @@ class IndexEndpoint
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\EncryptionSpec::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\MachineResources::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\ServiceNetworking::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ô
-/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"þ
+Ê
+/google/cloud/aiplatform/v1/index_endpoint.protogoogle.cloud.aiplatform.v1google/api/resource.proto0google/cloud/aiplatform/v1/encryption_spec.proto2google/cloud/aiplatform/v1/machine_resources.proto3google/cloud/aiplatform/v1/service_networking.protogoogle/protobuf/timestamp.proto"È
 IndexEndpoint
 name (	BàA
 display_name (	BàA
@@ -37,7 +38,8 @@ class IndexEndpoint
  (BàAd
 private_service_connect_config (27.google.cloud.aiplatform.v1.PrivateServiceConnectConfigBàA$
 public_endpoint_enabled (BàA(
-public_endpoint_domain_name (	BàA-
+public_endpoint_domain_name (	BàAH
+encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpecBàA-
 LabelsEntry
 key (	
 value (	:8:uêAr
@@ -61,10 +63,11 @@ class IndexEndpoint
 auth_provider (2@.google.cloud.aiplatform.v1.DeployedIndexAuthConfig.AuthProvider:
 AuthProvider
 	audiences (	
-allowed_issuers (	"Y
+allowed_issuers (	"²
 IndexPrivateEndpoints
 match_grpc_address (	BàA
-service_attachment (	BàABÐ
+service_attachment (	BàAW
+psc_automated_endpoints (21.google.cloud.aiplatform.v1.PscAutomatedEndpointsBàABÐ
 com.google.cloud.aiplatform.v1BIndexEndpointProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

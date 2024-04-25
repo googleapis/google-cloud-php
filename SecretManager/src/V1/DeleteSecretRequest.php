@@ -9,30 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SecretManagerService.DeleteSecret][google.cloud.secretmanager.v1.SecretManagerService.DeleteSecret].
+ * Request message for
+ * [SecretManagerService.DeleteSecret][google.cloud.secretmanager.v1.SecretManagerService.DeleteSecret].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.DeleteSecretRequest</code>
  */
 class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
      * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The request succeeds if it matches
-     * the etag of the currently stored secret object. If the etag is omitted,
-     * the request succeeds.
+     * Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The
+     * request succeeds if it matches the etag of the currently stored secret
+     * object. If the etag is omitted, the request succeeds.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
 
     /**
-     * @param string $name Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+     * @param string $name Required. The resource name of the
+     *                     [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
      *                     `projects/&#42;/secrets/*`. Please see
      *                     {@see SecretManagerServiceClient::secretName()} for help formatting this field.
      *
@@ -53,12 +56,13 @@ class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+     *           Required. The resource name of the
+     *           [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
      *           `projects/&#42;&#47;secrets/&#42;`.
      *     @type string $etag
-     *           Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The request succeeds if it matches
-     *           the etag of the currently stored secret object. If the etag is omitted,
-     *           the request succeeds.
+     *           Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The
+     *           request succeeds if it matches the etag of the currently stored secret
+     *           object. If the etag is omitted, the request succeeds.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,7 +71,8 @@ class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
      * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -79,7 +84,8 @@ class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
      * `projects/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -95,9 +101,9 @@ class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The request succeeds if it matches
-     * the etag of the currently stored secret object. If the etag is omitted,
-     * the request succeeds.
+     * Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The
+     * request succeeds if it matches the etag of the currently stored secret
+     * object. If the etag is omitted, the request succeeds.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -108,9 +114,9 @@ class DeleteSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The request succeeds if it matches
-     * the etag of the currently stored secret object. If the etag is omitted,
-     * the request succeeds.
+     * Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The
+     * request succeeds if it matches the etag of the currently stored secret
+     * object. If the etag is omitted, the request succeeds.
      *
      * Generated from protobuf field <code>string etag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

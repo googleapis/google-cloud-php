@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Eventarc\V1\Channel;
-use Google\Cloud\Eventarc\V1\EventarcClient;
+use Google\Cloud\Eventarc\V1\Client\EventarcClient;
+use Google\Cloud\Eventarc\V1\UpdateChannelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,14 @@ function update_channel_sample(bool $validateOnly): void
     // Create a client.
     $eventarcClient = new EventarcClient();
 
+    // Prepare the request message.
+    $request = (new UpdateChannelRequest())
+        ->setValidateOnly($validateOnly);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $eventarcClient->updateChannel($validateOnly);
+        $response = $eventarcClient->updateChannel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
