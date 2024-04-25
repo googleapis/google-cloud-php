@@ -17,15 +17,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class VisualElement extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
     private $layout = null;
     /**
-     * Type of the
-     * [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
+     * Type of the [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
@@ -44,11 +42,9 @@ class VisualElement extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     *           [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
+     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *     @type string $type
-     *           Type of the
-     *           [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
+     *           Type of the [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
      * }
@@ -59,8 +55,7 @@ class VisualElement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -81,8 +76,7 @@ class VisualElement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var
@@ -97,8 +91,7 @@ class VisualElement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the
-     * [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
+     * Type of the [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @return string
@@ -109,8 +102,7 @@ class VisualElement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the
-     * [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
+     * Type of the [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var

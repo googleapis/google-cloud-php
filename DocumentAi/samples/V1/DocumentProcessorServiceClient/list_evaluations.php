@@ -32,9 +32,7 @@ use Google\Cloud\DocumentAI\V1\ListEvaluationsRequest;
 /**
  * Retrieves a set of evaluations for a given processor version.
  *
- * @param string $formattedParent The resource name of the
- *                                [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list
- *                                evaluations for.
+ * @param string $formattedParent The resource name of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to list evaluations for.
  *                                `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
  *                                Please see {@see DocumentProcessorServiceClient::processorVersionName()} for help formatting this field.
  */

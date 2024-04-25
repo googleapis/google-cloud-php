@@ -135,6 +135,25 @@ final class UptimeCheckServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a function
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $function
+     *
+     * @return string The formatted function resource.
+     */
+    public static function functionName(string $project, string $location, string $function): string
+    {
+        return self::getPathTemplate('function')->render([
+            'project' => $project,
+            'location' => $location,
+            'function' => $function,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * organization_uptime_check_config resource.
      *
@@ -190,6 +209,7 @@ final class UptimeCheckServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - folderUptimeCheckConfig: folders/{folder}/uptimeCheckConfigs/{uptime_check_config}
+     * - function: projects/{project}/locations/{location}/functions/{function}
      * - organizationUptimeCheckConfig: organizations/{organization}/uptimeCheckConfigs/{uptime_check_config}
      * - projectUptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}
      * - uptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}

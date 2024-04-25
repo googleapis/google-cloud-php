@@ -98,6 +98,16 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetSpaceReadState": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetThreadReadState": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListMemberships": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -123,12 +133,22 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "UpdateMembership": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "UpdateMessage": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "UpdateSpace": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateSpaceReadState": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
