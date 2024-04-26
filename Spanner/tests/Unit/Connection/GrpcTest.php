@@ -41,6 +41,7 @@ use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\Session;
@@ -1419,29 +1420,6 @@ class GrpcTest extends TestCase
         ];
     }
 
-    public function testSerializerCustomEncoder()
-    {
-        $grpc = new GrpcStub();
-        $msg = new MockResponse(['name' => 'foo']);
-        $serializer = new Serializer([], [], [], [], [
-            MockResponse::class => function ($msg) {
-                return ['name' => 'bar'];
-            }
-        ]);
-        $grpc->setSerializer($serializer);
-        $arr = $grpc->callEncodeMessage($msg);
-        $this->assertEquals('bar', $arr['name']);
-    }
-
-    public function testSerializerWithoutCustomEncoder()
-    {
-        $grpc = new GrpcStub();
-        $msg = new MockResponse(['name' => 'foo']);
-        $serializer = new Serializer();
-        $grpc->setSerializer($serializer);
-        $arr = $grpc->callEncodeMessage($msg);
-        $this->assertEquals('foo', $arr['name']);
-    }
     public function testPartialResultSetCustomEncoder()
     {
         $partialResultSet = new PartialResultSet();
@@ -1633,22 +1611,12 @@ class GrpcTest extends TestCase
 class GrpcStub extends Grpc
 {
     public $config;
-    private $serializer;
 
     protected function constructGapic($gapicName, array $config)
     {
         $this->config = $config;
 
         return parent::constructGapic($gapicName, $config);
-    }
-
-    public function callEncodeMessage($msg) {
-        return $this->serializer->encodeMessage($msg);
-    }
-
-    public function setSerializer(Serializer $serializer)
-    {
-        $this->serializer = $serializer;
     }
 }
 //@codingStandardsIgnoreEnd
