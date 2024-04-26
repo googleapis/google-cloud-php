@@ -31,9 +31,11 @@ use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
 use Google\Rpc\Status;
 
 /**
- * Renames a source folder to a destination folder. During a rename, the
+ * Renames a source folder to a destination folder. This operation is only
+ * applicable to a hierarchical namespace enabled bucket. During a rename, the
  * source and destination folders are locked until the long running operation
  * completes.
+ * Hierarchical namespace buckets are in allowlist preview.
  *
  * @param string $formattedName       Name of the source folder being renamed.
  *                                    Format: `projects/{project}/buckets/{bucket}/folders/{folder}`

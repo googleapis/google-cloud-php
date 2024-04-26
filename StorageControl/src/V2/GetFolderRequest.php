@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for GetFolder.
+ * Request message for GetFolder. This operation is only applicable to a
+ * hierarchical namespace enabled bucket.
+ * Hierarchical namespace buckets are in allowlist preview.
  *
  * Generated from protobuf message <code>google.storage.control.v2.GetFolderRequest</code>
  */

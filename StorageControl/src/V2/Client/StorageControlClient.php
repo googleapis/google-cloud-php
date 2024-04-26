@@ -119,12 +119,13 @@ final class StorageControlClient
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
-            'transportConfig' => [
-                'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/storage_control_rest_client_config.php',
-                ],
-            ],
         ];
+    }
+
+    /** Implements ClientOptionsTrait::supportedTransports. */
+    private static function supportedTransports()
+    {
+        return ['grpc', 'grpc-fallback'];
     }
 
     /**
@@ -287,9 +288,8 @@ final class StorageControlClient
      *           default this settings points to the default client config file, which is
      *           provided in the resources folder.
      *     @type string|TransportInterface $transport
-     *           The transport used for executing network requests. May be either the string
-     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
-     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           The transport used for executing network requests. At the moment, supports only
+     *           `grpc`. *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
      *           $apiEndpoint setting, will be ignored.
@@ -299,10 +299,8 @@ final class StorageControlClient
      *           example:
      *           $transportConfig = [
      *               'grpc' => [...],
-     *               'rest' => [...],
      *           ];
-     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
-     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} method for the
      *           supported options.
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
@@ -330,7 +328,9 @@ final class StorageControlClient
     }
 
     /**
-     * Creates a new folder.
+     * Creates a new folder. This operation is only applicable to a hierarchical
+     * namespace enabled bucket.
+     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::createFolderAsync()} .
      *
@@ -382,7 +382,9 @@ final class StorageControlClient
     }
 
     /**
-     * Permanently deletes an empty folder.
+     * Permanently deletes an empty folder. This operation is only applicable to a
+     * hierarchical namespace enabled bucket.
+     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::deleteFolderAsync()} .
      *
@@ -430,7 +432,9 @@ final class StorageControlClient
     }
 
     /**
-     * Returns metadata for the specified folder.
+     * Returns metadata for the specified folder. This operation is only
+     * applicable to a hierarchical namespace enabled bucket.
+     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::getFolderAsync()} .
      *
@@ -508,7 +512,9 @@ final class StorageControlClient
     }
 
     /**
-     * Retrieves a list of folders for a given bucket.
+     * Retrieves a list of folders. This operation is only applicable to a
+     * hierarchical namespace enabled bucket.
+     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::listFoldersAsync()} .
      *
@@ -560,9 +566,11 @@ final class StorageControlClient
     }
 
     /**
-     * Renames a source folder to a destination folder. During a rename, the
+     * Renames a source folder to a destination folder. This operation is only
+     * applicable to a hierarchical namespace enabled bucket. During a rename, the
      * source and destination folders are locked until the long running operation
      * completes.
+     * Hierarchical namespace buckets are in allowlist preview.
      *
      * The async variant is {@see StorageControlClient::renameFolderAsync()} .
      *

@@ -29,7 +29,9 @@ use Google\Cloud\Storage\Control\V2\Folder;
 use Google\Cloud\Storage\Control\V2\GetFolderRequest;
 
 /**
- * Returns metadata for the specified folder.
+ * Returns metadata for the specified folder. This operation is only
+ * applicable to a hierarchical namespace enabled bucket.
+ * Hierarchical namespace buckets are in allowlist preview.
  *
  * @param string $formattedName Name of the folder.
  *                              Format: `projects/{project}/buckets/{bucket}/folders/{folder}`

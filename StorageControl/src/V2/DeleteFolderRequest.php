@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for DeleteFolder.
+ * Request message for DeleteFolder. This operation is only applicable to a
+ * hierarchical namespace enabled bucket.
+ * Hierarchical namespace buckets are in allowlist preview.
  *
  * Generated from protobuf message <code>google.storage.control.v2.DeleteFolderRequest</code>
  */
@@ -38,8 +40,7 @@ class DeleteFolderRequest extends \Google\Protobuf\Internal\Message
     protected $if_metageneration_not_match = null;
     /**
      * Optional. A unique identifier for this request. UUID is the recommended
-     * format, but other formats are still accepted. This request is only
-     * idempotent if a `request_id` is provided.
+     * format, but other formats are still accepted.
      *
      * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
@@ -77,8 +78,7 @@ class DeleteFolderRequest extends \Google\Protobuf\Internal\Message
      *           current metageneration does not match the given value.
      *     @type string $request_id
      *           Optional. A unique identifier for this request. UUID is the recommended
-     *           format, but other formats are still accepted. This request is only
-     *           idempotent if a `request_id` is provided.
+     *           format, but other formats are still accepted.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,8 +192,7 @@ class DeleteFolderRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique identifier for this request. UUID is the recommended
-     * format, but other formats are still accepted. This request is only
-     * idempotent if a `request_id` is provided.
+     * format, but other formats are still accepted.
      *
      * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
@@ -205,8 +204,7 @@ class DeleteFolderRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique identifier for this request. UUID is the recommended
-     * format, but other formats are still accepted. This request is only
-     * idempotent if a `request_id` is provided.
+     * format, but other formats are still accepted.
      *
      * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var

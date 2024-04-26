@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for CreateFolder.
+ * Request message for CreateFolder. This operation is only applicable to a
+ * hierarchical namespace enabled bucket.
+ * Hierarchical namespace buckets are in allowlist preview.
  *
  * Generated from protobuf message <code>google.storage.control.v2.CreateFolderRequest</code>
  */
 class CreateFolderRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the bucket in which the folder will reside.
+     * Required. Name of the bucket in which the folder will reside. The bucket
+     * must be a hierarchical namespace enabled bucket.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -49,15 +52,15 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
     protected $recursive = false;
     /**
      * Optional. A unique identifier for this request. UUID is the recommended
-     * format, but other formats are still accepted. This request is only
-     * idempotent if a `request_id` is provided.
+     * format, but other formats are still accepted.
      *
      * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
 
     /**
-     * @param string                                  $parent   Required. Name of the bucket in which the folder will reside. Please see
+     * @param string                                  $parent   Required. Name of the bucket in which the folder will reside. The bucket
+     *                                                          must be a hierarchical namespace enabled bucket. Please see
      *                                                          {@see StorageControlClient::bucketName()} for help formatting this field.
      * @param \Google\Cloud\Storage\Control\V2\Folder $folder   Required. Properties of the new folder being created.
      *                                                          The bucket and name of the folder are specified in the parent and folder_id
@@ -88,7 +91,8 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the bucket in which the folder will reside.
+     *           Required. Name of the bucket in which the folder will reside. The bucket
+     *           must be a hierarchical namespace enabled bucket.
      *     @type \Google\Cloud\Storage\Control\V2\Folder $folder
      *           Required. Properties of the new folder being created.
      *           The bucket and name of the folder are specified in the parent and folder_id
@@ -105,8 +109,7 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
      *           ancestor folders will be created atomically.
      *     @type string $request_id
      *           Optional. A unique identifier for this request. UUID is the recommended
-     *           format, but other formats are still accepted. This request is only
-     *           idempotent if a `request_id` is provided.
+     *           format, but other formats are still accepted.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,7 +118,8 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the bucket in which the folder will reside.
+     * Required. Name of the bucket in which the folder will reside. The bucket
+     * must be a hierarchical namespace enabled bucket.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -126,7 +130,8 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the bucket in which the folder will reside.
+     * Required. Name of the bucket in which the folder will reside. The bucket
+     * must be a hierarchical namespace enabled bucket.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -246,8 +251,7 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique identifier for this request. UUID is the recommended
-     * format, but other formats are still accepted. This request is only
-     * idempotent if a `request_id` is provided.
+     * format, but other formats are still accepted.
      *
      * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
@@ -259,8 +263,7 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A unique identifier for this request. UUID is the recommended
-     * format, but other formats are still accepted. This request is only
-     * idempotent if a `request_id` is provided.
+     * format, but other formats are still accepted.
      *
      * Generated from protobuf field <code>string request_id = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var

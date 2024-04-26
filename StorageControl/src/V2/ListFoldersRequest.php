@@ -9,14 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for ListFolders.
+ * Request message for ListFolders. This operation is only applicable to a
+ * hierarchical namespace enabled bucket.
+ * Hierarchical namespace buckets are in allowlist preview.
  *
  * Generated from protobuf message <code>google.storage.control.v2.ListFoldersRequest</code>
  */
 class ListFoldersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the bucket in which to look for folders.
+     * Required. Name of the bucket in which to look for folders. The bucket must
+     * be a hierarchical namespace enabled bucket.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -77,7 +80,8 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
-     * @param string $parent Required. Name of the bucket in which to look for folders. Please see
+     * @param string $parent Required. Name of the bucket in which to look for folders. The bucket must
+     *                       be a hierarchical namespace enabled bucket. Please see
      *                       {@see StorageControlClient::bucketName()} for help formatting this field.
      *
      * @return \Google\Cloud\Storage\Control\V2\ListFoldersRequest
@@ -97,7 +101,8 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the bucket in which to look for folders.
+     *           Required. Name of the bucket in which to look for folders. The bucket must
+     *           be a hierarchical namespace enabled bucket.
      *     @type int $page_size
      *           Optional. Maximum number of folders to return in a single response. The
      *           service will use this parameter or 1,000 items, whichever is smaller.
@@ -132,7 +137,8 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the bucket in which to look for folders.
+     * Required. Name of the bucket in which to look for folders. The bucket must
+     * be a hierarchical namespace enabled bucket.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -143,7 +149,8 @@ class ListFoldersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the bucket in which to look for folders.
+     * Required. Name of the bucket in which to look for folders. The bucket must
+     * be a hierarchical namespace enabled bucket.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
