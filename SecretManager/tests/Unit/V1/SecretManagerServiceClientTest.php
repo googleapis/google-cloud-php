@@ -31,7 +31,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\SecretManager\V1\AccessSecretVersionResponse;
 use Google\Cloud\SecretManager\V1\ListSecretVersionsResponse;
 use Google\Cloud\SecretManager\V1\ListSecretsResponse;
-use Google\Cloud\SecretManager\V1\Replication;
 use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
 use Google\Cloud\SecretManager\V1\SecretPayload;
@@ -216,8 +215,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
         $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         $response = $gapicClient->createSecret($formattedParent, $secretId, $secret);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -256,8 +253,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
         $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         try {
             $gapicClient->createSecret($formattedParent, $secretId, $secret);
             // If the $gapicClient method call did not throw, fail the test
@@ -993,8 +988,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         $updateMask = new FieldMask();
         $response = $gapicClient->updateSecret($secret, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -1030,8 +1023,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateSecret($secret, $updateMask);

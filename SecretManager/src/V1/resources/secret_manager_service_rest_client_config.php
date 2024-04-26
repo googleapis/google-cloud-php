@@ -50,6 +50,12 @@ return [
             'AccessSecretVersion' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*/versions/*}:access',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/secrets/*/versions/*}:access',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -62,6 +68,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/secrets/*}:addVersion',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/secrets/*}:addVersion',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -74,6 +87,16 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*}/secrets',
                 'body' => 'secret',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/secrets',
+                        'body' => 'secret',
+                        'queryParams' => [
+                            'secret_id',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -88,6 +111,12 @@ return [
             'DeleteSecret' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/secrets/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -100,6 +129,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*/versions/*}:destroy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/secrets/*/versions/*}:destroy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -112,6 +148,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*/versions/*}:disable',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/secrets/*/versions/*}:disable',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -124,6 +167,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*/versions/*}:enable',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/secrets/*/versions/*}:enable',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -135,6 +185,12 @@ return [
             'GetIamPolicy' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{resource=projects/*/secrets/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/secrets/*}:getIamPolicy',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -146,6 +202,12 @@ return [
             'GetSecret' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/secrets/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -157,6 +219,12 @@ return [
             'GetSecretVersion' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*/versions/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/secrets/*/versions/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -168,6 +236,12 @@ return [
             'ListSecretVersions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/secrets/*}/versions',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/secrets/*}/versions',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -179,6 +253,12 @@ return [
             'ListSecrets' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/secrets',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/secrets',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -191,6 +271,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/secrets/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/secrets/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -203,6 +290,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/secrets/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/secrets/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -215,6 +309,16 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{secret.name=projects/*/secrets/*}',
                 'body' => 'secret',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{secret.name=projects/*/locations/*/secrets/*}',
+                        'body' => 'secret',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'secret.name' => [
                         'getters' => [

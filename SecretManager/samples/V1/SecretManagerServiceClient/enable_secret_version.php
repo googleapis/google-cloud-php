@@ -37,7 +37,8 @@ use Google\Cloud\SecretManager\V1\SecretVersion;
  *
  * @param string $formattedName The resource name of the
  *                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to enable in
- *                              the format `projects/&#42;/secrets/&#42;/versions/*`. Please see
+ *                              the format `projects/&#42;/secrets/&#42;/versions/*` or
+ *                              `projects/&#42;/locations/&#42;/secrets/&#42;/versions/*`. Please see
  *                              {@see SecretManagerServiceClient::secretVersionName()} for help formatting this field.
  */
 function enable_secret_version_sample(string $formattedName): void

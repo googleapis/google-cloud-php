@@ -37,7 +37,7 @@ use Google\Cloud\SecretManager\V1\SecretVersion;
  * @param string $formattedParent The resource name of the
  *                                [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
  *                                [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
- *                                `projects/&#42;/secrets/*`. Please see
+ *                                `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
  *                                {@see SecretManagerServiceClient::secretName()} for help formatting this field.
  */
 function add_secret_version_sample(string $formattedParent): void
