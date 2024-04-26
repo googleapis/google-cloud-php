@@ -1442,7 +1442,37 @@ class GrpcTest extends TestCase
         $arr = $grpc->callEncodeMessage($msg);
         $this->assertEquals('foo', $arr['name']);
     }
+    public function testPartialResultSetCustomEncoder()
+    {
+        $partialResultSet = new PartialResultSet();
+        $partialResultSet->mergeFromJsonString(json_encode([
+            'metadata' => [
+                'transaction' => [
+                    'id' => base64_encode(0b00010100) // bytedata is represented as a base64-encoded string in JSON
+                ],
+                'rowType' => [
+                    'fields' => [
+                        ['type' => ['code' => 'INT64']] // enums are represented as their string equivalents in JSON
+                    ]
+                ],
+            ],
+        ]));
 
+        $this->assertEquals(0b00010100, $partialResultSet->getMetadata()->getTransaction()->getId());
+        $this->assertEquals(2, $partialResultSet->getMetadata()->getRowType()->getFields()[0]->getType()->getCode());
+
+        // decode the message and ensure it's decoded as expected
+        $grpc = new Grpc();
+        $serializerProp = new \ReflectionProperty($grpc, 'serializer');
+        $serializerProp->setAccessible(true);
+        $serializer = $serializerProp->getValue($grpc);
+        $arr = $serializer->encodeMessage($partialResultSet);
+
+        // We expect this to be the binary string
+        $this->assertEquals(0b00010100, $arr['metadata']['transaction']['id']);
+        // We expect this to be the integer
+        $this->assertEquals(2, $arr['metadata']['rowType']['fields'][0]['type']['code']);
+    }
     private function assertCallCorrect(
         $method,
         array $args,
