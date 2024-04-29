@@ -1,5 +1,80 @@
 # Changelog
 
+## 0.243.0
+
+<details><summary>google/cloud-compute 1.16.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 0.5.0</summary>
+
+
+
+### Features
+
+* Annotations are now supported to help client tools identify deployments during automation ([0a27dbb](https://github.com/googleapis/google-cloud-php/commit/0a27dbbbda4ee70a6e65d6975066a407b071c62f))
+* Infrastructure manager supports 1.2.3, 1.3.10, 1.4.7, 1.5.7 versions of Terraform when creating a preview of a deployment ([#7251](https://github.com/googleapis/google-cloud-php/issues/7251)) ([0a27dbb](https://github.com/googleapis/google-cloud-php/commit/0a27dbbbda4ee70a6e65d6975066a407b071c62f))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.10.1</summary>
+
+
+
+### Bug Fixes
+
+* Defined class prefix of GMON for Objective C ([#7256](https://github.com/googleapis/google-cloud-php/issues/7256)) ([d120277](https://github.com/googleapis/google-cloud-php/commit/d12027711154292c14917c6ef76382fc7fca2dab))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.12.0</summary>
+
+
+
+### Features
+
+* Add Fraud Prevention settings field ([#7252](https://github.com/googleapis/google-cloud-php/issues/7252)) ([d65086e](https://github.com/googleapis/google-cloud-php/commit/d65086eea0e1b90f24f04d7085c5769679f75250))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.15.0</summary>
+
+
+
+### Features
+
+* Add Secret Version Delayed Destroy changes for client libraries ([#7250](https://github.com/googleapis/google-cloud-php/issues/7250)) ([6744443](https://github.com/googleapis/google-cloud-php/commit/6744443c0689dd56d6b7882d7c444a1fc2f07179))
+
+
+### Documentation
+
+* Users can now enable secret version delayed destruction ([6744443](https://github.com/googleapis/google-cloud-php/commit/6744443c0689dd56d6b7882d7c444a1fc2f07179))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.76.0</summary>
+
+
+
+### Features
+
+* Add `RESOURCE_EXHAUSTED` to the list of retryable error codes ([#7259](https://github.com/googleapis/google-cloud-php/issues/7259)) ([389ab2d](https://github.com/googleapis/google-cloud-php/commit/389ab2df8050901de3f8c6a29705a43307367416))
+* Improved latency for executeStreaminSql calls ([#7254](https://github.com/googleapis/google-cloud-php/issues/7254)) ([6d164d9](https://github.com/googleapis/google-cloud-php/commit/6d164d92ffd8160de15bb8bd73c43e78008c4aac))
+
+</details>
+
+<details><summary>google/cloud-storage-control 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce StorageControl ([#7245](https://github.com/googleapis/google-cloud-php/issues/7245)) ([5cd4215](https://github.com/googleapis/google-cloud-php/commit/5cd4215e4c17b57081a2133882464225b962ac56))
+
+</details>
+
 ## 0.242.0
 
 <details><summary>google/cloud-access-approval 1.2.3</summary>

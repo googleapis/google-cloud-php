@@ -221,7 +221,12 @@ return [
                 ],
             ],
             'templateMap' => [
+                'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',
+                'projectLocationSecret' => 'projects/{project}/locations/{location}/secrets/{secret}',
+                'projectLocationSecretSecretVersion' => 'projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}',
+                'projectSecret' => 'projects/{project}/secrets/{secret}',
+                'projectSecretSecretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'secret' => 'projects/{project}/secrets/{secret}',
                 'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'topic' => 'projects/{project}/topics/{topic}',

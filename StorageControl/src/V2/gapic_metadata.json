@@ -1,0 +1,68 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.storage.control.v2",
+    "libraryPackage": "Google\\Cloud\\Storage\\Control\\V2",
+    "services": {
+        "StorageControl": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "StorageControlGapicClient",
+                    "rpcs": {
+                        "CreateFolder": {
+                            "methods": [
+                                "createFolder"
+                            ]
+                        },
+                        "CreateManagedFolder": {
+                            "methods": [
+                                "createManagedFolder"
+                            ]
+                        },
+                        "DeleteFolder": {
+                            "methods": [
+                                "deleteFolder"
+                            ]
+                        },
+                        "DeleteManagedFolder": {
+                            "methods": [
+                                "deleteManagedFolder"
+                            ]
+                        },
+                        "GetFolder": {
+                            "methods": [
+                                "getFolder"
+                            ]
+                        },
+                        "GetManagedFolder": {
+                            "methods": [
+                                "getManagedFolder"
+                            ]
+                        },
+                        "GetStorageLayout": {
+                            "methods": [
+                                "getStorageLayout"
+                            ]
+                        },
+                        "ListFolders": {
+                            "methods": [
+                                "listFolders"
+                            ]
+                        },
+                        "ListManagedFolders": {
+                            "methods": [
+                                "listManagedFolders"
+                            ]
+                        },
+                        "RenameFolder": {
+                            "methods": [
+                                "renameFolder"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

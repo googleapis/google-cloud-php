@@ -20,7 +20,7 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] associated with the
      * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in
-     * the format `projects/&#42;&#47;secrets/&#42;`.
+     * the format `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,7 +55,7 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The resource name of the
      *                       [Secret][google.cloud.secretmanager.v1.Secret] associated with the
      *                       [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in
-     *                       the format `projects/&#42;/secrets/*`. Please see
+     *                       the format `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
      *                       {@see SecretManagerServiceClient::secretName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecretManager\V1\ListSecretVersionsRequest
@@ -78,7 +78,7 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the
      *           [Secret][google.cloud.secretmanager.v1.Secret] associated with the
      *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in
-     *           the format `projects/&#42;&#47;secrets/&#42;`.
+     *           the format `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *     @type int $page_size
      *           Optional. The maximum number of results to be returned in a single page. If
      *           set to 0, the server decides the number of results to return. If the
@@ -103,7 +103,7 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] associated with the
      * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in
-     * the format `projects/&#42;&#47;secrets/&#42;`.
+     * the format `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -117,7 +117,7 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] associated with the
      * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in
-     * the format `projects/&#42;&#47;secrets/&#42;`.
+     * the format `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

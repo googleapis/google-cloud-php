@@ -37,10 +37,13 @@ use Google\Cloud\SecretManager\V1\SecretVersion;
  *
  * @param string $formattedName The resource name of the
  *                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
- *                              `projects/&#42;/secrets/&#42;/versions/*`.
+ *                              `projects/&#42;/secrets/&#42;/versions/*` or
+ *                              `projects/&#42;/locations/&#42;/secrets/&#42;/versions/*`.
  *
- *                              `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
- *                              created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. Please see
+ *                              `projects/&#42;/secrets/&#42;/versions/latest` or
+ *                              `projects/&#42;/locations/&#42;/secrets/&#42;/versions/latest` is an alias to the most
+ *                              recently created
+ *                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. Please see
  *                              {@see SecretManagerServiceClient::secretVersionName()} for help formatting this field.
  */
 function get_secret_version_sample(string $formattedName): void

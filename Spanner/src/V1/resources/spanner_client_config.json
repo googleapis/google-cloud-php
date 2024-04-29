@@ -5,13 +5,16 @@
                 "no_retry_codes": [],
                 "no_retry_1_codes": [],
                 "retry_policy_1_codes": [
-                    "UNAVAILABLE"
+                    "UNAVAILABLE",
+                    "RESOURCE_EXHAUSTED"
                 ],
                 "retry_policy_2_codes": [
-                    "UNAVAILABLE"
+                    "UNAVAILABLE",
+                    "RESOURCE_EXHAUSTED"
                 ],
                 "retry_policy_3_codes": [
-                    "UNAVAILABLE"
+                    "UNAVAILABLE",
+                    "RESOURCE_EXHAUSTED"
                 ]
             },
             "retry_params": {
