@@ -1,4 +1,4 @@
-FROM gcr.io/gcp-runtimes/ubuntu_16_0_4
+FROM gcr.io/gcp-runtimes/ubuntu_20_0_4
 ENV PHP_DIR=/opt/php80
 ENV PHP_VERSION=8.1.18
 ENV PHP_SRC_DIR=/usr/local/src/php81-build
@@ -76,6 +76,7 @@ RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
         --without-sqlite3 \
         --without-pdo-sqlite \
         --with-pear && \
+        --with-sodium && \
         make && \
         make install && \
         cp php.ini-production ${PHP_DIR}/lib/php.ini
