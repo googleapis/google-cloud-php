@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use UnexpectedValueException;
 
 /**
- * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+ * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType</code>
  */

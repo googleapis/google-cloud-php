@@ -34,7 +34,11 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\Parallelstore\V1beta\Client\ParallelstoreClient;
 use Google\Cloud\Parallelstore\V1beta\CreateInstanceRequest;
 use Google\Cloud\Parallelstore\V1beta\DeleteInstanceRequest;
+use Google\Cloud\Parallelstore\V1beta\ExportDataRequest;
+use Google\Cloud\Parallelstore\V1beta\ExportDataResponse;
 use Google\Cloud\Parallelstore\V1beta\GetInstanceRequest;
+use Google\Cloud\Parallelstore\V1beta\ImportDataRequest;
+use Google\Cloud\Parallelstore\V1beta\ImportDataResponse;
 use Google\Cloud\Parallelstore\V1beta\Instance;
 use Google\Cloud\Parallelstore\V1beta\ListInstancesRequest;
 use Google\Cloud\Parallelstore\V1beta\ListInstancesResponse;
@@ -104,6 +108,7 @@ class ParallelstoreClientTest extends GeneratedTest
         $daosVersion = 'daosVersion-1809382982';
         $network = 'network1843485230';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $effectiveReservedIpRange = 'effectiveReservedIpRange-598066492';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -111,6 +116,7 @@ class ParallelstoreClientTest extends GeneratedTest
         $expectedResponse->setDaosVersion($daosVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setEffectiveReservedIpRange($effectiveReservedIpRange);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -352,6 +358,128 @@ class ParallelstoreClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function exportDataTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportDataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new ExportDataResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/exportDataTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new ExportDataRequest())->setName($formattedName);
+        $response = $gapicClient->exportData($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.parallelstore.v1beta.Parallelstore/ExportData', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportDataTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function exportDataExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportDataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new ExportDataRequest())->setName($formattedName);
+        $response = $gapicClient->exportData($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportDataTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
@@ -366,6 +494,7 @@ class ParallelstoreClientTest extends GeneratedTest
         $daosVersion = 'daosVersion-1809382982';
         $network = 'network1843485230';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $effectiveReservedIpRange = 'effectiveReservedIpRange-598066492';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -373,6 +502,7 @@ class ParallelstoreClientTest extends GeneratedTest
         $expectedResponse->setDaosVersion($daosVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setEffectiveReservedIpRange($effectiveReservedIpRange);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
@@ -424,6 +554,128 @@ class ParallelstoreClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function importDataTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importDataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new ImportDataResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/importDataTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new ImportDataRequest())->setName($formattedName);
+        $response = $gapicClient->importData($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.parallelstore.v1beta.Parallelstore/ImportData', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importDataTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function importDataExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importDataTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new ImportDataRequest())->setName($formattedName);
+        $response = $gapicClient->importData($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importDataTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -524,6 +776,7 @@ class ParallelstoreClientTest extends GeneratedTest
         $daosVersion = 'daosVersion-1809382982';
         $network = 'network1843485230';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $effectiveReservedIpRange = 'effectiveReservedIpRange-598066492';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -531,6 +784,7 @@ class ParallelstoreClientTest extends GeneratedTest
         $expectedResponse->setDaosVersion($daosVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setEffectiveReservedIpRange($effectiveReservedIpRange);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -794,6 +1048,7 @@ class ParallelstoreClientTest extends GeneratedTest
         $daosVersion = 'daosVersion-1809382982';
         $network = 'network1843485230';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $effectiveReservedIpRange = 'effectiveReservedIpRange-598066492';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
@@ -801,6 +1056,7 @@ class ParallelstoreClientTest extends GeneratedTest
         $expectedResponse->setDaosVersion($daosVersion);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setEffectiveReservedIpRange($effectiveReservedIpRange);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

@@ -94,6 +94,12 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceConsumptionInfo total_resources = 97406698;</code>
      */
     private $total_resources = null;
+    /**
+     * [Output Only] The information about an upcoming maintenance event.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
+     */
+    private $upcoming_maintenance = null;
 
     /**
      * Constructor.
@@ -129,6 +135,8 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *           Check the Status enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InstanceConsumptionInfo $total_resources
      *           Total amount of available resources on the node.
+     *     @type \Google\Cloud\Compute\V1\UpcomingMaintenance $upcoming_maintenance
+     *           [Output Only] The information about an upcoming maintenance event.
      * }
      */
     public function __construct($data = NULL) {
@@ -564,6 +572,42 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceConsumptionInfo::class);
         $this->total_resources = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The information about an upcoming maintenance event.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
+     * @return \Google\Cloud\Compute\V1\UpcomingMaintenance|null
+     */
+    public function getUpcomingMaintenance()
+    {
+        return $this->upcoming_maintenance;
+    }
+
+    public function hasUpcomingMaintenance()
+    {
+        return isset($this->upcoming_maintenance);
+    }
+
+    public function clearUpcomingMaintenance()
+    {
+        unset($this->upcoming_maintenance);
+    }
+
+    /**
+     * [Output Only] The information about an upcoming maintenance event.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UpcomingMaintenance upcoming_maintenance = 227348592;</code>
+     * @param \Google\Cloud\Compute\V1\UpcomingMaintenance $var
+     * @return $this
+     */
+    public function setUpcomingMaintenance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\UpcomingMaintenance::class);
+        $this->upcoming_maintenance = $var;
 
         return $this;
     }

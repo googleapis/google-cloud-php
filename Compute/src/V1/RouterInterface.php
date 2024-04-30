@@ -15,11 +15,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class RouterInterface extends \Google\Protobuf\Internal\Message
 {
     /**
-     * IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+     * IP address and range of the interface. - For Internet Protocol version 4 (IPv4), the IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example, 169.254.0.1/30. Note: Do not truncate the IP address, as it represents the IP address of the interface. - For Internet Protocol version 6 (IPv6), the value must be a unique local address (ULA) range from fdff:1::/64 with a mask length of 126 or less. This value should be a CIDR-formatted string, for example, fc00:0:1:1::1/112. Within the router's VPC, this IPv6 prefix will be reserved exclusively for this connection and cannot be used for any other purpose. 
      *
      * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
      */
     private $ip_range = null;
+    /**
+     * IP version of this interface.
+     * Check the IpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ip_version = 294959552;</code>
+     */
+    private $ip_version = null;
     /**
      * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *
@@ -71,7 +78,10 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ip_range
-     *           IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+     *           IP address and range of the interface. - For Internet Protocol version 4 (IPv4), the IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example, 169.254.0.1/30. Note: Do not truncate the IP address, as it represents the IP address of the interface. - For Internet Protocol version 6 (IPv6), the value must be a unique local address (ULA) range from fdff:1::/64 with a mask length of 126 or less. This value should be a CIDR-formatted string, for example, fc00:0:1:1::1/112. Within the router's VPC, this IPv6 prefix will be reserved exclusively for this connection and cannot be used for any other purpose. 
+     *     @type string $ip_version
+     *           IP version of this interface.
+     *           Check the IpVersion enum for the list of possible values.
      *     @type string $linked_interconnect_attachment
      *           URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a subnetwork.
      *     @type string $linked_vpn_tunnel
@@ -95,7 +105,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+     * IP address and range of the interface. - For Internet Protocol version 4 (IPv4), the IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example, 169.254.0.1/30. Note: Do not truncate the IP address, as it represents the IP address of the interface. - For Internet Protocol version 6 (IPv6), the value must be a unique local address (ULA) range from fdff:1::/64 with a mask length of 126 or less. This value should be a CIDR-formatted string, for example, fc00:0:1:1::1/112. Within the router's VPC, this IPv6 prefix will be reserved exclusively for this connection and cannot be used for any other purpose. 
      *
      * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
      * @return string
@@ -116,7 +126,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+     * IP address and range of the interface. - For Internet Protocol version 4 (IPv4), the IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example, 169.254.0.1/30. Note: Do not truncate the IP address, as it represents the IP address of the interface. - For Internet Protocol version 6 (IPv6), the value must be a unique local address (ULA) range from fdff:1::/64 with a mask length of 126 or less. This value should be a CIDR-formatted string, for example, fc00:0:1:1::1/112. Within the router's VPC, this IPv6 prefix will be reserved exclusively for this connection and cannot be used for any other purpose. 
      *
      * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
      * @param string $var
@@ -126,6 +136,44 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * IP version of this interface.
+     * Check the IpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ip_version = 294959552;</code>
+     * @return string
+     */
+    public function getIpVersion()
+    {
+        return isset($this->ip_version) ? $this->ip_version : '';
+    }
+
+    public function hasIpVersion()
+    {
+        return isset($this->ip_version);
+    }
+
+    public function clearIpVersion()
+    {
+        unset($this->ip_version);
+    }
+
+    /**
+     * IP version of this interface.
+     * Check the IpVersion enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ip_version = 294959552;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_version = $var;
 
         return $this;
     }

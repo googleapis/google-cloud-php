@@ -43,6 +43,12 @@ class Status
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;
+    /**
+     * InstantSnapshot is currently unavailable and cannot be used for Disk restoration
+     *
+     * Generated from protobuf enum <code>UNAVAILABLE = 413756464;</code>
+     */
+    const UNAVAILABLE = 413756464;
 
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
@@ -50,6 +56,7 @@ class Status
         self::DELETING => 'DELETING',
         self::FAILED => 'FAILED',
         self::READY => 'READY',
+        self::UNAVAILABLE => 'UNAVAILABLE',
     ];
 
     public static function name($value)
