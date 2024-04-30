@@ -21,6 +21,7 @@ RUN apt-get update && \
             libkrb5-dev \
             libmcrypt-dev \
             libpq-dev \
+            libsodium-dev \
             libssl-dev \
             libxml2-dev \
             libzip-dev \
@@ -75,7 +76,7 @@ RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
         --with-kerberos \
         --without-sqlite3 \
         --without-pdo-sqlite \
-        --with-pear && \
+        --with-pear \
         --with-sodium && \
         make && \
         make install && \
