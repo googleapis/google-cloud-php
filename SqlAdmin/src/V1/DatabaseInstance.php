@@ -300,6 +300,20 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string write_endpoint = 52 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $write_endpoint = null;
+    /**
+     * Optional. The pair of a primary instance and disaster recovery (DR)
+     * replica. A DR replica is a cross-region replica that you designate for
+     * failover in the event that the primary instance has regional failure.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $replication_cluster = null;
+    /**
+     * Gemini configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.GeminiInstanceConfig gemini_config = 55;</code>
+     */
+    private $gemini_config = null;
 
     /**
      * Constructor.
@@ -425,6 +439,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Output only. DEPRECATED: please use write_endpoint instead.
      *     @type string $write_endpoint
      *           Output only. The dns name of the primary instance in a replication group.
+     *     @type \Google\Cloud\Sql\V1\ReplicationCluster $replication_cluster
+     *           Optional. The pair of a primary instance and disaster recovery (DR)
+     *           replica. A DR replica is a cross-region replica that you designate for
+     *           failover in the event that the primary instance has regional failure.
+     *     @type \Google\Cloud\Sql\V1\GeminiInstanceConfig $gemini_config
+     *           Gemini configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -1861,6 +1881,82 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->write_endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The pair of a primary instance and disaster recovery (DR)
+     * replica. A DR replica is a cross-region replica that you designate for
+     * failover in the event that the primary instance has regional failure.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\ReplicationCluster|null
+     */
+    public function getReplicationCluster()
+    {
+        return $this->replication_cluster;
+    }
+
+    public function hasReplicationCluster()
+    {
+        return isset($this->replication_cluster);
+    }
+
+    public function clearReplicationCluster()
+    {
+        unset($this->replication_cluster);
+    }
+
+    /**
+     * Optional. The pair of a primary instance and disaster recovery (DR)
+     * replica. A DR replica is a cross-region replica that you designate for
+     * failover in the event that the primary instance has regional failure.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\ReplicationCluster $var
+     * @return $this
+     */
+    public function setReplicationCluster($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ReplicationCluster::class);
+        $this->replication_cluster = $var;
+
+        return $this;
+    }
+
+    /**
+     * Gemini configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.GeminiInstanceConfig gemini_config = 55;</code>
+     * @return \Google\Cloud\Sql\V1\GeminiInstanceConfig|null
+     */
+    public function getGeminiConfig()
+    {
+        return $this->gemini_config;
+    }
+
+    public function hasGeminiConfig()
+    {
+        return isset($this->gemini_config);
+    }
+
+    public function clearGeminiConfig()
+    {
+        unset($this->gemini_config);
+    }
+
+    /**
+     * Gemini configuration.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.GeminiInstanceConfig gemini_config = 55;</code>
+     * @param \Google\Cloud\Sql\V1\GeminiInstanceConfig $var
+     * @return $this
+     */
+    public function setGeminiConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\GeminiInstanceConfig::class);
+        $this->gemini_config = $var;
 
         return $this;
     }

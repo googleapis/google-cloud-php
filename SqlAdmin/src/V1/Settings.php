@@ -252,6 +252,15 @@ class Settings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.DataCacheConfig data_cache_config = 37;</code>
      */
     private $data_cache_config = null;
+    /**
+     * Optional. When this parameter is set to true, Cloud SQL instances can
+     * connect to Vertex AI to pass requests for real-time predictions and
+     * insights to the AI. The default value is false. This applies only to Cloud
+     * SQL for PostgreSQL instances.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_google_ml_integration = null;
 
     /**
      * Constructor.
@@ -365,6 +374,11 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           relevant only for SQL Server.
      *     @type \Google\Cloud\Sql\V1\DataCacheConfig $data_cache_config
      *           Configuration for data cache.
+     *     @type \Google\Protobuf\BoolValue $enable_google_ml_integration
+     *           Optional. When this parameter is set to true, Cloud SQL instances can
+     *           connect to Vertex AI to pass requests for real-time predictions and
+     *           insights to the AI. The default value is false. This applies only to Cloud
+     *           SQL for PostgreSQL instances.
      * }
      */
     public function __construct($data = NULL) {
@@ -1679,6 +1693,81 @@ class Settings extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Optional. When this parameter is set to true, Cloud SQL instances can
+     * connect to Vertex AI to pass requests for real-time predictions and
+     * insights to the AI. The default value is false. This applies only to Cloud
+     * SQL for PostgreSQL instances.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnableGoogleMlIntegration()
+    {
+        return $this->enable_google_ml_integration;
+    }
+
+    public function hasEnableGoogleMlIntegration()
+    {
+        return isset($this->enable_google_ml_integration);
+    }
+
+    public function clearEnableGoogleMlIntegration()
+    {
+        unset($this->enable_google_ml_integration);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnableGoogleMlIntegration()</code>
+
+     * Optional. When this parameter is set to true, Cloud SQL instances can
+     * connect to Vertex AI to pass requests for real-time predictions and
+     * insights to the AI. The default value is false. This applies only to Cloud
+     * SQL for PostgreSQL instances.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getEnableGoogleMlIntegrationValue()
+    {
+        return $this->readWrapperValue("enable_google_ml_integration");
+    }
+
+    /**
+     * Optional. When this parameter is set to true, Cloud SQL instances can
+     * connect to Vertex AI to pass requests for real-time predictions and
+     * insights to the AI. The default value is false. This applies only to Cloud
+     * SQL for PostgreSQL instances.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnableGoogleMlIntegration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_google_ml_integration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. When this parameter is set to true, Cloud SQL instances can
+     * connect to Vertex AI to pass requests for real-time predictions and
+     * insights to the AI. The default value is false. This applies only to Cloud
+     * SQL for PostgreSQL instances.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_google_ml_integration = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnableGoogleMlIntegrationValue($var)
+    {
+        $this->writeWrapperValue("enable_google_ml_integration", $var);
+        return $this;}
 
 }
 
