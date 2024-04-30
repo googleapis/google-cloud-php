@@ -20,6 +20,18 @@ class StatusReason
      */
     const UNDEFINED_STATUS_REASON = 0;
     /**
+     * BGP peer disabled because it requires IPv4 but the underlying connection is IPv6-only.
+     *
+     * Generated from protobuf enum <code>IPV4_PEER_ON_IPV6_ONLY_CONNECTION = 435936662;</code>
+     */
+    const IPV4_PEER_ON_IPV6_ONLY_CONNECTION = 435936662;
+    /**
+     * BGP peer disabled because it requires IPv6 but the underlying connection is IPv4-only.
+     *
+     * Generated from protobuf enum <code>IPV6_PEER_ON_IPV4_ONLY_CONNECTION = 436304082;</code>
+     */
+    const IPV6_PEER_ON_IPV4_ONLY_CONNECTION = 436304082;
+    /**
      * Indicates internal problems with configuration of MD5 authentication. This particular reason can only be returned when md5AuthEnabled is true and status is DOWN.
      *
      * Generated from protobuf enum <code>MD5_AUTH_INTERNAL_PROBLEM = 140462259;</code>
@@ -32,6 +44,8 @@ class StatusReason
 
     private static $valueToName = [
         self::UNDEFINED_STATUS_REASON => 'UNDEFINED_STATUS_REASON',
+        self::IPV4_PEER_ON_IPV6_ONLY_CONNECTION => 'IPV4_PEER_ON_IPV6_ONLY_CONNECTION',
+        self::IPV6_PEER_ON_IPV4_ONLY_CONNECTION => 'IPV6_PEER_ON_IPV4_ONLY_CONNECTION',
         self::MD5_AUTH_INTERNAL_PROBLEM => 'MD5_AUTH_INTERNAL_PROBLEM',
         self::STATUS_REASON_UNSPECIFIED => 'STATUS_REASON_UNSPECIFIED',
     ];

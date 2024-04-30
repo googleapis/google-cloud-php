@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * This reservation type allows to pre allocate specific instance configuration. Next ID: 6
+ * This reservation type allows to pre allocate specific instance configuration.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationSpecificSKUReservation</code>
  */

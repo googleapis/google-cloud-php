@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The allocatable prefix length supported by this PublicDelegatedSubPrefix.
+     *
+     * Generated from protobuf field <code>optional int32 allocatable_prefix_length = 38427446;</code>
+     */
+    private $allocatable_prefix_length = null;
+    /**
      * Name of the project scoping this PublicDelegatedSubPrefix.
      *
      * Generated from protobuf field <code>optional string delegatee_project = 414860634;</code>
@@ -39,6 +45,13 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      * Generated from protobuf field <code>optional bool is_address = 352617951;</code>
      */
     private $is_address = null;
+    /**
+     * The PublicDelegatedSubPrefix mode for IPv6 only.
+     * Check the Mode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
+     */
+    private $mode = null;
     /**
      * The name of the sub public delegated prefix.
      *
@@ -65,6 +78,8 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $allocatable_prefix_length
+     *           The allocatable prefix length supported by this PublicDelegatedSubPrefix.
      *     @type string $delegatee_project
      *           Name of the project scoping this PublicDelegatedSubPrefix.
      *     @type string $description
@@ -73,6 +88,9 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      *           The IP address range, in CIDR format, represented by this sub public delegated prefix.
      *     @type bool $is_address
      *           Whether the sub prefix is delegated to create Address resources in the delegatee project.
+     *     @type string $mode
+     *           The PublicDelegatedSubPrefix mode for IPv6 only.
+     *           Check the Mode enum for the list of possible values.
      *     @type string $name
      *           The name of the sub public delegated prefix.
      *     @type string $region
@@ -85,6 +103,42 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The allocatable prefix length supported by this PublicDelegatedSubPrefix.
+     *
+     * Generated from protobuf field <code>optional int32 allocatable_prefix_length = 38427446;</code>
+     * @return int
+     */
+    public function getAllocatablePrefixLength()
+    {
+        return isset($this->allocatable_prefix_length) ? $this->allocatable_prefix_length : 0;
+    }
+
+    public function hasAllocatablePrefixLength()
+    {
+        return isset($this->allocatable_prefix_length);
+    }
+
+    public function clearAllocatablePrefixLength()
+    {
+        unset($this->allocatable_prefix_length);
+    }
+
+    /**
+     * The allocatable prefix length supported by this PublicDelegatedSubPrefix.
+     *
+     * Generated from protobuf field <code>optional int32 allocatable_prefix_length = 38427446;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAllocatablePrefixLength($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->allocatable_prefix_length = $var;
+
+        return $this;
     }
 
     /**
@@ -227,6 +281,44 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     {
         GPBUtil::checkBool($var);
         $this->is_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * The PublicDelegatedSubPrefix mode for IPv6 only.
+     * Check the Mode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
+     * @return string
+     */
+    public function getMode()
+    {
+        return isset($this->mode) ? $this->mode : '';
+    }
+
+    public function hasMode()
+    {
+        return isset($this->mode);
+    }
+
+    public function clearMode()
+    {
+        unset($this->mode);
+    }
+
+    /**
+     * The PublicDelegatedSubPrefix mode for IPv6 only.
+     * Check the Mode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->mode = $var;
 
         return $this;
     }
