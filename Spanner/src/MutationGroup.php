@@ -245,6 +245,11 @@ class MutationGroup
         return $this;
     }
 
+    public function toArray(): array
+    {
+        return ['mutations' => $this->mutationGroup];
+    }
+
     /**
      * Format, validate and enqueue mutations in the transaction.
      *

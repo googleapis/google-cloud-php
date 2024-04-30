@@ -47,6 +47,7 @@ use Google\Cloud\Spanner\MutationGroup;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\RequestHeaderTrait;
+use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup as BatchWriteRequestMutationGroup;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\DirectedReadOptions;
@@ -1128,8 +1129,19 @@ class Grpc implements ConnectionInterface
     public function batchWrite(array $args)
     {
         $databaseName = $this->pluck('database', $args);
-        $mutationGroups = $this->parseMutations($this->pluck('mutationGroups', $args));
+        $mutationGroups = $this->pluck('mutationGroups', $args);
         $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+
+        array_walk(
+            $mutationGroups,
+            fn(&$x) => $x['mutations'] = $this->parseMutations($x['mutations'])
+        );
+
+        array_walk($mutationGroups, fn(&$x) => $x = $this->serializer->decodeMessage(
+            new BatchWriteRequestMutationGroup,
+            $x
+        ));
+
         if ($requestOptions) {
             $args['requestOptions'] = $this->serializer->decodeMessage(
                 new RequestOptions,

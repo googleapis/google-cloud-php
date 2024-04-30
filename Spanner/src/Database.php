@@ -1725,7 +1725,7 @@ class Database
      * ```
      * ```
      *
-     * @param MutationGroup[] $mutationGroups Required. The groups of mutations to be applied.
+     * @param array<MutationGroup> $mutationGroups Required. The groups of mutations to be applied.
      * @param array           $options   {
      *     Optional.
      *
@@ -1751,7 +1751,7 @@ class Database
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchWrite(array $mutationGroups, array $options) {
+    public function batchWrite(array $mutationGroups, array $options = []) {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
@@ -1761,6 +1761,9 @@ class Database
             SessionPoolInterface::CONTEXT_READWRITE,
             $this->pluck('sessionOptions', $options, false) ?: []
         );
+
+        array_walk($mutationGroups, fn (&$x) => $x = $x->toArray());
+
         try {
             return $this->connection->batchWrite([
                 'database' => $this->name(),
