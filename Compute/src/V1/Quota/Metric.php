@@ -592,6 +592,10 @@ class Metric
      */
     const SSL_CERTIFICATES = 378372399;
     /**
+     * Generated from protobuf enum <code>SSL_POLICIES = 523254339;</code>
+     */
+    const SSL_POLICIES = 523254339;
+    /**
      * Generated from protobuf enum <code>STATIC_ADDRESSES = 93624049;</code>
      */
     const STATIC_ADDRESSES = 93624049;
@@ -816,6 +820,7 @@ class Metric
         self::SNAPSHOTS => 'SNAPSHOTS',
         self::SSD_TOTAL_GB => 'SSD_TOTAL_GB',
         self::SSL_CERTIFICATES => 'SSL_CERTIFICATES',
+        self::SSL_POLICIES => 'SSL_POLICIES',
         self::STATIC_ADDRESSES => 'STATIC_ADDRESSES',
         self::STATIC_BYOIP_ADDRESSES => 'STATIC_BYOIP_ADDRESSES',
         self::STATIC_EXTERNAL_IPV6_ADDRESS_RANGES => 'STATIC_EXTERNAL_IPV6_ADDRESS_RANGES',
