@@ -20,9 +20,19 @@
                                 "deleteInstance"
                             ]
                         },
+                        "ExportData": {
+                            "methods": [
+                                "exportData"
+                            ]
+                        },
                         "GetInstance": {
                             "methods": [
                                 "getInstance"
+                            ]
+                        },
+                        "ImportData": {
+                            "methods": [
+                                "importData"
                             ]
                         },
                         "ListInstances": {
