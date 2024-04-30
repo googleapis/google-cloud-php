@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\RegionNetworkFirewallPoliciesGetEffectiveFirew
 use UnexpectedValueException;
 
 /**
- * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL.
+ * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL, SYSTEM_GLOBAL, SYSTEM_REGIONAL.
  *
  * Protobuf type <code>google.cloud.compute.v1.RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewallPolicy.Type</code>
  */

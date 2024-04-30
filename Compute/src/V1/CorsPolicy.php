@@ -34,7 +34,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $allow_methods;
     /**
-     * Specifies a regular expression that matches allowed origins. For more information about the regular expression syntax, see Syntax. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
+     * Specifies a regular expression that matches allowed origins. For more information, see regular expression syntax . An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      */
@@ -46,7 +46,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $allow_origins;
     /**
-     * If true, the setting specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     * If true, disables the CORS policy. The default value is false, which indicates that the CORS policy is in effect.
      *
      * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      */
@@ -77,11 +77,11 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_methods
      *           Specifies the content for the Access-Control-Allow-Methods header.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_origin_regexes
-     *           Specifies a regular expression that matches allowed origins. For more information about the regular expression syntax, see Syntax. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
+     *           Specifies a regular expression that matches allowed origins. For more information, see regular expression syntax . An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_origins
      *           Specifies the list of origins that is allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *     @type bool $disabled
-     *           If true, the setting specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     *           If true, disables the CORS policy. The default value is false, which indicates that the CORS policy is in effect.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $expose_headers
      *           Specifies the content for the Access-Control-Expose-Headers header.
      *     @type int $max_age
@@ -182,7 +182,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a regular expression that matches allowed origins. For more information about the regular expression syntax, see Syntax. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
+     * Specifies a regular expression that matches allowed origins. For more information, see regular expression syntax . An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -193,7 +193,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a regular expression that matches allowed origins. For more information about the regular expression syntax, see Syntax. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
+     * Specifies a regular expression that matches allowed origins. For more information, see regular expression syntax . An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes. Regular expressions can only be used when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -234,7 +234,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, the setting specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     * If true, disables the CORS policy. The default value is false, which indicates that the CORS policy is in effect.
      *
      * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      * @return bool
@@ -255,7 +255,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, the setting specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     * If true, disables the CORS policy. The default value is false, which indicates that the CORS policy is in effect.
      *
      * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      * @param bool $var
