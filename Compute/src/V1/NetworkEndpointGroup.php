@@ -82,7 +82,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
      * Check the NetworkEndpointType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
@@ -158,7 +158,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           The URL of the network to which all network endpoints in the NEG belong. Uses default project network if unspecified.
      *     @type string $network_endpoint_type
-     *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
      *           Check the NetworkEndpointType enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData $psc_data
      *     @type string $psc_target_service
@@ -567,7 +567,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
      * Check the NetworkEndpointType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
@@ -589,7 +589,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
      * Check the NetworkEndpointType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>

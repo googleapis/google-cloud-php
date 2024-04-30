@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The allocatable prefix length supported by this public delegated prefix. This field is optional and cannot be set for prefixes in DELEGATION mode. It cannot be set for IPv4 prefixes either, and it always defaults to 32.
+     *
+     * Generated from protobuf field <code>optional int32 allocatable_prefix_length = 38427446;</code>
+     */
+    private $allocatable_prefix_length = null;
+    /**
      * [Output Only] The version of BYOIP API.
      * Check the ByoipApiVersion enum for the list of possible values.
      *
@@ -65,6 +71,13 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
+     * The public delegated prefix mode for IPv6 only.
+     * Check the Mode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
+     */
+    private $mode = null;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -108,6 +121,8 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $allocatable_prefix_length
+     *           The allocatable prefix length supported by this public delegated prefix. This field is optional and cannot be set for prefixes in DELEGATION mode. It cannot be set for IPv4 prefixes either, and it always defaults to 32.
      *     @type string $byoip_api_version
      *           [Output Only] The version of BYOIP API.
      *           Check the ByoipApiVersion enum for the list of possible values.
@@ -125,6 +140,9 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      *           If true, the prefix will be live migrated.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#publicDelegatedPrefix for public delegated prefixes.
+     *     @type string $mode
+     *           The public delegated prefix mode for IPv6 only.
+     *           Check the Mode enum for the list of possible values.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $parent_prefix
@@ -143,6 +161,42 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The allocatable prefix length supported by this public delegated prefix. This field is optional and cannot be set for prefixes in DELEGATION mode. It cannot be set for IPv4 prefixes either, and it always defaults to 32.
+     *
+     * Generated from protobuf field <code>optional int32 allocatable_prefix_length = 38427446;</code>
+     * @return int
+     */
+    public function getAllocatablePrefixLength()
+    {
+        return isset($this->allocatable_prefix_length) ? $this->allocatable_prefix_length : 0;
+    }
+
+    public function hasAllocatablePrefixLength()
+    {
+        return isset($this->allocatable_prefix_length);
+    }
+
+    public function clearAllocatablePrefixLength()
+    {
+        unset($this->allocatable_prefix_length);
+    }
+
+    /**
+     * The allocatable prefix length supported by this public delegated prefix. This field is optional and cannot be set for prefixes in DELEGATION mode. It cannot be set for IPv4 prefixes either, and it always defaults to 32.
+     *
+     * Generated from protobuf field <code>optional int32 allocatable_prefix_length = 38427446;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAllocatablePrefixLength($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->allocatable_prefix_length = $var;
+
+        return $this;
     }
 
     /**
@@ -431,6 +485,44 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * The public delegated prefix mode for IPv6 only.
+     * Check the Mode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
+     * @return string
+     */
+    public function getMode()
+    {
+        return isset($this->mode) ? $this->mode : '';
+    }
+
+    public function hasMode()
+    {
+        return isset($this->mode);
+    }
+
+    public function clearMode()
+    {
+        unset($this->mode);
+    }
+
+    /**
+     * The public delegated prefix mode for IPv6 only.
+     * Check the Mode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->mode = $var;
 
         return $this;
     }

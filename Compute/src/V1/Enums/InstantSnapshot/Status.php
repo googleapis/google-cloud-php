@@ -39,4 +39,6 @@ class Status
     const FAILED = 'FAILED';
 
     const READY = 'READY';
+
+    const UNAVAILABLE = 'UNAVAILABLE';
 }

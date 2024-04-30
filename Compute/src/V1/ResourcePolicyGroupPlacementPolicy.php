@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A GroupPlacementPolicy specifies resource placement configuration. It specifies the failure bucket separation as well as network locality
+ * A GroupPlacementPolicy specifies resource placement configuration. It specifies the failure bucket separation
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy</code>
  */

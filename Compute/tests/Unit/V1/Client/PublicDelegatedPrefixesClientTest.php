@@ -416,6 +416,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $allocatablePrefixLength = 1649040182;
         $byoipApiVersion = 'byoipApiVersion162683283';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
@@ -424,12 +425,14 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $ipCidrRange = 'ipCidrRange-2049366326';
         $isLiveMigration = true;
         $kind = 'kind3292052';
+        $mode = 'mode3357091';
         $name = 'name3373707';
         $parentPrefix = 'parentPrefix552104903';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
         $status = 'status-892481550';
         $expectedResponse = new PublicDelegatedPrefix();
+        $expectedResponse->setAllocatablePrefixLength($allocatablePrefixLength);
         $expectedResponse->setByoipApiVersion($byoipApiVersion);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
@@ -438,6 +441,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $expectedResponse->setIpCidrRange($ipCidrRange);
         $expectedResponse->setIsLiveMigration($isLiveMigration);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setMode($mode);
         $expectedResponse->setName($name);
         $expectedResponse->setParentPrefix($parentPrefix);
         $expectedResponse->setRegion($region2);

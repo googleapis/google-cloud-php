@@ -220,6 +220,28 @@ return [
                     ],
                 ],
             ],
+            'PerformMaintenance' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{node_group}/performMaintenance',
+                'body' => 'node_groups_perform_maintenance_request_resource',
+                'placeholders' => [
+                    'node_group' => [
+                        'getters' => [
+                            'getNodeGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/setIamPolicy',
