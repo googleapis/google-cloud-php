@@ -16,13 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class SupervisedHyperParameters extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Number of training epoches for this tuning job.
+     * Optional. Number of complete passes the model makes over the entire
+     * training dataset during training.
      *
      * Generated from protobuf field <code>int64 epoch_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $epoch_count = 0;
     /**
-     * Optional. Learning rate multiplier for tuning.
+     * Optional. Multiplier for adjusting the default learning rate.
      *
      * Generated from protobuf field <code>double learning_rate_multiplier = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -41,9 +42,10 @@ class SupervisedHyperParameters extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $epoch_count
-     *           Optional. Number of training epoches for this tuning job.
+     *           Optional. Number of complete passes the model makes over the entire
+     *           training dataset during training.
      *     @type float $learning_rate_multiplier
-     *           Optional. Learning rate multiplier for tuning.
+     *           Optional. Multiplier for adjusting the default learning rate.
      *     @type int $adapter_size
      *           Optional. Adapter size for tuning.
      * }
@@ -54,7 +56,8 @@ class SupervisedHyperParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Number of training epoches for this tuning job.
+     * Optional. Number of complete passes the model makes over the entire
+     * training dataset during training.
      *
      * Generated from protobuf field <code>int64 epoch_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -65,7 +68,8 @@ class SupervisedHyperParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Number of training epoches for this tuning job.
+     * Optional. Number of complete passes the model makes over the entire
+     * training dataset during training.
      *
      * Generated from protobuf field <code>int64 epoch_count = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
@@ -80,7 +84,7 @@ class SupervisedHyperParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Learning rate multiplier for tuning.
+     * Optional. Multiplier for adjusting the default learning rate.
      *
      * Generated from protobuf field <code>double learning_rate_multiplier = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -91,7 +95,7 @@ class SupervisedHyperParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Learning rate multiplier for tuning.
+     * Optional. Multiplier for adjusting the default learning rate.
      *
      * Generated from protobuf field <code>double learning_rate_multiplier = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
