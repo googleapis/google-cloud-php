@@ -18,7 +18,8 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -67,7 +68,8 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Required. ID of the rule. This id must be unique in the `Automation`
-     *           resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     *           resource to which this rule belongs. The format is
+     *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_phases
      *           Optional. Phases within which jobs are subject to automatic repair actions
      *           on failure. Proceeds only after phase name matched any one in the list, or
@@ -96,7 +98,8 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -108,7 +111,8 @@ class RepairRolloutRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

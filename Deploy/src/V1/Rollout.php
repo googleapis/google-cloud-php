@@ -18,7 +18,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Name of the `Rollout`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     * The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -150,7 +151,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
     private $metadata = null;
     /**
      * Output only. Name of the `ControllerRollout`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -177,7 +178,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Optional. Name of the `Rollout`. Format is
-     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     *           The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *     @type string $uid
      *           Output only. Unique identifier of the `Rollout`.
      *     @type string $description
@@ -233,7 +235,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *           Output only. Metadata contains information about the rollout.
      *     @type string $controller_rollout
      *           Output only. Name of the `ControllerRollout`. Format is
-     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *     @type string $rollback_of_rollout
      *           Output only. Name of the `Rollout` that is rolled back by this `Rollout`.
      *           Empty if this `Rollout` wasn't created as a rollback.
@@ -248,7 +250,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `Rollout`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     * The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -260,7 +263,8 @@ class Rollout extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `Rollout`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
+     * The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -838,7 +842,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Name of the `ControllerRollout`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -850,7 +854,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Name of the `ControllerRollout`. Format is
-     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *
      * Generated from protobuf field <code>string controller_rollout = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
