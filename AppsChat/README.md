@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now, install this component:
 
 ```sh
-$ composer require google/chat
+$ composer require google/apps-chat
 ```
 
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
