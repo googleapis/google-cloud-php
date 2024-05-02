@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\RetrySettings;
-use Google\ApiCore\Retry;
+use Google\ApiCore\Retrier;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
@@ -980,8 +980,10 @@ class Database
             return $transaction;
         };
 
-        $delayFn = fn(int $attempts, \Exception $e) => $e->getRetryDelay();
-        $retryFn = function(\Exception $e) {
+        $delayFn = function(int $attempts, \Exception $e) {
+            return $e->getRetryDelay()['seconds'] * 1000 + $e->getRetryDelay()['nanos'] / 1000000;
+        };
+        $retryFn = function(\Exception $e, array $options) {
             if ($e instanceof AbortedException || ($e instanceof ServiceException
                 && $e->getCode() === Code::INTERNAL
                 && strpos($e->getMessage(), 'RST_STREAM') !== false)) {
@@ -1014,16 +1016,18 @@ class Database
             return $res;
         };
 
-        $retrySetting = new RetrySetting([
+        $retrySetting = new RetrySettings([
             'retriesEnabled' => true,
             'maxRetries' => $options['maxRetries'],
             'retryFunction' => $retryFn,
-            'delayFunction' => $delayFn
+            'retryDelayFunction' => $delayFn,
+            'maxRetryDelayMillis' => PHP_INT_MAX,
+            'totalTimeoutMillis' => PHP_INT_MAX
         ]);
-        $retry = new Retry($retrySetting);
+        $retrier = new Retrier($retrySetting);
 
         try {
-            return $retry->execute($transactionFn, [$operation, $session, $options]);
+            return $retrier->execute($transactionFn, [$operation, $session, $options]);
         } finally {
             $session->setExpiration();
         }
