@@ -27,7 +27,7 @@ class SqlAssertion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sql_statement = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $sql_statement = '';
+    private $sql_statement = '';
 
     /**
      * Constructor.
@@ -72,6 +72,4 @@ class SqlAssertion extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlAssertion::class, \Google\Cloud\Dataplex\V1\DataQualityRule_SqlAssertion::class);
 
