@@ -38,7 +38,6 @@ class AddComponentCommandTest extends TestCase
         '.OwlBot.yaml' => '.OwlBot.yaml.test', // so OwlBot doesn't read the test file
         '.gitattributes' => null,
         '.github/pull_request_template.md' => null,
-        '.repo-metadata.json' => null,
         'CONTRIBUTING.md' => null,
         'LICENSE' => null,
         'README.md' => null,
@@ -54,6 +53,7 @@ class AddComponentCommandTest extends TestCase
     {
         mkdir($tmpDir = sys_get_temp_dir() . '/add-command-test-' . time());
         touch($tmpDir . '/composer.json');
+        file_put_contents($tmpDir . '/.repo-metadata-full.json', '{}');
         self::$tmpDir = realpath($tmpDir);
         $application = new Application();
         $application->add(new AddComponentCommand($tmpDir));
@@ -97,6 +97,8 @@ class AddComponentCommandTest extends TestCase
             );
         }
 
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('google/cloud-secretmanager', $repoMetadataFull);
         $this->assertComposerJson('SecretManager');
     }
 
