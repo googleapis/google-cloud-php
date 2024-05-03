@@ -253,6 +253,14 @@ class Grpc implements ConnectionInterface
                 $fields = $msg->getMetadata()?->getRowType()?->getFields();
                 $data['metadata']['rowType']['fields'] = $this->getFieldDataFromRepeatedFields($fields);
 
+                // These fields in stats should be an int
+                if (isset($data['stats']['rowCountLowerBound'])) {
+                    $data['stats']['rowCountLowerBound'] = (int) $data['stats']['rowCountLowerBound'];
+                }
+                if (isset($data['stats']['rowCountExact'])) {
+                    $data['stats']['rowCountExact'] = (int) $data['stats']['rowCountExact'];
+                }
+
                 return $data;
             }
         ]);
