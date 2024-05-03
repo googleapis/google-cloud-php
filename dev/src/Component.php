@@ -187,13 +187,13 @@ class Component
         if (!$repoMetadataFullJson) {
             throw new RuntimeException('Invalid .repo-metadata-full.json');
         }
-        if (!isset($repoMetadataFullJson[$this->packageName])) {
+        if (!isset($repoMetadataFullJson[$this->name])) {
             throw new RuntimeException(sprintf(
-                'repo metadata not found in .repo-metadata-full.json for component "%s"',
+                'repo metadata for component "%s" not found in .repo-metadata-full.json',
                 $this->name
             ));
         }
-        $repoMetadataJson = $repoMetadataFullJson[$this->packageName];
+        $repoMetadataJson = $repoMetadataFullJson[$this->name];
         if (empty($repoMetadataJson['release_level'])) {
             throw new RuntimeException(sprintf(
                 'repo metadata does not contain "release_level" for component "%s"',

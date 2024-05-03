@@ -98,7 +98,7 @@ class AddComponentCommandTest extends TestCase
         }
 
         $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
-        $this->assertArrayHasKey('google/cloud-secretmanager', $repoMetadataFull);
+        $this->assertArrayHasKey('SecretManager', $repoMetadataFull);
         $this->assertComposerJson('SecretManager');
     }
 
