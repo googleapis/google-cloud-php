@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ListDatabaseRoles][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabaseRoles].
+ * The request for
+ * [ListDatabaseRoles][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabaseRoles].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.ListDatabaseRolesRequest</code>
  */
@@ -18,7 +19,7 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database whose roles should be listed.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`.
+     * `projects/<project>/instances/<instance>/databases/<database>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,8 +33,9 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListDatabaseRolesResponse.next_page_token] from a
-     * previous [ListDatabaseRolesResponse][google.spanner.admin.database.v1.ListDatabaseRolesResponse].
+     * [next_page_token][google.spanner.admin.database.v1.ListDatabaseRolesResponse.next_page_token]
+     * from a previous
+     * [ListDatabaseRolesResponse][google.spanner.admin.database.v1.ListDatabaseRolesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -42,7 +44,7 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The database whose roles should be listed.
      *                       Values are of the form
-     *                       `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`. Please see
+     *                       `projects/<project>/instances/<instance>/databases/<database>`. Please see
      *                       {@see DatabaseAdminClient::databaseName()} for help formatting this field.
      *
      * @return \Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesRequest
@@ -64,14 +66,15 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The database whose roles should be listed.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`.
+     *           `projects/<project>/instances/<instance>/databases/<database>`.
      *     @type int $page_size
      *           Number of database roles to be returned in the response. If 0 or less,
      *           defaults to the server's maximum allowed page size.
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
-     *           [next_page_token][google.spanner.admin.database.v1.ListDatabaseRolesResponse.next_page_token] from a
-     *           previous [ListDatabaseRolesResponse][google.spanner.admin.database.v1.ListDatabaseRolesResponse].
+     *           [next_page_token][google.spanner.admin.database.v1.ListDatabaseRolesResponse.next_page_token]
+     *           from a previous
+     *           [ListDatabaseRolesResponse][google.spanner.admin.database.v1.ListDatabaseRolesResponse].
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +85,7 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database whose roles should be listed.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`.
+     * `projects/<project>/instances/<instance>/databases/<database>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +98,7 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The database whose roles should be listed.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`.
+     * `projects/<project>/instances/<instance>/databases/<database>`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -139,8 +142,9 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListDatabaseRolesResponse.next_page_token] from a
-     * previous [ListDatabaseRolesResponse][google.spanner.admin.database.v1.ListDatabaseRolesResponse].
+     * [next_page_token][google.spanner.admin.database.v1.ListDatabaseRolesResponse.next_page_token]
+     * from a previous
+     * [ListDatabaseRolesResponse][google.spanner.admin.database.v1.ListDatabaseRolesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -152,8 +156,9 @@ class ListDatabaseRolesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListDatabaseRolesResponse.next_page_token] from a
-     * previous [ListDatabaseRolesResponse][google.spanner.admin.database.v1.ListDatabaseRolesResponse].
+     * [next_page_token][google.spanner.admin.database.v1.ListDatabaseRolesResponse.next_page_token]
+     * from a previous
+     * [ListDatabaseRolesResponse][google.spanner.admin.database.v1.ListDatabaseRolesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
