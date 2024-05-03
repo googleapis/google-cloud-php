@@ -18,9 +18,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the NotebookRuntimeTemplate.
+     * The resource name of the NotebookRuntimeTemplate.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
@@ -146,7 +146,7 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the NotebookRuntimeTemplate.
+     *           The resource name of the NotebookRuntimeTemplate.
      *     @type string $display_name
      *           Required. The display name of the NotebookRuntimeTemplate.
      *           The name can be up to 128 characters long and can consist of any UTF-8
@@ -206,9 +206,9 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the NotebookRuntimeTemplate.
+     * The resource name of the NotebookRuntimeTemplate.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -217,9 +217,9 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the NotebookRuntimeTemplate.
+     * The resource name of the NotebookRuntimeTemplate.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */

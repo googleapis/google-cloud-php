@@ -27,6 +27,12 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingAttribution grounding_attributions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $grounding_attributions;
+    /**
+     * Optional. Google search entry for the following-up web searches.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $search_entry_point = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. Web search queries for the following-up web search.
      *     @type array<\Google\Cloud\AIPlatform\V1\GroundingAttribution>|\Google\Protobuf\Internal\RepeatedField $grounding_attributions
      *           Optional. List of grounding attributions.
+     *     @type \Google\Cloud\AIPlatform\V1\SearchEntryPoint $search_entry_point
+     *           Optional. Google search entry for the following-up web searches.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,42 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\GroundingAttribution::class);
         $this->grounding_attributions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Google search entry for the following-up web searches.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\SearchEntryPoint|null
+     */
+    public function getSearchEntryPoint()
+    {
+        return $this->search_entry_point;
+    }
+
+    public function hasSearchEntryPoint()
+    {
+        return isset($this->search_entry_point);
+    }
+
+    public function clearSearchEntryPoint()
+    {
+        unset($this->search_entry_point);
+    }
+
+    /**
+     * Optional. Google search entry for the following-up web searches.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.SearchEntryPoint search_entry_point = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\SearchEntryPoint $var
+     * @return $this
+     */
+    public function setSearchEntryPoint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\SearchEntryPoint::class);
+        $this->search_entry_point = $var;
 
         return $this;
     }

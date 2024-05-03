@@ -24,8 +24,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Optional. The display name of the
-     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to
-     * 128 characters long and can consist of any UTF-8 characters.
+     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
+     * characters long and can consist of any UTF-8 characters.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -125,7 +125,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $base_model
-     *           Model name for tuning, e.g., "gemini-1.0-pro-002".
+     *           The base model that is being tuned, e.g., "gemini-1.0-pro-002".
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedTuningSpec $supervised_tuning_spec
      *           Tuning Spec for Supervised Fine Tuning.
      *     @type string $name
@@ -133,8 +133,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/tuningJobs/{tuning_job}`
      *     @type string $tuned_model_display_name
      *           Optional. The display name of the
-     *           [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to
-     *           128 characters long and can consist of any UTF-8 characters.
+     *           [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
+     *           characters long and can consist of any UTF-8 characters.
      *     @type string $description
      *           Optional. The description of the
      *           [TuningJob][google.cloud.aiplatform.v1.TuningJob].
@@ -184,7 +184,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Model name for tuning, e.g., "gemini-1.0-pro-002".
+     * The base model that is being tuned, e.g., "gemini-1.0-pro-002".
      *
      * Generated from protobuf field <code>string base_model = 4;</code>
      * @return string
@@ -200,7 +200,7 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Model name for tuning, e.g., "gemini-1.0-pro-002".
+     * The base model that is being tuned, e.g., "gemini-1.0-pro-002".
      *
      * Generated from protobuf field <code>string base_model = 4;</code>
      * @param string $var
@@ -275,8 +275,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The display name of the
-     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to
-     * 128 characters long and can consist of any UTF-8 characters.
+     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
+     * characters long and can consist of any UTF-8 characters.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -288,8 +288,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The display name of the
-     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to
-     * 128 characters long and can consist of any UTF-8 characters.
+     * [TunedModel][google.cloud.aiplatform.v1.Model]. The name can be up to 128
+     * characters long and can consist of any UTF-8 characters.
      *
      * Generated from protobuf field <code>string tuned_model_display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

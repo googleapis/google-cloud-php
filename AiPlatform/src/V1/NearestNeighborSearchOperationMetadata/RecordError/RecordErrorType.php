@@ -97,6 +97,12 @@ class RecordErrorType
      * Generated from protobuf enum <code>INVALID_ENCODING = 13;</code>
      */
     const INVALID_ENCODING = 13;
+    /**
+     * Token restrict value is invalid.
+     *
+     * Generated from protobuf enum <code>INVALID_TOKEN_VALUE = 15;</code>
+     */
+    const INVALID_TOKEN_VALUE = 15;
 
     private static $valueToName = [
         self::ERROR_TYPE_UNSPECIFIED => 'ERROR_TYPE_UNSPECIFIED',
@@ -113,6 +119,7 @@ class RecordErrorType
         self::MULTIPLE_VALUES => 'MULTIPLE_VALUES',
         self::INVALID_NUMERIC_VALUE => 'INVALID_NUMERIC_VALUE',
         self::INVALID_ENCODING => 'INVALID_ENCODING',
+        self::INVALID_TOKEN_VALUE => 'INVALID_TOKEN_VALUE',
     ];
 
     public static function name($value)
