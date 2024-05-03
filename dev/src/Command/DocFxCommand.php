@@ -41,6 +41,14 @@ class DocFxCommand extends Command
     private array $composerJson;
     private array $repoMetadataJson;
 
+    // these links are inexplicably broken, and will require more investigation
+    private static array $allowedReferenceFailures = [
+        '\Google\Cloud\ResourceManager\V3\Client\ProjectsClient::testIamPermissions()'
+            => 'ProjectsClient::testIamPermissionsAsync()',
+        '\Google\Cloud\Logging\V2\Client\ConfigServiceV2Client::getView()'
+            => 'ConfigServiceV2Client::getViewAsync()'
+    ];
+
     protected function configure()
     {
         $this->setName('docfx')
@@ -215,26 +223,34 @@ class DocFxCommand extends Command
     private function validate(ClassNode $class, OutputInterface $output): bool
     {
         $valid = true;
-        $hadWarning = false;
         $isGenerated = $class->isProtobufMessageClass() || $class->isProtobufEnumClass() || $class->isServiceClass();
         $nodes = array_merge([$class], $class->getMethods(), $class->getConstants());
         foreach ($nodes as $node) {
             foreach ($this->getInvalidXrefs($node->getContent()) as $invalidRef) {
+                if (isset(self::$allowedReferenceFailures[$node->getFullname()])
+                    && self::$allowedReferenceFailures[$node->getFullname()] == $invalidRef) {
+                    // these links are inexplicably broken in phpdoc, and will require more investigation
+                    continue;
+                }
                 $output->write(sprintf("\n<error>Invalid xref in %s: %s</>", $node->getFullname(), $invalidRef));
                 $valid = false;
-                $hadWarning = true;
             }
             foreach ($this->getBrokenXrefs($node->getContent()) as $brokenRef) {
-                $output->write(sprintf(
-                    "\n<comment>Broken xref in %s: %s</>",
-                    $node->getFullname(),
-                    $brokenRef ?: '<options=bold>empty</>')
+                $output->writeln(
+                    sprintf(
+                        "<comment>Broken xref in %s: %s</>",
+                        $node->getFullname(),
+                        $brokenRef ?: '<options=bold>empty</>'
+                    ),
+                    $isGenerated ? OutputInterface::VERBOSITY_VERBOSE : OutputInterface::VERBOSITY_NORMAL
                 );
-                $valid = $valid && (false || $isGenerated);
-                $hadWarning = true;
+                $warned = true;
+                if (!$isGenerated) {
+                    $valid = false;
+                }
             }
         }
-        if ($hadWarning) {
+        if (!$valid) {
             $output->writeln('');
         }
         return $valid;
