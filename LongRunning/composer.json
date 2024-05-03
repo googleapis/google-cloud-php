@@ -3,7 +3,7 @@
     "description": "Google LongRunning Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "autoload": {
         "psr-4": {
             "Google\\ApiCore\\LongRunning\\": "src/ApiCore/LongRunning",
