@@ -316,7 +316,7 @@ class StorageControlClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGEDFOLDER]');
+        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGED_FOLDER]');
         $request = (new DeleteManagedFolderRequest())->setName($formattedName);
         $gapicClient->deleteManagedFolder($request);
         $actualRequests = $transport->popReceivedCalls();
@@ -351,7 +351,7 @@ class StorageControlClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGEDFOLDER]');
+        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGED_FOLDER]');
         $request = (new DeleteManagedFolderRequest())->setName($formattedName);
         try {
             $gapicClient->deleteManagedFolder($request);
@@ -449,7 +449,7 @@ class StorageControlClientTest extends GeneratedTest
         $expectedResponse->setMetageneration($metageneration);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGEDFOLDER]');
+        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGED_FOLDER]');
         $request = (new GetManagedFolderRequest())->setName($formattedName);
         $response = $gapicClient->getManagedFolder($request);
         $this->assertEquals($expectedResponse, $response);
@@ -485,7 +485,7 @@ class StorageControlClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGEDFOLDER]');
+        $formattedName = $gapicClient->managedFolderName('[PROJECT]', '[BUCKET]', '[MANAGED_FOLDER]');
         $request = (new GetManagedFolderRequest())->setName($formattedName);
         try {
             $gapicClient->getManagedFolder($request);

@@ -210,7 +210,7 @@ final class StorageControlClient
         return self::getPathTemplate('managedFolder')->render([
             'project' => $project,
             'bucket' => $bucket,
-            'managedFolder' => $managedFolder,
+            'managed_folder' => $managedFolder,
         ]);
     }
 
@@ -237,7 +237,7 @@ final class StorageControlClient
      * Template: Pattern
      * - bucket: projects/{project}/buckets/{bucket}
      * - folder: projects/{project}/buckets/{bucket}/folders/{folder=**}
-     * - managedFolder: projects/{project}/buckets/{bucket}/managedFolders/{managedFolder=**}
+     * - managedFolder: projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}
      * - storageLayout: projects/{project}/buckets/{bucket}/storageLayout
      *
      * The optional $template argument can be supplied to specify a particular pattern,
