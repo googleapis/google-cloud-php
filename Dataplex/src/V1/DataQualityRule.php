@@ -99,6 +99,9 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\TableConditionExpectation $table_condition_expectation
      *           Aggregate rule which evaluates whether the provided expression is true
      *           for a table.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $sql_assertion
+     *           Aggregate rule which evaluates the number of rows returned for the
+     *           provided statement.
      *     @type string $column
      *           Optional. The unnested column which this rule is evaluated against.
      *     @type bool $ignore_null
@@ -392,6 +395,39 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualityRule\TableConditionExpectation::class);
         $this->writeOneof(201, $var);
+
+        return $this;
+    }
+
+    /**
+     * Aggregate rule which evaluates the number of rows returned for the
+     * provided statement.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.SqlAssertion sql_assertion = 202;</code>
+     * @return \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion|null
+     */
+    public function getSqlAssertion()
+    {
+        return $this->readOneof(202);
+    }
+
+    public function hasSqlAssertion()
+    {
+        return $this->hasOneof(202);
+    }
+
+    /**
+     * Aggregate rule which evaluates the number of rows returned for the
+     * provided statement.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.SqlAssertion sql_assertion = 202;</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $var
+     * @return $this
+     */
+    public function setSqlAssertion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion::class);
+        $this->writeOneof(202, $var);
 
         return $this;
     }
