@@ -20,7 +20,9 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Name of the `CustomTargetType`. Format is
-     * `projects/{project}/locations/{location}/customTargetTypes/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`.
+     * The `customTargetType` component must match
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -97,7 +99,9 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Optional. Name of the `CustomTargetType`. Format is
-     *           `projects/{project}/locations/{location}/customTargetTypes/[a-z][a-z0-9\-]{0,62}`.
+     *           `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`.
+     *           The `customTargetType` component must match
+     *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *     @type string $custom_target_type_id
      *           Output only. Resource id of the `CustomTargetType`.
      *     @type string $uid
@@ -140,7 +144,9 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `CustomTargetType`. Format is
-     * `projects/{project}/locations/{location}/customTargetTypes/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`.
+     * The `customTargetType` component must match
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -152,7 +158,9 @@ class CustomTargetType extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Name of the `CustomTargetType`. Format is
-     * `projects/{project}/locations/{location}/customTargetTypes/[a-z][a-z0-9\-]{0,62}`.
+     * `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`.
+     * The `customTargetType` component must match
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
