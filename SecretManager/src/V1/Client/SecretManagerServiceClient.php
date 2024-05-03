@@ -137,6 +137,23 @@ final class SecretManagerServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -148,6 +165,82 @@ final class SecretManagerServiceClient
     {
         return self::getPathTemplate('project')->render([
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_secret resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $secret
+     *
+     * @return string The formatted project_location_secret resource.
+     */
+    public static function projectLocationSecretName(string $project, string $location, string $secret): string
+    {
+        return self::getPathTemplate('projectLocationSecret')->render([
+            'project' => $project,
+            'location' => $location,
+            'secret' => $secret,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_secret_secret_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted project_location_secret_secret_version resource.
+     */
+    public static function projectLocationSecretSecretVersionName(string $project, string $location, string $secret, string $secretVersion): string
+    {
+        return self::getPathTemplate('projectLocationSecretSecretVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_secret resource.
+     *
+     * @param string $project
+     * @param string $secret
+     *
+     * @return string The formatted project_secret resource.
+     */
+    public static function projectSecretName(string $project, string $secret): string
+    {
+        return self::getPathTemplate('projectSecret')->render([
+            'project' => $project,
+            'secret' => $secret,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_secret_secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted project_secret_secret_version resource.
+     */
+    public static function projectSecretSecretVersionName(string $project, string $secret, string $secretVersion): string
+    {
+        return self::getPathTemplate('projectSecretSecretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
         ]);
     }
 
@@ -208,7 +301,12 @@ final class SecretManagerServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
+     * - projectLocationSecret: projects/{project}/locations/{location}/secrets/{secret}
+     * - projectLocationSecretSecretVersion: projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}
+     * - projectSecret: projects/{project}/secrets/{secret}
+     * - projectSecretSecretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - topic: projects/{project}/topics/{topic}

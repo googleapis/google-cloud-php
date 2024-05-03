@@ -25,11 +25,10 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-)
-+google/cloud/secretmanager/v1/service.protogoogle.cloud.secretmanager.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/secretmanager/v1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ÿ
-ListSecretsRequestC
-parent (	B3àAúA-
-+cloudresourcemanager.googleapis.com/Project
+¦0
++google/cloud/secretmanager/v1/service.protogoogle.cloud.secretmanager.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/secretmanager/v1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"—
+ListSecretsRequest;
+parent (	B+àAúA%#secretmanager.googleapis.com/Secret
 	page_size (BàA
 
 page_token (	BàA
@@ -38,10 +37,9 @@ page_token (	BàA
 secrets (2%.google.cloud.secretmanager.v1.Secret
 next_page_token (	
 
-total_size ("®
-CreateSecretRequestC
-parent (	B3àAúA-
-+cloudresourcemanager.googleapis.com/Project
+total_size ("¦
+CreateSecretRequest;
+parent (	B+àAúA%#secretmanager.googleapis.com/Secret
 	secret_id (	BàA:
 secret (2%.google.cloud.secretmanager.v1.SecretBàA"š
 AddSecretVersionRequest;
@@ -91,23 +89,23 @@ total_size ("[
 DestroySecretVersionRequest@
 name (	B2àAúA,
 *secretmanager.googleapis.com/SecretVersion
-etag (	BàA2Ï
-SecretManagerService¦
-ListSecrets1.google.cloud.secretmanager.v1.ListSecretsRequest2.google.cloud.secretmanager.v1.ListSecretsResponse"0ÚAparent‚Óä“!/v1/{parent=projects/*}/secrets´
-CreateSecret2.google.cloud.secretmanager.v1.CreateSecretRequest%.google.cloud.secretmanager.v1.Secret"IÚAparent,secret_id,secret‚Óä“)"/v1/{parent=projects/*}/secrets:secretÂ
-AddSecretVersion6.google.cloud.secretmanager.v1.AddSecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"HÚAparent,payload‚Óä“1",/v1/{parent=projects/*/secrets/*}:addVersion:*“
-	GetSecret/.google.cloud.secretmanager.v1.GetSecretRequest%.google.cloud.secretmanager.v1.Secret".ÚAname‚Óä“!/v1/{name=projects/*/secrets/*}¶
-UpdateSecret2.google.cloud.secretmanager.v1.UpdateSecretRequest%.google.cloud.secretmanager.v1.Secret"KÚAsecret,update_mask‚Óä“02&/v1/{secret.name=projects/*/secrets/*}:secretŠ
-DeleteSecret2.google.cloud.secretmanager.v1.DeleteSecretRequest.google.protobuf.Empty".ÚAname‚Óä“!*/v1/{name=projects/*/secrets/*}Æ
-ListSecretVersions8.google.cloud.secretmanager.v1.ListSecretVersionsRequest9.google.cloud.secretmanager.v1.ListSecretVersionsResponse";ÚAparent‚Óä“,*/v1/{parent=projects/*/secrets/*}/versions³
-GetSecretVersion6.google.cloud.secretmanager.v1.GetSecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"9ÚAname‚Óä“,*/v1/{name=projects/*/secrets/*/versions/*}Î
-AccessSecretVersion9.google.cloud.secretmanager.v1.AccessSecretVersionRequest:.google.cloud.secretmanager.v1.AccessSecretVersionResponse"@ÚAname‚Óä“31/v1/{name=projects/*/secrets/*/versions/*}:accessÆ
-DisableSecretVersion:.google.cloud.secretmanager.v1.DisableSecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"DÚAname‚Óä“7"2/v1/{name=projects/*/secrets/*/versions/*}:disable:*Ã
-EnableSecretVersion9.google.cloud.secretmanager.v1.EnableSecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"CÚAname‚Óä“6"1/v1/{name=projects/*/secrets/*/versions/*}:enable:*Æ
-DestroySecretVersion:.google.cloud.secretmanager.v1.DestroySecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"DÚAname‚Óä“7"2/v1/{name=projects/*/secrets/*/versions/*}:destroy:*†
-SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy";‚Óä“5"0/v1/{resource=projects/*/secrets/*}:setIamPolicy:*ƒ
-GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"8‚Óä“20/v1/{resource=projects/*/secrets/*}:getIamPolicy¬
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"A‚Óä“;"6/v1/{resource=projects/*/secrets/*}:testIamPermissions:*PÊAsecretmanager.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBè
+etag (	BàA2è
+SecretManagerServiceÕ
+ListSecrets1.google.cloud.secretmanager.v1.ListSecretsRequest2.google.cloud.secretmanager.v1.ListSecretsResponse"_ÚAparent‚Óä“P/v1/{parent=projects/*}/secretsZ-+/v1/{parent=projects/*/locations/*}/secretsì
+CreateSecret2.google.cloud.secretmanager.v1.CreateSecretRequest%.google.cloud.secretmanager.v1.Secret"€ÚAparent,secret_id,secret‚Óä“`"/v1/{parent=projects/*}/secrets:secretZ5"+/v1/{parent=projects/*/locations/*}/secrets:secret‚
+AddSecretVersion6.google.cloud.secretmanager.v1.AddSecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"‡ÚAparent,payload‚Óä“p",/v1/{parent=projects/*/secrets/*}:addVersion:*Z="8/v1/{parent=projects/*/locations/*/secrets/*}:addVersion:*Â
+	GetSecret/.google.cloud.secretmanager.v1.GetSecretRequest%.google.cloud.secretmanager.v1.Secret"]ÚAname‚Óä“P/v1/{name=projects/*/secrets/*}Z-+/v1/{name=projects/*/locations/*/secrets/*}õ
+UpdateSecret2.google.cloud.secretmanager.v1.UpdateSecretRequest%.google.cloud.secretmanager.v1.Secret"‰ÚAsecret,update_mask‚Óä“n2&/v1/{secret.name=projects/*/secrets/*}:secretZ<22/v1/{secret.name=projects/*/locations/*/secrets/*}:secret¹
+DeleteSecret2.google.cloud.secretmanager.v1.DeleteSecretRequest.google.protobuf.Empty"]ÚAname‚Óä“P*/v1/{name=projects/*/secrets/*}Z-*+/v1/{name=projects/*/locations/*/secrets/*}€
+ListSecretVersions8.google.cloud.secretmanager.v1.ListSecretVersionsRequest9.google.cloud.secretmanager.v1.ListSecretVersionsResponse"uÚAparent‚Óä“f*/v1/{parent=projects/*/secrets/*}/versionsZ86/v1/{parent=projects/*/locations/*/secrets/*}/versionsí
+GetSecretVersion6.google.cloud.secretmanager.v1.GetSecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"sÚAname‚Óä“f*/v1/{name=projects/*/secrets/*/versions/*}Z86/v1/{name=projects/*/locations/*/secrets/*/versions/*}
+AccessSecretVersion9.google.cloud.secretmanager.v1.AccessSecretVersionRequest:.google.cloud.secretmanager.v1.AccessSecretVersionResponse"ÚAname‚Óä“t1/v1/{name=projects/*/secrets/*/versions/*}:accessZ?=/v1/{name=projects/*/locations/*/secrets/*/versions/*}:accessŒ
+DisableSecretVersion:.google.cloud.secretmanager.v1.DisableSecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"‰ÚAname‚Óä“|"2/v1/{name=projects/*/secrets/*/versions/*}:disable:*ZC">/v1/{name=projects/*/locations/*/secrets/*/versions/*}:disable:*ˆ
+EnableSecretVersion9.google.cloud.secretmanager.v1.EnableSecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"‡ÚAname‚Óä“z"1/v1/{name=projects/*/secrets/*/versions/*}:enable:*ZB"=/v1/{name=projects/*/locations/*/secrets/*/versions/*}:enable:*Œ
+DestroySecretVersion:.google.cloud.secretmanager.v1.DestroySecretVersionRequest,.google.cloud.secretmanager.v1.SecretVersion"‰ÚAname‚Óä“|"2/v1/{name=projects/*/secrets/*/versions/*}:destroy:*ZC">/v1/{name=projects/*/locations/*/secrets/*/versions/*}:destroy:*É
+SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"~‚Óä“x"0/v1/{resource=projects/*/secrets/*}:setIamPolicy:*ZA"</v1/{resource=projects/*/locations/*/secrets/*}:setIamPolicy:*Ã
+GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"x‚Óä“r0/v1/{resource=projects/*/secrets/*}:getIamPolicyZ></v1/{resource=projects/*/locations/*/secrets/*}:getIamPolicy÷
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"‹‚Óä“„"6/v1/{resource=projects/*/secrets/*}:testIamPermissions:*ZG"B/v1/{resource=projects/*/locations/*/secrets/*}:testIamPermissions:*PÊAsecretmanager.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBè
 !com.google.cloud.secretmanager.v1BServiceProtoPZGcloud.google.com/go/secretmanager/apiv1/secretmanagerpb;secretmanagerpbø¢GSMªGoogle.Cloud.SecretManager.V1ÊGoogle\\Cloud\\SecretManager\\V1ê Google::Cloud::SecretManager::V1bproto3'
         , true);
 

@@ -32,9 +32,8 @@ use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 /**
  * Lists all versions of a processor.
  *
- * @param string $formattedParent The parent (project, location and processor) to list all
- *                                versions. Format:
- *                                `projects/{project}/locations/{location}/processors/{processor}`
+ * @param string $formattedParent The parent (project, location and processor) to list all versions.
+ *                                Format: `projects/{project}/locations/{location}/processors/{processor}`
  *                                Please see {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
  */
 function list_processor_versions_sample(string $formattedParent): void

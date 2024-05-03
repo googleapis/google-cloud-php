@@ -32,7 +32,10 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
      */
     private $next_page_token = '';
     /**
-     * The total number of [Secrets][google.cloud.secretmanager.v1.Secret].
+     * The total number of [Secrets][google.cloud.secretmanager.v1.Secret] but 0
+     * when the
+     * [ListSecretsRequest.filter][google.cloud.secretmanager.v1.ListSecretsRequest.filter]
+     * field is set.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
@@ -52,7 +55,10 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
      *           [ListSecretsRequest.page_token][google.cloud.secretmanager.v1.ListSecretsRequest.page_token]
      *           to retrieve the next page.
      *     @type int $total_size
-     *           The total number of [Secrets][google.cloud.secretmanager.v1.Secret].
+     *           The total number of [Secrets][google.cloud.secretmanager.v1.Secret] but 0
+     *           when the
+     *           [ListSecretsRequest.filter][google.cloud.secretmanager.v1.ListSecretsRequest.filter]
+     *           field is set.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,7 +125,10 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [Secrets][google.cloud.secretmanager.v1.Secret].
+     * The total number of [Secrets][google.cloud.secretmanager.v1.Secret] but 0
+     * when the
+     * [ListSecretsRequest.filter][google.cloud.secretmanager.v1.ListSecretsRequest.filter]
+     * field is set.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
@@ -130,7 +139,10 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [Secrets][google.cloud.secretmanager.v1.Secret].
+     * The total number of [Secrets][google.cloud.secretmanager.v1.Secret] but 0
+     * when the
+     * [ListSecretsRequest.filter][google.cloud.secretmanager.v1.ListSecretsRequest.filter]
+     * field is set.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var

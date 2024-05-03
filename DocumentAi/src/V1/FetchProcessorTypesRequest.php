@@ -10,9 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for the
- * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes]
- * method. Some processor types may require the project be added to an
- * allowlist.
+ * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes] method.
+ * Some processor types may require the project be added to an allowlist.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.FetchProcessorTypesRequest</code>
  */

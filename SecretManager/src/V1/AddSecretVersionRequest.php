@@ -20,7 +20,7 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
      * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     * `projects/&#42;&#47;secrets/&#42;`.
+     * `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
      * @param string                                       $parent  Required. The resource name of the
      *                                                              [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
      *                                                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     *                                                              `projects/&#42;/secrets/*`. Please see
+     *                                                              `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
      *                                                              {@see SecretManagerServiceClient::secretName()} for help formatting this field.
      * @param \Google\Cloud\SecretManager\V1\SecretPayload $payload Required. The secret payload of the
      *                                                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -63,7 +63,7 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the
      *           [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
      *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     *           `projects/&#42;&#47;secrets/&#42;`.
+     *           `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *     @type \Google\Cloud\SecretManager\V1\SecretPayload $payload
      *           Required. The secret payload of the
      *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -78,7 +78,7 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
      * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     * `projects/&#42;&#47;secrets/&#42;`.
+     * `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -92,7 +92,7 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
      * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     * `projects/&#42;&#47;secrets/&#42;`.
+     * `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -9,27 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A text segment in the
- * [Document.text][google.cloud.documentai.v1.Document.text]. The indices
- * may be out of bounds which indicate that the text extends into another
- * document shard for large sharded documents. See
- * [ShardInfo.text_offset][google.cloud.documentai.v1.Document.ShardInfo.text_offset]
+ * A text segment in the [Document.text][google.cloud.documentai.v1.Document.text]. The indices may be out of bounds
+ * which indicate that the text extends into another document shard for
+ * large sharded documents. See [ShardInfo.text_offset][google.cloud.documentai.v1.Document.ShardInfo.text_offset]
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.TextAnchor.TextSegment</code>
  */
 class TextSegment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
-     * start UTF-8 char index in the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment] start UTF-8 char index in the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>int64 start_index = 1;</code>
      */
     private $start_index = 0;
     /**
-     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
-     * half open end UTF-8 char index in the
+     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment] half open end UTF-8 char index in the
      * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>int64 end_index = 2;</code>
@@ -43,12 +38,9 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $start_index
-     *           [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
-     *           start UTF-8 char index in the
-     *           [Document.text][google.cloud.documentai.v1.Document.text].
+     *           [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment] start UTF-8 char index in the [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type int|string $end_index
-     *           [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
-     *           half open end UTF-8 char index in the
+     *           [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment] half open end UTF-8 char index in the
      *           [Document.text][google.cloud.documentai.v1.Document.text].
      * }
      */
@@ -58,9 +50,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
-     * start UTF-8 char index in the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment] start UTF-8 char index in the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>int64 start_index = 1;</code>
      * @return int|string
@@ -71,9 +61,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
-     * start UTF-8 char index in the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment] start UTF-8 char index in the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>int64 start_index = 1;</code>
      * @param int|string $var
@@ -88,8 +76,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
-     * half open end UTF-8 char index in the
+     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment] half open end UTF-8 char index in the
      * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>int64 end_index = 2;</code>
@@ -101,8 +88,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment]
-     * half open end UTF-8 char index in the
+     * [TextSegment][google.cloud.documentai.v1.Document.TextAnchor.TextSegment] half open end UTF-8 char index in the
      * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>int64 end_index = 2;</code>

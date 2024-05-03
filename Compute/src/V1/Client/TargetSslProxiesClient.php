@@ -119,7 +119,7 @@ final class TargetSslProxiesClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::supportedTransports. */
+    /** Implements ClientOptionsTrait::supportedTransports. */
     private static function supportedTransports()
     {
         return [

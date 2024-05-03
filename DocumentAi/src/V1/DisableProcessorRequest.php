@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for the
- * [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]
- * method.
+ * [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor] method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.DisableProcessorRequest</code>
  */

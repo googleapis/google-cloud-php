@@ -106,6 +106,7 @@ return [
             ],
             'templateMap' => [
                 'folderUptimeCheckConfig' => 'folders/{folder}/uptimeCheckConfigs/{uptime_check_config}',
+                'function' => 'projects/{project}/locations/{location}/functions/{function}',
                 'organizationUptimeCheckConfig' => 'organizations/{organization}/uptimeCheckConfigs/{uptime_check_config}',
                 'projectUptimeCheckConfig' => 'projects/{project}/uptimeCheckConfigs/{uptime_check_config}',
                 'uptimeCheckConfig' => 'projects/{project}/uptimeCheckConfigs/{uptime_check_config}',

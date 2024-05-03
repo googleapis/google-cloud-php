@@ -57,6 +57,7 @@ use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\Session;
@@ -70,6 +71,7 @@ use Google\Cloud\Spanner\V1\Type;
 use Google\Protobuf;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
@@ -236,6 +238,24 @@ class Grpc implements ConnectionInterface
             },
             'google.protobuf.Timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
+            }
+        ], [], [], [
+            // A custom encoder that short-circuits the encodeMessage in Serializer class,
+            // but only if the argument is of the type PartialResultSet.
+            PartialResultSet::class => function ($msg) {
+                $data = json_decode($msg->serializeToJsonString(), true);
+
+                // The transaction id is serialized as a base64 encoded string in $data. So, we
+                // add a step to get the transaction id using a getter instead of the serialized value.
+                // The null-safe operator is used to handle edge cases where the relevant fields are not present.
+                $data['metadata']['transaction']['id'] = (string) $msg?->getMetadata()?->getTransaction()?->getId();
+
+                // Helps convert metadata enum values from string types to their respective code/annotation
+                // pairs. Ex: INT64 is converted to {code: 2, typeAnnotation: 0}.
+                $fields = $msg->getMetadata()?->getRowType()?->getFields();
+                $data['metadata']['rowType']['fields'] = $this->getFieldDataFromRepeatedFields($fields);
+
+                return $data;
             }
         ]);
         //@codeCoverageIgnoreEnd
@@ -1615,6 +1635,73 @@ class Grpc implements ConnectionInterface
                 $directedReadOptions
             );
         }
+    }
+
+    /**
+     * Utiltiy method to take in a Google\Cloud\Spanner\V1\Type value and return
+     * the data as an array. The method takes care of array and struct elements.
+     *
+     * @param Type $type The "type" object
+     *
+     * @return array The formatted data.
+     */
+    private function getTypeData(Type $type): array
+    {
+        $data = [
+            'code' => $type->getCode(),
+            'typeAnnotation' => $type->getTypeAnnotation(),
+            'protoTypeFqn' => $type->getProtoTypeFqn()
+        ];
+
+        // If this is a struct field, then recursisevly call getTypeData
+        if ($type->hasStructType()) {
+            $nestedType = $type->getStructType();
+            $fields = $nestedType->getFields();
+            $data['structType'] = [
+                'fields' => $this->getFieldDataFromRepeatedFields($fields)
+            ];
+        }
+        // If this is an array field, then recursisevly call getTypeData
+        if ($type->hasArrayElementType()) {
+            $nestedType = $type->getArrayElementType();
+            $data['arrayElementType'] = $this->getTypeData($nestedType);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Utility method to return "fields data" in the format:
+     * [
+     *   "name" => ""
+     *   "type" => []
+     * ].
+     *
+     * The type is converted from a string like INT64 to ["code" => 2, "typeAnnotation" => 0]
+     * conforming with the Google\Cloud\Spanner\V1\TypeCode class.
+     *
+     * @param ?RepeatedField $fields The array contain list of fields.
+     *
+     * @return array The formatted fields data.
+     */
+    private function getFieldDataFromRepeatedFields(?RepeatedField $fields): array
+    {
+        if (is_null($fields)) {
+            return [];
+        }
+
+        $fieldsData = [];
+        foreach ($fields as $key => $field) {
+            $type = $field->getType();
+            $typeData = $this->getTypeData($type);
+
+            $fieldsData[$key] = [
+                'name' => $field->getName(),
+                'type' => $typeData
+            ];
+        }
+
+        return $fieldsData;
     }
 
     private function parseMutations($rawMutations)

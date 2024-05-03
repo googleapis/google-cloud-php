@@ -310,7 +310,7 @@ trait MutationTrait
     private function getValueMapper()
     {
         if (!isset($this->mapper)) {
-            throw ValidationException(
+            throw new ValidationException(
                 'MutationTrait usage requires `ValueMapper` to be ' .
                 'present in the user class in the `$this->mapper` property.'
             );

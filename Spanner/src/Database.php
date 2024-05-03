@@ -1751,7 +1751,8 @@ class Database
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchWrite(array $mutationGroups, array $options = []) {
+    public function batchWrite(array $mutationGroups, array $options = [])
+    {
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }

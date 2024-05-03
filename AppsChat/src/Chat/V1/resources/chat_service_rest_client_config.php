@@ -168,6 +168,28 @@ return [
                     ],
                 ],
             ],
+            'GetSpaceReadState' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*/spaces/*/spaceReadState}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetThreadReadState' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*/spaces/*/threads/*/threadReadState}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListMemberships' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=spaces/*}/members',
@@ -210,6 +232,22 @@ return [
                 'uriTemplate' => '/v1/spaces:setup',
                 'body' => '*',
             ],
+            'UpdateMembership' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{membership.name=spaces/*/members/*}',
+                'body' => 'membership',
+                'placeholders' => [
+                    'membership.name' => [
+                        'getters' => [
+                            'getMembership',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'UpdateMessage' => [
                 'method' => 'put',
                 'uriTemplate' => '/v1/{message.name=spaces/*/messages/*}',
@@ -241,6 +279,22 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+            ],
+            'UpdateSpaceReadState' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{space_read_state.name=users/*/spaces/*/spaceReadState}',
+                'body' => 'space_read_state',
+                'placeholders' => [
+                    'space_read_state.name' => [
+                        'getters' => [
+                            'getSpaceReadState',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UploadAttachment' => [
