@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GkeCluster extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Information specifying a GKE Cluster. Format is
+     * Optional. Information specifying a GKE Cluster. Format is
      * `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`.
      *
-     * Generated from protobuf field <code>string cluster = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $cluster = '';
     /**
@@ -42,7 +42,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cluster
-     *           Information specifying a GKE Cluster. Format is
+     *           Optional. Information specifying a GKE Cluster. Format is
      *           `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`.
      *     @type bool $internal_ip
      *           Optional. If true, `cluster` is accessed using the private IP address of
@@ -60,10 +60,10 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying a GKE Cluster. Format is
+     * Optional. Information specifying a GKE Cluster. Format is
      * `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`.
      *
-     * Generated from protobuf field <code>string cluster = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getCluster()
@@ -72,10 +72,10 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information specifying a GKE Cluster. Format is
+     * Optional. Information specifying a GKE Cluster. Format is
      * `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`.
      *
-     * Generated from protobuf field <code>string cluster = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

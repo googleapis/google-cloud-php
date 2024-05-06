@@ -10,8 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for the
- * [GetProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.GetProcessorVersion]
- * method.
+ * [GetProcessorVersion][google.cloud.documentai.v1.DocumentProcessorService.GetProcessorVersion] method.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.GetProcessorVersionRequest</code>
  */

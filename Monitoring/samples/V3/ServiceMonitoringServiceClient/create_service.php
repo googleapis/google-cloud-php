@@ -31,8 +31,9 @@ use Google\Cloud\Monitoring\V3\Service;
 /**
  * Create a `Service`.
  *
- * @param string $parent Resource [name](https://cloud.google.com/monitoring/api/v3#project_name) of
- *                       the parent workspace. The format is:
+ * @param string $parent Resource
+ *                       [name](https://cloud.google.com/monitoring/api/v3#project_name) of the
+ *                       parent Metrics Scope. The format is:
  *
  *                       projects/[PROJECT_ID_OR_NUMBER]
  */

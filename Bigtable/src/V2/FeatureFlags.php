@@ -66,6 +66,12 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool retry_info = 7;</code>
      */
     private $retry_info = false;
+    /**
+     * Notify the server that the client has client side metrics enabled.
+     *
+     * Generated from protobuf field <code>bool client_side_metrics_enabled = 8;</code>
+     */
+    private $client_side_metrics_enabled = false;
 
     /**
      * Constructor.
@@ -93,6 +99,8 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
      *     @type bool $retry_info
      *           Notify the server that the client supports using retry info back off
      *           durations to retry requests with.
+     *     @type bool $client_side_metrics_enabled
+     *           Notify the server that the client has client side metrics enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -268,6 +276,32 @@ class FeatureFlags extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->retry_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notify the server that the client has client side metrics enabled.
+     *
+     * Generated from protobuf field <code>bool client_side_metrics_enabled = 8;</code>
+     * @return bool
+     */
+    public function getClientSideMetricsEnabled()
+    {
+        return $this->client_side_metrics_enabled;
+    }
+
+    /**
+     * Notify the server that the client has client side metrics enabled.
+     *
+     * Generated from protobuf field <code>bool client_side_metrics_enabled = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setClientSideMetricsEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->client_side_metrics_enabled = $var;
 
         return $this;
     }

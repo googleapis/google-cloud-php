@@ -16,17 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServiceAccount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Email address of the service account. If not specified, the default
-     * Compute Engine service account for the project will be used. If instance
-     * template is being used, the service account has to be specified in the
-     * instance template and it has to match the email field here.
+     * Email address of the service account.
      *
      * Generated from protobuf field <code>string email = 1;</code>
      */
     private $email = '';
     /**
-     * List of scopes to be enabled for this service account on the VM, in
-     * addition to the cloud-platform API scope that will be added by default.
+     * List of scopes to be enabled for this service account.
      *
      * Generated from protobuf field <code>repeated string scopes = 2;</code>
      */
@@ -39,13 +35,9 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $email
-     *           Email address of the service account. If not specified, the default
-     *           Compute Engine service account for the project will be used. If instance
-     *           template is being used, the service account has to be specified in the
-     *           instance template and it has to match the email field here.
+     *           Email address of the service account.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
-     *           List of scopes to be enabled for this service account on the VM, in
-     *           addition to the cloud-platform API scope that will be added by default.
+     *           List of scopes to be enabled for this service account.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,10 +46,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email address of the service account. If not specified, the default
-     * Compute Engine service account for the project will be used. If instance
-     * template is being used, the service account has to be specified in the
-     * instance template and it has to match the email field here.
+     * Email address of the service account.
      *
      * Generated from protobuf field <code>string email = 1;</code>
      * @return string
@@ -68,10 +57,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email address of the service account. If not specified, the default
-     * Compute Engine service account for the project will be used. If instance
-     * template is being used, the service account has to be specified in the
-     * instance template and it has to match the email field here.
+     * Email address of the service account.
      *
      * Generated from protobuf field <code>string email = 1;</code>
      * @param string $var
@@ -86,8 +72,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of scopes to be enabled for this service account on the VM, in
-     * addition to the cloud-platform API scope that will be added by default.
+     * List of scopes to be enabled for this service account.
      *
      * Generated from protobuf field <code>repeated string scopes = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -98,8 +83,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of scopes to be enabled for this service account on the VM, in
-     * addition to the cloud-platform API scope that will be added by default.
+     * List of scopes to be enabled for this service account.
      *
      * Generated from protobuf field <code>repeated string scopes = 2;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -49,9 +49,9 @@ use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Service Description: The Cloud Monitoring Service-Oriented Monitoring API has endpoints for
- * managing and querying aspects of a workspace's services. These include the
- * `Service`'s monitored resources, its Service-Level Objectives, and a taxonomy
- * of categorized Health Metrics.
+ * managing and querying aspects of a Metrics Scope's services. These include
+ * the `Service`'s monitored resources, its Service-Level Objectives, and a
+ * taxonomy of categorized Health Metrics.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -553,7 +553,7 @@ final class ServiceMonitoringServiceClient
     }
 
     /**
-     * List `Service`s for this workspace.
+     * List `Service`s for this Metrics Scope.
      *
      * The async variant is {@see ServiceMonitoringServiceClient::listServicesAsync()}
      * .

@@ -48,12 +48,22 @@ class DeploymentLevel
      * Generated from protobuf enum <code>MULTI_DEPLOYMENT = 3;</code>
      */
     const MULTI_DEPLOYMENT = 3;
+    /**
+     * Blueprints at WORKLOAD_CLUSTER_DEPLOYMENT level can be
+     * a) Modified in private catalog.
+     * b) Used to create a deployment on workload cluster by the user, once
+     * approved.
+     *
+     * Generated from protobuf enum <code>WORKLOAD_CLUSTER_DEPLOYMENT = 4;</code>
+     */
+    const WORKLOAD_CLUSTER_DEPLOYMENT = 4;
 
     private static $valueToName = [
         self::DEPLOYMENT_LEVEL_UNSPECIFIED => 'DEPLOYMENT_LEVEL_UNSPECIFIED',
         self::HYDRATION => 'HYDRATION',
         self::SINGLE_DEPLOYMENT => 'SINGLE_DEPLOYMENT',
         self::MULTI_DEPLOYMENT => 'MULTI_DEPLOYMENT',
+        self::WORKLOAD_CLUSTER_DEPLOYMENT => 'WORKLOAD_CLUSTER_DEPLOYMENT',
     ];
 
     public static function name($value)

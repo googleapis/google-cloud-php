@@ -91,6 +91,12 @@ class AcceleratorType
      * Generated from protobuf enum <code>TPU_V4_POD = 10;</code>
      */
     const TPU_V4_POD = 10;
+    /**
+     * TPU v5.
+     *
+     * Generated from protobuf enum <code>TPU_V5_LITEPOD = 12;</code>
+     */
+    const TPU_V5_LITEPOD = 12;
 
     private static $valueToName = [
         self::ACCELERATOR_TYPE_UNSPECIFIED => 'ACCELERATOR_TYPE_UNSPECIFIED',
@@ -106,6 +112,7 @@ class AcceleratorType
         self::TPU_V2 => 'TPU_V2',
         self::TPU_V3 => 'TPU_V3',
         self::TPU_V4_POD => 'TPU_V4_POD',
+        self::TPU_V5_LITEPOD => 'TPU_V5_LITEPOD',
     ];
 
     public static function name($value)

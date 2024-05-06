@@ -25,6 +25,8 @@ class Mutation extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Bigtable\V2\Mutation\SetCell $set_cell
      *           Set a cell's value.
+     *     @type \Google\Cloud\Bigtable\V2\Mutation\AddToCell $add_to_cell
+     *           Incrementally updates an `Aggregate` cell.
      *     @type \Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn $delete_from_column
      *           Deletes cells from a column.
      *     @type \Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily $delete_from_family
@@ -65,6 +67,37 @@ class Mutation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\SetCell::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Incrementally updates an `Aggregate` cell.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Mutation.AddToCell add_to_cell = 5;</code>
+     * @return \Google\Cloud\Bigtable\V2\Mutation\AddToCell|null
+     */
+    public function getAddToCell()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasAddToCell()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Incrementally updates an `Aggregate` cell.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.Mutation.AddToCell add_to_cell = 5;</code>
+     * @param \Google\Cloud\Bigtable\V2\Mutation\AddToCell $var
+     * @return $this
+     */
+    public function setAddToCell($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\Mutation\AddToCell::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

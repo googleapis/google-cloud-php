@@ -188,6 +188,30 @@ class SqlDatabaseVersion
      */
     const MYSQL_8_0_36 = 241;
     /**
+     * The database major version is MySQL 8.0 and the minor version is 37.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_37 = 355;</code>
+     */
+    const MYSQL_8_0_37 = 355;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 38.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_38 = 356;</code>
+     */
+    const MYSQL_8_0_38 = 356;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 39.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_39 = 357;</code>
+     */
+    const MYSQL_8_0_39 = 357;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 40.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_40 = 358;</code>
+     */
+    const MYSQL_8_0_40 = 358;
+    /**
      * The database version is SQL Server 2019 Standard.
      *
      * Generated from protobuf enum <code>SQLSERVER_2019_STANDARD = 26;</code>
@@ -266,6 +290,10 @@ class SqlDatabaseVersion
         self::MYSQL_8_0_34 => 'MYSQL_8_0_34',
         self::MYSQL_8_0_35 => 'MYSQL_8_0_35',
         self::MYSQL_8_0_36 => 'MYSQL_8_0_36',
+        self::MYSQL_8_0_37 => 'MYSQL_8_0_37',
+        self::MYSQL_8_0_38 => 'MYSQL_8_0_38',
+        self::MYSQL_8_0_39 => 'MYSQL_8_0_39',
+        self::MYSQL_8_0_40 => 'MYSQL_8_0_40',
         self::SQLSERVER_2019_STANDARD => 'SQLSERVER_2019_STANDARD',
         self::SQLSERVER_2019_ENTERPRISE => 'SQLSERVER_2019_ENTERPRISE',
         self::SQLSERVER_2019_EXPRESS => 'SQLSERVER_2019_EXPRESS',

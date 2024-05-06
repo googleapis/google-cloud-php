@@ -9,31 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SecretManagerService.AddSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion].
+ * Request message for
+ * [SecretManagerService.AddSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.AddSecretVersionRequest</code>
  */
 class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
-     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     * `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * Required. The secret payload of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.SecretPayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $payload = null;
 
     /**
-     * @param string                                       $parent  Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
-     *                                                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;/secrets/*`. Please see
+     * @param string                                       $parent  Required. The resource name of the
+     *                                                              [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     *                                                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *                                                              `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
      *                                                              {@see SecretManagerServiceClient::secretName()} for help formatting this field.
-     * @param \Google\Cloud\SecretManager\V1\SecretPayload $payload Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * @param \Google\Cloud\SecretManager\V1\SecretPayload $payload Required. The secret payload of the
+     *                                                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * @return \Google\Cloud\SecretManager\V1\AddSecretVersionRequest
      *
@@ -53,10 +60,13 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
-     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;&#47;secrets/&#42;`.
+     *           Required. The resource name of the
+     *           [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *           `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *     @type \Google\Cloud\SecretManager\V1\SecretPayload $payload
-     *           Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *           Required. The secret payload of the
+     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * }
      */
     public function __construct($data = NULL) {
@@ -65,8 +75,10 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
-     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     * `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,8 +89,10 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
-     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;&#47;secrets/&#42;`.
+     * Required. The resource name of the
+     * [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     * `projects/&#42;&#47;secrets/&#42;` or `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -93,7 +107,8 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * Required. The secret payload of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.SecretPayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecretManager\V1\SecretPayload|null
@@ -114,7 +129,8 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * Required. The secret payload of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.SecretPayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecretManager\V1\SecretPayload $var

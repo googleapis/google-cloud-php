@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.conversions.v1beta",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Conversions\\V1beta",
+    "services": {
+        "ConversionSourcesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversionSourcesServiceGapicClient",
+                    "rpcs": {
+                        "CreateConversionSource": {
+                            "methods": [
+                                "createConversionSource"
+                            ]
+                        },
+                        "DeleteConversionSource": {
+                            "methods": [
+                                "deleteConversionSource"
+                            ]
+                        },
+                        "GetConversionSource": {
+                            "methods": [
+                                "getConversionSource"
+                            ]
+                        },
+                        "ListConversionSources": {
+                            "methods": [
+                                "listConversionSources"
+                            ]
+                        },
+                        "UndeleteConversionSource": {
+                            "methods": [
+                                "undeleteConversionSource"
+                            ]
+                        },
+                        "UpdateConversionSource": {
+                            "methods": [
+                                "updateConversionSource"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

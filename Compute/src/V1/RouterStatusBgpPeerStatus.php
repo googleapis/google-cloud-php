@@ -25,7 +25,13 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     private $bfd_status = null;
     /**
-     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
+     */
+    private $enable_ipv4 = null;
+    /**
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      */
@@ -36,6 +42,12 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     private $ip_address = null;
+    /**
+     * IPv4 address of the local BGP interface.
+     *
+     * Generated from protobuf field <code>optional string ipv4_nexthop_address = 5703377;</code>
+     */
+    private $ipv4_nexthop_address = null;
     /**
      * IPv6 address of the local BGP interface.
      *
@@ -72,6 +84,12 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      */
     private $peer_ip_address = null;
+    /**
+     * IPv4 address of the remote BGP interface.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv4_nexthop_address = 469221774;</code>
+     */
+    private $peer_ipv4_nexthop_address = null;
     /**
      * IPv6 address of the remote BGP interface.
      *
@@ -126,10 +144,14 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $advertised_routes
      *           Routes that were advertised to the remote BGP peer
      *     @type \Google\Cloud\Compute\V1\BfdStatus $bfd_status
+     *     @type bool $enable_ipv4
+     *           Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
      *     @type bool $enable_ipv6
-     *           Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     *           Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *     @type string $ip_address
      *           IP address of the local BGP interface.
+     *     @type string $ipv4_nexthop_address
+     *           IPv4 address of the local BGP interface.
      *     @type string $ipv6_nexthop_address
      *           IPv6 address of the local BGP interface.
      *     @type string $linked_vpn_tunnel
@@ -142,6 +164,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *           Number of routes learned from the remote BGP Peer.
      *     @type string $peer_ip_address
      *           IP address of the remote BGP interface.
+     *     @type string $peer_ipv4_nexthop_address
+     *           IPv4 address of the remote BGP interface.
      *     @type string $peer_ipv6_nexthop_address
      *           IPv6 address of the remote BGP interface.
      *     @type string $router_appliance_instance
@@ -224,7 +248,43 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
+     * @return bool
+     */
+    public function getEnableIpv4()
+    {
+        return isset($this->enable_ipv4) ? $this->enable_ipv4 : false;
+    }
+
+    public function hasEnableIpv4()
+    {
+        return isset($this->enable_ipv4);
+    }
+
+    public function clearEnableIpv4()
+    {
+        unset($this->enable_ipv4);
+    }
+
+    /**
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableIpv4($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_ipv4 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      * @return bool
@@ -245,7 +305,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      * @param bool $var
@@ -291,6 +351,42 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * IPv4 address of the local BGP interface.
+     *
+     * Generated from protobuf field <code>optional string ipv4_nexthop_address = 5703377;</code>
+     * @return string
+     */
+    public function getIpv4NexthopAddress()
+    {
+        return isset($this->ipv4_nexthop_address) ? $this->ipv4_nexthop_address : '';
+    }
+
+    public function hasIpv4NexthopAddress()
+    {
+        return isset($this->ipv4_nexthop_address);
+    }
+
+    public function clearIpv4NexthopAddress()
+    {
+        unset($this->ipv4_nexthop_address);
+    }
+
+    /**
+     * IPv4 address of the local BGP interface.
+     *
+     * Generated from protobuf field <code>optional string ipv4_nexthop_address = 5703377;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv4NexthopAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv4_nexthop_address = $var;
 
         return $this;
     }
@@ -507,6 +603,42 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->peer_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * IPv4 address of the remote BGP interface.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv4_nexthop_address = 469221774;</code>
+     * @return string
+     */
+    public function getPeerIpv4NexthopAddress()
+    {
+        return isset($this->peer_ipv4_nexthop_address) ? $this->peer_ipv4_nexthop_address : '';
+    }
+
+    public function hasPeerIpv4NexthopAddress()
+    {
+        return isset($this->peer_ipv4_nexthop_address);
+    }
+
+    public function clearPeerIpv4NexthopAddress()
+    {
+        unset($this->peer_ipv4_nexthop_address);
+    }
+
+    /**
+     * IPv4 address of the remote BGP interface.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv4_nexthop_address = 469221774;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeerIpv4NexthopAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peer_ipv4_nexthop_address = $var;
 
         return $this;
     }

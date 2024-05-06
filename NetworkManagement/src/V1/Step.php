@@ -86,7 +86,8 @@ class Step extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkManagement\V1\DropInfo $drop
      *           Display information of the final state "drop" and reason.
      *     @type \Google\Cloud\NetworkManagement\V1\LoadBalancerInfo $load_balancer
-     *           Display information of the load balancers.
+     *           Display information of the load balancers. Deprecated in favor of the
+     *           `load_balancer_backend_info` field, not used in new tests.
      *     @type \Google\Cloud\NetworkManagement\V1\NetworkInfo $network
      *           Display information of a Google Cloud network.
      *     @type \Google\Cloud\NetworkManagement\V1\GKEMasterInfo $gke_master
@@ -628,30 +629,37 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Display information of the load balancers.
+     * Display information of the load balancers. Deprecated in favor of the
+     * `load_balancer_backend_info` field, not used in new tests.
      *
-     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerInfo load_balancer = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerInfo load_balancer = 16 [deprecated = true];</code>
      * @return \Google\Cloud\NetworkManagement\V1\LoadBalancerInfo|null
+     * @deprecated
      */
     public function getLoadBalancer()
     {
+        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(16);
     }
 
     public function hasLoadBalancer()
     {
+        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(16);
     }
 
     /**
-     * Display information of the load balancers.
+     * Display information of the load balancers. Deprecated in favor of the
+     * `load_balancer_backend_info` field, not used in new tests.
      *
-     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerInfo load_balancer = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.LoadBalancerInfo load_balancer = 16 [deprecated = true];</code>
      * @param \Google\Cloud\NetworkManagement\V1\LoadBalancerInfo $var
      * @return $this
+     * @deprecated
      */
     public function setLoadBalancer($var)
     {
+        @trigger_error('load_balancer is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\LoadBalancerInfo::class);
         $this->writeOneof(16, $var);
 

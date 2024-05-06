@@ -125,6 +125,15 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $enable_private_service_connect = false;
     /**
+     * Optional. Configuration for private service connect.
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.Endpoint.private_service_connect_config]
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $private_service_connect_config = null;
+    /**
      * Output only. Resource name of the Model Monitoring job associated with this
      * Endpoint if monitoring is enabled by
      * [JobService.CreateModelDeploymentMonitoringJob][google.cloud.aiplatform.v1.JobService.CreateModelDeploymentMonitoringJob].
@@ -206,6 +215,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           [network][google.cloud.aiplatform.v1.Endpoint.network] or
      *           [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      *           can be set.
+     *     @type \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig $private_service_connect_config
+     *           Optional. Configuration for private service connect.
+     *           [network][google.cloud.aiplatform.v1.Endpoint.network] and
+     *           [private_service_connect_config][google.cloud.aiplatform.v1.Endpoint.private_service_connect_config]
+     *           are mutually exclusive.
      *     @type string $model_deployment_monitoring_job
      *           Output only. Resource name of the Model Monitoring job associated with this
      *           Endpoint if monitoring is enabled by
@@ -633,6 +647,48 @@ class Endpoint extends \Google\Protobuf\Internal\Message
         @trigger_error('enable_private_service_connect is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_private_service_connect = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for private service connect.
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.Endpoint.private_service_connect_config]
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig|null
+     */
+    public function getPrivateServiceConnectConfig()
+    {
+        return $this->private_service_connect_config;
+    }
+
+    public function hasPrivateServiceConnectConfig()
+    {
+        return isset($this->private_service_connect_config);
+    }
+
+    public function clearPrivateServiceConnectConfig()
+    {
+        unset($this->private_service_connect_config);
+    }
+
+    /**
+     * Optional. Configuration for private service connect.
+     * [network][google.cloud.aiplatform.v1.Endpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.Endpoint.private_service_connect_config]
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PrivateServiceConnectConfig private_service_connect_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig $var
+     * @return $this
+     */
+    public function setPrivateServiceConnectConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PrivateServiceConnectConfig::class);
+        $this->private_service_connect_config = $var;
 
         return $this;
     }

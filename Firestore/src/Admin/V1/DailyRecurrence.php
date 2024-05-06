@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represent a recurring schedule that runs at a specific time every day.
+ * Represents a recurring schedule that runs at a specific time every day.
  * The time zone is UTC.
  *
  * Generated from protobuf message <code>google.firestore.admin.v1.DailyRecurrence</code>

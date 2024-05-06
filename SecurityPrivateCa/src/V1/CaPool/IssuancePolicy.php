@@ -31,9 +31,9 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      * if the issuing
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * expires before a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested
-     * maximum_lifetime, the effective lifetime will be explicitly truncated to
-     * match it.
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] resource's
+     * requested maximum_lifetime, the effective lifetime will be explicitly
+     * truncated to match it.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -110,9 +110,9 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *           if the issuing
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      *           expires before a
-     *           [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested
-     *           maximum_lifetime, the effective lifetime will be explicitly truncated to
-     *           match it.
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate] resource's
+     *           requested maximum_lifetime, the effective lifetime will be explicitly
+     *           truncated to match it.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\IssuanceModes $allowed_issuance_modes
      *           Optional. If specified, then only methods allowed in the
      *           [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]
@@ -196,9 +196,9 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      * if the issuing
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * expires before a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested
-     * maximum_lifetime, the effective lifetime will be explicitly truncated to
-     * match it.
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] resource's
+     * requested maximum_lifetime, the effective lifetime will be explicitly
+     * truncated to match it.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -224,9 +224,9 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      * if the issuing
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      * expires before a
-     * [Certificate][google.cloud.security.privateca.v1.Certificate]'s requested
-     * maximum_lifetime, the effective lifetime will be explicitly truncated to
-     * match it.
+     * [Certificate][google.cloud.security.privateca.v1.Certificate] resource's
+     * requested maximum_lifetime, the effective lifetime will be explicitly
+     * truncated to match it.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var

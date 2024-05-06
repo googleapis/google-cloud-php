@@ -64,6 +64,15 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.SyncConfig sync_config = 7;</code>
      */
     private $sync_config = null;
+    /**
+     * Optional. Configuration for index preparation for vector search. It
+     * contains the required configurations to create an index from source data,
+     * so that approximate nearest neighbor (a.k.a ANN) algorithms search can be
+     * performed during online serving.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.IndexConfig index_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $index_config = null;
     protected $source;
 
     /**
@@ -102,6 +111,11 @@ class FeatureView extends \Google\Protobuf\Internal\Message
      *           Configures when data is to be synced/updated for this FeatureView. At the
      *           end of the sync the latest featureValues for each entityId of this
      *           FeatureView are made ready for online serving.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureView\IndexConfig $index_config
+     *           Optional. Configuration for index preparation for vector search. It
+     *           contains the required configurations to create an index from source data,
+     *           so that approximate nearest neighbor (a.k.a ANN) algorithms search can be
+     *           performed during online serving.
      * }
      */
     public function __construct($data = NULL) {
@@ -381,6 +395,48 @@ class FeatureView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureView\SyncConfig::class);
         $this->sync_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for index preparation for vector search. It
+     * contains the required configurations to create an index from source data,
+     * so that approximate nearest neighbor (a.k.a ANN) algorithms search can be
+     * performed during online serving.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.IndexConfig index_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureView\IndexConfig|null
+     */
+    public function getIndexConfig()
+    {
+        return $this->index_config;
+    }
+
+    public function hasIndexConfig()
+    {
+        return isset($this->index_config);
+    }
+
+    public function clearIndexConfig()
+    {
+        unset($this->index_config);
+    }
+
+    /**
+     * Optional. Configuration for index preparation for vector search. It
+     * contains the required configurations to create an index from source data,
+     * so that approximate nearest neighbor (a.k.a ANN) algorithms search can be
+     * performed during online serving.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureView.IndexConfig index_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureView\IndexConfig $var
+     * @return $this
+     */
+    public function setIndexConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureView\IndexConfig::class);
+        $this->index_config = $var;
 
         return $this;
     }

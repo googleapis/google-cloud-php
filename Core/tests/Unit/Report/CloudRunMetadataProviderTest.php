@@ -29,10 +29,17 @@ class CloudRunMetadataProviderTest extends TestCase
     {
         $provider = new CloudRunMetadataProvider([
             'K_SERVICE' => 'my-service',
-            'K_REVISION' => 'my-revision'
+            'K_REVISION' => 'my-revision',
+            'HTTP_X_CLOUD_TRACE_CONTEXT' => 'my-traceId'
         ]);
         $this->assertEquals('my-service', $provider->serviceId());
         $this->assertEquals('my-revision', $provider->versionId());
+        $this->assertEquals(
+            [
+                'run.googleapis.com/trace_id' => 'my-traceId'
+            ],
+            $provider->labels()
+        );
     }
 
     public function testDefaults()
@@ -40,5 +47,6 @@ class CloudRunMetadataProviderTest extends TestCase
         $provider = new CloudRunMetadataProvider([]);
         $this->assertEquals('unknown-service', $provider->serviceId());
         $this->assertEquals('unknown-revision', $provider->versionId());
+        $this->assertEquals([], $provider->labels());
     }
 }

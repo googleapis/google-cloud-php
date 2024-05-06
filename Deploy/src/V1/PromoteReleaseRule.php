@@ -18,7 +18,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -64,7 +65,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Required. ID of the rule. This id must be unique in the `Automation`
-     *           resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     *           resource to which this rule belongs. The format is
+     *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *     @type \Google\Protobuf\Duration $wait
      *           Optional. How long the release need to be paused until being promoted to
      *           the next target.
@@ -90,7 +92,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -102,7 +105,8 @@ class PromoteReleaseRule extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. ID of the rule. This id must be unique in the `Automation`
-     * resource to which this rule belongs. The format is `[a-z][a-z0-9\-]{0,62}`.
+     * resource to which this rule belongs. The format is
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

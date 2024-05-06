@@ -18,7 +18,8 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the settings to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/settings.
+     * organizations/{organization}/locations/{location}/settings or
+     * projects/{projects}/locations/{location}/settings.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -27,7 +28,8 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The resource name of the settings to retrieve.
      *                     Format:
-     *                     organizations/{organization}/locations/{location}/settings. Please see
+     *                     organizations/{organization}/locations/{location}/settings or
+     *                     projects/{projects}/locations/{location}/settings. Please see
      *                     {@see AdvisoryNotificationsServiceClient::settingsName()} for help formatting this field.
      *
      * @return \Google\Cloud\AdvisoryNotifications\V1\GetSettingsRequest
@@ -49,7 +51,8 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the settings to retrieve.
      *           Format:
-     *           organizations/{organization}/locations/{location}/settings.
+     *           organizations/{organization}/locations/{location}/settings or
+     *           projects/{projects}/locations/{location}/settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +63,8 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the settings to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/settings.
+     * organizations/{organization}/locations/{location}/settings or
+     * projects/{projects}/locations/{location}/settings.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +77,8 @@ class GetSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the settings to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/settings.
+     * organizations/{organization}/locations/{location}/settings or
+     * projects/{projects}/locations/{location}/settings.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

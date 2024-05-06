@@ -17,7 +17,7 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
 {
     /**
      * Required. Resource name of the parent containing the listed SLOs, either a
-     * project or a Monitoring Workspace. The formats are:
+     * project or a Monitoring Metrics Scope. The formats are:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *
@@ -57,7 +57,7 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * @param string $parent Required. Resource name of the parent containing the listed SLOs, either a
-     *                       project or a Monitoring Workspace. The formats are:
+     *                       project or a Monitoring Metrics Scope. The formats are:
      *
      *                       projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *                       workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
@@ -81,7 +81,7 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
      *
      *     @type string $parent
      *           Required. Resource name of the parent containing the listed SLOs, either a
-     *           project or a Monitoring Workspace. The formats are:
+     *           project or a Monitoring Metrics Scope. The formats are:
      *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *               workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *     @type string $filter
@@ -107,7 +107,7 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * Required. Resource name of the parent containing the listed SLOs, either a
-     * project or a Monitoring Workspace. The formats are:
+     * project or a Monitoring Metrics Scope. The formats are:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *
@@ -121,7 +121,7 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * Required. Resource name of the parent containing the listed SLOs, either a
-     * project or a Monitoring Workspace. The formats are:
+     * project or a Monitoring Metrics Scope. The formats are:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
      *

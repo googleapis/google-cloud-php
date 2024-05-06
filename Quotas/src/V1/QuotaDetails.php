@@ -21,6 +21,14 @@ class QuotaDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 value = 1;</code>
      */
     protected $value = 0;
+    /**
+     * Rollout information of this quota.
+     * This field is present only if the effective limit will change due to the
+     * ongoing rollout of the service config.
+     *
+     * Generated from protobuf field <code>.google.api.cloudquotas.v1.RolloutInfo rollout_info = 3;</code>
+     */
+    protected $rollout_info = null;
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class QuotaDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $value
      *           The value currently in effect and being enforced.
+     *     @type \Google\Cloud\CloudQuotas\V1\RolloutInfo $rollout_info
+     *           Rollout information of this quota.
+     *           This field is present only if the effective limit will change due to the
+     *           ongoing rollout of the service config.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +71,46 @@ class QuotaDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rollout information of this quota.
+     * This field is present only if the effective limit will change due to the
+     * ongoing rollout of the service config.
+     *
+     * Generated from protobuf field <code>.google.api.cloudquotas.v1.RolloutInfo rollout_info = 3;</code>
+     * @return \Google\Cloud\CloudQuotas\V1\RolloutInfo|null
+     */
+    public function getRolloutInfo()
+    {
+        return $this->rollout_info;
+    }
+
+    public function hasRolloutInfo()
+    {
+        return isset($this->rollout_info);
+    }
+
+    public function clearRolloutInfo()
+    {
+        unset($this->rollout_info);
+    }
+
+    /**
+     * Rollout information of this quota.
+     * This field is present only if the effective limit will change due to the
+     * ongoing rollout of the service config.
+     *
+     * Generated from protobuf field <code>.google.api.cloudquotas.v1.RolloutInfo rollout_info = 3;</code>
+     * @param \Google\Cloud\CloudQuotas\V1\RolloutInfo $var
+     * @return $this
+     */
+    public function setRolloutInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudQuotas\V1\RolloutInfo::class);
+        $this->rollout_info = $var;
 
         return $this;
     }

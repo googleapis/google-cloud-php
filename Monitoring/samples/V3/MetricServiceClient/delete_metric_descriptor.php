@@ -32,7 +32,8 @@ use Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest;
  * [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be
  * deleted.
  *
- * @param string $formattedName The metric descriptor on which to execute the request. The format is:
+ * @param string $formattedName The metric descriptor on which to execute the request. The format
+ *                              is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID]
  *

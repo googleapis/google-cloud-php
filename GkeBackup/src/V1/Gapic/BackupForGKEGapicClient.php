@@ -46,6 +46,8 @@ use Google\Cloud\GkeBackup\V1\DeleteBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\DeleteBackupRequest;
 use Google\Cloud\GkeBackup\V1\DeleteRestorePlanRequest;
 use Google\Cloud\GkeBackup\V1\DeleteRestoreRequest;
+use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlRequest;
+use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlResponse;
 use Google\Cloud\GkeBackup\V1\GetBackupPlanRequest;
 use Google\Cloud\GkeBackup\V1\GetBackupRequest;
 use Google\Cloud\GkeBackup\V1\GetRestorePlanRequest;
@@ -722,9 +724,9 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type Backup $backup
-     *           The Backup resource to create.
+     *           Optional. The Backup resource to create.
      *     @type string $backupId
-     *           The client-provided short name for the Backup resource.
+     *           Optional. The client-provided short name for the Backup resource.
      *           This name must:
      *
      *           - be between 1 and 63 characters long (inclusive)
@@ -1086,12 +1088,12 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type string $etag
-     *           If provided, this value must match the current value of the
+     *           Optional. If provided, this value must match the current value of the
      *           target Backup's [etag][google.cloud.gkebackup.v1.Backup.etag] field or the
      *           request is rejected.
      *     @type bool $force
-     *           If set to true, any VolumeBackups below this Backup will also be deleted.
-     *           Otherwise, the request will only succeed if the Backup has no
+     *           Optional. If set to true, any VolumeBackups below this Backup will also be
+     *           deleted. Otherwise, the request will only succeed if the Backup has no
      *           VolumeBackups.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1174,7 +1176,7 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type string $etag
-     *           If provided, this value must match the current value of the
+     *           Optional. If provided, this value must match the current value of the
      *           target BackupPlan's [etag][google.cloud.gkebackup.v1.BackupPlan.etag] field
      *           or the request is rejected.
      *     @type RetrySettings|array $retrySettings
@@ -1254,12 +1256,12 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type string $etag
-     *           If provided, this value must match the current value of the
+     *           Optional. If provided, this value must match the current value of the
      *           target Restore's [etag][google.cloud.gkebackup.v1.Restore.etag] field or
      *           the request is rejected.
      *     @type bool $force
-     *           If set to true, any VolumeRestores below this restore will also be deleted.
-     *           Otherwise, the request will only succeed if the restore has no
+     *           Optional. If set to true, any VolumeRestores below this restore will also
+     *           be deleted. Otherwise, the request will only succeed if the restore has no
      *           VolumeRestores.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1342,12 +1344,12 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type string $etag
-     *           If provided, this value must match the current value of the
+     *           Optional. If provided, this value must match the current value of the
      *           target RestorePlan's [etag][google.cloud.gkebackup.v1.RestorePlan.etag]
      *           field or the request is rejected.
      *     @type bool $force
-     *           If set to true, any Restores below this RestorePlan will also be deleted.
-     *           Otherwise, the request will only succeed if the RestorePlan has no
+     *           Optional. If set to true, any Restores below this RestorePlan will also be
+     *           deleted. Otherwise, the request will only succeed if the RestorePlan has no
      *           Restores.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1431,6 +1433,56 @@ class BackupForGKEGapicClient
         return $this->startCall(
             'GetBackup',
             Backup::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Retrieve the link to the backupIndex.
+     *
+     * Sample code:
+     * ```
+     * $backupForGKEClient = new BackupForGKEClient();
+     * try {
+     *     $formattedBackup = $backupForGKEClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
+     *     $response = $backupForGKEClient->getBackupIndexDownloadUrl($formattedBackup);
+     * } finally {
+     *     $backupForGKEClient->close();
+     * }
+     * ```
+     *
+     * @param string $backup       Required. Full name of Backup resource.
+     *                             Format:
+     *                             projects/{project}/locations/{location}/backupPlans/{backup_plan}/backups/{backup}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getBackupIndexDownloadUrl($backup, array $optionalArgs = [])
+    {
+        $request = new GetBackupIndexDownloadUrlRequest();
+        $requestParamHeaders = [];
+        $request->setBackup($backup);
+        $requestParamHeaders['backup'] = $backup;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetBackupIndexDownloadUrl',
+            GetBackupIndexDownloadUrlResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1722,9 +1774,9 @@ class BackupForGKEGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Field match expression used to filter the results.
+     *           Optional. Field match expression used to filter the results.
      *     @type string $orderBy
-     *           Field by which to sort the results.
+     *           Optional. Field by which to sort the results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1812,9 +1864,9 @@ class BackupForGKEGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Field match expression used to filter the results.
+     *           Optional. Field match expression used to filter the results.
      *     @type string $orderBy
-     *           Field by which to sort the results.
+     *           Optional. Field by which to sort the results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1902,9 +1954,9 @@ class BackupForGKEGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Field match expression used to filter the results.
+     *           Optional. Field match expression used to filter the results.
      *     @type string $orderBy
-     *           Field by which to sort the results.
+     *           Optional. Field by which to sort the results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1992,9 +2044,9 @@ class BackupForGKEGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Field match expression used to filter the results.
+     *           Optional. Field match expression used to filter the results.
      *     @type string $orderBy
-     *           Field by which to sort the results.
+     *           Optional. Field by which to sort the results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2082,9 +2134,9 @@ class BackupForGKEGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Field match expression used to filter the results.
+     *           Optional. Field match expression used to filter the results.
      *     @type string $orderBy
-     *           Field by which to sort the results.
+     *           Optional. Field by which to sort the results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2172,9 +2224,9 @@ class BackupForGKEGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Field match expression used to filter the results.
+     *           Optional. Field match expression used to filter the results.
      *     @type string $orderBy
-     *           Field by which to sort the results.
+     *           Optional. Field by which to sort the results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2266,7 +2318,7 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           This is used to specify the fields to be overwritten in the
+     *           Optional. This is used to specify the fields to be overwritten in the
      *           Backup targeted for update. The values for each of these
      *           updated fields will be taken from the `backup_plan` provided
      *           with this request. Field names are relative to the root of the resource.
@@ -2353,7 +2405,7 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           This is used to specify the fields to be overwritten in the
+     *           Optional. This is used to specify the fields to be overwritten in the
      *           BackupPlan targeted for update. The values for each of these
      *           updated fields will be taken from the `backup_plan` provided
      *           with this request. Field names are relative to the root of the resource
@@ -2441,7 +2493,7 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           This is used to specify the fields to be overwritten in the
+     *           Optional. This is used to specify the fields to be overwritten in the
      *           Restore targeted for update. The values for each of these
      *           updated fields will be taken from the `restore` provided
      *           with this request. Field names are relative to the root of the resource.
@@ -2528,7 +2580,7 @@ class BackupForGKEGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           This is used to specify the fields to be overwritten in the
+     *           Optional. This is used to specify the fields to be overwritten in the
      *           RestorePlan targeted for update. The values for each of these
      *           updated fields will be taken from the `restore_plan` provided
      *           with this request. Field names are relative to the root of the resource.

@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response message for the
- * [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor]
- * method. Intentionally empty proto for adding fields in future.
+ * [DisableProcessor][google.cloud.documentai.v1.DocumentProcessorService.DisableProcessor] method.
+ * Intentionally empty proto for adding fields in future.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.DisableProcessorResponse</code>
  */

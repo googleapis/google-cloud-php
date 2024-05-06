@@ -16,11 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Settings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name of the settings to retrieve.
+     * Identifier. The resource name of the settings to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/settings.
+     * organizations/{organization}/locations/{location}/settings or
+     * projects/{projects}/locations/{location}/settings.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -48,9 +49,10 @@ class Settings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name of the settings to retrieve.
+     *           Identifier. The resource name of the settings to retrieve.
      *           Format:
-     *           organizations/{organization}/locations/{location}/settings.
+     *           organizations/{organization}/locations/{location}/settings or
+     *           projects/{projects}/locations/{location}/settings.
      *     @type array|\Google\Protobuf\Internal\MapField $notification_settings
      *           Required. Map of each notification type and its settings to get/set all
      *           settings at once. The server will validate the value for each notification
@@ -68,11 +70,12 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the settings to retrieve.
+     * Identifier. The resource name of the settings to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/settings.
+     * organizations/{organization}/locations/{location}/settings or
+     * projects/{projects}/locations/{location}/settings.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -81,11 +84,12 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name of the settings to retrieve.
+     * Identifier. The resource name of the settings to retrieve.
      * Format:
-     * organizations/{organization}/locations/{location}/settings.
+     * organizations/{organization}/locations/{location}/settings or
+     * projects/{projects}/locations/{location}/settings.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

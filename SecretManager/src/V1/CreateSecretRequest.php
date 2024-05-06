@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [SecretManagerService.CreateSecret][google.cloud.secretmanager.v1.SecretManagerService.CreateSecret].
+ * Request message for
+ * [SecretManagerService.CreateSecret][google.cloud.secretmanager.v1.SecretManagerService.CreateSecret].
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.CreateSecretRequest</code>
  */
@@ -17,7 +18,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the project to associate with the
-     * [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`.
+     * [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`
+     * or `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,7 +34,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     private $secret_id = '';
     /**
-     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     * field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,14 +43,16 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                $parent   Required. The resource name of the project to associate with the
-     *                                                        [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see
+     *                                                        [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`
+     *                                                        or `projects/&#42;/locations/*`. Please see
      *                                                        {@see SecretManagerServiceClient::projectName()} for help formatting this field.
      * @param string                                $secretId Required. This must be unique within the project.
      *
      *                                                        A secret ID is a string with a maximum length of 255 characters and can
      *                                                        contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
      *                                                        underscore (`_`) characters.
-     * @param \Google\Cloud\SecretManager\V1\Secret $secret   Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * @param \Google\Cloud\SecretManager\V1\Secret $secret   Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     *                                                        field values.
      *
      * @return \Google\Cloud\SecretManager\V1\CreateSecretRequest
      *
@@ -69,14 +74,16 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the project to associate with the
-     *           [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`.
+     *           [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`
+     *           or `projects/&#42;&#47;locations/&#42;`.
      *     @type string $secret_id
      *           Required. This must be unique within the project.
      *           A secret ID is a string with a maximum length of 255 characters and can
      *           contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
      *           underscore (`_`) characters.
      *     @type \Google\Cloud\SecretManager\V1\Secret $secret
-     *           Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     *           Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     *           field values.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +93,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the project to associate with the
-     * [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`.
+     * [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`
+     * or `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,7 +106,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the project to associate with the
-     * [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`.
+     * [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;`
+     * or `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -145,7 +154,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     * field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecretManager\V1\Secret|null
@@ -166,7 +176,8 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     * field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecretManager\V1\Secret $var

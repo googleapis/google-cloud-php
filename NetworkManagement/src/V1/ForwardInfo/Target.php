@@ -40,7 +40,7 @@ class Target
     /**
      * Forwarded to a Google Kubernetes Engine Container cluster master.
      *
-     * Generated from protobuf enum <code>GKE_MASTER = 4;</code>
+     * Generated from protobuf enum <code>GKE_MASTER = 4 [deprecated = true];</code>
      */
     const GKE_MASTER = 4;
     /**
@@ -52,7 +52,7 @@ class Target
     /**
      * Forwarded to a Cloud SQL instance.
      *
-     * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE = 6;</code>
+     * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE = 6 [deprecated = true];</code>
      */
     const CLOUD_SQL_INSTANCE = 6;
     /**
@@ -67,6 +67,12 @@ class Target
      * Generated from protobuf enum <code>NCC_HUB = 8;</code>
      */
     const NCC_HUB = 8;
+    /**
+     * Forwarded to a router appliance.
+     *
+     * Generated from protobuf enum <code>ROUTER_APPLIANCE = 9;</code>
+     */
+    const ROUTER_APPLIANCE = 9;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -78,6 +84,7 @@ class Target
         self::CLOUD_SQL_INSTANCE => 'CLOUD_SQL_INSTANCE',
         self::ANOTHER_PROJECT => 'ANOTHER_PROJECT',
         self::NCC_HUB => 'NCC_HUB',
+        self::ROUTER_APPLIANCE => 'ROUTER_APPLIANCE',
     ];
 
     public static function name($value)

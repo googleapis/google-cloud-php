@@ -468,8 +468,7 @@ final class FirestoreAdminClient
     /**
      * Creates a backup schedule on a database.
      * At most two backup schedules can be configured on a database, one daily
-     * backup schedule with retention up to 7 days and one weekly backup schedule
-     * with retention up to 14 weeks.
+     * backup schedule and one weekly backup schedule.
      *
      * The async variant is {@see FirestoreAdminClient::createBackupScheduleAsync()} .
      *

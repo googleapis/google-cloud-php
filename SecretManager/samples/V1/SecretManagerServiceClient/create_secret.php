@@ -26,14 +26,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 use Google\Cloud\SecretManager\V1\CreateSecretRequest;
-use Google\Cloud\SecretManager\V1\Replication;
 use Google\Cloud\SecretManager\V1\Secret;
 
 /**
- * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+ * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no
+ * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
  *
  * @param string $formattedParent The resource name of the project to associate with the
- *                                [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see
+ *                                [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`
+ *                                or `projects/&#42;/locations/*`. Please see
  *                                {@see SecretManagerServiceClient::projectName()} for help formatting this field.
  * @param string $secretId        This must be unique within the project.
  *
@@ -47,9 +48,7 @@ function create_secret_sample(string $formattedParent, string $secretId): void
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
     // Prepare the request message.
-    $secretReplication = new Replication();
-    $secret = (new Secret())
-        ->setReplication($secretReplication);
+    $secret = new Secret();
     $request = (new CreateSecretRequest())
         ->setParent($formattedParent)
         ->setSecretId($secretId)

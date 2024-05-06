@@ -97,14 +97,16 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      */
     protected $justification = '';
     /**
-     * Required. Input only. An email address that can be used for quota related
-     * communication between the Google Cloud and the user in case the Google
-     * Cloud needs further information to make a decision on whether the user
-     * preferred quota can be granted.
-     * The Google account for the email address must have quota update permission
-     * for the project, folder or organization this quota preference is for.
+     * Input only. An email address that can be used to contact the the user, in
+     * case Google Cloud needs more information to make a decision before
+     * additional quota can be granted.
+     * When requesting a quota increase, the email address is required.
+     * When requesting a quota decrease, the email address is optional.
+     * For example, the email address is optional when the
+     * `QuotaConfig.preferred_value` is smaller than the
+     * `QuotaDetails.reset_value`.
      *
-     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $contact_email = '';
 
@@ -154,12 +156,14 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
      *     @type string $justification
      *           The reason / justification for this quota preference.
      *     @type string $contact_email
-     *           Required. Input only. An email address that can be used for quota related
-     *           communication between the Google Cloud and the user in case the Google
-     *           Cloud needs further information to make a decision on whether the user
-     *           preferred quota can be granted.
-     *           The Google account for the email address must have quota update permission
-     *           for the project, folder or organization this quota preference is for.
+     *           Input only. An email address that can be used to contact the the user, in
+     *           case Google Cloud needs more information to make a decision before
+     *           additional quota can be granted.
+     *           When requesting a quota increase, the email address is required.
+     *           When requesting a quota decrease, the email address is optional.
+     *           For example, the email address is optional when the
+     *           `QuotaConfig.preferred_value` is smaller than the
+     *           `QuotaDetails.reset_value`.
      * }
      */
     public function __construct($data = NULL) {
@@ -496,14 +500,16 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. An email address that can be used for quota related
-     * communication between the Google Cloud and the user in case the Google
-     * Cloud needs further information to make a decision on whether the user
-     * preferred quota can be granted.
-     * The Google account for the email address must have quota update permission
-     * for the project, folder or organization this quota preference is for.
+     * Input only. An email address that can be used to contact the the user, in
+     * case Google Cloud needs more information to make a decision before
+     * additional quota can be granted.
+     * When requesting a quota increase, the email address is required.
+     * When requesting a quota decrease, the email address is optional.
+     * For example, the email address is optional when the
+     * `QuotaConfig.preferred_value` is smaller than the
+     * `QuotaDetails.reset_value`.
      *
-     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getContactEmail()
@@ -512,14 +518,16 @@ class QuotaPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. An email address that can be used for quota related
-     * communication between the Google Cloud and the user in case the Google
-     * Cloud needs further information to make a decision on whether the user
-     * preferred quota can be granted.
-     * The Google account for the email address must have quota update permission
-     * for the project, folder or organization this quota preference is for.
+     * Input only. An email address that can be used to contact the the user, in
+     * case Google Cloud needs more information to make a decision before
+     * additional quota can be granted.
+     * When requesting a quota increase, the email address is required.
+     * When requesting a quota decrease, the email address is optional.
+     * For example, the email address is optional when the
+     * `QuotaConfig.preferred_value` is smaller than the
+     * `QuotaDetails.reset_value`.
      *
-     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string contact_email = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

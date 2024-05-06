@@ -120,6 +120,27 @@ final class BigtableClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * authorized_view resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $table
+     * @param string $authorizedView
+     *
+     * @return string The formatted authorized_view resource.
+     */
+    public static function authorizedViewName(string $project, string $instance, string $table, string $authorizedView): string
+    {
+        return self::getPathTemplate('authorizedView')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'table' => $table,
+            'authorized_view' => $authorizedView,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a instance
      * resource.
      *
@@ -159,6 +180,7 @@ final class BigtableClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - authorizedView: projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}
      * - instance: projects/{project}/instances/{instance}
      * - table: projects/{project}/instances/{instance}/tables/{table}
      *

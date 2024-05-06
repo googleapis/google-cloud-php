@@ -1,4 +1,4 @@
-FROM gcr.io/gcp-runtimes/ubuntu_16_0_4
+FROM gcr.io/gcp-runtimes/ubuntu_20_0_4
 ENV PHP_DIR=/opt/php80
 ENV PHP_VERSION=8.1.18
 ENV PHP_SRC_DIR=/usr/local/src/php81-build
@@ -21,6 +21,7 @@ RUN apt-get update && \
             libkrb5-dev \
             libmcrypt-dev \
             libpq-dev \
+            libsodium-dev \
             libssl-dev \
             libxml2-dev \
             libzip-dev \
@@ -75,10 +76,15 @@ RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
         --with-kerberos \
         --without-sqlite3 \
         --without-pdo-sqlite \
-        --with-pear && \
+        --with-pear \
+        --with-sodium && \
         make && \
         make install && \
         cp php.ini-production ${PHP_DIR}/lib/php.ini
+
+# Install gRPC
+RUN pecl install grpc && \
+    echo 'extension=grpc.so' >> ${PHP_DIR}/lib/conf.d/ext-grpc.ini
 
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \

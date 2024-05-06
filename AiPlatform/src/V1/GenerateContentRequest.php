@@ -33,6 +33,14 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $contents;
     /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $system_instruction = null;
+    /**
      * Optional. A list of `Tools` the model may use to generate the next
      * response.
      * A `Tool` is a piece of code that enables the system to interact with
@@ -92,6 +100,10 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *           For single-turn queries, this is a single instance. For multi-turn queries,
      *           this is a repeated field that contains conversation history + latest
      *           request.
+     *     @type \Google\Cloud\AIPlatform\V1\Content $system_instruction
+     *           Optional. The user provided system instructions for the model.
+     *           Note: only text should be used in parts and content in each part will be in
+     *           a separate paragraph.
      *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
      *           Optional. A list of `Tools` the model may use to generate the next
      *           response.
@@ -168,6 +180,46 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\Content::class);
         $this->contents = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Content|null
+     */
+    public function getSystemInstruction()
+    {
+        return $this->system_instruction;
+    }
+
+    public function hasSystemInstruction()
+    {
+        return isset($this->system_instruction);
+    }
+
+    public function clearSystemInstruction()
+    {
+        unset($this->system_instruction);
+    }
+
+    /**
+     * Optional. The user provided system instructions for the model.
+     * Note: only text should be used in parts and content in each part will be in
+     * a separate paragraph.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content system_instruction = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Content $var
+     * @return $this
+     */
+    public function setSystemInstruction($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Content::class);
+        $this->system_instruction = $var;
 
         return $this;
     }

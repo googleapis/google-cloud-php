@@ -18,7 +18,7 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns this collection of notifications.
      * Must be of the form "organizations/{organization}/locations/{location}"
-     * or "projects/{project}/locations/{location}"
+     * or "projects/{project}/locations/{location}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -61,8 +61,8 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $parent Required. The parent, which owns this collection of notifications.
      *                       Must be of the form "organizations/{organization}/locations/{location}"
-     *                       or "projects/{project}/locations/{location}"
-     *                       Please see {@see AdvisoryNotificationsServiceClient::locationName()} for help formatting this field.
+     *                       or "projects/{project}/locations/{location}". Please see
+     *                       {@see AdvisoryNotificationsServiceClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AdvisoryNotifications\V1\ListNotificationsRequest
      *
@@ -83,7 +83,7 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent, which owns this collection of notifications.
      *           Must be of the form "organizations/{organization}/locations/{location}"
-     *           or "projects/{project}/locations/{location}"
+     *           or "projects/{project}/locations/{location}".
      *     @type int $page_size
      *           The maximum number of notifications to return. The service may return
      *           fewer than this value. If unspecified or equal to 0, at most 50
@@ -112,7 +112,7 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns this collection of notifications.
      * Must be of the form "organizations/{organization}/locations/{location}"
-     * or "projects/{project}/locations/{location}"
+     * or "projects/{project}/locations/{location}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -125,7 +125,7 @@ class ListNotificationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent, which owns this collection of notifications.
      * Must be of the form "organizations/{organization}/locations/{location}"
-     * or "projects/{project}/locations/{location}"
+     * or "projects/{project}/locations/{location}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

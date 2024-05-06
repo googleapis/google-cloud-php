@@ -21,6 +21,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
+use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
@@ -40,6 +41,7 @@ use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
+use Google\Cloud\Spanner\V1\PartialResultSet;
 use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\Session;
@@ -1418,6 +1420,37 @@ class GrpcTest extends TestCase
         ];
     }
 
+    public function testPartialResultSetCustomEncoder()
+    {
+        $partialResultSet = new PartialResultSet();
+        $partialResultSet->mergeFromJsonString(json_encode([
+            'metadata' => [
+                'transaction' => [
+                    'id' => base64_encode(0b00010100) // bytedata is represented as a base64-encoded string in JSON
+                ],
+                'rowType' => [
+                    'fields' => [
+                        ['type' => ['code' => 'INT64']] // enums are represented as their string equivalents in JSON
+                    ]
+                ],
+            ],
+        ]));
+
+        $this->assertEquals(0b00010100, $partialResultSet->getMetadata()->getTransaction()->getId());
+        $this->assertEquals(2, $partialResultSet->getMetadata()->getRowType()->getFields()[0]->getType()->getCode());
+
+        // decode the message and ensure it's decoded as expected
+        $grpc = new Grpc();
+        $serializerProp = new \ReflectionProperty($grpc, 'serializer');
+        $serializerProp->setAccessible(true);
+        $serializer = $serializerProp->getValue($grpc);
+        $arr = $serializer->encodeMessage($partialResultSet);
+
+        // We expect this to be the binary string
+        $this->assertEquals(0b00010100, $arr['metadata']['transaction']['id']);
+        // We expect this to be the integer
+        $this->assertEquals(2, $arr['metadata']['rowType']['fields'][0]['type']['code']);
+    }
     private function assertCallCorrect(
         $method,
         array $args,

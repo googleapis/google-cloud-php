@@ -35,6 +35,8 @@ use Google\Cloud\Sql\V1\DatabaseInstance;
 use Google\Cloud\Sql\V1\InstancesListResponse;
 use Google\Cloud\Sql\V1\InstancesListServerCasResponse;
 use Google\Cloud\Sql\V1\Operation;
+use Google\Cloud\Sql\V1\SqlInstancesAcquireSsrsLeaseRequest;
+use Google\Cloud\Sql\V1\SqlInstancesAcquireSsrsLeaseResponse;
 use Google\Cloud\Sql\V1\SqlInstancesAddServerCaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesCloneRequest;
 use Google\Cloud\Sql\V1\SqlInstancesCreateEphemeralCertRequest;
@@ -56,6 +58,8 @@ use Google\Cloud\Sql\V1\SqlInstancesPatchRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPerformDiskShrinkRequest;
 use Google\Cloud\Sql\V1\SqlInstancesPromoteReplicaRequest;
 use Google\Cloud\Sql\V1\SqlInstancesReencryptRequest;
+use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseRequest;
+use Google\Cloud\Sql\V1\SqlInstancesReleaseSsrsLeaseResponse;
 use Google\Cloud\Sql\V1\SqlInstancesRescheduleMaintenanceRequest;
 use Google\Cloud\Sql\V1\SqlInstancesResetReplicaSizeRequest;
 use Google\Cloud\Sql\V1\SqlInstancesResetSslConfigRequest;
@@ -79,6 +83,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
+ * @method PromiseInterface acquireSsrsLeaseAsync(SqlInstancesAcquireSsrsLeaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface addServerCaAsync(SqlInstancesAddServerCaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface cloneAsync(SqlInstancesCloneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createEphemeralAsync(SqlInstancesCreateEphemeralCertRequest $request, array $optionalArgs = [])
@@ -98,6 +103,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface performDiskShrinkAsync(SqlInstancesPerformDiskShrinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface promoteReplicaAsync(SqlInstancesPromoteReplicaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface reencryptAsync(SqlInstancesReencryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface releaseSsrsLeaseAsync(SqlInstancesReleaseSsrsLeaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface rescheduleMaintenanceAsync(SqlInstancesRescheduleMaintenanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resetReplicaSizeAsync(SqlInstancesResetReplicaSizeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface resetSslConfigAsync(SqlInstancesResetSslConfigRequest $request, array $optionalArgs = [])
@@ -229,6 +235,32 @@ final class SqlInstancesServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
+     *
+     * The async variant is {@see SqlInstancesServiceClient::acquireSsrsLeaseAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/acquire_ssrs_lease.php
+     *
+     * @param SqlInstancesAcquireSsrsLeaseRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SqlInstancesAcquireSsrsLeaseResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function acquireSsrsLease(SqlInstancesAcquireSsrsLeaseRequest $request, array $callOptions = []): SqlInstancesAcquireSsrsLeaseResponse
+    {
+        return $this->startApiCall('AcquireSsrsLease', $request, $callOptions)->wait();
     }
 
     /**
@@ -751,6 +783,32 @@ final class SqlInstancesServiceClient
     public function reencrypt(SqlInstancesReencryptRequest $request, array $callOptions = []): Operation
     {
         return $this->startApiCall('Reencrypt', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Release a lease for the setup of SQL Server Reporting Services (SSRS).
+     *
+     * The async variant is {@see SqlInstancesServiceClient::releaseSsrsLeaseAsync()} .
+     *
+     * @example samples/V1/SqlInstancesServiceClient/release_ssrs_lease.php
+     *
+     * @param SqlInstancesReleaseSsrsLeaseRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SqlInstancesReleaseSsrsLeaseResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function releaseSsrsLease(SqlInstancesReleaseSsrsLeaseRequest $request, array $callOptions = []): SqlInstancesReleaseSsrsLeaseResponse
+    {
+        return $this->startApiCall('ReleaseSsrsLease', $request, $callOptions)->wait();
     }
 
     /**

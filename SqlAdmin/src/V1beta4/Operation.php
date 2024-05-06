@@ -138,6 +138,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string target_project = 15;</code>
      */
     private $target_project = '';
+    /**
+     * The context for acquire SSRS lease operation, if applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 20;</code>
+     */
+    private $acquire_ssrs_lease_context = null;
 
     /**
      * Constructor.
@@ -199,6 +205,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           The URI of this resource.
      *     @type string $target_project
      *           The project ID of the target instance related to this operation.
+     *     @type \Google\Cloud\Sql\V1beta4\AcquireSsrsLeaseContext $acquire_ssrs_lease_context
+     *           The context for acquire SSRS lease operation, if applicable.
      * }
      */
     public function __construct($data = NULL) {
@@ -762,6 +770,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->target_project = $var;
+
+        return $this;
+    }
+
+    /**
+     * The context for acquire SSRS lease operation, if applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 20;</code>
+     * @return \Google\Cloud\Sql\V1beta4\AcquireSsrsLeaseContext|null
+     */
+    public function getAcquireSsrsLeaseContext()
+    {
+        return $this->acquire_ssrs_lease_context;
+    }
+
+    public function hasAcquireSsrsLeaseContext()
+    {
+        return isset($this->acquire_ssrs_lease_context);
+    }
+
+    public function clearAcquireSsrsLeaseContext()
+    {
+        unset($this->acquire_ssrs_lease_context);
+    }
+
+    /**
+     * The context for acquire SSRS lease operation, if applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 20;</code>
+     * @param \Google\Cloud\Sql\V1beta4\AcquireSsrsLeaseContext $var
+     * @return $this
+     */
+    public function setAcquireSsrsLeaseContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\AcquireSsrsLeaseContext::class);
+        $this->acquire_ssrs_lease_context = $var;
 
         return $this;
     }

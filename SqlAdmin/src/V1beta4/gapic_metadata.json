@@ -92,6 +92,11 @@
                 "grpc": {
                     "libraryClient": "SqlInstancesServiceGapicClient",
                     "rpcs": {
+                        "AcquireSsrsLease": {
+                            "methods": [
+                                "acquireSsrsLease"
+                            ]
+                        },
                         "AddServerCa": {
                             "methods": [
                                 "addServerCa"
@@ -185,6 +190,11 @@
                         "Reencrypt": {
                             "methods": [
                                 "reencrypt"
+                            ]
+                        },
+                        "ReleaseSsrsLease": {
+                            "methods": [
+                                "releaseSsrsLease"
                             ]
                         },
                         "RescheduleMaintenance": {
