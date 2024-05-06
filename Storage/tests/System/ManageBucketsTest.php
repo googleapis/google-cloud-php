@@ -485,8 +485,6 @@ class ManageBucketsTest extends StorageTestCase
         return [
             [[], false],
             [['hierarchicalNamespace' => ['enabled' => false,]], false],
-            // TODO: Test cases fails because of no uniformBucketLevelAccess
-            // [['hierarchicalNamespace' => ['enabled' => true,]], false],
             [[
                 'hierarchicalNamespace' => ['enabled' => true,],
                 'iamConfiguration' => ['uniformBucketLevelAccess' => ['enabled' => true]]
