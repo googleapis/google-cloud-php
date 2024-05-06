@@ -37,7 +37,9 @@ use Google\Cloud\Dlp\V2\ActivateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\ByteContentItem;
 use Google\Cloud\Dlp\V2\CancelDlpJobRequest;
 use Google\Cloud\Dlp\V2\ColumnDataProfile;
+use Google\Cloud\Dlp\V2\Connection;
 use Google\Cloud\Dlp\V2\ContentItem;
+use Google\Cloud\Dlp\V2\CreateConnectionRequest;
 use Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
@@ -48,17 +50,20 @@ use Google\Cloud\Dlp\V2\DeidentifyConfig;
 use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
+use Google\Cloud\Dlp\V2\DeleteConnectionRequest;
 use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
 use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\DeleteTableDataProfileRequest;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\DlpJobType;
 use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetColumnDataProfileRequest;
+use Google\Cloud\Dlp\V2\GetConnectionRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\GetDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
@@ -79,6 +84,8 @@ use Google\Cloud\Dlp\V2\InspectTemplate;
 use Google\Cloud\Dlp\V2\JobTrigger;
 use Google\Cloud\Dlp\V2\ListColumnDataProfilesRequest;
 use Google\Cloud\Dlp\V2\ListColumnDataProfilesResponse;
+use Google\Cloud\Dlp\V2\ListConnectionsRequest;
+use Google\Cloud\Dlp\V2\ListConnectionsResponse;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesResponse;
 use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
@@ -104,9 +111,12 @@ use Google\Cloud\Dlp\V2\RedactImageResponse;
 use Google\Cloud\Dlp\V2\ReidentifyContentRequest;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
 use Google\Cloud\Dlp\V2\RiskAnalysisJobConfig;
+use Google\Cloud\Dlp\V2\SearchConnectionsRequest;
+use Google\Cloud\Dlp\V2\SearchConnectionsResponse;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 use Google\Cloud\Dlp\V2\StoredInfoTypeConfig;
 use Google\Cloud\Dlp\V2\TableDataProfile;
+use Google\Cloud\Dlp\V2\UpdateConnectionRequest;
 use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
@@ -175,6 +185,8 @@ class DlpServiceGapicClient
     ];
 
     private static $columnDataProfileNameTemplate;
+
+    private static $connectionNameTemplate;
 
     private static $deidentifyTemplateNameTemplate;
 
@@ -280,6 +292,17 @@ class DlpServiceGapicClient
         }
 
         return self::$columnDataProfileNameTemplate;
+    }
+
+    private static function getConnectionNameTemplate()
+    {
+        if (self::$connectionNameTemplate == null) {
+            self::$connectionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/connections/{connection}'
+            );
+        }
+
+        return self::$connectionNameTemplate;
     }
 
     private static function getDeidentifyTemplateNameTemplate()
@@ -659,6 +682,7 @@ class DlpServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'columnDataProfile' => self::getColumnDataProfileNameTemplate(),
+                'connection' => self::getConnectionNameTemplate(),
                 'deidentifyTemplate' => self::getDeidentifyTemplateNameTemplate(),
                 'discoveryConfig' => self::getDiscoveryConfigNameTemplate(),
                 'dlpJob' => self::getDlpJobNameTemplate(),
@@ -718,6 +742,25 @@ class DlpServiceGapicClient
             'organization' => $organization,
             'location' => $location,
             'column_data_profile' => $columnDataProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a connection
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     *
+     * @return string The formatted connection resource.
+     */
+    public static function connectionName($project, $location, $connection)
+    {
+        return self::getConnectionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
         ]);
     }
 
@@ -1413,6 +1456,7 @@ class DlpServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - columnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
+     * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
@@ -1645,6 +1689,61 @@ class DlpServiceGapicClient
         return $this->startCall(
             'CancelDlpJob',
             GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Create a Connection to an external data source.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $connection = new Connection();
+     *     $response = $dlpServiceClient->createConnection($formattedParent, $connection);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. Parent resource name in the format:
+     *                                 `projects/{project}/locations/{location}`.
+     * @param Connection $connection   Required. The connection resource.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\Connection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createConnection(
+        $parent,
+        $connection,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setConnection($connection);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateConnection',
+            Connection::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2321,6 +2420,53 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Delete a Connection.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $dlpServiceClient->deleteConnection($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the Connection to be deleted, in the format:
+     *                             `projects/{project}/locations/{location}/connections/{connection}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteConnection($name, array $optionalArgs = [])
+    {
+        $request = new DeleteConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteConnection',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Deletes a DeidentifyTemplate.
      * See
      * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
@@ -2625,6 +2771,53 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Delete a TableDataProfile. Will not prevent the profile from being
+     * regenerated if the table is still included in a discovery configuration.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->tableDataProfileName('[ORGANIZATION]', '[LOCATION]', '[TABLE_DATA_PROFILE]');
+     *     $dlpServiceClient->deleteTableDataProfile($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the table data profile.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteTableDataProfile($name, array $optionalArgs = [])
+    {
+        $request = new DeleteTableDataProfileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteTableDataProfile',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Finish a running hybrid DlpJob. Triggers the finalization steps and running
      * of any enabled actions that have not yet run.
      *
@@ -2715,6 +2908,55 @@ class DlpServiceGapicClient
         return $this->startCall(
             'GetColumnDataProfile',
             ColumnDataProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get a Connection by name.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $response = $dlpServiceClient->getConnection($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name in the format:
+     *                             `projects/{project}/locations/{location}/connections/{connection}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\Connection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getConnection($name, array $optionalArgs = [])
+    {
+        $request = new GetConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetConnection',
+            Connection::class,
             $optionalArgs,
             $request
         )->wait();
@@ -3353,7 +3595,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Lists data profiles for an organization.
+     * Lists column data profiles for an organization.
      *
      * Sample code:
      * ```
@@ -3486,6 +3728,91 @@ class DlpServiceGapicClient
             'ListColumnDataProfiles',
             $optionalArgs,
             ListColumnDataProfilesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists Connections in a parent.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listConnections($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listConnections($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent name, for example:
+     *                             `projects/project-id/locations/global`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. * Supported fields/values
+     *           - `state` - MISSING|AVAILABLE|ERROR
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listConnections($parent, array $optionalArgs = [])
+    {
+        $request = new ListConnectionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListConnections',
+            $optionalArgs,
+            ListConnectionsResponse::class,
             $request
         );
     }
@@ -4237,7 +4564,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Lists data profiles for an organization.
+     * Lists project data profiles for an organization.
      *
      * Sample code:
      * ```
@@ -4287,7 +4614,7 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `project_id`: GCP project ID
+     *           - `project_id`: Google Cloud project ID
      *           - `sensitivity_level`: How sensitive the data in a project is, at most.
      *           - `data_risk_level`: How much risk is associated with this data.
      *           - `profile_last_generated`: When the profile was last updated in epoch
@@ -4481,7 +4808,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Lists data profiles for an organization.
+     * Lists table data profiles for an organization.
      *
      * Sample code:
      * ```
@@ -4534,7 +4861,7 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `project_id`: The GCP project ID.
+     *           - `project_id`: The Google Cloud project ID.
      *           - `dataset_id`: The ID of a BigQuery dataset.
      *           - `table_id`: The ID of a BigQuery table.
      *           - `sensitivity_level`: How sensitive the data in a table is, at most.
@@ -4554,7 +4881,7 @@ class DlpServiceGapicClient
      *           sequence of restrictions implicitly uses `AND`.
      *           * A restriction has the form of `{field} {operator} {value}`.
      *           * Supported fields/values:
-     *           - `project_id` - The GCP project ID.
+     *           - `project_id` - The Google Cloud project ID.
      *           - `dataset_id` - The BigQuery dataset ID.
      *           - `table_id` - The ID of the BigQuery table.
      *           - `sensitivity_level` - HIGH|MODERATE|LOW
@@ -4844,6 +5171,152 @@ class DlpServiceGapicClient
         return $this->startCall(
             'ReidentifyContent',
             ReidentifyContentResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Searches for Connections in a parent.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->searchConnections($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->searchConnections($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent name, typically an organization, without location.
+     *                             For example: `organizations/12345678`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. * Supported fields/values
+     *           - `state` - MISSING|AVAILABLE|ERROR
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchConnections($parent, array $optionalArgs = [])
+    {
+        $request = new SearchConnectionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'SearchConnections',
+            $optionalArgs,
+            SearchConnectionsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Update a Connection.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $connection = new Connection();
+     *     $response = $dlpServiceClient->updateConnection($formattedName, $connection);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string     $name         Required. Resource name in the format:
+     *                                 `projects/{project}/locations/{location}/connections/{connection}`.
+     * @param Connection $connection   Required. The connection with new values for the relevant fields.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. Mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\Connection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateConnection(
+        $name,
+        $connection,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setConnection($connection);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateConnection',
+            Connection::class,
             $optionalArgs,
             $request
         )->wait();

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains a configuration to make dlp api calls on a repeating basis.
+ * Contains a configuration to make api calls on a repeating basis.
  * See
  * https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers
  * to learn more.

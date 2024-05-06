@@ -104,6 +104,30 @@ class ColumnDataType
      * Generated from protobuf enum <code>TYPE_JSON = 14;</code>
      */
     const TYPE_JSON = 14;
+    /**
+     * Interval type.
+     *
+     * Generated from protobuf enum <code>TYPE_INTERVAL = 15;</code>
+     */
+    const TYPE_INTERVAL = 15;
+    /**
+     * `Range<Date>` type.
+     *
+     * Generated from protobuf enum <code>TYPE_RANGE_DATE = 16;</code>
+     */
+    const TYPE_RANGE_DATE = 16;
+    /**
+     * `Range<Datetime>` type.
+     *
+     * Generated from protobuf enum <code>TYPE_RANGE_DATETIME = 17;</code>
+     */
+    const TYPE_RANGE_DATETIME = 17;
+    /**
+     * `Range<Timestamp>` type.
+     *
+     * Generated from protobuf enum <code>TYPE_RANGE_TIMESTAMP = 18;</code>
+     */
+    const TYPE_RANGE_TIMESTAMP = 18;
 
     private static $valueToName = [
         self::COLUMN_DATA_TYPE_UNSPECIFIED => 'COLUMN_DATA_TYPE_UNSPECIFIED',
@@ -121,6 +145,10 @@ class ColumnDataType
         self::TYPE_RECORD => 'TYPE_RECORD',
         self::TYPE_BIGNUMERIC => 'TYPE_BIGNUMERIC',
         self::TYPE_JSON => 'TYPE_JSON',
+        self::TYPE_INTERVAL => 'TYPE_INTERVAL',
+        self::TYPE_RANGE_DATE => 'TYPE_RANGE_DATE',
+        self::TYPE_RANGE_DATETIME => 'TYPE_RANGE_DATETIME',
+        self::TYPE_RANGE_TIMESTAMP => 'TYPE_RANGE_TIMESTAMP',
     ];
 
     public static function name($value)

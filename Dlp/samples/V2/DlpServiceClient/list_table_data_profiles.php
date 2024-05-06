@@ -30,7 +30,7 @@ use Google\Cloud\Dlp\V2\ListTableDataProfilesRequest;
 use Google\Cloud\Dlp\V2\TableDataProfile;
 
 /**
- * Lists data profiles for an organization.
+ * Lists table data profiles for an organization.
  *
  * @param string $formattedParent Resource name of the organization or project, for
  *                                example `organizations/433245324/locations/europe` or

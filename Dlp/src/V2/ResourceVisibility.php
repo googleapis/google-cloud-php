@@ -27,6 +27,14 @@ class ResourceVisibility
      */
     const RESOURCE_VISIBILITY_PUBLIC = 10;
     /**
+     * May contain public items.
+     * For example, if a GCS bucket has uniform bucket level access disabled, some
+     * objects inside it may be public.
+     *
+     * Generated from protobuf enum <code>RESOURCE_VISIBILITY_INCONCLUSIVE = 15;</code>
+     */
+    const RESOURCE_VISIBILITY_INCONCLUSIVE = 15;
+    /**
      * Visible only to specific users.
      *
      * Generated from protobuf enum <code>RESOURCE_VISIBILITY_RESTRICTED = 20;</code>
@@ -36,6 +44,7 @@ class ResourceVisibility
     private static $valueToName = [
         self::RESOURCE_VISIBILITY_UNSPECIFIED => 'RESOURCE_VISIBILITY_UNSPECIFIED',
         self::RESOURCE_VISIBILITY_PUBLIC => 'RESOURCE_VISIBILITY_PUBLIC',
+        self::RESOURCE_VISIBILITY_INCONCLUSIVE => 'RESOURCE_VISIBILITY_INCONCLUSIVE',
         self::RESOURCE_VISIBILITY_RESTRICTED => 'RESOURCE_VISIBILITY_RESTRICTED',
     ];
 
