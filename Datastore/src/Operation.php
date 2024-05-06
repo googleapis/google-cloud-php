@@ -77,7 +77,7 @@ class Operation
      * The request handler responsible for sending requests and
      * serializing responses into relevant classes.
      */
-    protected RequestHandler $requestHandler;
+    private RequestHandler $requestHandler;
 
     /**
      * @var Serializer
@@ -316,12 +316,6 @@ class Operation
                 $transactionOptions['readOnly']
             );
         }
-
-        array_walk($transactionOptions, function (&$item) {
-            if ($item instanceof \stdClass) {
-                $item = [];
-            }
-        });
 
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
@@ -598,11 +592,6 @@ class Operation
                 'readTime',
                 'readConsistency',
                 'transaction'
-            ]);
-            $data = $this->convertDataToProtos($data, [
-                'partitionId' => PartitionId::class,
-                'readOptions' => ReadOptions::class,
-                'explainOptions' => ExplainOptions::class
             ]);
             if (isset($data['query'])) {
                 $data['query'] = $this->parseQuery($data['query']);

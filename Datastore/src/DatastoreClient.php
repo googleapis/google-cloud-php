@@ -98,6 +98,10 @@ class DatastoreClient
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
+    /**
+     * Keeping this consistent with veneer libraries where
+     * multiple clients are present.
+     */
     private const GAPIC_KEYS = [
         V1DatastoreClient::class
     ];
@@ -108,7 +112,7 @@ class DatastoreClient
      * The request handler responsible for sending requests and
      * serializing responses into relevant classes.
      */
-    protected $requestHandler;
+    private $requestHandler;
 
     /**
      * @var Serializer
@@ -609,7 +613,7 @@ class DatastoreClient
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
-            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            'readWrite' => $this->pluck('transactionOptions', $options, false) ?: []
         ], $options);
 
         return new Transaction(
@@ -648,7 +652,7 @@ class DatastoreClient
     {
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
-            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: (object) []
+            'readOnly' => $this->pluck('transactionOptions', $options, false) ?: []
         ], $options);
 
         return new ReadOnlyTransaction(
