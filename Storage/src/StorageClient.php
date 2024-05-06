@@ -292,6 +292,8 @@ class StorageClient
      *           set in conjunction. For more information, see
      *           [Bucket Locations](https://cloud.google.com/storage/docs/locations).
      *           **Defaults to** `"US"`.
+     *     @type array $hierarchicalNamespace The hierarchical namespace configuration
+     *           on this bucket.
      *     @type array $customPlacementConfig The bucket's dual regions. For more
      *           information, see
      *           [Bucket Locations](https://cloud.google.com/storage/docs/locations).
