@@ -57,7 +57,8 @@ trait XrefValidationTrait
     }
 
     /**
-     * Verifies that protobuf references and @see tags reference classes that exist.
+     * Verifies that all class references and @see tags contain references to classes, methods, and
+     * constants which actually exist.
      */
     private function getBrokenXrefs(string $description): array
     {
