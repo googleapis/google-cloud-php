@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2022 Google Inc.
+ * Copyright 2024 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,8 @@ use Google\Cloud\Core\Logger\AppEngineFlexFormatterV2;
 trait XrefValidationTrait
 {
     /**
-     * Verifies that protobuf references and @see tags are properly formatted.
+     * Verifies that all class references and @see tags are properly formatted
+     * with either an FQSEN (Fully Qualified Structural Element Name), or a URL.
      */
     private function getInvalidXrefs(string $description): array
     {
@@ -38,9 +39,15 @@ trait XrefValidationTrait
                 if (0 === strpos($matches[1], 'http')) {
                     return;
                 }
-                // Invalid reference format
-                if ('\\' !== $matches[1][0] || substr_count($matches[1], '\Google\\') > 1) {
+                // Invalid reference format (not an FQSEN)
+                if ('\\' !== $matches[1][0]) {
                     $invalidRefs[] = $matches[1];
+                    return;
+                }
+                // Invalid FQSEN (If it contains "\Google\" more than once, it wasn't properly imported)
+                if (substr_count($matches[1], '\Google\\') > 1) {
+                    $invalidRefs[] = $matches[1];
+                    return;
                 }
             },
             $description
@@ -58,33 +65,41 @@ trait XrefValidationTrait
         preg_replace_callback(
             '/<xref uid="([^ ]*)"/',
             function ($matches) use (&$brokenRefs) {
+                // Valid external reference
                 if (0 === strpos($matches[1], 'http')) {
-                    return; // Valid external reference
+                    return;
                 }
+                // We cannot run "class_exists" on these classes because they will throw a fatal error.
                 if (in_array(
                     $matches[1],
-                    ['\\' . AppEngineFlexFormatter::class, '\\' . AppEngineFlexFormatterV2::class])
-                ) {
-                    return; // We cannot run "class_exists" on these because they will throw a fatal error.
+                    ['\\' . AppEngineFlexFormatter::class, '\\' . AppEngineFlexFormatterV2::class]
+                )) {
+                    return;
                 }
+                // Valid class reference
                 if (class_exists($matches[1]) || interface_exists($matches[1] || trait_exists($matches[1]))) {
-                    return; // Valid class reference
+                    return;
                 }
+                // Valid method, magic method, andd constant references
                 if (false !== strpos($matches[1], '::')) {
                     if (false !== strpos($matches[1], '()')) {
                         list($class, $method) = explode('::', str_replace('()', '', $matches[1]));
+                        // Valid method reference
                         if (method_exists($class, $method)) {
-                            return; // Valid method reference
+                            return;
                         }
+                        // Assume it's a magic Async method
                         if ('Async' === substr($method, -5)) {
-                            return; // Skip magic Async methods
+                            return;
                         }
                     } elseif (defined($matches[1])) {
-                        return; // Valid constant reference
+                        // Valid constant reference
+                        return;
                     }
                 }
-                // empty hrefs show up as "\\"
+                // Invalid reference!
                 if ($matches[1] === '\\\\') {
+                    // empty hrefs show up as "\\"
                     $brokenRefs[] = null;
                 } else {
                     $brokenRefs[] = $matches[1];
