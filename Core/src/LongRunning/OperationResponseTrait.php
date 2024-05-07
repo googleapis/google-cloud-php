@@ -34,10 +34,10 @@ trait OperationResponseTrait
      *
      * @param OperationResponse|GaxOperationResponse $operation The operation response
      * @param Serializer|GaxSerializer $serializer The serializer to use for gRPC serialization/deserialization.
-     * @param array $lroResponseMappers A list of mappers for deserializing operation results.
+     * @param array $lroMappers A list of mappers for deserializing operation results.
      * @return array
      */
-    private function operationToArray($operation, $serializer, array $lroResponseMappers)
+    private function operationToArray($operation, $serializer, array $lroMappers)
     {
         $response = $operation->getLastProtoResponse();
         if (is_null($response)) {
@@ -49,11 +49,11 @@ trait OperationResponseTrait
         $result = null;
         if ($operation->isDone() && isset($response['response']['typeUrl'])) {
             $type = $response['response']['typeUrl'];
-            $result = $this->deserializeResult($operation, $type, $serializer, $lroResponseMappers);
+            $result = $this->deserializeResult($operation, $type, $serializer, $lroMappers);
         }
 
         $metaType = $response['metadata']['typeUrl'];
-        $metaResult = $this->deserializeMetadata($operation, $metaType, $serializer, $lroResponseMappers);
+        $metaResult = $this->deserializeMetadata($operation, $metaType, $serializer, $lroMappers);
         /** @see LongRunningOperation#reload() */
         $metaResult += ['typeUrl' => $metaType];
 
