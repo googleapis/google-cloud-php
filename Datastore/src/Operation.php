@@ -325,7 +325,6 @@ class Operation
             'transactionOptions' => $transactionOptions,
         ];
 
-        $data = $this->convertDataToProtos($data, ['transactionOptions' => TransactionOptions::class]);
         $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
 
         $res = $this->requestHandler->sendRequest(
