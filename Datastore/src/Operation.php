@@ -566,26 +566,9 @@ class Operation
         }
         $runQueryObj = clone $query;
         $runQueryFn = function (array $args = []) use (&$runQueryObj, $options, &$remainingLimit) {
-            $args += [
-                'query' => [],
-            ];
+            $parsedArgs = $this->parseRunQueryArguments($args, $runQueryObj, $options, $remainingLimit);
 
-            // The iterator provides the startCursor for subsequent pages as an argument.
-            $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
-            if (isset($remainingLimit)) {
-                $requestQueryArr['limit'] = $remainingLimit;
-            }
-            $req = [
-                'projectId' => $this->projectId,
-                'partitionId' => $this->partitionId(
-                    $this->projectId,
-                    $options['namespaceId'],
-                    $options['databaseId']
-                ),
-                $runQueryObj->queryKey() => $requestQueryArr,
-            ] + $this->readOptions($options) + $options;
-
-            list($data, $optionalArgs) = $this->splitOptionalArgs($req);
+            list($data, $optionalArgs) = $this->splitOptionalArgs($parsedArgs);
 
             // Remove redundant keys for request.
             $this->pluckArray(
@@ -593,12 +576,6 @@ class Operation
                 $data
             );
 
-            if (isset($data['query'])) {
-                $data['query'] = $this->parseQuery($data['query']);
-            }
-            if (isset($data['gqlQuery'])) {
-                $data['gqlQuery'] = $this->parseGqlQuery($data['gqlQuery']);
-            }
             $request = $this->serializer->decodeMessage(new RunQueryRequest(), $data);
             $res = $this->requestHandler->sendRequest(
                 DatastoreClient::class,
@@ -667,43 +644,15 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        $args = [
-            'query' => [],
-        ];
-        $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
-        $req = [
-            'projectId' => $this->projectId,
-            'partitionId' => $this->partitionId(
-                $this->projectId,
-                $options['namespaceId'],
-                $options['databaseId']
-            ),
-        ] + $requestQueryArr + $this->readOptions($options) + $options;
+        $parsedArgs = $this->parseRunAggregationQueryArgs($runQueryObj, $options);
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($req);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($parsedArgs);
 
         // Remove redundant keys for request.
         $this->pluckArray(
             ['namespaceId', 'readTime', 'readConsistency', 'transaction'],
             $data
         );
-
-        if (isset($data['aggregationQuery'])) {
-            if (isset($data['aggregationQuery']['nestedQuery'])) {
-                $data['aggregationQuery']['nestedQuery'] = $this->parseQuery(
-                    $data['aggregationQuery']['nestedQuery']
-                );
-            }
-
-            $data['aggregationQuery'] = $this->serializer->decodeMessage(
-                new V1AggregationQuery(),
-                $data['aggregationQuery']
-            );
-        }
-
-        if (isset($data['gqlQuery'])) {
-            $data['gqlQuery'] = $this->parseGqlQuery($data['gqlQuery']);
-        }
 
         $request = $this->serializer->decodeMessage(new RunAggregationQueryRequest(), $data);
         $res = $this->requestHandler->sendRequest(
@@ -1229,5 +1178,61 @@ class Operation
         }
 
         return [$type, $val];
+    }
+
+    private function parseRunQueryArguments($args, &$runQueryObj, $options, &$remainingLimit)
+    {
+        $args += ['query' => []];
+
+        // The iterator provides the startCursor for subsequent pages as an argument.
+        $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+        if (isset($remainingLimit)) {
+            $requestQueryArr['limit'] = $remainingLimit;
+        }
+        $result = [
+            'projectId' => $this->projectId,
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $options['namespaceId'],
+                $options['databaseId']
+            ),
+            $runQueryObj->queryKey() => $requestQueryArr,
+        ] + $this->readOptions($options) + $options;
+
+        if (isset($result['query'])) {
+            $result['query'] = $this->parseQuery($result['query']);
+        }
+        if (isset($result['gqlQuery'])) {
+            $result['gqlQuery'] = $this->parseGqlQuery($result['gqlQuery']);
+        }
+
+        return $result;
+    }
+
+    private function parseRunAggregationQueryArgs($runQueryObj, $options)
+    {
+        $requestQueryArr = $runQueryObj->queryObject();
+        $result = [
+            'projectId' => $this->projectId,
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $options['namespaceId'],
+                $options['databaseId']
+            ),
+        ] + $requestQueryArr + $this->readOptions($options) + $options;
+
+        if (isset($result['aggregationQuery'])) {
+            if (isset($result['aggregationQuery']['nestedQuery'])) {
+                $result['aggregationQuery']['nestedQuery'] = $this->parseQuery(
+                    $result['aggregationQuery']['nestedQuery']
+                );
+            }
+        }
+
+        if (isset($result['gqlQuery'])) {
+            $result['gqlQuery'] = $this->parseGqlQuery($result['gqlQuery']);
+        }
+
+        return $result;
     }
 }
