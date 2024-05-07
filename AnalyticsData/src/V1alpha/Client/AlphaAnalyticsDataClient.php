@@ -29,13 +29,19 @@ namespace Google\Analytics\Data\V1alpha\Client;
 use Google\Analytics\Data\V1alpha\AudienceList;
 use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
+use Google\Analytics\Data\V1alpha\CreateReportTaskRequest;
 use Google\Analytics\Data\V1alpha\GetAudienceListRequest;
 use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
+use Google\Analytics\Data\V1alpha\GetReportTaskRequest;
 use Google\Analytics\Data\V1alpha\ListAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
+use Google\Analytics\Data\V1alpha\ListReportTasksRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
+use Google\Analytics\Data\V1alpha\QueryReportTaskRequest;
+use Google\Analytics\Data\V1alpha\QueryReportTaskResponse;
 use Google\Analytics\Data\V1alpha\RecurringAudienceList;
+use Google\Analytics\Data\V1alpha\ReportTask;
 use Google\Analytics\Data\V1alpha\RunFunnelReportRequest;
 use Google\Analytics\Data\V1alpha\RunFunnelReportResponse;
 use Google\Analytics\Data\V1alpha\Segment;
@@ -70,11 +76,15 @@ use GuzzleHttp\Promise\PromiseInterface;
  *
  * @method PromiseInterface createAudienceListAsync(CreateAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAudienceListsAsync(ListAudienceListsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listRecurringAudienceListsAsync(ListRecurringAudienceListsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listReportTasksAsync(ListReportTasksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
  */
@@ -221,12 +231,32 @@ final class AlphaAnalyticsDataClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a report_task
+     * resource.
+     *
+     * @param string $property
+     * @param string $reportTask
+     *
+     * @return string The formatted report_task resource.
+     *
+     * @experimental
+     */
+    public static function reportTaskName(string $property, string $reportTask): string
+    {
+        return self::getPathTemplate('reportTask')->render([
+            'property' => $property,
+            'report_task' => $reportTask,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - audienceList: properties/{property}/audienceLists/{audience_list}
      * - property: properties/{property}
      * - recurringAudienceList: properties/{property}/recurringAudienceLists/{recurring_audience_list}
+     * - reportTask: properties/{property}/reportTasks/{report_task}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -421,6 +451,37 @@ final class AlphaAnalyticsDataClient
     }
 
     /**
+     * Initiates the creation of a report task. This method quickly
+     * returns a report task and initiates a long running
+     * asynchronous request to form a customized report of your Google Analytics
+     * event data.
+     *
+     * The async variant is {@see AlphaAnalyticsDataClient::createReportTaskAsync()} .
+     *
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/create_report_task.php
+     *
+     * @param CreateReportTaskRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createReportTask(CreateReportTaskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateReportTask', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets configuration metadata about a specific audience list. This method
      * can be used to understand an audience list after it has been created.
      *
@@ -496,6 +557,36 @@ final class AlphaAnalyticsDataClient
     public function getRecurringAudienceList(GetRecurringAudienceListRequest $request, array $callOptions = []): RecurringAudienceList
     {
         return $this->startApiCall('GetRecurringAudienceList', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets report metadata about a specific report task. After creating a report
+     * task, use this method to check its processing state or inspect its
+     * report definition.
+     *
+     * The async variant is {@see AlphaAnalyticsDataClient::getReportTaskAsync()} .
+     *
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/get_report_task.php
+     *
+     * @param GetReportTaskRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReportTask
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getReportTask(GetReportTaskRequest $request, array $callOptions = []): ReportTask
+    {
+        return $this->startApiCall('GetReportTask', $request, $callOptions)->wait();
     }
 
     /**
@@ -580,6 +671,34 @@ final class AlphaAnalyticsDataClient
     }
 
     /**
+     * Lists all report tasks for a property.
+     *
+     * The async variant is {@see AlphaAnalyticsDataClient::listReportTasksAsync()} .
+     *
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/list_report_tasks.php
+     *
+     * @param ListReportTasksRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listReportTasks(ListReportTasksRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListReportTasks', $request, $callOptions);
+    }
+
+    /**
      * Retrieves an audience list of users. After creating an audience, the users
      * are not immediately available for listing. First, a request to
      * `CreateAudienceList` is necessary to create an audience list of users, and
@@ -622,6 +741,38 @@ final class AlphaAnalyticsDataClient
     public function queryAudienceList(QueryAudienceListRequest $request, array $callOptions = []): QueryAudienceListResponse
     {
         return $this->startApiCall('QueryAudienceList', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves a report task's content. After requesting the `CreateReportTask`,
+     * you are able to retrieve the report content once the report is
+     * ACTIVE. This method will return an error if the report task's state is not
+     * `ACTIVE`. A query response will return the tabular row & column values of
+     * the report.
+     *
+     * The async variant is {@see AlphaAnalyticsDataClient::queryReportTaskAsync()} .
+     *
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/query_report_task.php
+     *
+     * @param QueryReportTaskRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return QueryReportTaskResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function queryReportTask(QueryReportTaskRequest $request, array $callOptions = []): QueryReportTaskResponse
+    {
+        return $this->startApiCall('QueryReportTask', $request, $callOptions)->wait();
     }
 
     /**
