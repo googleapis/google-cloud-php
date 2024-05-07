@@ -86,7 +86,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         $clients = ['multiDbGrpcClient' => [self::$grpcMultiDbClient]];
         // Emulators don't work well in ReGapic mode
         if (!getenv("DATASTORE_EMULATOR_HOST")) {
-            $clients['multiDbRestClient'] = [self::$restClient];
+            $clients['multiDbRestClient'] = [self::$restMultiDbClient];
         }
 
         return $clients;
