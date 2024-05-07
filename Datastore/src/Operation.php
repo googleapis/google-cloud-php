@@ -1004,10 +1004,10 @@ class Operation
     }
 
     /**
-     * Convert array representation of Query to {@see Google\Cloud\Datastore\V1\Query}.
+     * Parse query into API compatible values
      *
      * @param array $query
-     * @return V1Query
+     * @return array
      */
     private function parseQuery(array $query)
     {
@@ -1029,18 +1029,14 @@ class Operation
             ];
         }
 
-        $parsedQuery = $this->serializer->decodeMessage(
-            new V1Query(),
-            $query
-        );
-        return $parsedQuery;
+        return $query;
     }
 
     /**
-     * Convert array representation of GqlQuery to {@see Google\Cloud\Datastore\V1\GqlQuery}.
+     * Parse query into API compatible values
      *
      * @param array $gqlQuery
-     * @return GqlQuery
+     * @return array
      */
     private function parseGqlQuery(array $gqlQuery)
     {
@@ -1064,12 +1060,7 @@ class Operation
             }
         }
 
-        $parsedGqlQuery = $this->serializer->decodeMessage(
-            new GqlQuery(),
-            $gqlQuery
-        );
-
-        return $parsedGqlQuery;
+        return $gqlQuery;
     }
 
     /**
@@ -1226,8 +1217,6 @@ class Operation
             }
 
             $mutation[$mutationType] = $data;
-
-            $mutation = $this->serializer->decodeMessage(new Mutation(), $mutation);
         }
 
         $options += [
