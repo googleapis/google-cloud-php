@@ -689,32 +689,8 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        foreach ($mutations as &$mutation) {
-            $mutationType = array_keys($mutation)[0];
-            $data = $mutation[$mutationType];
-            if (isset($data['properties'])) {
-                foreach ($data['properties'] as &$property) {
-                    list($type, $val) = $this->toGrpcValue($property);
+        $options = $this->parseCommitOptions($mutations, $options);
 
-                    $property[$type] = $val;
-                }
-            }
-
-            $mutation[$mutationType] = $data;
-
-            $mutation = $this->serializer->decodeMessage(new Mutation(), $mutation);
-        }
-
-        $options += [
-            'mode' => ($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL,
-            'mutations' => $mutations,
-            'projectId' => $this->projectId,
-        ];
-
-        if (is_null($options['transaction'])) {
-            // Remove 'transaction' if set to `null` to avoid serialization error
-            unset($options['transaction']);
-        }
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
         // Remove redundant keys for request.
@@ -1234,5 +1210,36 @@ class Operation
         }
 
         return $result;
+    }
+
+    private function parseCommitOptions($mutations, $options) {
+        foreach ($mutations as &$mutation) {
+            $mutationType = array_keys($mutation)[0];
+            $data = $mutation[$mutationType];
+            if (isset($data['properties'])) {
+                foreach ($data['properties'] as &$property) {
+                    list($type, $val) = $this->toGrpcValue($property);
+
+                    $property[$type] = $val;
+                }
+            }
+
+            $mutation[$mutationType] = $data;
+
+            $mutation = $this->serializer->decodeMessage(new Mutation(), $mutation);
+        }
+
+        $options += [
+            'mode' => ($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL,
+            'mutations' => $mutations,
+            'projectId' => $this->projectId,
+        ];
+
+        if (is_null($options['transaction'])) {
+            // Remove 'transaction' if set to `null` to avoid serialization error
+            unset($options['transaction']);
+        }
+
+        return $options;
     }
 }
