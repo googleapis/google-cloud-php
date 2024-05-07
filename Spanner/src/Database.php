@@ -25,7 +25,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\LongRunning\LROManagerTrait;
@@ -34,16 +33,19 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\Database as GapicDatabase;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 
 /**
@@ -130,13 +132,6 @@ class Database
     const TYPE_PG_JSONB = 'pgJsonb';
     const TYPE_JSON = TypeCode::JSON;
 
-    # TODO: Remove the connection related objects
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
-
     /**
      * @var Instance
      */
@@ -199,8 +194,6 @@ class Database
      * and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the database exists.
-     * @param LongRunningConnectionInterface $lroConnection An implementation
-     *        mapping to methods which handle LRO resolution in the service.
      * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The database name or ID.
@@ -212,11 +205,9 @@ class Database
      * @param string $databaseRole The user created database role which creates the session.
      */
     public function __construct(
-        ConnectionInterface $connection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         Instance $instance,
-        LongRunningConnectionInterface $lroConnection,
         array $lroCallables,
         $projectId,
         $name,
@@ -225,15 +216,17 @@ class Database
         array $info = [],
         $databaseRole = ''
     ) {
-        # TODO: Remove the connection related objects
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->instance = $instance;
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedDatabaseName($name);
         $this->sessionPool = $sessionPool;
-        $this->operation = new Operation($connection, $returnInt64AsObject);
+        $this->operation = new Operation(
+            $requestHandler,
+            $serializer,
+            $returnInt64AsObject
+        );
         $this->info = $info;
 
         if ($this->sessionPool) {
@@ -391,9 +384,14 @@ class Database
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getDatabase([
-            'name' => $this->name
-        ] + $options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $request = $this->serializer->decodeMessage(new GetDatabaseRequest(), $data);
+        return $this->info = $this->requestHandler->sendRequest(
+            DatabaseAdminClient::class,
+            'getDatabase',
+            $request,
+            $this->addResourcePrefixHeader($optionalArgs, $this->name)
+        );
     }
 
     /**
@@ -517,23 +515,30 @@ class Database
      *     @type bool $enableDropProtection If `true`, delete operations for Database
      *           and Instance will be blocked. **Defaults to** `false`.
      * }
-     * @return LongRunningOperation<Database>
+     * @return LongRunningOperationManager<Database>
      */
     public function updateDatabase(array $options = [])
     {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $fieldMask = [];
-        if (isset($options['enableDropProtection'])) {
-            $fieldMask[] = 'enable_drop_protection';
+        if (isset($data['enableDropProtection'])) {
+            $fieldMask[] = 'enableDropProtection';
         }
-        return $this->connection->updateDatabase([
-            'database' => [
-                'name' => $this->name,
-                'enableDropProtection' => $options['enableDropProtection'] ?? false,
-            ],
-            'updateMask' => [
-                'paths' => $fieldMask
-            ]
-        ] + $options);
+        $updateMask = ['paths' => $fieldMask];
+        $databaseInfo = [
+            'name' => $this->name,
+            'enableDropProtection' => $data['enableDropProtection'] ?? false,
+        ];
+
+        $data['database'] = $this->serializer->decodeMessage(new GapicDatabase(), $databaseInfo);
+        $data['updateMask'] = $this->serializer->decodeMessage(new FieldMask(), $updateMask);
+        $request = $this->serializer->decodeMessage(new UpdateDatabaseRequest(), $data);
+        $this->requestHandler->sendRequest(
+            DatabaseAdminClient::class,
+            'updateDatabase',
+            $request,
+            $this->addResourcePrefixHeader($optionalArgs, $this->name)
+        );
     }
 
     /**
@@ -594,15 +599,26 @@ class Database
      *
      * @param string[] $statements A list of DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return LongRunningOperation
+     * @return LongRunningOperationManager
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
-        $operation = $this->connection->updateDatabaseDdl($options + [
-            'name' => $this->name,
-            'statements' => $statements,
-        ]);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['database'] = $this->name;
+        $data['statements'] = $statements;
+        $request = $this->serializer->decodeMessage(new UpdateDatabaseDdlRequest(), $data);
+        $res = $this->requestHandler->sendRequest(
+            DatabaseAdminClient::class,
+            'updateDatabaseDdl',
+            $request,
+            $this->addResourcePrefixHeader($optionalArgs, $this->name())
+        );
 
+        $operation = $this->operationToArray(
+            $res,
+            $this->serializer,
+            $this->lroResponseMappers
+        );
         return $this->resumeOperation($operation['name'], $operation);
     }
 
@@ -630,9 +646,15 @@ class Database
      */
     public function drop(array $options = [])
     {
-        $this->connection->dropDatabase($options + [
-            'name' => $this->name
-        ]);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['database'] = $this->name;
+        $request = $this->serializer->decodeMessage(new DropDatabaseRequest(), $data);
+        $res = $this->requestHandler->sendRequest(
+            DatabaseAdminClient::class,
+            'createDatabase',
+            $request,
+            $this->addResourcePrefixHeader($optionalArgs, $this->name)
+        );
 
         if ($this->sessionPool) {
             $this->sessionPool->clear();
@@ -663,9 +685,15 @@ class Database
      */
     public function ddl(array $options = [])
     {
-        $ddl = $this->connection->getDatabaseDDL($options + [
-            'name' => $this->name
-        ]);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['database'] = $this->name;
+        $request = $this->serializer->decodeMessage(new GetDatabaseDdlRequest(), $data);
+        $ddl = $this->requestHandler->sendRequest(
+            DatabaseAdminClient::class,
+            'getDatabaseDdl',
+            $request,
+            $this->addResourcePrefixHeader($optionalArgs, $this->name)
+        );
 
         if (isset($ddl['statements'])) {
             return $ddl['statements'];
@@ -2123,7 +2151,7 @@ class Database
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'requestHandler' => $this->requestHandler,
             'projectId' => $this->projectId,
             'name' => $this->name,
             'instance' => $this->instance,
