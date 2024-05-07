@@ -26,7 +26,7 @@ class Policy
      */
     const LOCAL_REGION = 403535464;
     /**
-     * Store snapshot to the nearest multi region GCS bucket, relative to the originating disk. No additional parameters are needed.
+     * Store snapshot in the nearest multi region Cloud Storage bucket, relative to the originating disk. No additional parameters are needed.
      *
      * Generated from protobuf enum <code>NEAREST_MULTI_REGION = 212467515;</code>
      */
