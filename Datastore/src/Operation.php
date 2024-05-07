@@ -454,18 +454,18 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         });
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options, [
-            'transaction',
-            'className',
-            'sort',
-            'readTime',
-            'readConsistency'
-        ]);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data += $this->readOptions($options) + [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
             'keys' => $this->keysList($serviceKeys),
         ];
+
+        // Remove redundant keys for request.
+        $this->pluckArray(
+            ['transaction', 'className', 'sort', 'readTime', 'readConsistency'],
+            $data
+        );
 
         $request = $this->serializer->decodeMessage(new LookupRequest(), $data);
 
@@ -585,13 +585,14 @@ class Operation
                 $runQueryObj->queryKey() => $requestQueryArr,
             ] + $this->readOptions($options) + $options;
 
-            list($data, $optionalArgs) = $this->splitOptionalArgs($req, [
-                'className',
-                'namespaceId',
-                'readTime',
-                'readConsistency',
-                'transaction'
-            ]);
+            list($data, $optionalArgs) = $this->splitOptionalArgs($req);
+
+            // Remove redundant keys for request.
+            $this->pluckArray(
+                ['className', 'namespaceId', 'readTime', 'readConsistency', 'transaction'],
+                $data
+            );
+
             if (isset($data['query'])) {
                 $data['query'] = $this->parseQuery($data['query']);
             }
@@ -679,12 +680,13 @@ class Operation
             ),
         ] + $requestQueryArr + $this->readOptions($options) + $options;
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($req, [
-            'namespaceId',
-            'readTime',
-            'readConsistency',
-            'transaction'
-        ]);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($req);
+
+        // Remove redundant keys for request.
+        $this->pluckArray(
+            ['namespaceId', 'readTime', 'readConsistency', 'transaction'],
+            $data
+        );
 
         if (isset($data['aggregationQuery'])) {
             if (isset($data['aggregationQuery']['nestedQuery'])) {
@@ -764,7 +766,11 @@ class Operation
             // Remove 'transaction' if set to `null` to avoid serialization error
             unset($options['transaction']);
         }
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['allowOverwrite', 'baseVersion']);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+
+        // Remove redundant keys for request.
+        $this->pluckArray(['allowOverwrite', 'baseVersion'], $data);
+
         $request = $this->serializer->decodeMessage(new CommitRequest(), $data);
         $res = $this->requestHandler->sendRequest(
             DatastoreClient::class,
