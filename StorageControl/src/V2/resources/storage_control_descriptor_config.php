@@ -214,7 +214,7 @@ return [
             'templateMap' => [
                 'bucket' => 'projects/{project}/buckets/{bucket}',
                 'folder' => 'projects/{project}/buckets/{bucket}/folders/{folder=**}',
-                'managedFolder' => 'projects/{project}/buckets/{bucket}/managedFolders/{managedFolder=**}',
+                'managedFolder' => 'projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}',
                 'storageLayout' => 'projects/{project}/buckets/{bucket}/storageLayout',
             ],
         ],

@@ -67,7 +67,7 @@ function callSample(): void
     $formattedName = StorageControlClient::managedFolderName(
         '[PROJECT]',
         '[BUCKET]',
-        '[MANAGEDFOLDER]'
+        '[MANAGED_FOLDER]'
     );
 
     delete_managed_folder_sample($formattedName);
