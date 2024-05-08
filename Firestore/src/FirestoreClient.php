@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ClientOptionsTrait;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\GeoPoint;
@@ -27,6 +29,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as ClientFirestoreClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -72,6 +75,8 @@ use Psr\Http\Message\StreamInterface;
 class FirestoreClient
 {
     use ClientTrait;
+    use ClientOptionsTrait;
+    use DetectProjectIdTrait;
     use SnapshotTrait;
     use ValidateTrait;
 
@@ -82,6 +87,14 @@ class FirestoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     const MAX_RETRIES = 5;
+
+    /**
+     * Keeping this consistent with veneer libraries where
+     * multiple clients are present.
+     */
+    private const GAPIC_KEYS = [
+        ClientFirestoreClient::class
+    ];
 
     /**
      * @var Connection\ConnectionInterface
@@ -149,6 +162,8 @@ class FirestoreClient
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
         ];
+
+        $config = $this->buildClientOptions($config);
 
         $this->database = $config['database'];
 
