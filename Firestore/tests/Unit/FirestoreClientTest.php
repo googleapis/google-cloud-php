@@ -21,6 +21,8 @@ use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
@@ -43,6 +45,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class FirestoreClientTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
@@ -50,6 +53,8 @@ class FirestoreClientTest extends TestCase
     const DATABASE = '(default)';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $client;
 
     public function setUp(): void
@@ -57,6 +62,8 @@ class FirestoreClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(
             FirestoreClient::class,
             [['projectId' => self::PROJECT]]

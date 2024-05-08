@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Aggregate;
 use Google\Cloud\Firestore\AggregateQuery;
@@ -34,6 +36,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class AggregateQueryTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
     const QUERY_PARENT = 'projects/example_project/databases/(default)/';
@@ -45,6 +48,8 @@ class AggregateQueryTest extends TestCase
     ];
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $query;
     private $aggregate;
     private $aggregateQuery;
@@ -52,19 +57,30 @@ class AggregateQueryTest extends TestCase
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->query = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'query']);
+        ], ['connection', 'requestHandler', 'query']);
         $this->aggregate = Aggregate::count();
         $this->aggregateQuery = TestHelpers::stub(AggregateQuery::class, [
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::QUERY_PARENT,
             ['query' => $this->queryObj],
             $this->aggregate
-        ], ['connection', 'query', 'aggregates']);
+        ], ['connection', 'requestHandler', 'query', 'aggregates']);
     }
 
     /**

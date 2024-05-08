@@ -19,6 +19,8 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Exception;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
@@ -34,6 +36,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class FirestoreSessionHandlerTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
     const SESSION_SAVE_PATH = 'sessions';
@@ -42,12 +45,16 @@ class FirestoreSessionHandlerTest extends TestCase
     const DATABASE = '(default)';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $valueMapper;
     private $documents;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->valueMapper = $this->prophesize(ValueMapper::class);
         $this->documents = $this->prophesize(Iterator::class);
     }
@@ -59,6 +66,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willReturn(['transaction' => null]);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -76,6 +85,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willThrow(new ServiceException(''));
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -93,6 +104,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willReturn(['transaction' => null]);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -110,6 +123,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -136,6 +151,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willReturn($this->documents->reveal());
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -162,6 +179,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willThrow((new ServiceException('')));
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -199,6 +218,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willReturn($this->documents->reveal());
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -238,6 +259,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -273,6 +296,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willThrow((new ServiceException('')));
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -302,6 +327,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -330,6 +357,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -349,6 +378,8 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->connection->commit()->shouldNotBeCalled();
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE
@@ -414,6 +445,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE,
@@ -438,6 +471,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willThrow(new ServiceException(''));
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper->reveal(),
             self::PROJECT,
             self::DATABASE,

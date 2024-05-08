@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -31,6 +33,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BulkWriterTest extends FirestoreTestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
     private $document;
@@ -95,9 +98,17 @@ class BulkWriterTest extends FirestoreTestCase
     {
         $docs = $this->bulkDocuments();
         $connection = $this->prophesize(ConnectionInterface::class);
+        $requestHandler = $this->prophesize(RequestHandler::class);
         $this->batch = TestHelpers::stub(BulkWriter::class, [
             $connection->reveal(),
-            new ValueMapper($connection->reveal(), false),
+            $requestHandler->reveal(),
+            $this->getSerializer(),
+            new ValueMapper(
+                $connection->reveal(),
+                $requestHandler->reveal(),
+                $this->getSerializer(),
+                false
+            ),
             self::$collection->name(),
             [
                 'initialOpsPerSecond' => 5,

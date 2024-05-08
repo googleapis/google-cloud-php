@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
@@ -44,12 +46,13 @@ use Google\Cloud\Firestore\Filter;
  */
 class QueryTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
-    const PROJECT = 'example_project';
-    const DATABASE = '(default)';
-    const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
-    const COLLECTION = 'foo';
+    public const PROJECT = 'example_project';
+    public const DATABASE = '(default)';
+    public const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
+    public const COLLECTION = 'foo';
 
     private $queryObj = [
         'from' => [
@@ -57,27 +60,45 @@ class QueryTest extends TestCase
         ]
     ];
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $query;
     private $collectionGroupQuery;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->query = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'query', 'transaction']);
+        ], ['connection', 'requestHandler', 'query', 'transaction']);
 
         $allDescendants = $this->queryObj;
         $allDescendants['from'][0]['allDescendants'] = true;
         $this->collectionGroupQuery = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             $allDescendants
-        ], ['connection', 'query', 'transaction']);
+        ], ['connection', 'requestHandler', 'query', 'transaction']);
     }
 
     public function testConstructMissingFrom()
@@ -86,7 +107,14 @@ class QueryTest extends TestCase
 
         new Query(
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             []
         );
@@ -108,7 +136,7 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                 ],
                 []
             ]));
@@ -128,7 +156,7 @@ class QueryTest extends TestCase
     {
         $name = self::QUERY_PARENT .'/foo';
 
-        $ts = (new \DateTime)->format(Timestamp::FORMAT);
+        $ts = (new \DateTime())->format(Timestamp::FORMAT);
         $this->connection->runQuery(Argument::any())
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([
@@ -271,24 +299,25 @@ class QueryTest extends TestCase
 
     public function testWhere()
     {
-        $this->runAndAssert(function (Query $q) {
-            $res = $q->where('user.name', '=', 'John');
-            $res = $res->where('user.age', '=', 30);
-            $res = $res->where('user.coolness', '=', null);
-            $res = $res->where('user.numberOfFriends', '=', NAN);
-            $res = $res->where(
-                Filter::or([
-                    Filter::field('user.name', '=', 'John'),
-                    Filter::field('user.age', '=', 30),
-                    Filter::and([
-                        Filter::field('user.coolness', '=', null),
-                        Filter::field('user.numberOfFriends', '=', NAN)
+        $this->runAndAssert(
+            function (Query $q) {
+                $res = $q->where('user.name', '=', 'John');
+                $res = $res->where('user.age', '=', 30);
+                $res = $res->where('user.coolness', '=', null);
+                $res = $res->where('user.numberOfFriends', '=', NAN);
+                $res = $res->where(
+                    Filter::or([
+                        Filter::field('user.name', '=', 'John'),
+                        Filter::field('user.age', '=', 30),
+                        Filter::and([
+                            Filter::field('user.coolness', '=', null),
+                            Filter::field('user.numberOfFriends', '=', NAN)
+                            ])
                         ])
-                    ])
-            );
+                );
 
-            return $res;
-        },
+                return $res;
+            },
             [
                 'parent' => self::QUERY_PARENT,
                 'structuredQuery' => [
@@ -388,7 +417,8 @@ class QueryTest extends TestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        );
     }
 
     /**
@@ -915,7 +945,7 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                 ],
                 [
                     'document' => [
@@ -926,7 +956,7 @@ class QueryTest extends TestCase
                             ]
                         ]
                     ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                 ],
             ]));
 

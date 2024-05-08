@@ -274,6 +274,8 @@ trait SnapshotTrait
             $mapper,
             $this->getCollectionReference(
                 $connection,
+                $requestHandler,
+                $serializer,
                 $mapper,
                 $projectId,
                 $database,

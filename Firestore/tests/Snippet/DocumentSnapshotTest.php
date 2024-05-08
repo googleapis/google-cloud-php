@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -35,10 +37,11 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class DocumentSnapshotTest extends SnippetTestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
+    public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $snapshot;
 
@@ -52,7 +55,12 @@ class DocumentSnapshotTest extends SnippetTestCase
 
         $this->snapshot = TestHelpers::stub(DocumentSnapshot::class, [
             $ref->reveal(),
-            new ValueMapper($this->prophesize(ConnectionInterface::class)->reveal(), false),
+            new ValueMapper(
+                $this->prophesize(ConnectionInterface::class)->reveal(),
+                $this->prophesize(RequestHandler::class)->reveal(),
+                $this->getSerializer(),
+                false
+            ),
             [],
             [],
             true
@@ -130,7 +138,7 @@ class DocumentSnapshotTest extends SnippetTestCase
      */
     public function testTimestampMethods($method)
     {
-        $ts = new Timestamp(new \DateTime);
+        $ts = new Timestamp(new \DateTime());
         $info = [$method => $ts];
         $this->snapshot->___setProperty('info', $info);
 

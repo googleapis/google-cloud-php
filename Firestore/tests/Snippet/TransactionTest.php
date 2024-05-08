@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -43,17 +46,20 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class TransactionTest extends SnippetTestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    const PROJECT = 'example_project';
-    const DATABASE_ID = '(default)';
-    const TRANSACTION = 'foobar';
-    const DATABASE = 'projects/example_project/databases/(default)';
-    const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
-    const DOCUMENT_TEMPLATE = 'projects/%s/databases/%s/documents/users/%s';
+    public const PROJECT = 'example_project';
+    public const DATABASE_ID = '(default)';
+    public const TRANSACTION = 'foobar';
+    public const DATABASE = 'projects/example_project/databases/(default)';
+    public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
+    public const DOCUMENT_TEMPLATE = 'projects/%s/databases/%s/documents/users/%s';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $transaction;
     private $document;
     private $batch;
@@ -61,12 +67,21 @@ class TransactionTest extends SnippetTestCase
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->transaction = TestHelpers::stub(TransactionStub::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::DATABASE,
             self::TRANSACTION
-        ], ['connection', 'writer']);
+        ], ['connection', 'requestHandler', 'writer']);
 
         $this->document = $this->prophesize(DocumentReference::class);
         $this->document->name()->willReturn(self::DOCUMENT);
@@ -103,12 +118,15 @@ class TransactionTest extends SnippetTestCase
                     'found' => [
                         'name' => self::DOCUMENT,
                         'fields' => [],
-                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                        'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                     ]
                 ]
             ]));
 
-        $this->transaction->setConnection($this->connection->reveal());
+        $this->transaction->setConnection(
+            $this->connection->reveal(),
+            $this->requestHandler->reveal()
+        );
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'snapshot');
         $snippet->addLocal('transaction', $this->transaction);
@@ -124,6 +142,8 @@ class TransactionTest extends SnippetTestCase
             ->willReturn(new \ArrayIterator([]));
         $aggregateQuery = new AggregateQuery(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::DOCUMENT,
             ['query' => []],
             Aggregate::count()
@@ -246,13 +266,13 @@ class TransactionTest extends SnippetTestCase
                         'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
                         'fields' => []
                     ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                 ], [
                     'found' => [
                         'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
                         'fields' => []
                     ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                 ]
             ]);
 
@@ -273,7 +293,7 @@ class TransactionTest extends SnippetTestCase
             ->willReturn([
                 [
                     'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                 ]
             ]);
 
@@ -290,21 +310,44 @@ class TransactionTest extends SnippetTestCase
 //@codingStandardsIgnoreStart
 class TransactionStub extends Transaction
 {
+    use FirestoreTestHelperTrait;
+
     private $database;
 
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $database, $transaction)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
+        ValueMapper $valueMapper,
+        $database,
+        $transaction
+    ) {
         $this->database = $database;
 
-        parent::__construct($connection, $valueMapper, $database, $transaction);
+        parent::__construct(
+            $connection,
+            $requestHandler,
+            $serializer,
+            $valueMapper,
+            $database,
+            $transaction
+        );
     }
 
-    public function setConnection(ConnectionInterface $connection)
+    public function setConnection(ConnectionInterface $connection, RequestHandler $requestHandler)
     {
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
         $this->writer = new WriteBatch(
             $connection,
-            new ValueMapper($connection, false),
+            $requestHandler,
+            $this->getSerializer(),
+            new ValueMapper(
+                $connection,
+                $requestHandler,
+                $this->getSerializer(),
+                false
+            ),
             $this->database,
             $this->___getProperty('transaction')
         );

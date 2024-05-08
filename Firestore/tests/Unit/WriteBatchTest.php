@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -37,25 +39,37 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class WriteBatchTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
 
-    const PROJECT = 'example_project';
-    const DATABASE = '(default)';
-    const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
-    const TRANSACTION = 'foobar';
+    public const PROJECT = 'example_project';
+    public const DATABASE = '(default)';
+    public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
+    public const TRANSACTION = 'foobar';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $batch;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->batch = TestHelpers::stub(WriteBatch::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
-        ], ['connection', 'transaction']);
+        ], ['connection', 'requestHandler', 'transaction']);
     }
 
     /**

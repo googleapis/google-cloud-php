@@ -195,13 +195,6 @@ class FirestoreClient
             'projectId' => $this->projectId,
         ]);
 
-        $this->valueMapper = new ValueMapper(
-            $this->connection,
-            $this->requestHandler,
-            $this->serializer,
-            $config['returnInt64AsObject']
-        );
-
         $this->serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
                 return $this->flattenValue($v);
@@ -225,6 +218,13 @@ class FirestoreClient
             $this->serializer,
             self::GAPIC_KEYS,
             $config
+        );
+
+        $this->valueMapper = new ValueMapper(
+            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
+            $config['returnInt64AsObject']
         );
     }
 

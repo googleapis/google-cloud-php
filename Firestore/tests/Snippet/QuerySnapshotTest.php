@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -33,15 +35,20 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class QuerySnapshotTest extends SnippetTestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $snapshot;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->snapshot = TestHelpers::stub(QuerySnapshot::class, [
             $this->prophesize(Query::class)->reveal(),
             []
