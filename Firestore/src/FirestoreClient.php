@@ -78,11 +78,10 @@ use Psr\Http\Message\StreamInterface;
  */
 class FirestoreClient
 {
-    use ArrayTrait;
+    use ClientTrait; // To remove in the end
     use ApiHelperTrait;
-    use ClientTrait;
     use ClientOptionsTrait;
-    use DetectProjectIdTrait;
+    // use DetectProjectIdTrait; // To uncomment when ClientTrait is removed
     use SnapshotTrait;
     use ValidateTrait;
 
@@ -198,6 +197,8 @@ class FirestoreClient
 
         $this->valueMapper = new ValueMapper(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $config['returnInt64AsObject']
         );
 
@@ -248,6 +249,8 @@ class FirestoreClient
         }
         return new BulkWriter(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->databaseName(
                 $this->projectId,
@@ -300,6 +303,8 @@ class FirestoreClient
     {
         return new BulkWriter(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->databaseName(
                 $this->projectId,
@@ -328,6 +333,8 @@ class FirestoreClient
     {
         return $this->getCollectionReference(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -372,6 +379,18 @@ class FirestoreClient
                     return $this->collection($collectionId);
                 },
                 [$this->connection, 'listCollectionIds'],
+                // function ($callOptions) use ($optionalArgs, $request) {
+                //     if (isset($callOptions['pageToken'])) {
+                //         $request->setPageToken($callOptions['pageToken']);
+                //     }
+
+                //     return $this->requestHandler->sendRequest(
+                //         FirestoreClient::class,
+                //         'listCollectionIds',
+                //         $request,
+                //         $optionalArgs
+                //     );
+                // },
                 [
                     'parent' => $this->fullName($this->projectId, $this->database),
                 ] + $options,
@@ -399,6 +418,8 @@ class FirestoreClient
     {
         return $this->getDocumentReference(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -450,6 +471,8 @@ class FirestoreClient
     {
         return $this->getDocumentsByPaths(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -489,6 +512,8 @@ class FirestoreClient
 
         return new Query(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->fullName($this->projectId, $this->database),
             [
@@ -616,6 +641,8 @@ class FirestoreClient
 
             $transaction = new Transaction(
                 $this->connection,
+                $this->requestHandler,
+                $this->serializer,
                 $this->valueMapper,
                 $database,
                 $transactionId
@@ -745,6 +772,8 @@ class FirestoreClient
     {
         return new FirestoreSessionHandler(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->projectId,
             $this->database,

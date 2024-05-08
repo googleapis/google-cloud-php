@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
@@ -53,6 +55,16 @@ class CollectionReference extends Query
     private $connection;
 
     /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
      * @var ValueMapper
      */
     private $valueMapper;
@@ -71,20 +83,29 @@ class CollectionReference extends Query
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $name The absolute name of the collection.
      */
     public function __construct(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         $name
     ) {
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
 
         parent::__construct(
             $connection,
+            $requestHandler,
+            $serializer,
             $valueMapper,
             $this->parentPath($this->name),
             [
@@ -281,6 +302,18 @@ class CollectionReference extends Query
                     return $this->documentFactory($document['name']);
                 },
                 [$this->connection, 'listDocuments'],
+                // function ($callOptions) use ($optionalArgs, $request) {
+                //     if (isset($callOptions['pageToken'])) {
+                //         $request->setPageToken($callOptions['pageToken']);
+                //     }
+
+                //     return $this->requestHandler->sendRequest(
+                //         FirestoreClient::class,
+                //         'listDocuments',
+                //         $request,
+                //         $optionalArgs
+                //     );
+                // },
                 $options,
                 [
                     'itemsKey' => 'documents',
@@ -319,6 +352,13 @@ class CollectionReference extends Query
      */
     private function documentFactory($name)
     {
-        return new DocumentReference($this->connection, $this->valueMapper, $this, $name);
+        return new DocumentReference(
+            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
+            $this->valueMapper,
+            $this,
+            $name
+        );
     }
 }

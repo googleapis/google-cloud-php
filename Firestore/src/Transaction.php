@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
@@ -54,6 +56,16 @@ class Transaction
     private $connection;
 
     /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
      * @var ValueMapper
      */
     private $valueMapper;
@@ -75,22 +87,36 @@ class Transaction
 
     /**
      * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $database The database name.
      * @param string $transaction The transaction ID.
      */
     public function __construct(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         $database,
         $transaction
     ) {
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->transaction = $transaction;
 
-        $this->writer = new BulkWriter($connection, $valueMapper, $database, $transaction);
+        $this->writer = new BulkWriter(
+            $connection,
+            $requestHandler,
+            $serializer,
+            $valueMapper,
+            $database,
+            $transaction
+        );
     }
 
     /**
@@ -107,9 +133,14 @@ class Transaction
      */
     public function snapshot(DocumentReference $document, array $options = [])
     {
-        return $this->createSnapshot($this->connection, $this->valueMapper, $document, [
-            'transaction' => $this->transaction,
-        ] + $options);
+        return $this->createSnapshot(
+            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
+            $this->valueMapper,
+            $document,
+            ['transaction' => $this->transaction] + $options
+        );
     }
 
     /**
@@ -190,6 +221,8 @@ class Transaction
     {
         return $this->getDocumentsByPaths(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->projectIdFromName($this->database),
             $this->databaseIdFromName($this->database),

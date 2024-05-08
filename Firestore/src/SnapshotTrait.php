@@ -17,8 +17,11 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\TimestampTrait;
@@ -30,7 +33,7 @@ use Google\Cloud\Firestore\DocumentReference;
  */
 trait SnapshotTrait
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use PathTrait;
     use TimeTrait;
     use TimestampTrait;
@@ -41,6 +44,9 @@ trait SnapshotTrait
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param DocumentReference $reference The parent document.
      * @param array $options {
@@ -52,6 +58,8 @@ trait SnapshotTrait
      */
     private function createSnapshot(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         DocumentReference $reference,
         array $options = []
@@ -61,7 +69,13 @@ trait SnapshotTrait
         $exists = true;
 
         try {
-            $document = $this->getSnapshot($connection, $reference->name(), $options);
+            $document = $this->getSnapshot(
+                $connection,
+                $requestHandler,
+                $serializer,
+                $reference->name(),
+                $options
+            );
         } catch (NotFoundException $e) {
             $exists = false;
         }
@@ -100,6 +114,9 @@ trait SnapshotTrait
      * Send a service request for a snapshot, and return the raw data
      *
      * @param ConnectionInterface $connection A Connection to Cloud Firestore
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $name The document name.
      * @param array $options Configuration options.
      * @return array
@@ -107,8 +124,13 @@ trait SnapshotTrait
      *     specified.
      * @throws NotFoundException If the document does not exist.
      */
-    private function getSnapshot(ConnectionInterface $connection, $name, array $options = [])
-    {
+    private function getSnapshot(
+        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
+        $name,
+        array $options = []
+    ) {
         $options = $this->formatReadTimeOption($options);
 
         $snapshot = $connection->batchGetDocuments([
@@ -132,6 +154,9 @@ trait SnapshotTrait
      * not), and returns.
      *
      * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -142,6 +167,8 @@ trait SnapshotTrait
      */
     private function getDocumentsByPaths(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -185,6 +212,8 @@ trait SnapshotTrait
 
             $ref = $this->getDocumentReference(
                 $connection,
+                $requestHandler,
+                $serializer,
                 $mapper,
                 $projectId,
                 $database,
@@ -211,6 +240,9 @@ trait SnapshotTrait
      * Creates a DocumentReference object.
      *
      * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -220,6 +252,8 @@ trait SnapshotTrait
      */
     private function getDocumentReference(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -235,6 +269,8 @@ trait SnapshotTrait
 
         return new DocumentReference(
             $connection,
+            $requestHandler,
+            $serializer,
             $mapper,
             $this->getCollectionReference(
                 $connection,
@@ -251,6 +287,9 @@ trait SnapshotTrait
      * Creates a CollectionReference object.
      *
      * @param ConnectionInterface $connection A connection to Cloud Firestore.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $mapper A Firestore value mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -260,6 +299,8 @@ trait SnapshotTrait
      */
     private function getCollectionReference(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $mapper,
         $projectId,
         $database,
@@ -276,7 +317,13 @@ trait SnapshotTrait
             ));
         }
 
-        return new CollectionReference($connection, $mapper, $name);
+        return new CollectionReference(
+            $connection,
+            $requestHandler,
+            $serializer,
+            $mapper,
+            $name
+        );
     }
 
     /**
