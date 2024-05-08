@@ -17,20 +17,34 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Spanner\RequestTrait;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\GetSessionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 
 /**
  * Represents and manages a single Cloud Spanner session.
  */
 class Session
 {
+    use ApiHelperTrait;
+    use ArrayTrait;
+    use RequestTrait;
+
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var RequestHandler
      */
-    private $connection;
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -63,22 +77,36 @@ class Session
     private $expiration;
 
     /**
-     * @param ConnectionInterface $connection A connection to Cloud Spanner.
-     *        This object is created by SpannerClient,
-     *        and should not be instantiated outside of this client.
+     * @var bool
+     */
+    private $routeToLeader;
+
+    /**
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The project ID.
      * @param string $instance The instance name.
      * @param string $database The database name.
      * @param string $name The session name.
+     * @param array $config [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
+     *         **Defaults to** `true` (enabled).
+     * }
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         $projectId,
         $instance,
         $database,
-        $name
+        $name,
+        $config = []
     ) {
-        $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->projectId = $projectId;
         $this->instance = $instance;
         $this->database = $database;
@@ -93,6 +121,7 @@ class Session
             $database,
             $name
         );
+        $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?? true;
     }
 
     /**
@@ -120,16 +149,25 @@ class Session
      */
     public function exists(array $options = [])
     {
-        try {
-            $this->connection->getSession($options + [
-                'name' => $this->name(),
-                'database' => $this->databaseName
-            ]);
+        $options += [
+            'name' => $this->name()
+        ];
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
-            return true;
+        try {
+            $this->createAndSendRequest(
+                SpannerClient::class,
+                'getSession',
+                $data,
+                $optionalArgs,
+                GetSessionRequest::class,
+                $this->databaseName,
+                $this->routeToLeader
+            );
         } catch (NotFoundException $e) {
             return false;
         }
+        return true;
     }
 
     /**
@@ -140,10 +178,19 @@ class Session
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteSession($options + [
-            'name' => $this->name(),
-            'database' => $this->databaseName
-        ]);
+        $data = [
+            'name' => $this->name()
+        ];
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+
+        $this->createAndSendRequest(
+            SpannerClient::class,
+            'deleteSession',
+            $data,
+            $optionalArgs,
+            DeleteSessionRequest::class,
+            $this->databaseName
+        );
     }
 
     /**
@@ -188,7 +235,7 @@ class Session
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'requestHandler' => get_class($this->requestHandler),
             'projectId' => $this->projectId,
             'instance' => $this->instance,
             'database' => $this->database,

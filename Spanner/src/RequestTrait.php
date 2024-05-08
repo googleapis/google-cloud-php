@@ -43,82 +43,123 @@ trait RequestTrait
 {
     private $larHeader = 'x-goog-spanner-route-to-leader';
     private $resourcePrefixHeader = 'google-cloud-resource-prefix';
-    private $lroResponseMappers = [
-        [
-            'method' => 'updateDatabaseDdl',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata',
-            'message' => UpdateDatabaseDdlMetadata::class
-        ], [
-            'method' => 'createDatabase',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
-            'message' => CreateDatabaseMetadata::class
-        ], [
-            'method' => 'createInstanceConfig',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata',
-            'message' => CreateInstanceConfigMetadata::class
-        ], [
-            'method' => 'updateInstanceConfig',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata',
-            'message' => UpdateInstanceConfigMetadata::class
-        ], [
-            'method' => 'createInstance',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
-            'message' => CreateInstanceMetadata::class
-        ], [
-            'method' => 'updateInstance',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
-            'message' => UpdateInstanceMetadata::class
-        ], [
-            'method' => 'createBackup',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
-            'message' => CreateBackupMetadata::class
-        ], [
-            'method' => 'copyBackup',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata',
-            'message' => CopyBackupMetadata::class
-        ], [
-            'method' => 'restoreDatabase',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
-            'message' => RestoreDatabaseMetadata::class
-        ], [
-            'method' => 'restoreDatabase',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata',
-            'message' => OptimizeRestoredDatabaseMetadata::class
-        ], [
-            'method' => 'updateDatabaseDdl',
-            'typeUrl' => 'type.googleapis.com/google.protobuf.Empty',
-            'message' => GPBEmpty::class
-        ], [
-            'method' => 'createDatabase',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.Database',
-            'message' => Database::class
-        ], [
-            'method' => 'createInstanceConfig',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.InstanceConfig',
-            'message' => InstanceConfig::class
-        ], [
-            'method' => 'updateInstanceConfig',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.InstanceConfig',
-            'message' => InstanceConfig::class
-        ], [
-            'method' => 'createInstance',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.Instance',
-            'message' => Instance::class
-        ], [
-            'method' => 'updateInstance',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.Instance',
-            'message' => Instance::class
-        ], [
-            'method' => 'createBackup',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.Backup',
-            'message' => Backup::class
-        ], [
-            'method' => 'restoreDatabase',
-            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.Database',
-            'message' => Database::class
-        ]
-    ];
-    
+
+    /**
+     * Create request and send the request.
+     */
+    private function createAndSendRequest(
+        string $clientClass,
+        string $method,
+        array $data,
+        array $optionalArgs,
+        string $requestClass,
+        string $resourcePrefixHeader = '',
+        bool $routeToLeader = false
+    ) {
+        if ($resourcePrefixHeader) {
+            $optionalArgs = $this->addResourcePrefixHeader(
+                $optionalArgs,
+                $resourcePrefixHeader
+            );
+        }
+        if ($routeToLeader) {
+            $optionalArgs = $this->addLarHeader($optionalArgs, $larHeader);
+        }
+
+        $request = $this->serializer->decodeMessage(new $requestClass(), $data);
+
+        return $this->requestHandler->sendRequest(
+            $clientClass,
+            $method,
+            $request,
+            $optionalArgs
+        );
+    }
+
+    /**
+     * Retrun the LRO mappers.
+     *
+     * @return array
+     */
+    private function getLROResponseMappers()
+    {
+        return [
+            [
+                'method' => 'updateDatabaseDdl',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata',
+                'message' => UpdateDatabaseDdlMetadata::class
+            ], [
+                'method' => 'createDatabase',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
+                'message' => CreateDatabaseMetadata::class
+            ], [
+                'method' => 'createInstanceConfig',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata',
+                'message' => CreateInstanceConfigMetadata::class
+            ], [
+                'method' => 'updateInstanceConfig',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata',
+                'message' => UpdateInstanceConfigMetadata::class
+            ], [
+                'method' => 'createInstance',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
+                'message' => CreateInstanceMetadata::class
+            ], [
+                'method' => 'updateInstance',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
+                'message' => UpdateInstanceMetadata::class
+            ], [
+                'method' => 'createBackup',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
+                'message' => CreateBackupMetadata::class
+            ], [
+                'method' => 'copyBackup',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata',
+                'message' => CopyBackupMetadata::class
+            ], [
+                'method' => 'restoreDatabase',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
+                'message' => RestoreDatabaseMetadata::class
+            ], [
+                'method' => 'restoreDatabase',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata',
+                'message' => OptimizeRestoredDatabaseMetadata::class
+            ], [
+                'method' => 'updateDatabaseDdl',
+                'typeUrl' => 'type.googleapis.com/google.protobuf.Empty',
+                'message' => GPBEmpty::class
+            ], [
+                'method' => 'createDatabase',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.Database',
+                'message' => Database::class
+            ], [
+                'method' => 'createInstanceConfig',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.InstanceConfig',
+                'message' => InstanceConfig::class
+            ], [
+                'method' => 'updateInstanceConfig',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.InstanceConfig',
+                'message' => InstanceConfig::class
+            ], [
+                'method' => 'createInstance',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.Instance',
+                'message' => Instance::class
+            ], [
+                'method' => 'updateInstance',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.Instance',
+                'message' => Instance::class
+            ], [
+                'method' => 'createBackup',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.Backup',
+                'message' => Backup::class
+            ], [
+                'method' => 'restoreDatabase',
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.Database',
+                'message' => Database::class
+            ]
+        ];
+    }
+
     /**
      * Add the `x-goog-spanner-route-to-leader` header value to the request.
      *

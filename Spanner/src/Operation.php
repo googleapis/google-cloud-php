@@ -17,14 +17,38 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Core\TimeTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
-use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\DirectedReadOptions;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
+use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\Mutation\Delete;
+use Google\Cloud\Spanner\V1\Mutation\Write;
+use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\RequestOptions;
+use Google\Cloud\Spanner\V1\Session as GapicSession;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
+use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Cloud\Spanner\V1\Type;
+use Google\Protobuf\ListValue;
+use Google\Protobuf\Struct;
 use Google\Rpc\Code;
 use InvalidArgumentException;
 
@@ -40,7 +64,9 @@ use InvalidArgumentException;
  */
 class Operation
 {
+    use ApiHelperTrait;
     use ArrayTrait;
+    use RequestTrait;
     use TimeTrait;
     use ValidateTrait;
 
@@ -51,10 +77,14 @@ class Operation
     const OP_DELETE = 'delete';
 
     /**
-     * @var ConnectionInterface
-     * @internal
+     * @var RequestHandler
      */
-    private $connection;
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @var ValueMapper
@@ -62,17 +92,34 @@ class Operation
     private $mapper;
 
     /**
-     * @param ConnectionInterface $connection A connection to Google Cloud
-     *        Spanner. This object is created by SpannerClient,
-     *        and should not be instantiated outside of this client.
+     * @var bool
+     */
+    private $routeToLeader;
+
+    /**
+     * @param RequestHandler The request handler that is responsible for sending a request
+     * and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
+     * @param array $config [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
+     *         **Defaults to** `true` (enabled).
+     * }
      */
-    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
-    {
-        $this->connection = $connection;
+    public function __construct(
+        RequestHandler $requestHandler,
+        Serializer $serializer,
+        bool $returnInt64AsObject,
+        $config = []
+    ) {
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->mapper = new ValueMapper($returnInt64AsObject);
+        $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?? true;
     }
 
     /**
@@ -168,15 +215,35 @@ class Operation
      */
     public function commitWithResponse(Session $session, array $mutations, array $options = [])
     {
-        $options += [
-            'transactionId' => null
-        ];
-
-        $res = $this->connection->commit($this->arrayFilterRemoveNull([
-            'mutations' => $mutations,
+        $mutations = $this->serializeMutations($mutations);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
+            'transactionId' => null,
             'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session)
-        ]) + $options);
+            'mutations' => $mutations
+        ];
+        // Internal flag, need to unset before passing to serializer
+        unset($data['singleUse']);
+        if (isset($data['singleUseTransaction'])) {
+            $data['singleUseTransaction'] = $this->createReadWriteTransactionOptions();
+            // singleUseTransaction will not set in the request even if the transactionId set to null
+            unset($data['transactionId']);
+        }
+        if ($data['requestOptions']) {
+            $data['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $data['requestOptions']
+            );
+        }
+        $res = $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'commit',
+            $data,
+            $optionalArgs,
+            CommitRequest::class,
+            $this->getDatabaseNameFromSession($session),
+            $this->routeToLeader
+        );
 
         $time = $this->parseTimeString($res['commitTimestamp']);
         return [new Timestamp($time[0], $time[1]), $res];
@@ -198,11 +265,20 @@ class Operation
         if (empty($transactionId)) {
             throw new InvalidArgumentException('Rollback failed: Transaction not initiated.');
         }
-        $this->connection->rollback([
-            'transactionId' => $transactionId,
-            'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session)
-        ] + $options);
+
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['session'] = $session->name();
+        $data['transactionId'] = $transactionId;
+
+        $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'rollback',
+            $data,
+            $optionalArgs,
+            RollbackRequest::class,
+            $this->getDatabaseNameFromSession($session),
+            $this->routeToLeader
+        );
     }
 
     /**
@@ -257,7 +333,7 @@ class Operation
                 $options['resumeToken'] = $resumeToken;
             }
 
-            return $this->connection->executeStreamingSql([
+            return $this->executeStreamingSql([
                 'sql' => $sql,
                 'session' => $session->name(),
                 'database' => $this->getDatabaseNameFromSession($session)
@@ -364,28 +440,28 @@ class Operation
         array $statements,
         array $options = []
     ) {
-        $stmts = [];
-        foreach ($statements as $statement) {
-            if (!isset($statement['sql'])) {
-                throw new InvalidArgumentException('Each statement must contain a SQL key.');
-            }
-
-            $parameters = $this->pluck('parameters', $statement, false) ?: [];
-            $types = $this->pluck('types', $statement, false) ?: [];
-            $stmts[] = [
-                'sql' => $statement['sql']
-            ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
-        }
-
-        if (!isset($options['transaction']['begin'])) {
-            $options['transaction'] = ['id' => $transaction->id()];
-        }
-
-        $res = $this->connection->executeBatchDml([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['transaction'] = $this->createTransactionSelector($data);
+        $data += [
             'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session),
-            'statements' => $stmts
-        ] + $options);
+            'statements' => $this->formatStatements($statements)
+        ];
+        if ($data['requestOptions']) {
+            $data['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $data['requestOptions']
+            );
+        }
+
+        $res = $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'executeBatchDml',
+            $data,
+            $optionalArgs,
+            ExecuteBatchDmlRequest::class,
+            $databaseName,
+            $this->routeToLeader
+        );
 
         if (empty($transaction->id())) {
             // Get the transaction from array of ResultSets.
@@ -461,7 +537,7 @@ class Operation
                 $options['resumeToken'] = $resumeToken;
             }
 
-            return $this->connection->streamingRead([
+            return $this->streamingRead([
                 'table' => $table,
                 'session' => $session->name(),
                 'columns' => $columns,
@@ -497,11 +573,12 @@ class Operation
     public function transaction(Session $session, array $options = [])
     {
         $options += [
+            'requestOptions' => [],
             'singleUse' => false,
-            'isRetry' => false,
-            'requestOptions' => []
+            'isRetry' => false
         ];
         $transactionTag = $this->pluck('tag', $options, false);
+
         if (isset($transactionTag)) {
             $options['requestOptions']['transactionTag'] = $transactionTag;
         }
@@ -652,13 +729,28 @@ class Operation
      */
     public function createSession($databaseName, array $options = [])
     {
-        $res = $this->connection->createSession([
-            'database' => $databaseName,
-            'session' => [
-                'labels' => $this->pluck('labels', $options, false) ?: [],
-                'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
-            ]
-        ] + $options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data = [
+            'database' => $databaseName
+        ];
+        $session = [
+            'labels' => $this->pluck('labels', $options, false) ?: [],
+            'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
+        ];
+        $data['session'] = $this->serializer->decodeMessage(
+            new GapicSession,
+            $session
+        );
+
+        $res = $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'createSession',
+            $data,
+            $optionalArgs,
+            CreateSessionRequest::class,
+            $databaseName,
+            $this->routeToLeader
+        );
 
         return $this->session($res['name']);
     }
@@ -678,11 +770,13 @@ class Operation
     {
         $sessionNameComponents = GapicSpannerClient::parseName($sessionName);
         return new Session(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $sessionNameComponents['project'],
             $sessionNameComponents['instance'],
             $sessionNameComponents['database'],
-            $sessionNameComponents['session']
+            $sessionNameComponents['session'],
+            ['routeToLeader' => $this->routeToLeader]
         );
     }
 
@@ -727,19 +821,33 @@ class Operation
     {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
-        $parameters = $this->pluck('parameters', $options, false) ?: [];
-        $types = $this->pluck('types', $options, false) ?: [];
-        $options += $this->mapper->formatParamsForExecuteSql($parameters, $types);
-
-        $options = $this->partitionOptions($options);
-
-        $res = $this->connection->partitionQuery([
+        $parameters = $this->pluck('parameters', $data, false) ?: [];
+        $types = $this->pluck('types', $data, false) ?: [];
+        $data += $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        $data = $this->formatSqlParams($data);
+        $data += [
+            'transaction' => $this->createTransactionSelector(
+                $data + ['transaction' => ['id' => $transactionId]]
+            ),
             'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session),
-            'transactionId' => $transactionId,
-            'sql' => $sql
-        ] + $options);
+            'sql' => $sql,
+            'partitionOptions' => $this->serializer->decodeMessage(
+                new PartitionOptions,
+                $this->partitionOptions($data)
+            )
+        ];
+
+        $res = $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'partitionQuery',
+            $data,
+            $optionalArgs,
+            PartitionQueryRequest::class,
+            $this->getDatabaseNameFromSession($session),
+            $this->routeToLeader
+        );
 
         $partitions = [];
         foreach ($res['partitions'] as $partition) {
@@ -787,17 +895,33 @@ class Operation
     ) {
         // cache this to pass to the partition instance.
         $originalOptions = $options;
-
-        $options = $this->partitionOptions($options);
-
-        $res = $this->connection->partitionRead([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
+            'transaction' => $this->createTransactionSelector(
+                $data + ['transaction' => ['id' => $transactionId]]
+            ),
             'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session),
-            'transactionId' => $transactionId,
             'table' => $table,
             'columns' => $columns,
-            'keySet' => $this->flattenKeySet($keySet)
-        ] + $options);
+            'keySet' => $this->serializer->decodeMessage(
+                new KeySet,
+                $this->formatKeySet($keySet)
+            ),
+            'partitionOptions' => $this->serializer->decodeMessage(
+                new PartitionOptions,
+                $this->partitionOptions($data)
+            )
+        ];
+
+        $res = $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'partitionRead',
+            $data,
+            $optionalArgs,
+            PartitionReadRequest::class,
+            $this->getDatabaseNameFromSession($session),
+            $this->routeToLeader
+        );
 
         $partitions = [];
         foreach ($res['partitions'] as $partition) {
@@ -821,12 +945,10 @@ class Operation
      */
     private function partitionOptions(array $options)
     {
-        $options['partitionOptions'] = array_filter([
+        return array_filter([
             'partitionSizeBytes' => $this->pluck('partitionSizeBytes', $options, false),
             'maxPartitions' => $this->pluck('maxPartitions', $options, false)
         ]);
-
-        return $options;
     }
 
     /**
@@ -841,14 +963,50 @@ class Operation
      */
     private function beginTransaction(Session $session, array $options = [])
     {
-        $options += [
-            'transactionOptions' => []
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $transactionOptions = new TransactionOptions;
+        $formattedTransactionOptions = $this->formatTransactionOptions(
+            $this->pluck('transactionOptions', $data, false) ?: []
+        );
+        if (isset($formattedTransactionOptions['readOnly'])) {
+            // @TODO: Check its a necessary check.
+            $readOnlyClass = PHP_VERSION_ID >= 80100
+                ? PBReadOnly::class
+                : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
+            $readOnly = $this->serializer->decodeMessage(
+                new $readOnlyClass(), // @phpstan-ignore-line
+                $formattedTransactionOptions['readOnly']
+            );
+            $transactionOptions->setReadOnly($readOnly);
+        } elseif (isset($formattedTransactionOptions['readWrite'])) {
+            $readWrite = new ReadWrite();
+            $transactionOptions->setReadWrite($readWrite);
+            $optionalArgs = $this->addLarHeader($optionalArgs, $this->routeToLeader);
+        } elseif (isset($formattedTransactionOptions['partitionedDml'])) {
+            $pdml = new PartitionedDml();
+            $transactionOptions->setPartitionedDml($pdml);
+            $optionalArgs = $this->addLarHeader($optionalArgs, $this->routeToLeader);
+        }
+        if ($data['requestOptions']) {
+            $data['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $data['requestOptions']
+            );
+        }
+        $data += [
+            'session' => $session->name(),
+            'options' => $transactionOptions
         ];
 
-        return $this->connection->beginTransaction($options + [
-            'session' => $session->name(),
-            'database' => $this->getDatabaseNameFromSession($session)
-        ]);
+        return $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'beginTransaction',
+            $data,
+            $optionalArgs,
+            BeginTransactionRequest::class,
+            $this->getDatabaseNameFromSession($session),
+            false
+        );
     }
 
     /**
@@ -884,6 +1042,262 @@ class Operation
     }
 
     /**
+     * Serialize the mutations.
+     *
+     * @param array $mutations
+     * @return array
+     */
+    private function serializeMutations(array $mutations)
+    {
+        $serializedMutations = [];
+        if (is_array($mutations)) {
+            foreach ($mutations as $mutation) {
+                $type = array_keys($mutation)[0];
+                $data = $mutation[$type];
+
+                switch ($type) {
+                    case Operation::OP_DELETE:
+                        if (isset($data['keySet'])) {
+                            $data['keySet'] = $this->formatKeySet($data['keySet']);
+                        }
+
+                        $operation = $this->serializer->decodeMessage(
+                            new Delete,
+                            $data
+                        );
+                        break;
+                    default:
+                        $operation = new Write;
+                        $operation->setTable($data['table']);
+                        $operation->setColumns($data['columns']);
+
+                        $modifiedData = [];
+                        foreach ($data['values'] as $key => $param) {
+                            $modifiedData[$key] = $this->fieldValue($param);
+                        }
+
+                        $list = new ListValue;
+                        $list->setValues($modifiedData);
+                        $values = [$list];
+                        $operation->setValues($values);
+
+                        break;
+                }
+
+                $setterName = $this->mutationSetters[$type];
+                $mutation = new Mutation;
+                $mutation->$setterName($operation);
+                $serializedMutations[] = $mutation;
+            }
+        }
+
+        return $serializedMutations;
+    }
+
+    private function createReadWriteTransactionOptions(array $options = [])
+    {
+        $readWrite = $this->serializer->decodeMessage(
+            new ReadWrite,
+            $options
+        );
+        $transactionOptions = new TransactionOptions;
+        $transactionOptions->setReadWrite($readWrite);
+        return $transactionOptions;
+    }
+
+    /**
+     * Format statements.
+     *
+     * @param array $statements
+     * @return array
+     */
+    private function formatStatements(array $statements)
+    {
+        $result = [];
+        foreach ($statements as $statement) {
+            if (!isset($statement['sql'])) {
+                throw new InvalidArgumentException('Each statement must contain a SQL key.');
+            }
+
+            $parameters = $this->pluck('parameters', $statement, false) ?: [];
+            $types = $this->pluck('types', $statement, false) ?: [];
+            $mappedStatement = [
+                'sql' => $statement['sql']
+            ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
+            $statement = $this->formatSqlParams($mappedStatement);
+            $result[] = $this->serializer->decodeMessage(new Statement, $statement);
+        }
+        return $result;
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    private function formatSqlParams(array $args)
+    {
+        $params = $this->pluck('params', $args);
+        if ($params) {
+            $modifiedParams = [];
+            foreach ($params as $key => $param) {
+                $modifiedParams[$key] = $this->fieldValue($param);
+            }
+            $args['params'] = new Struct;
+            $args['params']->setFields($modifiedParams);
+        }
+
+        if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {
+            foreach ($args['paramTypes'] as $key => $param) {
+                $args['paramTypes'][$key] = $this->serializer->decodeMessage(new Type, $param);
+            }
+        }
+
+        return $args;
+    }
+
+    /**
+     * @param array $args
+     * @param Transaction $transaction
+     *
+     * @return TransactionSelector
+     */
+    private function createTransactionSelector(array &$args, Transaction $transaction = null)
+    {
+        $selector = new TransactionSelector;
+        if (isset($args['transaction'])) {
+            $transaction = $this->pluck('transaction', $args);
+
+            if (isset($transaction['singleUse'])) {
+                $transaction['singleUse'] = $this->formatTransactionOptions($transaction['singleUse']);
+            }
+
+            if (isset($transaction['begin'])) {
+                $transaction['begin'] = $this->formatTransactionOptions($transaction['begin']);
+            }
+
+            $selector = $this->serializer->decodeMessage($selector, $transaction);
+        } elseif ($transaction && $transaction->id()) {
+            $selector = $this->serializer->decodeMessage($selector, ['id' => $transaction->id()]);
+        } elseif (isset($args['transactionId'])) {
+            $selector = $this->serializer->decodeMessage($selector, ['id' => $this->pluck('transactionId', $args)]);
+        }
+
+        return $selector;
+    }
+
+    /**
+     * @param array $transactionOptions
+     * @return array
+     */
+    private function formatTransactionOptions(array $transactionOptions)
+    {
+        if (isset($transactionOptions['readOnly'])) {
+            $ro = $transactionOptions['readOnly'];
+            if (isset($ro['minReadTimestamp'])) {
+                $ro['minReadTimestamp'] = $this->formatTimestampForApi($ro['minReadTimestamp']);
+            }
+
+            if (isset($ro['readTimestamp'])) {
+                $ro['readTimestamp'] = $this->formatTimestampForApi($ro['readTimestamp']);
+            }
+
+            $transactionOptions['readOnly'] = $ro;
+        }
+
+        return $transactionOptions;
+    }
+
+    /**
+     * @param array $args
+     * @return \Generator
+     */
+    private function executeStreamingSql(array $args)
+    {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($args);
+        $data = $this->formatSqlParams($data);
+        $data['transaction'] = $this->createTransactionSelector($data);
+        $queryOptions = $this->pluck('queryOptions', $data, false) ?: [];
+        // Query options precedence is query-level, then environment-level, then client-level.
+        $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
+        $envQueryOptimizerStatisticsPackage = getenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE');
+        if (!empty($envQueryOptimizerVersion)) {
+            $queryOptions += ['optimizerVersion' => $envQueryOptimizerVersion];
+        }
+        if (!empty($envQueryOptimizerStatisticsPackage)) {
+            $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
+        }
+        $queryOptions += $this->defaultQueryOptions;
+        $this->setDirectedReadOptions($data);
+        if ($queryOptions) {
+            $data['queryOptions'] = $this->serializer->decodeMessage(
+                new QueryOptions,
+                $queryOptions
+            );
+        }
+        if ($data['requestOptions']) {
+            $data['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
+        }
+        $optionalArgs = $this->conditionallyUnsetLarHeader($optionalArgs, $this->routeToLeader);
+
+        return $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'executeStreamingSql',
+            $data,
+            $optionalArgs,
+            ExecuteSqlRequest::class,
+            $this->pluck('database', $data)
+        );
+    }
+
+    /**
+     * @param array $args
+     * @return \Generator
+     */
+    private function streamingRead(array $args)
+    {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($args);
+        $keySet = $this->pluck('keySet', $data);
+        $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
+        if ($data['requestOptions']) {
+            $data['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $data['requestOptions']
+            );
+        }
+        $this->setDirectedReadOptions($data);
+        $data['transaction'] = $this->createTransactionSelector($data);
+        $optionalArgs = $this->conditionallyUnsetLarHeader($optionalArgs, $this->routeToLeader);
+
+        return $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'streamingRead',
+            $data,
+            $optionalArgs,
+            ReadRequest::class,
+            $this->pluck('database', $data)
+        );
+    }
+
+    /**
+     * Set DirectedReadOptions if provided.
+     *
+     * @param array $args
+     */
+    private function setDirectedReadOptions(array &$args)
+    {
+        $directedReadOptions = $this->pluck('directedReadOptions', $args, false);
+        if (!empty($directedReadOptions)) {
+            $args['directedReadOptions'] = $this->serializer->decodeMessage(
+                new DirectedReadOptions,
+                $directedReadOptions
+            );
+        }
+    }
+
+    /**
      * Represent the class in a more readable and digestable fashion.
      *
      * @access private
@@ -892,7 +1306,7 @@ class Operation
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'requestHandler' => get_class($this->requestHandler),
         ];
     }
 }
