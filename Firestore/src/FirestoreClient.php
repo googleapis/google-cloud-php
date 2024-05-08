@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\DetectProjectIdTrait;
@@ -26,6 +29,7 @@ use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
@@ -74,6 +78,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class FirestoreClient
 {
+    use ArrayTrait;
+    use ApiHelperTrait;
     use ClientTrait;
     use ClientOptionsTrait;
     use DetectProjectIdTrait;
@@ -101,6 +107,18 @@ class FirestoreClient
      * @internal
      */
     private $connection;
+
+    /**
+     * @var RequestHandler
+     * @internal
+     * The request handler responsible for sending requests and serializing responses into relevant classes.
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -163,12 +181,14 @@ class FirestoreClient
             'emulatorHost' => $emulatorHost,
         ];
 
-        $config = $this->buildClientOptions($config);
-        $config['credentials'] = $this->createCredentialsWrapper(
-            $config['credentials'],
-            $config['credentialsConfig'],
-            $config['universeDomain']
-        );
+
+        // COMMENT THIS OUT WHILE UPDATING RPCs
+        // $config = $this->buildClientOptions($config);
+        // $config['credentials'] = $this->createCredentialsWrapper(
+        //     $config['credentials'],
+        //     $config['credentialsConfig'],
+        //     $config['universeDomain']
+        // );
 
         $this->database = $config['database'];
 
@@ -179,6 +199,31 @@ class FirestoreClient
         $this->valueMapper = new ValueMapper(
             $this->connection,
             $config['returnInt64AsObject']
+        );
+
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+        ], [], [
+            'google.protobuf.Int32Value' => function ($v) {
+                return ['value' => $v];
+            }
+        ]);
+
+        $this->requestHandler = new RequestHandler(
+            $this->serializer,
+            self::GAPIC_KEYS,
+            $config
         );
     }
 
