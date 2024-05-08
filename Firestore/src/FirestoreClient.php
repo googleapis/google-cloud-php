@@ -164,6 +164,11 @@ class FirestoreClient
         ];
 
         $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
 
         $this->database = $config['database'];
 
