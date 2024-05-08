@@ -16,9 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Page extends \Google\Protobuf\Internal\Message
 {
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      */
@@ -136,9 +138,11 @@ class Page extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $page_number
-     *           1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     *           Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     *           processing.
+     *           1-based index for current
+     *           [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     *           [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     *           taken out of a [Document][google.cloud.documentai.v1.Document] for
+     *           individual processing.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Image $image
      *           Rendered image for this page. This image is preprocessed to remove any
      *           skew, rotation, and distortions such that the annotation bounding boxes
@@ -187,9 +191,11 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      * @return int
@@ -200,9 +206,11 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      * @param int $var

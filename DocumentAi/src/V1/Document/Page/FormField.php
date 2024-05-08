@@ -16,14 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class FormField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the [FormField][google.cloud.documentai.v1.Document.Page.FormField] name. e.g. `Address`, `Email`,
-     * `Grand total`, `Phone number`, etc.
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
+     * [FormField][google.cloud.documentai.v1.Document.Page.FormField] name.
+     * e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_name = 1;</code>
      */
     private $field_name = null;
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
+     * [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_value = 2;</code>
      */
@@ -80,10 +82,12 @@ class FormField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $field_name
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the [FormField][google.cloud.documentai.v1.Document.Page.FormField] name. e.g. `Address`, `Email`,
-     *           `Grand total`, `Phone number`, etc.
+     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
+     *           [FormField][google.cloud.documentai.v1.Document.Page.FormField] name.
+     *           e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $field_value
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
+     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
+     *           [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $name_detected_languages
      *           A list of detected languages for name together with confidence.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $value_detected_languages
@@ -112,8 +116,9 @@ class FormField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the [FormField][google.cloud.documentai.v1.Document.Page.FormField] name. e.g. `Address`, `Email`,
-     * `Grand total`, `Phone number`, etc.
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
+     * [FormField][google.cloud.documentai.v1.Document.Page.FormField] name.
+     * e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_name = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -134,8 +139,9 @@ class FormField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the [FormField][google.cloud.documentai.v1.Document.Page.FormField] name. e.g. `Address`, `Email`,
-     * `Grand total`, `Phone number`, etc.
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
+     * [FormField][google.cloud.documentai.v1.Document.Page.FormField] name.
+     * e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_name = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var
@@ -150,7 +156,8 @@ class FormField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
+     * [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_value = 2;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -171,7 +178,8 @@ class FormField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
+     * [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout field_value = 2;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var

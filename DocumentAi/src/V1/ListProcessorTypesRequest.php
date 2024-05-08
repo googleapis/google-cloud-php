@@ -10,8 +10,9 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for the
- * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes] method.
- * Some processor types may require the project be added to an allowlist.
+ * [ListProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.ListProcessorTypes]
+ * method. Some processor types may require the project be added to an
+ * allowlist.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.ListProcessorTypesRequest</code>
  */
