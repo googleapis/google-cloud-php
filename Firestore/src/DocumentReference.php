@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -45,6 +47,16 @@ class DocumentReference
     private $connection;
 
     /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
      * @var ValueMapper
      */
     private $valueMapper;
@@ -63,17 +75,24 @@ class DocumentReference
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param CollectionReference $parent The collection in which this document is contained.
      * @param string $name The fully-qualified document name.
      */
     public function __construct(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         CollectionReference $parent,
         $name
     ) {
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
         $this->name = $name;
@@ -347,7 +366,14 @@ class DocumentReference
      */
     public function snapshot(array $options = [])
     {
-        return $this->createSnapshot($this->connection, $this->valueMapper, $this, $options);
+        return $this->createSnapshot(
+            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
+            $this->valueMapper,
+            $this,
+            $options
+        );
     }
 
     /**
@@ -365,6 +391,8 @@ class DocumentReference
     {
         return new CollectionReference(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->childPath($this->name, $collectionId)
         );
@@ -397,11 +425,25 @@ class DocumentReference
                 function ($collectionId) {
                     return new CollectionReference(
                         $this->connection,
+                        $this->requestHandler,
+                        $this->serializer,
                         $this->valueMapper,
                         $this->childPath($this->name, $collectionId)
                     );
                 },
                 [$this->connection, 'listCollectionIds'],
+                // function ($callOptions) use ($optionalArgs, $request) {
+                //     if (isset($callOptions['pageToken'])) {
+                //         $request->setPageToken($callOptions['pageToken']);
+                //     }
+
+                //     return $this->requestHandler->sendRequest(
+                //         FirestoreClient::class,
+                //         'listCollectionIds',
+                //         $request,
+                //         $optionalArgs
+                //     );
+                // },
                 $options + ['parent' => $this->name],
                 [
                     'itemsKey' => 'collectionIds',
@@ -423,6 +465,8 @@ class DocumentReference
         }
         return new BulkWriter(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->databaseFromName($this->name)
         );

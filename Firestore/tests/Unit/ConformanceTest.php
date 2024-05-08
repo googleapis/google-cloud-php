@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
@@ -47,6 +49,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class ConformanceTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use PathTrait;
     use ProphecyTrait;
@@ -60,6 +63,8 @@ class ConformanceTest extends TestCase
     private $testTypes = ['get', 'create', 'set', 'update', 'updatePaths', 'delete', 'query'];
     private $client;
     private $connection;
+    private $requestHandler;
+    private $serializer;
 
     private $excludes = [
         // need mergeFields support
@@ -88,6 +93,8 @@ class ConformanceTest extends TestCase
         ]);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
     }
 
     /**
@@ -309,6 +316,8 @@ class ConformanceTest extends TestCase
 
                             $mapper = new ValueMapper(
                                 $this->prophesize(ConnectionInterface::class)->reveal(),
+                                $this->prophesize(RequestHandler::class)->reveal(),
+                                $this->serializer,
                                 false
                             );
 

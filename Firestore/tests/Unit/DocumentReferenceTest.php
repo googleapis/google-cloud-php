@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -36,26 +38,44 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class DocumentReferenceTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
     use TimeTrait;
 
-    const PROJECT = 'example_project';
-    const DATABASE = '(default)';
-    const COLLECTION = 'projects/example_project/databases/(default)/documents/a';
-    const NAME = 'projects/example_project/databases/(default)/documents/a/b';
+    public const PROJECT = 'example_project';
+    public const DATABASE = '(default)';
+    public const COLLECTION = 'projects/example_project/databases/(default)/documents/a';
+    public const NAME = 'projects/example_project/databases/(default)/documents/a/b';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $document;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
 
-        $valueMapper = new ValueMapper($this->connection->reveal(), false);
+        $valueMapper = new ValueMapper(
+            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            false
+        );
         $this->document = TestHelpers::stub(DocumentReference::class, [
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $valueMapper,
-            new CollectionReference($this->connection->reveal(), $valueMapper, self::COLLECTION),
+            new CollectionReference(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                $valueMapper,
+                self::COLLECTION
+            ),
             self::NAME
         ]);
     }

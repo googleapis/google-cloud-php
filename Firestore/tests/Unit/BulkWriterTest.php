@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\BulkWriter;
@@ -38,22 +40,34 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class BulkWriterTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
-    const PROJECT = 'example_project';
-    const DATABASE = '(default)';
-    const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
-    const TRANSACTION = 'foobar';
+    public const PROJECT = 'example_project';
+    public const DATABASE = '(default)';
+    public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
+    public const TRANSACTION = 'foobar';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $batch;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->batch = TestHelpers::stub(BulkWriter::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             [],
         ]);
@@ -67,7 +81,14 @@ class BulkWriterTest extends TestCase
         $this->expectExceptionMessageMatches('/Value for argument "initialOpsPerSecond" must be greater than 1/');
         new BulkWriter(
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             "TEST_DB",
             ['initialOpsPerSecond' => 0]
         );
@@ -79,7 +100,14 @@ class BulkWriterTest extends TestCase
         $this->expectExceptionMessageMatches('/Value for argument "maxOpsPerSecond" must be greater than 1/');
         new BulkWriter(
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             "TEST_DB",
             ['maxOpsPerSecond' => 0]
         );
@@ -91,7 +119,14 @@ class BulkWriterTest extends TestCase
         $this->expectExceptionMessageMatches('/\'maxOpsPerSecond\' cannot be less than \'initialOpsPerSecond\'/');
         new BulkWriter(
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             "TEST_DB",
             [
                 'maxOpsPerSecond' => 2,
@@ -290,7 +325,14 @@ class BulkWriterTest extends TestCase
         $successfulDocs = [];
         $this->batch = TestHelpers::stub(BulkWriter::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             ['greedilySend' => false],
         ]);

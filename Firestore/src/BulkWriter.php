@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -52,11 +54,11 @@ class BulkWriter
     use TimeTrait;
     use ValidateTrait;
 
-    const TYPE_UPDATE = 'update';
-    const TYPE_SET = 'set';
-    const TYPE_CREATE = 'create';
-    const TYPE_DELETE = 'delete';
-    const TYPE_TRANSFORM = 'transform';
+    public const TYPE_UPDATE = 'update';
+    public const TYPE_SET = 'set';
+    public const TYPE_CREATE = 'create';
+    public const TYPE_DELETE = 'delete';
+    public const TYPE_TRANSFORM = 'transform';
 
     /**
      * @var array Holds default configurations for Bulkwriter.
@@ -120,6 +122,16 @@ class BulkWriter
      * @internal
      */
     private $connection;
+
+    /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var ValueMapper
@@ -210,6 +222,9 @@ class BulkWriter
      * @param ConnectionInterface $connection A connection to Cloud Firestore
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
      * @param array $options [optional] {
@@ -238,9 +253,17 @@ class BulkWriter
      *           true if retryable.
      * }
      */
-    public function __construct(ConnectionInterface $connection, $valueMapper, $database, $options = null)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
+        $valueMapper,
+        $database,
+        $options = null
+    ) {
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
         $this->closed = false;
@@ -1132,14 +1155,14 @@ class BulkWriter
                 ];
                 break;
 
-            // @codeCoverageIgnoreStart
+                // @codeCoverageIgnoreStart
             default:
                 throw new \InvalidArgumentException(sprintf(
                     'Write operation type `%s is not valid. Allowed values are update, delete, verify, transform.',
                     $type
                 ));
                 break;
-            // @codeCoverageIgnoreEnd
+                // @codeCoverageIgnoreEnd
         }
     }
 

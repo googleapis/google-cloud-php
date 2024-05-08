@@ -17,11 +17,13 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\ValidateTrait;
@@ -41,14 +43,24 @@ class ValueMapper
     use TimeTrait;
     use ValidateTrait;
 
-    const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
-    const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
+    public const VALID_FIELD_PATH = '/^[^*~\/[\]]+$/';
+    public const UNESCAPED_FIELD_NAME = '/^[_a-zA-Z][_a-zA-Z0-9]*$/';
 
     /**
      * @var ConnectionInterface
      * @internal
      */
     private $connection;
+
+    /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
 
     /**
      * @var bool
@@ -59,12 +71,21 @@ class ValueMapper
      * @param ConnectionInterface $connection A connection to Cloud Firestore
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param bool $returnInt64AsObject Whether to wrap int types in a wrapper
      *        (to preserve values in 32-bit environments).
      */
-    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
+        $returnInt64AsObject
+    ) {
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
@@ -179,8 +200,21 @@ class ValueMapper
                 break;
 
             case 'referenceValue':
-                $parent = new CollectionReference($this->connection, $this, $this->parentPath($value));
-                return new DocumentReference($this->connection, $this, $parent, $value);
+                $parent = new CollectionReference(
+                    $this->connection,
+                    $this->requestHandler,
+                    $this->serializer,
+                    $this,
+                    $this->parentPath($value)
+                );
+                return new DocumentReference(
+                    $this->connection,
+                    $this->requestHandler,
+                    $this->serializer,
+                    $this,
+                    $parent,
+                    $value
+                );
 
             default:
                 throw new \RuntimeException(sprintf(
@@ -241,14 +275,14 @@ class ValueMapper
                 return ['nullValue' => NullValue::NULL_VALUE];
                 break;
 
-            // @codeCoverageIgnoreStart
+                // @codeCoverageIgnoreStart
             default:
                 throw new \RuntimeException(sprintf(
                     'Invalid value type %s',
                     $type
                 ));
                 break;
-            // @codeCoverageIgnoreEnd
+                // @codeCoverageIgnoreEnd
         }
     }
 

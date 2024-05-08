@@ -16,7 +16,9 @@
  */
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\RequestHandler;
 use SessionHandlerInterface;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
@@ -120,6 +122,17 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * @internal
      */
     private $connection;
+
+    /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
+
     /**
      * @var ValueMapper
      */
@@ -159,6 +172,9 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $projectId The current project id.
      * @param string $database The database id.
@@ -182,12 +198,16 @@ class FirestoreSessionHandler implements SessionHandlerInterface
      */
     public function __construct(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         $projectId,
         $database,
         array $options = []
     ) {
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->projectId = $projectId;
         $this->database = $database;
@@ -234,6 +254,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
 
         $this->transaction = new Transaction(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $database,
             $beginTransaction['transaction']
@@ -276,6 +298,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         try {
             $docRef = $this->getDocumentReference(
                 $this->connection,
+                $this->requestHandler,
+                $this->serializer,
                 $this->valueMapper,
                 $this->projectId,
                 $this->database,
@@ -309,6 +333,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     {
         $docRef = $this->getDocumentReference(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -332,6 +358,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
     {
         $docRef = $this->getDocumentReference(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->projectId,
             $this->database,
@@ -363,6 +391,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
 
             $transaction = new Transaction(
                 $this->connection,
+                $this->requestHandler,
+                $this->serializer,
                 $this->valueMapper,
                 $database,
                 $beginTransaction['transaction']
@@ -370,6 +400,8 @@ class FirestoreSessionHandler implements SessionHandlerInterface
 
             $collectionRef = $this->getCollectionReference(
                 $this->connection,
+                $this->requestHandler,
+                $this->serializer,
                 $this->valueMapper,
                 $this->projectId,
                 $this->database,

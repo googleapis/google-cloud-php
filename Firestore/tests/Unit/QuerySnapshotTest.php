@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
@@ -32,12 +34,10 @@ class QuerySnapshotTest extends TestCase
 {
     use ProphecyTrait;
 
-    private $connection;
     private $snapshot;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->snapshot = TestHelpers::stub(QuerySnapshot::class, [
             $this->prophesize(Query::class)->reveal(),
             []

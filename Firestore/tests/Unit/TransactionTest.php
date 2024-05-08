@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\Unit;
 
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
@@ -40,14 +42,17 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class TransactionTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
-    const PROJECT = 'example_project';
-    const DATABASE = '(default)';
-    const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
-    const TRANSACTION = 'foobar';
+    public const PROJECT = 'example_project';
+    public const DATABASE = '(default)';
+    public const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
+    public const TRANSACTION = 'foobar';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $valueMapper;
     private $transaction;
     private $ref;
@@ -55,9 +60,18 @@ class TransactionTest extends TestCase
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->valueMapper = new ValueMapper($this->connection->reveal(), false);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
+        $this->valueMapper = new ValueMapper(
+            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            false
+        );
         $this->transaction = TestHelpers::stub(Transaction::class, [
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->valueMapper,
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             self::TRANSACTION
@@ -100,7 +114,14 @@ class TransactionTest extends TestCase
             ->shouldBeCalled()
             ->willReturn(new \ArrayIterator([[]]));
 
-        $query = new Query($this->connection->reveal(), $this->valueMapper, '', ['from' => ['collectionId' => '']]);
+        $query = new Query(
+            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            $this->valueMapper,
+            '',
+            ['from' => ['collectionId' => '']]
+        );
 
         $res = $this->transaction->runQuery($query);
         $this->assertInstanceOf(QuerySnapshot::class, $res);
@@ -117,6 +138,8 @@ class TransactionTest extends TestCase
 
         $aggregateQuery = new AggregateQuery(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::DOCUMENT,
             ['query' => []],
             $arg ? Aggregate::$type($arg) : Aggregate::$type()
@@ -141,6 +164,8 @@ class TransactionTest extends TestCase
 
         $aggregateQuery = new AggregateQuery(
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::DOCUMENT,
             ['query' => []],
             $arg ? Aggregate::$type($arg) : Aggregate::$type()
@@ -287,7 +312,7 @@ class TransactionTest extends TestCase
      */
     public function testDocuments(array $input, array $names)
     {
-        $timestamp = (new Timestamp(new \DateTimeImmutable))->formatAsString();
+        $timestamp = (new Timestamp(new \DateTimeImmutable()))->formatAsString();
 
         $res = [
             [
@@ -380,7 +405,7 @@ class TransactionTest extends TestCase
 
     public function testDocumentsOrdered()
     {
-        $timestamp = (new Timestamp(new \DateTimeImmutable))->formatAsString();
+        $timestamp = (new Timestamp(new \DateTimeImmutable()))->formatAsString();
         $tpl = 'projects/'. self::PROJECT .'/databases/'. self::DATABASE .'/documents/a/%s';
         $names = [
             sprintf($tpl, 'a'),

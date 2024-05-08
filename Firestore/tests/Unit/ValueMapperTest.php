@@ -20,6 +20,8 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -37,19 +39,26 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class ValueMapperTest extends TestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
     use TimeTrait;
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $mapper;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->mapper = TestHelpers::stub(ValueMapper::class, [
             $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             false
-        ], ['connection', 'returnInt64AsObject']);
+        ], ['connection', 'requestHandler', 'returnInt64AsObject']);
     }
 
     /**

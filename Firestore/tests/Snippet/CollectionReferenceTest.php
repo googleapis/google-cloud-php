@@ -22,6 +22,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
@@ -34,22 +36,34 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class CollectionReferenceTest extends SnippetTestCase
 {
+    use FirestoreTestHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
 
-    const PROJECT = 'example_project';
-    const DATABASE = '(default)';
-    const NAME = 'projects/example_project/databases/(default)/documents/users';
+    public const PROJECT = 'example_project';
+    public const DATABASE = '(default)';
+    public const NAME = 'projects/example_project/databases/(default)/documents/users';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $collection;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
         $this->collection = TestHelpers::stub(CollectionReference::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::NAME
         ]);
     }
@@ -75,7 +89,14 @@ class CollectionReferenceTest extends SnippetTestCase
     {
         $subCollection = TestHelpers::stub(CollectionReference::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::NAME . '/doc/sub-collection',
         ]);
 

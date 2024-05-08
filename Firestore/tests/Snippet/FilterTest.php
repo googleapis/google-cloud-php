@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Firestore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
+use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\Filter;
@@ -35,16 +37,21 @@ use Google\Cloud\Firestore\ValueMapper;
  */
 class FilterTest extends SnippetTestCase
 {
+    use FirestoreTestHelperTrait;
     use ProphecyTrait;
 
-    const COLLECTION = 'a';
-    const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
+    public const COLLECTION = 'a';
+    public const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
+        $this->serializer = $this->getSerializer();
     }
 
     public function testFilterClass()
@@ -185,7 +192,14 @@ class FilterTest extends SnippetTestCase
 
         $q = TestHelpers::stub(Query::class, [
             $this->connection->reveal(),
-            new ValueMapper($this->connection->reveal(), false),
+            $this->requestHandler->reveal(),
+            $this->serializer,
+            new ValueMapper(
+                $this->connection->reveal(),
+                $this->requestHandler->reveal(),
+                $this->serializer,
+                false
+            ),
             self::QUERY_PARENT,
             [
                 'from' => $from

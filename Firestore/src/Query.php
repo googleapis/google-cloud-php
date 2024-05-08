@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
@@ -123,6 +125,16 @@ class Query
     private $connection;
 
     /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    /**
      * @var ValueMapper
      */
     private $valueMapper;
@@ -146,6 +158,9 @@ class Query
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      *        This object is created by FirestoreClient,
      *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object
@@ -154,12 +169,16 @@ class Query
      */
     public function __construct(
         ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         ValueMapper $valueMapper,
         $parent,
         array $query,
         $limitToLast = false
     ) {
         $this->connection = $connection;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
         $this->valueMapper = $valueMapper;
         $this->parentName = $parent;
         $this->query = $query;
@@ -273,6 +292,8 @@ class Query
     {
         $aggregateQuery = new AggregateQuery(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->parentName,
             [
                 'query' => $this->query,
@@ -340,6 +361,8 @@ class Query
                     if (!isset($collections[$collectionName])) {
                         $collections[$collectionName] = new CollectionReference(
                             $this->connection,
+                            $this->requestHandler,
+                            $this->serializer,
                             $this->valueMapper,
                             $collectionName
                         );
@@ -347,6 +370,8 @@ class Query
 
                     $ref = new DocumentReference(
                         $this->connection,
+                        $this->requestHandler,
+                        $this->serializer,
                         $this->valueMapper,
                         $collections[$collectionName],
                         $result['document']['name']
@@ -973,6 +998,8 @@ class Query
 
         return new self(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->parentName,
             $query,
@@ -1010,12 +1037,16 @@ class Query
 
         $parent = new CollectionReference(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $this->parentPath($childPath)
         );
 
         return new DocumentReference(
             $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this->valueMapper,
             $parent,
             $childPath
