@@ -144,6 +144,11 @@ class Instance
     private $directedReadOptions;
 
     /**
+     * @var bool
+     */
+    private $routeToLeader;
+
+    /**
      * Create an object representing a Cloud Spanner instance.
      *
      * @param RequestHandler The request handler that is responsible for sending a request
@@ -163,6 +168,8 @@ class Instance
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
+     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
+     *           **Defaults to** `true` (enabled).
      * }
      */
     public function __construct(
@@ -187,6 +194,7 @@ class Instance
         $this->info = $info;
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
+        $this->routeToLeader = $options['routeToLeader'] ?? true;
     }
 
     /**
@@ -537,18 +545,17 @@ class Instance
     {
         # TODO: Remove the connection related objects
         return new Database(
-            $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this,
-            $this->lroConnection,
             $this->lroCallables,
             $this->projectId,
             $name,
             isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject,
             isset($options['database']) ? $options['database'] : [],
-            isset($options['databaseRole']) ? $options['databaseRole'] : ''
+            isset($options['databaseRole']) ? $options['databaseRole'] : '',
+            ['routeToLeader' => $this->routeToLeader]
         );
     }
 
@@ -824,7 +831,7 @@ class Instance
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'requestHandler' => get_class($this->requestHandler),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info

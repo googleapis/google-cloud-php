@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
@@ -33,7 +35,12 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -57,7 +64,8 @@ class TransactionTypeTest extends TestCase
     const SESSION = 'my-session';
 
     private $connection;
-
+    private $requestHandler;
+    private $serializer;
     private $timestamp;
 
     public function setUp(): void
@@ -67,32 +75,71 @@ class TransactionTypeTest extends TestCase
         $this->timestamp = (new Timestamp(\DateTime::createFromFormat('U', time()), 500000005))->formatAsString();
 
         $this->connection = $this->getConnStub();
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializerStub();
 
-        $this->connection->createSession(
-            Argument::withEntry('database', SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE))
-        )
-            ->willReturn(['name' => SpannerClient::sessionName(
-                self::PROJECT,
-                self::INSTANCE,
-                self::DATABASE,
-                self::SESSION
-            )]);
+        $this->serializer
+            ->decodeMessage(
+                Argument::type(CreateSessionRequest::class),
+                Argument::withEntry(
+                    'database',
+                    SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                )
+            )
+            ->willReturn(new CreateSessionRequest());
+        $this->requestHandler
+            ->sendRequest(
+                SpannerClient::class,
+                'createSession',
+                Argument::type(CreateSessionRequest::class),
+                Argument::cetera()
+            )
+            ->willReturn(['name' => $this->getFullyQualifiedSessionName()]);
     }
 
     public function testDatabaseRunTransactionPreAllocate()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('transactionOptions', [
-                'readWrite' => []
-            ])
-        ))->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
+        $this->serializer
+            ->decodeMessage(
+                Argument::type(BeginTransactionRequest::class),
+                Argument::withEntry(
+                    'session',
+                    $this->getFullyQualifiedSessionName()
+                )
+            )
+            ->willReturn(new BeginTransactionRequest());
+        $this->requestHandler
+            ->sendRequest(
+                SpannerClient::class,
+                'beginTransaction',
+                Argument::type(BeginTransactionRequest::class),
+                Argument::cetera()
+            )
+            ->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
 
-        $this->connection->commit(Argument::withEntry('transactionId', self::TRANSACTION))
+        $this->serializer
+            ->decodeMessage(
+                Argument::type(CommitRequest::class),
+                Argument::withEntry(
+                    'transactionId',
+                    self::TRANSACTION
+                )
+            )
+            ->willReturn(new CommitRequest());
+        $this->requestHandler
+            ->sendRequest(
+                SpannerClient::class,
+                'commit',
+                Argument::type(CommitRequest::class),
+                Argument::cetera()
+            )
             ->shouldBeCalledTimes(1)
             ->willReturn(['commitTimestamp' => $this->timestamp]);
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database(
+            $this->requestHandler->reveal(),
+            $this->serializer->reveal()
+        );
 
         $database->runTransaction(function ($t) {
             // Transaction gets created at the commit operation
@@ -102,14 +149,33 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseRunTransactionSingleUse()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
+        $this->requestHandler
+            ->sendRequest(
+                SpannerClient::class,
+                'beginTransaction',
+                Argument::cetera()
+            )
+            ->shouldNotBeCalled();
 
         $this->connection->commit(Argument::withEntry('singleUseTransaction', ['readWrite' => []]))
+            ->shouldBeCalledTimes(1);
+        $this->requestHandler
+            ->sendRequest(
+                SpannerClient::class,
+                'commit',
+                Argument::allOf(
+                    Argument::type(CommitRequest::class),
+                    Argument::which('getSingleUseTransaction', $this->getReadWriteTransactionOptions())
+                ),
+                Argument::cetera()
+            )
             ->shouldBeCalledTimes(1)
             ->willReturn(['commitTimestamp' => $this->timestamp]);
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database(
+            $this->requestHandler->reveal(),
+            $this->serializer
+        );
 
         $database->runTransaction(function ($t) {
             $this->assertNull($t->id());
@@ -772,17 +838,17 @@ class TransactionTypeTest extends TestCase
         $t->rollback();
     }
 
-    private function database(ConnectionInterface $connection)
+    private function database(RequestHandler $requestHandler, Serializer $serializer)
     {
-        $operation = new Operation($connection, false);
+        $operation = new Operation($requestHandler, $serializer, false);
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
         $instance->directedReadOptions()->willReturn([]);
 
         $database = TestHelpers::stub(Database::class, [
-            $connection,
+            $requestHandler,
+            $serializer,
             $instance->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
             self::PROJECT,
             self::DATABASE
@@ -791,5 +857,15 @@ class TransactionTypeTest extends TestCase
         $database->___setProperty('operation', $operation);
 
         return $database;
+    }
+
+    private function getFullyQualifiedSessionName()
+    {
+        return SpannerClient::sessionName(
+            self::PROJECT,
+            self::INSTANCE,
+            self::DATABASE,
+            self::SESSION
+        );
     }
 }

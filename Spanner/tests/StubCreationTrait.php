@@ -17,7 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -34,5 +38,30 @@ trait StubCreationTrait
         $c->deleteSession(Argument::any())->willReturn([]);
 
         return $c;
+    }
+
+    private function getRequestHandlerStub()
+    {
+        $handler = $this->prophesize(RequestHandler::class);
+        $handler->sendRequest(
+            SpannerClient::class,
+            'deleteSession',
+            Argument::cetera()
+        )->willReturn([[]]);
+        return $handler;
+    }
+
+    private function getSerializerStub()
+    {
+        $serializer = $this->prophesize(Serializer::class);
+        $serializer->decodeMessage(
+            Argument::type(DeleteSessionRequest::class),
+            Argument::cetera()
+        )->willReturn(new DeleteSessionRequest());
+        // All the serializer decode may not be mocked.
+        $serializer->decodeMessage(
+            Argument::cetera()
+        )->willReturn(null);
+        return $serializer;
     }
 }

@@ -143,6 +143,16 @@ class SpannerClient
     protected $connection;
 
     /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
+
+    /**
      * @var bool
      */
     private $returnInt64AsObject;
@@ -151,6 +161,16 @@ class SpannerClient
      * @var array
      */
     private $directedReadOptions;
+
+    /**
+     * @var bool
+     */
+    private $routeToLeader;
+
+    /**
+     * @var array
+     */
+    private $lroCallables;
 
     /**
      * Create a Spanner client. Please note that this client requires
@@ -298,12 +318,13 @@ class SpannerClient
             ]
         ];
         $this->directedReadOptions = $config['directedReadOptions'] ?? [];
+        $this->routeToLeader = $config['routeToLeader'] ?? true;
 
         // Configure GAPIC client options
         $config = $this->buildClientOptions($config);
         $config['credentials'] = $this->createCredentialsWrapper(
             $config['credentials'],
-            $config['credentialsConfig'],
+            $config['credentialsConfig'] + ['scopes' => $config['scopes']],
             $config['universeDomain']
         );
         $this->projectId = $this->detectProjectId($config);
@@ -330,7 +351,7 @@ class SpannerClient
             $this->requestHandler,
             $this->serializer,
             $lroCallables,
-            $this->lroResponseMappers
+            $this->getLROResponseMappers()
         );
     }
 
@@ -363,8 +384,10 @@ class SpannerClient
     public function batch($instanceId, $databaseId, array $options = [])
     {
         $operation = new Operation(
-            $this->connection,
-            $this->returnInt64AsObject
+            $this->requestHandler,
+            $this->serializer,
+            $this->returnInt64AsObject,
+            ['routeToLeader' => $this->routeToLeader]
         );
 
         return new BatchClient(
@@ -436,7 +459,7 @@ class SpannerClient
      */
     public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
     {
-        $config = $this->instanceConfiguration($name);
+        $config = $this->instanceConefiguration($name);
         return $config->create($baseConfig, $replicas, $options);
     }
 
@@ -615,7 +638,10 @@ class SpannerClient
             $name,
             $this->returnInt64AsObject,
             $instance,
-            ['directedReadOptions' => $this->directedReadOptions]
+            [
+                'directedReadOptions' => $this->directedReadOptions,
+                'routeToLeader' => $this->routeToLeader
+            ]
         );
     }
 

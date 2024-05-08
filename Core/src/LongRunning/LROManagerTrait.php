@@ -31,21 +31,6 @@ use Google\LongRunning\ListOperationsRequest;
 trait LROManagerTrait
 {
     /**
-     * @var RequestHandler
-     */
-    private RequestHandler $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
-    /**
-     * @var array
-     */
-    private $lroCallables;
-
-    /**
      * @var string
      */
     private $lroResource;
@@ -54,11 +39,6 @@ trait LROManagerTrait
      * @var string
      */
     private $clientClass;
-
-    /**
-     * @var array
-     */
-    private $lroResponseMapper;
 
     /**
      * Populate required LRO properties.

@@ -135,6 +135,16 @@ class Database
     const TYPE_PG_OID = 'pgOid';
 
     /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
+
+    /**
      * @var Instance
      */
     private $instance;
@@ -190,6 +200,21 @@ class Database
     private $directedReadOptions;
 
     /**
+     * @var array
+     */
+    private $lroResponseMapper;
+
+    /**
+     * @var bool
+     */
+    private $routeToLeader;
+
+    /**
+     * @var array
+     */
+    private $lroCallables;
+
+    /**
      * Create an object representing a Database.
      *
      * @param RequestHandler The request handler that is responsible for sending a request
@@ -205,6 +230,12 @@ class Database
      *        be returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
      * @param string $databaseRole The user created database role which creates the session.
+     * @param string $config [Optional] {
+     *     Configuration options.
+     *
+     *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
+     *         **Defaults to** `true` (enabled).
+     * }
      */
     public function __construct(
         RequestHandler $requestHandler,
@@ -216,7 +247,8 @@ class Database
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
         array $info = [],
-        $databaseRole = ''
+        $databaseRole = '',
+        $config = []
     ) {
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
@@ -227,7 +259,8 @@ class Database
         $this->operation = new Operation(
             $requestHandler,
             $serializer,
-            $returnInt64AsObject
+            $returnInt64AsObject,
+            ['routeToLeader' => $this->routeToLeader]
         );
         $this->info = $info;
 
@@ -239,12 +272,13 @@ class Database
             $requestHandler,
             $serializer,
             $lroCallables,
-            $this->lroResponseMappers,
+            $this->getLROResponseMappers(),
             $this->name,
             DatabaseAdminClient::class
         );
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
+        $this->routeToLeader = $options['routeToLeader'] ?? true;
     }
 
     /**
@@ -387,12 +421,14 @@ class Database
     public function reload(array $options = [])
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $request = $this->serializer->decodeMessage(new GetDatabaseRequest(), $data);
-        return $this->info = $this->requestHandler->sendRequest(
+
+        return $this->info = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'getDatabase',
-            $request,
-            $this->addResourcePrefixHeader($optionalArgs, $this->name)
+            $data,
+            $optionalArgs,
+            GetDatabaseRequest::class,
+            $this->name
         );
     }
 
@@ -459,18 +495,20 @@ class Database
                 $this->pluck('encryptionConfig', $options)
             );
         }
-        $request = $this->serializer->decodeMessage(new CreateDatabaseRequest(), $data);
-        $res = $this->requestHandler->sendRequest(
+
+        $res = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'createDatabase',
-            $request,
-            $this->addResourcePrefixHeader($optionalArgs, $this->instance->name())
+            $data,
+            $optionalArgs,
+            CreateDatabaseRequest::class,
+            $this->instance->name()
         );
 
         $operation = $this->operationToArray(
             $res,
             $this->serializer,
-            $this->lroResponseMappers
+            $this->getLROResponseMappers()
         );
         return $this->resumeOperation(
             $operation['name'],
@@ -534,12 +572,14 @@ class Database
 
         $data['database'] = $this->serializer->decodeMessage(new GapicDatabase(), $databaseInfo);
         $data['updateMask'] = $this->serializer->decodeMessage(new FieldMask(), $updateMask);
-        $request = $this->serializer->decodeMessage(new UpdateDatabaseRequest(), $data);
-        $this->requestHandler->sendRequest(
+
+        $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'updateDatabase',
-            $request,
-            $this->addResourcePrefixHeader($optionalArgs, $this->name)
+            $data,
+            $optionalArgs,
+            UpdateDatabaseRequest::class,
+            $this->name
         );
     }
 
@@ -608,18 +648,20 @@ class Database
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
         $data['statements'] = $statements;
-        $request = $this->serializer->decodeMessage(new UpdateDatabaseDdlRequest(), $data);
-        $res = $this->requestHandler->sendRequest(
+
+        $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'updateDatabaseDdl',
-            $request,
-            $this->addResourcePrefixHeader($optionalArgs, $this->name())
+            $data,
+            $optionalArgs,
+            UpdateDatabaseDdlRequest::class,
+            $this->name
         );
 
         $operation = $this->operationToArray(
             $res,
             $this->serializer,
-            $this->lroResponseMappers
+            $this->getLROResponseMappers()
         );
         return $this->resumeOperation($operation['name'], $operation);
     }
@@ -650,12 +692,14 @@ class Database
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
-        $request = $this->serializer->decodeMessage(new DropDatabaseRequest(), $data);
-        $res = $this->requestHandler->sendRequest(
+
+        $this->createAndSendRequest(
             DatabaseAdminClient::class,
-            'createDatabase',
-            $request,
-            $this->addResourcePrefixHeader($optionalArgs, $this->name)
+            'dropDatabase',
+            $data,
+            $optionalArgs,
+            DropDatabaseRequest::class,
+            $this->name
         );
 
         if ($this->sessionPool) {
@@ -689,12 +733,14 @@ class Database
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
-        $request = $this->serializer->decodeMessage(new GetDatabaseDdlRequest(), $data);
-        $ddl = $this->requestHandler->sendRequest(
+
+        $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'getDatabaseDdl',
-            $request,
-            $this->addResourcePrefixHeader($optionalArgs, $this->name)
+            $data,
+            $optionalArgs,
+            GetDatabaseDdlRequest::class,
+            $this->name
         );
 
         if (isset($ddl['statements'])) {
@@ -974,9 +1020,7 @@ class Database
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
 
-        $options += [
-            'maxRetries' => self::MAX_RETRIES,
-        ];
+        $maxRetries = $this->pluck('maxRetries', $options, false) ?: self::MAX_RETRIES;
 
         // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions();
@@ -1042,7 +1086,7 @@ class Database
             return $res;
         };
 
-        $retry = new Retry($options['maxRetries'], $delayFn);
+        $retry = new Retry($maxRetries, $delayFn);
 
         try {
             return $retry->execute($transactionFn, [$operation, $session, $options]);
