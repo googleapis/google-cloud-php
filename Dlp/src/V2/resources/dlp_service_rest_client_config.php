@@ -61,6 +61,18 @@ return [
                     ],
                 ],
             ],
+            'CreateConnection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/connections',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateDeidentifyTemplate' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=organizations/*}/deidentifyTemplates',
@@ -229,6 +241,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteConnection' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/connections/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDeidentifyTemplate' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=organizations/*/deidentifyTemplates/*}',
@@ -359,6 +382,23 @@ return [
                     ],
                 ],
             ],
+            'DeleteTableDataProfile' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=organizations/*/locations/*/tableDataProfiles/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/tableDataProfiles/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'FinishDlpJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:finish',
@@ -380,6 +420,17 @@ return [
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/columnDataProfiles/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetConnection' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/connections/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -612,6 +663,17 @@ return [
                     ],
                 ],
             ],
+            'ListConnections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/connections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDeidentifyTemplates' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=organizations/*}/deidentifyTemplates',
@@ -831,6 +893,35 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchConnections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/connections:search',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/connections:search',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateConnection' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/connections/*}',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

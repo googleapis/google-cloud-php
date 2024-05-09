@@ -22,39 +22,31 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START dlp_v2_generated_DlpService_ListTableDataProfiles_sync]
+// [START dlp_v2_generated_DlpService_DeleteConnection_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
-use Google\Cloud\Dlp\V2\ListTableDataProfilesRequest;
-use Google\Cloud\Dlp\V2\TableDataProfile;
+use Google\Cloud\Dlp\V2\DeleteConnectionRequest;
 
 /**
- * Lists table data profiles for an organization.
+ * Delete a Connection.
  *
- * @param string $formattedParent Resource name of the organization or project, for
- *                                example `organizations/433245324/locations/europe` or
- *                                `projects/project-id/locations/asia`. Please see
- *                                {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
+ * @param string $formattedName Resource name of the Connection to be deleted, in the format:
+ *                              `projects/{project}/locations/{location}/connections/{connection}`. Please see
+ *                              {@see DlpServiceClient::connectionName()} for help formatting this field.
  */
-function list_table_data_profiles_sample(string $formattedParent): void
+function delete_connection_sample(string $formattedName): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTableDataProfilesRequest())
-        ->setParent($formattedParent);
+    $request = (new DeleteConnectionRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listTableDataProfiles($request);
-
-        /** @var TableDataProfile $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        $dlpServiceClient->deleteConnection($request);
+        printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -71,8 +63,8 @@ function list_table_data_profiles_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = DlpServiceClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+    $formattedName = DlpServiceClient::connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
 
-    list_table_data_profiles_sample($formattedParent);
+    delete_connection_sample($formattedName);
 }
-// [END dlp_v2_generated_DlpService_ListTableDataProfiles_sync]
+// [END dlp_v2_generated_DlpService_DeleteConnection_sync]

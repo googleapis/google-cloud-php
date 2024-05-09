@@ -22,36 +22,35 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START dlp_v2_generated_DlpService_ListTableDataProfiles_sync]
+// [START dlp_v2_generated_DlpService_SearchConnections_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
-use Google\Cloud\Dlp\V2\ListTableDataProfilesRequest;
-use Google\Cloud\Dlp\V2\TableDataProfile;
+use Google\Cloud\Dlp\V2\Connection;
+use Google\Cloud\Dlp\V2\SearchConnectionsRequest;
 
 /**
- * Lists table data profiles for an organization.
+ * Searches for Connections in a parent.
  *
- * @param string $formattedParent Resource name of the organization or project, for
- *                                example `organizations/433245324/locations/europe` or
- *                                `projects/project-id/locations/asia`. Please see
- *                                {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
+ * @param string $formattedParent Parent name, typically an organization, without location.
+ *                                For example: `organizations/12345678`. Please see
+ *                                {@see DlpServiceClient::locationName()} for help formatting this field.
  */
-function list_table_data_profiles_sample(string $formattedParent): void
+function search_connections_sample(string $formattedParent): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTableDataProfilesRequest())
+    $request = (new SearchConnectionsRequest())
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listTableDataProfiles($request);
+        $response = $dlpServiceClient->searchConnections($request);
 
-        /** @var TableDataProfile $element */
+        /** @var Connection $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -71,8 +70,8 @@ function list_table_data_profiles_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = DlpServiceClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+    $formattedParent = DlpServiceClient::locationName('[PROJECT]', '[LOCATION]');
 
-    list_table_data_profiles_sample($formattedParent);
+    search_connections_sample($formattedParent);
 }
-// [END dlp_v2_generated_DlpService_ListTableDataProfiles_sync]
+// [END dlp_v2_generated_DlpService_SearchConnections_sync]

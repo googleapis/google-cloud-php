@@ -22,39 +22,38 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START dlp_v2_generated_DlpService_ListTableDataProfiles_sync]
+// [START dlp_v2_generated_DlpService_CreateConnection_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
-use Google\Cloud\Dlp\V2\ListTableDataProfilesRequest;
-use Google\Cloud\Dlp\V2\TableDataProfile;
+use Google\Cloud\Dlp\V2\Connection;
+use Google\Cloud\Dlp\V2\ConnectionState;
+use Google\Cloud\Dlp\V2\CreateConnectionRequest;
 
 /**
- * Lists table data profiles for an organization.
+ * Create a Connection to an external data source.
  *
- * @param string $formattedParent Resource name of the organization or project, for
- *                                example `organizations/433245324/locations/europe` or
- *                                `projects/project-id/locations/asia`. Please see
- *                                {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
+ * @param string $formattedParent Parent resource name in the format:
+ *                                `projects/{project}/locations/{location}`. Please see
+ *                                {@see DlpServiceClient::locationName()} for help formatting this field.
+ * @param int    $connectionState The connection's state in its lifecycle.
  */
-function list_table_data_profiles_sample(string $formattedParent): void
+function create_connection_sample(string $formattedParent, int $connectionState): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTableDataProfilesRequest())
-        ->setParent($formattedParent);
+    $connection = (new Connection())
+        ->setState($connectionState);
+    $request = (new CreateConnectionRequest())
+        ->setParent($formattedParent)
+        ->setConnection($connection);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listTableDataProfiles($request);
-
-        /** @var TableDataProfile $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var Connection $response */
+        $response = $dlpServiceClient->createConnection($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -71,8 +70,9 @@ function list_table_data_profiles_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = DlpServiceClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+    $formattedParent = DlpServiceClient::locationName('[PROJECT]', '[LOCATION]');
+    $connectionState = ConnectionState::CONNECTION_STATE_UNSPECIFIED;
 
-    list_table_data_profiles_sample($formattedParent);
+    create_connection_sample($formattedParent, $connectionState);
 }
-// [END dlp_v2_generated_DlpService_ListTableDataProfiles_sync]
+// [END dlp_v2_generated_DlpService_CreateConnection_sync]

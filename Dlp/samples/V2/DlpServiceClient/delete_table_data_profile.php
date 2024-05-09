@@ -22,39 +22,31 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START dlp_v2_generated_DlpService_ListTableDataProfiles_sync]
+// [START dlp_v2_generated_DlpService_DeleteTableDataProfile_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
-use Google\Cloud\Dlp\V2\ListTableDataProfilesRequest;
-use Google\Cloud\Dlp\V2\TableDataProfile;
+use Google\Cloud\Dlp\V2\DeleteTableDataProfileRequest;
 
 /**
- * Lists table data profiles for an organization.
+ * Delete a TableDataProfile. Will not prevent the profile from being
+ * regenerated if the table is still included in a discovery configuration.
  *
- * @param string $formattedParent Resource name of the organization or project, for
- *                                example `organizations/433245324/locations/europe` or
- *                                `projects/project-id/locations/asia`. Please see
- *                                {@see DlpServiceClient::organizationLocationName()} for help formatting this field.
+ * @param string $formattedName Resource name of the table data profile. Please see
+ *                              {@see DlpServiceClient::tableDataProfileName()} for help formatting this field.
  */
-function list_table_data_profiles_sample(string $formattedParent): void
+function delete_table_data_profile_sample(string $formattedName): void
 {
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
     // Prepare the request message.
-    $request = (new ListTableDataProfilesRequest())
-        ->setParent($formattedParent);
+    $request = (new DeleteTableDataProfileRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $dlpServiceClient->listTableDataProfiles($request);
-
-        /** @var TableDataProfile $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        $dlpServiceClient->deleteTableDataProfile($request);
+        printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -71,8 +63,12 @@ function list_table_data_profiles_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = DlpServiceClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+    $formattedName = DlpServiceClient::tableDataProfileName(
+        '[ORGANIZATION]',
+        '[LOCATION]',
+        '[TABLE_DATA_PROFILE]'
+    );
 
-    list_table_data_profiles_sample($formattedParent);
+    delete_table_data_profile_sample($formattedName);
 }
-// [END dlp_v2_generated_DlpService_ListTableDataProfiles_sync]
+// [END dlp_v2_generated_DlpService_DeleteTableDataProfile_sync]
