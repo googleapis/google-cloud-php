@@ -32,6 +32,8 @@ use Prophecy\Argument;
  */
 trait DatastoreOperationRefreshTrait
 {
+    private static Serializer $_serializer;
+
     /**
      * Refresh the operation property of a given stubbed class.
      *
@@ -120,13 +122,20 @@ trait DatastoreOperationRefreshTrait
         $prophecy->willReturn($returnValue);
     }
 
+    /**
+     * @return Serializer
+     */
     private function getSerializer()
     {
-        if (isset($this->serializer)) {
-            return $this->serializer;
+        if (isset(self::$_serializer)) {
+            return self::$_serializer;
         }
 
-        return new Serializer([], [
+        if (isset($this->serializer)) {
+            return self::$_serializer = $this->serializer;
+        }
+
+        return self::$_serializer = new Serializer([], [
             'google.protobuf.Value' => function ($v) {
                 return $this->flattenValue($v);
             },

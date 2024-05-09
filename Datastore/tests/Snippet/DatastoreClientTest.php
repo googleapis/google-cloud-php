@@ -36,7 +36,12 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\TransactionOptions;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -346,16 +351,21 @@ class DatastoreClientTest extends SnippetTestCase
         $this->assertEquals(Key::STATE_NAMED, $res->returnVal()[0]->state());
     }
 
+    /** @group current */
     public function testTransaction()
     {
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'transaction');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'beginTransaction',
-            ['transactionOptions' => ['readWrite' => []]],
-            ['transaction' => 'foo']
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['transactionOptions']['readWrite']);
+            }),
+            Argument::cetera()
+        )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -369,11 +379,17 @@ class DatastoreClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'readOnlyTransaction');
         $snippet->addLocal('datastore', $this->client);
-        $this->mockSendRequest(
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'beginTransaction',
-            ['transactionOptions' => ['readOnly' => []]],
-            ['transaction' => 'foo']
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['transactionOptions']['readOnly']);
+			}),
+            Argument::cetera()
+        )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
+
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
@@ -533,9 +549,12 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookup');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->willReturn(
             [
                 'found' => [
                     [
@@ -554,7 +573,7 @@ class DatastoreClientTest extends SnippetTestCase
                     ]
                 ]
             ]
-        );
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -575,9 +594,12 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(DatastoreClient::class, 'lookupBatch');
         $snippet->addLocal('datastore', $this->client);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->willReturn(
             [
                 'found' => [
                     [
@@ -610,7 +632,7 @@ class DatastoreClientTest extends SnippetTestCase
                     ]
                 ]
             ]
-        );
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -668,9 +690,12 @@ class DatastoreClientTest extends SnippetTestCase
         $query->queryKey()->willReturn('query');
         $snippet->addLocal('query', $query->reveal());
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            [],
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->willReturn(
             [
                 'batch' => [
                     'entityResults' => [
@@ -690,9 +715,8 @@ class DatastoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ],
-            0
-        );
+            ]
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -718,9 +742,12 @@ class DatastoreClientTest extends SnippetTestCase
         $query->queryObject()->willReturn([]);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runAggregationQuery',
-            [],
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )->willReturn(
             [
                 'batch' => [
                     'aggregationResults' => [
@@ -732,9 +759,8 @@ class DatastoreClientTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ],
-            0
-        );
+            ]
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -781,31 +807,27 @@ class DatastoreClientTest extends SnippetTestCase
         ]);
     }
 
-    private function validateTransactionOptions($type, array $options = [])
+    private function validateTransactionOptions($data, $type, array $options = [])
     {
-        return Argument::that(function ($args) use ($type, $options) {
-            if (!isset($args['transactionOptions'])) {
-                echo 'missing opts';
-                return false;
-            }
-            if (!array_key_exists($type, $args['transactionOptions'])) {
-                echo 'missing key';
-                return false;
-            }
+        if (!isset($data['transactionOptions'])) {
+            echo 'missing opts';
+            return false;
+        }
+        if (!array_key_exists($type, $data['transactionOptions'])) {
+            echo 'missing key';
+            return false;
+        }
 
-            if (!empty((array) $options)) {
-                return $options === $args['transactionOptions'][$type];
-            } else {
-                if (is_array($args['transactionOptions'][$type]) and
-                isset($args['transactionOptions'][$type]['readTime'])) {
-                    return true;
-                }
-                return is_object($args['transactionOptions'][$type])
-                    && empty((array) $args['transactionOptions'][$type]);
+        if (!empty((array) $options)) {
+            return $options === $data['transactionOptions'][$type];
+        } else {
+            if (is_array($data['transactionOptions'][$type]) and
+            isset($data['transactionOptions'][$type]['readTime'])) {
+                return true;
             }
-
-            return true;
-        });
+            return is_object($data['transactionOptions'][$type])
+                && empty((array) $data['transactionOptions'][$type]);
+        }
     }
 
     private function mockSendRequestForCommit($mutationType, $returnValue)
