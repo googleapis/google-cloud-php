@@ -26,6 +26,7 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\TransactionOptions;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -66,50 +67,53 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $this->requestHandler = $this->prophesize(RequestHandler::class);
     }
 
+    /** @group current */
     public function testClass()
     {
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class);
         $snippet->replace('$datastore = new DatastoreClient();', '');
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [
-                'keys' => [
-                    [
-                        'partitionId' => ['namespaceId' => 'sessions'],
-                        'path' => [
-                            ['kind' => 'PHPSESSID']
-                        ]
-                    ]
-                ],
-                'readOptions' => ['transaction' => self::TRANSACTION]
-            ],
-            [],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
 
-        $this->mockSendRequest(
+                return isset($data['readOptions']['transaction'])
+                    && $data['keys'][0]['partitionId']['namespaceId'] === 'sessions'
+                    && $data['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
+                    && isset($data['keys'][0]['path'][0]['name']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn();
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'beginTransaction',
-            ['transactionOptions' => ['readWrite' => []]],
-            ['transaction' => self::TRANSACTION]
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['transactionOptions']['readWrite']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()
+            ->willReturn(['transaction' => self::TRANSACTION]);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'commit',
-            [
-                'transaction' => self::TRANSACTION,
-                'mode' => Mode::TRANSACTIONAL,
-                'mutations' => [['upsert' => [
-                    'key' => [
-                        'path' => [['kind' => 'PHPSESSID']],
-                        'partitionId' => ['namespaceId' => 'sessions']
-                    ],
-                    'properties' => ['data' => ['stringValue' => 'name|'.serialize('Bob')]]
-                ]]]
-            ],
-            [],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+
+                return isset($data['transaction'])
+                    && isset($data['mode'])
+                    && $data['mutations'][0]['upsert']['key']['partitionId']['namespaceId'] === 'sessions'
+                    && $data['mutations'][0]['upsert']['key']['path'][0]['kind'] === 'PHPSESSID'
+                    && isset($data['mutations'][0]['upsert']['key']['path'][0]['name'])
+                    && $data['mutations'][0]['upsert']['properties']['data']['stringValue'] === 'name|'.serialize('Bob')
+                    && isset($data['mutations'][0]['upsert']['properties']['t']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -129,35 +133,36 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class, 1);
         $snippet->replace('$datastore = new DatastoreClient();', '');
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [
-                'keys' => [
-                    [
-                        'partitionId' => ['namespaceId' => 'sessions'],
-                        'path' => [
-                            ['kind' => 'PHPSESSID']
-                        ]
-                    ]
-                ],
-                'readOptions' => ['transaction' => self::TRANSACTION]
-            ],
-            [],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
 
-        $this->mockSendRequest(
+                return isset($data['readOptions']['transaction'])
+                    && $data['keys'][0]['partitionId']['namespaceId'] === 'sessions'
+                    && $data['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
+                    && isset($data['keys'][0]['path'][0]['name']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn();
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'beginTransaction',
-            ['transactionOptions' => ['readWrite' => []]],
-            ['transaction' => self::TRANSACTION]
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['transactionOptions']['readWrite']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()
+            ->willReturn(['transaction' => self::TRANSACTION]);
 
         $this->requestHandler->sendRequest(
             V1DatastoreClient::class,
             'commit',
             Argument::cetera()
         )->shouldBeCalled()->will(fn () => trigger_error('oops!', E_USER_WARNING));
-
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
