@@ -22,25 +22,10 @@
 
 return [
     'interfaces' => [
-        'google.cloud.kms.v1.EkmService' => [
-            'CreateEkmConnection' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/ekmConnections',
-                'body' => 'ekm_connection',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'ekm_connection_id',
-                ],
-            ],
-            'GetEkmConfig' => [
+        'google.cloud.kms.v1.AutokeyAdmin' => [
+            'GetAutokeyConfig' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConfig}',
+                'uriTemplate' => '/v1/{name=folders/*/autokeyConfig}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -49,20 +34,9 @@ return [
                     ],
                 ],
             ],
-            'GetEkmConnection' => [
+            'ShowEffectiveAutokeyConfig' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConnections/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListEkmConnections' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/ekmConnections',
+                'uriTemplate' => '/v1/{parent=projects/*}:showEffectiveAutokeyConfig',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -71,47 +45,20 @@ return [
                     ],
                 ],
             ],
-            'UpdateEkmConfig' => [
+            'UpdateAutokeyConfig' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{ekm_config.name=projects/*/locations/*/ekmConfig}',
-                'body' => 'ekm_config',
+                'uriTemplate' => '/v1/{autokey_config.name=folders/*/autokeyConfig}',
+                'body' => 'autokey_config',
                 'placeholders' => [
-                    'ekm_config.name' => [
+                    'autokey_config.name' => [
                         'getters' => [
-                            'getEkmConfig',
+                            'getAutokeyConfig',
                             'getName',
                         ],
                     ],
                 ],
                 'queryParams' => [
                     'update_mask',
-                ],
-            ],
-            'UpdateEkmConnection' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{ekm_connection.name=projects/*/locations/*/ekmConnections/*}',
-                'body' => 'ekm_connection',
-                'placeholders' => [
-                    'ekm_connection.name' => [
-                        'getters' => [
-                            'getEkmConnection',
-                            'getName',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'update_mask',
-                ],
-            ],
-            'VerifyConnectivity' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConnections/*}:verifyConnectivity',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
                 ],
             ],
         ],

@@ -22,47 +22,11 @@
 
 return [
     'interfaces' => [
-        'google.cloud.kms.v1.EkmService' => [
-            'CreateEkmConnection' => [
+        'google.cloud.kms.v1.Autokey' => [
+            'CreateKeyHandle' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/ekmConnections',
-                'body' => 'ekm_connection',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'ekm_connection_id',
-                ],
-            ],
-            'GetEkmConfig' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConfig}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetEkmConnection' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConnections/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListEkmConnections' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/ekmConnections',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/keyHandles',
+                'body' => 'key_handle',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -71,45 +35,24 @@ return [
                     ],
                 ],
             ],
-            'UpdateEkmConfig' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{ekm_config.name=projects/*/locations/*/ekmConfig}',
-                'body' => 'ekm_config',
-                'placeholders' => [
-                    'ekm_config.name' => [
-                        'getters' => [
-                            'getEkmConfig',
-                            'getName',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'update_mask',
-                ],
-            ],
-            'UpdateEkmConnection' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{ekm_connection.name=projects/*/locations/*/ekmConnections/*}',
-                'body' => 'ekm_connection',
-                'placeholders' => [
-                    'ekm_connection.name' => [
-                        'getters' => [
-                            'getEkmConnection',
-                            'getName',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'update_mask',
-                ],
-            ],
-            'VerifyConnectivity' => [
+            'GetKeyHandle' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/ekmConnections/*}:verifyConnectivity',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyHandles/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListKeyHandles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/keyHandles',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

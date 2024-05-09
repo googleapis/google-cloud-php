@@ -1,6 +1,6 @@
 {
     "interfaces": {
-        "google.cloud.kms.v1.EkmService": {
+        "google.cloud.kms.v1.AutokeyAdmin": {
             "retry_codes": {
                 "no_retry_codes": [],
                 "retry_policy_1_codes": [
@@ -29,40 +29,20 @@
                 }
             },
             "methods": {
-                "CreateEkmConnection": {
+                "GetAutokeyConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "GetEkmConfig": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
-                },
-                "GetEkmConnection": {
+                "ShowEffectiveAutokeyConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
-                "ListEkmConnections": {
+                "UpdateAutokeyConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
-                },
-                "UpdateEkmConfig": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
-                },
-                "UpdateEkmConnection": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
-                },
-                "VerifyConnectivity": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
                 },
                 "GetLocation": {
                     "timeout_millis": 60000,
@@ -76,18 +56,18 @@
                 },
                 "GetIamPolicy": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "SetIamPolicy": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "TestIamPermissions": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 }
             }
         }
