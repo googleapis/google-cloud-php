@@ -17,10 +17,8 @@ class DatabaseRole extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the database role. Values are of the form
-     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles/
-     * {role}`, where `<role>` is as specified in the `CREATE ROLE`
-     * DDL statement. This name can be passed to Get/Set IAMPolicy methods to
-     * identify the database role.
+     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles/<role>`
+     * where `<role>` is as specified in the `CREATE ROLE` DDL statement.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,10 +32,8 @@ class DatabaseRole extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the database role. Values are of the form
-     *           `projects/<project>/instances/<instance>/databases/<database>/databaseRoles/
-     *           {role}`, where `<role>` is as specified in the `CREATE ROLE`
-     *           DDL statement. This name can be passed to Get/Set IAMPolicy methods to
-     *           identify the database role.
+     *           `projects/<project>/instances/<instance>/databases/<database>/databaseRoles/<role>`
+     *           where `<role>` is as specified in the `CREATE ROLE` DDL statement.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,10 +43,8 @@ class DatabaseRole extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the database role. Values are of the form
-     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles/
-     * {role}`, where `<role>` is as specified in the `CREATE ROLE`
-     * DDL statement. This name can be passed to Get/Set IAMPolicy methods to
-     * identify the database role.
+     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles/<role>`
+     * where `<role>` is as specified in the `CREATE ROLE` DDL statement.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -62,10 +56,8 @@ class DatabaseRole extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the database role. Values are of the form
-     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles/
-     * {role}`, where `<role>` is as specified in the `CREATE ROLE`
-     * DDL statement. This name can be passed to Get/Set IAMPolicy methods to
-     * identify the database role.
+     * `projects/<project>/instances/<instance>/databases/<database>/databaseRoles/<role>`
+     * where `<role>` is as specified in the `CREATE ROLE` DDL statement.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

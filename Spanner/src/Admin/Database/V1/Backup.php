@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Backup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
-     * Name of the database from which this backup was
-     * created. This needs to be in the same instance as the backup.
-     * Values are of the form
+     * Required for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation. Name of the database from which this backup was created. This
+     * needs to be in the same instance as the backup. Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`.
      *
      * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
@@ -35,7 +35,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $version_time = null;
     /**
-     * Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * Required for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      * operation. The expiration time of the backup, with microseconds
      * granularity that must be at least 6 hours and at most 366 days
      * from the time the CreateBackup request is processed. Once the `expire_time`
@@ -46,8 +47,11 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $expire_time = null;
     /**
-     * Output only for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
-     * Required for the [UpdateBackup][google.spanner.admin.database.v1.DatabaseAdmin.UpdateBackup] operation.
+     * Output only for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation. Required for the
+     * [UpdateBackup][google.spanner.admin.database.v1.DatabaseAdmin.UpdateBackup]
+     * operation.
      * A globally unique identifier for the backup which cannot be
      * changed. Values are of the form
      * `projects/<project>/instances/<instance>/backups/[a-z][a-z0-9_\-]*[a-z0-9]`
@@ -62,7 +66,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * Output only. The time the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      * request is received. If the request does not specify `version_time`, the
      * `version_time` of the backup will be equivalent to the `create_time`.
      *
@@ -100,6 +105,17 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $encryption_info = null;
     /**
+     * Output only. The encryption information for the backup, whether it is
+     * protected by one or more KMS keys. The information includes all Cloud
+     * KMS key versions used to encrypt the backup. The `encryption_status' field
+     * inside of each `EncryptionInfo` is not populated. At least one of the key
+     * versions must be available for the backup to be restored. If a key version
+     * is revoked in the middle of a restore, the restore behavior is undefined.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.EncryptionInfo encryption_information = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $encryption_information;
+    /**
      * Output only. The database dialect information for the backup.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -135,10 +151,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $database
-     *           Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
-     *           Name of the database from which this backup was
-     *           created. This needs to be in the same instance as the backup.
-     *           Values are of the form
+     *           Required for the
+     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     *           operation. Name of the database from which this backup was created. This
+     *           needs to be in the same instance as the backup. Values are of the form
      *           `projects/<project>/instances/<instance>/databases/<database>`.
      *     @type \Google\Protobuf\Timestamp $version_time
      *           The backup will contain an externally consistent copy of the database at
@@ -146,15 +162,19 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           specified, the system will set `version_time` to the `create_time` of the
      *           backup.
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     *           Required for the
+     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      *           operation. The expiration time of the backup, with microseconds
      *           granularity that must be at least 6 hours and at most 366 days
      *           from the time the CreateBackup request is processed. Once the `expire_time`
      *           has passed, the backup is eligible to be automatically deleted by Cloud
      *           Spanner to free the resources used by the backup.
      *     @type string $name
-     *           Output only for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
-     *           Required for the [UpdateBackup][google.spanner.admin.database.v1.DatabaseAdmin.UpdateBackup] operation.
+     *           Output only for the
+     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     *           operation. Required for the
+     *           [UpdateBackup][google.spanner.admin.database.v1.DatabaseAdmin.UpdateBackup]
+     *           operation.
      *           A globally unique identifier for the backup which cannot be
      *           changed. Values are of the form
      *           `projects/<project>/instances/<instance>/backups/[a-z][a-z0-9_\-]*[a-z0-9]`
@@ -165,7 +185,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           by the prefix of the backup name of the form
      *           `projects/<project>/instances/<instance>`.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     *           Output only. The time the
+     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      *           request is received. If the request does not specify `version_time`, the
      *           `version_time` of the backup will be equivalent to the `create_time`.
      *     @type int|string $size_bytes
@@ -182,6 +203,13 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           to the backup is removed.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo $encryption_info
      *           Output only. The encryption information for the backup.
+     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $encryption_information
+     *           Output only. The encryption information for the backup, whether it is
+     *           protected by one or more KMS keys. The information includes all Cloud
+     *           KMS key versions used to encrypt the backup. The `encryption_status' field
+     *           inside of each `EncryptionInfo` is not populated. At least one of the key
+     *           versions must be available for the backup to be restored. If a key version
+     *           is revoked in the middle of a restore, the restore behavior is undefined.
      *     @type int $database_dialect
      *           Output only. The database dialect information for the backup.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referencing_backups
@@ -206,10 +234,10 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
-     * Name of the database from which this backup was
-     * created. This needs to be in the same instance as the backup.
-     * Values are of the form
+     * Required for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation. Name of the database from which this backup was created. This
+     * needs to be in the same instance as the backup. Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`.
      *
      * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
@@ -221,10 +249,10 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
-     * Name of the database from which this backup was
-     * created. This needs to be in the same instance as the backup.
-     * Values are of the form
+     * Required for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation. Name of the database from which this backup was created. This
+     * needs to be in the same instance as the backup. Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`.
      *
      * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
@@ -282,7 +310,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * Required for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      * operation. The expiration time of the backup, with microseconds
      * granularity that must be at least 6 hours and at most 366 days
      * from the time the CreateBackup request is processed. Once the `expire_time`
@@ -308,7 +337,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * Required for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      * operation. The expiration time of the backup, with microseconds
      * granularity that must be at least 6 hours and at most 366 days
      * from the time the CreateBackup request is processed. Once the `expire_time`
@@ -328,8 +358,11 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
-     * Required for the [UpdateBackup][google.spanner.admin.database.v1.DatabaseAdmin.UpdateBackup] operation.
+     * Output only for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation. Required for the
+     * [UpdateBackup][google.spanner.admin.database.v1.DatabaseAdmin.UpdateBackup]
+     * operation.
      * A globally unique identifier for the backup which cannot be
      * changed. Values are of the form
      * `projects/<project>/instances/<instance>/backups/[a-z][a-z0-9_\-]*[a-z0-9]`
@@ -349,8 +382,11 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
-     * Required for the [UpdateBackup][google.spanner.admin.database.v1.DatabaseAdmin.UpdateBackup] operation.
+     * Output only for the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation. Required for the
+     * [UpdateBackup][google.spanner.admin.database.v1.DatabaseAdmin.UpdateBackup]
+     * operation.
      * A globally unique identifier for the backup which cannot be
      * changed. Values are of the form
      * `projects/<project>/instances/<instance>/backups/[a-z][a-z0-9_\-]*[a-z0-9]`
@@ -374,7 +410,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * Output only. The time the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      * request is received. If the request does not specify `version_time`, the
      * `version_time` of the backup will be equivalent to the `create_time`.
      *
@@ -397,7 +434,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * Output only. The time the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      * request is received. If the request does not specify `version_time`, the
      * `version_time` of the backup will be equivalent to the `create_time`.
      *
@@ -535,6 +573,42 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo::class);
         $this->encryption_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The encryption information for the backup, whether it is
+     * protected by one or more KMS keys. The information includes all Cloud
+     * KMS key versions used to encrypt the backup. The `encryption_status' field
+     * inside of each `EncryptionInfo` is not populated. At least one of the key
+     * versions must be available for the backup to be restored. If a key version
+     * is revoked in the middle of a restore, the restore behavior is undefined.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.EncryptionInfo encryption_information = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEncryptionInformation()
+    {
+        return $this->encryption_information;
+    }
+
+    /**
+     * Output only. The encryption information for the backup, whether it is
+     * protected by one or more KMS keys. The information includes all Cloud
+     * KMS key versions used to encrypt the backup. The `encryption_status' field
+     * inside of each `EncryptionInfo` is not populated. At least one of the key
+     * versions must be available for the backup to be restored. If a key version
+     * is revoked in the middle of a restore, the restore behavior is undefined.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.EncryptionInfo encryption_information = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEncryptionInformation($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo::class);
+        $this->encryption_information = $arr;
 
         return $this;
     }

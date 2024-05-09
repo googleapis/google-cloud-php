@@ -22,15 +22,34 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
      */
     private $encryption_type = 0;
     /**
-     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored
-     * database. This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] is
-     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the
+     * restored database. This field should be set only when
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $kms_key_name = '';
+    /**
+     * Optional. Specifies the KMS configuration for the one or more keys used to
+     * encrypt the database. Values are of the form
+     * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
+     * The keys referenced by kms_key_names must fully cover all
+     * regions of the database instance configuration. Some examples:
+     * * For single region database instance configs, specify a single regional
+     * location KMS key.
+     * * For multi-regional database instance configs of type GOOGLE_MANAGED,
+     * either specify a multi-regional location KMS key or multiple regional
+     * location KMS keys that cover all regions in the instance config.
+     * * For a database instance config of type USER_MANAGED, please specify only
+     * regional location KMS keys to cover each region in the instance config.
+     * Multi-regional location KMS keys are not supported for USER_MANAGED
+     * instance configs.
+     *
+     * Generated from protobuf field <code>repeated string kms_key_names = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $kms_key_names;
 
     /**
      * Constructor.
@@ -41,11 +60,26 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
      *     @type int $encryption_type
      *           Required. The encryption type of the restored database.
      *     @type string $kms_key_name
-     *           Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored
-     *           database. This field should be set only when
-     *           [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] is
-     *           `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     *           Optional. The Cloud KMS key that will be used to encrypt/decrypt the
+     *           restored database. This field should be set only when
+     *           [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     *           is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      *           `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kms_key_names
+     *           Optional. Specifies the KMS configuration for the one or more keys used to
+     *           encrypt the database. Values are of the form
+     *           `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
+     *           The keys referenced by kms_key_names must fully cover all
+     *           regions of the database instance configuration. Some examples:
+     *           * For single region database instance configs, specify a single regional
+     *           location KMS key.
+     *           * For multi-regional database instance configs of type GOOGLE_MANAGED,
+     *           either specify a multi-regional location KMS key or multiple regional
+     *           location KMS keys that cover all regions in the instance config.
+     *           * For a database instance config of type USER_MANAGED, please specify only
+     *           regional location KMS keys to cover each region in the instance config.
+     *           Multi-regional location KMS keys are not supported for USER_MANAGED
+     *           instance configs.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,10 +114,10 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored
-     * database. This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] is
-     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the
+     * restored database. This field should be set only when
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -95,10 +129,10 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored
-     * database. This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] is
-     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the
+     * restored database. This field should be set only when
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -109,6 +143,58 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the KMS configuration for the one or more keys used to
+     * encrypt the database. Values are of the form
+     * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
+     * The keys referenced by kms_key_names must fully cover all
+     * regions of the database instance configuration. Some examples:
+     * * For single region database instance configs, specify a single regional
+     * location KMS key.
+     * * For multi-regional database instance configs of type GOOGLE_MANAGED,
+     * either specify a multi-regional location KMS key or multiple regional
+     * location KMS keys that cover all regions in the instance config.
+     * * For a database instance config of type USER_MANAGED, please specify only
+     * regional location KMS keys to cover each region in the instance config.
+     * Multi-regional location KMS keys are not supported for USER_MANAGED
+     * instance configs.
+     *
+     * Generated from protobuf field <code>repeated string kms_key_names = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getKmsKeyNames()
+    {
+        return $this->kms_key_names;
+    }
+
+    /**
+     * Optional. Specifies the KMS configuration for the one or more keys used to
+     * encrypt the database. Values are of the form
+     * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
+     * The keys referenced by kms_key_names must fully cover all
+     * regions of the database instance configuration. Some examples:
+     * * For single region database instance configs, specify a single regional
+     * location KMS key.
+     * * For multi-regional database instance configs of type GOOGLE_MANAGED,
+     * either specify a multi-regional location KMS key or multiple regional
+     * location KMS keys that cover all regions in the instance config.
+     * * For a database instance config of type USER_MANAGED, please specify only
+     * regional location KMS keys to cover each region in the instance config.
+     * Multi-regional location KMS keys are not supported for USER_MANAGED
+     * instance configs.
+     *
+     * Generated from protobuf field <code>repeated string kms_key_names = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setKmsKeyNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->kms_key_names = $arr;
 
         return $this;
     }
