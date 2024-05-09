@@ -31,8 +31,10 @@ use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 /**
  * Mutates a row atomically based on the output of a predicate Reader filter.
  *
- * @param string $formattedTableName The unique name of the table to which the conditional mutation
- *                                   should be applied. Values are of the form
+ * @param string $formattedTableName Optional. The unique name of the table to which the conditional mutation
+ *                                   should be applied.
+ *
+ *                                   Values are of the form
  *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
  * @param string $rowKey             The key of the row to which the conditional mutation should be

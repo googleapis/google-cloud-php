@@ -677,6 +677,60 @@
                 }
             }
         },
+        "GenAiTuningService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GenAiTuningServiceGapicClient",
+                    "rpcs": {
+                        "CancelTuningJob": {
+                            "methods": [
+                                "cancelTuningJob"
+                            ]
+                        },
+                        "CreateTuningJob": {
+                            "methods": [
+                                "createTuningJob"
+                            ]
+                        },
+                        "GetTuningJob": {
+                            "methods": [
+                                "getTuningJob"
+                            ]
+                        },
+                        "ListTuningJobs": {
+                            "methods": [
+                                "listTuningJobs"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "IndexEndpointService": {
             "clients": {
                 "grpc": {
@@ -1454,6 +1508,45 @@
                 }
             }
         },
+        "ModelGardenService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ModelGardenServiceGapicClient",
+                    "rpcs": {
+                        "GetPublisherModel": {
+                            "methods": [
+                                "getPublisherModel"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ModelService": {
             "clients": {
                 "grpc": {
@@ -1578,14 +1671,123 @@
                 }
             }
         },
-        "ModelGardenService": {
+        "NotebookService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ModelGardenServiceGapicClient",
+                    "libraryClient": "NotebookServiceGapicClient",
                     "rpcs": {
-                        "GetPublisherModel": {
+                        "AssignNotebookRuntime": {
                             "methods": [
-                                "getPublisherModel"
+                                "assignNotebookRuntime"
+                            ]
+                        },
+                        "CreateNotebookRuntimeTemplate": {
+                            "methods": [
+                                "createNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "DeleteNotebookRuntime": {
+                            "methods": [
+                                "deleteNotebookRuntime"
+                            ]
+                        },
+                        "DeleteNotebookRuntimeTemplate": {
+                            "methods": [
+                                "deleteNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "GetNotebookRuntime": {
+                            "methods": [
+                                "getNotebookRuntime"
+                            ]
+                        },
+                        "GetNotebookRuntimeTemplate": {
+                            "methods": [
+                                "getNotebookRuntimeTemplate"
+                            ]
+                        },
+                        "ListNotebookRuntimeTemplates": {
+                            "methods": [
+                                "listNotebookRuntimeTemplates"
+                            ]
+                        },
+                        "ListNotebookRuntimes": {
+                            "methods": [
+                                "listNotebookRuntimes"
+                            ]
+                        },
+                        "StartNotebookRuntime": {
+                            "methods": [
+                                "startNotebookRuntime"
+                            ]
+                        },
+                        "UpgradeNotebookRuntime": {
+                            "methods": [
+                                "upgradeNotebookRuntime"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PersistentResourceService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PersistentResourceServiceGapicClient",
+                    "rpcs": {
+                        "CreatePersistentResource": {
+                            "methods": [
+                                "createPersistentResource"
+                            ]
+                        },
+                        "DeletePersistentResource": {
+                            "methods": [
+                                "deletePersistentResource"
+                            ]
+                        },
+                        "GetPersistentResource": {
+                            "methods": [
+                                "getPersistentResource"
+                            ]
+                        },
+                        "ListPersistentResources": {
+                            "methods": [
+                                "listPersistentResources"
+                            ]
+                        },
+                        "RebootPersistentResource": {
+                            "methods": [
+                                "rebootPersistentResource"
+                            ]
+                        },
+                        "UpdatePersistentResource": {
+                            "methods": [
+                                "updatePersistentResource"
                             ]
                         },
                         "GetLocation": {

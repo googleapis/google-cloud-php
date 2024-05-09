@@ -31,11 +31,14 @@ use Google\Cloud\SecretManager\V1\SecretVersion;
 /**
  * Disables a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
  *
- * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+ * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+ * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
  * [DISABLED][google.cloud.secretmanager.v1.SecretVersion.State.DISABLED].
  *
- * @param string $formattedName The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to disable in the format
- *                              `projects/&#42;/secrets/&#42;/versions/*`. Please see
+ * @param string $formattedName The resource name of the
+ *                              [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to disable in
+ *                              the format `projects/&#42;/secrets/&#42;/versions/*` or
+ *                              `projects/&#42;/locations/&#42;/secrets/&#42;/versions/*`. Please see
  *                              {@see SecretManagerServiceClient::secretVersionName()} for help formatting this field.
  */
 function disable_secret_version_sample(string $formattedName): void

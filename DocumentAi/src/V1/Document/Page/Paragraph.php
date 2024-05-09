@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Paragraph extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [Paragraph][google.cloud.documentai.v1.Document.Page.Paragraph].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Paragraph][google.cloud.documentai.v1.Document.Page.Paragraph].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
@@ -43,8 +42,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     *           [Paragraph][google.cloud.documentai.v1.Document.Page.Paragraph].
+     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Paragraph][google.cloud.documentai.v1.Document.Page.Paragraph].
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
@@ -57,8 +55,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [Paragraph][google.cloud.documentai.v1.Document.Page.Paragraph].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Paragraph][google.cloud.documentai.v1.Document.Page.Paragraph].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -79,8 +76,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [Paragraph][google.cloud.documentai.v1.Document.Page.Paragraph].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [Paragraph][google.cloud.documentai.v1.Document.Page.Paragraph].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var

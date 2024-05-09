@@ -26,10 +26,24 @@ class TokenType
      * Generated from protobuf enum <code>TOKEN_TYPE_OIDC = 1;</code>
      */
     const TOKEN_TYPE_OIDC = 1;
+    /**
+     * Public Key Infrastructure (PKI) token type
+     *
+     * Generated from protobuf enum <code>TOKEN_TYPE_PKI = 2;</code>
+     */
+    const TOKEN_TYPE_PKI = 2;
+    /**
+     * Limited claim token type for AWS integration
+     *
+     * Generated from protobuf enum <code>TOKEN_TYPE_LIMITED_AWS = 3;</code>
+     */
+    const TOKEN_TYPE_LIMITED_AWS = 3;
 
     private static $valueToName = [
         self::TOKEN_TYPE_UNSPECIFIED => 'TOKEN_TYPE_UNSPECIFIED',
         self::TOKEN_TYPE_OIDC => 'TOKEN_TYPE_OIDC',
+        self::TOKEN_TYPE_PKI => 'TOKEN_TYPE_PKI',
+        self::TOKEN_TYPE_LIMITED_AWS => 'TOKEN_TYPE_LIMITED_AWS',
     ];
 
     public static function name($value)

@@ -90,6 +90,13 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 null_row_count = 12;</code>
      */
     private $null_row_count = 0;
+    /**
+     * The number of rows returned by the sql statement in the SqlAssertion rule.
+     * This field is only valid for SqlAssertion rules.
+     *
+     * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
+     */
+    private $assertion_row_count = 0;
 
     /**
      * Constructor.
@@ -123,6 +130,9 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
      *           This field is only valid for rules of PER_ROW evaluation type.
      *     @type int|string $null_row_count
      *           The number of rows with null values in the specified column.
+     *     @type int|string $assertion_row_count
+     *           The number of rows returned by the sql statement in the SqlAssertion rule.
+     *           This field is only valid for SqlAssertion rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -442,6 +452,34 @@ class DataQualityScanRuleResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->null_row_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of rows returned by the sql statement in the SqlAssertion rule.
+     * This field is only valid for SqlAssertion rules.
+     *
+     * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
+     * @return int|string
+     */
+    public function getAssertionRowCount()
+    {
+        return $this->assertion_row_count;
+    }
+
+    /**
+     * The number of rows returned by the sql statement in the SqlAssertion rule.
+     * This field is only valid for SqlAssertion rules.
+     *
+     * Generated from protobuf field <code>int64 assertion_row_count = 13;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setAssertionRowCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->assertion_row_count = $var;
 
         return $this;
     }

@@ -49,6 +49,12 @@ class Status
      * Generated from protobuf enum <code>RESTORING = 404263851;</code>
      */
     const RESTORING = 404263851;
+    /**
+     * Disk is currently unavailable and cannot be accessed, attached or detached.
+     *
+     * Generated from protobuf enum <code>UNAVAILABLE = 413756464;</code>
+     */
+    const UNAVAILABLE = 413756464;
 
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
@@ -57,6 +63,7 @@ class Status
         self::FAILED => 'FAILED',
         self::READY => 'READY',
         self::RESTORING => 'RESTORING',
+        self::UNAVAILABLE => 'UNAVAILABLE',
     ];
 
     public static function name($value)

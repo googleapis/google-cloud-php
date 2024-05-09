@@ -30,7 +30,8 @@ use Google\Cloud\Monitoring\V3\DeleteServiceLevelObjectiveRequest;
 /**
  * Delete the given `ServiceLevelObjective`.
  *
- * @param string $formattedName Resource name of the `ServiceLevelObjective` to delete. The format is:
+ * @param string $formattedName Resource name of the `ServiceLevelObjective` to delete. The
+ *                              format is:
  *
  *                              projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
  *                              Please see {@see ServiceMonitoringServiceClient::serviceLevelObjectiveName()} for help formatting this field.

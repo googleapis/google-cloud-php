@@ -20,10 +20,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Service extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name for this Service. The format is:
+     * Identifier. Resource name for this Service. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -32,6 +32,15 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
+    /**
+     * Message that contains the service type and service labels of this service
+     * if it is a basic service.
+     * Documentation and examples
+     * [here](https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.BasicService basic_service = 19;</code>
+     */
+    private $basic_service = null;
     /**
      * Configuration for how to query telemetry on a Service.
      *
@@ -58,7 +67,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name for this Service. The format is:
+     *           Identifier. Resource name for this Service. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *     @type string $display_name
      *           Name used for UI elements listing this Service.
@@ -76,6 +85,19 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Type used for canonical services scoped to an Istio mesh.
      *           Metrics for Istio are
      *           [documented here](https://istio.io/latest/docs/reference/config/metrics/)
+     *     @type \Google\Cloud\Monitoring\V3\Service\CloudRun $cloud_run
+     *           Type used for Cloud Run services.
+     *     @type \Google\Cloud\Monitoring\V3\Service\GkeNamespace $gke_namespace
+     *           Type used for GKE Namespaces.
+     *     @type \Google\Cloud\Monitoring\V3\Service\GkeWorkload $gke_workload
+     *           Type used for GKE Workloads.
+     *     @type \Google\Cloud\Monitoring\V3\Service\GkeService $gke_service
+     *           Type used for GKE Services (the Kubernetes concept of a service).
+     *     @type \Google\Cloud\Monitoring\V3\Service\BasicService $basic_service
+     *           Message that contains the service type and service labels of this service
+     *           if it is a basic service.
+     *           Documentation and examples
+     *           [here](https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
      *     @type \Google\Cloud\Monitoring\V3\Service\Telemetry $telemetry
      *           Configuration for how to query telemetry on a Service.
      *     @type array|\Google\Protobuf\Internal\MapField $user_labels
@@ -93,10 +115,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name for this Service. The format is:
+     * Identifier. Resource name for this Service. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -105,10 +127,10 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name for this Service. The format is:
+     * Identifier. Resource name for this Service. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -332,6 +354,172 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\IstioCanonicalService::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Type used for Cloud Run services.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.CloudRun cloud_run = 12;</code>
+     * @return \Google\Cloud\Monitoring\V3\Service\CloudRun|null
+     */
+    public function getCloudRun()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasCloudRun()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Type used for Cloud Run services.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.CloudRun cloud_run = 12;</code>
+     * @param \Google\Cloud\Monitoring\V3\Service\CloudRun $var
+     * @return $this
+     */
+    public function setCloudRun($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\CloudRun::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Type used for GKE Namespaces.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.GkeNamespace gke_namespace = 15;</code>
+     * @return \Google\Cloud\Monitoring\V3\Service\GkeNamespace|null
+     */
+    public function getGkeNamespace()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasGkeNamespace()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Type used for GKE Namespaces.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.GkeNamespace gke_namespace = 15;</code>
+     * @param \Google\Cloud\Monitoring\V3\Service\GkeNamespace $var
+     * @return $this
+     */
+    public function setGkeNamespace($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\GkeNamespace::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * Type used for GKE Workloads.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.GkeWorkload gke_workload = 16;</code>
+     * @return \Google\Cloud\Monitoring\V3\Service\GkeWorkload|null
+     */
+    public function getGkeWorkload()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasGkeWorkload()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * Type used for GKE Workloads.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.GkeWorkload gke_workload = 16;</code>
+     * @param \Google\Cloud\Monitoring\V3\Service\GkeWorkload $var
+     * @return $this
+     */
+    public function setGkeWorkload($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\GkeWorkload::class);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Type used for GKE Services (the Kubernetes concept of a service).
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.GkeService gke_service = 17;</code>
+     * @return \Google\Cloud\Monitoring\V3\Service\GkeService|null
+     */
+    public function getGkeService()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasGkeService()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Type used for GKE Services (the Kubernetes concept of a service).
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.GkeService gke_service = 17;</code>
+     * @param \Google\Cloud\Monitoring\V3\Service\GkeService $var
+     * @return $this
+     */
+    public function setGkeService($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\GkeService::class);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Message that contains the service type and service labels of this service
+     * if it is a basic service.
+     * Documentation and examples
+     * [here](https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.BasicService basic_service = 19;</code>
+     * @return \Google\Cloud\Monitoring\V3\Service\BasicService|null
+     */
+    public function getBasicService()
+    {
+        return $this->basic_service;
+    }
+
+    public function hasBasicService()
+    {
+        return isset($this->basic_service);
+    }
+
+    public function clearBasicService()
+    {
+        unset($this->basic_service);
+    }
+
+    /**
+     * Message that contains the service type and service labels of this service
+     * if it is a basic service.
+     * Documentation and examples
+     * [here](https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli).
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.BasicService basic_service = 19;</code>
+     * @param \Google\Cloud\Monitoring\V3\Service\BasicService $var
+     * @return $this
+     */
+    public function setBasicService($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\BasicService::class);
+        $this->basic_service = $var;
 
         return $this;
     }

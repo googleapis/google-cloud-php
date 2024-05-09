@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A content string and a MIME type that describes the content string's
- * format.
+ * Documentation that is included in the notifications and incidents
+ * pertaining to this policy.
  *
  * Generated from protobuf message <code>google.monitoring.v3.AlertPolicy.Documentation</code>
  */

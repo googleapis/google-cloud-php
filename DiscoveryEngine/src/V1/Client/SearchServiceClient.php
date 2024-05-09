@@ -117,6 +117,50 @@ final class SearchServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     */
+    public static function dataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('dataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     */
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_data_store_branch resource.
      *
@@ -202,6 +246,25 @@ final class SearchServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     */
+    public static function projectLocationDataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store_branch resource.
      *
      * @param string $project
@@ -280,9 +343,12 @@ final class SearchServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - branch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
+     * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreBranch: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationDataStoreBranch: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}
      * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}

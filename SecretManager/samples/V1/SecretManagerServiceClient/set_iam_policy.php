@@ -32,8 +32,10 @@ use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
  * Sets the access control policy on the specified secret. Replaces any
  * existing policy.
  *
- * Permissions on [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced according
- * to the policy set on the associated [Secret][google.cloud.secretmanager.v1.Secret].
+ * Permissions on
+ * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced
+ * according to the policy set on the associated
+ * [Secret][google.cloud.secretmanager.v1.Secret].
  *
  * @param string $resource REQUIRED: The resource for which the policy is being specified.
  *                         See the operation documentation for the appropriate value for this field.

@@ -288,6 +288,12 @@ class Disk extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
     /**
+     * The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
+     *
+     * Generated from protobuf field <code>optional string storage_pool = 360473440;</code>
+     */
+    private $storage_pool = null;
+    /**
      * URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project /zones/zone/diskTypes/pd-ssd . See Persistent disk types.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -404,6 +410,8 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type string $status
      *           [Output Only] The status of disk creation. - CREATING: Disk is provisioning. - RESTORING: Source data is being copied into the disk. - FAILED: Disk creation failed. - READY: Disk is ready for use. - DELETING: Disk is deleting.
      *           Check the Status enum for the list of possible values.
+     *     @type string $storage_pool
+     *           The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
      *     @type string $type
      *           URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project /zones/zone/diskTypes/pd-ssd . See Persistent disk types.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
@@ -1967,6 +1975,42 @@ class Disk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
+     *
+     * Generated from protobuf field <code>optional string storage_pool = 360473440;</code>
+     * @return string
+     */
+    public function getStoragePool()
+    {
+        return isset($this->storage_pool) ? $this->storage_pool : '';
+    }
+
+    public function hasStoragePool()
+    {
+        return isset($this->storage_pool);
+    }
+
+    public function clearStoragePool()
+    {
+        unset($this->storage_pool);
+    }
+
+    /**
+     * The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /storagePools/storagePool - projects/project/zones/zone/storagePools/storagePool - zones/zone/storagePools/storagePool 
+     *
+     * Generated from protobuf field <code>optional string storage_pool = 360473440;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStoragePool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->storage_pool = $var;
 
         return $this;
     }

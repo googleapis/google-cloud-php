@@ -299,6 +299,8 @@ class ConfigClientTest extends GeneratedTest
         $build = 'build94094958';
         $errorLogs = 'errorLogs1635955078';
         $logs = 'logs3327407';
+        $tfVersion = 'tfVersion1712341003';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
         $expectedResponse = new Preview();
         $expectedResponse->setName($name);
         $expectedResponse->setDeployment($deployment);
@@ -308,6 +310,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setBuild($build);
         $expectedResponse->setErrorLogs($errorLogs);
         $expectedResponse->setLogs($logs);
+        $expectedResponse->setTfVersion($tfVersion);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -587,6 +591,8 @@ class ConfigClientTest extends GeneratedTest
         $build = 'build94094958';
         $errorLogs = 'errorLogs1635955078';
         $logs = 'logs3327407';
+        $tfVersion = 'tfVersion1712341003';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
         $expectedResponse = new Preview();
         $expectedResponse->setName($name2);
         $expectedResponse->setDeployment($deployment);
@@ -596,6 +602,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setBuild($build);
         $expectedResponse->setErrorLogs($errorLogs);
         $expectedResponse->setLogs($logs);
+        $expectedResponse->setTfVersion($tfVersion);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1132,6 +1140,8 @@ class ConfigClientTest extends GeneratedTest
         $build = 'build94094958';
         $errorLogs = 'errorLogs1635955078';
         $logs = 'logs3327407';
+        $tfVersion = 'tfVersion1712341003';
+        $tfVersionConstraint = 'tfVersionConstraint594495121';
         $expectedResponse = new Preview();
         $expectedResponse->setName($name2);
         $expectedResponse->setDeployment($deployment);
@@ -1141,6 +1151,8 @@ class ConfigClientTest extends GeneratedTest
         $expectedResponse->setBuild($build);
         $expectedResponse->setErrorLogs($errorLogs);
         $expectedResponse->setLogs($logs);
+        $expectedResponse->setTfVersion($tfVersion);
+        $expectedResponse->setTfVersionConstraint($tfVersionConstraint);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->previewName('[PROJECT]', '[LOCATION]', '[PREVIEW]');

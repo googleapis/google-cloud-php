@@ -45,21 +45,21 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
     private $marks;
     /**
      * The canonical name of the marks. The following list shows some examples:
-     * + `organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     * + `organizations/{organization_id}/assets/{asset_id}/securityMarks`
      * +
-     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
-     * + `folders/{folder_id}/assets/{asset_id}/securityMarks"
+     * `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
+     * + `folders/{folder_id}/assets/{asset_id}/securityMarks`
      * +
-     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
-     * + `projects/{project_number}/assets/{asset_id}/securityMarks"
+     * `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
+     * + `projects/{project_number}/assets/{asset_id}/securityMarks`
      * +
-     * `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
+     * `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
      *
      * Generated from protobuf field <code>string canonical_name = 3;</code>
      */
@@ -90,21 +90,21 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
      *               characters must be between 1 - 4096 characters (inclusive)
      *     @type string $canonical_name
      *           The canonical name of the marks. The following list shows some examples:
-     *           + `organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     *           + `organizations/{organization_id}/assets/{asset_id}/securityMarks`
      *           +
-     *           `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     *           `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks`
      *           +
-     *           `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
-     *           + `folders/{folder_id}/assets/{asset_id}/securityMarks"
+     *           `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
+     *           + `folders/{folder_id}/assets/{asset_id}/securityMarks`
      *           +
-     *           `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     *           `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks`
      *           +
-     *           `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
-     *           + `projects/{project_number}/assets/{asset_id}/securityMarks"
+     *           `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
+     *           + `projects/{project_number}/assets/{asset_id}/securityMarks`
      *           +
-     *           `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     *           `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks`
      *           +
-     *           `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
+     *           `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
      * }
      */
     public function __construct($data = NULL) {
@@ -192,21 +192,21 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
 
     /**
      * The canonical name of the marks. The following list shows some examples:
-     * + `organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     * + `organizations/{organization_id}/assets/{asset_id}/securityMarks`
      * +
-     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
-     * + `folders/{folder_id}/assets/{asset_id}/securityMarks"
+     * `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
+     * + `folders/{folder_id}/assets/{asset_id}/securityMarks`
      * +
-     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
-     * + `projects/{project_number}/assets/{asset_id}/securityMarks"
+     * `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
+     * + `projects/{project_number}/assets/{asset_id}/securityMarks`
      * +
-     * `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
+     * `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
      *
      * Generated from protobuf field <code>string canonical_name = 3;</code>
      * @return string
@@ -218,21 +218,21 @@ class SecurityMarks extends \Google\Protobuf\Internal\Message
 
     /**
      * The canonical name of the marks. The following list shows some examples:
-     * + `organizations/{organization_id}/assets/{asset_id}/securityMarks"
+     * + `organizations/{organization_id}/assets/{asset_id}/securityMarks`
      * +
-     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
-     * + `folders/{folder_id}/assets/{asset_id}/securityMarks"
+     * `organizations/{organization_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
+     * + `folders/{folder_id}/assets/{asset_id}/securityMarks`
      * +
-     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
-     * + `projects/{project_number}/assets/{asset_id}/securityMarks"
+     * `folders/{folder_id}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
+     * + `projects/{project_number}/assets/{asset_id}/securityMarks`
      * +
-     * `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks"
+     * `projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks`
      * +
-     * `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks"
+     * `projects/{project_number}/sources/{source_id}/locations/{location}/findings/{finding_id}/securityMarks`
      *
      * Generated from protobuf field <code>string canonical_name = 3;</code>
      * @param string $var

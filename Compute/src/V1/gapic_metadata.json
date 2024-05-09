@@ -965,6 +965,40 @@
                 }
             }
         },
+        "InstanceGroupManagerResizeRequests": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InstanceGroupManagerResizeRequestsGapicClient",
+                    "rpcs": {
+                        "Cancel": {
+                            "methods": [
+                                "cancel"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "InstanceGroupManagers": {
             "clients": {
                 "grpc": {
@@ -1122,6 +1156,25 @@
                         "SetNamedPorts": {
                             "methods": [
                                 "setNamedPorts"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "InstanceSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InstanceSettingsServiceGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
                             ]
                         }
                     }
@@ -2090,6 +2143,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "PerformMaintenance": {
+                            "methods": [
+                                "performMaintenance"
                             ]
                         },
                         "SetIamPolicy": {
@@ -3929,6 +3987,89 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "StoragePoolTypes": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "StoragePoolTypesGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "StoragePools": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "StoragePoolsGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "ListDisks": {
+                            "methods": [
+                                "listDisks"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
                             ]
                         }
                     }

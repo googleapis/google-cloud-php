@@ -280,6 +280,25 @@ final class AnalyticsHubServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a table
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     * @param string $table
+     *
+     * @return string The formatted table resource.
+     */
+    public static function tableName(string $project, string $dataset, string $table): string
+    {
+        return self::getPathTemplate('table')->render([
+            'project' => $project,
+            'dataset' => $dataset,
+            'table' => $table,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -288,6 +307,7 @@ final class AnalyticsHubServiceClient
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
      * - subscription: projects/{project}/locations/{location}/subscriptions/{subscription}
+     * - table: projects/{project}/datasets/{dataset}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -30,10 +30,11 @@ use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
 use Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest;
 
 /**
- * Lists metric descriptors that match a filter. This method does not require a Workspace.
+ * Lists metric descriptors that match a filter.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                     which to execute the request. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                     to execute the request. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  */

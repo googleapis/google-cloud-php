@@ -486,6 +486,25 @@ final class JobServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * persistent_resource resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $persistentResource
+     *
+     * @return string The formatted persistent_resource resource.
+     */
+    public static function persistentResourceName(string $project, string $location, string $persistentResource): string
+    {
+        return self::getPathTemplate('persistentResource')->render([
+            'project' => $project,
+            'location' => $location,
+            'persistent_resource' => $persistentResource,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_endpoint resource.
      *
      * @param string $project
@@ -582,6 +601,7 @@ final class JobServiceClient
      * - nasTrialDetail: projects/{project}/locations/{location}/nasJobs/{nas_job}/nasTrialDetails/{nas_trial_detail}
      * - network: projects/{project}/global/networks/{network}
      * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
+     * - persistentResource: projects/{project}/locations/{location}/persistentResources/{persistent_resource}
      * - projectLocationEndpoint: projects/{project}/locations/{location}/endpoints/{endpoint}
      * - projectLocationPublisherModel: projects/{project}/locations/{location}/publishers/{publisher}/models/{model}
      * - tensorboard: projects/{project}/locations/{location}/tensorboards/{tensorboard}

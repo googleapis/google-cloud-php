@@ -40,7 +40,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. The IP address in the request from the user's device related to
      * this event.
      *
-     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     private $user_ip_address = '';
     /**
@@ -119,6 +119,12 @@ class Event extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.UserInfo user_info = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $user_info = null;
+    /**
+     * Optional. The Fraud Prevention setting for this assessment.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event.FraudPrevention fraud_prevention = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $fraud_prevention = 0;
 
     /**
      * Constructor.
@@ -173,6 +179,8 @@ class Event extends \Google\Protobuf\Internal\Message
      *           can be identified. They are often identified through the use of an account
      *           for logged-in requests or login/registration requests, or by providing user
      *           identifiers for guest actions like checkout.
+     *     @type int $fraud_prevention
+     *           Optional. The Fraud Prevention setting for this assessment.
      * }
      */
     public function __construct($data = NULL) {
@@ -268,7 +276,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. The IP address in the request from the user's device related to
      * this event.
      *
-     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getUserIpAddress()
@@ -280,7 +288,7 @@ class Event extends \Google\Protobuf\Internal\Message
      * Optional. The IP address in the request from the user's device related to
      * this event.
      *
-     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */
@@ -602,6 +610,32 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\UserInfo::class);
         $this->user_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Fraud Prevention setting for this assessment.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event.FraudPrevention fraud_prevention = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getFraudPrevention()
+    {
+        return $this->fraud_prevention;
+    }
+
+    /**
+     * Optional. The Fraud Prevention setting for this assessment.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event.FraudPrevention fraud_prevention = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFraudPrevention($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\Event\FraudPrevention::class);
+        $this->fraud_prevention = $var;
 
         return $this;
     }

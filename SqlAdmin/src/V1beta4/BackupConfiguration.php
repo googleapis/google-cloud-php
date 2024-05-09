@@ -72,6 +72,13 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.BackupRetentionSettings backup_retention_settings = 10;</code>
      */
     private $backup_retention_settings = null;
+    /**
+     * Output only. This value contains the storage location of transactional logs
+     * for the database for point-in-time recovery.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.BackupConfiguration.TransactionalLogStorageState transactional_log_storage_state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $transactional_log_storage_state = null;
 
     /**
      * Constructor.
@@ -100,6 +107,9 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      *           restore, from 1-7.
      *     @type \Google\Cloud\Sql\V1beta4\BackupRetentionSettings $backup_retention_settings
      *           Backup retention settings.
+     *     @type int $transactional_log_storage_state
+     *           Output only. This value contains the storage location of transactional logs
+     *           for the database for point-in-time recovery.
      * }
      */
     public function __construct($data = NULL) {
@@ -542,6 +552,44 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\BackupRetentionSettings::class);
         $this->backup_retention_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. This value contains the storage location of transactional logs
+     * for the database for point-in-time recovery.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.BackupConfiguration.TransactionalLogStorageState transactional_log_storage_state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getTransactionalLogStorageState()
+    {
+        return isset($this->transactional_log_storage_state) ? $this->transactional_log_storage_state : 0;
+    }
+
+    public function hasTransactionalLogStorageState()
+    {
+        return isset($this->transactional_log_storage_state);
+    }
+
+    public function clearTransactionalLogStorageState()
+    {
+        unset($this->transactional_log_storage_state);
+    }
+
+    /**
+     * Output only. This value contains the storage location of transactional logs
+     * for the database for point-in-time recovery.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.BackupConfiguration.TransactionalLogStorageState transactional_log_storage_state = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTransactionalLogStorageState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\BackupConfiguration\TransactionalLogStorageState::class);
+        $this->transactional_log_storage_state = $var;
 
         return $this;
     }

@@ -16,6 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class FetchFeatureValuesResponse extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * The data key associated with this response.
+     * Will only be populated for
+     * [FeatureOnlineStoreService.StreamingFetchFeatureValues][] RPCs.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewDataKey data_key = 4;</code>
+     */
+    private $data_key = null;
     protected $format;
 
     /**
@@ -28,6 +36,10 @@ class FetchFeatureValuesResponse extends \Google\Protobuf\Internal\Message
      *           Feature values in KeyValue format.
      *     @type \Google\Protobuf\Struct $proto_struct
      *           Feature values in proto Struct format.
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureViewDataKey $data_key
+     *           The data key associated with this response.
+     *           Will only be populated for
+     *           [FeatureOnlineStoreService.StreamingFetchFeatureValues][] RPCs.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +105,46 @@ class FetchFeatureValuesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The data key associated with this response.
+     * Will only be populated for
+     * [FeatureOnlineStoreService.StreamingFetchFeatureValues][] RPCs.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewDataKey data_key = 4;</code>
+     * @return \Google\Cloud\AIPlatform\V1\FeatureViewDataKey|null
+     */
+    public function getDataKey()
+    {
+        return $this->data_key;
+    }
+
+    public function hasDataKey()
+    {
+        return isset($this->data_key);
+    }
+
+    public function clearDataKey()
+    {
+        unset($this->data_key);
+    }
+
+    /**
+     * The data key associated with this response.
+     * Will only be populated for
+     * [FeatureOnlineStoreService.StreamingFetchFeatureValues][] RPCs.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureViewDataKey data_key = 4;</code>
+     * @param \Google\Cloud\AIPlatform\V1\FeatureViewDataKey $var
+     * @return $this
+     */
+    public function setDataKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureViewDataKey::class);
+        $this->data_key = $var;
 
         return $this;
     }

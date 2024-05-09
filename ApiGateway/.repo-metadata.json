@@ -1,8 +1,0 @@
-{
-    "language": "php",
-    "distribution_name": "google/cloud-api-gateway",
-    "release_level": "stable",
-    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-api-gateway/latest",
-    "library_type": "GAPIC_AUTO",
-    "api_shortname": "apigateway"
-}

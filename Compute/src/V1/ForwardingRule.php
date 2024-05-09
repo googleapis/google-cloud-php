@@ -83,6 +83,12 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
+     * Resource reference of a PublicDelegatedPrefix. The PDP must be a sub-PDP in EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode. Use one of the following formats to specify a sub-PDP when creating an IPv6 NetLB forwarding rule using BYOIP: Full resource URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region /publicDelegatedPrefixes/sub-pdp-name Partial URL, as in: - projects/project_id/regions/region/publicDelegatedPrefixes/sub-pdp-name - regions/region/publicDelegatedPrefixes/sub-pdp-name 
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     */
+    private $ip_collection = null;
+    /**
      * The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6.
      * Check the IpVersion enum for the list of possible values.
      *
@@ -254,6 +260,8 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ForwardingRule. Include the fingerprint in patch request to ensure that you do not overwrite changes that were applied from another concurrent request. To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *     @type string $ip_collection
+     *           Resource reference of a PublicDelegatedPrefix. The PDP must be a sub-PDP in EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode. Use one of the following formats to specify a sub-PDP when creating an IPv6 NetLB forwarding rule using BYOIP: Full resource URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region /publicDelegatedPrefixes/sub-pdp-name Partial URL, as in: - projects/project_id/regions/region/publicDelegatedPrefixes/sub-pdp-name - regions/region/publicDelegatedPrefixes/sub-pdp-name 
      *     @type string $ip_version
      *           The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6.
      *           Check the IpVersion enum for the list of possible values.
@@ -705,6 +713,42 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint64($var);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource reference of a PublicDelegatedPrefix. The PDP must be a sub-PDP in EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode. Use one of the following formats to specify a sub-PDP when creating an IPv6 NetLB forwarding rule using BYOIP: Full resource URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region /publicDelegatedPrefixes/sub-pdp-name Partial URL, as in: - projects/project_id/regions/region/publicDelegatedPrefixes/sub-pdp-name - regions/region/publicDelegatedPrefixes/sub-pdp-name 
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     * @return string
+     */
+    public function getIpCollection()
+    {
+        return isset($this->ip_collection) ? $this->ip_collection : '';
+    }
+
+    public function hasIpCollection()
+    {
+        return isset($this->ip_collection);
+    }
+
+    public function clearIpCollection()
+    {
+        unset($this->ip_collection);
+    }
+
+    /**
+     * Resource reference of a PublicDelegatedPrefix. The PDP must be a sub-PDP in EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode. Use one of the following formats to specify a sub-PDP when creating an IPv6 NetLB forwarding rule using BYOIP: Full resource URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region /publicDelegatedPrefixes/sub-pdp-name Partial URL, as in: - projects/project_id/regions/region/publicDelegatedPrefixes/sub-pdp-name - regions/region/publicDelegatedPrefixes/sub-pdp-name 
+     *
+     * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpCollection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_collection = $var;
 
         return $this;
     }

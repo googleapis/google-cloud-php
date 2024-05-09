@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/storage/control/(v2)/.*-php/(.*)
+      dest: /owl-bot-staging/StorageControl/$1/$2
+api-name: StorageControl

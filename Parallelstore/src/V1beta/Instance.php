@@ -98,7 +98,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $network = '';
     /**
-     * Optional. Immutable. Contains the id of allocated IP address range
+     * Optional. Immutable. Contains the id of the allocated IP address range
      * associated with the private service access connection for example,
      * "test-default" associated with IP range 10.0.0.0/29. If no range id is
      * provided all ranges will be considered.
@@ -106,6 +106,16 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string reserved_ip_range = 12 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $reserved_ip_range = '';
+    /**
+     * Output only. Immutable. Contains the id of the allocated IP address range
+     * associated with the private service access connection for example,
+     * "test-default" associated with IP range 10.0.0.0/29. This field is
+     * populated by the service and and contains the value currently used by the
+     * service.
+     *
+     * Generated from protobuf field <code>string effective_reserved_ip_range = 14 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $effective_reserved_ip_range = '';
 
     /**
      * Constructor.
@@ -156,10 +166,16 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the
      *           instance is connected.
      *     @type string $reserved_ip_range
-     *           Optional. Immutable. Contains the id of allocated IP address range
+     *           Optional. Immutable. Contains the id of the allocated IP address range
      *           associated with the private service access connection for example,
      *           "test-default" associated with IP range 10.0.0.0/29. If no range id is
      *           provided all ranges will be considered.
+     *     @type string $effective_reserved_ip_range
+     *           Output only. Immutable. Contains the id of the allocated IP address range
+     *           associated with the private service access connection for example,
+     *           "test-default" associated with IP range 10.0.0.0/29. This field is
+     *           populated by the service and and contains the value currently used by the
+     *           service.
      * }
      */
     public function __construct($data = NULL) {
@@ -492,7 +508,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. Contains the id of allocated IP address range
+     * Optional. Immutable. Contains the id of the allocated IP address range
      * associated with the private service access connection for example,
      * "test-default" associated with IP range 10.0.0.0/29. If no range id is
      * provided all ranges will be considered.
@@ -506,7 +522,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Immutable. Contains the id of allocated IP address range
+     * Optional. Immutable. Contains the id of the allocated IP address range
      * associated with the private service access connection for example,
      * "test-default" associated with IP range 10.0.0.0/29. If no range id is
      * provided all ranges will be considered.
@@ -519,6 +535,40 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->reserved_ip_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Immutable. Contains the id of the allocated IP address range
+     * associated with the private service access connection for example,
+     * "test-default" associated with IP range 10.0.0.0/29. This field is
+     * populated by the service and and contains the value currently used by the
+     * service.
+     *
+     * Generated from protobuf field <code>string effective_reserved_ip_range = 14 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getEffectiveReservedIpRange()
+    {
+        return $this->effective_reserved_ip_range;
+    }
+
+    /**
+     * Output only. Immutable. Contains the id of the allocated IP address range
+     * associated with the private service access connection for example,
+     * "test-default" associated with IP range 10.0.0.0/29. This field is
+     * populated by the service and and contains the value currently used by the
+     * service.
+     *
+     * Generated from protobuf field <code>string effective_reserved_ip_range = 14 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEffectiveReservedIpRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->effective_reserved_ip_range = $var;
 
         return $this;
     }

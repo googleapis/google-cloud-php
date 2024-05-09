@@ -51,6 +51,7 @@ class WriteTest extends SpannerTestCase
                 arrayField ARRAY<INT64>,
                 arrayBoolField ARRAY<BOOL>,
                 arrayFloatField ARRAY<FLOAT64>,
+                arrayFloat32Field ARRAY<FLOAT32>,
                 arrayStringField ARRAY<STRING(MAX)>,
                 arrayBytesField ARRAY<BYTES(MAX)>,
                 arrayTimestampField ARRAY<TIMESTAMP>,
@@ -60,6 +61,7 @@ class WriteTest extends SpannerTestCase
                 bytesField BYTES(MAX),
                 dateField DATE,
                 floatField FLOAT64,
+                float32Field FLOAT32,
                 intField INT64,
                 stringField STRING(MAX),
                 timestampField TIMESTAMP,
@@ -83,6 +85,9 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'floatField', 3.1415],
             [$this->randId(), 'floatField', INF],
             [$this->randId(), 'floatField', -INF],
+            [$this->randId(), 'float32Field', 3.1415],
+            [$this->randId(), 'float32Field', INF],
+            [$this->randId(), 'float32Field', -INF],
             [$this->randId(), 'intField', 787878787],
             [$this->randId(), 'stringField', 'foo bar'],
             [$this->randId(), 'timestampField', new Timestamp(new \DateTime)],
@@ -117,7 +122,7 @@ class WriteTest extends SpannerTestCase
         if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
-            $this->assertEquals($value, $row[$field]);
+            $this->assertValues($value, $row[$field]);
         }
 
         // test result from executeSql
@@ -131,7 +136,7 @@ class WriteTest extends SpannerTestCase
         if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
-            $this->assertEquals($value, $row[$field]);
+            $this->assertValues($value, $row[$field]);
         }
     }
 
@@ -257,6 +262,10 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'arrayFloatField', []],
             [$this->randId(), 'arrayFloatField', [1.1, null, 1.3]],
             [$this->randId(), 'arrayFloatField', null],
+            [$this->randId(), 'arrayFloat32Field', [1.1, 1.2, 1.3]],
+            [$this->randId(), 'arrayFloat32Field', []],
+            [$this->randId(), 'arrayFloat32Field', [1.1, null, 1.3]],
+            [$this->randId(), 'arrayFloat32Field', null],
             [$this->randId(), 'arrayStringField', ['foo','bar','baz']],
             [$this->randId(), 'arrayStringField', []],
             [$this->randId(), 'arrayStringField', ['foo',null,'baz']],
@@ -310,7 +319,7 @@ class WriteTest extends SpannerTestCase
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
         $row = $read->rows()->current();
 
-        $this->assertEquals($value, $row[$field]);
+        $this->assertValues($value, $row[$field]);
 
         // test result from executeSql
         $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = @id', $field, self::TABLE_NAME), [
@@ -324,7 +333,7 @@ class WriteTest extends SpannerTestCase
         if ($value instanceof Bytes) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
         } else {
-            $this->assertEquals($value, $row[$field]);
+            $this->assertValues($value, $row[$field]);
         }
     }
 
@@ -1144,5 +1153,19 @@ class WriteTest extends SpannerTestCase
         $this->assertEquals([1, 1], $res->rowCounts());
         $this->assertEquals(Code::INVALID_ARGUMENT, $res->error()['status']['code']);
         $this->assertEquals($statements[2], $res->error()['statement']);
+    }
+
+    private function assertValues($expected, $actual, $delta = 0.000001)
+    {
+        if (is_float($expected)) {
+            $this->assertEqualsWithDelta($expected, $actual, $delta);
+        } elseif (is_array($expected)) {
+            $this->assertCount(count($expected), $actual);
+            foreach ($expected as $key => $value) {
+                $this->assertValues($value, $actual[$key]);
+            }
+        } else {
+            $this->assertEquals($expected, $actual);
+        }
     }
 }

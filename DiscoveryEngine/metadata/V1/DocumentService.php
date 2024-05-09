@@ -23,10 +23,11 @@ class DocumentService
         \GPBMetadata\Google\Cloud\Discoveryengine\V1\PurgeConfig::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
+        \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-
-6google/cloud/discoveryengine/v1/document_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto.google/cloud/discoveryengine/v1/document.proto3google/cloud/discoveryengine/v1/import_config.proto2google/cloud/discoveryengine/v1/purge_config.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"S
+€
+6google/cloud/discoveryengine/v1/document_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto.google/cloud/discoveryengine/v1/document.proto3google/cloud/discoveryengine/v1/import_config.proto2google/cloud/discoveryengine/v1/purge_config.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"S
 GetDocumentRequest=
 name (	B/‡A˙A)
 \'discoveryengine.googleapis.com/Document"|
@@ -43,18 +44,19 @@ page_token (	"n
 parent (	B-‡A˙A\'
 %discoveryengine.googleapis.com/Branch@
 document (2).google.cloud.discoveryengine.v1.DocumentB‡A
-document_id (	B‡A"p
+document_id (	B‡A"°
 UpdateDocumentRequest@
 document (2).google.cloud.discoveryengine.v1.DocumentB‡A
-allow_missing ("V
+allow_missing (/
+update_mask (2.google.protobuf.FieldMask"V
 DeleteDocumentRequest=
 name (	B/‡A˙A)
-\'discoveryengine.googleapis.com/Document2ê
+\'discoveryengine.googleapis.com/Document2ß
 DocumentServiceú
 GetDocument3.google.cloud.discoveryengine.v1.GetDocumentRequest).google.cloud.discoveryengine.v1.Document"¨⁄AnameÇ”‰ìûE/v1/{name=projects/*/locations/*/dataStores/*/branches/*/documents/*}ZUS/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*}Ø
 ListDocuments5.google.cloud.discoveryengine.v1.ListDocumentsRequest6.google.cloud.discoveryengine.v1.ListDocumentsResponse"Æ⁄AparentÇ”‰ìûE/v1/{parent=projects/*/locations/*/dataStores/*/branches/*}/documentsZUS/v1/{parent=projects/*/locations/*/collections/*/dataStores/*/branches/*}/documentsÕ
-CreateDocument6.google.cloud.discoveryengine.v1.CreateDocumentRequest).google.cloud.discoveryengine.v1.Document"◊⁄Aparent,document,document_idÇ”‰ì≤"E/v1/{parent=projects/*/locations/*/dataStores/*/branches/*}/documents:documentZ_"S/v1/{parent=projects/*/locations/*/collections/*/dataStores/*/branches/*}/documents:document¡
-UpdateDocument6.google.cloud.discoveryengine.v1.UpdateDocumentRequest).google.cloud.discoveryengine.v1.Document"ÀÇ”‰ìƒ2N/v1/{document.name=projects/*/locations/*/dataStores/*/branches/*/documents/*}:documentZh2\\/v1/{document.name=projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*}:documentè
+CreateDocument6.google.cloud.discoveryengine.v1.CreateDocumentRequest).google.cloud.discoveryengine.v1.Document"◊⁄Aparent,document,document_idÇ”‰ì≤"E/v1/{parent=projects/*/locations/*/dataStores/*/branches/*}/documents:documentZ_"S/v1/{parent=projects/*/locations/*/collections/*/dataStores/*/branches/*}/documents:documentÿ
+UpdateDocument6.google.cloud.discoveryengine.v1.UpdateDocumentRequest).google.cloud.discoveryengine.v1.Document"‚⁄Adocument,update_maskÇ”‰ìƒ2N/v1/{document.name=projects/*/locations/*/dataStores/*/branches/*/documents/*}:documentZh2\\/v1/{document.name=projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*}:documentè
 DeleteDocument6.google.cloud.discoveryengine.v1.DeleteDocumentRequest.google.protobuf.Empty"¨⁄AnameÇ”‰ìû*E/v1/{name=projects/*/locations/*/dataStores/*/branches/*/documents/*}ZU*S/v1/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/documents/*}ö
 ImportDocuments7.google.cloud.discoveryengine.v1.ImportDocumentsRequest.google.longrunning.Operation"Æ Ar
 7google.cloud.discoveryengine.v1.ImportDocumentsResponse7google.cloud.discoveryengine.v1.ImportDocumentsMetadataÇ”‰ì≤"L/v1/{parent=projects/*/locations/*/dataStores/*/branches/*}/documents:import:*Z_"Z/v1/{parent=projects/*/locations/*/collections/*/dataStores/*/branches/*}/documents:import:*î

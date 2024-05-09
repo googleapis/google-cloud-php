@@ -36,7 +36,7 @@ use Google\Cloud\Monitoring\V3\QueryTimeSeriesRequest;
 use Google\Cloud\Monitoring\V3\QueryTimeSeriesResponse;
 
 /**
- * Service Description: The QueryService API is used to manage time series data in Stackdriver
+ * Service Description: The QueryService API is used to manage time series data in Cloud
  * Monitoring. Time series data is a collection of data points that describes
  * the time-varying values of a metric.
  *
@@ -178,7 +178,7 @@ class QueryServiceGapicClient
     }
 
     /**
-     * Queries time series using Monitoring Query Language. This method does not require a Workspace.
+     * Queries time series using Monitoring Query Language.
      *
      * Sample code:
      * ```
@@ -204,8 +204,9 @@ class QueryServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *                             which to execute the request. The format is:
+     * @param string $name         Required. The
+     *                             [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     *                             to execute the request. The format is:
      *
      *                             projects/[PROJECT_ID_OR_NUMBER]
      * @param string $query        Required. The query in the [Monitoring Query

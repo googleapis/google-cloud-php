@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Output Only] If errors are generated during processing of the operation, this field will be populated.
+ * Errors that prevented the ResizeRequest to be fulfilled.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Error</code>
  */

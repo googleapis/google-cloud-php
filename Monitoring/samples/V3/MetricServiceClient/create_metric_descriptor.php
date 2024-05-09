@@ -30,13 +30,15 @@ use Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest;
 
 /**
  * Creates a new metric descriptor.
- * The creation is executed asynchronously and callers may check the returned
- * operation to track its progress.
+ * The creation is executed asynchronously.
  * User-created metric descriptors define
  * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
+ * The metric descriptor is updated if it already exists,
+ * except that metric labels are never removed.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                     which to execute the request. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                     to execute the request. The format is:
  *                     4
  *                     projects/[PROJECT_ID_OR_NUMBER]
  */

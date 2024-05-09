@@ -37,18 +37,19 @@ use Google\Shopping\Merchant\Inventories\V1beta\LocalInventory;
  *
  * `LocalInventory` resources are listed per product for a given account.
  *
- * @param string $parent The `name` of the parent product to list local inventories for.
- *                       Format:
- *                       `accounts/{account}/products/{product}`
+ * @param string $formattedParent The `name` of the parent product to list local inventories for.
+ *                                Format:
+ *                                `accounts/{account}/products/{product}`
+ *                                Please see {@see LocalInventoryServiceClient::productName()} for help formatting this field.
  */
-function list_local_inventories_sample(string $parent): void
+function list_local_inventories_sample(string $formattedParent): void
 {
     // Create a client.
     $localInventoryServiceClient = new LocalInventoryServiceClient();
 
     // Prepare the request message.
     $request = (new ListLocalInventoriesRequest())
-        ->setParent($parent);
+        ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
@@ -75,8 +76,8 @@ function list_local_inventories_sample(string $parent): void
  */
 function callSample(): void
 {
-    $parent = '[PARENT]';
+    $formattedParent = LocalInventoryServiceClient::productName('[ACCOUNT]', '[PRODUCT]');
 
-    list_local_inventories_sample($parent);
+    list_local_inventories_sample($formattedParent);
 }
 // [END merchantapi_v1beta_generated_LocalInventoryService_ListLocalInventories_sync]

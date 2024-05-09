@@ -179,6 +179,23 @@ final class AdvisoryNotificationsServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_settings resource.
+     *
+     * @param string $organization
+     * @param string $location
+     *
+     * @return string The formatted organization_location_settings resource.
+     */
+    public static function organizationLocationSettingsName(string $organization, string $location): string
+    {
+        return self::getPathTemplate('organizationLocationSettings')->render([
+            'organization' => $organization,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location resource.
      *
      * @param string $project
@@ -214,6 +231,23 @@ final class AdvisoryNotificationsServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_settings resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_settings resource.
+     */
+    public static function projectLocationSettingsName(string $project, string $location): string
+    {
+        return self::getPathTemplate('projectLocationSettings')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a settings
      * resource.
      *
@@ -238,8 +272,10 @@ final class AdvisoryNotificationsServiceClient
      * - notification: organizations/{organization}/locations/{location}/notifications/{notification}
      * - organizationLocation: organizations/{organization}/locations/{location}
      * - organizationLocationNotification: organizations/{organization}/locations/{location}/notifications/{notification}
+     * - organizationLocationSettings: organizations/{organization}/locations/{location}/settings
      * - projectLocation: projects/{project}/locations/{location}
      * - projectLocationNotification: projects/{project}/locations/{location}/notifications/{notification}
+     * - projectLocationSettings: projects/{project}/locations/{location}/settings
      * - settings: organizations/{organization}/locations/{location}/settings
      *
      * The optional $template argument can be supplied to specify a particular pattern,

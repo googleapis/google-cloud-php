@@ -194,6 +194,20 @@
                 }
             }
         },
+        "RecommendationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RecommendationServiceGapicClient",
+                    "rpcs": {
+                        "Recommend": {
+                            "methods": [
+                                "recommend"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SchemaService": {
             "clients": {
                 "grpc": {

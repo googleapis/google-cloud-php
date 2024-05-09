@@ -42,4 +42,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/secret-manager/docs/reference/rest/).
+1. Understand the [official documentation](https://cloud.google.com/secret-manager/docs/overview).

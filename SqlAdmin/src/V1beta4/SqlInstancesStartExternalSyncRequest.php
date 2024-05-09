@@ -44,6 +44,13 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExternalSyncParallelLevel sync_parallel_level = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sync_parallel_level = 0;
+    /**
+     * Optional. MigrationType decides if the migration is a physical file based
+     * migration or logical migration.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $migration_type = 0;
     protected $sync_config;
 
     /**
@@ -65,6 +72,9 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      *     @type int $sync_parallel_level
      *           Optional. Parallel level for initial data sync. Currently only applicable
      *           for MySQL.
+     *     @type int $migration_type
+     *           Optional. MigrationType decides if the migration is a physical file based
+     *           migration or logical migration.
      * }
      */
     public function __construct($data = NULL) {
@@ -231,6 +241,34 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\ExternalSyncParallelLevel::class);
         $this->sync_parallel_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. MigrationType decides if the migration is a physical file based
+     * migration or logical migration.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMigrationType()
+    {
+        return $this->migration_type;
+    }
+
+    /**
+     * Optional. MigrationType decides if the migration is a physical file based
+     * migration or logical migration.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType migration_type = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMigrationType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\MigrationType::class);
+        $this->migration_type = $var;
 
         return $this;
     }

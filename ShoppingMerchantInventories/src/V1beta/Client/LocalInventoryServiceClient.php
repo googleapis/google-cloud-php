@@ -128,10 +128,30 @@ final class LocalInventoryServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a product
+     * resource.
+     *
+     * @param string $account
+     * @param string $product
+     *
+     * @return string The formatted product resource.
+     *
+     * @experimental
+     */
+    public static function productName(string $account, string $product): string
+    {
+        return self::getPathTemplate('product')->render([
+            'account' => $account,
+            'product' => $product,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - localInventory: accounts/{account}/products/{product}/localInventories/{store_code}
+     * - product: accounts/{account}/products/{product}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

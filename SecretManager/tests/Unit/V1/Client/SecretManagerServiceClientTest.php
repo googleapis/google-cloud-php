@@ -46,7 +46,6 @@ use Google\Cloud\SecretManager\V1\ListSecretVersionsRequest;
 use Google\Cloud\SecretManager\V1\ListSecretVersionsResponse;
 use Google\Cloud\SecretManager\V1\ListSecretsRequest;
 use Google\Cloud\SecretManager\V1\ListSecretsResponse;
-use Google\Cloud\SecretManager\V1\Replication;
 use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\SecretManager\V1\SecretVersion;
@@ -241,8 +240,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
         $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         $request = (new CreateSecretRequest())
             ->setParent($formattedParent)
             ->setSecretId($secretId)
@@ -285,8 +282,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
         $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         $request = (new CreateSecretRequest())
             ->setParent($formattedParent)
             ->setSecretId($secretId)
@@ -1074,8 +1069,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         $updateMask = new FieldMask();
         $request = (new UpdateSecretRequest())
             ->setSecret($secret)
@@ -1114,8 +1107,6 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $secret = new Secret();
-        $secretReplication = new Replication();
-        $secret->setReplication($secretReplication);
         $updateMask = new FieldMask();
         $request = (new UpdateSecretRequest())
             ->setSecret($secret)

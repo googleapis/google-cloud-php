@@ -66,6 +66,14 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string failing_rows_query = 10;</code>
      */
     private $failing_rows_query = '';
+    /**
+     * Output only. The number of rows returned by the sql statement in the
+     * SqlAssertion rule.
+     * This field is only valid for SqlAssertion rules.
+     *
+     * Generated from protobuf field <code>int64 assertion_row_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $assertion_row_count = 0;
 
     /**
      * Constructor.
@@ -96,6 +104,10 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      *     @type string $failing_rows_query
      *           The query to find rows that did not pass this rule.
      *           This field is only valid for row-level type rules.
+     *     @type int|string $assertion_row_count
+     *           Output only. The number of rows returned by the sql statement in the
+     *           SqlAssertion rule.
+     *           This field is only valid for SqlAssertion rules.
      * }
      */
     public function __construct($data = NULL) {
@@ -309,6 +321,36 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->failing_rows_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The number of rows returned by the sql statement in the
+     * SqlAssertion rule.
+     * This field is only valid for SqlAssertion rules.
+     *
+     * Generated from protobuf field <code>int64 assertion_row_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getAssertionRowCount()
+    {
+        return $this->assertion_row_count;
+    }
+
+    /**
+     * Output only. The number of rows returned by the sql statement in the
+     * SqlAssertion rule.
+     * This field is only valid for SqlAssertion rules.
+     *
+     * Generated from protobuf field <code>int64 assertion_row_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setAssertionRowCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->assertion_row_count = $var;
 
         return $this;
     }

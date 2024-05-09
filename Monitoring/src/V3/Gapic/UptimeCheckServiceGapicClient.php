@@ -108,6 +108,8 @@ class UptimeCheckServiceGapicClient
 
     private static $folderUptimeCheckConfigNameTemplate;
 
+    private static $functionNameTemplate;
+
     private static $organizationUptimeCheckConfigNameTemplate;
 
     private static $projectUptimeCheckConfigNameTemplate;
@@ -144,6 +146,15 @@ class UptimeCheckServiceGapicClient
         return self::$folderUptimeCheckConfigNameTemplate;
     }
 
+    private static function getFunctionNameTemplate()
+    {
+        if (self::$functionNameTemplate == null) {
+            self::$functionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/functions/{function}');
+        }
+
+        return self::$functionNameTemplate;
+    }
+
     private static function getOrganizationUptimeCheckConfigNameTemplate()
     {
         if (self::$organizationUptimeCheckConfigNameTemplate == null) {
@@ -176,6 +187,7 @@ class UptimeCheckServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'folderUptimeCheckConfig' => self::getFolderUptimeCheckConfigNameTemplate(),
+                'function' => self::getFunctionNameTemplate(),
                 'organizationUptimeCheckConfig' => self::getOrganizationUptimeCheckConfigNameTemplate(),
                 'projectUptimeCheckConfig' => self::getProjectUptimeCheckConfigNameTemplate(),
                 'uptimeCheckConfig' => self::getUptimeCheckConfigNameTemplate(),
@@ -199,6 +211,25 @@ class UptimeCheckServiceGapicClient
         return self::getFolderUptimeCheckConfigNameTemplate()->render([
             'folder' => $folder,
             'uptime_check_config' => $uptimeCheckConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a function
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $function
+     *
+     * @return string The formatted function resource.
+     */
+    public static function functionName($project, $location, $function)
+    {
+        return self::getFunctionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'function' => $function,
         ]);
     }
 
@@ -258,6 +289,7 @@ class UptimeCheckServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - folderUptimeCheckConfig: folders/{folder}/uptimeCheckConfigs/{uptime_check_config}
+     * - function: projects/{project}/locations/{location}/functions/{function}
      * - organizationUptimeCheckConfig: organizations/{organization}/uptimeCheckConfigs/{uptime_check_config}
      * - projectUptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}
      * - uptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}

@@ -835,7 +835,8 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type string $name
-     *           The name of the project resource in the form: `projects/{project_id}`
+     *           Required. The name of the project resource in the form:
+     *           `projects/{project_id}`
      *     @type string[] $dataSourceIds
      *           Data sources that are enrolled. It is required to provide at least one
      *           data source id.
@@ -1374,7 +1375,7 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type string $parent
-     *           Transfer configuration name in the form:
+     *           Required. Transfer configuration name in the form:
      *           `projects/{project_id}/transferConfigs/{config_id}` or
      *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
      *     @type TimeRange $requestedTimeRange
@@ -1440,7 +1441,8 @@ class DataTransferServiceGapicClient
      *     Optional.
      *
      *     @type string $name
-     *           The name of the project resource in the form: `projects/{project_id}`
+     *           Required. The name of the project resource in the form:
+     *           `projects/{project_id}`
      *     @type string[] $dataSourceIds
      *           Data sources that are unenrolled. It is required to provide at least one
      *           data source id.

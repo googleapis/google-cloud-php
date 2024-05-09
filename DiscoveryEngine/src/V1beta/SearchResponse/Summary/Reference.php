@@ -37,6 +37,12 @@ class Reference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string uri = 3;</code>
      */
     protected $uri = '';
+    /**
+     * List of cited chunk contents derived from document content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.Summary.Reference.ChunkContent chunk_contents = 4;</code>
+     */
+    private $chunk_contents;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class Reference extends \Google\Protobuf\Internal\Message
      *           `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
      *     @type string $uri
      *           Cloud Storage or HTTP uri for the document.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\Reference\ChunkContent>|\Google\Protobuf\Internal\RepeatedField $chunk_contents
+     *           List of cited chunk contents derived from document content.
      * }
      */
     public function __construct($data = NULL) {
@@ -143,6 +151,32 @@ class Reference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of cited chunk contents derived from document content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.Summary.Reference.ChunkContent chunk_contents = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getChunkContents()
+    {
+        return $this->chunk_contents;
+    }
+
+    /**
+     * List of cited chunk contents derived from document content.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.Summary.Reference.ChunkContent chunk_contents = 4;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\Reference\ChunkContent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setChunkContents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\Summary\Reference\ChunkContent::class);
+        $this->chunk_contents = $arr;
 
         return $this;
     }
