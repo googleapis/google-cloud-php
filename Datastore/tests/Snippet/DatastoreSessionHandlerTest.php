@@ -25,6 +25,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 use Prophecy\Argument;
@@ -67,7 +68,6 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $this->requestHandler = $this->prophesize(RequestHandler::class);
     }
 
-    /** @group current */
     public function testClass()
     {
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class);
@@ -161,6 +161,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $this->requestHandler->sendRequest(
             V1DatastoreClient::class,
             'commit',
+            Argument::type(CommitRequest::class),
             Argument::cetera()
         )->shouldBeCalled()->will(fn () => trigger_error('oops!', E_USER_WARNING));
 

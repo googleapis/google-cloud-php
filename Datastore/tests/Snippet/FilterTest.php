@@ -10,6 +10,9 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 class FilterTest extends SnippetTestCase
@@ -84,9 +87,12 @@ class FilterTest extends SnippetTestCase
 
     private function createRequestHandlerProphecy()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            [],
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
             [
                 'batch' => [
                     'entityResults' => [
@@ -103,8 +109,7 @@ class FilterTest extends SnippetTestCase
                     ],
                     'moreResults' => 'no'
                 ]
-            ],
-            0
+            ]
         );
 
         $this->refreshOperation($this->datastore, $this->requestHandler->reveal(), [

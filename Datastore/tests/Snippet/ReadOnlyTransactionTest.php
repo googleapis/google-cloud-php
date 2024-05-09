@@ -29,6 +29,12 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -97,12 +103,12 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'beginTransaction',
-            [],
-            ['transaction' => 'foo'],
-            0
-        );
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -118,19 +124,26 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testClassRollback()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'beginTransaction',
-            [],
-            ['transaction' => 'foo'],
-            0
-        );
-        $this->mockSendRequest(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            [],
-            0
-        );
-        $this->mockSendRequest('rollback', [], [], 0);
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'rollback',
+            Argument::type(RollbackRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
 
@@ -152,9 +165,16 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] === self::TRANSACTION;
+			}),
+            Argument::cetera()
+        )->willReturn(
             [
                 'found' => [
                     [
@@ -173,7 +193,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                     ]
                 ]
             ]
-        );
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -189,9 +209,16 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] === self::TRANSACTION;
+			}),
+            Argument::cetera()
+        )->willReturn(
             [
                 'found' => [
                     [
@@ -224,7 +251,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                     ]
                 ]
             ]
-        );
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -246,9 +273,16 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $query->queryKey()->willReturn('query');
         $snippet->addLocal('query', $query->reveal());
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] === self::TRANSACTION;
+			}),
+            Argument::cetera()
+        )->willReturn(
             [
                 'batch' => [
                     'entityResults' => [
@@ -268,9 +302,8 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ],
-            0
-        );
+            ]
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -285,7 +318,12 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->mockSendRequest('rollback', [], [], 0);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'rollback',
+            Argument::type(RollbackRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
