@@ -14,7 +14,7 @@
         "guzzlehttp/promises": "^2.0",
         "guzzlehttp/psr7": "^2.0",
         "google/common-protos": "^4.4",
-        "google/longrunning": "~0.2",
+        "google/longrunning": "~0.4",
         "ramsey/uuid": "^4.0"
     },
     "require-dev": {

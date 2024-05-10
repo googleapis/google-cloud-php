@@ -32,6 +32,10 @@
 
 namespace Google\ApiCore;
 
+use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\DeleteOperationRequest;
+use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\Internal\Message;
@@ -261,8 +265,7 @@ class OperationResponse
         }
         $this->lastProtoResponse = $this->operationsCall(
             $this->getOperationMethod,
-            $this->getName(),
-            $this->additionalArgs
+            GetOperationRequest::class
         );
     }
 
@@ -386,7 +389,10 @@ class OperationResponse
         if (is_null($this->cancelOperationMethod)) {
             throw new LogicException('The cancel operation is not supported by this API');
         }
-        $this->operationsCall($this->cancelOperationMethod, $this->getName(), $this->additionalArgs);
+        $this->operationsCall(
+            $this->cancelOperationMethod,
+            CancelOperationRequest::class
+        );
     }
 
     /**
@@ -405,7 +411,10 @@ class OperationResponse
         if (is_null($this->deleteOperationMethod)) {
             throw new LogicException('The delete operation is not supported by this API');
         }
-        $this->operationsCall($this->deleteOperationMethod, $this->getName(), $this->additionalArgs);
+        $this->operationsCall(
+            $this->deleteOperationMethod,
+            DeleteOperationRequest::class
+        );
         $this->deleted = true;
     }
 
@@ -447,9 +456,12 @@ class OperationResponse
         return $metadata;
     }
 
-    private function operationsCall($method, $name, array $additionalArgs)
+    private function operationsCall(string $method, string $requestClass)
     {
-        $args = array_merge([$name], $additionalArgs);
+        $firstArgument = $this->operationsClient instanceof OperationsClient
+            ? $requestClass::build($this->getName())
+            : $this->getName();
+        $args = array_merge([$firstArgument], $this->additionalArgs);
         return call_user_func_array([$this->operationsClient, $method], $args);
     }
 
