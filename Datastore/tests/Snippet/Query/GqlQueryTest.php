@@ -29,6 +29,8 @@ use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -44,31 +46,14 @@ class GqlQueryTest extends SnippetTestCase
     private $datastore;
     private $operation;
     private $requestHandler;
-    private $serializer;
 
     public function setUp(): void
     {
         $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
-                    $dt = new \DateTime($v);
-                    return ['seconds' => $dt->format('U')];
-                }
-                return $v;
-            }
-        ]);
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->requestHandler->reveal(),
-            $this->serializer,
+            $this->getSerializer(),
             'my-awesome-project',
             '',
             new EntityMapper('my-awesome-project', true, false)
@@ -77,9 +62,12 @@ class GqlQueryTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            [],
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
             [
                 'batch' => [
                     'entityResults' => [
@@ -97,8 +85,7 @@ class GqlQueryTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ],
-            0
+            ]
         );
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());

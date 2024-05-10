@@ -30,7 +30,13 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
 use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -50,33 +56,15 @@ class TransactionTest extends SnippetTestCase
     private $transaction;
     private $client;
     private $key;
-    private $serializer;
     private $requestHandler;
 
     public function setUp(): void
     {
         $this->requestHandler = $this->prophesize(RequestHandler::class);
 
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
-                    $dt = new \DateTime($v);
-                    return ['seconds' => $dt->format('U')];
-                }
-                return $v;
-            }
-        ]);
-
         $operation = new Operation(
             $this->requestHandler->reveal(),
-            $this->serializer,
+            $this->getSerializer(),
             self::PROJECT,
             '',
             new EntityMapper(self::PROJECT, false, false)
@@ -101,12 +89,12 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'beginTransaction',
-            [],
-            ['transaction' => 'foo'],
-            0
-        );
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
 
         $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -270,9 +258,16 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
             [
                 'found' => [
                     [
@@ -291,7 +286,7 @@ class TransactionTest extends SnippetTestCase
                     ]
                 ]
             ]
-        );
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -307,9 +302,16 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
             [
                 'found' => [
                     [
@@ -342,7 +344,7 @@ class TransactionTest extends SnippetTestCase
                     ]
                 ]
             ]
-        );
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -364,9 +366,16 @@ class TransactionTest extends SnippetTestCase
         $query->queryKey()->willReturn('query');
         $snippet->addLocal('query', $query->reveal());
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
             [
                 'batch' => [
                     'entityResults' => [
@@ -386,9 +395,8 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ],
-            0
-        );
+            ]
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -408,9 +416,16 @@ class TransactionTest extends SnippetTestCase
         $query->queryObject()->willReturn([]);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runAggregationQuery',
-            ['readOptions' => ['transaction' => self::TRANSACTION]],
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
             [
                 'batch' => [
                     'aggregationResults' => [
@@ -422,9 +437,8 @@ class TransactionTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ],
-            0
-        );
+            ]
+        )->shouldBeCalled();
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -439,7 +453,12 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->mockSendRequest('commit', [], [], 0);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
@@ -453,7 +472,12 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->mockSendRequest('rollback', [], [], 0);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'rollback',
+            Argument::type(RollbackRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
         $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT

@@ -30,9 +30,10 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
 use Google\Cloud\Datastore\V1\CommitRequest\Mode;
 use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -54,30 +55,13 @@ class OperationTest extends TestCase
 
     private $operation;
     private $requestHandler;
-    private $serializer;
 
     public function setUp(): void
     {
         $this->requestHandler = $this->prophesize(RequestHandler::class);
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
-                    $dt = new \DateTime($v);
-                    return ['seconds' => $dt->format('U')];
-                }
-                return $v;
-            }
-        ]);
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->requestHandler->reveal(),
-            $this->serializer,
+            $this->getSerializer(),
             self::PROJECT,
             null,
             new EntityMapper('foo', true, false),
@@ -253,11 +237,15 @@ class OperationTest extends TestCase
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'allocateIds',
-            ['keys' => [$key->keyObject()]],
-            ['keys' => [$keyWithId->keyObject()]]
-        );
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['keys' => [$keyWithId->keyObject()]]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -280,12 +268,12 @@ class OperationTest extends TestCase
     {
         $key = $this->operation->key('foo', 'Bar');
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            [],
-            0
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -297,11 +285,12 @@ class OperationTest extends TestCase
     public function testLookupFound()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['found' => $body,]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $body,]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -322,11 +311,12 @@ class OperationTest extends TestCase
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['missing' => $body,]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['missing' => $body,]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -345,11 +335,12 @@ class OperationTest extends TestCase
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['deferred' => [$body[0]['entity']['key']]]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['deferred' => [$body[0]['entity']['key']]]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -364,12 +355,16 @@ class OperationTest extends TestCase
 
     public function testLookupWithReadOptionsFromTransaction()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['readOptions' => ['transaction' => 'foo']],
-            [],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['transaction'] == 'foo';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
+
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $k = new Key('test-project', [
@@ -381,12 +376,15 @@ class OperationTest extends TestCase
 
     public function testLookupWithReadOptionsFromReadConsistency()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['readOptions' => ['readConsistency' => 123]],
-            [],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['readConsistency'] == 123;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $k = new Key('test-project', [
@@ -426,11 +424,13 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['found' => $data['entities']]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $data['entities']]);
+
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys, [
@@ -455,14 +455,15 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            [
-                'found' => $data['entities'],
-                'missing' => $data['missing'],
-            ]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'found' => $data['entities'],
+            'missing' => $data['missing'],
+        ]);
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys);
@@ -490,11 +491,13 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['found' => $data['entities'],]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $data['entities'],]);
+
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys, [
@@ -527,11 +530,13 @@ class OperationTest extends TestCase
     public function testRunQuery()
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->mockSendRequest(
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            [],
-            $queryResult['notPaged']
-        );
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($queryResult['notPaged']);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -559,22 +564,21 @@ class OperationTest extends TestCase
 
         $outerThis = $this;
         $this->requestHandler->sendRequest(
-            DatastoreClient::class,
+            V1DatastoreClient::class,
             'runQuery',
             Argument::cetera()
         )->will(function ($args, $mock) use ($queryResult, $outerThis) {
-            // The 2nd call will return the 2nd page of results!
-            $mock->sendRequest(
-                DatastoreClient::class,
-                'runQuery',
-                Argument::that(function ($arg) use ($queryResult, $outerThis) {
-                    $data = $outerThis->serializer->encodeMessage($arg);
-                    $x = $data['query']['startCursor'] === $queryResult['paged'][0]['batch']['endCursor'];
-                    return $data['query']['startCursor'] === $queryResult['paged'][0]['batch']['endCursor'];
-                }),
-                Argument::any()
-            )->willReturn($queryResult['paged'][1]);
-            return $queryResult['paged'][0];
+                // The 2nd call will return the 2nd page of results!
+                $mock->sendRequest(
+                    V1DatastoreClient::class,
+                    'runQuery',
+                    Argument::that(function ($arg) use ($queryResult, $outerThis) {
+                        $data = $outerThis->getSerializer()->encodeMessage($arg);
+                        return $data['query']['startCursor'] == $queryResult['paged'][0]['batch']['endCursor'];
+                    }),
+                    Argument::any()
+                )->willReturn($queryResult['paged'][1]);
+                return $queryResult['paged'][0];
         });
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -602,11 +606,12 @@ class OperationTest extends TestCase
     public function testRunQueryNoResults()
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            [],
-            $queryResult['noResults']
-        );
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($queryResult['noResults']);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -625,12 +630,12 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromTransaction()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            [],
-            [],
-            0
-        );
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -644,12 +649,12 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromReadConsistency()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            [],
-            [],
-            0
-        );
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -664,7 +669,7 @@ class OperationTest extends TestCase
     public function testRunQueryWithoutReadOptions()
     {
         $this->requestHandler->sendRequest(
-            DatastoreClient::class,
+            V1DatastoreClient::class,
             'runQuery',
             Argument::that(function ($req) {
                 return !$req->hasReadOptions();
@@ -684,12 +689,15 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithDatabaseIdOverride()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runQuery',
-            ['databaseId' => 'otherDatabaseId'],
-            [],
-            1
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([]);
 
         $mapper = new EntityMapper('foo', true, false);
         $query = new Query($mapper);
@@ -703,15 +711,15 @@ class OperationTest extends TestCase
 
     public function testCommit()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'commit',
-            [
-                'mode' => Mode::NON_TRANSACTIONAL,
-                'mutations' => []
-            ],
-            ['foo'],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::NON_TRANSACTIONAL;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['foo']);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -720,15 +728,15 @@ class OperationTest extends TestCase
 
     public function testCommitInTransaction()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'commit',
-            [
-                'mode' => Mode::TRANSACTIONAL,
-                'mutations' => []
-            ],
-            ['foo'],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::TRANSACTIONAL;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['foo']);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -740,7 +748,7 @@ class OperationTest extends TestCase
     public function testCommitWithMutation()
     {
         $this->requestHandler->sendRequest(
-            DatastoreClient::class,
+            V1DatastoreClient::class,
             'commit',
             Argument::that(fn ($arg) => (count($arg->getMutations()) == 1)),
             Argument::any()
@@ -758,12 +766,15 @@ class OperationTest extends TestCase
 
     public function testCommitWithDatabaseIdOverride()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'commit',
-            ['databaseId' => 'otherDatabaseId'],
-            [],
-            1
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([]);
 
         $this->operation->commit(
             [],
@@ -773,12 +784,16 @@ class OperationTest extends TestCase
 
     public function testRollback()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'rollback',
-            ['projectId' => self::PROJECT, 'transaction' => 'bar'],
-            null,
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['projectId'] == self::PROJECT
+                    && $data['transaction'] == 'bar';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(null);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -794,11 +809,15 @@ class OperationTest extends TestCase
         $keyWithId = clone $partialKey;
         $keyWithId->setLastElementIdentifier($id);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'allocateIds',
-            ['keys' => [$partialKey->keyObject()]],
-            ['keys' => [$keyWithId->keyObject()]]
-        );
+            Argument::that(function ($req) use ($partialKey) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$partialKey->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['keys' => [$keyWithId->keyObject()]]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -821,7 +840,7 @@ class OperationTest extends TestCase
         $id = 12345;
 
         $this->requestHandler->sendRequest(
-            DatastoreClient::class,
+            V1DatastoreClient::class,
             'commit',
             Argument::that(
                 fn ($arg) => (count($arg->getMutations()) == 1 && $arg->getMutations()[0]->hasInsert())
@@ -840,11 +859,16 @@ class OperationTest extends TestCase
 
     public function testMutateWithBaseVersion()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'commit',
-            ['mutations' => [['baseVersion' => 1]]],
-            'foo'
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['mutations'], [['baseVersion' => 1]])
+                    == $data['mutations'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn('foo');
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -860,12 +884,11 @@ class OperationTest extends TestCase
 
     public function testMutateWithKey()
     {
-        $otherThis = $this;
         $this->requestHandler->sendRequest(
-            DatastoreClient::class,
+            V1DatastoreClient::class,
             'commit',
-            Argument::that(function ($arg) use ($otherThis) {
-                $data = $otherThis->serializer->encodeMessage($arg);
+            Argument::that(function ($arg) {
+                $data = $this->getSerializer()->encodeMessage($arg);
                 $x = isset($data['mutations'][0]['delete']['path']);
                 return isset($data['mutations'][0]['delete']['path']);
             }),
@@ -921,11 +944,13 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['found' => $res,]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $res,]);
+
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
@@ -942,11 +967,13 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_NO_PROPERTIES_FIXTURE()), true);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['found' => $res,]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $res,]);
+
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
@@ -962,11 +989,13 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['found' => $res,]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $res,]);
+
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
@@ -986,11 +1015,13 @@ class OperationTest extends TestCase
 
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            ['found' => $res,]
-        );
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $res,]);
+
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
@@ -1004,12 +1035,16 @@ class OperationTest extends TestCase
 
     public function testTransactionInReadOptions()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['readOptions' => ['transaction' => '1234']],
-            [],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['transaction'] == '1234';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
+
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
@@ -1036,12 +1071,15 @@ class OperationTest extends TestCase
 
     public function testReadConsistencyInReadOptions()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['readOptions' => ['readConsistency' => 123]],
-            [],
-            0
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['readConsistency'] == 123;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -1060,11 +1098,15 @@ class OperationTest extends TestCase
 
     public function testBeginTransactionWithDatabaseIdOverride()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'beginTransaction',
-            ['databaseId' => 'otherDatabaseId'],
-            ['transaction' => 'valid_test_transaction']
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['transaction' => 'valid_test_transaction']);
 
         $transactionId = $this->operation->beginTransaction(
             [],
@@ -1076,12 +1118,15 @@ class OperationTest extends TestCase
 
     public function testAllocateIdsWithDatabaseIdOverride()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'allocateIds',
-            ['databaseId' => 'otherDatabaseId'],
-            [],
-            1
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([]);
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
@@ -1093,12 +1138,15 @@ class OperationTest extends TestCase
 
     public function testLookupWithDatabaseIdOverride()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            ['databaseId' => 'otherDatabaseId'],
-            [],
-            1
-        );
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([]);
 
         $this->operation->lookup(
             [],

@@ -28,6 +28,8 @@ use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -43,33 +45,16 @@ class AggregationQueryTest extends SnippetTestCase
     private $datastore;
     private $operation;
     private $requestHandler;
-    private $serializer;
 
     public function setUp(): void
     {
         $mapper = new EntityMapper('my-awesome-project', true, false);
         $this->datastore = TestHelpers::stub(DatastoreClient::class, [], ['operation']);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
-                    $dt = new \DateTime($v);
-                    return ['seconds' => $dt->format('U')];
-                }
-                return $v;
-            }
-        ]);
 
         $this->operation = TestHelpers::stub(Operation::class, [
             $this->requestHandler->reveal(),
-            $this->serializer,
+            $this->getSerializer(),
             'my-awesome-project',
             '',
             $mapper
@@ -78,9 +63,12 @@ class AggregationQueryTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runAggregationQuery',
-            [],
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
             [
                 'batch' => [
                     'aggregationResults' => [
@@ -92,8 +80,7 @@ class AggregationQueryTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ],
-            0
+            ]
         );
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
@@ -111,9 +98,12 @@ class AggregationQueryTest extends SnippetTestCase
 
     public function testClassWithOverAggregation()
     {
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'runAggregationQuery',
-            [],
+            Argument::type(RunAggregationQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
             [
                 'batch' => [
                     'aggregationResults' => [
@@ -125,8 +115,7 @@ class AggregationQueryTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ],
-            0
+            ]
         );
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());

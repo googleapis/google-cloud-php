@@ -118,7 +118,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
             if (!array_key_exists('name', $database)) {
                 continue;
             }
-            if ($database['name'] === $dbId) {
+            if ($database['name'] == $dbId) {
                 return true;
             }
         }

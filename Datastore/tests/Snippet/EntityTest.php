@@ -28,6 +28,9 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\LookupRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -43,7 +46,6 @@ class EntityTest extends SnippetTestCase
     private $options;
     private $entity;
     private $key;
-    private $serializer;
     private $requestHandler;
 
     public function setUp(): void
@@ -65,23 +67,6 @@ class EntityTest extends SnippetTestCase
         $this->entity = new Entity($this->key, [], $this->options);
 
         $this->requestHandler = $this->prophesize(RequestHandler::class);
-
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
-                    $dt = new \DateTime($v);
-                    return ['seconds' => $dt->format('U')];
-                }
-                return $v;
-            }
-        ]);
     }
 
     public function testClass()
@@ -98,32 +83,34 @@ class EntityTest extends SnippetTestCase
             'operation'
         ]);
 
-        $this->mockSendRequest(
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'commit',
-            [],
-            ['mutationResults' => [['version' => 1]]],
-            0
-        );
-        $this->mockSendRequest(
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['mutationResults' => [['version' => 1]]]);
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
             'lookup',
-            [],
-            [
-                'found' => [
-                    [
-                        'entity' => [
-                            'key' => [
-                                'path' => [['kind' => 'Business', 'name' => 'Google']]
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'found' => [
+                [
+                    'entity' => [
+                        'key' => [
+                            'path' => [['kind' => 'Business', 'name' => 'Google']]
+                        ],
+                        'properties' => [
+                            'name' => [
+                                'stringValue' => 'Google'
                             ],
-                            'properties' => [
-                                'name' => [
-                                    'stringValue' => 'Google'
-                                ],
-                                'parent' => [
-                                    'entityValue' => [
-                                        'properties' => [
-                                            'name' => [
-                                                'stringValue' => 'Alphabet'
-                                            ]
+                            'parent' => [
+                                'entityValue' => [
+                                    'properties' => [
+                                        'name' => [
+                                            'stringValue' => 'Alphabet'
                                         ]
                                     ]
                                 ]
@@ -131,13 +118,12 @@ class EntityTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ],
-            0
-        );
+            ]
+        ]);
 
         $operation = new Operation(
             $this->requestHandler->reveal(),
-            $this->serializer,
+            $this->getSerializer(),
             'example_project',
             'foo',
             new EntityMapper('example_project', false, false)
