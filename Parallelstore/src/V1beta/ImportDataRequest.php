@@ -47,12 +47,10 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $source_gcs_uri
-     *           URI to a Cloud Storage object in format:
-     *           'gs://<bucket_name>/<path_inside_bucket>'.
-     *     @type string $destination_path
-     *           Optional. Root directory path to the Paralellstore filesystem, starting
-     *           with '/'. Sets to '/' if no value is set.
+     *     @type \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket $source_gcs_bucket
+     *           Cloud Storage source.
+     *     @type \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore $destination_parallelstore
+     *           Parallelstore destination.
      *     @type string $name
      *           Required. Name of the resource.
      *     @type string $request_id
@@ -75,66 +73,62 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI to a Cloud Storage object in format:
-     * 'gs://<bucket_name>/<path_inside_bucket>'.
+     * Cloud Storage source.
      *
-     * Generated from protobuf field <code>string source_gcs_uri = 2;</code>
-     * @return string
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.SourceGcsBucket source_gcs_bucket = 2;</code>
+     * @return \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket|null
      */
-    public function getSourceGcsUri()
+    public function getSourceGcsBucket()
     {
         return $this->readOneof(2);
     }
 
-    public function hasSourceGcsUri()
+    public function hasSourceGcsBucket()
     {
         return $this->hasOneof(2);
     }
 
     /**
-     * URI to a Cloud Storage object in format:
-     * 'gs://<bucket_name>/<path_inside_bucket>'.
+     * Cloud Storage source.
      *
-     * Generated from protobuf field <code>string source_gcs_uri = 2;</code>
-     * @param string $var
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.SourceGcsBucket source_gcs_bucket = 2;</code>
+     * @param \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket $var
      * @return $this
      */
-    public function setSourceGcsUri($var)
+    public function setSourceGcsBucket($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkMessage($var, \Google\Cloud\Parallelstore\V1beta\SourceGcsBucket::class);
         $this->writeOneof(2, $var);
 
         return $this;
     }
 
     /**
-     * Optional. Root directory path to the Paralellstore filesystem, starting
-     * with '/'. Sets to '/' if no value is set.
+     * Parallelstore destination.
      *
-     * Generated from protobuf field <code>string destination_path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DestinationParallelstore destination_parallelstore = 3;</code>
+     * @return \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore|null
      */
-    public function getDestinationPath()
+    public function getDestinationParallelstore()
     {
         return $this->readOneof(3);
     }
 
-    public function hasDestinationPath()
+    public function hasDestinationParallelstore()
     {
         return $this->hasOneof(3);
     }
 
     /**
-     * Optional. Root directory path to the Paralellstore filesystem, starting
-     * with '/'. Sets to '/' if no value is set.
+     * Parallelstore destination.
      *
-     * Generated from protobuf field <code>string destination_path = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
+     * Generated from protobuf field <code>.google.cloud.parallelstore.v1beta.DestinationParallelstore destination_parallelstore = 3;</code>
+     * @param \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore $var
      * @return $this
      */
-    public function setDestinationPath($var)
+    public function setDestinationParallelstore($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkMessage($var, \Google\Cloud\Parallelstore\V1beta\DestinationParallelstore::class);
         $this->writeOneof(3, $var);
 
         return $this;
