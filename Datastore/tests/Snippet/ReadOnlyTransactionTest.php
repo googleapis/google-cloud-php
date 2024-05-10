@@ -154,7 +154,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 $data = $this->getSerializer()->encodeMessage($req);
                 return isset($data['readOptions']['transaction'])
                     && $data['readOptions']['transaction'] == self::TRANSACTION;
-			}),
+            }),
             Argument::cetera()
         )->willReturn(
             [
@@ -198,7 +198,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 $data = $this->getSerializer()->encodeMessage($req);
                 return isset($data['readOptions']['transaction'])
                     && $data['readOptions']['transaction'] == self::TRANSACTION;
-			}),
+            }),
             Argument::cetera()
         )->willReturn(
             [
@@ -262,7 +262,7 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                 $data = $this->getSerializer()->encodeMessage($req);
                 return isset($data['readOptions']['transaction'])
                     && $data['readOptions']['transaction'] == self::TRANSACTION;
-			}),
+            }),
             Argument::cetera()
         )->willReturn(
             [

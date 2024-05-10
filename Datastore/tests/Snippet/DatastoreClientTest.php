@@ -386,7 +386,7 @@ class DatastoreClientTest extends SnippetTestCase
             Argument::that(function ($req) {
                 $data = $this->getSerializer()->encodeMessage($req);
                 return isset($data['transactionOptions']['readOnly']);
-			}),
+            }),
             Argument::cetera()
         )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
 

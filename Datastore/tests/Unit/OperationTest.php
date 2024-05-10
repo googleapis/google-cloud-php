@@ -567,7 +567,7 @@ class OperationTest extends TestCase
             V1DatastoreClient::class,
             'runQuery',
             Argument::cetera()
-            )->will(function ($args, $mock) use ($queryResult, $outerThis) {
+        )->will(function ($args, $mock) use ($queryResult, $outerThis) {
                 // The 2nd call will return the 2nd page of results!
                 $mock->sendRequest(
                     V1DatastoreClient::class,
@@ -579,8 +579,7 @@ class OperationTest extends TestCase
                     Argument::any()
                 )->willReturn($queryResult['paged'][1]);
                 return $queryResult['paged'][0];
-            }
-        );
+        });
 
         $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 

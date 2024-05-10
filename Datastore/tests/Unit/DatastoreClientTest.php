@@ -463,7 +463,7 @@ class DatastoreClientTest extends TestCase
             Argument::that(function ($req) use ($key) {
                 $data = $this->getSerializer()->encodeMessage($req);
                 return $data['mode'] == Mode::NON_TRANSACTIONAL
-                && array_replace_recursive($data['mutations'][0]['delete'],$key->keyObject())
+                && array_replace_recursive($data['mutations'][0]['delete'], $key->keyObject())
                     == $data['mutations'][0]['delete'];
             }),
             Argument::cetera()
@@ -488,7 +488,7 @@ class DatastoreClientTest extends TestCase
             Argument::that(function ($req) use ($key) {
                 $data = $this->getSerializer()->encodeMessage($req);
                 return $data['mode'] == Mode::NON_TRANSACTIONAL
-                    && array_replace_recursive($data['mutations'][0]['delete'],$key->keyObject())
+                    && array_replace_recursive($data['mutations'][0]['delete'], $key->keyObject())
                         == $data['mutations'][0]['delete'];
             }),
             Argument::cetera()
