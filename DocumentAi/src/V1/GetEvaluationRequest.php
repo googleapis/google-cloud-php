@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetEvaluationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+     * Required. The resource name of the
+     * [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -24,7 +25,8 @@ class GetEvaluationRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
-     * @param string $name Required. The resource name of the [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+     * @param string $name Required. The resource name of the
+     *                     [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
      *                     `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
      *                     Please see {@see DocumentProcessorServiceClient::evaluationName()} for help formatting this field.
      *
@@ -45,7 +47,8 @@ class GetEvaluationRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+     *           Required. The resource name of the
+     *           [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
      * }
      */
@@ -55,7 +58,8 @@ class GetEvaluationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+     * Required. The resource name of the
+     * [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -67,7 +71,8 @@ class GetEvaluationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
+     * Required. The resource name of the
+     * [Evaluation][google.cloud.documentai.v1.Evaluation] to get.
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}/evaluations/{evaluation}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

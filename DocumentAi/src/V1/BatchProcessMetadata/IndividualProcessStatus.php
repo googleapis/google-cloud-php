@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The source of the document, same as the [input_gcs_source][google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus.input_gcs_source] field in the
-     * request when the batch process started.
+     * The source of the document, same as the
+     * [input_gcs_source][google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus.input_gcs_source]
+     * field in the request when the batch process started.
      *
      * Generated from protobuf field <code>string input_gcs_source = 1;</code>
      */
@@ -30,8 +31,8 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
     private $status = null;
     /**
      * The Cloud Storage output destination (in the request as
-     * [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri]) of the processed
-     * document if it was successful, otherwise empty.
+     * [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri])
+     * of the processed document if it was successful, otherwise empty.
      *
      * Generated from protobuf field <code>string output_gcs_destination = 3;</code>
      */
@@ -50,14 +51,15 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $input_gcs_source
-     *           The source of the document, same as the [input_gcs_source][google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus.input_gcs_source] field in the
-     *           request when the batch process started.
+     *           The source of the document, same as the
+     *           [input_gcs_source][google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus.input_gcs_source]
+     *           field in the request when the batch process started.
      *     @type \Google\Rpc\Status $status
      *           The status processing the document.
      *     @type string $output_gcs_destination
      *           The Cloud Storage output destination (in the request as
-     *           [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri]) of the processed
-     *           document if it was successful, otherwise empty.
+     *           [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri])
+     *           of the processed document if it was successful, otherwise empty.
      *     @type \Google\Cloud\DocumentAI\V1\HumanReviewStatus $human_review_status
      *           The status of human review on the processed document.
      * }
@@ -68,8 +70,9 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source of the document, same as the [input_gcs_source][google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus.input_gcs_source] field in the
-     * request when the batch process started.
+     * The source of the document, same as the
+     * [input_gcs_source][google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus.input_gcs_source]
+     * field in the request when the batch process started.
      *
      * Generated from protobuf field <code>string input_gcs_source = 1;</code>
      * @return string
@@ -80,8 +83,9 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source of the document, same as the [input_gcs_source][google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus.input_gcs_source] field in the
-     * request when the batch process started.
+     * The source of the document, same as the
+     * [input_gcs_source][google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus.input_gcs_source]
+     * field in the request when the batch process started.
      *
      * Generated from protobuf field <code>string input_gcs_source = 1;</code>
      * @param string $var
@@ -133,8 +137,8 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Storage output destination (in the request as
-     * [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri]) of the processed
-     * document if it was successful, otherwise empty.
+     * [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri])
+     * of the processed document if it was successful, otherwise empty.
      *
      * Generated from protobuf field <code>string output_gcs_destination = 3;</code>
      * @return string
@@ -146,8 +150,8 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Storage output destination (in the request as
-     * [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri]) of the processed
-     * document if it was successful, otherwise empty.
+     * [DocumentOutputConfig.GcsOutputConfig.gcs_uri][google.cloud.documentai.v1.DocumentOutputConfig.GcsOutputConfig.gcs_uri])
+     * of the processed document if it was successful, otherwise empty.
      *
      * Generated from protobuf field <code>string output_gcs_destination = 3;</code>
      * @param string $var
