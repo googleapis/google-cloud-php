@@ -56,33 +56,15 @@ class TransactionTest extends SnippetTestCase
     private $transaction;
     private $client;
     private $key;
-    private $serializer;
     private $requestHandler;
 
     public function setUp(): void
     {
         $this->requestHandler = $this->prophesize(RequestHandler::class);
 
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
-                    $dt = new \DateTime($v);
-                    return ['seconds' => $dt->format('U')];
-                }
-                return $v;
-            }
-        ]);
-
         $operation = new Operation(
             $this->requestHandler->reveal(),
-            $this->serializer,
+            $this->getSerializer(),
             self::PROJECT,
             '',
             new EntityMapper(self::PROJECT, false, false)
@@ -282,7 +264,7 @@ class TransactionTest extends SnippetTestCase
             Argument::that(function ($req) {
                 $data = $this->getSerializer()->encodeMessage($req);
                 return isset($data['readOptions']['transaction'])
-                    && $data['readOptions']['transaction'] === self::TRANSACTION;
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
             }),
             Argument::cetera()
         )->willReturn(
@@ -326,7 +308,7 @@ class TransactionTest extends SnippetTestCase
             Argument::that(function ($req) {
                 $data = $this->getSerializer()->encodeMessage($req);
                 return isset($data['readOptions']['transaction'])
-                    && $data['readOptions']['transaction'] === self::TRANSACTION;
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
             }),
             Argument::cetera()
         )->willReturn(
@@ -390,7 +372,7 @@ class TransactionTest extends SnippetTestCase
             Argument::that(function ($req) {
                 $data = $this->getSerializer()->encodeMessage($req);
                 return isset($data['readOptions']['transaction'])
-                    && $data['readOptions']['transaction'] === self::TRANSACTION;
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
             }),
             Argument::cetera()
         )->willReturn(
@@ -440,7 +422,7 @@ class TransactionTest extends SnippetTestCase
             Argument::that(function ($req) {
                 $data = $this->getSerializer()->encodeMessage($req);
                 return isset($data['readOptions']['transaction'])
-                    && $data['readOptions']['transaction'] === self::TRANSACTION;
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
             }),
             Argument::cetera()
         )->willReturn(

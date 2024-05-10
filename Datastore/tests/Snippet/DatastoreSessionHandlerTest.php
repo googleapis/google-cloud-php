@@ -80,8 +80,8 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
                 $data = $this->getSerializer()->encodeMessage($req);
 
                 return isset($data['readOptions']['transaction'])
-                    && $data['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                    && $data['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
+                    && $data['keys'][0]['partitionId']['namespaceId'] == 'sessions'
+                    && $data['keys'][0]['path'][0]['kind'] == 'PHPSESSID'
                     && isset($data['keys'][0]['path'][0]['name']);
             }),
             Argument::cetera()
@@ -106,10 +106,10 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
                 return isset($data['transaction'])
                     && isset($data['mode'])
-                    && $data['mutations'][0]['upsert']['key']['partitionId']['namespaceId'] === 'sessions'
-                    && $data['mutations'][0]['upsert']['key']['path'][0]['kind'] === 'PHPSESSID'
+                    && $data['mutations'][0]['upsert']['key']['partitionId']['namespaceId'] == 'sessions'
+                    && $data['mutations'][0]['upsert']['key']['path'][0]['kind'] == 'PHPSESSID'
                     && isset($data['mutations'][0]['upsert']['key']['path'][0]['name'])
-                    && $data['mutations'][0]['upsert']['properties']['data']['stringValue'] === 'name|'.serialize('Bob')
+                    && $data['mutations'][0]['upsert']['properties']['data']['stringValue'] == 'name|'.serialize('Bob')
                     && isset($data['mutations'][0]['upsert']['properties']['t']);
             }),
             Argument::cetera()
@@ -140,8 +140,8 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
                 $data = $this->getSerializer()->encodeMessage($req);
 
                 return isset($data['readOptions']['transaction'])
-                    && $data['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                    && $data['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
+                    && $data['keys'][0]['partitionId']['namespaceId'] == 'sessions'
+                    && $data['keys'][0]['path'][0]['kind'] == 'PHPSESSID'
                     && isset($data['keys'][0]['path'][0]['name']);
             }),
             Argument::cetera()

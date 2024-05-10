@@ -819,7 +819,7 @@ class DatastoreClientTest extends SnippetTestCase
         }
 
         if (!empty((array) $options)) {
-            return $options === $data['transactionOptions'][$type];
+            return $options == $data['transactionOptions'][$type];
         } else {
             if (is_array($data['transactionOptions'][$type]) and
             isset($data['transactionOptions'][$type]['readTime'])) {

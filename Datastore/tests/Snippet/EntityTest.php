@@ -46,7 +46,6 @@ class EntityTest extends SnippetTestCase
     private $options;
     private $entity;
     private $key;
-    private $serializer;
     private $requestHandler;
 
     public function setUp(): void
@@ -68,23 +67,6 @@ class EntityTest extends SnippetTestCase
         $this->entity = new Entity($this->key, [], $this->options);
 
         $this->requestHandler = $this->prophesize(RequestHandler::class);
-
-        $this->serializer = new Serializer([], [
-            'google.protobuf.Value' => function ($v) {
-                return $this->flattenValue($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
-        ], [], [
-            'google.protobuf.Timestamp' => function ($v) {
-                if (is_string($v)) {
-                    $dt = new \DateTime($v);
-                    return ['seconds' => $dt->format('U')];
-                }
-                return $v;
-            }
-        ]);
     }
 
     public function testClass()
@@ -141,7 +123,7 @@ class EntityTest extends SnippetTestCase
 
         $operation = new Operation(
             $this->requestHandler->reveal(),
-            $this->serializer,
+            $this->getSerializer(),
             'example_project',
             'foo',
             new EntityMapper('example_project', false, false)
