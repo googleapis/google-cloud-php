@@ -26,7 +26,7 @@ class AzureService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-°D
+ŸD
 1google/cloud/gkemulticloud/v1/azure_service.protogoogle.cloud.gkemulticloud.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/gkemulticloud/v1/azure_resources.proto4google/cloud/gkemulticloud/v1/common_resources.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"›
 CreateAzureClusterRequestA
 parent (	B1‡A˙A+)gkemulticloud.googleapis.com/AzureClusterG
@@ -47,13 +47,14 @@ class AzureService
 page_token (	"y
 ListAzureClustersResponseC
 azure_clusters (2+.google.cloud.gkemulticloud.v1.AzureCluster
-next_page_token (	"ò
+next_page_token (	"¥
 DeleteAzureClusterRequest?
 name (	B1‡A˙A+
 )gkemulticloud.googleapis.com/AzureCluster
 allow_missing (
 validate_only (
-etag (	"‰
+etag (	
+ignore_errors (B‡A"‰
 CreateAzureNodePoolRequestB
 parent (	B2‡A˙A,*gkemulticloud.googleapis.com/AzureNodePoolJ
 azure_node_pool (2,.google.cloud.gkemulticloud.v1.AzureNodePoolB‡A
@@ -73,13 +74,14 @@ page_token (	"y
 page_token (	"}
 ListAzureNodePoolsResponseF
 azure_node_pools (2,.google.cloud.gkemulticloud.v1.AzureNodePool
-next_page_token (	"ö
+next_page_token (	"∂
 DeleteAzureNodePoolRequest@
 name (	B2‡A˙A,
 *gkemulticloud.googleapis.com/AzureNodePool
 validate_only (
 allow_missing (
-etag (	"g
+etag (	
+ignore_errors (B‡A"g
 GetAzureOpenIdConfigRequestH
 azure_cluster (	B1‡A˙A+
 )gkemulticloud.googleapis.com/AzureCluster"f
