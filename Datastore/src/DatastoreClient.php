@@ -99,14 +99,6 @@ class DatastoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
     /**
-     * Keeping this consistent with veneer libraries where
-     * multiple clients are present.
-     */
-    private const GAPIC_KEYS = [
-        V1DatastoreClient::class
-    ];
-
-    /**
      * @var RequestHandler
      * @internal
      * The request handler responsible for sending requests and
@@ -224,7 +216,7 @@ class DatastoreClient
 
         $this->requestHandler = new RequestHandler(
             $this->serializer,
-            self::GAPIC_KEYS,
+            [V1DatastoreClient::class],
             $config
         );
 
