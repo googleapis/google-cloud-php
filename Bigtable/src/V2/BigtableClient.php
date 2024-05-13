@@ -31,7 +31,7 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Cloud\Bigtable\EmulatorSupportTrait;
-use Google\Cloud\Bigtable\V2\Gapic\BigtableGapicClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as BigtableGapicClient;
 
 /**
  * {@inheritdoc}
@@ -41,5 +41,5 @@ class BigtableClient extends BigtableGapicClient
     use EmulatorSupportTrait;
 
     // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see BigtableGapicClient} class.
+    // additions to the generated {@see Google\Cloud\Bigtable\V2\Client\BigtableClient} class.
 }

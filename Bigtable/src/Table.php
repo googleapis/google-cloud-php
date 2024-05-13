@@ -23,12 +23,19 @@ use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Filter\FilterInterface;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
-use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\ArrayTrait;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
+use Google\Cloud\Bigtable\V2\MutateRowRequest;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
+use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Rpc\Code;
 
 /**
@@ -46,6 +53,7 @@ use Google\Rpc\Code;
 class Table
 {
     use ArrayTrait;
+    use ApiHelperTrait;
 
     /**
      * @var GapicClient
@@ -70,7 +78,8 @@ class Table
     /**
      * Create a table instance.
      *
-     * @param GapicClient $gapicClient The GAPIC client used to make requests.
+     * @param GapicClient $gapicClient The GAPIC client to use in order to send requests.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $tableName The full table name. Must match the following
      *        pattern: projects/{project}/instances/{instance}/tables/{table}.
      * @param array $options [optional] {
@@ -86,14 +95,15 @@ class Table
      * }
      */
     public function __construct(
-        GapicClient $gapicClient,
-        $tableName,
+        $gapicClient,
+        Serializer $serializer,
+        string $tableName,
         array $options = []
     ) {
         $this->gapicClient = $gapicClient;
+        $this->serializer = $serializer;
         $this->tableName = $tableName;
         $this->options = $options;
-        $this->serializer = new Serializer();
     }
 
     /**
@@ -157,12 +167,17 @@ class Table
      */
     public function mutateRow($rowKey, Mutations $mutations, array $options = [])
     {
-        $this->gapicClient->mutateRow(
-            $this->tableName,
-            $rowKey,
-            $mutations->toProto(),
-            $options + $this->options
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['table_name'] = $this->tableName;
+        $data['row_key'] = $rowKey;
+        $data['mutations'] = $mutations->toProto();
+        $request = $this->serializer->decodeMessage(
+            new MutateRowRequest(),
+            $data
         );
+        $optionalArgs += $this->options;
+
+        $this->gapicClient->mutateRow($request, $optionalArgs);
     }
 
     /**
@@ -265,7 +280,9 @@ class Table
         $rowKeys = $this->pluck('rowKeys', $options, false) ?: [];
         $ranges = $this->pluck('rowRanges', $options, false) ?: [];
         $filter = $this->pluck('filter', $options, false) ?: null;
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
+        // TODO: check if we can use the mergeFromJsonString function here.
         array_walk($ranges, function (&$range) {
             $range = $this->serializer->decodeMessage(
                 new RowRange(),
@@ -280,8 +297,10 @@ class Table
                 )
             );
         }
+
+        // TODO: check if we can use the mergeFromJsonString function here.
         if ($ranges || $rowKeys) {
-            $options['rows'] = $this->serializer->decodeMessage(
+            $data['rows'] = $this->serializer->decodeMessage(
                 new RowSet,
                 [
                     'rowKeys' => $rowKeys,
@@ -299,12 +318,16 @@ class Table
                     )
                 );
             }
-            $options['filter'] = $filter->toProto();
+            $data['filter'] = $filter->toProto();
         }
+
+        $data += ['table_name' => $this->tableName];
+        $request = new ReadRowsRequest($data);
+
         return new ChunkFormatter(
-            [$this->gapicClient, 'readRows'],
-            $this->tableName,
-            $options + $this->options
+            $this->gapicClient,
+            $request,
+            $optionalArgs + $this->options
         );
     }
 
@@ -375,12 +398,17 @@ class Table
      */
     public function readModifyWriteRow($rowKey, ReadModifyWriteRowRules $rules, array $options = [])
     {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['table_name'] = $this->tableName;
+        $data['row_key'] = $rowKey;
+        $data['rules'] = $rules->toProto();
+
+        $request = new ReadModifyWriteRowRequest($data);
         $readModifyWriteRowResponse = $this->gapicClient->readModifyWriteRow(
-            $this->tableName,
-            $rowKey,
-            $rules->toProto(),
-            $options + $this->options
+            $request,
+            $optionalArgs + $this->options
         );
+
         return $this->convertToArray($readModifyWriteRowResponse->getRow());
     }
 
@@ -404,9 +432,13 @@ class Table
      */
     public function sampleRowKeys(array $options = [])
     {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['table_name'] = $this->tableName;
+
+        $request = new SampleRowKeysRequest($data);
         $stream = $this->gapicClient->sampleRowKeys(
-            $this->tableName,
-            $options + $this->options
+            $request,
+            $optionalArgs + $this->options
         );
 
         foreach ($stream->readAll() as $response) {
@@ -485,26 +517,33 @@ class Table
             throw new \InvalidArgumentException('checkAndMutateRow must have either trueMutations or falseMutations.');
         }
 
-        return $this->gapicClient
-            ->checkAndMutateRow(
-                $this->tableName,
-                $rowKey,
-                $options + $this->options
-            )
-            ->getPredicateMatched();
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['table_name'] = $this->tableName;
+        $data['row_key'] = $rowKey;
+        $request = $this->serializer->decodeMessage(new CheckAndMutateRowRequest, $data);
+
+        return $this->gapicClient->checkAndMutateRow(
+                $request,
+                $optionalArgs + $this->options
+            )->getPredicateMatched();
     }
 
     private function mutateRowsWithEntries(array $entries, array $options = [])
     {
         $rowMutationsFailedResponse = [];
         $options = $options + $this->options;
-        $argumentFunction = function () use (&$entries, &$rowMutationsFailedResponse, $options) {
+        // This function is responsible to modify the $entries before every retry.
+        // TODO: Test failing $entries and see the effect.
+        $argumentFunction = function ($request, $options) use (&$entries, &$rowMutationsFailedResponse) {
             if (count($rowMutationsFailedResponse) > 0) {
                 $entries = array_values($entries);
                 $rowMutationsFailedResponse = [];
             }
-            return [$this->tableName, $entries, $options];
+
+            $request->setEntries($entries);
+            return [$request, $options];
         };
+
         $statusCode = Code::OK;
         $lastProcessedIndex = -1;
         $retryFunction = function ($ex) use (&$statusCode, &$lastProcessedIndex) {
@@ -515,11 +554,20 @@ class Table
             }
             return false;
         };
+
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+
+        $request = new MutateRowsRequest($data);
+        $request->setTableName($this->tableName);
+
         $retryingStream = new ResumableStream(
-            [$this->gapicClient, 'mutateRows'],
+            $this->gapicClient,
+            'mutateRows',
+            $request,
             $argumentFunction,
             $retryFunction,
-            $this->pluck('retries', $options, false)
+            $this->pluck('retries', $options, false),
+            $optionalArgs
         );
         $message = 'partial failure';
         try {
@@ -585,7 +633,8 @@ class Table
             end($entries);
             foreach (range($lastProcessedIndex + 1, key($entries)) as $index) {
                 $rowMutationsFailedResponse[] = [
-                    'rowKey' => $entries[$index]->getRowKey(),
+                    // TODO: check this
+                    // 'rowKey' => $entries[$index]->getRowKey(),
                     'statusCode' => $statusCode,
                     'message' => $message
                 ];

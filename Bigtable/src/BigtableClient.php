@@ -24,7 +24,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Serializer;
-use Google\Cloud\Bigtable\V2\Client\BigtableClient as BigtableGapicClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\RequestHandler;
 
@@ -49,12 +49,9 @@ class BigtableClient
     const VERSION = '1.31.1';
 
     /**
-     * @var RequestHandler
-     * @internal
-     * The request handler that is responsible for sending a request and
-     * serializing responses into relevant classes.
+     * @var GapicClient
      */
-    private $requestHandler;
+    private $gapicClient;
 
     /**
      * @var Serializer
@@ -146,11 +143,7 @@ class BigtableClient
 
         $this->projectId = $this->detectProjectId($config);
         $this->serializer = new Serializer();
-        $this->requestHandler = new RequestHandler(
-            $this->serializer,
-            [BigtableGapicClient::class],
-            $config
-        );
+        $this->gapicClient = new GapicClient($config);
     }
 
     /**
@@ -176,9 +169,9 @@ class BigtableClient
     public function table($instanceId, $tableId, array $options = [])
     {
         return new Table(
-            $this->requestHandler,
+            $this->gapicClient,
             $this->serializer,
-            BigtableGapicClient::tableName($this->projectId, $instanceId, $tableId),
+            GapicClient::tableName($this->projectId, $instanceId, $tableId),
             $options
         );
     }
