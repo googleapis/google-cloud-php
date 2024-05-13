@@ -181,13 +181,12 @@ class FirestoreClient
         ];
 
 
-        // COMMENT THIS OUT WHILE UPDATING RPCs
-        // $config = $this->buildClientOptions($config);
-        // $config['credentials'] = $this->createCredentialsWrapper(
-        //     $config['credentials'],
-        //     $config['credentialsConfig'],
-        //     $config['universeDomain']
-        // );
+        $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
 
         $this->database = $config['database'];
 
