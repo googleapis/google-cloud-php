@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
+ * The request for
+ * [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.CreateDatabaseRequest</code>
  */
@@ -42,8 +43,8 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      */
     private $extra_statements;
     /**
-     * Optional. The encryption configuration for the database. If this field is not
-     * specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     * Optional. The encryption configuration for the database. If this field is
+     * not specified, Cloud Spanner will encrypt/decrypt all data at rest using
      * Google default encryption.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -118,8 +119,8 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *           statements execute atomically with the creation of the database:
      *           if there is an error in any statement, the database is not created.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig $encryption_config
-     *           Optional. The encryption configuration for the database. If this field is not
-     *           specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     *           Optional. The encryption configuration for the database. If this field is
+     *           not specified, Cloud Spanner will encrypt/decrypt all data at rest using
      *           Google default encryption.
      *     @type int $database_dialect
      *           Optional. The dialect of the Cloud Spanner Database.
@@ -241,8 +242,8 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The encryption configuration for the database. If this field is not
-     * specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     * Optional. The encryption configuration for the database. If this field is
+     * not specified, Cloud Spanner will encrypt/decrypt all data at rest using
      * Google default encryption.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -264,8 +265,8 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The encryption configuration for the database. If this field is not
-     * specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     * Optional. The encryption configuration for the database. If this field is
+     * not specified, Cloud Spanner will encrypt/decrypt all data at rest using
      * Google default encryption.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

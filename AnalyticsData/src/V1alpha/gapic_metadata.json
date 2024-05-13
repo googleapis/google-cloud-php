@@ -20,6 +20,11 @@
                                 "createRecurringAudienceList"
                             ]
                         },
+                        "CreateReportTask": {
+                            "methods": [
+                                "createReportTask"
+                            ]
+                        },
                         "GetAudienceList": {
                             "methods": [
                                 "getAudienceList"
@@ -28,6 +33,11 @@
                         "GetRecurringAudienceList": {
                             "methods": [
                                 "getRecurringAudienceList"
+                            ]
+                        },
+                        "GetReportTask": {
+                            "methods": [
+                                "getReportTask"
                             ]
                         },
                         "ListAudienceLists": {
@@ -40,9 +50,19 @@
                                 "listRecurringAudienceLists"
                             ]
                         },
+                        "ListReportTasks": {
+                            "methods": [
+                                "listReportTasks"
+                            ]
+                        },
                         "QueryAudienceList": {
                             "methods": [
                                 "queryAudienceList"
+                            ]
+                        },
+                        "QueryReportTask": {
+                            "methods": [
+                                "queryReportTask"
                             ]
                         },
                         "RunFunnelReport": {

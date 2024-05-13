@@ -26,7 +26,7 @@ class DetailLevel
      */
     const TABLE_PROFILE = 1;
     /**
-     * The resource name of the table.
+     * The name of the profiled resource.
      *
      * Generated from protobuf enum <code>RESOURCE_NAME = 2;</code>
      */

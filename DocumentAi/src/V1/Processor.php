@@ -56,7 +56,8 @@ class Processor extends \Google\Protobuf\Internal\Message
      */
     private $processor_version_aliases;
     /**
-     * Output only. Immutable. The http endpoint that can be called to invoke processing.
+     * Output only. Immutable. The http endpoint that can be called to invoke
+     * processing.
      *
      * Generated from protobuf field <code>string process_endpoint = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -97,7 +98,8 @@ class Processor extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorVersionAlias>|\Google\Protobuf\Internal\RepeatedField $processor_version_aliases
      *           Output only. The processor version aliases.
      *     @type string $process_endpoint
-     *           Output only. Immutable. The http endpoint that can be called to invoke processing.
+     *           Output only. Immutable. The http endpoint that can be called to invoke
+     *           processing.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time the processor was created.
      *     @type string $kms_key_name
@@ -273,7 +275,8 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. The http endpoint that can be called to invoke processing.
+     * Output only. Immutable. The http endpoint that can be called to invoke
+     * processing.
      *
      * Generated from protobuf field <code>string process_endpoint = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -284,7 +287,8 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Immutable. The http endpoint that can be called to invoke processing.
+     * Output only. Immutable. The http endpoint that can be called to invoke
+     * processing.
      *
      * Generated from protobuf field <code>string process_endpoint = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

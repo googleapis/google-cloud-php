@@ -24,16 +24,17 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     /**
      * The backup contains an externally consistent copy of `source_database` at
      * the timestamp specified by `version_time`. If the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request did not specify
-     * `version_time`, the `version_time` of the backup is equivalent to the
-     * `create_time`.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request did not specify `version_time`, the `version_time` of the backup is
+     * equivalent to the `create_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 4;</code>
      */
     private $version_time = null;
     /**
-     * The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request was
-     * received.
+     * The time the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      */
@@ -56,12 +57,13 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $version_time
      *           The backup contains an externally consistent copy of `source_database` at
      *           the timestamp specified by `version_time`. If the
-     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request did not specify
-     *           `version_time`, the `version_time` of the backup is equivalent to the
-     *           `create_time`.
+     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     *           request did not specify `version_time`, the `version_time` of the backup is
+     *           equivalent to the `create_time`.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request was
-     *           received.
+     *           The time the
+     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     *           request was received.
      *     @type string $source_database
      *           Name of the database the backup was created from.
      * }
@@ -100,9 +102,9 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     /**
      * The backup contains an externally consistent copy of `source_database` at
      * the timestamp specified by `version_time`. If the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request did not specify
-     * `version_time`, the `version_time` of the backup is equivalent to the
-     * `create_time`.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request did not specify `version_time`, the `version_time` of the backup is
+     * equivalent to the `create_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 4;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -125,9 +127,9 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     /**
      * The backup contains an externally consistent copy of `source_database` at
      * the timestamp specified by `version_time`. If the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request did not specify
-     * `version_time`, the `version_time` of the backup is equivalent to the
-     * `create_time`.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request did not specify `version_time`, the `version_time` of the backup is
+     * equivalent to the `create_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -142,8 +144,9 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request was
-     * received.
+     * The time the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -164,8 +167,9 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request was
-     * received.
+     * The time the
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var

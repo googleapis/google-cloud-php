@@ -28,6 +28,10 @@ class Type
      */
     const ACCELERATOR_OPTIMIZED_A3 = 158574526;
     /**
+     * Generated from protobuf enum <code>ACCELERATOR_OPTIMIZED_A3_MEGA = 156517459;</code>
+     */
+    const ACCELERATOR_OPTIMIZED_A3_MEGA = 156517459;
+    /**
      * Generated from protobuf enum <code>COMPUTE_OPTIMIZED = 158349023;</code>
      */
     const COMPUTE_OPTIMIZED = 158349023;
@@ -96,6 +100,7 @@ class Type
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::ACCELERATOR_OPTIMIZED => 'ACCELERATOR_OPTIMIZED',
         self::ACCELERATOR_OPTIMIZED_A3 => 'ACCELERATOR_OPTIMIZED_A3',
+        self::ACCELERATOR_OPTIMIZED_A3_MEGA => 'ACCELERATOR_OPTIMIZED_A3_MEGA',
         self::COMPUTE_OPTIMIZED => 'COMPUTE_OPTIMIZED',
         self::COMPUTE_OPTIMIZED_C2D => 'COMPUTE_OPTIMIZED_C2D',
         self::COMPUTE_OPTIMIZED_C3 => 'COMPUTE_OPTIMIZED_C3',

@@ -5,6 +5,104 @@
     "protoPackage": "google.cloud.kms.v1",
     "libraryPackage": "Google\\Cloud\\Kms\\V1",
     "services": {
+        "Autokey": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutokeyGapicClient",
+                    "rpcs": {
+                        "CreateKeyHandle": {
+                            "methods": [
+                                "createKeyHandle"
+                            ]
+                        },
+                        "GetKeyHandle": {
+                            "methods": [
+                                "getKeyHandle"
+                            ]
+                        },
+                        "ListKeyHandles": {
+                            "methods": [
+                                "listKeyHandles"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AutokeyAdmin": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutokeyAdminGapicClient",
+                    "rpcs": {
+                        "GetAutokeyConfig": {
+                            "methods": [
+                                "getAutokeyConfig"
+                            ]
+                        },
+                        "ShowEffectiveAutokeyConfig": {
+                            "methods": [
+                                "showEffectiveAutokeyConfig"
+                            ]
+                        },
+                        "UpdateAutokeyConfig": {
+                            "methods": [
+                                "updateAutokeyConfig"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "EkmService": {
             "clients": {
                 "grpc": {

@@ -23,9 +23,11 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      */
     private $ocr_config = null;
     /**
-     * Optional. Override the schema of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will return an Invalid
-     * Argument error if this field is set when the underlying
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't support schema override.
+     * Optional. Override the schema of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
+     * return an Invalid Argument error if this field is set when the underlying
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't
+     * support schema override.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema schema_override = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,9 +51,11 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      *           Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`.
      *           Returns error if set on other processor types.
      *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $schema_override
-     *           Optional. Override the schema of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will return an Invalid
-     *           Argument error if this field is set when the underlying
-     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't support schema override.
+     *           Optional. Override the schema of the
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
+     *           return an Invalid Argument error if this field is set when the underlying
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't
+     *           support schema override.
      * }
      */
     public function __construct($data = NULL) {
@@ -193,9 +197,11 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Override the schema of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will return an Invalid
-     * Argument error if this field is set when the underlying
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't support schema override.
+     * Optional. Override the schema of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
+     * return an Invalid Argument error if this field is set when the underlying
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't
+     * support schema override.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema schema_override = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\DocumentSchema|null
@@ -216,9 +222,11 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Override the schema of the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will return an Invalid
-     * Argument error if this field is set when the underlying
-     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't support schema override.
+     * Optional. Override the schema of the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
+     * return an Invalid Argument error if this field is set when the underlying
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] doesn't
+     * support schema override.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema schema_override = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\DocumentSchema $var
