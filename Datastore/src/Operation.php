@@ -689,9 +689,9 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        $options = $this->parseCommitOptions($mutations, $options);
 
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data = $this->parseCommitOptions($mutations, $data);
 
         // Remove redundant keys for request.
         $this->pluckArray(['allowOverwrite', 'baseVersion'], $data);
@@ -793,17 +793,17 @@ class Operation
      */
     public function rollback($transactionId)
     {
-        list($data, $optionalArgs) = $this->splitOptionalArgs([
+        $data = [
             'projectId' => $this->projectId,
             'transaction' => $transactionId,
             'databaseId' => $this->databaseId,
-        ]);
+        ];
         $request = $this->serializer->decodeMessage(new RollbackRequest(), $data);
         $this->requestHandler->sendRequest(
             DatastoreClient::class,
             'rollback',
             $request,
-            $optionalArgs
+            []
         );
     }
 
@@ -963,7 +963,7 @@ class Operation
     }
 
     /**
-     * Convert a list of keys to a list of {@see Google\Cloud\Datastore\V1\Key}.
+     * Convert an array of keys to a list of {@see Google\Cloud\Datastore\V1\Key}.
      *
      * @param array[] $keys
      * @return Key[]
@@ -975,17 +975,11 @@ class Operation
             $local = [];
 
             if (isset($key['partitionId'])) {
-                $p = $this->arrayFilterRemoveNull([
-                    'project_id' => isset($key['partitionId']['projectId'])
-                        ? $key['partitionId']['projectId']
-                        : null,
-                    'namespace_id' => isset($key['partitionId']['namespaceId'])
-                        ? $key['partitionId']['namespaceId']
-                        : null,
-                    'database_id' => isset($key['partitionId']['databaseId'])
-                        ? $key['partitionId']['databaseId']
-                        : null,
-                ]);
+                $p = array_filter([
+                    'project_id' => $key['partitionId']['projectId'] ?? null,
+                    'namespace_id' => $key['partitionId']['namespaceId'] ?? null,
+                    'database_id' => $key['partitionId']['databaseId'] ?? null,
+                ], fn ($v) => !is_null($v));
 
                 $local['partition_id'] = new PartitionId($p);
             }
