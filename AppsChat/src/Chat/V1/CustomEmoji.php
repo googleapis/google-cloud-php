@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CustomEmoji extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Unique key for the custom emoji resource.
+     * Output only. Unique key for the custom emoji resource.
      *
-     * Generated from protobuf field <code>string uid = 1;</code>
+     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $uid = '';
 
@@ -29,7 +29,7 @@ class CustomEmoji extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uid
-     *           Unique key for the custom emoji resource.
+     *           Output only. Unique key for the custom emoji resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class CustomEmoji extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique key for the custom emoji resource.
+     * Output only. Unique key for the custom emoji resource.
      *
-     * Generated from protobuf field <code>string uid = 1;</code>
+     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getUid()
@@ -49,9 +49,9 @@ class CustomEmoji extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique key for the custom emoji resource.
+     * Output only. Unique key for the custom emoji resource.
      *
-     * Generated from protobuf field <code>string uid = 1;</code>
+     * Generated from protobuf field <code>string uid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

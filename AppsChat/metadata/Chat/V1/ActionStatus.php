@@ -17,12 +17,12 @@ class ActionStatus
         \GPBMetadata\Google\Rpc\Code::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¯
+½
 "google/chat/v1/action_status.protogoogle.chat.v1"R
 ActionStatus%
 status_code (2.google.rpc.Code
-user_facing_message (	Bœ
-com.google.chat.v1BActionStatusProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpbªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
+user_facing_message (	Bª
+com.google.chat.v1BActionStatusProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb¢DYNAPIProtoªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
         , true);
 
         static::$is_initialized = true;
