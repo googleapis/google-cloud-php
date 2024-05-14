@@ -31,6 +31,7 @@ use Google\Cloud\Firestore\AggregateQuerySnapshot;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -75,7 +76,7 @@ class TransactionTest extends TestCase
             $this->valueMapper,
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             self::TRANSACTION
-        ]);
+        ], ['requestHandler', 'connection']);
 
         $this->ref = $this->prophesize(DocumentReference::class);
         $this->ref->name()->willReturn(self::DOCUMENT);
@@ -83,11 +84,17 @@ class TransactionTest extends TestCase
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::DOCUMENT],
-            'transaction' => self::TRANSACTION
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+                    && $data['documents'] == [self::DOCUMENT]
+                    && $data['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
             [
                 'found' => [
                     'name' => self::DOCUMENT,
@@ -100,7 +107,7 @@ class TransactionTest extends TestCase
             ]
         ]));
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->transaction->snapshot($this->ref->reveal());
         $this->assertInstanceOf(DocumentSnapshot::class, $res);
@@ -334,12 +341,18 @@ class TransactionTest extends TestCase
             ]
         ];
 
-        $this->connection->batchGetDocuments(Argument::allOf(
-            Argument::withEntry('documents', $names),
-            Argument::withEntry('transaction', self::TRANSACTION)
-        ))->shouldBeCalled()->willReturn($res);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($names) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['documents'] == $names
+                    && $data['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($res);
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->transaction->documents($input);
 
@@ -426,11 +439,17 @@ class TransactionTest extends TestCase
             ]
         ];
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', $names))
-            ->shouldBeCalled()
-            ->willReturn($res);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($names) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['documents'] == $names;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($res);
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->transaction->documents($names);
         $this->assertEquals($names[0], $res[0]->name());

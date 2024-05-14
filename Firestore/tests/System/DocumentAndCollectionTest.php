@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore\Tests\System;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\DocumentReference;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 
 /**
  * @group firestore
@@ -49,9 +50,10 @@ class DocumentAndCollectionTest extends FirestoreTestCase
     {
         // without sleep, test fails intermittently
         sleep(1);
-        $readTime = new Timestamp(new \DateTimeImmutable('now'));
+        $timestamp = new ProtobufTimestamp();
+        $timestamp->fromDateTime(new \DateTime());
         $snapshotData = $this->document->snapshot([
-            'readTime' => $readTime
+            'readTime' => $timestamp
         ])->data();
 
         $this->assertEquals('John', $snapshotData['firstName']);

@@ -27,6 +27,8 @@ use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 
 /**
  * Methods common to representing Document Snapshots.
@@ -131,12 +133,18 @@ trait SnapshotTrait
         $name,
         array $options = []
     ) {
-        $options = $this->formatReadTimeOption($options);
-
-        $snapshot = $connection->batchGetDocuments([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
             'database' => $this->databaseFromName($name),
             'documents' => [$name],
-        ] + $options)->current();
+        ];
+        $request = $serializer->decodeMessage(new BatchGetDocumentsRequest(), $data);
+        $snapshot = $requestHandler->sendRequest(
+            FirestoreClient::class,
+            'batchGetDocuments',
+            $request,
+            $optionalArgs
+        )->current();
 
         if (!isset($snapshot['found'])) {
             throw new NotFoundException(sprintf(
@@ -194,10 +202,18 @@ trait SnapshotTrait
             $documentNames[] = $path;
         }
 
-        $documents = $this->connection->batchGetDocuments([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
             'database' => $this->databaseName($projectId, $database),
             'documents' => $documentNames,
-        ] + $options);
+        ];
+        $request = $serializer->decodeMessage(new BatchGetDocumentsRequest(), $data);
+        $documents = $requestHandler->sendRequest(
+            FirestoreClient::class,
+            'batchGetDocuments',
+            $request,
+            $optionalArgs
+        );
 
         $res = [];
         foreach ($documents as $document) {

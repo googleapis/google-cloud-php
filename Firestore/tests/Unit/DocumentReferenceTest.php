@@ -27,6 +27,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -77,7 +79,7 @@ class DocumentReferenceTest extends TestCase
                 self::COLLECTION
             ),
             self::NAME
-        ]);
+        ], ['requestHandler', 'connection']);
     }
 
     public function testParent()
@@ -213,10 +215,17 @@ class DocumentReferenceTest extends TestCase
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+
+                return $data['database'] == sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+                    && $data['documents'] == [self::NAME];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
             [
                 'found' => [
                     'name' => self::NAME,
@@ -229,7 +238,7 @@ class DocumentReferenceTest extends TestCase
             ]
         ]));
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snapshot = $this->document->snapshot();
         $this->assertInstanceOf(DocumentSnapshot::class, $snapshot);

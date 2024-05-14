@@ -32,6 +32,8 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -63,7 +65,7 @@ class FirestoreClientTest extends SnippetTestCase
         $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(FirestoreClient::class, [
             ['projectId' => self::PROJECT]
-        ]);
+        ], ['connection', 'requestHandler']);
     }
 
     public function testClass()
@@ -128,25 +130,28 @@ class FirestoreClientTest extends SnippetTestCase
     {
         $tpl = 'projects/%s/databases/%s/documents/users/%s';
 
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                [
-                    'found' => [
-                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
-                        'fields' => []
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ], [
-                    'found' => [
-                        'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
-                        'fields' => []
-                    ],
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ]
-            ]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            [
+                'found' => [
+                    'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'john'),
+                    'fields' => []
+                ],
+                'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+            ], [
+                'found' => [
+                    'name' => sprintf($tpl, self::PROJECT, self::DATABASE, 'dave'),
+                    'fields' => []
+                ],
+                'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+            ]
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'documents');
         $snippet->addLocal('firestore', $this->client);
@@ -159,16 +164,19 @@ class FirestoreClientTest extends SnippetTestCase
     public function testDocumentsDoesntExist()
     {
         $tpl = 'projects/%s/databases/%s/documents/users/%s';
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                [
-                    'missing' => sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
-                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
-                ]
-            ]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            [
+                'missing' => sprintf($tpl, self::PROJECT, self::DATABASE, 'deleted-user'),
+                'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+            ]
+        ]);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'documents', 1);
         $snippet->addLocal('firestore', $this->client);
@@ -214,42 +222,55 @@ class FirestoreClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['transaction' => 'foo']);
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', [$from]))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => $from,
-                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
-                        'fields' => [
-                            'balance' => [
-                                'doubleValue' => 1000.00
-                            ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($from) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['documents'] == [$from];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'found' => [
+                    'name' => $from,
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
+                    'fields' => [
+                        'balance' => [
+                            'doubleValue' => 1000.00
                         ]
                     ]
                 ]
-            ]));
+            ]
+        ]));
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', [$to]))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => $to,
-                        'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
-                        'fields' => [
-                            'balance' => [
-                                'doubleValue' => 1000.00
-                            ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($to) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['documents'] == [$to];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'found' => [
+                    'name' => $from,
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT),
+                    'fields' => [
+                        'balance' => [
+                            'doubleValue' => 1000.00
                         ]
                     ]
                 ]
-            ]));
+            ]
+        ]));
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled();
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'runTransaction');
         $snippet->addLocal('firestore', $this->client);

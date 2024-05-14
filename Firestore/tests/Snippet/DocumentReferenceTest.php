@@ -28,6 +28,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
@@ -214,19 +216,22 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => self::DOCUMENT,
-                        'fields' => [],
-                        'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
-                    ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'found' => [
+                    'name' => self::DOCUMENT,
+                    'fields' => [],
+                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                 ]
-            ]));
+            ]
+        ]));
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'snapshot');
         $snippet->addLocal('document', $this->document);

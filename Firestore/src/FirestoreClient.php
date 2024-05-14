@@ -181,13 +181,12 @@ class FirestoreClient
         ];
 
 
-        // COMMENT THIS OUT WHILE UPDATING RPCs
-        // $config = $this->buildClientOptions($config);
-        // $config['credentials'] = $this->createCredentialsWrapper(
-        //     $config['credentials'],
-        //     $config['credentialsConfig'],
-        //     $config['universeDomain']
-        // );
+        $config = $this->buildClientOptions($config);
+        $config['credentials'] = $this->createCredentialsWrapper(
+            $config['credentials'],
+            $config['credentialsConfig'],
+            $config['universeDomain']
+        );
 
         $this->database = $config['database'];
 
@@ -460,7 +459,7 @@ class FirestoreClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.BatchGetDocuments BatchGetDocuments
      * @codingStandardsIgnoreEnd
      *
      * @param string[]|DocumentReference[] $paths Any combination of string paths or DocumentReference instances.

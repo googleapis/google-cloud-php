@@ -24,6 +24,8 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use InvalidArgumentException;
 use Iterator;
 use PHPUnit\Framework\TestCase;
@@ -142,13 +144,17 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1)
             ->willReturn(['transaction' => null]);
-        $this->connection->batchGetDocuments([
-            'database' => $this->dbName(),
-            'documents' => [$this->documentName()],
-            'transaction' => null,
-        ])
-            ->shouldBeCalledTimes(1)
-            ->willReturn($this->documents->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == $this->dbName()
+                    && $data['documents'] == [$this->documentName()]
+                    && !isset($data['transaction']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn($this->documents->reveal());
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->requestHandler->reveal(),
@@ -170,13 +176,17 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1)
             ->willReturn(['transaction' => null]);
-        $this->connection->batchGetDocuments([
-            'database' => $this->dbName(),
-            'documents' => [$this->documentName()],
-            'transaction' => null,
-        ])
-            ->shouldBeCalledTimes(1)
-            ->willThrow((new ServiceException('')));
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == $this->dbName()
+                    && $data['documents'] == [$this->documentName()]
+                    && !isset($data['transaction']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willThrow((new ServiceException('')));
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->requestHandler->reveal(),
@@ -209,13 +219,17 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1)
             ->willReturn(['transaction' => null]);
-        $this->connection->batchGetDocuments([
-            'database' => $this->dbName(),
-            'documents' => [$this->documentName()],
-            'transaction' => null,
-        ])
-            ->shouldBeCalledTimes(1)
-            ->willReturn($this->documents->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == $this->dbName()
+                    && $data['documents'] == [$this->documentName()]
+                    && !isset($data['transaction']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn($this->documents->reveal());
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->requestHandler->reveal(),
