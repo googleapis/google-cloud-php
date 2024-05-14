@@ -173,6 +173,11 @@ class SpannerClient
     private $lroCallables;
 
     /**
+     * @var array
+     */
+    private $defaultQueryOptions;
+
+    /**
      * Create a Spanner client. Please note that this client requires
      * [the gRPC extension](https://cloud.google.com/php/grpc).
      *
@@ -319,6 +324,7 @@ class SpannerClient
         ];
         $this->directedReadOptions = $config['directedReadOptions'] ?? [];
         $this->routeToLeader = $config['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $config['queryOptions'];
 
         // Configure GAPIC client options
         $config = $this->buildClientOptions($config);
@@ -387,7 +393,10 @@ class SpannerClient
             $this->requestHandler,
             $this->serializer,
             $this->returnInt64AsObject,
-            ['routeToLeader' => $this->routeToLeader]
+            [
+                'routeToLeader' => $this->routeToLeader,
+                'defaultQueryOptions' => $this->defaultQueryOptions
+            ]
         );
 
         return new BatchClient(
@@ -640,7 +649,8 @@ class SpannerClient
             $instance,
             [
                 'directedReadOptions' => $this->directedReadOptions,
-                'routeToLeader' => $this->routeToLeader
+                'routeToLeader' => $this->routeToLeader,
+                'defaultQueryOptions' => $this->defaultQueryOptions
             ]
         );
     }

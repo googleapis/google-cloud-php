@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
@@ -59,6 +60,7 @@ class DatabaseTest extends TestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
+    use RequestHandlingTestTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
 
@@ -74,6 +76,8 @@ class DatabaseTest extends TestCase
     const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => []]];
 
     private $connection;
+    private $requestHandler;
+    private $serializer;
     private $instance;
     private $sessionPool;
     private $lro;
@@ -90,12 +94,14 @@ class DatabaseTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
         $this->sessionPool = $this->prophesize(SessionPoolInterface::class);
         $this->lro = $this->prophesize(LongRunningConnectionInterface::class);
         $this->lroCallables = [];
         $this->session = TestHelpers::stub(Session::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             self::PROJECT,
             self::INSTANCE,
             self::DATABASE,
@@ -123,6 +129,8 @@ class DatabaseTest extends TestCase
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->lro->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->lroCallables,
             self::PROJECT,
             self::INSTANCE,
@@ -142,7 +150,8 @@ class DatabaseTest extends TestCase
             ->willReturn(null);
 
         $args = [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->instance,
             $this->lro->reveal(),
             $this->lroCallables,

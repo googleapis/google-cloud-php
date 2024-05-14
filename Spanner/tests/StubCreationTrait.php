@@ -39,29 +39,4 @@ trait StubCreationTrait
 
         return $c;
     }
-
-    private function getRequestHandlerStub()
-    {
-        $handler = $this->prophesize(RequestHandler::class);
-        $handler->sendRequest(
-            SpannerClient::class,
-            'deleteSession',
-            Argument::cetera()
-        )->willReturn([[]]);
-        return $handler;
-    }
-
-    private function getSerializerStub()
-    {
-        $serializer = $this->prophesize(Serializer::class);
-        $serializer->decodeMessage(
-            Argument::type(DeleteSessionRequest::class),
-            Argument::cetera()
-        )->willReturn(new DeleteSessionRequest());
-        // All the serializer decode may not be mocked.
-        $serializer->decodeMessage(
-            Argument::cetera()
-        )->willReturn(null);
-        return $serializer;
-    }
 }

@@ -31,6 +31,7 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
@@ -46,6 +47,7 @@ class OperationTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use RequestHandlingTestTrait;
     use StubCreationTrait;
 
     const SESSION = 'my-session-id';
@@ -57,15 +59,20 @@ class OperationTest extends TestCase
     private $connection;
     private $operation;
     private $session;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->getConnStub();
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
 
         $this->operation = TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             false
         ]);
 

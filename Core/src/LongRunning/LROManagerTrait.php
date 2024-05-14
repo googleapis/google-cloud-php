@@ -53,7 +53,7 @@ trait LROManagerTrait
      * @param array $lroResponseMappers A list of mappers for deserializing operation results.
      * @param string $lroResource [optional] The resource for which operations
      *        may be listed.
-     * @param string $clientClass The request will be forwarded to this client class.
+     * @param string $clientClass [Optional] The request will be forwarded to this client class.
      */
     private function setLroProperties(
         RequestHandler $requestHandler,

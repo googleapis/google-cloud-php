@@ -28,6 +28,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Backup;
 use InvalidArgumentException;
@@ -48,6 +49,7 @@ class InstanceTest extends TestCase
     use ProphecyTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
+    use RequestHandlingTestTrait;
     use ResultGeneratorTrait;
 
     const PROJECT_ID = 'test-project';
@@ -57,15 +59,19 @@ class InstanceTest extends TestCase
     const SESSION = 'projects/test-project/instances/instance-name/databases/database-name/sessions/session';
 
     private $connection;
+    private $directedReadOptionsIncludeReplicas;
     private $instance;
     private $lroConnection;
-    private $directedReadOptionsIncludeReplicas;
+    private $requestHandler;
+    private $serializer;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->getConnStub();
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
                 'replicaSelections' => [
@@ -78,6 +84,8 @@ class InstanceTest extends TestCase
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             [],
             self::PROJECT_ID,
             self::NAME,

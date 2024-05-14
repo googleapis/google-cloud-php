@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -33,17 +34,24 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\RollbackRequest;
 use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Protobuf\Timestamp as ProtoTimestamp;
 
 /**
  * @group spanner
@@ -51,9 +59,11 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 class TransactionTypeTest extends TestCase
 {
+    use ApiHelperTrait;
     use GrpcTestTrait;
     use ProphecyTrait;
     use ResultTestTrait;
+    use RequestHandlingTestTrait;
     use StubCreationTrait;
     use TimeTrait;
 
@@ -76,69 +86,50 @@ class TransactionTypeTest extends TestCase
 
         $this->connection = $this->getConnStub();
         $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializerStub();
-
-        $this->serializer
-            ->decodeMessage(
-                Argument::type(CreateSessionRequest::class),
-                Argument::withEntry(
-                    'database',
+        $this->serializer = $this->getSerializer();
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'createSession',
+            function($args) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals(
+                    $args->getDatabase(),
                     SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-                )
-            )
-            ->willReturn(new CreateSessionRequest());
-        $this->requestHandler
-            ->sendRequest(
-                SpannerClient::class,
-                'createSession',
-                Argument::type(CreateSessionRequest::class),
-                Argument::cetera()
-            )
-            ->willReturn(['name' => $this->getFullyQualifiedSessionName()]);
+                );
+                return true;
+            },
+            ['name' => $this->getFullyQualifiedSessionName()],
+            -1
+        );
+        $this->mockSendRequest(SpannerClient::class, 'deleteSession', null, [], -1);
     }
 
     public function testDatabaseRunTransactionPreAllocate()
     {
-        $this->serializer
-            ->decodeMessage(
-                Argument::type(BeginTransactionRequest::class),
-                Argument::withEntry(
-                    'session',
-                    $this->getFullyQualifiedSessionName()
-                )
-            )
-            ->willReturn(new BeginTransactionRequest());
-        $this->requestHandler
-            ->sendRequest(
-                SpannerClient::class,
-                'beginTransaction',
-                Argument::type(BeginTransactionRequest::class),
-                Argument::cetera()
-            )
-            ->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
-
-        $this->serializer
-            ->decodeMessage(
-                Argument::type(CommitRequest::class),
-                Argument::withEntry(
-                    'transactionId',
-                    self::TRANSACTION
-                )
-            )
-            ->willReturn(new CommitRequest());
-        $this->requestHandler
-            ->sendRequest(
-                SpannerClient::class,
-                'commit',
-                Argument::type(CommitRequest::class),
-                Argument::cetera()
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['commitTimestamp' => $this->timestamp]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function($args) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals($args->getSession(), $this->getFullyQualifiedSessionName());
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function($args) {
+                Argument::type(CommitRequest::class);
+                $this->assertEquals($args->getTransactionId(), self::TRANSACTION);
+                return true;
+            },
+            ['commitTimestamp' => $this->timestamp]
+        );
 
         $database = $this->database(
             $this->requestHandler->reveal(),
-            $this->serializer->reveal()
+            $this->serializer
         );
 
         $database->runTransaction(function ($t) {
@@ -149,28 +140,21 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseRunTransactionSingleUse()
     {
-        $this->requestHandler
-            ->sendRequest(
-                SpannerClient::class,
-                'beginTransaction',
-                Argument::cetera()
-            )
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
 
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', ['readWrite' => []]))
-            ->shouldBeCalledTimes(1);
-        $this->requestHandler
-            ->sendRequest(
-                SpannerClient::class,
-                'commit',
-                Argument::allOf(
-                    Argument::type(CommitRequest::class),
-                    Argument::which('getSingleUseTransaction', $this->getReadWriteTransactionOptions())
-                ),
-                Argument::cetera()
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['commitTimestamp' => $this->timestamp]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function($args) {
+                Argument::type(CommitRequest::class);
+                $this->assertEquals(
+                    $args->getSingleUseTransaction(),
+                    $this->createTransactionOptions()
+                );
+                return true;
+            },
+            ['commitTimestamp' => $this->timestamp]
+        );
 
         $database = $this->database(
             $this->requestHandler->reveal(),
@@ -186,15 +170,18 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseTransactionPreAllocate()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('transactionOptions', [
-                'readWrite' => []
-            ])
-        ))->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function($args) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals($args->getOptions(), $this->createTransactionOptions());
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
 
-        $database = $this->database($this->connection->reveal());
-
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $transaction = $database->transaction();
 
         $this->assertInstanceOf(Transaction::class, $transaction);
@@ -203,10 +190,12 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseTransactionSingleUse()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database(
+            $this->requestHandler->reveal(),
+            $this->serializer
+        );
 
         $transaction = $database->transaction(['singleUse' => true]);
 
@@ -216,17 +205,24 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseSnapshotPreAllocate()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('transactionOptions', [
-                'readOnly' => [
-                    'strong' => true
-                ]
-            ])
-        ))->shouldBeCalledTimes(1)
-          ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function($args) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals(
+                    $args->getOptions(),
+                    $this->createTransactionOptions(['readOnly' => ['strong' => true]])
+                );
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $database = $this->database(
+            $this->requestHandler->reveal(),
+            $this->serializer
+        );
 
         $snapshot = $database->snapshot();
 
@@ -236,10 +232,12 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseSnapshotSingleUse()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
 
-        $database = $this->database($this->connection->reveal());
+        $database = $database = $this->database(
+            $this->requestHandler->reveal(),
+            $this->serializer
+        );
 
         $snapshot = $database->snapshot(['singleUse' => true]);
 
@@ -259,23 +257,32 @@ class TransactionTypeTest extends TestCase
         $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration($seconds, $nanos);
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'singleUse' => [
                 'readOnly' => [
-                    'minReadTimestamp' => $this->timestamp,
+                    'minReadTimestamp' => $this->formatTimestampForApi($this->timestamp),
                     'maxStaleness' => [
                         'seconds' => $seconds,
                         'nanos' => $nanos
                     ]
                 ]
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
 
-        $database = $this->database($this->connection->reveal());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) use ($selector) {
+                Argument::type(ExecuteSqlRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $snapshot = $database->snapshot([
             'singleUse' => true,
             'minReadTimestamp' => $timestamp,
@@ -292,13 +299,10 @@ class TransactionTypeTest extends TestCase
         $time = $this->parseTimeString($this->timestamp);
         $timestamp = new Timestamp($time[0], $time[1]);
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->mockSendRequest(SpannerClient::class, 'executeStreamingSql', null, null, 0);
 
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldNotbeCalled();
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $snapshot = $database->snapshot([
             'minReadTimestamp' => $timestamp,
@@ -314,13 +318,10 @@ class TransactionTypeTest extends TestCase
 
         $duration = new Duration($seconds, $nanos);
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->mockSendRequest(SpannerClient::class, 'executeStreamingSql', null, null, 0);
 
-        $this->connection->executeStreamingSql(Argument::any())
-            ->shouldNotbeCalled();
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $snapshot = $database->snapshot([
             'maxStaleness' => $duration
@@ -338,25 +339,32 @@ class TransactionTypeTest extends TestCase
         $time = $this->parseTimeString($this->timestamp);
         $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration($seconds, $nanos);
-
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('transaction', [
-                'singleUse' => [
-                    'readOnly' => [
-                        'readTimestamp' => $this->timestamp,
-                        'exactStaleness' => [
-                            'seconds' => $seconds,
-                            'nanos' => $nanos
-                        ]
+        $transaction = [
+            'singleUse' => [
+                'readOnly' => [
+                    'minReadTimestamp' => $this->formatTimestampForApi($this->timestamp),
+                    'exactStaleness' => [
+                        'seconds' => $seconds,
+                        'nanos' => $nanos
                     ]
                 ]
-            ])
-        ))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+            ]
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
 
-        $database = $this->database($this->connection->reveal());
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) use ($selector) {
+                Argument::type(ExecuteSqlRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
+
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $snapshot = $database->snapshot([
             'singleUse' => true,
@@ -378,27 +386,40 @@ class TransactionTypeTest extends TestCase
         $time = $this->parseTimeString($this->timestamp);
         $timestamp = new Timestamp($time[0], $time[1]);
         $duration = new Duration($seconds, $nanos);
-
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('transactionOptions', [
-                'readOnly' => [
-                    'readTimestamp' => $this->timestamp,
-                    'exactStaleness' => [
-                        'seconds' => $seconds,
-                        'nanos' => $nanos
-                    ]
+        $options = [
+            'readOnly' => [
+                'readTimestamp' => $this->formatTimestampForApi($this->timestamp),
+                'exactStaleness' => [
+                    'seconds' => $seconds,
+                    'nanos' => $nanos
                 ]
-            ])
-        ))->shouldBeCalledTimes(1)->willReturn([
-            'id' => self::TRANSACTION
-        ]);
+            ]
+        ];
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function($args) use ($options) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals(
+                    $args->getOptions(),
+                    $this->createTransactionOptions($options)
+                );
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) {
+                Argument::type(ExecuteSqlRequest::class);
+                $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', ['id' => self::TRANSACTION]))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($this->resultGenerator($chunks));
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $snapshot = $database->snapshot([
             'readTimestamp' => $timestamp,
@@ -413,18 +434,26 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseSingleUseSnapshotStrongConsistency($chunks)
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'singleUse' => [
                 'readOnly' => [
                     'strong' => true
                 ]
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
-
-        $database = $this->database($this->connection->reveal());
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) use ($selector) {
+                Argument::type(executeSqlRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $snapshot = $database->snapshot([
             'singleUse' => true,
@@ -439,22 +468,36 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabasePreAllocatedSnapshotStrongConsistency($chunks)
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('transactionOptions', [
-                'readOnly' => [
-                    'strong' => true
-                ]
-            ])
-        ))->shouldBeCalledTimes(1)->willReturn([
-            'id' => self::TRANSACTION
-        ]);
+        $options = [
+            'readOnly' => [
+                'strong' => true
+            ]
+        ];
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function($args) use ($options) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals(
+                    $args->getOptions(),
+                    $this->createTransactionOptions($options)
+                );
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) {
+                Argument::type(executeSqlRequest::class);
+                $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', ['id' => self::TRANSACTION]))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($this->resultGenerator($chunks));
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $snapshot = $database->snapshot([
             'strong' => true
@@ -468,18 +511,27 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseSingleUseSnapshotDefaultsToStrongConsistency($chunks)
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'singleUse' => [
                 'readOnly' => [
                     'strong' => true
                 ]
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) use ($selector) {
+                Argument::type(executeSqlRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $snapshot = $database->snapshot([
             'singleUse' => true,
@@ -493,25 +545,39 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabasePreAllocatedSnapshotDefaultsToStrongConsistency($chunks)
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('transactionOptions', [
-                'readOnly' => [
-                    'strong' => true
-                ]
-            ])
-        ))->shouldBeCalledTimes(1)->willReturn([
-            'id' => self::TRANSACTION
-        ]);
-
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', ['id' => self::TRANSACTION]))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($this->resultGenerator($chunks));
-
-        $database = $this->database($this->connection->reveal());
-
+        $options = [
+            'readOnly' => [
+                'strong' => true
+            ]
+        ];
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function($args) use ($options) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals(
+                    $args->getOptions(),
+                    $this->createTransactionOptions($options)
+                );
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) {
+                Argument::type(executeSqlRequest::class);
+                $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
+   
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
+   
         $snapshot = $database->snapshot();
-
+   
         $snapshot->execute('SELECT * FROM Table')->rows()->current();
     }
 
@@ -520,22 +586,36 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseSnapshotReturnReadTimestamp($chunks)
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('transactionOptions', [
-                'readOnly' => [
-                    'returnReadTimestamp' => true
-                ]
-            ])
-        ))->shouldBeCalledTimes(1)->willReturn([
-            'id' => self::TRANSACTION
-        ]);
+        $options = [
+            'readOnly' => [
+                'returnReadTimestamp' => true
+            ]
+        ];
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function($args) use ($options) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals(
+                    $args->getOptions(),
+                    $this->createTransactionOptions($options)
+                );
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) {
+                Argument::type(executeSqlRequest::class);
+                $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', ['id' => self::TRANSACTION]))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($this->resultGenerator($chunks));
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $snapshot = $database->snapshot([
             'returnReadTimestamp' => true
@@ -546,13 +626,21 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseInsertSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function($args) {
+                Argument::type(CommitRequest::class);
+                $this->assertEquals(
+                    $args->getSingleUseTransaction(),
+                    $this->createTransactionOptions()
+                );
+                return true;
+            },
+            ['commitTimestamp' => $this->timestamp]
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
 
         $database->insert('Table', [
             'column' => 'value'
@@ -561,13 +649,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseInsertBatchSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->createMockedCommitDatabase();
 
         $database->insertBatch('Table', [[
             'column' => 'value'
@@ -576,13 +658,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseUpdateSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->createMockedCommitDatabase();
 
         $database->update('Table', [
             'column' => 'value'
@@ -591,13 +667,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseUpdateBatchSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->createMockedCommitDatabase();
 
         $database->updateBatch('Table', [[
             'column' => 'value'
@@ -606,13 +676,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseInsertOrUpdateSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->createMockedCommitDatabase();
 
         $database->insertOrUpdate('Table', [
             'column' => 'value'
@@ -621,13 +685,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseInsertOrUpdateBatchSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->createMockedCommitDatabase();
 
         $database->insertOrUpdateBatch('Table', [[
             'column' => 'value'
@@ -636,13 +694,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseReplaceSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->createMockedCommitDatabase();
 
         $database->replace('Table', [
             'column' => 'value'
@@ -651,13 +703,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseReplaceBatchSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->createMockedCommitDatabase();
 
         $database->replaceBatch('Table', [[
             'column' => 'value'
@@ -666,13 +712,7 @@ class TransactionTypeTest extends TestCase
 
     public function testDatabaseDeleteSingleUseReadWrite()
     {
-        $this->connection->commit(Argument::withEntry('singleUseTransaction', [
-            'readWrite' => []
-        ]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => $this->timestamp
-        ]);
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->createMockedCommitDatabase();
 
         $database->delete('Table', new KeySet);
     }
@@ -682,18 +722,27 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseExecuteSingleUseReadOnly($chunks)
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'singleUse' => [
                 'readOnly' => [
                     'strong' => true
                 ]
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) use ($selector) {
+                Argument::type(executeSqlRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $database->execute('SELECT * FROM Table')->rows()->current();
     }
 
@@ -702,18 +751,27 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseExecuteBeginReadOnly($chunks)
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'begin' => [
                 'readOnly' => [
                     'strong' => true
                 ]
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) use ($selector) {
+                Argument::type(executeSqlRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $database->execute('SELECT * FROM Table', [
             'begin' => true
         ])->rows()->current();
@@ -724,16 +782,25 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseExecuteBeginReadWrite($chunks)
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->executeStreamingSql(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'begin' => [
                 'readWrite' => []
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function($args) use ($selector) {
+                Argument::type(executeSqlRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $database->execute('SELECT * FROM Table', [
             'begin' => true,
             'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
@@ -745,18 +812,27 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseReadSingleUseReadOnly($chunks)
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->streamingRead(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'singleUse' => [
                 'readOnly' => [
                     'strong' => true
                 ]
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function($args) use ($selector) {
+                Argument::type(readRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $database->read('Table', new KeySet, [])->rows()->current();
     }
 
@@ -765,18 +841,27 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseReadBeginReadOnly($chunks)
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->streamingRead(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'begin' => [
                 'readOnly' => [
                     'strong' => true
                 ]
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function($args) use ($selector) {
+                Argument::type(ReadRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $database->read('Table', new KeySet, [], [
             'begin' => true
         ])->rows()->current();
@@ -787,16 +872,25 @@ class TransactionTypeTest extends TestCase
      */
     public function testDatabaseReadBeginReadWrite($chunks)
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotbeCalled();
-
-        $this->connection->streamingRead(Argument::withEntry('transaction', [
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $transaction = [
             'begin' => [
                 'readWrite' => []
             ]
-        ]))->shouldBeCalledTimes(1)->willReturn($this->resultGenerator($chunks));
+        ];
+        $selector = $this->serializer->decodeMessage(new TransactionSelector, $transaction);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function($args) use ($selector) {
+                Argument::type(ReadRequest::class);
+                $this->assertEquals($args->getTransaction(), $selector);
+                return true;
+            },
+            $this->resultGenerator($chunks)
+        );
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $database->read('Table', new KeySet, [], [
             'begin' => true,
             'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
@@ -805,23 +899,35 @@ class TransactionTypeTest extends TestCase
 
     public function testTransactionPreAllocatedRollback()
     {
-        $this->connection->beginTransaction(Argument::withEntry('transactionOptions', [
-            'readWrite' => []
-        ]))->shouldBeCalledTimes(1)->willReturn(['id' => self::TRANSACTION]);
-
-        $sess = SpannerClient::sessionName(
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function($args) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals($args->getOptions(), $this->createTransactionOptions());
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
+        $session = SpannerClient::sessionName(
             self::PROJECT,
             self::INSTANCE,
             self::DATABASE,
             self::SESSION
         );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'rollback',
+            function($args) use ($session) {
+                Argument::type(RollbackRequest::class);
+                $this->assertEquals($args->getTransactionId(), self::TRANSACTION);
+                $this->assertEquals($args->getSession(), $session);
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
 
-        $this->connection->rollback(Argument::allOf(
-            Argument::withEntry('transactionId', self::TRANSACTION),
-            Argument::withEntry('session', $sess)
-        ))->shouldBeCalled();
-
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $t = $database->transaction();
         $t->rollback();
     }
@@ -830,10 +936,10 @@ class TransactionTypeTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->connection->beginTransaction(Argument::any())->shouldNotbeCalled();
-        $this->connection->rollback(Argument::any())->shouldNotbeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
+        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
 
-        $database = $this->database($this->connection->reveal());
+        $database = $this->database($this->requestHandler->reveal(), $this->serializer);
         $t = $database->transaction(['singleUse' => true]);
         $t->rollback();
     }
@@ -867,5 +973,43 @@ class TransactionTypeTest extends TestCase
             self::DATABASE,
             self::SESSION
         );
+    }
+
+    private function createTransactionOptions($options = [])
+    {
+        $transactionOptions = new TransactionOptions;
+        if (isset($options['readOnly'])) {
+            $readOnly = $this->serializer->decodeMessage(
+                new PBReadOnly(),
+                $options['readOnly']
+            );
+            $transactionOptions->setReadOnly($readOnly);
+        } else {
+            $readWrite = $readOnly = $this->serializer->decodeMessage(
+                new ReadWrite(),
+                $options['readOnly'] ?? []
+            );
+            $transactionOptions->setReadWrite($readWrite);
+        }
+        return $transactionOptions;
+    }
+
+    private function createMockedCommitDatabase()
+    {
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function($args) {
+                Argument::type(CommitRequest::class);
+                $this->assertEquals(
+                    $args->getSingleUseTransaction(),
+                    $this->createTransactionOptions()
+                );
+                return true;
+            },
+            ['commitTimestamp' => $this->timestamp]
+        );
+
+        return $this->database($this->requestHandler->reveal(), $this->serializer);
     }
 }
