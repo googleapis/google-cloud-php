@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.33.0](https://github.com/googleapis/gax-php/compare/v1.32.0...v1.33.0) (2024-05-10)
+
+
+### Features
+
+* Support V2 OperationsClient in OperationResponse ([#564](https://github.com/googleapis/gax-php/issues/564)) ([7f8bb13](https://github.com/googleapis/gax-php/commit/7f8bb13f78463b1e7f2289ce5514763992806e5e))
+
 ## [1.32.0](https://github.com/googleapis/gax-php/compare/v1.31.0...v1.32.0) (2024-04-24)
 
 
