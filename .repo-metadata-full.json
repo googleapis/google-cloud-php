@@ -687,6 +687,12 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "gameservices"
     },
+    "GeoCommonProtos": {
+        "distribution_name": "google/geo-common-protos",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/geo-common-protos/latest",
+        "library_type": "CORE"
+    },
     "GkeBackup": {
         "language": "php",
         "distribution_name": "google/cloud-gke-backup",
@@ -1441,5 +1447,21 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-workflows/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "workflows"
+    },
+    "MapsFleetEngine": {
+        "language": "php",
+        "distribution_name": "google/maps-fleetengine",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/maps-fleetengine/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "fleetengine"
+    },
+    "MapsFleetEngineDelivery": {
+        "language": "php",
+        "distribution_name": "google/maps-fleetengine-delivery",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/maps-fleetengine-delivery/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "fleetengine"
     }
 }
