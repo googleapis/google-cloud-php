@@ -304,6 +304,8 @@ trait TransactionalReadTrait
         );
 
         $options = $this->addLarHeader($options, true, $this->context);
+        // Unsetting the internal flag
+        unset($options['singleUse']);
 
         $result = $this->operation->execute($this->session, $sql, $options);
         if (empty($this->id()) && $result->transaction()) {

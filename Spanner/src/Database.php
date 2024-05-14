@@ -213,6 +213,11 @@ class Database
     private $lroCallables;
 
     /**
+     * @var array
+     */
+    private $defaultQueryOptions;
+
+    /**
      * Create an object representing a Database.
      *
      * @param RequestHandler The request handler that is responsible for sending a request
@@ -233,6 +238,7 @@ class Database
      *
      *     @type bool $routeToLeader Enable/disable Leader Aware Routing.
      *         **Defaults to** `true` (enabled).
+     *     @type array $defaultQueryOptions
      * }
      */
     public function __construct(
@@ -258,7 +264,10 @@ class Database
             $requestHandler,
             $serializer,
             $returnInt64AsObject,
-            ['routeToLeader' => $this->routeToLeader]
+            [
+                'routeToLeader' => $this->routeToLeader,
+                'defaultQueryOptions' => $this->defaultQueryOptions
+            ]
         );
         $this->info = $info;
 
@@ -277,6 +286,7 @@ class Database
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
         $this->routeToLeader = $options['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
     }
 
     /**
@@ -829,10 +839,6 @@ class Database
      *           **Defaults to** `false`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
-     *     @type array $directedReadOptions Directed read options.
-     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
-     *           If using the `replicaSelection::type` setting, utilize the constants available in
-     *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      * }
      * @return Snapshot
      * @throws \BadMethodCallException If attempting to call this method within
@@ -850,10 +856,6 @@ class Database
         ];
 
         $options['transactionOptions'] = $this->configureSnapshotOptions($options);
-        $options['directedReadOptions'] = $this->configureDirectedReadOptions(
-            $options,
-            $this->directedReadOptions ?? []
-        );
 
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READ,
@@ -1793,6 +1795,8 @@ class Database
         );
 
         try {
+            // Unset the internal flag.
+            unset($options['singleUse']);
             return $this->operation->execute($session, $sql, $options);
         } finally {
             $session->setExpiration();
@@ -2075,6 +2079,8 @@ class Database
         $options = $this->addLarHeader($options, true, $context);
 
         try {
+            // Unset the internal flag.
+            unset($options['singleUse']);
             return $this->operation->read($session, $table, $keySet, $columns, $options);
         } finally {
             $session->setExpiration();

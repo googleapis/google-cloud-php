@@ -63,7 +63,7 @@ trait RequestTrait
             );
         }
         if ($routeToLeader) {
-            $optionalArgs = $this->addLarHeader($optionalArgs, $larHeader);
+            $optionalArgs = $this->addLarHeader($optionalArgs, $routeToLeader);
         }
 
         $request = $this->serializer->decodeMessage(new $requestClass(), $data);
