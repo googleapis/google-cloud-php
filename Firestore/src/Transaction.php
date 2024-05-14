@@ -127,19 +127,26 @@ class Transaction
      * $snapshot = $transaction->snapshot($document);
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @codingStandardsIgnoreEnd
+     *
      * @param DocumentReference $document The document to retrieve.
      * @param array $options Configuration options.
      * @return DocumentSnapshot
      */
     public function snapshot(DocumentReference $document, array $options = [])
     {
+        if ($this->transaction) {
+            $options += ['transaction' => $this->transaction];
+        }
         return $this->createSnapshot(
             $this->connection,
             $this->requestHandler,
             $this->serializer,
             $this->valueMapper,
             $document,
-            ['transaction' => $this->transaction] + $options
+            $options
         );
     }
 
@@ -210,7 +217,7 @@ class Transaction
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.BatchGetDocuments BatchGetDocuments
      * @codingStandardsIgnoreEnd
      *
      * @param string[]|DocumentReference[] $paths Any combination of string paths or DocumentReference instances.

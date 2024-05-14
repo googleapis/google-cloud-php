@@ -35,6 +35,8 @@ use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
@@ -111,17 +113,20 @@ class TransactionTest extends SnippetTestCase
 
     public function testSnapshot()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                [
-                    'found' => [
-                        'name' => self::DOCUMENT,
-                        'fields' => [],
-                        'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
-                    ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'found' => [
+                    'name' => self::DOCUMENT,
+                    'fields' => [],
+                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
                 ]
-            ]));
+            ]
+        ]));
 
         $this->transaction->setConnection(
             $this->connection->reveal(),
@@ -258,25 +263,28 @@ class TransactionTest extends SnippetTestCase
 
     public function testDocuments()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                [
-                    'found' => [
-                        'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
-                        'fields' => []
-                    ],
-                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
-                ], [
-                    'found' => [
-                        'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
-                        'fields' => []
-                    ],
-                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
-                ]
-            ]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            [
+                'found' => [
+                    'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'john'),
+                    'fields' => []
+                ],
+                'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+            ], [
+                'found' => [
+                    'name' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'dave'),
+                    'fields' => []
+                ],
+                'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+            ]
+        ]);
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'documents');
         $snippet->addLocal('transaction', $this->transaction);
@@ -288,16 +296,19 @@ class TransactionTest extends SnippetTestCase
 
     public function testDocumentsDoesntExist()
     {
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                [
-                    'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
-                    'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
-                ]
-            ]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            [
+                'missing' => sprintf(self::DOCUMENT_TEMPLATE, self::PROJECT, self::DATABASE_ID, 'deleted-user'),
+                'readTime' => (new \DateTime())->format(Timestamp::FORMAT)
+            ]
+        ]);
 
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(Transaction::class, 'documents', 1);
         $snippet->addLocal('transaction', $this->transaction);

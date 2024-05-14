@@ -459,7 +459,7 @@ class FirestoreClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.BatchGetDocuments BatchGetDocuments
      * @codingStandardsIgnoreEnd
      *
      * @param string[]|DocumentReference[] $paths Any combination of string paths or DocumentReference instances.

@@ -32,6 +32,7 @@ use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator as CompositFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
@@ -90,7 +91,7 @@ class ConformanceTest extends TestCase
             [
                 'projectId' => 'projectID'
             ]
-        ]);
+        ], ['requestHandler']);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
@@ -103,10 +104,16 @@ class ConformanceTest extends TestCase
      */
     public function testGet($test)
     {
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', [$test['request']['name']]))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([[]]));
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($test) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['documents'] == [$test['request']['name']];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([[]]));
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->client->document($this->relativeName($test['docRefPath']))->snapshot();
     }

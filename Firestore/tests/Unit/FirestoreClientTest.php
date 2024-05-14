@@ -33,6 +33,7 @@ use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\WriteBatch;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -66,7 +67,8 @@ class FirestoreClientTest extends TestCase
         $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(
             FirestoreClient::class,
-            [['projectId' => self::PROJECT]]
+            [['projectId' => self::PROJECT]],
+            ['requestHandler', 'connection']
         );
     }
 
@@ -228,11 +230,18 @@ class FirestoreClientTest extends TestCase
             ]
         ];
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', $names))
-            ->shouldBeCalled()
-            ->willReturn($res);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($names) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['documents'] == $names;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($res);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->documents($input);
 
@@ -315,11 +324,18 @@ class FirestoreClientTest extends TestCase
             ]
         ];
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', $names))
-            ->shouldBeCalled()
-            ->willReturn($res);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::that(function ($req) use ($names) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['documents'] == $names;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($res);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->documents($names);
         $this->assertEquals($names[0], $res[0]->name());

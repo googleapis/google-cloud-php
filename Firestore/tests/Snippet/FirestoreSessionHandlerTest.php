@@ -25,6 +25,8 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
+use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -66,7 +68,10 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->serializer = $this->getSerializer();
-        $this->client = TestHelpers::stub(FirestoreClient::class);
+        $this->client = TestHelpers::stub(FirestoreClient::class, [], [
+            'connection',
+            'requestHandler'
+        ]);
     }
 
     public function testClass()
@@ -74,16 +79,19 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(FirestoreSessionHandler::class);
         $snippet->replace('$firestore = new FirestoreClient();', '');
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', Argument::type('array')))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                'found' => [
-                    [
-                        'name' => '',
-                        'fields' => []
-                    ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            'found' => [
+                [
+                    'name' => '',
+                    'fields' => []
                 ]
-            ]));
+            ]
+        ]));
 
         $this->connection->beginTransaction(Argument::any())
             ->shouldBeCalled()
@@ -104,6 +112,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         ]);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet->addLocal('firestore', $this->client);
 
         $res = $snippet->invoke();
@@ -116,16 +125,19 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(FirestoreClient::class, 'sessionHandler');
 
-        $this->connection->batchGetDocuments(Argument::withEntry('documents', Argument::type('array')))
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                'found' => [
-                    [
-                        'name' => '',
-                        'fields' => []
-                    ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            'found' => [
+                [
+                    'name' => '',
+                    'fields' => []
                 ]
-            ]));
+            ]
+        ]));
 
         $this->connection->beginTransaction(Argument::any())
             ->shouldBeCalled()
@@ -146,6 +158,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         ]);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet->addLocal('firestore', $this->client);
 
         $res = $snippet->invoke();
@@ -161,16 +174,19 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(FirestoreSessionHandler::class, 1);
         $snippet->replace('$firestore = new FirestoreClient();', '');
 
-        $this->connection->batchGetDocuments(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(new \ArrayIterator([
-                'found' => [
-                    [
-                        'name' => '',
-                        'fields' => []
-                    ]
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchGetDocuments',
+            Argument::type(BatchGetDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(new \ArrayIterator([
+            'found' => [
+                [
+                    'name' => '',
+                    'fields' => []
                 ]
-            ]));
+            ]
+        ]));
 
         $this->connection->beginTransaction(Argument::any())
             ->shouldBeCalled()
@@ -185,6 +201,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
             });
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet->addLocal('firestore', $this->client);
 
         $res = $snippet->invoke();

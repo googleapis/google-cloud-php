@@ -358,10 +358,10 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BatchGetDocuments BatchGetDocuments
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.BatchGetDocuments BatchGetDocuments
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration Options
+     * @param array $options Configuration options.
      * @return DocumentSnapshot
      */
     public function snapshot(array $options = [])
