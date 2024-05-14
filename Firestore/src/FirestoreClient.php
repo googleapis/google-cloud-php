@@ -573,9 +573,9 @@ class FirestoreClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.BeginTransaction BeginTransaction
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Rollback Rollback
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.BeginTransaction BeginTransaction
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Rollback Rollback
      * @codingStandardsIgnoreEnd
      *
      * @param callable $callable A callable function, allowing atomic operations
@@ -631,9 +631,9 @@ class FirestoreClient
         ) use (&$transactionId) {
             $database = $this->databaseName($this->projectId, $this->database);
 
+            $options['begin']['readWrite']['retryTransaction'] = $transactionId;
             $beginTransaction = $this->connection->beginTransaction(array_filter([
                 'database' => $database,
-                'retryTransaction' => $transactionId,
             ]) + $options['begin']);
 
             $transactionId = $beginTransaction['transaction'];
