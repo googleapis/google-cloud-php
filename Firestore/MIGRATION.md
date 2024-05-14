@@ -18,8 +18,8 @@ Current usage:
 ```php
 use Google\Protobuf\Timestamp;
 
-$timestamp = (new Timestamp())
-    ->fromDateTime(new \DateTime());
+$timestamp = new Timestamp();
+$timestamp->fromDateTime(new \DateTime());
 ```
 
 
