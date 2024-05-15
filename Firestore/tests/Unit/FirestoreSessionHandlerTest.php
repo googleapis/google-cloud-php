@@ -560,7 +560,6 @@ class FirestoreSessionHandlerTest extends TestCase
     public function testGcWithException()
     {
         $this->expectWarningUsingErrorhandler();
-        $databaseName = V1FirestoreGapicClient::databaseRootName(self::PROJECT, self::DATABASE);
 
         $this->requestHandler->sendRequest(
             V1FirestoreClient::class,

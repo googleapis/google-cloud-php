@@ -113,7 +113,6 @@ class TransactionTest extends SnippetTestCase
         $client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $client->___setProperty('connection', $this->connection->reveal());
 
-
         $snippet = $this->snippetFromClass(Transaction::class);
         $snippet->setLine(3, '');
         $snippet->addLocal('firestore', $client);
