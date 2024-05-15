@@ -30,8 +30,11 @@ use Google\Apps\Chat\V1\UpdateMembershipRequest;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates a membership. Requires [user
- * authentication](https://developers.google.com/chat/api/guides/auth/users).
+ * Updates a membership. For an example, see [Update a user's membership in
+ * a space](https://developers.google.com/workspace/chat/update-members).
+ *
+ * Requires [user
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
