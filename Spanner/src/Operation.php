@@ -41,6 +41,8 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\PartitionQueryRequest;
+use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\RollbackRequest;
@@ -855,10 +857,9 @@ class Operation
         $types = $this->pluck('types', $data, false) ?: [];
         $data += $this->mapper->formatParamsForExecuteSql($parameters, $types);
         $data = $this->formatSqlParams($data);
+        $data += ['transaction' => ['id' => $transactionId]];
         $data += [
-            'transaction' => $this->createTransactionSelector(
-                $data + ['transaction' => ['id' => $transactionId]]
-            ),
+            'transaction' => $this->createTransactionSelector($data),
             'session' => $session->name(),
             'sql' => $sql,
             'partitionOptions' => $this->serializer->decodeMessage(
@@ -924,16 +925,15 @@ class Operation
         // cache this to pass to the partition instance.
         $originalOptions = $options;
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += ['transaction' => ['id' => $transactionId]];
         $data += [
-            'transaction' => $this->createTransactionSelector(
-                $data + ['transaction' => ['id' => $transactionId]]
-            ),
+            'transaction' => $this->createTransactionSelector($data),
             'session' => $session->name(),
             'table' => $table,
             'columns' => $columns,
             'keySet' => $this->serializer->decodeMessage(
                 new GapicKeySet,
-                $this->formatKeySet($keySet)
+                $this->formatKeySet($this->flattenKeySet($keySet))
             ),
             'partitionOptions' => $this->serializer->decodeMessage(
                 new PartitionOptions,
