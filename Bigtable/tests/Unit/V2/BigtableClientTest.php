@@ -27,15 +27,24 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as BigtableGapicClient;
+use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest;
 use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse;
+use Google\Cloud\Bigtable\V2\MutateRowRequest;
 use Google\Cloud\Bigtable\V2\MutateRowResponse;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
+use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
 use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
+use Google\Cloud\Bigtable\V2\ReadChangeStreamRequest;
 use Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
+use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
+use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -59,13 +68,13 @@ class BigtableClientTest extends GeneratedTest
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /** @return BigtableClient */
+    /** @return BigtableGapicClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new BigtableClient($options);
+        return new BigtableGapicClient($options);
     }
 
     /** @test */
@@ -84,7 +93,11 @@ class BigtableClientTest extends GeneratedTest
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $rowKey = '122';
-        $response = $gapicClient->checkAndMutateRow($formattedTableName, $rowKey);
+        $request = new CheckAndMutateRowRequest([
+            'table_name' => $formattedTableName,
+            'row_key' => $rowKey
+        ]);
+        $response = $gapicClient->checkAndMutateRow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -119,8 +132,12 @@ class BigtableClientTest extends GeneratedTest
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $rowKey = '122';
+        $request = new CheckAndMutateRowRequest([
+            'table_name' => $formattedTableName,
+            'row_key' => $rowKey
+        ]);
         try {
-            $gapicClient->checkAndMutateRow($formattedTableName, $rowKey);
+            $gapicClient->checkAndMutateRow($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -149,7 +166,10 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $serverStream = $gapicClient->generateInitialChangeStreamPartitions($formattedTableName);
+        $request = new GenerateInitialChangeStreamPartitionsRequest([
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->generateInitialChangeStreamPartitions($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -187,7 +207,10 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $serverStream = $gapicClient->generateInitialChangeStreamPartitions($formattedTableName);
+        $request = new GenerateInitialChangeStreamPartitionsRequest([
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->generateInitialChangeStreamPartitions($request);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -217,7 +240,12 @@ class BigtableClientTest extends GeneratedTest
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $rowKey = '122';
         $mutations = [];
-        $response = $gapicClient->mutateRow($formattedTableName, $rowKey, $mutations);
+        $request = new MutateRowRequest([
+            'row_key' => $rowKey,
+            'mutations' => $mutations,
+            'table_name' => $formattedTableName
+        ]);
+        $response = $gapicClient->mutateRow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -255,8 +283,13 @@ class BigtableClientTest extends GeneratedTest
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $rowKey = '122';
         $mutations = [];
+        $request = new MutateRowRequest([
+            'row_key' => $rowKey,
+            'mutations' => $mutations,
+            'table_name' => $formattedTableName
+        ]);
         try {
-            $gapicClient->mutateRow($formattedTableName, $rowKey, $mutations);
+            $gapicClient->mutateRow($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -286,7 +319,11 @@ class BigtableClientTest extends GeneratedTest
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $entries = [];
-        $serverStream = $gapicClient->mutateRows($formattedTableName, $entries);
+        $request = new MutateRowsRequest([
+            'entries' => $entries,
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->mutateRows($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -327,7 +364,11 @@ class BigtableClientTest extends GeneratedTest
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $entries = [];
-        $serverStream = $gapicClient->mutateRows($formattedTableName, $entries);
+        $request = new MutateRowsRequest([
+            'entries' => $entries,
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->mutateRows($request);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -355,7 +396,10 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $response = $gapicClient->pingAndWarm($formattedName);
+        $request = new PingAndWarmRequest([
+            'name' => $formattedName
+        ]);
+        $response = $gapicClient->pingAndWarm($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -388,7 +432,10 @@ class BigtableClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
         try {
-            $gapicClient->pingAndWarm($formattedName);
+            $request = new PingAndWarmRequest([
+                'name' => $formattedName
+            ]);
+            $gapicClient->pingAndWarm($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -417,7 +464,10 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $serverStream = $gapicClient->readChangeStream($formattedTableName);
+        $request = new ReadChangeStreamRequest([
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->readChangeStream($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -455,7 +505,10 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $serverStream = $gapicClient->readChangeStream($formattedTableName);
+        $request = new ReadChangeStreamRequest([
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->readChangeStream($request);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -485,7 +538,12 @@ class BigtableClientTest extends GeneratedTest
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $rowKey = '122';
         $rules = [];
-        $response = $gapicClient->readModifyWriteRow($formattedTableName, $rowKey, $rules);
+        $request = new ReadModifyWriteRowRequest([
+            'table_name' => $formattedTableName,
+            'row_key' => $rowKey,
+            'rules' => $rules
+        ]);
+        $response = $gapicClient->readModifyWriteRow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -524,7 +582,12 @@ class BigtableClientTest extends GeneratedTest
         $rowKey = '122';
         $rules = [];
         try {
-            $gapicClient->readModifyWriteRow($formattedTableName, $rowKey, $rules);
+            $request = new ReadModifyWriteRowRequest([
+                'table_name' => $formattedTableName,
+                'row_key' => $rowKey,
+                'rules' => $rules
+            ]);
+            $gapicClient->readModifyWriteRow($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -559,7 +622,10 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $serverStream = $gapicClient->readRows($formattedTableName);
+        $request = new ReadRowsRequest([
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->readRows($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -597,7 +663,10 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $serverStream = $gapicClient->readRows($formattedTableName);
+        $request = new ReadRowsRequest([
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->readRows($request);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -641,7 +710,10 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $serverStream = $gapicClient->sampleRowKeys($formattedTableName);
+        $request = new SampleRowKeysRequest([
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->sampleRowKeys($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -679,7 +751,10 @@ class BigtableClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $serverStream = $gapicClient->sampleRowKeys($formattedTableName);
+        $request = new SampleRowKeysRequest([
+            'table_name' => $formattedTableName
+        ]);
+        $serverStream = $gapicClient->sampleRowKeys($request);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
