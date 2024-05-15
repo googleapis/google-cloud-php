@@ -36,8 +36,11 @@ use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as GapicDatabase;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Session\Session;
@@ -198,11 +201,6 @@ class Database
      * @var array
      */
     private $directedReadOptions;
-
-    /**
-     * @var array
-     */
-    private $lroResponseMapper;
 
     /**
      * @var bool
@@ -431,6 +429,7 @@ class Database
     public function reload(array $options = [])
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['name'] = $this->name;
 
         return $this->info = $this->createAndSendRequest(
             DatabaseAdminClient::class,
@@ -571,19 +570,20 @@ class Database
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $fieldMask = [];
+
         if (isset($data['enableDropProtection'])) {
-            $fieldMask[] = 'enableDropProtection';
+            $fieldMask[] = 'enable_drop_protection';
         }
         $updateMask = ['paths' => $fieldMask];
         $databaseInfo = [
             'name' => $this->name,
-            'enableDropProtection' => $data['enableDropProtection'] ?? false,
+            'enableDropProtection' => $this->pluck('enableDropProtection', $data, false) ?? false,
         ];
 
         $data['database'] = $this->serializer->decodeMessage(new GapicDatabase(), $databaseInfo);
         $data['updateMask'] = $this->serializer->decodeMessage(new FieldMask(), $updateMask);
 
-        $this->createAndSendRequest(
+        return $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'updateDatabase',
             $data,
@@ -659,7 +659,7 @@ class Database
         $data['database'] = $this->name;
         $data['statements'] = $statements;
 
-        $this->createAndSendRequest(
+        $res = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'updateDatabaseDdl',
             $data,
@@ -744,7 +744,7 @@ class Database
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data['database'] = $this->name;
 
-        $this->createAndSendRequest(
+        $ddl = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'getDatabaseDdl',
             $data,

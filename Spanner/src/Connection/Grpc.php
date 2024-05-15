@@ -138,6 +138,7 @@ class Grpc implements ConnectionInterface
      * @var bool
      */
     private $larEnabled;
+    private $lroResponseMappers;
 
     /**
      * @param array $config [optional]
@@ -233,6 +234,7 @@ class Grpc implements ConnectionInterface
 
         $this->grpcConfig = $grpcConfig;
         $this->larEnabled = $this->pluck('routeToLeader', $config, false) ?? true;
+        $this->lroResponseMappers = $this->getLROResponseMappers();
     }
 
     /**
