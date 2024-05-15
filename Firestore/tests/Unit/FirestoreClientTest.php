@@ -33,7 +33,9 @@ use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Query;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\FirestoreClient as V1FirestoreGapicClient;
 use Google\Cloud\Firestore\WriteBatch;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -390,9 +392,15 @@ class FirestoreClientTest extends TestCase
         $transactionId = 'foobar';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 
-        $this->connection->beginTransaction([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
-        ])->shouldBeCalled()->willReturn([
+        $databaseName =  V1FirestoreGapicClient::databaseRootName(self::PROJECT, self::DATABASE);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::that(function ($request) use ($databaseName) {
+                return $request->getDatabase() == $databaseName;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'transaction' => $transactionId
         ]);
 
@@ -402,6 +410,7 @@ class FirestoreClientTest extends TestCase
         ])->shouldBeCalled();
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->client->runTransaction($this->noop());
     }
@@ -412,12 +421,24 @@ class FirestoreClientTest extends TestCase
         $transactionId2 = 'barfoo';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 
-        $this->connection->beginTransaction([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
-        ])->shouldBeCalled()->will(function ($args, $mock) use ($transactionId, $transactionId2) {
-            $mock->beginTransaction(Argument::withEntry('retryTransaction', $transactionId))->willReturn([
-                'transaction' => $transactionId2
-            ]);
+        $databaseName =  V1FirestoreGapicClient::databaseRootName(self::PROJECT, self::DATABASE);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::that(function ($request) use ($databaseName) {
+                return $request->getDatabase() == $databaseName
+                    && !$request->hasOptions();
+            }),
+            Argument::cetera()
+        )->shouldBeCalledOnce()->will(function ($args, $mock) use ($transactionId, $transactionId2) {
+            $mock->sendRequest(
+                V1FirestoreClient::class,
+                'beginTransaction',
+                Argument::that(function ($req) use ($transactionId) {
+                    return $req->getOptions()->getReadWrite()->getRetryTransaction() == $transactionId;
+                }),
+                Argument::cetera()
+            )->willReturn(['transaction' => $transactionId2]);
 
             return [
                 'transaction' => $transactionId
@@ -444,6 +465,7 @@ class FirestoreClientTest extends TestCase
         ])->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);
@@ -463,9 +485,15 @@ class FirestoreClientTest extends TestCase
         $transactionId = 'foobar';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 
-        $this->connection->beginTransaction([
-            'database' => 'projects/'. self::PROJECT .'/databases/'. self::DATABASE
-        ])->shouldBeCalled()->willReturn([
+        $databaseName =  V1FirestoreGapicClient::databaseRootName(self::PROJECT, self::DATABASE);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::that(function ($request) use ($databaseName) {
+                return $request->getDatabase() == $databaseName;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'transaction' => $transactionId
         ]);
 
@@ -477,6 +505,7 @@ class FirestoreClientTest extends TestCase
         ])->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->runTransaction(function ($t) {
             throw new \RangeException('foo');
@@ -490,7 +519,12 @@ class FirestoreClientTest extends TestCase
         $transactionId = 'foobar';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 
-        $this->connection->beginTransaction(Argument::any())->shouldBeCalledTimes(6)->willReturn([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->shouldBeCalledTimes(6)->willReturn([
             'transaction' => $transactionId
         ]);
 
@@ -501,6 +535,7 @@ class FirestoreClientTest extends TestCase
         $this->connection->rollback(Argument::any())->shouldBeCalledTimes(6);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);
@@ -516,7 +551,12 @@ class FirestoreClientTest extends TestCase
         $transactionId = 'foobar';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 
-        $this->connection->beginTransaction(Argument::any())->shouldBeCalledTimes(3)->willReturn([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->shouldBeCalledTimes(3)->willReturn([
             'transaction' => $transactionId
         ]);
 
@@ -527,6 +567,7 @@ class FirestoreClientTest extends TestCase
         $this->connection->rollback(Argument::any())->shouldBeCalledTimes(3);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->client->runTransaction(function ($t) {
             $doc = $this->prophesize(DocumentReference::class);

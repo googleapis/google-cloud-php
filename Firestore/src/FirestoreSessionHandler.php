@@ -21,6 +21,8 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestHandler;
 use SessionHandlerInterface;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 
 /**
  * Custom session handler backed by Cloud Firestore.
@@ -242,9 +244,16 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $database = $this->databaseName($this->projectId, $this->database);
 
         try {
-            $beginTransaction = $this->connection->beginTransaction([
-                'database' => $database
-            ] + $this->options['begin']);
+            list($data, $optionalArgs) = $this->splitOptionalArgs($this->options['begin']);
+            $data['database'] = $database;
+
+            $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+            $beginTransaction = $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'beginTransaction',
+                $request,
+                $optionalArgs
+            );
         } catch (ServiceException $e) {
             trigger_error(
                 sprintf('Firestore beginTransaction failed: %s', $e->getMessage()),
@@ -385,9 +394,16 @@ class FirestoreSessionHandler implements SessionHandlerInterface
         $deleteCount = 0;
         try {
             $database = $this->databaseName($this->projectId, $this->database);
-            $beginTransaction = $this->connection->beginTransaction([
-                'database' => $database
-            ] + $this->options['begin']);
+            list($data, $optionalArgs) = $this->splitOptionalArgs($this->options['begin']);
+            $data['database'] = $database;
+
+            $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+            $beginTransaction = $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'beginTransaction',
+                $request,
+                $optionalArgs
+            );
 
             $transaction = new Transaction(
                 $this->connection,

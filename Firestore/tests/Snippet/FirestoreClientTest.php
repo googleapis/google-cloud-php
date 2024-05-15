@@ -33,6 +33,7 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
@@ -218,9 +219,12 @@ class FirestoreClientTest extends SnippetTestCase
         $from = sprintf('projects/%s/databases/%s/documents/users/john', self::PROJECT, self::DATABASE);
         $to = sprintf('projects/%s/databases/%s/documents/users/dave', self::PROJECT, self::DATABASE);
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['transaction' => 'foo']);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['transaction' => 'foo']);
 
         $this->requestHandler->sendRequest(
             V1FirestoreClient::class,

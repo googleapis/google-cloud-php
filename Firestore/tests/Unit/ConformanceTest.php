@@ -91,7 +91,7 @@ class ConformanceTest extends TestCase
             [
                 'projectId' => 'projectID'
             ]
-        ], ['requestHandler']);
+        ], ['requestHandler', 'connection']);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
