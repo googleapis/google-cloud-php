@@ -178,10 +178,10 @@ class Session
      */
     public function delete(array $options = [])
     {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data = [
             'name' => $this->name()
         ];
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
         $this->createAndSendRequest(
             SpannerClient::class,
