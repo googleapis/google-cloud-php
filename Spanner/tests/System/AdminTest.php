@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -95,7 +96,7 @@ class AdminTest extends SpannerTestCase
         $dbName = uniqid(self::TESTING_PREFIX);
         $op = $instance->createDatabase($dbName);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
         $db = $op->pollUntilComplete();
         $this->assertInstanceOf(Database::class, $db);
 
@@ -138,7 +139,7 @@ class AdminTest extends SpannerTestCase
         $dbName = uniqid(self::TESTING_PREFIX);
         $op = $instance->createDatabase($dbName);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
         $db = $op->pollUntilComplete();
         $this->assertInstanceOf(Database::class, $db);
 
@@ -289,7 +290,7 @@ class AdminTest extends SpannerTestCase
             'databaseDialect' => DatabaseDialect::POSTGRESQL
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
         $db = $op->pollUntilComplete();
         $this->assertInstanceOf(Database::class, $db);
 
