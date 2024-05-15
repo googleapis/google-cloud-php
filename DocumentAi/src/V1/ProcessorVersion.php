@@ -19,11 +19,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProcessorVersion extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the processor version.
+     * Identifier. The resource name of the processor version.
      * Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -39,9 +39,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      */
     private $document_schema = null;
     /**
-     * The state of the processor version.
+     * Output only. The state of the processor version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.State state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
@@ -94,7 +94,7 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the processor version.
+     *           Identifier. The resource name of the processor version.
      *           Format:
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`
      *     @type string $display_name
@@ -102,7 +102,7 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $document_schema
      *           The schema of the processor version. Describes the output.
      *     @type int $state
-     *           The state of the processor version.
+     *           Output only. The state of the processor version.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time the processor version was created.
      *     @type \Google\Cloud\DocumentAI\V1\EvaluationReference $latest_evaluation
@@ -125,11 +125,11 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the processor version.
+     * Identifier. The resource name of the processor version.
      * Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -138,11 +138,11 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the processor version.
+     * Identifier. The resource name of the processor version.
      * Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -217,9 +217,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The state of the processor version.
+     * Output only. The state of the processor version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.State state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -228,9 +228,9 @@ class ProcessorVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The state of the processor version.
+     * Output only. The state of the processor version.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.State state = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessorVersion.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
