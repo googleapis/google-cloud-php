@@ -6,7 +6,7 @@
     "autoload": {
         "psr-4": {
             "Google\\Maps\\FleetEngine\\": "src",
-            "GPBMetadata\\Maps\\Fleetengine\\": "metadata"
+            "GPBMetadata\\Google\\Maps\\Fleetengine\\": "metadata"
         }
     },
     "extra": {
@@ -18,8 +18,8 @@
     },
     "require": {
         "php": "^8.0",
-        "google/gax": "^1.32.0",
-        "google/geo-common-protos": "^0.1.0"
+        "google/gax": "^1.32",
+        "google/geo-common-protos": "^0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0"
