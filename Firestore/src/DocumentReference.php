@@ -188,14 +188,14 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
      *        Note that unlike {@see \Google\Cloud\Firestore\DocumentReference::update()},
      *        field paths are NOT supported by this method.
      * @param array $options Configuration Options.
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
     public function create(array $fields = [], array $options = [])
@@ -223,7 +223,7 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      * @codingStandardsIgnoreEnd
      *
      * @param array $fields An array containing fields, where keys are the field
@@ -238,7 +238,7 @@ class DocumentReference
      *           `false`.
      * }
      * @codingStandardsIgnoreStart
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
     public function set(array $fields, array $options = [])
@@ -304,12 +304,12 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      *
      * @param array[] $data A list of arrays of form
      *        `[FieldPath|string $path, mixed $value]`.
      * @param array $options Configuration options
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.WriteResult)
      * @throws \InvalidArgumentException If data is given in an invalid format
      *         or is empty.
      * @throws \InvalidArgumentException If any field paths are empty.
@@ -334,10 +334,10 @@ class DocumentReference
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      *
      * @param array $options Configuration Options
-     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.WriteResult)
+     * @return array [WriteResult](https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.WriteResult)
      * @codingStandardsIgnoreEnd
      */
     public function delete(array $options = [])

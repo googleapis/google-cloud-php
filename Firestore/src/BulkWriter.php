@@ -19,6 +19,7 @@ namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
@@ -28,6 +29,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
 use Google\Cloud\Firestore\FieldValue\DocumentTransformInterface;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Rpc\Code;
 
 /**
@@ -49,7 +52,7 @@ use Google\Rpc\Code;
  */
 class BulkWriter
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use DebugInfoTrait;
     use TimeTrait;
     use ValidateTrait;
@@ -722,23 +725,32 @@ class BulkWriter
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.Commit Commit
      *
      * @internal Only supposed to be used internally in Transaction class.
      * @access private
      * @param array $options Configuration Options
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#commitresponse](CommitResponse)
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#commitresponse](CommitResponse)
      * @codingStandardsIgnoreEnd
      */
     public function commit(array $options = [])
     {
         unset($options['merge'], $options['precondition']);
 
-        $response = $this->connection->commit(array_filter([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += array_filter([
             'database' => $this->database,
             'writes' => $this->writes,
             'transaction' => $this->transaction,
-        ]) + $options);
+        ]);
+        $request = $this->serializer->decodeMessage(new CommitRequest(), $data);
+
+        $response = $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            $request,
+            $optionalArgs
+        );
 
         if (isset($response['commitTime'])) {
             $time = $this->parseTimeString($response['commitTime']);
