@@ -90,7 +90,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'createSession',
-            function($args) {
+            function ($args) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals(
                     $args->getDatabase(),
@@ -109,7 +109,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'beginTransaction',
-            function($args) {
+            function ($args) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals($args->getSession(), $this->getFullyQualifiedSessionName());
                 return true;
@@ -119,7 +119,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'commit',
-            function($args) {
+            function ($args) {
                 Argument::type(CommitRequest::class);
                 $this->assertEquals($args->getTransactionId(), self::TRANSACTION);
                 return true;
@@ -145,7 +145,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'commit',
-            function($args) {
+            function ($args) {
                 Argument::type(CommitRequest::class);
                 $this->assertEquals(
                     $args->getSingleUseTransaction(),
@@ -173,7 +173,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'beginTransaction',
-            function($args) {
+            function ($args) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals($args->getOptions(), $this->createTransactionOptions());
                 return true;
@@ -208,7 +208,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'beginTransaction',
-            function($args) {
+            function ($args) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals(
                     $args->getOptions(),
@@ -274,7 +274,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -356,7 +356,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -398,7 +398,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'beginTransaction',
-            function($args) use ($options) {
+            function ($args) use ($options) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals(
                     $args->getOptions(),
@@ -411,7 +411,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) {
+            function ($args) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
                 return true;
@@ -446,7 +446,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(executeSqlRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -476,7 +476,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'beginTransaction',
-            function($args) use ($options) {
+            function ($args) use ($options) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals(
                     $args->getOptions(),
@@ -489,7 +489,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) {
+            function ($args) {
                 Argument::type(executeSqlRequest::class);
                 $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
                 return true;
@@ -523,7 +523,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(executeSqlRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -553,7 +553,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'beginTransaction',
-            function($args) use ($options) {
+            function ($args) use ($options) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals(
                     $args->getOptions(),
@@ -566,7 +566,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) {
+            function ($args) {
                 Argument::type(executeSqlRequest::class);
                 $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
                 return true;
@@ -594,7 +594,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'beginTransaction',
-            function($args) use ($options) {
+            function ($args) use ($options) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals(
                     $args->getOptions(),
@@ -607,7 +607,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) {
+            function ($args) {
                 Argument::type(executeSqlRequest::class);
                 $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
                 return true;
@@ -629,7 +629,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'commit',
-            function($args) {
+            function ($args) {
                 Argument::type(CommitRequest::class);
                 $this->assertEquals(
                     $args->getSingleUseTransaction(),
@@ -734,7 +734,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(executeSqlRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -763,7 +763,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(executeSqlRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -792,7 +792,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(executeSqlRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -824,7 +824,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'streamingRead',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(readRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -853,7 +853,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'streamingRead',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(ReadRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -882,7 +882,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'streamingRead',
-            function($args) use ($selector) {
+            function ($args) use ($selector) {
                 Argument::type(ReadRequest::class);
                 $this->assertEquals($args->getTransaction(), $selector);
                 return true;
@@ -902,7 +902,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'beginTransaction',
-            function($args) {
+            function ($args) {
                 Argument::type(BeginTransactionRequest::class);
                 $this->assertEquals($args->getOptions(), $this->createTransactionOptions());
                 return true;
@@ -918,7 +918,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'rollback',
-            function($args) use ($session) {
+            function ($args) use ($session) {
                 Argument::type(RollbackRequest::class);
                 $this->assertEquals($args->getTransactionId(), self::TRANSACTION);
                 $this->assertEquals($args->getSession(), $session);
@@ -999,7 +999,7 @@ class TransactionTypeTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'commit',
-            function($args) {
+            function ($args) {
                 Argument::type(CommitRequest::class);
                 $this->assertEquals(
                     $args->getSingleUseTransaction(),

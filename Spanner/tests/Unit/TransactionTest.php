@@ -238,7 +238,7 @@ class TransactionTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($sql) {
+            function ($args) use ($sql) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
                 $this->assertEquals($args->getSql(), $sql);
@@ -246,7 +246,7 @@ class TransactionTest extends TestCase
             },
             $this->resultGenerator(),
             1,
-            function($args) {
+            function ($args) {
                 $this->assertEquals(
                     $args['headers']['x-goog-spanner-route-to-leader'],
                     ['true']
@@ -303,7 +303,7 @@ class TransactionTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) {
+            function ($args) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getSeqno(), 1);
                 return true;
@@ -323,7 +323,7 @@ class TransactionTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeBatchDml',
-            function($args) {
+            function ($args) {
                 Argument::type(ExecuteBatchDmlRequest::class);
                 $this->assertEquals(
                     $args->getSeqno(),
@@ -351,7 +351,7 @@ class TransactionTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeBatchDml',
-            function($args) {
+            function ($args) {
                 Argument::type(ExecuteBatchDmlRequest::class);
                 $this->assertEquals(
                     $args->getRequestOptions()->getRequestTag(),
@@ -402,7 +402,7 @@ class TransactionTest extends TestCase
                 ]
             ],
             1,
-            function($args) {
+            function ($args) {
                 $this->assertEquals(
                     $args['headers']['x-goog-spanner-route-to-leader'],
                     ['true']
@@ -519,7 +519,7 @@ class TransactionTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',
-            function($args) use ($sql) {
+            function ($args) use ($sql) {
                 Argument::type(ExecuteSqlRequest::class);
                 $this->assertEquals($args->getSql(), $sql);
                 $this->assertEquals($args->getTransaction()->getId(), self::TRANSACTION);
@@ -694,7 +694,7 @@ class TransactionTest extends TestCase
         $this->mockSendRequest(
             SpannerClient::class,
             'rollback',
-            function($args) {
+            function ($args) {
                 Argument::type(RollbackRequest::class);
                 $this->assertEquals($args->getSession(), $this->session->name());
                 return true;

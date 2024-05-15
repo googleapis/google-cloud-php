@@ -43,12 +43,12 @@ trait RequestHandlingTestTrait
         ?callable $optionalArrayCondition = null
     ) {
         if (is_null($requestCondition)) {
-            $requestCondition = function($args) {
+            $requestCondition = function ($args) {
                 return true;
             };
         }
         if (is_null($optionalArrayCondition)) {
-            $optionalArrayCondition = function($args) {
+            $optionalArrayCondition = function ($args) {
                 return true;
             };
         }
@@ -66,7 +66,8 @@ trait RequestHandlingTestTrait
         }
     }
 
-    private function getSerializer() {
+    private function getSerializer()
+    {
         return new Serializer([], [
             'google.protobuf.Value' => function ($v) {
                 return $this->flattenValue($v);
