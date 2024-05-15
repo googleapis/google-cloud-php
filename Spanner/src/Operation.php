@@ -30,7 +30,6 @@ use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
-use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\DirectedReadOptions;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
@@ -292,13 +291,13 @@ class Operation
         }
 
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $data['session'] = $session->name();
-        $data['transactionId'] = $transactionId;
+        $args['session'] = $session->name();
+        $args['transactionId'] = $transactionId;
 
         $this->createAndSendRequest(
             GapicSpannerClient::class,
             'rollback',
-            $data,
+            $args,
             $optionalArgs,
             RollbackRequest::class,
             $this->getDatabaseNameFromSession($session),
@@ -471,7 +470,7 @@ class Operation
             'session' => $session->name(),
             'statements' => $this->formatStatements($statements)
         ];
-        if ($data['requestOptions']) {
+        if (isset($data['requestOptions'])) {
             $data['requestOptions'] = $this->serializer->decodeMessage(
                 new RequestOptions,
                 $data['requestOptions']

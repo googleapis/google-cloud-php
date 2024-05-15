@@ -46,7 +46,12 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
+use Google\Cloud\Spanner\V1\DeleteSessionRequest;
+use Google\Cloud\Spanner\V1\Session as GapicSession;
+use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
@@ -498,7 +503,7 @@ class Database
         ];
         if (isset($data['encryptionConfig'])) {
             $data['encryptionConfig'] = $this->serializer->decodeMessage(
-                new EncryptionConfig,
+                new EncryptionConfig(),
                 $this->pluck('encryptionConfig', $options)
             );
         }
@@ -2190,6 +2195,57 @@ class Database
             'database' => end($databaseParts),
             'instance' => end($instanceParts),
         ];
+    }
+
+    /**
+     * Creates a batch of sessions.
+     *
+     * @param array $options {
+     *     @type array $sessionTemplate
+     *     @type int $sessionCount
+     * }
+     */
+    public function batchCreateSessions(array $options)
+    {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['sessionTemplate'] = $this->serializer->decodeMessage(
+            new GapicSession,
+            $this->pluck('sessionTemplate', $data)
+        );
+        $data['database'] = $this->name;
+        return $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'batchCreateSessions',
+            $data,
+            $optionalArgs,
+            BatchCreateSessionsRequest::class,
+            $this->name,
+            $this->routeToLeader
+        );
+    }
+
+    /**
+     * Delete session asynchronously.
+     *
+     * @access private
+     * @param array $options {
+     *     @type name The session name to be deleted
+     * }
+     * @return PromiseInterface
+     * @experimental
+     */
+    public function deleteSessionAsync(array $options)
+    {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['name'] = $this->name;
+        return $this->createAndSendRequest(
+            GapicSpannerClient::class,
+            'deleteSessionAsync',
+            $data,
+            $optionalArgs,
+            DeleteSessionRequest::class,
+            $this->name
+        );
     }
 
     /**
