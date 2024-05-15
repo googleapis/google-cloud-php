@@ -55,6 +55,7 @@ use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
+use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -2239,7 +2240,6 @@ class Database
     public function deleteSessionAsync(array $options)
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $data['name'] = $this->name;
         return $this->createAndSendRequest(
             GapicSpannerClient::class,
             'deleteSessionAsync',

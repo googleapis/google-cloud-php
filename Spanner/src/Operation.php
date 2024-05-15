@@ -397,6 +397,7 @@ class Operation
         if (!isset($options['transaction']['begin'])) {
             $options['transaction'] = ['id' => $transaction->id()];
         }
+        $statsItem = $this->pluck('statsItem', $options, false);
         $res = $this->execute($session, $sql, $options);
         if (empty($transaction->id()) && $res->transaction()) {
             $transaction->setId($res->transaction()->id());
@@ -412,7 +413,7 @@ class Operation
             );
         }
 
-        $statsItem = $options['statsItem'] ?? 'rowCountExact';
+        $statsItem = $statsItem ?? 'rowCountExact';
 
         return $stats[$statsItem];
     }
@@ -601,7 +602,7 @@ class Operation
             'requestOptions' => [],
             'singleUse' => false
         ];
-        $isRetry = $options['isRetry'] ?? false;
+        $isRetry = $this->pluck('isRetry', $options, false) ?? false;
         $transactionTag = $this->pluck('tag', $options, false);
 
         if (isset($transactionTag)) {
