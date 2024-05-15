@@ -36,6 +36,7 @@ use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
@@ -95,15 +96,23 @@ class TransactionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['transaction' => self::TRANSACTION]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['transaction' => self::TRANSACTION]);
 
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $client = TestHelpers::stub(FirestoreClient::class);
+        $client = TestHelpers::stub(FirestoreClient::class, [], [
+            'connection',
+            'requestHandler'
+        ]);
+        $client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $client->___setProperty('connection', $this->connection->reveal());
+
 
         $snippet = $this->snippetFromClass(Transaction::class);
         $snippet->setLine(3, '');

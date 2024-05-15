@@ -33,7 +33,8 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
-use Google\Cloud\Firestore\V1\Client\FirestoreClient as ClientFirestoreClient;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -92,14 +93,6 @@ class FirestoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     const MAX_RETRIES = 5;
-
-    /**
-     * Keeping this consistent with veneer libraries where
-     * multiple clients are present.
-     */
-    private const GAPIC_KEYS = [
-        ClientFirestoreClient::class
-    ];
 
     /**
      * @var Connection\ConnectionInterface
@@ -215,7 +208,7 @@ class FirestoreClient
 
         $this->requestHandler = new RequestHandler(
             $this->serializer,
-            self::GAPIC_KEYS,
+            [V1FirestoreClient::class],
             $config
         );
 
@@ -631,10 +624,19 @@ class FirestoreClient
         ) use (&$transactionId) {
             $database = $this->databaseName($this->projectId, $this->database);
 
-            $options['begin']['readWrite']['retryTransaction'] = $transactionId;
-            $beginTransaction = $this->connection->beginTransaction(array_filter([
-                'database' => $database,
-            ]) + $options['begin']);
+            list($data, $optionalArgs) = $this->splitOptionalArgs($options['begin']);
+            if ($transactionId) {
+                $data['options']['readWrite']['retryTransaction'] = $transactionId;
+            }
+            $data['database'] = $database;
+
+            $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+            $beginTransaction = $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'beginTransaction',
+                $request,
+                $optionalArgs
+            );
 
             $transactionId = $beginTransaction['transaction'];
 

@@ -26,6 +26,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
+use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -93,11 +94,14 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
             ]
         ]));
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => self::TRANSACTION
-            ]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'transaction' => self::TRANSACTION
+        ]);
 
         $value = 'name|' . serialize('Bob');
         $this->connection->commit(Argument::allOf(
@@ -139,11 +143,14 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
             ]
         ]));
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => self::TRANSACTION
-            ]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'transaction' => self::TRANSACTION
+        ]);
 
         $value = 'name|' . serialize('Bob');
         $this->connection->commit(Argument::allOf(
@@ -188,11 +195,14 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
             ]
         ]));
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => self::TRANSACTION
-            ]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'transaction' => self::TRANSACTION
+        ]);
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
