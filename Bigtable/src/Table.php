@@ -280,7 +280,7 @@ class Table
         $rowKeys = $this->pluck('rowKeys', $options, false) ?: [];
         $ranges = $this->pluck('rowRanges', $options, false) ?: [];
         $filter = $this->pluck('filter', $options, false) ?: null;
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retries']);
 
         // TODO: check if we can use the mergeFromJsonString function here.
         array_walk($ranges, function (&$range) {
@@ -321,8 +321,8 @@ class Table
             $data['filter'] = $filter->toProto();
         }
 
-        $data += ['table_name' => $this->tableName];
-        $request = new ReadRowsRequest($data);
+        $data['table_name'] = $this->tableName;
+        $request = $this->serializer->decodeMessage(new ReadRowsRequest(), $data);
 
         return new ChunkFormatter(
             $this->gapicClient,
@@ -403,7 +403,7 @@ class Table
         $data['row_key'] = $rowKey;
         $data['rules'] = $rules->toProto();
 
-        $request = new ReadModifyWriteRowRequest($data);
+        $request = $this->serializer->decodeMessage(new ReadModifyWriteRowRequest(), $data);
         $readModifyWriteRowResponse = $this->gapicClient->readModifyWriteRow(
             $request,
             $optionalArgs + $this->options
@@ -435,7 +435,7 @@ class Table
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data['table_name'] = $this->tableName;
 
-        $request = new SampleRowKeysRequest($data);
+        $request = $this->serializer->decodeMessage(new SampleRowKeysRequest(), $data);
         $stream = $this->gapicClient->sampleRowKeys(
             $request,
             $optionalArgs + $this->options
@@ -555,9 +555,9 @@ class Table
             return false;
         };
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retries']);
 
-        $request = new MutateRowsRequest($data);
+        $request = $this->serializer->decodeMessage(new MutateRowsRequest(), $data);
         $request->setTableName($this->tableName);
 
         $retryingStream = new ResumableStream(
@@ -633,8 +633,7 @@ class Table
             end($entries);
             foreach (range($lastProcessedIndex + 1, key($entries)) as $index) {
                 $rowMutationsFailedResponse[] = [
-                    // TODO: check this
-                    // 'rowKey' => $entries[$index]->getRowKey(),
+                    'rowKey' => $entries[$index]->getRowKey(),
                     'statusCode' => $statusCode,
                     'message' => $message
                 ];
