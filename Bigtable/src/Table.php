@@ -282,7 +282,6 @@ class Table
         $filter = $this->pluck('filter', $options, false) ?: null;
         list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retries']);
 
-        // TODO: check if we can use the mergeFromJsonString function here.
         array_walk($ranges, function (&$range) {
             $range = $this->serializer->decodeMessage(
                 new RowRange(),
@@ -298,7 +297,6 @@ class Table
             );
         }
 
-        // TODO: check if we can use the mergeFromJsonString function here.
         if ($ranges || $rowKeys) {
             $data['rows'] = $this->serializer->decodeMessage(
                 new RowSet,
@@ -533,7 +531,6 @@ class Table
         $rowMutationsFailedResponse = [];
         $options = $options + $this->options;
         // This function is responsible to modify the $entries before every retry.
-        // TODO: Test failing $entries and see the effect.
         $argumentFunction = function ($request, $options) use (&$entries, &$rowMutationsFailedResponse) {
             if (count($rowMutationsFailedResponse) > 0) {
                 $entries = array_values($entries);
