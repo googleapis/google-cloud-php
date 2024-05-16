@@ -18,14 +18,17 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as RequestEntry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry as ResponseEntry;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
@@ -80,6 +83,7 @@ class SmartRetriesTest extends TestCase
         ];
         $this->table = new Table(
             $this->bigtableClient->reveal(),
+            new Serializer(),
             self::TABLE_NAME,
             $this->options
         );
@@ -96,11 +100,13 @@ class SmartRetriesTest extends TestCase
             ->willThrow(
                 $this->retryingApiException
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
-            ->shouldBeCalledTimes(4)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->readRows(
+            Argument::type(ReadRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalledTimes(4)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $args = [];
         $iterator = $this->table->readRows($args);
         $iterator->getIterator()->current();
@@ -117,8 +123,10 @@ class SmartRetriesTest extends TestCase
             ->willThrow(
                 $this->retryingApiException
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
-            ->shouldBeCalledTimes(6)
+        $this->bigtableClient->readRows(
+            Argument::type(ReadRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalledTimes(6)
             ->willReturn(
                 $this->serverStream->reveal()
             );
@@ -142,19 +150,12 @@ class SmartRetriesTest extends TestCase
                     $this->nonRetryingApiException
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
-        $secondCallArgument = [
-            'rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk2')])
-        ] + $expectedArgs;
-        $this->bigtableClient->readRows(self::TABLE_NAME, $secondCallArgument)
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->readRows(
+            Argument::type(ReadRowsRequest::class),
+            Argument::type('array')
+        )->willReturn(
+            $this->serverStream->reveal()
+        );
         $args = [];
         $iterator = $this->table->readRows($args);
         $rows = [];
@@ -184,20 +185,26 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(3, 4)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, $expectedArgs)
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
-        $secondCallArgument = [
-            'rows' => (new RowSet)->setRowRanges([(new RowRange)->setStartKeyOpen('rk2')]),
-            'rowsLimit' => 3
-        ] + $expectedArgs;
-        $this->bigtableClient->readRows(self::TABLE_NAME, $secondCallArgument)
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        
+        $allowedRowsLimit = ['5' => 1, '3' => 1];
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) use(&$allowedRowsLimit) {
+                $rowsLimit = $request->getRowsLimit();
+                if (!isset($allowedRowsLimit[$rowsLimit]) || $allowedRowsLimit[$rowsLimit] == 0) {
+                    return false;
+                }
+
+                // This means that once we have encountered a `rowsLimit` in a request.
+                // We decrease the number of times the request is allowed with the particular rowsLimit.
+                $allowedRowsLimit[$rowsLimit] -= 1;
+                return true;
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
         $iterator = $this->table->readRows($args);
         $rows = [];
         foreach ($iterator as $rowKey => $row) {
@@ -221,20 +228,26 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(3, 4)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return iterator_to_array($argument['rows']->getRowKeys()) === ['rk1', 'rk2', 'rk3', 'rk4'];
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return iterator_to_array($argument['rows']->getRowKeys()) === ['rk3', 'rk4'];
-        }))
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) {
+                return iterator_to_array($request->getRows()->getRowKeys()) === ['rk1', 'rk2', 'rk3', 'rk4'];
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) {
+                return iterator_to_array($request->getRows()->getRowKeys()) === ['rk3', 'rk4'];
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $iterator = $this->table->readRows($args);
         $rows = [];
         foreach ($iterator as $rowKey => $row) {
@@ -257,17 +270,23 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(8, 9)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk5';
-        }))
-            ->shouldBeCalledTimes(1)
+
+            $this->bigtableClient->readRows(
+                Argument::that(function($request) {
+                    return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk5';
+                }),
+                Argument::type('array')
+            )->shouldBeCalledTimes(1)
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk7';
-        }))
-            ->shouldBeCalled()
+
+            $this->bigtableClient->readRows(
+                Argument::that(function($request) {
+                    return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk7';
+                }),
+                Argument::type('array')
+            )->shouldBeCalled()
             ->willReturn(
                 $this->serverStream->reveal()
             );
@@ -296,20 +315,26 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(7, 9)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return $argument['rows']->getRowRanges()[0]->getStartKeyClosed() === 'rk5';
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk6';
-        }))
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) {
+                return $request->getRows()->getRowRanges()[0]->getStartKeyClosed() === 'rk5';
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) {
+                return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk6';
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $args = ['rowRanges' => [
             ['startKeyClosed' => 'rk5']
         ]];
@@ -335,22 +360,29 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(4, 6)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === ''
-                && $argument['rows']->getRowRanges()[0]->getEndKeyOpen() === 'rk7';
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk3'
-                && $argument['rows']->getRowRanges()[0]->getEndKeyOpen() === 'rk7';
-        }))
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) {
+                return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === '' &&
+                $request->getRows()->getRowRanges()[0]->getEndKeyOpen() === 'rk7';
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) {
+                return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk3' &&
+                $request->getRows()->getRowRanges()[0]->getEndKeyOpen() === 'rk7';
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
         $args = ['rowRanges' => [
             ['endKeyOpen' => 'rk7']
         ]];
@@ -376,22 +408,29 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(4, 7)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === ''
-                && $argument['rows']->getRowRanges()[0]->getEndKeyClosed() === 'rk7';
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) {
-            return $argument['rows']->getRowRanges()[0]->getStartKeyOpen() === 'rk3'
-                && $argument['rows']->getRowRanges()[0]->getEndKeyClosed() === 'rk7';
-        }))
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) {
+                return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === '' &&
+                $request->getRows()->getRowRanges()[0]->getEndKeyClosed() === 'rk7';
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) {
+                return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk3' &&
+                $request->getRows()->getRowRanges()[0]->getEndKeyClosed() === 'rk7';
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
         $args = ['rowRanges' => [
             ['endKeyClosed' => 'rk7']
         ]];
@@ -422,24 +461,32 @@ class SmartRetriesTest extends TestCase
                     $this->generateRowsResponse(7, 9)
                 )
             );
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedRows) {
-            return $argument['rows']->serializeToJsonString() === $expectedRows->serializeToJsonString();
-        }))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) use($expectedRows) {
+                return $request->getRows()->serializeToJsonString() === $expectedRows->serializeToJsonString();
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
         $expectedRows2 = (new RowSet)->setRowRanges([
             (new RowRange)->setStartKeyOpen('rk6')->setEndKeyClosed('rk7'),
             (new RowRange)->setStartKeyClosed('rk8')->setEndKeyClosed('rk9')
         ]);
-        $this->bigtableClient->readRows(self::TABLE_NAME, Argument::that(function ($argument) use ($expectedRows2) {
-            return $argument['rows']->serializeToJsonString() === $expectedRows2->serializeToJsonString();
-        }))
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+
+        $this->bigtableClient->readRows(
+            Argument::that(function($request) use($expectedRows2) {
+                return $request->getRows()->serializeToJsonString() === $expectedRows2->serializeToJsonString();
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
         $args = ['rowRanges' => [
             ['startKeyOpen' => 'rk1', 'endKeyClosed' => 'rk3'],
             ['startKeyClosed' => 'rk5', 'endKeyClosed' => 'rk7'],
@@ -467,17 +514,18 @@ class SmartRetriesTest extends TestCase
         // First Call
         // Check if the request has expected row range
         $this->bigtableClient->readRows(
-            self::TABLE_NAME,
-            Argument::that(function ($argument) {
-                $rowRanges = $argument['rows']->getRowRanges();
+            Argument::that(function($request) {
+                $rowRanges = $request->getRows()->getRowRanges();
                 if (count($rowRanges) === 0) {
                     return false;
                 }
                 $rowRange = $rowRanges[0];
                 return $rowRange->getStartKeyClosed() === 'rk1' &&
                     $rowRange->getEndKeyClosed() === 'rk3';
-            })
-        )->shouldBeCalledOnce()->willReturn(
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
             $this->serverStream->reveal()
         );
 
@@ -485,17 +533,15 @@ class SmartRetriesTest extends TestCase
         // Check if the request has empty row range and fail the test
         // as this will result in full table scan
         $this->bigtableClient->readRows(
-            self::TABLE_NAME,
-            Argument::that(function ($argument) {
-                $rowRanges = $argument['rows']->getRowRanges();
-                if (count($rowRanges)) {
-                    return false;
-                }
-                return true;
-            })
-        )->will(function ($args) {
-            self::fail('Full table scan attempted');
-        });
+            Argument::that(function($request) {
+                $rowRanges = $request->getRows()->getRowRanges();
+                return !count($rowRanges);
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
 
         $args = [
             'rowRanges' => [[
@@ -519,11 +565,13 @@ class SmartRetriesTest extends TestCase
             );
         $mutations = $this->generateMutations(1, 5);
         $entries = $this->generateEntries(1, 5);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
-            ->shouldBeCalledTimes(4)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::type(MutateRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalledTimes(4)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $this->table->mutateRows($mutations);
     }
 
@@ -539,11 +587,13 @@ class SmartRetriesTest extends TestCase
             );
         $mutations = $this->generateMutations(1, 5);
         $entries = $this->generateEntries(1, 5);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, ['retries' => 5] + $this->options)
-            ->shouldBeCalledTimes(6)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::type(MutateRowsRequest::class),
+            Argument::withEntry('retries', 5)
+        )->shouldBeCalledTimes(6)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $this->table->mutateRows($mutations, ['retries' => 5]);
     }
 
@@ -560,17 +610,25 @@ class SmartRetriesTest extends TestCase
                 )
             );
         $entries = $this->generateEntries(0, 5);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::that(function($request) use($entries) {
+                return iterator_to_array($request->getEntries()) == $entries;
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $entries = $this->generateEntries(2, 3);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::that(function($request) use($entries) {
+                return iterator_to_array($request->getEntries()) == $entries;
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $mutations = $this->generateMutations(0, 5);
         $this->table->mutateRows($mutations);
     }
@@ -589,17 +647,25 @@ class SmartRetriesTest extends TestCase
                 )
             );
         $entries = $this->generateEntries(0, 5);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::that(function($request) use($entries) {
+                return iterator_to_array($request->getEntries()) == $entries;
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $entries = array_merge($this->generateEntries(1, 2), $this->generateEntries(4, 5));
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::that(function($request) use($entries) {
+                return iterator_to_array($request->getEntries()) == $entries;
+            }),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         try {
             $mutations = $this->generateMutations(0, 5);
             $this->table->mutateRows($mutations);
@@ -630,11 +696,15 @@ class SmartRetriesTest extends TestCase
                 )
             );
         $entries = $this->generateEntries(0, 7);
-        $this->bigtableClient->mutateRows(self::TABLE_NAME, $entries, $this->options)
-            ->shouldBeCalledTimes(1)
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->mutateRows(
+            Argument::that(function($request) use($entries) {
+                return iterator_to_array($request->getEntries()) == $entries;
+            }),
+            Argument::type('array')
+        )->shouldBeCalledTimes(1)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         try {
             $mutations = $this->generateMutations(0, 7);
             $this->table->mutateRows($mutations);
