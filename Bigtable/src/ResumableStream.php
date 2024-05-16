@@ -104,7 +104,14 @@ class ResumableStream implements \IteratorAggregate
         $this->retries = $retries ?: self::DEFAULT_MAX_RETRIES;
         $this->argumentFunction = $argumentFunction;
         $this->retryFunction = $retryFunction;
-        $this->optionalArgs = $optionalArgs;
+        // Disable GAX retries because we want to handle the retries here.
+        // Once GAX has the provision to modify request/args in between retries,
+        // we can re enable GAX's retries and use them completely.
+        $this->optionalArgs = $optionalArgs + [
+            'retrySettings' => [
+                'retriesEnabled' => false
+            ]
+        ];
     }
 
     /**
