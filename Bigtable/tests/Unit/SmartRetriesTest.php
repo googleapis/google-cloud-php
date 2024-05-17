@@ -23,7 +23,7 @@ use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\Table;
-use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry as RequestEntry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
@@ -75,7 +75,7 @@ class SmartRetriesTest extends TestCase
             Code::UNAUTHENTICATED,
             'UNAUTHENTICATED'
         );
-        $this->bigtableClient = $this->prophesize(TableClient::class);
+        $this->bigtableClient = $this->prophesize(BigtableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);
         $this->options = [
             'appProfileId' => self::APP_PROFILE,

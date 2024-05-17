@@ -13,7 +13,8 @@
         "erusev/parsedown": "^1.6",
         "phpdocumentor/reflection": "^5.3.3",
         "phpdocumentor/reflection-docblock": "^5.3",
-        "phpspec/prophecy-phpunit": "^2.0"
+        "phpspec/prophecy-phpunit": "^2.0",
+        "dg/bypass-finals": "^1.7"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."

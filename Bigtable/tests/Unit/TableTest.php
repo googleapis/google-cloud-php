@@ -26,7 +26,7 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Mutations;
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\Table;
-use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
 use Google\Cloud\Bigtable\V2\Cell;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowRequest;
 use Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse;
@@ -76,7 +76,7 @@ class TableTest extends TestCase
 
     public function setUp(): void
     {
-        $this->bigtableClient = $this->prophesize(TableClient::class);
+        $this->bigtableClient = $this->prophesize(BigtableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);
         $this->options = [
             'appProfileId' => self::APP_PROFILE,
