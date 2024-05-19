@@ -27,7 +27,7 @@ use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
-use Google\Cloud\Core\LongRunning\LROManagerTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
@@ -116,7 +116,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  */
 class Database
 {
-    use LROManagerTrait;
+    use LongRunningOperationTrait;
     use TransactionConfigurationTrait;
     use RequestTrait;
     use ApiHelperTrait;
@@ -523,10 +523,7 @@ class Database
             $this->serializer,
             $this->getLROResponseMappers()
         );
-        return $this->resumeOperation(
-            $operation['name'],
-            $operation
-        );
+        return $this->resumeOperation($operation['name'], $operation);
     }
 
     /**
