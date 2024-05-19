@@ -27,7 +27,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROManagerTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -122,7 +122,7 @@ class SpannerClient
     use ApiHelperTrait;
     use ClientOptionsTrait;
     use ClientTrait;
-    use LROManagerTrait;
+    use LongRunningOperationTrait;
     use ValidateTrait;
     use RequestTrait;
 

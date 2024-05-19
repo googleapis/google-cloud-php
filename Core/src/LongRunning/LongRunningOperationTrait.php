@@ -28,7 +28,7 @@ use Google\LongRunning\ListOperationsRequest;
  *
  * This trait should be used by a user-facing client which implements LRO.
  */
-trait LROManagerTrait
+trait LongRunningOperationTrait
 {
     /**
      * @var string
