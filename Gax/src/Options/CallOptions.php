@@ -59,8 +59,8 @@ class CallOptions implements ArrayAccess
      * @param array $options {
      *     Call options
      *
-     *     @type array $headers
-     *           Key-value array containing headers
+     *     @type array<string, array<string>> $headers
+     *           Key-value array containing headers.
      *     @type int $timeoutMillis
      *           The timeout in milliseconds for the call.
      *     @type array $transportOptions
