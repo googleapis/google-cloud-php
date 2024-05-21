@@ -20,9 +20,17 @@ namespace Google\Cloud\Bigtable\Tests\System;
 use Exception;
 use Google\ApiCore\ApiException;
 use Google\Cloud\Bigtable\Admin\V2\Backup;
-use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
-use Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\Client\BigtableInstanceAdminClient;
+use Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\CopyBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest;
+use Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\DeleteInstanceRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetBackupRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Google\Protobuf\Timestamp;
@@ -106,11 +114,12 @@ class BackupTests extends BigtableTestCase
             self::$instanceId,
             self::$clusterId
         );
-        $operationResponse = self::$tableAdminClient->createBackup(
-            $parentName,
-            self::$backupId,
-            $backup
-        );
+        $request = new CreateBackupRequest([
+            'parent' => $parentName,
+            'backup_id' => self::$backupId,
+            'backup' => $backup
+        ]);
+        $operationResponse = self::$tableAdminClient->createBackup($request);
         $operationResponse->pollUntilComplete();
         $result = $operationResponse->getResult();
         $this->assertStringContainsString(self::$backupName, $result->getName());
@@ -131,13 +140,15 @@ class BackupTests extends BigtableTestCase
 
         $ex = null;
         try {
-            $operationResponse = self::$tableAdminClient->copyBackup(
-                $clusterName,
-                self::$copyBackupId,
-                self::$backupName,
-                // Setting 10 days expiration time
-                new Timestamp(['seconds' => time() + self::SECONDS_IN_A_DAY * 10])
-            );
+            // Setting 10 days expiration time
+            $expireTime = new Timestamp(['seconds' => time() + self::SECONDS_IN_A_DAY * 10]);
+            $request = new CopyBackupRequest([
+                'parent' => $clusterName,
+                'backup_id' => self::$copyBackupId,
+                'source_backup' => self::$backupName,
+                'expire_time' => $expireTime
+            ]);
+            $operationResponse = self::$tableAdminClient->copyBackup($request);
             $operationResponse->pollUntilComplete();
             $copyBackup = $operationResponse->getResult();
 
@@ -193,23 +204,26 @@ class BackupTests extends BigtableTestCase
 
         $ex = null;
         try {
-            $operationResponse = $instanceClient->createInstance(
-                $projectName,
-                $instanceId,
-                $instance,
-                $clusters
-            );
+            $request = new CreateInstanceRequest([
+                'parent' => $projectName,
+                'instance_id' => $instanceId,
+                'instance' => $instance,
+                'clusters' => $clusters
+            ]);
+            $operationResponse = $instanceClient->createInstance($request);
             $operationResponse->pollUntilComplete();
             if (!$operationResponse->operationSucceeded()) {
                 $this->fail("Secondary project's instance creation failed");
             }
 
-            $operationResponse = $tableClient->copyBackup(
-                $clusterName,
-                $copyBackupId,
-                self::$backupName,
-                new Timestamp(['seconds' => time() + self::SECONDS_IN_A_DAY * 10])
-            );
+            $expireTime = new Timestamp(['seconds' => time() + self::SECONDS_IN_A_DAY * 10]);
+            $copyBackupRequest = new CopyBackupRequest([
+                'parent' => $clusterName,
+                'backup_id' => $copyBackupId,
+                'source_backup' => self::$backupName,
+                'expire_time' => $expireTime
+            ]);
+            $operationResponse = $tableClient->copyBackup($copyBackupRequest);
             $operationResponse->pollUntilComplete();
             $result = $operationResponse->getResult();
 
@@ -224,8 +238,10 @@ class BackupTests extends BigtableTestCase
         if (!self::isEmulatorUsed()) {
             try {
                 $instanceName = $instanceClient->instanceName($projectId, $instanceId);
-                $instanceClient->getInstance($instanceName);
-                $instanceClient->deleteInstance($instanceName);
+                $getInstanceRequest = new GetInstanceRequest(['name' => $instanceName]);
+                $instanceClient->getInstance($getInstanceRequest);
+                $deleteInstanceRequest = new DeleteInstanceRequest(['name' => $instanceName]);
+                $instanceClient->deleteInstance($deleteInstanceRequest);
             } catch (Exception $th) {
                 printf($th->getMessage() . PHP_EOL);
             }
@@ -250,16 +266,20 @@ class BackupTests extends BigtableTestCase
             self::$copyBackupClusterId,
             self::$copyBackupId
         );
-        $operationResponse = self::$tableAdminClient->copyBackup(
-            self::$instanceAdminClient->clusterName(
-                self::$projectId,
-                self::$instanceId,
-                self::$clusterId
-            ),
-            self::$copyBackupId,
-            $copyBackupName,
-            new Timestamp(['seconds' => time() + self::SECONDS_IN_A_DAY * 10])
+
+        $clusterName = self::$instanceAdminClient->clusterName(
+            self::$projectId,
+            self::$instanceId,
+            self::$clusterId
         );
+        $expireTime = new Timestamp(['seconds' => time() + self::SECONDS_IN_A_DAY * 10]);
+        $request = new CopyBackupRequest([
+            'parent' => $clusterName,
+            'backup_id' => self::$copyBackupId,
+            'source_backup' => $copyBackupName,
+            'expire_time' => $expireTime
+        ]);
+        $operationResponse = self::$tableAdminClient->copyBackup($request);
         $operationResponse->pollUntilComplete();
     }
 
@@ -292,11 +312,12 @@ class BackupTests extends BigtableTestCase
                 $location
             )
         );
-        $operationResponse = self::$instanceAdminClient->createCluster(
-            $instanceName,
-            $clusterId,
-            $cluster
-        );
+        $request = new CreateClusterRequest([
+            'parent' => $instanceName,
+            'cluster_id' => $clusterId,
+            'cluster' => $cluster
+        ]);
+        $operationResponse = self::$instanceAdminClient->createCluster($request);
         $operationResponse->pollUntilComplete();
         if (!$operationResponse->operationSucceeded()) {
             $this->fail('Cluster creation failed');
@@ -309,8 +330,15 @@ class BackupTests extends BigtableTestCase
         string $backupName
     ): void {
         try {
-            $client->getBackup($backupName);
-            $client->deleteBackup($backupName);
+            $getBackupRequest = new GetBackupRequest([
+                'name' => $backupName
+            ]);
+            $client->getBackup($getBackupRequest);
+
+            $deleteBackupRequest = new DeleteBackupRequest([
+                'name' => $backupName
+            ]);
+            $client->deleteBackup($deleteBackupRequest);
         } catch (ApiException $th) {
             printf($th->getMessage() . PHP_EOL);
         }
