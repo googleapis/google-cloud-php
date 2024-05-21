@@ -973,6 +973,7 @@ class Operation
         if (isset($transactionOptions['readWrite'])
             || isset($transactionOptions['partitionedDml'])) {
             $optionalArgs = $this->addLarHeader($optionalArgs, $this->routeToLeader);
+        }
         $data += [
             'session' => $session->name(),
             'options' => $transactionOptions
