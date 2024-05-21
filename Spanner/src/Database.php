@@ -504,12 +504,6 @@ class Database
             'createStatement' => $this->getCreateDbStatement($dialect),
             'extraStatements' => $this->pluck('statements', $data, false) ?: []
         ];
-        if (isset($data['encryptionConfig'])) {
-            $data['encryptionConfig'] = $this->serializer->decodeMessage(
-                new EncryptionConfig(),
-                $this->pluck('encryptionConfig', $options)
-            );
-        }
 
         $res = $this->createAndSendRequest(
             DatabaseAdminClient::class,
@@ -577,14 +571,11 @@ class Database
         if (isset($data['enableDropProtection'])) {
             $fieldMask[] = 'enable_drop_protection';
         }
-        $updateMask = ['paths' => $fieldMask];
-        $databaseInfo = [
+        $data['updateMask'] = ['paths' => $fieldMask];
+        $data['database'] = [
             'name' => $this->name,
             'enableDropProtection' => $this->pluck('enableDropProtection', $data, false) ?? false,
         ];
-
-        $data['database'] = $this->serializer->decodeMessage(new GapicDatabase(), $databaseInfo);
-        $data['updateMask'] = $this->serializer->decodeMessage(new FieldMask(), $updateMask);
 
         return $this->createAndSendRequest(
             DatabaseAdminClient::class,
@@ -2208,10 +2199,6 @@ class Database
     public function batchCreateSessions(array $options)
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $data['sessionTemplate'] = $this->serializer->decodeMessage(
-            new GapicSession,
-            $this->pluck('sessionTemplate', $data)
-        );
         $data['database'] = $this->name;
         return $this->createAndSendRequest(
             GapicSpannerClient::class,
