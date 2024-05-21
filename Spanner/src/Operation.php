@@ -249,15 +249,9 @@ class Operation
         // Internal flag, need to unset before passing to serializer
         unset($data['singleUse']);
         if (isset($data['singleUseTransaction'])) {
-            $data['singleUseTransaction'] = $this->createReadWriteTransactionOptions();
+            $data['singleUseTransaction'] = ['readWrite' => []];
             // singleUseTransaction will not set in the request even if the transactionId set to null
             unset($data['transactionId']);
-        }
-        if ($data['requestOptions']) {
-            $data['requestOptions'] = $this->serializer->decodeMessage(
-                new RequestOptions,
-                $data['requestOptions']
-            );
         }
         $res = $this->createAndSendRequest(
             GapicSpannerClient::class,
@@ -471,12 +465,6 @@ class Operation
             'session' => $session->name(),
             'statements' => $this->formatStatements($statements)
         ];
-        if (isset($data['requestOptions'])) {
-            $data['requestOptions'] = $this->serializer->decodeMessage(
-                new RequestOptions,
-                $data['requestOptions']
-            );
-        }
 
         $res = $this->createAndSendRequest(
             GapicSpannerClient::class,
@@ -763,14 +751,10 @@ class Operation
         $data = [
             'database' => $databaseName
         ];
-        $session = [
+        $data['session'] = [
             'labels' => $this->pluck('labels', $options, false) ?: [],
             'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
         ];
-        $data['session'] = $this->serializer->decodeMessage(
-            new GapicSession,
-            $session
-        );
 
         $res = $this->createAndSendRequest(
             GapicSpannerClient::class,
@@ -862,10 +846,7 @@ class Operation
             'transaction' => $this->createTransactionSelector($data),
             'session' => $session->name(),
             'sql' => $sql,
-            'partitionOptions' => $this->serializer->decodeMessage(
-                new PartitionOptions,
-                $this->partitionOptions($data)
-            )
+            'partitionOptions' => $this->partitionOptions($data)
         ];
 
         $res = $this->createAndSendRequest(
@@ -931,14 +912,8 @@ class Operation
             'session' => $session->name(),
             'table' => $table,
             'columns' => $columns,
-            'keySet' => $this->serializer->decodeMessage(
-                new GapicKeySet,
-                $this->formatKeySet($this->flattenKeySet($keySet))
-            ),
-            'partitionOptions' => $this->serializer->decodeMessage(
-                new PartitionOptions,
-                $this->partitionOptions($data)
-            )
+            'keySet' => $this->formatKeySet($this->flattenKeySet($keySet)),
+            'partitionOptions' => $this->partitionOptions($data)
         ];
 
         $res = $this->createAndSendRequest(
@@ -992,35 +967,12 @@ class Operation
     private function beginTransaction(Session $session, array $options = [])
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $transactionOptions = new TransactionOptions;
-        $formattedTransactionOptions = $this->formatTransactionOptions(
+        $transactionOptions = $this->formatTransactionOptions(
             $this->pluck('transactionOptions', $data, false) ?: []
         );
-        if (isset($formattedTransactionOptions['readOnly'])) {
-            // @TODO: Check its a necessary check.
-            $readOnlyClass = PHP_VERSION_ID >= 80100
-                ? PBReadOnly::class
-                : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
-            $readOnly = $this->serializer->decodeMessage(
-                new $readOnlyClass(), // @phpstan-ignore-line
-                $formattedTransactionOptions['readOnly']
-            );
-            $transactionOptions->setReadOnly($readOnly);
-        } elseif (isset($formattedTransactionOptions['readWrite'])) {
-            $readWrite = new ReadWrite();
-            $transactionOptions->setReadWrite($readWrite);
+        if (isset($transactionOptions['readWrite'])
+            || isset($transactionOptions['partitionedDml'])) {
             $optionalArgs = $this->addLarHeader($optionalArgs, $this->routeToLeader);
-        } elseif (isset($formattedTransactionOptions['partitionedDml'])) {
-            $pdml = new PartitionedDml();
-            $transactionOptions->setPartitionedDml($pdml);
-            $optionalArgs = $this->addLarHeader($optionalArgs, $this->routeToLeader);
-        }
-        if (isset($data['requestOptions'])) {
-            $data['requestOptions'] = $this->serializer->decodeMessage(
-                new RequestOptions,
-                $data['requestOptions']
-            );
-        }
         $data += [
             'session' => $session->name(),
             'options' => $transactionOptions
@@ -1208,17 +1160,6 @@ class Operation
         return $field;
     }
 
-    private function createReadWriteTransactionOptions(array $options = [])
-    {
-        $readWrite = $this->serializer->decodeMessage(
-            new ReadWrite(),
-            $options
-        );
-        $transactionOptions = new TransactionOptions;
-        $transactionOptions->setReadWrite($readWrite);
-        return $transactionOptions;
-    }
-
     /**
      * Format statements.
      *
@@ -1238,8 +1179,7 @@ class Operation
             $mappedStatement = [
                 'sql' => $statement['sql']
             ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
-            $statement = $this->formatSqlParams($mappedStatement);
-            $result[] = $this->serializer->decodeMessage(new Statement, $statement);
+            $result[] = $this->formatSqlParams($mappedStatement);
         }
         return $result;
     }
@@ -1262,7 +1202,7 @@ class Operation
 
         if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {
             foreach ($args['paramTypes'] as $key => $param) {
-                $args['paramTypes'][$key] = $this->serializer->decodeMessage(new Type, $param);
+                $args['paramTypes'][$key] = $param;
             }
         }
 
@@ -1273,30 +1213,51 @@ class Operation
      * @param array $args
      * @param Transaction $transaction
      *
-     * @return TransactionSelector
+     * @return array
      */
     private function createTransactionSelector(array &$args, Transaction $transaction = null)
     {
-        $selector = new TransactionSelector;
+        $transactionSelector = [];
         if (isset($args['transaction'])) {
-            $transaction = $this->pluck('transaction', $args);
+            $transactionSelector = $this->pluck('transaction', $args);
 
-            if (isset($transaction['singleUse'])) {
-                $transaction['singleUse'] = $this->formatTransactionOptions($transaction['singleUse']);
+            if (isset($transactionSelector['singleUse'])) {
+                $transactionSelector['singleUse'] =
+                    $this->formatTransactionOptions($transactionSelector['singleUse']);
             }
 
-            if (isset($transaction['begin'])) {
-                $transaction['begin'] = $this->formatTransactionOptions($transaction['begin']);
+            if (isset($transactionSelector['begin'])) {
+                $transactionSelector['begin'] =
+                    $this->formatTransactionOptions($transactionSelector['begin']);
             }
-
-            $selector = $this->serializer->decodeMessage($selector, $transaction);
         } elseif ($transaction && $transaction->id()) {
-            $selector = $this->serializer->decodeMessage($selector, ['id' => $transaction->id()]);
+            $transactionSelector = ['id' => $transaction->id()];
         } elseif (isset($args['transactionId'])) {
-            $selector = $this->serializer->decodeMessage($selector, ['id' => $this->pluck('transactionId', $args)]);
+            $transactionSelector = ['id' => $this->pluck('transactionId', $args)];
         }
 
-        return $selector;
+        return $transactionSelector;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    private function createQueryOptions(array $args)
+    {
+        $queryOptions = $this->pluck('queryOptions', $args, false) ?: [];
+        // Query options precedence is query-level, then environment-level, then client-level.
+        $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
+        $envQueryOptimizerStatisticsPackage = getenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE');
+        if (!empty($envQueryOptimizerVersion)) {
+            $queryOptions += ['optimizerVersion' => $envQueryOptimizerVersion];
+        }
+        if (!empty($envQueryOptimizerStatisticsPackage)) {
+            $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
+        }
+        $queryOptions += $this->defaultQueryOptions;
+        return $queryOptions;
     }
 
     /**
@@ -1330,30 +1291,7 @@ class Operation
         list($data, $optionalArgs) = $this->splitOptionalArgs($args);
         $data = $this->formatSqlParams($data);
         $data['transaction'] = $this->createTransactionSelector($data);
-        $queryOptions = $this->pluck('queryOptions', $data, false) ?: [];
-        // Query options precedence is query-level, then environment-level, then client-level.
-        $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
-        $envQueryOptimizerStatisticsPackage = getenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE');
-        if (!empty($envQueryOptimizerVersion)) {
-            $queryOptions += ['optimizerVersion' => $envQueryOptimizerVersion];
-        }
-        if (!empty($envQueryOptimizerStatisticsPackage)) {
-            $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
-        }
-        $queryOptions += $this->defaultQueryOptions;
-        $this->setDirectedReadOptions($data);
-        if ($queryOptions) {
-            $data['queryOptions'] = $this->serializer->decodeMessage(
-                new QueryOptions,
-                $queryOptions
-            );
-        }
-        if (isset($data['requestOptions'])) {
-            $data['requestOptions'] = $this->serializer->decodeMessage(
-                new RequestOptions,
-                $data['requestOptions']
-            );
-        }
+        $data['queryOptions'] = $this->createQueryOptions($data);
         $optionalArgs = $this->conditionallyUnsetLarHeader($optionalArgs, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);
 
@@ -1374,15 +1312,7 @@ class Operation
     private function streamingRead(array $args)
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($args);
-        $keySet = $this->pluck('keySet', $data);
-        $data['keySet']= $this->serializer->decodeMessage(new GapicKeySet, $this->formatKeySet($keySet));
-        if (isset($data['requestOptions'])) {
-            $data['requestOptions'] = $this->serializer->decodeMessage(
-                new RequestOptions,
-                $data['requestOptions']
-            );
-        }
-        $this->setDirectedReadOptions($data);
+        $data['keySet']= $this->formatKeySet($this->pluck('keySet', $data));
         $data['transaction'] = $this->createTransactionSelector($data);
         $optionalArgs = $this->conditionallyUnsetLarHeader($optionalArgs, $this->routeToLeader);
         $databaseName = $this->pluck('database', $data);
@@ -1395,22 +1325,6 @@ class Operation
             ReadRequest::class,
             $databaseName
         );
-    }
-
-    /**
-     * Set DirectedReadOptions if provided.
-     *
-     * @param array $args
-     */
-    private function setDirectedReadOptions(array &$args)
-    {
-        $directedReadOptions = $this->pluck('directedReadOptions', $args, false);
-        if (!empty($directedReadOptions)) {
-            $args['directedReadOptions'] = $this->serializer->decodeMessage(
-                new DirectedReadOptions,
-                $directedReadOptions
-            );
-        }
     }
 
     /**
