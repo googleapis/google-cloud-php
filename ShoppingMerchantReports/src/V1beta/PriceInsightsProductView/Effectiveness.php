@@ -71,6 +71,4 @@ class Effectiveness
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Effectiveness::class, \Google\Shopping\Merchant\Reports\V1beta\PriceInsightsProductView_Effectiveness::class);
 

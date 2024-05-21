@@ -120,9 +120,9 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
      */
     private $variant_gtins;
     /**
-     * Whether the product cluster is `IN_STOCK` in your product feed in at least
-     * one of the countries, `OUT_OF_STOCK` in your product feed in all countries,
-     * or `NOT_IN_INVENTORY` at all.
+     * Whether the product cluster is `IN_STOCK` in your product data source in at
+     * least one of the countries, `OUT_OF_STOCK` in your product data source in
+     * all countries, or `NOT_IN_INVENTORY` at all.
      * The field doesn't take the Best sellers report country filter into account.
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.BestSellersProductClusterView.InventoryStatus inventory_status = 14;</code>
@@ -130,8 +130,8 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
     protected $inventory_status = null;
     /**
      * Whether there is at least one product of the brand currently `IN_STOCK` in
-     * your product feed in at least one of the countries, all products are
-     * `OUT_OF_STOCK` in your product feed in all countries, or
+     * your product data source in at least one of the countries, all products are
+     * `OUT_OF_STOCK` in your product data source in all countries, or
      * `NOT_IN_INVENTORY`.
      * The field doesn't take the Best sellers report country filter into account.
      *
@@ -230,14 +230,14 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $variant_gtins
      *           GTINs of example variants of the product cluster.
      *     @type int $inventory_status
-     *           Whether the product cluster is `IN_STOCK` in your product feed in at least
-     *           one of the countries, `OUT_OF_STOCK` in your product feed in all countries,
-     *           or `NOT_IN_INVENTORY` at all.
+     *           Whether the product cluster is `IN_STOCK` in your product data source in at
+     *           least one of the countries, `OUT_OF_STOCK` in your product data source in
+     *           all countries, or `NOT_IN_INVENTORY` at all.
      *           The field doesn't take the Best sellers report country filter into account.
      *     @type int $brand_inventory_status
      *           Whether there is at least one product of the brand currently `IN_STOCK` in
-     *           your product feed in at least one of the countries, all products are
-     *           `OUT_OF_STOCK` in your product feed in all countries, or
+     *           your product data source in at least one of the countries, all products are
+     *           `OUT_OF_STOCK` in your product data source in all countries, or
      *           `NOT_IN_INVENTORY`.
      *           The field doesn't take the Best sellers report country filter into account.
      *     @type int|string $rank
@@ -736,9 +736,9 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the product cluster is `IN_STOCK` in your product feed in at least
-     * one of the countries, `OUT_OF_STOCK` in your product feed in all countries,
-     * or `NOT_IN_INVENTORY` at all.
+     * Whether the product cluster is `IN_STOCK` in your product data source in at
+     * least one of the countries, `OUT_OF_STOCK` in your product data source in
+     * all countries, or `NOT_IN_INVENTORY` at all.
      * The field doesn't take the Best sellers report country filter into account.
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.BestSellersProductClusterView.InventoryStatus inventory_status = 14;</code>
@@ -760,9 +760,9 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the product cluster is `IN_STOCK` in your product feed in at least
-     * one of the countries, `OUT_OF_STOCK` in your product feed in all countries,
-     * or `NOT_IN_INVENTORY` at all.
+     * Whether the product cluster is `IN_STOCK` in your product data source in at
+     * least one of the countries, `OUT_OF_STOCK` in your product data source in
+     * all countries, or `NOT_IN_INVENTORY` at all.
      * The field doesn't take the Best sellers report country filter into account.
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1beta.BestSellersProductClusterView.InventoryStatus inventory_status = 14;</code>
@@ -779,8 +779,8 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether there is at least one product of the brand currently `IN_STOCK` in
-     * your product feed in at least one of the countries, all products are
-     * `OUT_OF_STOCK` in your product feed in all countries, or
+     * your product data source in at least one of the countries, all products are
+     * `OUT_OF_STOCK` in your product data source in all countries, or
      * `NOT_IN_INVENTORY`.
      * The field doesn't take the Best sellers report country filter into account.
      *
@@ -804,8 +804,8 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether there is at least one product of the brand currently `IN_STOCK` in
-     * your product feed in at least one of the countries, all products are
-     * `OUT_OF_STOCK` in your product feed in all countries, or
+     * your product data source in at least one of the countries, all products are
+     * `OUT_OF_STOCK` in your product data source in all countries, or
      * `NOT_IN_INVENTORY`.
      * The field doesn't take the Best sellers report country filter into account.
      *
