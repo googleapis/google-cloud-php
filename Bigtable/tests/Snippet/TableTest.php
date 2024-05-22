@@ -41,7 +41,7 @@ use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
-use Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk as ReadRowsResponse_CellChunk;
+use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk;
 use Google\Cloud\Bigtable\V2\Row;
 use Google\Cloud\Bigtable\V2\RowRange;
 use Google\Cloud\Bigtable\V2\RowSet;
@@ -452,7 +452,7 @@ class TableTest extends SnippetTestCase
     {
         $readRowsResponse = new ReadRowsResponse;
         $chunks = [];
-        $chunk = new ReadRowsResponse_CellChunk();
+        $chunk = new CellChunk();
         $chunk->setRowKey('rk1');
         $stringValue = new StringValue();
         $stringValue->setValue('cf1');
