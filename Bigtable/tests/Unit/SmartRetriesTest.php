@@ -189,7 +189,7 @@ class SmartRetriesTest extends TestCase
         
         $allowedRowsLimit = ['5' => 1, '3' => 1];
         $this->bigtableClient->readRows(
-            Argument::that(function($request) use(&$allowedRowsLimit) {
+            Argument::that(function ($request) use (&$allowedRowsLimit) {
                 $rowsLimit = $request->getRowsLimit();
                 if (!isset($allowedRowsLimit[$rowsLimit]) || $allowedRowsLimit[$rowsLimit] == 0) {
                     return false;
@@ -231,7 +231,7 @@ class SmartRetriesTest extends TestCase
             );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return iterator_to_array($request->getRows()->getRowKeys()) === ['rk1', 'rk2', 'rk3', 'rk4'];
             }),
             Argument::type('array')
@@ -241,7 +241,7 @@ class SmartRetriesTest extends TestCase
         );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return iterator_to_array($request->getRows()->getRowKeys()) === ['rk3', 'rk4'];
             }),
             Argument::type('array')
@@ -273,7 +273,7 @@ class SmartRetriesTest extends TestCase
             );
 
             $this->bigtableClient->readRows(
-                Argument::that(function($request) {
+                Argument::that(function ($request) {
                     return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk5';
                 }),
                 Argument::type('array')
@@ -283,7 +283,7 @@ class SmartRetriesTest extends TestCase
             );
 
             $this->bigtableClient->readRows(
-                Argument::that(function($request) {
+                Argument::that(function ($request) {
                     return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk7';
                 }),
                 Argument::type('array')
@@ -318,7 +318,7 @@ class SmartRetriesTest extends TestCase
             );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return $request->getRows()->getRowRanges()[0]->getStartKeyClosed() === 'rk5';
             }),
             Argument::type('array')
@@ -328,7 +328,7 @@ class SmartRetriesTest extends TestCase
         );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk6';
             }),
             Argument::type('array')
@@ -363,7 +363,7 @@ class SmartRetriesTest extends TestCase
             );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === '' &&
                 $request->getRows()->getRowRanges()[0]->getEndKeyOpen() === 'rk7';
             }),
@@ -374,7 +374,7 @@ class SmartRetriesTest extends TestCase
         );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk3' &&
                 $request->getRows()->getRowRanges()[0]->getEndKeyOpen() === 'rk7';
             }),
@@ -411,7 +411,7 @@ class SmartRetriesTest extends TestCase
             );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === '' &&
                 $request->getRows()->getRowRanges()[0]->getEndKeyClosed() === 'rk7';
             }),
@@ -422,7 +422,7 @@ class SmartRetriesTest extends TestCase
         );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 return $request->getRows()->getRowRanges()[0]->getStartKeyOpen() === 'rk3' &&
                 $request->getRows()->getRowRanges()[0]->getEndKeyClosed() === 'rk7';
             }),
@@ -464,7 +464,7 @@ class SmartRetriesTest extends TestCase
             );
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) use($expectedRows) {
+            Argument::that(function ($request) use ($expectedRows) {
                 return $request->getRows()->serializeToJsonString() === $expectedRows->serializeToJsonString();
             }),
             Argument::type('array')
@@ -479,7 +479,7 @@ class SmartRetriesTest extends TestCase
         ]);
 
         $this->bigtableClient->readRows(
-            Argument::that(function($request) use($expectedRows2) {
+            Argument::that(function ($request) use ($expectedRows2) {
                 return $request->getRows()->serializeToJsonString() === $expectedRows2->serializeToJsonString();
             }),
             Argument::type('array')
@@ -515,7 +515,7 @@ class SmartRetriesTest extends TestCase
         // First Call
         // Check if the request has expected row range
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 $rowRanges = $request->getRows()->getRowRanges();
                 if (count($rowRanges) === 0) {
                     return false;
@@ -534,7 +534,7 @@ class SmartRetriesTest extends TestCase
         // Check if the request has empty row range and fail the test
         // as this will result in full table scan
         $this->bigtableClient->readRows(
-            Argument::that(function($request) {
+            Argument::that(function ($request) {
                 $rowRanges = $request->getRows()->getRowRanges();
                 return !count($rowRanges);
             }),
@@ -612,7 +612,7 @@ class SmartRetriesTest extends TestCase
             );
         $entries = $this->generateEntries(0, 5);
         $this->bigtableClient->mutateRows(
-            Argument::that(function($request) use($entries) {
+            Argument::that(function ($request) use ($entries) {
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
             Argument::type('array')
@@ -622,7 +622,7 @@ class SmartRetriesTest extends TestCase
         );
         $entries = $this->generateEntries(2, 3);
         $this->bigtableClient->mutateRows(
-            Argument::that(function($request) use($entries) {
+            Argument::that(function ($request) use ($entries) {
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
             Argument::type('array')
@@ -649,7 +649,7 @@ class SmartRetriesTest extends TestCase
             );
         $entries = $this->generateEntries(0, 5);
         $this->bigtableClient->mutateRows(
-            Argument::that(function($request) use($entries) {
+            Argument::that(function ($request) use ($entries) {
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
             Argument::type('array')
@@ -659,7 +659,7 @@ class SmartRetriesTest extends TestCase
         );
         $entries = array_merge($this->generateEntries(1, 2), $this->generateEntries(4, 5));
         $this->bigtableClient->mutateRows(
-            Argument::that(function($request) use($entries) {
+            Argument::that(function ($request) use ($entries) {
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
             Argument::type('array')
@@ -698,7 +698,7 @@ class SmartRetriesTest extends TestCase
             );
         $entries = $this->generateEntries(0, 7);
         $this->bigtableClient->mutateRows(
-            Argument::that(function($request) use($entries) {
+            Argument::that(function ($request) use ($entries) {
                 return iterator_to_array($request->getEntries()) == $entries;
             }),
             Argument::type('array')

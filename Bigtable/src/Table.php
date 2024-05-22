@@ -530,9 +530,9 @@ class Table
         $request = $this->serializer->decodeMessage(new CheckAndMutateRowRequest, $data);
 
         return $this->gapicClient->checkAndMutateRow(
-                $request,
-                $optionalArgs + $this->options
-            )->getPredicateMatched();
+            $request,
+            $optionalArgs + $this->options
+        )->getPredicateMatched();
     }
 
     private function mutateRowsWithEntries(array $entries, array $options = [])

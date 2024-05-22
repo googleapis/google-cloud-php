@@ -217,7 +217,7 @@ class TableTest extends SnippetTestCase
         $rowSet = (new RowSet())
             ->setRowRanges([$rowRange]);
         $this->bigtableClient->readRows(
-            Argument::that(function($request) use($rowSet) {
+            Argument::that(function ($request) use ($rowSet) {
                 return $request->getRows()->serializeToJsonString() === $rowSet->serializeToJsonString();
             }),
             Argument::type('array')
@@ -252,7 +252,7 @@ class TableTest extends SnippetTestCase
         $rowSet = (new RowSet())
             ->setRowKeys(['jefferson']);
         $this->bigtableClient->readRows(
-            Argument::that(function($request) use($rowSet) {
+            Argument::that(function ($request) use ($rowSet) {
                 return $request->getRows()->serializeToJsonString() === $rowSet->serializeToJsonString();
             }),
             Argument::type('array')

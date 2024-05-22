@@ -88,11 +88,12 @@ class ResumableStream implements \IteratorAggregate
      * @param callable $argumentFunction Function which returns the argument to be used while
      *        calling `$apiFunction`.
      * @param callable $retryFunction Function which determines whether to retry or not.
-     * @param int $retries [optional] 
-     * @param RetrySettings|array $retrySettings {
-     *        @option int $maxRetries Number of times to retry. **Defaults to** `3`.
+     * @param array $optionalArgs {
+     *        @option RetrySettings|array $retrySettings {
+     *                @option int $maxRetries Number of times to retry. **Defaults to** `3`.
      *                Only maxRetries works for RetrySettings in this API.
-     *        }
+     *            }
+     *   }
      */
     public function __construct(
         GapicClient $gapicClient,
@@ -137,9 +138,9 @@ class ResumableStream implements \IteratorAggregate
 
             if ($completed !== true) {
                 $stream = call_user_func_array(
-                        [$this->gapicClient, $this->method],
-                        [$this->request, $this->optionalArgs]
-                    );
+                    [$this->gapicClient, $this->method],
+                    [$this->request, $this->optionalArgs]
+                );
 
                 try {
                     foreach ($stream->readAll() as $item) {

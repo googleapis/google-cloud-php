@@ -138,8 +138,7 @@ class ChunkFormatter implements \IteratorAggregate
         GapicClient $gapicClient,
         ReadRowsRequest $request,
         array $options = []
-    )
-    {
+    ) {
         $this->gapicClient = $gapicClient;
         $this->request = $request;
         $this->options = $options;
