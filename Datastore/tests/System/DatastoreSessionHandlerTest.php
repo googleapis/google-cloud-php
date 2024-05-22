@@ -59,7 +59,7 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         $keys = [];
         foreach ($res as $e) {
             if (!$hasEntity) {
-                $hasEntity = $e['data'] === $storedValue;
+                $hasEntity = $e['data'] == $storedValue;
             }
 
             self::$localDeletionQueue->add($e->key());
@@ -103,7 +103,7 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         $hasEntity = false;
         foreach ($res as $e) {
             if (!$hasEntity) {
-                $hasEntity = $e['data'] === $storedValue;
+                $hasEntity = $e['data'] == $storedValue;
             }
 
             self::$localDeletionQueue->add($e->key());

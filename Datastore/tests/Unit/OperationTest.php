@@ -17,8 +17,11 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
@@ -27,6 +30,10 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -39,24 +46,27 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class OperationTest extends TestCase
 {
     use ProphecyTrait;
+    use ApiHelperTrait;
+    use DatastoreOperationRefreshTrait;
 
-    const PROJECT = 'example-project';
-    const NAMESPACEID = 'namespace-id';
-    const DATABASEID = 'database-id';
+    public const PROJECT = 'example-project';
+    public const NAMESPACEID = 'namespace-id';
+    public const DATABASEID = 'database-id';
 
     private $operation;
-    private $connection;
+    private $requestHandler;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
         $this->operation = TestHelpers::stub(Operation::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->getSerializer(),
             self::PROJECT,
             null,
             new EntityMapper('foo', true, false),
             self::DATABASEID,
-        ], ['connection', 'namespaceId']);
+        ], ['requestHandler', 'namespaceId']);
     }
 
     public function testKey()
@@ -226,15 +236,18 @@ class OperationTest extends TestCase
         $id = 12345;
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::withEntry('keys', [$key->keyObject()]))
-            ->shouldBeCalled()
-            ->willReturn([
-                'keys' => [
-                    $keyWithId->keyObject(),
-                ],
-            ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['keys' => [$keyWithId->keyObject()]]);
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->allocateIds([$key]);
 
@@ -255,11 +268,14 @@ class OperationTest extends TestCase
     {
         $key = $this->operation->key('foo', 'Bar');
 
-        $this->connection->lookup(Argument::type('array'))
-            ->shouldBeCalled()
-            ->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup([$key]);
 
@@ -269,11 +285,14 @@ class OperationTest extends TestCase
     public function testLookupFound()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $body,
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $body,]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
         $res = $this->operation->lookup([$key]);
@@ -291,11 +310,15 @@ class OperationTest extends TestCase
     public function testLookupMissing()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'missing' => $body,
-        ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['missing' => $body,]);
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
 
@@ -311,11 +334,15 @@ class OperationTest extends TestCase
     public function testLookupDeferred()
     {
         $body = json_decode(file_get_contents(Fixtures::ENTITY_BATCH_LOOKUP_FIXTURE()), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'deferred' => [$body[0]['entity']['key']],
-        ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['deferred' => [$body[0]['entity']['key']]]);
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Kind', 'ID');
 
@@ -328,9 +355,17 @@ class OperationTest extends TestCase
 
     public function testLookupWithReadOptionsFromTransaction()
     {
-        $this->connection->lookup(Argument::withKey('readOptions'))->shouldBeCalled()->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['transaction'] == 'foo';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
@@ -341,24 +376,35 @@ class OperationTest extends TestCase
 
     public function testLookupWithReadOptionsFromReadConsistency()
     {
-        $this->connection->lookup(Argument::withKey('readOptions'))->shouldBeCalled()->willReturn([]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['readConsistency'] == 123;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
         ]);
 
-        $this->operation->lookup([$k], ['readConsistency' => 'foo']);
+        $this->operation->lookup([$k], ['readConsistency' => 123]);
     }
 
     public function testLookupWithoutReadOptions()
     {
-        $this->connection->lookup(Argument::that(function ($args) {
-            return !isset($args['readOptions']);
-        }))->shouldBeCalled()->willReturn([]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            Argument::any(),
+            Argument::any(),
+            Argument::that(function (LookupRequest $arg) {
+                return !$arg->hasReadOptions();
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $k = new Key('test-project', [
             'path' => [['kind' => 'kind', 'id' => '123']],
@@ -378,11 +424,14 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $data['entities'],
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $data['entities']]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys, [
             'sort' => true,
@@ -406,12 +455,16 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->connection->lookup(Argument::any())->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'found' => $data['entities'],
             'missing' => $data['missing'],
         ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys);
 
@@ -438,11 +491,14 @@ class OperationTest extends TestCase
             ]);
         }
 
-        $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $data['entities'],
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $data['entities'],]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->lookup($keys, [
             'sort' => true,
@@ -474,10 +530,15 @@ class OperationTest extends TestCase
     public function testRunQuery()
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->connection->runQuery(Argument::type('array'))
-            ->willReturn($queryResult['notPaged']);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($queryResult['notPaged']);
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
@@ -500,17 +561,27 @@ class OperationTest extends TestCase
     public function testRunQueryPaged($query)
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->connection->runQuery(Argument::type('array'))
-            ->will(function ($args, $mock) use ($queryResult) {
+
+        $outerThis = $this;
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::cetera()
+        )->will(function ($args, $mock) use ($queryResult, $outerThis) {
                 // The 2nd call will return the 2nd page of results!
-                $mock->runQuery(Argument::that(function ($arg) use ($queryResult) {
-                    return $arg['query']['startCursor'] === $queryResult['paged'][0]['batch']['endCursor'];
-                }))->willReturn($queryResult['paged'][1]);
-
+                $mock->sendRequest(
+                    V1DatastoreClient::class,
+                    'runQuery',
+                    Argument::that(function ($arg) use ($queryResult, $outerThis) {
+                        $data = $outerThis->getSerializer()->encodeMessage($arg);
+                        return $data['query']['startCursor'] == $queryResult['paged'][0]['batch']['endCursor'];
+                    }),
+                    Argument::any()
+                )->willReturn($queryResult['paged'][1]);
                 return $queryResult['paged'][0];
-            });
+        });
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->operation->runQuery($query);
 
@@ -535,10 +606,14 @@ class OperationTest extends TestCase
     public function testRunQueryNoResults()
     {
         $queryResult = json_decode(file_get_contents(Fixtures::QUERY_RESULTS_FIXTURE()), true);
-        $this->connection->runQuery(Argument::type('array'))
-            ->willReturn($queryResult['noResults']);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($queryResult['noResults']);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->shouldBeCalled()->willReturn('query');
@@ -555,10 +630,14 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromTransaction()
     {
-        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([])
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
@@ -570,26 +649,35 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromReadConsistency()
     {
-        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([])
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
         $q->queryObject()->willReturn([]);
 
-        $res = $this->operation->runQuery($q->reveal(), ['readConsistency' => 'foo']);
+        $res = $this->operation->runQuery($q->reveal(), ['readConsistency' => 123]);
         iterator_to_array($res);
     }
 
     public function testRunQueryWithoutReadOptions()
     {
-        $this->connection->runQuery(Argument::that(function ($args) {
-            return !isset($args['readOptions']);
-        }))->willReturn([])->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {
+                return !$req->hasReadOptions();
+            }),
+            Argument::cetera()
+        )->willReturn([])->shouldBeCalled();
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $q = $this->prophesize(QueryInterface::class);
         $q->queryKey()->willReturn('query');
@@ -601,12 +689,15 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithDatabaseIdOverride()
     {
-        $this->connection
-            ->runQuery(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([]);
 
         $mapper = new EntityMapper('foo', true, false);
         $query = new Query($mapper);
@@ -620,28 +711,34 @@ class OperationTest extends TestCase
 
     public function testCommit()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::that(function ($arg) {
-                return count($arg['mutations']) === 0;
-            })
-        ))->shouldBeCalled()->willReturn(['foo']);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::NON_TRANSACTIONAL;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['foo']);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->assertEquals(['foo'], $this->operation->commit([]));
     }
 
     public function testCommitInTransaction()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::that(function ($arg) {
-                return count($arg['mutations']) === 0;
-            })
-        ))->shouldBeCalled()->willReturn(['foo']);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::TRANSACTIONAL;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['foo']);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->operation->commit([], [
             'transaction' => '1234',
@@ -650,11 +747,14 @@ class OperationTest extends TestCase
 
     public function testCommitWithMutation()
     {
-        $this->connection->commit(Argument::that(function ($arg) {
-            return count($arg['mutations']) === 1;
-        }))->shouldBeCalled()->willReturn(['foo']);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(fn ($arg) => (count($arg->getMutations()) == 1)),
+            Argument::any()
+        )->shouldBeCalled()->willReturn(['foo']);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person');
         $e = new Entity($key);
@@ -666,14 +766,17 @@ class OperationTest extends TestCase
 
     public function testCommitWithDatabaseIdOverride()
     {
-        $this->connection
-            ->commit(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([]);
 
-        $iterator = $this->operation->commit(
+        $this->operation->commit(
             [],
             ['databaseId' => 'otherDatabaseId']
         );
@@ -681,12 +784,18 @@ class OperationTest extends TestCase
 
     public function testRollback()
     {
-        $this->connection->rollback(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT),
-            Argument::withEntry('transaction', 'bar')
-        ))->shouldBeCalled()->willReturn(null);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'rollback',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['projectId'] == self::PROJECT
+                    && $data['transaction'] == 'bar';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(null);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->operation->rollback('bar');
     }
@@ -699,15 +808,18 @@ class OperationTest extends TestCase
         $id = 12345;
         $keyWithId = clone $partialKey;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::withEntry('keys', [$partialKey->keyObject()]))
-            ->shouldBeCalled()
-            ->willReturn([
-                'keys' => [
-                    $keyWithId->keyObject(),
-                ],
-            ]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::that(function ($req) use ($partialKey) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$partialKey->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['keys' => [$keyWithId->keyObject()]]);
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $entities = [
             $this->operation->entity($completeKey),
@@ -727,19 +839,16 @@ class OperationTest extends TestCase
     {
         $id = 12345;
 
-        $this->connection->commit(Argument::that(function ($arg) {
-            if (count($arg['mutations']) !== 1) {
-                return false;
-            }
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(
+                fn ($arg) => (count($arg->getMutations()) == 1 && $arg->getMutations()[0]->hasInsert())
+            ),
+            Argument::any()
+        )->shouldBeCalled();
 
-            if (!isset($arg['mutations'][0]['insert'])) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled();
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', $id);
         $e = new Entity($key);
@@ -750,11 +859,18 @@ class OperationTest extends TestCase
 
     public function testMutateWithBaseVersion()
     {
-        $this->connection->commit(Argument::that(function ($arg) {
-            return $arg['mutations'][0]['baseVersion'] === 1;
-        }))->willReturn('foo');
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['mutations'], [['baseVersion' => 1]])
+                    == $data['mutations'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn('foo');
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->prophesize(Key::class);
         $e = new Entity($key->reveal(), [], [
@@ -768,19 +884,18 @@ class OperationTest extends TestCase
 
     public function testMutateWithKey()
     {
-        $this->connection->commit(Argument::that(function ($arg) {
-            if (!isset($arg['mutations'][0]['delete'])) {
-                return false;
-            }
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($arg) {
+                $data = $this->getSerializer()->encodeMessage($arg);
+                $x = isset($data['mutations'][0]['delete']['path']);
+                return isset($data['mutations'][0]['delete']['path']);
+            }),
+            Argument::any()
+        )->shouldBeCalled()->willReturn('foo');
 
-            if (!isset($arg['mutations'][0]['delete']['path'])) {
-                return false;
-            }
-
-            return true;
-        }))->willReturn('foo');
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = new Key('foo', [
             'path' => [['kind' => 'foo', 'id' => 1]],
@@ -829,12 +944,14 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->connection->lookup(Argument::type('array'))
-            ->willReturn([
-                'found' => $res,
-            ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $res,]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -850,12 +967,14 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_NO_PROPERTIES_FIXTURE()), true);
 
-        $this->connection->lookup(Argument::type('array'))
-            ->willReturn([
-                'found' => $res,
-            ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $res,]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -870,12 +989,14 @@ class OperationTest extends TestCase
     {
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->connection->lookup(Argument::type('array'))
-            ->willReturn([
-                'found' => $res,
-            ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $res,]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -894,12 +1015,14 @@ class OperationTest extends TestCase
 
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
-        $this->connection->lookup(Argument::type('array'))
-            ->willReturn([
-                'found' => $res,
-            ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['found' => $res,]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
 
@@ -912,13 +1035,17 @@ class OperationTest extends TestCase
 
     public function testTransactionInReadOptions()
     {
-        $this->connection->lookup(Argument::that(function ($arg) {
-            return isset($arg['readOptions']['transaction']);
-        }))
-            ->willReturn([])
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['transaction'] == '1234';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key], [
@@ -928,13 +1055,15 @@ class OperationTest extends TestCase
 
     public function testNonTransactionalReadOptions()
     {
-        $this->connection->lookup(Argument::that(function ($arg) {
-            return !isset($arg['readOptions']['transaction']);
-        }))
-            ->willReturn([])
-            ->shouldBeCalled();
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            Argument::any(),
+            Argument::any(),
+            Argument::that(function (LookupRequest $arg) {
+                return (!$arg->hasReadOptions()) || (!$arg->getReadOptions()->hasTransaction());
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key]);
@@ -942,15 +1071,21 @@ class OperationTest extends TestCase
 
     public function testReadConsistencyInReadOptions()
     {
-        $this->connection->lookup(Argument::withEntry('readOptions', ['readConsistency' => 'test']))
-            ->willReturn([])
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['readConsistency'] == 123;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->operation->___setProperty('connection', $this->connection->reveal());
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $key = $this->operation->key('Person', 12345);
         $this->operation->lookup([$key], [
-            'readConsistency' => 'test',
+            'readConsistency' => 123,
         ]);
     }
 
@@ -963,11 +1098,15 @@ class OperationTest extends TestCase
 
     public function testBeginTransactionWithDatabaseIdOverride()
     {
-        $this->connection
-            ->beginTransaction(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->willReturn(['transaction' => 'valid_test_transaction']);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'beginTransaction',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['transaction' => 'valid_test_transaction']);
 
         $transactionId = $this->operation->beginTransaction(
             [],
@@ -979,12 +1118,17 @@ class OperationTest extends TestCase
 
     public function testAllocateIdsWithDatabaseIdOverride()
     {
-        $this->connection
-            ->allocateIds(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([]);
+
+        $this->operation->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->operation->allocateIds(
             [],
@@ -994,12 +1138,15 @@ class OperationTest extends TestCase
 
     public function testLookupWithDatabaseIdOverride()
     {
-        $this->connection
-            ->lookup(
-                Argument::withEntry('databaseId', 'otherDatabaseId')
-            )
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['databaseId'] == 'otherDatabaseId';
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([]);
 
         $this->operation->lookup(
             [],

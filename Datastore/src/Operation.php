@@ -17,15 +17,39 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\AggregationQuery as V1AggregationQuery;
+use Google\Cloud\Datastore\V1\AllocateIdsRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\ExplainOptions;
+use Google\Cloud\Datastore\V1\GqlQuery;
+use Google\Cloud\Datastore\V1\Key\PathElement;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\PartitionId;
+use Google\Cloud\Datastore\V1\PropertyFilter\Operator as PropertyFilterOperator;
+use Google\Cloud\Datastore\V1\CompositeFilter\Operator as CompositeFilterOperator;
+use Google\Cloud\Datastore\V1\Mutation;
+use Google\Cloud\Datastore\V1\PropertyOrder\Direction;
+use Google\Cloud\Datastore\V1\Query as V1Query;
 use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
+use Google\Cloud\Datastore\V1\ReadOptions;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\TransactionOptions;
+use Google\Protobuf\NullValue;
 
 /**
  * Run lookups and queries and commit changes.
@@ -37,18 +61,28 @@ use Google\Cloud\Datastore\V1\QueryResultBatch\MoreResultsType;
  * Examples are omitted for brevity. Detailed usage examples can be found in
  * {@see \Google\Cloud\Datastore\DatastoreClient} and
  * {@see \Google\Cloud\Datastore\Transaction}.
+ *
+ * @internal
  */
 class Operation
 {
+    use ApiHelperTrait;
     use DatastoreTrait;
     use ValidateTrait;
     use TimestampTrait;
 
     /**
-     * @var ConnectionInterface
+     * @var RequestHandler
      * @internal
+     * The request handler responsible for sending requests and
+     * serializing responses into relevant classes.
      */
-    protected $connection;
+    private RequestHandler $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @var string
@@ -73,26 +107,28 @@ class Operation
     /**
      * Create an operation
      *
-     * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
-     *        This object is created by DatastoreClient,
-     *        and should not be instantiated outside of this client.
+     * @param RequestHandler $requestHandler The request handler responsible for sending
+     *        requests and serializing responses into relevant classes.
+     * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.
      * @param EntityMapper $entityMapper A Datastore Entity Mapper instance.
      * @param string $databaseId ID of the database to which the entities belong.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        RequestHandler $requestHandler,
+        Serializer $serializer,
         $projectId,
         $namespaceId,
         EntityMapper $entityMapper,
         $databaseId = ''
     ) {
-        $this->connection = $connection;
         $this->projectId = $projectId;
         $this->namespaceId = $namespaceId;
         $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
+        $this->requestHandler = $requestHandler;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -280,11 +316,23 @@ class Operation
                 $transactionOptions['readOnly']
             );
         }
-        $res = $this->connection->beginTransaction($options + [
+
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+
+        $data += [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
             'transactionOptions' => $transactionOptions,
-        ]);
+        ];
+
+        $request = $this->serializer->decodeMessage(new BeginTransactionRequest(), $data);
+
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'beginTransaction',
+            $request,
+            $optionalArgs
+        );
 
         return $res['transaction'];
     }
@@ -325,11 +373,22 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         }
 
-        $res = $this->connection->allocateIds($options + [
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+
+        $data += [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
             'keys' => $serviceKeys,
-        ]);
+        ];
+
+        $request = $this->serializer->decodeMessage(new AllocateIdsRequest(), $data);
+
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'allocateIds',
+            $request,
+            $optionalArgs
+        );
 
         if (isset($res['keys'])) {
             foreach ($res['keys'] as $index => $key) {
@@ -395,11 +454,27 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         });
 
-        $res = $this->connection->lookup($options + $this->readOptions($options) + [
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += $this->readOptions($options) + [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
-            'keys' => $serviceKeys,
-        ]);
+            'keys' => $this->keysList($serviceKeys),
+        ];
+
+        // Remove redundant keys for request.
+        $this->pluckArray(
+            ['transaction', 'className', 'sort', 'readTime', 'readConsistency'],
+            $data
+        );
+
+        $request = $this->serializer->decodeMessage(new LookupRequest(), $data);
+
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'lookup',
+            $request,
+            $optionalArgs
+        );
 
         $result = [];
         if (isset($res['found'])) {
@@ -491,26 +566,23 @@ class Operation
         }
         $runQueryObj = clone $query;
         $runQueryFn = function (array $args = []) use (&$runQueryObj, $options, &$remainingLimit) {
-            $args += [
-                'query' => [],
-            ];
+            $parsedArgs = $this->parseRunQueryArguments($args, $runQueryObj, $options, $remainingLimit);
 
-            // The iterator provides the startCursor for subsequent pages as an argument.
-            $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
-            if (isset($remainingLimit)) {
-                $requestQueryArr['limit'] = $remainingLimit;
-            }
-            $request = [
-                'projectId' => $this->projectId,
-                'partitionId' => $this->partitionId(
-                    $this->projectId,
-                    $options['namespaceId'],
-                    $options['databaseId']
-                ),
-                $runQueryObj->queryKey() => $requestQueryArr,
-            ] + $this->readOptions($options) + $options;
+            list($data, $optionalArgs) = $this->splitOptionalArgs($parsedArgs);
 
-            $res = $this->connection->runQuery($request);
+            // Remove redundant keys for request.
+            $this->pluckArray(
+                ['className', 'namespaceId', 'readTime', 'readConsistency', 'transaction'],
+                $data
+            );
+
+            $request = $this->serializer->decodeMessage(new RunQueryRequest(), $data);
+            $res = $this->requestHandler->sendRequest(
+                DatastoreClient::class,
+                'runQuery',
+                $request,
+                $optionalArgs
+            );
 
             // When executing a GQL Query, the server will compute a query object
             // and return it with the first response batch.
@@ -572,20 +644,23 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        $args = [
-            'query' => [],
-        ];
-        $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
-        $request = [
-            'projectId' => $this->projectId,
-            'partitionId' => $this->partitionId(
-                $this->projectId,
-                $options['namespaceId'],
-                $options['databaseId']
-            ),
-        ] + $requestQueryArr + $this->readOptions($options) + $options;
+        $parsedArgs = $this->parseRunAggregationQueryArgs($runQueryObj, $options);
 
-        $res = $this->connection->runAggregationQuery($request);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($parsedArgs);
+
+        // Remove redundant keys for request.
+        $this->pluckArray(
+            ['namespaceId', 'readTime', 'readConsistency', 'transaction'],
+            $data
+        );
+
+        $request = $this->serializer->decodeMessage(new RunAggregationQueryRequest(), $data);
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'runAggregationQuery',
+            $request,
+            $optionalArgs
+        );
         return new AggregationQueryResult($res, $this->entityMapper);
     }
 
@@ -614,12 +689,20 @@ class Operation
             'databaseId' => $this->databaseId,
         ];
 
-        $res = $this->connection->commit($options + [
-            'mode' => ($options['transaction']) ? 'TRANSACTIONAL' : 'NON_TRANSACTIONAL',
-            'mutations' => $mutations,
-            'projectId' => $this->projectId,
-        ]);
 
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data = $this->parseCommitOptions($mutations, $data);
+
+        // Remove redundant keys for request.
+        $this->pluckArray(['allowOverwrite', 'baseVersion'], $data);
+
+        $request = $this->serializer->decodeMessage(new CommitRequest(), $data);
+        $res = $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'commit',
+            $request,
+            $optionalArgs
+        );
         return $res;
     }
 
@@ -710,11 +793,18 @@ class Operation
      */
     public function rollback($transactionId)
     {
-        $this->connection->rollback([
+        $data = [
             'projectId' => $this->projectId,
             'transaction' => $transactionId,
             'databaseId' => $this->databaseId,
-        ]);
+        ];
+        $request = $this->serializer->decodeMessage(new RollbackRequest(), $data);
+        $this->requestHandler->sendRequest(
+            DatastoreClient::class,
+            'rollback',
+            $request,
+            []
+        );
     }
 
     /**
@@ -870,5 +960,270 @@ class Operation
         }
 
         return $ret;
+    }
+
+    /**
+     * Convert an array of keys to a list of {@see Google\Cloud\Datastore\V1\Key}.
+     *
+     * @param array[] $keys
+     * @return Key[]
+     */
+    private function keysList(array $keys)
+    {
+        $out = [];
+        foreach ($keys as $key) {
+            $local = [];
+
+            if (isset($key['partitionId'])) {
+                $p = array_filter([
+                    'project_id' => $key['partitionId']['projectId'] ?? null,
+                    'namespace_id' => $key['partitionId']['namespaceId'] ?? null,
+                    'database_id' => $key['partitionId']['databaseId'] ?? null,
+                ], fn ($v) => !is_null($v));
+
+                $local['partition_id'] = new PartitionId($p);
+            }
+
+            $local['path'] = [];
+            if (isset($key['path'])) {
+                foreach ($key['path'] as $element) {
+                    $local['path'][] = new PathElement($element);
+                }
+            }
+
+            $out[] = $local;
+        }
+
+        return $out;
+    }
+
+    /**
+     * Parse query into API compatible values
+     *
+     * @param array $query
+     * @return array
+     */
+    private function parseQuery(array $query)
+    {
+        if (isset($query['order'])) {
+            foreach ($query['order'] as &$order) {
+                $order['direction'] = $order['direction'] === 'ASCENDING'
+                    ? Direction::ASCENDING
+                    : Direction::DESCENDING;
+            }
+        }
+
+        if (isset($query['filter'])) {
+            $query['filter'] = $this->convertFilterProps($query['filter']);
+        }
+
+        if (isset($query['limit']) && !is_array($query['limit'])) {
+            $query['limit'] = [
+                'value' => $query['limit']
+            ];
+        }
+
+        return $query;
+    }
+
+    /**
+     * Parse query into API compatible values
+     *
+     * @param array $gqlQuery
+     * @return array
+     */
+    private function parseGqlQuery(array $gqlQuery)
+    {
+        if (isset($gqlQuery['namedBindings'])) {
+            foreach ($gqlQuery['namedBindings'] as $name => &$binding) {
+                if (!isset($binding['value'])) {
+                    continue;
+                }
+
+                $binding = $this->prepareQueryBinding($binding);
+            }
+        }
+
+        if (isset($gqlQuery['positionalBindings'])) {
+            foreach ($gqlQuery['positionalBindings'] as &$binding) {
+                if (!isset($binding['value'])) {
+                    continue;
+                }
+
+                $binding = $this->prepareQueryBinding($binding);
+            }
+        }
+
+        return $gqlQuery;
+    }
+
+    /**
+     * Convert Query filters to an API-compatible value.
+     *
+     * @param array $filter The input filter data
+     * @return array
+     */
+    private function convertFilterProps(array $filter)
+    {
+        if (isset($filter['propertyFilter'])) {
+            $operator = $filter['propertyFilter']['op'];
+
+            try {
+                if (is_int($operator)) {
+                    // verify that the operator, given as enum value, exists.
+                    PropertyFilterOperator::name($operator);
+                } else {
+                    // convert the operator, given as a string, to a grpc value.
+                    $operator = PropertyFilterOperator::value($operator);
+                }
+            } catch (\UnexpectedValueException $e) {
+                throw new \InvalidArgumentException($e->getMessage());
+            }
+
+            $filter['propertyFilter']['op'] = $operator;
+        }
+
+        if (isset($filter['compositeFilter'])) {
+            if ($filter['compositeFilter']['op'] == 'AND') {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::PBAND;
+            } elseif ($filter['compositeFilter']['op'] == 'OR') {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::PBOR;
+            } else {
+                $filter['compositeFilter']['op'] = CompositeFilterOperator::OPERATOR_UNSPECIFIED;
+            }
+            foreach ($filter['compositeFilter']['filters'] as &$nested) {
+                $nested = $this->convertFilterProps($nested);
+            }
+        }
+
+        return $filter;
+    }
+
+    /**
+     * Convert a query binding to an API-compatible value.
+     *
+     * @param array $binding The input binding data
+     * @return array
+     */
+    private function prepareQueryBinding(array $binding)
+    {
+        $value = $binding['value'];
+
+        list($type, $val) = $this->toGrpcValue($value);
+
+        $binding['value'][$type] = $val;
+
+        return $binding;
+    }
+
+    /**
+     * Convert a property value to a gRPC value.
+     *
+     * @param array $property The input property.
+     * @return array
+     */
+    private function toGrpcValue(array $property)
+    {
+        $type = array_keys($property)[0];
+        $val = $property[$type];
+        if ($val === null) {
+            $val = NullValue::NULL_VALUE;
+        }
+
+        if ($type === 'timestampValue') {
+            $val = $this->formatTimestampForApi($val);
+        }
+
+        if ($type === 'geoPointValue') {
+            $val = $this->arrayFilterRemoveNull($val);
+        }
+
+        return [$type, $val];
+    }
+
+    private function parseRunQueryArguments($args, &$runQueryObj, $options, &$remainingLimit)
+    {
+        $args += ['query' => []];
+
+        // The iterator provides the startCursor for subsequent pages as an argument.
+        $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+        if (isset($remainingLimit)) {
+            $requestQueryArr['limit'] = $remainingLimit;
+        }
+        $result = [
+            'projectId' => $this->projectId,
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $options['namespaceId'],
+                $options['databaseId']
+            ),
+            $runQueryObj->queryKey() => $requestQueryArr,
+        ] + $this->readOptions($options) + $options;
+
+        if (isset($result['query'])) {
+            $result['query'] = $this->parseQuery($result['query']);
+        }
+        if (isset($result['gqlQuery'])) {
+            $result['gqlQuery'] = $this->parseGqlQuery($result['gqlQuery']);
+        }
+
+        return $result;
+    }
+
+    private function parseRunAggregationQueryArgs($runQueryObj, $options)
+    {
+        $requestQueryArr = $runQueryObj->queryObject();
+        $result = [
+            'projectId' => $this->projectId,
+            'partitionId' => $this->partitionId(
+                $this->projectId,
+                $options['namespaceId'],
+                $options['databaseId']
+            ),
+        ] + $requestQueryArr + $this->readOptions($options) + $options;
+
+        if (isset($result['aggregationQuery'])) {
+            if (isset($result['aggregationQuery']['nestedQuery'])) {
+                $result['aggregationQuery']['nestedQuery'] = $this->parseQuery(
+                    $result['aggregationQuery']['nestedQuery']
+                );
+            }
+        }
+
+        if (isset($result['gqlQuery'])) {
+            $result['gqlQuery'] = $this->parseGqlQuery($result['gqlQuery']);
+        }
+
+        return $result;
+    }
+
+    private function parseCommitOptions($mutations, $options)
+    {
+        foreach ($mutations as &$mutation) {
+            $mutationType = array_keys($mutation)[0];
+            $data = $mutation[$mutationType];
+            if (isset($data['properties'])) {
+                foreach ($data['properties'] as &$property) {
+                    list($type, $val) = $this->toGrpcValue($property);
+
+                    $property[$type] = $val;
+                }
+            }
+
+            $mutation[$mutationType] = $data;
+        }
+
+        $options += [
+            'mode' => ($options['transaction']) ? Mode::TRANSACTIONAL : Mode::NON_TRANSACTIONAL,
+            'mutations' => $mutations,
+            'projectId' => $this->projectId,
+        ];
+
+        if (is_null($options['transaction'])) {
+            // Remove 'transaction' if set to `null` to avoid serialization error
+            unset($options['transaction']);
+        }
+
+        return $options;
     }
 }

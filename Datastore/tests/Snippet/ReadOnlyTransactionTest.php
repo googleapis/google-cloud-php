@@ -17,17 +17,23 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -38,21 +44,23 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
     private $transaction;
     private $client;
     private $key;
+    private $requestHandler;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $operation = new Operation(
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->getSerializer(),
             self::PROJECT,
             '',
             new EntityMapper(self::PROJECT, false, false)
@@ -77,13 +85,14 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -97,20 +106,30 @@ class ReadOnlyTransactionTest extends SnippetTestCase
 
     public function testClassRollback()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
-        $this->connection->lookup(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([]);
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'rollback',
+            Argument::type(RollbackRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
 
         $snippet = $this->snippetFromClass(ReadOnlyTransaction::class, 1);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -128,9 +147,17 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -147,9 +174,10 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        )->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -163,9 +191,17 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -196,9 +232,10 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        )->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -218,9 +255,17 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $query->queryKey()->willReturn('query');
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
+            [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -239,9 +284,10 @@ class ReadOnlyTransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        )->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -254,10 +300,14 @@ class ReadOnlyTransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(ReadOnlyTransaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'rollback',
+            Argument::type(RollbackRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 

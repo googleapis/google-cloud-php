@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
@@ -28,6 +30,13 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -38,22 +47,24 @@ class TransactionTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const PROJECT = 'my-awesome-project';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
     private $operation;
     private $transaction;
     private $client;
     private $key;
+    private $requestHandler;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $operation = new Operation(
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->getSerializer(),
             self::PROJECT,
             '',
             new EntityMapper(self::PROJECT, false, false)
@@ -78,13 +89,14 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'transaction' => 'foo'
-            ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'beginTransaction',
+            Argument::type(BeginTransactionRequest::class),
+            Argument::cetera()
+        )->willReturn(['transaction' => 'foo'])->shouldBeCalled();
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -102,18 +114,13 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'insert';
-            })
-        ))->shouldBeCalled()->willReturn([
+        $this->mockSendRequestForCommit('insert', [
             'mutationResults' => [
                 ['version' => 1]
             ]
         ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -126,20 +133,15 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'insert';
-            })
-        ))->shouldBeCalled()->willReturn([
+        $this->mockSendRequestForCommit('insert', [
             'mutationResults' => [
                 ['version' => 1]
             ]
         ]);
 
-        $this->allocateIdsConnectionMock();
+        $this->allocateIdsRequestHandlerMock();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -155,18 +157,13 @@ class TransactionTest extends SnippetTestCase
             'populatedByService' => true
         ]));
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'update';
-            })
-        ))->shouldBeCalled()->willReturn([
+        $this->mockSendRequestForCommit('update', [
             'mutationResults' => [
                 ['version' => 1]
             ]
         ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -183,14 +180,9 @@ class TransactionTest extends SnippetTestCase
             $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'update';
-            })
-        ))->shouldBeCalled();
+        $this->mockSendRequestForCommit('update', []);
 
-        $res = $snippet->invoke();
+        $snippet->invoke();
     }
 
     public function testUpsert()
@@ -202,20 +194,13 @@ class TransactionTest extends SnippetTestCase
             'populatedByService' => true
         ]));
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'upsert';
-            })
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'mutationResults' => [
-                    ['version' => 1]
-                ]
-            ]);
+        $this->mockSendRequestForCommit('upsert', [
+            'mutationResults' => [
+                ['version' => 1]
+            ]
+        ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -232,15 +217,9 @@ class TransactionTest extends SnippetTestCase
             $this->client->entity($this->client->key('Person', 'John'), [], ['populatedByService' => true])
         ]);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'upsert';
-            })
-        ))
-            ->shouldBeCalled();
+        $this->mockSendRequestForCommit('upsert', []);
 
-        $res = $snippet->invoke();
+        $snippet->invoke();
     }
 
     public function testDelete()
@@ -249,20 +228,13 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'delete';
-            })
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'mutationResults' => [
-                    ['version' => 1]
-                ]
-            ]);
+        $this->mockSendRequestForCommit('delete', [
+            'mutationResults' => [
+                ['version' => 1]
+            ]
+        ]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -275,12 +247,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return array_keys($args['mutations'][0])[0] === 'delete';
-            })
-        ))->shouldBeCalled();
+        $this->mockSendRequestForCommit('delete', []);
 
         $res = $snippet->invoke();
     }
@@ -291,9 +258,17 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -310,9 +285,10 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        )->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -326,9 +302,17 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->lookup(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
+            [
                 'found' => [
                     [
                         'entity' => [
@@ -359,9 +343,10 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        )->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -381,9 +366,17 @@ class TransactionTest extends SnippetTestCase
         $query->queryKey()->willReturn('query');
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
+            [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -402,9 +395,10 @@ class TransactionTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]
+        )->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -422,9 +416,17 @@ class TransactionTest extends SnippetTestCase
         $query->queryObject()->willReturn([]);
         $snippet->addLocal('query', $query->reveal());
 
-        $this->connection->runAggregationQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runAggregationQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->willReturn(
+            [
                 'batch' => [
                     'aggregationResults' => [
                         [
@@ -435,9 +437,10 @@ class TransactionTest extends SnippetTestCase
                     ],
                     'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
                 ]
-            ]);
+            ]
+        )->shouldBeCalled();
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -450,10 +453,14 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'commit');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -465,10 +472,14 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'rollback');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'rollback',
+            Argument::type(RollbackRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -477,31 +488,46 @@ class TransactionTest extends SnippetTestCase
 
     // ******** HELPERS
 
-    private function allocateIdsConnectionMock()
+    private function allocateIdsRequestHandlerMock()
     {
-        $this->connection->allocateIds(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'keys' => [
-                    [
-                        'path' => [
-                            [
-                                'kind' => 'Person',
-                                'id' => '4682475895'
-                            ]
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'keys' => [
+                [
+                    'path' => [
+                        [
+                            'kind' => 'Person',
+                            'id' => '4682475895'
                         ]
-                    ],
-                    [
-                        'path' => [
-                            [
-                                'kind' => 'Person',
-                                'id' => '4682475896'
-                            ]
+                    ]
+                ],
+                [
+                    'path' => [
+                        [
+                            'kind' => 'Person',
+                            'id' => '4682475896'
                         ]
                     ]
                 ]
-            ]);
+            ]
+        ]);
 
-        return $this->connection->reveal();
+        return $this->requestHandler->reveal();
+    }
+
+    private function mockSendRequestForCommit($mutationType, $returnValue)
+    {
+        $hazzer = 'has' . ucfirst($mutationType);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(
+                fn ($arg) => $arg->getTransaction() == self::TRANSACTION && $arg->getMutations()[0]->$hazzer()
+            ),
+            Argument::any()
+        )->shouldBeCalled()->willReturn($returnValue);
     }
 }

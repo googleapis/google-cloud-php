@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
@@ -31,6 +33,14 @@ use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\AllocateIdsRequest;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\RollbackRequest;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -45,22 +55,24 @@ class TransactionTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
     private $transaction;
     private $readOnly;
     private $key;
     private $entity;
+    private $requestHandler;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $op = new Operation(
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->getSerializer(),
             self::PROJECT,
             null,
             new EntityMapper(self::PROJECT, false, false)
@@ -83,19 +95,28 @@ class TransactionTest extends TestCase
      */
     public function testLookup(callable $transaction)
     {
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['readOptions']['transaction'])
+                    && $data['readOptions']['transaction'] == self::TRANSACTION
+                    && array_replace_recursive($data['keys'], [$this->key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
                 ]
             ]
-        ]);
+        );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -104,47 +125,31 @@ class TransactionTest extends TestCase
         $this->assertEquals($this->key->keyObject(), $res->key()->keyObject());
     }
 
-    public function testLookupWithReadTime()
-    {
-        $time = new Timestamp(new \DateTime());
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('keys', [$this->key->keyObject()]),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
-                ]
-            ]
-        ]);
-
-        $transaction = $this->readOnly;
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
-        $res = $transaction->lookup($this->key, ['readTime' => $time]);
-        $this->assertInstanceOf(Entity::class, $res);
-    }
-
     /**
      * @dataProvider transactionProvider
      */
     public function testLookupMissing(callable $transaction)
     {
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'missing' => [
-                [
-                    'entity' => $this->entityArray($this->key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$this->key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'missing' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
                 ]
             ]
-        ]);
+        );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -157,26 +162,34 @@ class TransactionTest extends TestCase
      */
     public function testLookupBatch(callable $transaction)
     {
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$this->key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$this->key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
+                ],
+                'missing' => [
+                    [
+                        'entity' => $this->entityArray($this->key)
+                    ]
+                ],
+                'deferred' => [
+                    $this->key->keyObject()
                 ]
-            ],
-            'missing' => [
-                [
-                    'entity' => $this->entityArray($this->key)
-                ]
-            ],
-            'deferred' => [
-                $this->key->keyObject()
             ]
-        ]);
+        );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -189,47 +202,31 @@ class TransactionTest extends TestCase
     /**
      * @dataProvider transactionProvider
      */
-    public function testLookupBatchWithReadTime(callable $transaction)
-    {
-        $time = new Timestamp(new \DateTime());
-        $this->connection->lookup(
-            Argument::withEntry('readTime', $time)
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($this->key)
-                ]
-            ]
-        ]);
-
-        $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
-            'projectId' => self::PROJECT
-        ]);
-
-        $res = $transaction->lookupBatch([$this->key], ['readTime' => $time]);
-    }
-
-    /**
-     * @dataProvider transactionProvider
-     */
     public function testRunQuery(callable $transaction)
     {
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1'])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($this->key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['partitionId']['projectId'] == self::PROJECT
+                    && $data['gqlQuery']['queryString'] == 'SELECT 1=1';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'batch' => [
+                    'entityResults' => [
+                        [
+                            'entity' => $this->entityArray($this->key)
+                        ]
                     ]
                 ]
             ]
-        ]);
+        );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -246,24 +243,30 @@ class TransactionTest extends TestCase
      */
     public function testRunAggregationQuery(callable $transaction)
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'aggregationResults' => [
-                    [
-                        'aggregateProperties' => ['property_1' => 1]
-                    ]
-                ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runAggregationQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['partitionId']['projectId'] == self::PROJECT
+                    && $data['gqlQuery']['queryString'] == 'AGGREGATE (COUNT(*)) over (SELECT 1=1)';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => ['property_1' => 1]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
             ]
-        ]);
+        );
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -281,22 +284,31 @@ class TransactionTest extends TestCase
     public function testRunQueryWithReadTime()
     {
         $time = new Timestamp(new \DateTime());
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($this->key)
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) use ($time) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['partitionId']['projectId'] == self::PROJECT
+                    && $data['readOptions']['readTime'] == $time
+                    && $data['gqlQuery']['queryString'] == 'SELECT 1=1';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'batch' => [
+                    'entityResults' => [
+                        [
+                            'entity' => $this->entityArray($this->key)
+                        ]
                     ]
                 ]
             ]
-        ]);
+        );
 
         $transaction = $this->readOnly;
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -313,11 +325,18 @@ class TransactionTest extends TestCase
      */
     public function testRollback(callable $transaction)
     {
-        $this->connection->rollback(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'rollback',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
         $transaction = $transaction();
-        $this->refreshOperation($transaction, $this->connection->reveal(), [
+        $this->refreshOperation($transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -329,13 +348,19 @@ class TransactionTest extends TestCase
      */
     public function testEntityMutations($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($method, $mutation) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['transaction'] == self::TRANSACTION
+                    && $data['mode'] == Mode::TRANSACTIONAL
+                    && $data['mutations'][0] = [$method => $mutation];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -350,13 +375,19 @@ class TransactionTest extends TestCase
      */
     public function testEntityMutationsBatch($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($method, $mutation) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['transaction'] == self::TRANSACTION
+                    && $data['mode'] == Mode::TRANSACTIONAL
+                    && $data['mutations'][0] = [$method => $mutation];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -378,23 +409,31 @@ class TransactionTest extends TestCase
      */
     public function testMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($method, $mutation) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['transaction'] == self::TRANSACTION
+                    && $data['mode'] == Mode::TRANSACTIONAL
+                    && $data['mutations'][0] = [$method => $mutation];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['keys' => [$keyWithId->keyObject()]]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -410,23 +449,31 @@ class TransactionTest extends TestCase
      */
     public function testBatchMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($method, $mutation) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['transaction'] == self::TRANSACTION
+                    && $data['mode'] == Mode::TRANSACTIONAL
+                    && $data['mutations'][0] = [$method => $mutation];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['keys' => [$keyWithId->keyObject()]]);
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -448,17 +495,22 @@ class TransactionTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $this->key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['transaction'] == self::TRANSACTION
+                    && $data['mode'] == Mode::TRANSACTIONAL
+                    && array_replace_recursive(
+                        $data['mutations'][0]['delete'],
+                        $this->key->keyObject()
+                    ) == $data['mutations'][0]['delete'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -471,17 +523,22 @@ class TransactionTest extends TestCase
     public function testDeleteBatch()
     {
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $this->key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['transaction'] == self::TRANSACTION
+                    && $data['mode'] == Mode::TRANSACTIONAL
+                    && array_replace_recursive(
+                        $data['mutations'][0]['delete'],
+                        $this->key->keyObject()
+                    ) == $data['mutations'][0]['delete'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->transaction, $this->connection->reveal(), [
+        $this->refreshOperation($this->transaction, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 

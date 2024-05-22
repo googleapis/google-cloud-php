@@ -17,14 +17,20 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
+use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\LookupRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -34,10 +40,13 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class EntityTest extends SnippetTestCase
 {
     use ProphecyTrait;
+    use ApiHelperTrait;
+    use DatastoreOperationRefreshTrait;
 
     private $options;
     private $entity;
     private $key;
+    private $requestHandler;
 
     public function setUp(): void
     {
@@ -56,6 +65,8 @@ class EntityTest extends SnippetTestCase
         ]);
 
         $this->entity = new Entity($this->key, [], $this->options);
+
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
     }
 
     public function testClass()
@@ -72,9 +83,19 @@ class EntityTest extends SnippetTestCase
             'operation'
         ]);
 
-        $connection = $this->prophesize(ConnectionInterface::class);
-        $connection->commit(Argument::any())->shouldBeCalled()->willReturn(['mutationResults' => [['version' => 1]]]);
-        $connection->lookup(Argument::any())->shouldBeCalled()->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['mutationResults' => [['version' => 1]]]);
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::type(LookupRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'found' => [
                 [
                     'entity' => [
@@ -101,7 +122,8 @@ class EntityTest extends SnippetTestCase
         ]);
 
         $operation = new Operation(
-            $connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->getSerializer(),
             'example_project',
             'foo',
             new EntityMapper('example_project', false, false)

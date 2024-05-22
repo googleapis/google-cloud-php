@@ -83,10 +83,13 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
             self::$multipleDbValidationResult = true;
         }
 
-        return [
-            'multiDbRestClient' => [self::$restMultiDbClient],
-            'multiDbGrpcClient' => [self::$grpcMultiDbClient],
-        ];
+        $clients = ['multiDbGrpcClient' => [self::$grpcMultiDbClient]];
+        // Emulators don't work well in ReGapic mode
+        if (!getenv("DATASTORE_EMULATOR_HOST")) {
+            $clients['multiDbRestClient'] = [self::$restMultiDbClient];
+        }
+
+        return $clients;
     }
 
     public function clientProvider()
@@ -115,7 +118,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
             if (!array_key_exists('name', $database)) {
                 continue;
             }
-            if ($database['name'] === $dbId) {
+            if ($database['name'] == $dbId) {
                 return true;
             }
         }

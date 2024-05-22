@@ -189,7 +189,3 @@ class PathElement extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PathElement::class, \Google\Cloud\Datastore\V1\Key_PathElement::class);
-

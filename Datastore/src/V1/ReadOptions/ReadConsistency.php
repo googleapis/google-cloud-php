@@ -58,7 +58,3 @@ class ReadConsistency
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReadConsistency::class, \Google\Cloud\Datastore\V1\ReadOptions_ReadConsistency::class);
-

@@ -46,10 +46,10 @@ class AggregationQueryTest extends DatastoreMultipleDbTestCase
     {
         parent::setUpBeforeClass();
         self::$kind = uniqid('testKind');
-        $keys = self::$restClient->keys(self::$kind, ['number' => count(self::$data)]);
-        $keys = self::$restClient->allocateIds($keys);
+        $keys = self::$grpcClient->keys(self::$kind, ['number' => count(self::$data)]);
+        $keys = self::$grpcClient->allocateIds($keys);
         foreach ($keys as $count => $key) {
-            self::$restClient->insert(self::$restClient->entity($key, self::$data[$count]));
+            self::$grpcClient->insert(self::$grpcClient->entity($key, self::$data[$count]));
         }
 
         // on rare occasions the queries below are returning no results when

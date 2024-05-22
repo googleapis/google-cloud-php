@@ -70,7 +70,7 @@ class DatastoreTestCase extends TestCase
         }
 
         $backoff = new ExponentialBackoff(8);
-        $transaction = self::$restClient->transaction();
+        $transaction = self::$grpcClient->transaction();
 
         self::$localDeletionQueue->process(function ($items) use ($backoff, $transaction) {
             $backoff->execute(function () use ($items, $transaction) {
@@ -82,11 +82,14 @@ class DatastoreTestCase extends TestCase
     public function defaultDbClientProvider()
     {
         self::setUpBeforeClass();
+        $clients = ['grpcClient' => [self::$grpcClient]];
 
-        return [
-            'restClient' => [self::$restClient],
-            'grpcClient' => [self::$grpcClient]
-        ];
+        // Emulators don't work well in ReGapic mode
+        if (!getenv("DATASTORE_EMULATOR_HOST")) {
+            $clients['restClient'] = [self::$restClient];
+        }
+
+        return $clients;
     }
 
     public static function skipEmulatorTests()

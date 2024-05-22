@@ -686,16 +686,6 @@ class EntityMapperTest extends TestCase
         $this->compareResult($expected, $double['doubleValue']);
     }
 
-    /**
-     * @dataProvider valueObjectDoubleForRestCases
-     */
-    public function testValueObjectDoubleForRestClient($input, $expected)
-    {
-        $mapper = new EntityMapper('foo', true, false, 'rest');
-        $double = $mapper->valueObject($input);
-        $this->compareResult($expected, $double['doubleValue']);
-    }
-
     public function testValueObjectString()
     {
         $string = $this->mapper->valueObject('foo');
@@ -922,13 +912,6 @@ class EntityMapperTest extends TestCase
     {
         return [
             [1.1, 1.1],
-
-            // Happens when using rest client
-            ['Infinity', INF],
-            ['-Infinity', -INF],
-            ['NaN', NAN],
-
-            // Happens when using grpc client
             [INF, INF],
             [-INF, -INF],
             [NAN, NAN]
@@ -942,16 +925,6 @@ class EntityMapperTest extends TestCase
             [1.1, 1.1],
             [-INF, -INF],
             [NAN, NAN]
-        ];
-    }
-
-    public function valueObjectDoubleForRestCases()
-    {
-        return [
-            [INF, 'Infinity'],
-            [1.1, 1.1],
-            [-INF, '-Infinity'],
-            [NAN, 'NaN']
         ];
     }
 

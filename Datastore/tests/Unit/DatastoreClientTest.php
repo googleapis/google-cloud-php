@@ -17,20 +17,20 @@
 
 namespace Google\Cloud\Datastore\Tests\Unit;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Datastore\Blob;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
-use Google\Cloud\Datastore\Connection\Grpc;
-use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Datastore\Query\Aggregation;
 use Google\Cloud\Datastore\Query\AggregationQuery;
 use Google\Cloud\Datastore\Query\AggregationQueryResult;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -38,6 +38,16 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
+use Google\Cloud\Datastore\V1\AllocateIdsRequest;
+use Google\Cloud\Datastore\V1\BeginTransactionRequest;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\LookupRequest;
+use Google\Cloud\Datastore\V1\PartitionId;
+use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
+use Google\Cloud\Datastore\V1\TransactionOptions;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -49,47 +59,26 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class DatastoreClientTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
-    use GrpcTestTrait;
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';
 
-    private $connection;
     private $client;
+    private $requestHandler;
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [
-            ['projectId' => self::PROJECT]
+            [
+                'projectId' => self::PROJECT,
+                'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+            ]
         ], [
             'operation'
         ]);
-    }
-
-    public function testGrpcConnection()
-    {
-        $this->checkAndSkipGrpcTests();
-
-        $client = TestHelpers::stub(DatastoreClient::class, [[
-            'projectId' => self::PROJECT,
-            'transport' => 'grpc',
-        ]]);
-
-        $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
-    }
-
-    public function testRestConnection()
-    {
-        $this->checkAndSkipGrpcTests();
-
-        $client = TestHelpers::stub(DatastoreClient::class, [[
-            'projectId' => self::PROJECT,
-            'transport' => 'rest',
-        ]]);
-
-        $this->assertInstanceOf(Rest::class, $client->___getProperty('connection'));
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
     }
 
     public function testKeyIncomplete()
@@ -191,15 +180,18 @@ class DatastoreClientTest extends TestCase
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
 
-        $this->connection->allocateIds(Argument::withEntry('keys', [
-            $key->keyObject()
-        ]))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::that(function ($request) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($request);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()
+            ->willReturn(['keys' => [$keyWithId->keyObject()]]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -225,28 +217,20 @@ class DatastoreClientTest extends TestCase
      */
     public function testTransaction($method, $type, $key)
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT),
-            // can't do direct comparisons between (object)[].
-            Argument::that(function ($arg) use ($key) {
-                if (!($arg['transactionOptions'][$key] instanceof \stdClass)) {
-                    return false;
-                }
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'beginTransaction',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['projectId'] == self::PROJECT
+                    && isset($data['transactionOptions'][$key]);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['transaction' => self::TRANSACTION]);
 
-                if ((array) $arg['transactionOptions'][$key]) {
-                    return false;
-                }
-
-                return true;
-            })
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION
-        ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
-
         $res = $this->client->$method();
         $this->assertInstanceOf($type, $res);
     }
@@ -256,27 +240,34 @@ class DatastoreClientTest extends TestCase
      */
     public function testTransactionWithOptions($method, $type, $key)
     {
-        $options = ['foo' => 'bar'];
-
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT),
-            Argument::withEntry('transactionOptions', [
-                $key => $options
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'beginTransaction',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['projectId'] == self::PROJECT
+                    && isset($data['transactionOptions'][$key]);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()
+            ->willReturn(['transaction' => self::TRANSACTION]);
 
         // Make sure the correct transaction ID was injected.
-        $this->connection->runQuery(Argument::withEntry('transaction', self::TRANSACTION))
-            ->shouldBeCalled()
-            ->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
-        $res = $this->client->$method(['transactionOptions' => $options]);
+        $res = $this->client->$method(['transactionOptions' => []]);
         $this->assertInstanceOf($type, $res);
 
         iterator_to_array($res->runQuery($this->client->gqlQuery('SELECT 1=1')));
@@ -295,13 +286,19 @@ class DatastoreClientTest extends TestCase
      */
     public function testEntityMutations($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($method, $mutation) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::NON_TRANSACTIONAL &&
+                    array_replace_recursive($data['mutations'][0], [$method => $mutation])
+                        == $data['mutations'][0];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -316,13 +313,19 @@ class DatastoreClientTest extends TestCase
      */
     public function testEntityMutationsBatch($method, $mutation, $key)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($method, $mutation) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::NON_TRANSACTIONAL &&
+                    array_replace_recursive($data['mutations'][0], [$method => $mutation])
+                        == $data['mutations'][0];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -344,23 +347,31 @@ class DatastoreClientTest extends TestCase
      */
     public function testMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($method, $mutation) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::NON_TRANSACTIONAL &&
+                    array_replace_recursive($data['mutations'][0], [$method => $mutation])
+                        == $data['mutations'][0];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['keys' => [$keyWithId->keyObject()]]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -373,23 +384,32 @@ class DatastoreClientTest extends TestCase
      */
     public function testBatchMutationsWithPartialKey($method, $mutation, $key, $id)
     {
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [[$method => $mutation]])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($method, $mutation) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::NON_TRANSACTIONAL &&
+                    array_replace_recursive($data['mutations'][0], [$method => $mutation])
+                        == $data['mutations'][0];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
         $keyWithId = clone $key;
         $keyWithId->setLastElementIdentifier($id);
-        $this->connection->allocateIds(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()])
-        ))->shouldBeCalled()->willReturn([
-            'keys' => [
-                $keyWithId->keyObject()
-            ]
-        ]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'allocateIds',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $x = array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['keys' => [$keyWithId->keyObject()]]);
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -410,17 +430,22 @@ class DatastoreClientTest extends TestCase
     {
         $this->expectException(\DomainException::class);
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
                 'mutationResults' => [
                     [
                         'conflictDetected' => true
                     ]
                 ]
-            ]);
+            ]
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -432,17 +457,19 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::NON_TRANSACTIONAL
+                && array_replace_recursive($data['mutations'][0]['delete'], $key->keyObject())
+                    == $data['mutations'][0]['delete'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -455,17 +482,19 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', null),
-            Argument::withEntry('mode', 'NON_TRANSACTIONAL'),
-            Argument::withEntry('mutations', [
-                [
-                    'delete' => $key->keyObject()
-                ]
-            ])
-        ))->shouldBeCalled()->willReturn($this->commitResponse());
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['mode'] == Mode::NON_TRANSACTIONAL
+                    && array_replace_recursive($data['mutations'][0]['delete'], $key->keyObject())
+                        == $data['mutations'][0]['delete'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn($this->commitResponse());
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -478,17 +507,25 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
                 ]
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -502,17 +539,25 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'missing' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'missing' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
                 ]
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -525,25 +570,33 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->lookup(
-            Argument::withEntry('keys', [$key->keyObject()])
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) use ($key) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ],
+                'missing' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
+                ],
+                'deferred' => [
+                    $key->keyObject()
                 ]
-            ],
-            'missing' => [
-                [
-                    'entity' => $this->entityArray($key)
-                ]
-            ],
-            'deferred' => [
-                $key->keyObject()
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -559,17 +612,25 @@ class DatastoreClientTest extends TestCase
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
 
-        $this->connection->lookup(
-            Argument::withEntry('readTime', $time)
-        )->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) use ($time) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['readOptions']['readTime'] == $time;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
                 ]
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -582,18 +643,26 @@ class DatastoreClientTest extends TestCase
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('keys', [$key->keyObject()]),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'found' => [
-                [
-                    'entity' => $this->entityArray($key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) use ($key, $time) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return array_replace_recursive($data['keys'], [$key->keyObject()]) == $data['keys']
+                    && $data['readOptions']['readTime'] == $time;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'found' => [
+                    [
+                        'entity' => $this->entityArray($key)
+                    ]
                 ]
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -621,20 +690,28 @@ class DatastoreClientTest extends TestCase
     {
         $key = $this->client->key('Person', 'John');
 
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1'])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['partitionId']['projectId'] == self::PROJECT
+                    && $data['gqlQuery']['queryString'] == 'SELECT 1=1';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'batch' => [
+                    'entityResults' => [
+                        [
+                            'entity' => $this->entityArray($key)
+                        ]
                     ]
                 ]
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -648,23 +725,29 @@ class DatastoreClientTest extends TestCase
 
     public function testRunAggregationQuery()
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'AGGREGATE (COUNT(*)) over (SELECT 1=1)'
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'aggregationResults' => [
-                    [
-                        'aggregateProperties' => ['property_1' => 1]
-                    ]
-                ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runAggregationQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['partitionId']['projectId'] == self::PROJECT
+                    && $data['gqlQuery']['queryString'] == 'AGGREGATE (COUNT(*)) over (SELECT 1=1)';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => ['property_1' => 1]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -684,23 +767,29 @@ class DatastoreClientTest extends TestCase
      */
     public function testAggregationQueryWithDifferentReturnTypes($response, $expected)
     {
-        $this->connection->runAggregationQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', [
-                'queryString' => 'foo bar'
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'aggregationResults' => [
-                    [
-                        'aggregateProperties' => ['property_1' => $response]
-                    ]
-                ],
-                'readTime' => (new \DateTime)->format('Y-m-d\TH:i:s') .'.000001Z'
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runAggregationQuery',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['partitionId']['projectId'] == self::PROJECT
+                    && $data['gqlQuery']['queryString'] == 'foo bar';
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'batch' => [
+                    'aggregationResults' => [
+                        [
+                            'aggregateProperties' => ['property_1' => $response]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime())->format('Y-m-d\TH:i:s') .'.000001Z'
+                ]
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -721,21 +810,29 @@ class DatastoreClientTest extends TestCase
         $key = $this->client->key('Person', 'John');
         $time = new Timestamp(new \DateTime());
 
-        $this->connection->runQuery(Argument::allOf(
-            Argument::withEntry('partitionId', ['projectId' => self::PROJECT]),
-            Argument::withEntry('gqlQuery', ['queryString' => 'SELECT 1=1']),
-            Argument::withEntry('readTime', $time)
-        ))->shouldBeCalled()->willReturn([
-            'batch' => [
-                'entityResults' => [
-                    [
-                        'entity' => $this->entityArray($key)
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::that(function ($req) use ($time) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['partitionId']['projectId'] == self::PROJECT
+                    && $data['gqlQuery']['queryString'] == 'SELECT 1=1'
+                    && $data['readOptions']['readTime'] == $time;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
+                'batch' => [
+                    'entityResults' => [
+                        [
+                            'entity' => $this->entityArray($key)
+                        ]
                     ]
                 ]
             ]
-        ]);
+        );
 
-        $this->refreshOperation($this->client, $this->connection->reveal(), [
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
 
@@ -752,18 +849,9 @@ class DatastoreClientTest extends TestCase
         return [
             [['integerValue' => 1], 1],
             [['doubleValue' => 1.1], 1.1],
-
-            // Returned incase of grpc client
             [['doubleValue' => INF], INF],
             [['doubleValue' => -INF], -INF],
             [['doubleValue' => NAN], NAN],
-
-            // Returned incase of rest client
-            [['doubleValue' => 'Infinity'], INF],
-            [['doubleValue' => '-Infinity'], -INF],
-            [['doubleValue' => 'NaN'], NAN],
-
-
             [['nullValue' => ''], null],
         ];
     }

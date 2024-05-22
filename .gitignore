@@ -17,3 +17,6 @@ keys/
 .testing
 .split
 __pycache__
+
+# VS Code local workspace settings
+.vscode

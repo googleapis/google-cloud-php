@@ -17,9 +17,12 @@
 
 namespace Google\Cloud\Core\Testing;
 
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Operation;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
+use Prophecy\Argument;
 
 /**
  * Refresh Datastore operation class
@@ -29,11 +32,13 @@ use Google\Cloud\Datastore\Operation;
  */
 trait DatastoreOperationRefreshTrait
 {
+    private static Serializer $_serializer;
+
     /**
      * Refresh the operation property of a given stubbed class.
      *
      * @param mixed $stub
-     * @param ConnectionInterface $connection
+     * @param RequestHandler $requestHandler
      * @param array $options {
      *     Configuration Options
      *
@@ -43,7 +48,7 @@ trait DatastoreOperationRefreshTrait
      * }
      * @return mixed
      */
-    public function refreshOperation($stub, ConnectionInterface $connection, array $options = [])
+    public function refreshOperation($stub, RequestHandler $requestHandler, array $options = [])
     {
         $options += [
             'projectId' => null,
@@ -57,13 +62,47 @@ trait DatastoreOperationRefreshTrait
             $options['returnInt64AsObject']
         );
 
+        $serializer = $this->getSerializer();
+
         $stub->___setProperty('operation', new Operation(
-            $connection,
+            $requestHandler,
+            $serializer,
             $options['projectId'],
             $options['returnInt64AsObject'],
             $mapper
         ));
 
         return $stub;
+    }
+
+    /**
+     * @return Serializer
+     */
+    private function getSerializer()
+    {
+        if (isset(self::$_serializer)) {
+            return self::$_serializer;
+        }
+
+        if (isset($this->serializer)) {
+            return self::$_serializer = $this->serializer;
+        }
+
+        return self::$_serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            }
+        ], [], [
+            'google.protobuf.Timestamp' => function ($v) {
+                if (is_string($v)) {
+                    $dt = new \DateTime($v);
+                    return ['seconds' => $dt->format('U')];
+                }
+                return $v;
+            }
+        ]);
     }
 }

@@ -40,7 +40,7 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
 
         $ancestorKind = uniqid(self::TESTING_PREFIX);
 
-        $client = self::$restClient;
+        $client = self::$grpcClient;
         self::$parentKey = $client->key($ancestorKind, uniqid('pagination-'));
         self::$testKind = uniqid('test-kind-');
 
@@ -54,7 +54,7 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
                 'a' => rand(1, 10),
             ]);
 
-            if (count($set) === 100) {
+            if (count($set) == 100) {
                 $client->insertBatch($set);
                 $set = [];
             }
@@ -71,7 +71,7 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
     {
         self::setUpBeforeClass();
 
-        $client = self::$restClient;
+        $client = self::$grpcClient;
         $q = $client->query()
             ->hasAncestor(self::$parentKey)
             ->kind(self::$testKind);
@@ -80,7 +80,7 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
         foreach ($client->runQuery($q) as $entity) {
             $set[] = $entity->key();
 
-            if (count($set) === 100) {
+            if (count($set) == 100) {
                 $client->deleteBatch($set);
                 $set = [];
             }

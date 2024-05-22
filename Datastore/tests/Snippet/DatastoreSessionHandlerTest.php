@@ -17,12 +17,17 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\CommitRequest;
+use Google\Cloud\Datastore\V1\CommitRequest\Mode;
+use Google\Cloud\Datastore\V1\TransactionOptions;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -35,11 +40,13 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 {
     use DatastoreOperationRefreshTrait;
     use ProphecyTrait;
+    use ApiHelperTrait;
 
     const TRANSACTION = 'transaction-id';
+    const PROJECT = 'example-project';
 
-    private $connection;
     private $client;
+    private $requestHandler;
 
     public static function setUpBeforeClass(): void
     {
@@ -55,10 +62,10 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [], [
             'operation',
         ]);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
     }
 
     public function testClass()
@@ -66,37 +73,51 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class);
         $snippet->replace('$datastore = new DatastoreClient();', '');
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return $args['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                 && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
-                 && isset($args['keys'][0]['path'][0]['name']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
 
-        $this->connection->beginTransaction(Argument::withEntry(
-            'transactionOptions',
-            ['readWrite' => (object) []]
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION,
+                return isset($data['readOptions']['transaction'])
+                    && $data['keys'][0]['partitionId']['namespaceId'] == 'sessions'
+                    && $data['keys'][0]['path'][0]['kind'] == 'PHPSESSID'
+                    && isset($data['keys'][0]['path'][0]['name']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn();
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'beginTransaction',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['transactionOptions']['readWrite']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()
+            ->willReturn(['transaction' => self::TRANSACTION]);
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+
+                return isset($data['transaction'])
+                    && isset($data['mode'])
+                    && $data['mutations'][0]['upsert']['key']['partitionId']['namespaceId'] == 'sessions'
+                    && $data['mutations'][0]['upsert']['key']['path'][0]['kind'] == 'PHPSESSID'
+                    && isset($data['mutations'][0]['upsert']['key']['path'][0]['name'])
+                    && $data['mutations'][0]['upsert']['properties']['data']['stringValue'] == 'name|'.serialize('Bob')
+                    && isset($data['mutations'][0]['upsert']['properties']['t']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([]);
+
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
+            'projectId' => self::PROJECT
         ]);
-
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::withEntry('mode', 'TRANSACTIONAL'),
-            Argument::that(function ($args) {
-                $value = 'name|'.serialize('Bob');
-
-                return $args['mutations'][0]['upsert']['key']['partitionId']['namespaceId'] === 'sessions'
-                    && $args['mutations'][0]['upsert']['key']['path'][0]['kind'] === 'PHPSESSID'
-                    && isset($args['mutations'][0]['upsert']['key']['path'][0]['name'])
-                    && $args['mutations'][0]['upsert']['properties']['data']['stringValue'] === $value
-                    && isset($args['mutations'][0]['upsert']['properties']['t']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal());
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();
@@ -112,29 +133,41 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreSessionHandler::class, 1);
         $snippet->replace('$datastore = new DatastoreClient();', '');
 
-        $this->connection->lookup(Argument::allOf(
-            Argument::withEntry('transaction', self::TRANSACTION),
-            Argument::that(function ($args) {
-                return $args['keys'][0]['partitionId']['namespaceId'] === 'sessions'
-                    && $args['keys'][0]['path'][0]['kind'] === 'PHPSESSID'
-                    && isset($args['keys'][0]['path'][0]['name']);
-            })
-        ))->shouldBeCalled()->willReturn([]);
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'lookup',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
 
-        $this->connection->beginTransaction(Argument::withEntry(
-            'transactionOptions',
-            ['readWrite' => (object) []]
-        ))->shouldBeCalled()->willReturn([
-            'transaction' => self::TRANSACTION,
+                return isset($data['readOptions']['transaction'])
+                    && $data['keys'][0]['partitionId']['namespaceId'] == 'sessions'
+                    && $data['keys'][0]['path'][0]['kind'] == 'PHPSESSID'
+                    && isset($data['keys'][0]['path'][0]['name']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn();
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'beginTransaction',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return isset($data['transactionOptions']['readWrite']);
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()
+            ->willReturn(['transaction' => self::TRANSACTION]);
+
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->will(fn () => trigger_error('oops!', E_USER_WARNING));
+
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), [
+            'projectId' => self::PROJECT
         ]);
-
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->will(function () {
-                trigger_error('oops!', E_USER_WARNING);
-            });
-
-        $this->refreshOperation($this->client, $this->connection->reveal());
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke();

@@ -284,7 +284,3 @@ class Aggregation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Aggregation::class, \Google\Cloud\Datastore\V1\AggregationQuery_Aggregation::class);
-

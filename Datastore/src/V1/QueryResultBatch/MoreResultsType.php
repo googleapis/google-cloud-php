@@ -73,7 +73,3 @@ class MoreResultsType
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MoreResultsType::class, \Google\Cloud\Datastore\V1\QueryResultBatch_MoreResultsType::class);
-

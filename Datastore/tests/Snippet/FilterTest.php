@@ -2,16 +2,16 @@
 
 namespace Google\Cloud\Datastore\Tests\Snippet;
 
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\DatastoreOperationRefreshTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
-use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\Filter;
 use Google\Cloud\Datastore\Query\Query;
-use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient as V1DatastoreClient;
+use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -21,17 +21,17 @@ class FilterTest extends SnippetTestCase
     use ProphecyTrait;
 
     private const PROJECT = 'alpha-project';
-    private $connection;
     private $datastore;
     private $operation;
     private $query;
     private $filter;
+    private $requestHandler;
 
     public function setUp(): void
     {
         $entityMapper = new EntityMapper(self::PROJECT, false, false);
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->prophesize(RequestHandler::class);
 
         $this->datastore = TestHelpers::stub(
             DatastoreClient::class,
@@ -46,7 +46,7 @@ class FilterTest extends SnippetTestCase
 
     public function testFilter()
     {
-        $this->createConnectionProphecy();
+        $this->createRequestHandlerProphecy();
 
         $snippet = $this->snippetFromClass(Filter::class, 0);
         $snippet->addLocal('datastore', $this->datastore);
@@ -63,7 +63,7 @@ class FilterTest extends SnippetTestCase
      */
     public function testOrFilter($compositeFilterType)
     {
-        $this->createConnectionProphecy();
+        $this->createRequestHandlerProphecy();
 
         $snippet = $this->snippetFromClass(Filter::class, 1);
         $snippet->addLocal('filterType', $compositeFilterType);
@@ -85,11 +85,15 @@ class FilterTest extends SnippetTestCase
         ];
     }
 
-    private function createConnectionProphecy()
+    private function createRequestHandlerProphecy()
     {
-        $this->connection->runQuery(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->requestHandler->sendRequest(
+            V1DatastoreClient::class,
+            'runQuery',
+            Argument::type(RunQueryRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(
+            [
                 'batch' => [
                     'entityResults' => [
                         [
@@ -105,9 +109,10 @@ class FilterTest extends SnippetTestCase
                     ],
                     'moreResults' => 'no'
                 ]
-            ]);
+            ]
+        );
 
-        $this->refreshOperation($this->datastore, $this->connection->reveal(), [
+        $this->refreshOperation($this->datastore, $this->requestHandler->reveal(), [
             'projectId' => self::PROJECT
         ]);
     }

@@ -64,7 +64,3 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReadWrite::class, \Google\Cloud\Datastore\V1\TransactionOptions_ReadWrite::class);
-

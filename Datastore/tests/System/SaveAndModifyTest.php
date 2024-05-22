@@ -188,10 +188,10 @@ class SaveAndModifyTest extends DatastoreMultipleDbTestCase
         $e = $client->lookup($key);
         $this->assertInstanceOf(GeoPoint::class, $e['geo']);
         $this->assertTrue(
-            $e['geo']->latitude() === null || $e['geo']->latitude() === 0.0
+            $e['geo']->latitude() == null || $e['geo']->latitude() == 0.0
         );
         $this->assertTrue(
-            $e['geo']->longitude() === null || $e['geo']->longitude() === 0.0
+            $e['geo']->longitude() == null || $e['geo']->longitude() == 0.0
         );
 
         $client->upsert($e);
@@ -199,10 +199,10 @@ class SaveAndModifyTest extends DatastoreMultipleDbTestCase
         $e = $client->lookup($key);
         $this->assertInstanceOf(GeoPoint::class, $e['geo']);
         $this->assertTrue(
-            $e['geo']->latitude() === null || $e['geo']->latitude() === 0.0
+            $e['geo']->latitude() == null || $e['geo']->latitude() == 0.0
         );
         $this->assertTrue(
-            $e['geo']->longitude() === null || $e['geo']->longitude() === 0.0
+            $e['geo']->longitude() == null || $e['geo']->longitude() == 0.0
         );
     }
 }
