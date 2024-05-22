@@ -41,6 +41,15 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $keys;
+    /**
+     * The properties to return. Defaults to returning all properties.
+     * If this field is set and an entity has a property not referenced in the
+     * mask, it will be absent from [LookupResponse.found.entity.properties][].
+     * The entity's key is always returned.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 5;</code>
+     */
+    private $property_mask = null;
 
     /**
      * @param string                                 $projectId   Required. The ID of the project against which to make the request.
@@ -75,6 +84,11 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *           The options for this lookup request.
      *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
      *           Required. Keys of entities to look up.
+     *     @type \Google\Cloud\Datastore\V1\PropertyMask $property_mask
+     *           The properties to return. Defaults to returning all properties.
+     *           If this field is set and an entity has a property not referenced in the
+     *           mask, it will be absent from [LookupResponse.found.entity.properties][].
+     *           The entity's key is always returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -196,6 +210,48 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastore\V1\Key::class);
         $this->keys = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The properties to return. Defaults to returning all properties.
+     * If this field is set and an entity has a property not referenced in the
+     * mask, it will be absent from [LookupResponse.found.entity.properties][].
+     * The entity's key is always returned.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 5;</code>
+     * @return \Google\Cloud\Datastore\V1\PropertyMask|null
+     */
+    public function getPropertyMask()
+    {
+        return $this->property_mask;
+    }
+
+    public function hasPropertyMask()
+    {
+        return isset($this->property_mask);
+    }
+
+    public function clearPropertyMask()
+    {
+        unset($this->property_mask);
+    }
+
+    /**
+     * The properties to return. Defaults to returning all properties.
+     * If this field is set and an entity has a property not referenced in the
+     * mask, it will be absent from [LookupResponse.found.entity.properties][].
+     * The entity's key is always returned.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.PropertyMask property_mask = 5;</code>
+     * @param \Google\Cloud\Datastore\V1\PropertyMask $var
+     * @return $this
+     */
+    public function setPropertyMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\PropertyMask::class);
+        $this->property_mask = $var;
 
         return $this;
     }
