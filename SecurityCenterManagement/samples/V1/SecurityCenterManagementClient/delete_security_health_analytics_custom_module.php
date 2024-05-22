@@ -36,9 +36,9 @@ use Google\Cloud\SecurityCenterManagement\V1\DeleteSecurityHealthAnalyticsCustom
  *
  *                              Its format is:
  *
- *                              * "organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}".
- *                              * "folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}".
- *                              * "projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}". Please see
+ *                              * `organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
+ *                              * `folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`.
+ *                              * `projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}`. Please see
  *                              {@see SecurityCenterManagementClient::securityHealthAnalyticsCustomModuleName()} for help formatting this field.
  */
 function delete_security_health_analytics_custom_module_sample(string $formattedName): void
