@@ -621,7 +621,6 @@ class ConformanceTest extends TestCase
 
         $res = [];
         foreach ($cases as $case) {
-            if ($case['description'] != "update-paths: last-update-time precondition") continue;
             $res[$case['description']] = [$case['test'], $case['description']];
         }
 

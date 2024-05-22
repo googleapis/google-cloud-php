@@ -1112,8 +1112,7 @@ class BulkWriter
         }
 
         if (isset($precondition['updateTime'])) {
-            if (
-                !($precondition['updateTime'] instanceof ProtobufTimestamp)
+            if (!($precondition['updateTime'] instanceof ProtobufTimestamp)
                 && !is_array($precondition['updateTime'])
             ) {
                 throw new \InvalidArgumentException(
