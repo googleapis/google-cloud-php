@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * for a specific product at the store specified by
  * [`storeCode`][google.shopping.merchant.inventories.v1beta.LocalInventory.store_code].
  * For a list of all accepted attribute values, see the [local product inventory
- * feed specification](https://support.google.com/merchants/answer/3061342).
+ * data specification](https://support.google.com/merchants/answer/3061342).
  *
  * Generated from protobuf message <code>google.shopping.merchant.inventories.v1beta.LocalInventory</code>
  */
@@ -37,7 +37,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. Store code (the store ID from your Business Profile)
      * of the physical store the product is sold in. See the [Local product
-     * inventory feed
+     * inventory data
      * specification](https://support.google.com/merchants/answer/3061342) for
      * more information.
      *
@@ -67,7 +67,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     protected $sale_price_effective_date = null;
     /**
      * Availability of the product at this store.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string availability = 7;</code>
@@ -84,7 +84,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * Supported pickup method for this product. Unless the value is `"not
      * supported"`, this field must be submitted together with
      * `pickupSla`.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string pickup_method = 9;</code>
@@ -94,7 +94,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * Relative time period from the order date for an order for this product,
      * from this store, to be ready for pickup. Must be submitted with
      * `pickupMethod`.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string pickup_sla = 10;</code>
@@ -108,7 +108,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     protected $instore_product_location = null;
     /**
      * A list of custom (merchant-provided) attributes. You can also use
-     * `CustomAttribute` to submit any attribute of the feed specification in its
+     * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12;</code>
@@ -131,7 +131,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *     @type string $store_code
      *           Required. Immutable. Store code (the store ID from your Business Profile)
      *           of the physical store the product is sold in. See the [Local product
-     *           inventory feed
+     *           inventory data
      *           specification](https://support.google.com/merchants/answer/3061342) for
      *           more information.
      *     @type \Google\Shopping\Type\Price $price
@@ -145,7 +145,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *           sale at this store.
      *     @type string $availability
      *           Availability of the product at this store.
-     *           For accepted attribute values, see the [local product inventory feed
+     *           For accepted attribute values, see the [local product inventory data
      *           specification](https://support.google.com/merchants/answer/3061342)
      *     @type int|string $quantity
      *           Quantity of the product available at this store. Must be greater than or
@@ -154,19 +154,19 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *           Supported pickup method for this product. Unless the value is `"not
      *           supported"`, this field must be submitted together with
      *           `pickupSla`.
-     *           For accepted attribute values, see the [local product inventory feed
+     *           For accepted attribute values, see the [local product inventory data
      *           specification](https://support.google.com/merchants/answer/3061342)
      *     @type string $pickup_sla
      *           Relative time period from the order date for an order for this product,
      *           from this store, to be ready for pickup. Must be submitted with
      *           `pickupMethod`.
-     *           For accepted attribute values, see the [local product inventory feed
+     *           For accepted attribute values, see the [local product inventory data
      *           specification](https://support.google.com/merchants/answer/3061342)
      *     @type string $instore_product_location
      *           Location of the product inside the store. Maximum length is 20 bytes.
      *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
      *           A list of custom (merchant-provided) attributes. You can also use
-     *           `CustomAttribute` to submit any attribute of the feed specification in its
+     *           `CustomAttribute` to submit any attribute of the data specification in its
      *           generic form.
      * }
      */
@@ -236,7 +236,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. Store code (the store ID from your Business Profile)
      * of the physical store the product is sold in. See the [Local product
-     * inventory feed
+     * inventory data
      * specification](https://support.google.com/merchants/answer/3061342) for
      * more information.
      *
@@ -251,7 +251,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. Store code (the store ID from your Business Profile)
      * of the physical store the product is sold in. See the [Local product
-     * inventory feed
+     * inventory data
      * specification](https://support.google.com/merchants/answer/3061342) for
      * more information.
      *
@@ -383,7 +383,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability of the product at this store.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string availability = 7;</code>
@@ -406,7 +406,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
 
     /**
      * Availability of the product at this store.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string availability = 7;</code>
@@ -463,7 +463,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * Supported pickup method for this product. Unless the value is `"not
      * supported"`, this field must be submitted together with
      * `pickupSla`.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string pickup_method = 9;</code>
@@ -488,7 +488,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * Supported pickup method for this product. Unless the value is `"not
      * supported"`, this field must be submitted together with
      * `pickupSla`.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string pickup_method = 9;</code>
@@ -507,7 +507,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * Relative time period from the order date for an order for this product,
      * from this store, to be ready for pickup. Must be submitted with
      * `pickupMethod`.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string pickup_sla = 10;</code>
@@ -532,7 +532,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * Relative time period from the order date for an order for this product,
      * from this store, to be ready for pickup. Must be submitted with
      * `pickupMethod`.
-     * For accepted attribute values, see the [local product inventory feed
+     * For accepted attribute values, see the [local product inventory data
      * specification](https://support.google.com/merchants/answer/3061342)
      *
      * Generated from protobuf field <code>optional string pickup_sla = 10;</code>
@@ -585,7 +585,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of custom (merchant-provided) attributes. You can also use
-     * `CustomAttribute` to submit any attribute of the feed specification in its
+     * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12;</code>
@@ -598,7 +598,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of custom (merchant-provided) attributes. You can also use
-     * `CustomAttribute` to submit any attribute of the feed specification in its
+     * `CustomAttribute` to submit any attribute of the data specification in its
      * generic form.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12;</code>
