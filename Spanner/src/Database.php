@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
@@ -33,13 +34,11 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\Database as GapicDatabase;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
-use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -48,12 +47,9 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BatchCreateSessionsRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
-use Google\Cloud\Spanner\V1\Session as GapicSession;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TypeCode;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -225,7 +221,7 @@ class Database
      * Create an object representing a Database.
      *
      * @param RequestHandler The request handler that is responsible for sending a request
-     * and serializing responses into relevant classes.
+     *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param Instance $instance The instance in which the database exists.
      * @param array $lroCallables
@@ -250,13 +246,13 @@ class Database
         Serializer $serializer,
         Instance $instance,
         array $lroCallables,
-        $projectId,
-        $name,
+        string $projectId,
+        string $name,
         SessionPoolInterface $sessionPool = null,
-        $returnInt64AsObject = false,
+        bool $returnInt64AsObject = false,
         array $info = [],
-        $databaseRole = '',
-        $config = []
+        string $databaseRole = '',
+        array $config = []
     ) {
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
@@ -264,6 +260,8 @@ class Database
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedDatabaseName($name);
         $this->sessionPool = $sessionPool;
+        $this->routeToLeader = $config['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $config['defaultQueryOptions'] ?? [];
         $this->operation = new Operation(
             $requestHandler,
             $serializer,
@@ -289,8 +287,6 @@ class Database
         );
         $this->databaseRole = $databaseRole;
         $this->directedReadOptions = $instance->directedReadOptions();
-        $this->routeToLeader = $options['routeToLeader'] ?? true;
-        $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
     }
 
     /**
@@ -569,11 +565,13 @@ class Database
         if (isset($data['enableDropProtection'])) {
             $fieldMask[] = 'enable_drop_protection';
         }
-        $data['updateMask'] = ['paths' => $fieldMask];
-        $data['database'] = [
-            'name' => $this->name,
-            'enableDropProtection' => $this->pluck('enableDropProtection', $data, false) ?? false,
-        ];
+        $data += [
+            'updateMask' => ['paths' => $fieldMask],
+            'database' => [
+                'name' => $this->name,
+                'enableDropProtection' =>
+                    $this->pluck('enableDropProtection', $data, false) ?: false
+            ]];
 
         return $this->createAndSendRequest(
             DatabaseAdminClient::class,
@@ -648,8 +646,10 @@ class Database
     public function updateDdlBatch(array $statements, array $options = [])
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $data['database'] = $this->name;
-        $data['statements'] = $statements;
+        $data += [
+            'database' => $this->name,
+            'statements' => $statements
+        ];
 
         $res = $this->createAndSendRequest(
             DatabaseAdminClient::class,
@@ -990,8 +990,12 @@ class Database
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type int $maxRetries The number of times to attempt to apply the
-     *           operation before failing. **Defaults to ** `10`.
+     *     @type RetrySettings|array $retrySettings {
+     *           Retry configuration options. Currently, only the `maxRetries` option is supported.
+     *
+     *           @type int $maxRetries The maximum number of retry attempts before the operation fails.
+     *                 Defaults to 10.
+     *     }
      *     @type bool $singleUse If true, a Transaction ID will not be allocated
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation. Note
@@ -1013,8 +1017,14 @@ class Database
         if ($this->isRunningTransaction) {
             throw new \BadMethodCallException('Nested transactions are not supported by this client.');
         }
+        $options += ['retrySettings' => ['maxRetries' => self::MAX_RETRIES]];
 
-        $maxRetries = $this->pluck('maxRetries', $options, false) ?: self::MAX_RETRIES;
+        $retrySettings = $this->pluck('retrySettings', $options);
+        if ($retrySettings instanceof RetrySettings) {
+            $maxRetries = $retrySettings->getMaxRetries();
+        } else {
+            $maxRetries = $retrySettings['maxRetries'];
+        }
 
         // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions();

@@ -38,7 +38,6 @@ use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
@@ -228,10 +227,6 @@ class SpannerClient
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
-     *     @type bool $useDiscreteBackoffs `false`: use default backoff strategy
-     *           (retry every failed request up to `retries` times).
-     *           `true`: use discrete backoff settings based on called method name.
-     *           **Defaults to** `false`.
      *     @type array $directedReadOptions Directed read options.
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
@@ -255,24 +250,8 @@ class SpannerClient
             'projectIdRequired' => true,
             'hasEmulator' => (bool) $emulatorHost,
             'emulatorHost' => $emulatorHost,
-            'queryOptions' => [],
-            'transportConfig' => [
-                'grpc' => [
-                    // increase default limit to 4MB to prevent metadata exhausted errors
-                    'stubOpts' => ['grpc.max_metadata_size' => 4 * 1024 * 1024,]
-                ]
-            ]
+            'queryOptions' => []
         ];
-
-        # Check this to see it needs to be removed, for now keep it.
-        if (!empty($config['useDiscreteBackoffs'])) {
-            $config = array_merge_recursive($config, [
-                'retries' => 0,
-                'grpcOptions' => [
-                    'retrySettings' => [],
-                ],
-            ]);
-        }
 
         # TODO: Remove the connection related objects
         $this->connection = new Grpc($this->configureAuthentication($config));
@@ -468,7 +447,7 @@ class SpannerClient
      */
     public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
     {
-        $config = $this->instanceConefiguration($name);
+        $config = $this->instanceConfiguration($name);
         return $config->create($baseConfig, $replicas, $options);
     }
 
