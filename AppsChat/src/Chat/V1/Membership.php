@@ -79,8 +79,8 @@ class Membership extends \Google\Protobuf\Internal\Message
      *           `name` and `type`.
      *     @type \Google\Apps\Chat\V1\Group $group_member
      *           The Google Group the membership corresponds to.
-     *           Only supports read operations. Other operations, like creating or
-     *           updating a membership, aren't currently supported.
+     *           Only supports read operations. Other operations, like
+     *           creating or updating a membership, aren't currently supported.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Optional. Immutable. The creation time of the membership, such as when a
      *           member joined or was invited to join a space. This field is output only,
@@ -223,8 +223,8 @@ class Membership extends \Google\Protobuf\Internal\Message
 
     /**
      * The Google Group the membership corresponds to.
-     * Only supports read operations. Other operations, like creating or
-     * updating a membership, aren't currently supported.
+     * Only supports read operations. Other operations, like
+     * creating or updating a membership, aren't currently supported.
      *
      * Generated from protobuf field <code>.google.chat.v1.Group group_member = 5;</code>
      * @return \Google\Apps\Chat\V1\Group|null
@@ -241,8 +241,8 @@ class Membership extends \Google\Protobuf\Internal\Message
 
     /**
      * The Google Group the membership corresponds to.
-     * Only supports read operations. Other operations, like creating or
-     * updating a membership, aren't currently supported.
+     * Only supports read operations. Other operations, like
+     * creating or updating a membership, aren't currently supported.
      *
      * Generated from protobuf field <code>.google.chat.v1.Group group_member = 5;</code>
      * @param \Google\Apps\Chat\V1\Group $var

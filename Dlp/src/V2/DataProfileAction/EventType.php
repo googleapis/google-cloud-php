@@ -27,12 +27,12 @@ class EventType
     const NEW_PROFILE = 1;
     /**
      * Changed one of the following profile metrics:
-     * * Table data risk score
-     * * Table sensitivity score
-     * * Table resource visibility
-     * * Table encryption type
-     * * Table predicted infoTypes
-     * * Table other infoTypes
+     * * Data risk score
+     * * Sensitivity score
+     * * Resource visibility
+     * * Encryption type
+     * * Predicted infoTypes
+     * * Other infoTypes
      *
      * Generated from protobuf enum <code>CHANGED_PROFILE = 2;</code>
      */

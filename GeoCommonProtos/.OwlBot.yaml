@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/geo/type/.*-php/(.*)
+      dest: /owl-bot-staging/GeoCommonProtos/$1
+api-name: GeoCommonProtos

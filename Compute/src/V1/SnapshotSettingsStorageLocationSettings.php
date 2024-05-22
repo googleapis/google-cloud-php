@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SnapshotSettingsStorageLocationSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are GCS bucket locations.
+     * When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are Cloud Storage bucket locations. Only one location can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.SnapshotSettingsStorageLocationSettingsStorageLocationPreference> locations = 413423454;</code>
      */
@@ -35,7 +35,7 @@ class SnapshotSettingsStorageLocationSettings extends \Google\Protobuf\Internal\
      *     Optional. Data for populating the Message object.
      *
      *     @type array|\Google\Protobuf\Internal\MapField $locations
-     *           When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are GCS bucket locations.
+     *           When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are Cloud Storage bucket locations. Only one location can be specified.
      *     @type string $policy
      *           The chosen location policy.
      *           Check the Policy enum for the list of possible values.
@@ -47,7 +47,7 @@ class SnapshotSettingsStorageLocationSettings extends \Google\Protobuf\Internal\
     }
 
     /**
-     * When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are GCS bucket locations.
+     * When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are Cloud Storage bucket locations. Only one location can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.SnapshotSettingsStorageLocationSettingsStorageLocationPreference> locations = 413423454;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -58,7 +58,7 @@ class SnapshotSettingsStorageLocationSettings extends \Google\Protobuf\Internal\
     }
 
     /**
-     * When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are GCS bucket locations.
+     * When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are Cloud Storage bucket locations. Only one location can be specified.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.SnapshotSettingsStorageLocationSettingsStorageLocationPreference> locations = 413423454;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

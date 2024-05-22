@@ -47,7 +47,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      */
     private $proxy_header = null;
     /**
-     * The request path of the HTTPS health check request. The default value is /.
+     * The request path of the HTTPS health check request. The default value is /. Must comply with RFC3986.
      *
      * Generated from protobuf field <code>optional string request_path = 229403605;</code>
      */
@@ -78,7 +78,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      *           Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
      *           Check the ProxyHeader enum for the list of possible values.
      *     @type string $request_path
-     *           The request path of the HTTPS health check request. The default value is /.
+     *           The request path of the HTTPS health check request. The default value is /. Must comply with RFC3986.
      *     @type string $response
      *           Creates a content-based HTTPS health check. In addition to the required HTTP 200 (OK) status code, you can configure the health check to pass only when the backend sends this specific ASCII response string within the first 1024 bytes of the HTTP response body. For details, see: https://cloud.google.com/load-balancing/docs/health-check-concepts#criteria-protocol-http
      * }
@@ -273,7 +273,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The request path of the HTTPS health check request. The default value is /.
+     * The request path of the HTTPS health check request. The default value is /. Must comply with RFC3986.
      *
      * Generated from protobuf field <code>optional string request_path = 229403605;</code>
      * @return string
@@ -294,7 +294,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The request path of the HTTPS health check request. The default value is /.
+     * The request path of the HTTPS health check request. The default value is /. Must comply with RFC3986.
      *
      * Generated from protobuf field <code>optional string request_path = 229403605;</code>
      * @param string $var

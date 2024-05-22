@@ -30,7 +30,7 @@ use Google\Cloud\Dlp\V2\ColumnDataProfile;
 use Google\Cloud\Dlp\V2\ListColumnDataProfilesRequest;
 
 /**
- * Lists data profiles for an organization.
+ * Lists column data profiles for an organization.
  *
  * @param string $formattedParent Resource name of the organization or project, for
  *                                example `organizations/433245324/locations/europe` or

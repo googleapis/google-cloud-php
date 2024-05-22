@@ -18,8 +18,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent (project, location and processor) to create the new version for.
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`.
+     * Required. The parent (project, location and processor) to create the new
+     * version for. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,14 +38,15 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      */
     private $document_schema = null;
     /**
-     * Optional. The input data used to train the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     * Optional. The input data used to train the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData input_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $input_data = null;
     /**
-     * Optional. The processor version to use as a base for training. This processor version
-     * must be a child of `parent`. Format:
+     * Optional. The processor version to use as a base for training. This
+     * processor version must be a child of `parent`. Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.
      *
      * Generated from protobuf field <code>string base_processor_version = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -53,8 +55,9 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     protected $processor_flags;
 
     /**
-     * @param string                                       $parent           Required. The parent (project, location and processor) to create the new version for.
-     *                                                                       Format: `projects/{project}/locations/{location}/processors/{processor}`. Please see
+     * @param string                                       $parent           Required. The parent (project, location and processor) to create the new
+     *                                                                       version for. Format:
+     *                                                                       `projects/{project}/locations/{location}/processors/{processor}`. Please see
      *                                                                       {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
      * @param \Google\Cloud\DocumentAI\V1\ProcessorVersion $processorVersion Required. The processor version to be created.
      *
@@ -80,17 +83,19 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\FoundationModelTuningOptions $foundation_model_tuning_options
      *           Options to control foundation model tuning of a processor.
      *     @type string $parent
-     *           Required. The parent (project, location and processor) to create the new version for.
-     *           Format: `projects/{project}/locations/{location}/processors/{processor}`.
+     *           Required. The parent (project, location and processor) to create the new
+     *           version for. Format:
+     *           `projects/{project}/locations/{location}/processors/{processor}`.
      *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion $processor_version
      *           Required. The processor version to be created.
      *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $document_schema
      *           Optional. The schema the processor version will be trained with.
      *     @type \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData $input_data
-     *           Optional. The input data used to train the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     *           Optional. The input data used to train the
+     *           [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *     @type string $base_processor_version
-     *           Optional. The processor version to use as a base for training. This processor version
-     *           must be a child of `parent`. Format:
+     *           Optional. The processor version to use as a base for training. This
+     *           processor version must be a child of `parent`. Format:
      *           `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.
      * }
      */
@@ -162,8 +167,9 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project, location and processor) to create the new version for.
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`.
+     * Required. The parent (project, location and processor) to create the new
+     * version for. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -174,8 +180,9 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project, location and processor) to create the new version for.
-     * Format: `projects/{project}/locations/{location}/processors/{processor}`.
+     * Required. The parent (project, location and processor) to create the new
+     * version for. Format:
+     * `projects/{project}/locations/{location}/processors/{processor}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -262,7 +269,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The input data used to train the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     * Optional. The input data used to train the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData input_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData|null
@@ -283,7 +291,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The input data used to train the [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     * Optional. The input data used to train the
+     * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.InputData input_data = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData $var
@@ -298,8 +307,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The processor version to use as a base for training. This processor version
-     * must be a child of `parent`. Format:
+     * Optional. The processor version to use as a base for training. This
+     * processor version must be a child of `parent`. Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.
      *
      * Generated from protobuf field <code>string base_processor_version = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -311,8 +320,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The processor version to use as a base for training. This processor version
-     * must be a child of `parent`. Format:
+     * Optional. The processor version to use as a base for training. This
+     * processor version must be a child of `parent`. Format:
      * `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.
      *
      * Generated from protobuf field <code>string base_processor_version = 8 [(.google.api.field_behavior) = OPTIONAL];</code>

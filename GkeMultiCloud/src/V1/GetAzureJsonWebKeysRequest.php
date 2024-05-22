@@ -21,7 +21,7 @@ class GetAzureJsonWebKeysRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The AzureCluster, which owns the JsonWebKeys.
      * Format:
-     * projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
+     * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`
      *
      * Generated from protobuf field <code>string azure_cluster = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,7 +30,7 @@ class GetAzureJsonWebKeysRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $azureCluster Required. The AzureCluster, which owns the JsonWebKeys.
      *                             Format:
-     *                             projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
+     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`
      *                             Please see {@see AzureClustersClient::azureClusterName()} for help formatting this field.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\GetAzureJsonWebKeysRequest
@@ -52,7 +52,7 @@ class GetAzureJsonWebKeysRequest extends \Google\Protobuf\Internal\Message
      *     @type string $azure_cluster
      *           Required. The AzureCluster, which owns the JsonWebKeys.
      *           Format:
-     *           projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
+     *           `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`
      * }
      */
     public function __construct($data = NULL) {
@@ -63,7 +63,7 @@ class GetAzureJsonWebKeysRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The AzureCluster, which owns the JsonWebKeys.
      * Format:
-     * projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
+     * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`
      *
      * Generated from protobuf field <code>string azure_cluster = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -76,7 +76,7 @@ class GetAzureJsonWebKeysRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The AzureCluster, which owns the JsonWebKeys.
      * Format:
-     * projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
+     * `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`
      *
      * Generated from protobuf field <code>string azure_cluster = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

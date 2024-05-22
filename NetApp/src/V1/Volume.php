@@ -210,6 +210,12 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.RestrictedAction restricted_actions = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $restricted_actions;
+    /**
+     * Tiering policy for the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.TieringPolicy tiering_policy = 34;</code>
+     */
+    protected $tiering_policy = null;
 
     /**
      * Constructor.
@@ -288,6 +294,8 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           BackupConfig of the volume.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $restricted_actions
      *           Optional. List of actions that are restricted on this volume.
+     *     @type \Google\Cloud\NetApp\V1\TieringPolicy $tiering_policy
+     *           Tiering policy for the volume.
      * }
      */
     public function __construct($data = NULL) {
@@ -1165,6 +1173,42 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\NetApp\V1\RestrictedAction::class);
         $this->restricted_actions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Tiering policy for the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.TieringPolicy tiering_policy = 34;</code>
+     * @return \Google\Cloud\NetApp\V1\TieringPolicy|null
+     */
+    public function getTieringPolicy()
+    {
+        return $this->tiering_policy;
+    }
+
+    public function hasTieringPolicy()
+    {
+        return isset($this->tiering_policy);
+    }
+
+    public function clearTieringPolicy()
+    {
+        unset($this->tiering_policy);
+    }
+
+    /**
+     * Tiering policy for the volume.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.TieringPolicy tiering_policy = 34;</code>
+     * @param \Google\Cloud\NetApp\V1\TieringPolicy $var
+     * @return $this
+     */
+    public function setTieringPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\TieringPolicy::class);
+        $this->tiering_policy = $var;
 
         return $this;
     }

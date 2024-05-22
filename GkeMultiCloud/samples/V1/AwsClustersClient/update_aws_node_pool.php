@@ -44,8 +44,8 @@ use Google\Rpc\Status;
  *                                                           You can list all supported versions on a given Google Cloud region by
  *                                                           calling
  *                                                           [GetAwsServerConfig][google.cloud.gkemulticloud.v1.AwsClusters.GetAwsServerConfig].
- * @param string $awsNodePoolConfigIamInstanceProfile        The name or ARN of the AWS IAM role assigned to nodes in the
- *                                                           pool.
+ * @param string $awsNodePoolConfigIamInstanceProfile        The name or ARN of the AWS IAM instance profile to assign to
+ *                                                           nodes in the pool.
  * @param string $awsNodePoolConfigConfigEncryptionKmsKeyArn The ARN of the AWS KMS key used to encrypt user data.
  * @param int    $awsNodePoolAutoscalingMinNodeCount         Minimum number of nodes in the node pool. Must be greater than or
  *                                                           equal to 1 and less than or equal to max_node_count.

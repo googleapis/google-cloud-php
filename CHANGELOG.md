@@ -1,5 +1,293 @@
 # Changelog
 
+## 0.245.0
+
+<details><summary>google/analytics-data 0.17.0</summary>
+
+
+
+### Features
+
+* Add `CreateReportTask`, `QueryReportTask`, `GetReportTask`, `ListReportTasks` methods to the Data API v1alpha ([#7295](https://github.com/googleapis/google-cloud-php/issues/7295)) ([bd673bd](https://github.com/googleapis/google-cloud-php/commit/bd673bdbebdabe81a64b09b217b0c28574ff01a4))
+* Add `ReportTask`, `Metric`, `OrderBy`, `Cohort`, `CohortsRange`, `CohortReportSettings`, `ResponseMetaData`, `MetricAggregation`, `RestrictedMetricType` types to the Data API v1alpha ([bd673bd](https://github.com/googleapis/google-cloud-php/commit/bd673bdbebdabe81a64b09b217b0c28574ff01a4))
+
+</details>
+
+<details><summary>google/apps-chat 0.1.2</summary>
+
+
+
+### Documentation
+
+* Update Chat API comments ([#7306](https://github.com/googleapis/google-cloud-php/issues/7306)) ([2a4604b](https://github.com/googleapis/google-cloud-php/commit/2a4604bc6b6b90f4e71e671a995a878549a8280c))
+
+</details>
+
+<details><summary>google/cloud-batch 0.16.8</summary>
+
+
+
+### Documentation
+
+* Refine description for field `task_execution` ([#7307](https://github.com/googleapis/google-cloud-php/issues/7307)) ([b6f2ed0](https://github.com/googleapis/google-cloud-php/commit/b6f2ed0f0abf75960ccd8e0069af13fbdd3ddfcf))
+
+</details>
+
+<details><summary>google/cloud-compute 1.18.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20240430 ([#900](https://github.com/googleapis/google-cloud-php/issues/900)) ([#7297](https://github.com/googleapis/google-cloud-php/issues/7297)) ([78afc83](https://github.com/googleapis/google-cloud-php/commit/78afc833723c57614ee8288806938bf79c4f0958))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.19.0</summary>
+
+
+
+### Features
+
+* Add Skaffold verbose support to Execution Environment properties ([#7315](https://github.com/googleapis/google-cloud-php/issues/7315)) ([578a61a](https://github.com/googleapis/google-cloud-php/commit/578a61ab7da6786a13698a58dd7332bc6779b792))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.14.0</summary>
+
+
+
+### Features
+
+* Add field to InspectJobs num_rows_processed for BigQuery inspect jobs ([d905def](https://github.com/googleapis/google-cloud-php/commit/d905defec82c6b71d773ce24bd4e9edb8bbd3888))
+* Add new countries for supported detectors ([d905def](https://github.com/googleapis/google-cloud-php/commit/d905defec82c6b71d773ce24bd4e9edb8bbd3888))
+* Add RPCs for deleting TableDataProfiles ([#7294](https://github.com/googleapis/google-cloud-php/issues/7294)) ([d905def](https://github.com/googleapis/google-cloud-php/commit/d905defec82c6b71d773ce24bd4e9edb8bbd3888))
+* Add RPCs for enabling discovery of Cloud SQL ([d905def](https://github.com/googleapis/google-cloud-php/commit/d905defec82c6b71d773ce24bd4e9edb8bbd3888))
+
+
+### Documentation
+
+* Updated method documentation ([d905def](https://github.com/googleapis/google-cloud-php/commit/d905defec82c6b71d773ce24bd4e9edb8bbd3888))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.12.2</summary>
+
+
+
+### Documentation
+
+* Clarify the unavailability of some features ([#7312](https://github.com/googleapis/google-cloud-php/issues/7312)) ([e2cee2d](https://github.com/googleapis/google-cloud-php/commit/e2cee2d72b86ed4c4e55ffa27be692eed19ab02f))
+* Updated comments ([#7301](https://github.com/googleapis/google-cloud-php/issues/7301)) ([22def9f](https://github.com/googleapis/google-cloud-php/commit/22def9f04c3c10604a44afea5dd3e8e55979e7eb))
+
+</details>
+
+<details><summary>google/geo-common-protos 0.1.0</summary>
+
+
+
+### Features
+
+* Add fleetengine, fleetengine delivery, and geo common ([#7309](https://github.com/googleapis/google-cloud-php/issues/7309)) ([749fc97](https://github.com/googleapis/google-cloud-php/commit/749fc97dce4aaeee3ed0358ec0400aa1087f7d10))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.6.0</summary>
+
+
+
+### Features
+
+* Option to ignore_errors while deleting Azure clusters / nodepools ([#7304](https://github.com/googleapis/google-cloud-php/issues/7304)) ([401a5b5](https://github.com/googleapis/google-cloud-php/commit/401a5b5bb8e8569248d87907fe1f4317dd187035))
+
+</details>
+
+<details><summary>google/cloud-kms 1.22.0</summary>
+
+
+
+### Features
+
+* Add client library for KMS Autokey service, which enables automated KMS key provision and management ([#7290](https://github.com/googleapis/google-cloud-php/issues/7290)) ([3c0f6e6](https://github.com/googleapis/google-cloud-php/commit/3c0f6e66f4b005817fa7760244dec6fb2063cd2f))
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.1.0</summary>
+
+
+
+### Features
+
+* Add fleetengine, fleetengine delivery, and geo common ([#7309](https://github.com/googleapis/google-cloud-php/issues/7309)) ([749fc97](https://github.com/googleapis/google-cloud-php/commit/749fc97dce4aaeee3ed0358ec0400aa1087f7d10))
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.1.0</summary>
+
+
+
+### Features
+
+* Add fleetengine, fleetengine delivery, and geo common ([#7309](https://github.com/googleapis/google-cloud-php/issues/7309)) ([749fc97](https://github.com/googleapis/google-cloud-php/commit/749fc97dce4aaeee3ed0358ec0400aa1087f7d10))
+
+</details>
+
+<details><summary>google/cloud-netapp 0.3.0</summary>
+
+
+
+### Features
+
+* Add a new Service Level FLEX ([#7318](https://github.com/googleapis/google-cloud-php/issues/7318)) ([5241ec9](https://github.com/googleapis/google-cloud-php/commit/5241ec9ad1eacfb5b472ce56087cc552de238ded))
+* Add backup chain bytes to BackupConfig in Volume ([5241ec9](https://github.com/googleapis/google-cloud-php/commit/5241ec9ad1eacfb5b472ce56087cc552de238ded))
+* Add Location metadata support ([5241ec9](https://github.com/googleapis/google-cloud-php/commit/5241ec9ad1eacfb5b472ce56087cc552de238ded))
+* Add Tiering Policy to Volume ([5241ec9](https://github.com/googleapis/google-cloud-php/commit/5241ec9ad1eacfb5b472ce56087cc552de238ded))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* An existing field `end_time` is removed from message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata`
+* An existing field `source` is removed from message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata`
+* An existing field `destination` is removed from message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata`
+* An existing field `create_time` is removed from message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([#7314](https://github.com/googleapis/google-cloud-php/issues/7314))
+* An existing field `destination_path` is renamed to `destination_parallelstore` in message `.google.cloud.parallelstore.v1beta.ImportDataRequest`
+* An existing field `source_path` is renamed to `source_parallelstore` in message `.google.cloud.parallelstore.v1beta.ExportDataRequest`
+* An existing field `destination_gcs_uri` is renamed to `destination_gcs_bucket` in message `.google.cloud.parallelstore.v1beta.ExportDataRequest`
+* An existing field `source_gcs_uri` is renamed to `source_gcs_bucket` in message `.google.cloud.parallelstore.v1beta.ImportDataRequest` ([#7302](https://github.com/googleapis/google-cloud-php/issues/7302))
+
+### Features
+
+* A new field `api_version` is added to message `.google.cloud.parallelstore.v1beta.ExportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `api_version` is added to message `.google.cloud.parallelstore.v1beta.ImportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `create_time` is added to message `.google.cloud.parallelstore.v1beta.ExportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `create_time` is added to message `.google.cloud.parallelstore.v1beta.ImportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `destination_gcs_bucket` is added to message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `destination_parallelstore` is added to message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `end_time` is added to message `.google.cloud.parallelstore.v1beta.ExportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `end_time` is added to message `.google.cloud.parallelstore.v1beta.ImportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `requested_cancellation` is added to message `.google.cloud.parallelstore.v1beta.ExportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `requested_cancellation` is added to message `.google.cloud.parallelstore.v1beta.ImportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `source_gcs_bucket` is added to message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `source_parallelstore` is added to message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `status_message` is added to message `.google.cloud.parallelstore.v1beta.ExportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `status_message` is added to message `.google.cloud.parallelstore.v1beta.ImportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `target` is added to message `.google.cloud.parallelstore.v1beta.ExportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `target` is added to message `.google.cloud.parallelstore.v1beta.ImportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `verb` is added to message `.google.cloud.parallelstore.v1beta.ExportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new field `verb` is added to message `.google.cloud.parallelstore.v1beta.ImportDataMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A new message `DestinationGcsBucket` is added ([0f600d2](https://github.com/googleapis/google-cloud-php/commit/0f600d27c9331d40a463b971b2fea8f26e14f56e))
+* A new message `DestinationParallelstore` is added ([0f600d2](https://github.com/googleapis/google-cloud-php/commit/0f600d27c9331d40a463b971b2fea8f26e14f56e))
+* A new message `SourceGcsBucket` is added ([0f600d2](https://github.com/googleapis/google-cloud-php/commit/0f600d27c9331d40a463b971b2fea8f26e14f56e))
+* A new message `SourceParallelstore` is added ([0f600d2](https://github.com/googleapis/google-cloud-php/commit/0f600d27c9331d40a463b971b2fea8f26e14f56e))
+
+
+### Bug Fixes
+
+* An existing field `create_time` is removed from message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([#7314](https://github.com/googleapis/google-cloud-php/issues/7314)) ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* An existing field `destination_gcs_uri` is renamed to `destination_gcs_bucket` in message `.google.cloud.parallelstore.v1beta.ExportDataRequest` ([0f600d2](https://github.com/googleapis/google-cloud-php/commit/0f600d27c9331d40a463b971b2fea8f26e14f56e))
+* An existing field `destination_path` is renamed to `destination_parallelstore` in message `.google.cloud.parallelstore.v1beta.ImportDataRequest` ([0f600d2](https://github.com/googleapis/google-cloud-php/commit/0f600d27c9331d40a463b971b2fea8f26e14f56e))
+* An existing field `destination` is removed from message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* An existing field `end_time` is removed from message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* An existing field `source_gcs_uri` is renamed to `source_gcs_bucket` in message `.google.cloud.parallelstore.v1beta.ImportDataRequest` ([#7302](https://github.com/googleapis/google-cloud-php/issues/7302)) ([0f600d2](https://github.com/googleapis/google-cloud-php/commit/0f600d27c9331d40a463b971b2fea8f26e14f56e))
+* An existing field `source_path` is renamed to `source_parallelstore` in message `.google.cloud.parallelstore.v1beta.ExportDataRequest` ([0f600d2](https://github.com/googleapis/google-cloud-php/commit/0f600d27c9331d40a463b971b2fea8f26e14f56e))
+* An existing field `source` is removed from message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+
+
+### Documentation
+
+* A comment for field `counters` in message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` is changed ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+* A comment for field `transfer_type` in message `.google.cloud.parallelstore.v1beta.TransferOperationMetadata` is changed ([2c7a6b5](https://github.com/googleapis/google-cloud-php/commit/2c7a6b52c5cd5b56b9843ab3776cc88639c2df1e))
+
+</details>
+
+<details><summary>google/cloud-service-directory 1.3.5</summary>
+
+
+
+### Documentation
+
+* Add maximum page_size to ListEndpoint API documentation ([de11deb](https://github.com/googleapis/google-cloud-php/commit/de11deb965acbebffe8660a60fd146d0dae74543))
+* Add maximum page_size to ListNamespace API documentation ([#7316](https://github.com/googleapis/google-cloud-php/issues/7316)) ([de11deb](https://github.com/googleapis/google-cloud-php/commit/de11deb965acbebffe8660a60fd146d0dae74543))
+* Add maximum page_size to ListService API documentation ([de11deb](https://github.com/googleapis/google-cloud-php/commit/de11deb965acbebffe8660a60fd146d0dae74543))
+
+</details>
+
+<details><summary>google/shopping-css 0.2.6</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.4.0 ([#7287](https://github.com/googleapis/google-cloud-php/issues/7287)) ([9b1f2b9](https://github.com/googleapis/google-cloud-php/commit/9b1f2b9839604eae79bcf54b1088ed61d0942434))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.4.3</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.4.0 ([#7287](https://github.com/googleapis/google-cloud-php/issues/7287)) ([9b1f2b9](https://github.com/googleapis/google-cloud-php/commit/9b1f2b9839604eae79bcf54b1088ed61d0942434))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.7.3</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.4.0 ([#7287](https://github.com/googleapis/google-cloud-php/issues/7287)) ([9b1f2b9](https://github.com/googleapis/google-cloud-php/commit/9b1f2b9839604eae79bcf54b1088ed61d0942434))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.77.0</summary>
+
+
+
+### Features
+
+* Add support for multi region encryption config ([#7285](https://github.com/googleapis/google-cloud-php/issues/7285)) ([9ee6613](https://github.com/googleapis/google-cloud-php/commit/9ee6613a3384590043ddf8b7cdde25514ed11b65))
+
+
+### Documentation
+
+* Fix linting for several doc comments ([9ee6613](https://github.com/googleapis/google-cloud-php/commit/9ee6613a3384590043ddf8b7cdde25514ed11b65))
+
+</details>
+
+<details><summary>google/cloud-storage 1.42.0</summary>
+
+
+
+### Features
+
+* **Storage:** Enable hierarchical namespace ([#7292](https://github.com/googleapis/google-cloud-php/issues/7292)) ([c6f645f](https://github.com/googleapis/google-cloud-php/commit/c6f645f3c6171fb385d996eda68ef909943e8a99))
+* **Storage:** Update Service Definition to enable hierarchical namespace ([#7291](https://github.com/googleapis/google-cloud-php/issues/7291)) ([9ad2e3d](https://github.com/googleapis/google-cloud-php/commit/9ad2e3d7fd8358ef7f9d8ca9c6c4db68dbcadb78))
+
+</details>
+
+<details><summary>google/cloud-storage-control 0.2.0</summary>
+
+
+
+### Features
+
+* A new resource pattern value `projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}` added to the resource definition `storage.googleapis.com/ManagedFolder` ([5cd68b2](https://github.com/googleapis/google-cloud-php/commit/5cd68b2cdec40101a2654511d8958ee1339b8507))
+
+
+### Bug Fixes
+
+* An existing resource pattern value `projects/{project}/buckets/{bucket}/managedFolders/{managedFolder=**}` to resource definition `storage.googleapis.com/ManagedFolder` is removed ([#7286](https://github.com/googleapis/google-cloud-php/issues/7286)) ([5cd68b2](https://github.com/googleapis/google-cloud-php/commit/5cd68b2cdec40101a2654511d8958ee1339b8507))
+
+</details>
+
 ## 0.244.0
 
 <details><summary>google/cloud-access-approval 1.2.4</summary>

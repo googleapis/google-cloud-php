@@ -31,7 +31,8 @@ use Google\Protobuf\FieldMask;
 
 /**
  * Updates a user's read state within a space, used to identify read and
- * unread messages.
+ * unread messages. For an example, see [Update a user's space read
+ * state](https://developers.google.com/workspace/chat/update-space-read-state).
  *
  * Requires [user
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
