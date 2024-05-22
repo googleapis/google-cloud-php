@@ -28,6 +28,7 @@ use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -104,14 +105,18 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         ]);
 
         $value = 'name|' . serialize('Bob');
-        $this->connection->commit(Argument::allOf(
-            Argument::that(function ($args) use ($value) {
-                return strpos($args['writes'][0]['update']['name'], ':PHPSESSID') !== false
-                    && $args['writes'][0]['update']['fields']['data']['stringValue'] === $value
-                    && isset($args['writes'][0]['update']['fields']['t']['integerValue']);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($value) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return strpos($data['writes'][0]['update']['name'], ':PHPSESSID') !== false
+                    && $data['writes'][0]['update']['fields']['data']['stringValue'] === $value
+                    && isset($data['writes'][0]['update']['fields']['t']['integerValue'])
+                    && $data['transaction'] == self::TRANSACTION;
             }),
-            Argument::withEntry('transaction', self::TRANSACTION)
-        ))->shouldBeCalled()->willReturn([
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'writeResults' => []
         ]);
 
@@ -153,14 +158,18 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         ]);
 
         $value = 'name|' . serialize('Bob');
-        $this->connection->commit(Argument::allOf(
-            Argument::that(function ($args) use ($value) {
-                return strpos($args['writes'][0]['update']['name'], ':PHPSESSID') !== false
-                    && $args['writes'][0]['update']['fields']['data']['stringValue'] === $value
-                    && isset($args['writes'][0]['update']['fields']['t']['integerValue']);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($value) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return strpos($data['writes'][0]['update']['name'], ':PHPSESSID') !== false
+                    && $data['writes'][0]['update']['fields']['data']['stringValue'] === $value
+                    && isset($data['writes'][0]['update']['fields']['t']['integerValue'])
+                    && $data['transaction'] == self::TRANSACTION;
             }),
-            Argument::withEntry('transaction', self::TRANSACTION)
-        ))->shouldBeCalled()->willReturn([
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'writeResults' => []
         ]);
 
@@ -204,11 +213,14 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
             'transaction' => self::TRANSACTION
         ]);
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled()
-            ->will(function () {
-                trigger_error('oops!', E_USER_WARNING);
-            });
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->will(function () {
+            trigger_error('oops!', E_USER_WARNING);
+        });
 
         $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());

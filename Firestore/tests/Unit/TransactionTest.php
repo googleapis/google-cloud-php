@@ -459,12 +459,19 @@ class TransactionTest extends TestCase
 
     private function expectAndInvoke(array $writes)
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => $writes,
-            'transaction' => self::TRANSACTION
-        ])->shouldBeCalled();
-        $this->transaction->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($writes) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE)
+                    && array_replace_recursive($data['writes'], $writes) == $data['writes']
+                    && $data['transaction'] == self::TRANSACTION;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled();
+
+        $this->transaction->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->transaction->writer()->commit();
     }
 }

@@ -28,6 +28,7 @@ use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use Google\Rpc\Code;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -832,10 +833,7 @@ class BulkWriterTest extends TestCase
 
         $this->batch->delete($ref, [
             'precondition' => [
-                'updateTime' => new Timestamp(
-                    \DateTimeImmutable::createFromFormat('U', (string) $ts['seconds']),
-                    $ts['nanos']
-                ),
+                'updateTime' => $ts,
             ],
         ]);
 

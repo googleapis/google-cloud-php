@@ -26,6 +26,7 @@ use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\FirestoreClient as V1FirestoreGapicClient;
 use InvalidArgumentException;
 use Iterator;
@@ -309,20 +310,30 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1)->willReturn(['transaction' => null]);
 
-        $this->connection->commit([
-            'database' => $this->dbName(),
-            'writes' => [
-                [
-                    'update' => [
-                        'name' => $this->documentName(),
-                        'fields' => [
-                            'data' => ['stringValue' => 'sessiondata']
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $expected = [
+                    'database' => $this->dbName(),
+                    'writes' => [
+                        [
+                            'update' => [
+                                'name' => $this->documentName(),
+                                'fields' => [
+                                    'data' => ['stringValue' => 'sessiondata']
+                                ]
+                            ]
                         ]
                     ]
-                ]
-            ]
-        ])
-            ->shouldBeCalledTimes(1);
+                ];
+
+                return array_replace_recursive($data, $expected) == $data;
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1);
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->requestHandler->reveal(),
@@ -364,7 +375,12 @@ class FirestoreSessionHandlerTest extends TestCase
             'transaction' => 123
         ])
             ->shouldBeCalledTimes(1);
-        $this->connection->commit(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalledTimes(1)
             ->willThrow((new ServiceException('')));
         $firestoreSessionHandler = new FirestoreSessionHandler(
@@ -394,16 +410,18 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1)->willReturn(['transaction' => 123]);
 
-        $this->connection->commit([
-            'database' => $this->dbName(),
-            'writes' => [
-                [
-                    'delete' => $this->documentName()
-                ]
-            ],
-            'transaction' => 123
-        ])
-            ->shouldBeCalledTimes(1);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == $this->dbName()
+                    && $data['writes'][0]['delete'] == $this->documentName()
+                    && $data['transaction'] == 123;
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1);
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->requestHandler->reveal(),
@@ -432,7 +450,12 @@ class FirestoreSessionHandlerTest extends TestCase
             Argument::cetera()
         )->shouldBeCalledTimes(1)->willReturn(['transaction' => 123]);
 
-        $this->connection->commit(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalledTimes(1)
             ->willThrow(new ServiceException(''));
         $this->connection->rollback([
@@ -531,16 +554,19 @@ class FirestoreSessionHandlerTest extends TestCase
             ->willReturn(['data' => 'sessiondata']);
         $this->valueMapper->encodeValue(Argument::type('integer'))
             ->shouldBeCalledTimes(1);
-        $this->connection->commit([
-            'database' => $this->dbName(),
-            'writes' => [
-                [
-                    'delete' => $this->documentName()
-                ]
-            ],
-            'transaction' => 123
-        ])
-            ->shouldBeCalledTimes(1);
+
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == $this->dbName()
+                    && $data['writes'][0]['delete'] == $this->documentName()
+                    && $data['transaction'] == 123;
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1);
+
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->requestHandler->reveal(),

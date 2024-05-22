@@ -25,7 +25,9 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\FirestoreClient;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -52,29 +54,35 @@ class FieldValueTest extends SnippetTestCase
         $this->serializer = $this->getSerializer();
         $this->firestore = TestHelpers::stub(FirestoreClient::class, [
             ['projectId' => 'my-awesome-project'],
-        ]);
+        ], ['connection', 'requestHandler']);
     }
 
     public function testDeleteField()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "updateMask" => [
-                        "fieldPaths" => ["hometown"],
-                    ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                    "update" => [
-                        "name" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == "projects/my-awesome-project/databases/(default)"
+                    && array_replace_recursive($data['writes'], [
+                        [
+                            "updateMask" => [
+                                "fieldPaths" => ["hometown"],
+                            ],
+                            "currentDocument" => [
+                                "exists" => true,
+                            ],
+                            "update" => [
+                                "name" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                            ],
+                        ],
+                    ]) == $data['writes'];
+            }),
+            Argument::cetera()
+        )->willReturn([[]])->shouldBeCalledTimes(1);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+        $this->firestore->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'deleteField');
         $snippet->setLine(3, '');
@@ -85,27 +93,33 @@ class FieldValueTest extends SnippetTestCase
 
     public function testServerTimestamp()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "transform" => [
-                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fieldTransforms" => [
-                            [
-                                "fieldPath" => "lastLogin",
-                                "setToServerValue" => ServerValue::REQUEST_TIME,
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == "projects/my-awesome-project/databases/(default)"
+                    && array_replace_recursive($data['writes'], [
+                        [
+                            "transform" => [
+                                "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                                "fieldTransforms" => [
+                                    [
+                                        "fieldPath" => "lastLogin",
+                                        "setToServerValue" => ServerValue::REQUEST_TIME,
+                                    ],
+                                ],
+                            ],
+                            "currentDocument" => [
+                                "exists" => true,
                             ],
                         ],
-                    ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                    ]) == $data['writes'];
+            }),
+            Argument::cetera()
+        )->willReturn([[]])->shouldBeCalledTimes(1);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+        $this->firestore->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'serverTimestamp');
         $snippet->setLine(3, '');
@@ -116,35 +130,41 @@ class FieldValueTest extends SnippetTestCase
 
     public function testArrayUnion()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "transform" => [
-                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fieldTransforms" => [
-                            [
-                                "fieldPath" => "favoriteColors",
-                                'appendMissingElements' => [
-                                    'values' => [
-                                        [
-                                            'stringValue' => 'red',
-                                        ], [
-                                            'stringValue' => 'blue',
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == "projects/my-awesome-project/databases/(default)"
+                    && array_replace_recursive($data['writes'], [
+                        [
+                            "transform" => [
+                                "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                                "fieldTransforms" => [
+                                    [
+                                        "fieldPath" => "favoriteColors",
+                                        'appendMissingElements' => [
+                                            'values' => [
+                                                [
+                                                    'stringValue' => 'red',
+                                                ], [
+                                                    'stringValue' => 'blue',
+                                                ],
+                                            ],
                                         ],
                                     ],
                                 ],
                             ],
+                            "currentDocument" => [
+                                "exists" => true,
+                            ],
                         ],
-                    ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                    ]) == $data['writes'];
+            }),
+            Argument::cetera()
+        )->willReturn([[]])->shouldBeCalledTimes(1);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+        $this->firestore->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'arrayUnion');
         $snippet->setLine(3, '');
@@ -155,33 +175,39 @@ class FieldValueTest extends SnippetTestCase
 
     public function testArrayRemove()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "transform" => [
-                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fieldTransforms" => [
-                            [
-                                "fieldPath" => "favoriteColors",
-                                'removeAllFromArray' => [
-                                    'values' => [
-                                        [
-                                            'stringValue' => 'green',
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == "projects/my-awesome-project/databases/(default)"
+                    && array_replace_recursive($data['writes'], [
+                        [
+                            "transform" => [
+                                "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                                "fieldTransforms" => [
+                                    [
+                                        "fieldPath" => "favoriteColors",
+                                        'removeAllFromArray' => [
+                                            'values' => [
+                                                [
+                                                    'stringValue' => 'green',
+                                                ],
+                                            ],
                                         ],
                                     ],
                                 ],
                             ],
+                            "currentDocument" => [
+                                "exists" => true,
+                            ],
                         ],
-                    ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                    ]) == $data['writes'];
+            }),
+            Argument::cetera()
+        )->willReturn([[]])->shouldBeCalledTimes(1);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+        $this->firestore->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'arrayRemove');
         $snippet->setLine(3, '');
@@ -192,29 +218,35 @@ class FieldValueTest extends SnippetTestCase
 
     public function testIncrement()
     {
-        $this->connection->commit([
-            "database" => "projects/my-awesome-project/databases/(default)",
-            "writes" => [
-                [
-                    "transform" => [
-                        "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                        "fieldTransforms" => [
-                            [
-                                "fieldPath" => "loginCount",
-                                'increment' => [
-                                    'integerValue' => 1,
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == "projects/my-awesome-project/databases/(default)"
+                    && array_replace_recursive($data['writes'], [
+                        [
+                            "transform" => [
+                                "document" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
+                                "fieldTransforms" => [
+                                    [
+                                        "fieldPath" => "loginCount",
+                                        'increment' => [
+                                            'integerValue' => 1,
+                                        ],
+                                    ],
                                 ],
                             ],
+                            "currentDocument" => [
+                                "exists" => true,
+                            ],
                         ],
-                    ],
-                    "currentDocument" => [
-                        "exists" => true,
-                    ],
-                ],
-            ],
-        ])->willReturn([[]])->shouldBeCalledTimes(1);
+                    ]) == $data['writes'];
+            }),
+            Argument::cetera()
+        )->willReturn([[]])->shouldBeCalledTimes(1);
 
-        $this->firestore->___setProperty('connection', $this->connection->reveal());
+        $this->firestore->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(FieldValue::class, 'increment');
         $snippet->setLine(3, '');

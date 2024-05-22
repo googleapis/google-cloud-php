@@ -34,6 +34,7 @@ use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\PathTrait;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
+use Google\Cloud\Firestore\V1\Precondition;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator as CompositFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
@@ -65,7 +66,6 @@ class ConformanceTest extends TestCase
     private $client;
     private $connection;
     private $requestHandler;
-    private $serializer;
 
     private $excludes = [
         // need mergeFields support
@@ -95,7 +95,6 @@ class ConformanceTest extends TestCase
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->prophesize(RequestHandler::class);
-        $this->serializer = $this->getSerializer();
     }
 
     /**
@@ -121,6 +120,7 @@ class ConformanceTest extends TestCase
     /**
      * @dataProvider cases
      * @group firestore-conformance-create
+     * @group mystic
      */
     public function testCreate($test)
     {
@@ -130,8 +130,16 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
-                ->shouldBeCalled()->willReturn([]);
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::that(function ($req) use ($request) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $data['database'] == $request['database']
+                        && array_replace_recursive($data['writes'], $request['writes']) == $data['writes'];
+                }),
+                Argument::cetera()
+            )->shouldBeCalled()->willReturn([]);
         });
 
         $this->executeAndHandleError($test, function ($test) {
@@ -152,11 +160,20 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::that(function ($req) use ($request) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $data['database'] === $request['database']
+                        && array_replace_recursive($data['writes'], $request['writes']) == $data['writes'];
+                }),
+                Argument::cetera()
+            )
                 ->shouldBeCalled()->willReturn([]);
         });
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->executeAndHandleError($test, function ($test) {
             $options = [];
@@ -181,7 +198,16 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::that(function ($req) use ($request) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $data['database'] === $request['database']
+                        && array_replace_recursive($data['writes'], $request['writes']) == $data['writes'];
+                }),
+                Argument::cetera()
+            )
                 ->shouldBeCalled()->willReturn([]);
         });
 
@@ -215,7 +241,16 @@ class ConformanceTest extends TestCase
                 unset($request['transaction']);
             }
 
-            $this->connection->commit(new ArrayHasSameValuesToken($this->injectPbValues($request)))
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::that(function ($req) use ($request) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $data['database'] == $request['database']
+                        && array_replace_recursive($data['writes'], $request['writes']) == $data['writes'];
+                }),
+                Argument::cetera()
+            )
                 ->shouldBeCalled()->willReturn([]);
         });
 
@@ -324,7 +359,7 @@ class ConformanceTest extends TestCase
                             $mapper = new ValueMapper(
                                 $this->prophesize(ConnectionInterface::class)->reveal(),
                                 $this->prophesize(RequestHandler::class)->reveal(),
-                                $this->serializer,
+                                $this->getSerializer(),
                                 false
                             );
 
@@ -358,11 +393,15 @@ class ConformanceTest extends TestCase
         if (!$test['isError']) {
             $call($test);
         } else {
-            $this->connection->commit(Argument::any())
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'commit',
+                Argument::cetera()
+            )
                 ->shouldNotBeCalled()->willReturn([]);
         }
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
     }
 
     private function executeAndHandleError(array $test, callable $executeTest)
@@ -394,17 +433,8 @@ class ConformanceTest extends TestCase
             }
 
             if (isset($test['precondition']['updateTime'])) {
-                $updateTime = $this->parseTimeString($test['precondition']['updateTime']);
-                $test['precondition']['updateTime'] = [
-                    'seconds' => $updateTime[0]->format('U'),
-                    'nanos' => $updateTime[1]
-                ];
-
                 $options['precondition'] = [
-                    'updateTime' => new Timestamp(
-                        \DateTime::createFromFormat('U', (string) $test['precondition']['updateTime']['seconds']),
-                        $test['precondition']['updateTime']['nanos']
-                    )
+                    'updateTime' => $test['precondition']['updateTime']
                 ];
             }
         }

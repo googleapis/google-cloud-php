@@ -25,6 +25,7 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\BulkWriter;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;

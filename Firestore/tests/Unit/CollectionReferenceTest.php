@@ -29,6 +29,7 @@ use Google\Cloud\Core\Testing\FirestoreTestHelperTrait;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 
 /**
  * @group firestore
@@ -65,7 +66,7 @@ class CollectionReferenceTest extends TestCase
                 false
             ),
             self::NAME
-        ]);
+        ], ['requestHandler', 'connection']);
     }
 
     public function testName()
@@ -105,29 +106,33 @@ class CollectionReferenceTest extends TestCase
 
     public function testAdd()
     {
-        $this->connection->commit(Argument::that(function ($args) {
-            $expected = [
-                'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-                'writes' => [
-                    [
-                        'currentDocument' => ['exists' => false],
-                        'update' => [
-                            'fields' => [
-                                'hello' => [
-                                    'stringValue' => 'world'
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $expected = [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'currentDocument' => ['exists' => false],
+                            'update' => [
+                                'fields' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ]
                                 ]
                             ]
                         ]
                     ]
-                ]
-            ];
+                ];
 
-            unset($args['writes'][0]['update']['name']);
+                return array_replace_recursive($data, $expected) == $data;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([[]]);
 
-            return $args === $expected;
-        }))->shouldBeCalled()->willReturn([[]]);
-
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+        $this->collection->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->collection->add(['hello' => 'world']);
     }
