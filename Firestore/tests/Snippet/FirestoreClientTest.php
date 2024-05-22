@@ -35,6 +35,7 @@ use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -270,8 +271,12 @@ class FirestoreClientTest extends SnippetTestCase
             ]
         ]));
 
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
 
         $this->client->___setProperty('connection', $this->connection->reveal());
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());

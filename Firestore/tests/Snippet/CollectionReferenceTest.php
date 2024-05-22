@@ -29,6 +29,8 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
 
 /**
  * @group firestore
@@ -65,7 +67,7 @@ class CollectionReferenceTest extends SnippetTestCase
                 false
             ),
             self::NAME
-        ]);
+        ], ['requestHandler', 'connection']);
     }
 
     public function testClass()
@@ -152,10 +154,16 @@ class CollectionReferenceTest extends SnippetTestCase
 
     public function testAdd()
     {
-        $this->connection->commit(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalled()
             ->willReturn([[]]);
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+
+        $this->collection->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'add');
         $snippet->addLocal('collection', $this->collection);

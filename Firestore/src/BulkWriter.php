@@ -31,6 +31,7 @@ use Google\Cloud\Firestore\FieldValue\DocumentTransformInterface;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use Google\Rpc\Code;
 
 /**
@@ -998,10 +999,14 @@ class BulkWriter
 
         if (isset($response['writeResults'])) {
             foreach ($response['writeResults'] as &$result) {
-                if (isset($result['updateTime'])) {
-                    $time = $this->parseTimeString($result['updateTime']);
-                    $result['updateTime'] = new Timestamp($time[0], $time[1]);
-                }
+                // Commenting this out right now because we need to decide if we want to parse the returned
+                // RFC3339 string which is not very user friendly to interpret. The tradeoff is we need
+                // to parse the returned value. Maybe we can add this logic in serializer or something.
+
+                // if (isset($result['updateTime'])) {
+                //     $time = $this->parseTimeString($result['updateTime']);
+                //     $result['updateTime'] = new Timestamp($time[0], $time[1]);
+                // }
             }
         }
 
@@ -1107,15 +1112,17 @@ class BulkWriter
         }
 
         if (isset($precondition['updateTime'])) {
-            if (!($precondition['updateTime'] instanceof Timestamp)) {
+            if (
+                !($precondition['updateTime'] instanceof ProtobufTimestamp)
+                && !is_array($precondition['updateTime'])
+            ) {
                 throw new \InvalidArgumentException(
-                    'Precondition Update Time must be an instance of `Google\\Cloud\\Core\\Timestamp`'
+                    'Precondition Update Time must be an instance of `Google\\Protobuf\\Timestamp` ' .
+                    'or array representation of the same.'
                 );
             }
 
-            return [
-                'updateTime' => $precondition['updateTime']->formatForApi(),
-            ];
+            return $precondition;
         }
 
         throw new \InvalidArgumentException('Preconditions must provide either `exists` or `updateTime`.');

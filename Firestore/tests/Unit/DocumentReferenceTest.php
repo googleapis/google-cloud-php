@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -105,90 +106,119 @@ class DocumentReferenceTest extends TestCase
 
     public function testCreate()
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'currentDocument' => ['exists' => false],
-                    'update' => [
-                        'name' => self::NAME,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $expected = [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'currentDocument' => ['exists' => false],
+                            'update' => [
+                                'name' => self::NAME,
+                                'fields' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ]
+                                ]
                             ]
                         ]
                     ]
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
+                ];
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+                return array_replace_recursive($data, $expected) == $data;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([[]]);
+
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->document->create(['hello' => 'world']);
     }
 
     public function testSet()
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'update' => [
-                        'name' => self::NAME,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $expected = [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'update' => [
+                                'name' => self::NAME,
+                                'fields' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ]
+                                ]
                             ]
                         ]
                     ]
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
+                ];
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+                return array_replace_recursive($data, $expected) == $data;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([[]]);
+
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->document->set(['hello' => 'world']);
     }
 
     public function testUpdate()
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'updateMask' => [
-                        'fieldPaths' => [
-                            "foo.bar",
-                            "foo.baz",
-                            "hello",
-                        ]
-                    ],
-                    'currentDocument' => ['exists' => true],
-                    'update' => [
-                        'name' => self::NAME,
-                        'fields' => [
-                            'hello' => [
-                                'stringValue' => 'world'
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $expected = [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'updateMask' => [
+                                'fieldPaths' => [
+                                    "foo.bar",
+                                    "foo.baz",
+                                    "hello",
+                                ]
                             ],
-                            'foo' => [
-                                'mapValue' => [
-                                    'fields' => [
-                                        'bar' => [
-                                            'stringValue' => 'val'
-                                        ],
-                                        'baz' => [
-                                            'stringValue' => 'val'
+                            'currentDocument' => ['exists' => true],
+                            'update' => [
+                                'name' => self::NAME,
+                                'fields' => [
+                                    'hello' => [
+                                        'stringValue' => 'world'
+                                    ],
+                                    'foo' => [
+                                        'mapValue' => [
+                                            'fields' => [
+                                                'bar' => [
+                                                    'stringValue' => 'val'
+                                                ],
+                                                'baz' => [
+                                                    'stringValue' => 'val'
+                                                ]
+                                            ]
                                         ]
                                     ]
                                 ]
                             ]
                         ]
                     ]
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
+                ];
+                return array_replace_recursive($data, $expected) == $data;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([[]]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->document->update([
             ['path' => 'hello', 'value' => 'world'],
@@ -199,16 +229,25 @@ class DocumentReferenceTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->commit([
-            'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
-            'writes' => [
-                [
-                    'delete' => self::NAME
-                ]
-            ]
-        ])->shouldBeCalled()->willReturn([[]]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                $expected = [
+                    'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+                    'writes' => [
+                        [
+                            'delete' => self::NAME
+                        ]
+                    ]
+                ];
+                return array_replace_recursive($data, $expected) == $data;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([[]]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $this->document->delete();
     }
@@ -288,7 +327,12 @@ class DocumentReferenceTest extends TestCase
         $ts = \DateTime::createFromFormat('U', $time)->format(Timestamp::FORMAT);
         $ts2 = \DateTime::createFromFormat('U', $time+100)->format(Timestamp::FORMAT);
 
-        $this->connection->commit(Argument::any())
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )
             ->shouldBeCalled()
             ->willReturn([
                 'writeResults' => [
@@ -301,7 +345,7 @@ class DocumentReferenceTest extends TestCase
                 'commitTime' => $ts
             ]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->document->set(['foo' => 'bar']);
         $this->assertInstanceOf(Timestamp::class, $res['updateTime']);

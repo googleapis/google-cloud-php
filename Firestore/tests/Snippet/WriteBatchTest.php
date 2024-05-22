@@ -24,6 +24,8 @@ use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
@@ -217,9 +219,14 @@ class WriteBatchTest extends SnippetTestCase
 
     public function testCommit()
     {
-        $this->connection->commit(Argument::any())
-            ->shouldBeCalled();
-        $this->batch->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::type(CommitRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled();
+
+        $this->batch->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet = $this->snippetFromMethod(WriteBatch::class, 'commit');
         $snippet->addLocal('batch', $this->batch);
         $snippet->invoke();
@@ -227,11 +234,17 @@ class WriteBatchTest extends SnippetTestCase
 
     public function commitAndAssert(Snippet $snippet, $assertion)
     {
-        $this->connection->commit([
-            'database' => self::DATABASE,
-            'writes' => $assertion
-        ])->shouldBeCalled();
-        $this->batch->___setProperty('connection', $this->connection->reveal());
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'commit',
+            Argument::that(function ($req) use ($assertion) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                return $data['database'] == self::DATABASE
+                    && array_replace_recursive($data['writes'], $assertion) == $data['writes'];
+            }),
+            Argument::cetera()
+        )->shouldBeCalled();
+        $this->batch->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet->addLocal('batch', $this->batch);
         $snippet->addLocal('documentName', self::DOCUMENT);

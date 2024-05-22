@@ -31,6 +31,9 @@ trait FirestoreTestHelperTrait
 
     private static $_serializer;
 
+    /**
+     * @return Serializer
+     */
     private function getSerializer()
     {
         if (!self::$_serializer) {
