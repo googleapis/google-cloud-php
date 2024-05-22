@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\RetrySettings;
 use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
@@ -87,7 +88,11 @@ class ResumableStream implements \IteratorAggregate
      * @param callable $argumentFunction Function which returns the argument to be used while
      *        calling `$apiFunction`.
      * @param callable $retryFunction Function which determines whether to retry or not.
-     * @param int $retries [optional] Number of times to retry. **Defaults to** `3`.
+     * @param int $retries [optional] 
+     * @param RetrySettings|array $retrySettings {
+     *        @option int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *                Only maxRetries works for RetrySettings in this API.
+     *        }
      */
     public function __construct(
         GapicClient $gapicClient,
@@ -95,13 +100,12 @@ class ResumableStream implements \IteratorAggregate
         Message $request,
         callable $argumentFunction,
         callable $retryFunction,
-        $retries = self::DEFAULT_MAX_RETRIES,
         array $optionalArgs = []
     ) {
         $this->gapicClient = $gapicClient;
         $this->method = $method;
         $this->request = $request;
-        $this->retries = $retries ?: self::DEFAULT_MAX_RETRIES;
+        $this->retries = $this->getMaxRetries($optionalArgs);
         $this->argumentFunction = $argumentFunction;
         $this->retryFunction = $retryFunction;
         // Disable GAX retries because we want to handle the retries here.
@@ -171,5 +175,24 @@ class ResumableStream implements \IteratorAggregate
     public static function isRetryable($code)
     {
         return isset(self::$retryableStatusCodes[$code]);
+    }
+
+    private function getMaxRetries(array &$options) : int
+    {
+        $options += [
+            'retrySettings' => [
+                'maxRetries' => ResumableStream::DEFAULT_MAX_RETRIES
+            ]
+        ];
+
+        // We remove the retrySettings from the options array because
+        // we don't need to forward it to GAX anyway.
+        $retrySettings = $this->pluck('retrySettings', $options, false);
+
+        if ($retrySettings instanceof RetrySettings) {
+            return $retrySettings->getMaxRetries();
+        }
+
+        return $retrySettings['maxRetries'];
     }
 }

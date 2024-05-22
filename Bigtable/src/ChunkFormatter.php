@@ -170,7 +170,6 @@ class ChunkFormatter implements \IteratorAggregate
             $request,
             $argumentFunction,
             $retryFunction,
-            $this->pluck('retries', $options, false),
             $options
         );
     }

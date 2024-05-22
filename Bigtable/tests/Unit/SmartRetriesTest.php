@@ -18,6 +18,7 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
@@ -130,7 +131,7 @@ class SmartRetriesTest extends TestCase
             ->willReturn(
                 $this->serverStream->reveal()
             );
-        $args = ['retries' => 5];
+        $args = ['retrySettings' => ['maxRetries' => 5]];
         $iterator = $this->table->readRows($args);
         $iterator->getIterator()->current();
     }
@@ -589,12 +590,12 @@ class SmartRetriesTest extends TestCase
         $entries = $this->generateEntries(1, 5);
         $this->bigtableClient->mutateRows(
             Argument::type(MutateRowsRequest::class),
-            Argument::withEntry('retries', 5)
+            Argument::type('array')
         )->shouldBeCalledTimes(6)
         ->willReturn(
             $this->serverStream->reveal()
         );
-        $this->table->mutateRows($mutations, ['retries' => 5]);
+        $this->table->mutateRows($mutations, ['retrySettings' => ['maxRetries' => 5]]);
     }
 
     public function testMutateRowsOnlyRetriesFailedEntries()
@@ -735,6 +736,34 @@ class SmartRetriesTest extends TestCase
             }
             $this->assertEquals($expectedFailedMutations, $ex->getMetadata());
         }
+    }
+
+    public function testRetrySettingsObject()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('DEADLINE_EXCEEDED');
+
+        $this->serverStream->readAll()
+            ->shouldBeCalledTimes(5)
+            ->willThrow(
+                $this->retryingApiException
+            );
+        $this->bigtableClient->readRows(
+            Argument::type(ReadRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalledTimes(5)
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
+
+        $retrySettings = RetrySettings::constructDefault();
+        $retrySettings = $retrySettings->with(['maxRetries' => 4]);
+
+        $iterator = $this->table->readRows([
+            'retrySettings' => $retrySettings
+        ]);
+
+        $iterator->getIterator()->current();
     }
 
     private function generateRowsResponse($from, $to)

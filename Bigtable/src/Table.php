@@ -88,7 +88,7 @@ class Table
      *     @type string $appProfileId This value specifies routing for
      *           replication. **Defaults to** the "default" application profile.
      *     @type array $headers Headers to be passed with each request.
-     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     *     @type int $retrySettings.maxRetries Number of times to retry. **Defaults to** `3`.
      *           This settings only applies to {@see \Google\Cloud\Bigtable\Table::mutateRows()},
      *           {@see \Google\Cloud\Bigtable\Table::upsert()} and
      *           {@see \Google\Cloud\Bigtable\Table::readRows()}.
@@ -138,7 +138,7 @@ class Table
         foreach ($rowMutations as $rowKey => $mutations) {
             $entries[] = $this->toEntry($rowKey, $mutations);
         }
-        $this->mutateRowsWithEntries($entries, $options);
+        $this->mutateRowsWithEntries($entries, $options + $this->options);
     }
 
     /**
@@ -160,7 +160,10 @@ class Table
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     *        @param RetrySettings|array $retrySettings {
+     *               @option int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *                  Only maxRetries works for RetrySettings in this API.
+     *               }
      * }
      * @return void
      * @throws ApiException If the remote call fails.
@@ -201,7 +204,10 @@ class Table
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     *     @param RetrySettings|array $retrySettings {
+     *            @option int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *                Only maxRetries works for RetrySettings in this API.
+     *            }
      * }
      * @return void
      * @throws ApiException|BigtableDataOperationException If the remote call fails or operation fails
@@ -227,7 +233,7 @@ class Table
             }
             $entries[] = $this->toEntry($rowKey, $mutations);
         }
-        $this->mutateRowsWithEntries($entries, $options);
+        $this->mutateRowsWithEntries($entries, $options + $this->options);
     }
 
     /**
@@ -271,7 +277,10 @@ class Table
      *           To learn more please see {@see \Google\Cloud\Bigtable\Filter} which
      *           provides static factory methods for the various filter types.
      *     @type int $rowsLimit The number of rows to scan.
-     *     @type int $retries Number of times to retry. **Defaults to** `3`.
+     * @param RetrySettings|array $retrySettings {
+     *        @option int $maxRetries Number of times to retry. **Defaults to** `3`.
+     *                Only maxRetries works for RetrySettings in this API.
+     *        }
      * }
      * @return ChunkFormatter
      */
@@ -280,7 +289,7 @@ class Table
         $rowKeys = $this->pluck('rowKeys', $options, false) ?: [];
         $ranges = $this->pluck('rowRanges', $options, false) ?: [];
         $filter = $this->pluck('filter', $options, false) ?: null;
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retries']);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retrySettings']);
 
         array_walk($ranges, function (&$range) {
             $range = $this->serializer->decodeMessage(
@@ -552,7 +561,7 @@ class Table
             return false;
         };
 
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retries']);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options, ['retrySettings']);
 
         $request = $this->serializer->decodeMessage(new MutateRowsRequest(), $data);
         $request->setTableName($this->tableName);
@@ -563,7 +572,6 @@ class Table
             $request,
             $argumentFunction,
             $retryFunction,
-            $this->pluck('retries', $options, false),
             $optionalArgs
         );
         $message = 'partial failure';
