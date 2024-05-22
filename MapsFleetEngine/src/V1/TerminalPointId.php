@@ -9,16 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Identifies a terminal point.
+ * Deprecated: TerminalPoints are no longer supported in Fleet Engine. Use
+ * `TerminalLocation.point` instead.
  *
+ * @deprecated
  * Generated from protobuf message <code>maps.fleetengine.v1.TerminalPointId</code>
  */
 class TerminalPointId extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Unique ID of the terminal point.
+     * Deprecated.
      *
-     * Generated from protobuf field <code>string value = 4;</code>
+     * Generated from protobuf field <code>string value = 4 [deprecated = true];</code>
+     * @deprecated
      */
     protected $value = '';
     protected $Id;
@@ -34,7 +37,7 @@ class TerminalPointId extends \Google\Protobuf\Internal\Message
      *     @type string $generated_id
      *           Deprecated.
      *     @type string $value
-     *           Unique ID of the terminal point.
+     *           Deprecated.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,25 +118,29 @@ class TerminalPointId extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique ID of the terminal point.
+     * Deprecated.
      *
-     * Generated from protobuf field <code>string value = 4;</code>
+     * Generated from protobuf field <code>string value = 4 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getValue()
     {
+        @trigger_error('value is deprecated.', E_USER_DEPRECATED);
         return $this->value;
     }
 
     /**
-     * Unique ID of the terminal point.
+     * Deprecated.
      *
-     * Generated from protobuf field <code>string value = 4;</code>
+     * Generated from protobuf field <code>string value = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setValue($var)
     {
+        @trigger_error('value is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->value = $var;
 

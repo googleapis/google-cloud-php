@@ -22,13 +22,14 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
      */
     protected $point = null;
     /**
-     * ID of the terminal point.
+     * Deprecated: Specify the `point` field instead.
      *
-     * Generated from protobuf field <code>.maps.fleetengine.v1.TerminalPointId terminal_point_id = 2;</code>
+     * Generated from protobuf field <code>.maps.fleetengine.v1.TerminalPointId terminal_point_id = 2 [deprecated = true];</code>
+     * @deprecated
      */
     protected $terminal_point_id = null;
     /**
-     * Deprecated.
+     * Deprecated: Specify the `point` field instead.
      *
      * Generated from protobuf field <code>string access_point_id = 3 [deprecated = true];</code>
      * @deprecated
@@ -58,9 +59,9 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\LatLng $point
      *           Required. Denotes the location of a trip waypoint.
      *     @type \Google\Maps\FleetEngine\V1\TerminalPointId $terminal_point_id
-     *           ID of the terminal point.
+     *           Deprecated: Specify the `point` field instead.
      *     @type string $access_point_id
-     *           Deprecated.
+     *           Deprecated: Specify the `point` field instead.
      *     @type string $trip_id
      *           Deprecated.
      *     @type int $terminal_location_type
@@ -109,35 +110,41 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ID of the terminal point.
+     * Deprecated: Specify the `point` field instead.
      *
-     * Generated from protobuf field <code>.maps.fleetengine.v1.TerminalPointId terminal_point_id = 2;</code>
+     * Generated from protobuf field <code>.maps.fleetengine.v1.TerminalPointId terminal_point_id = 2 [deprecated = true];</code>
      * @return \Google\Maps\FleetEngine\V1\TerminalPointId|null
+     * @deprecated
      */
     public function getTerminalPointId()
     {
+        @trigger_error('terminal_point_id is deprecated.', E_USER_DEPRECATED);
         return $this->terminal_point_id;
     }
 
     public function hasTerminalPointId()
     {
+        @trigger_error('terminal_point_id is deprecated.', E_USER_DEPRECATED);
         return isset($this->terminal_point_id);
     }
 
     public function clearTerminalPointId()
     {
+        @trigger_error('terminal_point_id is deprecated.', E_USER_DEPRECATED);
         unset($this->terminal_point_id);
     }
 
     /**
-     * ID of the terminal point.
+     * Deprecated: Specify the `point` field instead.
      *
-     * Generated from protobuf field <code>.maps.fleetengine.v1.TerminalPointId terminal_point_id = 2;</code>
+     * Generated from protobuf field <code>.maps.fleetengine.v1.TerminalPointId terminal_point_id = 2 [deprecated = true];</code>
      * @param \Google\Maps\FleetEngine\V1\TerminalPointId $var
      * @return $this
+     * @deprecated
      */
     public function setTerminalPointId($var)
     {
+        @trigger_error('terminal_point_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Maps\FleetEngine\V1\TerminalPointId::class);
         $this->terminal_point_id = $var;
 
@@ -145,7 +152,7 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated.
+     * Deprecated: Specify the `point` field instead.
      *
      * Generated from protobuf field <code>string access_point_id = 3 [deprecated = true];</code>
      * @return string
@@ -158,7 +165,7 @@ class TerminalLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated.
+     * Deprecated: Specify the `point` field instead.
      *
      * Generated from protobuf field <code>string access_point_id = 3 [deprecated = true];</code>
      * @param string $var
