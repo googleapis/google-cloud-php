@@ -10,8 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Fields available for query in `non_product_performance_view` table.
- * Performance data on images and website links leading to your non-product
- * website pages. This includes performance metrics (for example, `clicks`)
+ * Performance data on images and online store links leading to your non-product
+ * pages. This includes performance metrics (for example, `clicks`)
  * and dimensions according to which performance metrics are segmented (for
  * example, `date`).
  * Segment fields cannot be selected in queries without also selecting at least
@@ -38,23 +38,23 @@ class NonProductPerformanceView extends \Google\Protobuf\Internal\Message
      */
     protected $week = null;
     /**
-     * Number of clicks on images and website links leading to your non-product
-     * website pages. Metric.
+     * Number of clicks on images and online store links leading to your
+     * non-product pages. Metric.
      *
      * Generated from protobuf field <code>optional int64 clicks = 3;</code>
      */
     protected $clicks = null;
     /**
-     * Number of times images and website links leading to your non-product
-     * website pages were shown. Metric.
+     * Number of times images and online store links leading to your non-product
+     * pages were shown. Metric.
      *
      * Generated from protobuf field <code>optional int64 impressions = 4;</code>
      */
     protected $impressions = null;
     /**
      * Click-through rate - the number of clicks (`clicks`) divided by the number
-     * of impressions (`impressions`) of images and website links leading to your
-     * non-product website pages. Metric.
+     * of impressions (`impressions`) of images and online store links leading to
+     * your non-product pages. Metric.
      *
      * Generated from protobuf field <code>optional double click_through_rate = 5;</code>
      */
@@ -73,15 +73,15 @@ class NonProductPerformanceView extends \Google\Protobuf\Internal\Message
      *           First day of the week (Monday) of the metrics date in the merchant
      *           timezone. Segment.
      *     @type int|string $clicks
-     *           Number of clicks on images and website links leading to your non-product
-     *           website pages. Metric.
+     *           Number of clicks on images and online store links leading to your
+     *           non-product pages. Metric.
      *     @type int|string $impressions
-     *           Number of times images and website links leading to your non-product
-     *           website pages were shown. Metric.
+     *           Number of times images and online store links leading to your non-product
+     *           pages were shown. Metric.
      *     @type float $click_through_rate
      *           Click-through rate - the number of clicks (`clicks`) divided by the number
-     *           of impressions (`impressions`) of images and website links leading to your
-     *           non-product website pages. Metric.
+     *           of impressions (`impressions`) of images and online store links leading to
+     *           your non-product pages. Metric.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,8 +166,8 @@ class NonProductPerformanceView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of clicks on images and website links leading to your non-product
-     * website pages. Metric.
+     * Number of clicks on images and online store links leading to your
+     * non-product pages. Metric.
      *
      * Generated from protobuf field <code>optional int64 clicks = 3;</code>
      * @return int|string
@@ -188,8 +188,8 @@ class NonProductPerformanceView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of clicks on images and website links leading to your non-product
-     * website pages. Metric.
+     * Number of clicks on images and online store links leading to your
+     * non-product pages. Metric.
      *
      * Generated from protobuf field <code>optional int64 clicks = 3;</code>
      * @param int|string $var
@@ -204,8 +204,8 @@ class NonProductPerformanceView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of times images and website links leading to your non-product
-     * website pages were shown. Metric.
+     * Number of times images and online store links leading to your non-product
+     * pages were shown. Metric.
      *
      * Generated from protobuf field <code>optional int64 impressions = 4;</code>
      * @return int|string
@@ -226,8 +226,8 @@ class NonProductPerformanceView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of times images and website links leading to your non-product
-     * website pages were shown. Metric.
+     * Number of times images and online store links leading to your non-product
+     * pages were shown. Metric.
      *
      * Generated from protobuf field <code>optional int64 impressions = 4;</code>
      * @param int|string $var
@@ -243,8 +243,8 @@ class NonProductPerformanceView extends \Google\Protobuf\Internal\Message
 
     /**
      * Click-through rate - the number of clicks (`clicks`) divided by the number
-     * of impressions (`impressions`) of images and website links leading to your
-     * non-product website pages. Metric.
+     * of impressions (`impressions`) of images and online store links leading to
+     * your non-product pages. Metric.
      *
      * Generated from protobuf field <code>optional double click_through_rate = 5;</code>
      * @return float
@@ -266,8 +266,8 @@ class NonProductPerformanceView extends \Google\Protobuf\Internal\Message
 
     /**
      * Click-through rate - the number of clicks (`clicks`) divided by the number
-     * of impressions (`impressions`) of images and website links leading to your
-     * non-product website pages. Metric.
+     * of impressions (`impressions`) of images and online store links leading to
+     * your non-product pages. Metric.
      *
      * Generated from protobuf field <code>optional double click_through_rate = 5;</code>
      * @param float $var
