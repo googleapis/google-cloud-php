@@ -30,27 +30,15 @@ use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
-use Google\Cloud\Spanner\V1\DirectedReadOptions;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
-use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions;
-use Google\Cloud\Spanner\V1\KeySet as GapicKeySet;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
-use Google\Cloud\Spanner\V1\PartitionOptions;
 use Google\Cloud\Spanner\V1\PartitionQueryRequest;
 use Google\Cloud\Spanner\V1\PartitionReadRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
-use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\RollbackRequest;
-use Google\Cloud\Spanner\V1\Session as GapicSession;
-use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml;
-use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
-use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
-use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
@@ -108,19 +96,8 @@ class Operation
     private $defaultQueryOptions;
 
     /**
-     * @var array
-     */
-    private $mutationSetters = [
-        'insert' => 'setInsert',
-        'update' => 'setUpdate',
-        'insertOrUpdate' => 'setInsertOrUpdate',
-        'replace' => 'setReplace',
-        'delete' => 'setDelete'
-    ];
-
-    /**
      * @param RequestHandler The request handler that is responsible for sending a request
-     * and serializing responses into relevant classes.
+     *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
      *        returned as a {@see \Google\Cloud\Core\Int64} object for 32 bit
@@ -142,8 +119,9 @@ class Operation
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->mapper = new ValueMapper($returnInt64AsObject);
-        $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?? true;
-        $this->defaultQueryOptions = $this->pluck('defaultQueryOptions', $config, false) ?: [];
+        $this->routeToLeader = $this->pluck('routeToLeader', $config, false) ?: true;
+        $this->defaultQueryOptions =
+            $this->pluck('defaultQueryOptions', $config, false) ?: [];
     }
 
     /**
@@ -239,20 +217,15 @@ class Operation
      */
     public function commitWithResponse(Session $session, array $mutations, array $options = [])
     {
-        $mutations = $this->serializeMutations($mutations);
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $mutations = $this->serializeMutations($mutations);
         $data += [
             'transactionId' => null,
             'session' => $session->name(),
             'mutations' => $mutations
         ];
-        // Internal flag, need to unset before passing to serializer
-        unset($data['singleUse']);
-        if (isset($data['singleUseTransaction'])) {
-            $data['singleUseTransaction'] = ['readWrite' => []];
-            // singleUseTransaction will not set in the request even if the transactionId set to null
-            unset($data['transactionId']);
-        }
+        $data = $this->formatSingleUseTransactionOptions($data);
+
         $res = $this->createAndSendRequest(
             GapicSpannerClient::class,
             'commit',
@@ -285,13 +258,15 @@ class Operation
         }
 
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $args['session'] = $session->name();
-        $args['transactionId'] = $transactionId;
+        $data = [
+            'session' => $session->name(),
+            'transactionId' => $transactionId
+        ];
 
         $this->createAndSendRequest(
             GapicSpannerClient::class,
             'rollback',
-            $args,
+            $data,
             $optionalArgs,
             RollbackRequest::class,
             $this->getDatabaseNameFromSession($session),
@@ -407,7 +382,7 @@ class Operation
             );
         }
 
-        $statsItem = $statsItem ?? 'rowCountExact';
+        $statsItem = $statsItem ?: 'rowCountExact';
 
         return $stats[$statsItem];
     }
@@ -460,7 +435,7 @@ class Operation
         array $options = []
     ) {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $data['transaction'] = $this->createTransactionSelector($data);
+        $data['transaction'] = $this->createTransactionSelector($data, $transaction->id());
         $data += [
             'session' => $session->name(),
             'statements' => $this->formatStatements($statements)
@@ -527,15 +502,7 @@ class Operation
         array $columns,
         array $options = []
     ) {
-        // @TODO: Check what is the significance of these options here.
-        // $options += [
-        //     'index' => null,
-        //     'limit' => null,
-        //     'offset' => null,
-        //     'transactionContext' => null
-        // ];
-
-        $context = $this->pluck('transactionContext', $options, false) ?: null;
+        $context = $this->pluck('transactionContext', $options, false);
 
         $call = function ($resumeToken = null, $transaction = null) use (
             $table,
@@ -587,10 +554,10 @@ class Operation
     public function transaction(Session $session, array $options = [])
     {
         $options += [
-            'requestOptions' => [],
-            'singleUse' => false
+            'singleUse' => false,
+            'requestOptions' => []
         ];
-        $isRetry = $this->pluck('isRetry', $options, false) ?? false;
+        $isRetry = $this->pluck('isRetry', $options, false) ?: false;
         $transactionTag = $this->pluck('tag', $options, false);
 
         if (isset($transactionTag)) {
@@ -749,12 +716,11 @@ class Operation
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data = [
-            'database' => $databaseName
-        ];
-        $data['session'] = [
-            'labels' => $this->pluck('labels', $options, false) ?: [],
-            'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
-        ];
+            'database' => $databaseName,
+            'session' => [
+                'labels' => $this->pluck('labels', $options, false) ?: [],
+                'creator_role' => $this->pluck('creator_role', $options, false) ?: ''
+        ]];
 
         $res = $this->createAndSendRequest(
             GapicSpannerClient::class,
@@ -837,13 +803,9 @@ class Operation
         $originalOptions = $options;
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
-        $parameters = $this->pluck('parameters', $data, false) ?: [];
-        $types = $this->pluck('types', $data, false) ?: [];
-        $data += $this->mapper->formatParamsForExecuteSql($parameters, $types);
-        $data = $this->formatSqlParams($data);
-        $data += ['transaction' => ['id' => $transactionId]];
+        $data = $this->formatPartitionQueryOptions($data);
         $data += [
-            'transaction' => $this->createTransactionSelector($data),
+            'transaction' => $this->createTransactionSelector($data, $transactionId),
             'session' => $session->name(),
             'sql' => $sql,
             'partitionOptions' => $this->partitionOptions($data)
@@ -906,9 +868,8 @@ class Operation
         // cache this to pass to the partition instance.
         $originalOptions = $options;
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $data += ['transaction' => ['id' => $transactionId]];
         $data += [
-            'transaction' => $this->createTransactionSelector($data),
+            'transaction' => $this->createTransactionSelector($data, $transactionId),
             'session' => $session->name(),
             'table' => $table,
             'columns' => $columns,
@@ -985,8 +946,7 @@ class Operation
             $data,
             $optionalArgs,
             BeginTransactionRequest::class,
-            $this->getDatabaseNameFromSession($session),
-            false
+            $this->getDatabaseNameFromSession($session)
         );
     }
 
@@ -1041,34 +1001,15 @@ class Operation
                         if (isset($data['keySet'])) {
                             $data['keySet'] = $this->formatKeySet($data['keySet']);
                         }
-
-                        $operation = $this->serializer->decodeMessage(
-                            new Delete,
-                            $data
-                        );
                         break;
                     default:
-                        $operation = new Write;
-                        $operation->setTable($data['table']);
-                        $operation->setColumns($data['columns']);
-
-                        $modifiedData = [];
-                        foreach ($data['values'] as $key => $param) {
-                            $modifiedData[$key] = $this->fieldValue($param);
-                        }
-
-                        $list = new ListValue;
-                        $list->setValues($modifiedData);
-                        $values = [$list];
-                        $operation->setValues($values);
+                        $modifiedData = array_map([$this, 'formatValueForApi'], $data['values']);
+                        $data['values'] = [['values' => $modifiedData]];
 
                         break;
                 }
 
-                $setterName = $this->mutationSetters[$type];
-                $mutation = new Mutation;
-                $mutation->$setterName($operation);
-                $serializedMutations[] = $mutation;
+                $serializedMutations[] = [$type => $data];
             }
         }
 
@@ -1083,21 +1024,16 @@ class Operation
     {
         $keys = $this->pluck('keys', $keySet, false);
         if ($keys) {
-            $keySet['keys'] = [];
-
-            foreach ($keys as $key) {
-                $keySet['keys'][] = $this->formatListForApi((array) $key);
-            }
+            $keySet['keys'] = array_map(
+                fn ($key) => $this->formatListForApi((array) $key),
+                $keys
+            );
         }
 
         if (isset($keySet['ranges'])) {
-            foreach ($keySet['ranges'] as $index => $rangeItem) {
-                foreach ($rangeItem as $key => $val) {
-                    $rangeItem[$key] = $this->formatListForApi($val);
-                }
-
-                $keySet['ranges'][$index] = $rangeItem;
-            }
+            $keySet['ranges'] = array_map(function ($rangeItem) {
+                return array_map([$this, 'formatListForApi'], $rangeItem);
+            }, $keySet['ranges']);
 
             if (empty($keySet['ranges'])) {
                 unset($keySet['ranges']);
@@ -1105,60 +1041,6 @@ class Operation
         }
 
         return $keySet;
-    }
-
-    /**
-     * @param mixed $param
-     * @return Value
-     */
-    private function fieldValue($param)
-    {
-        $field = new Value;
-        $value = $this->formatValueForApi($param);
-
-        $setter = null;
-        switch (array_keys($value)[0]) {
-            case 'string_value':
-                $setter = 'setStringValue';
-                break;
-            case 'number_value':
-                $setter = 'setNumberValue';
-                break;
-            case 'bool_value':
-                $setter = 'setBoolValue';
-                break;
-            case 'null_value':
-                $setter = 'setNullValue';
-                break;
-            case 'struct_value':
-                $setter = 'setStructValue';
-                $modifiedParams = [];
-                foreach ($param as $key => $value) {
-                    $modifiedParams[$key] = $this->fieldValue($value);
-                }
-                $value = new Struct;
-                $value->setFields($modifiedParams);
-
-                break;
-            case 'list_value':
-                $setter = 'setListValue';
-                $modifiedParams = [];
-                foreach ($param as $item) {
-                    $modifiedParams[] = $this->fieldValue($item);
-                }
-                $list = new ListValue;
-                $list->setValues($modifiedParams);
-                $value = $list;
-
-                break;
-        }
-
-        $value = is_array($value) ? current($value) : $value;
-        if ($setter) {
-            $field->$setter($value);
-        }
-
-        return $field;
     }
 
     /**
@@ -1180,6 +1062,7 @@ class Operation
             $mappedStatement = [
                 'sql' => $statement['sql']
             ] + $this->mapper->formatParamsForExecuteSql($parameters, $types);
+
             $result[] = $this->formatSqlParams($mappedStatement);
         }
         return $result;
@@ -1193,18 +1076,8 @@ class Operation
     {
         $params = $this->pluck('params', $args);
         if ($params) {
-            $modifiedParams = [];
-            foreach ($params as $key => $param) {
-                $modifiedParams[$key] = $this->fieldValue($param);
-            }
-            $args['params'] = new Struct;
-            $args['params']->setFields($modifiedParams);
-        }
-
-        if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {
-            foreach ($args['paramTypes'] as $key => $param) {
-                $args['paramTypes'][$key] = $param;
-            }
+            $modifiedParams = array_map([$this, 'formatValueForApi'], $params);
+            $args['params'] = ['fields' => $modifiedParams];
         }
 
         return $args;
@@ -1212,11 +1085,11 @@ class Operation
 
     /**
      * @param array $args
-     * @param Transaction $transaction
+     * @param ?string $transactionId
      *
      * @return array
      */
-    private function createTransactionSelector(array &$args, Transaction $transaction = null)
+    private function createTransactionSelector(array &$args, ?string $transactionId = null)
     {
         $transactionSelector = [];
         if (isset($args['transaction'])) {
@@ -1231,10 +1104,8 @@ class Operation
                 $transactionSelector['begin'] =
                     $this->formatTransactionOptions($transactionSelector['begin']);
             }
-        } elseif ($transaction && $transaction->id()) {
-            $transactionSelector = ['id' => $transaction->id()];
-        } elseif (isset($args['transactionId'])) {
-            $transactionSelector = ['id' => $this->pluck('transactionId', $args)];
+        } elseif ($transactionId) {
+            $transactionSelector = ['id' => $transactionId];
         }
 
         return $transactionSelector;
@@ -1257,7 +1128,7 @@ class Operation
         if (!empty($envQueryOptimizerStatisticsPackage)) {
             $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
         }
-        $queryOptions += $this->defaultQueryOptions;
+        $queryOptions += $this->defaultQueryOptions ?: [];
         return $queryOptions;
     }
 
@@ -1329,6 +1200,37 @@ class Operation
     }
 
     /**
+     * @param array $args
+     * @return array
+     */
+    private function formatSingleUseTransactionOptions(array $args)
+    {
+        // Internal flag, need to unset before passing to serializer
+        unset($args['singleUse']);
+        if (isset($args['singleUseTransaction'])) {
+            $args['singleUseTransaction'] = ['readWrite' => []];
+            // request ignores singleUseTransaction even if the transactionId is set to null
+            unset($args['transactionId']);
+        }
+        return $args;
+    }
+
+    /**
+     * @param array $args
+     * @param string $transactionId
+     *
+     * @return array
+     */
+    private function formatPartitionQueryOptions(array $args)
+    {
+        $parameters = $this->pluck('parameters', $args, false) ?: [];
+        $types = $this->pluck('types', $args, false) ?: [];
+        $args += $this->mapper->formatParamsForExecuteSql($parameters, $types);
+        $args = $this->formatSqlParams($args);
+        return $args;
+    }
+
+    /**
      * Represent the class in a more readable and digestable fashion.
      *
      * @access private
@@ -1337,7 +1239,7 @@ class Operation
     public function __debugInfo()
     {
         return [
-            'requestHandler' => get_class($this->requestHandler),
+            'requestHandler' => $this->requestHandler,
         ];
     }
 }

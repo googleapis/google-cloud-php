@@ -144,6 +144,11 @@ class Instance
     private $directedReadOptions;
 
     /**
+     * @var array
+     */
+    private $defaultQueryOptions;
+
+    /**
      * @var bool
      */
     private $routeToLeader;
@@ -152,7 +157,7 @@ class Instance
      * Create an object representing a Cloud Spanner instance.
      *
      * @param RequestHandler The request handler that is responsible for sending a request
-     * and serializing responses into relevant classes.
+     *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param array $lroCallables
      * @param string $projectId The project ID.
@@ -184,7 +189,6 @@ class Instance
         array $info = [],
         array $options = []
     ) {
-        # TODO: Remove the connection related objects
         $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
@@ -195,6 +199,7 @@ class Instance
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->routeToLeader = $options['routeToLeader'] ?? true;
+        $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
     }
 
     /**
@@ -555,7 +560,10 @@ class Instance
             $this->returnInt64AsObject,
             isset($options['database']) ? $options['database'] : [],
             isset($options['databaseRole']) ? $options['databaseRole'] : '',
-            ['routeToLeader' => $this->routeToLeader]
+            [
+                'routeToLeader' => $this->routeToLeader,
+                'defaultQueryOptions' => $this->defaultQueryOptions,
+            ]
         );
     }
 

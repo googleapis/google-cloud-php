@@ -367,8 +367,6 @@ trait TransactionalReadTrait
             $options['transactionId'] = $this->transactionId;
         }
         $options['transactionType'] = $this->context;
-        // @TODO: See the effect of this.
-        // $options += $this->options;
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];

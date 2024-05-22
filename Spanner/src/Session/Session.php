@@ -83,7 +83,7 @@ class Session
 
     /**
      * @param RequestHandler The request handler that is responsible for sending a request
-     * and serializing responses into relevant classes.
+     *        and serializing responses into relevant classes.
      * @param Serializer $serializer The serializer instance to encode/decode messages.
      * @param string $projectId The project ID.
      * @param string $instance The instance name.
@@ -149,10 +149,10 @@ class Session
      */
     public function exists(array $options = [])
     {
-        $options += [
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
             'name' => $this->name()
         ];
-        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
 
         try {
             $this->createAndSendRequest(
