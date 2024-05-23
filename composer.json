@@ -64,7 +64,8 @@
         "flix-tech/avro-php": "^5.0.0",
         "phpspec/prophecy-phpunit": "^2.1",
         "kreait/firebase-php": "^6.9",
-        "psr/log": "^2.0||^3.0"
+        "psr/log": "^2.0||^3.0",
+        "dg/bypass-finals": "^1.7"
     },
     "conflict": {
         "psr/log": ">=3"
