@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests;
 
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -27,6 +28,7 @@ use Prophecy\PhpUnit\ProphecyTrait;
  */
 trait RequestHandlingTestTrait
 {
+    use ApiHelperTrait;
     use ProphecyTrait;
 
     private function getRequestHandlerStub()
@@ -59,8 +61,16 @@ trait RequestHandlingTestTrait
                 $method,
                 Argument::that($requestCondition),
                 Argument::that($optionalArrayCondition)
-            )
-            ->willReturn($response);
+            );
+
+        if ($response instanceof \Exception) {
+            $handler->willThrow($response);
+        } elseif (is_callable($response)) {
+            $handler->will($response);
+        } else {
+            $handler->willReturn($response);
+        }
+
         if ($timesCalled >= 0) {
             $handler->shouldBeCalledTimes($timesCalled);
         }

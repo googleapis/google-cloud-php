@@ -907,7 +907,7 @@ class Operation
      * @param array $options
      * @return array
      */
-    private function partitionOptions(array $options)
+    private function partitionOptions(array &$options)
     {
         return array_filter([
             'partitionSizeBytes' => $this->pluck('partitionSizeBytes', $options, false),

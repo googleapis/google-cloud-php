@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -354,7 +355,7 @@ class SpannerClientTest extends TestCase
         $opName = 'operations/foo';
 
         $op = $this->client->resumeOperation($opName);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
         $this->assertEquals($op->name(), $opName);
     }
 
