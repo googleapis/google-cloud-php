@@ -17,19 +17,24 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient as GapicDatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
 use Google\Cloud\Spanner\Backup;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -74,11 +79,10 @@ class InstanceTest extends TestCase
         $this->serializer = $this->getSerializer();
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
-                'replicaSelections' => [
+                'replicaSelections' => [[
                     'location' => 'us-central1',
-                    'type' => 'READ_WRITE',
-                    'autoFailoverDisabled' => false
-                ]
+                    'type' => Type::READ_WRITE,
+                ]], 'autoFailoverDisabled' => false
             ]
         ];
         $this->instance = TestHelpers::stub(Instance::class, [
@@ -94,7 +98,9 @@ class InstanceTest extends TestCase
             ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         ], [
             'info',
-            'connection'
+            'connection',
+            'requestHandler',
+            'serializer'
         ]);
     }
 
@@ -388,21 +394,32 @@ class InstanceTest extends TestCase
     {
         $extra = ['foo', 'bar'];
 
-        $this->connection->createDatabase([
-            'instance' => InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME),
-            'createStatement' => 'CREATE DATABASE `test-database`',
-            'extraStatements' => $extra
-        ])
-            ->shouldBeCalled()
-            ->willReturn(['name' => 'operations/foo']);
+        $operationResponse = $this->getOperationResponseMock();
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            GapicDatabaseAdminClient::class,
+            'createDatabase',
+            function ($args) use ($extra) {
+                $createStatement = 'CREATE DATABASE `test-database`';
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['createStatement'], $createStatement);
+                $this->assertEquals(
+                    $message['parent'],
+                    InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
+                );
+                $this->assertEquals($message['extraStatements'], $extra);
+                return true;
+            },
+            $operationResponse->reveal()
+        );
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $database = $this->instance->createDatabase('test-database', [
             'statements' => $extra
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $database);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $database);
     }
 
     public function testCreateDatabaseFromBackupName()
@@ -597,17 +614,19 @@ class InstanceTest extends TestCase
         $sql = 'SELECT * FROM Table';
         $database = $this->instance->database($this::DATABASE, ['databaseRole' => 'Reader']);
 
-        $this->connection->createSession(Argument::withEntry(
-            'session',
-            ['labels' => [], 'creator_role' => 'Reader']
-        ))
-        ->shouldBeCalled()
-        ->willReturn([
-                'name' => self::SESSION
-            ]);
-        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
-            ->shouldBeCalled()->willReturn($this->resultGenerator());
-
+        $this->mockSendRequest(GapicSpannerClient::class, 'createSession', function ($args) {
+            return $this->serializer->encodeMessage($args)['session']['creatorRole']
+                == 'Reader';
+        }, ['name' => self::SESSION]);
+        $this->mockSendRequest(
+            GapicSpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                return $args->getSql() == $sql;
+            },
+            $this->resultGenerator()
+        );
+        $this->mockSendRequest(GapicSpannerClient::class, 'deleteSession', null, null);
         $database->execute($sql);
     }
 
@@ -616,20 +635,23 @@ class InstanceTest extends TestCase
         $database = $this->instance->database(
             $this::DATABASE
         );
-        $this->connection->createSession(Argument::any())
-        ->shouldBeCalled()
-        ->willReturn([
-                'name' => self::SESSION
+        $this->mockSendRequest(GapicSpannerClient::class, 'createSession', null, [
+            'name' => self::SESSION
         ]);
-
-        $this->connection->executeStreamingSql(Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsIncludeReplicas
-        ))
-        ->shouldBeCalled()
-        ->willReturn(
+        $this->mockSendRequest(
+            GapicSpannerClient::class,
+            'executeStreamingSql',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['directedReadOptions'],
+                    $this->directedReadOptionsIncludeReplicas
+                );
+                return true;
+            },
             $this->resultGenerator()
         );
+        $this->mockSendRequest(GapicSpannerClient::class, 'deleteSession', null, null);
 
         $sql = 'SELECT * FROM Table';
         $res = $database->execute($sql);
@@ -646,20 +668,23 @@ class InstanceTest extends TestCase
         $database = $this->instance->database(
             $this::DATABASE,
         );
-        $this->connection->createSession(Argument::any())
-        ->shouldBeCalled()
-        ->willReturn([
-                'name' => self::SESSION
+        $this->mockSendRequest(GapicSpannerClient::class, 'createSession', null, [
+            'name' => self::SESSION
         ]);
-
-        $this->connection->streamingRead(Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsIncludeReplicas
-        ))
-        ->shouldBeCalled()
-        ->willReturn(
+        $this->mockSendRequest(
+            GapicSpannerClient::class,
+            'streamingRead',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['directedReadOptions'],
+                    $this->directedReadOptionsIncludeReplicas
+                );
+                return true;
+            },
             $this->resultGenerator()
         );
+        $this->mockSendRequest(GapicSpannerClient::class, 'deleteSession', null, null);
 
         $res = $database->read(
             $table,
@@ -676,5 +701,20 @@ class InstanceTest extends TestCase
     private function getDefaultInstance()
     {
         return json_decode(file_get_contents(Fixtures::INSTANCE_FIXTURE()), true);
+    }
+
+    private function getOperationResponseMock()
+    {
+        $operation = $this->serializer->decodeMessage(
+            new \Google\LongRunning\Operation(),
+            ['metadata' => [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
+            ]]
+        );
+        $operationResponse = $this->prophesize(OperationResponse::class);
+        $operationResponse->getLastProtoResponse()->willReturn($operation);
+        $operationResponse->isDone()->willReturn(false);
+        $operationResponse->getError()->willReturn(null);
+        return $operationResponse;
     }
 }

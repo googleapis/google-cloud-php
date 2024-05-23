@@ -27,12 +27,15 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
-use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
+use Google\Cloud\Spanner\V1\CreateSessionRequest;
 
 /**
  * @group spanner
@@ -43,6 +46,7 @@ class BatchClientTest extends TestCase
 {
     use OperationRefreshTrait;
     use ProphecyTrait;
+    use RequestHandlingTestTrait;
     use StubCreationTrait;
     use TimeTrait;
 
@@ -50,14 +54,18 @@ class BatchClientTest extends TestCase
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
+    private $requestHandler;
+    private $serializer;
     private $connection;
     private $client;
 
     public function setUp(): void
     {
         $this->connection = $this->getConnStub();
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(BatchClient::class, [
-            new Operation($this->connection->reveal(), false),
+            new Operation($this->requestHandler->reveal(), $this->serializer, false),
             self::DATABASE
         ], [
             'operation'
@@ -68,28 +76,32 @@ class BatchClientTest extends TestCase
     {
         $time = time();
 
-        $this->connection->createSession(Argument::withEntry('database', self::DATABASE))
-            ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'name' => self::SESSION
-            ]);
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('singleUse', false),
-            Argument::withEntry('session', self::SESSION),
-            Argument::that(function (array $args) {
-                if ($args['transactionOptions']['readOnly']['returnReadTimestamp'] !== true) {
-                    return false;
-                }
+        $this->mockSendRequest(GapicSpannerClient::class, 'createSession', function ($args) {
+                Argument::type(CreateSessionRequest::class);
+                $this->assertEquals(
+                    $args->getDatabase(),
+                    self::DATABASE
+                );
+                return true;
+        }, ['name' => self::SESSION]);
+        $this->mockSendRequest(
+            GapicSpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals(
+                    $this->serializer->encodeMessage($args)['options']['readOnly'],
+                    ['returnReadTimestamp' => true]
+                );
+                return true;
+            },
+            [
+                'id' => self::TRANSACTION,
+                'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
+            ]
+        );
 
-                return $args['database'] === self::DATABASE;
-            })
-        ))->shouldBeCalled()->willReturn([
-            'id' => self::TRANSACTION,
-            'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
-        ]);
-
-        $this->refreshOperation($this->client, $this->connection->reveal());
-
+        $this->refreshOperation($this->client, $this->requestHandler->reveal(), $this->serializer);
         $snapshot = $this->client->snapshot();
         $this->assertInstanceOf(BatchSnapshot::class, $snapshot);
     }
@@ -170,27 +182,34 @@ class BatchClientTest extends TestCase
         $time = time();
 
         $client = TestHelpers::stub(BatchClient::class, [
-            new Operation($this->connection->reveal(), false),
+            new Operation($this->requestHandler->reveal(), $this->serializer, false),
             self::DATABASE,
             ['databaseRole' => 'Reader']
         ], [
             'operation'
         ]);
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()->willReturn([
+        $this->mockSendRequest(GapicSpannerClient::class, 'createSession', function ($args) {
+                Argument::type(CreateSessionRequest::class);
+                return $this->serializer->encodeMessage($args)['session']['creatorRole']
+                    == 'Reader';
+        }, ['name' => self::SESSION]);
+        $this->mockSendRequest(
+            GapicSpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                Argument::type(BeginTransactionRequest::class);
+                $this->assertEquals(
+                    $this->serializer->encodeMessage($args)['options']['readOnly'],
+                    ['returnReadTimestamp' => true]
+                );
+                return true;
+            },
+            [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => \DateTime::createFromFormat('U', (string) $time)->format(Timestamp::FORMAT)
-            ]);
-
-        $this->connection->createSession(Argument::withEntry(
-            'session',
-            ['labels' => [], 'creator_role' => 'Reader']
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => self::SESSION
-            ]);
+            ]
+        );
 
         $snapshot = $client->snapshot();
     }

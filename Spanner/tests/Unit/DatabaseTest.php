@@ -17,17 +17,21 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Database as GapicDatabase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
+use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
@@ -44,12 +48,19 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\CommitRequest;
+use Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\ReadRequest;
+use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\LongRunning\Client\OperationsClient;
 
 /**
  * @group spanner
@@ -106,23 +117,24 @@ class DatabaseTest extends TestCase
             self::INSTANCE,
             self::DATABASE,
             self::SESSION
+        ], [
+            'requestHandler',
+            'serializer'
         ]);
         $this->directedReadOptionsIncludeReplicas = [
             'includeReplicas' => [
-                'replicaSelections' => [
+                'replicaSelections' => [[
                     'location' => 'us-central1',
-                    'type' => 'READ_WRITE',
-                    'autoFailoverDisabled' => false
-                ]
+                    'type' => Type::READ_WRITE,
+                ]], 'autoFailoverDisabled' => false
             ]
         ];
         $this->directedReadOptionsExcludeReplicas = [
             'excludeReplicas' => [
-                'replicaSelections' => [
+                'replicaSelections' => [[
                     'location' => 'us-central1',
-                    'type' => 'READ_WRITE',
-                    'autoFailoverDisabled' => false
-                ]
+                    'type' => Type::READ_WRITE
+                ]]
             ]
         ];
 
@@ -139,7 +151,9 @@ class DatabaseTest extends TestCase
             ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         ], [
             'info',
-            'connection'
+            'connection',
+            'requestHandler',
+            'serializer'
         ]);
 
         $this->sessionPool->acquire(Argument::type('string'))
@@ -153,7 +167,6 @@ class DatabaseTest extends TestCase
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->instance,
-            $this->lro->reveal(),
             $this->lroCallables,
             self::PROJECT,
             self::DATABASE,
@@ -164,7 +177,7 @@ class DatabaseTest extends TestCase
         ];
 
         $props = [
-            'connection', 'operation', 'session', 'sessionPool', 'instance'
+            'connection', 'requestHandler', 'serializer', 'operation', 'session', 'sessionPool', 'instance'
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
@@ -186,11 +199,18 @@ class DatabaseTest extends TestCase
             'name' => $this->database->name()
         ];
 
-        $this->connection->getDatabase(Argument::withEntry('name', $this->database->name()))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($res);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getDatabase',
+            function ($args) {
+                Argument::type(GetDatabaseRequest::class);
+                return $args->getName() === $this->database->name();
+            },
+            $res
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->assertEquals($res, $this->database->info());
 
@@ -203,17 +223,25 @@ class DatabaseTest extends TestCase
         $res = [
             'state' => Database::STATE_READY
         ];
-        $this->connection->getDatabase(Argument::withEntry('name', $this->database->name()))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($res);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getDatabase',
+            function ($args) {
+                Argument::type(GetDatabaseRequest::class);
+                return $args->getName() === $this->database->name();
+            },
+            $res
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->assertEquals(Database::STATE_READY, $this->database->state());
 
         // Make sure the request only is sent once.
         $this->database->state();
     }
+
 
     public function testCreateBackup()
     {
@@ -228,8 +256,6 @@ class DatabaseTest extends TestCase
         ))
             ->shouldBeCalled()
             ->willReturn(['name' => 'operations/foo']);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $op = $this->database->createBackup(self::BACKUP, $expireTime);
 
@@ -302,11 +328,19 @@ class DatabaseTest extends TestCase
             'name' => $this->database->name()
         ];
 
-        $this->connection->getDatabase(Argument::withEntry('name', $this->database->name()))
-            ->shouldBeCalledTimes(2)
-            ->willReturn($res);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getDatabase',
+            function ($args) {
+                Argument::type(GetDatabaseRequest::class);
+                return $args->getName() === $this->database->name();
+            },
+            $res,
+            2
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->assertEquals($res, $this->database->reload());
 
@@ -319,12 +353,18 @@ class DatabaseTest extends TestCase
      */
     public function testExists()
     {
-        $this->connection->getDatabase(Argument::withEntry(
-            'name',
-            DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-        ))->shouldBeCalled()->willReturn([]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getDatabase',
+            function ($args) {
+                Argument::type(GetDatabaseRequest::class);
+                return $args->getName() === $this->database->name();
+            },
+            []
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->assertTrue($this->database->exists());
     }
@@ -334,11 +374,18 @@ class DatabaseTest extends TestCase
      */
     public function testExistsNotFound()
     {
-        $this->connection->getDatabase(Argument::withEntry('name', $this->database->name()))
-            ->shouldBeCalled()
-            ->willThrow(new NotFoundException('', 404));
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getDatabase',
+            function ($args) {
+                Argument::type(GetDatabaseRequest::class);
+                return $args->getName() === $this->database->name();
+            },
+            new NotFoundException('', 404)
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->assertFalse($this->database->exists());
     }
@@ -348,16 +395,29 @@ class DatabaseTest extends TestCase
      */
     public function testCreate()
     {
-        $this->connection->createDatabase(Argument::allOf(
-            Argument::withEntry('createStatement', 'CREATE DATABASE `my-database`'),
-            Argument::withEntry('extraStatements', [
-                'CREATE TABLE bar'
-            ])
-        ))->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $operationResponse = $this->getOperationResponseMock();
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'createDatabase',
+            function ($args) {
+                $createStatement = $args->getCreateStatement();
+                $extraStatements = $args->getExtraStatements();
+                $this->assertStringContainsString('my-database', $createStatement);
+                $this->assertEquals(['CREATE TABLE bar'], iterator_to_array($extraStatements));
+                return true;
+            },
+            $operationResponse->reveal()
+        );
+        new OperationResponse('my-operation', new DatabaseAdminClient(), [
+            'lastProtoResponse' => $this->serializer->decodeMessage(
+                new GapicDatabase(),
+                ['name' => 'my-database']
+            )
+            ]);
+
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $op = $this->database->create([
             'statements' => [
@@ -365,7 +425,7 @@ class DatabaseTest extends TestCase
             ]
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     /**
@@ -373,17 +433,23 @@ class DatabaseTest extends TestCase
      */
     public function testUpdateDatabase()
     {
-        $this->connection->updateDatabase(Argument::allOf(
-            Argument::withEntry('database', [
-                'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
-                'enableDropProtection' => true,
-            ]),
-            Argument::withEntry('updateMask', ['paths' => ['enable_drop_protection']])
-        ))->shouldBeCalledTimes(1)->willReturn([
-            'enableDropProtection' => true
-        ]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'updateDatabase',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['database']['name'],
+                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
+                $this->assertEquals($message['updateMask'], ['paths' => ['enable_drop_protection']]);
+                return $message['database']['enableDropProtection'];
+            },
+            ['enableDropProtection' => true]
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $this->database->updateDatabase(['enableDropProtection' => true]);
         $this->assertTrue($res['enableDropProtection']);
@@ -396,20 +462,26 @@ class DatabaseTest extends TestCase
     {
         $createStatement = sprintf('CREATE DATABASE "%s"', self::DATABASE);
 
-        $this->connection->createDatabase(Argument::allOf(
-            Argument::withEntry('createStatement', $createStatement),
-            Argument::withEntry('extraStatements', [])
-        ))->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'createDatabase',
+            function ($args) use ($createStatement) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['createStatement'], $createStatement);
+                $this->assertEmpty($message['extraStatements']);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $op = $this->database->create([
             'databaseDialect'=> DatabaseDialect::POSTGRESQL
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     /**
@@ -463,34 +535,52 @@ class DatabaseTest extends TestCase
     public function testUpdateDdl()
     {
         $statement = 'foo';
-        $this->connection->updateDatabaseDdl([
-            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
-            'statements' => [$statement]
-        ])->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'updateDatabaseDdl',
+            function ($args) use ($statement) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['database'],
+                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
+                $this->assertEquals($message['statements'], [$statement]);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $this->database->updateDdl($statement);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $res);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $res);
     }
-
     /**
      * @group spanner-admin
      */
     public function testUpdateDdlBatch()
     {
         $statements = ['foo', 'bar'];
-        $this->connection->updateDatabaseDdl([
-            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
-            'statements' => $statements
-        ])->willReturn([
-            'name' => 'my-operation'
-        ])->shouldBeCalled();
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'updateDatabaseDdl',
+            function ($args) use ($statements) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['database'],
+                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
+                $this->assertEquals($message['statements'], $statements);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
+
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->database->updateDdlBatch($statements);
     }
@@ -501,15 +591,27 @@ class DatabaseTest extends TestCase
     public function testUpdateWithSingleStatement()
     {
         $statement = 'foo';
-        $this->connection->updateDatabaseDdl([
-            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
-            'statements' => ['foo']
-        ])->shouldBeCalled()->willReturn(['name' => 'operations/foo']);
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'updateDatabaseDdl',
+            function ($args) use ($statement) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['database'],
+                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
+                $this->assertEquals($message['statements'], [$statement]);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
+
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $res = $this->database->updateDdl($statement);
-        $this->assertInstanceOf(LongRunningOperation::class, $res);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $res);
     }
 
     /**
@@ -517,13 +619,24 @@ class DatabaseTest extends TestCase
      */
     public function testDrop()
     {
-        $this->connection->dropDatabase([
-            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-        ])->shouldBeCalled();
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'dropDatabase',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['database'],
+                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
+                return true;
+            },
+            null
+        );
 
         $this->sessionPool->clear()->shouldBeCalled()->willReturn(null);
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->database->drop();
     }
@@ -533,49 +646,51 @@ class DatabaseTest extends TestCase
      */
     public function testDropDeleteSession()
     {
-        $this->connection->createSession(Argument::withEntry('database', $this->database->name()))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => $this->session->name()
-            ]);
-
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
-
-        $this->connection->deleteSession(Argument::allOf(
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            ),
-            Argument::withEntry('name', $this->session->name())
-        ))
-            ->shouldBeCalled();
-
-        $this->connection->dropDatabase([
-            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-        ])->shouldBeCalled();
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'createSession',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['database'] == $this->database->name();
+            },
+            ['name' => $this->session->name()]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            ['id' => self::TRANSACTION]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'deleteSession',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['name'] == $this->session->name();
+            },
+            null
+        );
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'dropDatabase',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['database'],
+                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
+                return true;
+            },
+            null
+        );
 
         $database = TestHelpers::stub(Database::class, [
-            $this->connection->reveal(),
+            $this->requestHandler->reveal(),
+            $this->serializer,
             $this->instance,
-            $this->lro->reveal(),
             $this->lroCallables,
             self::PROJECT,
             self::DATABASE
@@ -593,11 +708,22 @@ class DatabaseTest extends TestCase
     public function testDdl()
     {
         $ddl = ['create table users', 'create table posts'];
-        $this->connection->getDatabaseDDL([
-            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-        ])->willReturn(['statements' => $ddl]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getDatabaseDdl',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['database'],
+                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
+                return true;
+            },
+            ['statements' => $ddl]
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->assertEquals($ddl, $this->database->ddl());
     }
@@ -607,11 +733,22 @@ class DatabaseTest extends TestCase
      */
     public function testDdlNoResult()
     {
-        $this->connection->getDatabaseDDL([
-            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
-        ])->willReturn([]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getDatabaseDdl',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['database'],
+                    DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                );
+                return true;
+            },
+            []
+        );
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $this->assertEquals([], $this->database->ddl());
     }
@@ -621,26 +758,22 @@ class DatabaseTest extends TestCase
      */
     public function testIam()
     {
-        $this->assertInstanceOf(Iam::class, $this->database->iam());
+        $this->assertInstanceOf(IamManager::class, $this->database->iam());
     }
 
     public function testSnapshot()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            ['id' => self::TRANSACTION]
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->snapshot();
         $this->assertInstanceOf(Snapshot::class, $res);
@@ -667,13 +800,11 @@ class DatabaseTest extends TestCase
         // Begin transaction RPC is skipped when begin is inlined
         // and invoked only if `begin` fails or if commit is the
         // sole operation in the transaction.
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) {
             $this->database->snapshot();
@@ -682,41 +813,9 @@ class DatabaseTest extends TestCase
 
     public function testRunTransaction()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            ),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG,
-            ])
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->stubCommit(false);
 
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            ),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG,
-            ])
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['commitTimestamp' => '2017-01-09T18:05:22.534799Z']);
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $hasTransaction = false;
 
@@ -733,12 +832,11 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
 
-        $this->connection->rollback(Argument::any())->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction($this->noop());
     }
@@ -747,13 +845,11 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) {
             $this->database->runTransaction($this->noop());
@@ -766,23 +862,20 @@ class DatabaseTest extends TestCase
         $this->expectExceptionMessage('RST_STREAM');
         $err = new ServerException('RST_STREAM', Code::INTERNAL);
 
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalledTimes(3)
-            ->willThrow($err);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            $err,
+            3
+        );
 
         $this->database->runTransaction(function ($t) {
             $t->commit();
-        }, ['maxRetries' => 2]);
+        }, ['retrySettings' => ['maxRetries' => 2]]);
     }
 
     public function testRunTransactionRetry()
@@ -796,43 +889,37 @@ class DatabaseTest extends TestCase
             ]
         ]);
 
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalledTimes(3)
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            ['id' => self::TRANSACTION],
+            3
+        );
 
         $it = 0;
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalledTimes(3)
-            ->will(function () use (&$it, $abort) {
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            function () use (&$it, $abort) {
                 $it++;
                 if ($it <= 2) {
                     throw $abort;
                 }
 
                 return ['commitTimestamp' => TransactionTest::TIMESTAMP];
-            });
+            },
+            3
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) use (&$it) {
             if ($it > 0) {
@@ -840,7 +927,6 @@ class DatabaseTest extends TestCase
             } else {
                 $this->assertFalse($t->isRetry());
             }
-
             $t->commit();
         });
     }
@@ -858,44 +944,36 @@ class DatabaseTest extends TestCase
             ]
         ]);
 
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalledTimes(Database::MAX_RETRIES + 1)
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            ['id' => self::TRANSACTION],
+            Database::MAX_RETRIES + 1
+        );
 
         $it = 0;
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalledTimes(Database::MAX_RETRIES + 1)
-            ->will(function () use (&$it, $abort) {
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            function () use (&$it, $abort) {
                 $it++;
-
                 if ($it <= Database::MAX_RETRIES + 1) {
                     throw $abort;
                 }
-
                 return ['commitTimestamp' => TransactionTest::TIMESTAMP];
-            });
+            },
+            Database::MAX_RETRIES + 1
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) {
             $t->commit();
@@ -904,24 +982,21 @@ class DatabaseTest extends TestCase
 
     public function testTransaction()
     {
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            ),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG,
-            ])
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['requestOptions']['transactionTag' ],
+                    self::TRANSACTION_TAG,
+                );
+                return $message['session'] == $this->session->name();
+            },
+            ['id' => self::TRANSACTION]
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $t = $this->database->transaction(['tag' => self::TRANSACTION_TAG]);
         $this->assertInstanceOf(Transaction::class, $t);
@@ -931,13 +1006,11 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-        $this->connection->beginTransaction(Argument::any())
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
 
-        $this->connection->rollback(Argument::any())
-            ->shouldNotBeCalled();
+        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null, 0);
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) {
             $this->database->transaction();
@@ -949,23 +1022,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $row = ['col' => 'val'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $row) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0][0] !== current($row)) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->insert($table, $row);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -977,23 +1057,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $row = ['col' => 'val'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $row) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][OPERATION::OP_INSERT]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_INSERT]['columns'][0] !== array_keys($row)[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0][0] !== current($row)) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->insertBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -1005,23 +1092,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $row = ['col' => 'val'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $row) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][OPERATION::OP_UPDATE]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_UPDATE]['values'][0][0] !== current($row)) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->update($table, $row);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -1033,23 +1127,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $row = ['col' => 'val'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $row) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][OPERATION::OP_UPDATE]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_UPDATE]['values'][0][0] !== current($row)) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->updateBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -1061,23 +1162,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $row = ['col' => 'val'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $row) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['values'][0][0] !== current($row)) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->insertOrUpdate($table, $row);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -1089,23 +1197,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $row = ['col' => 'val'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $row) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['columns'][0] !== array_keys($row)[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_INSERT_OR_UPDATE]['values'][0][0] !== current($row)) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->insertOrUpdateBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -1117,23 +1232,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $row = ['col' => 'val'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $row) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][OPERATION::OP_REPLACE]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_REPLACE]['values'][0][0] !== current($row)) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->replace($table, $row);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -1145,23 +1267,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $row = ['col' => 'val'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $row) {
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $row) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][OPERATION::OP_REPLACE]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_REPLACE]['columns'][0] !== array_keys($row)[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][OPERATION::OP_REPLACE]['values'][0][0] !== current($row)) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->replaceBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -1173,23 +1302,30 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $keys = [10, 'bar'];
 
-        $this->connection->commit(Argument::that(function ($arg) use ($table, $keys) {
-            if ($arg['mutations'][0][Operation::OP_DELETE]['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($arg) use ($table, $keys) {
+                $arg = $this->serializer->encodeMessage($arg);
 
-            if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][0] !== (string) $keys[0]) {
-                return false;
-            }
+                if ($arg['mutations'][0][Operation::OP_DELETE]['table'] !== $table) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][0][0] !== (string) $keys[0]) {
+                    return false;
+                }
+    
+                if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][1][0] !== $keys[1]) {
+                    return false;
+                }
+    
+                return true;
+            },
+            $this->commitResponse()
+        );
 
-            if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][1] !== $keys[1]) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->commitResponse());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->delete($table, new KeySet(['keys' => $keys]));
         $this->assertInstanceOf(Timestamp::class, $res);
@@ -1200,12 +1336,21 @@ class DatabaseTest extends TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                return $args->getSql() == $sql;
+            },
+            $this->resultGenerator(true, self::TRANSACTION),
+            1,
+            function ($args) {
+                Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']]);
+                return true;
+            }
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->execute($sql, [
             'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
@@ -1222,11 +1367,16 @@ class DatabaseTest extends TestCase
         $sql = 'SELECT * FROM Table';
 
         $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        $this->connection->executeStreamingSql(Argument::withEntry('session', $sessName))
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sessName) {
+                return $args->getSession() == $sessName;
+            },
+            $this->resultGenerator()
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->execute($sql);
         $rows = iterator_to_array($res->rows());
@@ -1239,11 +1389,16 @@ class DatabaseTest extends TestCase
         $sql = 'SELECT * FROM Table';
 
         $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        $this->connection->executeStreamingSql(Argument::withEntry('session', $sessName))
-            ->shouldBeCalled()
-            ->willReturn($this->resultGenerator());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sessName) {
+                return $args->getSession() == $sessName;
+            },
+            $this->resultGenerator()
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->execute($sql, [
             'maxStaleness' => new Duration(10, 0)
@@ -1268,22 +1423,38 @@ class DatabaseTest extends TestCase
     public function testExecutePartitionedUpdate()
     {
         $sql = 'UPDATE foo SET bar = @bar';
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('transactionOptions', [
-                'partitionedDml' => []
-            ]),
-            Argument::withEntry('singleUse', false)
-        ))->shouldBeCalled()->willReturn([
-            'id' => self::TRANSACTION
-        ]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['options']['partitionedDml' ],
+                    []
+                );
+                return true;
+            },
+            ['id' => self::TRANSACTION]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                Argument::type(ExecuteSqlRequest::class);
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['sql'], $sql);
+                $this->assertEquals($message['transaction'], ['id' => self::TRANSACTION]);
+                return true;
+            },
+            $this->resultGenerator(true),
+            1,
+            function ($args) {
+                Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']]);
+                return true;
+            }
+        );
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
-            Argument::withEntry('headers', ['x-goog-spanner-route-to-leader' => ['true']])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
         $res = $this->database->executePartitionedUpdate($sql);
 
         $this->assertEquals(1, $res);
@@ -1294,27 +1465,24 @@ class DatabaseTest extends TestCase
         $table = 'Table';
         $opts = ['foo' => 'bar'];
 
-        $this->connection->streamingRead(Argument::that(function ($arg) use ($table) {
-            if ($arg['table'] !== $table) {
-                return false;
-            }
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function ($args) use ($table) {
+                Argument::type(ReadRequest::class);
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($args->getTable(), $table);
+                $this->assertEquals(
+                    $message['keySet'],
+                    ['all' => true, 'keys' => [], 'ranges' => []]
+                );
+                $this->assertEquals($message['columns'], ['ID']);
+                return true;
+            },
+            $this->resultGenerator()
+        );
 
-            if ($arg['keySet']['all'] !== true) {
-                return false;
-            }
-
-            if ($arg['columns'] !== ['ID']) {
-                return false;
-            }
-
-            if ($arg['headers'] !== ['x-goog-spanner-route-to-leader' => ['true']]) {
-                return false;
-            }
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->resultGenerator());
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $res = $this->database->read(
             $table,
@@ -1348,21 +1516,18 @@ class DatabaseTest extends TestCase
 
     public function testCloseNoPool()
     {
-        $this->connection->deleteSession(Argument::allOf(
-            Argument::withEntry('name', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalled()
-            ->willReturn([]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'deleteSession',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['name'] == $this->session->name();
+            },
+            []
+        );
 
-        $this->session->___setProperty('connection', $this->connection->reveal());
+        $this->session->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
         $this->database->___setProperty('sessionPool', null);
         $this->database->___setProperty('session', $this->session);
 
@@ -1371,20 +1536,22 @@ class DatabaseTest extends TestCase
 
     public function testCreateSession()
     {
-        $db = SpannerClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE);
-        $sessName = SpannerClient::sessionName(self::PROJECT, self::INSTANCE, self::DATABASE, self::SESSION);
-        $this->connection->createSession(Argument::withEntry('database', $db))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => $sessName
-            ]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'createSession',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['database'] == $this->database->name();
+            },
+            ['name' => $this->session->name()]
+        );
 
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $sess = $this->database->createSession();
 
         $this->assertInstanceOf(Session::class, $sess);
-        $this->assertEquals($sessName, $sess->name());
+        $this->assertEquals($this->session->name(), $sess->name());
     }
 
     public function testSession()
@@ -1407,11 +1574,6 @@ class DatabaseTest extends TestCase
             'database' => self::DATABASE,
             'instance' => self::INSTANCE
         ], $this->database->identity());
-    }
-
-    public function testConnection()
-    {
-        $this->assertInstanceOf(ConnectionInterface::class, $this->database->connection());
     }
 
     // *******
@@ -1438,29 +1600,46 @@ class DatabaseTest extends TestCase
 
     public function testDBDatabaseRole()
     {
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'createSession',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['session']['creatorRole'], 'Reader');
+                return $message['database'] == $this->database->name();
+            },
+            ['name' => $this->session->name()]
+        );
         $sql = $this->createStreamingAPIArgs()['sql'];
-        $this->connection->createSession(Argument::withEntry(
-            'session',
-            ['labels' => [], 'creator_role' => 'Reader']
-        ))
-        ->shouldBeCalled()
-        ->willReturn([
-                'name' => $this->session->name()
-            ]);
-        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
-            ->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                Argument::type(ExecuteSqlRequest::class);
+                $this->assertEquals($args->getSql(), $sql);
+                return true;
+            },
+            $this->resultGenerator()
+        );
 
         $this->databaseWithDatabaseRole->execute($sql);
     }
 
     public function testExecuteWithDirectedRead()
     {
-        $this->connection->executeStreamingSql(Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsIncludeReplicas
-        ))
-        ->shouldBeCalled()
-        ->willReturn($this->resultGenerator());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['directedReadOptions'],
+                    $this->directedReadOptionsIncludeReplicas
+                );
+                return true;
+            },
+            $this->resultGenerator()
+        );
 
         $sql = 'SELECT * FROM Table';
         $res = $this->database->execute($sql);
@@ -1471,12 +1650,19 @@ class DatabaseTest extends TestCase
 
     public function testPrioritizeExecuteDirectedReadOptions()
     {
-        $this->connection->executeStreamingSql(Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsExcludeReplicas
-        ))
-        ->shouldBeCalled()
-        ->willReturn($this->resultGenerator());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['directedReadOptions'],
+                    $this->directedReadOptionsExcludeReplicas
+                );
+                return true;
+            },
+            $this->resultGenerator()
+        );
 
         $sql = 'SELECT * FROM Table';
         $res = $this->database->execute(
@@ -1493,12 +1679,19 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $keys = [10, 'bar'];
         $columns = ['id', 'name'];
-        $this->connection->streamingRead(Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsIncludeReplicas
-        ))
-        ->shouldBeCalled()
-        ->willReturn($this->resultGenerator());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['directedReadOptions'],
+                    $this->directedReadOptionsIncludeReplicas
+                );
+                return true;
+            },
+            $this->resultGenerator()
+        );
 
         $res = $this->database->read(
             $table,
@@ -1515,12 +1708,19 @@ class DatabaseTest extends TestCase
         $table = 'foo';
         $keys = [10, 'bar'];
         $columns = ['id', 'name'];
-        $this->connection->streamingRead(Argument::withEntry(
-            'directedReadOptions',
-            $this->directedReadOptionsExcludeReplicas
-        ))
-        ->shouldBeCalled()
-        ->willReturn($this->resultGenerator());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['directedReadOptions'],
+                    $this->directedReadOptionsExcludeReplicas
+                );
+                return true;
+            },
+            $this->resultGenerator()
+        );
 
         $res = $this->database->read(
             $table,
@@ -1539,7 +1739,7 @@ class DatabaseTest extends TestCase
 
         $this->stubCommit();
         $this->stubExecuteStreamingSql();
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function (Transaction $t) use ($sql) {
             $t->executeUpdate($sql);
@@ -1554,7 +1754,7 @@ class DatabaseTest extends TestCase
 
         $this->stubCommit();
         $this->stubExecuteStreamingSql();
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function (Transaction $t) use ($sql) {
             $t->execute($sql)->rows()->current();
@@ -1570,7 +1770,7 @@ class DatabaseTest extends TestCase
 
         $this->stubCommit();
         $this->stubStreamingRead();
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function (Transaction $t) use ($keySet, $cols) {
             $t->read(self::TEST_TABLE_NAME, $keySet, $cols)->rows()->current();
@@ -1585,7 +1785,7 @@ class DatabaseTest extends TestCase
 
         $this->stubCommit();
         $this->stubExecuteBatchDml();
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function (Transaction $t) use ($sql) {
             $t->executeUpdateBatch([['sql' => $sql]]);
@@ -1603,7 +1803,7 @@ class DatabaseTest extends TestCase
         $this->stubCommit();
         $this->stubStreamingRead();
         $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function (Transaction $t) use ($keySet, $cols, $sql) {
             $t->read(self::TEST_TABLE_NAME, $keySet, $cols)->rows()->current();
@@ -1622,7 +1822,7 @@ class DatabaseTest extends TestCase
         $this->stubCommit();
         $this->stubStreamingRead(['id' => self::TRANSACTION]);
         $this->stubExecuteStreamingSql();
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function (Transaction $t) use ($keySet, $cols, $sql) {
             $t->execute($sql)->rows()->current();
@@ -1642,7 +1842,7 @@ class DatabaseTest extends TestCase
         $this->stubExecuteBatchDml();
         $this->stubStreamingRead(['id' => self::TRANSACTION]);
         $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function (Transaction $t) use ($keySet, $cols, $sql) {
             $t->executeUpdateBatch([['sql' => $sql]]);
@@ -1662,16 +1862,28 @@ class DatabaseTest extends TestCase
         $this->stubCommit();
         $this->stubStreamingRead(['id' => self::TRANSACTION]);
         $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
-        $this->refreshOperation($this->database, $this->connection->reveal());
-        $this->connection->executeBatchDml(Argument::allOf(
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ]),
-            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
-        ))->shouldBeCalled()->willReturn([
-            'status' => ['code' => Code::INVALID_ARGUMENT],
-            'resultSets' => [['metadata' => ['transaction' => ['id' => self::TRANSACTION]]]]
-        ]);
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeBatchDml',
+            function ($args) {
+                Argument::type(ExecuteBatchDmlRequest::class);
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['requestOptions']['transactionTag'],
+                    self::TRANSACTION_TAG
+                );
+                $this->assertEquals(
+                    $message['transaction'],
+                    ['begin' => ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]]
+                );
+                return true;
+            },
+            [
+                'status' => ['code' => Code::INVALID_ARGUMENT],
+                'resultSets' => [['metadata' => ['transaction' => ['id' => self::TRANSACTION]]]]
+            ]
+        );
 
         $this->database->runTransaction(function (Transaction $t) use ($keySet, $cols, $sql) {
             $result = $t->executeUpdateBatch([['sql' => $sql], ['sql' => $sql]]);
@@ -1689,17 +1901,41 @@ class DatabaseTest extends TestCase
         $error = new ServerException('RST_STREAM', Code::INTERNAL);
 
         // First call with ILB fails
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ])
-        ))->shouldBeCalled()->willThrow($error);
-        $this->stubCommit(false);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                Argument::type(ExecuteBatchDmlRequest::class);
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($sql, $message['sql']);
+                $this->assertEquals(
+                    $message['requestOptions']['transactionTag'],
+                    self::TRANSACTION_TAG
+                );
+                return $message['transaction'] == ['begin' =>
+                    ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]
+                ];
+            },
+            $error
+        );
         // Second call with non ILB return result
-        $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                Argument::type(ExecuteBatchDmlRequest::class);
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($sql, $message['sql']);
+                $this->assertEquals(
+                    $message['requestOptions']['transactionTag'],
+                    self::TRANSACTION_TAG
+                );
+                return $message['transaction'] == ['id' => self::TRANSACTION];
+            },
+            $this->resultGenerator(true, self::TRANSACTION)
+        );
+        $this->stubCommit(false);
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) use ($sql) {
             $t->execute($sql);
@@ -1725,42 +1961,35 @@ class DatabaseTest extends TestCase
         $this->stubExecuteStreamingSql();
         // Second onwards non ILB
         $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalledTimes($numOfRetries)
-            ->willReturn(['id' => self::TRANSACTION]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            ['id' => self::TRANSACTION],
+            $numOfRetries
+        );
 
         $it = 0;
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalledTimes($numOfRetries + 1)
-            ->will(function () use (&$it, $abort, $numOfRetries) {
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['session'] == $this->session->name();
+            },
+            function () use (&$it, $abort, $numOfRetries) {
                 $it++;
                 if ($it <= $numOfRetries) {
                     throw $abort;
                 }
                 return ['commitTimestamp' => TransactionTest::TIMESTAMP];
-            });
-
-        $this->refreshOperation($this->database, $this->connection->reveal());
+            },
+            $numOfRetries + 1
+        );
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) use ($sql) {
             $t->execute($sql);
@@ -1774,28 +2003,36 @@ class DatabaseTest extends TestCase
         $error = new ServerException('RST_STREAM', Code::INTERNAL);
         $sql = $this->createStreamingAPIArgs()['sql'];
 
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ])
-        ))->shouldBeCalled()->willThrow($error);
-        $this->connection->beginTransaction(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            )
-        ))
-            ->shouldBeCalledTimes(Database::MAX_RETRIES)
-            ->willThrow($error);
-        $this->connection->commit(Argument::any())->shouldNotBeCalled();
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                Argument::type(ExecuteBatchDmlRequest::class);
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($sql, $message['sql']);
+                $this->assertEquals(
+                    $message['requestOptions']['transactionTag'],
+                    self::TRANSACTION_TAG
+                );
+                return $message['transaction'] == ['begin' =>
+                    ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]
+                ];
+            },
+            $error
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            function ($args) use ($sql) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['session'], $this->session->name());
+                return true;
+            },
+            $error,
+            Database::MAX_RETRIES
+        );
+        $this->mockSendRequest(SpannerClient::class, 'commit', null, null, 0);
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) use ($sql) {
             $t->execute($sql);
@@ -1806,7 +2043,7 @@ class DatabaseTest extends TestCase
     public function testRunTransactionWithBlindCommit()
     {
         $this->stubCommit(false);
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) {
             $t->insert('Posts', [
@@ -1828,23 +2065,30 @@ class DatabaseTest extends TestCase
         $it = 0;
         // First call with ILB results in unavailable error.
         // Second call also made with ILB, returns ResultSet.
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ])
-        ))
-            ->shouldBeCalledTimes($numOfRetries)
-            ->will(function () use (&$it, $unavailable, $numOfRetries, $result) {
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                Argument::type(ExecuteSqlRequest::class);
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['sql'], $sql);
+                $this->assertEquals(
+                    $message['transaction'],
+                    ['begin' => ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]]
+                );
+                return $message['requestOptions']['transactionTag'] == self::TRANSACTION_TAG;
+            },
+            function () use (&$it, $unavailable, $numOfRetries, $result) {
                 $it++;
                 if ($it < $numOfRetries) {
                     throw $unavailable;
                 }
                 return $result;
-            });
+            },
+            $numOfRetries
+        );
         $this->stubCommit();
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) use ($sql) {
             $t->execute($sql);
@@ -1860,18 +2104,23 @@ class DatabaseTest extends TestCase
         // First call with ILB results in a transaction.
         // Then the stream fails, Second call needs to use the
         // transaction created by the first call.
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ])
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willreturn($this->resultGeneratorWithError());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql) {
+                Argument::type(ExecuteSqlRequest::class);
+                $this->assertEquals($args->getSql(), $sql);
+                return $this->serializer->decodeMessage(
+                    new TransactionSelector(),
+                    self::BEGIN_RW_OPTIONS
+                ) == $args->getTransaction()
+                    && $args->getRequestOptions()->getTransactionTag() == self::TRANSACTION_TAG;
+            },
+            $this->resultGeneratorWithError()
+        );
         $this->stubExecuteStreamingSql(['id' => self::TRANSACTION]);
         $this->stubCommit();
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) use ($sql) {
             $result = $t->execute($sql);
@@ -1899,51 +2148,55 @@ class DatabaseTest extends TestCase
         $it = 0;
         // First call with ILB results in unavailable error.
         // Second call also made with ILB, gets aborted.
-        $this->connection->streamingRead(Argument::allOf(
-            Argument::withEntry('transaction', self::BEGIN_RW_OPTIONS),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ]),
-            Argument::withEntry('table', self::TEST_TABLE_NAME),
-            Argument::withEntry('columns', $cols)
-        ))
-            ->shouldBeCalledTimes($numOfRetries)
-            ->will(function () use (&$it, $unavailable, $numOfRetries, $abort) {
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function ($args) use ($cols) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['table'], self::TEST_TABLE_NAME);
+                $this->assertEquals($message['columns'], $cols);
+                return $message['transaction']
+                        == ['begin' => ['readWrite' => ['readLockMode' => 0], 'excludeTxnFromChangeStreams' => false]]
+                    && $message['requestOptions']['transactionTag'] == self::TRANSACTION_TAG;
+            },
+            function () use (&$it, $unavailable, $numOfRetries, $abort) {
                 $it++;
                 if ($it < $numOfRetries) {
                     throw $unavailable;
                 } else {
                     throw $abort;
                 }
-            });
+            },
+            $numOfRetries
+        );
         // Should retry with beginTransaction RPC.
         $this->stubStreamingRead(['id' => self::TRANSACTION]);
-        $this->connection->beginTransaction(Argument::any())
-            ->willReturn(['id' => self::TRANSACTION])
-            ->shouldBeCalled();
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            ),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG,
-            ]),
-            Argument::withEntry('transactionId', self::TRANSACTION),
-            Argument::withEntry('mutations', [['insert' => [
-                'table' => self::TEST_TABLE_NAME,
-                'columns' => ['ID', 'title', 'content'],
-                'values' => ['10', 'My New Post', 'Hello World']
-            ]]])
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['commitTimestamp' => self::TIMESTAMP]);
-        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            null,
+            ['id' => self::TRANSACTION]
+        );
+
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) {
+                Argument::type(CommitRequest::class);
+                $this->assertEquals($args->getSession(), $this->session->name());
+                $this->assertEquals($args->getTransactionId(), self::TRANSACTION);
+                $this->assertEquals($args->getRequestOptions()->getTransactionTag(), self::TRANSACTION_TAG);
+                $this->assertEquals($this->serializer->encodeMessage($args)['mutations'], [['insert' => [
+                    'table' => self::TEST_TABLE_NAME,
+                    'columns' => ['ID', 'title', 'content'],
+                    'values' => [['10', 'My New Post', 'Hello World']]
+                ]]]);
+                return true;
+            },
+            ['commitTimestamp' => self::TIMESTAMP]
+        );
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function ($t) use ($keySet, $cols) {
             $t->insert(self::TEST_TABLE_NAME, [
@@ -1961,10 +2214,15 @@ class DatabaseTest extends TestCase
         $sql = $this->createStreamingAPIArgs()['sql'];
 
         $this->stubExecuteStreamingSql();
-        $this->connection->rollback(Argument::allOf(
-            Argument::withEntry('transactionId', self::TRANSACTION)
-        ))->shouldBeCalled()->willReturn(null);
-        $this->refreshOperation($this->database, $this->connection->reveal());
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'rollback',
+            function ($args) use ($sql) {
+                return $args->getTransactionId() == self::TRANSACTION;
+            },
+            null
+        );
+        $this->refreshOperation($this->database, $this->requestHandler->reveal(), $this->serializer);
 
         $this->database->runTransaction(function (Transaction $t) use ($sql) {
             $t->execute($sql);
@@ -2010,67 +2268,105 @@ class DatabaseTest extends TestCase
     private function stubCommit($withTransaction = true)
     {
         if ($withTransaction) {
-            $this->connection->beginTransaction(Argument::any())
-            ->shouldNotBeCalled();
+            $this->mockSendRequest(SpannerClient::class, 'beginTransaction', null, null, 0);
         } else {
-            $this->connection->beginTransaction(Argument::any())
-            ->willReturn(['id' => self::TRANSACTION])
-            ->shouldBeCalled();
+            $this->mockSendRequest(
+                SpannerClient::class,
+                'beginTransaction',
+                null,
+                ['id' => self::TRANSACTION]
+            );
         }
-        $this->connection->commit(Argument::allOf(
-            Argument::withEntry('session', $this->session->name()),
-            Argument::withEntry(
-                'database',
-                DatabaseAdminClient::databaseName(
-                    self::PROJECT,
-                    self::INSTANCE,
-                    self::DATABASE
-                )
-            ),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG,
-            ]),
-            Argument::withEntry('transactionId', self::TRANSACTION)
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['commitTimestamp' => self::TIMESTAMP]);
+
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'commit',
+            function ($args) {
+                Argument::type(CommitRequest::class);
+                $this->assertEquals($args->getSession(), $this->session->name());
+                $this->assertEquals($args->getTransactionId(), self::TRANSACTION);
+                $this->assertEquals($args->getRequestOptions()->getTransactionTag(), self::TRANSACTION_TAG);
+                return true;
+            },
+            ['commitTimestamp' => self::TIMESTAMP]
+        );
     }
 
     private function stubStreamingRead($transactionOptions = self::BEGIN_RW_OPTIONS)
     {
-        $keySet = $this->createStreamingAPIArgs()['keySet'];
         $cols = $this->createStreamingAPIArgs()['cols'];
-        $this->connection->streamingRead(Argument::allOf(
-            Argument::withEntry('transaction', $transactionOptions),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ]),
-            Argument::withEntry('table', self::TEST_TABLE_NAME),
-            Argument::withEntry('columns', $cols)
-        ))->shouldBeCalled()->willReturn($this->resultGenerator(true, self::TRANSACTION));
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'streamingRead',
+            function ($args) use ($transactionOptions, $cols) {
+                Argument::type(ReadRequest::class);
+                return $args->getTransaction() == $this->serializer->decodeMessage(
+                    new TransactionSelector(),
+                    $transactionOptions
+                )
+                    && $args->getTable() == self::TEST_TABLE_NAME
+                    && iterator_to_array($args->getColumns()) == $cols
+                    && $args->getRequestOptions()->getTransactionTag() == self::TRANSACTION_TAG;
+            },
+            $this->resultGenerator(true, self::TRANSACTION)
+        );
     }
 
     private function stubExecuteStreamingSql($transactionOptions = self::BEGIN_RW_OPTIONS)
     {
         $sql = $this->createStreamingAPIArgs()['sql'];
-        $this->connection->executeStreamingSql(Argument::allOf(
-            Argument::withEntry('sql', $sql),
-            Argument::withEntry('transaction', $transactionOptions),
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ])
-        ))->shouldBeCalled()->willReturn($this->resultGenerator(true, self::TRANSACTION));
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeStreamingSql',
+            function ($args) use ($sql, $transactionOptions) {
+                Argument::type(ExecuteSqlRequest::class);
+                return $args->getSql() == $sql
+                    && $args->getTransaction() == $this->serializer->decodeMessage(
+                        new TransactionSelector,
+                        $transactionOptions
+                    )
+                    && $args->getRequestOptions()->getTransactionTag() == self::TRANSACTION_TAG;
+            },
+            $this->resultGenerator(true, self::TRANSACTION),
+            -1
+        );
     }
 
     private function stubExecuteBatchDml($transactionOptions = self::BEGIN_RW_OPTIONS)
     {
-        $this->connection->executeBatchDml(Argument::allOf(
-            Argument::withEntry('requestOptions', [
-                'transactionTag' => self::TRANSACTION_TAG
-            ]),
-            Argument::withEntry('transaction', $transactionOptions),
-        ))->shouldBeCalled()->willReturn([
-            'resultSets' => [['metadata' => ['transaction' => ['id' => self::TRANSACTION]]]]
-        ]);
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'executeBatchDml',
+            function ($args) use ($transactionOptions) {
+                Argument::type(ExecuteBatchDmlRequest::class);
+                $this->assertEquals(
+                    $args->getTransaction(),
+                    $this->serializer->decodeMessage(new TransactionSelector, $transactionOptions)
+                );
+                $this->assertEquals(
+                    $args->getRequestOptions()->getTransactionTag(),
+                    self::TRANSACTION_TAG
+                );
+                return true;
+            },
+            [
+                'resultSets' => [['metadata' => ['transaction' => ['id' => self::TRANSACTION]]]]
+            ]
+        );
+    }
+
+    private function getOperationResponseMock()
+    {
+        $operation = $this->serializer->decodeMessage(
+            new \Google\LongRunning\Operation(),
+            ['metadata' => [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
+            ]]
+        );
+        $operationResponse = $this->prophesize(OperationResponse::class);
+        $operationResponse->getLastProtoResponse()->willReturn($operation);
+        $operationResponse->isDone()->willReturn(false);
+        $operationResponse->getError()->willReturn(null);
+        return $operationResponse;
     }
 }
