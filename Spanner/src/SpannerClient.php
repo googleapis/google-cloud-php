@@ -309,7 +309,7 @@ class SpannerClient
         $config = $this->buildClientOptions($config);
         $config['credentials'] = $this->createCredentialsWrapper(
             $config['credentials'],
-            $config['credentialsConfig'],
+            $config['credentialsConfig'] + ['scopes' => $config['scopes']],
             $config['universeDomain']
         );
         $this->projectId = $this->detectProjectId($config);
