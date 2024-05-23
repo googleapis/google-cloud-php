@@ -18,7 +18,7 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
     /**
      * Required. Resource name of the parent to validate the Custom Module under.
      * Its format is:
-     *   * "organizations/{organization}/locations/{location}".
+     *   * `organizations/{organization}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
      *     @type string $parent
      *           Required. Resource name of the parent to validate the Custom Module under.
      *           Its format is:
-     *             * "organizations/{organization}/locations/{location}".
+     *             * `organizations/{organization}/locations/{location}`.
      *     @type string $raw_text
      *           Required. The raw text of the module's contents. Used to generate error
      *           messages.
@@ -62,7 +62,7 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
     /**
      * Required. Resource name of the parent to validate the Custom Module under.
      * Its format is:
-     *   * "organizations/{organization}/locations/{location}".
+     *   * `organizations/{organization}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class ValidateEventThreatDetectionCustomModuleRequest extends \Google\Protobuf\I
     /**
      * Required. Resource name of the parent to validate the Custom Module under.
      * Its format is:
-     *   * "organizations/{organization}/locations/{location}".
+     *   * `organizations/{organization}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

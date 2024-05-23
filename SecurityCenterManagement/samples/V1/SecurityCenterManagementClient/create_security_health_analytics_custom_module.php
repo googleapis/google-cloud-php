@@ -34,11 +34,12 @@ use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule
  * SecurityHealthAnalyticsCustomModules for all CRM descendants of the given
  * parent. These modules are enabled by default.
  *
- * @param string $formattedParent Name of the parent for the module. Its format is
- *                                "organizations/{organization}/locations/{location}",
- *                                "folders/{folder}/locations/{location}",
- *                                or
- *                                "projects/{project}/locations/{location}"
+ * @param string $formattedParent Name of the parent organization, folder, or project of the
+ *                                module, specified in one of the following formats:
+ *
+ *                                * `organizations/{organization}/locations/{location}`
+ *                                * `folders/{folder}/locations/{location}`
+ *                                * `projects/{project}/locations/{location}`
  *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  */
 function create_security_health_analytics_custom_module_sample(string $formattedParent): void

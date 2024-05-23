@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing Security Health Analytics custom modules.
+ * Request message for listing Security Command Center services.
  *
- * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListSecurityHealthAnalyticsCustomModulesRequest</code>
+ * Generated from protobuf message <code>google.cloud.securitycentermanagement.v1.ListSecurityCenterServicesRequest</code>
  */
-class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\Internal\Message
+class ListSecurityCenterServicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of parent organization, folder, or project in which to list
-     * custom modules, specified in one of the following formats:
-     * * `organizations/{organization}/locations/{location}`
-     * * `folders/{folder}/locations/{location}`
-     * * `projects/{project}/locations/{location}`
+     * Required. The name of the parent to list Security Command Center services.
+     * Formats:
+     *   * organizations/{organization}/locations/{location}
+     *   * folders/{folder}/locations/{location}
+     *   * projects/{project}/locations/{location}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -33,22 +33,23 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
      */
     protected $page_size = 0;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. The value returned by the last call indicating a continuation.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. Name of parent organization, folder, or project in which to list
-     *                       custom modules, specified in one of the following formats:
+     * @param string $parent Required. The name of the parent to list Security Command Center services.
      *
-     *                       * `organizations/{organization}/locations/{location}`
-     *                       * `folders/{folder}/locations/{location}`
-     *                       * `projects/{project}/locations/{location}`
+     *                       Formats:
+     *
+     *                       * organizations/{organization}/locations/{location}
+     *                       * folders/{folder}/locations/{location}
+     *                       * projects/{project}/locations/{location}
      *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
-     * @return \Google\Cloud\SecurityCenterManagement\V1\ListSecurityHealthAnalyticsCustomModulesRequest
+     * @return \Google\Cloud\SecurityCenterManagement\V1\ListSecurityCenterServicesRequest
      *
      * @experimental
      */
@@ -65,16 +66,16 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of parent organization, folder, or project in which to list
-     *           custom modules, specified in one of the following formats:
-     *           * `organizations/{organization}/locations/{location}`
-     *           * `folders/{folder}/locations/{location}`
-     *           * `projects/{project}/locations/{location}`
+     *           Required. The name of the parent to list Security Command Center services.
+     *           Formats:
+     *             * organizations/{organization}/locations/{location}
+     *             * folders/{folder}/locations/{location}
+     *             * projects/{project}/locations/{location}
      *     @type int $page_size
      *           Optional. The maximum number of results to return in a single response.
      *           Default is 10, minimum is 1, maximum is 1000.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results the server should return.
+     *           Optional. The value returned by the last call indicating a continuation.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,11 +84,11 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Required. Name of parent organization, folder, or project in which to list
-     * custom modules, specified in one of the following formats:
-     * * `organizations/{organization}/locations/{location}`
-     * * `folders/{folder}/locations/{location}`
-     * * `projects/{project}/locations/{location}`
+     * Required. The name of the parent to list Security Command Center services.
+     * Formats:
+     *   * organizations/{organization}/locations/{location}
+     *   * folders/{folder}/locations/{location}
+     *   * projects/{project}/locations/{location}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,11 +99,11 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Required. Name of parent organization, folder, or project in which to list
-     * custom modules, specified in one of the following formats:
-     * * `organizations/{organization}/locations/{location}`
-     * * `folders/{folder}/locations/{location}`
-     * * `projects/{project}/locations/{location}`
+     * Required. The name of the parent to list Security Command Center services.
+     * Formats:
+     *   * organizations/{organization}/locations/{location}
+     *   * folders/{folder}/locations/{location}
+     *   * projects/{project}/locations/{location}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -145,7 +146,7 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. The value returned by the last call indicating a continuation.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -156,7 +157,7 @@ class ListSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\I
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. The value returned by the last call indicating a continuation.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

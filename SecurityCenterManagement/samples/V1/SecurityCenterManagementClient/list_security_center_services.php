@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,43 +22,41 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START securitycentermanagement_v1_generated_SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules_sync]
+// [START securitycentermanagement_v1_generated_SecurityCenterManagement_ListSecurityCenterServices_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\SecurityCenterManagement\V1\Client\SecurityCenterManagementClient;
-use Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule;
-use Google\Cloud\SecurityCenterManagement\V1\ListEffectiveEventThreatDetectionCustomModulesRequest;
+use Google\Cloud\SecurityCenterManagement\V1\ListSecurityCenterServicesRequest;
+use Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService;
 
 /**
- * Lists all effective Event Threat Detection custom modules for the
- * given parent. This includes resident modules defined at the scope of the
- * parent along with modules inherited from its ancestors.
+ * Returns a list of all Security Command Center services for the given
+ * parent.
  *
- * @param string $formattedParent Name of parent to list effective custom modules. Its format is
- *                                `organizations/{organization}/locations/{location}`,
- *                                `folders/{folder}/locations/{location}`,
- *                                or
- *                                `projects/{project}/locations/{location}`
+ * @param string $formattedParent The name of the parent to list Security Command Center services.
+ *
+ *                                Formats:
+ *
+ *                                * organizations/{organization}/locations/{location}
+ *                                * folders/{folder}/locations/{location}
+ *                                * projects/{project}/locations/{location}
  *                                Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  */
-function list_effective_event_threat_detection_custom_modules_sample(
-    string $formattedParent
-): void {
+function list_security_center_services_sample(string $formattedParent): void
+{
     // Create a client.
     $securityCenterManagementClient = new SecurityCenterManagementClient();
 
     // Prepare the request message.
-    $request = (new ListEffectiveEventThreatDetectionCustomModulesRequest())
+    $request = (new ListSecurityCenterServicesRequest())
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $securityCenterManagementClient->listEffectiveEventThreatDetectionCustomModules(
-            $request
-        );
+        $response = $securityCenterManagementClient->listSecurityCenterServices($request);
 
-        /** @var EffectiveEventThreatDetectionCustomModule $element */
+        /** @var SecurityCenterService $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -83,6 +81,6 @@ function callSample(): void
         '[LOCATION]'
     );
 
-    list_effective_event_threat_detection_custom_modules_sample($formattedParent);
+    list_security_center_services_sample($formattedParent);
 }
-// [END securitycentermanagement_v1_generated_SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules_sync]
+// [END securitycentermanagement_v1_generated_SecurityCenterManagement_ListSecurityCenterServices_sync]
