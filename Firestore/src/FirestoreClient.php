@@ -380,6 +380,7 @@ class FirestoreClient
                         $optionalArgs
                     );
                 },
+                $options,
                 [
                     'itemsKey' => 'collectionIds',
                     'resultLimit' => $resultLimit,

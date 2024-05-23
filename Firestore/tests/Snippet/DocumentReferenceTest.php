@@ -30,6 +30,7 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
 use Prophecy\Argument;
@@ -249,11 +250,14 @@ class DocumentReferenceTest extends SnippetTestCase
 
     public function testCollections()
     {
-        $this->connection->listCollectionIds(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn(['collectionIds' => ['foo','bar']]);
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listCollectionIds',
+            Argument::type(ListCollectionIdsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn(['collectionIds' => ['foo','bar']]);
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
         $snippet = $this->snippetFromMethod(DocumentReference::class, 'collections');
         $snippet->addLocal('document', $this->document);
         $res = $snippet->invoke('collections');

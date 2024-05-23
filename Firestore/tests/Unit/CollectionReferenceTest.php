@@ -30,6 +30,8 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\CollectionReference;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
+use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
 /**
  * @group firestore
@@ -144,11 +146,15 @@ class CollectionReferenceTest extends TestCase
 
         $docName = self::NAME . '/foo';
 
-        $this->connection->listDocuments(Argument::allOf(
-            Argument::withEntry('parent', self::COLLECTION_PARENT),
-            Argument::withEntry('collectionId', $id),
-            Argument::withEntry('mask', [])
-        ))->shouldBeCalled()->willReturn([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listDocuments',
+            Argument::that(function ($req) use ($id) {
+                return $req->getParent() === self::COLLECTION_PARENT
+                    && $req->getCollectionId() === $id;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'documents' => [
                 [
                     'name' => $docName
@@ -156,7 +162,7 @@ class CollectionReferenceTest extends TestCase
             ]
         ]);
 
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+        $this->collection->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $res = $this->collection->listDocuments();
         $docs = iterator_to_array($res);

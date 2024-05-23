@@ -444,6 +444,7 @@ class DocumentReference
                         $optionalArgs
                     );
                 },
+                $options,
                 [
                     'itemsKey' => 'collectionIds',
                     'resultLimit' => $resultLimit

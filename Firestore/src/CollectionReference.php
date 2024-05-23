@@ -293,7 +293,7 @@ class CollectionReference extends Query
         $data += [
             'parent' => $this->parentPath($this->name),
             'collectionId' => $this->pathId($this->name),
-            'mask' => []
+            'showMissing' => true
         ];
         $request = $this->serializer->decodeMessage(new ListDocumentsRequest(), $data);
 
@@ -314,6 +314,7 @@ class CollectionReference extends Query
                         $optionalArgs
                     );
                 },
+                $options,
                 [
                     'itemsKey' => 'documents',
                     'resultLimit' => $resultLimit
