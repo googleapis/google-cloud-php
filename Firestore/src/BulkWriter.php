@@ -1039,7 +1039,7 @@ class BulkWriter
 
             $operations[] = [
                 'fieldPath' => $transform->fieldPath()->pathString(),
-                $transform->key() => $args,
+                $transform->key() => $args['arrayValue'] ?? $args,
             ];
         }
 

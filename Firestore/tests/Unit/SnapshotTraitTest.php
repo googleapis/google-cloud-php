@@ -177,9 +177,7 @@ class SnapshotTraitTest extends TestCase
             'batchGetDocuments',
             Argument::that(function ($req) use ($timestamp) {
                 $data = $this->getSerializer()->encodeMessage($req);
-                $expectedTimestamp = json_decode((new ProtobufTimestamp($timestamp))
-                ->serializeToJsonString());
-                return $data['readTime'] == $expectedTimestamp;
+                return $data['readTime'] == $timestamp;
             }),
             Argument::cetera()
         )->shouldBeCalled()->willReturn(new \ArrayIterator([
