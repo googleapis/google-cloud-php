@@ -35,6 +35,7 @@ use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
 use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -340,7 +341,7 @@ class FirestoreClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.ListCollectionIds ListCollectionIds
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.ListCollectionIds ListCollectionIds
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
@@ -354,35 +355,32 @@ class FirestoreClient
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<CollectionReference>
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
-     *     specified.
      */
     public function collections(array $options = [])
     {
-        $options = $this->formatReadTimeOption($options);
-
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += ['parent' => $this->fullName($this->projectId, $this->database)];
+        $request = $this->serializer->decodeMessage(new ListCollectionIdsRequest(), $data);
+
         return new ItemIterator(
             new PageIterator(
                 function ($collectionId) {
                     return $this->collection($collectionId);
                 },
-                [$this->connection, 'listCollectionIds'],
-                // function ($callOptions) use ($optionalArgs, $request) {
-                //     if (isset($callOptions['pageToken'])) {
-                //         $request->setPageToken($callOptions['pageToken']);
-                //     }
+                function ($callOptions) use ($optionalArgs, $request) {
+                    if (isset($callOptions['pageToken'])) {
+                        $request->setPageToken($callOptions['pageToken']);
+                    }
 
-                //     return $this->requestHandler->sendRequest(
-                //         FirestoreClient::class,
-                //         'listCollectionIds',
-                //         $request,
-                //         $optionalArgs
-                //     );
-                // },
-                [
-                    'parent' => $this->fullName($this->projectId, $this->database),
-                ] + $options,
+                    return $this->requestHandler->sendRequest(
+                        V1FirestoreClient::class,
+                        'listCollectionIds',
+                        $request,
+                        $optionalArgs
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'collectionIds',
                     'resultLimit' => $resultLimit,

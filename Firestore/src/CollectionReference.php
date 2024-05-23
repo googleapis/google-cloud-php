@@ -18,13 +18,15 @@
 namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Serializer;
-use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\TimestampTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
+use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
 /**
  * Represents a Cloud Firestore Collection.
@@ -43,7 +45,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class CollectionReference extends Query
 {
-    use ArrayTrait;
+    use ApiHelperTrait;
     use DebugInfoTrait;
     use PathTrait;
     use TimestampTrait;
@@ -267,7 +269,7 @@ class CollectionReference extends Query
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.ListDocumentsRequest ListDocumentsRequest
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.ListDocumentsRequest ListDocumentsRequest
      * @codingStandardsIgnoreEnd
      *
      * @param array $options {
@@ -287,33 +289,31 @@ class CollectionReference extends Query
     public function listDocuments(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
-
-        $options += [
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
             'parent' => $this->parentPath($this->name),
             'collectionId' => $this->pathId($this->name),
-            'mask' => []
+            'showMissing' => true
         ];
-
-        $options = $this->formatReadTimeOption($options);
+        $request = $this->serializer->decodeMessage(new ListDocumentsRequest(), $data);
 
         return new ItemIterator(
             new PageIterator(
                 function ($document) {
                     return $this->documentFactory($document['name']);
                 },
-                [$this->connection, 'listDocuments'],
-                // function ($callOptions) use ($optionalArgs, $request) {
-                //     if (isset($callOptions['pageToken'])) {
-                //         $request->setPageToken($callOptions['pageToken']);
-                //     }
+                function ($callOptions) use ($optionalArgs, $request) {
+                    if (isset($callOptions['pageToken'])) {
+                        $request->setPageToken($callOptions['pageToken']);
+                    }
 
-                //     return $this->requestHandler->sendRequest(
-                //         FirestoreClient::class,
-                //         'listDocuments',
-                //         $request,
-                //         $optionalArgs
-                //     );
-                // },
+                    return $this->requestHandler->sendRequest(
+                        V1FirestoreClient::class,
+                        'listDocuments',
+                        $request,
+                        $optionalArgs
+                    );
+                },
                 $options,
                 [
                     'itemsKey' => 'documents',

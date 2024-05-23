@@ -37,6 +37,7 @@ use Google\Cloud\Firestore\V1\BeginTransactionRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Cloud\Firestore\V1\FirestoreClient as V1FirestoreGapicClient;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\WriteBatch;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -116,16 +117,18 @@ class FirestoreClientTest extends TestCase
             'collection-c',
         ];
 
-        $this->connection->listCollectionIds(Argument::withEntry('foo', 'bar'))
-            ->willReturn([
-                'collectionIds' => $collectionIds
-            ])->shouldBeCalledTimes(1);
-
-        $this->client->___setProperty('connection', $this->connection->reveal());
-
-        $collections = $this->client->collections([
-            'foo' => 'bar'
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listCollectionIds',
+            Argument::type(ListCollectionIdsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalledTimes(1)->willReturn([
+            'collectionIds' => $collectionIds
         ]);
+
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
+
+        $collections = $this->client->collections([]);
 
         $this->assertInstanceOf(ItemIterator::class, $collections);
 
@@ -144,25 +147,21 @@ class FirestoreClientTest extends TestCase
             'collection-c',
         ];
 
-        $this->connection->listCollectionIds(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::that(function ($options) {
-                if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
-                    return false;
-                }
-
-                return true;
-            })
-        ))->willReturn([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listCollectionIds',
+            Argument::that(function ($req) {
+                return empty($req->getPageToken()) || $req->getPageToken() == 'foo';
+            }),
+            Argument::cetera()
+        )->willReturn([
             'collectionIds' => $collectionIds,
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
 
-        $collections = $this->client->collections([
-            'foo' => 'bar'
-        ]);
+        $collections = $this->client->collections([]);
 
         // enumerate the iterator and kill after it loops twice.
         $arr = [];

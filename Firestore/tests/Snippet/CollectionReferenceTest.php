@@ -31,6 +31,7 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\ListDocumentsRequest;
 
 /**
  * @group firestore
@@ -179,7 +180,12 @@ class CollectionReferenceTest extends SnippetTestCase
 
         $docName = self::NAME . '/foo';
 
-        $this->connection->listDocuments(Argument::any())->shouldBeCalled()->willReturn([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listDocuments',
+            Argument::type(ListDocumentsRequest::class),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
             'documents' => [
                 [
                     'name' => $docName
@@ -187,7 +193,7 @@ class CollectionReferenceTest extends SnippetTestCase
             ]
         ]);
 
-        $this->collection->___setProperty('connection', $this->connection->reveal());
+        $this->collection->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'listDocuments');
         $snippet->addLocal('collection', $this->collection);

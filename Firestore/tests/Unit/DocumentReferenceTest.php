@@ -30,6 +30,7 @@ use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\V1\BatchGetDocumentsRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
 use Google\Cloud\Firestore\ValueMapper;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -295,13 +296,24 @@ class DocumentReferenceTest extends TestCase
 
     public function testCollections()
     {
-        $this->connection->listCollectionIds([
-            'parent' => self::NAME
-        ])->shouldBeCalled()->will(function ($args, $mock) {
-            $mock->listCollectionIds([
-                'parent' => self::NAME,
-                'pageToken' => 'token'
-            ])->shouldBeCalled()->willReturn([
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'listCollectionIds',
+            Argument::that(function ($req) {
+                return $req->getParent() === self::NAME
+                    && empty($req->getPageToken());
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->will(function ($args, $mock) {
+            $mock->sendRequest(
+                V1FirestoreClient::class,
+                'listCollectionIds',
+                Argument::that(function ($req) {
+                    return $req->getParent() === self::NAME
+                        && $req->getPageToken() === 'token';
+                }),
+                Argument::cetera()
+            )->shouldBeCalled()->willReturn([
                 'collectionIds' => ['e']
             ]);
 
@@ -311,7 +323,7 @@ class DocumentReferenceTest extends TestCase
             ];
         });
 
-        $this->document->___setProperty('connection', $this->connection->reveal());
+        $this->document->___setProperty('requestHandler', $this->requestHandler->reveal());
 
         $collections = iterator_to_array($this->document->collections());
         $this->assertContainsOnlyInstancesOf(CollectionReference::class, $collections);
