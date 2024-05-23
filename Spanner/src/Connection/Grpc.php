@@ -243,15 +243,21 @@ class Grpc implements ConnectionInterface
             PartialResultSet::class => function ($msg) {
                 $data = json_decode($msg->serializeToJsonString(), true);
 
-                // The transaction id is serialized as a base64 encoded string in $data. So, we
-                // add a step to get the transaction id using a getter instead of the serialized value.
-                // The null-safe operator is used to handle edge cases where the relevant fields are not present.
-                $data['metadata']['transaction']['id'] = (string) $msg?->getMetadata()?->getTransaction()?->getId();
+                // We only override metadata fields, if it actually exists in the response.
+                // This is specially important for large data sets which is received in chunks.
+                // Metadata is only received in the first 'chunk' and we don't want to set empty metadata fields
+                // when metadata was not returned from the server.
+                if (isset($data['metadata'])) {
+                    // The transaction id is serialized as a base64 encoded string in $data. So, we
+                    // add a step to get the transaction id using a getter instead of the serialized value.
+                    // The null-safe operator is used to handle edge cases where the relevant fields are not present.
+                    $data['metadata']['transaction']['id'] = (string) $msg?->getMetadata()?->getTransaction()?->getId();
 
-                // Helps convert metadata enum values from string types to their respective code/annotation
-                // pairs. Ex: INT64 is converted to {code: 2, typeAnnotation: 0}.
-                $fields = $msg->getMetadata()?->getRowType()?->getFields();
-                $data['metadata']['rowType']['fields'] = $this->getFieldDataFromRepeatedFields($fields);
+                    // Helps convert metadata enum values from string types to their respective code/annotation
+                    // pairs. Ex: INT64 is converted to {code: 2, typeAnnotation: 0}.
+                    $fields = $msg->getMetadata()?->getRowType()?->getFields();
+                    $data['metadata']['rowType']['fields'] = $this->getFieldDataFromRepeatedFields($fields);
+                }
 
                 // These fields in stats should be an int
                 if (isset($data['stats']['rowCountLowerBound'])) {
