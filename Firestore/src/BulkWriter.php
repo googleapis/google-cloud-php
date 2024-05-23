@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\FieldValue\DeleteFieldValue;
 use Google\Cloud\Firestore\FieldValue\DocumentTransformInterface;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
@@ -211,7 +212,7 @@ class BulkWriter
 
     /**
      * @var bool Whether BulkWriter greedily sends operations via
-     * [https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#batchwriterequest](BatchWriteRequest)
+     * [https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#BatchWriteRequest](BatchWriteRequest)
      * as soon  as sufficient number of operations are enqueued.
      */
     private $greedilySend;
@@ -682,7 +683,7 @@ class BulkWriter
      *
      * @param bool $waitForRetryableFailures Flag to indicate whether to wait for
      *         retryable failures. **Defaults to** `false`.
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#BatchWriteResponse](BatchWriteResponse)
      */
     public function flush($waitForRetryableFailures = false)
     {
@@ -812,7 +813,7 @@ class BulkWriter
      * Close the bulk writer instance for further writes.
      * Also, flushes all retries and pending writes.
      *
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#BatchWriteResponse](BatchWriteResponse)
      */
     public function close()
     {
@@ -974,7 +975,7 @@ class BulkWriter
      *     @type array $labels
      *           Labels associated with this batch write.
      * }
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1#BatchWriteResponse](BatchWriteResponse)
      */
     private function sendBatch(array $writes, array $options = [])
     {
@@ -990,25 +991,21 @@ class BulkWriter
         $this->rateLimiter->tryMakeRequest(count($writes));
 
         unset($options['merge'], $options['precondition']);
-        $options += ['labels' => []];
 
-        $response = $this->connection->batchWrite(array_filter([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += array_filter([
             'database' => $this->database,
             'writes' => $writes,
-        ]) + $options);
+            'labels' => []
+        ]);
+        $request = $this->serializer->decodeMessage(new BatchWriteRequest(), $data);
 
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
-                // Commenting this out right now because we need to decide if we want to parse the returned
-                // RFC3339 string which is not very user friendly to interpret. The tradeoff is we need
-                // to parse the returned value. Maybe we can add this logic in serializer or something.
-
-                // if (isset($result['updateTime'])) {
-                //     $time = $this->parseTimeString($result['updateTime']);
-                //     $result['updateTime'] = new Timestamp($time[0], $time[1]);
-                // }
-            }
-        }
+        $response = $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            $request,
+            $optionalArgs
+        );
 
         return $response;
     }
@@ -1042,7 +1039,7 @@ class BulkWriter
 
             $operations[] = [
                 'fieldPath' => $transform->fieldPath()->pathString(),
-                $transform->key() => $args,
+                $transform->key() => $args['arrayValue'] ?? $args,
             ];
         }
 

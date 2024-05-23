@@ -26,6 +26,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
+use Google\Cloud\Firestore\V1\BatchWriteRequest;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
@@ -165,28 +167,30 @@ class BulkWriterTest extends TestCase
      */
     public function testCreateMultipleDocs($docs)
     {
-        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
-            if (count($arg['writes']) <= 0) {
-                return false;
-            }
-            foreach ($arg['writes'] as $write) {
-                if (!$write['currentDocument']) {
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::that(function ($req) use ($docs) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                if (count($data['writes']) <= 0) {
                     return false;
                 }
-                if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                    $write['update']['fields']['path']['stringValue']) {
-                    return false;
+                foreach ($data['writes'] as $write) {
+                    if (!$write['currentDocument']) {
+                        return false;
+                    }
+                    if ($docs[$write['update']['fields']['key']['integerValue']] !==
+                        $write['update']['fields']['path']['stringValue']) {
+                        return false;
+                    }
                 }
-            }
-            return true;
-        }))
-            ->shouldBeCalledTimes(3)
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, 20, []),
-                    'status' => array_fill(0, 20, ['code' => Code::OK]),
-                ]
-            );
+                return true;
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(3)->willReturn([
+            'writeResults' => array_fill(0, 20, []),
+            'status' => array_fill(0, 20, ['code' => Code::OK]),
+        ]);
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -202,28 +206,30 @@ class BulkWriterTest extends TestCase
      */
     public function testFailuresAreRetriedTillMaxAttempts($docs)
     {
-        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
-            if (count($arg['writes']) <= 0) {
-                return false;
-            }
-            foreach ($arg['writes'] as $write) {
-                if (!$write['currentDocument']) {
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::that(function ($req) use ($docs) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                if (count($data['writes']) <= 0) {
                     return false;
                 }
-                if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                    $write['update']['fields']['path']['stringValue']) {
-                    return false;
+                foreach ($data['writes'] as $write) {
+                    if (!$write['currentDocument']) {
+                        return false;
+                    }
+                    if ($docs[$write['update']['fields']['key']['integerValue']] !==
+                        $write['update']['fields']['path']['stringValue']) {
+                        return false;
+                    }
                 }
-            }
-            return true;
-        }))
-            ->shouldBeCalledTimes(3)
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, 20, []),
-                    'status' => array_fill(0, 20, ['code' => Code::OK]),
-                ]
-            );
+                return true;
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(3)->willReturn([
+            'writeResults' => array_fill(0, 20, []),
+            'status' => array_fill(0, 20, ['code' => Code::OK]),
+        ]);
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -239,27 +245,30 @@ class BulkWriterTest extends TestCase
      */
     public function testFlushReturnsAllResponses($docs)
     {
-        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
-            if (count($arg['writes']) <= 0) {
-                return false;
-            }
-            foreach ($arg['writes'] as $write) {
-                if (!$write['currentDocument']) {
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::that(function ($req) use ($docs) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                if (count($data['writes']) <= 0) {
                     return false;
                 }
-                if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                    $write['update']['fields']['path']['stringValue']) {
-                    return false;
+                foreach ($data['writes'] as $write) {
+                    if (!$write['currentDocument']) {
+                        return false;
+                    }
+                    if ($docs[$write['update']['fields']['key']['integerValue']] !==
+                        $write['update']['fields']['path']['stringValue']) {
+                        return false;
+                    }
                 }
-            }
-            return true;
-        }))
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, 20, []),
-                    'status' => array_fill(0, 20, ['code' => Code::OK]),
-                ]
-            );
+                return true;
+            }),
+            Argument::cetera()
+        )->shouldBeCalled()->willReturn([
+            'writeResults' => array_fill(0, 50, []),
+            'status' => array_fill(0, 50, ['code' => Code::OK]),
+        ]);
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -280,27 +289,30 @@ class BulkWriterTest extends TestCase
      */
     public function testCloseReturnsAllResponses($docs)
     {
-        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
-            if (count($arg['writes']) <= 0) {
-                return false;
-            }
-            foreach ($arg['writes'] as $write) {
-                if (!$write['currentDocument']) {
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::that(function ($req) use ($docs) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                if (count($data['writes']) <= 0) {
                     return false;
                 }
-                if ($docs[$write['update']['fields']['key']['integerValue']] !==
-                    $write['update']['fields']['path']['stringValue']) {
-                    return false;
+                foreach ($data['writes'] as $write) {
+                    if (!$write['currentDocument']) {
+                        return false;
+                    }
+                    if ($docs[$write['update']['fields']['key']['integerValue']] !==
+                        $write['update']['fields']['path']['stringValue']) {
+                        return false;
+                    }
                 }
-            }
-            return true;
-        }))
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, 20, []),
-                    'status' => array_fill(0, 20, ['code' => Code::OK]),
-                ]
-            );
+                return true;
+            }),
+            Argument::cetera()
+        )->willReturn([
+            'writeResults' => array_fill(0, 20, []),
+            'status' => array_fill(0, 20, ['code' => Code::OK]),
+        ]);
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -336,14 +348,17 @@ class BulkWriterTest extends TestCase
             ),
             sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             ['greedilySend' => false],
-        ]);
+        ], ['requestHandler', 'connection']);
 
-        $this->connection->batchWrite(Argument::that(
-            function ($arg) use ($docs, $successPerBatch, &$successfulDocs) {
-                if (count($arg['writes']) <= 0) {
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::that(function ($req) use ($docs, $successPerBatch, &$successfulDocs) {
+                $data = $this->getSerializer()->encodeMessage($req);
+                if (count($data['writes']) <= 0) {
                     return false;
                 }
-                foreach ($arg['writes'] as $i => $write) {
+                foreach ($data['writes'] as $i => $write) {
                     if (!$write['currentDocument']) {
                         return false;
                     }
@@ -356,22 +371,19 @@ class BulkWriterTest extends TestCase
                     }
                 }
                 return true;
-            }
-        ))
-            ->shouldBeCalledTimes(4)
-            ->willReturn(
-                [
-                    'writeResults' => array_fill(0, $batchSize, []),
-                    'status' => array_merge(
-                        array_fill(0, $successPerBatch, [
-                            'code' => Code::OK,
-                        ]),
-                        array_fill(0, $batchSize - $successPerBatch, [
-                            'code' => Code::DATA_LOSS,
-                        ])
-                    ),
-                ]
-            );
+            }),
+            Argument::cetera()
+        )->shouldBeCalledTimes(4)->willReturn([
+            'writeResults' => array_fill(0, $batchSize, []),
+            'status' => array_merge(
+                array_fill(0, $successPerBatch, [
+                    'code' => Code::OK,
+                ]),
+                array_fill(0, $batchSize - $successPerBatch, [
+                    'code' => Code::DATA_LOSS,
+                ])
+            ),
+        ]);
 
         foreach ($docs as $k => $v) {
             $this->batch->create($v, [
@@ -897,8 +909,12 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
         $this->batch->close();
         $this->batch->create(self::DOCUMENT, [
             'hello' => 'world',
@@ -909,8 +925,12 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
         $this->batch->close();
         $this->batch->update(self::DOCUMENT, [
             [
@@ -924,8 +944,12 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
         $this->batch->close();
         $this->batch->set(self::DOCUMENT, [
             'hello' => 'world',
@@ -936,8 +960,12 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: BulkWriter has been closed/');
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
         $this->batch->close();
         $this->batch->delete(self::DOCUMENT);
     }
@@ -946,8 +974,12 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
         $this->batch->create(self::DOCUMENT, [
             'hello' => 'world',
         ]);
@@ -960,8 +992,12 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
         $this->batch->update(self::DOCUMENT, [
             [
                 'path' => 'hello.world',
@@ -980,8 +1016,12 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
         $this->batch->set(self::DOCUMENT, [
             'hello' => 'world',
         ]);
@@ -994,8 +1034,12 @@ class BulkWriterTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/firestore: bulkwriter: received duplicate mutations for path/');
-        $this->connection->batchWrite(Argument::any())
-            ->shouldNotBeCalled();
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'batchWrite',
+            Argument::type(BatchWriteRequest::class),
+            Argument::cetera()
+        )->shouldNotBeCalled();
         $this->batch->delete(self::DOCUMENT);
         $this->batch->delete(self::DOCUMENT);
     }
@@ -1010,18 +1054,22 @@ class BulkWriterTest extends TestCase
     private function flushAndAssert($assertion)
     {
         if (is_callable($assertion)) {
-            $this->connection->batchWrite(Argument::that($assertion))
-                ->shouldBeCalled()
-                ->willReturn(
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'batchWrite',
+                Argument::that(function ($req) use ($assertion) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return $assertion($data);
+                }),
+                Argument::cetera()
+            )->shouldBeCalled()->willReturn([
+                'writeResults' => [[]],
+                'status' => [
                     [
-                        'writeResults' => [[]],
-                        'status' => [
-                            [
-                                'code' => Code::OK,
-                            ],
-                        ],
-                    ]
-                );
+                        'code' => Code::OK,
+                    ],
+                ],
+            ]);
         } elseif (is_array($assertion)) {
             $connectionResponse = [
                 'writeResults' => [],
@@ -1033,9 +1081,15 @@ class BulkWriterTest extends TestCase
                     'code' => Code::OK,
                 ];
             }
-            $this->connection->batchWrite($assertion)
-                ->shouldBeCalled()
-                ->willReturn($connectionResponse);
+            $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'batchWrite',
+                Argument::that(function ($req) use ($assertion) {
+                    $data = $this->getSerializer()->encodeMessage($req);
+                    return array_replace_recursive($data, $assertion) == $data;
+                }),
+                Argument::cetera()
+            )->shouldBeCalled()->willReturn($connectionResponse);
         } else {
             throw new \Exception('bad assertion');
         }
