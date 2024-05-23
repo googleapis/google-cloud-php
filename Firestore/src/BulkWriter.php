@@ -32,6 +32,7 @@ use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\V1\BatchWriteRequest;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\CommitRequest;
+use Google\Cloud\Firestore\V1\RollbackRequest;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use Google\Rpc\Code;
 
@@ -792,10 +793,19 @@ class BulkWriter
             throw new \RuntimeException('Cannot rollback because no transaction id was provided.');
         }
 
-        $this->connection->rollback([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
             'database' => $this->database,
             'transaction' => $this->transaction,
-        ] + $options);
+        ];
+        $request = $this->serializer->decodeMessage(new RollbackRequest(), $data);
+
+        $this->requestHandler->sendRequest(
+            V1FirestoreClient::class,
+            'rollback',
+            $request,
+            $optionalArgs
+        );
     }
 
     /**
