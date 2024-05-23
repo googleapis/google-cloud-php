@@ -40,6 +40,12 @@ class LocationCategory
      */
     const AUSTRALIA = 3;
     /**
+     * The infoType is typically used in Azerbaijan.
+     *
+     * Generated from protobuf enum <code>AZERBAIJAN = 48;</code>
+     */
+    const AZERBAIJAN = 48;
+    /**
      * The infoType is typically used in Belgium.
      *
      * Generated from protobuf enum <code>BELGIUM = 4;</code>
@@ -309,6 +315,7 @@ class LocationCategory
         self::PBGLOBAL => 'GLOBAL',
         self::ARGENTINA => 'ARGENTINA',
         self::AUSTRALIA => 'AUSTRALIA',
+        self::AZERBAIJAN => 'AZERBAIJAN',
         self::BELGIUM => 'BELGIUM',
         self::BRAZIL => 'BRAZIL',
         self::CANADA => 'CANADA',

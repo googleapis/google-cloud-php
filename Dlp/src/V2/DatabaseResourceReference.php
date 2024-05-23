@@ -17,18 +17,31 @@ class DatabaseResourceReference extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. If within a project-level config, then this must match the
-     * config's project id.
+     * config's project ID.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
      * Required. The instance where this resource is located. For example: Cloud
-     * SQL's instance id.
+     * SQL instance ID.
      *
      * Generated from protobuf field <code>string instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance = '';
+    /**
+     * Required. Name of a database within the instance.
+     *
+     * Generated from protobuf field <code>string database = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $database = '';
+    /**
+     * Required. Name of a database resource, for example, a table within the
+     * database.
+     *
+     * Generated from protobuf field <code>string database_resource = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $database_resource = '';
 
     /**
      * Constructor.
@@ -38,10 +51,15 @@ class DatabaseResourceReference extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Required. If within a project-level config, then this must match the
-     *           config's project id.
+     *           config's project ID.
      *     @type string $instance
      *           Required. The instance where this resource is located. For example: Cloud
-     *           SQL's instance id.
+     *           SQL instance ID.
+     *     @type string $database
+     *           Required. Name of a database within the instance.
+     *     @type string $database_resource
+     *           Required. Name of a database resource, for example, a table within the
+     *           database.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,7 +69,7 @@ class DatabaseResourceReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. If within a project-level config, then this must match the
-     * config's project id.
+     * config's project ID.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -63,7 +81,7 @@ class DatabaseResourceReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. If within a project-level config, then this must match the
-     * config's project id.
+     * config's project ID.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -79,7 +97,7 @@ class DatabaseResourceReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The instance where this resource is located. For example: Cloud
-     * SQL's instance id.
+     * SQL instance ID.
      *
      * Generated from protobuf field <code>string instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -91,7 +109,7 @@ class DatabaseResourceReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The instance where this resource is located. For example: Cloud
-     * SQL's instance id.
+     * SQL instance ID.
      *
      * Generated from protobuf field <code>string instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -101,6 +119,60 @@ class DatabaseResourceReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Name of a database within the instance.
+     *
+     * Generated from protobuf field <code>string database = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getDatabase()
+    {
+        return $this->database;
+    }
+
+    /**
+     * Required. Name of a database within the instance.
+     *
+     * Generated from protobuf field <code>string database = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatabase($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Name of a database resource, for example, a table within the
+     * database.
+     *
+     * Generated from protobuf field <code>string database_resource = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return string
+     */
+    public function getDatabaseResource()
+    {
+        return $this->database_resource;
+    }
+
+    /**
+     * Required. Name of a database resource, for example, a table within the
+     * database.
+     *
+     * Generated from protobuf field <code>string database_resource = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatabaseResource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->database_resource = $var;
 
         return $this;
     }

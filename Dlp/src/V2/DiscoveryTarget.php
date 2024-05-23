@@ -29,6 +29,10 @@ class DiscoveryTarget extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\CloudSqlDiscoveryTarget $cloud_sql_target
      *           Cloud SQL target for Discovery. The first target to match a table will be
      *           the one applied.
+     *     @type \Google\Cloud\Dlp\V2\SecretsDiscoveryTarget $secrets_target
+     *           Discovery target that looks for credentials and secrets stored in cloud
+     *           resource metadata and reports them as vulnerabilities to Security Command
+     *           Center. Only one target of this type is allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,6 +102,41 @@ class DiscoveryTarget extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CloudSqlDiscoveryTarget::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Discovery target that looks for credentials and secrets stored in cloud
+     * resource metadata and reports them as vulnerabilities to Security Command
+     * Center. Only one target of this type is allowed.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.SecretsDiscoveryTarget secrets_target = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\SecretsDiscoveryTarget|null
+     */
+    public function getSecretsTarget()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasSecretsTarget()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Discovery target that looks for credentials and secrets stored in cloud
+     * resource metadata and reports them as vulnerabilities to Security Command
+     * Center. Only one target of this type is allowed.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.SecretsDiscoveryTarget secrets_target = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\SecretsDiscoveryTarget $var
+     * @return $this
+     */
+    public function setSecretsTarget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\SecretsDiscoveryTarget::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

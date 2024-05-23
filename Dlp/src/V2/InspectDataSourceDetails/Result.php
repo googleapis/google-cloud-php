@@ -35,7 +35,7 @@ class Result extends \Google\Protobuf\Internal\Message
      */
     private $info_type_stats;
     /**
-     * Number of rows scanned post sampling and time filtering (Applicable for
+     * Number of rows scanned after sampling and time filtering (applicable for
      * row based stores such as BigQuery).
      *
      * Generated from protobuf field <code>int64 num_rows_processed = 5;</code>
@@ -62,7 +62,7 @@ class Result extends \Google\Protobuf\Internal\Message
      *           Statistics of how many instances of each info type were found during
      *           inspect job.
      *     @type int|string $num_rows_processed
-     *           Number of rows scanned post sampling and time filtering (Applicable for
+     *           Number of rows scanned after sampling and time filtering (applicable for
      *           row based stores such as BigQuery).
      *     @type \Google\Cloud\Dlp\V2\HybridInspectStatistics $hybrid_stats
      *           Statistics related to the processing of hybrid inspect.
@@ -154,7 +154,7 @@ class Result extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of rows scanned post sampling and time filtering (Applicable for
+     * Number of rows scanned after sampling and time filtering (applicable for
      * row based stores such as BigQuery).
      *
      * Generated from protobuf field <code>int64 num_rows_processed = 5;</code>
@@ -166,7 +166,7 @@ class Result extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of rows scanned post sampling and time filtering (Applicable for
+     * Number of rows scanned after sampling and time filtering (applicable for
      * row based stores such as BigQuery).
      *
      * Generated from protobuf field <code>int64 num_rows_processed = 5;</code>

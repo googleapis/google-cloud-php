@@ -26,7 +26,7 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
     /**
      * Data changes (non-schema changes) in Cloud SQL tables can't trigger
      * reprofiling. If you set this field, profiles are refreshed at this
-     * frequency regardless of whether the underlying tables have changes.
+     * frequency regardless of whether the underlying tables have changed.
      * Defaults to never.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 2;</code>
@@ -44,7 +44,7 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
      *     @type int $refresh_frequency
      *           Data changes (non-schema changes) in Cloud SQL tables can't trigger
      *           reprofiling. If you set this field, profiles are refreshed at this
-     *           frequency regardless of whether the underlying tables have changes.
+     *           frequency regardless of whether the underlying tables have changed.
      *           Defaults to never.
      * }
      */
@@ -92,7 +92,7 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
     /**
      * Data changes (non-schema changes) in Cloud SQL tables can't trigger
      * reprofiling. If you set this field, profiles are refreshed at this
-     * frequency regardless of whether the underlying tables have changes.
+     * frequency regardless of whether the underlying tables have changed.
      * Defaults to never.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 2;</code>
@@ -106,7 +106,7 @@ class DiscoveryCloudSqlGenerationCadence extends \Google\Protobuf\Internal\Messa
     /**
      * Data changes (non-schema changes) in Cloud SQL tables can't trigger
      * reprofiling. If you set this field, profiles are refreshed at this
-     * frequency regardless of whether the underlying tables have changes.
+     * frequency regardless of whether the underlying tables have changed.
      * Defaults to never.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DataProfileUpdateFrequency refresh_frequency = 2;</code>
