@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Container for a live session's ad tag detail.
+ * Information related to the details for one ad tag. This resource is only
+ * available for live sessions that do not implement Google Ad Manager ad
+ * insertion.
  *
  * Generated from protobuf message <code>google.cloud.video.stitcher.v1.LiveAdTagDetail</code>
  */
