@@ -47,6 +47,10 @@ Only the maxRetries parameter is supported for now and not the other options in 
 ### Removed deprecated classes
 
 The following deprecated classes are now removed completely. Use the specified alternatives.
+- `Google\Cloud\Bigtable\V2\Gapic\BigtableGapicClient`, use `Google\Cloud\Bigtable\V2\Client\BigtableClient` instead.
+- `Google\Cloud\Bigtable\V2\BigtableClient`, use `Google\Cloud\Bigtable\V2\Client\BigtableClient` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Gapic\BigtableInstanceAdminGapicClient`, use `Google\Cloud\Bigtable\Admin\V2\Client\BigtableInstanceAdminClient` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Gapic\BigtableTableAdminGapicClient`, use `Google\Cloud\Bigtable\Admin\V2\Client\BigtableTableAdminClient` instead.
 - `Google\Cloud\Bigtable\V2\MutateRowsRequest_Entry`, use `Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry` instead.
 - `Google\Cloud\Bigtable\V2\MutateRowsResponse_Entry`, use `Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry` instead.
 - `Google\Cloud\Bigtable\V2\Mutation_DeleteFromFamily`, use `Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily` instead.
@@ -64,3 +68,24 @@ The following deprecated classes are now removed completely. Use the specified a
 - `Google\Cloud\Bigtable\V2\RowFilter_Condition`, use `Google\Cloud\Bigtable\V2\RowFilter\Condition` instead.
 - `Google\Cloud\Bigtable\V2\RowFilter_Interleave`, use `Google\Cloud\Bigtable\V2\RowFilter\Interleave` instead.
 - `Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk`, use `Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk` instead.
+- `Google\Cloud\Bigtable\Admin\V2\AppProfile_MultiClusterRoutingUseAny`, use `Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny` instead.
+- `Google\Cloud\Bigtable\Admin\V2\AppProfile_SingleClusterRouting`, use `Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Backup_State`, use `Google\Cloud\Bigtable\Admin\V2\Backup\State` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Cluster_ClusterAutoscalingConfig`, use `Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterAutoscalingConfig` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Cluster_ClusterConfig`, use `Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterConfig` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Cluster_EncryptionConfig`, use `Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Cluster_State`, use `Google\Cloud\Bigtable\Admin\V2\Cluster\State` instead.
+- `Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata_TableProgress`, use `Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata\TableProgress` instead.
+- `Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata_TableProgress_State`, use `Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata\TableProgress\State` instead.
+- `Google\Cloud\Bigtable\Admin\V2\CreateTableRequest_Split`, use `Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split` instead.
+- `Google\Cloud\Bigtable\Admin\V2\EncryptionInfo_EncryptionType`, use `Google\Cloud\Bigtable\Admin\V2\EncryptionInfo\EncryptionType` instead.
+- `Google\Cloud\Bigtable\Admin\V2\GcRule_Intersection`, use `Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection` instead.
+- `Google\Cloud\Bigtable\Admin\V2\GcRule_Union`, use `Google\Cloud\Bigtable\Admin\V2\GcRule\Union` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Instance_State`, use `Google\Cloud\Bigtable\Admin\V2\Instance\State` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Instance_Type`, use `Google\Cloud\Bigtable\Admin\V2\Instance\Type` instead.
+- `Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest_Modification`, use `Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Snapshot_State`, use `Google\Cloud\Bigtable\Admin\V2\Snapshot\State` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Table_ClusterState`, use `Google\Cloud\Bigtable\Admin\V2\Table\ClusterState` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Table_ClusterState_ReplicationState`, use `Google\Cloud\Bigtable\Admin\V2\Table\ClusterState\ReplicationState` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Table_TimestampGranularity`, use `Google\Cloud\Bigtable\Admin\V2\Table\TimestampGranularity` instead.
+- `Google\Cloud\Bigtable\Admin\V2\Table_View`, use `Google\Cloud\Bigtable\Admin\V2\Table\View` instead.
