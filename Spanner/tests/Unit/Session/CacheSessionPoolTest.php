@@ -175,7 +175,7 @@ class CacheSessionPoolTest extends TestCase
     public function testAcquireRemovesToCreateItemsIfCreateCallFails()
     {
         $exceptionThrown = false;
-        $config = ['maxSessions' => 1];
+        $config = ['maxSessions' => 1, 'sleepIntervalSeconds' => 0];
         $pool = new CacheSessionPoolStub($this->getCacheItemPool(), $config, $this->time);
         $pool->setDatabase($this->getDatabase(true));
 
@@ -196,9 +196,10 @@ class CacheSessionPoolTest extends TestCase
 
     public function testAcquireIfCreateSessionCallFails()
     {
+        $config = ['sleepIntervalSeconds' => 0];
         $exceptionThrown = false;
         $exceptionMessage = null;
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool(), $config);
         $pool->setDatabase($this->getDatabase(true));
 
         try {
