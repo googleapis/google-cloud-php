@@ -176,11 +176,6 @@ class ServiceBuilderTest extends TestCase
                 'language',
                 LanguageClient::class
             ], [
-                'spanner',
-                SpannerClient::class,
-                [],
-                [$this, 'checkAndSkipGrpcTests']
-            ], [
                 'speech',
                 SpeechClient::class,
                 ['languageCode' => 'en-US']
