@@ -1381,26 +1381,28 @@ class GrpcTest extends TestCase
                 [
                     'transaction' => [
                         'singleUse' => [
-                            'readWrite' => []
+                            'readWrite' => [
+                                'readLockMode' => 0
+                            ]
                         ]
                     ]
                 ],
                 new TransactionSelector([
                     'single_use' => new TransactionOptions([
-                        'read_write' => new ReadWrite
+                        'read_write' => new ReadWrite()
                     ])
                 ])
             ], [
                 [
                     'transaction' => [
                         'begin' => [
-                            'readWrite' => []
+                            'readWrite' => ['readLockMode' => 1]
                         ]
                     ]
                 ],
                 new TransactionSelector([
                     'begin' => new TransactionOptions([
-                        'read_write' => new ReadWrite
+                        'read_write' => new ReadWrite(['read_lock_mode' => 1])
                     ])
                 ])
             ]
