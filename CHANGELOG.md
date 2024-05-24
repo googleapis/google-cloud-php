@@ -1,5 +1,179 @@
 # Changelog
 
+## 0.246.0
+
+<details><summary>google/cloud-bigtable 1.32.0</summary>
+
+
+
+### Features
+
+* Add String type with Utf8Raw encoding to Bigtable API ([#7338](https://github.com/googleapis/google-cloud-php/issues/7338)) ([cece74c](https://github.com/googleapis/google-cloud-php/commit/cece74ca6c68e1c8d4323fb13184743be096af46))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.29.0</summary>
+
+
+
+### Features
+
+* New PropertyMask field which allows partial commits, lookups, and query results ([#7321](https://github.com/googleapis/google-cloud-php/issues/7321)) ([ab2938c](https://github.com/googleapis/google-cloud-php/commit/ab2938c9047c9daa7b59b2a5076b4c9c22b49f62))
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce DeveloperConnect ([#7340](https://github.com/googleapis/google-cloud-php/issues/7340)) ([4210698](https://github.com/googleapis/google-cloud-php/commit/4210698578efbddde023b0477b5f9c554030872b))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.15.0</summary>
+
+
+
+### Features
+
+* Add secrets discovery support ([#7336](https://github.com/googleapis/google-cloud-php/issues/7336)) ([6178651](https://github.com/googleapis/google-cloud-php/commit/6178651cff02c004ea73af3b1e45ab4ceebd354c))
+
+
+### Documentation
+
+* Updated method documentation ([6178651](https://github.com/googleapis/google-cloud-php/commit/6178651cff02c004ea73af3b1e45ab4ceebd354c))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.8.0</summary>
+
+
+
+### Features
+
+* Add fine-grained restore ([#7320](https://github.com/googleapis/google-cloud-php/issues/7320)) ([0547cb0](https://github.com/googleapis/google-cloud-php/commit/0547cb09d5aa66753338b3ded3b17ecb5f552b38))
+* Add gitops ([0547cb0](https://github.com/googleapis/google-cloud-php/commit/0547cb09d5aa66753338b3ded3b17ecb5f552b38))
+* Add restore order ([0547cb0](https://github.com/googleapis/google-cloud-php/commit/0547cb09d5aa66753338b3ded3b17ecb5f552b38))
+* Add strict-permissive mode ([0547cb0](https://github.com/googleapis/google-cloud-php/commit/0547cb09d5aa66753338b3ded3b17ecb5f552b38))
+* Add volume restore flexibility ([0547cb0](https://github.com/googleapis/google-cloud-php/commit/0547cb09d5aa66753338b3ded3b17ecb5f552b38))
+
+
+### Documentation
+
+* Update duration comment to include new validation from smart scheduling ([0547cb0](https://github.com/googleapis/google-cloud-php/commit/0547cb09d5aa66753338b3ded3b17ecb5f552b38))
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 0.3.0</summary>
+
+
+
+### Features
+
+* Adding support for new Security Center Management Apis ([#7331](https://github.com/googleapis/google-cloud-php/issues/7331)) ([7e98d79](https://github.com/googleapis/google-cloud-php/commit/7e98d791ebc58e66bc81f569f65409394faed6e6))
+
+
+### Documentation
+
+* Update comment formatting throughout API ([7e98d79](https://github.com/googleapis/google-cloud-php/commit/7e98d791ebc58e66bc81f569f65409394faed6e6))
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 0.4.0</summary>
+
+
+
+### Features
+
+* Add V1 for SecurityPublicCA ([#7319](https://github.com/googleapis/google-cloud-php/issues/7319)) ([85befc4](https://github.com/googleapis/google-cloud-php/commit/85befc48e9b31055659089903e13f882752fd746))
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 0.1.1</summary>
+
+
+
+### Documentation
+
+* A comment for message `MerchantCenterDestination` is changed ([d9446a3](https://github.com/googleapis/google-cloud-php/commit/d9446a3c0382d10e0737f998114d671ec8696a4a))
+* Change in wording : website -&gt; online store ([#7326](https://github.com/googleapis/google-cloud-php/issues/7326)) ([d9446a3](https://github.com/googleapis/google-cloud-php/commit/d9446a3c0382d10e0737f998114d671ec8696a4a))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.4.4</summary>
+
+
+
+### Documentation
+
+* A comment for field `availability` in message `.google.shopping.merchant.inventories.v1beta.LocalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* A comment for field `availability` in message `.google.shopping.merchant.inventories.v1beta.RegionalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* A comment for field `custom_attributes` in message `.google.shopping.merchant.inventories.v1beta.LocalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* A comment for field `custom_attributes` in message `.google.shopping.merchant.inventories.v1beta.RegionalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* A comment for field `pickup_method` in message `.google.shopping.merchant.inventories.v1beta.LocalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* A comment for field `pickup_sla` in message `.google.shopping.merchant.inventories.v1beta.LocalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* A comment for field `store_code` in message `.google.shopping.merchant.inventories.v1beta.LocalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* A comment for message `LocalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* A comment for message `RegionalInventory` is changed ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+* Change in wording : feed specification -&gt; data specification ([#7324](https://github.com/googleapis/google-cloud-php/issues/7324)) ([70dd5f3](https://github.com/googleapis/google-cloud-php/commit/70dd5f3d94fd536d7d0a32f02b1735219a760412))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.8.0</summary>
+
+
+
+### Features
+
+* Add `effectiveness` field to `price_insights_product_view` table in Reports sub-API ([e5e739c](https://github.com/googleapis/google-cloud-php/commit/e5e739c4f718c5ff29194ecd6b312909676130d1))
+* Add `non_product_performance_view` table to Reports sub-API ([#7325](https://github.com/googleapis/google-cloud-php/issues/7325)) ([e5e739c](https://github.com/googleapis/google-cloud-php/commit/e5e739c4f718c5ff29194ecd6b312909676130d1))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.78.0</summary>
+
+
+
+### Features
+
+* Add field lock_hint in spanner.proto ([73a3212](https://github.com/googleapis/google-cloud-php/commit/73a3212654717f9ef6837cc13e0fc4a3a261afc7))
+* Add field order_by in spanner.proto ([#7339](https://github.com/googleapis/google-cloud-php/issues/7339)) ([73a3212](https://github.com/googleapis/google-cloud-php/commit/73a3212654717f9ef6837cc13e0fc4a3a261afc7))
+
+
+### Bug Fixes
+
+* Only override metadata for PartialResultSet when it is present in the response ([#7334](https://github.com/googleapis/google-cloud-php/issues/7334)) ([c2078a6](https://github.com/googleapis/google-cloud-php/commit/c2078a6cd435ee954a8e74c9964601c36252c447))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.9.0</summary>
+
+
+
+### Features
+
+* Add apis for Create, Read, Update, Delete for VODConfigs ([#7332](https://github.com/googleapis/google-cloud-php/issues/7332)) ([2758508](https://github.com/googleapis/google-cloud-php/commit/27585082a65d77ea24187ee4140be0a041981b05))
+* Added adtracking to Livesession ([2758508](https://github.com/googleapis/google-cloud-php/commit/27585082a65d77ea24187ee4140be0a041981b05))
+* Added fetchoptions with custom headers for Live and VODConfigs ([2758508](https://github.com/googleapis/google-cloud-php/commit/27585082a65d77ea24187ee4140be0a041981b05))
+* Added targetting parameter support to Livesession ([2758508](https://github.com/googleapis/google-cloud-php/commit/27585082a65d77ea24187ee4140be0a041981b05))
+* Added token config for MediaCdnKey ([2758508](https://github.com/googleapis/google-cloud-php/commit/27585082a65d77ea24187ee4140be0a041981b05))
+* Allowed usage for VODConfigs in VODSession ([2758508](https://github.com/googleapis/google-cloud-php/commit/27585082a65d77ea24187ee4140be0a041981b05))
+
+
+### Documentation
+
+* Added apis for Create, Read, Update, Delete For VODConfigs. Added vodConfig usage in VODSession. Added TokenConfig for MediaCdnKey. Added targeting_parameter and ad_tracking for Livesession. Added FetchOptions for Live and VOD configs. ([2758508](https://github.com/googleapis/google-cloud-php/commit/27585082a65d77ea24187ee4140be0a041981b05))
+
+</details>
+
 ## 0.245.0
 
 <details><summary>google/analytics-data 0.17.0</summary>
