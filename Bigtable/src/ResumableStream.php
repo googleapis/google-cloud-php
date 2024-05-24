@@ -75,9 +75,9 @@ class ResumableStream implements \IteratorAggregate
     private $retryFunction;
 
     /**
-     * array $optionalArgs
+     * @var array
      */
-    private $optionalArgs;
+    private $callOptions;
 
     /**
      * Constructs a resumable stream.
@@ -88,7 +88,7 @@ class ResumableStream implements \IteratorAggregate
      * @param callable $argumentFunction Function which returns the argument to be used while
      *        calling `$apiFunction`.
      * @param callable $retryFunction Function which determines whether to retry or not.
-     * @param array $optionalArgs {
+     * @param array $callOptions {
      *        @option RetrySettings|array $retrySettings {
      *                @option int $maxRetries Number of times to retry. **Defaults to** `3`.
      *                Only maxRetries works for RetrySettings in this API.
@@ -101,21 +101,20 @@ class ResumableStream implements \IteratorAggregate
         Message $request,
         callable $argumentFunction,
         callable $retryFunction,
-        array $optionalArgs = []
+        array $callOptions = []
     ) {
         $this->gapicClient = $gapicClient;
         $this->method = $method;
         $this->request = $request;
-        $this->retries = $this->getMaxRetries($optionalArgs);
+        $this->retries = $this->getMaxRetries($callOptions);
         $this->argumentFunction = $argumentFunction;
         $this->retryFunction = $retryFunction;
+        $this->callOptions = $callOptions;
         // Disable GAX retries because we want to handle the retries here.
         // Once GAX has the provision to modify request/args in between retries,
         // we can re enable GAX's retries and use them completely.
-        $this->optionalArgs = $optionalArgs + [
-            'retrySettings' => [
-                'retriesEnabled' => false
-            ]
+        $this->callOptions['retrySettings'] = [
+            'retriesEnabled' => false
         ];
     }
 
@@ -132,14 +131,14 @@ class ResumableStream implements \IteratorAggregate
         $retryFunction = $this->retryFunction;
         do {
             $ex = null;
-            list($this->request, $this->optionalArgs) = $argumentFunction($this->request, $this->optionalArgs);
+            list($this->request, $this->callOptions) = $argumentFunction($this->request, $this->callOptions);
 
-            $completed = $this->pluck('requestCompleted', $this->optionalArgs, false);
+            $completed = $this->pluck('requestCompleted', $this->callOptions, false);
 
             if ($completed !== true) {
                 $stream = call_user_func_array(
                     [$this->gapicClient, $this->method],
-                    [$this->request, $this->optionalArgs]
+                    [$this->request, $this->callOptions]
                 );
 
                 try {
@@ -178,22 +177,14 @@ class ResumableStream implements \IteratorAggregate
         return isset(self::$retryableStatusCodes[$code]);
     }
 
-    private function getMaxRetries(array &$options) : int
+    private function getMaxRetries(array $options) : int
     {
-        $options += [
-            'retrySettings' => [
-                'maxRetries' => ResumableStream::DEFAULT_MAX_RETRIES
-            ]
-        ];
-
-        // We remove the retrySettings from the options array because
-        // we don't need to forward it to GAX anyway.
-        $retrySettings = $this->pluck('retrySettings', $options, false);
+        $retrySettings = $options['retrySettings'] ?? [];
 
         if ($retrySettings instanceof RetrySettings) {
             return $retrySettings->getMaxRetries();
         }
 
-        return $retrySettings['maxRetries'];
+        return $retrySettings['maxRetries'] ?? ResumableStream::DEFAULT_MAX_RETRIES;
     }
 }
