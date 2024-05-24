@@ -411,7 +411,6 @@ class DatabaseTest extends TestCase
             $operationResponse->reveal()
         );
         new OperationResponse('my-operation', new DatabaseAdminClient([
-            'projectId' => 'my-project',
             'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
         ]), [
             'lastProtoResponse' => $this->serializer->decodeMessage(
