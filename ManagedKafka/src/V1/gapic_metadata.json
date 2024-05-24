@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.managedkafka.v1",
+    "libraryPackage": "Google\\Cloud\\ManagedKafka\\V1",
+    "services": {
+        "ManagedKafka": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ManagedKafkaGapicClient",
+                    "rpcs": {
+                        "CreateCluster": {
+                            "methods": [
+                                "createCluster"
+                            ]
+                        },
+                        "CreateTopic": {
+                            "methods": [
+                                "createTopic"
+                            ]
+                        },
+                        "DeleteCluster": {
+                            "methods": [
+                                "deleteCluster"
+                            ]
+                        },
+                        "DeleteConsumerGroup": {
+                            "methods": [
+                                "deleteConsumerGroup"
+                            ]
+                        },
+                        "DeleteTopic": {
+                            "methods": [
+                                "deleteTopic"
+                            ]
+                        },
+                        "GetCluster": {
+                            "methods": [
+                                "getCluster"
+                            ]
+                        },
+                        "GetConsumerGroup": {
+                            "methods": [
+                                "getConsumerGroup"
+                            ]
+                        },
+                        "GetTopic": {
+                            "methods": [
+                                "getTopic"
+                            ]
+                        },
+                        "ListClusters": {
+                            "methods": [
+                                "listClusters"
+                            ]
+                        },
+                        "ListConsumerGroups": {
+                            "methods": [
+                                "listConsumerGroups"
+                            ]
+                        },
+                        "ListTopics": {
+                            "methods": [
+                                "listTopics"
+                            ]
+                        },
+                        "UpdateCluster": {
+                            "methods": [
+                                "updateCluster"
+                            ]
+                        },
+                        "UpdateConsumerGroup": {
+                            "methods": [
+                                "updateConsumerGroup"
+                            ]
+                        },
+                        "UpdateTopic": {
+                            "methods": [
+                                "updateTopic"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
