@@ -1730,6 +1730,19 @@ class SpannerGapicClient
      *
      *           If the field is set to `true` but the request does not set
      *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
+     *     @type int $orderBy
+     *           Optional. Order for the returned rows.
+     *
+     *           By default, Spanner will return result rows in primary key order except for
+     *           PartitionRead requests. For applications that do not require rows to be
+     *           returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
+     *           `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
+     *           resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
+     *     @type int $lockHint
+     *           Optional. Lock Hint for the request, it can only be used with read-write
+     *           transactions.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1786,6 +1799,14 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['dataBoostEnabled'])) {
             $request->setDataBoostEnabled($optionalArgs['dataBoostEnabled']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['lockHint'])) {
+            $request->setLockHint($optionalArgs['lockHint']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1943,6 +1964,19 @@ class SpannerGapicClient
      *
      *           If the field is set to `true` but the request does not set
      *           `partition_token`, the API returns an `INVALID_ARGUMENT` error.
+     *     @type int $orderBy
+     *           Optional. Order for the returned rows.
+     *
+     *           By default, Spanner will return result rows in primary key order except for
+     *           PartitionRead requests. For applications that do not require rows to be
+     *           returned in primary key (`ORDER_BY_PRIMARY_KEY`) order, setting
+     *           `ORDER_BY_NO_ORDER` option allows Spanner to optimize row retrieval,
+     *           resulting in lower latencies in certain cases (e.g. bulk point lookups).
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ReadRequest\OrderBy}
+     *     @type int $lockHint
+     *           Optional. Lock Hint for the request, it can only be used with read-write
+     *           transactions.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -1997,6 +2031,14 @@ class SpannerGapicClient
 
         if (isset($optionalArgs['dataBoostEnabled'])) {
             $request->setDataBoostEnabled($optionalArgs['dataBoostEnabled']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['lockHint'])) {
+            $request->setLockHint($optionalArgs['lockHint']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

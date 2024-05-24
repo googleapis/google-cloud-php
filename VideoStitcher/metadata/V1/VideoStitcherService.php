@@ -24,14 +24,15 @@ class VideoStitcherService
         \GPBMetadata\Google\Cloud\Video\Stitcher\V1\Sessions::initOnce();
         \GPBMetadata\Google\Cloud\Video\Stitcher\V1\Slates::initOnce();
         \GPBMetadata\Google\Cloud\Video\Stitcher\V1\StitchDetails::initOnce();
+        \GPBMetadata\Google\Cloud\Video\Stitcher\V1\VodConfigs::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ÕO
-;google/cloud/video/stitcher/v1/video_stitcher_service.protogoogle.cloud.video.stitcher.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/video/stitcher/v1/ad_tag_details.proto-google/cloud/video/stitcher/v1/cdn_keys.proto1google/cloud/video/stitcher/v1/live_configs.proto-google/cloud/video/stitcher/v1/sessions.proto+google/cloud/video/stitcher/v1/slates.proto3google/cloud/video/stitcher/v1/stitch_details.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"©
+ıc
+;google/cloud/video/stitcher/v1/video_stitcher_service.protogoogle.cloud.video.stitcher.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/video/stitcher/v1/ad_tag_details.proto-google/cloud/video/stitcher/v1/cdn_keys.proto1google/cloud/video/stitcher/v1/live_configs.proto-google/cloud/video/stitcher/v1/sessions.proto+google/cloud/video/stitcher/v1/slates.proto3google/cloud/video/stitcher/v1/stitch_details.proto0google/cloud/video/stitcher/v1/vod_configs.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"©
 CreateCdnKeyRequest;
 parent (	B+‡A˙A%#videostitcher.googleapis.com/CdnKey<
 cdn_key (2&.google.cloud.video.stitcher.v1.CdnKeyB‡A
@@ -150,12 +151,43 @@ page_token (	
 \'videostitcher.googleapis.com/LiveConfig"X
 DeleteLiveConfigRequest=
 name (	B/‡A˙A)
-\'videostitcher.googleapis.com/LiveConfig"ê
+\'videostitcher.googleapis.com/LiveConfig"ï
+UpdateLiveConfigRequestD
+live_config (2*.google.cloud.video.stitcher.v1.LiveConfigB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"—
+CreateVodConfigRequest>
+parent (	B.‡A˙A(&videostitcher.googleapis.com/VodConfig
+vod_config_id (	B‡AB
+
+vod_config (2).google.cloud.video.stitcher.v1.VodConfigB‡A
+
+request_id (	B‡A"¥
+ListVodConfigsRequest>
+parent (	B.‡A˙A(&videostitcher.googleapis.com/VodConfig
+	page_size (B‡A
+
+page_token (	B‡A
+filter (	B‡A
+order_by (	B‡A"Ü
+ListVodConfigsResponse>
+vod_configs (2).google.cloud.video.stitcher.v1.VodConfig
+next_page_token (	
+unreachable (	"S
+GetVodConfigRequest<
+name (	B.‡A˙A(
+&videostitcher.googleapis.com/VodConfig"V
+DeleteVodConfigRequest<
+name (	B.‡A˙A(
+&videostitcher.googleapis.com/VodConfig"í
+UpdateVodConfigRequestB
+
+vod_config (2).google.cloud.video.stitcher.v1.VodConfigB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"ê
 OperationMetadata/
 create_time (2.google.protobuf.Timestamp,
 end_time (2.google.protobuf.Timestamp
 target (	
-verb (	2œ*
+verb (	2◊6
 VideoStitcherServiceô
 CreateCdnKey3.google.cloud.video.stitcher.v1.CreateCdnKeyRequest.google.longrunning.Operation"¥ AY
 %google.cloud.video.stitcher.v1.CdnKey0google.cloud.video.stitcher.v1.OperationMetadata⁄Aparent,cdn_key,cdn_key_idÇ”‰ì6"+/v1/{parent=projects/*/locations/*}/cdnKeys:cdn_key¥
@@ -189,7 +221,19 @@ $google.cloud.video.stitcher.v1.Slate0google.cloud.video.stitcher.v1.OperationM
 ListLiveConfigs6.google.cloud.video.stitcher.v1.ListLiveConfigsRequest7.google.cloud.video.stitcher.v1.ListLiveConfigsResponse"@⁄AparentÇ”‰ì1//v1/{parent=projects/*/locations/*}/liveConfigs±
 GetLiveConfig4.google.cloud.video.stitcher.v1.GetLiveConfigRequest*.google.cloud.video.stitcher.v1.LiveConfig">⁄AnameÇ”‰ì1//v1/{name=projects/*/locations/*/liveConfigs/*}˜
 DeleteLiveConfig7.google.cloud.video.stitcher.v1.DeleteLiveConfigRequest.google.longrunning.Operation"ä AI
-google.protobuf.Empty0google.cloud.video.stitcher.v1.OperationMetadata⁄AnameÇ”‰ì1*//v1/{name=projects/*/locations/*/liveConfigs/*}P Avideostitcher.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÅ
+google.protobuf.Empty0google.cloud.video.stitcher.v1.OperationMetadata⁄AnameÇ”‰ì1*//v1/{name=projects/*/locations/*/liveConfigs/*}∑
+UpdateLiveConfig7.google.cloud.video.stitcher.v1.UpdateLiveConfigRequest.google.longrunning.Operation"  A]
+)google.cloud.video.stitcher.v1.LiveConfig0google.cloud.video.stitcher.v1.OperationMetadata⁄Alive_config,update_maskÇ”‰ìJ2;/v1/{live_config.name=projects/*/locations/*/liveConfigs/*}:live_configÆ
+CreateVodConfig6.google.cloud.video.stitcher.v1.CreateVodConfigRequest.google.longrunning.Operation"√ A\\
+(google.cloud.video.stitcher.v1.VodConfig0google.cloud.video.stitcher.v1.OperationMetadata⁄Aparent,vod_config,vod_config_idÇ”‰ì<"./v1/{parent=projects/*/locations/*}/vodConfigs:
+vod_config¿
+ListVodConfigs5.google.cloud.video.stitcher.v1.ListVodConfigsRequest6.google.cloud.video.stitcher.v1.ListVodConfigsResponse"?⁄AparentÇ”‰ì0./v1/{parent=projects/*/locations/*}/vodConfigs≠
+GetVodConfig3.google.cloud.video.stitcher.v1.GetVodConfigRequest).google.cloud.video.stitcher.v1.VodConfig"=⁄AnameÇ”‰ì0./v1/{name=projects/*/locations/*/vodConfigs/*}Ù
+DeleteVodConfig6.google.cloud.video.stitcher.v1.DeleteVodConfigRequest.google.longrunning.Operation"â AI
+google.protobuf.Empty0google.cloud.video.stitcher.v1.OperationMetadata⁄AnameÇ”‰ì0*./v1/{name=projects/*/locations/*/vodConfigs/*}∞
+UpdateVodConfig6.google.cloud.video.stitcher.v1.UpdateVodConfigRequest.google.longrunning.Operation"≈ A\\
+(google.cloud.video.stitcher.v1.VodConfig0google.cloud.video.stitcher.v1.OperationMetadata⁄Avod_config,update_maskÇ”‰ìG29/v1/{vod_config.name=projects/*/locations/*/vodConfigs/*}:
+vod_configP Avideostitcher.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÅ
 "com.google.cloud.video.stitcher.v1BVideoStitcherServiceProtoPZ>cloud.google.com/go/video/stitcher/apiv1/stitcherpb;stitcherpbbproto3'
         , true);
 
