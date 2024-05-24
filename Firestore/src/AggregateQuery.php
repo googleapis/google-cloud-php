@@ -18,9 +18,12 @@
 namespace Google\Cloud\Firestore;
 
 use Google\ApiCore\Serializer;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\QueryTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
 
 /**
  * A Cloud Firestore Aggregate Query.
@@ -37,6 +40,7 @@ use Google\Cloud\Firestore\QueryTrait;
  */
 class AggregateQuery
 {
+    use ApiHelperTrait;
     use QueryTrait;
 
     /**
@@ -114,25 +118,31 @@ class AggregateQuery
     /**
      * Executes the AggregateQuery.
      *
-     * @param array $options [optional] {
-     *     Configuration options is an array.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param array $options [optional] Configuration options is an array.
+     *
      * @return AggregateQuerySnapshot
      */
     public function getSnapshot($options = [])
     {
-        $parsedAggregates = [];
-        foreach ($this->aggregates as $aggregate) {
-            $parsedAggregates[] = $aggregate->getProps();
-        }
-        $snapshot = $this->connection->runAggregationQuery([
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += $this->arrayFilterRemoveNull([
             'parent' => $this->parentName,
             'structuredAggregationQuery' => $this->aggregateQueryPrepare([
                 'aggregates' => $this->aggregates
             ] + $this->query),
-        ] + $options)->current();
+        ]);
+        $request = $this->serializer->decodeMessage(new RunAggregationQueryRequest(), $data);
+
+        $snapshot = $this->requestHandler->sendRequest(
+            FirestoreClient::class,
+            'runAggregationQuery',
+            $request,
+            $optionalArgs
+        )->current();
 
         return new AggregateQuerySnapshot($snapshot);
     }

@@ -201,11 +201,11 @@ class Query
      * $count = $query->count();
      * ```
      *
-     * @param array $options [optional] {
-     *     Configuration options is an array.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param array $options [optional] Configuration options is an array.
      * @return int
      */
     public function count(array $options = [])
@@ -229,12 +229,12 @@ class Query
      * Sum of data which contains `NaN` returns `NaN`.
      * Non numeric values are ignored.
      *
-     * @param string $field The relative path of the field to aggregate upon.
-     * @param array $options [optional] {
-     *     Configuration options is an array.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param string $field The relative path of the field to aggregate upon.
+     * @param array $options [optional] Configuration options is an array.
      * @return int|float
      */
     public function sum(string $field, array $options = [])
@@ -258,12 +258,12 @@ class Query
      * Average of data which contains `NaN` returns `NaN`.
      * Non numeric values are ignored.
      *
-     * @param string $field The relative path of the field to aggregate upon.
-     * @param array $options [optional] {
-     *     Configuration options is an array.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param string $field The relative path of the field to aggregate upon.
+     * @param array $options [optional] Configuration options is an array.
      * @return float|null
      */
     public function avg(string $field, array $options = [])

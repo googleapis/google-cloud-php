@@ -158,27 +158,16 @@ class Transaction
      * $snapshot = $transaction->runAggregateQuery($aggregateQuery);
      * ```
      *
-     * @param AggregateQuery $aggregateQuery The aggregate query to retrieve.
-     * @param array $options {
-     *     Configuration Options
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#runaggregationqueryrequest RunAggregationqueryRequest
+     * @codingStandardsIgnoreEnd
      *
-     *     @type Timestamp $readTime Reads entities as they were at the given timestamp.
-     * }
+     * @param AggregateQuery $aggregateQuery The aggregate query to retrieve.
+     * @param array $options [optional] Configuration options is an array.
      * @return AggregateQuerySnapshot
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is specified.
      */
     public function runAggregateQuery(AggregateQuery $aggregateQuery, array $options = [])
     {
-        if (isset($options['readTime'])) {
-            if (!($options['readTime'] instanceof Timestamp)) {
-                throw new \InvalidArgumentException(sprintf(
-                    '`$options.readTime` must be an instance of %s',
-                    Timestamp::class
-                ));
-            }
-
-            $options['readTime'] = $options['readTime']->formatForApi();
-        }
         return $aggregateQuery->getSnapshot([
             'transaction' => $this->transaction
         ] + $options);
