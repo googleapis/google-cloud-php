@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,38 +22,33 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START videostitcher_v1_generated_VideoStitcherService_CreateVodSession_sync]
+// [START videostitcher_v1_generated_VideoStitcherService_GetVodConfig_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Video\Stitcher\V1\AdTracking;
 use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
-use Google\Cloud\Video\Stitcher\V1\CreateVodSessionRequest;
-use Google\Cloud\Video\Stitcher\V1\VodSession;
+use Google\Cloud\Video\Stitcher\V1\GetVodConfigRequest;
+use Google\Cloud\Video\Stitcher\V1\VodConfig;
 
 /**
- * Creates a client side playback VOD session and returns the full
- * tracking and playback metadata of the session.
+ * Returns the specified VOD config managed by the Video
+ * Stitcher API service.
  *
- * @param string $formattedParent      The project and location in which the VOD session should be
- *                                     created, in the form of `projects/{project_number}/locations/{location}`. Please see
- *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
- * @param int    $vodSessionAdTracking Determines how the ad should be tracked.
+ * @param string $formattedName The name of the VOD config to be retrieved, in the form
+ *                              of `projects/{project_number}/locations/{location}/vodConfigs/{id}`. Please see
+ *                              {@see VideoStitcherServiceClient::vodConfigName()} for help formatting this field.
  */
-function create_vod_session_sample(string $formattedParent, int $vodSessionAdTracking): void
+function get_vod_config_sample(string $formattedName): void
 {
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
     // Prepare the request message.
-    $vodSession = (new VodSession())
-        ->setAdTracking($vodSessionAdTracking);
-    $request = (new CreateVodSessionRequest())
-        ->setParent($formattedParent)
-        ->setVodSession($vodSession);
+    $request = (new GetVodConfigRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var VodSession $response */
-        $response = $videoStitcherServiceClient->createVodSession($request);
+        /** @var VodConfig $response */
+        $response = $videoStitcherServiceClient->getVodConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -71,9 +66,12 @@ function create_vod_session_sample(string $formattedParent, int $vodSessionAdTra
  */
 function callSample(): void
 {
-    $formattedParent = VideoStitcherServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $vodSessionAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
+    $formattedName = VideoStitcherServiceClient::vodConfigName(
+        '[PROJECT]',
+        '[LOCATION]',
+        '[VOD_CONFIG]'
+    );
 
-    create_vod_session_sample($formattedParent, $vodSessionAdTracking);
+    get_vod_config_sample($formattedName);
 }
-// [END videostitcher_v1_generated_VideoStitcherService_CreateVodSession_sync]
+// [END videostitcher_v1_generated_VideoStitcherService_GetVodConfig_sync]

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,52 +22,51 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START videostitcher_v1_generated_VideoStitcherService_CreateLiveConfig_sync]
+// [START videostitcher_v1_generated_VideoStitcherService_CreateVodConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Video\Stitcher\V1\AdTracking;
 use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
-use Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest;
-use Google\Cloud\Video\Stitcher\V1\LiveConfig;
+use Google\Cloud\Video\Stitcher\V1\CreateVodConfigRequest;
+use Google\Cloud\Video\Stitcher\V1\VodConfig;
 use Google\Rpc\Status;
 
 /**
- * Registers the live config with the provided unique ID in
+ * Registers the VOD config with the provided unique ID in
  * the specified region.
  *
- * @param string $formattedParent      The project in which the live config should be created, in
- *                                     the form of `projects/{project_number}/locations/{location}`. Please see
- *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
- * @param string $liveConfigId         The unique identifier ID to use for the live config.
- * @param string $liveConfigSourceUri  Source URI for the live stream manifest.
- * @param int    $liveConfigAdTracking Determines how the ads are tracked.
+ * @param string $formattedParent    The project in which the VOD config should be created, in
+ *                                   the form of `projects/{project_number}/locations/{location}`. Please see
+ *                                   {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
+ * @param string $vodConfigId        The unique identifier ID to use for the VOD config.
+ * @param string $vodConfigSourceUri Source URI for the VOD stream manifest.
+ * @param string $vodConfigAdTagUri  The default ad tag associated with this VOD config.
  */
-function create_live_config_sample(
+function create_vod_config_sample(
     string $formattedParent,
-    string $liveConfigId,
-    string $liveConfigSourceUri,
-    int $liveConfigAdTracking
+    string $vodConfigId,
+    string $vodConfigSourceUri,
+    string $vodConfigAdTagUri
 ): void {
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
     // Prepare the request message.
-    $liveConfig = (new LiveConfig())
-        ->setSourceUri($liveConfigSourceUri)
-        ->setAdTracking($liveConfigAdTracking);
-    $request = (new CreateLiveConfigRequest())
+    $vodConfig = (new VodConfig())
+        ->setSourceUri($vodConfigSourceUri)
+        ->setAdTagUri($vodConfigAdTagUri);
+    $request = (new CreateVodConfigRequest())
         ->setParent($formattedParent)
-        ->setLiveConfigId($liveConfigId)
-        ->setLiveConfig($liveConfig);
+        ->setVodConfigId($vodConfigId)
+        ->setVodConfig($vodConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $videoStitcherServiceClient->createLiveConfig($request);
+        $response = $videoStitcherServiceClient->createVodConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var LiveConfig $result */
+            /** @var VodConfig $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -92,15 +91,10 @@ function create_live_config_sample(
 function callSample(): void
 {
     $formattedParent = VideoStitcherServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $liveConfigId = '[LIVE_CONFIG_ID]';
-    $liveConfigSourceUri = '[SOURCE_URI]';
-    $liveConfigAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
+    $vodConfigId = '[VOD_CONFIG_ID]';
+    $vodConfigSourceUri = '[SOURCE_URI]';
+    $vodConfigAdTagUri = '[AD_TAG_URI]';
 
-    create_live_config_sample(
-        $formattedParent,
-        $liveConfigId,
-        $liveConfigSourceUri,
-        $liveConfigAdTracking
-    );
+    create_vod_config_sample($formattedParent, $vodConfigId, $vodConfigSourceUri, $vodConfigAdTagUri);
 }
-// [END videostitcher_v1_generated_VideoStitcherService_CreateLiveConfig_sync]
+// [END videostitcher_v1_generated_VideoStitcherService_CreateVodConfig_sync]

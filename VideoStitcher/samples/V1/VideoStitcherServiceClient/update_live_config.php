@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,32 +22,25 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START videostitcher_v1_generated_VideoStitcherService_CreateLiveConfig_sync]
+// [START videostitcher_v1_generated_VideoStitcherService_UpdateLiveConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Video\Stitcher\V1\AdTracking;
 use Google\Cloud\Video\Stitcher\V1\Client\VideoStitcherServiceClient;
-use Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\LiveConfig;
+use Google\Cloud\Video\Stitcher\V1\UpdateLiveConfigRequest;
+use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
- * Registers the live config with the provided unique ID in
- * the specified region.
+ * Updates the specified LiveConfig. Only update fields specified
+ * in the call method body.
  *
- * @param string $formattedParent      The project in which the live config should be created, in
- *                                     the form of `projects/{project_number}/locations/{location}`. Please see
- *                                     {@see VideoStitcherServiceClient::locationName()} for help formatting this field.
- * @param string $liveConfigId         The unique identifier ID to use for the live config.
  * @param string $liveConfigSourceUri  Source URI for the live stream manifest.
  * @param int    $liveConfigAdTracking Determines how the ads are tracked.
  */
-function create_live_config_sample(
-    string $formattedParent,
-    string $liveConfigId,
-    string $liveConfigSourceUri,
-    int $liveConfigAdTracking
-): void {
+function update_live_config_sample(string $liveConfigSourceUri, int $liveConfigAdTracking): void
+{
     // Create a client.
     $videoStitcherServiceClient = new VideoStitcherServiceClient();
 
@@ -55,15 +48,15 @@ function create_live_config_sample(
     $liveConfig = (new LiveConfig())
         ->setSourceUri($liveConfigSourceUri)
         ->setAdTracking($liveConfigAdTracking);
-    $request = (new CreateLiveConfigRequest())
-        ->setParent($formattedParent)
-        ->setLiveConfigId($liveConfigId)
-        ->setLiveConfig($liveConfig);
+    $updateMask = new FieldMask();
+    $request = (new UpdateLiveConfigRequest())
+        ->setLiveConfig($liveConfig)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $videoStitcherServiceClient->createLiveConfig($request);
+        $response = $videoStitcherServiceClient->updateLiveConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
@@ -91,16 +84,9 @@ function create_live_config_sample(
  */
 function callSample(): void
 {
-    $formattedParent = VideoStitcherServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $liveConfigId = '[LIVE_CONFIG_ID]';
     $liveConfigSourceUri = '[SOURCE_URI]';
     $liveConfigAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
 
-    create_live_config_sample(
-        $formattedParent,
-        $liveConfigId,
-        $liveConfigSourceUri,
-        $liveConfigAdTracking
-    );
+    update_live_config_sample($liveConfigSourceUri, $liveConfigAdTracking);
 }
-// [END videostitcher_v1_generated_VideoStitcherService_CreateLiveConfig_sync]
+// [END videostitcher_v1_generated_VideoStitcherService_UpdateLiveConfig_sync]
