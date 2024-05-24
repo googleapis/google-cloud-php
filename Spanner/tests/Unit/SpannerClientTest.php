@@ -81,6 +81,7 @@ class SpannerClientTest extends TestCase
         $this->client = TestHelpers::stub(SpannerClient::class, [
             [
                 'projectId' => self::PROJECT,
+                'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
                 'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
             ]
         ]);
