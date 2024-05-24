@@ -26,6 +26,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
+use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -409,7 +410,10 @@ class DatabaseTest extends TestCase
             },
             $operationResponse->reveal()
         );
-        new OperationResponse('my-operation', new DatabaseAdminClient(), [
+        new OperationResponse('my-operation', new DatabaseAdminClient([
+            'projectId' => 'my-project',
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+        ]), [
             'lastProtoResponse' => $this->serializer->decodeMessage(
                 new GapicDatabase(),
                 ['name' => 'my-database']
