@@ -29,7 +29,13 @@ level check and exception is thrown by the Serializer when it converts the array
 
 ## ListDocuments
 
-ListDocuments rpc is exposed via [Lorem Epsum] methods. These method used to return an `\InvalidArgumentException`
+ListDocuments rpc is exposed via `CollectionReference::listDocuments()` method. These method used to return an `\InvalidArgumentException`
+when `readTime` was invalid. Now we've removed this client level check and exception is thrown by the Serializer
+when it converts the array data into Protobuf Request object.
+
+## RunQuery
+
+RunQuery RPC is exposed via `CollectionReference::documents()` and `Transaction::runQuery()` methods. These method used to return an `\InvalidArgumentException`
 when `readTime` was invalid. Now we've removed this client level check and exception is thrown by the Serializer
 when it converts the array data into Protobuf Request object.
 

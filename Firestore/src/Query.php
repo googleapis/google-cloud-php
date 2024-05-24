@@ -26,10 +26,12 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldValue\FieldValueInterface;
 use Google\Cloud\Firestore\QueryTrait;
 use Google\Cloud\Firestore\SnapshotTrait;
+use Google\Cloud\Firestore\V1\Client\FirestoreClient as V1FirestoreClient;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter\Operator as UnaryFilterOperator;
+use Google\Cloud\Firestore\V1beta1\RunQueryRequest;
 
 /**
  * A Cloud Firestore Query.
@@ -314,7 +316,7 @@ class Query
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.RunQuery RunQuery
+     * @see https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1#google.firestore.v1.Firestore.RunQuery RunQuery
      * @codingStandardsIgnoreEnd
      * @param array $options {
      *     Configuration options.
@@ -323,19 +325,13 @@ class Query
      *           **Defaults to** `5`.
      * }
      * @return QuerySnapshot<DocumentSnapshot>
-     * @throws \InvalidArgumentException if an invalid `$options.readTime` is
-     *     specified.
      * @throws \RuntimeException If limit-to-last is enabled but no order-by has
      *     been specified.
      */
     public function documents(array $options = [])
     {
-        $options = $this->formatReadTimeOption($options);
-
         $maxRetries = $this->pluck('maxRetries', $options, false);
-        $maxRetries = $maxRetries === null
-            ? FirestoreClient::MAX_RETRIES
-            : $maxRetries;
+        $maxRetries = $maxRetries ?? FirestoreClient::MAX_RETRIES;
 
         $query = $this->structuredQueryPrepare([
             'query' => $this->query,
@@ -343,11 +339,18 @@ class Query
         ]);
         $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
 
-            $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
+            list($data, $optionalArgs) = $this->splitOptionalArgs(['retrySettings' => ['maxRetries' => 0]] + $options);
+            $data += $this->arrayFilterRemoveNull([
                 'parent' => $this->parentName,
                 'structuredQuery' => $query,
-                'retries' => 0
-            ]) + $options);
+            ]);
+            $request = $this->serializer->decodeMessage(new RunQueryRequest(), $data);
+            $generator = $this->requestHandler->sendRequest(
+                V1FirestoreClient::class,
+                'runQuery',
+                $request,
+                $optionalArgs
+            );
 
             // cache collection references
             $collections = [];
