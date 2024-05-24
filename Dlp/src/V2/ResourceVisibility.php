@@ -28,8 +28,8 @@ class ResourceVisibility
     const RESOURCE_VISIBILITY_PUBLIC = 10;
     /**
      * May contain public items.
-     * For example, if a GCS bucket has uniform bucket level access disabled, some
-     * objects inside it may be public.
+     * For example, if a Cloud Storage bucket has uniform bucket level access
+     * disabled, some objects inside it may be public.
      *
      * Generated from protobuf enum <code>RESOURCE_VISIBILITY_INCONCLUSIVE = 15;</code>
      */

@@ -20,7 +20,7 @@ class DatabaseResourceRegex extends \Google\Protobuf\Internal\Message
 {
     /**
      * For organizations, if unset, will match all projects. Has no effect
-     * for Data Profile configurations created within a project.
+     * for configurations created within a project.
      *
      * Generated from protobuf field <code>string project_id_regex = 1;</code>
      */
@@ -55,7 +55,7 @@ class DatabaseResourceRegex extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id_regex
      *           For organizations, if unset, will match all projects. Has no effect
-     *           for Data Profile configurations created within a project.
+     *           for configurations created within a project.
      *     @type string $instance_regex
      *           Regex to test the instance name against. If empty, all instances match.
      *     @type string $database_regex
@@ -74,7 +74,7 @@ class DatabaseResourceRegex extends \Google\Protobuf\Internal\Message
 
     /**
      * For organizations, if unset, will match all projects. Has no effect
-     * for Data Profile configurations created within a project.
+     * for configurations created within a project.
      *
      * Generated from protobuf field <code>string project_id_regex = 1;</code>
      * @return string
@@ -86,7 +86,7 @@ class DatabaseResourceRegex extends \Google\Protobuf\Internal\Message
 
     /**
      * For organizations, if unset, will match all projects. Has no effect
-     * for Data Profile configurations created within a project.
+     * for configurations created within a project.
      *
      * Generated from protobuf field <code>string project_id_regex = 1;</code>
      * @param string $var

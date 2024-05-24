@@ -15,7 +15,7 @@ use UnexpectedValueException;
 class DatabaseEngine
 {
     /**
-     * An engine that is not currently supported by SDP.
+     * An engine that is not currently supported by Sensitive Data Protection.
      *
      * Generated from protobuf enum <code>DATABASE_ENGINE_UNKNOWN = 0;</code>
      */
@@ -27,7 +27,7 @@ class DatabaseEngine
      */
     const DATABASE_ENGINE_MYSQL = 1;
     /**
-     * Cloud SQL for Postgres instance.
+     * Cloud SQL for PostgreSQL instance.
      *
      * Generated from protobuf enum <code>DATABASE_ENGINE_POSTGRES = 2;</code>
      */

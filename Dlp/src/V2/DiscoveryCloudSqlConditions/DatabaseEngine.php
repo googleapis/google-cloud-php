@@ -26,13 +26,13 @@ class DatabaseEngine
      */
     const ALL_SUPPORTED_DATABASE_ENGINES = 1;
     /**
-     * MySql database.
+     * MySQL database.
      *
      * Generated from protobuf enum <code>MYSQL = 2;</code>
      */
     const MYSQL = 2;
     /**
-     * PostGres database.
+     * PostgreSQL database.
      *
      * Generated from protobuf enum <code>POSTGRES = 3;</code>
      */

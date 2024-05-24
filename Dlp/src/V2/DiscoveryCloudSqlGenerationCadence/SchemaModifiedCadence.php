@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * How frequency to modify the profile when the table's schema is modified.
+ * How frequently to modify the profile when the table's schema is modified.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DiscoveryCloudSqlGenerationCadence.SchemaModifiedCadence</code>
  */
