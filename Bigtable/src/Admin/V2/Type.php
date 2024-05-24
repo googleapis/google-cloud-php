@@ -22,18 +22,18 @@ use Google\Protobuf\Internal\GPBUtil;
  *  * Natural sort: Does the encoded value sort consistently with the original
  *    typed value? Note that Bigtable will always sort data based on the raw
  *    encoded value, *not* the decoded type.
- *     - Example: STRING values sort in the same order as their UTF-8 encodings.
+ *     - Example: BYTES values sort in the same order as their raw encodings.
  *     - Counterexample: Encoding INT64 to a fixed-width STRING does *not*
  *       preserve sort order when dealing with negative numbers.
  *       INT64(1) > INT64(-1), but STRING("-00001") > STRING("00001).
- *     - The overall encoding chain sorts naturally if *every* link does.
+ *     - The overall encoding chain has this property if *every* link does.
  *  * Self-delimiting: If we concatenate two encoded values, can we always tell
  *    where the first one ends and the second one begins?
  *     - Example: If we encode INT64s to fixed-width STRINGs, the first value
  *       will always contain exactly N digits, possibly preceded by a sign.
  *     - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have
  *       no way to tell where the first one ends.
- *     - The overall encoding chain is self-delimiting if *any* link is.
+ *     - The overall encoding chain has this property if *any* link does.
  *  * Compatibility: Which other systems have matching encoding schemes? For
  *    example, does this encoding have a GoogleSQL equivalent? HBase? Java?
  *
@@ -51,6 +51,8 @@ class Type extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Bytes $bytes_type
      *           Bytes
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\PBString $string_type
+     *           String
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Int64 $int64_type
      *           Int64
      *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Aggregate $aggregate_type
@@ -89,6 +91,37 @@ class Type extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Bytes::class);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * String
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String string_type = 2;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\PBString|null
+     */
+    public function getStringType()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasStringType()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * String
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String string_type = 2;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\PBString $var
+     * @return $this
+     */
+    public function setStringType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\PBString::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }
