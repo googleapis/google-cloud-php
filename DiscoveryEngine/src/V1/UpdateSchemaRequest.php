@@ -25,7 +25,7 @@ class UpdateSchemaRequest extends \Google\Protobuf\Internal\Message
     protected $schema = null;
     /**
      * If set to true, and the [Schema][google.cloud.discoveryengine.v1.Schema] is
-     * not found, a new [Schema][google.cloud.discoveryengine.v1.Schema] will be
+     * not found, a new [Schema][google.cloud.discoveryengine.v1.Schema] is
      * created. In this situation, `update_mask` is ignored.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -42,7 +42,7 @@ class UpdateSchemaRequest extends \Google\Protobuf\Internal\Message
      *           Required. The [Schema][google.cloud.discoveryengine.v1.Schema] to update.
      *     @type bool $allow_missing
      *           If set to true, and the [Schema][google.cloud.discoveryengine.v1.Schema] is
-     *           not found, a new [Schema][google.cloud.discoveryengine.v1.Schema] will be
+     *           not found, a new [Schema][google.cloud.discoveryengine.v1.Schema] is
      *           created. In this situation, `update_mask` is ignored.
      * }
      */
@@ -89,7 +89,7 @@ class UpdateSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If set to true, and the [Schema][google.cloud.discoveryengine.v1.Schema] is
-     * not found, a new [Schema][google.cloud.discoveryengine.v1.Schema] will be
+     * not found, a new [Schema][google.cloud.discoveryengine.v1.Schema] is
      * created. In this situation, `update_mask` is ignored.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
@@ -102,7 +102,7 @@ class UpdateSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If set to true, and the [Schema][google.cloud.discoveryengine.v1.Schema] is
-     * not found, a new [Schema][google.cloud.discoveryengine.v1.Schema] will be
+     * not found, a new [Schema][google.cloud.discoveryengine.v1.Schema] is
      * created. In this situation, `update_mask` is ignored.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>

@@ -181,6 +181,25 @@ final class DataStoreServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * document_processing_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted document_processing_config resource.
+     */
+    public static function documentProcessingConfigName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('documentProcessingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_data_store resource.
      *
      * @param string $project
@@ -197,6 +216,31 @@ final class DataStoreServiceClient
         string $dataStore
     ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_documentProcessingConfig resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store_documentProcessingConfig resource.
+     */
+    public static function projectLocationCollectionDataStoreDocumentProcessingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreDocumentProcessingConfig')->render([
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
@@ -245,6 +289,28 @@ final class DataStoreServiceClient
     public static function projectLocationDataStoreName(string $project, string $location, string $dataStore): string
     {
         return self::getPathTemplate('projectLocationDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_documentProcessingConfig resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store_documentProcessingConfig resource.
+     */
+    public static function projectLocationDataStoreDocumentProcessingConfigName(
+        string $project,
+        string $location,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreDocumentProcessingConfig')->render([
             'project' => $project,
             'location' => $location,
             'data_store' => $dataStore,
@@ -303,9 +369,12 @@ final class DataStoreServiceClient
      * Template: Pattern
      * - collection: projects/{project}/locations/{location}/collections/{collection}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - documentProcessingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/documentProcessingConfig
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
+     * - projectLocationCollectionDataStoreDocumentProcessingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/documentProcessingConfig
      * - projectLocationCollectionDataStoreSchema: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/schemas/{schema}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - projectLocationDataStoreDocumentProcessingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/documentProcessingConfig
      * - projectLocationDataStoreSchema: projects/{project}/locations/{location}/dataStores/{data_store}/schemas/{schema}
      * - schema: projects/{project}/locations/{location}/dataStores/{data_store}/schemas/{schema}
      *

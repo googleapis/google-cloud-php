@@ -31,8 +31,16 @@ use Google\Cloud\DiscoveryEngine\V1\WriteUserEventRequest;
 /**
  * Writes a single user event.
  *
- * @param string $formattedParent       The parent DataStore resource name, such as
- *                                      `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`. Please see
+ * @param string $formattedParent       The parent resource name.
+ *                                      If the write user event action is applied in
+ *                                      [DataStore][google.cloud.discoveryengine.v1.DataStore] level, the format
+ *                                      is:
+ *                                      `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}`.
+ *                                      If the write user event action is applied in [Location][] level, for
+ *                                      example, the event with
+ *                                      [Document][google.cloud.discoveryengine.v1.Document] across multiple
+ *                                      [DataStore][google.cloud.discoveryengine.v1.DataStore], the format is:
+ *                                      `projects/{project}/locations/{location}`. Please see
  *                                      {@see UserEventServiceClient::dataStoreName()} for help formatting this field.
  * @param string $userEventEventType    User event type. Allowed values are:
  *
