@@ -278,6 +278,8 @@ class UserEventServiceClientTest extends GeneratedTest
         // Mock response
         $eventType = 'eventType984376767';
         $userPseudoId = 'userPseudoId-1850666040';
+        $engine = 'engine-1298662846';
+        $dataStore = 'dataStore1619682316';
         $directUserRequest = false;
         $sessionId = 'sessionId1661853540';
         $attributionToken = 'attributionToken-729411015';
@@ -285,6 +287,8 @@ class UserEventServiceClientTest extends GeneratedTest
         $expectedResponse = new UserEvent();
         $expectedResponse->setEventType($eventType);
         $expectedResponse->setUserPseudoId($userPseudoId);
+        $expectedResponse->setEngine($engine);
+        $expectedResponse->setDataStore($dataStore);
         $expectedResponse->setDirectUserRequest($directUserRequest);
         $expectedResponse->setSessionId($sessionId);
         $expectedResponse->setAttributionToken($attributionToken);

@@ -18,7 +18,7 @@ class Grounding
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‹
+š
 3google/cloud/discoveryengine/v1beta/grounding.proto#google.cloud.discoveryengine.v1betagoogle/api/resource.proto"­
 GroundingFact
 	fact_text (	V
@@ -26,11 +26,12 @@ class Grounding
 attributes (2B.google.cloud.discoveryengine.v1beta.GroundingFact.AttributesEntry1
 AttributesEntry
 key (	
-value (	:8"Ã
+value (	:8"Ò
 	FactChunk
 
 chunk_text (	
-source (	[
+source (	
+index ([
 source_metadata (2B.google.cloud.discoveryengine.v1beta.FactChunk.SourceMetadataEntry5
 SourceMetadataEntry
 key (	

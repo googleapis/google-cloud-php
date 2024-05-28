@@ -365,11 +365,13 @@ class SiteSearchEngineServiceClientTest extends GeneratedTest
         $providedUriPattern = 'providedUriPattern437506913';
         $exactMatch = false;
         $generatedUriPattern = 'generatedUriPattern-1580317427';
+        $rootDomainUri = 'rootDomainUri-789734674';
         $expectedResponse = new TargetSite();
         $expectedResponse->setName($name);
         $expectedResponse->setProvidedUriPattern($providedUriPattern);
         $expectedResponse->setExactMatch($exactMatch);
         $expectedResponse->setGeneratedUriPattern($generatedUriPattern);
+        $expectedResponse->setRootDomainUri($rootDomainUri);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1013,11 +1015,13 @@ class SiteSearchEngineServiceClientTest extends GeneratedTest
         $providedUriPattern = 'providedUriPattern437506913';
         $exactMatch = false;
         $generatedUriPattern = 'generatedUriPattern-1580317427';
+        $rootDomainUri = 'rootDomainUri-789734674';
         $expectedResponse = new TargetSite();
         $expectedResponse->setName($name2);
         $expectedResponse->setProvidedUriPattern($providedUriPattern);
         $expectedResponse->setExactMatch($exactMatch);
         $expectedResponse->setGeneratedUriPattern($generatedUriPattern);
+        $expectedResponse->setRootDomainUri($rootDomainUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->targetSiteName('[PROJECT]', '[LOCATION]', '[DATA_STORE]', '[TARGET_SITE]');
@@ -1304,11 +1308,13 @@ class SiteSearchEngineServiceClientTest extends GeneratedTest
         $providedUriPattern = 'providedUriPattern437506913';
         $exactMatch = false;
         $generatedUriPattern = 'generatedUriPattern-1580317427';
+        $rootDomainUri = 'rootDomainUri-789734674';
         $expectedResponse = new TargetSite();
         $expectedResponse->setName($name);
         $expectedResponse->setProvidedUriPattern($providedUriPattern);
         $expectedResponse->setExactMatch($exactMatch);
         $expectedResponse->setGeneratedUriPattern($generatedUriPattern);
+        $expectedResponse->setRootDomainUri($rootDomainUri);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

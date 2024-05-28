@@ -39,6 +39,13 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.Answer.Reference.UnstructuredDocumentInfo.ChunkContent chunk_contents = 4;</code>
      */
     private $chunk_contents;
+    /**
+     * The structured JSON metadata for the document.
+     * It is populated from the struct data from the Chunk in search result.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 5;</code>
+     */
+    protected $struct_data = null;
 
     /**
      * Constructor.
@@ -54,6 +61,9 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      *           Title.
      *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\Answer\Reference\UnstructuredDocumentInfo\ChunkContent>|\Google\Protobuf\Internal\RepeatedField $chunk_contents
      *           List of cited chunk contents derived from document content.
+     *     @type \Google\Protobuf\Struct $struct_data
+     *           The structured JSON metadata for the document.
+     *           It is populated from the struct data from the Chunk in search result.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +171,44 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1beta\Answer\Reference\UnstructuredDocumentInfo\ChunkContent::class);
         $this->chunk_contents = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The structured JSON metadata for the document.
+     * It is populated from the struct data from the Chunk in search result.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 5;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getStructData()
+    {
+        return $this->struct_data;
+    }
+
+    public function hasStructData()
+    {
+        return isset($this->struct_data);
+    }
+
+    public function clearStructData()
+    {
+        unset($this->struct_data);
+    }
+
+    /**
+     * The structured JSON metadata for the document.
+     * It is populated from the struct data from the Chunk in search result.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct struct_data = 5;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setStructData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->struct_data = $var;
 
         return $this;
     }
