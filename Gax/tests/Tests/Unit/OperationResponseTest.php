@@ -259,6 +259,83 @@ class OperationResponseTest extends TestCase
         $operationResponse->delete();
     }
 
+    public function testNewSurfaceCustomOperation()
+    {
+        // This mock requires a specific namespace, so it must be defined in a separate file
+        require_once __DIR__ . '/testdata/src/CustomOperationClient.php';
+
+        $phpunit = $this;
+        $operationName = 'test-123';
+        $operationClient = $this->prophesize(Client\NewSurfaceCustomOperationClient::class);
+        $operationClient->getNewSurfaceOperation(Argument::type(Client\GetOperationRequest::class))
+            ->shouldBeCalledOnce()
+            ->will(function ($args) use ($phpunit) {
+                list($request) = $args;
+                $phpunit->assertEquals('test-123', $request->name);
+                $phpunit->assertEquals('arg2', $request->arg2);
+                $phpunit->assertEquals('arg3', $request->arg3);
+                return new \stdClass;
+            });
+        $operationClient->cancelNewSurfaceOperation(Argument::type(Client\CancelOperationRequest::class))
+            ->shouldBeCalledOnce()
+            ->will(function ($args) use ($phpunit) {
+                list($request) = $args;
+                $phpunit->assertEquals('test-123', $request->name);
+                $phpunit->assertEquals('arg2', $request->arg2);
+                $phpunit->assertEquals('arg3', $request->arg3);
+                return true;
+            });
+        $operationClient->deleteNewSurfaceOperation(Argument::type(Client\DeleteOperationRequest::class))
+            ->shouldBeCalledOnce()
+            ->will(function ($args) use ($phpunit) {
+                list($request) = $args;
+                $phpunit->assertEquals('test-123', $request->name);
+                $phpunit->assertEquals('arg2', $request->arg2);
+                $phpunit->assertEquals('arg3', $request->arg3);
+                return true;
+            });
+        $options = [
+            'getOperationMethod' => 'getNewSurfaceOperation',
+            'cancelOperationMethod' => 'cancelNewSurfaceOperation',
+            'deleteOperationMethod' => 'deleteNewSurfaceOperation',
+            'additionalOperationArguments' => [
+                'setArgumentTwo' => 'arg2',
+                'setArgumentThree' => 'arg3'
+            ],
+            'getOperationRequest' => Client\GetOperationRequest::class,
+            'cancelOperationRequest' => Client\CancelOperationRequest::class,
+            'deleteOperationRequest' => Client\DeleteOperationRequest::class,
+        ];
+        $operationResponse = new OperationResponse($operationName, $operationClient->reveal(), $options);
+
+        // Test getOperationMethod
+        $operationResponse->reload();
+
+        // test cancelOperationMethod
+        $operationResponse->cancel();
+
+        // test deleteOperationMethod
+        $operationResponse->delete();
+    }
+
+    public function testRequestClassWithoutBuildThrowsException()
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Request class must support the static build method');
+
+        // This mock requires a specific namespace, so it must be defined in a separate file
+        require_once __DIR__ . '/testdata/src/CustomOperationClient.php';
+
+        $operationClient = $this->prophesize(Client\NewSurfaceCustomOperationClient::class);
+        $options = [
+            'getOperationRequest' => \stdClass::class, // a class that does not have a "build" method.
+        ];
+        $operationResponse = new OperationResponse('test-123', $operationClient->reveal(), $options);
+
+        // Test getOperationMethod
+        $operationResponse->reload();
+    }
+
     /**
      * @dataProvider provideOperationsClients
      */

@@ -629,7 +629,7 @@ trait GapicClientTrait
                 'X-Goog-User-Project' => [$quotaProject]
             ];
         }
-        
+
         if (isset($this->apiVersion)) {
             $fixedHeaders += [
                 'X-Goog-Api-Version' => [$this->apiVersion]
