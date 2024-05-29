@@ -32,6 +32,36 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
      */
     private $dedicated_resources = null;
     /**
+     * Customer-managed encryption key spec for a DeploymentResourcePool. If set,
+     * this DeploymentResourcePool will be secured by this key. Endpoints and the
+     * DeploymentResourcePool they deploy in need to have the same EncryptionSpec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 5;</code>
+     */
+    private $encryption_spec = null;
+    /**
+     * The service account that the DeploymentResourcePool's container(s) run as.
+     * Specify the email address of the service account. If this service account
+     * is not specified, the container(s) run as a service account that doesn't
+     * have access to the resource project.
+     * Users deploying the Models to this DeploymentResourcePool must have the
+     * `iam.serviceAccounts.actAs` permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 6;</code>
+     */
+    private $service_account = '';
+    /**
+     * If the DeploymentResourcePool is deployed with custom-trained Models or
+     * AutoML Tabular Models, the container(s) of the DeploymentResourcePool will
+     * send `stderr` and `stdout` streams to Cloud Logging by default.
+     * Please note that the logs incur cost, which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/logging/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 7;</code>
+     */
+    private $disable_container_logging = false;
+    /**
      * Output only. Timestamp when this DeploymentResourcePool was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -51,6 +81,24 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\DedicatedResources $dedicated_resources
      *           Required. The underlying DedicatedResources that the DeploymentResourcePool
      *           uses.
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Customer-managed encryption key spec for a DeploymentResourcePool. If set,
+     *           this DeploymentResourcePool will be secured by this key. Endpoints and the
+     *           DeploymentResourcePool they deploy in need to have the same EncryptionSpec.
+     *     @type string $service_account
+     *           The service account that the DeploymentResourcePool's container(s) run as.
+     *           Specify the email address of the service account. If this service account
+     *           is not specified, the container(s) run as a service account that doesn't
+     *           have access to the resource project.
+     *           Users deploying the Models to this DeploymentResourcePool must have the
+     *           `iam.serviceAccounts.actAs` permission on this service account.
+     *     @type bool $disable_container_logging
+     *           If the DeploymentResourcePool is deployed with custom-trained Models or
+     *           AutoML Tabular Models, the container(s) of the DeploymentResourcePool will
+     *           send `stderr` and `stdout` streams to Cloud Logging by default.
+     *           Please note that the logs incur cost, which are subject to [Cloud Logging
+     *           pricing](https://cloud.google.com/logging/pricing).
+     *           User can disable container logging by setting this flag to true.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this DeploymentResourcePool was created.
      * }
@@ -124,6 +172,118 @@ class DeploymentResourcePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\DedicatedResources::class);
         $this->dedicated_resources = $var;
+
+        return $this;
+    }
+
+    /**
+     * Customer-managed encryption key spec for a DeploymentResourcePool. If set,
+     * this DeploymentResourcePool will be secured by this key. Endpoints and the
+     * DeploymentResourcePool they deploy in need to have the same EncryptionSpec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 5;</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Customer-managed encryption key spec for a DeploymentResourcePool. If set,
+     * this DeploymentResourcePool will be secured by this key. Endpoints and the
+     * DeploymentResourcePool they deploy in need to have the same EncryptionSpec.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 5;</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * The service account that the DeploymentResourcePool's container(s) run as.
+     * Specify the email address of the service account. If this service account
+     * is not specified, the container(s) run as a service account that doesn't
+     * have access to the resource project.
+     * Users deploying the Models to this DeploymentResourcePool must have the
+     * `iam.serviceAccounts.actAs` permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 6;</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * The service account that the DeploymentResourcePool's container(s) run as.
+     * Specify the email address of the service account. If this service account
+     * is not specified, the container(s) run as a service account that doesn't
+     * have access to the resource project.
+     * Users deploying the Models to this DeploymentResourcePool must have the
+     * `iam.serviceAccounts.actAs` permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * If the DeploymentResourcePool is deployed with custom-trained Models or
+     * AutoML Tabular Models, the container(s) of the DeploymentResourcePool will
+     * send `stderr` and `stdout` streams to Cloud Logging by default.
+     * Please note that the logs incur cost, which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/logging/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 7;</code>
+     * @return bool
+     */
+    public function getDisableContainerLogging()
+    {
+        return $this->disable_container_logging;
+    }
+
+    /**
+     * If the DeploymentResourcePool is deployed with custom-trained Models or
+     * AutoML Tabular Models, the container(s) of the DeploymentResourcePool will
+     * send `stderr` and `stdout` streams to Cloud Logging by default.
+     * Please note that the logs incur cost, which are subject to [Cloud Logging
+     * pricing](https://cloud.google.com/logging/pricing).
+     * User can disable container logging by setting this flag to true.
+     *
+     * Generated from protobuf field <code>bool disable_container_logging = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableContainerLogging($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_container_logging = $var;
 
         return $this;
     }

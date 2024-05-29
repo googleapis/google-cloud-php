@@ -25,7 +25,7 @@ class NotebookService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-º-
+³1
 1google/cloud/aiplatform/v1/notebook_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto1google/cloud/aiplatform/v1/notebook_runtime.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"é
 $CreateNotebookRuntimeTemplateRequest9
 parent (	B)àAúA#
@@ -51,7 +51,10 @@ $ListNotebookRuntimeTemplatesResponseW
 next_page_token (	"o
 $DeleteNotebookRuntimeTemplateRequestG
 name (	B9àAúA3
-1aiplatform.googleapis.com/NotebookRuntimeTemplate"¥
+1aiplatform.googleapis.com/NotebookRuntimeTemplate"¹
+$UpdateNotebookRuntimeTemplateRequest[
+notebook_runtime_template (23.google.cloud.aiplatform.v1.NotebookRuntimeTemplateBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"¥
 AssignNotebookRuntimeRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/Location\\
@@ -93,14 +96,15 @@ page_token (	BàA2
 %StartNotebookRuntimeOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata
 progress_message (	"
-StartNotebookRuntimeResponse2ÿ
+StartNotebookRuntimeResponse2¼
 NotebookServiceî
 CreateNotebookRuntimeTemplate@.google.cloud.aiplatform.v1.CreateNotebookRuntimeTemplateRequest.google.longrunning.Operation"ëÊAI
 NotebookRuntimeTemplate.CreateNotebookRuntimeTemplateOperationMetadataÚA=parent,notebook_runtime_template,notebook_runtime_template_id‚Óä“Y"</v1/{parent=projects/*/locations/*}/notebookRuntimeTemplates:notebook_runtime_templateÝ
 GetNotebookRuntimeTemplate=.google.cloud.aiplatform.v1.GetNotebookRuntimeTemplateRequest3.google.cloud.aiplatform.v1.NotebookRuntimeTemplate"KÚAname‚Óä“></v1/{name=projects/*/locations/*/notebookRuntimeTemplates/*}ð
 ListNotebookRuntimeTemplates?.google.cloud.aiplatform.v1.ListNotebookRuntimeTemplatesRequest@.google.cloud.aiplatform.v1.ListNotebookRuntimeTemplatesResponse"MÚAparent‚Óä“></v1/{parent=projects/*/locations/*}/notebookRuntimeTemplates€
 DeleteNotebookRuntimeTemplate@.google.cloud.aiplatform.v1.DeleteNotebookRuntimeTemplateRequest.google.longrunning.Operation"~ÊA0
-google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“>*</v1/{name=projects/*/locations/*/notebookRuntimeTemplates/*}½
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“>*</v1/{name=projects/*/locations/*/notebookRuntimeTemplates/*}º
+UpdateNotebookRuntimeTemplate@.google.cloud.aiplatform.v1.UpdateNotebookRuntimeTemplateRequest3.google.cloud.aiplatform.v1.NotebookRuntimeTemplate"¡ÚA%notebook_runtime_template,update_mask‚Óä“s2V/v1/{notebook_runtime_template.name=projects/*/locations/*/notebookRuntimeTemplates/*}:notebook_runtime_template½
 AssignNotebookRuntime8.google.cloud.aiplatform.v1.AssignNotebookRuntimeRequest.google.longrunning.Operation"ÊÊA9
 NotebookRuntime&AssignNotebookRuntimeOperationMetadataÚAEparent,notebook_runtime_template,notebook_runtime,notebook_runtime_id‚Óä“@";/v1/{parent=projects/*/locations/*}/notebookRuntimes:assign:*½
 GetNotebookRuntime5.google.cloud.aiplatform.v1.GetNotebookRuntimeRequest+.google.cloud.aiplatform.v1.NotebookRuntime"CÚAname‚Óä“64/v1/{name=projects/*/locations/*/notebookRuntimes/*}Ð

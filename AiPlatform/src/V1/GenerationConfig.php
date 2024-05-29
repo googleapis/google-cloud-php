@@ -75,6 +75,18 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string response_mime_type = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $response_mime_type = '';
+    /**
+     * Optional. The `Schema` object allows the definition of input and output
+     * data types. These types can be objects, but also primitives and arrays.
+     * Represents a select subset of an [OpenAPI 3.0 schema
+     * object](https://spec.openapis.org/oas/v3.0.3#schema).
+     * If set, a compatible response_mime_type must also be set.
+     * Compatible mimetypes:
+     * `application/json`: Schema for JSON response.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Schema response_schema = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $response_schema = null;
 
     /**
      * Constructor.
@@ -106,6 +118,14 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           The model needs to be prompted to output the appropriate response type,
      *           otherwise the behavior is undefined.
      *           This is a preview feature.
+     *     @type \Google\Cloud\AIPlatform\V1\Schema $response_schema
+     *           Optional. The `Schema` object allows the definition of input and output
+     *           data types. These types can be objects, but also primitives and arrays.
+     *           Represents a select subset of an [OpenAPI 3.0 schema
+     *           object](https://spec.openapis.org/oas/v3.0.3#schema).
+     *           If set, a compatible response_mime_type must also be set.
+     *           Compatible mimetypes:
+     *           `application/json`: Schema for JSON response.
      * }
      */
     public function __construct($data = NULL) {
@@ -425,6 +445,54 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->response_mime_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The `Schema` object allows the definition of input and output
+     * data types. These types can be objects, but also primitives and arrays.
+     * Represents a select subset of an [OpenAPI 3.0 schema
+     * object](https://spec.openapis.org/oas/v3.0.3#schema).
+     * If set, a compatible response_mime_type must also be set.
+     * Compatible mimetypes:
+     * `application/json`: Schema for JSON response.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Schema response_schema = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\Schema|null
+     */
+    public function getResponseSchema()
+    {
+        return $this->response_schema;
+    }
+
+    public function hasResponseSchema()
+    {
+        return isset($this->response_schema);
+    }
+
+    public function clearResponseSchema()
+    {
+        unset($this->response_schema);
+    }
+
+    /**
+     * Optional. The `Schema` object allows the definition of input and output
+     * data types. These types can be objects, but also primitives and arrays.
+     * Represents a select subset of an [OpenAPI 3.0 schema
+     * object](https://spec.openapis.org/oas/v3.0.3#schema).
+     * If set, a compatible response_mime_type must also be set.
+     * Compatible mimetypes:
+     * `application/json`: Schema for JSON response.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Schema response_schema = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\Schema $var
+     * @return $this
+     */
+    public function setResponseSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Schema::class);
+        $this->response_schema = $var;
 
         return $this;
     }

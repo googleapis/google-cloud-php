@@ -122,6 +122,13 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metadata_artifact = '';
+    /**
+     * Optional. Reference to the public base model last used by the dataset. Only
+     * set for prompt datasets.
+     *
+     * Generated from protobuf field <code>string model_reference = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $model_reference = '';
 
     /**
      * Constructor.
@@ -184,6 +191,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           MetadataStore when creating the Dataset. The Artifact resource name pattern
      *           is
      *           `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *     @type string $model_reference
+     *           Optional. Reference to the public base model last used by the dataset. Only
+     *           set for prompt datasets.
      * }
      */
     public function __construct($data = NULL) {
@@ -623,6 +633,34 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->metadata_artifact = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Reference to the public base model last used by the dataset. Only
+     * set for prompt datasets.
+     *
+     * Generated from protobuf field <code>string model_reference = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModelReference()
+    {
+        return $this->model_reference;
+    }
+
+    /**
+     * Optional. Reference to the public base model last used by the dataset. Only
+     * set for prompt datasets.
+     *
+     * Generated from protobuf field <code>string model_reference = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelReference($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_reference = $var;
 
         return $this;
     }
