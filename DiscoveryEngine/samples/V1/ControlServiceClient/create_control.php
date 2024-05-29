@@ -39,7 +39,9 @@ use Google\Cloud\DiscoveryEngine\V1\SolutionType;
  *
  * @param string $formattedParent     Full resource name of parent data store. Format:
  *                                    `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`
- *                                    Please see {@see ControlServiceClient::dataStoreName()} for help formatting this field.
+ *                                    or
+ *                                    `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`. Please see
+ *                                    {@see ControlServiceClient::dataStoreName()} for help formatting this field.
  * @param string $controlDisplayName  Human readable name. The identifier used in UI views.
  *
  *                                    Must be UTF-8 encoded string. Length limit is 128 characters.

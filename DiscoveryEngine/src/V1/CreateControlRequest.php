@@ -18,6 +18,8 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of parent data store. Format:
      * `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`
+     * or
+     * `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,7 +43,9 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                   $parent    Required. Full resource name of parent data store. Format:
      *                                                            `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`
-     *                                                            Please see {@see ControlServiceClient::dataStoreName()} for help formatting this field.
+     *                                                            or
+     *                                                            `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`. Please see
+     *                                                            {@see ControlServiceClient::dataStoreName()} for help formatting this field.
      * @param \Google\Cloud\DiscoveryEngine\V1\Control $control   Required. The Control to create.
      * @param string                                   $controlId Required. The ID to use for the Control, which will become the final
      *                                                            component of the Control's resource name.
@@ -70,6 +74,8 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Full resource name of parent data store. Format:
      *           `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`
+     *           or
+     *           `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Control $control
      *           Required. The Control to create.
      *     @type string $control_id
@@ -87,6 +93,8 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of parent data store. Format:
      * `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`
+     * or
+     * `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,6 +107,8 @@ class CreateControlRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of parent data store. Format:
      * `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}`
+     * or
+     * `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

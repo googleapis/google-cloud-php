@@ -148,6 +148,27 @@ final class ControlServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a engine
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     *
+     * @return string The formatted engine resource.
+     */
+    public static function engineName(string $project, string $location, string $collection, string $engine): string
+    {
+        return self::getPathTemplate('engine')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_data_store resource.
      *
@@ -278,6 +299,7 @@ final class ControlServiceClient
      * Template: Pattern
      * - control: projects/{project}/locations/{location}/dataStores/{data_store}/controls/{control}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - engine: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreControl: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/controls/{control}
      * - projectLocationCollectionEngineControl: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/controls/{control}

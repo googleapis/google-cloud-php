@@ -95,6 +95,7 @@ return [
             'templateMap' => [
                 'control' => 'projects/{project}/locations/{location}/dataStores/{data_store}/controls/{control}',
                 'dataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
+                'engine' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}',
                 'projectLocationCollectionDataStore' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}',
                 'projectLocationCollectionDataStoreControl' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/controls/{control}',
                 'projectLocationCollectionEngineControl' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/controls/{control}',

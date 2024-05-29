@@ -23,11 +23,10 @@ class ControlService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç
-5google/cloud/discoveryengine/v1/control_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/discoveryengine/v1/control.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"±
-CreateControlRequest@
-parent (	B0‡A˙A*
-(discoveryengine.googleapis.com/DataStore>
+â
+5google/cloud/discoveryengine/v1/control_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/discoveryengine/v1/control.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ø
+CreateControlRequest>
+parent (	B.‡A˙A(&discoveryengine.googleapis.com/Control>
 control (2(.google.cloud.discoveryengine.v1.ControlB‡A
 
 control_id (	B‡A"å
@@ -39,10 +38,9 @@ control_id (	B‡A"å
 &discoveryengine.googleapis.com/Control"Q
 GetControlRequest<
 name (	B.‡A˙A(
-&discoveryengine.googleapis.com/Control"ù
-ListControlsRequest@
-parent (	B0‡A˙A*
-(discoveryengine.googleapis.com/DataStore
+&discoveryengine.googleapis.com/Control"õ
+ListControlsRequest>
+parent (	B.‡A˙A(&discoveryengine.googleapis.com/Control
 	page_size (B‡A
 
 page_token (	B‡A
