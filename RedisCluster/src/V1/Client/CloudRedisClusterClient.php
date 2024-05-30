@@ -27,7 +27,6 @@ namespace Google\Cloud\Redis\Cluster\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -44,6 +43,7 @@ use Google\Cloud\Redis\Cluster\V1\DeleteClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersRequest;
 use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -164,6 +164,25 @@ final class CloudRedisClusterClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
