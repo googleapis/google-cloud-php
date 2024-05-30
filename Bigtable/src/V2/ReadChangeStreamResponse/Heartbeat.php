@@ -22,7 +22,7 @@ class Heartbeat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.StreamContinuationToken continuation_token = 1;</code>
      */
-    private $continuation_token = null;
+    protected $continuation_token = null;
     /**
      * An estimate of the commit timestamp that is usually lower than or equal
      * to any timestamp for a record that will be delivered in the future on the
@@ -33,7 +33,7 @@ class Heartbeat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp estimated_low_watermark = 2;</code>
      */
-    private $estimated_low_watermark = null;
+    protected $estimated_low_watermark = null;
 
     /**
      * Constructor.

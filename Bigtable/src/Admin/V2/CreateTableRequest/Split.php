@@ -20,7 +20,7 @@ class Split extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes key = 1;</code>
      */
-    private $key = '';
+    protected $key = '';
 
     /**
      * Constructor.

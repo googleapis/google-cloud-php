@@ -22,20 +22,20 @@ class DeleteFromColumn extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string family_name = 1;</code>
      */
-    private $family_name = '';
+    protected $family_name = '';
     /**
      * The qualifier of the column from which cells should be deleted.
      * Can be any byte string, including the empty string.
      *
      * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
      */
-    private $column_qualifier = '';
+    protected $column_qualifier = '';
     /**
      * The range of timestamps within which cells should be deleted.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
      */
-    private $time_range = null;
+    protected $time_range = null;
 
     /**
      * Constructor.

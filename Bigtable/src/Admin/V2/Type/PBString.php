@@ -9,17 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Bytes
- * Values of type `Bytes` are stored in `Value.bytes_value`.
+ * String
+ * Values of type `String` are stored in `Value.string_value`.
  *
- * Generated from protobuf message <code>google.bigtable.admin.v2.Type.Bytes</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.Type.String</code>
  */
-class Bytes extends \Google\Protobuf\Internal\Message
+class PBString extends \Google\Protobuf\Internal\Message
 {
     /**
      * The encoding to use when converting to/from lower level types.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes.Encoding encoding = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding encoding = 1;</code>
      */
     protected $encoding = null;
 
@@ -29,7 +29,7 @@ class Bytes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\Bytes\Encoding $encoding
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding $encoding
      *           The encoding to use when converting to/from lower level types.
      * }
      */
@@ -41,8 +41,8 @@ class Bytes extends \Google\Protobuf\Internal\Message
     /**
      * The encoding to use when converting to/from lower level types.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes.Encoding encoding = 1;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Type\Bytes\Encoding|null
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding encoding = 1;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding|null
      */
     public function getEncoding()
     {
@@ -62,13 +62,13 @@ class Bytes extends \Google\Protobuf\Internal\Message
     /**
      * The encoding to use when converting to/from lower level types.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes.Encoding encoding = 1;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\Type\Bytes\Encoding $var
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding encoding = 1;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding $var
      * @return $this
      */
     public function setEncoding($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\Bytes\Encoding::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Type\PBString\Encoding::class);
         $this->encoding = $var;
 
         return $this;
@@ -77,5 +77,5 @@ class Bytes extends \Google\Protobuf\Internal\Message
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Bytes::class, \Google\Cloud\Bigtable\Admin\V2\Type_Bytes::class);
+class_alias(PBString::class, \Google\Cloud\Bigtable\Admin\V2\Type_String::class);
 

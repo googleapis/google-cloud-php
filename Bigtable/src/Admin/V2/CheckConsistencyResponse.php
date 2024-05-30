@@ -22,7 +22,7 @@ class CheckConsistencyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool consistent = 1;</code>
      */
-    private $consistent = false;
+    protected $consistent = false;
 
     /**
      * Constructor.

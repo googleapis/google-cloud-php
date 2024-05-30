@@ -22,28 +22,28 @@ class AddToCell extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string family_name = 1;</code>
      */
-    private $family_name = '';
+    protected $family_name = '';
     /**
      * The qualifier of the column into which new data should be added. This
      * must be a `raw_value`.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Value column_qualifier = 2;</code>
      */
-    private $column_qualifier = null;
+    protected $column_qualifier = null;
     /**
      * The timestamp of the cell to which new data should be added. This must
      * be a `raw_timestamp_micros` that matches the table's `granularity`.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Value timestamp = 3;</code>
      */
-    private $timestamp = null;
+    protected $timestamp = null;
     /**
      * The input value to be accumulated into the specified cell. This must be
      * compatible with the family's `value_type.input_type`.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Value input = 4;</code>
      */
-    private $input = null;
+    protected $input = null;
 
     /**
      * Constructor.
