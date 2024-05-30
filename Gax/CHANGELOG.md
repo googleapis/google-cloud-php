@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.0](https://github.com/googleapis/gax-php/compare/v1.33.0...v1.34.0) (2024-05-29)
+
+
+### Features
+
+* Support new surface operations clients ([#569](https://github.com/googleapis/gax-php/issues/569)) ([fa06e73](https://github.com/googleapis/gax-php/commit/fa06e738fc63a3b9f70a26e6d20f30c582ef1870))
+
 ## [1.33.0](https://github.com/googleapis/gax-php/compare/v1.32.0...v1.33.0) (2024-05-10)
 
 
