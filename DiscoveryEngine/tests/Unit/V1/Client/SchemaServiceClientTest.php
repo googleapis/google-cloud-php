@@ -24,7 +24,6 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1\Client\SchemaServiceClient;
@@ -35,6 +34,7 @@ use Google\Cloud\DiscoveryEngine\V1\ListSchemasRequest;
 use Google\Cloud\DiscoveryEngine\V1\ListSchemasResponse;
 use Google\Cloud\DiscoveryEngine\V1\Schema;
 use Google\Cloud\DiscoveryEngine\V1\UpdateSchemaRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

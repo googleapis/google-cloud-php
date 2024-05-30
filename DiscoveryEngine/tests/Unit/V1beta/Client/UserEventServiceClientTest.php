@@ -24,7 +24,6 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Api\HttpBody;
@@ -34,6 +33,7 @@ use Google\Cloud\DiscoveryEngine\V1beta\ImportUserEventsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ImportUserEventsResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\UserEvent;
 use Google\Cloud\DiscoveryEngine\V1beta\WriteUserEventRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

@@ -24,7 +24,6 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1beta\BatchCreateTargetSitesRequest;
@@ -49,6 +48,7 @@ use Google\Cloud\DiscoveryEngine\V1beta\RecrawlUrisResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\SiteSearchEngine;
 use Google\Cloud\DiscoveryEngine\V1beta\TargetSite;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateTargetSiteRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

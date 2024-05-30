@@ -24,12 +24,12 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1beta\Client\ProjectServiceClient;
 use Google\Cloud\DiscoveryEngine\V1beta\Project;
 use Google\Cloud\DiscoveryEngine\V1beta\ProvisionProjectRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

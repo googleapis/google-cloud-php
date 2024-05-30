@@ -24,7 +24,6 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1beta\Client\SearchTuningServiceClient;
@@ -32,6 +31,7 @@ use Google\Cloud\DiscoveryEngine\V1beta\ListCustomModelsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListCustomModelsResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\TrainCustomModelRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\TrainCustomModelResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
