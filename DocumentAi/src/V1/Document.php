@@ -87,6 +87,18 @@ class Document extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Revision revisions = 13;</code>
      */
     private $revisions;
+    /**
+     * Parsed layout of the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.DocumentLayout document_layout = 17;</code>
+     */
+    private $document_layout = null;
+    /**
+     * Document chunked based on chunking config.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.ChunkedDocument chunked_document = 18;</code>
+     */
+    private $chunked_document = null;
     protected $source;
 
     /**
@@ -132,6 +144,10 @@ class Document extends \Google\Protobuf\Internal\Message
      *           Any error that occurred while processing this document.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Revision>|\Google\Protobuf\Internal\RepeatedField $revisions
      *           Placeholder. Revision history of this document.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout $document_layout
+     *           Parsed layout of the document.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument $chunked_document
+     *           Document chunked based on chunking config.
      * }
      */
     public function __construct($data = NULL) {
@@ -507,6 +523,78 @@ class Document extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Revision::class);
         $this->revisions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Parsed layout of the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.DocumentLayout document_layout = 17;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\DocumentLayout|null
+     */
+    public function getDocumentLayout()
+    {
+        return $this->document_layout;
+    }
+
+    public function hasDocumentLayout()
+    {
+        return isset($this->document_layout);
+    }
+
+    public function clearDocumentLayout()
+    {
+        unset($this->document_layout);
+    }
+
+    /**
+     * Parsed layout of the document.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.DocumentLayout document_layout = 17;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\DocumentLayout $var
+     * @return $this
+     */
+    public function setDocumentLayout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\DocumentLayout::class);
+        $this->document_layout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Document chunked based on chunking config.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.ChunkedDocument chunked_document = 18;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument|null
+     */
+    public function getChunkedDocument()
+    {
+        return $this->chunked_document;
+    }
+
+    public function hasChunkedDocument()
+    {
+        return isset($this->chunked_document);
+    }
+
+    public function clearChunkedDocument()
+    {
+        unset($this->chunked_document);
+    }
+
+    /**
+     * Document chunked based on chunking config.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.ChunkedDocument chunked_document = 18;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument $var
+     * @return $this
+     */
+    public function setChunkedDocument($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument::class);
+        $this->chunked_document = $var;
 
         return $this;
     }
