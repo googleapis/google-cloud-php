@@ -824,6 +824,21 @@ class SpannerClient
     }
 
     /**
+     * Represents a value with a data type of
+     * [PG OID](https://cloud.google.com/spanner/docs/reference/postgresql/data-types) for the
+     * Postgres Dialect database.
+     *
+     * Example:
+     * ```
+     * $pgOid = $spanner->pgOid('123');
+     * ```
+     */
+    public function pgOid($value)
+    {
+        return new PgOid($value);
+    }
+
+    /**
      * Create an Int64 object. This can be used to work with 64 bit integers as
      * a string value while on a 32 bit platform.
      *
