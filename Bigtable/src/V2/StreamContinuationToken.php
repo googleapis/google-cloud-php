@@ -22,13 +22,13 @@ class StreamContinuationToken extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.StreamPartition partition = 1;</code>
      */
-    private $partition = null;
+    protected $partition = null;
     /**
      * An encoded position in the stream to restart reading from.
      *
      * Generated from protobuf field <code>string token = 2;</code>
      */
-    private $token = '';
+    protected $token = '';
 
     /**
      * Constructor.

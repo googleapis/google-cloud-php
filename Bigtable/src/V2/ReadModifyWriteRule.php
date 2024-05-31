@@ -22,7 +22,7 @@ class ReadModifyWriteRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string family_name = 1;</code>
      */
-    private $family_name = '';
+    protected $family_name = '';
     /**
      * The qualifier of the column to which the read/modify/write should be
      * applied.
@@ -30,7 +30,7 @@ class ReadModifyWriteRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes column_qualifier = 2;</code>
      */
-    private $column_qualifier = '';
+    protected $column_qualifier = '';
     protected $rule;
 
     /**

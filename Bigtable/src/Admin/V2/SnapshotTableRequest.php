@@ -27,7 +27,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The name of the cluster where the snapshot will be created in.
      * Values are of the form
@@ -35,7 +35,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $cluster = '';
+    protected $cluster = '';
     /**
      * Required. The ID by which the new snapshot should be referred to within the
      * parent cluster, e.g., `mysnapshot` of the form:
@@ -44,7 +44,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string snapshot_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $snapshot_id = '';
+    protected $snapshot_id = '';
     /**
      * The amount of time that the new snapshot can stay active after it is
      * created. Once 'ttl' expires, the snapshot will get deleted. The maximum
@@ -53,13 +53,13 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 4;</code>
      */
-    private $ttl = null;
+    protected $ttl = null;
     /**
      * Description of the snapshot.
      *
      * Generated from protobuf field <code>string description = 5;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * @param string $name        Required. The unique name of the table to have the snapshot taken.

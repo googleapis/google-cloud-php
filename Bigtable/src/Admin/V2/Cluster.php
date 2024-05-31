@@ -23,7 +23,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Immutable. The location where this cluster's nodes and storage reside. For
      * best performance, clients should be located as close as possible to this
@@ -32,33 +32,33 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
-    private $location = '';
+    protected $location = '';
     /**
      * Output only. The current state of the cluster.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.State state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * The number of nodes allocated to this cluster. More nodes enable higher
      * throughput and more consistent performance.
      *
      * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      */
-    private $serve_nodes = 0;
+    protected $serve_nodes = 0;
     /**
      * Immutable. The type of storage used by this cluster to serve its
      * parent instance's tables, unless explicitly overridden.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $default_storage_type = 0;
+    protected $default_storage_type = 0;
     /**
      * Immutable. The encryption configuration for CMEK-protected clusters.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.EncryptionConfig encryption_config = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    private $encryption_config = null;
+    protected $encryption_config = null;
     protected $config;
 
     /**

@@ -22,7 +22,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
     /**
      * Optional. The unique name of the AuthorizedView from which to read.
      * Values are of the form
@@ -30,41 +30,41 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorized_view_name = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $authorized_view_name = '';
+    protected $authorized_view_name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 5;</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
     /**
      * The row keys and/or ranges to read sequentially. If not specified, reads
      * from all rows.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowSet rows = 2;</code>
      */
-    private $rows = null;
+    protected $rows = null;
     /**
      * The filter to apply to the contents of the specified row(s). If unset,
      * reads the entirety of each row.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter filter = 3;</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * The read will stop after committing to N rows' worth of results. The
      * default (zero) is to return all results.
      *
      * Generated from protobuf field <code>int64 rows_limit = 4;</code>
      */
-    private $rows_limit = 0;
+    protected $rows_limit = 0;
     /**
      * The view into RequestStats, as described above.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.ReadRowsRequest.RequestStatsView request_stats_view = 6;</code>
      */
-    private $request_stats_view = 0;
+    protected $request_stats_view = 0;
     /**
      * Experimental API - Please note that this API is currently experimental
      * and can change in the future.
@@ -78,7 +78,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool reversed = 7;</code>
      */
-    private $reversed = false;
+    protected $reversed = false;
 
     /**
      * @param string $tableName Optional. The unique name of the table from which to read.

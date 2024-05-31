@@ -21,7 +21,7 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID to be used when referring to the new app profile within
      * its instance, e.g., just `myprofile` rather than
@@ -29,20 +29,20 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string app_profile_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
     /**
      * Required. The app profile to be created.
      * Fields marked `OutputOnly` will be ignored.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $app_profile = null;
+    protected $app_profile = null;
     /**
      * If true, ignore safety checks when creating the app profile.
      *
      * Generated from protobuf field <code>bool ignore_warnings = 4;</code>
      */
-    private $ignore_warnings = false;
+    protected $ignore_warnings = false;
 
     /**
      * @param string                                     $parent       Required. The unique name of the instance in which to create the new app

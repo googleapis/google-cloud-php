@@ -23,7 +23,7 @@ class CreateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The id of the AuthorizedView to create. This AuthorizedView must
      * not already exist. The `authorized_view_id` appended to `parent` forms the
@@ -32,13 +32,13 @@ class CreateAuthorizedViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorized_view_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorized_view_id = '';
+    protected $authorized_view_id = '';
     /**
      * Required. The AuthorizedView to create.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AuthorizedView authorized_view = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $authorized_view = null;
+    protected $authorized_view = null;
 
     /**
      * @param string                                         $parent           Required. This is the name of the table the AuthorizedView belongs to.
