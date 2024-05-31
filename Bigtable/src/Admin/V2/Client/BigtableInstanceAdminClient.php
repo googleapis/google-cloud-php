@@ -377,6 +377,7 @@ final class BigtableInstanceAdminClient
      */
     public function __construct(array $options = [])
     {
+        $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -971,5 +972,24 @@ final class BigtableInstanceAdminClient
     public function updateInstance(Instance $request, array $callOptions = []): Instance
     {
         return $this->startApiCall('UpdateInstance', $request, $callOptions)->wait();
+    }
+
+    /** Configure the gapic configuration to use a service emulator. */
+    private function setDefaultEmulatorConfig(array $options): array
+    {
+        $emulatorHost = getenv('BIGTABLE_EMULATOR_HOST');
+        if (empty($emulatorHost)) {
+            return $options;
+        }
+
+        if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
+            $search = $scheme . '://';
+            $emulatorHost = str_replace($search, '', $emulatorHost);
+        }
+
+        $options['apiEndpoint'] ??= $emulatorHost;
+        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        $options['credentials'] ??= new InsecureCredentialsWrapper();
+        return $options;
     }
 }
