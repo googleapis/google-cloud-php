@@ -28,8 +28,8 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of [Schema][google.cloud.discoveryengine.v1.Schema]s to
      * return. The service may return fewer than this value.
      * If unspecified, at most 100
-     * [Schema][google.cloud.discoveryengine.v1.Schema]s will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * [Schema][google.cloud.discoveryengine.v1.Schema]s are returned.
+     * The maximum value is 1000; values above 1000 are set to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -74,8 +74,8 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of [Schema][google.cloud.discoveryengine.v1.Schema]s to
      *           return. The service may return fewer than this value.
      *           If unspecified, at most 100
-     *           [Schema][google.cloud.discoveryengine.v1.Schema]s will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           [Schema][google.cloud.discoveryengine.v1.Schema]s are returned.
+     *           The maximum value is 1000; values above 1000 are set to 1000.
      *     @type string $page_token
      *           A page token, received from a previous
      *           [SchemaService.ListSchemas][google.cloud.discoveryengine.v1.SchemaService.ListSchemas]
@@ -122,8 +122,8 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of [Schema][google.cloud.discoveryengine.v1.Schema]s to
      * return. The service may return fewer than this value.
      * If unspecified, at most 100
-     * [Schema][google.cloud.discoveryengine.v1.Schema]s will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * [Schema][google.cloud.discoveryengine.v1.Schema]s are returned.
+     * The maximum value is 1000; values above 1000 are set to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -137,8 +137,8 @@ class ListSchemasRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of [Schema][google.cloud.discoveryengine.v1.Schema]s to
      * return. The service may return fewer than this value.
      * If unspecified, at most 100
-     * [Schema][google.cloud.discoveryengine.v1.Schema]s will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * [Schema][google.cloud.discoveryengine.v1.Schema]s are returned.
+     * The maximum value is 1000; values above 1000 are set to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

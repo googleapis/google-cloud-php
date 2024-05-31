@@ -33,7 +33,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     protected $document = null;
     /**
      * Required. The ID to use for the
-     * [Document][google.cloud.discoveryengine.v1.Document], which will become the
+     * [Document][google.cloud.discoveryengine.v1.Document], which becomes the
      * final component of the
      * [Document.name][google.cloud.discoveryengine.v1.Document.name].
      * If the caller does not have permission to create the
@@ -58,7 +58,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\DiscoveryEngine\V1\Document $document   Required. The [Document][google.cloud.discoveryengine.v1.Document] to
      *                                                              create.
      * @param string                                    $documentId Required. The ID to use for the
-     *                                                              [Document][google.cloud.discoveryengine.v1.Document], which will become the
+     *                                                              [Document][google.cloud.discoveryengine.v1.Document], which becomes the
      *                                                              final component of the
      *                                                              [Document.name][google.cloud.discoveryengine.v1.Document.name].
      *
@@ -101,7 +101,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           create.
      *     @type string $document_id
      *           Required. The ID to use for the
-     *           [Document][google.cloud.discoveryengine.v1.Document], which will become the
+     *           [Document][google.cloud.discoveryengine.v1.Document], which becomes the
      *           final component of the
      *           [Document.name][google.cloud.discoveryengine.v1.Document.name].
      *           If the caller does not have permission to create the
@@ -189,7 +189,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID to use for the
-     * [Document][google.cloud.discoveryengine.v1.Document], which will become the
+     * [Document][google.cloud.discoveryengine.v1.Document], which becomes the
      * final component of the
      * [Document.name][google.cloud.discoveryengine.v1.Document.name].
      * If the caller does not have permission to create the
@@ -213,7 +213,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID to use for the
-     * [Document][google.cloud.discoveryengine.v1.Document], which will become the
+     * [Document][google.cloud.discoveryengine.v1.Document], which becomes the
      * final component of the
      * [Document.name][google.cloud.discoveryengine.v1.Document.name].
      * If the caller does not have permission to create the

@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class RefinementAttribute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Attribute key used to refine the results e.g. 'movie_type'.
+     * Attribute key used to refine the results. For example, `"movie_type"`.
      *
      * Generated from protobuf field <code>string attribute_key = 1;</code>
      */
     protected $attribute_key = '';
     /**
-     * Attribute value used to refine the results e.g. 'drama'.
+     * Attribute value used to refine the results. For example, `"drama"`.
      *
      * Generated from protobuf field <code>string attribute_value = 2;</code>
      */
@@ -35,9 +35,9 @@ class RefinementAttribute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $attribute_key
-     *           Attribute key used to refine the results e.g. 'movie_type'.
+     *           Attribute key used to refine the results. For example, `"movie_type"`.
      *     @type string $attribute_value
-     *           Attribute value used to refine the results e.g. 'drama'.
+     *           Attribute value used to refine the results. For example, `"drama"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class RefinementAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attribute key used to refine the results e.g. 'movie_type'.
+     * Attribute key used to refine the results. For example, `"movie_type"`.
      *
      * Generated from protobuf field <code>string attribute_key = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class RefinementAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attribute key used to refine the results e.g. 'movie_type'.
+     * Attribute key used to refine the results. For example, `"movie_type"`.
      *
      * Generated from protobuf field <code>string attribute_key = 1;</code>
      * @param string $var
@@ -72,7 +72,7 @@ class RefinementAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attribute value used to refine the results e.g. 'drama'.
+     * Attribute value used to refine the results. For example, `"drama"`.
      *
      * Generated from protobuf field <code>string attribute_value = 2;</code>
      * @return string
@@ -83,7 +83,7 @@ class RefinementAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Attribute value used to refine the results e.g. 'drama'.
+     * Attribute value used to refine the results. For example, `"drama"`.
      *
      * Generated from protobuf field <code>string attribute_value = 2;</code>
      * @param string $var

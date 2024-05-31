@@ -29,6 +29,40 @@
                 }
             }
         },
+        "ControlService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ControlServiceGapicClient",
+                    "rpcs": {
+                        "CreateControl": {
+                            "methods": [
+                                "createControl"
+                            ]
+                        },
+                        "DeleteControl": {
+                            "methods": [
+                                "deleteControl"
+                            ]
+                        },
+                        "GetControl": {
+                            "methods": [
+                                "getControl"
+                            ]
+                        },
+                        "ListControls": {
+                            "methods": [
+                                "listControls"
+                            ]
+                        },
+                        "UpdateControl": {
+                            "methods": [
+                                "updateControl"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SearchService": {
             "clients": {
                 "grpc": {
@@ -48,6 +82,11 @@
                 "grpc": {
                     "libraryClient": "ConversationalSearchServiceGapicClient",
                     "rpcs": {
+                        "AnswerQuery": {
+                            "methods": [
+                                "answerQuery"
+                            ]
+                        },
                         "ConverseConversation": {
                             "methods": [
                                 "converseConversation"
@@ -58,9 +97,24 @@
                                 "createConversation"
                             ]
                         },
+                        "CreateSession": {
+                            "methods": [
+                                "createSession"
+                            ]
+                        },
                         "DeleteConversation": {
                             "methods": [
                                 "deleteConversation"
+                            ]
+                        },
+                        "DeleteSession": {
+                            "methods": [
+                                "deleteSession"
+                            ]
+                        },
+                        "GetAnswer": {
+                            "methods": [
+                                "getAnswer"
                             ]
                         },
                         "GetConversation": {
@@ -68,14 +122,29 @@
                                 "getConversation"
                             ]
                         },
+                        "GetSession": {
+                            "methods": [
+                                "getSession"
+                            ]
+                        },
                         "ListConversations": {
                             "methods": [
                                 "listConversations"
                             ]
                         },
+                        "ListSessions": {
+                            "methods": [
+                                "listSessions"
+                            ]
+                        },
                         "UpdateConversation": {
                             "methods": [
                                 "updateConversation"
+                            ]
+                        },
+                        "UpdateSession": {
+                            "methods": [
+                                "updateSession"
                             ]
                         }
                     }
@@ -188,6 +257,48 @@
                         "UpdateEngine": {
                             "methods": [
                                 "updateEngine"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "GroundedGenerationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GroundedGenerationServiceGapicClient",
+                    "rpcs": {
+                        "CheckGrounding": {
+                            "methods": [
+                                "checkGrounding"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProjectService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProjectServiceGapicClient",
+                    "rpcs": {
+                        "ProvisionProject": {
+                            "methods": [
+                                "provisionProject"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RankService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RankServiceGapicClient",
+                    "rpcs": {
+                        "Rank": {
+                            "methods": [
+                                "rank"
                             ]
                         }
                     }

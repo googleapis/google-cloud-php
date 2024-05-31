@@ -27,8 +27,8 @@ class UpdateSchemaRequest extends \Google\Protobuf\Internal\Message
     /**
      * If set to true, and the
      * [Schema][google.cloud.discoveryengine.v1beta.Schema] is not found, a new
-     * [Schema][google.cloud.discoveryengine.v1beta.Schema] will be created. In
-     * this situation, `update_mask` is ignored.
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema] is created. In this
+     * situation, `update_mask` is ignored.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      */
@@ -46,8 +46,8 @@ class UpdateSchemaRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $allow_missing
      *           If set to true, and the
      *           [Schema][google.cloud.discoveryengine.v1beta.Schema] is not found, a new
-     *           [Schema][google.cloud.discoveryengine.v1beta.Schema] will be created. In
-     *           this situation, `update_mask` is ignored.
+     *           [Schema][google.cloud.discoveryengine.v1beta.Schema] is created. In this
+     *           situation, `update_mask` is ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,8 +96,8 @@ class UpdateSchemaRequest extends \Google\Protobuf\Internal\Message
     /**
      * If set to true, and the
      * [Schema][google.cloud.discoveryengine.v1beta.Schema] is not found, a new
-     * [Schema][google.cloud.discoveryengine.v1beta.Schema] will be created. In
-     * this situation, `update_mask` is ignored.
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema] is created. In this
+     * situation, `update_mask` is ignored.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      * @return bool
@@ -110,8 +110,8 @@ class UpdateSchemaRequest extends \Google\Protobuf\Internal\Message
     /**
      * If set to true, and the
      * [Schema][google.cloud.discoveryengine.v1beta.Schema] is not found, a new
-     * [Schema][google.cloud.discoveryengine.v1beta.Schema] will be created. In
-     * this situation, `update_mask` is ignored.
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema] is created. In this
+     * situation, `update_mask` is ignored.
      *
      * Generated from protobuf field <code>bool allow_missing = 3;</code>
      * @param bool $var

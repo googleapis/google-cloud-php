@@ -20,14 +20,15 @@ class RankService
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-™	
+£
+
 6google/cloud/discoveryengine/v1beta/rank_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"J
 RankingRecord
 
 id (	
 title (	
 content (	
-score ("ý
+score ("‡
 RankRequestL
 ranking_config (	B4àAúA.
 ,discoveryengine.googleapis.com/RankingConfig
@@ -35,7 +36,11 @@ class RankService
 top_n (
 query (	H
 records (22.google.cloud.discoveryengine.v1beta.RankingRecordBàA)
-!ignore_record_details_in_response ("S
+!ignore_record_details_in_response (U
+user_labels (2@.google.cloud.discoveryengine.v1beta.RankRequest.UserLabelsEntry1
+UserLabelsEntry
+key (	
+value (	:8"S
 RankResponseC
 records (22.google.cloud.discoveryengine.v1beta.RankingRecord2¡
 RankService½
