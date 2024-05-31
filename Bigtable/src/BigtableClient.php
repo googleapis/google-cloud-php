@@ -59,11 +59,6 @@ class BigtableClient
     private Serializer $serializer;
 
     /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
      * Create a Bigtable client.
      *
      * @param array $config [optional] {
@@ -134,14 +129,14 @@ class BigtableClient
         ];
 
         // Configure GAPIC client options
-        $config = $this->buildClientOptions($config);
-        $config['credentials'] = $this->createCredentialsWrapper(
-            $config['credentials'],
-            $config['credentialsConfig'],
-            $config['universeDomain']
+        $detectProjectIdConfig = $this->buildClientOptions($config);
+        $detectProjectIdConfig['credentials'] = $this->createCredentialsWrapper(
+            $detectProjectIdConfig['credentials'],
+            $detectProjectIdConfig['credentialsConfig'],
+            $detectProjectIdConfig['universeDomain']
         );
 
-        $this->projectId = $this->detectProjectId($config);
+        $this->projectId = $this->detectProjectId($detectProjectIdConfig);
         $this->serializer = new Serializer();
         $this->gapicClient = new GapicClient($config);
     }
