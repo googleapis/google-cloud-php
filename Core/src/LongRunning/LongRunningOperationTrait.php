@@ -82,7 +82,7 @@ trait LongRunningOperationTrait
      * @param string $operationName The Long Running Operation name.
      * @param array $lroResponseMappers A list of mappers for deserializing operation results.
      * @param array $info [optional] The operation data.
-     * @return LongRunningOperationManger
+     * @return LongRunningOperationManager
      */
     public function resumeOperation($operationName, array $info = [])
     {

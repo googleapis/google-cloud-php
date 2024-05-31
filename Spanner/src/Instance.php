@@ -19,21 +19,25 @@ namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
+use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
+use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\Cloud\Spanner\Backup;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
@@ -58,7 +62,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  *
  *     @param string $operationName The Long Running Operation name.
  *     @param array $info [optional] The operation data.
- *     @return LongRunningOperation
+ *     @return LongRunningOperationManager
  * }
  * @method longRunningOperations() {
  *     List long running operations.
@@ -85,20 +89,16 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 class Instance
 {
+    use ApiHelperTrait;
     use ArrayTrait;
-    use LROTrait;
+    use LongRunningOperationTrait;
+    use OperationResponseTrait;
+    use RequestTrait;
 
     const STATE_READY = State::READY;
     const STATE_CREATING = State::CREATING;
 
     const DEFAULT_NODE_COUNT = 1;
-
-    # TODO: Remove the connection related objects
-    /**
-     * @var ConnectionInterface
-     * @internal
-     */
-    private $connection;
 
     /**
      * @var RequestHandler
@@ -134,9 +134,14 @@ class Instance
     private $info;
 
     /**
-     * @var Iam|null
+     * @var IamManager|null
      */
     private $iam;
+
+    /**
+     * @var array
+     */
+    private $lroCallables;
 
     /**
      * @var array
@@ -178,8 +183,6 @@ class Instance
      * }
      */
     public function __construct(
-        ConnectionInterface $connection,
-        LongRunningConnectionInterface $lroConnection,
         RequestHandler $requestHandler,
         Serializer $serializer,
         array $lroCallables,
@@ -189,14 +192,21 @@ class Instance
         array $info = [],
         array $options = []
     ) {
-        $this->connection = $connection;
         $this->requestHandler = $requestHandler;
         $this->serializer = $serializer;
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
         $this->returnInt64AsObject = $returnInt64AsObject;
         $this->info = $info;
-        $this->setLroProperties($lroConnection, $lroCallables, $this->name);
+        $this->lroCallables = $lroCallables;
+        $this->setLroProperties(
+            $requestHandler,
+            $serializer,
+            $this->lroCallables,
+            $this->getLROResponseMappers(),
+            $this->name,
+            InstanceAdminClient::class
+        );
         $this->directedReadOptions = $options['directedReadOptions'] ?? [];
         $this->routeToLeader = $options['routeToLeader'] ?? true;
         $this->defaultQueryOptions = $options['defaultQueryOptions'] ?? [];
@@ -265,15 +275,23 @@ class Instance
      */
     public function exists(array $options = [])
     {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         try {
             if ($this->info) {
-                $this->connection->getInstance([
+                $data += [
                     'name' => $this->name,
-                    'projectName' => InstanceAdminClient::projectName(
+                    'fieldMask' => ['paths' => ['name']],
+                ];
+                $this->createAndSendRequest(
+                    InstanceAdminClient::class,
+                    'getInstance',
+                    $data,
+                    $optionalArgs,
+                    GetInstanceRequest::class,
+                    InstanceAdminClient::projectName(
                         $this->projectId
-                    ),
-                    'fieldMask' => ['name'],
-                ] + $options);
+                    )
+                );
             } else {
                 $this->reload($options);
             }
@@ -307,12 +325,21 @@ class Instance
      */
     public function reload(array $options = [])
     {
-        $this->info = $this->connection->getInstance($options + [
-            'name' => $this->name,
-            'projectName' => InstanceAdminClient::projectName($this->projectId),
-        ]);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data += [
+            'name' => $this->name
+        ];
 
-        return $this->info;
+        return $this->info = $this->createAndSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            $data,
+            $optionalArgs,
+            GetInstanceRequest::class,
+            InstanceAdminClient::projectName(
+                $this->projectId
+            )
+        );
     }
 
     /**
@@ -336,34 +363,43 @@ class Instance
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
-     * @return LongRunningOperation<Instance>
+     * @return LongRunningOperationManager<Instance>
      * @throws \InvalidArgumentException
      * @codingStandardsIgnoreEnd
      */
     public function create(InstanceConfiguration $config, array $options = [])
     {
+        list($instance, $optionalArgs) = $this->splitOptionalArgs($options);
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
-        $options += [
-            'displayName' => $instanceId,
-            'labels' => [],
-        ];
-
-        if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
+        if (isset($instance['nodeCount']) && isset($instance['processingUnits'])) {
             throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
         }
-        if (empty($options['nodeCount']) && empty($options['processingUnits'])) {
-            $options['nodeCount'] = self::DEFAULT_NODE_COUNT;
+        if (empty($instance['nodeCount']) && empty($instance['processingUnits'])) {
+            $instance['nodeCount'] = self::DEFAULT_NODE_COUNT;
         }
 
-        // This must always be set to CREATING, so overwrite anything else.
-        $options['state'] = State::CREATING;
-
-        $operation = $this->connection->createInstance([
+        $data = [
+            'parent' => InstanceAdminClient::projectName(
+                $this->projectId
+            ),
             'instanceId' => $instanceId,
-            'name' => $this->name,
-            'projectName' => InstanceAdminClient::projectName($this->projectId),
-            'config' => $config->name()
-        ] + $options);
+            'instance' => $this->createInstanceArray($instance, $config)
+        ];
+
+        $res = $this->createAndSendRequest(
+            InstanceAdminClient::class,
+            'createInstance',
+            $data,
+            $optionalArgs,
+            GetInstanceRequest::class,
+            $this->name
+        );
+
+        $operation = $this->operationToArray(
+            $res,
+            $this->serializer,
+            $this->getLROResponseMappers()
+        );
 
         return $this->resumeOperation($operation['name'], $operation);
     }
@@ -422,18 +458,35 @@ class Instance
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
-     * @return LongRunningOperation
+     * @return LongRunningOperationManager
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
     {
+        list($instance, $optionalArgs) = $this->splitOptionalArgs($options);
+
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
             throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
         }
 
-        $operation = $this->connection->updateInstance([
-            'name' => $this->name,
-        ] + $options);
+        $fieldMask = $this->fieldMask($instance);
+        $data = [
+            'filedMask' => $fieldMask,
+            'instance' => $this->createInstanceArray($instance)
+        ];
+        $res = $this->createAndSendRequest(
+            InstanceAdminClient::class,
+            'updateInstance',
+            $data,
+            $optionalArgs,
+            UpdateInstanceRequest::class,
+            $this->name
+        );
+        $operation = $this->operationToArray(
+            $res,
+            $this->serializer,
+            $this->getLROResponseMappers()
+        );
 
         return $this->resumeOperation($operation['name'], $operation);
     }
@@ -455,9 +508,16 @@ class Instance
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteInstance($options + [
-            'name' => $this->name
-        ]);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['name'] = $this->name;
+        $this->createAndSendRequest(
+            InstanceAdminClient::class,
+            'deleteInstance',
+            $data,
+            $optionalArgs,
+            DeleteInstanceRequest::class,
+            $this->name
+        );
     }
 
     /**
@@ -480,7 +540,7 @@ class Instance
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
      * }
-     * @return LongRunningOperation<Database>
+     * @return LongRunningOperationManager<Database>
      */
     public function createDatabase($name, array $options = [])
     {
@@ -504,22 +564,11 @@ class Instance
      *        `projects/<project>/instances/<instance>/backups/<backup>`.
      * @param array $options [optional] Configuration options.
      *
-     * @return LongRunningOperation<Database>
+     * @return LongRunningOperationManager<Database>
      */
-
     public function createDatabaseFromBackup($name, $backup, array $options = [])
     {
-        $backup = $backup instanceof Backup
-            ? $backup->name()
-            : $backup;
-
-        $operation = $this->connection->restoreDatabase([
-            'instance' => $this->name(),
-            'databaseId' => $this->databaseIdOnly($name),
-            'backup' => $backup,
-        ] + $options);
-
-        return $this->resumeOperation($operation['name'], $operation);
+        return $this->database($name)->createDatabaseFromBackup($name, $backup, $options);
     }
 
     /**
@@ -548,7 +597,6 @@ class Instance
      */
     public function database($name, array $options = [])
     {
-        # TODO: Remove the connection related objects
         return new Database(
             $this->requestHandler,
             $this->serializer,
@@ -593,14 +641,30 @@ class Instance
      */
     public function databases(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['parent'] = $this->name;
+
+        $resultLimit = $this->pluck('resultLimit', $data, false);
         return new ItemIterator(
             new PageIterator(
                 function (array $database) {
                     return $this->database($database['name'], ['database' => $database]);
                 },
-                [$this->connection, 'listDatabases'],
-                $options + ['instance' => $this->name],
+                function ($callOptions) use ($optionalArgs, $data) {
+                    if (isset($callOptions['pageToken'])) {
+                        $data['pageToken'] = $callOptions['pageToken'];
+                    }
+
+                    return $this->createAndSendRequest(
+                        DatabaseAdminClient::class,
+                        'listDatabases',
+                        $data,
+                        $optionalArgs,
+                        ListDatabasesRequest::class,
+                        $this->name
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'databases',
                     'resultLimit' => $resultLimit
@@ -624,9 +688,9 @@ class Instance
     public function backup($name, array $backup = [])
     {
         return new Backup(
-            $this->connection,
+            $this->requestHandler,
+            $this->serializer,
             $this,
-            $this->lroConnection,
             $this->lroCallables,
             $this->projectId,
             $name,
@@ -667,6 +731,9 @@ class Instance
      */
     public function backups(array $options = [])
     {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['parent'] = $this->name;
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
@@ -676,8 +743,21 @@ class Instance
                         $backup
                     );
                 },
-                [$this->connection, 'listBackups'],
-                $options + ['instance' => $this->name],
+                function ($callOptions) use ($optionalArgs, $data) {
+                    if (isset($callOptions['pageToken'])) {
+                        $data['pageToken'] = $callOptions['pageToken'];
+                    }
+
+                    return $this->createAndSendRequest(
+                        DatabaseAdminClient::class,
+                        'listBackups',
+                        $data,
+                        $optionalArgs,
+                        ListBackupsRequest::class,
+                        $this->name
+                    );
+                },
+                $options,
                 [
                     'itemsKey' => 'backups',
                     'resultLimit' => $resultLimit
@@ -710,24 +790,12 @@ class Instance
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperation>
+     * @return ItemIterator<LongRunningOperationManager>
      */
     public function backupOperations(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $operation) {
-                    return $this->resumeOperation($operation['name'], $operation);
-                },
-                [$this->connection, 'listBackupOperations'],
-                $options + ['instance' => $this->name],
-                [
-                    'itemsKey' => 'operations',
-                    'resultLimit' => $resultLimit
-                ]
-            )
-        );
+        // @TODO: Add a better logic for the database name here.
+        return $this->database($this->name)->backupOperations($options);
     }
 
     /**
@@ -754,17 +822,34 @@ class Instance
      *          been generated by a previous call to the API.
      * }
      *
-     * @return ItemIterator<LongRunningOperation>
+     * @return ItemIterator<LongRunningOperationManager>
      */
     public function databaseOperations(array $options = [])
     {
+        list($data, $optionalArgs) = $this->splitOptionalArgs($options);
+        $data['parent'] = $this->name;
+
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
                 function (array $operation) {
                     return $this->resumeOperation($operation['name'], $operation);
                 },
-                [$this->connection, 'listDatabaseOperations'],
+                function ($callOptions) use ($optionalArgs, $data) {
+                    if (isset($callOptions['pageToken'])) {
+                        $data['pageToken'] = $callOptions['pageToken'];
+                    }
+
+                    $result = $this->createAndSendRequest(
+                        DatabaseAdminClient::class,
+                        'listDatabaseOperations',
+                        $data,
+                        $optionalArgs,
+                        ListDatabaseOperationsRequest::class,
+                        $this->name
+                    );
+                    return array_map([$this, 'deserializeOperationArray'], $result['operations']);
+                },
                 $options + ['instance' => $this->name],
                 [
                     'itemsKey' => 'operations',
@@ -782,13 +867,15 @@ class Instance
      * $iam = $instance->iam();
      * ```
      *
-     * @return Iam
+     * @return IamManager
      */
     public function iam()
     {
         if (!$this->iam) {
-            $this->iam = new Iam(
-                new IamInstance($this->connection),
+            $this->iam = new IamManager(
+                $this->requestHandler,
+                $this->serializer,
+                InstanceAdminClient::class,
                 $this->name
             );
         }
@@ -805,14 +892,10 @@ class Instance
      */
     private function fullyQualifiedInstanceName($name, $project)
     {
-        // try {
-            return InstanceAdminClient::instanceName(
-                $project,
-                $name
-            );
-        // } catch (ValidationException $e) {
-        //     return $name;
-        // }
+        return InstanceAdminClient::instanceName(
+            $project,
+            $name
+        );
     }
 
     /**
@@ -859,5 +942,33 @@ class Instance
     public function directedReadOptions()
     {
         return $this->directedReadOptions;
+    }
+
+    /**
+     * @param array $instanceArray
+     * @return array
+     */
+    private function fieldMask(array $instanceArray)
+    {
+        $mask = [];
+        foreach (array_keys($instanceArray) as $key) {
+            $mask[] = $this->serializer::toSnakeCase($key);
+        }
+        return ['paths' => $mask];
+    }
+
+    /**
+     * @param array $instanceArray
+     * @param InstanceConfiguration $config
+     * @return array
+     */
+    public function createInstanceArray(array $instanceArray, InstanceConfiguration $config = null)
+    {
+        return $instanceArray + [
+            'name' => $this->name,
+            'displayName' => InstanceAdminClient::parseName($this->name)['instance'],
+            'labels' => [],
+            'config' => $config ? $config->name() : null
+        ];
     }
 }
