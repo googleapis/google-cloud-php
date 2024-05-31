@@ -70,6 +70,17 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $service_account_email = '';
     protected $output_format;
 
     /**
@@ -111,6 +122,13 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. An output-only field that indicates whether or not the
      *           subscription can receive messages.
+     *     @type string $service_account_email
+     *           Optional. The service account to use to write to Cloud Storage. The
+     *           subscription creator or updater that specifies this field must have
+     *           `iam.serviceAccounts.actAs` permission on the service account. If not
+     *           specified, the Pub/Sub
+     *           [service agent](https://cloud.google.com/iam/docs/service-agents),
+     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -398,6 +416,42 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\CloudStorageConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccountEmail()
+    {
+        return $this->service_account_email;
+    }
+
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccountEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account_email = $var;
 
         return $this;
     }
