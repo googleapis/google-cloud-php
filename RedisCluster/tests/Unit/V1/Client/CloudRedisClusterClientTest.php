@@ -24,7 +24,6 @@ namespace Google\Cloud\Redis\Cluster\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Location\GetLocationRequest;
@@ -39,6 +38,7 @@ use Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersResponse;
 use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
