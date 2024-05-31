@@ -27,6 +27,7 @@ namespace Google\Cloud\Bigtable\Admin\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
@@ -62,6 +63,7 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Operation;
+use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**

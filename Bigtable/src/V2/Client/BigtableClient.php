@@ -30,6 +30,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -48,6 +49,7 @@ use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
