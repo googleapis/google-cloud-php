@@ -20,7 +20,7 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig.ChunkingConfig chunking_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $chunking_config = null;
+    private $chunking_config = null;
 
     /**
      * Constructor.
@@ -75,6 +75,4 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LayoutConfig::class, \Google\Cloud\DocumentAI\V1\ProcessOptions_LayoutConfig::class);
 

@@ -21,13 +21,13 @@ class ChunkingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 chunk_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $chunk_size = 0;
+    private $chunk_size = 0;
     /**
      * Optional. Whether or not to include ancestor headings when splitting.
      *
      * Generated from protobuf field <code>bool include_ancestor_headings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $include_ancestor_headings = false;
+    private $include_ancestor_headings = false;
 
     /**
      * Constructor.
@@ -103,6 +103,4 @@ class ChunkingConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChunkingConfig::class, \Google\Cloud\DocumentAI\V1\ProcessOptions_LayoutConfig_ChunkingConfig::class);
 

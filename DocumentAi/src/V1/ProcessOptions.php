@@ -23,6 +23,13 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      */
     private $ocr_config = null;
     /**
+     * Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
+     * Returns error if set on other processor types.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig layout_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $layout_config = null;
+    /**
      * Optional. Override the schema of the
      * [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]. Will
      * return an Invalid Argument error if this field is set when the underlying
@@ -49,6 +56,9 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
      *           Only process certain pages from the end, same as above.
      *     @type \Google\Cloud\DocumentAI\V1\OcrConfig $ocr_config
      *           Only applicable to `OCR_PROCESSOR` and `FORM_PARSER_PROCESSOR`.
+     *           Returns error if set on other processor types.
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig $layout_config
+     *           Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
      *           Returns error if set on other processor types.
      *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $schema_override
      *           Optional. Override the schema of the
@@ -192,6 +202,44 @@ class ProcessOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\OcrConfig::class);
         $this->ocr_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
+     * Returns error if set on other processor types.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig layout_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig|null
+     */
+    public function getLayoutConfig()
+    {
+        return $this->layout_config;
+    }
+
+    public function hasLayoutConfig()
+    {
+        return isset($this->layout_config);
+    }
+
+    public function clearLayoutConfig()
+    {
+        unset($this->layout_config);
+    }
+
+    /**
+     * Optional. Only applicable to `LAYOUT_PARSER_PROCESSOR`.
+     * Returns error if set on other processor types.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions.LayoutConfig layout_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig $var
+     * @return $this
+     */
+    public function setLayoutConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessOptions\LayoutConfig::class);
+        $this->layout_config = $var;
 
         return $this;
     }
