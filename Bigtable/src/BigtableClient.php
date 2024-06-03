@@ -21,8 +21,12 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Bigtable\V2\BigtableClient as GapicClient;
-use Google\Cloud\Core\ArrayTrait;
+use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\Serializer;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as GapicClient;
+use Google\Cloud\Core\DetectProjectIdTrait;
+use Google\Cloud\Core\RequestHandler;
 
 /**
  * Google Cloud Bigtable is Google's NoSQL Big Data database service.
@@ -39,8 +43,8 @@ use Google\Cloud\Core\ArrayTrait;
 class BigtableClient
 {
     use ArrayTrait;
-
-    const VERSION = '1.32.1';
+    use DetectProjectIdTrait;
+    use ClientOptionsTrait;
 
     /**
      * @var GapicClient
@@ -48,9 +52,9 @@ class BigtableClient
     private $gapicClient;
 
     /**
-     * @var string
+     * @var Serializer
      */
-    private $projectId;
+    private Serializer $serializer;
 
     /**
      * Create a Bigtable client.
@@ -122,8 +126,16 @@ class BigtableClient
             'grpc.keepalive_timeout_ms' => 10000
         ];
 
-        $this->projectId = $this->pluck('projectId', $config, false)
-            ?: $this->detectProjectId();
+        // Configure GAPIC client options
+        $detectProjectIdConfig = $this->buildClientOptions($config);
+        $detectProjectIdConfig['credentials'] = $this->createCredentialsWrapper(
+            $detectProjectIdConfig['credentials'],
+            $detectProjectIdConfig['credentialsConfig'],
+            $detectProjectIdConfig['universeDomain']
+        );
+
+        $this->projectId = $this->detectProjectId($detectProjectIdConfig);
+        $this->serializer = new Serializer();
         $this->gapicClient = new GapicClient($config);
     }
 
@@ -151,31 +163,9 @@ class BigtableClient
     {
         return new Table(
             $this->gapicClient,
+            $this->serializer,
             GapicClient::tableName($this->projectId, $instanceId, $tableId),
             $options
-        );
-    }
-
-    /**
-     * Attempts to detect the project ID.
-     *
-     * @todo Add better support for detecting the project ID (check keyFile/GCE metadata server).
-     * @return string
-     * @throws ValidationException If a project ID cannot be detected.
-     */
-    private function detectProjectId()
-    {
-        if (getenv('GOOGLE_CLOUD_PROJECT')) {
-            return getenv('GOOGLE_CLOUD_PROJECT');
-        }
-
-        if (getenv('GCLOUD_PROJECT')) {
-            return getenv('GCLOUD_PROJECT');
-        }
-
-        throw new ValidationException(
-            'No project ID was provided, ' .
-            'and we were unable to detect a default project ID.'
         );
     }
 }

@@ -22,20 +22,20 @@ class ChunkInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 chunked_value_size = 1;</code>
      */
-    private $chunked_value_size = 0;
+    protected $chunked_value_size = 0;
     /**
      * The byte offset of this chunk into the total value size of the
      * mutation.
      *
      * Generated from protobuf field <code>int32 chunked_value_offset = 2;</code>
      */
-    private $chunked_value_offset = 0;
+    protected $chunked_value_offset = 0;
     /**
      * When true, this is the last chunk of a chunked `SetCell`.
      *
      * Generated from protobuf field <code>bool last_chunk = 3;</code>
      */
-    private $last_chunk = false;
+    protected $last_chunk = false;
 
     /**
      * Constructor.

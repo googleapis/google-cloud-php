@@ -30,7 +30,7 @@ class DataBoostIsolationReadOnly extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional .google.bigtable.admin.v2.AppProfile.DataBoostIsolationReadOnly.ComputeBillingOwner compute_billing_owner = 1;</code>
      */
-    private $compute_billing_owner = null;
+    protected $compute_billing_owner = null;
 
     /**
      * Constructor.

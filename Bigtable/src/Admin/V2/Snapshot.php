@@ -27,13 +27,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Output only. The source table at the time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table source_table = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $source_table = null;
+    protected $source_table = null;
     /**
      * Output only. The size of the data in the source table at the time the
      * snapshot was taken. In some cases, this value may be computed
@@ -42,13 +42,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 data_size_bytes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $data_size_bytes = 0;
+    protected $data_size_bytes = 0;
     /**
      * Output only. The time when the snapshot is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * The time when the snapshot will be deleted. The maximum amount of time a
      * snapshot can stay active is 365 days. If 'ttl' is not specified,
@@ -56,19 +56,19 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>
      */
-    private $delete_time = null;
+    protected $delete_time = null;
     /**
      * Output only. The current state of the snapshot.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Snapshot.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Description of the snapshot.
      *
      * Generated from protobuf field <code>string description = 7;</code>
      */
-    private $description = '';
+    protected $description = '';
 
     /**
      * Constructor.

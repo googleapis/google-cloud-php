@@ -20,13 +20,13 @@ class AutoscalingLimits extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_serve_nodes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $min_serve_nodes = 0;
+    protected $min_serve_nodes = 0;
     /**
      * Required. Maximum number of nodes to scale up to.
      *
      * Generated from protobuf field <code>int32 max_serve_nodes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $max_serve_nodes = 0;
+    protected $max_serve_nodes = 0;
 
     /**
      * Constructor.

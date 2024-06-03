@@ -23,7 +23,7 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.EncryptionInfo.EncryptionType encryption_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_type = 0;
+    protected $encryption_type = 0;
     /**
      * Output only. The status of encrypt/decrypt calls on underlying data for
      * this resource. Regardless of status, the existing data is always encrypted
@@ -31,14 +31,14 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status encryption_status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $encryption_status = null;
+    protected $encryption_status = null;
     /**
      * Output only. The version of the Cloud KMS key specified in the parent
      * cluster that is in use for the data underlying this table.
      *
      * Generated from protobuf field <code>string kms_key_version = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
-    private $kms_key_version = '';
+    protected $kms_key_version = '';
 
     /**
      * Constructor.

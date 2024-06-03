@@ -21,7 +21,7 @@ class PBString extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.String.Encoding encoding = 1;</code>
      */
-    private $encoding = null;
+    protected $encoding = null;
 
     /**
      * Constructor.
