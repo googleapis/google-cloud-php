@@ -24,7 +24,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     protected $id = '';
     /**
      * The document data snippet in the search response. Only fields that are
-     * marked as retrievable are populated.
+     * marked as `retrievable` are populated.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document document = 2;</code>
      */
@@ -41,7 +41,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           searched [Document][google.cloud.discoveryengine.v1.Document].
      *     @type \Google\Cloud\DiscoveryEngine\V1\Document $document
      *           The document data snippet in the search response. Only fields that are
-     *           marked as retrievable are populated.
+     *           marked as `retrievable` are populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,7 +79,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The document data snippet in the search response. Only fields that are
-     * marked as retrievable are populated.
+     * marked as `retrievable` are populated.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document document = 2;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1\Document|null
@@ -101,7 +101,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The document data snippet in the search response. Only fields that are
-     * marked as retrievable are populated.
+     * marked as `retrievable` are populated.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.Document document = 2;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1\Document $var

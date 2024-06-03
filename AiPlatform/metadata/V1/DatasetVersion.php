@@ -20,8 +20,8 @@ class DatasetVersion
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
-0google/cloud/aiplatform/v1/dataset_version.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"™
+¾
+0google/cloud/aiplatform/v1/dataset_version.protogoogle.cloud.aiplatform.v1google/api/resource.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"·
 DatasetVersion
 name (	BàA4
 create_time (2.google.protobuf.TimestampBàA4
@@ -29,7 +29,8 @@ class DatasetVersion
 etag (	#
 big_query_dataset_name (	BàA
 display_name (	0
-metadata (2.google.protobuf.ValueBàAàA:ŒêAˆ
+metadata (2.google.protobuf.ValueBàAàA
+model_reference	 (	BàA:ŒêAˆ
 (aiplatform.googleapis.com/DatasetVersion\\projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}BÑ
 com.google.cloud.aiplatform.v1BDatasetVersionProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);

@@ -46,6 +46,7 @@ use Google\Cloud\AIPlatform\V1\ListNotebookRuntimesRequest;
 use Google\Cloud\AIPlatform\V1\NotebookRuntime;
 use Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeRequest;
+use Google\Cloud\AIPlatform\V1\UpdateNotebookRuntimeTemplateRequest;
 use Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -78,6 +79,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listNotebookRuntimeTemplatesAsync(ListNotebookRuntimeTemplatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listNotebookRuntimesAsync(ListNotebookRuntimesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface startNotebookRuntimeAsync(StartNotebookRuntimeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateNotebookRuntimeTemplateAsync(UpdateNotebookRuntimeTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface upgradeNotebookRuntimeAsync(UpgradeNotebookRuntimeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -594,6 +596,33 @@ final class NotebookServiceClient
     public function startNotebookRuntime(StartNotebookRuntimeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('StartNotebookRuntime', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a NotebookRuntimeTemplate.
+     *
+     * The async variant is
+     * {@see NotebookServiceClient::updateNotebookRuntimeTemplateAsync()} .
+     *
+     * @example samples/V1/NotebookServiceClient/update_notebook_runtime_template.php
+     *
+     * @param UpdateNotebookRuntimeTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return NotebookRuntimeTemplate
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateNotebookRuntimeTemplate(UpdateNotebookRuntimeTemplateRequest $request, array $callOptions = []): NotebookRuntimeTemplate
+    {
+        return $this->startApiCall('UpdateNotebookRuntimeTemplate', $request, $callOptions)->wait();
     }
 
     /**

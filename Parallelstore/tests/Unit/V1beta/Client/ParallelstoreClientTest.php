@@ -24,7 +24,6 @@ namespace Google\Cloud\Parallelstore\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Location\GetLocationRequest;
@@ -43,6 +42,7 @@ use Google\Cloud\Parallelstore\V1beta\Instance;
 use Google\Cloud\Parallelstore\V1beta\ListInstancesRequest;
 use Google\Cloud\Parallelstore\V1beta\ListInstancesResponse;
 use Google\Cloud\Parallelstore\V1beta\UpdateInstanceRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

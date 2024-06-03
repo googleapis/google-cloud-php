@@ -69,6 +69,11 @@ return [
                         'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/collections/*/dataStores/*}/userEvents:write',
                         'body' => 'user_event',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/userEvents:write',
+                        'body' => 'user_event',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -80,6 +85,25 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataStores/*/branches/*/operations/*}:cancel',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{name=projects/*/locations/*/dataStores/*/branches/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/collections/*/dataConnector/operations/*}',

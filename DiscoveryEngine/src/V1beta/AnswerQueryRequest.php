@@ -37,8 +37,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The session resource name. Not required.
      * When session field is not set, the API is in sessionless mode.
-     * We support auto session mode: users can use the wildcard symbol “-” as
-     * session id.  A new id will be automatically generated and assigned.
+     * We support auto session mode: users can use the wildcard symbol `-` as
+     * session ID.  A new ID will be automatically generated and assigned.
      *
      * Generated from protobuf field <code>string session = 3 [(.google.api.resource_reference) = {</code>
      */
@@ -117,8 +117,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $session
      *           The session resource name. Not required.
      *           When session field is not set, the API is in sessionless mode.
-     *           We support auto session mode: users can use the wildcard symbol “-” as
-     *           session id.  A new id will be automatically generated and assigned.
+     *           We support auto session mode: users can use the wildcard symbol `-` as
+     *           session ID.  A new ID will be automatically generated and assigned.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\AnswerQueryRequest\SafetySpec $safety_spec
      *           Model specification.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\AnswerQueryRequest\RelatedQuestionsSpec $related_questions_spec
@@ -228,8 +228,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The session resource name. Not required.
      * When session field is not set, the API is in sessionless mode.
-     * We support auto session mode: users can use the wildcard symbol “-” as
-     * session id.  A new id will be automatically generated and assigned.
+     * We support auto session mode: users can use the wildcard symbol `-` as
+     * session ID.  A new ID will be automatically generated and assigned.
      *
      * Generated from protobuf field <code>string session = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -242,8 +242,8 @@ class AnswerQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The session resource name. Not required.
      * When session field is not set, the API is in sessionless mode.
-     * We support auto session mode: users can use the wildcard symbol “-” as
-     * session id.  A new id will be automatically generated and assigned.
+     * We support auto session mode: users can use the wildcard symbol `-` as
+     * session ID.  A new ID will be automatically generated and assigned.
      *
      * Generated from protobuf field <code>string session = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var

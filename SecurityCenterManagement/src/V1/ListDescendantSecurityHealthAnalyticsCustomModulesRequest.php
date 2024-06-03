@@ -17,11 +17,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListDescendantSecurityHealthAnalyticsCustomModulesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
-     * or
-     * "projects/{project}/locations/{location}"
+     * Required. Name of the parent organization, folder, or project in which to
+     * list custom modules, specified in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,11 +41,12 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesRequest extends \Google\
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. Name of parent to list custom modules. Its format is
-     *                       "organizations/{organization}/locations/{location}",
-     *                       "folders/{folder}/locations/{location}",
-     *                       or
-     *                       "projects/{project}/locations/{location}"
+     * @param string $parent Required. Name of the parent organization, folder, or project in which to
+     *                       list custom modules, specified in one of the following formats:
+     *
+     *                       * `organizations/{organization}/locations/{location}`
+     *                       * `folders/{folder}/locations/{location}`
+     *                       * `projects/{project}/locations/{location}`
      *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\ListDescendantSecurityHealthAnalyticsCustomModulesRequest
@@ -65,11 +66,11 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesRequest extends \Google\
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of parent to list custom modules. Its format is
-     *           "organizations/{organization}/locations/{location}",
-     *           "folders/{folder}/locations/{location}",
-     *           or
-     *           "projects/{project}/locations/{location}"
+     *           Required. Name of the parent organization, folder, or project in which to
+     *           list custom modules, specified in one of the following formats:
+     *           * `organizations/{organization}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `projects/{project}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of results to return in a single response.
      *           Default is 10, minimum is 1, maximum is 1000.
@@ -83,11 +84,11 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesRequest extends \Google\
     }
 
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
-     * or
-     * "projects/{project}/locations/{location}"
+     * Required. Name of the parent organization, folder, or project in which to
+     * list custom modules, specified in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,11 +99,11 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesRequest extends \Google\
     }
 
     /**
-     * Required. Name of parent to list custom modules. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
-     * or
-     * "projects/{project}/locations/{location}"
+     * Required. Name of the parent organization, folder, or project in which to
+     * list custom modules, specified in one of the following formats:
+     * * `organizations/{organization}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

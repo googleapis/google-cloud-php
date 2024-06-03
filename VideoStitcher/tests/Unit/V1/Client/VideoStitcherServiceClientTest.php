@@ -34,16 +34,19 @@ use Google\Cloud\Video\Stitcher\V1\CreateCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\CreateVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\CreateVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\DeleteSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\DeleteVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetCdnKeyRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveAdTagDetailRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetLiveSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\GetSlateRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodAdTagDetailRequest;
+use Google\Cloud\Video\Stitcher\V1\GetVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodSessionRequest;
 use Google\Cloud\Video\Stitcher\V1\GetVodStitchDetailRequest;
 use Google\Cloud\Video\Stitcher\V1\ListCdnKeysRequest;
@@ -56,6 +59,8 @@ use Google\Cloud\Video\Stitcher\V1\ListSlatesRequest;
 use Google\Cloud\Video\Stitcher\V1\ListSlatesResponse;
 use Google\Cloud\Video\Stitcher\V1\ListVodAdTagDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListVodAdTagDetailsResponse;
+use Google\Cloud\Video\Stitcher\V1\ListVodConfigsRequest;
+use Google\Cloud\Video\Stitcher\V1\ListVodConfigsResponse;
 use Google\Cloud\Video\Stitcher\V1\ListVodStitchDetailsRequest;
 use Google\Cloud\Video\Stitcher\V1\ListVodStitchDetailsResponse;
 use Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail;
@@ -63,8 +68,11 @@ use Google\Cloud\Video\Stitcher\V1\LiveConfig;
 use Google\Cloud\Video\Stitcher\V1\LiveSession;
 use Google\Cloud\Video\Stitcher\V1\Slate;
 use Google\Cloud\Video\Stitcher\V1\UpdateCdnKeyRequest;
+use Google\Cloud\Video\Stitcher\V1\UpdateLiveConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\UpdateSlateRequest;
+use Google\Cloud\Video\Stitcher\V1\UpdateVodConfigRequest;
 use Google\Cloud\Video\Stitcher\V1\VodAdTagDetail;
+use Google\Cloud\Video\Stitcher\V1\VodConfig;
 use Google\Cloud\Video\Stitcher\V1\VodSession;
 use Google\Cloud\Video\Stitcher\V1\VodStitchDetail;
 use Google\LongRunning\GetOperationRequest;
@@ -605,6 +613,153 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function createVodConfigTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createVodConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $sourceUri = 'sourceUri-1111107768';
+        $adTagUri = 'adTagUri-1429194965';
+        $expectedResponse = new VodConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSourceUri($sourceUri);
+        $expectedResponse->setAdTagUri($adTagUri);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createVodConfigTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $vodConfigId = 'vodConfigId-418410300';
+        $vodConfig = new VodConfig();
+        $vodConfigSourceUri = 'vodConfigSourceUri538718692';
+        $vodConfig->setSourceUri($vodConfigSourceUri);
+        $vodConfigAdTagUri = 'vodConfigAdTagUri-1204642686';
+        $vodConfig->setAdTagUri($vodConfigAdTagUri);
+        $request = (new CreateVodConfigRequest())
+            ->setParent($formattedParent)
+            ->setVodConfigId($vodConfigId)
+            ->setVodConfig($vodConfig);
+        $response = $gapicClient->createVodConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.stitcher.v1.VideoStitcherService/CreateVodConfig', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getVodConfigId();
+        $this->assertProtobufEquals($vodConfigId, $actualValue);
+        $actualValue = $actualApiRequestObject->getVodConfig();
+        $this->assertProtobufEquals($vodConfig, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createVodConfigTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function createVodConfigExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createVodConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $vodConfigId = 'vodConfigId-418410300';
+        $vodConfig = new VodConfig();
+        $vodConfigSourceUri = 'vodConfigSourceUri538718692';
+        $vodConfig->setSourceUri($vodConfigSourceUri);
+        $vodConfigAdTagUri = 'vodConfigAdTagUri-1204642686';
+        $vodConfig->setAdTagUri($vodConfigAdTagUri);
+        $request = (new CreateVodConfigRequest())
+            ->setParent($formattedParent)
+            ->setVodConfigId($vodConfigId)
+            ->setVodConfig($vodConfig);
+        $response = $gapicClient->createVodConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createVodConfigTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function createVodSessionTest()
     {
         $transport = $this->createTransport();
@@ -618,20 +773,18 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $sourceUri = 'sourceUri-1111107768';
         $adTagUri = 'adTagUri-1429194965';
         $assetId = 'assetId-373202742';
+        $vodConfig = 'vodConfig-936686282';
         $expectedResponse = new VodSession();
         $expectedResponse->setName($name);
         $expectedResponse->setPlayUri($playUri);
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setAdTagUri($adTagUri);
         $expectedResponse->setAssetId($assetId);
+        $expectedResponse->setVodConfig($vodConfig);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $vodSession = new VodSession();
-        $vodSessionSourceUri = 'vodSessionSourceUri2085185606';
-        $vodSession->setSourceUri($vodSessionSourceUri);
-        $vodSessionAdTagUri = 'vodSessionAdTagUri-600567328';
-        $vodSession->setAdTagUri($vodSessionAdTagUri);
         $vodSessionAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
         $vodSession->setAdTracking($vodSessionAdTracking);
         $request = (new CreateVodSessionRequest())
@@ -672,10 +825,6 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $vodSession = new VodSession();
-        $vodSessionSourceUri = 'vodSessionSourceUri2085185606';
-        $vodSession->setSourceUri($vodSessionSourceUri);
-        $vodSessionAdTagUri = 'vodSessionAdTagUri-600567328';
-        $vodSession->setAdTagUri($vodSessionAdTagUri);
         $vodSessionAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
         $vodSession->setAdTracking($vodSessionAdTracking);
         $request = (new CreateVodSessionRequest())
@@ -1040,6 +1189,127 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteSlateTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteVodConfigTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteVodConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteVodConfigTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
+        $request = (new DeleteVodConfigRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteVodConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.stitcher.v1.VideoStitcherService/DeleteVodConfig', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteVodConfigTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteVodConfigExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteVodConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
+        $request = (new DeleteVodConfigRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->deleteVodConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteVodConfigTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1456,6 +1726,74 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getVodConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $sourceUri = 'sourceUri-1111107768';
+        $adTagUri = 'adTagUri-1429194965';
+        $expectedResponse = new VodConfig();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setSourceUri($sourceUri);
+        $expectedResponse->setAdTagUri($adTagUri);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
+        $request = (new GetVodConfigRequest())
+            ->setName($formattedName);
+        $response = $gapicClient->getVodConfig($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.stitcher.v1.VideoStitcherService/GetVodConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getVodConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->vodConfigName('[PROJECT]', '[LOCATION]', '[VOD_CONFIG]');
+        $request = (new GetVodConfigRequest())
+            ->setName($formattedName);
+        try {
+            $gapicClient->getVodConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getVodSessionTest()
     {
         $transport = $this->createTransport();
@@ -1469,12 +1807,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $sourceUri = 'sourceUri-1111107768';
         $adTagUri = 'adTagUri-1429194965';
         $assetId = 'assetId-373202742';
+        $vodConfig = 'vodConfig-936686282';
         $expectedResponse = new VodSession();
         $expectedResponse->setName($name2);
         $expectedResponse->setPlayUri($playUri);
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setAdTagUri($adTagUri);
         $expectedResponse->setAssetId($assetId);
+        $expectedResponse->setVodConfig($vodConfig);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
@@ -1952,6 +2292,78 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function listVodConfigsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $vodConfigsElement = new VodConfig();
+        $vodConfigs = [
+            $vodConfigsElement,
+        ];
+        $expectedResponse = new ListVodConfigsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setVodConfigs($vodConfigs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListVodConfigsRequest())
+            ->setParent($formattedParent);
+        $response = $gapicClient->listVodConfigs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getVodConfigs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.stitcher.v1.VideoStitcherService/ListVodConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listVodConfigsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListVodConfigsRequest())
+            ->setParent($formattedParent);
+        try {
+            $gapicClient->listVodConfigs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listVodStitchDetailsTest()
     {
         $transport = $this->createTransport();
@@ -2155,6 +2567,149 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateLiveConfigTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateLiveConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $sourceUri = 'sourceUri-1111107768';
+        $adTagUri = 'adTagUri-1429194965';
+        $defaultSlate = 'defaultSlate1316218395';
+        $expectedResponse = new LiveConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSourceUri($sourceUri);
+        $expectedResponse->setAdTagUri($adTagUri);
+        $expectedResponse->setDefaultSlate($defaultSlate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateLiveConfigTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $liveConfig = new LiveConfig();
+        $liveConfigSourceUri = 'liveConfigSourceUri-20192349';
+        $liveConfig->setSourceUri($liveConfigSourceUri);
+        $liveConfigAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
+        $liveConfig->setAdTracking($liveConfigAdTracking);
+        $updateMask = new FieldMask();
+        $request = (new UpdateLiveConfigRequest())
+            ->setLiveConfig($liveConfig)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateLiveConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.stitcher.v1.VideoStitcherService/UpdateLiveConfig', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getLiveConfig();
+        $this->assertProtobufEquals($liveConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateLiveConfigTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateLiveConfigExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateLiveConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $liveConfig = new LiveConfig();
+        $liveConfigSourceUri = 'liveConfigSourceUri-20192349';
+        $liveConfig->setSourceUri($liveConfigSourceUri);
+        $liveConfigAdTracking = AdTracking::AD_TRACKING_UNSPECIFIED;
+        $liveConfig->setAdTracking($liveConfigAdTracking);
+        $updateMask = new FieldMask();
+        $request = (new UpdateLiveConfigRequest())
+            ->setLiveConfig($liveConfig)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateLiveConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateLiveConfigTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function updateSlateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2268,6 +2823,147 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateSlateTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateVodConfigTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateVodConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $sourceUri = 'sourceUri-1111107768';
+        $adTagUri = 'adTagUri-1429194965';
+        $expectedResponse = new VodConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSourceUri($sourceUri);
+        $expectedResponse->setAdTagUri($adTagUri);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateVodConfigTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $vodConfig = new VodConfig();
+        $vodConfigSourceUri = 'vodConfigSourceUri538718692';
+        $vodConfig->setSourceUri($vodConfigSourceUri);
+        $vodConfigAdTagUri = 'vodConfigAdTagUri-1204642686';
+        $vodConfig->setAdTagUri($vodConfigAdTagUri);
+        $updateMask = new FieldMask();
+        $request = (new UpdateVodConfigRequest())
+            ->setVodConfig($vodConfig)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateVodConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.video.stitcher.v1.VideoStitcherService/UpdateVodConfig', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getVodConfig();
+        $this->assertProtobufEquals($vodConfig, $actualValue);
+        $actualValue = $actualApiRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateVodConfigTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateVodConfigExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateVodConfigTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $vodConfig = new VodConfig();
+        $vodConfigSourceUri = 'vodConfigSourceUri538718692';
+        $vodConfig->setSourceUri($vodConfigSourceUri);
+        $vodConfigAdTagUri = 'vodConfigAdTagUri-1204642686';
+        $vodConfig->setAdTagUri($vodConfigAdTagUri);
+        $updateMask = new FieldMask();
+        $request = (new UpdateVodConfigRequest())
+            ->setVodConfig($vodConfig)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateVodConfig($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateVodConfigTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

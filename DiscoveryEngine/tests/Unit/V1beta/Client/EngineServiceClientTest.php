@@ -24,7 +24,6 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1beta\Client\EngineServiceClient;
@@ -40,6 +39,7 @@ use Google\Cloud\DiscoveryEngine\V1beta\SolutionType;
 use Google\Cloud\DiscoveryEngine\V1beta\TuneEngineRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\TuneEngineResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateEngineRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

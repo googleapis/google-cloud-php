@@ -36,8 +36,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. * Supported fields/values
-     *     - `state` - MISSING|AVAILABLE|ERROR
+     * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -73,8 +72,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Page token from a previous page to return the next set of
      *           results. If set, all other request fields must match the original request.
      *     @type string $filter
-     *           Optional. * Supported fields/values
-     *               - `state` - MISSING|AVAILABLE|ERROR
+     *           Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
      * }
      */
     public function __construct($data = NULL) {
@@ -165,8 +163,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. * Supported fields/values
-     *     - `state` - MISSING|AVAILABLE|ERROR
+     * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -177,8 +174,7 @@ class ListConnectionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. * Supported fields/values
-     *     - `state` - MISSING|AVAILABLE|ERROR
+     * Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -46,17 +46,21 @@ use Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule;
 use Google\Cloud\SecurityCenterManagement\V1\GetEffectiveEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\GetEffectiveSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\GetEventThreatDetectionCustomModuleRequest;
+use Google\Cloud\SecurityCenterManagement\V1\GetSecurityCenterServiceRequest;
 use Google\Cloud\SecurityCenterManagement\V1\GetSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ListDescendantEventThreatDetectionCustomModulesRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ListDescendantSecurityHealthAnalyticsCustomModulesRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ListEffectiveEventThreatDetectionCustomModulesRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ListEffectiveSecurityHealthAnalyticsCustomModulesRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ListEventThreatDetectionCustomModulesRequest;
+use Google\Cloud\SecurityCenterManagement\V1\ListSecurityCenterServicesRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ListSecurityHealthAnalyticsCustomModulesRequest;
+use Google\Cloud\SecurityCenterManagement\V1\SecurityCenterService;
 use Google\Cloud\SecurityCenterManagement\V1\SecurityHealthAnalyticsCustomModule;
 use Google\Cloud\SecurityCenterManagement\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\SimulateSecurityHealthAnalyticsCustomModuleResponse;
 use Google\Cloud\SecurityCenterManagement\V1\UpdateEventThreatDetectionCustomModuleRequest;
+use Google\Cloud\SecurityCenterManagement\V1\UpdateSecurityCenterServiceRequest;
 use Google\Cloud\SecurityCenterManagement\V1\UpdateSecurityHealthAnalyticsCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleRequest;
 use Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse;
@@ -80,15 +84,18 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface getEffectiveEventThreatDetectionCustomModuleAsync(GetEffectiveEventThreatDetectionCustomModuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getEffectiveSecurityHealthAnalyticsCustomModuleAsync(GetEffectiveSecurityHealthAnalyticsCustomModuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getEventThreatDetectionCustomModuleAsync(GetEventThreatDetectionCustomModuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getSecurityCenterServiceAsync(GetSecurityCenterServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getSecurityHealthAnalyticsCustomModuleAsync(GetSecurityHealthAnalyticsCustomModuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDescendantEventThreatDetectionCustomModulesAsync(ListDescendantEventThreatDetectionCustomModulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDescendantSecurityHealthAnalyticsCustomModulesAsync(ListDescendantSecurityHealthAnalyticsCustomModulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listEffectiveEventThreatDetectionCustomModulesAsync(ListEffectiveEventThreatDetectionCustomModulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listEffectiveSecurityHealthAnalyticsCustomModulesAsync(ListEffectiveSecurityHealthAnalyticsCustomModulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listEventThreatDetectionCustomModulesAsync(ListEventThreatDetectionCustomModulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listSecurityCenterServicesAsync(ListSecurityCenterServicesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSecurityHealthAnalyticsCustomModulesAsync(ListSecurityHealthAnalyticsCustomModulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface simulateSecurityHealthAnalyticsCustomModuleAsync(SimulateSecurityHealthAnalyticsCustomModuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateEventThreatDetectionCustomModuleAsync(UpdateEventThreatDetectionCustomModuleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateSecurityCenterServiceAsync(UpdateSecurityCenterServiceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSecurityHealthAnalyticsCustomModuleAsync(UpdateSecurityHealthAnalyticsCustomModuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface validateEventThreatDetectionCustomModuleAsync(ValidateEventThreatDetectionCustomModuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -313,6 +320,25 @@ final class SecurityCenterManagementClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_location_service resource.
+     *
+     * @param string $folder
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted folder_location_service resource.
+     */
+    public static function folderLocationServiceName(string $folder, string $location, string $service): string
+    {
+        return self::getPathTemplate('folderLocationService')->render([
+            'folder' => $folder,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -437,6 +463,28 @@ final class SecurityCenterManagementClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_service resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted organization_location_service resource.
+     */
+    public static function organizationLocationServiceName(
+        string $organization,
+        string $location,
+        string $service
+    ): string {
+        return self::getPathTemplate('organizationLocationService')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_effective_event_threat_detection_custom_module resource.
      *
      * @param string $project
@@ -525,6 +573,44 @@ final class SecurityCenterManagementClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_service resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted project_location_service resource.
+     */
+    public static function projectLocationServiceName(string $project, string $location, string $service): string
+    {
+        return self::getPathTemplate('projectLocationService')->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * security_center_service resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     *
+     * @return string The formatted security_center_service resource.
+     */
+    public static function securityCenterServiceName(string $project, string $location, string $service): string
+    {
+        return self::getPathTemplate('securityCenterService')->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * security_health_analytics_custom_module resource.
      *
      * @param string $organization
@@ -557,16 +643,20 @@ final class SecurityCenterManagementClient
      * - folderLocationEffectiveSecurityHealthAnalyticsCustomModule: folders/{folder}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}
      * - folderLocationEventThreatDetectionCustomModule: folders/{folder}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}
      * - folderLocationSecurityHealthAnalyticsCustomModule: folders/{folder}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}
+     * - folderLocationService: folders/{folder}/locations/{location}/securityCenterServices/{service}
      * - location: projects/{project}/locations/{location}
      * - organizationLocation: organizations/{organization}/locations/{location}
      * - organizationLocationEffectiveEventThreatDetectionCustomModule: organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}
      * - organizationLocationEffectiveSecurityHealthAnalyticsCustomModule: organizations/{organization}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}
      * - organizationLocationEventThreatDetectionCustomModule: organizations/{organization}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}
      * - organizationLocationSecurityHealthAnalyticsCustomModule: organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}
+     * - organizationLocationService: organizations/{organization}/locations/{location}/securityCenterServices/{service}
      * - projectLocationEffectiveEventThreatDetectionCustomModule: projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}
      * - projectLocationEffectiveSecurityHealthAnalyticsCustomModule: projects/{project}/locations/{location}/effectiveSecurityHealthAnalyticsCustomModules/{effective_security_health_analytics_custom_module}
      * - projectLocationEventThreatDetectionCustomModule: projects/{project}/locations/{location}/eventThreatDetectionCustomModules/{event_threat_detection_custom_module}
      * - projectLocationSecurityHealthAnalyticsCustomModule: projects/{project}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}
+     * - projectLocationService: projects/{project}/locations/{location}/securityCenterServices/{service}
+     * - securityCenterService: projects/{project}/locations/{location}/securityCenterServices/{service}
      * - securityHealthAnalyticsCustomModule: organizations/{organization}/locations/{location}/securityHealthAnalyticsCustomModules/{security_health_analytics_custom_module}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -881,6 +971,35 @@ final class SecurityCenterManagementClient
     }
 
     /**
+     * Gets service settings for the specified Security Command Center service.
+     *
+     * The async variant is
+     * {@see SecurityCenterManagementClient::getSecurityCenterServiceAsync()} .
+     *
+     * @example samples/V1/SecurityCenterManagementClient/get_security_center_service.php
+     *
+     * @param GetSecurityCenterServiceRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecurityCenterService
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSecurityCenterService(
+        GetSecurityCenterServiceRequest $request,
+        array $callOptions = []
+    ): SecurityCenterService {
+        return $this->startApiCall('GetSecurityCenterService', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a SecurityHealthAnalyticsCustomModule.
      *
      * The async variant is
@@ -1070,6 +1189,36 @@ final class SecurityCenterManagementClient
     }
 
     /**
+     * Returns a list of all Security Command Center services for the given
+     * parent.
+     *
+     * The async variant is
+     * {@see SecurityCenterManagementClient::listSecurityCenterServicesAsync()} .
+     *
+     * @example samples/V1/SecurityCenterManagementClient/list_security_center_services.php
+     *
+     * @param ListSecurityCenterServicesRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSecurityCenterServices(
+        ListSecurityCenterServicesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListSecurityCenterServices', $request, $callOptions);
+    }
+
+    /**
      * Returns a list of all SecurityHealthAnalyticsCustomModules for the given
      * parent. This includes resident modules defined at the scope of the parent,
      * and inherited modules, inherited from CRM ancestors (no descendants).
@@ -1164,6 +1313,35 @@ final class SecurityCenterManagementClient
         array $callOptions = []
     ): EventThreatDetectionCustomModule {
         return $this->startApiCall('UpdateEventThreatDetectionCustomModule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a Security Command Center service using the given update mask.
+     *
+     * The async variant is
+     * {@see SecurityCenterManagementClient::updateSecurityCenterServiceAsync()} .
+     *
+     * @example samples/V1/SecurityCenterManagementClient/update_security_center_service.php
+     *
+     * @param UpdateSecurityCenterServiceRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecurityCenterService
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSecurityCenterService(
+        UpdateSecurityCenterServiceRequest $request,
+        array $callOptions = []
+    ): SecurityCenterService {
+        return $this->startApiCall('UpdateSecurityCenterService', $request, $callOptions)->wait();
     }
 
     /**

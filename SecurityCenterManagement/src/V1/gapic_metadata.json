@@ -45,6 +45,11 @@
                                 "getEventThreatDetectionCustomModule"
                             ]
                         },
+                        "GetSecurityCenterService": {
+                            "methods": [
+                                "getSecurityCenterService"
+                            ]
+                        },
                         "GetSecurityHealthAnalyticsCustomModule": {
                             "methods": [
                                 "getSecurityHealthAnalyticsCustomModule"
@@ -75,6 +80,11 @@
                                 "listEventThreatDetectionCustomModules"
                             ]
                         },
+                        "ListSecurityCenterServices": {
+                            "methods": [
+                                "listSecurityCenterServices"
+                            ]
+                        },
                         "ListSecurityHealthAnalyticsCustomModules": {
                             "methods": [
                                 "listSecurityHealthAnalyticsCustomModules"
@@ -88,6 +98,11 @@
                         "UpdateEventThreatDetectionCustomModule": {
                             "methods": [
                                 "updateEventThreatDetectionCustomModule"
+                            ]
+                        },
+                        "UpdateSecurityCenterService": {
+                            "methods": [
+                                "updateSecurityCenterService"
                             ]
                         },
                         "UpdateSecurityHealthAnalyticsCustomModule": {

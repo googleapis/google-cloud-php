@@ -344,6 +344,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateDatasetVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\DatasetVersion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'dataset_version.name',
+                        'fieldAccessors' => [
+                            'getDatasetVersion',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',

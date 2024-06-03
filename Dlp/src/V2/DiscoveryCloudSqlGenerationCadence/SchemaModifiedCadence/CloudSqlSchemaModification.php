@@ -20,7 +20,7 @@ class CloudSqlSchemaModification
      */
     const SQL_SCHEMA_MODIFICATION_UNSPECIFIED = 0;
     /**
-     * New columns has appeared.
+     * New columns have appeared.
      *
      * Generated from protobuf enum <code>NEW_COLUMNS = 1;</code>
      */

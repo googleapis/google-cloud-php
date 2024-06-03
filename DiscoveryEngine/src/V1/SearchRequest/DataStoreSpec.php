@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A struct to define data stores to filter on in a search call.
+ * A struct to define data stores to filter on in a search call and
+ * configurations for those data stores. A maximum of 1 DataStoreSpec per
+ * data_store is allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec</code>
  */

@@ -24,7 +24,6 @@ namespace Google\Cloud\PolicySimulator\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\PolicySimulator\V1\Client\SimulatorClient;
@@ -35,6 +34,7 @@ use Google\Cloud\PolicySimulator\V1\ListReplayResultsResponse;
 use Google\Cloud\PolicySimulator\V1\Replay;
 use Google\Cloud\PolicySimulator\V1\ReplayConfig;
 use Google\Cloud\PolicySimulator\V1\ReplayResult;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

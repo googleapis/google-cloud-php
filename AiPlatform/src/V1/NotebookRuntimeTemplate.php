@@ -138,6 +138,12 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string network_tags = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $network_tags;
+    /**
+     * Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 23;</code>
+     */
+    private $encryption_spec = null;
 
     /**
      * Constructor.
@@ -198,6 +204,8 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Optional. The Compute Engine tags to add to runtime (see [Tagging
      *           instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Customer-managed encryption key spec for the notebook runtime.
      * }
      */
     public function __construct($data = NULL) {
@@ -761,6 +769,42 @@ class NotebookRuntimeTemplate extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->network_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 23;</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Customer-managed encryption key spec for the notebook runtime.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 23;</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }

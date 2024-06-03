@@ -48,9 +48,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Required. Determines how the ads are tracked. If
-     * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
-     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     * Required. Determines how the ads are tracked.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -77,6 +75,12 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.PrefetchConfig prefetch_config = 10;</code>
      */
     private $prefetch_config = null;
+    /**
+     * Options for fetching source manifests and segments.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.FetchOptions source_fetch_options = 16;</code>
+     */
+    private $source_fetch_options = null;
 
     /**
      * Constructor.
@@ -97,9 +101,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. State of the live config.
      *     @type int $ad_tracking
-     *           Required. Determines how the ads are tracked. If
-     *           [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
-     *           is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     *           Required. Determines how the ads are tracked.
      *     @type string $default_slate
      *           This must refer to a slate in the same
      *           project. If Google Ad Manager (GAM) is used for ads, this string sets the
@@ -110,6 +112,8 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
      *           the ad break boundaries. If not specified, the default is `CUT_CURRENT`.
      *     @type \Google\Cloud\Video\Stitcher\V1\PrefetchConfig $prefetch_config
      *           The configuration for prefetching ads.
+     *     @type \Google\Cloud\Video\Stitcher\V1\FetchOptions $source_fetch_options
+     *           Options for fetching source manifests and segments.
      * }
      */
     public function __construct($data = NULL) {
@@ -262,9 +266,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Determines how the ads are tracked. If
-     * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
-     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     * Required. Determines how the ads are tracked.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -275,9 +277,7 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Determines how the ads are tracked. If
-     * [gam_live_config][google.cloud.video.stitcher.v1.LiveConfig.gam_live_config]
-     * is set, the value must be `CLIENT` because the IMA SDK handles ad tracking.
+     * Required. Determines how the ads are tracked.
      *
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -383,6 +383,42 @@ class LiveConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\PrefetchConfig::class);
         $this->prefetch_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Options for fetching source manifests and segments.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.FetchOptions source_fetch_options = 16;</code>
+     * @return \Google\Cloud\Video\Stitcher\V1\FetchOptions|null
+     */
+    public function getSourceFetchOptions()
+    {
+        return $this->source_fetch_options;
+    }
+
+    public function hasSourceFetchOptions()
+    {
+        return isset($this->source_fetch_options);
+    }
+
+    public function clearSourceFetchOptions()
+    {
+        unset($this->source_fetch_options);
+    }
+
+    /**
+     * Options for fetching source manifests and segments.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.FetchOptions source_fetch_options = 16;</code>
+     * @param \Google\Cloud\Video\Stitcher\V1\FetchOptions $var
+     * @return $this
+     */
+    public function setSourceFetchOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\FetchOptions::class);
+        $this->source_fetch_options = $var;
 
         return $this;
     }

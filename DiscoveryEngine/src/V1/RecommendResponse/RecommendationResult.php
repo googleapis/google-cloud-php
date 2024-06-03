@@ -30,7 +30,7 @@ class RecommendationResult extends \Google\Protobuf\Internal\Message
      */
     protected $document = null;
     /**
-     * Additional Document metadata / annotations.
+     * Additional Document metadata or annotations.
      * Possible values:
      * * `score`: Recommendation score in double value. Is set if
      *   `returnScore` is set to true in
@@ -52,7 +52,7 @@ class RecommendationResult extends \Google\Protobuf\Internal\Message
      *           Set if `returnDocument` is set to true in
      *           [RecommendRequest.params][google.cloud.discoveryengine.v1.RecommendRequest.params].
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
-     *           Additional Document metadata / annotations.
+     *           Additional Document metadata or annotations.
      *           Possible values:
      *           * `score`: Recommendation score in double value. Is set if
      *             `returnScore` is set to true in
@@ -129,7 +129,7 @@ class RecommendationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional Document metadata / annotations.
+     * Additional Document metadata or annotations.
      * Possible values:
      * * `score`: Recommendation score in double value. Is set if
      *   `returnScore` is set to true in
@@ -144,7 +144,7 @@ class RecommendationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional Document metadata / annotations.
+     * Additional Document metadata or annotations.
      * Possible values:
      * * `score`: Recommendation score in double value. Is set if
      *   `returnScore` is set to true in

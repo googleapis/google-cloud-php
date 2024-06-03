@@ -17,10 +17,10 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
 {
     /**
      * Required. Name of parent to list custom modules. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
+     * `organizations/{organization}/locations/{location}`,
+     * `folders/{folder}/locations/{location}`,
      * or
-     * "projects/{project}/locations/{location}"
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,10 +47,10 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
 
     /**
      * @param string $parent Required. Name of parent to list custom modules. Its format is
-     *                       "organizations/{organization}/locations/{location}",
-     *                       "folders/{folder}/locations/{location}",
+     *                       `organizations/{organization}/locations/{location}`,
+     *                       `folders/{folder}/locations/{location}`,
      *                       or
-     *                       "projects/{project}/locations/{location}"
+     *                       `projects/{project}/locations/{location}`
      *                       Please see {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\SecurityCenterManagement\V1\ListEventThreatDetectionCustomModulesRequest
@@ -71,10 +71,10 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
      *
      *     @type string $parent
      *           Required. Name of parent to list custom modules. Its format is
-     *           "organizations/{organization}/locations/{location}",
-     *           "folders/{folder}/locations/{location}",
+     *           `organizations/{organization}/locations/{location}`,
+     *           `folders/{folder}/locations/{location}`,
      *           or
-     *           "projects/{project}/locations/{location}"
+     *           `projects/{project}/locations/{location}`
      *     @type int $page_size
      *           Optional. The maximum number of modules to return. The service may return
      *           fewer than this value. If unspecified, at most 10 configs will be returned.
@@ -95,10 +95,10 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
 
     /**
      * Required. Name of parent to list custom modules. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
+     * `organizations/{organization}/locations/{location}`,
+     * `folders/{folder}/locations/{location}`,
      * or
-     * "projects/{project}/locations/{location}"
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -110,10 +110,10 @@ class ListEventThreatDetectionCustomModulesRequest extends \Google\Protobuf\Inte
 
     /**
      * Required. Name of parent to list custom modules. Its format is
-     * "organizations/{organization}/locations/{location}",
-     * "folders/{folder}/locations/{location}",
+     * `organizations/{organization}/locations/{location}`,
+     * `folders/{folder}/locations/{location}`,
      * or
-     * "projects/{project}/locations/{location}"
+     * `projects/{project}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

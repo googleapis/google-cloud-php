@@ -35,7 +35,7 @@ use Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomM
  *
  *                                Its format is:
  *
- *                                * "organizations/{organization}/locations/{location}". Please see
+ *                                * `organizations/{organization}/locations/{location}`. Please see
  *                                {@see SecurityCenterManagementClient::organizationLocationName()} for help formatting this field.
  * @param string $rawText         The raw text of the module's contents. Used to generate error
  *                                messages.

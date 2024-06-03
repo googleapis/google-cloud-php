@@ -120,7 +120,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '1.77.0';
+    const VERSION = '1.79.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -821,6 +821,21 @@ class SpannerClient
     public function pgJsonb($value)
     {
         return new PgJsonb($value);
+    }
+
+    /**
+     * Represents a value with a data type of
+     * [PG OID](https://cloud.google.com/spanner/docs/reference/postgresql/data-types) for the
+     * Postgres Dialect database.
+     *
+     * Example:
+     * ```
+     * $pgOid = $spanner->pgOid('123');
+     * ```
+     */
+    public function pgOid($value)
+    {
+        return new PgOid($value);
     }
 
     /**

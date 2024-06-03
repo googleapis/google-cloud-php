@@ -61,6 +61,15 @@ class SearchParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
     protected $order_by = '';
+    /**
+     * Specs defining dataStores to filter on in a search call and
+     * configurations for those dataStores. This is only considered for
+     * engines with multiple dataStores use case. For single dataStore within
+     * an engine, they should use the specs at the top level.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 7;</code>
+     */
+    private $data_store_specs;
 
     /**
      * Constructor.
@@ -98,6 +107,11 @@ class SearchParams extends \Google\Protobuf\Internal\Message
      *           case-sensitive. For more information on ordering, see
      *           [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
      *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *           Specs defining dataStores to filter on in a search call and
+     *           configurations for those dataStores. This is only considered for
+     *           engines with multiple dataStores use case. For single dataStore within
+     *           an engine, they should use the specs at the top level.
      * }
      */
     public function __construct($data = NULL) {
@@ -259,6 +273,38 @@ class SearchParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specs defining dataStores to filter on in a search call and
+     * configurations for those dataStores. This is only considered for
+     * engines with multiple dataStores use case. For single dataStore within
+     * an engine, they should use the specs at the top level.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataStoreSpecs()
+    {
+        return $this->data_store_specs;
+    }
+
+    /**
+     * Specs defining dataStores to filter on in a search call and
+     * configurations for those dataStores. This is only considered for
+     * engines with multiple dataStores use case. For single dataStore within
+     * an engine, they should use the specs at the top level.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 7;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataStoreSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec::class);
+        $this->data_store_specs = $arr;
 
         return $this;
     }

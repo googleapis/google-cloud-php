@@ -41,7 +41,7 @@ class Probe extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AIPlatform\V1\Probe\ExecAction $exec
-     *           Exec specifies the action to take.
+     *           ExecAction probes the health of a container by executing a command.
      *     @type int $period_seconds
      *           How often (in seconds) to perform the probe. Default to 10 seconds.
      *           Minimum value is 1. Must be less than timeout_seconds.
@@ -58,7 +58,7 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exec specifies the action to take.
+     * ExecAction probes the health of a container by executing a command.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe.ExecAction exec = 1;</code>
      * @return \Google\Cloud\AIPlatform\V1\Probe\ExecAction|null
@@ -74,7 +74,7 @@ class Probe extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exec specifies the action to take.
+     * ExecAction probes the health of a container by executing a command.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Probe.ExecAction exec = 1;</code>
      * @param \Google\Cloud\AIPlatform\V1\Probe\ExecAction $var

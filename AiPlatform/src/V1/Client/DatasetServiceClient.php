@@ -56,6 +56,7 @@ use Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest;
 use Google\Cloud\AIPlatform\V1\RestoreDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
+use Google\Cloud\AIPlatform\V1\UpdateDatasetVersionRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -96,6 +97,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface restoreDatasetVersionAsync(RestoreDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchDataItemsAsync(SearchDataItemsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDatasetAsync(UpdateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateDatasetVersionAsync(UpdateDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -868,6 +870,32 @@ final class DatasetServiceClient
     public function updateDataset(UpdateDatasetRequest $request, array $callOptions = []): Dataset
     {
         return $this->startApiCall('UpdateDataset', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a DatasetVersion.
+     *
+     * The async variant is {@see DatasetServiceClient::updateDatasetVersionAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/update_dataset_version.php
+     *
+     * @param UpdateDatasetVersionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DatasetVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDatasetVersion(UpdateDatasetVersionRequest $request, array $callOptions = []): DatasetVersion
+    {
+        return $this->startApiCall('UpdateDatasetVersion', $request, $callOptions)->wait();
     }
 
     /**

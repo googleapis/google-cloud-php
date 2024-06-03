@@ -100,6 +100,11 @@
                                 "updateDataset"
                             ]
                         },
+                        "UpdateDatasetVersion": {
+                            "methods": [
+                                "updateDatasetVersion"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"
@@ -1719,6 +1724,11 @@
                         "StartNotebookRuntime": {
                             "methods": [
                                 "startNotebookRuntime"
+                            ]
+                        },
+                        "UpdateNotebookRuntimeTemplate": {
+                            "methods": [
+                                "updateNotebookRuntimeTemplate"
                             ]
                         },
                         "UpgradeNotebookRuntime": {

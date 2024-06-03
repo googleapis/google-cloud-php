@@ -28,6 +28,11 @@
                 }
             },
             "methods": {
+                "AnswerQuery": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
                 "ConverseConversation": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_2_codes",
@@ -38,7 +43,22 @@
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
                 },
+                "CreateSession": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
                 "DeleteConversation": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "DeleteSession": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "GetAnswer": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
@@ -48,12 +68,27 @@
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
                 },
+                "GetSession": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
                 "ListConversations": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
                 },
+                "ListSessions": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
                 "UpdateConversation": {
+                    "timeout_millis": 30000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "UpdateSession": {
                     "timeout_millis": 30000,
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"

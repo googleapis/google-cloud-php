@@ -29,6 +29,40 @@
                 }
             }
         },
+        "ControlService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ControlServiceGapicClient",
+                    "rpcs": {
+                        "CreateControl": {
+                            "methods": [
+                                "createControl"
+                            ]
+                        },
+                        "DeleteControl": {
+                            "methods": [
+                                "deleteControl"
+                            ]
+                        },
+                        "GetControl": {
+                            "methods": [
+                                "getControl"
+                            ]
+                        },
+                        "ListControls": {
+                            "methods": [
+                                "listControls"
+                            ]
+                        },
+                        "UpdateControl": {
+                            "methods": [
+                                "updateControl"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SearchService": {
             "clients": {
                 "grpc": {
@@ -258,6 +292,20 @@
                 }
             }
         },
+        "ProjectService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProjectServiceGapicClient",
+                    "rpcs": {
+                        "ProvisionProject": {
+                            "methods": [
+                                "provisionProject"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "RankService": {
             "clients": {
                 "grpc": {
@@ -325,6 +373,11 @@
                 "grpc": {
                     "libraryClient": "SearchTuningServiceGapicClient",
                     "rpcs": {
+                        "ListCustomModels": {
+                            "methods": [
+                                "listCustomModels"
+                            ]
+                        },
                         "TrainCustomModel": {
                             "methods": [
                                 "trainCustomModel"

@@ -29,7 +29,6 @@ namespace Google\Cloud\DiscoveryEngine\V1beta\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -45,6 +44,7 @@ use Google\Cloud\DiscoveryEngine\V1beta\ImportDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\PurgeDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateDocumentRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -152,6 +152,25 @@ final class DocumentServiceClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -541,7 +560,7 @@ final class DocumentServiceClient
     /**
      * Bulk import of multiple
      * [Document][google.cloud.discoveryengine.v1beta.Document]s. Request
-     * processing may be synchronous. Non-existing items will be created.
+     * processing may be synchronous. Non-existing items are created.
      *
      * Note: It is possible for a subset of the
      * [Document][google.cloud.discoveryengine.v1beta.Document]s to be

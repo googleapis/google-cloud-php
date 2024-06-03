@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * UserEvent captures all metadata information Discovery Engine API needs to
- * know about how end users interact with customers' website.
+ * know about how end users interact with your website.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1beta.UserEvent</code>
  */
@@ -52,6 +52,31 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string user_pseudo_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $user_pseudo_id = '';
+    /**
+     * The [Engine][google.cloud.discoveryengine.v1beta.Engine] resource name, in
+     * the form of
+     * `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.
+     * Optional. Only required for
+     * [Engine][google.cloud.discoveryengine.v1beta.Engine] produced user events.
+     * For example, user events from blended search.
+     *
+     * Generated from protobuf field <code>string engine = 19 [(.google.api.resource_reference) = {</code>
+     */
+    protected $engine = '';
+    /**
+     * The [DataStore][google.cloud.discoveryengine.v1beta.DataStore] resource
+     * full name, of the form
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * Optional. Only required for user events whose data store can't by
+     * determined by
+     * [UserEvent.engine][google.cloud.discoveryengine.v1beta.UserEvent.engine] or
+     * [UserEvent.documents][google.cloud.discoveryengine.v1beta.UserEvent.documents].
+     * If data store is set in the parent of write/import/collect user event
+     * requests, this field can be omitted.
+     *
+     * Generated from protobuf field <code>string data_store = 20 [(.google.api.resource_reference) = {</code>
+     */
+    protected $data_store = '';
     /**
      * Only required for
      * [UserEventService.ImportUserEvents][google.cloud.discoveryengine.v1beta.UserEventService.ImportUserEvents]
@@ -195,7 +220,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * A list of identifiers for the independent experiment groups this user event
      * belongs to. This is used to distinguish between user events associated with
-     * different experiment setups on the customer end.
+     * different experiment setups.
      *
      * Generated from protobuf field <code>repeated string tag_ids = 15;</code>
      */
@@ -275,6 +300,23 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           Analytics [Client
      *           ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
      *           for this field.
+     *     @type string $engine
+     *           The [Engine][google.cloud.discoveryengine.v1beta.Engine] resource name, in
+     *           the form of
+     *           `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.
+     *           Optional. Only required for
+     *           [Engine][google.cloud.discoveryengine.v1beta.Engine] produced user events.
+     *           For example, user events from blended search.
+     *     @type string $data_store
+     *           The [DataStore][google.cloud.discoveryengine.v1beta.DataStore] resource
+     *           full name, of the form
+     *           `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     *           Optional. Only required for user events whose data store can't by
+     *           determined by
+     *           [UserEvent.engine][google.cloud.discoveryengine.v1beta.UserEvent.engine] or
+     *           [UserEvent.documents][google.cloud.discoveryengine.v1beta.UserEvent.documents].
+     *           If data store is set in the parent of write/import/collect user event
+     *           requests, this field can be omitted.
      *     @type \Google\Protobuf\Timestamp $event_time
      *           Only required for
      *           [UserEventService.ImportUserEvents][google.cloud.discoveryengine.v1beta.UserEventService.ImportUserEvents]
@@ -370,7 +412,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_ids
      *           A list of identifiers for the independent experiment groups this user event
      *           belongs to. This is used to distinguish between user events associated with
-     *           different experiment setups on the customer end.
+     *           different experiment setups.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promotion_ids
      *           The promotion IDs if this is an event associated with promotions.
      *           Currently, this field is restricted to at most one ID.
@@ -502,6 +544,84 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->user_pseudo_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [Engine][google.cloud.discoveryengine.v1beta.Engine] resource name, in
+     * the form of
+     * `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.
+     * Optional. Only required for
+     * [Engine][google.cloud.discoveryengine.v1beta.Engine] produced user events.
+     * For example, user events from blended search.
+     *
+     * Generated from protobuf field <code>string engine = 19 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getEngine()
+    {
+        return $this->engine;
+    }
+
+    /**
+     * The [Engine][google.cloud.discoveryengine.v1beta.Engine] resource name, in
+     * the form of
+     * `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.
+     * Optional. Only required for
+     * [Engine][google.cloud.discoveryengine.v1beta.Engine] produced user events.
+     * For example, user events from blended search.
+     *
+     * Generated from protobuf field <code>string engine = 19 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEngine($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->engine = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [DataStore][google.cloud.discoveryengine.v1beta.DataStore] resource
+     * full name, of the form
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * Optional. Only required for user events whose data store can't by
+     * determined by
+     * [UserEvent.engine][google.cloud.discoveryengine.v1beta.UserEvent.engine] or
+     * [UserEvent.documents][google.cloud.discoveryengine.v1beta.UserEvent.documents].
+     * If data store is set in the parent of write/import/collect user event
+     * requests, this field can be omitted.
+     *
+     * Generated from protobuf field <code>string data_store = 20 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getDataStore()
+    {
+        return $this->data_store;
+    }
+
+    /**
+     * The [DataStore][google.cloud.discoveryengine.v1beta.DataStore] resource
+     * full name, of the form
+     * `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.
+     * Optional. Only required for user events whose data store can't by
+     * determined by
+     * [UserEvent.engine][google.cloud.discoveryengine.v1beta.UserEvent.engine] or
+     * [UserEvent.documents][google.cloud.discoveryengine.v1beta.UserEvent.documents].
+     * If data store is set in the parent of write/import/collect user event
+     * requests, this field can be omitted.
+     *
+     * Generated from protobuf field <code>string data_store = 20 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDataStore($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->data_store = $var;
 
         return $this;
     }
@@ -1027,7 +1147,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * A list of identifiers for the independent experiment groups this user event
      * belongs to. This is used to distinguish between user events associated with
-     * different experiment setups on the customer end.
+     * different experiment setups.
      *
      * Generated from protobuf field <code>repeated string tag_ids = 15;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1040,7 +1160,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     /**
      * A list of identifiers for the independent experiment groups this user event
      * belongs to. This is used to distinguish between user events associated with
-     * different experiment setups on the customer end.
+     * different experiment setups.
      *
      * Generated from protobuf field <code>repeated string tag_ids = 15;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

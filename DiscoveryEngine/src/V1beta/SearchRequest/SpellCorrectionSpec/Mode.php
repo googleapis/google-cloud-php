@@ -22,10 +22,10 @@ class Mode
      */
     const MODE_UNSPECIFIED = 0;
     /**
-     * Search API will try to find a spell suggestion if there
-     * is any and put in the
+     * Search API tries to find a spelling suggestion. If a suggestion is
+     * found, it is put in the
      * [SearchResponse.corrected_query][google.cloud.discoveryengine.v1beta.SearchResponse.corrected_query].
-     * The spell suggestion will not be used as the search query.
+     * The spelling suggestion won't be used as the search query.
      *
      * Generated from protobuf enum <code>SUGGESTION_ONLY = 1;</code>
      */

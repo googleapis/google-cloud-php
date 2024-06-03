@@ -116,6 +116,14 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\StreamDirectPredictResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'endpoint',
+                        'fieldAccessors' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
             ],
             'StreamDirectRawPredict' => [
                 'grpcStreaming' => [
@@ -123,6 +131,14 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\StreamDirectRawPredictResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'endpoint',
+                        'fieldAccessors' => [
+                            'getEndpoint',
+                        ],
+                    ],
+                ],
             ],
             'StreamGenerateContent' => [
                 'grpcStreaming' => [

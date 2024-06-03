@@ -24,7 +24,6 @@ namespace Google\Cloud\Notebooks\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -55,6 +54,7 @@ use Google\Cloud\Notebooks\V1\StopRuntimeRequest;
 use Google\Cloud\Notebooks\V1\SwitchRuntimeRequest;
 use Google\Cloud\Notebooks\V1\UpdateRuntimeRequest;
 use Google\Cloud\Notebooks\V1\UpgradeRuntimeRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
