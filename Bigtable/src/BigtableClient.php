@@ -46,8 +46,6 @@ class BigtableClient
     use DetectProjectIdTrait;
     use ClientOptionsTrait;
 
-    const VERSION = '1.32.1';
-
     /**
      * @var GapicClient
      */
