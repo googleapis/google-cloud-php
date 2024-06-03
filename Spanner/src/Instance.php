@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -31,6 +31,7 @@ use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
+use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
@@ -198,11 +199,10 @@ class Instance
         $this->name = $this->fullyQualifiedInstanceName($name, $projectId);
         $this->returnInt64AsObject = $returnInt64AsObject;
         $this->info = $info;
-        $this->lroCallables = $lroCallables;
         $this->setLroProperties(
             $requestHandler,
             $serializer,
-            $this->lroCallables,
+            $lroCallables,
             $this->getLROResponseMappers(),
             $this->name,
             InstanceAdminClient::class
@@ -329,6 +329,18 @@ class Instance
         $data += [
             'name' => $this->name
         ];
+
+        if (isset($data['fieldMask'])) {
+            $fieldMask = [];
+            if (is_array($data['fieldMask'])) {
+                foreach (array_values($data['fieldMask']) as $field) {
+                    $fieldMask[] = $this->serializer::toSnakeCase($field);
+                }
+            } else {
+                $fieldMask[] = $this->serializer::toSnakeCase($data['fieldMask']);
+            }
+            $data['fieldMask'] = ['paths' => $fieldMask];
+        }
 
         return $this->info = $this->createAndSendRequest(
             InstanceAdminClient::class,
@@ -471,7 +483,7 @@ class Instance
 
         $fieldMask = $this->fieldMask($instance);
         $data = [
-            'filedMask' => $fieldMask,
+            'fieldMask' => $fieldMask,
             'instance' => $this->createInstanceArray($instance)
         ];
         $res = $this->createAndSendRequest(
@@ -848,7 +860,8 @@ class Instance
                         ListDatabaseOperationsRequest::class,
                         $this->name
                     );
-                    return array_map([$this, 'deserializeOperationArray'], $result['operations']);
+                    $result['operations'] = array_map([$this, 'deserializeOperationArray'], $result['operations']);
+                    return $result;
                 },
                 $options + ['instance' => $this->name],
                 [
@@ -896,21 +909,6 @@ class Instance
             $project,
             $name
         );
-    }
-
-    /**
-     * Extracts a database id from fully qualified name.
-     *
-     * @param string $name The database name or id.
-     * @return string
-     */
-    private function databaseIdOnly($name)
-    {
-        try {
-            return DatabaseAdminClient::parseName($name)['database'];
-        } catch (ValidationException $e) {
-            return $name;
-        }
     }
 
     /**

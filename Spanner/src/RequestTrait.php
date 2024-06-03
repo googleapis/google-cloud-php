@@ -216,9 +216,11 @@ trait RequestTrait
     // @TODO: Make the following methods more readable and simple, if possible.
     private function deserializeOperationArray($operation)
     {
-        $operation['metadata'] =
-            $this->deserializeMessageArray($operation['metadata']) +
-            ['typeUrl' => $operation['metadata']['typeUrl']];
+        if (isset($operation['metadata'])) {
+            $operation['metadata'] =
+                $this->deserializeMessageArray($operation['metadata']) +
+                ['typeUrl' => $operation['metadata']['typeUrl']];
+        }
 
         if (isset($operation['response']) and isset($operation['response']['typeUrl'])) {
             $operation['response'] = $this->deserializeMessageArray($operation['response']);
@@ -229,9 +231,14 @@ trait RequestTrait
 
     private function deserializeMessageArray($message)
     {
-        $typeUrl = $message['typeUrl'];
-        $mapper = $this->getLroResponseMapper($typeUrl);
-        if (!isset($mapper)) {
+        $mapper = null;
+        foreach ($this->getLROResponseMappers() as $responseMapper) {
+            if ($responseMapper['typeUrl'] == $message['typeUrl']) {
+                $mapper = $responseMapper;
+                break;
+            }
+        }
+        if (is_null($mapper)) {
             return $message;
         }
 

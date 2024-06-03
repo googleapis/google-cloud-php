@@ -30,6 +30,7 @@ use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -207,11 +208,6 @@ class Database
      * @var bool
      */
     private $routeToLeader;
-
-    /**
-     * @var array
-     */
-    private $lroCallables;
 
     /**
      * @var array
@@ -2293,7 +2289,8 @@ class Database
                         ListBackupOperationsRequest::class,
                         $this->name
                     );
-                    return array_map([$this, 'deserializeOperationArray'], $result['operations']);
+                    $result['operations'] = array_map([$this, 'deserializeOperationArray'], $result['operations']);
+                    return $result;
                 },
                 $options,
                 [
@@ -2325,7 +2322,7 @@ class Database
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $data += [
             'parent' => $this->instance->name(),
-            'databaseId' => DatabaseAdminClient::parseName($name)['database'],
+            'databaseId' => $this->databaseIdOnly($name),
             'backup' => $backup instanceof Backup ? $backup->name() : $backup
         ];
 
@@ -2456,5 +2453,20 @@ class Database
         }
 
         return sprintf('CREATE DATABASE `%s`', $databaseId);
+    }
+
+    /**
+     * Extracts a database id from fully qualified name.
+     *
+     * @param string $name The database name or id.
+     * @return string
+     */
+    private function databaseIdOnly($name)
+    {
+        try {
+            return DatabaseAdminClient::parseName($name)['database'];
+        } catch (ValidationException $e) {
+            return $name;
+        }
     }
 }

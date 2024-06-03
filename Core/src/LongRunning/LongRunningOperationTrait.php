@@ -46,6 +46,11 @@ trait LongRunningOperationTrait
     private $lroResponseMapper;
 
     /**
+     * @var array
+     */
+    private $lroCallables;
+
+    /**
      * Populate required LRO properties.
      *
      * @param RequestHandler The request handler that is responsible for sending a request

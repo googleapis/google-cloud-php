@@ -19,16 +19,13 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient as GapicDatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
@@ -63,10 +60,8 @@ class InstanceTest extends TestCase
     const BACKUP = 'my-backup';
     const SESSION = 'projects/test-project/instances/instance-name/databases/database-name/sessions/session';
 
-    private $connection;
     private $directedReadOptionsIncludeReplicas;
     private $instance;
-    private $lroConnection;
     private $requestHandler;
     private $serializer;
 
@@ -74,7 +69,6 @@ class InstanceTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
         $this->requestHandler = $this->getRequestHandlerStub();
         $this->serializer = $this->getSerializer();
         $this->directedReadOptionsIncludeReplicas = [
@@ -86,8 +80,6 @@ class InstanceTest extends TestCase
             ]
         ];
         $this->instance = TestHelpers::stub(Instance::class, [
-            $this->connection->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             [],
@@ -98,7 +90,6 @@ class InstanceTest extends TestCase
             ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         ], [
             'info',
-            'connection',
             'requestHandler',
             'serializer'
         ]);
@@ -111,7 +102,7 @@ class InstanceTest extends TestCase
 
     public function testInfo()
     {
-        $this->connection->getInstance(Argument::any())->shouldNotBeCalled();
+        $this->mockSendRequest(GapicSpannerClient::class, 'getInstance', null, null, 0);
 
         $this->instance->___setProperty('info', ['foo' => 'bar']);
         $this->assertEquals('bar', $this->instance->info()['foo']);
@@ -121,17 +112,18 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->instance->name())
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                return $message['name'] == $this->instance->name();
+            },
+            $instance
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $info = $this->instance->info();
         $this->assertEquals('Instance Name', $info['displayName']);
@@ -145,16 +137,21 @@ class InstanceTest extends TestCase
             'name' => $this->instance->name(),
             'node_count' => 1
         ];
-
         $requestedFieldNames = ["name", 'node_count'];
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry('fieldMask', $requestedFieldNames)
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) use ($requestedFieldNames) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(['paths' => $requestedFieldNames], $message['fieldMask']);
+                return $message['name'] == $this->instance->name();
+            },
+            $instance
+        );
+
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $info = $this->instance->info(['fieldMask' => $requestedFieldNames]);
 
@@ -163,32 +160,33 @@ class InstanceTest extends TestCase
 
     public function testExists()
     {
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('fieldMask', ['name'])
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
-
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::not(Argument::withKey('fieldMask'))
-        ))
-            ->shouldBeCalledTimes(2)
-            ->willReturn([
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return isset($message['fieldMask']) && ['paths' => ['name']] == $message['fieldMask'];
+            },
+            []
+        );
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return !isset($message['fieldMask']);
+            },
+            [
                 'name' => $this->instance->name(),
                 'nodeCount' => 1,
-            ]);
+            ],
+            2
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->assertTrue($this->instance->exists());
 
@@ -199,17 +197,19 @@ class InstanceTest extends TestCase
 
     public function testExistsNotFound()
     {
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->instance->name())
-        ))
-            ->shouldBeCalled()
-            ->willThrow(new NotFoundException('foo', 404));
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return true;
+            },
+            new NotFoundException('foo', 404)
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->assertFalse($this->instance->exists());
     }
@@ -218,17 +218,19 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            )
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return true;
+            },
+            $instance
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $info = $this->instance->reload();
 
@@ -241,20 +243,21 @@ class InstanceTest extends TestCase
             'name' => $this->instance->name(),
             'node_count' => 1
         ];
-
         $requestedFieldNames = ["name", 'node_count'];
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry('name', $this->instance->name()),
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('fieldMask', $requestedFieldNames)
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) use ($requestedFieldNames) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return $message['fieldMask'] == ['paths' => $requestedFieldNames];
+            },
+            $instance
+        );
+
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $info = $this->instance->reload(['fieldMask' => $requestedFieldNames]);
 
@@ -265,34 +268,38 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->instance->name())
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return true;
+            },
+            $instance
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->assertEquals(Instance::STATE_READY, $this->instance->state());
     }
 
     public function testStateIsNull()
     {
-        $this->connection->getInstance(Argument::allOf(
-            Argument::withEntry(
-                'projectName',
-                InstanceAdminClient::projectName(self::PROJECT_ID)
-            ),
-            Argument::withEntry('name', $this->instance->name())
-        ))
-            ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'getInstance',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['name'], $this->instance->name());
+                return true;
+            },
+            []
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->assertNull($this->instance->state());
     }
@@ -301,14 +308,20 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->updateInstance([
-            'displayName' => 'bar',
-            'name' => $instance['name'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'updateInstance',
+            function ($args) use ($instance) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['instance']['displayName'], 'bar');
+                $this->assertEquals($message['instance']['name'], $instance['name']);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->instance->update(['displayName' => 'bar']);
     }
@@ -317,14 +330,20 @@ class InstanceTest extends TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->updateInstance([
-            'processingUnits' => 500,
-            'name' => $instance['name'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'updateInstance',
+            function ($args) use ($instance) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['instance']['processingUnits'], 500);
+                $this->assertEquals($message['instance']['name'], $instance['name']);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->instance->update(['processingUnits' => 500]);
     }
@@ -341,14 +360,20 @@ class InstanceTest extends TestCase
         $instance = $this->getDefaultInstance();
         $instance['labels'] = ['foo' => 'bar'];
 
-        $this->connection->updateInstance([
-            'labels' => $instance['labels'],
-            'name' => $instance['name'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'updateInstance',
+            function ($args) use ($instance) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['instance']['labels'], $instance['labels']);
+                $this->assertEquals($message['instance']['name'], $instance['name']);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->instance->update(['labels' => $instance['labels']]);
     }
@@ -364,28 +389,43 @@ class InstanceTest extends TestCase
             'nodeCount' => 900,
             'displayName' => 'New Name',
         ];
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'updateInstance',
+            function ($args) use ($changes) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['instance']['displayName'], $changes['displayName']);
+                $this->assertEquals($message['instance']['labels'], $changes['labels']);
+                $this->assertEquals($message['instance']['nodeCount'], $changes['nodeCount']);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->connection->updateInstance([
-            'name' => $instance['name'],
-            'displayName' => $changes['displayName'],
-            'nodeCount' => $changes['nodeCount'],
-            'labels' => $changes['labels'],
-        ])->shouldBeCalled()->willReturn([
-            'name' => 'my-operation'
-        ]);
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->instance->update($changes);
     }
 
     public function testDelete()
     {
-        $this->connection->deleteInstance([
-            'name' => InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
-        ])->shouldBeCalled();
+        $this->mockSendRequest(
+            InstanceAdminClient::class,
+            'deleteInstance',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['name'],
+                    InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
+                );
+                return true;
+            },
+            null
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $this->instance->delete();
     }
@@ -394,10 +434,8 @@ class InstanceTest extends TestCase
     {
         $extra = ['foo', 'bar'];
 
-        $operationResponse = $this->getOperationResponseMock();
-
         $this->mockSendRequest(
-            GapicDatabaseAdminClient::class,
+            DatabaseAdminClient::class,
             'createDatabase',
             function ($args) use ($extra) {
                 $createStatement = 'CREATE DATABASE `test-database`';
@@ -410,7 +448,7 @@ class InstanceTest extends TestCase
                 $this->assertEquals($message['extraStatements'], $extra);
                 return true;
             },
-            $operationResponse->reveal()
+            $this->getOperationResponseMock()
         );
         $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->instance->___setProperty('serializer', $this->serializer);
@@ -425,37 +463,45 @@ class InstanceTest extends TestCase
     public function testCreateDatabaseFromBackupName()
     {
         $backupName = DatabaseAdminClient::backupName(self::PROJECT_ID, self::NAME, self::BACKUP);
-        $this->connection->restoreDatabase(Argument::allOf(
-            Argument::withEntry('databaseId', 'restore-database'),
-            Argument::withEntry('instance', $this->instance->name()),
-            Argument::withEntry('backup', $backupName)
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'restoreDatabase',
+            function ($args) use ($backupName) {
+                $this->assertEquals($args->getDatabaseId(), 'restore-database');
+                $this->assertEquals($args->getParent(), $this->instance->name());
+                $this->assertEquals($args->getBackup(), $backupName);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupName);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     public function testCreateDatabaseFromBackupObject()
     {
         $backupObject = $this->instance->backup(self::BACKUP);
-        $this->connection->restoreDatabase(Argument::allOf(
-            Argument::withEntry('databaseId', 'restore-database'),
-            Argument::withEntry('instance', $this->instance->name()),
-            Argument::withEntry('backup', $backupObject->name())
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'restoreDatabase',
+            function ($args) use ($backupObject) {
+                $this->assertEquals($args->getDatabaseId(), 'restore-database');
+                $this->assertEquals($args->getParent(), $this->instance->name());
+                $this->assertEquals($args->getBackup(), $backupObject->name());
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->instance->createDatabaseFromBackup('restore-database', $backupObject);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     public function testDatabase()
@@ -472,13 +518,19 @@ class InstanceTest extends TestCase
             ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]
         ];
 
-        $this->connection->listDatabases(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalled()
-            ->willReturn(['databases' => $databases]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'listDatabases',
+            function ($args) {
+                $this->assertEquals($args->getParent(), $this->instance->name());
+                return true;
+            },
+            ['databases' => $databases]
+        );
+        $this->mockSendRequest(DatabaseAdminClient::class, 'getDatabase', null, null, 0);
 
-        $this->connection->getDatabase(Argument::any())->shouldNotBeCalled();
-
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $dbs = $this->instance->databases();
 
@@ -502,12 +554,31 @@ class InstanceTest extends TestCase
             ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]
         ];
 
+        // ['databases' => [$databases[1]]]);
         $iteration = 0;
-        $this->connection->listDatabases(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalledTimes(2)
-            ->willReturn(['databases' => [$databases[0]], 'nextPageToken' => 'foo'], ['databases' => [$databases[1]]]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'listDatabases',
+            function ($args) use (&$iteration) {
+                $this->assertEquals($args->getParent(), $this->instance->name());
+                $iteration++;
+                return $iteration == 1;
+            },
+            ['databases' => [$databases[0]], 'nextPageToken' => 'foo']
+        );
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'listDatabases',
+            function ($args) use (&$iteration) {
+                $this->assertEquals($args->getParent(), $this->instance->name());
+                return $iteration == 2;
+            },
+            ['databases' => [$databases[1]]]
+        );
+        $this->mockSendRequest(DatabaseAdminClient::class, 'getDatabase', null, null, 0);
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $dbs = $this->instance->databases();
 
@@ -522,7 +593,7 @@ class InstanceTest extends TestCase
 
     public function testIam()
     {
-        $this->assertInstanceOf(Iam::class, $this->instance->iam());
+        $this->assertInstanceOf(IamManager::class, $this->instance->iam());
     }
 
     public function testBackup()
@@ -546,11 +617,18 @@ class InstanceTest extends TestCase
             ]
         ];
 
-        $this->connection->listBackups(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalled()
-            ->willReturn(['backups' => $backups]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'listBackups',
+            function ($args) {
+                $this->assertEquals($args->getParent(), $this->instance->name());
+                return true;
+            },
+            ['backups' => $backups]
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $bkps = $this->instance->backups();
 
@@ -570,11 +648,18 @@ class InstanceTest extends TestCase
             ['name' => 'operation2']
         ];
 
-        $this->connection->listBackupOperations(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalled()
-            ->willReturn(['operations' => $operations]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'listBackupOperations',
+            function ($args) {
+                $this->assertEquals($args->getParent(), $this->instance->name());
+                return true;
+            },
+            ['operations' => $operations]
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $bkpOps = $this->instance->backupOperations();
 
@@ -593,11 +678,18 @@ class InstanceTest extends TestCase
             ['name' => 'operation2']
         ];
 
-        $this->connection->listDatabaseOperations(Argument::withEntry('instance', $this->instance->name()))
-            ->shouldBeCalled()
-            ->willReturn(['operations' => $operations]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'listDatabaseOperations',
+            function ($args) {
+                $this->assertEquals($args->getParent(), $this->instance->name());
+                return true;
+            },
+            ['operations' => $operations]
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $dbOps = $this->instance->databaseOperations();
 

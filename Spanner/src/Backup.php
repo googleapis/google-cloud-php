@@ -30,7 +30,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
-use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use DateTimeInterface;
@@ -86,7 +86,7 @@ class Backup
 {
     use ApiHelperTrait;
     use ArrayTrait;
-    use LROTrait;
+    use LongRunningOperationTrait;
     use OperationResponseTrait;
     use RequestTrait;
 
@@ -186,7 +186,8 @@ class Backup
     public function create($database, DateTimeInterface $expireTime, array $options = [])
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $this->validateAndFormatVersionTime($options);
+        $data = $this->validateAndFormatVersionTime($data);
+
         $data += [
             'parent' => $this->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($this->name)['backup'],
@@ -195,7 +196,11 @@ class Backup
                 'expireTime' => $this->formatTimestampForApi($expireTime->format('Y-m-d\TH:i:s.u\Z'))
             ],
         ];
-        $res = $this->createAndSendRequest(  
+        if (isset($data['versionTime'])) {
+            $data['backup']['versionTime'] = $this->pluck('versionTime', $data);
+        }
+
+        $res = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'createBackup',
             $data,
@@ -248,7 +253,7 @@ class Backup
             )
         ];
 
-        $res = $this->createAndSendRequest(  
+        $res = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'copyBackup',
             $data,
@@ -282,7 +287,7 @@ class Backup
             'name' => $this->name
         ];
 
-        return $this->createAndSendRequest(  
+        return $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'deleteBackup',
             $data,
@@ -370,7 +375,7 @@ class Backup
             'name' => $this->name
         ];
 
-        return $this->info = $this->createAndSendRequest(  
+        return $this->info = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'getBackup',
             $data,
@@ -437,7 +442,7 @@ class Backup
                 'paths' => ['expire_time']
             ]
         ];
-        return $this->info = $this->createAndSendRequest(  
+        return $this->info = $this->createAndSendRequest(
             DatabaseAdminClient::class,
             'updateBackup',
             $data,

@@ -23,7 +23,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
@@ -33,7 +32,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database as GapicDatabase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
@@ -87,7 +85,6 @@ class DatabaseTest extends TestCase
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
     const BEGIN_RW_OPTIONS = ['begin' => ['readWrite' => []]];
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $instance;
@@ -105,11 +102,9 @@ class DatabaseTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->requestHandler = $this->getRequestHandlerStub();
         $this->serializer = $this->getSerializer();
         $this->sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $this->lro = $this->prophesize(LongRunningConnectionInterface::class);
         $this->lroCallables = [];
         $this->session = TestHelpers::stub(Session::class, [
             $this->requestHandler->reveal(),
@@ -140,8 +135,6 @@ class DatabaseTest extends TestCase
         ];
 
         $this->instance = TestHelpers::stub(Instance::class, [
-            $this->connection->reveal(),
-            $this->lro->reveal(),
             $this->requestHandler->reveal(),
             $this->serializer,
             $this->lroCallables,
@@ -152,7 +145,6 @@ class DatabaseTest extends TestCase
             ['directedReadOptions' => $this->directedReadOptionsIncludeReplicas]
         ], [
             'info',
-            'connection',
             'requestHandler',
             'serializer'
         ]);
@@ -178,7 +170,7 @@ class DatabaseTest extends TestCase
         ];
 
         $props = [
-            'connection', 'requestHandler', 'serializer', 'operation', 'session', 'sessionPool', 'instance'
+            'requestHandler', 'serializer', 'operation', 'session', 'sessionPool', 'instance'
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
@@ -247,20 +239,26 @@ class DatabaseTest extends TestCase
     public function testCreateBackup()
     {
         $expireTime = new \DateTime();
-        $this->connection->createBackup(Argument::allOf(
-            Argument::withEntry('instance', $this->instance->name()),
-            Argument::withEntry('backupId', self::BACKUP),
-            Argument::withEntry('backup', [
-                'database' => $this->database->name(),
-                'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z')
-            ])
-        ))
-            ->shouldBeCalled()
-            ->willReturn(['name' => 'operations/foo']);
+
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'createBackup',
+            function ($args) use ($expireTime) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['parent'],
+                    $this->instance->name()
+                );
+                $this->assertEquals($message['backupId'], self::BACKUP);
+                return $message['backup']['expireTime'] == $expireTime->format('Y-m-d\TH:i:s.u\Z')
+                    && $message['backup']['database'] == $this->database->name();
+            },
+            $this->getOperationResponseMock()
+        );
 
         $op = $this->database->createBackup(self::BACKUP, $expireTime);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     public function testBackups()
@@ -275,11 +273,22 @@ class DatabaseTest extends TestCase
         ];
 
         $expectedFilter = "database:".$this->database->name();
-        $this->connection->listBackups(Argument::withEntry('filter', $expectedFilter))
-            ->shouldBeCalled()
-            ->willReturn(['backups' => $backups]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'listBackups',
+            function ($args) use ($expectedFilter) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['filter'],
+                    $expectedFilter
+                );
+                return true;
+            },
+            ['backups' => $backups]
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $bkps = $this->database->backups();
 
@@ -306,11 +315,22 @@ class DatabaseTest extends TestCase
         $customFilter = "customFilter";
         $expectedFilter = sprintf('(%1$s) AND (%2$s)', $defaultFilter, $customFilter);
 
-        $this->connection->listBackups(Argument::withEntry('filter', $expectedFilter))
-            ->shouldBeCalled()
-            ->willReturn(['backups' => $backups]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'listBackups',
+            function ($args) use ($expectedFilter) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['filter'],
+                    $expectedFilter
+                );
+                return true;
+            },
+            ['backups' => $backups]
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->database->___setProperty('serializer', $this->serializer);
 
         $bkps = $this->database->backups(['filter' => $customFilter]);
 
@@ -493,20 +513,28 @@ class DatabaseTest extends TestCase
     public function testRestoreFromBackupName()
     {
         $backupName = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP);
-        $this->connection->restoreDatabase(Argument::allOf(
-            Argument::withEntry('instance', $this->instance->name()),
-            Argument::withEntry('databaseId', self::DATABASE),
-            Argument::withEntry('backup', $backupName)
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'restoreDatabase',
+            function ($args) use ($backupName) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['parent'],
+                    $this->instance->name()
+                );
+                $this->assertEquals($message['databaseId'], self::DATABASE);
+                $this->assertEquals($message['backup'], $backupName);
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
+
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->database->restore($backupName);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     /**
@@ -516,20 +544,27 @@ class DatabaseTest extends TestCase
     {
         $backupObj = $this->instance->backup(self::BACKUP);
 
-        $this->connection->restoreDatabase(Argument::allOf(
-            Argument::withEntry('instance', $this->instance->name()),
-            Argument::withEntry('databaseId', self::DATABASE),
-            Argument::withEntry('backup', $backupObj->name())
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-            'name' => 'my-operation'
-            ]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'restoreDatabase',
+            function ($args) use($backupObj) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['parent'],
+                    $this->instance->name()
+                );
+                $this->assertEquals($message['databaseId'], self::DATABASE);
+                $this->assertEquals($message['backup'], $backupObj->name());
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->instance->___setProperty('connection', $this->connection->reveal());
+        $this->instance->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->instance->___setProperty('serializer', $this->serializer);
 
         $op = $this->database->restore($backupObj);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     /**

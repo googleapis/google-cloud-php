@@ -17,16 +17,18 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ArrayTrait;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
-use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\LongRunning\LongRunningOperationTrait;
+use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
@@ -53,11 +55,12 @@ class InstanceConfiguration
 {
     use ApiHelperTrait;
     use ArrayTrait;
-    use LROTrait;
+    use LongRunningOperationTrait;
+    use OperationResponseTrait;
     use RequestTrait;
 
     /**
-     * @var RequestHandler
+     * @var RequestHiuandler
      */
     private $requestHandler;
 
@@ -102,8 +105,12 @@ class InstanceConfiguration
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
         $this->info = $info;
-        $instanceConfigFactoryFn = function ($instanceConfig)
-            use ($requestHandler, $serializer, $projectId, $name) {
+        $instanceConfigFactoryFn = function ($instanceConfig) use (
+            $requestHandler,
+            $serializer,
+            $projectId,
+            $name
+        ) {
             $name = InstanceAdminClient::parseName($instanceConfig['name'])['instance_config'];
             return new self(
                 $requestHandler,
@@ -330,6 +337,9 @@ class InstanceConfiguration
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
         $validateOnly = $this->pluck('validateOnly', $data, false) ?: false;
         $fieldMask = $this->fieldMask($data);
+        $data += [
+            'name' => $this->name,
+        ];
 
         $requestArray = [
             'instanceConfig' => $data,
@@ -373,10 +383,10 @@ class InstanceConfiguration
 
         $this->createAndSendRequest(
             InstanceAdminClient::class,
-            'updateInstanceConfig',
+            'deleteInstanceConfig',
             $data,
             $optionalArgs,
-            UpdateInstanceConfigRequest::class,
+            DeleteInstanceConfigRequest::class,
             $this->name
         );
     }
@@ -428,9 +438,7 @@ class InstanceConfiguration
         return $args += [
             'name' => $this->name,
             'displayName' => $configId,
-            'configType' => Type::USER_MANAGED,
-            'optionalReplicas' => null,
-            'labels' => null
+            'configType' => Type::USER_MANAGED
         ];
     }
 

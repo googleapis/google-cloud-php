@@ -32,6 +32,7 @@ use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Batch\BatchClient;
@@ -586,10 +587,11 @@ class SpannerClient
                         'listInstanceConfigOperations',
                         $data,
                         $optionalArgs,
-                        listInstanceConfigOperations::class,
+                        ListInstanceConfigOperationsRequest::class,
                         InstanceAdminClient::projectName($this->projectId)
                     );
-                    return array_map([$this, 'deserializeOperationArray'], $result['operations']);
+                    $result['operations'] = array_map([$this, 'deserializeOperationArray'], $result['operations']);
+                    return $result;
                 },
                 $options,
                 [
@@ -983,16 +985,5 @@ class SpannerClient
     public function commitTimestamp()
     {
         return new CommitTimestamp;
-    }
-
-    private function getLroResponseMapper($typeUrl)
-    {
-        foreach ($this->lroResponseMappers as $mapper) {
-            if ($mapper['typeUrl'] == $typeUrl) {
-                return $mapper;
-            }
-        }
-
-        return null;
     }
 }
