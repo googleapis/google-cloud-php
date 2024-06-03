@@ -316,16 +316,9 @@ class Table
             );
         }
         if ($filter !== null) {
-            if (!$filter instanceof FilterInterface) {
-                throw new \InvalidArgumentException(
-                    sprintf(
-                        'Expected filter to be of type \'%s\', instead got \'%s\'.',
-                        FilterInterface::class,
-                        gettype($filter)
-                    )
-                );
-            }
-            $data['filter'] = $filter->toProto();
+            $data['filter'] = $filter instanceof FilterInterface
+                ? $filter->toProto()
+                : $filter;
         }
 
         $data['table_name'] = $this->tableName;
