@@ -547,7 +547,7 @@ class DatabaseTest extends TestCase
         $this->mockSendRequest(
             DatabaseAdminClient::class,
             'restoreDatabase',
-            function ($args) use($backupObj) {
+            function ($args) use ($backupObj) {
                 $message = $this->serializer->encodeMessage($args);
                 $this->assertEquals(
                     $message['parent'],
