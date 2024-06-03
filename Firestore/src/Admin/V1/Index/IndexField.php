@@ -42,6 +42,9 @@ class IndexField extends \Google\Protobuf\Internal\Message
      *           comparing using =, !=, <, <=, >, >=.
      *     @type int $array_config
      *           Indicates that this field supports operations on `array_value`s.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Index\IndexField\VectorConfig $vector_config
+     *           Indicates that this field supports nearest neighbors and distance
+     *           operations on vector.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +142,39 @@ class IndexField extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Index\IndexField\ArrayConfig::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Indicates that this field supports nearest neighbors and distance
+     * operations on vector.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.IndexField.VectorConfig vector_config = 4;</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Index\IndexField\VectorConfig|null
+     */
+    public function getVectorConfig()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasVectorConfig()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Indicates that this field supports nearest neighbors and distance
+     * operations on vector.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.IndexField.VectorConfig vector_config = 4;</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Index\IndexField\VectorConfig $var
+     * @return $this
+     */
+    public function setVectorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Index\IndexField\VectorConfig::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

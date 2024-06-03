@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START retail_v2_generated_ControlService_UpdateControl_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Retail\V2\Client\ControlServiceClient;
 use Google\Cloud\Retail\V2\Control;
-use Google\Cloud\Retail\V2\ControlServiceClient;
 use Google\Cloud\Retail\V2\SolutionType;
+use Google\Cloud\Retail\V2\UpdateControlRequest;
 
 /**
  * Updates a Control.
@@ -52,16 +53,18 @@ function update_control_sample(string $controlDisplayName, int $controlSolutionT
     // Create a client.
     $controlServiceClient = new ControlServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $controlSolutionTypes = [$controlSolutionTypesElement,];
     $control = (new Control())
         ->setDisplayName($controlDisplayName)
         ->setSolutionTypes($controlSolutionTypes);
+    $request = (new UpdateControlRequest())
+        ->setControl($control);
 
     // Call the API and handle any network failures.
     try {
         /** @var Control $response */
-        $response = $controlServiceClient->updateControl($control);
+        $response = $controlServiceClient->updateControl($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

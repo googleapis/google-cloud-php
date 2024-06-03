@@ -64,6 +64,15 @@ class Document extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct derived_struct_data = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $derived_struct_data = null;
+    /**
+     * Output only. The last time the document was indexed. If this field is set,
+     * the document could be returned in search results.
+     * This field is OUTPUT_ONLY. If this field is not populated, it means the
+     * document has never been indexed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $index_time = null;
     protected $data;
 
     /**
@@ -104,6 +113,11 @@ class Document extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $derived_struct_data
      *           Output only. This field is OUTPUT_ONLY.
      *           It contains derived data that are not in the original input document.
+     *     @type \Google\Protobuf\Timestamp $index_time
+     *           Output only. The last time the document was indexed. If this field is set,
+     *           the document could be returned in search results.
+     *           This field is OUTPUT_ONLY. If this field is not populated, it means the
+     *           document has never been indexed.
      * }
      */
     public function __construct($data = NULL) {
@@ -377,6 +391,48 @@ class Document extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->derived_struct_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The last time the document was indexed. If this field is set,
+     * the document could be returned in search results.
+     * This field is OUTPUT_ONLY. If this field is not populated, it means the
+     * document has never been indexed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getIndexTime()
+    {
+        return $this->index_time;
+    }
+
+    public function hasIndexTime()
+    {
+        return isset($this->index_time);
+    }
+
+    public function clearIndexTime()
+    {
+        unset($this->index_time);
+    }
+
+    /**
+     * Output only. The last time the document was indexed. If this field is set,
+     * the document could be returned in search results.
+     * This field is OUTPUT_ONLY. If this field is not populated, it means the
+     * document has never been indexed.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setIndexTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->index_time = $var;
 
         return $this;
     }

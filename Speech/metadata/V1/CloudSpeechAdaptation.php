@@ -71,17 +71,17 @@ page_token (	"q
 !speech.googleapis.com/CustomClass2Ž
 
 AdaptationÁ
-CreatePhraseSet..google.cloud.speech.v1.CreatePhraseSetRequest!.google.cloud.speech.v1.PhraseSet"[‚Óä“3"./v1/{parent=projects/*/locations/*}/phraseSets:*ÚAparent,phrase_set,phrase_set_id
-GetPhraseSet+.google.cloud.speech.v1.GetPhraseSetRequest!.google.cloud.speech.v1.PhraseSet"=‚Óä“0./v1/{name=projects/*/locations/*/phraseSets/*}ÚAname­
-ListPhraseSet,.google.cloud.speech.v1.ListPhraseSetRequest-.google.cloud.speech.v1.ListPhraseSetResponse"?‚Óä“0./v1/{parent=projects/*/locations/*}/phraseSetsÚAparentÌ
-UpdatePhraseSet..google.cloud.speech.v1.UpdatePhraseSetRequest!.google.cloud.speech.v1.PhraseSet"f‚Óä“G29/v1/{phrase_set.name=projects/*/locations/*/phraseSets/*}:
-phrase_setÚAphrase_set,update_mask˜
-DeletePhraseSet..google.cloud.speech.v1.DeletePhraseSetRequest.google.protobuf.Empty"=‚Óä“0*./v1/{name=projects/*/locations/*/phraseSets/*}ÚAnameÎ
-CreateCustomClass0.google.cloud.speech.v1.CreateCustomClassRequest#.google.cloud.speech.v1.CustomClass"b‚Óä“6"1/v1/{parent=projects/*/locations/*}/customClasses:*ÚA#parent,custom_class,custom_class_id¦
-GetCustomClass-.google.cloud.speech.v1.GetCustomClassRequest#.google.cloud.speech.v1.CustomClass"@‚Óä“31/v1/{name=projects/*/locations/*/customClasses/*}ÚAname¼
-ListCustomClasses0.google.cloud.speech.v1.ListCustomClassesRequest1.google.cloud.speech.v1.ListCustomClassesResponse"B‚Óä“31/v1/{parent=projects/*/locations/*}/customClassesÚAparentÛ
-UpdateCustomClass0.google.cloud.speech.v1.UpdateCustomClassRequest#.google.cloud.speech.v1.CustomClass"o‚Óä“N2>/v1/{custom_class.name=projects/*/locations/*/customClasses/*}:custom_classÚAcustom_class,update_maskŸ
-DeleteCustomClass0.google.cloud.speech.v1.DeleteCustomClassRequest.google.protobuf.Empty"@‚Óä“3*1/v1/{name=projects/*/locations/*/customClasses/*}ÚAnameIÊAspeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBr
+CreatePhraseSet..google.cloud.speech.v1.CreatePhraseSetRequest!.google.cloud.speech.v1.PhraseSet"[ÚAparent,phrase_set,phrase_set_id‚Óä“3"./v1/{parent=projects/*/locations/*}/phraseSets:*
+GetPhraseSet+.google.cloud.speech.v1.GetPhraseSetRequest!.google.cloud.speech.v1.PhraseSet"=ÚAname‚Óä“0./v1/{name=projects/*/locations/*/phraseSets/*}­
+ListPhraseSet,.google.cloud.speech.v1.ListPhraseSetRequest-.google.cloud.speech.v1.ListPhraseSetResponse"?ÚAparent‚Óä“0./v1/{parent=projects/*/locations/*}/phraseSetsÌ
+UpdatePhraseSet..google.cloud.speech.v1.UpdatePhraseSetRequest!.google.cloud.speech.v1.PhraseSet"fÚAphrase_set,update_mask‚Óä“G29/v1/{phrase_set.name=projects/*/locations/*/phraseSets/*}:
+phrase_set˜
+DeletePhraseSet..google.cloud.speech.v1.DeletePhraseSetRequest.google.protobuf.Empty"=ÚAname‚Óä“0*./v1/{name=projects/*/locations/*/phraseSets/*}Î
+CreateCustomClass0.google.cloud.speech.v1.CreateCustomClassRequest#.google.cloud.speech.v1.CustomClass"bÚA#parent,custom_class,custom_class_id‚Óä“6"1/v1/{parent=projects/*/locations/*}/customClasses:*¦
+GetCustomClass-.google.cloud.speech.v1.GetCustomClassRequest#.google.cloud.speech.v1.CustomClass"@ÚAname‚Óä“31/v1/{name=projects/*/locations/*/customClasses/*}¼
+ListCustomClasses0.google.cloud.speech.v1.ListCustomClassesRequest1.google.cloud.speech.v1.ListCustomClassesResponse"BÚAparent‚Óä“31/v1/{parent=projects/*/locations/*}/customClassesÛ
+UpdateCustomClass0.google.cloud.speech.v1.UpdateCustomClassRequest#.google.cloud.speech.v1.CustomClass"oÚAcustom_class,update_mask‚Óä“N2>/v1/{custom_class.name=projects/*/locations/*/customClasses/*}:custom_classŸ
+DeleteCustomClass0.google.cloud.speech.v1.DeleteCustomClassRequest.google.protobuf.Empty"@ÚAname‚Óä“3*1/v1/{name=projects/*/locations/*/customClasses/*}IÊAspeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBr
 com.google.cloud.speech.v1BSpeechAdaptationProtoPZ2cloud.google.com/go/speech/apiv1/speechpb;speechpbø¢GCSbproto3'
         , true);
 

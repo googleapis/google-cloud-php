@@ -26,12 +26,12 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\KeyVersionSpec;
 use Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\Type;
 use Google\Cloud\Security\PrivateCA\V1\CertificateConfig;
 use Google\Cloud\Security\PrivateCA\V1\CertificateConfig\SubjectConfig;
-use Google\Cloud\Security\PrivateCA\V1\Subject;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\CreateCertificateAuthorityRequest;
 use Google\Cloud\Security\PrivateCA\V1\X509Parameters;
 use Google\Protobuf\Duration;
 use Google\Rpc\Status;
@@ -61,10 +61,8 @@ function create_certificate_authority_sample(
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $certificateAuthorityConfigSubjectConfigSubject = new Subject();
-    $certificateAuthorityConfigSubjectConfig = (new SubjectConfig())
-        ->setSubject($certificateAuthorityConfigSubjectConfigSubject);
+    // Prepare the request message.
+    $certificateAuthorityConfigSubjectConfig = new SubjectConfig();
     $certificateAuthorityConfigX509Config = new X509Parameters();
     $certificateAuthorityConfig = (new CertificateConfig())
         ->setSubjectConfig($certificateAuthorityConfigSubjectConfig)
@@ -76,15 +74,15 @@ function create_certificate_authority_sample(
         ->setConfig($certificateAuthorityConfig)
         ->setLifetime($certificateAuthorityLifetime)
         ->setKeySpec($certificateAuthorityKeySpec);
+    $request = (new CreateCertificateAuthorityRequest())
+        ->setParent($formattedParent)
+        ->setCertificateAuthorityId($certificateAuthorityId)
+        ->setCertificateAuthority($certificateAuthority);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->createCertificateAuthority(
-            $formattedParent,
-            $certificateAuthorityId,
-            $certificateAuthority
-        );
+        $response = $certificateAuthorityServiceClient->createCertificateAuthority($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -39,6 +39,13 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      */
     private $disable_agent_query_logging = false;
     /**
+     * Optional. Enable including conversation context during query answer
+     * generation. Supported features: KNOWLEDGE_SEARCH.
+     *
+     * Generated from protobuf field <code>bool enable_conversation_augmented_query = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $enable_conversation_augmented_query = false;
+    /**
      * Settings of suggestion trigger.
      * Currently, only ARTICLE_SUGGESTION and FAQ will use this field.
      *
@@ -81,6 +88,9 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Disable the logging of search queries sent by human agents. It
      *           can prevent those queries from being stored at answer records.
      *           Supported features: KNOWLEDGE_SEARCH.
+     *     @type bool $enable_conversation_augmented_query
+     *           Optional. Enable including conversation context during query answer
+     *           generation. Supported features: KNOWLEDGE_SEARCH.
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionTriggerSettings $suggestion_trigger_settings
      *           Settings of suggestion trigger.
      *           Currently, only ARTICLE_SUGGESTION and FAQ will use this field.
@@ -191,6 +201,34 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_agent_query_logging = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enable including conversation context during query answer
+     * generation. Supported features: KNOWLEDGE_SEARCH.
+     *
+     * Generated from protobuf field <code>bool enable_conversation_augmented_query = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableConversationAugmentedQuery()
+    {
+        return $this->enable_conversation_augmented_query;
+    }
+
+    /**
+     * Optional. Enable including conversation context during query answer
+     * generation. Supported features: KNOWLEDGE_SEARCH.
+     *
+     * Generated from protobuf field <code>bool enable_conversation_augmented_query = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableConversationAugmentedQuery($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_conversation_augmented_query = $var;
 
         return $this;
     }

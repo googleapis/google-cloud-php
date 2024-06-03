@@ -22,12 +22,18 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      */
     private $datapoint_id = '';
     /**
-     * Required. Feature embedding vector. An array of numbers with the length of
-     * [NearestNeighborSearchConfig.dimensions].
+     * Required. Feature embedding vector for dense index. An array of numbers
+     * with the length of [NearestNeighborSearchConfig.dimensions].
      *
      * Generated from protobuf field <code>repeated float feature_vector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $feature_vector;
+    /**
+     * Optional. Feature embedding vector for sparse index.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.SparseEmbedding sparse_embedding = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $sparse_embedding = null;
     /**
      * Optional. List of Restrict of the datapoint, used to perform "restricted
      * searches" where boolean rule are used to filter the subset of the database
@@ -37,6 +43,14 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $restricts;
+    /**
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. This uses numeric comparisons.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction numeric_restricts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $numeric_restricts;
     /**
      * Optional. CrowdingTag of the datapoint, the number of neighbors to return
      * in each crowding can be configured during query.
@@ -54,13 +68,19 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *     @type string $datapoint_id
      *           Required. Unique identifier of the datapoint.
      *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $feature_vector
-     *           Required. Feature embedding vector. An array of numbers with the length of
-     *           [NearestNeighborSearchConfig.dimensions].
+     *           Required. Feature embedding vector for dense index. An array of numbers
+     *           with the length of [NearestNeighborSearchConfig.dimensions].
+     *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\SparseEmbedding $sparse_embedding
+     *           Optional. Feature embedding vector for sparse index.
      *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction>|\Google\Protobuf\Internal\RepeatedField $restricts
      *           Optional. List of Restrict of the datapoint, used to perform "restricted
      *           searches" where boolean rule are used to filter the subset of the database
      *           eligible for matching. This uses categorical tokens. See:
      *           https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
+     *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction>|\Google\Protobuf\Internal\RepeatedField $numeric_restricts
+     *           Optional. List of Restrict of the datapoint, used to perform "restricted
+     *           searches" where boolean rule are used to filter the subset of the database
+     *           eligible for matching. This uses numeric comparisons.
      *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\CrowdingTag $crowding_tag
      *           Optional. CrowdingTag of the datapoint, the number of neighbors to return
      *           in each crowding can be configured during query.
@@ -98,8 +118,8 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Feature embedding vector. An array of numbers with the length of
-     * [NearestNeighborSearchConfig.dimensions].
+     * Required. Feature embedding vector for dense index. An array of numbers
+     * with the length of [NearestNeighborSearchConfig.dimensions].
      *
      * Generated from protobuf field <code>repeated float feature_vector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -110,8 +130,8 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Feature embedding vector. An array of numbers with the length of
-     * [NearestNeighborSearchConfig.dimensions].
+     * Required. Feature embedding vector for dense index. An array of numbers
+     * with the length of [NearestNeighborSearchConfig.dimensions].
      *
      * Generated from protobuf field <code>repeated float feature_vector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
@@ -121,6 +141,42 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::FLOAT);
         $this->feature_vector = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Feature embedding vector for sparse index.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.SparseEmbedding sparse_embedding = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\IndexDatapoint\SparseEmbedding|null
+     */
+    public function getSparseEmbedding()
+    {
+        return $this->sparse_embedding;
+    }
+
+    public function hasSparseEmbedding()
+    {
+        return isset($this->sparse_embedding);
+    }
+
+    public function clearSparseEmbedding()
+    {
+        unset($this->sparse_embedding);
+    }
+
+    /**
+     * Optional. Feature embedding vector for sparse index.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexDatapoint.SparseEmbedding sparse_embedding = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\IndexDatapoint\SparseEmbedding $var
+     * @return $this
+     */
+    public function setSparseEmbedding($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\IndexDatapoint\SparseEmbedding::class);
+        $this->sparse_embedding = $var;
 
         return $this;
     }
@@ -153,6 +209,36 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction::class);
         $this->restricts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. This uses numeric comparisons.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction numeric_restricts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNumericRestricts()
+    {
+        return $this->numeric_restricts;
+    }
+
+    /**
+     * Optional. List of Restrict of the datapoint, used to perform "restricted
+     * searches" where boolean rule are used to filter the subset of the database
+     * eligible for matching. This uses numeric comparisons.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction numeric_restricts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNumericRestricts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction::class);
+        $this->numeric_restricts = $arr;
 
         return $this;
     }

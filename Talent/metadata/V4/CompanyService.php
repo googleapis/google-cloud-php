@@ -51,12 +51,12 @@ page_token (	
 next_page_token (	:
 metadata (2(.google.cloud.talent.v4.ResponseMetadata2Ã
 CompanyService­
-CreateCompany,.google.cloud.talent.v4.CreateCompanyRequest.google.cloud.talent.v4.Company"M‚Óä“6"+/v4/{parent=projects/*/tenants/*}/companies:companyÚAparent,company”
+CreateCompany,.google.cloud.talent.v4.CreateCompanyRequest.google.cloud.talent.v4.Company"MÚAparent,company‚Óä“6"+/v4/{parent=projects/*/tenants/*}/companies:company”
 
-GetCompany).google.cloud.talent.v4.GetCompanyRequest.google.cloud.talent.v4.Company":‚Óä“-+/v4/{name=projects/*/tenants/*/companies/*}ÚAnameº
-UpdateCompany,.google.cloud.talent.v4.UpdateCompanyRequest.google.cloud.talent.v4.Company"Z‚Óä“>23/v4/{company.name=projects/*/tenants/*/companies/*}:companyÚAcompany,update_mask‘
-DeleteCompany,.google.cloud.talent.v4.DeleteCompanyRequest.google.protobuf.Empty":‚Óä“-*+/v4/{name=projects/*/tenants/*/companies/*}ÚAnameª
-ListCompanies,.google.cloud.talent.v4.ListCompaniesRequest-.google.cloud.talent.v4.ListCompaniesResponse"<‚Óä“-+/v4/{parent=projects/*/tenants/*}/companiesÚAparentlÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBm
+GetCompany).google.cloud.talent.v4.GetCompanyRequest.google.cloud.talent.v4.Company":ÚAname‚Óä“-+/v4/{name=projects/*/tenants/*/companies/*}º
+UpdateCompany,.google.cloud.talent.v4.UpdateCompanyRequest.google.cloud.talent.v4.Company"ZÚAcompany,update_mask‚Óä“>23/v4/{company.name=projects/*/tenants/*/companies/*}:company‘
+DeleteCompany,.google.cloud.talent.v4.DeleteCompanyRequest.google.protobuf.Empty":ÚAname‚Óä“-*+/v4/{name=projects/*/tenants/*/companies/*}ª
+ListCompanies,.google.cloud.talent.v4.ListCompaniesRequest-.google.cloud.talent.v4.ListCompaniesResponse"<ÚAparent‚Óä“-+/v4/{parent=projects/*/tenants/*}/companieslÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBm
 com.google.cloud.talent.v4BCompanyServiceProtoPZ2cloud.google.com/go/talent/apiv4/talentpb;talentpb¢CTSbproto3'
         , true);
 

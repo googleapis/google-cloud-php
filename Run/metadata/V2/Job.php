@@ -118,25 +118,25 @@ conditions (2.google.cloud.run.v2.ConditionB‡A
 create_time (2.google.protobuf.Timestamp3
 completion_time (2.google.protobuf.Timestamp2ä
 Jobs›
-	CreateJob%.google.cloud.run.v2.CreateJobRequest.google.longrunning.Operation"âÇ”‰ì/"(/v2/{parent=projects/*/locations/*}/jobs:jobä”‰ì-+
-parent!projects/*/locations/{location=*}⁄Aparent,job,job_id A
+	CreateJob%.google.cloud.run.v2.CreateJobRequest.google.longrunning.Operation"â A
 
-JobJob≥
-GetJob".google.cloud.run.v2.GetJobRequest.google.cloud.run.v2.Job"kÇ”‰ì*(/v2/{name=projects/*/locations/*/jobs/*}ä”‰ì.,
-name$projects/*/locations/{location=*}/**⁄Aname≈
-ListJobs$.google.cloud.run.v2.ListJobsRequest%.google.cloud.run.v2.ListJobsResponse"lÇ”‰ì*(/v2/{parent=projects/*/locations/*}/jobsä”‰ì-+
-parent!projects/*/locations/{location=*}⁄Aparentÿ
-	UpdateJob%.google.cloud.run.v2.UpdateJobRequest.google.longrunning.Operation"ÑÇ”‰ì32,/v2/{job.name=projects/*/locations/*/jobs/*}:jobä”‰ì20
-job.name$projects/*/locations/{location=*}/**⁄Ajob A
+JobJob⁄Aparent,job,job_idÇ”‰ì/"(/v2/{parent=projects/*/locations/*}/jobs:jobä”‰ì-+
+parent!projects/*/locations/{location=*}≥
+GetJob".google.cloud.run.v2.GetJobRequest.google.cloud.run.v2.Job"k⁄AnameÇ”‰ì*(/v2/{name=projects/*/locations/*/jobs/*}ä”‰ì.,
+name$projects/*/locations/{location=*}/**≈
+ListJobs$.google.cloud.run.v2.ListJobsRequest%.google.cloud.run.v2.ListJobsResponse"l⁄AparentÇ”‰ì*(/v2/{parent=projects/*/locations/*}/jobsä”‰ì-+
+parent!projects/*/locations/{location=*}ÿ
+	UpdateJob%.google.cloud.run.v2.UpdateJobRequest.google.longrunning.Operation"Ñ A
 
-JobJobÀ
-	DeleteJob%.google.cloud.run.v2.DeleteJobRequest.google.longrunning.Operation"xÇ”‰ì**(/v2/{name=projects/*/locations/*/jobs/*}ä”‰ì.,
-name$projects/*/locations/{location=*}/**⁄Aname A
+JobJob⁄AjobÇ”‰ì32,/v2/{job.name=projects/*/locations/*/jobs/*}:jobä”‰ì20
+job.name$projects/*/locations/{location=*}/**À
+	DeleteJob%.google.cloud.run.v2.DeleteJobRequest.google.longrunning.Operation"x A
 
-JobJobŸ
-RunJob".google.cloud.run.v2.RunJobRequest.google.longrunning.Operation"ãÇ”‰ì1",/v2/{name=projects/*/locations/*/jobs/*}:run:*ä”‰ì.,
-name$projects/*/locations/{location=*}/**⁄Aname A
-	Execution	Executionå
+JobJob⁄AnameÇ”‰ì**(/v2/{name=projects/*/locations/*/jobs/*}ä”‰ì.,
+name$projects/*/locations/{location=*}/**Ÿ
+RunJob".google.cloud.run.v2.RunJobRequest.google.longrunning.Operation"ã A
+	Execution	Execution⁄AnameÇ”‰ì1",/v2/{name=projects/*/locations/*/jobs/*}:run:*ä”‰ì.,
+name$projects/*/locations/{location=*}/**å
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"AÇ”‰ì;9/v2/{resource=projects/*/locations/*/jobs/*}:getIamPolicyè
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"DÇ”‰ì>"9/v2/{resource=projects/*/locations/*/jobs/*}:setIamPolicy:*µ
 TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"JÇ”‰ìD"?/v2/{resource=projects/*/locations/*/jobs/*}:testIamPermissions:*F Arun.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBP

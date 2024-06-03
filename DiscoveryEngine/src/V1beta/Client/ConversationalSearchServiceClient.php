@@ -35,14 +35,24 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DiscoveryEngine\V1beta\Answer;
+use Google\Cloud\DiscoveryEngine\V1beta\AnswerQueryRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\AnswerQueryResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\Conversation;
 use Google\Cloud\DiscoveryEngine\V1beta\ConverseConversationRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ConverseConversationResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\CreateConversationRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\CreateSessionRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\DeleteConversationRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\DeleteSessionRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\GetAnswerRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\GetConversationRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\GetSessionRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListConversationsRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\ListSessionsRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\Session;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateConversationRequest;
+use Google\Cloud\DiscoveryEngine\V1beta\UpdateSessionRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -56,16 +66,21 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
  * @experimental
  *
+ * @method PromiseInterface answerQueryAsync(AnswerQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface converseConversationAsync(ConverseConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createSessionAsync(CreateSessionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteConversationAsync(DeleteConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteSessionAsync(DeleteSessionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAnswerAsync(GetAnswerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getConversationAsync(GetConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getSessionAsync(GetSessionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listConversationsAsync(ListConversationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listSessionsAsync(ListSessionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateConversationAsync(UpdateConversationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateSessionAsync(UpdateSessionRequest $request, array $optionalArgs = [])
  */
 final class ConversationalSearchServiceClient
 {
@@ -75,8 +90,15 @@ final class ConversationalSearchServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.discoveryengine.v1beta.ConversationalSearchService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'discoveryengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'discoveryengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -85,9 +107,7 @@ final class ConversationalSearchServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -102,10 +122,74 @@ final class ConversationalSearchServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/conversational_search_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/conversational_search_service_rest_client_config.php',
                 ],
             ],
         ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a answer
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $session
+     * @param string $answer
+     *
+     * @return string The formatted answer resource.
+     *
+     * @experimental
+     */
+    public static function answerName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $session,
+        string $answer
+    ): string {
+        return self::getPathTemplate('answer')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'session' => $session,
+            'answer' => $answer,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a chunk
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     * @param string $chunk
+     *
+     * @return string The formatted chunk resource.
+     *
+     * @experimental
+     */
+    public static function chunkName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document,
+        string $chunk
+    ): string {
+        return self::getPathTemplate('chunk')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+            'chunk' => $chunk,
+        ]);
     }
 
     /**
@@ -121,8 +205,12 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function conversationName(string $project, string $location, string $dataStore, string $conversation): string
-    {
+    public static function conversationName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $conversation
+    ): string {
         return self::getPathTemplate('conversation')->render([
             'project' => $project,
             'location' => $location,
@@ -153,6 +241,36 @@ final class ConversationalSearchServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a document
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted document resource.
+     *
+     * @experimental
+     */
+    public static function documentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('document')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * project_location_collection_data_store resource.
      *
@@ -165,13 +283,86 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationCollectionDataStoreName(string $project, string $location, string $collection, string $dataStore): string
-    {
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStore')->render([
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
             'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_branch_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted project_location_collection_data_store_branch_document resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocument')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_branch_document_chunk resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     * @param string $chunk
+     *
+     * @return string The formatted project_location_collection_data_store_branch_document_chunk resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionDataStoreBranchDocumentChunkName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document,
+        string $chunk
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocumentChunk')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+            'chunk' => $chunk,
         ]);
     }
 
@@ -189,8 +380,13 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationCollectionDataStoreConversationName(string $project, string $location, string $collection, string $dataStore, string $conversation): string
-    {
+    public static function projectLocationCollectionDataStoreConversationName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $conversation
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreConversation')->render([
             'project' => $project,
             'location' => $location,
@@ -214,14 +410,205 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationCollectionDataStoreServingConfigName(string $project, string $location, string $collection, string $dataStore, string $servingConfig): string
-    {
+    public static function projectLocationCollectionDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreServingConfig')->render([
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
             'data_store' => $dataStore,
             'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $session
+     *
+     * @return string The formatted project_location_collection_data_store_session resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionDataStoreSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $session
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store_session_answer resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     * @param string $session
+     * @param string $answer
+     *
+     * @return string The formatted project_location_collection_data_store_session_answer resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionDataStoreSessionAnswerName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $session,
+        string $answer
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStoreSessionAnswer')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
+            'session' => $session,
+            'answer' => $answer,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_conversation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $conversation
+     *
+     * @return string The formatted project_location_collection_engine_conversation resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionEngineConversationName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $conversation
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineConversation')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'conversation' => $conversation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $servingConfig
+     *
+     * @return string The formatted project_location_collection_engine_serving_config resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionEngineServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineServingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $session
+     *
+     * @return string The formatted project_location_collection_engine_session resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionEngineSessionName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $session
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_session_answer resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $session
+     * @param string $answer
+     *
+     * @return string The formatted project_location_collection_engine_session_answer resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionEngineSessionAnswerName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $session,
+        string $answer
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineSessionAnswer')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'session' => $session,
+            'answer' => $answer,
         ]);
     }
 
@@ -248,6 +635,69 @@ final class ConversationalSearchServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_branch_document resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     *
+     * @return string The formatted project_location_data_store_branch_document resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreBranchDocument')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_branch_document_chunk resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $branch
+     * @param string $document
+     * @param string $chunk
+     *
+     * @return string The formatted project_location_data_store_branch_document_chunk resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationDataStoreBranchDocumentChunkName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document,
+        string $chunk
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreBranchDocumentChunk')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'branch' => $branch,
+            'document' => $document,
+            'chunk' => $chunk,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_data_store_conversation resource.
      *
      * @param string $project
@@ -259,8 +709,12 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationDataStoreConversationName(string $project, string $location, string $dataStore, string $conversation): string
-    {
+    public static function projectLocationDataStoreConversationName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $conversation
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreConversation')->render([
             'project' => $project,
             'location' => $location,
@@ -282,13 +736,74 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function projectLocationDataStoreServingConfigName(string $project, string $location, string $dataStore, string $servingConfig): string
-    {
+    public static function projectLocationDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreServingConfig')->render([
             'project' => $project,
             'location' => $location,
             'data_store' => $dataStore,
             'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $session
+     *
+     * @return string The formatted project_location_data_store_session resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationDataStoreSessionName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $session
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreSession')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store_session_answer resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $session
+     * @param string $answer
+     *
+     * @return string The formatted project_location_data_store_session_answer resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationDataStoreSessionAnswerName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $session,
+        string $answer
+    ): string {
+        return self::getPathTemplate('projectLocationDataStoreSessionAnswer')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'session' => $session,
+            'answer' => $answer,
         ]);
     }
 
@@ -305,8 +820,12 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public static function servingConfigName(string $project, string $location, string $dataStore, string $servingConfig): string
-    {
+    public static function servingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('servingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -316,18 +835,57 @@ final class ConversationalSearchServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a session
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     * @param string $session
+     *
+     * @return string The formatted session resource.
+     *
+     * @experimental
+     */
+    public static function sessionName(string $project, string $location, string $dataStore, string $session): string
+    {
+        return self::getPathTemplate('session')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+            'session' => $session,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - answer: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}/answers/{answer}
+     * - chunk: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}/chunks/{chunk}
      * - conversation: projects/{project}/locations/{location}/dataStores/{data_store}/conversations/{conversation}
      * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
+     * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - projectLocationCollectionDataStoreBranchDocumentChunk: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}/chunks/{chunk}
      * - projectLocationCollectionDataStoreConversation: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/conversations/{conversation}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationCollectionDataStoreSession: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}
+     * - projectLocationCollectionDataStoreSessionAnswer: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/sessions/{session}/answers/{answer}
+     * - projectLocationCollectionEngineConversation: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/conversations/{conversation}
+     * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
+     * - projectLocationCollectionEngineSession: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}
+     * - projectLocationCollectionEngineSessionAnswer: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/answers/{answer}
      * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
+     * - projectLocationDataStoreBranchDocument: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - projectLocationDataStoreBranchDocumentChunk: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}/chunks/{chunk}
      * - projectLocationDataStoreConversation: projects/{project}/locations/{location}/dataStores/{data_store}/conversations/{conversation}
      * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationDataStoreSession: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}
+     * - projectLocationDataStoreSessionAnswer: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}/answers/{answer}
      * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - session: projects/{project}/locations/{location}/dataStores/{data_store}/sessions/{session}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -423,6 +981,35 @@ final class ConversationalSearchServiceClient
     }
 
     /**
+     * Answer query method.
+     *
+     * The async variant is
+     * {@see ConversationalSearchServiceClient::answerQueryAsync()} .
+     *
+     * @example samples/V1beta/ConversationalSearchServiceClient/answer_query.php
+     *
+     * @param AnswerQueryRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnswerQueryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function answerQuery(AnswerQueryRequest $request, array $callOptions = []): AnswerQueryResponse
+    {
+        return $this->startApiCall('AnswerQuery', $request, $callOptions)->wait();
+    }
+
+    /**
      * Converses a conversation.
      *
      * The async variant is
@@ -446,8 +1033,10 @@ final class ConversationalSearchServiceClient
      *
      * @experimental
      */
-    public function converseConversation(ConverseConversationRequest $request, array $callOptions = []): ConverseConversationResponse
-    {
+    public function converseConversation(
+        ConverseConversationRequest $request,
+        array $callOptions = []
+    ): ConverseConversationResponse {
         return $this->startApiCall('ConverseConversation', $request, $callOptions)->wait();
     }
 
@@ -484,6 +1073,38 @@ final class ConversationalSearchServiceClient
     }
 
     /**
+     * Creates a Session.
+     *
+     * If the [Session][google.cloud.discoveryengine.v1beta.Session] to create
+     * already exists, an ALREADY_EXISTS error is returned.
+     *
+     * The async variant is
+     * {@see ConversationalSearchServiceClient::createSessionAsync()} .
+     *
+     * @example samples/V1beta/ConversationalSearchServiceClient/create_session.php
+     *
+     * @param CreateSessionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Session
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function createSession(CreateSessionRequest $request, array $callOptions = []): Session
+    {
+        return $this->startApiCall('CreateSession', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a Conversation.
      *
      * If the [Conversation][google.cloud.discoveryengine.v1beta.Conversation] to
@@ -511,6 +1132,65 @@ final class ConversationalSearchServiceClient
     public function deleteConversation(DeleteConversationRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Session.
+     *
+     * If the [Session][google.cloud.discoveryengine.v1beta.Session] to delete
+     * does not exist, a NOT_FOUND error is returned.
+     *
+     * The async variant is
+     * {@see ConversationalSearchServiceClient::deleteSessionAsync()} .
+     *
+     * @example samples/V1beta/ConversationalSearchServiceClient/delete_session.php
+     *
+     * @param DeleteSessionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteSession(DeleteSessionRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteSession', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a Answer.
+     *
+     * The async variant is {@see ConversationalSearchServiceClient::getAnswerAsync()}
+     * .
+     *
+     * @example samples/V1beta/ConversationalSearchServiceClient/get_answer.php
+     *
+     * @param GetAnswerRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Answer
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getAnswer(GetAnswerRequest $request, array $callOptions = []): Answer
+    {
+        return $this->startApiCall('GetAnswer', $request, $callOptions)->wait();
     }
 
     /**
@@ -543,6 +1223,35 @@ final class ConversationalSearchServiceClient
     }
 
     /**
+     * Gets a Session.
+     *
+     * The async variant is {@see ConversationalSearchServiceClient::getSessionAsync()}
+     * .
+     *
+     * @example samples/V1beta/ConversationalSearchServiceClient/get_session.php
+     *
+     * @param GetSessionRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Session
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getSession(GetSessionRequest $request, array $callOptions = []): Session
+    {
+        return $this->startApiCall('GetSession', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists all Conversations by their parent
      * [DataStore][google.cloud.discoveryengine.v1beta.DataStore].
      *
@@ -570,6 +1279,36 @@ final class ConversationalSearchServiceClient
     public function listConversations(ListConversationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListConversations', $request, $callOptions);
+    }
+
+    /**
+     * Lists all Sessions by their parent
+     * [DataStore][google.cloud.discoveryengine.v1beta.DataStore].
+     *
+     * The async variant is
+     * {@see ConversationalSearchServiceClient::listSessionsAsync()} .
+     *
+     * @example samples/V1beta/ConversationalSearchServiceClient/list_sessions.php
+     *
+     * @param ListSessionsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listSessions(ListSessionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSessions', $request, $callOptions);
     }
 
     /**
@@ -604,5 +1343,38 @@ final class ConversationalSearchServiceClient
     public function updateConversation(UpdateConversationRequest $request, array $callOptions = []): Conversation
     {
         return $this->startApiCall('UpdateConversation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a Session.
+     *
+     * [Session][google.cloud.discoveryengine.v1beta.Session] action type cannot
+     * be changed. If the [Session][google.cloud.discoveryengine.v1beta.Session]
+     * to update does not exist, a NOT_FOUND error is returned.
+     *
+     * The async variant is
+     * {@see ConversationalSearchServiceClient::updateSessionAsync()} .
+     *
+     * @example samples/V1beta/ConversationalSearchServiceClient/update_session.php
+     *
+     * @param UpdateSessionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Session
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateSession(UpdateSessionRequest $request, array $callOptions = []): Session
+    {
+        return $this->startApiCall('UpdateSession', $request, $callOptions)->wait();
     }
 }

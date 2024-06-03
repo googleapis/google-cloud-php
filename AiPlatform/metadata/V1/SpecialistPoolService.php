@@ -59,14 +59,14 @@ page_token (	-
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2”
 
 SpecialistPoolService
-CreateSpecialistPool7.google.cloud.aiplatform.v1.CreateSpecialistPoolRequest.google.longrunning.Operation"Ÿ‚Óä“F"3/v1/{parent=projects/*/locations/*}/specialistPools:specialist_poolÚAparent,specialist_poolÊA7
-SpecialistPool%CreateSpecialistPoolOperationMetadata¹
-GetSpecialistPool4.google.cloud.aiplatform.v1.GetSpecialistPoolRequest*.google.cloud.aiplatform.v1.SpecialistPool"B‚Óä“53/v1/{name=projects/*/locations/*/specialistPools/*}ÚAnameÌ
-ListSpecialistPools6.google.cloud.aiplatform.v1.ListSpecialistPoolsRequest7.google.cloud.aiplatform.v1.ListSpecialistPoolsResponse"D‚Óä“53/v1/{parent=projects/*/locations/*}/specialistPoolsÚAparentå
-DeleteSpecialistPool7.google.cloud.aiplatform.v1.DeleteSpecialistPoolRequest.google.longrunning.Operation"u‚Óä“5*3/v1/{name=projects/*/locations/*/specialistPools/*}ÚAnameÊA0
-google.protobuf.EmptyDeleteOperationMetadata¥
-UpdateSpecialistPool7.google.cloud.aiplatform.v1.UpdateSpecialistPoolRequest.google.longrunning.Operation"´‚Óä“V2C/v1/{specialist_pool.name=projects/*/locations/*/specialistPools/*}:specialist_poolÚAspecialist_pool,update_maskÊA7
-SpecialistPool%UpdateSpecialistPoolOperationMetadataMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
+CreateSpecialistPool7.google.cloud.aiplatform.v1.CreateSpecialistPoolRequest.google.longrunning.Operation"ŸÊA7
+SpecialistPool%CreateSpecialistPoolOperationMetadataÚAparent,specialist_pool‚Óä“F"3/v1/{parent=projects/*/locations/*}/specialistPools:specialist_pool¹
+GetSpecialistPool4.google.cloud.aiplatform.v1.GetSpecialistPoolRequest*.google.cloud.aiplatform.v1.SpecialistPool"BÚAname‚Óä“53/v1/{name=projects/*/locations/*/specialistPools/*}Ì
+ListSpecialistPools6.google.cloud.aiplatform.v1.ListSpecialistPoolsRequest7.google.cloud.aiplatform.v1.ListSpecialistPoolsResponse"DÚAparent‚Óä“53/v1/{parent=projects/*/locations/*}/specialistPoolså
+DeleteSpecialistPool7.google.cloud.aiplatform.v1.DeleteSpecialistPoolRequest.google.longrunning.Operation"uÊA0
+google.protobuf.EmptyDeleteOperationMetadataÚAname‚Óä“5*3/v1/{name=projects/*/locations/*/specialistPools/*}¥
+UpdateSpecialistPool7.google.cloud.aiplatform.v1.UpdateSpecialistPoolRequest.google.longrunning.Operation"´ÊA7
+SpecialistPool%UpdateSpecialistPoolOperationMetadataÚAspecialist_pool,update_mask‚Óä“V2C/v1/{specialist_pool.name=projects/*/locations/*/specialistPools/*}:specialist_poolMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBØ
 com.google.cloud.aiplatform.v1BSpecialistPoolServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
         , true);
 

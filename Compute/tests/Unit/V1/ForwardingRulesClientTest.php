@@ -282,6 +282,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
+        $ipCollection = 'ipCollection176818358';
         $ipVersion = 'ipVersion-1315653184';
         $isMirroringCollector = true;
         $kind = 'kind3292052';
@@ -312,6 +313,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
+        $expectedResponse->setIpCollection($ipCollection);
         $expectedResponse->setIpVersion($ipVersion);
         $expectedResponse->setIsMirroringCollector($isMirroringCollector);
         $expectedResponse->setKind($kind);

@@ -22,11 +22,12 @@ class CustomVoiceParams extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
-     * Optional. The usage of the synthesized audio to be reported.
+     * Optional. Deprecated. The usage of the synthesized audio to be reported.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams.ReportedUsage reported_usage = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams.ReportedUsage reported_usage = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    private $reported_usage = 0;
+    protected $reported_usage = 0;
 
     /**
      * Constructor.
@@ -37,7 +38,7 @@ class CustomVoiceParams extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           Required. The name of the AutoML model that synthesizes the custom voice.
      *     @type int $reported_usage
-     *           Optional. The usage of the synthesized audio to be reported.
+     *           Optional. Deprecated. The usage of the synthesized audio to be reported.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,25 +73,29 @@ class CustomVoiceParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The usage of the synthesized audio to be reported.
+     * Optional. Deprecated. The usage of the synthesized audio to be reported.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams.ReportedUsage reported_usage = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams.ReportedUsage reported_usage = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
+     * @deprecated
      */
     public function getReportedUsage()
     {
+        @trigger_error('reported_usage is deprecated.', E_USER_DEPRECATED);
         return $this->reported_usage;
     }
 
     /**
-     * Optional. The usage of the synthesized audio to be reported.
+     * Optional. Deprecated. The usage of the synthesized audio to be reported.
      *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams.ReportedUsage reported_usage = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams.ReportedUsage reported_usage = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setReportedUsage($var)
     {
+        @trigger_error('reported_usage is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\TextToSpeech\V1\CustomVoiceParams\ReportedUsage::class);
         $this->reported_usage = $var;
 

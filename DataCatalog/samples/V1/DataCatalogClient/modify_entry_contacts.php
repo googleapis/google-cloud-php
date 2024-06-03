@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_ModifyEntryContacts_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\Contacts;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\ModifyEntryContactsRequest;
 
 /**
  * Modifies contacts, part of the business context of an
@@ -42,13 +43,16 @@ function modify_entry_contacts_sample(string $formattedName): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $contacts = new Contacts();
+    $request = (new ModifyEntryContactsRequest())
+        ->setName($formattedName)
+        ->setContacts($contacts);
 
     // Call the API and handle any network failures.
     try {
         /** @var Contacts $response */
-        $response = $dataCatalogClient->modifyEntryContacts($formattedName, $contacts);
+        $response = $dataCatalogClient->modifyEntryContacts($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

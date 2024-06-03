@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START cloudasset_v1_generated_AssetService_ExportAssets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Asset\V1\AssetServiceClient;
+use Google\Cloud\Asset\V1\Client\AssetServiceClient;
+use Google\Cloud\Asset\V1\ExportAssetsRequest;
 use Google\Cloud\Asset\V1\ExportAssetsResponse;
 use Google\Cloud\Asset\V1\OutputConfig;
 use Google\Rpc\Status;
@@ -53,13 +54,16 @@ function export_assets_sample(string $parent): void
     // Create a client.
     $assetServiceClient = new AssetServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $outputConfig = new OutputConfig();
+    $request = (new ExportAssetsRequest())
+        ->setParent($parent)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $assetServiceClient->exportAssets($parent, $outputConfig);
+        $response = $assetServiceClient->exportAssets($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

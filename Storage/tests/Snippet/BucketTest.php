@@ -519,6 +519,24 @@ class BucketTest extends SnippetTestCase
         $snippet->invoke();
     }
 
+    public function testRestore()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'restore');
+        $snippet->addLocal('bucket', $this->bucket);
+
+        $this->connection->restoreObject(Argument::any())
+            ->willReturn([
+                'name' => 'file.txt',
+                'generation' => 'abc'
+            ]);
+
+        $restoredObject = $this->bucket->restore('file.txt', 'abc');
+
+        $this->assertInstanceOf(StorageObject::class, $restoredObject);
+        $this->assertEquals('file.txt', $restoredObject->name());
+        $this->assertEquals('abc', $restoredObject->info()['generation']);
+    }
+
     public function testUpdate()
     {
         $snippet = $this->snippetFromMethod(Bucket::class, 'update');

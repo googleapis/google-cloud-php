@@ -61,11 +61,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Bigtable\V2\BigtableClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface checkAndMutateRowAsync(CheckAndMutateRowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface mutateRowAsync(MutateRowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface pingAndWarmAsync(PingAndWarmRequest $request, array $optionalArgs = [])
@@ -79,8 +74,15 @@ final class BigtableClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.bigtable.v2.Bigtable';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigtable.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigtable.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -115,6 +117,27 @@ final class BigtableClient
                 ],
             ],
         ];
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * authorized_view resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $table
+     * @param string $authorizedView
+     *
+     * @return string The formatted authorized_view resource.
+     */
+    public static function authorizedViewName(string $project, string $instance, string $table, string $authorizedView): string
+    {
+        return self::getPathTemplate('authorizedView')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'table' => $table,
+            'authorized_view' => $authorizedView,
+        ]);
     }
 
     /**
@@ -157,6 +180,7 @@ final class BigtableClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - authorizedView: projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorized_view}
      * - instance: projects/{project}/instances/{instance}
      * - table: projects/{project}/instances/{instance}/tables/{table}
      *
@@ -254,6 +278,8 @@ final class BigtableClient
      *
      * The async variant is {@see BigtableClient::checkAndMutateRowAsync()} .
      *
+     * @example samples/V2/BigtableClient/check_and_mutate_row.php
+     *
      * @param CheckAndMutateRowRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -279,6 +305,8 @@ final class BigtableClient
      * change stream. The union of partitions will cover the entire keyspace.
      * Partitions can be read with `ReadChangeStream`.
      *
+     * @example samples/V2/BigtableClient/generate_initial_change_stream_partitions.php
+     *
      * @param GenerateInitialChangeStreamPartitionsRequest $request     A request to house fields associated with the call.
      * @param array                                        $callOptions {
      *     Optional.
@@ -301,6 +329,8 @@ final class BigtableClient
      * unchanged unless explicitly changed by `mutation`.
      *
      * The async variant is {@see BigtableClient::mutateRowAsync()} .
+     *
+     * @example samples/V2/BigtableClient/mutate_row.php
      *
      * @param MutateRowRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -326,6 +356,8 @@ final class BigtableClient
      * atomically as in MutateRow, but the entire batch is not executed
      * atomically.
      *
+     * @example samples/V2/BigtableClient/mutate_rows.php
+     *
      * @param MutateRowsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -348,6 +380,8 @@ final class BigtableClient
      * This call is not required but may be useful for connection keep-alive.
      *
      * The async variant is {@see BigtableClient::pingAndWarmAsync()} .
+     *
+     * @example samples/V2/BigtableClient/ping_and_warm.php
      *
      * @param PingAndWarmRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -373,6 +407,8 @@ final class BigtableClient
      * Reads changes from a table's change stream. Changes will
      * reflect both user-initiated mutations and mutations that are caused by
      * garbage collection.
+     *
+     * @example samples/V2/BigtableClient/read_change_stream.php
      *
      * @param ReadChangeStreamRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -400,6 +436,8 @@ final class BigtableClient
      *
      * The async variant is {@see BigtableClient::readModifyWriteRowAsync()} .
      *
+     * @example samples/V2/BigtableClient/read_modify_write_row.php
+     *
      * @param ReadModifyWriteRowRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -426,6 +464,8 @@ final class BigtableClient
      * atomicity of each row will still be preserved. See the
      * ReadRowsResponse documentation for details.
      *
+     * @example samples/V2/BigtableClient/read_rows.php
+     *
      * @param ReadRowsRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -448,6 +488,8 @@ final class BigtableClient
      * delimit contiguous sections of the table of approximately equal size,
      * which can be used to break up the data for distributed tasks like
      * mapreduces.
+     *
+     * @example samples/V2/BigtableClient/sample_row_keys.php
      *
      * @param SampleRowKeysRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

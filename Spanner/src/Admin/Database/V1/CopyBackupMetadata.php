@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata type for the google.longrunning.Operation returned by
+ * Metadata type for the operation returned by
  * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.CopyBackupMetadata</code>
@@ -34,7 +34,8 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
     private $source_backup = '';
     /**
      * The progress of the
-     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup] operation.
+     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup]
+     * operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      */
@@ -73,7 +74,8 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
      *           `projects/<project>/instances/<instance>/backups/<backup>`.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $progress
      *           The progress of the
-     *           [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup] operation.
+     *           [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup]
+     *           operation.
      *     @type \Google\Protobuf\Timestamp $cancel_time
      *           The time at which cancellation of CopyBackup operation was received.
      *           [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
@@ -156,7 +158,8 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup] operation.
+     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup]
+     * operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress|null
@@ -178,7 +181,8 @@ class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup] operation.
+     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup]
+     * operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      * @param \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $var

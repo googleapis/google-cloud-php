@@ -30,11 +30,11 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      */
     private $play_uri = '';
     /**
-     * Key value pairs for ad tag macro replacement. If the
-     * specified ad tag URI has macros, this field provides the mapping
-     * to the value that will replace the macro in the ad tag URI.
-     * Macros are designated by square brackets.
-     * For example:
+     * Key value pairs for ad tag macro replacement, only available for live
+     * sessions that do not implement Google Ad manager ad insertion. If the
+     * specified ad tag URI has macros, this field provides the mapping to the
+     * value that will replace the macro in the ad tag URI.
+     * Macros are designated by square brackets, for example:
      *   Ad tag URI: "https://doubleclick.google.com/ad/1?geo_id=[geoId]"
      *   Ad tag macros: `{"geoId": "123"}`
      *   Fully qualified ad tag:
@@ -63,6 +63,13 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string live_config = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $live_config = '';
+    /**
+     * Determines how the ad should be tracked. This overrides the value set in
+     * the live config for this session.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 17;</code>
+     */
+    private $ad_tracking = 0;
 
     /**
      * Constructor.
@@ -76,11 +83,11 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      *     @type string $play_uri
      *           Output only. The URI to play the live session's ad-stitched stream.
      *     @type array|\Google\Protobuf\Internal\MapField $ad_tag_macros
-     *           Key value pairs for ad tag macro replacement. If the
-     *           specified ad tag URI has macros, this field provides the mapping
-     *           to the value that will replace the macro in the ad tag URI.
-     *           Macros are designated by square brackets.
-     *           For example:
+     *           Key value pairs for ad tag macro replacement, only available for live
+     *           sessions that do not implement Google Ad manager ad insertion. If the
+     *           specified ad tag URI has macros, this field provides the mapping to the
+     *           value that will replace the macro in the ad tag URI.
+     *           Macros are designated by square brackets, for example:
      *             Ad tag URI: "https://doubleclick.google.com/ad/1?geo_id=[geoId]"
      *             Ad tag macros: `{"geoId": "123"}`
      *             Fully qualified ad tag:
@@ -93,6 +100,9 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      *     @type string $live_config
      *           Required. The resource name of the live config for this session, in the
      *           form of `projects/{project}/locations/{location}/liveConfigs/{id}`.
+     *     @type int $ad_tracking
+     *           Determines how the ad should be tracked. This overrides the value set in
+     *           the live config for this session.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,11 +165,11 @@ class LiveSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Key value pairs for ad tag macro replacement. If the
-     * specified ad tag URI has macros, this field provides the mapping
-     * to the value that will replace the macro in the ad tag URI.
-     * Macros are designated by square brackets.
-     * For example:
+     * Key value pairs for ad tag macro replacement, only available for live
+     * sessions that do not implement Google Ad manager ad insertion. If the
+     * specified ad tag URI has macros, this field provides the mapping to the
+     * value that will replace the macro in the ad tag URI.
+     * Macros are designated by square brackets, for example:
      *   Ad tag URI: "https://doubleclick.google.com/ad/1?geo_id=[geoId]"
      *   Ad tag macros: `{"geoId": "123"}`
      *   Fully qualified ad tag:
@@ -174,11 +184,11 @@ class LiveSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Key value pairs for ad tag macro replacement. If the
-     * specified ad tag URI has macros, this field provides the mapping
-     * to the value that will replace the macro in the ad tag URI.
-     * Macros are designated by square brackets.
-     * For example:
+     * Key value pairs for ad tag macro replacement, only available for live
+     * sessions that do not implement Google Ad manager ad insertion. If the
+     * specified ad tag URI has macros, this field provides the mapping to the
+     * value that will replace the macro in the ad tag URI.
+     * Macros are designated by square brackets, for example:
      *   Ad tag URI: "https://doubleclick.google.com/ad/1?geo_id=[geoId]"
      *   Ad tag macros: `{"geoId": "123"}`
      *   Fully qualified ad tag:
@@ -294,6 +304,34 @@ class LiveSession extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->live_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Determines how the ad should be tracked. This overrides the value set in
+     * the live config for this session.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 17;</code>
+     * @return int
+     */
+    public function getAdTracking()
+    {
+        return $this->ad_tracking;
+    }
+
+    /**
+     * Determines how the ad should be tracked. This overrides the value set in
+     * the live config for this session.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.AdTracking ad_tracking = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAdTracking($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Video\Stitcher\V1\AdTracking::class);
+        $this->ad_tracking = $var;
 
         return $this;
     }

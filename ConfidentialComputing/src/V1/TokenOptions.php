@@ -30,6 +30,12 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string nonce = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $nonce;
+    /**
+     * Optional. Optional token type to select what type of token to return.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenType token_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $token_type = 0;
 
     /**
      * Constructor.
@@ -44,6 +50,8 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
      *           Optional. Optional parameter to place one or more nonces in the eat_nonce
      *           claim in the output token. The minimum size for JSON-encoded EATs is 10
      *           bytes and the maximum size is 74 bytes.
+     *     @type int $token_type
+     *           Optional. Optional token type to select what type of token to return.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +113,32 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->nonce = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional token type to select what type of token to return.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenType token_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTokenType()
+    {
+        return $this->token_type;
+    }
+
+    /**
+     * Optional. Optional token type to select what type of token to return.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.TokenType token_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTokenType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ConfidentialComputing\V1\TokenType::class);
+        $this->token_type = $var;
 
         return $this;
     }

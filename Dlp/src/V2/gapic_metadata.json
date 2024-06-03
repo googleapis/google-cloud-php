@@ -20,6 +20,11 @@
                                 "cancelDlpJob"
                             ]
                         },
+                        "CreateConnection": {
+                            "methods": [
+                                "createConnection"
+                            ]
+                        },
                         "CreateDeidentifyTemplate": {
                             "methods": [
                                 "createDeidentifyTemplate"
@@ -55,6 +60,11 @@
                                 "deidentifyContent"
                             ]
                         },
+                        "DeleteConnection": {
+                            "methods": [
+                                "deleteConnection"
+                            ]
+                        },
                         "DeleteDeidentifyTemplate": {
                             "methods": [
                                 "deleteDeidentifyTemplate"
@@ -85,9 +95,24 @@
                                 "deleteStoredInfoType"
                             ]
                         },
+                        "DeleteTableDataProfile": {
+                            "methods": [
+                                "deleteTableDataProfile"
+                            ]
+                        },
                         "FinishDlpJob": {
                             "methods": [
                                 "finishDlpJob"
+                            ]
+                        },
+                        "GetColumnDataProfile": {
+                            "methods": [
+                                "getColumnDataProfile"
+                            ]
+                        },
+                        "GetConnection": {
+                            "methods": [
+                                "getConnection"
                             ]
                         },
                         "GetDeidentifyTemplate": {
@@ -115,9 +140,19 @@
                                 "getJobTrigger"
                             ]
                         },
+                        "GetProjectDataProfile": {
+                            "methods": [
+                                "getProjectDataProfile"
+                            ]
+                        },
                         "GetStoredInfoType": {
                             "methods": [
                                 "getStoredInfoType"
+                            ]
+                        },
+                        "GetTableDataProfile": {
+                            "methods": [
+                                "getTableDataProfile"
                             ]
                         },
                         "HybridInspectDlpJob": {
@@ -133,6 +168,16 @@
                         "InspectContent": {
                             "methods": [
                                 "inspectContent"
+                            ]
+                        },
+                        "ListColumnDataProfiles": {
+                            "methods": [
+                                "listColumnDataProfiles"
+                            ]
+                        },
+                        "ListConnections": {
+                            "methods": [
+                                "listConnections"
                             ]
                         },
                         "ListDeidentifyTemplates": {
@@ -165,9 +210,19 @@
                                 "listJobTriggers"
                             ]
                         },
+                        "ListProjectDataProfiles": {
+                            "methods": [
+                                "listProjectDataProfiles"
+                            ]
+                        },
                         "ListStoredInfoTypes": {
                             "methods": [
                                 "listStoredInfoTypes"
+                            ]
+                        },
+                        "ListTableDataProfiles": {
+                            "methods": [
+                                "listTableDataProfiles"
                             ]
                         },
                         "RedactImage": {
@@ -178,6 +233,16 @@
                         "ReidentifyContent": {
                             "methods": [
                                 "reidentifyContent"
+                            ]
+                        },
+                        "SearchConnections": {
+                            "methods": [
+                                "searchConnections"
+                            ]
+                        },
+                        "UpdateConnection": {
+                            "methods": [
+                                "updateConnection"
                             ]
                         },
                         "UpdateDeidentifyTemplate": {

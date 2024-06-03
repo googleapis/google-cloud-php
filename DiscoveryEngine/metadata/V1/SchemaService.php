@@ -59,14 +59,14 @@ page_token (	"h
 create_time (2.google.protobuf.Timestamp/
 update_time (2.google.protobuf.Timestamp2±
 SchemaService¸
-	GetSchema1.google.cloud.discoveryengine.v1.GetSchemaRequest\'.google.cloud.discoveryengine.v1.Schema"íÇ”‰ìÑ8/v1/{name=projects/*/locations/*/dataStores/*/schemas/*}ZHF/v1/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}⁄Anameè
-ListSchemas3.google.cloud.discoveryengine.v1.ListSchemasRequest4.google.cloud.discoveryengine.v1.ListSchemasResponse"îÇ”‰ìÑ8/v1/{parent=projects/*/locations/*/dataStores/*}/schemasZHF/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemas⁄Aparent¸
-CreateSchema4.google.cloud.discoveryengine.v1.CreateSchemaRequest.google.longrunning.Operation"ñÇ”‰ìî"8/v1/{parent=projects/*/locations/*/dataStores/*}/schemas:schemaZP"F/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemas:schema⁄Aparent,schema,schema_id A^
-&google.cloud.discoveryengine.v1.Schema4google.cloud.discoveryengine.v1.CreateSchemaMetadata
-UpdateSchema4.google.cloud.discoveryengine.v1.UpdateSchemaRequest.google.longrunning.Operation"äÇ”‰ì¢2?/v1/{schema.name=projects/*/locations/*/dataStores/*/schemas/*}:schemaZW2M/v1/{schema.name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}:schema A^
-&google.cloud.discoveryengine.v1.Schema4google.cloud.discoveryengine.v1.UpdateSchemaMetadata»
-DeleteSchema4.google.cloud.discoveryengine.v1.DeleteSchemaRequest.google.longrunning.Operation"‚Ç”‰ìÑ*8/v1/{name=projects/*/locations/*/dataStores/*/schemas/*}ZH*F/v1/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}⁄Aname AM
-google.protobuf.Empty4google.cloud.discoveryengine.v1.DeleteSchemaMetadataR Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÖ
+	GetSchema1.google.cloud.discoveryengine.v1.GetSchemaRequest\'.google.cloud.discoveryengine.v1.Schema"í⁄AnameÇ”‰ìÑ8/v1/{name=projects/*/locations/*/dataStores/*/schemas/*}ZHF/v1/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}è
+ListSchemas3.google.cloud.discoveryengine.v1.ListSchemasRequest4.google.cloud.discoveryengine.v1.ListSchemasResponse"î⁄AparentÇ”‰ìÑ8/v1/{parent=projects/*/locations/*/dataStores/*}/schemasZHF/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemas¸
+CreateSchema4.google.cloud.discoveryengine.v1.CreateSchemaRequest.google.longrunning.Operation"ñ A^
+&google.cloud.discoveryengine.v1.Schema4google.cloud.discoveryengine.v1.CreateSchemaMetadata⁄Aparent,schema,schema_idÇ”‰ìî"8/v1/{parent=projects/*/locations/*/dataStores/*}/schemas:schemaZP"F/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/schemas:schema
+UpdateSchema4.google.cloud.discoveryengine.v1.UpdateSchemaRequest.google.longrunning.Operation"ä A^
+&google.cloud.discoveryengine.v1.Schema4google.cloud.discoveryengine.v1.UpdateSchemaMetadataÇ”‰ì¢2?/v1/{schema.name=projects/*/locations/*/dataStores/*/schemas/*}:schemaZW2M/v1/{schema.name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}:schema»
+DeleteSchema4.google.cloud.discoveryengine.v1.DeleteSchemaRequest.google.longrunning.Operation"‚ AM
+google.protobuf.Empty4google.cloud.discoveryengine.v1.DeleteSchemaMetadata⁄AnameÇ”‰ìÑ*8/v1/{name=projects/*/locations/*/dataStores/*/schemas/*}ZH*F/v1/{name=projects/*/locations/*/collections/*/dataStores/*/schemas/*}R Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÖ
 #com.google.cloud.discoveryengine.v1BSchemaServiceProtoPZMcloud.google.com/go/discoveryengine/apiv1/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINE™Google.Cloud.DiscoveryEngine.V1 Google\\Cloud\\DiscoveryEngine\\V1Í"Google::Cloud::DiscoveryEngine::V1bproto3'
         , true);
 

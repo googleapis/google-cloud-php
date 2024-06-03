@@ -2988,10 +2988,14 @@ class SecurityCenterClientTest extends GeneratedTest
         $name = 'name3373707';
         $externalUid = 'externalUid-1385596452';
         $status = 'status-892481550';
+        $caseUri = 'caseUri21649373';
+        $casePriority = 'casePriority715048403';
         $expectedResponse = new ExternalSystem();
         $expectedResponse->setName($name);
         $expectedResponse->setExternalUid($externalUid);
         $expectedResponse->setStatus($status);
+        $expectedResponse->setCaseUri($caseUri);
+        $expectedResponse->setCasePriority($casePriority);
         $transport->addResponse($expectedResponse);
         // Mock request
         $externalSystem = new ExternalSystem();

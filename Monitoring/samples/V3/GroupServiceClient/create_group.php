@@ -24,14 +24,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_GroupService_CreateGroup_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\GroupServiceClient;
+use Google\Cloud\Monitoring\V3\CreateGroupRequest;
 use Google\Cloud\Monitoring\V3\Group;
-use Google\Cloud\Monitoring\V3\GroupServiceClient;
 
 /**
  * Creates a new group.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
- *                     which to create the group. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) in which
+ *                     to create the group. The format is:
  *
  *                     projects/[PROJECT_ID_OR_NUMBER]
  */
@@ -40,13 +42,16 @@ function create_group_sample(string $name): void
     // Create a client.
     $groupServiceClient = new GroupServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $group = new Group();
+    $request = (new CreateGroupRequest())
+        ->setName($name)
+        ->setGroup($group);
 
     // Call the API and handle any network failures.
     try {
         /** @var Group $response */
-        $response = $groupServiceClient->createGroup($name, $group);
+        $response = $groupServiceClient->createGroup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

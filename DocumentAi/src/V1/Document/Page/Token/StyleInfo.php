@@ -62,25 +62,25 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      */
     private $underlined = false;
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool strikeout = 8;</code>
      */
     private $strikeout = false;
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool subscript = 9;</code>
      */
     private $subscript = false;
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool superscript = 10;</code>
      */
     private $superscript = false;
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool smallcaps = 11;</code>
      */
@@ -136,13 +136,13 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
      *     @type bool $underlined
      *           Whether the text is underlined.
      *     @type bool $strikeout
-     *           Whether the text is strikethrough.
+     *           Whether the text is strikethrough. This feature is not supported yet.
      *     @type bool $subscript
-     *           Whether the text is a subscript.
+     *           Whether the text is a subscript. This feature is not supported yet.
      *     @type bool $superscript
-     *           Whether the text is a superscript.
+     *           Whether the text is a superscript. This feature is not supported yet.
      *     @type bool $smallcaps
-     *           Whether the text is in small caps.
+     *           Whether the text is in small caps. This feature is not supported yet.
      *     @type int $font_weight
      *           TrueType weight on a scale `100` (thin) to `1000` (ultra-heavy).
      *           Normal is `400`, bold is `700`.
@@ -350,7 +350,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool strikeout = 8;</code>
      * @return bool
@@ -361,7 +361,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is strikethrough.
+     * Whether the text is strikethrough. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool strikeout = 8;</code>
      * @param bool $var
@@ -376,7 +376,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool subscript = 9;</code>
      * @return bool
@@ -387,7 +387,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is a subscript.
+     * Whether the text is a subscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool subscript = 9;</code>
      * @param bool $var
@@ -402,7 +402,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool superscript = 10;</code>
      * @return bool
@@ -413,7 +413,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is a superscript.
+     * Whether the text is a superscript. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool superscript = 10;</code>
      * @param bool $var
@@ -428,7 +428,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool smallcaps = 11;</code>
      * @return bool
@@ -439,7 +439,7 @@ class StyleInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the text is in small caps.
+     * Whether the text is in small caps. This feature is not supported yet.
      *
      * Generated from protobuf field <code>bool smallcaps = 11;</code>
      * @param bool $var

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_NotificationChannelService_ListNotificationChannelDescriptors_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Monitoring\V3\Client\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\ListNotificationChannelDescriptorsRequest;
 use Google\Cloud\Monitoring\V3\NotificationChannelDescriptor;
-use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 
 /**
  * Lists the descriptors for supported channel types. The use of descriptors
@@ -49,10 +50,14 @@ function list_notification_channel_descriptors_sample(string $name): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListNotificationChannelDescriptorsRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $notificationChannelServiceClient->listNotificationChannelDescriptors($name);
+        $response = $notificationChannelServiceClient->listNotificationChannelDescriptors($request);
 
         /** @var NotificationChannelDescriptor $element */
         foreach ($response as $element) {

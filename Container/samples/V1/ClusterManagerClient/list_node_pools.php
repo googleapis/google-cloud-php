@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START container_v1_generated_ClusterManager_ListNodePools_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Container\V1\ClusterManagerClient;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
+use Google\Cloud\Container\V1\ListNodePoolsRequest;
 use Google\Cloud\Container\V1\ListNodePoolsResponse;
 
 /**
@@ -41,10 +42,13 @@ function list_node_pools_sample(): void
     // Create a client.
     $clusterManagerClient = new ClusterManagerClient();
 
+    // Prepare the request message.
+    $request = new ListNodePoolsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var ListNodePoolsResponse $response */
-        $response = $clusterManagerClient->listNodePools();
+        $response = $clusterManagerClient->listNodePools($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

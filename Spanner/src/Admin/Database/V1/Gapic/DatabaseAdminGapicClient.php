@@ -87,7 +87,7 @@ use Google\Protobuf\Timestamp;
  * The Cloud Spanner Database Admin API can be used to:
  * * create, drop, and list databases
  * * update the schema of pre-existing databases
- * * create, delete and list backups for a database
+ * * create, delete, copy and list backups for a database
  * * restore a database from an existing backup
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -136,9 +136,7 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient} to use the
- * new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient}.
  */
 class DatabaseAdminGapicClient
 {
@@ -147,8 +145,15 @@ class DatabaseAdminGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.spanner.admin.database.v1.DatabaseAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'spanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'spanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -534,9 +539,10 @@ class DatabaseAdminGapicClient
      * The [metadata][google.longrunning.Operation.metadata] field type is
      * [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
      * The [response][google.longrunning.Operation.response] field type is
-     * [Backup][google.spanner.admin.database.v1.Backup], if successful. Cancelling the returned operation will stop the
-     * copying and delete the backup.
-     * Concurrent CopyBackup requests can run on the same source backup.
+     * [Backup][google.spanner.admin.database.v1.Backup], if successful.
+     * Cancelling the returned operation will stop the copying and delete the
+     * destination backup. Concurrent CopyBackup requests can run on the same
+     * source backup.
      *
      * Sample code:
      * ```
@@ -577,8 +583,8 @@ class DatabaseAdminGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The name of the destination instance that will contain the backup copy.
-     *                                Values are of the form: `projects/<project>/instances/<instance>`.
+     * @param string    $parent       Required. The name of the destination instance that will contain the backup
+     *                                copy. Values are of the form: `projects/<project>/instances/<instance>`.
      * @param string    $backupId     Required. The id of the backup copy.
      *                                The `backup_id` appended to `parent` forms the full backup_uri of the form
      *                                `projects/<project>/instances/<instance>/backups/<backup>`.
@@ -597,11 +603,11 @@ class DatabaseAdminGapicClient
      *     Optional.
      *
      *     @type CopyBackupEncryptionConfig $encryptionConfig
-     *           Optional. The encryption configuration used to encrypt the backup. If this field is
-     *           not specified, the backup will use the same
-     *           encryption configuration as the source backup by default, namely
-     *           [encryption_type][google.spanner.admin.database.v1.CopyBackupEncryptionConfig.encryption_type] =
-     *           `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`.
+     *           Optional. The encryption configuration used to encrypt the backup. If this
+     *           field is not specified, the backup will use the same encryption
+     *           configuration as the source backup by default, namely
+     *           [encryption_type][google.spanner.admin.database.v1.CopyBackupEncryptionConfig.encryption_type]
+     *           = `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -651,12 +657,12 @@ class DatabaseAdminGapicClient
      * `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation_id>`
      * and can be used to track creation of the backup. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]. The
-     * [response][google.longrunning.Operation.response] field type is
-     * [Backup][google.spanner.admin.database.v1.Backup], if successful. Cancelling the returned operation will stop the
-     * creation and delete the backup.
-     * There can be only one pending backup creation per database. Backup creation
-     * of different databases can run concurrently.
+     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [Backup][google.spanner.admin.database.v1.Backup], if successful.
+     * Cancelling the returned operation will stop the creation and delete the
+     * backup. There can be only one pending backup creation per database. Backup
+     * creation of different databases can run concurrently.
      *
      * Sample code:
      * ```
@@ -710,11 +716,11 @@ class DatabaseAdminGapicClient
      *     Optional.
      *
      *     @type CreateBackupEncryptionConfig $encryptionConfig
-     *           Optional. The encryption configuration used to encrypt the backup. If this field is
-     *           not specified, the backup will use the same
-     *           encryption configuration as the database by default, namely
-     *           [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] =
-     *           `USE_DATABASE_ENCRYPTION`.
+     *           Optional. The encryption configuration used to encrypt the backup. If this
+     *           field is not specified, the backup will use the same encryption
+     *           configuration as the database by default, namely
+     *           [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
+     *           = `USE_DATABASE_ENCRYPTION`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -761,8 +767,8 @@ class DatabaseAdminGapicClient
      * have a name of the format `<database_name>/operations/<operation_id>` and
      * can be used to track preparation of the database. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata]. The
-     * [response][google.longrunning.Operation.response] field type is
+     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
      * [Database][google.spanner.admin.database.v1.Database], if successful.
      *
      * Sample code:
@@ -818,12 +824,28 @@ class DatabaseAdminGapicClient
      *           statements execute atomically with the creation of the database:
      *           if there is an error in any statement, the database is not created.
      *     @type EncryptionConfig $encryptionConfig
-     *           Optional. The encryption configuration for the database. If this field is not
-     *           specified, Cloud Spanner will encrypt/decrypt all data at rest using
+     *           Optional. The encryption configuration for the database. If this field is
+     *           not specified, Cloud Spanner will encrypt/decrypt all data at rest using
      *           Google default encryption.
      *     @type int $databaseDialect
      *           Optional. The dialect of the Cloud Spanner Database.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect}
+     *     @type string $protoDescriptors
+     *           Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in
+     *           'extra_statements' above.
+     *           Contains a protobuf-serialized
+     *           [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     *           To generate it, [install](https://grpc.io/docs/protoc-installation/) and
+     *           run `protoc` with --include_imports and --descriptor_set_out. For example,
+     *           to generate for moon/shot/app.proto, run
+     *           ```
+     *           $protoc  --proto_path=/app_path --proto_path=/lib_path \
+     *           --include_imports \
+     *           --descriptor_set_out=descriptors.data \
+     *           moon/shot/app.proto
+     *           ```
+     *           For more details, see protobuffer [self
+     *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -856,6 +878,10 @@ class DatabaseAdminGapicClient
             $request->setDatabaseDialect($optionalArgs['databaseDialect']);
         }
 
+        if (isset($optionalArgs['protoDescriptors'])) {
+            $request->setProtoDescriptors($optionalArgs['protoDescriptors']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -871,7 +897,8 @@ class DatabaseAdminGapicClient
     }
 
     /**
-     * Deletes a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Deletes a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      *
      * Sample code:
      * ```
@@ -969,7 +996,8 @@ class DatabaseAdminGapicClient
     }
 
     /**
-     * Gets metadata on a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Gets metadata on a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      *
      * Sample code:
      * ```
@@ -1237,7 +1265,9 @@ class DatabaseAdminGapicClient
      *           * `name` - The name of the long-running operation
      *           * `done` - False if the operation is in progress, else true.
      *           * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *           for [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] is
+     *           for
+     *           [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *           is
      *           `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`.
      *           * `metadata.<field_name>` - any field in metadata.value.
      *           `metadata.&#64;type` must be specified first if filtering on metadata
@@ -1255,14 +1285,15 @@ class DatabaseAdminGapicClient
      *           * `done:true` - The operation is complete.
      *           * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *           `metadata.database:prod` - Returns operations where:
-     *           * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     *           * The database the backup was taken from has a name containing the
-     *           string "prod".
+     *           * The operation's metadata type is
+     *           [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *           * The source database name of backup contains the string "prod".
      *           * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *           `(metadata.name:howl) AND` \
      *           `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *           `(error:*)` - Returns operations where:
-     *           * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *           * The operation's metadata type is
+     *           [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *           * The backup name contains the string "howl".
      *           * The operation started before 2018-03-28T14:50:00Z.
      *           * The operation resulted in an error.
@@ -1270,9 +1301,9 @@ class DatabaseAdminGapicClient
      *           `(metadata.source_backup:test) AND` \
      *           `(metadata.progress.start_time < \"2022-01-18T14:50:00Z\") AND` \
      *           `(error:*)` - Returns operations where:
-     *           * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
-     *           * The source backup of the copied backup name contains the string
-     *           "test".
+     *           * The operation's metadata type is
+     *           [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
+     *           * The source backup name contains the string "test".
      *           * The operation started before 2022-01-18T14:50:00Z.
      *           * The operation resulted in an error.
      *           * `((metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
@@ -1282,12 +1313,13 @@ class DatabaseAdminGapicClient
      *           `(metadata.source_backup:test_bkp)) AND` \
      *           `(error:*)` - Returns operations where:
      *           * The operation's metadata matches either of criteria:
-     *           * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] AND the
-     *           database the backup was taken from has name containing string
+     *           * The operation's metadata type is
+     *           [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *           AND the source database name of the backup contains the string
      *           "test_db"
-     *           * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata] AND the
-     *           backup the backup was copied from has name containing string
-     *           "test_bkp"
+     *           * The operation's metadata type is
+     *           [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata]
+     *           AND the source backup name contains the string "test_bkp"
      *           * The operation resulted in an error.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
@@ -1382,7 +1414,9 @@ class DatabaseAdminGapicClient
      *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      *           Colon `:` is the contains operator. Filter rules are not case sensitive.
      *
-     *           The following fields in the [Backup][google.spanner.admin.database.v1.Backup] are eligible for filtering:
+     *           The following fields in the
+     *           [Backup][google.spanner.admin.database.v1.Backup] are eligible for
+     *           filtering:
      *
      *           * `name`
      *           * `database`
@@ -1513,7 +1547,9 @@ class DatabaseAdminGapicClient
      *           * `name` - The name of the long-running operation
      *           * `done` - False if the operation is in progress, else true.
      *           * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *           for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
+     *           for
+     *           [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
+     *           is
      *           `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *           * `metadata.<field_name>` - any field in metadata.value.
      *           `metadata.&#64;type` must be specified first, if filtering on metadata
@@ -1535,7 +1571,8 @@ class DatabaseAdminGapicClient
      *           `(metadata.name:restored_howl) AND` \
      *           `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *           `(error:*)` - Return operations where:
-     *           * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
+     *           * The operation's metadata type is
+     *           [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *           * The database is restored from a backup.
      *           * The backup name contains "backup_howl".
      *           * The restored database's name contains "restored_howl".
@@ -1620,7 +1657,7 @@ class DatabaseAdminGapicClient
      *
      * @param string $parent       Required. The database whose roles should be listed.
      *                             Values are of the form
-     *                             `projects/<project>/instances/<instance>/databases/<database>/databaseRoles`.
+     *                             `projects/<project>/instances/<instance>/databases/<database>`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1821,12 +1858,12 @@ class DatabaseAdminGapicClient
      *           Name of the backup from which to restore.  Values are of the form
      *           `projects/<project>/instances/<instance>/backups/<backup>`.
      *     @type RestoreDatabaseEncryptionConfig $encryptionConfig
-     *           Optional. An encryption configuration describing the encryption type and key
-     *           resources in Cloud KMS used to encrypt/decrypt the database to restore to.
-     *           If this field is not specified, the restored database will use
-     *           the same encryption configuration as the backup by default, namely
-     *           [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] =
-     *           `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`.
+     *           Optional. An encryption configuration describing the encryption type and
+     *           key resources in Cloud KMS used to encrypt/decrypt the database to restore
+     *           to. If this field is not specified, the restored database will use the same
+     *           encryption configuration as the backup by default, namely
+     *           [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     *           = `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2008,7 +2045,8 @@ class DatabaseAdminGapicClient
     }
 
     /**
-     * Updates a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Updates a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      *
      * Sample code:
      * ```
@@ -2189,7 +2227,8 @@ class DatabaseAdminGapicClient
      * the format `<database_name>/operations/<operation_id>` and can be used to
      * track execution of the schema change(s). The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
+     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].
+     * The operation has no response.
      *
      * Sample code:
      * ```
@@ -2239,18 +2278,35 @@ class DatabaseAdminGapicClient
      *
      *           Specifying an explicit operation ID simplifies determining
      *           whether the statements were executed in the event that the
-     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] call is replayed,
-     *           or the return value is otherwise lost: the [database][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.database] and
-     *           `operation_id` fields can be combined to form the
+     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+     *           call is replayed, or the return value is otherwise lost: the
+     *           [database][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.database]
+     *           and `operation_id` fields can be combined to form the
      *           [name][google.longrunning.Operation.name] of the resulting
-     *           [longrunning.Operation][google.longrunning.Operation]: `<database>/operations/<operation_id>`.
+     *           [longrunning.Operation][google.longrunning.Operation]:
+     *           `<database>/operations/<operation_id>`.
      *
      *           `operation_id` should be unique within the database, and must be
      *           a valid identifier: `[a-z][a-z0-9_]*`. Note that
      *           automatically-generated operation IDs always begin with an
      *           underscore. If the named operation already exists,
-     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
-     *           `ALREADY_EXISTS`.
+     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl]
+     *           returns `ALREADY_EXISTS`.
+     *     @type string $protoDescriptors
+     *           Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements.
+     *           Contains a protobuf-serialized
+     *           [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     *           To generate it, [install](https://grpc.io/docs/protoc-installation/) and
+     *           run `protoc` with --include_imports and --descriptor_set_out. For example,
+     *           to generate for moon/shot/app.proto, run
+     *           ```
+     *           $protoc  --proto_path=/app_path --proto_path=/lib_path \
+     *           --include_imports \
+     *           --descriptor_set_out=descriptors.data \
+     *           moon/shot/app.proto
+     *           ```
+     *           For more details, see protobuffer [self
+     *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2273,6 +2329,10 @@ class DatabaseAdminGapicClient
         $requestParamHeaders['database'] = $database;
         if (isset($optionalArgs['operationId'])) {
             $request->setOperationId($optionalArgs['operationId']);
+        }
+
+        if (isset($optionalArgs['protoDescriptors'])) {
+            $request->setProtoDescriptors($optionalArgs['protoDescriptors']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

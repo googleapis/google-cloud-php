@@ -37,6 +37,8 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `autoscaling.min_node_count`.
      *  *   `autoscaling.max_node_count`.
      *  *   `config.ssh_config.authorized_key`.
+     *  *   `management.auto_repair`.
+     *  *   `management`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,6 +56,8 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *                                                                    *   `autoscaling.min_node_count`.
      *                                                                    *   `autoscaling.max_node_count`.
      *                                                                    *   `config.ssh_config.authorized_key`.
+     *                                                                    *   `management.auto_repair`.
+     *                                                                    *   `management`.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAzureNodePoolRequest
      *
@@ -86,6 +90,8 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *            *   `autoscaling.min_node_count`.
      *            *   `autoscaling.max_node_count`.
      *            *   `config.ssh_config.authorized_key`.
+     *            *   `management.auto_repair`.
+     *            *   `management`.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,6 +172,8 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `autoscaling.min_node_count`.
      *  *   `autoscaling.max_node_count`.
      *  *   `config.ssh_config.authorized_key`.
+     *  *   `management.auto_repair`.
+     *  *   `management`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -194,6 +202,8 @@ class UpdateAzureNodePoolRequest extends \Google\Protobuf\Internal\Message
      *  *   `autoscaling.min_node_count`.
      *  *   `autoscaling.max_node_count`.
      *  *   `config.ssh_config.authorized_key`.
+     *  *   `management.auto_repair`.
+     *  *   `management`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

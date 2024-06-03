@@ -77,6 +77,7 @@ use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions;
+use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\FoundationModelTuningOptions;
 use Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\InputData;
 use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
 use Google\Cloud\Location\GetLocationRequest;
@@ -135,9 +136,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient} to use the
- * new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\DocumentAI\V1\Client\DocumentProcessorServiceClient}.
  */
 class DocumentProcessorServiceGapicClient
 {
@@ -146,8 +145,15 @@ class DocumentProcessorServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.documentai.v1.DocumentProcessorService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'documentai.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'documentai.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -627,6 +633,13 @@ class DocumentProcessorServiceGapicClient
      *           `false`.
      *     @type ProcessOptions $processOptions
      *           Inference-time options for the process API
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints) and can only contain lowercase letters, numeric
+     *           characters, underscores, and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -659,6 +672,10 @@ class DocumentProcessorServiceGapicClient
 
         if (isset($optionalArgs['processOptions'])) {
             $request->setProcessOptions($optionalArgs['processOptions']);
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -696,7 +713,8 @@ class DocumentProcessorServiceGapicClient
      *                                processor. Format: `projects/{project}/locations/{location}`
      * @param Processor $processor    Required. The processor to be created, requires
      *                                [Processor.type][google.cloud.documentai.v1.Processor.type] and
-     *                                [Processor.display_name]][] to be set. Also, the
+     *                                [Processor.display_name][google.cloud.documentai.v1.Processor.display_name]
+     *                                to be set. Also, the
      *                                [Processor.kms_key_name][google.cloud.documentai.v1.Processor.kms_key_name]
      *                                field must be set if the processor is under CMEK.
      * @param array     $optionalArgs {
@@ -1790,6 +1808,13 @@ class DocumentProcessorServiceGapicClient
      *           the form of `{document_field_name}` or `pages.{page_field_name}`.
      *     @type ProcessOptions $processOptions
      *           Inference-time options for the process API
+     *     @type array $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints) and can only contain lowercase letters, numeric
+     *           characters, underscores, and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1828,6 +1853,10 @@ class DocumentProcessorServiceGapicClient
 
         if (isset($optionalArgs['processOptions'])) {
             $request->setProcessOptions($optionalArgs['processOptions']);
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2086,6 +2115,8 @@ class DocumentProcessorServiceGapicClient
      *
      *     @type CustomDocumentExtractionOptions $customDocumentExtractionOptions
      *           Options to control Custom Document Extraction (CDE) Processor.
+     *     @type FoundationModelTuningOptions $foundationModelTuningOptions
+     *           Options to control foundation model tuning of a processor.
      *     @type DocumentSchema $documentSchema
      *           Optional. The schema the processor version will be trained with.
      *     @type InputData $inputData
@@ -2118,6 +2149,12 @@ class DocumentProcessorServiceGapicClient
         if (isset($optionalArgs['customDocumentExtractionOptions'])) {
             $request->setCustomDocumentExtractionOptions(
                 $optionalArgs['customDocumentExtractionOptions']
+            );
+        }
+
+        if (isset($optionalArgs['foundationModelTuningOptions'])) {
+            $request->setFoundationModelTuningOptions(
+                $optionalArgs['foundationModelTuningOptions']
             );
         }
 

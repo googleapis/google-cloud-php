@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_DataCatalog_DeleteTagTemplateField_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\DeleteTagTemplateFieldRequest;
 
 /**
  * Deletes a field in a tag template and all uses of this field from the tags
@@ -45,9 +46,14 @@ function delete_tag_template_field_sample(string $formattedName, bool $force): v
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTagTemplateFieldRequest())
+        ->setName($formattedName)
+        ->setForce($force);
+
     // Call the API and handle any network failures.
     try {
-        $dataCatalogClient->deleteTagTemplateField($formattedName, $force);
+        $dataCatalogClient->deleteTagTemplateField($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

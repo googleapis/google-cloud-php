@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/shopping/merchant/quota/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/ShoppingMerchantQuota/$1/$2
+api-name: ShoppingMerchantQuota

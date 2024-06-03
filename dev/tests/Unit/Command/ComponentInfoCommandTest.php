@@ -28,19 +28,6 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class ComponentInfoCommandTest extends TestCase
 {
-    private static $expectedFiles = [
-        '.OwlBot.yaml',
-        '.gitattributes',
-        '.github/pull_request_template.md',
-        '.repo-metadata.json',
-        'CONTRIBUTING.md',
-        'LICENSE',
-        'README.md',
-        'VERSION',
-        'owlbot.py',
-        'phpunit.xml.dist',
-    ];
-
     private static CommandTester $commandTester;
 
     public static function setUpBeforeClass(): void

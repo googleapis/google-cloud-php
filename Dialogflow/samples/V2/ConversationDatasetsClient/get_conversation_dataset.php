@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_ConversationDatasets_GetConversationDataset_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ConversationDatasetsClient;
 use Google\Cloud\Dialogflow\V2\ConversationDataset;
-use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
+use Google\Cloud\Dialogflow\V2\GetConversationDatasetRequest;
 
 /**
  * Retrieves the specified conversation dataset.
@@ -40,10 +41,14 @@ function get_conversation_dataset_sample(string $formattedName): void
     // Create a client.
     $conversationDatasetsClient = new ConversationDatasetsClient();
 
+    // Prepare the request message.
+    $request = (new GetConversationDatasetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ConversationDataset $response */
-        $response = $conversationDatasetsClient->getConversationDataset($formattedName);
+        $response = $conversationDatasetsClient->getConversationDataset($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

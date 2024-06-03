@@ -22,19 +22,25 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * The resource type that was profiled.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataSourceType data_source_type = 36;</code>
+     */
+    private $data_source_type = null;
+    /**
      * The resource name to the project data profile for this table.
      *
      * Generated from protobuf field <code>string project_data_profile = 2;</code>
      */
     private $project_data_profile = '';
     /**
-     * The Google Cloud project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the resource.
      *
      * Generated from protobuf field <code>string dataset_project_id = 24;</code>
      */
     private $dataset_project_id = '';
     /**
-     * The BigQuery location where the dataset's data is stored.
+     * If supported, the location where the dataset's data is stored.
      * See https://cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
@@ -42,19 +48,19 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      */
     private $dataset_location = '';
     /**
-     * The BigQuery dataset ID.
+     * If the resource is BigQuery, the  dataset ID.
      *
      * Generated from protobuf field <code>string dataset_id = 25;</code>
      */
     private $dataset_id = '';
     /**
-     * The BigQuery table ID.
+     * If the resource is BigQuery, the BigQuery table ID.
      *
      * Generated from protobuf field <code>string table_id = 26;</code>
      */
     private $table_id = '';
     /**
-     * The resource name of the table.
+     * The resource name of the resource profiled.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * Generated from protobuf field <code>string full_resource = 3;</code>
@@ -179,20 +185,22 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the profile.
+     *     @type \Google\Cloud\Dlp\V2\DataSourceType $data_source_type
+     *           The resource type that was profiled.
      *     @type string $project_data_profile
      *           The resource name to the project data profile for this table.
      *     @type string $dataset_project_id
-     *           The Google Cloud project ID that owns the BigQuery dataset.
+     *           The Google Cloud project ID that owns the resource.
      *     @type string $dataset_location
-     *           The BigQuery location where the dataset's data is stored.
+     *           If supported, the location where the dataset's data is stored.
      *           See https://cloud.google.com/bigquery/docs/locations for supported
      *           locations.
      *     @type string $dataset_id
-     *           The BigQuery dataset ID.
+     *           If the resource is BigQuery, the  dataset ID.
      *     @type string $table_id
-     *           The BigQuery table ID.
+     *           If the resource is BigQuery, the BigQuery table ID.
      *     @type string $full_resource
-     *           The resource name of the table.
+     *           The resource name of the resource profiled.
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
      *     @type \Google\Cloud\Dlp\V2\ProfileStatus $profile_status
      *           Success or error status from the most recent profile generation attempt.
@@ -266,6 +274,42 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The resource type that was profiled.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataSourceType data_source_type = 36;</code>
+     * @return \Google\Cloud\Dlp\V2\DataSourceType|null
+     */
+    public function getDataSourceType()
+    {
+        return $this->data_source_type;
+    }
+
+    public function hasDataSourceType()
+    {
+        return isset($this->data_source_type);
+    }
+
+    public function clearDataSourceType()
+    {
+        unset($this->data_source_type);
+    }
+
+    /**
+     * The resource type that was profiled.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DataSourceType data_source_type = 36;</code>
+     * @param \Google\Cloud\Dlp\V2\DataSourceType $var
+     * @return $this
+     */
+    public function setDataSourceType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\DataSourceType::class);
+        $this->data_source_type = $var;
+
+        return $this;
+    }
+
+    /**
      * The resource name to the project data profile for this table.
      *
      * Generated from protobuf field <code>string project_data_profile = 2;</code>
@@ -292,7 +336,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the resource.
      *
      * Generated from protobuf field <code>string dataset_project_id = 24;</code>
      * @return string
@@ -303,7 +347,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud project ID that owns the BigQuery dataset.
+     * The Google Cloud project ID that owns the resource.
      *
      * Generated from protobuf field <code>string dataset_project_id = 24;</code>
      * @param string $var
@@ -318,7 +362,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery location where the dataset's data is stored.
+     * If supported, the location where the dataset's data is stored.
      * See https://cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
@@ -331,7 +375,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery location where the dataset's data is stored.
+     * If supported, the location where the dataset's data is stored.
      * See https://cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
@@ -348,7 +392,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery dataset ID.
+     * If the resource is BigQuery, the  dataset ID.
      *
      * Generated from protobuf field <code>string dataset_id = 25;</code>
      * @return string
@@ -359,7 +403,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery dataset ID.
+     * If the resource is BigQuery, the  dataset ID.
      *
      * Generated from protobuf field <code>string dataset_id = 25;</code>
      * @param string $var
@@ -374,7 +418,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery table ID.
+     * If the resource is BigQuery, the BigQuery table ID.
      *
      * Generated from protobuf field <code>string table_id = 26;</code>
      * @return string
@@ -385,7 +429,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BigQuery table ID.
+     * If the resource is BigQuery, the BigQuery table ID.
      *
      * Generated from protobuf field <code>string table_id = 26;</code>
      * @param string $var
@@ -400,7 +444,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the table.
+     * The resource name of the resource profiled.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * Generated from protobuf field <code>string full_resource = 3;</code>
@@ -412,7 +456,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the table.
+     * The resource name of the resource profiled.
      * https://cloud.google.com/apis/design/resource_names#full_resource_name
      *
      * Generated from protobuf field <code>string full_resource = 3;</code>

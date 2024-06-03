@@ -1,6 +1,6 @@
 # Google Cloud Secret Manager for PHP
 
-> Idiomatic PHP client for [Google Cloud Secret Manager](https://cloud.google.com/secret-mananger).
+> Idiomatic PHP client for [Google Cloud Secret Manager](https://cloud.google.com/secret-manager).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-secretmanager/v/stable)](https://packagist.org/packages/google/cloud-secretmanager) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-secretmanager.svg)](https://packagist.org/packages/google/cloud-secretmanager)
 
@@ -42,4 +42,4 @@ This component is considered alpha. As such, it is still a work-in-progress and 
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/secret-manager/docs/reference/rest/).
+1. Understand the [official documentation](https://cloud.google.com/secret-manager/docs/overview).

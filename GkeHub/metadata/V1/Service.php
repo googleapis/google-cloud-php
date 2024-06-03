@@ -121,25 +121,25 @@ request_id (	"ù
 cancel_requested (BàA
 api_version (	BàA2ğ
 GkeHub´
-ListMemberships..google.cloud.gkehub.v1.ListMembershipsRequest/.google.cloud.gkehub.v1.ListMembershipsResponse"@‚Óä“1//v1/{parent=projects/*/locations/*}/membershipsÚAparent¨
-ListFeatures+.google.cloud.gkehub.v1.ListFeaturesRequest,.google.cloud.gkehub.v1.ListFeaturesResponse"=‚Óä“.,/v1/{parent=projects/*/locations/*}/featuresÚAparent¡
-GetMembership,.google.cloud.gkehub.v1.GetMembershipRequest".google.cloud.gkehub.v1.Membership">‚Óä“1//v1/{name=projects/*/locations/*/memberships/*}ÚAname•
+ListMemberships..google.cloud.gkehub.v1.ListMembershipsRequest/.google.cloud.gkehub.v1.ListMembershipsResponse"@ÚAparent‚Óä“1//v1/{parent=projects/*/locations/*}/memberships¨
+ListFeatures+.google.cloud.gkehub.v1.ListFeaturesRequest,.google.cloud.gkehub.v1.ListFeaturesResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/features¡
+GetMembership,.google.cloud.gkehub.v1.GetMembershipRequest".google.cloud.gkehub.v1.Membership">ÚAname‚Óä“1//v1/{name=projects/*/locations/*/memberships/*}•
 
-GetFeature).google.cloud.gkehub.v1.GetFeatureRequest.google.cloud.gkehub.v1.Feature";‚Óä“.,/v1/{name=projects/*/locations/*/features/*}ÚAnameè
-CreateMembership/.google.cloud.gkehub.v1.CreateMembershipRequest.google.longrunning.Operation"ƒ‚Óä“;"//v1/{parent=projects/*/locations/*}/memberships:resourceÚAparent,resource,membership_idÊA
+GetFeature).google.cloud.gkehub.v1.GetFeatureRequest.google.cloud.gkehub.v1.Feature";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/features/*}è
+CreateMembership/.google.cloud.gkehub.v1.CreateMembershipRequest.google.longrunning.Operation"ƒÊA
 
-MembershipOperationMetadataØ
-CreateFeature,.google.cloud.gkehub.v1.CreateFeatureRequest.google.longrunning.Operation"z‚Óä“8",/v1/{parent=projects/*/locations/*}/features:resourceÚAparent,resource,feature_idÊA
-FeatureOperationMetadataÏ
-DeleteMembership/.google.cloud.gkehub.v1.DeleteMembershipRequest.google.longrunning.Operation"k‚Óä“1*//v1/{name=projects/*/locations/*/memberships/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataÆ
-DeleteFeature,.google.cloud.gkehub.v1.DeleteFeatureRequest.google.longrunning.Operation"h‚Óä“.*,/v1/{name=projects/*/locations/*/features/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataã
-UpdateMembership/.google.cloud.gkehub.v1.UpdateMembershipRequest.google.longrunning.Operation"‚Óä“;2//v1/{name=projects/*/locations/*/memberships/*}:resourceÚAname,resource,update_maskÊA
+MembershipOperationMetadataÚAparent,resource,membership_id‚Óä“;"//v1/{parent=projects/*/locations/*}/memberships:resourceØ
+CreateFeature,.google.cloud.gkehub.v1.CreateFeatureRequest.google.longrunning.Operation"zÊA
+FeatureOperationMetadataÚAparent,resource,feature_id‚Óä“8",/v1/{parent=projects/*/locations/*}/features:resourceÏ
+DeleteMembership/.google.cloud.gkehub.v1.DeleteMembershipRequest.google.longrunning.Operation"kÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“1*//v1/{name=projects/*/locations/*/memberships/*}Æ
+DeleteFeature,.google.cloud.gkehub.v1.DeleteFeatureRequest.google.longrunning.Operation"hÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“.*,/v1/{name=projects/*/locations/*/features/*}ã
+UpdateMembership/.google.cloud.gkehub.v1.UpdateMembershipRequest.google.longrunning.Operation"ÊA
 
-MembershipOperationMetadata×
-UpdateFeature,.google.cloud.gkehub.v1.UpdateFeatureRequest.google.longrunning.Operation"y‚Óä“82,/v1/{name=projects/*/locations/*/features/*}:resourceÚAname,resource,update_maskÊA
-FeatureOperationMetadataÛ
+MembershipOperationMetadataÚAname,resource,update_mask‚Óä“;2//v1/{name=projects/*/locations/*/memberships/*}:resource×
+UpdateFeature,.google.cloud.gkehub.v1.UpdateFeatureRequest.google.longrunning.Operation"yÊA
+FeatureOperationMetadataÚAname,resource,update_mask‚Óä“82,/v1/{name=projects/*/locations/*/features/*}:resourceÛ
 GenerateConnectManifest6.google.cloud.gkehub.v1.GenerateConnectManifestRequest7.google.cloud.gkehub.v1.GenerateConnectManifestResponse"O‚Óä“IG/v1/{name=projects/*/locations/*/memberships/*}:generateConnectManifestIÊAgkehub.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB®
 com.google.cloud.gkehub.v1BServiceProtoPZ2cloud.google.com/go/gkehub/apiv1/gkehubpb;gkehubpbªGoogle.Cloud.GkeHub.V1ÊGoogle\\Cloud\\GkeHub\\V1êGoogle::Cloud::GkeHub::V1bproto3'
         , true);

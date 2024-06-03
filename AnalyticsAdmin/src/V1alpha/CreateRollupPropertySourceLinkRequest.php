@@ -30,6 +30,23 @@ class CreateRollupPropertySourceLinkRequest extends \Google\Protobuf\Internal\Me
     private $rollup_property_source_link = null;
 
     /**
+     * @param string                                                   $parent                   Required. Format: properties/{property_id}
+     *                                                                                           Example: properties/1234
+     *                                                                                           Please see {@see AnalyticsAdminServiceClient::propertyName()} for help formatting this field.
+     * @param \Google\Analytics\Admin\V1alpha\RollupPropertySourceLink $rollupPropertySourceLink Required. The roll-up property source link to create.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CreateRollupPropertySourceLinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Analytics\Admin\V1alpha\RollupPropertySourceLink $rollupPropertySourceLink): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setRollupPropertySourceLink($rollupPropertySourceLink);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

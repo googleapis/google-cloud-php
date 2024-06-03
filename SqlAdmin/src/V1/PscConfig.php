@@ -22,13 +22,13 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      */
     private $psc_enabled = null;
     /**
-     * The list of consumer projects that are allow-listed for PSC connections to
-     * this instance. This instance can be connected to with PSC from any network
-     * in these projects.
+     * Optional. The list of consumer projects that are allow-listed for PSC
+     * connections to this instance. This instance can be connected to with PSC
+     * from any network in these projects.
      * Each consumer project in this list may be represented by a project number
      * (numeric) or by a project id (alphanumeric).
      *
-     * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2;</code>
+     * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allowed_consumer_projects;
 
@@ -41,9 +41,9 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $psc_enabled
      *           Whether PSC connectivity is enabled for this instance.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_consumer_projects
-     *           The list of consumer projects that are allow-listed for PSC connections to
-     *           this instance. This instance can be connected to with PSC from any network
-     *           in these projects.
+     *           Optional. The list of consumer projects that are allow-listed for PSC
+     *           connections to this instance. This instance can be connected to with PSC
+     *           from any network in these projects.
      *           Each consumer project in this list may be represented by a project number
      *           (numeric) or by a project id (alphanumeric).
      * }
@@ -90,13 +90,13 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of consumer projects that are allow-listed for PSC connections to
-     * this instance. This instance can be connected to with PSC from any network
-     * in these projects.
+     * Optional. The list of consumer projects that are allow-listed for PSC
+     * connections to this instance. This instance can be connected to with PSC
+     * from any network in these projects.
      * Each consumer project in this list may be represented by a project number
      * (numeric) or by a project id (alphanumeric).
      *
-     * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2;</code>
+     * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAllowedConsumerProjects()
@@ -105,13 +105,13 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of consumer projects that are allow-listed for PSC connections to
-     * this instance. This instance can be connected to with PSC from any network
-     * in these projects.
+     * Optional. The list of consumer projects that are allow-listed for PSC
+     * connections to this instance. This instance can be connected to with PSC
+     * from any network in these projects.
      * Each consumer project in this list may be represented by a project number
      * (numeric) or by a project id (alphanumeric).
      *
-     * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2;</code>
+     * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

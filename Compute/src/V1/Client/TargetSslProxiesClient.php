@@ -52,11 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\TargetSslProxiesClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface deleteAsync(DeleteTargetSslProxyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetTargetSslProxyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface insertAsync(InsertTargetSslProxyRequest $request, array $optionalArgs = [])
@@ -74,8 +69,15 @@ final class TargetSslProxiesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.TargetSslProxies';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -117,8 +119,8 @@ final class TargetSslProxiesClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements ClientOptionsTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -150,6 +152,9 @@ final class TargetSslProxiesClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
+            'cancelOperationRequest' => null,
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
         ];
     }
 
@@ -434,7 +439,7 @@ final class TargetSslProxiesClient
     }
 
     /**
-     * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the SSL proxy load balancer. They do not affect the connection between the load balancer and the backends.
+     * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-side support for SSL features. This affects connections between clients and the load balancer. They do not affect the connection between the load balancer and the backends.
      *
      * The async variant is {@see TargetSslProxiesClient::setSslPolicyAsync()} .
      *

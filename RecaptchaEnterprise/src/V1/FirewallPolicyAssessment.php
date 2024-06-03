@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class FirewallPolicyAssessment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If the processing of a policy config fails, an error will be populated
-     * and the firewall_policy will be left empty.
+     * Output only. If the processing of a policy config fails, an error will be
+     * populated and the firewall_policy will be left empty.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 5;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $error = null;
     /**
@@ -38,8 +38,8 @@ class FirewallPolicyAssessment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Rpc\Status $error
-     *           If the processing of a policy config fails, an error will be populated
-     *           and the firewall_policy will be left empty.
+     *           Output only. If the processing of a policy config fails, an error will be
+     *           populated and the firewall_policy will be left empty.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy $firewall_policy
      *           Output only. The policy that matched the request. If more than one policy
      *           may match, this is the first match. If no policy matches the incoming
@@ -52,10 +52,10 @@ class FirewallPolicyAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the processing of a policy config fails, an error will be populated
-     * and the firewall_policy will be left empty.
+     * Output only. If the processing of a policy config fails, an error will be
+     * populated and the firewall_policy will be left empty.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 5;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
      */
     public function getError()
@@ -74,10 +74,10 @@ class FirewallPolicyAssessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the processing of a policy config fails, an error will be populated
-     * and the firewall_policy will be left empty.
+     * Output only. If the processing of a policy config fails, an error will be
+     * populated and the firewall_policy will be left empty.
      *
-     * Generated from protobuf field <code>.google.rpc.Status error = 5;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
      */

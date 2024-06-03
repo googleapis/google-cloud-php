@@ -17,8 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class TaskExecution extends \Google\Protobuf\Internal\Message
 {
     /**
-     * When task is completed as the status of FAILED or SUCCEEDED,
-     * exit code is for one task execution result, default is 0 as success.
+     * The exit code of a finished task.
+     * If the task succeeded, the exit code will be 0. If the task failed but not
+     * due to the following reasons, the exit code will be 50000.
+     * Otherwise, it can be from different sources:
+     * - Batch known failures as
+     * https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes.
+     * - Batch runnable execution failures: You can rely on Batch logs for further
+     * diagnose: https://cloud.google.com/batch/docs/analyze-job-using-logs.
+     * If there are multiple runnables failures, Batch only exposes the first
+     * error caught for now.
      *
      * Generated from protobuf field <code>int32 exit_code = 1;</code>
      */
@@ -31,8 +39,16 @@ class TaskExecution extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $exit_code
-     *           When task is completed as the status of FAILED or SUCCEEDED,
-     *           exit code is for one task execution result, default is 0 as success.
+     *           The exit code of a finished task.
+     *           If the task succeeded, the exit code will be 0. If the task failed but not
+     *           due to the following reasons, the exit code will be 50000.
+     *           Otherwise, it can be from different sources:
+     *           - Batch known failures as
+     *           https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes.
+     *           - Batch runnable execution failures: You can rely on Batch logs for further
+     *           diagnose: https://cloud.google.com/batch/docs/analyze-job-using-logs.
+     *           If there are multiple runnables failures, Batch only exposes the first
+     *           error caught for now.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +57,16 @@ class TaskExecution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When task is completed as the status of FAILED or SUCCEEDED,
-     * exit code is for one task execution result, default is 0 as success.
+     * The exit code of a finished task.
+     * If the task succeeded, the exit code will be 0. If the task failed but not
+     * due to the following reasons, the exit code will be 50000.
+     * Otherwise, it can be from different sources:
+     * - Batch known failures as
+     * https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes.
+     * - Batch runnable execution failures: You can rely on Batch logs for further
+     * diagnose: https://cloud.google.com/batch/docs/analyze-job-using-logs.
+     * If there are multiple runnables failures, Batch only exposes the first
+     * error caught for now.
      *
      * Generated from protobuf field <code>int32 exit_code = 1;</code>
      * @return int
@@ -53,8 +77,16 @@ class TaskExecution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When task is completed as the status of FAILED or SUCCEEDED,
-     * exit code is for one task execution result, default is 0 as success.
+     * The exit code of a finished task.
+     * If the task succeeded, the exit code will be 0. If the task failed but not
+     * due to the following reasons, the exit code will be 50000.
+     * Otherwise, it can be from different sources:
+     * - Batch known failures as
+     * https://cloud.google.com/batch/docs/troubleshooting#reserved-exit-codes.
+     * - Batch runnable execution failures: You can rely on Batch logs for further
+     * diagnose: https://cloud.google.com/batch/docs/analyze-job-using-logs.
+     * If there are multiple runnables failures, Batch only exposes the first
+     * error caught for now.
      *
      * Generated from protobuf field <code>int32 exit_code = 1;</code>
      * @param int $var

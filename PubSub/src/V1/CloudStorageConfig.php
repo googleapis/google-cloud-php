@@ -25,34 +25,42 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      */
     private $bucket = '';
     /**
-     * User-provided prefix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * Optional. User-provided prefix for Cloud Storage filename. See the [object
+     * naming requirements](https://cloud.google.com/storage/docs/objects#naming).
      *
-     * Generated from protobuf field <code>string filename_prefix = 2;</code>
+     * Generated from protobuf field <code>string filename_prefix = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filename_prefix = '';
     /**
-     * User-provided suffix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming). Must
-     * not end in "/".
+     * Optional. User-provided suffix for Cloud Storage filename. See the [object
+     * naming requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * Must not end in "/".
      *
-     * Generated from protobuf field <code>string filename_suffix = 3;</code>
+     * Generated from protobuf field <code>string filename_suffix = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filename_suffix = '';
     /**
-     * The maximum duration that can elapse before a new Cloud Storage file is
-     * created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed
-     * the subscription's acknowledgement deadline.
+     * Optional. User-provided format string specifying how to represent datetimes
+     * in Cloud Storage filenames. See the [datetime format
+     * guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6;</code>
+     * Generated from protobuf field <code>string filename_datetime_format = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filename_datetime_format = '';
+    /**
+     * Optional. The maximum duration that can elapse before a new Cloud Storage
+     * file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
+     * exceed the subscription's acknowledgement deadline.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_duration = null;
     /**
-     * The maximum bytes that can be written to a Cloud Storage file before a new
-     * file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded
-     * in cases where messages are larger than the limit.
+     * Optional. The maximum bytes that can be written to a Cloud Storage file
+     * before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may
+     * be exceeded in cases where messages are larger than the limit.
      *
-     * Generated from protobuf field <code>int64 max_bytes = 7;</code>
+     * Generated from protobuf field <code>int64 max_bytes = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_bytes = 0;
     /**
@@ -62,6 +70,17 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $service_account_email = '';
     protected $output_format;
 
     /**
@@ -76,27 +95,40 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
      *           any prefix like "gs://". See the [bucket naming
      *           requirements] (https://cloud.google.com/storage/docs/buckets#naming).
      *     @type string $filename_prefix
-     *           User-provided prefix for Cloud Storage filename. See the [object naming
-     *           requirements](https://cloud.google.com/storage/docs/objects#naming).
+     *           Optional. User-provided prefix for Cloud Storage filename. See the [object
+     *           naming requirements](https://cloud.google.com/storage/docs/objects#naming).
      *     @type string $filename_suffix
-     *           User-provided suffix for Cloud Storage filename. See the [object naming
-     *           requirements](https://cloud.google.com/storage/docs/objects#naming). Must
-     *           not end in "/".
+     *           Optional. User-provided suffix for Cloud Storage filename. See the [object
+     *           naming requirements](https://cloud.google.com/storage/docs/objects#naming).
+     *           Must not end in "/".
+     *     @type string $filename_datetime_format
+     *           Optional. User-provided format string specifying how to represent datetimes
+     *           in Cloud Storage filenames. See the [datetime format
+     *           guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
      *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig\TextConfig $text_config
-     *           If set, message data will be written to Cloud Storage in text format.
+     *           Optional. If set, message data will be written to Cloud Storage in text
+     *           format.
      *     @type \Google\Cloud\PubSub\V1\CloudStorageConfig\AvroConfig $avro_config
-     *           If set, message data will be written to Cloud Storage in Avro format.
+     *           Optional. If set, message data will be written to Cloud Storage in Avro
+     *           format.
      *     @type \Google\Protobuf\Duration $max_duration
-     *           The maximum duration that can elapse before a new Cloud Storage file is
-     *           created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed
-     *           the subscription's acknowledgement deadline.
+     *           Optional. The maximum duration that can elapse before a new Cloud Storage
+     *           file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
+     *           exceed the subscription's acknowledgement deadline.
      *     @type int|string $max_bytes
-     *           The maximum bytes that can be written to a Cloud Storage file before a new
-     *           file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded
-     *           in cases where messages are larger than the limit.
+     *           Optional. The maximum bytes that can be written to a Cloud Storage file
+     *           before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may
+     *           be exceeded in cases where messages are larger than the limit.
      *     @type int $state
      *           Output only. An output-only field that indicates whether or not the
      *           subscription can receive messages.
+     *     @type string $service_account_email
+     *           Optional. The service account to use to write to Cloud Storage. The
+     *           subscription creator or updater that specifies this field must have
+     *           `iam.serviceAccounts.actAs` permission on the service account. If not
+     *           specified, the Pub/Sub
+     *           [service agent](https://cloud.google.com/iam/docs/service-agents),
+     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -137,10 +169,10 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-provided prefix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * Optional. User-provided prefix for Cloud Storage filename. See the [object
+     * naming requirements](https://cloud.google.com/storage/docs/objects#naming).
      *
-     * Generated from protobuf field <code>string filename_prefix = 2;</code>
+     * Generated from protobuf field <code>string filename_prefix = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilenamePrefix()
@@ -149,10 +181,10 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-provided prefix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * Optional. User-provided prefix for Cloud Storage filename. See the [object
+     * naming requirements](https://cloud.google.com/storage/docs/objects#naming).
      *
-     * Generated from protobuf field <code>string filename_prefix = 2;</code>
+     * Generated from protobuf field <code>string filename_prefix = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -165,11 +197,11 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-provided suffix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming). Must
-     * not end in "/".
+     * Optional. User-provided suffix for Cloud Storage filename. See the [object
+     * naming requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * Must not end in "/".
      *
-     * Generated from protobuf field <code>string filename_suffix = 3;</code>
+     * Generated from protobuf field <code>string filename_suffix = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilenameSuffix()
@@ -178,11 +210,11 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-provided suffix for Cloud Storage filename. See the [object naming
-     * requirements](https://cloud.google.com/storage/docs/objects#naming). Must
-     * not end in "/".
+     * Optional. User-provided suffix for Cloud Storage filename. See the [object
+     * naming requirements](https://cloud.google.com/storage/docs/objects#naming).
+     * Must not end in "/".
      *
-     * Generated from protobuf field <code>string filename_suffix = 3;</code>
+     * Generated from protobuf field <code>string filename_suffix = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -195,9 +227,40 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, message data will be written to Cloud Storage in text format.
+     * Optional. User-provided format string specifying how to represent datetimes
+     * in Cloud Storage filenames. See the [datetime format
+     * guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.TextConfig text_config = 4;</code>
+     * Generated from protobuf field <code>string filename_datetime_format = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilenameDatetimeFormat()
+    {
+        return $this->filename_datetime_format;
+    }
+
+    /**
+     * Optional. User-provided format string specifying how to represent datetimes
+     * in Cloud Storage filenames. See the [datetime format
+     * guidance](https://cloud.google.com/pubsub/docs/create-cloudstorage-subscription#file_names).
+     *
+     * Generated from protobuf field <code>string filename_datetime_format = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilenameDatetimeFormat($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filename_datetime_format = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, message data will be written to Cloud Storage in text
+     * format.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.TextConfig text_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\CloudStorageConfig\TextConfig|null
      */
     public function getTextConfig()
@@ -211,9 +274,10 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, message data will be written to Cloud Storage in text format.
+     * Optional. If set, message data will be written to Cloud Storage in text
+     * format.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.TextConfig text_config = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.TextConfig text_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\CloudStorageConfig\TextConfig $var
      * @return $this
      */
@@ -226,9 +290,10 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, message data will be written to Cloud Storage in Avro format.
+     * Optional. If set, message data will be written to Cloud Storage in Avro
+     * format.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.AvroConfig avro_config = 5;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.AvroConfig avro_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\PubSub\V1\CloudStorageConfig\AvroConfig|null
      */
     public function getAvroConfig()
@@ -242,9 +307,10 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, message data will be written to Cloud Storage in Avro format.
+     * Optional. If set, message data will be written to Cloud Storage in Avro
+     * format.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.AvroConfig avro_config = 5;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.CloudStorageConfig.AvroConfig avro_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\PubSub\V1\CloudStorageConfig\AvroConfig $var
      * @return $this
      */
@@ -257,11 +323,11 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum duration that can elapse before a new Cloud Storage file is
-     * created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed
-     * the subscription's acknowledgement deadline.
+     * Optional. The maximum duration that can elapse before a new Cloud Storage
+     * file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
+     * exceed the subscription's acknowledgement deadline.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getMaxDuration()
@@ -280,11 +346,11 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum duration that can elapse before a new Cloud Storage file is
-     * created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed
-     * the subscription's acknowledgement deadline.
+     * Optional. The maximum duration that can elapse before a new Cloud Storage
+     * file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not
+     * exceed the subscription's acknowledgement deadline.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration max_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -297,11 +363,11 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum bytes that can be written to a Cloud Storage file before a new
-     * file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded
-     * in cases where messages are larger than the limit.
+     * Optional. The maximum bytes that can be written to a Cloud Storage file
+     * before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may
+     * be exceeded in cases where messages are larger than the limit.
      *
-     * Generated from protobuf field <code>int64 max_bytes = 7;</code>
+     * Generated from protobuf field <code>int64 max_bytes = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getMaxBytes()
@@ -310,11 +376,11 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum bytes that can be written to a Cloud Storage file before a new
-     * file is created. Min 1 KB, max 10 GiB. The max_bytes limit may be exceeded
-     * in cases where messages are larger than the limit.
+     * Optional. The maximum bytes that can be written to a Cloud Storage file
+     * before a new file is created. Min 1 KB, max 10 GiB. The max_bytes limit may
+     * be exceeded in cases where messages are larger than the limit.
      *
-     * Generated from protobuf field <code>int64 max_bytes = 7;</code>
+     * Generated from protobuf field <code>int64 max_bytes = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -350,6 +416,42 @@ class CloudStorageConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\CloudStorageConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccountEmail()
+    {
+        return $this->service_account_email;
+    }
+
+    /**
+     * Optional. The service account to use to write to Cloud Storage. The
+     * subscription creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub
+     * [service agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccountEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account_email = $var;
 
         return $this;
     }

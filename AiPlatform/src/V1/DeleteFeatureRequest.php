@@ -11,6 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for
  * [FeaturestoreService.DeleteFeature][google.cloud.aiplatform.v1.FeaturestoreService.DeleteFeature].
+ * Request message for
+ * [FeatureRegistryService.DeleteFeature][google.cloud.aiplatform.v1.FeatureRegistryService.DeleteFeature].
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.DeleteFeatureRequest</code>
  */
@@ -20,6 +22,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the Features to be deleted.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,6 +32,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. The name of the Features to be deleted.
      *                     Format:
      *                     `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *                     `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *                     Please see {@see FeaturestoreServiceClient::featureName()} for help formatting this field.
      *
      * @return \Google\Cloud\AIPlatform\V1\DeleteFeatureRequest
@@ -51,6 +55,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the Features to be deleted.
      *           Format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     *           `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      * }
      */
     public function __construct($data = NULL) {
@@ -62,6 +67,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the Features to be deleted.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,6 +81,7 @@ class DeleteFeatureRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the Features to be deleted.
      * Format:
      * `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`
+     * `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

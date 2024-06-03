@@ -33,7 +33,7 @@ page_token (	"l
 attachments (2#.google.cloud.support.v2.Attachment
 next_page_token (	2Ñ
 CaseAttachmentServiceæ
-ListAttachments/.google.cloud.support.v2.ListAttachmentsRequest0.google.cloud.support.v2.ListAttachmentsResponse"p‚Óä“a+/v2/{parent=projects/*/cases/*}/attachmentsZ20/v2/{parent=organizations/*/cases/*}/attachmentsÚAparentOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¿
+ListAttachments/.google.cloud.support.v2.ListAttachmentsRequest0.google.cloud.support.v2.ListAttachmentsResponse"pÚAparent‚Óä“a+/v2/{parent=projects/*/cases/*}/attachmentsZ20/v2/{parent=organizations/*/cases/*}/attachmentsOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¿
 com.google.cloud.support.v2BAttachmentServiceProtoPZ5cloud.google.com/go/support/apiv2/supportpb;supportpbªGoogle.Cloud.Support.V2ÊGoogle\\Cloud\\Support\\V2êGoogle::Cloud::Support::V2bproto3'
         , true);
 

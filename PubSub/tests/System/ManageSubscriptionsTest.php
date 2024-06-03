@@ -352,12 +352,12 @@ class ManageSubscriptionsTest extends PubSubTestCase
 
         // check initial values
         $this->assertEquals(
-            $this->getDuration($client, 15),
+            $this->getDuration(15),
             $sub->info()['retryPolicy']['minimumBackoff']
         );
 
         $this->assertEquals(
-            $this->getDuration($client, 20),
+            $this->getDuration(20),
             $sub->info()['retryPolicy']['maximumBackoff']
         );
 
@@ -370,12 +370,12 @@ class ManageSubscriptionsTest extends PubSubTestCase
         ]);
 
         $this->assertEquals(
-            $this->getDuration($client, 20),
+            $this->getDuration(20),
             $sub->info()['retryPolicy']['minimumBackoff']
         );
 
         $this->assertEquals(
-            $this->getDuration($client, 30),
+            $this->getDuration(30),
             $sub->info()['retryPolicy']['maximumBackoff']
         );
 
@@ -385,12 +385,12 @@ class ManageSubscriptionsTest extends PubSubTestCase
         ]);
 
         $this->assertEquals(
-            $this->getDuration($client, 10),
+            $this->getDuration(10),
             $sub->info()['retryPolicy']['minimumBackoff']
         );
 
         $this->assertEquals(
-            $this->getDuration($client, 600),
+            $this->getDuration(600),
             $sub->info()['retryPolicy']['maximumBackoff']
         );
 
@@ -402,11 +402,8 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertArrayNotHasKey('retryPolicy', $sub->info());
     }
 
-    private function getDuration($client, $seconds)
+    private function getDuration($seconds)
     {
-        if ($client instanceof PubSubClientRest) {
-            return sprintf('%ds', $seconds);
-        }
 
         return [
             'seconds' => $seconds,
@@ -441,7 +438,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
             'identifier' => 'baz'
         ])->build());
 
-        sleep(4);
+        sleep(6);
         $messages = $sub->pull();
         $this->assertCount(2, $messages);
         $this->assertTrue(in_array($messages[0]->attribute('identifier'), ['foo', 'bar']));

@@ -55,12 +55,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\BigQuery\Migration\V2\MigrationServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createMigrationWorkflowAsync(CreateMigrationWorkflowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteMigrationWorkflowAsync(DeleteMigrationWorkflowRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getMigrationSubtaskAsync(GetMigrationSubtaskRequest $request, array $optionalArgs = [])
@@ -77,8 +71,15 @@ final class MigrationServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.bigquery.migration.v2.MigrationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'bigquerymigration.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'bigquerymigration.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

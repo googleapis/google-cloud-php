@@ -36,7 +36,9 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GkeMultiCloud\V1\AwsCluster;
+use Google\Cloud\GkeMultiCloud\V1\AwsJsonWebKeys;
 use Google\Cloud\GkeMultiCloud\V1\AwsNodePool;
+use Google\Cloud\GkeMultiCloud\V1\AwsOpenIdConfig;
 use Google\Cloud\GkeMultiCloud\V1\AwsServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\CreateAwsClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\CreateAwsNodePoolRequest;
@@ -44,11 +46,16 @@ use Google\Cloud\GkeMultiCloud\V1\DeleteAwsClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\DeleteAwsNodePoolRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenResponse;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAwsClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsClusterRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsJsonWebKeysRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsNodePoolRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAwsOpenIdConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAwsServerConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsClustersRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAwsNodePoolsRequest;
+use Google\Cloud\GkeMultiCloud\V1\RollbackAwsNodePoolUpdateRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAwsClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\UpdateAwsNodePoolRequest;
 use Google\LongRunning\Operation;
@@ -66,21 +73,20 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\GkeMultiCloud\V1\AwsClustersClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createAwsClusterAsync(CreateAwsClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createAwsNodePoolAsync(CreateAwsNodePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAwsClusterAsync(DeleteAwsClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAwsNodePoolAsync(DeleteAwsNodePoolRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateAwsAccessTokenAsync(GenerateAwsAccessTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface generateAwsClusterAgentTokenAsync(GenerateAwsClusterAgentTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAwsClusterAsync(GetAwsClusterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAwsJsonWebKeysAsync(GetAwsJsonWebKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAwsNodePoolAsync(GetAwsNodePoolRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getAwsOpenIdConfigAsync(GetAwsOpenIdConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAwsServerConfigAsync(GetAwsServerConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAwsClustersAsync(ListAwsClustersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listAwsNodePoolsAsync(ListAwsNodePoolsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface rollbackAwsNodePoolUpdateAsync(RollbackAwsNodePoolUpdateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAwsClusterAsync(UpdateAwsClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateAwsNodePoolAsync(UpdateAwsNodePoolRequest $request, array $optionalArgs = [])
  */
@@ -92,8 +98,15 @@ final class AwsClustersClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.gkemulticloud.v1.AwsClusters';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'gkemulticloud.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'gkemulticloud.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -484,6 +497,33 @@ final class AwsClustersClient
     }
 
     /**
+     * Generates an access token for a cluster agent.
+     *
+     * The async variant is
+     * {@see AwsClustersClient::generateAwsClusterAgentTokenAsync()} .
+     *
+     * @example samples/V1/AwsClustersClient/generate_aws_cluster_agent_token.php
+     *
+     * @param GenerateAwsClusterAgentTokenRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateAwsClusterAgentTokenResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateAwsClusterAgentToken(GenerateAwsClusterAgentTokenRequest $request, array $callOptions = []): GenerateAwsClusterAgentTokenResponse
+    {
+        return $this->startApiCall('GenerateAwsClusterAgentToken', $request, $callOptions)->wait();
+    }
+
+    /**
      * Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
      * resource.
      *
@@ -511,6 +551,33 @@ final class AwsClustersClient
     }
 
     /**
+     * Gets the public component of the cluster signing keys in
+     * JSON Web Key format.
+     *
+     * The async variant is {@see AwsClustersClient::getAwsJsonWebKeysAsync()} .
+     *
+     * @example samples/V1/AwsClustersClient/get_aws_json_web_keys.php
+     *
+     * @param GetAwsJsonWebKeysRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AwsJsonWebKeys
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAwsJsonWebKeys(GetAwsJsonWebKeysRequest $request, array $callOptions = []): AwsJsonWebKeys
+    {
+        return $this->startApiCall('GetAwsJsonWebKeys', $request, $callOptions)->wait();
+    }
+
+    /**
      * Describes a specific
      * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
      *
@@ -535,6 +602,36 @@ final class AwsClustersClient
     public function getAwsNodePool(GetAwsNodePoolRequest $request, array $callOptions = []): AwsNodePool
     {
         return $this->startApiCall('GetAwsNodePool', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the OIDC discovery document for the cluster.
+     * See the
+     * [OpenID Connect Discovery 1.0
+     * specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+     * for details.
+     *
+     * The async variant is {@see AwsClustersClient::getAwsOpenIdConfigAsync()} .
+     *
+     * @example samples/V1/AwsClustersClient/get_aws_open_id_config.php
+     *
+     * @param GetAwsOpenIdConfigRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AwsOpenIdConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAwsOpenIdConfig(GetAwsOpenIdConfigRequest $request, array $callOptions = []): AwsOpenIdConfig
+    {
+        return $this->startApiCall('GetAwsOpenIdConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -617,6 +714,38 @@ final class AwsClustersClient
     public function listAwsNodePools(ListAwsNodePoolsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListAwsNodePools', $request, $callOptions);
+    }
+
+    /**
+     * Rolls back a previously aborted or failed
+     * [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] update request.
+     * Makes no changes if the last update request successfully finished.
+     * If an update request is in progress, you cannot rollback the update.
+     * You must first cancel or let it finish unsuccessfully before you can
+     * rollback.
+     *
+     * The async variant is {@see AwsClustersClient::rollbackAwsNodePoolUpdateAsync()}
+     * .
+     *
+     * @example samples/V1/AwsClustersClient/rollback_aws_node_pool_update.php
+     *
+     * @param RollbackAwsNodePoolUpdateRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rollbackAwsNodePoolUpdate(RollbackAwsNodePoolUpdateRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RollbackAwsNodePoolUpdate', $request, $callOptions)->wait();
     }
 
     /**

@@ -113,6 +113,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -121,6 +122,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setModelReference($modelReference);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -256,10 +258,14 @@ class DatasetServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
+        $displayName = 'displayName1615086568';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelReference($modelReference);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -270,6 +276,8 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $datasetVersion = new DatasetVersion();
+        $datasetVersionMetadata = new Value();
+        $datasetVersion->setMetadata($datasetVersionMetadata);
         $response = $gapicClient->createDatasetVersion($formattedParent, $datasetVersion);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -337,6 +345,8 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $datasetVersion = new DatasetVersion();
+        $datasetVersionMetadata = new Value();
+        $datasetVersion->setMetadata($datasetVersionMetadata);
         $response = $gapicClient->createDatasetVersion($formattedParent, $datasetVersion);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -911,6 +921,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -919,6 +930,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setModelReference($modelReference);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
@@ -979,10 +991,14 @@ class DatasetServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
+        $displayName = 'displayName1615086568';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelReference($modelReference);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->datasetVersionName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATASET_VERSION]');
@@ -1516,10 +1532,14 @@ class DatasetServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $etag = 'etag3123477';
         $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
+        $displayName = 'displayName1615086568';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new DatasetVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelReference($modelReference);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1699,6 +1719,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataItemCount = 2014260376;
         $etag = 'etag3123477';
         $metadataArtifact = 'metadataArtifact2087706850';
+        $modelReference = 'modelReference-1502407243';
         $expectedResponse = new Dataset();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1707,6 +1728,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItemCount($dataItemCount);
         $expectedResponse->setEtag($etag);
         $expectedResponse->setMetadataArtifact($metadataArtifact);
+        $expectedResponse->setModelReference($modelReference);
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataset = new Dataset();
@@ -1760,6 +1782,82 @@ class DatasetServiceClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $gapicClient->updateDataset($dataset, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDatasetVersionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $bigQueryDatasetName = 'bigQueryDatasetName-1230960216';
+        $displayName = 'displayName1615086568';
+        $modelReference = 'modelReference-1502407243';
+        $expectedResponse = new DatasetVersion();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setBigQueryDatasetName($bigQueryDatasetName);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setModelReference($modelReference);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $datasetVersion = new DatasetVersion();
+        $datasetVersionMetadata = new Value();
+        $datasetVersion->setMetadata($datasetVersionMetadata);
+        $updateMask = new FieldMask();
+        $response = $gapicClient->updateDatasetVersion($datasetVersion, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/UpdateDatasetVersion', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatasetVersion();
+        $this->assertProtobufEquals($datasetVersion, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateDatasetVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $datasetVersion = new DatasetVersion();
+        $datasetVersionMetadata = new Value();
+        $datasetVersion->setMetadata($datasetVersionMetadata);
+        $updateMask = new FieldMask();
+        try {
+            $gapicClient->updateDatasetVersion($datasetVersion, $updateMask);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

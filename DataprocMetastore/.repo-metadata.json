@@ -1,8 +1,0 @@
-{
-    "language": "php",
-    "distribution_name": "google/cloud-dataproc-metastore",
-    "release_level": "preview",
-    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-dataproc-metastore/latest",
-    "library_type": "GAPIC_AUTO",
-    "api_shortname": "metastore"
-}

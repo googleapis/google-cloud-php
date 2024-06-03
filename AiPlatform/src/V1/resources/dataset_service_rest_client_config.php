@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -210,6 +230,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateDatasetVersion' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{dataset_version.name=projects/*/locations/*/datasets/*/datasetVersions/*}',
+                'body' => 'dataset_version',
+                'placeholders' => [
+                    'dataset_version.name' => [
+                        'getters' => [
+                            'getDatasetVersion',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [
@@ -258,6 +294,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
                     ],
                     [
@@ -280,6 +320,18 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/publishers/*/models/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featureOnlineStores/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -297,6 +349,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:setIamPolicy',
                         'body' => '*',
                     ],
                     [
@@ -329,6 +386,16 @@ return [
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featureOnlineStores/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -345,6 +412,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/featurestores/*/entityTypes/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/models/*}:testIamPermissions',
                     ],
                     [
                         'method' => 'post',
@@ -370,6 +441,14 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{resource=projects/*/locations/*/notebookRuntimeTemplates/*}:testIamPermissions',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featureOnlineStores/*}:testIamPermissions',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{resource=projects/*/locations/*/featureOnlineStores/*/featureViews/*}:testIamPermissions',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -385,6 +464,14 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/ui/{name=projects/*/locations/*/operations/*}:cancel',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*/operations/*}:cancel',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*/operations/*}:cancel',
@@ -419,6 +506,14 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/featurestores/*/operations/*}:cancel',
                     ],
                     [
@@ -443,11 +538,31 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/tuningJobs/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/indexes/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/indexEndpoints/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/artifacts/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/contexts/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/executions/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
@@ -468,6 +583,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/models/*/evaluations/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
@@ -567,11 +686,31 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/tuningJobs/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/indexes/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/indexEndpoints/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/executions/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
@@ -588,6 +727,10 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*/evaluations/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}:cancel',
                     ],
                     [
                         'method' => 'post',
@@ -644,6 +787,14 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*/operations/*}',
                     ],
                     [
@@ -673,6 +824,14 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/endpoints/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*}/operations',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*}/operations',
                     ],
                     [
                         'method' => 'delete',
@@ -708,6 +867,22 @@ return [
                     ],
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/artifacts/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/contexts/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/executions/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*/operations/*}',
                     ],
                     [
@@ -725,6 +900,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/models/*/evaluations/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -765,6 +944,22 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -832,6 +1027,22 @@ return [
                     ],
                     [
                         'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/executions/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*/operations/*}',
                     ],
                     [
@@ -857,6 +1068,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/trainingPipelines/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}',
                     ],
                     [
                         'method' => 'delete',
@@ -886,6 +1101,22 @@ return [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}',
                     ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -899,6 +1130,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/ui/{name=projects/*/locations/*/operations/*}',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*/operations/*}',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*/operations/*}',
@@ -937,6 +1176,14 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/featurestores/*/operations/*}',
                     ],
                     [
@@ -961,11 +1208,31 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/tuningJobs/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/indexes/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/indexEndpoints/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/artifacts/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/contexts/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/executions/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
@@ -986,6 +1253,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/models/*/evaluations/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
@@ -1026,6 +1297,22 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
@@ -1085,11 +1372,31 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/tuningJobs/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/indexes/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/indexEndpoints/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/executions/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
@@ -1121,6 +1428,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/pipelineJobs/*/operations/*}',
                     ],
                     [
@@ -1147,6 +1458,22 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -1160,6 +1487,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/ui/{name=projects/*/locations/*}/operations',
                 'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*}/operations',
+                    ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*}/operations',
@@ -1194,6 +1529,14 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/featurestores/*}/operations',
                     ],
                     [
@@ -1218,11 +1561,31 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/tuningJobs/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/indexes/*}/operations',
                     ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/indexEndpoints/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/artifacts/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/contexts/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/executions/*}/operations',
                     ],
                     [
                         'method' => 'get',
@@ -1258,6 +1621,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/pipelineJobs/*}/operations',
                     ],
                     [
@@ -1283,6 +1650,22 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'get',
@@ -1342,11 +1725,31 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/tuningJobs/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/indexes/*}/operations',
                     ],
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/indexEndpoints/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/executions/*}/operations',
                     ],
                     [
                         'method' => 'get',
@@ -1378,6 +1781,10 @@ return [
                     ],
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/pipelineJobs/*}/operations',
                     ],
                     [
@@ -1404,6 +1811,22 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*}/operations',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -1417,6 +1840,14 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/ui/{name=projects/*/locations/*/operations/*}:wait',
                 'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/agents/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/apps/*/operations/*}:wait',
+                    ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/datasets/*/operations/*}:wait',
@@ -1451,6 +1882,14 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensionControllers/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/extensions/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/featurestores/*/operations/*}:wait',
                     ],
                     [
@@ -1475,11 +1914,31 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/tuningJobs/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/indexes/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/indexEndpoints/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/artifacts/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/contexts/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/metadataStores/*/executions/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',
@@ -1515,6 +1974,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/persistentResources/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/pipelineJobs/*/operations/*}:wait',
                     ],
                     [
@@ -1540,6 +2003,22 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/ui/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/ui/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
                     ],
                     [
                         'method' => 'post',
@@ -1607,6 +2086,22 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/artifacts/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/contexts/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataStores/*/executions/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/modelDeploymentMonitoringJobs/*/operations/*}:wait',
                     ],
                     [
@@ -1635,6 +2130,10 @@ return [
                     ],
                     [
                         'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/persistentResources/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/pipelineJobs/*/operations/*}:wait',
                     ],
                     [
@@ -1660,6 +2159,22 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureOnlineStores/*/featureViews/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/operations/*}:wait',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/featureGroups/*/features/*/operations/*}:wait',
                     ],
                 ],
                 'placeholders' => [

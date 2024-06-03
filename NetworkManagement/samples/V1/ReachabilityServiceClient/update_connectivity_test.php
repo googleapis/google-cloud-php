@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkmanagement_v1_generated_ReachabilityService_UpdateConnectivityTest_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkManagement\V1\Client\ReachabilityServiceClient;
 use Google\Cloud\NetworkManagement\V1\ConnectivityTest;
 use Google\Cloud\NetworkManagement\V1\Endpoint;
-use Google\Cloud\NetworkManagement\V1\ReachabilityServiceClient;
+use Google\Cloud\NetworkManagement\V1\UpdateConnectivityTestRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -48,14 +49,14 @@ use Google\Rpc\Status;
  * in `ConnectivityTest` for for more details.
  *
  * @param string $resourceName Unique name of the resource using the form:
- *                             `projects/{project_id}/locations/global/connectivityTests/{test}`
+ *                             `projects/{project_id}/locations/global/connectivityTests/{test_id}`
  */
 function update_connectivity_test_sample(string $resourceName): void
 {
     // Create a client.
     $reachabilityServiceClient = new ReachabilityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $resourceSource = new Endpoint();
     $resourceDestination = new Endpoint();
@@ -63,11 +64,14 @@ function update_connectivity_test_sample(string $resourceName): void
         ->setName($resourceName)
         ->setSource($resourceSource)
         ->setDestination($resourceDestination);
+    $request = (new UpdateConnectivityTestRequest())
+        ->setUpdateMask($updateMask)
+        ->setResource($resource);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $reachabilityServiceClient->updateConnectivityTest($updateMask, $resource);
+        $response = $reachabilityServiceClient->updateConnectivityTest($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

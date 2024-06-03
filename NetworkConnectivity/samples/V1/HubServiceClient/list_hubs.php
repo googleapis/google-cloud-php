@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_HubService_ListHubs_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
 use Google\Cloud\NetworkConnectivity\V1\Hub;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\ListHubsRequest;
 
 /**
  * Lists the Network Connectivity Center hubs associated with a given project.
@@ -39,10 +40,14 @@ function list_hubs_sample(string $formattedParent): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListHubsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $hubServiceClient->listHubs($formattedParent);
+        $response = $hubServiceClient->listHubs($request);
 
         /** @var Hub $element */
         foreach ($response as $element) {

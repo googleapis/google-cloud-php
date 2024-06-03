@@ -61,12 +61,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Iam\Credentials\V1\IAMCredentialsClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface generateAccessTokenAsync(GenerateAccessTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateIdTokenAsync(GenerateIdTokenRequest $request, array $optionalArgs = [])
  * @method PromiseInterface signBlobAsync(SignBlobRequest $request, array $optionalArgs = [])
@@ -80,8 +74,15 @@ final class IAMCredentialsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.iam.credentials.v1.IAMCredentials';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'iamcredentials.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'iamcredentials.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -230,6 +231,8 @@ final class IAMCredentialsClient
      *
      * The async variant is {@see IAMCredentialsClient::generateAccessTokenAsync()} .
      *
+     * @example samples/V1/IAMCredentialsClient/generate_access_token.php
+     *
      * @param GenerateAccessTokenRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -253,6 +256,8 @@ final class IAMCredentialsClient
      * Generates an OpenID Connect ID token for a service account.
      *
      * The async variant is {@see IAMCredentialsClient::generateIdTokenAsync()} .
+     *
+     * @example samples/V1/IAMCredentialsClient/generate_id_token.php
      *
      * @param GenerateIdTokenRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -278,6 +283,8 @@ final class IAMCredentialsClient
      *
      * The async variant is {@see IAMCredentialsClient::signBlobAsync()} .
      *
+     * @example samples/V1/IAMCredentialsClient/sign_blob.php
+     *
      * @param SignBlobRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -301,6 +308,8 @@ final class IAMCredentialsClient
      * Signs a JWT using a service account's system-managed private key.
      *
      * The async variant is {@see IAMCredentialsClient::signJwtAsync()} .
+     *
+     * @example samples/V1/IAMCredentialsClient/sign_jwt.php
      *
      * @param SignJwtRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {

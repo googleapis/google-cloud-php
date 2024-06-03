@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datastream_v1_generated_Datastream_FetchStaticIps_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
+use Google\Cloud\Datastream\V1\FetchStaticIpsRequest;
 
 /**
  * The FetchStaticIps API call exposes the static IP addresses used by
@@ -40,10 +41,14 @@ function fetch_static_ips_sample(string $formattedName): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
+    // Prepare the request message.
+    $request = (new FetchStaticIpsRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $datastreamClient->fetchStaticIps($formattedName);
+        $response = $datastreamClient->fetchStaticIps($request);
 
         /** @var string $element */
         foreach ($response as $element) {

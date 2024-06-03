@@ -65,17 +65,17 @@ key_string (	BàA"1
 parent (	
 name (	2¾
 ApiKeys½
-	CreateKey\'.google.api.apikeys.v2.CreateKeyRequest.google.longrunning.Operation"h‚Óä“/"(/v2/{parent=projects/*/locations/*}/keys:keyÚAparent,key,key_idÊA
-Keygoogle.protobuf.Empty–
-ListKeys&.google.api.apikeys.v2.ListKeysRequest\'.google.api.apikeys.v2.ListKeysResponse"9‚Óä“*(/v2/{parent=projects/*/locations/*}/keysÚAparentƒ
-GetKey$.google.api.apikeys.v2.GetKeyRequest.google.api.apikeys.v2.Key"7‚Óä“*(/v2/{name=projects/*/locations/*/keys/*}ÚAnameª
-GetKeyString*.google.api.apikeys.v2.GetKeyStringRequest+.google.api.apikeys.v2.GetKeyStringResponse"A‚Óä“42/v2/{name=projects/*/locations/*/keys/*}/keyStringÚAname¿
-	UpdateKey\'.google.api.apikeys.v2.UpdateKeyRequest.google.longrunning.Operation"j‚Óä“32,/v2/{key.name=projects/*/locations/*/keys/*}:keyÚAkey,update_maskÊA
-Keygoogle.protobuf.Empty«
-	DeleteKey\'.google.api.apikeys.v2.DeleteKeyRequest.google.longrunning.Operation"V‚Óä“**(/v2/{name=projects/*/locations/*/keys/*}ÚAnameÊA
-Keygoogle.protobuf.Empty´
-UndeleteKey).google.api.apikeys.v2.UndeleteKeyRequest.google.longrunning.Operation"[‚Óä“6"1/v2/{name=projects/*/locations/*/keys/*}:undelete:*ÊA
-Keygoogle.protobuf.Emptyz
+	CreateKey\'.google.api.apikeys.v2.CreateKeyRequest.google.longrunning.Operation"hÊA
+Keygoogle.protobuf.EmptyÚAparent,key,key_id‚Óä“/"(/v2/{parent=projects/*/locations/*}/keys:key–
+ListKeys&.google.api.apikeys.v2.ListKeysRequest\'.google.api.apikeys.v2.ListKeysResponse"9ÚAparent‚Óä“*(/v2/{parent=projects/*/locations/*}/keysƒ
+GetKey$.google.api.apikeys.v2.GetKeyRequest.google.api.apikeys.v2.Key"7ÚAname‚Óä“*(/v2/{name=projects/*/locations/*/keys/*}ª
+GetKeyString*.google.api.apikeys.v2.GetKeyStringRequest+.google.api.apikeys.v2.GetKeyStringResponse"AÚAname‚Óä“42/v2/{name=projects/*/locations/*/keys/*}/keyString¿
+	UpdateKey\'.google.api.apikeys.v2.UpdateKeyRequest.google.longrunning.Operation"jÊA
+Keygoogle.protobuf.EmptyÚAkey,update_mask‚Óä“32,/v2/{key.name=projects/*/locations/*/keys/*}:key«
+	DeleteKey\'.google.api.apikeys.v2.DeleteKeyRequest.google.longrunning.Operation"VÊA
+Keygoogle.protobuf.EmptyÚAname‚Óä“**(/v2/{name=projects/*/locations/*/keys/*}´
+UndeleteKey).google.api.apikeys.v2.UndeleteKeyRequest.google.longrunning.Operation"[ÊA
+Keygoogle.protobuf.Empty‚Óä“6"1/v2/{name=projects/*/locations/*/keys/*}:undelete:*z
 	LookupKey\'.google.api.apikeys.v2.LookupKeyRequest(.google.api.apikeys.v2.LookupKeyResponse"‚Óä“/v2/keys:lookupKeyƒÊAapikeys.googleapis.comÒAghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB³
 com.google.api.apikeys.v2BApiKeysProtoPZ5cloud.google.com/go/apikeys/apiv2/apikeyspb;apikeyspbªGoogle.Cloud.ApiKeys.V2ÊGoogle\\Cloud\\ApiKeys\\V2êGoogle::Cloud::ApiKeys::V2bproto3'
         , true);

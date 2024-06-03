@@ -35,16 +35,31 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
      */
     private $constraint = '';
     /**
-     * The expression to filter the governed assets in result. The only supported
-     * fields for governed resources are `governed_resource.project` and
-     * `governed_resource.folders`. The only supported fields for governed iam
-     * policies are `governed_iam_policy.project` and
-     * `governed_iam_policy.folders`. The only supported operator is `=`.
-     * Example 1: governed_resource.project="projects/12345678" filter will return
-     * all governed resources under projects/12345678 including the project
-     * ifself, if applicable.
-     * Example 2: governed_iam_policy.folders="folders/12345678" filter will
-     * return all governed iam policies under folders/12345678, if applicable.
+     * The expression to filter
+     * [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets].
+     * For governed resources, filtering is currently available for bare literal
+     * values and the following fields:
+     * * governed_resource.project
+     * * governed_resource.folders
+     * * consolidated_policy.rules.enforce
+     * When filtering by `governed_resource.project` or
+     * `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     * When filtering by `governed_resource.folders`, the supported operators
+     * are `=` and `:`.
+     * For example, filtering by `governed_resource.project="projects/12345678"`
+     * will return all the governed resources under "projects/12345678",
+     * including the project itself if applicable.
+     * For governed IAM policies, filtering is currently available for bare
+     * literal values and the following fields:
+     * * governed_iam_policy.project
+     * * governed_iam_policy.folders
+     * * consolidated_policy.rules.enforce
+     * When filtering by `governed_iam_policy.project` or
+     * `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     * When filtering by `governed_iam_policy.folders`, the supported operators
+     * are `=` and `:`.
+     * For example, filtering by `governed_iam_policy.folders:"folders/12345678"`
+     * will return all the governed IAM policies under "folders/001".
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
@@ -74,18 +89,33 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
      * @param string $constraint Required. The name of the constraint to analyze governed assets for. The
      *                           analysis only contains analyzed organization policies for the provided
      *                           constraint.
-     * @param string $filter     The expression to filter the governed assets in result. The only supported
-     *                           fields for governed resources are `governed_resource.project` and
-     *                           `governed_resource.folders`. The only supported fields for governed iam
-     *                           policies are `governed_iam_policy.project` and
-     *                           `governed_iam_policy.folders`. The only supported operator is `=`.
+     * @param string $filter     The expression to filter
+     *                           [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets].
      *
-     *                           Example 1: governed_resource.project="projects/12345678" filter will return
-     *                           all governed resources under projects/12345678 including the project
-     *                           ifself, if applicable.
+     *                           For governed resources, filtering is currently available for bare literal
+     *                           values and the following fields:
+     *                           * governed_resource.project
+     *                           * governed_resource.folders
+     *                           * consolidated_policy.rules.enforce
+     *                           When filtering by `governed_resource.project` or
+     *                           `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     *                           When filtering by `governed_resource.folders`, the supported operators
+     *                           are `=` and `:`.
+     *                           For example, filtering by `governed_resource.project="projects/12345678"`
+     *                           will return all the governed resources under "projects/12345678",
+     *                           including the project itself if applicable.
      *
-     *                           Example 2: governed_iam_policy.folders="folders/12345678" filter will
-     *                           return all governed iam policies under folders/12345678, if applicable.
+     *                           For governed IAM policies, filtering is currently available for bare
+     *                           literal values and the following fields:
+     *                           * governed_iam_policy.project
+     *                           * governed_iam_policy.folders
+     *                           * consolidated_policy.rules.enforce
+     *                           When filtering by `governed_iam_policy.project` or
+     *                           `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     *                           When filtering by `governed_iam_policy.folders`, the supported operators
+     *                           are `=` and `:`.
+     *                           For example, filtering by `governed_iam_policy.folders:"folders/12345678"`
+     *                           will return all the governed IAM policies under "folders/001".
      *
      * @return \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsRequest
      *
@@ -116,16 +146,31 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
      *           analysis only contains analyzed organization policies for the provided
      *           constraint.
      *     @type string $filter
-     *           The expression to filter the governed assets in result. The only supported
-     *           fields for governed resources are `governed_resource.project` and
-     *           `governed_resource.folders`. The only supported fields for governed iam
-     *           policies are `governed_iam_policy.project` and
-     *           `governed_iam_policy.folders`. The only supported operator is `=`.
-     *           Example 1: governed_resource.project="projects/12345678" filter will return
-     *           all governed resources under projects/12345678 including the project
-     *           ifself, if applicable.
-     *           Example 2: governed_iam_policy.folders="folders/12345678" filter will
-     *           return all governed iam policies under folders/12345678, if applicable.
+     *           The expression to filter
+     *           [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets].
+     *           For governed resources, filtering is currently available for bare literal
+     *           values and the following fields:
+     *           * governed_resource.project
+     *           * governed_resource.folders
+     *           * consolidated_policy.rules.enforce
+     *           When filtering by `governed_resource.project` or
+     *           `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     *           When filtering by `governed_resource.folders`, the supported operators
+     *           are `=` and `:`.
+     *           For example, filtering by `governed_resource.project="projects/12345678"`
+     *           will return all the governed resources under "projects/12345678",
+     *           including the project itself if applicable.
+     *           For governed IAM policies, filtering is currently available for bare
+     *           literal values and the following fields:
+     *           * governed_iam_policy.project
+     *           * governed_iam_policy.folders
+     *           * consolidated_policy.rules.enforce
+     *           When filtering by `governed_iam_policy.project` or
+     *           `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     *           When filtering by `governed_iam_policy.folders`, the supported operators
+     *           are `=` and `:`.
+     *           For example, filtering by `governed_iam_policy.folders:"folders/12345678"`
+     *           will return all the governed IAM policies under "folders/001".
      *     @type int $page_size
      *           The maximum number of items to return per page. If unspecified,
      *           [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets]
@@ -204,16 +249,31 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The expression to filter the governed assets in result. The only supported
-     * fields for governed resources are `governed_resource.project` and
-     * `governed_resource.folders`. The only supported fields for governed iam
-     * policies are `governed_iam_policy.project` and
-     * `governed_iam_policy.folders`. The only supported operator is `=`.
-     * Example 1: governed_resource.project="projects/12345678" filter will return
-     * all governed resources under projects/12345678 including the project
-     * ifself, if applicable.
-     * Example 2: governed_iam_policy.folders="folders/12345678" filter will
-     * return all governed iam policies under folders/12345678, if applicable.
+     * The expression to filter
+     * [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets].
+     * For governed resources, filtering is currently available for bare literal
+     * values and the following fields:
+     * * governed_resource.project
+     * * governed_resource.folders
+     * * consolidated_policy.rules.enforce
+     * When filtering by `governed_resource.project` or
+     * `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     * When filtering by `governed_resource.folders`, the supported operators
+     * are `=` and `:`.
+     * For example, filtering by `governed_resource.project="projects/12345678"`
+     * will return all the governed resources under "projects/12345678",
+     * including the project itself if applicable.
+     * For governed IAM policies, filtering is currently available for bare
+     * literal values and the following fields:
+     * * governed_iam_policy.project
+     * * governed_iam_policy.folders
+     * * consolidated_policy.rules.enforce
+     * When filtering by `governed_iam_policy.project` or
+     * `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     * When filtering by `governed_iam_policy.folders`, the supported operators
+     * are `=` and `:`.
+     * For example, filtering by `governed_iam_policy.folders:"folders/12345678"`
+     * will return all the governed IAM policies under "folders/001".
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @return string
@@ -224,16 +284,31 @@ class AnalyzeOrgPolicyGovernedAssetsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The expression to filter the governed assets in result. The only supported
-     * fields for governed resources are `governed_resource.project` and
-     * `governed_resource.folders`. The only supported fields for governed iam
-     * policies are `governed_iam_policy.project` and
-     * `governed_iam_policy.folders`. The only supported operator is `=`.
-     * Example 1: governed_resource.project="projects/12345678" filter will return
-     * all governed resources under projects/12345678 including the project
-     * ifself, if applicable.
-     * Example 2: governed_iam_policy.folders="folders/12345678" filter will
-     * return all governed iam policies under folders/12345678, if applicable.
+     * The expression to filter
+     * [AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets].
+     * For governed resources, filtering is currently available for bare literal
+     * values and the following fields:
+     * * governed_resource.project
+     * * governed_resource.folders
+     * * consolidated_policy.rules.enforce
+     * When filtering by `governed_resource.project` or
+     * `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     * When filtering by `governed_resource.folders`, the supported operators
+     * are `=` and `:`.
+     * For example, filtering by `governed_resource.project="projects/12345678"`
+     * will return all the governed resources under "projects/12345678",
+     * including the project itself if applicable.
+     * For governed IAM policies, filtering is currently available for bare
+     * literal values and the following fields:
+     * * governed_iam_policy.project
+     * * governed_iam_policy.folders
+     * * consolidated_policy.rules.enforce
+     * When filtering by `governed_iam_policy.project` or
+     * `consolidated_policy.rules.enforce`, the only supported operator is `=`.
+     * When filtering by `governed_iam_policy.folders`, the supported operators
+     * are `=` and `:`.
+     * For example, filtering by `governed_iam_policy.folders:"folders/12345678"`
+     * will return all the governed IAM policies under "folders/001".
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @param string $var

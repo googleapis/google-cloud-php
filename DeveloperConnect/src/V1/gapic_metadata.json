@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.developerconnect.v1",
+    "libraryPackage": "Google\\Cloud\\DeveloperConnect\\V1",
+    "services": {
+        "DeveloperConnect": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeveloperConnectGapicClient",
+                    "rpcs": {
+                        "CreateConnection": {
+                            "methods": [
+                                "createConnection"
+                            ]
+                        },
+                        "CreateGitRepositoryLink": {
+                            "methods": [
+                                "createGitRepositoryLink"
+                            ]
+                        },
+                        "DeleteConnection": {
+                            "methods": [
+                                "deleteConnection"
+                            ]
+                        },
+                        "DeleteGitRepositoryLink": {
+                            "methods": [
+                                "deleteGitRepositoryLink"
+                            ]
+                        },
+                        "FetchGitHubInstallations": {
+                            "methods": [
+                                "fetchGitHubInstallations"
+                            ]
+                        },
+                        "FetchGitRefs": {
+                            "methods": [
+                                "fetchGitRefs"
+                            ]
+                        },
+                        "FetchLinkableGitRepositories": {
+                            "methods": [
+                                "fetchLinkableGitRepositories"
+                            ]
+                        },
+                        "FetchReadToken": {
+                            "methods": [
+                                "fetchReadToken"
+                            ]
+                        },
+                        "FetchReadWriteToken": {
+                            "methods": [
+                                "fetchReadWriteToken"
+                            ]
+                        },
+                        "GetConnection": {
+                            "methods": [
+                                "getConnection"
+                            ]
+                        },
+                        "GetGitRepositoryLink": {
+                            "methods": [
+                                "getGitRepositoryLink"
+                            ]
+                        },
+                        "ListConnections": {
+                            "methods": [
+                                "listConnections"
+                            ]
+                        },
+                        "ListGitRepositoryLinks": {
+                            "methods": [
+                                "listGitRepositoryLinks"
+                            ]
+                        },
+                        "UpdateConnection": {
+                            "methods": [
+                                "updateConnection"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

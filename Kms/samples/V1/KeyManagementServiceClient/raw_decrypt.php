@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_KeyManagementService_RawDecrypt_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\RawDecryptRequest;
 use Google\Cloud\Kms\V1\RawDecryptResponse;
 
 /**
@@ -47,10 +48,16 @@ function raw_decrypt_sample(string $name, string $ciphertext, string $initializa
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
+    // Prepare the request message.
+    $request = (new RawDecryptRequest())
+        ->setName($name)
+        ->setCiphertext($ciphertext)
+        ->setInitializationVector($initializationVector);
+
     // Call the API and handle any network failures.
     try {
         /** @var RawDecryptResponse $response */
-        $response = $keyManagementServiceClient->rawDecrypt($name, $ciphertext, $initializationVector);
+        $response = $keyManagementServiceClient->rawDecrypt($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

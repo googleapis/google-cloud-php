@@ -66,6 +66,7 @@ use Google\Cloud\Compute\V1\InstancesSetMachineResourcesRequest;
 use Google\Cloud\Compute\V1\InstancesSetMachineTypeRequest;
 use Google\Cloud\Compute\V1\InstancesSetMinCpuPlatformRequest;
 use Google\Cloud\Compute\V1\InstancesSetNameRequest;
+use Google\Cloud\Compute\V1\InstancesSetSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\InstancesSetServiceAccountRequest;
 use Google\Cloud\Compute\V1\InstancesStartWithEncryptionKeyRequest;
 use Google\Cloud\Compute\V1\ListInstancesRequest;
@@ -73,6 +74,7 @@ use Google\Cloud\Compute\V1\ListReferrersInstancesRequest;
 use Google\Cloud\Compute\V1\Metadata;
 use Google\Cloud\Compute\V1\NetworkInterface;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\PerformMaintenanceInstanceRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RemoveResourcePoliciesInstanceRequest;
 use Google\Cloud\Compute\V1\ResetInstanceRequest;
@@ -92,6 +94,7 @@ use Google\Cloud\Compute\V1\SetMetadataInstanceRequest;
 use Google\Cloud\Compute\V1\SetMinCpuPlatformInstanceRequest;
 use Google\Cloud\Compute\V1\SetNameInstanceRequest;
 use Google\Cloud\Compute\V1\SetSchedulingInstanceRequest;
+use Google\Cloud\Compute\V1\SetSecurityPolicyInstanceRequest;
 use Google\Cloud\Compute\V1\SetServiceAccountInstanceRequest;
 use Google\Cloud\Compute\V1\SetShieldedInstanceIntegrityPolicyInstanceRequest;
 use Google\Cloud\Compute\V1\SetTagsInstanceRequest;
@@ -158,8 +161,7 @@ use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Compute\V1\Client\InstancesClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Compute\V1\Client\InstancesClient}.
  */
 class InstancesGapicClient
 {
@@ -168,8 +170,15 @@ class InstancesGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.compute.v1.Instances';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -211,8 +220,8 @@ class InstancesGapicClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements GapicClientTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -245,6 +254,9 @@ class InstancesGapicClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
+            'cancelOperationRequest' => null,
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
         ];
     }
 
@@ -487,7 +499,7 @@ class InstancesGapicClient
     }
 
     /**
-     * Retrieves an aggregated list of all of the instances in your project across all regions and zones. The performance of this method degrades when a filter is specified on a project that has a very large number of instances.
+     * Retrieves an aggregated list of all of the instances in your project across all regions and zones. The performance of this method degrades when a filter is specified on a project that has a very large number of instances. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * Sample code:
      * ```
@@ -517,7 +529,7 @@ class InstancesGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`.
+     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      *     @type bool $includeAllScopes
      *           Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      *     @type int $maxResults
@@ -530,7 +542,9 @@ class InstancesGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
+     *     @type int $serviceProjectNumber
+     *           The Shared VPC service project id or service project number for which aggregated list request is invoked for subnetworks list-usable api.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -569,6 +583,10 @@ class InstancesGapicClient
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
             $request->setReturnPartialSuccess($optionalArgs['returnPartialSuccess']);
+        }
+
+        if (isset($optionalArgs['serviceProjectNumber'])) {
+            $request->setServiceProjectNumber($optionalArgs['serviceProjectNumber']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1455,7 +1473,7 @@ class InstancesGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`.
+     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     @type string $orderBy
@@ -1466,7 +1484,7 @@ class InstancesGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1545,7 +1563,7 @@ class InstancesGapicClient
      *     Optional.
      *
      *     @type string $filter
-     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`.
+     *           A filter expression that filters resources listed in the response. Most Compute resources support two types of filter expressions: expressions that support regular expressions and expressions that follow API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request. If you want to use AIP-160, your expression must specify the field name, an operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be either `=`, `!=`, `>`, `<`, `<=`, `>=` or `:`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. The `:*` comparison can be used to test whether a key has been defined. For example, to find all objects with `owner` label use: ``` labels.owner:* ``` You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ``` If you want to use a regular expression, use the `eq` (equal) or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or against multiple parenthesized expressions. Examples: `fieldname eq unquoted literal` `fieldname eq 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne "literal")` The literal value is interpreted as a regular expression using Google RE2 library syntax. The literal value must match the entire field. For example, to filter for instances that do not end with name "instance", you would use `name ne .*instance`. You cannot combine constraints on multiple fields using regular expressions.
      *     @type int $maxResults
      *           The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     @type string $orderBy
@@ -1556,7 +1574,7 @@ class InstancesGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false. For example, when partial success behavior is enabled, aggregatedList for a single zone scope either returns all resources in the zone or no resources, with an error code.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1600,6 +1618,82 @@ class InstancesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListReferrers', $optionalArgs, InstanceListReferrers::class, $request);
+    }
+
+    /**
+     * Perform a manual maintenance on the instance.
+     *
+     * Sample code:
+     * ```
+     * $instancesClient = new InstancesClient();
+     * try {
+     *     $instance = 'instance';
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->performMaintenance($instance, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instancesClient->performMaintenance($instance, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'performMaintenance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $instancesClient->close();
+     * }
+     * ```
+     *
+     * @param string $instance     Name of the instance scoping this request.
+     * @param string $project      Project ID for this request.
+     * @param string $zone         The name of the zone for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function performMaintenance($instance, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new PerformMaintenanceInstanceRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('PerformMaintenance', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**
@@ -2648,6 +2742,85 @@ class InstancesGapicClient
     }
 
     /**
+     * Sets the Google Cloud Armor security policy for the specified instance. For more information, see Google Cloud Armor Overview
+     *
+     * Sample code:
+     * ```
+     * $instancesClient = new InstancesClient();
+     * try {
+     *     $instance = 'instance';
+     *     $instancesSetSecurityPolicyRequestResource = new InstancesSetSecurityPolicyRequest();
+     *     $project = 'project';
+     *     $zone = 'zone';
+     *     $operationResponse = $instancesClient->setSecurityPolicy($instance, $instancesSetSecurityPolicyRequestResource, $project, $zone);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instancesClient->setSecurityPolicy($instance, $instancesSetSecurityPolicyRequestResource, $project, $zone);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setSecurityPolicy');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $instancesClient->close();
+     * }
+     * ```
+     *
+     * @param string                            $instance                                  Name of the Instance resource to which the security policy should be set. The name should conform to RFC1035.
+     * @param InstancesSetSecurityPolicyRequest $instancesSetSecurityPolicyRequestResource The body resource for this request
+     * @param string                            $project                                   Project ID for this request.
+     * @param string                            $zone                                      Name of the zone scoping this request.
+     * @param array                             $optionalArgs                              {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setSecurityPolicy($instance, $instancesSetSecurityPolicyRequestResource, $project, $zone, array $optionalArgs = [])
+    {
+        $request = new SetSecurityPolicyInstanceRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setInstancesSetSecurityPolicyRequestResource($instancesSetSecurityPolicyRequestResource);
+        $request->setProject($project);
+        $request->setZone($zone);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['zone'] = $zone;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SetSecurityPolicy', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
      * Sets the service account on the instance. For more information, read Changing the service account and access scopes for an instance.
      *
      * Sample code:
@@ -2931,6 +3104,8 @@ class InstancesGapicClient
      *
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
+     *     @type bool $withExtendedNotifications
+     *           Determines whether the customers receive notifications before migration. Only applicable to SF vms.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2953,6 +3128,10 @@ class InstancesGapicClient
         $requestParamHeaders['zone'] = $zone;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        if (isset($optionalArgs['withExtendedNotifications'])) {
+            $request->setWithExtendedNotifications($optionalArgs['withExtendedNotifications']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -3161,7 +3340,7 @@ class InstancesGapicClient
      *     Optional.
      *
      *     @type bool $discardLocalSsd
-     *           If true, discard the contents of any attached localSSD partitions. Default value is false.
+     *           This property is required if the instance has any attached Local SSD disks. If false, Local SSD data will be preserved when the instance is suspended. If true, the contents of any attached Local SSD disks will be discarded.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -3243,7 +3422,7 @@ class InstancesGapicClient
      *     Optional.
      *
      *     @type bool $discardLocalSsd
-     *           If true, discard the contents of any attached localSSD partitions. Default value is false.
+     *           This property is required if the instance has any attached Local SSD disks. If false, Local SSD data will be preserved when the instance is suspended. If true, the contents of any attached Local SSD disks will be discarded.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_EkmService_TestIamPermissions_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-use Google\Cloud\Kms\V1\EkmServiceClient;
+use Google\Cloud\Kms\V1\Client\EkmServiceClient;
 
 /**
  * Returns permissions that a caller has on the specified resource. If the
@@ -48,13 +49,16 @@ function test_iam_permissions_sample(string $resource, string $permissionsElemen
     // Create a client.
     $ekmServiceClient = new EkmServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $permissions = [$permissionsElement,];
+    $request = (new TestIamPermissionsRequest())
+        ->setResource($resource)
+        ->setPermissions($permissions);
 
     // Call the API and handle any network failures.
     try {
         /** @var TestIamPermissionsResponse $response */
-        $response = $ekmServiceClient->testIamPermissions($resource, $permissions);
+        $response = $ekmServiceClient->testIamPermissions($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

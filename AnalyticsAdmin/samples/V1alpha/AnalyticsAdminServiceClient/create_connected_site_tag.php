@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_CreateConnectedSiteTag_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ConnectedSiteTag;
+use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\CreateConnectedSiteTagResponse;
 use Google\ApiCore\ApiException;
 
@@ -45,15 +46,17 @@ function create_connected_site_tag_sample(
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $connectedSiteTag = (new ConnectedSiteTag())
         ->setDisplayName($connectedSiteTagDisplayName)
         ->setTagId($connectedSiteTagTagId);
+    $request = (new CreateConnectedSiteTagRequest())
+        ->setConnectedSiteTag($connectedSiteTag);
 
     // Call the API and handle any network failures.
     try {
         /** @var CreateConnectedSiteTagResponse $response */
-        $response = $analyticsAdminServiceClient->createConnectedSiteTag($connectedSiteTag);
+        $response = $analyticsAdminServiceClient->createConnectedSiteTag($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

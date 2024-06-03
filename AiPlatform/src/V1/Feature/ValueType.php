@@ -7,6 +7,7 @@ namespace Google\Cloud\AIPlatform\V1\Feature;
 use UnexpectedValueException;
 
 /**
+ * Only applicable for Vertex AI Legacy Feature Store.
  * An enum representing the value type of a feature.
  *
  * Protobuf type <code>google.cloud.aiplatform.v1.Feature.ValueType</code>
@@ -73,6 +74,12 @@ class ValueType
      * Generated from protobuf enum <code>BYTES = 13;</code>
      */
     const BYTES = 13;
+    /**
+     * Used for Feature that is struct.
+     *
+     * Generated from protobuf enum <code>STRUCT = 14;</code>
+     */
+    const STRUCT = 14;
 
     private static $valueToName = [
         self::VALUE_TYPE_UNSPECIFIED => 'VALUE_TYPE_UNSPECIFIED',
@@ -85,6 +92,7 @@ class ValueType
         self::STRING => 'STRING',
         self::STRING_ARRAY => 'STRING_ARRAY',
         self::BYTES => 'BYTES',
+        self::STRUCT => 'STRUCT',
     ];
 
     public static function name($value)

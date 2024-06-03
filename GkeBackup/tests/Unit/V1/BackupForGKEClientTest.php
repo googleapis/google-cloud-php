@@ -30,6 +30,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeBackup\V1\Backup;
 use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
 use Google\Cloud\GkeBackup\V1\BackupPlan;
+use Google\Cloud\GkeBackup\V1\GetBackupIndexDownloadUrlResponse;
 use Google\Cloud\GkeBackup\V1\ListBackupPlansResponse;
 use Google\Cloud\GkeBackup\V1\ListBackupsResponse;
 use Google\Cloud\GkeBackup\V1\ListRestorePlansResponse;
@@ -117,6 +118,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
+        $permissiveMode = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -134,6 +136,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
+        $expectedResponse->setPermissiveMode($permissiveMode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -258,6 +261,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $deactivated = true;
         $protectedPodCount = 1494678716;
         $stateReason = 'stateReason282113458';
+        $rpoRiskLevel = 1939768030;
+        $rpoRiskReason = 'rpoRiskReason167896166';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -267,6 +272,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDeactivated($deactivated);
         $expectedResponse->setProtectedPodCount($protectedPodCount);
         $expectedResponse->setStateReason($stateReason);
+        $expectedResponse->setRpoRiskLevel($rpoRiskLevel);
+        $expectedResponse->setRpoRiskReason($rpoRiskReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1169,6 +1176,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
+        $permissiveMode = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1186,6 +1194,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
+        $expectedResponse->setPermissiveMode($permissiveMode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
@@ -1235,6 +1244,66 @@ class BackupForGKEClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getBackupIndexDownloadUrlTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $signedUrl = 'signedUrl-979536436';
+        $expectedResponse = new GetBackupIndexDownloadUrlResponse();
+        $expectedResponse->setSignedUrl($signedUrl);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
+        $response = $gapicClient->getBackupIndexDownloadUrl($formattedBackup);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkebackup.v1.BackupForGKE/GetBackupIndexDownloadUrl', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBackup();
+        $this->assertProtobufEquals($formattedBackup, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getBackupIndexDownloadUrlExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]', '[BACKUP]');
+        try {
+            $gapicClient->getBackupIndexDownloadUrl($formattedBackup);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getBackupPlanTest()
     {
         $transport = $this->createTransport();
@@ -1251,6 +1320,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $deactivated = true;
         $protectedPodCount = 1494678716;
         $stateReason = 'stateReason282113458';
+        $rpoRiskLevel = 1939768030;
+        $rpoRiskReason = 'rpoRiskReason167896166';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1260,6 +1331,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDeactivated($deactivated);
         $expectedResponse->setProtectedPodCount($protectedPodCount);
         $expectedResponse->setStateReason($stateReason);
+        $expectedResponse->setRpoRiskLevel($rpoRiskLevel);
+        $expectedResponse->setRpoRiskReason($rpoRiskReason);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupPlanName('[PROJECT]', '[LOCATION]', '[BACKUP_PLAN]');
@@ -2047,6 +2120,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $podCount = 977657493;
         $configBackupSizeBytes = 606785139;
+        $permissiveMode = false;
         $expectedResponse = new Backup();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -2064,6 +2138,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPodCount($podCount);
         $expectedResponse->setConfigBackupSizeBytes($configBackupSizeBytes);
+        $expectedResponse->setPermissiveMode($permissiveMode);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2188,6 +2263,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $deactivated = true;
         $protectedPodCount = 1494678716;
         $stateReason = 'stateReason282113458';
+        $rpoRiskLevel = 1939768030;
+        $rpoRiskReason = 'rpoRiskReason167896166';
         $expectedResponse = new BackupPlan();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -2197,6 +2274,8 @@ class BackupForGKEClientTest extends GeneratedTest
         $expectedResponse->setDeactivated($deactivated);
         $expectedResponse->setProtectedPodCount($protectedPodCount);
         $expectedResponse->setStateReason($stateReason);
+        $expectedResponse->setRpoRiskLevel($rpoRiskLevel);
+        $expectedResponse->setRpoRiskReason($rpoRiskReason);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

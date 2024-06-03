@@ -24,7 +24,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_CreateSubscription_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
 
 /**
@@ -56,10 +56,15 @@ function create_subscription_sample(string $name, string $formattedTopic): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new Subscription())
+        ->setName($name)
+        ->setTopic($formattedTopic);
+
     // Call the API and handle any network failures.
     try {
         /** @var Subscription $response */
-        $response = $subscriberClient->createSubscription($name, $formattedTopic);
+        $response = $subscriberClient->createSubscription($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

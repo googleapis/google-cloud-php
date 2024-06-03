@@ -18,8 +18,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeliveryPipeline extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `DeliveryPipeline`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`.
+     * The `deliveryPipeline` component must match
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -99,8 +101,10 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/
-     *           locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}.
+     *           Optional. Name of the `DeliveryPipeline`. Format is
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`.
+     *           The `deliveryPipeline` component must match
+     *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *     @type string $uid
      *           Output only. Unique identifier of the `DeliveryPipeline`.
      *     @type string $description
@@ -142,8 +146,10 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `DeliveryPipeline`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`.
+     * The `deliveryPipeline` component must match
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -154,8 +160,10 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `DeliveryPipeline`. Format is projects/{project}/
-     * locations/{location}/deliveryPipelines/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `DeliveryPipeline`. Format is
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`.
+     * The `deliveryPipeline` component must match
+     * `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

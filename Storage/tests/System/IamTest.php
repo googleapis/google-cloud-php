@@ -106,10 +106,7 @@ class IamTest extends StorageTestCase
         $policy['bindings'][] = $conditionalBinding;
         $iam->setPolicy($policy);
         $policy = $iam->reload(['requestedPolicyVersion' => 3]);
-        $this->assertContains(
-            $conditionalBinding,
-            $policy['bindings']
-        );
+        $this->assertTrue(in_array($conditionalBinding, $policy['bindings']));
     }
 
     private function bucketConfig($enabled = true)

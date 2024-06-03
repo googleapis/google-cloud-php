@@ -99,4 +99,48 @@ class LookupTest extends DatastoreMultipleDbTestCase
         $person = $client->lookupBatch([$key], ['readTime' => $time]);
         $this->assertEquals($person['found'][0]['lastName'], $lastName);
     }
+
+    /**
+     * Tests whether double values `INF`, `-INF` and `NAN` are getting parsed
+     * properly in rest and grpc clients.
+     *
+     * @dataProvider clientProvider
+     */
+    public function testLookupDoubleCases(DatastoreClient $client)
+    {
+        $kind = uniqid('double');
+        $values = [
+            ['value' => INF],
+            ['value' => -INF],
+            ['value' => NAN],
+            ['value' => 1.1]
+        ];
+        $entities = [];
+        $keys = $client->keys($kind, ['number' => count($values)]);
+        foreach ($keys as $index => $key) {
+            $entities[] = $client->entity($key, $values[$index]);
+        }
+
+        $client->insertBatch($entities);
+        foreach ($entities as $index => $entity) {
+            $key = $entity->key();
+            self::$localDeletionQueue->add($key);
+            $result = $client->lookup($key);
+            $this->compareResult($values[$index]['value'], $result['value']);
+        }
+    }
+
+    private function compareResult($expected, $actual)
+    {
+        if (is_float($expected)) {
+            if (is_nan($expected)) {
+                $this->assertNan($actual);
+            } else {
+                $this->assertEqualsWithDelta($expected, $actual, 0.01);
+            }
+        } else {
+            // Used because assertEquals(null, '') doesn't fails
+            $this->assertSame($expected, $actual);
+        }
+    }
 }

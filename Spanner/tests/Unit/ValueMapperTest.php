@@ -158,6 +158,23 @@ class ValueMapperTest extends TestCase
         $this->assertEquals(TypeAnnotationCode::PG_JSONB, $res['paramTypes']['json']['typeAnnotation']);
     }
 
+    public function testFormatParamsForExecuteSqlOid()
+    {
+        $val = '123';
+        $params = [
+            'oid' => $val
+        ];
+        $types = [
+            'oid' => Database::TYPE_PG_OID
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals($val, $res['params']['oid']);
+        $this->assertEquals(TypeCode::INT64, $res['paramTypes']['oid']['code']);
+        $this->assertEquals(TypeAnnotationCode::PG_OID, $res['paramTypes']['oid']['typeAnnotation']);
+    }
+
     public function testFormatParamsForExecuteSqlValueInterface()
     {
         $val = 'hello world';
@@ -822,30 +839,39 @@ class ValueMapperTest extends TestCase
         $this->assertEquals('555', $res['rowName']->get());
     }
 
-    public function testDecodeValuesFloat()
+    /**
+     * @dataProvider provideFloatTypes
+     */
+    public function testDecodeValuesFloat($type)
     {
         $res = $this->mapper->decodeValues(
-            $this->createField(Database::TYPE_FLOAT64),
+            $this->createField($type),
             $this->createRow(3.1415),
             Result::RETURN_ASSOCIATIVE
         );
         $this->assertEquals(3.1415, $res['rowName']);
     }
 
-    public function testDecodeValuesFloatNaN()
+    /**
+     * @dataProvider provideFloatTypes
+     */
+    public function testDecodeValuesFloatNaN($type)
     {
         $res = $this->mapper->decodeValues(
-            $this->createField(Database::TYPE_FLOAT64),
+            $this->createField($type),
             $this->createRow('NaN'),
             Result::RETURN_ASSOCIATIVE
         );
         $this->assertTrue(is_nan($res['rowName']));
     }
 
-    public function testDecodeValuesFloatInfinity()
+    /**
+     * @dataProvider provideFloatTypes
+     */
+    public function testDecodeValuesFloatInfinity($type)
     {
         $res = $this->mapper->decodeValues(
-            $this->createField(Database::TYPE_FLOAT64),
+            $this->createField($type),
             $this->createRow('Infinity'),
             Result::RETURN_ASSOCIATIVE
         );
@@ -854,10 +880,13 @@ class ValueMapperTest extends TestCase
         $this->assertGreaterThan(0, $res['rowName']);
     }
 
-    public function testDecodeValuesFloatNegativeInfinity()
+    /**
+     * @dataProvider provideFloatTypes
+     */
+    public function testDecodeValuesFloatNegativeInfinity($type)
     {
         $res = $this->mapper->decodeValues(
-            $this->createField(Database::TYPE_FLOAT64),
+            $this->createField($type),
             $this->createRow('-Infinity'),
             Result::RETURN_ASSOCIATIVE
         );
@@ -866,12 +895,15 @@ class ValueMapperTest extends TestCase
         $this->assertLessThan(0, $res['rowName']);
     }
 
-    public function testDecodeValuesFloatError()
+    /**
+     * @dataProvider provideFloatTypes
+     */
+    public function testDecodeValuesFloatError($type)
     {
         $this->expectException('RuntimeException');
 
         $res = $this->mapper->decodeValues(
-            $this->createField(Database::TYPE_FLOAT64),
+            $this->createField($type),
             $this->createRow('foo'),
             Result::RETURN_ASSOCIATIVE
         );
@@ -1020,6 +1052,16 @@ class ValueMapperTest extends TestCase
         $this->assertEquals('{\"rating\":9,\"open\":true}', $res['rowName']);
     }
 
+    public function testDecodeValuesOid()
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_PG_OID),
+            $this->createRow('123'),
+            Result::RETURN_ASSOCIATIVE
+        );
+        $this->assertEquals('123', $res['rowName']);
+    }
+
     public function testDecodeValuesAnonymousField()
     {
         $fields = [
@@ -1058,5 +1100,13 @@ class ValueMapperTest extends TestCase
     private function createRow($val)
     {
         return [$val];
+    }
+
+    public function provideFloatTypes()
+    {
+        return [
+            [Database::TYPE_FLOAT64],
+            [Database::TYPE_FLOAT32]
+        ];
     }
 }

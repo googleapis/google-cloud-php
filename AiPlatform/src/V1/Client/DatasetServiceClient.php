@@ -56,6 +56,7 @@ use Google\Cloud\AIPlatform\V1\ListSavedQueriesRequest;
 use Google\Cloud\AIPlatform\V1\RestoreDatasetVersionRequest;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
+use Google\Cloud\AIPlatform\V1\UpdateDatasetVersionRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -78,11 +79,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AIPlatform\V1\DatasetServiceClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createDatasetAsync(CreateDatasetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDatasetVersionAsync(CreateDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteDatasetAsync(DeleteDatasetRequest $request, array $optionalArgs = [])
@@ -101,6 +97,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface restoreDatasetVersionAsync(RestoreDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface searchDataItemsAsync(SearchDataItemsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDatasetAsync(UpdateDatasetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateDatasetVersionAsync(UpdateDatasetVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -115,8 +112,15 @@ final class DatasetServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.aiplatform.v1.DatasetService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -866,6 +870,32 @@ final class DatasetServiceClient
     public function updateDataset(UpdateDatasetRequest $request, array $callOptions = []): Dataset
     {
         return $this->startApiCall('UpdateDataset', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a DatasetVersion.
+     *
+     * The async variant is {@see DatasetServiceClient::updateDatasetVersionAsync()} .
+     *
+     * @example samples/V1/DatasetServiceClient/update_dataset_version.php
+     *
+     * @param UpdateDatasetVersionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DatasetVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateDatasetVersion(UpdateDatasetVersionRequest $request, array $callOptions = []): DatasetVersion
+    {
+        return $this->startApiCall('UpdateDatasetVersion', $request, $callOptions)->wait();
     }
 
     /**

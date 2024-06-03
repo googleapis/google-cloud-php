@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START contactcenterinsights_v1_generated_ContactCenterInsights_UpdateSettings_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
+use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\Protobuf\FieldMask;
 
 /**
@@ -42,14 +43,17 @@ function update_settings_sample(): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $settings = new Settings();
     $updateMask = new FieldMask();
+    $request = (new UpdateSettingsRequest())
+        ->setSettings($settings)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Settings $response */
-        $response = $contactCenterInsightsClient->updateSettings($settings, $updateMask);
+        $response = $contactCenterInsightsClient->updateSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -32,7 +32,10 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the database, which will become the final
      * component of the database's resource name.
-     * The value must be set to "(default)".
+     * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     * with first character a letter and the last a letter or a number. Must not
+     * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     * "(default)" database id is also valid.
      *
      * Generated from protobuf field <code>string database_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -46,7 +49,11 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * @param string                                    $databaseId Required. The ID to use for the database, which will become the final
      *                                                              component of the database's resource name.
      *
-     *                                                              The value must be set to "(default)".
+     *                                                              This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *                                                              with first character a letter and the last a letter or a number. Must not
+     *                                                              be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     *
+     *                                                              "(default)" database id is also valid.
      *
      * @return \Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest
      *
@@ -74,7 +81,10 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *     @type string $database_id
      *           Required. The ID to use for the database, which will become the final
      *           component of the database's resource name.
-     *           The value must be set to "(default)".
+     *           This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     *           with first character a letter and the last a letter or a number. Must not
+     *           be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     *           "(default)" database id is also valid.
      * }
      */
     public function __construct($data = NULL) {
@@ -149,7 +159,10 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the database, which will become the final
      * component of the database's resource name.
-     * The value must be set to "(default)".
+     * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     * with first character a letter and the last a letter or a number. Must not
+     * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     * "(default)" database id is also valid.
      *
      * Generated from protobuf field <code>string database_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -162,7 +175,10 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The ID to use for the database, which will become the final
      * component of the database's resource name.
-     * The value must be set to "(default)".
+     * This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/
+     * with first character a letter and the last a letter or a number. Must not
+     * be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.
+     * "(default)" database id is also valid.
      *
      * Generated from protobuf field <code>string database_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

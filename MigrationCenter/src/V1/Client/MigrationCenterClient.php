@@ -27,7 +27,6 @@ namespace Google\Cloud\MigrationCenter\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -99,6 +98,7 @@ use Google\Cloud\MigrationCenter\V1\UpdatePreferenceSetRequest;
 use Google\Cloud\MigrationCenter\V1\UpdateSettingsRequest;
 use Google\Cloud\MigrationCenter\V1\UpdateSourceRequest;
 use Google\Cloud\MigrationCenter\V1\ValidateImportJobRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -112,10 +112,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
- *
- * This class is currently experimental and may be subject to changes.
- *
- * @experimental
  *
  * @method PromiseInterface addAssetsToGroupAsync(AddAssetsToGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface aggregateAssetsValuesAsync(AggregateAssetsValuesRequest $request, array $optionalArgs = [])
@@ -176,8 +172,15 @@ final class MigrationCenterClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.migrationcenter.v1.MigrationCenter';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'migrationcenter.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'migrationcenter.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -186,9 +189,7 @@ final class MigrationCenterClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -234,10 +235,31 @@ final class MigrationCenterClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -310,8 +332,12 @@ final class MigrationCenterClient
      *
      * @return string The formatted import_data_file resource.
      */
-    public static function importDataFileName(string $project, string $location, string $importJob, string $importDataFile): string
-    {
+    public static function importDataFileName(
+        string $project,
+        string $location,
+        string $importJob,
+        string $importDataFile
+    ): string {
         return self::getPathTemplate('importDataFile')->render([
             'project' => $project,
             'location' => $location,
@@ -605,8 +631,10 @@ final class MigrationCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregateAssetsValues(AggregateAssetsValuesRequest $request, array $callOptions = []): AggregateAssetsValuesResponse
-    {
+    public function aggregateAssetsValues(
+        AggregateAssetsValuesRequest $request,
+        array $callOptions = []
+    ): AggregateAssetsValuesResponse {
         return $this->startApiCall('AggregateAssetsValues', $request, $callOptions)->wait();
     }
 
@@ -655,8 +683,10 @@ final class MigrationCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchUpdateAssets(BatchUpdateAssetsRequest $request, array $callOptions = []): BatchUpdateAssetsResponse
-    {
+    public function batchUpdateAssets(
+        BatchUpdateAssetsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateAssetsResponse {
         return $this->startApiCall('BatchUpdateAssets', $request, $callOptions)->wait();
     }
 
@@ -707,8 +737,10 @@ final class MigrationCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createImportDataFile(CreateImportDataFileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createImportDataFile(
+        CreateImportDataFileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateImportDataFile', $request, $callOptions)->wait();
     }
 
@@ -913,8 +945,10 @@ final class MigrationCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function deleteImportDataFile(DeleteImportDataFileRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function deleteImportDataFile(
+        DeleteImportDataFileRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('DeleteImportDataFile', $request, $callOptions)->wait();
     }
 
@@ -1564,8 +1598,10 @@ final class MigrationCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function removeAssetsFromGroup(RemoveAssetsFromGroupRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function removeAssetsFromGroup(
+        RemoveAssetsFromGroupRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('RemoveAssetsFromGroup', $request, $callOptions)->wait();
     }
 
@@ -1590,8 +1626,10 @@ final class MigrationCenterClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function reportAssetFrames(ReportAssetFramesRequest $request, array $callOptions = []): ReportAssetFramesResponse
-    {
+    public function reportAssetFrames(
+        ReportAssetFramesRequest $request,
+        array $callOptions = []
+    ): ReportAssetFramesResponse {
         return $this->startApiCall('ReportAssetFrames', $request, $callOptions)->wait();
     }
 

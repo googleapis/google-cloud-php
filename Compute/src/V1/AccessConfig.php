@@ -53,11 +53,17 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     private $network_tier = null;
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.
+     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      */
     private $public_ptr_domain_name = null;
+    /**
+     * [Output Only] The resource URL for the security policy associated with this access config.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     */
+    private $security_policy = null;
     /**
      * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
      *
@@ -92,7 +98,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *           This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *           Check the NetworkTier enum for the list of possible values.
      *     @type string $public_ptr_domain_name
-     *           The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.
+     *           The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
+     *     @type string $security_policy
+     *           [Output Only] The resource URL for the security policy associated with this access config.
      *     @type bool $set_public_ptr
      *           Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
      *     @type string $type
@@ -324,7 +332,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.
+     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      * @return string
@@ -345,7 +353,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.
+     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be created for first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      * @param string $var
@@ -355,6 +363,42 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->public_ptr_domain_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The resource URL for the security policy associated with this access config.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     * @return string
+     */
+    public function getSecurityPolicy()
+    {
+        return isset($this->security_policy) ? $this->security_policy : '';
+    }
+
+    public function hasSecurityPolicy()
+    {
+        return isset($this->security_policy);
+    }
+
+    public function clearSecurityPolicy()
+    {
+        unset($this->security_policy);
+    }
+
+    /**
+     * [Output Only] The resource URL for the security policy associated with this access config.
+     *
+     * Generated from protobuf field <code>optional string security_policy = 171082513;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecurityPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->security_policy = $var;
 
         return $this;
     }

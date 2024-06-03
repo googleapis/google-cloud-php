@@ -25,7 +25,7 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      * Indicates which fields in the provided
      * [Conversation][google.cloud.discoveryengine.v1.Conversation] to update. The
      * following are NOT supported:
-     * * [conversation.name][]
+     * * [Conversation.name][google.cloud.discoveryengine.v1.Conversation.name]
      * If not set or empty, all supported fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -38,7 +38,7 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      *                                                                    [Conversation][google.cloud.discoveryengine.v1.Conversation] to update. The
      *                                                                    following are NOT supported:
      *
-     *                                                                    * [conversation.name][]
+     *                                                                    * [Conversation.name][google.cloud.discoveryengine.v1.Conversation.name]
      *
      *                                                                    If not set or empty, all supported fields are updated.
      *
@@ -65,7 +65,7 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      *           Indicates which fields in the provided
      *           [Conversation][google.cloud.discoveryengine.v1.Conversation] to update. The
      *           following are NOT supported:
-     *           * [conversation.name][]
+     *           * [Conversation.name][google.cloud.discoveryengine.v1.Conversation.name]
      *           If not set or empty, all supported fields are updated.
      * }
      */
@@ -114,7 +114,7 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      * Indicates which fields in the provided
      * [Conversation][google.cloud.discoveryengine.v1.Conversation] to update. The
      * following are NOT supported:
-     * * [conversation.name][]
+     * * [Conversation.name][google.cloud.discoveryengine.v1.Conversation.name]
      * If not set or empty, all supported fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -139,7 +139,7 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      * Indicates which fields in the provided
      * [Conversation][google.cloud.discoveryengine.v1.Conversation] to update. The
      * following are NOT supported:
-     * * [conversation.name][]
+     * * [Conversation.name][google.cloud.discoveryengine.v1.Conversation.name]
      * If not set or empty, all supported fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>

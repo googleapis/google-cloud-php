@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recaptchaenterprise_v1_generated_RecaptchaEnterpriseService_CreateFirewallPolicy_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
+use Google\Cloud\RecaptchaEnterprise\V1\CreateFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 
 /**
  * Creates a new FirewallPolicy, specifying conditions at which reCAPTCHA
@@ -41,16 +42,16 @@ function create_firewall_policy_sample(string $formattedParent): void
     // Create a client.
     $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $firewallPolicy = new FirewallPolicy();
+    $request = (new CreateFirewallPolicyRequest())
+        ->setParent($formattedParent)
+        ->setFirewallPolicy($firewallPolicy);
 
     // Call the API and handle any network failures.
     try {
         /** @var FirewallPolicy $response */
-        $response = $recaptchaEnterpriseServiceClient->createFirewallPolicy(
-            $formattedParent,
-            $firewallPolicy
-        );
+        $response = $recaptchaEnterpriseServiceClient->createFirewallPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

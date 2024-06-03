@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START osconfig_v1_generated_OsConfigZonalService_ListInventories_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\OsConfig\V1\Client\OsConfigZonalServiceClient;
 use Google\Cloud\OsConfig\V1\Inventory;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
+use Google\Cloud\OsConfig\V1\ListInventoriesRequest;
 
 /**
  * List inventory data for all VM instances in the specified zone.
@@ -43,10 +44,14 @@ function list_inventories_sample(string $formattedParent): void
     // Create a client.
     $osConfigZonalServiceClient = new OsConfigZonalServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListInventoriesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $osConfigZonalServiceClient->listInventories($formattedParent);
+        $response = $osConfigZonalServiceClient->listInventories($request);
 
         /** @var Inventory $element */
         foreach ($response as $element) {

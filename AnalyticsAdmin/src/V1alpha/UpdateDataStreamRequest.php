@@ -31,6 +31,23 @@ class UpdateDataStreamRequest extends \Google\Protobuf\Internal\Message
     private $update_mask = null;
 
     /**
+     * @param \Google\Analytics\Admin\V1alpha\DataStream $dataStream The DataStream to update
+     * @param \Google\Protobuf\FieldMask                 $updateMask Required. The list of fields to be updated. Omitted fields will not be
+     *                                                               updated. To replace the entire entity, use one path with the string "*" to
+     *                                                               match all fields.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\UpdateDataStreamRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Analytics\Admin\V1alpha\DataStream $dataStream, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataStream($dataStream)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

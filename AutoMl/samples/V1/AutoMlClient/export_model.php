@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_AutoMl_ExportModel_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\ExportModelRequest;
 use Google\Cloud\AutoMl\V1\GcsDestination;
 use Google\Cloud\AutoMl\V1\ModelExportOutputConfig;
 use Google\Rpc\Status;
@@ -55,16 +56,19 @@ function export_model_sample(
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $outputConfigGcsDestination = (new GcsDestination())
         ->setOutputUriPrefix($outputConfigGcsDestinationOutputUriPrefix);
     $outputConfig = (new ModelExportOutputConfig())
         ->setGcsDestination($outputConfigGcsDestination);
+    $request = (new ExportModelRequest())
+        ->setName($formattedName)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $autoMlClient->exportModel($formattedName, $outputConfig);
+        $response = $autoMlClient->exportModel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

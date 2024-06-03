@@ -27,6 +27,20 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.IngestConversationsRequest.ConversationConfig conversation_config = 4;</code>
      */
     private $conversation_config = null;
+    /**
+     * Optional. DLP settings for transcript redaction. Optional, will default to
+     * the config specified in Settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $redaction_config = null;
+    /**
+     * Optional. Default Speech-to-Text configuration. Optional, will default to
+     * the config specified in Settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $speech_config = null;
     protected $source;
     protected $object_config;
 
@@ -59,6 +73,12 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource for new conversations.
      *     @type \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\ConversationConfig $conversation_config
      *           Configuration that applies to all conversations.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\RedactionConfig $redaction_config
+     *           Optional. DLP settings for transcript redaction. Optional, will default to
+     *           the config specified in Settings.
+     *     @type \Google\Cloud\ContactCenterInsights\V1\SpeechConfig $speech_config
+     *           Optional. Default Speech-to-Text configuration. Optional, will default to
+     *           the config specified in Settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -188,6 +208,82 @@ class IngestConversationsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\IngestConversationsRequest\ConversationConfig::class);
         $this->conversation_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. DLP settings for transcript redaction. Optional, will default to
+     * the config specified in Settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\RedactionConfig|null
+     */
+    public function getRedactionConfig()
+    {
+        return $this->redaction_config;
+    }
+
+    public function hasRedactionConfig()
+    {
+        return isset($this->redaction_config);
+    }
+
+    public function clearRedactionConfig()
+    {
+        unset($this->redaction_config);
+    }
+
+    /**
+     * Optional. DLP settings for transcript redaction. Optional, will default to
+     * the config specified in Settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.RedactionConfig redaction_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\RedactionConfig $var
+     * @return $this
+     */
+    public function setRedactionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\RedactionConfig::class);
+        $this->redaction_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Default Speech-to-Text configuration. Optional, will default to
+     * the config specified in Settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\ContactCenterInsights\V1\SpeechConfig|null
+     */
+    public function getSpeechConfig()
+    {
+        return $this->speech_config;
+    }
+
+    public function hasSpeechConfig()
+    {
+        return isset($this->speech_config);
+    }
+
+    public function clearSpeechConfig()
+    {
+        unset($this->speech_config);
+    }
+
+    /**
+     * Optional. Default Speech-to-Text configuration. Optional, will default to
+     * the config specified in Settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.SpeechConfig speech_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\ContactCenterInsights\V1\SpeechConfig $var
+     * @return $this
+     */
+    public function setSpeechConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ContactCenterInsights\V1\SpeechConfig::class);
+        $this->speech_config = $var;
 
         return $this;
     }

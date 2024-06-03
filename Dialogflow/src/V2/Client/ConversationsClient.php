@@ -62,11 +62,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Dialogflow\V2\ConversationsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface completeConversationAsync(CompleteConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createConversationAsync(CreateConversationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface generateStatelessSummaryAsync(GenerateStatelessSummaryRequest $request, array $optionalArgs = [])
@@ -86,8 +81,15 @@ final class ConversationsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dialogflow.v2.Conversations';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'dialogflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dialogflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -674,6 +676,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::completeConversationAsync()} .
      *
+     * @example samples/V2/ConversationsClient/complete_conversation.php
+     *
      * @param CompleteConversationRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -718,6 +722,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::createConversationAsync()} .
      *
+     * @example samples/V2/ConversationsClient/create_conversation.php
+     *
      * @param CreateConversationRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -744,6 +750,8 @@ final class ConversationsClient
      * The async variant is {@see ConversationsClient::generateStatelessSummaryAsync()}
      * .
      *
+     * @example samples/V2/ConversationsClient/generate_stateless_summary.php
+     *
      * @param GenerateStatelessSummaryRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -768,6 +776,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::getConversationAsync()} .
      *
+     * @example samples/V2/ConversationsClient/get_conversation.php
+     *
      * @param GetConversationRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -791,6 +801,8 @@ final class ConversationsClient
      * Returns the list of all conversations in the specified project.
      *
      * The async variant is {@see ConversationsClient::listConversationsAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/list_conversations.php
      *
      * @param ListConversationsRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -820,6 +832,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::listMessagesAsync()} .
      *
+     * @example samples/V2/ConversationsClient/list_messages.php
+     *
      * @param ListMessagesRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -843,6 +857,8 @@ final class ConversationsClient
      * Get answers for the given query based on knowledge documents.
      *
      * The async variant is {@see ConversationsClient::searchKnowledgeAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/search_knowledge.php
      *
      * @param SearchKnowledgeRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -871,6 +887,8 @@ final class ConversationsClient
      * The async variant is
      * {@see ConversationsClient::suggestConversationSummaryAsync()} .
      *
+     * @example samples/V2/ConversationsClient/suggest_conversation_summary.php
+     *
      * @param SuggestConversationSummaryRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
      *     Optional.
@@ -895,6 +913,8 @@ final class ConversationsClient
      *
      * The async variant is {@see ConversationsClient::getLocationAsync()} .
      *
+     * @example samples/V2/ConversationsClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -918,6 +938,8 @@ final class ConversationsClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see ConversationsClient::listLocationsAsync()} .
+     *
+     * @example samples/V2/ConversationsClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

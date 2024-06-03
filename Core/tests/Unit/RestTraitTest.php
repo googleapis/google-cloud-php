@@ -28,6 +28,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
+use UnexpectedValueException;
 
 /**
  * @group core
@@ -172,6 +173,21 @@ class RestTraitTest extends TestCase
         );
     }
 
+    /**
+     * @dataProvider universeDomains
+     */
+    public function testGetApiEndpointFromUniverseDomain($config, $template, $expected = null, $expectException = false)
+    {
+        if ($expectException) {
+            $this->expectException(UnexpectedValueException::class);
+        }
+
+        $this->assertEquals(
+            $expected,
+            TestHelpers::impl(RestTrait::class)->call('getApiEndpoint', [null, $config, $template])
+        );
+    }
+
     public function testAppendsPrettyPrintParameter()
     {
         $requestBuilder = $this->prophesize(RequestBuilder::class);
@@ -194,6 +210,18 @@ class RestTraitTest extends TestCase
         $this->implementation->setRequestBuilder($requestBuilder->reveal());
         $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
         $this->assertEquals('prettyPrint=false', $this->implementation->send('foo', 'bar', []));
+    }
+
+    public function universeDomains()
+    {
+        return [
+            [[], '', null, true],
+            [[], null, null, true],
+            [['universeDomain' => null], 'ab.cd', null, true],
+            [['universeDomain' => ''], 'ab.cd/', 'ab.cd/'],
+            [['universeDomain' => 'defg'], '//ab.cd//', '//ab.cd//'],
+            [['universeDomain' => 'defg'], 'ab.UNIVERSE_DOMAIN.cd', 'ab.defg.cd/'],
+        ];
     }
 
     public function endpoints()

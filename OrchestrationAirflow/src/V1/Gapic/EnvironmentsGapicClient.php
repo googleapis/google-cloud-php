@@ -36,16 +36,28 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Orchestration\Airflow\Service\V1\CreateEnvironmentRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\CreateUserWorkloadsConfigMapRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\CreateUserWorkloadsSecretRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DatabaseFailoverRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteEnvironmentRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteUserWorkloadsConfigMapRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\DeleteUserWorkloadsSecretRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\Environment;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ExecuteAirflowCommandResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\FetchDatabasePropertiesResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\GetEnvironmentRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\GetUserWorkloadsConfigMapRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\GetUserWorkloadsSecretRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ListEnvironmentsRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\ListEnvironmentsResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ListUserWorkloadsConfigMapsRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ListUserWorkloadsConfigMapsResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ListUserWorkloadsSecretsRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ListUserWorkloadsSecretsResponse;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ListWorkloadsRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\ListWorkloadsResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse;
@@ -53,8 +65,13 @@ use Google\Cloud\Orchestration\Airflow\Service\V1\SaveSnapshotRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandRequest;
 use Google\Cloud\Orchestration\Airflow\Service\V1\StopAirflowCommandResponse;
 use Google\Cloud\Orchestration\Airflow\Service\V1\UpdateEnvironmentRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\UpdateUserWorkloadsConfigMapRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\UpdateUserWorkloadsSecretRequest;
+use Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap;
+use Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Managed Apache Airflow Environments.
@@ -101,9 +118,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient} to use
- * the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Orchestration\Airflow\Service\V1\Client\EnvironmentsClient}.
  */
 class EnvironmentsGapicClient
 {
@@ -112,8 +127,15 @@ class EnvironmentsGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.orchestration.airflow.service.v1.Environments';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'composer.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'composer.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -127,6 +149,10 @@ class EnvironmentsGapicClient
     ];
 
     private static $environmentNameTemplate;
+
+    private static $userWorkloadsConfigMapNameTemplate;
+
+    private static $userWorkloadsSecretNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -168,11 +194,35 @@ class EnvironmentsGapicClient
         return self::$environmentNameTemplate;
     }
 
+    private static function getUserWorkloadsConfigMapNameTemplate()
+    {
+        if (self::$userWorkloadsConfigMapNameTemplate == null) {
+            self::$userWorkloadsConfigMapNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/environments/{environment}/userWorkloadsConfigMaps/{user_workloads_config_map}'
+            );
+        }
+
+        return self::$userWorkloadsConfigMapNameTemplate;
+    }
+
+    private static function getUserWorkloadsSecretNameTemplate()
+    {
+        if (self::$userWorkloadsSecretNameTemplate == null) {
+            self::$userWorkloadsSecretNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/environments/{environment}/userWorkloadsSecrets/{user_workloads_secret}'
+            );
+        }
+
+        return self::$userWorkloadsSecretNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'environment' => self::getEnvironmentNameTemplate(),
+                'userWorkloadsConfigMap' => self::getUserWorkloadsConfigMapNameTemplate(),
+                'userWorkloadsSecret' => self::getUserWorkloadsSecretNameTemplate(),
             ];
         }
 
@@ -199,10 +249,62 @@ class EnvironmentsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * user_workloads_config_map resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $userWorkloadsConfigMap
+     *
+     * @return string The formatted user_workloads_config_map resource.
+     */
+    public static function userWorkloadsConfigMapName(
+        $project,
+        $location,
+        $environment,
+        $userWorkloadsConfigMap
+    ) {
+        return self::getUserWorkloadsConfigMapNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user_workloads_config_map' => $userWorkloadsConfigMap,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * user_workloads_secret resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $userWorkloadsSecret
+     *
+     * @return string The formatted user_workloads_secret resource.
+     */
+    public static function userWorkloadsSecretName(
+        $project,
+        $location,
+        $environment,
+        $userWorkloadsSecret
+    ) {
+        return self::getUserWorkloadsSecretNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user_workloads_secret' => $userWorkloadsSecret,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - environment: projects/{project}/locations/{location}/environments/{environment}
+     * - userWorkloadsConfigMap: projects/{project}/locations/{location}/environments/{environment}/userWorkloadsConfigMaps/{user_workloads_config_map}
+     * - userWorkloadsSecret: projects/{project}/locations/{location}/environments/{environment}/userWorkloadsSecrets/{user_workloads_secret}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -423,6 +525,122 @@ class EnvironmentsGapicClient
     }
 
     /**
+     * Creates a user workloads ConfigMap.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedParent = $environmentsClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
+     *     $userWorkloadsConfigMap = new UserWorkloadsConfigMap();
+     *     $response = $environmentsClient->createUserWorkloadsConfigMap($formattedParent, $userWorkloadsConfigMap);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string                 $parent                 Required. The environment name to create a ConfigMap for, in the form:
+     *                                                       "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     * @param UserWorkloadsConfigMap $userWorkloadsConfigMap Required. User workloads ConfigMap to create.
+     * @param array                  $optionalArgs           {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createUserWorkloadsConfigMap(
+        $parent,
+        $userWorkloadsConfigMap,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateUserWorkloadsConfigMapRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setUserWorkloadsConfigMap($userWorkloadsConfigMap);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateUserWorkloadsConfigMap',
+            UserWorkloadsConfigMap::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Creates a user workloads Secret.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedParent = $environmentsClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
+     *     $userWorkloadsSecret = new UserWorkloadsSecret();
+     *     $response = $environmentsClient->createUserWorkloadsSecret($formattedParent, $userWorkloadsSecret);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string              $parent              Required. The environment name to create a Secret for, in the form:
+     *                                                 "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     * @param UserWorkloadsSecret $userWorkloadsSecret Required. User workloads Secret to create.
+     * @param array               $optionalArgs        {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createUserWorkloadsSecret(
+        $parent,
+        $userWorkloadsSecret,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateUserWorkloadsSecretRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setUserWorkloadsSecret($userWorkloadsSecret);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateUserWorkloadsSecret',
+            UserWorkloadsSecret::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Triggers database failover (only for highly resilient environments).
      *
      * Sample code:
@@ -571,6 +789,108 @@ class EnvironmentsGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes a user workloads ConfigMap.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedName = $environmentsClient->userWorkloadsConfigMapName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]', '[USER_WORKLOADS_CONFIG_MAP]');
+     *     $environmentsClient->deleteUserWorkloadsConfigMap($formattedName);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The ConfigMap to delete, in the form:
+     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteUserWorkloadsConfigMap(
+        $name,
+        array $optionalArgs = []
+    ) {
+        $request = new DeleteUserWorkloadsConfigMapRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteUserWorkloadsConfigMap',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a user workloads Secret.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedName = $environmentsClient->userWorkloadsSecretName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]', '[USER_WORKLOADS_SECRET]');
+     *     $environmentsClient->deleteUserWorkloadsSecret($formattedName);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The Secret to delete, in the form:
+     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteUserWorkloadsSecret($name, array $optionalArgs = [])
+    {
+        $request = new DeleteUserWorkloadsSecretRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteUserWorkloadsSecret',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
@@ -751,6 +1071,111 @@ class EnvironmentsGapicClient
     }
 
     /**
+     * Gets an existing user workloads ConfigMap.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedName = $environmentsClient->userWorkloadsConfigMapName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]', '[USER_WORKLOADS_CONFIG_MAP]');
+     *     $response = $environmentsClient->getUserWorkloadsConfigMap($formattedName);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the ConfigMap to get, in the form:
+     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsConfigMaps/{userWorkloadsConfigMapId}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getUserWorkloadsConfigMap($name, array $optionalArgs = [])
+    {
+        $request = new GetUserWorkloadsConfigMapRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetUserWorkloadsConfigMap',
+            UserWorkloadsConfigMap::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets an existing user workloads Secret.
+     * Values of the "data" field in the response are cleared.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedName = $environmentsClient->userWorkloadsSecretName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]', '[USER_WORKLOADS_SECRET]');
+     *     $response = $environmentsClient->getUserWorkloadsSecret($formattedName);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the Secret to get, in the form:
+     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}/userWorkloadsSecrets/{userWorkloadsSecretId}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getUserWorkloadsSecret($name, array $optionalArgs = [])
+    {
+        $request = new GetUserWorkloadsSecretRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetUserWorkloadsSecret',
+            UserWorkloadsSecret::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * List environments.
      *
      * Sample code:
@@ -827,6 +1252,263 @@ class EnvironmentsGapicClient
             'ListEnvironments',
             $optionalArgs,
             ListEnvironmentsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists user workloads ConfigMaps.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedParent = $environmentsClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $environmentsClient->listUserWorkloadsConfigMaps($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $environmentsClient->listUserWorkloadsConfigMaps($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. List ConfigMaps in the given environment, in the form:
+     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listUserWorkloadsConfigMaps(
+        $parent,
+        array $optionalArgs = []
+    ) {
+        $request = new ListUserWorkloadsConfigMapsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListUserWorkloadsConfigMaps',
+            $optionalArgs,
+            ListUserWorkloadsConfigMapsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists user workloads Secrets.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedParent = $environmentsClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $environmentsClient->listUserWorkloadsSecrets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $environmentsClient->listUserWorkloadsSecrets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. List Secrets in the given environment, in the form:
+     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listUserWorkloadsSecrets($parent, array $optionalArgs = [])
+    {
+        $request = new ListUserWorkloadsSecretsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListUserWorkloadsSecrets',
+            $optionalArgs,
+            ListUserWorkloadsSecretsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists workloads in a Cloud Composer environment. Workload is a unit that
+     * runs a single Composer component.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedParent = $environmentsClient->environmentName('[PROJECT]', '[LOCATION]', '[ENVIRONMENT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $environmentsClient->listWorkloads($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $environmentsClient->listWorkloads($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The environment name to get workloads for, in the form:
+     *                             "projects/{projectId}/locations/{locationId}/environments/{environmentId}"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. The list filter.
+     *           Currently only supports equality on the type field. The value of a field
+     *           specified in the filter expression must be one ComposerWorkloadType enum
+     *           option. It's possible to get multiple types using "OR" operator, e.g.:
+     *           "type=SCHEDULER OR type=CELERY_WORKER". If not specified, all items are
+     *           returned.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listWorkloads($parent, array $optionalArgs = [])
+    {
+        $request = new ListWorkloadsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListWorkloads',
+            $optionalArgs,
+            ListWorkloadsResponse::class,
             $request
         );
     }
@@ -1403,6 +2085,116 @@ class EnvironmentsGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates a user workloads ConfigMap.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $response = $environmentsClient->updateUserWorkloadsConfigMap();
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type UserWorkloadsConfigMap $userWorkloadsConfigMap
+     *           Optional. User workloads ConfigMap to override.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateUserWorkloadsConfigMap(array $optionalArgs = [])
+    {
+        $request = new UpdateUserWorkloadsConfigMapRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['userWorkloadsConfigMap'])) {
+            $request->setUserWorkloadsConfigMap(
+                $optionalArgs['userWorkloadsConfigMap']
+            );
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateUserWorkloadsConfigMap',
+            UserWorkloadsConfigMap::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a user workloads Secret.
+     *
+     * This method is supported for Cloud Composer environments in versions
+     * composer-3.*.*-airflow-*.*.* and newer.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $response = $environmentsClient->updateUserWorkloadsSecret();
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type UserWorkloadsSecret $userWorkloadsSecret
+     *           Optional. User workloads Secret to override.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateUserWorkloadsSecret(array $optionalArgs = [])
+    {
+        $request = new UpdateUserWorkloadsSecretRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['userWorkloadsSecret'])) {
+            $request->setUserWorkloadsSecret(
+                $optionalArgs['userWorkloadsSecret']
+            );
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateUserWorkloadsSecret',
+            UserWorkloadsSecret::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 }

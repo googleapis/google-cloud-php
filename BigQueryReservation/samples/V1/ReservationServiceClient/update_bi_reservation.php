@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigqueryreservation_v1_generated_ReservationService_UpdateBiReservation_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\BigQuery\Reservation\V1\BiReservation;
-use Google\Cloud\BigQuery\Reservation\V1\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\Client\ReservationServiceClient;
+use Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest;
 
 /**
  * Updates a BI reservation.
@@ -48,10 +49,13 @@ function update_bi_reservation_sample(): void
     // Create a client.
     $reservationServiceClient = new ReservationServiceClient();
 
+    // Prepare the request message.
+    $request = new UpdateBiReservationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var BiReservation $response */
-        $response = $reservationServiceClient->updateBiReservation();
+        $response = $reservationServiceClient->updateBiReservation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

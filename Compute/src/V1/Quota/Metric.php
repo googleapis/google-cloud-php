@@ -116,6 +116,10 @@ class Metric
      */
     const COMMITTED_NVIDIA_A100_GPUS = 375799445;
     /**
+     * Generated from protobuf enum <code>COMMITTED_NVIDIA_H100_GPUS = 71649180;</code>
+     */
+    const COMMITTED_NVIDIA_H100_GPUS = 71649180;
+    /**
      * Generated from protobuf enum <code>COMMITTED_NVIDIA_K80_GPUS = 3857188;</code>
      */
     const COMMITTED_NVIDIA_K80_GPUS = 3857188;
@@ -147,6 +151,10 @@ class Metric
      * Generated from protobuf enum <code>COMMITTED_T2D_CPUS = 382266439;</code>
      */
     const COMMITTED_T2D_CPUS = 382266439;
+    /**
+     * Generated from protobuf enum <code>COMMITTED_Z3_CPUS = 263844686;</code>
+     */
+    const COMMITTED_Z3_CPUS = 263844686;
     /**
      * Guest CPUs
      *
@@ -217,6 +225,18 @@ class Metric
      * Generated from protobuf enum <code>GPUS_ALL_REGIONS = 39387177;</code>
      */
     const GPUS_ALL_REGIONS = 39387177;
+    /**
+     * Generated from protobuf enum <code>HDB_TOTAL_GB = 319316271;</code>
+     */
+    const HDB_TOTAL_GB = 319316271;
+    /**
+     * Generated from protobuf enum <code>HDB_TOTAL_IOPS = 309720317;</code>
+     */
+    const HDB_TOTAL_IOPS = 309720317;
+    /**
+     * Generated from protobuf enum <code>HDB_TOTAL_THROUGHPUT = 20981374;</code>
+     */
+    const HDB_TOTAL_THROUGHPUT = 20981374;
     /**
      * Generated from protobuf enum <code>HEALTH_CHECKS = 289347502;</code>
      */
@@ -418,6 +438,10 @@ class Metric
      */
     const PREEMPTIBLE_NVIDIA_A100_GPUS = 68832784;
     /**
+     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_H100_GPUS = 301553431;</code>
+     */
+    const PREEMPTIBLE_NVIDIA_H100_GPUS = 301553431;
+    /**
      * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_K80_GPUS = 374960201;</code>
      */
     const PREEMPTIBLE_NVIDIA_K80_GPUS = 374960201;
@@ -453,6 +477,18 @@ class Metric
      * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_V100_GPUS = 230123813;</code>
      */
     const PREEMPTIBLE_NVIDIA_V100_GPUS = 230123813;
+    /**
+     * Generated from protobuf enum <code>PREEMPTIBLE_TPU_LITE_DEVICE_V5 = 174262523;</code>
+     */
+    const PREEMPTIBLE_TPU_LITE_DEVICE_V5 = 174262523;
+    /**
+     * Generated from protobuf enum <code>PREEMPTIBLE_TPU_LITE_PODSLICE_V5 = 112281796;</code>
+     */
+    const PREEMPTIBLE_TPU_LITE_PODSLICE_V5 = 112281796;
+    /**
+     * Generated from protobuf enum <code>PREEMPTIBLE_TPU_PODSLICE_V4 = 425541132;</code>
+     */
+    const PREEMPTIBLE_TPU_PODSLICE_V4 = 425541132;
     /**
      * Generated from protobuf enum <code>PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK = 231164291;</code>
      */
@@ -493,6 +529,10 @@ class Metric
      * Generated from protobuf enum <code>REGIONAL_INTERNAL_MANAGED_BACKEND_SERVICES = 96282539;</code>
      */
     const REGIONAL_INTERNAL_MANAGED_BACKEND_SERVICES = 96282539;
+    /**
+     * Generated from protobuf enum <code>REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES = 483162968;</code>
+     */
+    const REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES = 483162968;
     /**
      * Generated from protobuf enum <code>RESERVATIONS = 32644647;</code>
      */
@@ -552,6 +592,10 @@ class Metric
      */
     const SSL_CERTIFICATES = 378372399;
     /**
+     * Generated from protobuf enum <code>SSL_POLICIES = 523254339;</code>
+     */
+    const SSL_POLICIES = 523254339;
+    /**
      * Generated from protobuf enum <code>STATIC_ADDRESSES = 93624049;</code>
      */
     const STATIC_ADDRESSES = 93624049;
@@ -604,9 +648,25 @@ class Metric
      */
     const TARGET_VPN_GATEWAYS = 75029928;
     /**
+     * Generated from protobuf enum <code>TPU_LITE_DEVICE_V5 = 449577597;</code>
+     */
+    const TPU_LITE_DEVICE_V5 = 449577597;
+    /**
+     * Generated from protobuf enum <code>TPU_LITE_PODSLICE_V5 = 12708294;</code>
+     */
+    const TPU_LITE_PODSLICE_V5 = 12708294;
+    /**
+     * Generated from protobuf enum <code>TPU_PODSLICE_V4 = 214467530;</code>
+     */
+    const TPU_PODSLICE_V4 = 214467530;
+    /**
      * Generated from protobuf enum <code>URL_MAPS = 378660743;</code>
      */
     const URL_MAPS = 378660743;
+    /**
+     * Generated from protobuf enum <code>VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES = 128400161;</code>
+     */
+    const VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES = 128400161;
     /**
      * Generated from protobuf enum <code>VPN_GATEWAYS = 35620282;</code>
      */
@@ -646,6 +706,7 @@ class Metric
         self::COMMITTED_N2_CPUS => 'COMMITTED_N2_CPUS',
         self::COMMITTED_NVIDIA_A100_80GB_GPUS => 'COMMITTED_NVIDIA_A100_80GB_GPUS',
         self::COMMITTED_NVIDIA_A100_GPUS => 'COMMITTED_NVIDIA_A100_GPUS',
+        self::COMMITTED_NVIDIA_H100_GPUS => 'COMMITTED_NVIDIA_H100_GPUS',
         self::COMMITTED_NVIDIA_K80_GPUS => 'COMMITTED_NVIDIA_K80_GPUS',
         self::COMMITTED_NVIDIA_L4_GPUS => 'COMMITTED_NVIDIA_L4_GPUS',
         self::COMMITTED_NVIDIA_P100_GPUS => 'COMMITTED_NVIDIA_P100_GPUS',
@@ -654,6 +715,7 @@ class Metric
         self::COMMITTED_NVIDIA_V100_GPUS => 'COMMITTED_NVIDIA_V100_GPUS',
         self::COMMITTED_T2A_CPUS => 'COMMITTED_T2A_CPUS',
         self::COMMITTED_T2D_CPUS => 'COMMITTED_T2D_CPUS',
+        self::COMMITTED_Z3_CPUS => 'COMMITTED_Z3_CPUS',
         self::CPUS => 'CPUS',
         self::CPUS_ALL_REGIONS => 'CPUS_ALL_REGIONS',
         self::DISKS_TOTAL_GB => 'DISKS_TOTAL_GB',
@@ -671,6 +733,9 @@ class Metric
         self::GLOBAL_INTERNAL_MANAGED_BACKEND_SERVICES => 'GLOBAL_INTERNAL_MANAGED_BACKEND_SERVICES',
         self::GLOBAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES => 'GLOBAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES',
         self::GPUS_ALL_REGIONS => 'GPUS_ALL_REGIONS',
+        self::HDB_TOTAL_GB => 'HDB_TOTAL_GB',
+        self::HDB_TOTAL_IOPS => 'HDB_TOTAL_IOPS',
+        self::HDB_TOTAL_THROUGHPUT => 'HDB_TOTAL_THROUGHPUT',
         self::HEALTH_CHECKS => 'HEALTH_CHECKS',
         self::IMAGES => 'IMAGES',
         self::INSTANCES => 'INSTANCES',
@@ -721,6 +786,7 @@ class Metric
         self::PREEMPTIBLE_LOCAL_SSD_GB => 'PREEMPTIBLE_LOCAL_SSD_GB',
         self::PREEMPTIBLE_NVIDIA_A100_80GB_GPUS => 'PREEMPTIBLE_NVIDIA_A100_80GB_GPUS',
         self::PREEMPTIBLE_NVIDIA_A100_GPUS => 'PREEMPTIBLE_NVIDIA_A100_GPUS',
+        self::PREEMPTIBLE_NVIDIA_H100_GPUS => 'PREEMPTIBLE_NVIDIA_H100_GPUS',
         self::PREEMPTIBLE_NVIDIA_K80_GPUS => 'PREEMPTIBLE_NVIDIA_K80_GPUS',
         self::PREEMPTIBLE_NVIDIA_L4_GPUS => 'PREEMPTIBLE_NVIDIA_L4_GPUS',
         self::PREEMPTIBLE_NVIDIA_P100_GPUS => 'PREEMPTIBLE_NVIDIA_P100_GPUS',
@@ -730,6 +796,9 @@ class Metric
         self::PREEMPTIBLE_NVIDIA_T4_GPUS => 'PREEMPTIBLE_NVIDIA_T4_GPUS',
         self::PREEMPTIBLE_NVIDIA_T4_VWS_GPUS => 'PREEMPTIBLE_NVIDIA_T4_VWS_GPUS',
         self::PREEMPTIBLE_NVIDIA_V100_GPUS => 'PREEMPTIBLE_NVIDIA_V100_GPUS',
+        self::PREEMPTIBLE_TPU_LITE_DEVICE_V5 => 'PREEMPTIBLE_TPU_LITE_DEVICE_V5',
+        self::PREEMPTIBLE_TPU_LITE_PODSLICE_V5 => 'PREEMPTIBLE_TPU_LITE_PODSLICE_V5',
+        self::PREEMPTIBLE_TPU_PODSLICE_V4 => 'PREEMPTIBLE_TPU_PODSLICE_V4',
         self::PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK => 'PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK',
         self::PSC_INTERNAL_LB_FORWARDING_RULES => 'PSC_INTERNAL_LB_FORWARDING_RULES',
         self::PUBLIC_ADVERTISED_PREFIXES => 'PUBLIC_ADVERTISED_PREFIXES',
@@ -740,6 +809,7 @@ class Metric
         self::REGIONAL_INSTANCE_GROUP_MANAGERS => 'REGIONAL_INSTANCE_GROUP_MANAGERS',
         self::REGIONAL_INTERNAL_LB_BACKEND_SERVICES => 'REGIONAL_INTERNAL_LB_BACKEND_SERVICES',
         self::REGIONAL_INTERNAL_MANAGED_BACKEND_SERVICES => 'REGIONAL_INTERNAL_MANAGED_BACKEND_SERVICES',
+        self::REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES => 'REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES',
         self::RESERVATIONS => 'RESERVATIONS',
         self::RESOURCE_POLICIES => 'RESOURCE_POLICIES',
         self::ROUTERS => 'ROUTERS',
@@ -754,6 +824,7 @@ class Metric
         self::SNAPSHOTS => 'SNAPSHOTS',
         self::SSD_TOTAL_GB => 'SSD_TOTAL_GB',
         self::SSL_CERTIFICATES => 'SSL_CERTIFICATES',
+        self::SSL_POLICIES => 'SSL_POLICIES',
         self::STATIC_ADDRESSES => 'STATIC_ADDRESSES',
         self::STATIC_BYOIP_ADDRESSES => 'STATIC_BYOIP_ADDRESSES',
         self::STATIC_EXTERNAL_IPV6_ADDRESS_RANGES => 'STATIC_EXTERNAL_IPV6_ADDRESS_RANGES',
@@ -767,7 +838,11 @@ class Metric
         self::TARGET_SSL_PROXIES => 'TARGET_SSL_PROXIES',
         self::TARGET_TCP_PROXIES => 'TARGET_TCP_PROXIES',
         self::TARGET_VPN_GATEWAYS => 'TARGET_VPN_GATEWAYS',
+        self::TPU_LITE_DEVICE_V5 => 'TPU_LITE_DEVICE_V5',
+        self::TPU_LITE_PODSLICE_V5 => 'TPU_LITE_PODSLICE_V5',
+        self::TPU_PODSLICE_V4 => 'TPU_PODSLICE_V4',
         self::URL_MAPS => 'URL_MAPS',
+        self::VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES => 'VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES',
         self::VPN_GATEWAYS => 'VPN_GATEWAYS',
         self::VPN_TUNNELS => 'VPN_TUNNELS',
         self::XPN_SERVICE_PROJECTS => 'XPN_SERVICE_PROJECTS',

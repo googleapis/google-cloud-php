@@ -156,7 +156,10 @@ class QueryTest extends TestCase
         $this->assertInstanceOf(Timestamp::class, $res->readTime());
     }
 
-    public function testCount()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testAggregation($type, $arg)
     {
         $this->connection->runAggregationQuery(Argument::any())
             ->shouldBeCalled()
@@ -164,7 +167,7 @@ class QueryTest extends TestCase
                 [
                     'result' => [
                         'aggregateFields' => [
-                            'count' => ['integerValue' => 1]
+                            $type => ['integerValue' => 1]
                         ]
                     ]
                 ]
@@ -172,11 +175,14 @@ class QueryTest extends TestCase
 
         $this->query->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->query->count();
+        $res = $arg ? $this->query->$type($arg) : $this->query->$type();
         $this->assertEquals(1, $res);
     }
 
-    public function testCountWithReadTime()
+    /**
+     * @dataProvider aggregationTypes
+     */
+    public function testAggregationWithReadTime($type, $arg)
     {
         $readTime = new Timestamp(new \DateTimeImmutable('now'));
         $this->connection->runAggregationQuery(Argument::withEntry('readTime', $readTime))
@@ -185,7 +191,7 @@ class QueryTest extends TestCase
                 [
                     'result' => [
                         'aggregateFields' => [
-                            'count' => ['integerValue' => 1]
+                            $type => ['testValue' => 1]
                         ]
                     ]
                 ]
@@ -193,7 +199,9 @@ class QueryTest extends TestCase
 
         $this->query->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->query->count(['readTime' => $readTime]);
+        $res = $arg ?
+            $this->query->$type($arg, ['readTime' => $readTime]) :
+            $this->query->$type(['readTime' => $readTime]);
         $this->assertEquals(1, $res);
     }
 
@@ -1600,6 +1608,15 @@ class QueryTest extends TestCase
             [FieldValue::serverTimestamp()],
             [FieldValue::arrayUnion([])],
             [FieldValue::arrayRemove([])]
+        ];
+    }
+
+    public function aggregationTypes()
+    {
+        return [
+            ['count', null],
+            ['sum', 'testField'],
+            ['avg', 'testField']
         ];
     }
 }

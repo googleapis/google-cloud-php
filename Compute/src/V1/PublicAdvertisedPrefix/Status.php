@@ -20,6 +20,12 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * The prefix is announced to Internet.
+     *
+     * Generated from protobuf enum <code>ANNOUNCED_TO_INTERNET = 177880897;</code>
+     */
+    const ANNOUNCED_TO_INTERNET = 177880897;
+    /**
      * RPKI validation is complete.
      *
      * Generated from protobuf enum <code>INITIAL = 518841124;</code>
@@ -50,6 +56,12 @@ class Status
      */
     const PTR_CONFIGURED = 513497167;
     /**
+     * The prefix is currently withdrawn but ready to be announced.
+     *
+     * Generated from protobuf enum <code>READY_TO_ANNOUNCE = 64641265;</code>
+     */
+    const READY_TO_ANNOUNCE = 64641265;
+    /**
      * Reverse DNS lookup failed.
      *
      * Generated from protobuf enum <code>REVERSE_DNS_LOOKUP_FAILED = 295755183;</code>
@@ -64,11 +76,13 @@ class Status
 
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
+        self::ANNOUNCED_TO_INTERNET => 'ANNOUNCED_TO_INTERNET',
         self::INITIAL => 'INITIAL',
         self::PREFIX_CONFIGURATION_COMPLETE => 'PREFIX_CONFIGURATION_COMPLETE',
         self::PREFIX_CONFIGURATION_IN_PROGRESS => 'PREFIX_CONFIGURATION_IN_PROGRESS',
         self::PREFIX_REMOVAL_IN_PROGRESS => 'PREFIX_REMOVAL_IN_PROGRESS',
         self::PTR_CONFIGURED => 'PTR_CONFIGURED',
+        self::READY_TO_ANNOUNCE => 'READY_TO_ANNOUNCE',
         self::REVERSE_DNS_LOOKUP_FAILED => 'REVERSE_DNS_LOOKUP_FAILED',
         self::VALIDATED => 'VALIDATED',
     ];

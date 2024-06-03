@@ -66,8 +66,7 @@ use Google\Cloud\Language\V1\ModerateTextResponse;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Language\V1\Client\LanguageServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Language\V1\Client\LanguageServiceClient}.
  */
 class LanguageServiceGapicClient
 {
@@ -76,8 +75,15 @@ class LanguageServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.language.v1.LanguageService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'language.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'language.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

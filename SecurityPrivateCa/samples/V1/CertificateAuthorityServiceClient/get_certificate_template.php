@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START privateca_v1_generated_CertificateAuthorityService_GetCertificateTemplate_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1\CertificateTemplate;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\GetCertificateTemplateRequest;
 
 /**
  * Returns a
@@ -42,10 +43,14 @@ function get_certificate_template_sample(string $formattedName): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetCertificateTemplateRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var CertificateTemplate $response */
-        $response = $certificateAuthorityServiceClient->getCertificateTemplate($formattedName);
+        $response = $certificateAuthorityServiceClient->getCertificateTemplate($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

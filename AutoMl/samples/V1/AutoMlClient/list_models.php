@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_AutoMl_ListModels_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
+use Google\Cloud\AutoMl\V1\ListModelsRequest;
 use Google\Cloud\AutoMl\V1\Model;
 
 /**
@@ -39,10 +40,14 @@ function list_models_sample(string $formattedParent): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare the request message.
+    $request = (new ListModelsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $autoMlClient->listModels($formattedParent);
+        $response = $autoMlClient->listModels($request);
 
         /** @var Model $element */
         foreach ($response as $element) {

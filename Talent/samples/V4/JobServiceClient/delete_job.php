@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START jobs_v4_generated_JobService_DeleteJob_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Talent\V4\JobServiceClient;
+use Google\Cloud\Talent\V4\Client\JobServiceClient;
+use Google\Cloud\Talent\V4\DeleteJobRequest;
 
 /**
  * Deletes the specified job.
@@ -44,9 +45,13 @@ function delete_job_sample(string $formattedName): void
     // Create a client.
     $jobServiceClient = new JobServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteJobRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $jobServiceClient->deleteJob($formattedName);
+        $jobServiceClient->deleteJob($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

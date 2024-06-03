@@ -118,6 +118,8 @@ class Occurrence extends \Google\Protobuf\Internal\Message
      *           Describes a compliance violation on a linked resource.
      *     @type \Grafeas\V1\DSSEAttestationOccurrence $dsse_attestation
      *           Describes an attestation of an artifact using dsse.
+     *     @type \Grafeas\V1\SBOMReferenceOccurrence $sbom_reference
+     *           Describes a specific SBOM reference occurrences.
      *     @type \Grafeas\V1\Envelope $envelope
      *           https://github.com/secure-systems-lab/dsse
      * }
@@ -649,6 +651,37 @@ class Occurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\DSSEAttestationOccurrence::class);
         $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Describes a specific SBOM reference occurrences.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.SBOMReferenceOccurrence sbom_reference = 19;</code>
+     * @return \Grafeas\V1\SBOMReferenceOccurrence|null
+     */
+    public function getSbomReference()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasSbomReference()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * Describes a specific SBOM reference occurrences.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.SBOMReferenceOccurrence sbom_reference = 19;</code>
+     * @param \Grafeas\V1\SBOMReferenceOccurrence $var
+     * @return $this
+     */
+    public function setSbomReference($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\SBOMReferenceOccurrence::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }

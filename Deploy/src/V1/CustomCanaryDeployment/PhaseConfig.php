@@ -48,14 +48,14 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
     private $verify = false;
     /**
      * Optional. Configuration for the predeploy job of this phase. If this is
-     * not configured, predeploy job will not be present for this phase.
+     * not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $predeploy = null;
     /**
      * Optional. Configuration for the postdeploy job of this phase. If this is
-     * not configured, postdeploy job will not be present for this phase.
+     * not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -83,10 +83,10 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      *           Whether to run verify tests after the deployment.
      *     @type \Google\Cloud\Deploy\V1\Predeploy $predeploy
      *           Optional. Configuration for the predeploy job of this phase. If this is
-     *           not configured, predeploy job will not be present for this phase.
+     *           not configured, there will be no predeploy job for this phase.
      *     @type \Google\Cloud\Deploy\V1\Postdeploy $postdeploy
      *           Optional. Configuration for the postdeploy job of this phase. If this is
-     *           not configured, postdeploy job will not be present for this phase.
+     *           not configured, there will be no postdeploy job for this phase.
      * }
      */
     public function __construct($data = NULL) {
@@ -212,7 +212,7 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the predeploy job of this phase. If this is
-     * not configured, predeploy job will not be present for this phase.
+     * not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\Predeploy|null
@@ -234,7 +234,7 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the predeploy job of this phase. If this is
-     * not configured, predeploy job will not be present for this phase.
+     * not configured, there will be no predeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Predeploy predeploy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\Predeploy $var
@@ -250,7 +250,7 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the postdeploy job of this phase. If this is
-     * not configured, postdeploy job will not be present for this phase.
+     * not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Deploy\V1\Postdeploy|null
@@ -272,7 +272,7 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Configuration for the postdeploy job of this phase. If this is
-     * not configured, postdeploy job will not be present for this phase.
+     * not configured, there will be no postdeploy job for this phase.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Postdeploy postdeploy = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Deploy\V1\Postdeploy $var

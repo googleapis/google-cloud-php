@@ -63,12 +63,12 @@ wait_token (	
 ListDebuggeesResponse=
 	debuggees (2*.google.devtools.clouddebugger.v2.Debuggee2ò	
 	Debugger2ò
-SetBreakpoint6.google.devtools.clouddebugger.v2.SetBreakpointRequest7.google.devtools.clouddebugger.v2.SetBreakpointResponse"p‚Óä“B"4/v2/debugger/debuggees/{debuggee_id}/breakpoints/set:
-breakpointÚA%debuggee_id,breakpoint,client_versionõ
-GetBreakpoint6.google.devtools.clouddebugger.v2.GetBreakpointRequest7.google.devtools.clouddebugger.v2.GetBreakpointResponse"s‚Óä“B@/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}ÚA(debuggee_id,breakpoint_id,client_versionÚ
-DeleteBreakpoint9.google.devtools.clouddebugger.v2.DeleteBreakpointRequest.google.protobuf.Empty"s‚Óä“B*@/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}ÚA(debuggee_id,breakpoint_id,client_versionÝ
-ListBreakpoints8.google.devtools.clouddebugger.v2.ListBreakpointsRequest9.google.devtools.clouddebugger.v2.ListBreakpointsResponse"U‚Óä“20/v2/debugger/debuggees/{debuggee_id}/breakpointsÚAdebuggee_id,client_version¹
-ListDebuggees6.google.devtools.clouddebugger.v2.ListDebuggeesRequest7.google.devtools.clouddebugger.v2.ListDebuggeesResponse"7‚Óä“/v2/debugger/debuggeesÚAproject,client_versionÊAclouddebugger.googleapis.comÒA]https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud_debuggerBÅ
+SetBreakpoint6.google.devtools.clouddebugger.v2.SetBreakpointRequest7.google.devtools.clouddebugger.v2.SetBreakpointResponse"pÚA%debuggee_id,breakpoint,client_version‚Óä“B"4/v2/debugger/debuggees/{debuggee_id}/breakpoints/set:
+breakpointõ
+GetBreakpoint6.google.devtools.clouddebugger.v2.GetBreakpointRequest7.google.devtools.clouddebugger.v2.GetBreakpointResponse"sÚA(debuggee_id,breakpoint_id,client_version‚Óä“B@/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}Ú
+DeleteBreakpoint9.google.devtools.clouddebugger.v2.DeleteBreakpointRequest.google.protobuf.Empty"sÚA(debuggee_id,breakpoint_id,client_version‚Óä“B*@/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}Ý
+ListBreakpoints8.google.devtools.clouddebugger.v2.ListBreakpointsRequest9.google.devtools.clouddebugger.v2.ListBreakpointsResponse"UÚAdebuggee_id,client_version‚Óä“20/v2/debugger/debuggees/{debuggee_id}/breakpoints¹
+ListDebuggees6.google.devtools.clouddebugger.v2.ListDebuggeesRequest7.google.devtools.clouddebugger.v2.ListDebuggeesResponse"7ÚAproject,client_version‚Óä“/v2/debugger/debuggeesÊAclouddebugger.googleapis.comÒA]https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud_debuggerBÅ
 $com.google.devtools.clouddebugger.v2BDebuggerProtoPZ8cloud.google.com/go/debugger/apiv2/debuggerpb;debuggerpbªGoogle.Cloud.Debugger.V2ÊGoogle\\Cloud\\Debugger\\V2êGoogle::Cloud::Debugger::V2bproto3'
         , true);
 

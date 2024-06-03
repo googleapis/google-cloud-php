@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The public key for a given
+ * The public keys for a given
  * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
  * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
  *

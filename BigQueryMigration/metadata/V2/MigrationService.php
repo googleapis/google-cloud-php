@@ -65,13 +65,13 @@ page_token (	BàA
 migration_subtasks (24.google.cloud.bigquery.migration.v2.MigrationSubtask
 next_page_token (	2Ë
 MigrationServiceû
-CreateMigrationWorkflowB.google.cloud.bigquery.migration.v2.CreateMigrationWorkflowRequest5.google.cloud.bigquery.migration.v2.MigrationWorkflow"e‚Óä“C"-/v2/{parent=projects/*/locations/*}/workflows:migration_workflowÚAparent,migration_workflowÌ
-GetMigrationWorkflow?.google.cloud.bigquery.migration.v2.GetMigrationWorkflowRequest5.google.cloud.bigquery.migration.v2.MigrationWorkflow"<‚Óä“/-/v2/{name=projects/*/locations/*/workflows/*}ÚAnameß
-ListMigrationWorkflowsA.google.cloud.bigquery.migration.v2.ListMigrationWorkflowsRequestB.google.cloud.bigquery.migration.v2.ListMigrationWorkflowsResponse">‚Óä“/-/v2/{parent=projects/*/locations/*}/workflowsÚAparent³
-DeleteMigrationWorkflowB.google.cloud.bigquery.migration.v2.DeleteMigrationWorkflowRequest.google.protobuf.Empty"<‚Óä“/*-/v2/{name=projects/*/locations/*/workflows/*}ÚAnameº
-StartMigrationWorkflowA.google.cloud.bigquery.migration.v2.StartMigrationWorkflowRequest.google.protobuf.Empty"E‚Óä“8"3/v2/{name=projects/*/locations/*/workflows/*}:start:*ÚAnameÔ
-GetMigrationSubtask>.google.cloud.bigquery.migration.v2.GetMigrationSubtaskRequest4.google.cloud.bigquery.migration.v2.MigrationSubtask"G‚Óä“:8/v2/{name=projects/*/locations/*/workflows/*/subtasks/*}ÚAnameç
-ListMigrationSubtasks@.google.cloud.bigquery.migration.v2.ListMigrationSubtasksRequestA.google.cloud.bigquery.migration.v2.ListMigrationSubtasksResponse"I‚Óä“:8/v2/{parent=projects/*/locations/*/workflows/*}/subtasksÚAparentTÊA bigquerymigration.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÑ
+CreateMigrationWorkflowB.google.cloud.bigquery.migration.v2.CreateMigrationWorkflowRequest5.google.cloud.bigquery.migration.v2.MigrationWorkflow"eÚAparent,migration_workflow‚Óä“C"-/v2/{parent=projects/*/locations/*}/workflows:migration_workflowÌ
+GetMigrationWorkflow?.google.cloud.bigquery.migration.v2.GetMigrationWorkflowRequest5.google.cloud.bigquery.migration.v2.MigrationWorkflow"<ÚAname‚Óä“/-/v2/{name=projects/*/locations/*/workflows/*}ß
+ListMigrationWorkflowsA.google.cloud.bigquery.migration.v2.ListMigrationWorkflowsRequestB.google.cloud.bigquery.migration.v2.ListMigrationWorkflowsResponse">ÚAparent‚Óä“/-/v2/{parent=projects/*/locations/*}/workflows³
+DeleteMigrationWorkflowB.google.cloud.bigquery.migration.v2.DeleteMigrationWorkflowRequest.google.protobuf.Empty"<ÚAname‚Óä“/*-/v2/{name=projects/*/locations/*/workflows/*}º
+StartMigrationWorkflowA.google.cloud.bigquery.migration.v2.StartMigrationWorkflowRequest.google.protobuf.Empty"EÚAname‚Óä“8"3/v2/{name=projects/*/locations/*/workflows/*}:start:*Ô
+GetMigrationSubtask>.google.cloud.bigquery.migration.v2.GetMigrationSubtaskRequest4.google.cloud.bigquery.migration.v2.MigrationSubtask"GÚAname‚Óä“:8/v2/{name=projects/*/locations/*/workflows/*/subtasks/*}ç
+ListMigrationSubtasks@.google.cloud.bigquery.migration.v2.ListMigrationSubtasksRequestA.google.cloud.bigquery.migration.v2.ListMigrationSubtasksResponse"IÚAparent‚Óä“:8/v2/{parent=projects/*/locations/*/workflows/*}/subtasksTÊA bigquerymigration.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÑ
 &com.google.cloud.bigquery.migration.v2BMigrationServiceProtoPZDcloud.google.com/go/bigquery/migration/apiv2/migrationpb;migrationpbª"Google.Cloud.BigQuery.Migration.V2Ê"Google\\Cloud\\BigQuery\\Migration\\V2bproto3'
         , true);
 

@@ -24,6 +24,18 @@ class ReleaseNotificationEvent extends \Google\Protobuf\Internal\Message
      */
     private $message = '';
     /**
+     * Unique identifier of the `DeliveryPipeline`.
+     *
+     * Generated from protobuf field <code>string pipeline_uid = 4;</code>
+     */
+    private $pipeline_uid = '';
+    /**
+     * Unique identifier of the `Release`.
+     *
+     * Generated from protobuf field <code>string release_uid = 5;</code>
+     */
+    private $release_uid = '';
+    /**
      * The name of the `Release`.
      *
      * Generated from protobuf field <code>string release = 2;</code>
@@ -44,6 +56,10 @@ class ReleaseNotificationEvent extends \Google\Protobuf\Internal\Message
      *
      *     @type string $message
      *           Debug message for when a notification fails to send.
+     *     @type string $pipeline_uid
+     *           Unique identifier of the `DeliveryPipeline`.
+     *     @type string $release_uid
+     *           Unique identifier of the `Release`.
      *     @type string $release
      *           The name of the `Release`.
      *     @type int $type
@@ -77,6 +93,58 @@ class ReleaseNotificationEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     *
+     * Generated from protobuf field <code>string pipeline_uid = 4;</code>
+     * @return string
+     */
+    public function getPipelineUid()
+    {
+        return $this->pipeline_uid;
+    }
+
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     *
+     * Generated from protobuf field <code>string pipeline_uid = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPipelineUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pipeline_uid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unique identifier of the `Release`.
+     *
+     * Generated from protobuf field <code>string release_uid = 5;</code>
+     * @return string
+     */
+    public function getReleaseUid()
+    {
+        return $this->release_uid;
+    }
+
+    /**
+     * Unique identifier of the `Release`.
+     *
+     * Generated from protobuf field <code>string release_uid = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReleaseUid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->release_uid = $var;
 
         return $this;
     }

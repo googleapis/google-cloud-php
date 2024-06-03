@@ -53,7 +53,7 @@ class RepoInfoCommand extends Command
             ->addArgument('component', InputArgument::OPTIONAL, 'If specified, display repo info for this component only', '')
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
             ->addOption('page', 'p', InputOption::VALUE_REQUIRED, 'page to start from', '1')
-            ->addOption('results-per-page', 'r', InputOption::VALUE_REQUIRED, 'results to display per page', '10')
+            ->addOption('results-per-page', 'r', InputOption::VALUE_REQUIRED, 'results to display per page (0 for all)', '10')
             ->addOption('fix', 'f', InputOption::VALUE_NONE, 'whether to prompt to fix non-compliant repos')
         ;
     }
@@ -75,7 +75,7 @@ class RepoInfoCommand extends Command
             if ($i < (($page-1) * $resultsPerPage)) {
                 continue;
             }
-            if ($i >= ($page * $resultsPerPage)) {
+            if (0 !== $resultsPerPage && $i >= ($page * $resultsPerPage)) {
                 $table->render();
                 if (!$this->getHelper('question')->ask($input, $output, $nextPageQuestion)) {
                     return 0;
@@ -159,7 +159,7 @@ class RepoInfoCommand extends Command
         $fields = array_map(
             fn ($field) => is_bool($field) ? var_export($field, true) : $field,
             array_intersect_key(
-                $this->github->getRepoDetails($component->getRepoName()),
+                (array) $this->github->getRepoDetails($component->getRepoName()),
                 self::$allFields
             )
         );

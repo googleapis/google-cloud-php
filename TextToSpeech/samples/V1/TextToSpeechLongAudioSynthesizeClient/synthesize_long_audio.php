@@ -27,9 +27,10 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\AudioEncoding;
+use Google\Cloud\TextToSpeech\V1\Client\TextToSpeechLongAudioSynthesizeClient;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
+use Google\Cloud\TextToSpeech\V1\SynthesizeLongAudioRequest;
 use Google\Cloud\TextToSpeech\V1\SynthesizeLongAudioResponse;
-use Google\Cloud\TextToSpeech\V1\TextToSpeechLongAudioSynthesizeClient;
 use Google\Rpc\Status;
 
 /**
@@ -42,15 +43,18 @@ function synthesize_long_audio_sample(int $audioConfigAudioEncoding): void
     // Create a client.
     $textToSpeechLongAudioSynthesizeClient = new TextToSpeechLongAudioSynthesizeClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $input = new SynthesisInput();
     $audioConfig = (new AudioConfig())
         ->setAudioEncoding($audioConfigAudioEncoding);
+    $request = (new SynthesizeLongAudioRequest())
+        ->setInput($input)
+        ->setAudioConfig($audioConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $textToSpeechLongAudioSynthesizeClient->synthesizeLongAudio($input, $audioConfig);
+        $response = $textToSpeechLongAudioSynthesizeClient->synthesizeLongAudio($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

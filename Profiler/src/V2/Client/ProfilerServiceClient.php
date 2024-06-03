@@ -42,9 +42,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * Service Description: Manage the collection of continuous profiling data provided by profiling
  * agents running in the cloud or by an offline provider of profiling data.
  *
- * General guidelines:
- * * Profiles for a single deployment must be created in ascending time order.
- * * Profiles can be created in either online or offline mode, see below.
+ * __The APIs listed in this service are intended for use within our profiler
+ * agents only.__
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -53,11 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
- *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Profiler\V2\ProfilerServiceClient} for the stable implementation
- *
- * @experimental
  *
  * @method PromiseInterface createOfflineProfileAsync(CreateOfflineProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createProfileAsync(CreateProfileRequest $request, array $optionalArgs = [])
@@ -71,8 +65,15 @@ final class ProfilerServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.devtools.cloudprofiler.v2.ProfilerService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'cloudprofiler.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'cloudprofiler.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -235,11 +236,18 @@ final class ProfilerServiceClient
     }
 
     /**
-     * CreateOfflineProfile creates a new profile resource in the offline mode.
-     * The client provides the profile to create along with the profile bytes, the
-     * server records it.
+     * CreateOfflineProfile creates a new profile resource in the offline
+     * mode. The client provides the profile to create along with the profile
+     * bytes, the server records it.
+     *
+     * _Direct use of this API is discouraged, please use a [supported
+     * profiler
+     * agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+     * instead for profile collection._
      *
      * The async variant is {@see ProfilerServiceClient::createOfflineProfileAsync()} .
+     *
+     * @example samples/V2/ProfilerServiceClient/create_offline_profile.php
      *
      * @param CreateOfflineProfileRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
@@ -263,6 +271,11 @@ final class ProfilerServiceClient
     /**
      * CreateProfile creates a new profile resource in the online mode.
      *
+     * _Direct use of this API is discouraged, please use a [supported
+     * profiler
+     * agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+     * instead for profile collection._
+     *
      * The server ensures that the new profiles are created at a constant rate per
      * deployment, so the creation request may hang for some time until the next
      * profile session is available.
@@ -277,6 +290,8 @@ final class ProfilerServiceClient
      *
      *
      * The async variant is {@see ProfilerServiceClient::createProfileAsync()} .
+     *
+     * @example samples/V2/ProfilerServiceClient/create_profile.php
      *
      * @param CreateProfileRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -303,7 +318,14 @@ final class ProfilerServiceClient
      * offline mode is currently not supported: the profile content must be
      * provided at the time of the profile creation.
      *
+     * _Direct use of this API is discouraged, please use a [supported
+     * profiler
+     * agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent)
+     * instead for profile collection._
+     *
      * The async variant is {@see ProfilerServiceClient::updateProfileAsync()} .
+     *
+     * @example samples/V2/ProfilerServiceClient/update_profile.php
      *
      * @param UpdateProfileRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

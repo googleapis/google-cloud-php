@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_CheckCloudIdentityAccountsExist_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistRequest;
 use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 
 /**
  * Confirms the existence of Cloud Identity accounts based on the domain and
@@ -57,10 +58,15 @@ function check_cloud_identity_accounts_exist_sample(string $parent, string $doma
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new CheckCloudIdentityAccountsExistRequest())
+        ->setParent($parent)
+        ->setDomain($domain);
+
     // Call the API and handle any network failures.
     try {
         /** @var CheckCloudIdentityAccountsExistResponse $response */
-        $response = $cloudChannelServiceClient->checkCloudIdentityAccountsExist($parent, $domain);
+        $response = $cloudChannelServiceClient->checkCloudIdentityAccountsExist($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START file_v1_generated_CloudFilestoreManager_GetBackup_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\Filestore\V1\Backup;
-use Google\Cloud\Filestore\V1\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\Client\CloudFilestoreManagerClient;
+use Google\Cloud\Filestore\V1\GetBackupRequest;
 
 /**
  * Gets the details of a specific backup.
@@ -39,10 +40,14 @@ function get_backup_sample(string $formattedName): void
     // Create a client.
     $cloudFilestoreManagerClient = new CloudFilestoreManagerClient();
 
+    // Prepare the request message.
+    $request = (new GetBackupRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Backup $response */
-        $response = $cloudFilestoreManagerClient->getBackup($formattedName);
+        $response = $cloudFilestoreManagerClient->getBackup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -53,8 +53,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
  * @experimental
  *
  * @method PromiseInterface deleteRegionalInventoryAsync(DeleteRegionalInventoryRequest $request, array $optionalArgs = [])
@@ -69,8 +67,15 @@ final class RegionalInventoryServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.shopping.merchant.inventories.v1beta.RegionalInventoryService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'merchantapi.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'merchantapi.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -103,6 +108,25 @@ final class RegionalInventoryServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a product
+     * resource.
+     *
+     * @param string $account
+     * @param string $product
+     *
+     * @return string The formatted product resource.
+     *
+     * @experimental
+     */
+    public static function productName(string $account, string $product): string
+    {
+        return self::getPathTemplate('product')->render([
+            'account' => $account,
+            'product' => $product,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * regional_inventory resource.
      *
@@ -127,6 +151,7 @@ final class RegionalInventoryServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - product: accounts/{account}/products/{product}
      * - regionalInventory: accounts/{account}/products/{product}/regionalInventories/{region}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

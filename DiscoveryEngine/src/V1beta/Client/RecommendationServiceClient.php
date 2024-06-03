@@ -49,8 +49,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes.
- *
  * @experimental
  *
  * @method PromiseInterface recommendAsync(RecommendRequest $request, array $optionalArgs = [])
@@ -63,8 +61,15 @@ final class RecommendationServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.discoveryengine.v1beta.RecommendationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'discoveryengine.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'discoveryengine.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -73,9 +78,7 @@ final class RecommendationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -97,6 +100,27 @@ final class RecommendationServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a data_store
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted data_store resource.
+     *
+     * @experimental
+     */
+    public static function dataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('dataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a document
      * resource.
      *
@@ -110,14 +134,69 @@ final class RecommendationServiceClient
      *
      * @experimental
      */
-    public static function documentName(string $project, string $location, string $dataStore, string $branch, string $document): string
-    {
+    public static function documentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('document')->render([
             'project' => $project,
             'location' => $location,
             'data_store' => $dataStore,
             'branch' => $branch,
             'document' => $document,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a engine
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     *
+     * @return string The formatted engine resource.
+     *
+     * @experimental
+     */
+    public static function engineName(string $project, string $location, string $collection, string $engine): string
+    {
+        return self::getPathTemplate('engine')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_collection_data_store resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionDataStoreName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'data_store' => $dataStore,
         ]);
     }
 
@@ -136,8 +215,14 @@ final class RecommendationServiceClient
      *
      * @experimental
      */
-    public static function projectLocationCollectionDataStoreBranchDocumentName(string $project, string $location, string $collection, string $dataStore, string $branch, string $document): string
-    {
+    public static function projectLocationCollectionDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreBranchDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -162,14 +247,70 @@ final class RecommendationServiceClient
      *
      * @experimental
      */
-    public static function projectLocationCollectionDataStoreServingConfigName(string $project, string $location, string $collection, string $dataStore, string $servingConfig): string
-    {
+    public static function projectLocationCollectionDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationCollectionDataStoreServingConfig')->render([
             'project' => $project,
             'location' => $location,
             'collection' => $collection,
             'data_store' => $dataStore,
             'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_collection_engine_serving_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $collection
+     * @param string $engine
+     * @param string $servingConfig
+     *
+     * @return string The formatted project_location_collection_engine_serving_config resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationCollectionEngineServingConfigName(
+        string $project,
+        string $location,
+        string $collection,
+        string $engine,
+        string $servingConfig
+    ): string {
+        return self::getPathTemplate('projectLocationCollectionEngineServingConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'collection' => $collection,
+            'engine' => $engine,
+            'serving_config' => $servingConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_data_store resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataStore
+     *
+     * @return string The formatted project_location_data_store resource.
+     *
+     * @experimental
+     */
+    public static function projectLocationDataStoreName(string $project, string $location, string $dataStore): string
+    {
+        return self::getPathTemplate('projectLocationDataStore')->render([
+            'project' => $project,
+            'location' => $location,
+            'data_store' => $dataStore,
         ]);
     }
 
@@ -187,8 +328,13 @@ final class RecommendationServiceClient
      *
      * @experimental
      */
-    public static function projectLocationDataStoreBranchDocumentName(string $project, string $location, string $dataStore, string $branch, string $document): string
-    {
+    public static function projectLocationDataStoreBranchDocumentName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $branch,
+        string $document
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreBranchDocument')->render([
             'project' => $project,
             'location' => $location,
@@ -211,8 +357,12 @@ final class RecommendationServiceClient
      *
      * @experimental
      */
-    public static function projectLocationDataStoreServingConfigName(string $project, string $location, string $dataStore, string $servingConfig): string
-    {
+    public static function projectLocationDataStoreServingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('projectLocationDataStoreServingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -234,8 +384,12 @@ final class RecommendationServiceClient
      *
      * @experimental
      */
-    public static function servingConfigName(string $project, string $location, string $dataStore, string $servingConfig): string
-    {
+    public static function servingConfigName(
+        string $project,
+        string $location,
+        string $dataStore,
+        string $servingConfig
+    ): string {
         return self::getPathTemplate('servingConfig')->render([
             'project' => $project,
             'location' => $location,
@@ -248,9 +402,14 @@ final class RecommendationServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - dataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - document: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
+     * - engine: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}
+     * - projectLocationCollectionDataStore: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}
      * - projectLocationCollectionDataStoreBranchDocument: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationCollectionDataStoreServingConfig: projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}
+     * - projectLocationCollectionEngineServingConfig: projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}
+     * - projectLocationDataStore: projects/{project}/locations/{location}/dataStores/{data_store}
      * - projectLocationDataStoreBranchDocument: projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}
      * - projectLocationDataStoreServingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}
      * - servingConfig: projects/{project}/locations/{location}/dataStores/{data_store}/servingConfigs/{serving_config}

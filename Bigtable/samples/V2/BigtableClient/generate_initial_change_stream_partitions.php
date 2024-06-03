@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigtable_v2_generated_Bigtable_GenerateInitialChangeStreamPartitions_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsRequest;
 use Google\Cloud\Bigtable\V2\GenerateInitialChangeStreamPartitionsResponse;
 
 /**
@@ -45,10 +46,14 @@ function generate_initial_change_stream_partitions_sample(string $formattedTable
     // Create a client.
     $bigtableClient = new BigtableClient();
 
+    // Prepare the request message.
+    $request = (new GenerateInitialChangeStreamPartitionsRequest())
+        ->setTableName($formattedTableName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $bigtableClient->generateInitialChangeStreamPartitions($formattedTableName);
+        $stream = $bigtableClient->generateInitialChangeStreamPartitions($request);
 
         /** @var GenerateInitialChangeStreamPartitionsResponse $element */
         foreach ($stream->readAll() as $element) {

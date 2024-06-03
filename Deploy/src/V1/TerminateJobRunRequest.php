@@ -17,8 +17,7 @@ class TerminateJobRunRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the `JobRun`. Format must be
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -26,8 +25,7 @@ class TerminateJobRunRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. Name of the `JobRun`. Format must be
-     *                     projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *                     releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}. Please see
+     *                     `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`. Please see
      *                     {@see CloudDeployClient::jobRunName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\TerminateJobRunRequest
@@ -48,8 +46,7 @@ class TerminateJobRunRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the `JobRun`. Format must be
-     *           projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     *           releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}.
+     *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,8 +56,7 @@ class TerminateJobRunRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the `JobRun`. Format must be
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -72,8 +68,7 @@ class TerminateJobRunRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the `JobRun`. Format must be
-     * projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
-     * releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}.
+     * `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{jobRun}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

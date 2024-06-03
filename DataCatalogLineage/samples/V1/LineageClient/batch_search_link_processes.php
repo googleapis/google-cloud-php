@@ -45,8 +45,8 @@ use Google\Cloud\DataCatalog\Lineage\V1\ProcessLinks;
  * have the `datalineage.events.get` permission. The project provided in the
  * URL is used for Billing and Quota.
  *
- * @param string $formattedParent The project and location you want search in the format `projects/&#42;/locations/*`
- *                                Please see {@see LineageClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The project and location where you want to search. Please see
+ *                                {@see LineageClient::locationName()} for help formatting this field.
  * @param string $linksElement    An array of links to check for their associated LineageProcesses.
  *
  *                                The maximum number of items in this array is 100.

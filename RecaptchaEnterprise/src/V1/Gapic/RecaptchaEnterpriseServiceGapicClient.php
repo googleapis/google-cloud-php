@@ -57,6 +57,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
@@ -89,9 +91,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient} to
- * use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient}.
  */
 class RecaptchaEnterpriseServiceGapicClient
 {
@@ -100,8 +100,15 @@ class RecaptchaEnterpriseServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'recaptchaenterprise.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'recaptchaenterprise.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -474,15 +481,17 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type int[] $reasons
-     *           Optional. Optional reasons for the annotation that will be assigned to the
-     *           Event.
+     *           Optional. Reasons for the annotation that are assigned to the event.
      *           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Reason}
+     *     @type string $accountId
+     *           Optional. A stable account identifier to apply to the assessment. This is
+     *           an alternative to setting `account_id` in `CreateAssessment`, for example
+     *           when a stable account identifier is not yet known in the initial request.
      *     @type string $hashedAccountId
-     *           Optional. Unique stable hashed user identifier to apply to the assessment.
-     *           This is an alternative to setting the hashed_account_id in
-     *           CreateAssessment, for example when the account identifier is not yet known
-     *           in the initial request. It is recommended that the identifier is hashed
-     *           using hmac-sha256 with stable secret.
+     *           Optional. A stable hashed account identifier to apply to the assessment.
+     *           This is an alternative to setting `hashed_account_id` in
+     *           `CreateAssessment`, for example when a stable account identifier is not yet
+     *           known in the initial request.
      *     @type TransactionEvent $transactionEvent
      *           Optional. If the assessment is part of a payment transaction, provide
      *           details on payment lifecycle events that occur in the transaction.
@@ -508,6 +517,10 @@ class RecaptchaEnterpriseServiceGapicClient
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['reasons'])) {
             $request->setReasons($optionalArgs['reasons']);
+        }
+
+        if (isset($optionalArgs['accountId'])) {
+            $request->setAccountId($optionalArgs['accountId']);
         }
 
         if (isset($optionalArgs['hashedAccountId'])) {
@@ -1320,6 +1333,64 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Reorders all firewall policies.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedParent = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
+     *     $formattedNames = [
+     *         $recaptchaEnterpriseServiceClient->firewallPolicyName('[PROJECT]', '[FIREWALLPOLICY]'),
+     *     ];
+     *     $response = $recaptchaEnterpriseServiceClient->reorderFirewallPolicies($formattedParent, $formattedNames);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $parent       Required. The name of the project to list the policies for, in the format
+     *                               `projects/{project}`.
+     * @param string[] $names        Required. A list containing all policy names, in the new order. Each name
+     *                               is in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function reorderFirewallPolicies(
+        $parent,
+        $names,
+        array $optionalArgs = []
+    ) {
+        $request = new ReorderFirewallPoliciesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setNames($names);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ReorderFirewallPolicies',
+            ReorderFirewallPoliciesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the secret key related to the specified public key.
      * You must use the legacy secret key only in a 3rd party integration with
      * legacy reCAPTCHA.
@@ -1377,7 +1448,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedProject = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+     *     $formattedProject = $recaptchaEnterpriseServiceClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -1402,10 +1473,17 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $accountId
+     *           Optional. The unique stable account identifier used to search connections.
+     *           The identifier should correspond to an `account_id` provided in a previous
+     *           `CreateAssessment` or `AnnotateAssessment` call. Either hashed_account_id
+     *           or account_id must be set, but not both.
      *     @type string $hashedAccountId
-     *           Optional. The unique stable hashed user identifier used to search
-     *           connections. The identifier should correspond to a `hashed_account_id`
-     *           provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
+     *           Optional. Deprecated: use `account_id` instead.
+     *           The unique stable hashed account identifier used to search connections. The
+     *           identifier should correspond to a `hashed_account_id` provided in a
+     *           previous `CreateAssessment` or `AnnotateAssessment` call. Either
+     *           hashed_account_id or account_id must be set, but not both.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1433,6 +1511,10 @@ class RecaptchaEnterpriseServiceGapicClient
         $requestParamHeaders = [];
         $request->setProject($project);
         $requestParamHeaders['project'] = $project;
+        if (isset($optionalArgs['accountId'])) {
+            $request->setAccountId($optionalArgs['accountId']);
+        }
+
         if (isset($optionalArgs['hashedAccountId'])) {
             $request->setHashedAccountId($optionalArgs['hashedAccountId']);
         }

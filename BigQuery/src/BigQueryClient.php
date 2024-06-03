@@ -50,7 +50,7 @@ class BigQueryClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '1.28.2';
+    const VERSION = '1.30.2';
 
     const MAX_DELAY_MICROSECONDS = 32000000;
 

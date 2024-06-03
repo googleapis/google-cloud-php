@@ -27,6 +27,7 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
@@ -43,21 +44,31 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstancePartitionMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\GetInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionOperationsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancePartitionsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstancePartitionMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstancePartitionRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\LongRunning\Operation;
+use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -91,26 +102,26 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInstanceConfigAsync(CreateInstanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface createInstancePartitionAsync(CreateInstancePartitionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInstanceConfigAsync(DeleteInstanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteInstancePartitionAsync(DeleteInstancePartitionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getInstanceConfigAsync(GetInstanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getInstancePartitionAsync(GetInstancePartitionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInstanceConfigOperationsAsync(ListInstanceConfigOperationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInstanceConfigsAsync(ListInstanceConfigsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listInstancePartitionOperationsAsync(ListInstancePartitionOperationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listInstancePartitionsAsync(ListInstancePartitionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateInstanceConfigAsync(UpdateInstanceConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateInstancePartitionAsync(UpdateInstancePartitionRequest $request, array $optionalArgs = [])
  */
 final class InstanceAdminClient
 {
@@ -120,8 +131,15 @@ final class InstanceAdminClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.spanner.admin.instance.v1.InstanceAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'spanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'spanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -220,6 +238,25 @@ final class InstanceAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * instance_partition resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $instancePartition
+     *
+     * @return string The formatted instance_partition resource.
+     */
+    public static function instancePartitionName(string $project, string $instance, string $instancePartition): string
+    {
+        return self::getPathTemplate('instancePartition')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'instance_partition' => $instancePartition,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -240,6 +277,7 @@ final class InstanceAdminClient
      * Template: Pattern
      * - instance: projects/{project}/instances/{instance}
      * - instanceConfig: projects/{project}/instanceConfigs/{instance_config}
+     * - instancePartition: projects/{project}/instances/{instance}/instancePartitions/{instance_partition}
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -262,6 +300,10 @@ final class InstanceAdminClient
 
     /**
      * Constructor.
+     *
+     * Setting the "SPANNER_EMULATOR_HOST" environment variable will automatically set
+     * the API Endpoint to the value specified in the variable, as well as ensure that
+     * empty credentials are used in the transport layer.
      *
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
@@ -316,6 +358,7 @@ final class InstanceAdminClient
      */
     public function __construct(array $options = [])
     {
+        $options = $options + $this->getDefaultEmulatorConfig();
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -369,6 +412,8 @@ final class InstanceAdminClient
      * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
      *
      * The async variant is {@see InstanceAdminClient::createInstanceAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/create_instance.php
      *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -434,6 +479,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::createInstanceConfigAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/create_instance_config.php
+     *
      * @param CreateInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -454,6 +501,69 @@ final class InstanceAdminClient
     }
 
     /**
+     * Creates an instance partition and begins preparing it to be used. The
+     * returned [long-running operation][google.longrunning.Operation]
+     * can be used to track the progress of preparing the new instance partition.
+     * The instance partition name is assigned by the caller. If the named
+     * instance partition already exists, `CreateInstancePartition` returns
+     * `ALREADY_EXISTS`.
+     *
+     * Immediately upon completion of this request:
+     *
+     * * The instance partition is readable via the API, with all requested
+     * attributes but no allocated resources. Its state is `CREATING`.
+     *
+     * Until completion of the returned operation:
+     *
+     * * Cancelling the operation renders the instance partition immediately
+     * unreadable via the API.
+     * * The instance partition can be deleted.
+     * * All other attempts to modify the instance partition are rejected.
+     *
+     * Upon completion of the returned operation:
+     *
+     * * Billing for all successfully-allocated resources begins (some types
+     * may have lower than the requested levels).
+     * * Databases can start using this instance partition.
+     * * The instance partition's allocated resource levels are readable via the
+     * API.
+     * * The instance partition's state becomes `READY`.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] will
+     * have a name of the format
+     * `<instance_partition_name>/operations/<operation_id>` and can be used to
+     * track creation of the instance partition.  The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [CreateInstancePartitionMetadata][google.spanner.admin.instance.v1.CreateInstancePartitionMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [InstancePartition][google.spanner.admin.instance.v1.InstancePartition], if
+     * successful.
+     *
+     * The async variant is {@see InstanceAdminClient::createInstancePartitionAsync()}
+     * .
+     *
+     * @example samples/V1/InstanceAdminClient/create_instance_partition.php
+     *
+     * @param CreateInstancePartitionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createInstancePartition(CreateInstancePartitionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateInstancePartition', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes an instance.
      *
      * Immediately upon completion of the request:
@@ -467,6 +577,8 @@ final class InstanceAdminClient
      * is permanently deleted.
      *
      * The async variant is {@see InstanceAdminClient::deleteInstanceAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/delete_instance.php
      *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -497,6 +609,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::deleteInstanceConfigAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/delete_instance_config.php
+     *
      * @param DeleteInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -515,6 +629,37 @@ final class InstanceAdminClient
     }
 
     /**
+     * Deletes an existing instance partition. Requires that the
+     * instance partition is not used by any database or backup and is not the
+     * default instance partition of an instance.
+     *
+     * Authorization requires `spanner.instancePartitions.delete` permission on
+     * the resource
+     * [name][google.spanner.admin.instance.v1.InstancePartition.name].
+     *
+     * The async variant is {@see InstanceAdminClient::deleteInstancePartitionAsync()}
+     * .
+     *
+     * @example samples/V1/InstanceAdminClient/delete_instance_partition.php
+     *
+     * @param DeleteInstancePartitionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteInstancePartition(DeleteInstancePartitionRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteInstancePartition', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets the access control policy for an instance resource. Returns an empty
      * policy if an instance exists but does not have a policy set.
      *
@@ -522,6 +667,8 @@ final class InstanceAdminClient
      * [resource][google.iam.v1.GetIamPolicyRequest.resource].
      *
      * The async variant is {@see InstanceAdminClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/get_iam_policy.php
      *
      * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -547,6 +694,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::getInstanceAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/get_instance.php
+     *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -571,6 +720,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::getInstanceConfigAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/get_instance_config.php
+     *
      * @param GetInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
      *     Optional.
@@ -591,6 +742,32 @@ final class InstanceAdminClient
     }
 
     /**
+     * Gets information about a particular instance partition.
+     *
+     * The async variant is {@see InstanceAdminClient::getInstancePartitionAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/get_instance_partition.php
+     *
+     * @param GetInstancePartitionRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return InstancePartition
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getInstancePartition(GetInstancePartitionRequest $request, array $callOptions = []): InstancePartition
+    {
+        return $this->startApiCall('GetInstancePartition', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists the user-managed instance config [long-running
      * operations][google.longrunning.Operation] in the given project. An instance
      * config operation has a name of the form
@@ -605,6 +782,8 @@ final class InstanceAdminClient
      *
      * The async variant is
      * {@see InstanceAdminClient::listInstanceConfigOperationsAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/list_instance_config_operations.php
      *
      * @param ListInstanceConfigOperationsRequest $request     A request to house fields associated with the call.
      * @param array                               $callOptions {
@@ -630,6 +809,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::listInstanceConfigsAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/list_instance_configs.php
+     *
      * @param ListInstanceConfigsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -650,9 +831,78 @@ final class InstanceAdminClient
     }
 
     /**
+     * Lists instance partition [long-running
+     * operations][google.longrunning.Operation] in the given instance.
+     * An instance partition operation has a name of the form
+     * `projects/<project>/instances/<instance>/instancePartitions/<instance_partition>/operations/<operation>`.
+     * The long-running operation
+     * [metadata][google.longrunning.Operation.metadata] field type
+     * `metadata.type_url` describes the type of the metadata. Operations returned
+     * include those that have completed/failed/canceled within the last 7 days,
+     * and pending operations. Operations returned are ordered by
+     * `operation.metadata.value.start_time` in descending order starting from the
+     * most recently started operation.
+     *
+     * Authorization requires `spanner.instancePartitionOperations.list`
+     * permission on the resource
+     * [parent][google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest.parent].
+     *
+     * The async variant is
+     * {@see InstanceAdminClient::listInstancePartitionOperationsAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/list_instance_partition_operations.php
+     *
+     * @param ListInstancePartitionOperationsRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listInstancePartitionOperations(ListInstancePartitionOperationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListInstancePartitionOperations', $request, $callOptions);
+    }
+
+    /**
+     * Lists all instance partitions for the given instance.
+     *
+     * The async variant is {@see InstanceAdminClient::listInstancePartitionsAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/list_instance_partitions.php
+     *
+     * @param ListInstancePartitionsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listInstancePartitions(ListInstancePartitionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListInstancePartitions', $request, $callOptions);
+    }
+
+    /**
      * Lists all instances in the given project.
      *
      * The async variant is {@see InstanceAdminClient::listInstancesAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/list_instances.php
      *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -682,6 +932,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::setIamPolicyAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/set_iam_policy.php
+     *
      * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -710,6 +962,8 @@ final class InstanceAdminClient
      * empty set of permissions.
      *
      * The async variant is {@see InstanceAdminClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/test_iam_permissions.php
      *
      * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -773,6 +1027,8 @@ final class InstanceAdminClient
      * the resource [name][google.spanner.admin.instance.v1.Instance.name].
      *
      * The async variant is {@see InstanceAdminClient::updateInstanceAsync()} .
+     *
+     * @example samples/V1/InstanceAdminClient/update_instance.php
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -841,6 +1097,8 @@ final class InstanceAdminClient
      *
      * The async variant is {@see InstanceAdminClient::updateInstanceConfigAsync()} .
      *
+     * @example samples/V1/InstanceAdminClient/update_instance_config.php
+     *
      * @param UpdateInstanceConfigRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
@@ -858,5 +1116,101 @@ final class InstanceAdminClient
     public function updateInstanceConfig(UpdateInstanceConfigRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateInstanceConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an instance partition, and begins allocating or releasing resources
+     * as requested. The returned [long-running
+     * operation][google.longrunning.Operation] can be used to track the
+     * progress of updating the instance partition. If the named instance
+     * partition does not exist, returns `NOT_FOUND`.
+     *
+     * Immediately upon completion of this request:
+     *
+     * * For resource types for which a decrease in the instance partition's
+     * allocation has been requested, billing is based on the newly-requested
+     * level.
+     *
+     * Until completion of the returned operation:
+     *
+     * * Cancelling the operation sets its metadata's
+     * [cancel_time][google.spanner.admin.instance.v1.UpdateInstancePartitionMetadata.cancel_time],
+     * and begins restoring resources to their pre-request values. The
+     * operation is guaranteed to succeed at undoing all resource changes,
+     * after which point it terminates with a `CANCELLED` status.
+     * * All other attempts to modify the instance partition are rejected.
+     * * Reading the instance partition via the API continues to give the
+     * pre-request resource levels.
+     *
+     * Upon completion of the returned operation:
+     *
+     * * Billing begins for all successfully-allocated resources (some types
+     * may have lower than the requested levels).
+     * * All newly-reserved resources are available for serving the instance
+     * partition's tables.
+     * * The instance partition's new resource levels are readable via the API.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] will
+     * have a name of the format
+     * `<instance_partition_name>/operations/<operation_id>` and can be used to
+     * track the instance partition modification. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [UpdateInstancePartitionMetadata][google.spanner.admin.instance.v1.UpdateInstancePartitionMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [InstancePartition][google.spanner.admin.instance.v1.InstancePartition], if
+     * successful.
+     *
+     * Authorization requires `spanner.instancePartitions.update` permission on
+     * the resource
+     * [name][google.spanner.admin.instance.v1.InstancePartition.name].
+     *
+     * The async variant is {@see InstanceAdminClient::updateInstancePartitionAsync()}
+     * .
+     *
+     * @example samples/V1/InstanceAdminClient/update_instance_partition.php
+     *
+     * @param UpdateInstancePartitionRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateInstancePartition(UpdateInstancePartitionRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateInstancePartition', $request, $callOptions)->wait();
+    }
+
+    /** Configure the gapic configuration to use a service emulator. */
+    private function getDefaultEmulatorConfig(): array
+    {
+        $emulatorHost = getenv('SPANNER_EMULATOR_HOST');
+        if (empty($emulatorHost)) {
+            return [];
+        }
+
+        if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
+            $search = $scheme . '://';
+            $emulatorHost = str_replace($search, '', $emulatorHost);
+        }
+
+        return [
+            'apiEndpoint' => $emulatorHost,
+            'transportConfig' => [
+                'grpc' => [
+                    'stubOpts' => [
+                        'credentials' => ChannelCredentials::createInsecure(),
+                    ],
+                ],
+            ],
+            'credentials' => new InsecureCredentialsWrapper(),
+        ];
     }
 }

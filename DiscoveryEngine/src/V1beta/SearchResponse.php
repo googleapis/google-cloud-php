@@ -99,6 +99,10 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     private $applied_controls;
     /**
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.GeoSearchDebugInfo geo_search_debug_info = 16;</code>
+     */
+    private $geo_search_debug_info;
+    /**
      * Query expansion information for the returned results.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
@@ -152,6 +156,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           is set.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_controls
      *           Controls applied as part of the Control service.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\GeoSearchDebugInfo>|\Google\Protobuf\Internal\RepeatedField $geo_search_debug_info
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\QueryExpansionInfo $query_expansion_info
      *           Query expansion information for the returned results.
      * }
@@ -479,6 +484,28 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->applied_controls = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.GeoSearchDebugInfo geo_search_debug_info = 16;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getGeoSearchDebugInfo()
+    {
+        return $this->geo_search_debug_info;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchResponse.GeoSearchDebugInfo geo_search_debug_info = 16;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\GeoSearchDebugInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setGeoSearchDebugInfo($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1beta\SearchResponse\GeoSearchDebugInfo::class);
+        $this->geo_search_debug_info = $arr;
 
         return $this;
     }

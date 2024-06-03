@@ -51,11 +51,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\SslPoliciesClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface aggregatedListAsync(AggregatedListSslPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteAsync(DeleteSslPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getAsync(GetSslPolicyRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class SslPoliciesClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.SslPolicies';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -114,8 +116,8 @@ final class SslPoliciesClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements ClientOptionsTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -147,6 +149,9 @@ final class SslPoliciesClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
+            'cancelOperationRequest' => null,
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
         ];
     }
 
@@ -239,7 +244,7 @@ final class SslPoliciesClient
     }
 
     /**
-     * Retrieves the list of all SslPolicy resources, regional and global, available to the specified project.
+     * Retrieves the list of all SslPolicy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
      *
      * The async variant is {@see SslPoliciesClient::aggregatedListAsync()} .
      *

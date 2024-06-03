@@ -66,11 +66,29 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     private $enable = null;
     /**
-     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
+     */
+    private $enable_ipv4 = null;
+    /**
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      */
     private $enable_ipv6 = null;
+    /**
+     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *
+     * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
+     */
+    private $export_policies;
+    /**
+     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *
+     * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
+     */
+    private $import_policies;
     /**
      * Name of the interface the BGP peer is associated with.
      *
@@ -78,11 +96,17 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     private $interface_name = null;
     /**
-     * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
+     * IP address of the interface inside Google Cloud Platform.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     private $ip_address = null;
+    /**
+     * IPv4 address of the interface inside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string ipv4_nexthop_address = 5703377;</code>
+     */
+    private $ipv4_nexthop_address = null;
     /**
      * IPv6 address of the interface inside Google Cloud Platform.
      *
@@ -115,11 +139,17 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     private $peer_asn = null;
     /**
-     * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
+     * IP address of the BGP interface outside Google Cloud Platform.
      *
      * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      */
     private $peer_ip_address = null;
+    /**
+     * IPv4 address of the BGP interface outside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv4_nexthop_address = 469221774;</code>
+     */
+    private $peer_ipv4_nexthop_address = null;
     /**
      * IPv6 address of the BGP interface outside Google Cloud Platform.
      *
@@ -158,12 +188,20 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type string $enable
      *           The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      *           Check the Enable enum for the list of possible values.
+     *     @type bool $enable_ipv4
+     *           Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
      *     @type bool $enable_ipv6
-     *           Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     *           Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $export_policies
+     *           List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $import_policies
+     *           List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
      *     @type string $interface_name
      *           Name of the interface the BGP peer is associated with.
      *     @type string $ip_address
-     *           IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
+     *           IP address of the interface inside Google Cloud Platform.
+     *     @type string $ipv4_nexthop_address
+     *           IPv4 address of the interface inside Google Cloud Platform.
      *     @type string $ipv6_nexthop_address
      *           IPv6 address of the interface inside Google Cloud Platform.
      *     @type string $management_type
@@ -176,7 +214,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type int $peer_asn
      *           Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *     @type string $peer_ip_address
-     *           IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
+     *           IP address of the BGP interface outside Google Cloud Platform.
+     *     @type string $peer_ipv4_nexthop_address
+     *           IPv4 address of the BGP interface outside Google Cloud Platform.
      *     @type string $peer_ipv6_nexthop_address
      *           IPv6 address of the BGP interface outside Google Cloud Platform.
      *     @type string $router_appliance_instance
@@ -453,7 +493,43 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
+     * @return bool
+     */
+    public function getEnableIpv4()
+    {
+        return isset($this->enable_ipv4) ? $this->enable_ipv4 : false;
+    }
+
+    public function hasEnableIpv4()
+    {
+        return isset($this->enable_ipv4);
+    }
+
+    public function clearEnableIpv4()
+    {
+        unset($this->enable_ipv4);
+    }
+
+    /**
+     * Enable IPv4 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 4.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv4 = 181467937;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableIpv4($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_ipv4 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      * @return bool
@@ -474,7 +550,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     * Enable IPv6 traffic over BGP Peer. It is enabled by default if the peerIpAddress is version 6.
      *
      * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
      * @param bool $var
@@ -484,6 +560,58 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_ipv6 = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *
+     * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExportPolicies()
+    {
+        return $this->export_policies;
+    }
+
+    /**
+     * List of export policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_EXPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *
+     * Generated from protobuf field <code>repeated string export_policies = 134084987;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExportPolicies($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->export_policies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *
+     * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getImportPolicies()
+    {
+        return $this->import_policies;
+    }
+
+    /**
+     * List of import policies applied to this peer, in the order they must be evaluated. The name must correspond to an existing policy that has ROUTE_POLICY_TYPE_IMPORT type. Note that Route Policies are currently available in preview. Please use Beta API to use Route Policies.
+     *
+     * Generated from protobuf field <code>repeated string import_policies = 451147946;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setImportPolicies($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->import_policies = $arr;
 
         return $this;
     }
@@ -525,7 +653,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
+     * IP address of the interface inside Google Cloud Platform.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @return string
@@ -546,7 +674,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
+     * IP address of the interface inside Google Cloud Platform.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @param string $var
@@ -556,6 +684,42 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * IPv4 address of the interface inside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string ipv4_nexthop_address = 5703377;</code>
+     * @return string
+     */
+    public function getIpv4NexthopAddress()
+    {
+        return isset($this->ipv4_nexthop_address) ? $this->ipv4_nexthop_address : '';
+    }
+
+    public function hasIpv4NexthopAddress()
+    {
+        return isset($this->ipv4_nexthop_address);
+    }
+
+    public function clearIpv4NexthopAddress()
+    {
+        unset($this->ipv4_nexthop_address);
+    }
+
+    /**
+     * IPv4 address of the interface inside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string ipv4_nexthop_address = 5703377;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv4NexthopAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv4_nexthop_address = $var;
 
         return $this;
     }
@@ -743,7 +907,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
+     * IP address of the BGP interface outside Google Cloud Platform.
      *
      * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      * @return string
@@ -764,7 +928,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
+     * IP address of the BGP interface outside Google Cloud Platform.
      *
      * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      * @param string $var
@@ -774,6 +938,42 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->peer_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * IPv4 address of the BGP interface outside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv4_nexthop_address = 469221774;</code>
+     * @return string
+     */
+    public function getPeerIpv4NexthopAddress()
+    {
+        return isset($this->peer_ipv4_nexthop_address) ? $this->peer_ipv4_nexthop_address : '';
+    }
+
+    public function hasPeerIpv4NexthopAddress()
+    {
+        return isset($this->peer_ipv4_nexthop_address);
+    }
+
+    public function clearPeerIpv4NexthopAddress()
+    {
+        unset($this->peer_ipv4_nexthop_address);
+    }
+
+    /**
+     * IPv4 address of the BGP interface outside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv4_nexthop_address = 469221774;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeerIpv4NexthopAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peer_ipv4_nexthop_address = $var;
 
         return $this;
     }

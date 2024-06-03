@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -27,6 +47,18 @@ return [
             ],
         ],
         'google.cloud.translation.v3.TranslationService' => [
+            'AdaptiveMtTranslate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}:adaptiveMtTranslate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchTranslateDocument' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{parent=projects/*/locations/*}:batchTranslateDocument',
@@ -51,6 +83,18 @@ return [
                     ],
                 ],
             ],
+            'CreateAdaptiveMtDataset' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/adaptiveMtDatasets',
+                'body' => 'adaptive_mt_dataset',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateGlossary' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{parent=projects/*/locations/*}/glossaries',
@@ -59,6 +103,28 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAdaptiveMtDataset' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/adaptiveMtDatasets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAdaptiveMtFile' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/adaptiveMtDatasets/*/adaptiveMtFiles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -93,6 +159,28 @@ return [
                     ],
                 ],
             ],
+            'GetAdaptiveMtDataset' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/adaptiveMtDatasets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAdaptiveMtFile' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/adaptiveMtDatasets/*/adaptiveMtFiles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetGlossary' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*}',
@@ -111,6 +199,57 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v3/{parent=projects/*}/supportedLanguages',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportAdaptiveMtFile' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/adaptiveMtDatasets/*}:importAdaptiveMtFile',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAdaptiveMtDatasets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/adaptiveMtDatasets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAdaptiveMtFiles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/adaptiveMtDatasets/*}/adaptiveMtFiles',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAdaptiveMtSentences' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*/adaptiveMtDatasets/*/adaptiveMtFiles/*}/adaptiveMtSentences',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v3/{parent=projects/*/locations/*/adaptiveMtDatasets/*}/adaptiveMtSentences',
                     ],
                 ],
                 'placeholders' => [

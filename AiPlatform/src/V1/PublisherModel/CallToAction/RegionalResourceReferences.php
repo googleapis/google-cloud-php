@@ -23,11 +23,29 @@ class RegionalResourceReferences extends \Google\Protobuf\Internal\Message
      */
     private $references;
     /**
-     * Required. The title of the regional resource reference.
+     * Required.
      *
      * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $title = '';
+    /**
+     * Optional. Title of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_title = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_title = null;
+    /**
+     * Optional. Use case (CUJ) of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_use_case = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_use_case = null;
+    /**
+     * Optional. Description of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_description = null;
 
     /**
      * Constructor.
@@ -38,7 +56,13 @@ class RegionalResourceReferences extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $references
      *           Required.
      *     @type string $title
-     *           Required. The title of the regional resource reference.
+     *           Required.
+     *     @type string $resource_title
+     *           Optional. Title of the resource.
+     *     @type string $resource_use_case
+     *           Optional. Use case (CUJ) of the resource.
+     *     @type string $resource_description
+     *           Optional. Description of the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +97,7 @@ class RegionalResourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The title of the regional resource reference.
+     * Required.
      *
      * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -84,7 +108,7 @@ class RegionalResourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The title of the regional resource reference.
+     * Required.
      *
      * Generated from protobuf field <code>string title = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -94,6 +118,114 @@ class RegionalResourceReferences extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Title of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_title = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getResourceTitle()
+    {
+        return isset($this->resource_title) ? $this->resource_title : '';
+    }
+
+    public function hasResourceTitle()
+    {
+        return isset($this->resource_title);
+    }
+
+    public function clearResourceTitle()
+    {
+        unset($this->resource_title);
+    }
+
+    /**
+     * Optional. Title of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_title = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceTitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Use case (CUJ) of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_use_case = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getResourceUseCase()
+    {
+        return isset($this->resource_use_case) ? $this->resource_use_case : '';
+    }
+
+    public function hasResourceUseCase()
+    {
+        return isset($this->resource_use_case);
+    }
+
+    public function clearResourceUseCase()
+    {
+        unset($this->resource_use_case);
+    }
+
+    /**
+     * Optional. Use case (CUJ) of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_use_case = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceUseCase($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_use_case = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Description of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getResourceDescription()
+    {
+        return isset($this->resource_description) ? $this->resource_description : '';
+    }
+
+    public function hasResourceDescription()
+    {
+        return isset($this->resource_description);
+    }
+
+    public function clearResourceDescription()
+    {
+        unset($this->resource_description);
+    }
+
+    /**
+     * Optional. Description of the resource.
+     *
+     * Generated from protobuf field <code>optional string resource_description = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_description = $var;
 
         return $this;
     }

@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -6,6 +26,63 @@ return [
             'CreateActiveDirectory' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetApp\V1\ActiveDirectory',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateBackup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\Backup',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateBackupPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\BackupPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateBackupVault' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\BackupVault',
                     'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -118,6 +195,63 @@ return [
                 ],
             ],
             'DeleteActiveDirectory' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackupVault' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
@@ -346,6 +480,66 @@ return [
                     ],
                 ],
             ],
+            'UpdateBackup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\Backup',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup.name',
+                        'fieldAccessors' => [
+                            'getBackup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackupPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\BackupPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup_policy.name',
+                        'fieldAccessors' => [
+                            'getBackupPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackupVault' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\BackupVault',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'backup_vault.name',
+                        'fieldAccessors' => [
+                            'getBackupVault',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateKmsConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetApp\V1\KmsConfig',
@@ -458,6 +652,42 @@ return [
                     ],
                 ],
             ],
+            'GetBackup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\Backup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\BackupPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupVault' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\BackupVault',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetKmsConfig' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetApp\V1\KmsConfig',
@@ -529,6 +759,66 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\NetApp\V1\ListActiveDirectoriesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackupPolicies',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ListBackupPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupVaults' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackupVaults',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ListBackupVaultsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackups',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ListBackupsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -686,6 +976,9 @@ return [
             ],
             'templateMap' => [
                 'activeDirectory' => 'projects/{project}/locations/{location}/activeDirectories/{active_directory}',
+                'backup' => 'projects/{project}/locations/{location}/backupVaults/{backup_vault}/backups/{backup}',
+                'backupPolicy' => 'projects/{project}/locations/{location}/backupPolicies/{backup_policy}',
+                'backupVault' => 'projects/{project}/locations/{location}/backupVaults/{backup_vault}',
                 'kmsConfig' => 'projects/{project}/locations/{location}/kmsConfigs/{kms_config}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',

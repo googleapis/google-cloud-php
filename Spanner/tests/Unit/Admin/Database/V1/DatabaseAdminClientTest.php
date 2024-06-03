@@ -728,7 +728,9 @@ class DatabaseAdminClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $protoDescriptors = '13';
         $expectedResponse = new GetDatabaseDdlResponse();
+        $expectedResponse->setProtoDescriptors($protoDescriptors);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');

@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -44,6 +64,25 @@ return [
             'CreateSlate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\Slate',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateVodConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\VodConfig',
                     'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -117,6 +156,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteVodConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateCdnKey' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\CdnKey',
@@ -137,6 +195,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateLiveConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\LiveConfig',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'live_config.name',
+                        'fieldAccessors' => [
+                            'getLiveConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSlate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\Slate',
@@ -152,6 +230,26 @@ return [
                         'keyName' => 'slate.name',
                         'fieldAccessors' => [
                             'getSlate',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateVodConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Video\Stitcher\V1\VodConfig',
+                    'metadataReturnType' => '\Google\Cloud\Video\Stitcher\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'vod_config.name',
+                        'fieldAccessors' => [
+                            'getVodConfig',
                             'getName',
                         ],
                     ],
@@ -244,6 +342,18 @@ return [
             'GetVodAdTagDetail' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Video\Stitcher\V1\VodAdTagDetail',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetVodConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Video\Stitcher\V1\VodConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -377,6 +487,26 @@ return [
                     ],
                 ],
             ],
+            'ListVodConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getVodConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Video\Stitcher\V1\ListVodConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListVodStitchDetails' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -405,6 +535,7 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'slate' => 'projects/{project}/locations/{location}/slates/{slate}',
                 'vodAdTagDetail' => 'projects/{project}/locations/{location}/vodSessions/{vod_session}/vodAdTagDetails/{vod_ad_tag_detail}',
+                'vodConfig' => 'projects/{project}/locations/{location}/vodConfigs/{vod_config}',
                 'vodSession' => 'projects/{project}/locations/{location}/vodSessions/{vod_session}',
                 'vodStitchDetail' => 'projects/{project}/locations/{location}/vodSessions/{vod_session}/vodStitchDetails/{vod_stitch_detail}',
             ],

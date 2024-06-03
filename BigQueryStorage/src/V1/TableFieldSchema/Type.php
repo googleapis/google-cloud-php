@@ -107,6 +107,12 @@ class Type
      * Generated from protobuf enum <code>JSON = 15;</code>
      */
     const JSON = 15;
+    /**
+     * RANGE
+     *
+     * Generated from protobuf enum <code>RANGE = 16;</code>
+     */
+    const RANGE = 16;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -125,6 +131,7 @@ class Type
         self::BIGNUMERIC => 'BIGNUMERIC',
         self::INTERVAL => 'INTERVAL',
         self::JSON => 'JSON',
+        self::RANGE => 'RANGE',
     ];
 
     public static function name($value)

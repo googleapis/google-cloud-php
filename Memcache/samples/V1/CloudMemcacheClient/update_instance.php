@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memcache_v1_generated_CloudMemcache_UpdateInstance_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
 use Google\Cloud\Memcache\V1\Instance;
 use Google\Cloud\Memcache\V1\Instance\NodeConfig;
+use Google\Cloud\Memcache\V1\UpdateInstanceRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -55,7 +56,7 @@ function update_instance_sample(
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $instanceNodeConfig = (new NodeConfig())
         ->setCpuCount($instanceNodeConfigCpuCount)
@@ -64,11 +65,14 @@ function update_instance_sample(
         ->setName($instanceName)
         ->setNodeCount($instanceNodeCount)
         ->setNodeConfig($instanceNodeConfig);
+    $request = (new UpdateInstanceRequest())
+        ->setUpdateMask($updateMask)
+        ->setInstance($instance);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $cloudMemcacheClient->updateInstance($updateMask, $instance);
+        $response = $cloudMemcacheClient->updateInstance($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -16,14 +16,15 @@ class Database
         }
         $pool->internalAddGeneratedFile(
             '
-¥
--google/cloud/securitycenter/v1/database.protogoogle.cloud.securitycenter.v1"b
+¶
+-google/cloud/securitycenter/v1/database.protogoogle.cloud.securitycenter.v1"s
 Database
 name (	
 display_name (	
 	user_name (	
 query (	
-grantees (	Bç
+grantees (	
+version (	Bç
 "com.google.cloud.securitycenter.v1BDatabaseProtoPZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 

@@ -23,7 +23,7 @@ class RecommendationService
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì
+¸
 @google/cloud/discoveryengine/v1beta/recommendation_service.proto#google.cloud.discoveryengine.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/discoveryengine/v1beta/document.proto4google/cloud/discoveryengine/v1beta/user_event.protogoogle/protobuf/struct.proto"å
 RecommendRequestL
 serving_config (	B4‡A˙A.
@@ -53,9 +53,9 @@ user_event (2..google.cloud.discoveryengine.v1beta.UserEventB‡A
 metadata (2Y.google.cloud.discoveryengine.v1beta.RecommendResponse.RecommendationResult.MetadataEntryG
 MetadataEntry
 key (	%
-value (2.google.protobuf.Value:82∫
-RecommendationServiceÃ
-	Recommend5.google.cloud.discoveryengine.v1beta.RecommendRequest6.google.cloud.discoveryengine.v1beta.RecommendResponse"œÇ”‰ì»"W/v1beta/{serving_config=projects/*/locations/*/dataStores/*/servingConfigs/*}:recommend:*Zj"e/v1beta/{serving_config=projects/*/locations/*/collections/*/dataStores/*/servingConfigs/*}:recommend:*R Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB°
+value (2.google.protobuf.Value:82£
+RecommendationServiceµ
+	Recommend5.google.cloud.discoveryengine.v1beta.RecommendRequest6.google.cloud.discoveryengine.v1beta.RecommendResponse"∏Ç”‰ì±"W/v1beta/{serving_config=projects/*/locations/*/dataStores/*/servingConfigs/*}:recommend:*Zj"e/v1beta/{serving_config=projects/*/locations/*/collections/*/dataStores/*/servingConfigs/*}:recommend:*Zg"b/v1beta/{serving_config=projects/*/locations/*/collections/*/engines/*/servingConfigs/*}:recommend:*R Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB°
 \'com.google.cloud.discoveryengine.v1betaBRecommendationServiceProtoPZQcloud.google.com/go/discoveryengine/apiv1beta/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINE™#Google.Cloud.DiscoveryEngine.V1Beta #Google\\Cloud\\DiscoveryEngine\\V1betaÍ&Google::Cloud::DiscoveryEngine::V1betabproto3'
         , true);
 

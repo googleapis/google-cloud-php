@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -190,6 +210,21 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'CreateCalculatedMetric' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/calculatedMetrics',
+                'body' => 'calculated_metric',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'calculated_metric_id',
                 ],
             ],
             'CreateChannelGroup' => [
@@ -435,6 +470,17 @@ return [
             'DeleteAdSenseLink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/adSenseLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteCalculatedMetric' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/calculatedMetrics/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -694,6 +740,17 @@ return [
                     ],
                 ],
             ],
+            'GetCalculatedMetric' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/calculatedMetrics/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetChannelGroup' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/channelGroups/*}',
@@ -914,6 +971,17 @@ return [
                     ],
                 ],
             ],
+            'GetSubpropertyEventFilter' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/subpropertyEventFilters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAccessBindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',
@@ -964,6 +1032,17 @@ return [
             'ListBigQueryLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/bigQueryLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCalculatedMetrics' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/calculatedMetrics',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1149,6 +1228,17 @@ return [
                     ],
                 ],
             ],
+            'ListSubpropertyEventFilters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/subpropertyEventFilters',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ProvisionAccountTicket' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/accounts:provisionAccountTicket',
@@ -1250,6 +1340,22 @@ return [
                     'audience.name' => [
                         'getters' => [
                             'getAudience',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateCalculatedMetric' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{calculated_metric.name=properties/*/calculatedMetrics/*}',
+                'body' => 'calculated_metric',
+                'placeholders' => [
+                    'calculated_metric.name' => [
+                        'getters' => [
+                            'getCalculatedMetric',
                             'getName',
                         ],
                     ],
@@ -1522,6 +1628,22 @@ return [
                     'search_ads_360_link.name' => [
                         'getters' => [
                             'getSearchAds360Link',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSubpropertyEventFilter' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{subproperty_event_filter.name=properties/*/subpropertyEventFilters/*}',
+                'body' => 'subproperty_event_filter',
+                'placeholders' => [
+                    'subproperty_event_filter.name' => [
+                        'getters' => [
+                            'getSubpropertyEventFilter',
                             'getName',
                         ],
                     ],

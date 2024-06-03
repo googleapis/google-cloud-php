@@ -48,6 +48,13 @@ class State
      * Generated from protobuf enum <code>SCHEMA_MISMATCH = 4;</code>
      */
     const SCHEMA_MISMATCH = 4;
+    /**
+     * Cannot write to the destination because enforce_in_transit is set to true
+     * and the destination locations are not in the allowed regions.
+     *
+     * Generated from protobuf enum <code>IN_TRANSIT_LOCATION_RESTRICTION = 5;</code>
+     */
+    const IN_TRANSIT_LOCATION_RESTRICTION = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -55,6 +62,7 @@ class State
         self::PERMISSION_DENIED => 'PERMISSION_DENIED',
         self::NOT_FOUND => 'NOT_FOUND',
         self::SCHEMA_MISMATCH => 'SCHEMA_MISMATCH',
+        self::IN_TRANSIT_LOCATION_RESTRICTION => 'IN_TRANSIT_LOCATION_RESTRICTION',
     ];
 
     public static function name($value)
@@ -78,6 +86,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\PubSub\V1\BigQueryConfig_State::class);
 

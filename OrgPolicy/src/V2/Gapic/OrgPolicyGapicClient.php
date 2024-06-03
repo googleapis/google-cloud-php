@@ -33,15 +33,22 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\OrgPolicy\V2\CreateCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\CreatePolicyRequest;
+use Google\Cloud\OrgPolicy\V2\CustomConstraint;
+use Google\Cloud\OrgPolicy\V2\DeleteCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\DeletePolicyRequest;
+use Google\Cloud\OrgPolicy\V2\GetCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\GetEffectivePolicyRequest;
 use Google\Cloud\OrgPolicy\V2\GetPolicyRequest;
 use Google\Cloud\OrgPolicy\V2\ListConstraintsRequest;
 use Google\Cloud\OrgPolicy\V2\ListConstraintsResponse;
+use Google\Cloud\OrgPolicy\V2\ListCustomConstraintsRequest;
+use Google\Cloud\OrgPolicy\V2\ListCustomConstraintsResponse;
 use Google\Cloud\OrgPolicy\V2\ListPoliciesRequest;
 use Google\Cloud\OrgPolicy\V2\ListPoliciesResponse;
 use Google\Cloud\OrgPolicy\V2\Policy;
+use Google\Cloud\OrgPolicy\V2\UpdateCustomConstraintRequest;
 use Google\Cloud\OrgPolicy\V2\UpdatePolicyRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -49,23 +56,23 @@ use Google\Protobuf\GPBEmpty;
 /**
  * Service Description: An interface for managing organization policies.
  *
- * The Cloud Org Policy service provides a simple mechanism for organizations to
- * restrict the allowed configurations across their entire Cloud Resource
- * hierarchy.
+ * The Organization Policy Service provides a simple mechanism for
+ * organizations to restrict the allowed configurations across their entire
+ * resource hierarchy.
  *
- * You can use a `policy` to configure restrictions in Cloud resources. For
- * example, you can enforce a `policy` that restricts which Google
- * Cloud Platform APIs can be activated in a certain part of your resource
- * hierarchy, or prevents serial port access to VM instances in a particular
- * folder.
+ * You can use a policy to configure restrictions on resources. For
+ * example, you can enforce a policy that restricts which Google
+ * Cloud APIs can be activated in a certain part of your resource
+ * hierarchy, or prevents serial port access to VM instances in a
+ * particular folder.
  *
- * `Policies` are inherited down through the resource hierarchy. A `policy`
+ * Policies are inherited down through the resource hierarchy. A policy
  * applied to a parent resource automatically applies to all its child resources
- * unless overridden with a `policy` lower in the hierarchy.
+ * unless overridden with a policy lower in the hierarchy.
  *
- * A `constraint` defines an aspect of a resource's configuration that can be
- * controlled by an organization's policy administrator. `Policies` are a
- * collection of `constraints` that defines their allowable configuration on a
+ * A constraint defines an aspect of a resource's configuration that can be
+ * controlled by an organization's policy administrator. Policies are a
+ * collection of constraints that defines their allowable configuration on a
  * particular resource and its child resources.
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -74,9 +81,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $orgPolicyClient = new OrgPolicyClient();
  * try {
- *     $formattedParent = $orgPolicyClient->projectName('[PROJECT]');
- *     $policy = new Policy();
- *     $response = $orgPolicyClient->createPolicy($formattedParent, $policy);
+ *     $formattedParent = $orgPolicyClient->organizationName('[ORGANIZATION]');
+ *     $customConstraint = new CustomConstraint();
+ *     $response = $orgPolicyClient->createCustomConstraint($formattedParent, $customConstraint);
  * } finally {
  *     $orgPolicyClient->close();
  * }
@@ -87,8 +94,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\OrgPolicy\V2\Client\OrgPolicyClient}.
  */
 class OrgPolicyGapicClient
 {
@@ -97,8 +103,15 @@ class OrgPolicyGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.orgpolicy.v2.OrgPolicy';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'orgpolicy.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'orgpolicy.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -110,6 +123,8 @@ class OrgPolicyGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $customConstraintNameTemplate;
 
     private static $folderNameTemplate;
 
@@ -144,6 +159,15 @@ class OrgPolicyGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getCustomConstraintNameTemplate()
+    {
+        if (self::$customConstraintNameTemplate == null) {
+            self::$customConstraintNameTemplate = new PathTemplate('organizations/{organization}/customConstraints/{custom_constraint}');
+        }
+
+        return self::$customConstraintNameTemplate;
     }
 
     private static function getFolderNameTemplate()
@@ -213,6 +237,7 @@ class OrgPolicyGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'customConstraint' => self::getCustomConstraintNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
                 'folderPolicy' => self::getFolderPolicyNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
@@ -224,6 +249,23 @@ class OrgPolicyGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_constraint resource.
+     *
+     * @param string $organization
+     * @param string $customConstraint
+     *
+     * @return string The formatted custom_constraint resource.
+     */
+    public static function customConstraintName($organization, $customConstraint)
+    {
+        return self::getCustomConstraintNameTemplate()->render([
+            'organization' => $organization,
+            'custom_constraint' => $customConstraint,
+        ]);
     }
 
     /**
@@ -343,6 +385,7 @@ class OrgPolicyGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - customConstraint: organizations/{organization}/customConstraints/{custom_constraint}
      * - folder: folders/{folder}
      * - folderPolicy: folders/{folder}/policies/{policy}
      * - organization: organizations/{organization}
@@ -447,12 +490,61 @@ class OrgPolicyGapicClient
     }
 
     /**
-     * Creates a Policy.
+     * Creates a custom constraint.
+     *
+     * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+     * organization does not exist.
+     * Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
+     * constraint already exists on the given organization.
+     *
+     * Sample code:
+     * ```
+     * $orgPolicyClient = new OrgPolicyClient();
+     * try {
+     *     $formattedParent = $orgPolicyClient->organizationName('[ORGANIZATION]');
+     *     $customConstraint = new CustomConstraint();
+     *     $response = $orgPolicyClient->createCustomConstraint($formattedParent, $customConstraint);
+     * } finally {
+     *     $orgPolicyClient->close();
+     * }
+     * ```
+     *
+     * @param string           $parent           Required. Must be in the following form:
+     *
+     *                                           * `organizations/{organization_id}`
+     * @param CustomConstraint $customConstraint Required. Custom constraint to create.
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\CustomConstraint
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createCustomConstraint($parent, $customConstraint, array $optionalArgs = [])
+    {
+        $request = new CreateCustomConstraintRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setCustomConstraint($customConstraint);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateCustomConstraint', CustomConstraint::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a policy.
      *
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
      * constraint does not exist.
      * Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
-     * policy already exists on the given Cloud resource.
+     * policy already exists on the given Google Cloud resource.
      *
      * Sample code:
      * ```
@@ -466,13 +558,14 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Cloud resource that will parent the new Policy. Must be in
-     *                             one of the following forms:
+     * @param string $parent       Required. The Google Cloud resource that will parent the new policy. Must
+     *                             be in one of the following forms:
+     *
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
      *                             * `organizations/{organization_id}`
-     * @param Policy $policy       Required. `Policy` to create.
+     * @param Policy $policy       Required. Policy to create.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -499,10 +592,51 @@ class OrgPolicyGapicClient
     }
 
     /**
-     * Deletes a Policy.
+     * Deletes a custom constraint.
      *
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
-     * constraint or Org Policy does not exist.
+     * constraint does not exist.
+     *
+     * Sample code:
+     * ```
+     * $orgPolicyClient = new OrgPolicyClient();
+     * try {
+     *     $formattedName = $orgPolicyClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
+     *     $orgPolicyClient->deleteCustomConstraint($formattedName);
+     * } finally {
+     *     $orgPolicyClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the custom constraint to delete.
+     *                             See the custom constraint entry for naming rules.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteCustomConstraint($name, array $optionalArgs = [])
+    {
+        $request = new DeleteCustomConstraintRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteCustomConstraint', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes a policy.
+     *
+     * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+     * constraint or organization policy does not exist.
      *
      * Sample code:
      * ```
@@ -516,10 +650,14 @@ class OrgPolicyGapicClient
      * ```
      *
      * @param string $name         Required. Name of the policy to delete.
-     *                             See `Policy` for naming rules.
+     *                             See the policy entry for naming rules.
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $etag
+     *           Optional. The current etag of policy. If an etag is provided and does not
+     *           match the current etag of the policy, deletion will be blocked and an
+     *           ABORTED error will be returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -534,16 +672,63 @@ class OrgPolicyGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeletePolicy', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
-     * Gets the effective `Policy` on a resource. This is the result of merging
-     * `Policies` in the resource hierarchy and evaluating conditions. The
-     * returned `Policy` will not have an `etag` or `condition` set because it is
-     * a computed `Policy` across multiple resources.
+     * Gets a custom constraint.
+     *
+     * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+     * custom constraint does not exist.
+     *
+     * Sample code:
+     * ```
+     * $orgPolicyClient = new OrgPolicyClient();
+     * try {
+     *     $formattedName = $orgPolicyClient->customConstraintName('[ORGANIZATION]', '[CUSTOM_CONSTRAINT]');
+     *     $response = $orgPolicyClient->getCustomConstraint($formattedName);
+     * } finally {
+     *     $orgPolicyClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the custom constraint. See the custom constraint
+     *                             entry for naming requirements.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\CustomConstraint
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getCustomConstraint($name, array $optionalArgs = [])
+    {
+        $request = new GetCustomConstraintRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetCustomConstraint', CustomConstraint::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets the effective policy on a resource. This is the result of merging
+     * policies in the resource hierarchy and evaluating conditions. The
+     * returned policy will not have an `etag` or `condition` set because it is
+     * an evaluated policy across multiple resources.
      * Subtrees of Resource Manager resource hierarchy with 'under:' prefix will
      * not be expanded.
      *
@@ -558,7 +743,8 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The effective policy to compute. See `Policy` for naming rules.
+     * @param string $name         Required. The effective policy to compute. See
+     *                             [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -584,11 +770,11 @@ class OrgPolicyGapicClient
     }
 
     /**
-     * Gets a `Policy` on a resource.
+     * Gets a policy on a resource.
      *
-     * If no `Policy` is set on the resource, NOT_FOUND is returned. The
+     * If no policy is set on the resource, `NOT_FOUND` is returned. The
      * `etag` value can be used with `UpdatePolicy()` to update a
-     * `Policy` during read-modify-write.
+     * policy during read-modify-write.
      *
      * Sample code:
      * ```
@@ -601,8 +787,8 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the policy. See `Policy` for naming
-     *                             requirements.
+     * @param string $name         Required. Resource name of the policy. See
+     *                             [Policy][google.cloud.orgpolicy.v2.Policy] for naming requirements.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -628,7 +814,7 @@ class OrgPolicyGapicClient
     }
 
     /**
-     * Lists `Constraints` that could be applied on the specified resource.
+     * Lists constraints that could be applied on the specified resource.
      *
      * Sample code:
      * ```
@@ -653,8 +839,9 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The Cloud resource that parents the constraint. Must be in one of
-     *                             the following forms:
+     * @param string $parent       Required. The Google Cloud resource that parents the constraint. Must be in
+     *                             one of the following forms:
+     *
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
@@ -701,7 +888,80 @@ class OrgPolicyGapicClient
     }
 
     /**
-     * Retrieves all of the `Policies` that exist on a particular resource.
+     * Retrieves all of the custom constraints that exist on a particular
+     * organization resource.
+     *
+     * Sample code:
+     * ```
+     * $orgPolicyClient = new OrgPolicyClient();
+     * try {
+     *     $formattedParent = $orgPolicyClient->organizationName('[ORGANIZATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $orgPolicyClient->listCustomConstraints($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $orgPolicyClient->listCustomConstraints($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $orgPolicyClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The target Google Cloud resource that parents the set of custom
+     *                             constraints that will be returned from this call. Must be in one of the
+     *                             following forms:
+     *
+     *                             * `organizations/{organization_id}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listCustomConstraints($parent, array $optionalArgs = [])
+    {
+        $request = new ListCustomConstraintsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListCustomConstraints', $optionalArgs, ListCustomConstraintsResponse::class, $request);
+    }
+
+    /**
+     * Retrieves all of the policies that exist on a particular resource.
      *
      * Sample code:
      * ```
@@ -726,9 +986,10 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The target Cloud resource that parents the set of constraints and
-     *                             policies that will be returned from this call. Must be in one of the
-     *                             following forms:
+     * @param string $parent       Required. The target Google Cloud resource that parents the set of
+     *                             constraints and policies that will be returned from this call. Must be in
+     *                             one of the following forms:
+     *
      *                             * `projects/{project_number}`
      *                             * `projects/{project_id}`
      *                             * `folders/{folder_id}`
@@ -775,7 +1036,52 @@ class OrgPolicyGapicClient
     }
 
     /**
-     * Updates a Policy.
+     * Updates a custom constraint.
+     *
+     * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+     * constraint does not exist.
+     *
+     * Note: the supplied policy will perform a full overwrite of all
+     * fields.
+     *
+     * Sample code:
+     * ```
+     * $orgPolicyClient = new OrgPolicyClient();
+     * try {
+     *     $customConstraint = new CustomConstraint();
+     *     $response = $orgPolicyClient->updateCustomConstraint($customConstraint);
+     * } finally {
+     *     $orgPolicyClient->close();
+     * }
+     * ```
+     *
+     * @param CustomConstraint $customConstraint Required. `CustomConstraint` to update.
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OrgPolicy\V2\CustomConstraint
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateCustomConstraint($customConstraint, array $optionalArgs = [])
+    {
+        $request = new UpdateCustomConstraintRequest();
+        $requestParamHeaders = [];
+        $request->setCustomConstraint($customConstraint);
+        $requestParamHeaders['custom_constraint.name'] = $customConstraint->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateCustomConstraint', CustomConstraint::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a policy.
      *
      * Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
      * constraint or the policy do not exist.
@@ -796,7 +1102,7 @@ class OrgPolicyGapicClient
      * }
      * ```
      *
-     * @param Policy $policy       Required. `Policy` to update.
+     * @param Policy $policy       Required. Policy to update.
      * @param array  $optionalArgs {
      *     Optional.
      *

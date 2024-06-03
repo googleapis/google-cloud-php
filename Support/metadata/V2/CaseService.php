@@ -69,13 +69,13 @@ page_token (	"‡
 case_classifications (2+.google.cloud.support.v2.CaseClassification
 next_page_token (	2Ï
 CaseService¥
-GetCase\'.google.cloud.support.v2.GetCaseRequest.google.cloud.support.v2.Case"R‚Óä“E/v2/{name=projects/*/cases/*}Z$"/v2/{name=organizations/*/cases/*}ÚAname¸
-	ListCases).google.cloud.support.v2.ListCasesRequest*.google.cloud.support.v2.ListCasesResponse"T‚Óä“E/v2/{parent=projects/*}/casesZ$"/v2/{parent=organizations/*}/casesÚAparentÃ
+GetCase\'.google.cloud.support.v2.GetCaseRequest.google.cloud.support.v2.Case"RÚAname‚Óä“E/v2/{name=projects/*/cases/*}Z$"/v2/{name=organizations/*/cases/*}¸
+	ListCases).google.cloud.support.v2.ListCasesRequest*.google.cloud.support.v2.ListCasesResponse"TÚAparent‚Óä“E/v2/{parent=projects/*}/casesZ$"/v2/{parent=organizations/*}/casesÃ
 SearchCases+.google.cloud.support.v2.SearchCasesRequest,.google.cloud.support.v2.SearchCasesResponse"Y‚Óä“S$/v2/{parent=projects/*}/cases:searchZ+)/v2/{parent=organizations/*}/cases:search¾
 
-CreateCase*.google.cloud.support.v2.CreateCaseRequest.google.cloud.support.v2.Case"e‚Óä“Q"/v2/{parent=projects/*}/cases:caseZ*""/v2/{parent=organizations/*}/cases:caseÚAparent,caseÍ
+CreateCase*.google.cloud.support.v2.CreateCaseRequest.google.cloud.support.v2.Case"eÚAparent,case‚Óä“Q"/v2/{parent=projects/*}/cases:caseZ*""/v2/{parent=organizations/*}/cases:caseÍ
 
-UpdateCase*.google.cloud.support.v2.UpdateCaseRequest.google.cloud.support.v2.Case"t‚Óä“[2"/v2/{case.name=projects/*/cases/*}:caseZ/2\'/v2/{case.name=organizations/*/cases/*}:caseÚAcase,update_maskÀ
+UpdateCase*.google.cloud.support.v2.UpdateCaseRequest.google.cloud.support.v2.Case"tÚAcase,update_mask‚Óä“[2"/v2/{case.name=projects/*/cases/*}:caseZ/2\'/v2/{case.name=organizations/*/cases/*}:caseÀ
 EscalateCase,.google.cloud.support.v2.EscalateCaseRequest.google.cloud.support.v2.Case"c‚Óä“]"&/v2/{name=projects/*/cases/*}:escalate:*Z0"+/v2/{name=organizations/*/cases/*}:escalate:*´
 	CloseCase).google.cloud.support.v2.CloseCaseRequest.google.cloud.support.v2.Case"]‚Óä“W"#/v2/{name=projects/*/cases/*}:close:*Z-"(/v2/{name=organizations/*/cases/*}:close:*º
 SearchCaseClassifications9.google.cloud.support.v2.SearchCaseClassificationsRequest:.google.cloud.support.v2.SearchCaseClassificationsResponse"&‚Óä“ /v2/caseClassifications:searchOÊAcloudsupport.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB¹

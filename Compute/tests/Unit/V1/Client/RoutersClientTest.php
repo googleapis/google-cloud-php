@@ -29,12 +29,14 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AggregatedListRoutersRequest;
 use Google\Cloud\Compute\V1\Client\RoutersClient;
 use Google\Cloud\Compute\V1\DeleteRouterRequest;
+use Google\Cloud\Compute\V1\GetNatIpInfoRouterRequest;
 use Google\Cloud\Compute\V1\GetNatMappingInfoRoutersRequest;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\GetRouterRequest;
 use Google\Cloud\Compute\V1\GetRouterStatusRouterRequest;
 use Google\Cloud\Compute\V1\InsertRouterRequest;
 use Google\Cloud\Compute\V1\ListRoutersRequest;
+use Google\Cloud\Compute\V1\NatIpInfoResponse;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
@@ -367,6 +369,80 @@ class RoutersClientTest extends GeneratedTest
             ->setRouter($router);
         try {
             $gapicClient->get($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getNatIpInfoTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new NatIpInfoResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $router = 'router-925132983';
+        $request = (new GetNatIpInfoRouterRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRouter($router);
+        $response = $gapicClient->getNatIpInfo($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Routers/GetNatIpInfo', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getRouter();
+        $this->assertProtobufEquals($router, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getNatIpInfoExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $router = 'router-925132983';
+        $request = (new GetNatIpInfoRouterRequest())
+            ->setProject($project)
+            ->setRegion($region)
+            ->setRouter($router);
+        try {
+            $gapicClient->getNatIpInfo($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

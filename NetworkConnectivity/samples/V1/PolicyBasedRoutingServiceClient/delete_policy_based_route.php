@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_PolicyBasedRoutingService_DeletePolicyBasedRoute_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\PolicyBasedRoutingServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\DeletePolicyBasedRouteRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_policy_based_route_sample(string $formattedName): void
     // Create a client.
     $policyBasedRoutingServiceClient = new PolicyBasedRoutingServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeletePolicyBasedRouteRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $policyBasedRoutingServiceClient->deletePolicyBasedRoute($formattedName);
+        $response = $policyBasedRoutingServiceClient->deletePolicyBasedRoute($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

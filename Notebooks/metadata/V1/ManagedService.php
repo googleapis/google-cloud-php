@@ -97,31 +97,31 @@ request_id (	"p
  notebooks.googleapis.com/RuntimeK
 diagnostic_config (2+.google.cloud.notebooks.v1.DiagnosticConfigBàA2Ò
 ManagedNotebookService®
-ListRuntimes..google.cloud.notebooks.v1.ListRuntimesRequest/.google.cloud.notebooks.v1.ListRuntimesResponse"=‚Óä“.,/v1/{parent=projects/*/locations/*}/runtimesÚAparent›
+ListRuntimes..google.cloud.notebooks.v1.ListRuntimesRequest/.google.cloud.notebooks.v1.ListRuntimesResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/runtimes›
 
-GetRuntime,.google.cloud.notebooks.v1.GetRuntimeRequest".google.cloud.notebooks.v1.Runtime";‚Óä“.,/v1/{name=projects/*/locations/*/runtimes/*}ÚAnameÙ
-CreateRuntime/.google.cloud.notebooks.v1.CreateRuntimeRequest.google.longrunning.Operation"x‚Óä“7",/v1/{parent=projects/*/locations/*}/runtimes:runtimeÚAparent,runtime_id,runtimeÊA
-RuntimeOperationMetadataÛ
-UpdateRuntime/.google.cloud.notebooks.v1.UpdateRuntimeRequest.google.longrunning.Operation"z‚Óä“?24/v1/{runtime.name=projects/*/locations/*/runtimes/*}:runtimeÚAruntime,update_maskÊA
-RuntimeOperationMetadataÉ
-DeleteRuntime/.google.cloud.notebooks.v1.DeleteRuntimeRequest.google.longrunning.Operation"h‚Óä“.*,/v1/{name=projects/*/locations/*/runtimes/*}ÚAnameÊA*
-google.protobuf.EmptyOperationMetadataÂ
-StartRuntime..google.cloud.notebooks.v1.StartRuntimeRequest.google.longrunning.Operation"c‚Óä“7"2/v1/{name=projects/*/locations/*/runtimes/*}:start:*ÚAnameÊA
-RuntimeOperationMetadata¿
-StopRuntime-.google.cloud.notebooks.v1.StopRuntimeRequest.google.longrunning.Operation"b‚Óä“6"1/v1/{name=projects/*/locations/*/runtimes/*}:stop:*ÚAnameÊA
-RuntimeOperationMetadataÅ
-SwitchRuntime/.google.cloud.notebooks.v1.SwitchRuntimeRequest.google.longrunning.Operation"d‚Óä“8"3/v1/{name=projects/*/locations/*/runtimes/*}:switch:*ÚAnameÊA
-RuntimeOperationMetadataÂ
-ResetRuntime..google.cloud.notebooks.v1.ResetRuntimeRequest.google.longrunning.Operation"c‚Óä“7"2/v1/{name=projects/*/locations/*/runtimes/*}:reset:*ÚAnameÊA
-RuntimeOperationMetadataÈ
-UpgradeRuntime0.google.cloud.notebooks.v1.UpgradeRuntimeRequest.google.longrunning.Operation"e‚Óä“9"4/v1/{name=projects/*/locations/*/runtimes/*}:upgrade:*ÚAnameÊA
-RuntimeOperationMetadataÔ
-ReportRuntimeEvent4.google.cloud.notebooks.v1.ReportRuntimeEventRequest.google.longrunning.Operation"i‚Óä“="8/v1/{name=projects/*/locations/*/runtimes/*}:reportEvent:*ÚAnameÊA
-RuntimeOperationMetadataþ
-RefreshRuntimeTokenInternal=.google.cloud.notebooks.v1.RefreshRuntimeTokenInternalRequest>.google.cloud.notebooks.v1.RefreshRuntimeTokenInternalResponse"`‚Óä“M"H/v1/{name=projects/*/locations/*/runtimes/*}:refreshRuntimeTokenInternal:*ÚA
-name,vm_idÝ
-DiagnoseRuntime1.google.cloud.notebooks.v1.DiagnoseRuntimeRequest.google.longrunning.Operation"x‚Óä“:"5/v1/{name=projects/*/locations/*/runtimes/*}:diagnose:*ÚAname,diagnostic_configÊA
-RuntimeOperationMetadataLÊAnotebooks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÌ
+GetRuntime,.google.cloud.notebooks.v1.GetRuntimeRequest".google.cloud.notebooks.v1.Runtime";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/runtimes/*}Ù
+CreateRuntime/.google.cloud.notebooks.v1.CreateRuntimeRequest.google.longrunning.Operation"xÊA
+RuntimeOperationMetadataÚAparent,runtime_id,runtime‚Óä“7",/v1/{parent=projects/*/locations/*}/runtimes:runtimeÛ
+UpdateRuntime/.google.cloud.notebooks.v1.UpdateRuntimeRequest.google.longrunning.Operation"zÊA
+RuntimeOperationMetadataÚAruntime,update_mask‚Óä“?24/v1/{runtime.name=projects/*/locations/*/runtimes/*}:runtimeÉ
+DeleteRuntime/.google.cloud.notebooks.v1.DeleteRuntimeRequest.google.longrunning.Operation"hÊA*
+google.protobuf.EmptyOperationMetadataÚAname‚Óä“.*,/v1/{name=projects/*/locations/*/runtimes/*}Â
+StartRuntime..google.cloud.notebooks.v1.StartRuntimeRequest.google.longrunning.Operation"cÊA
+RuntimeOperationMetadataÚAname‚Óä“7"2/v1/{name=projects/*/locations/*/runtimes/*}:start:*¿
+StopRuntime-.google.cloud.notebooks.v1.StopRuntimeRequest.google.longrunning.Operation"bÊA
+RuntimeOperationMetadataÚAname‚Óä“6"1/v1/{name=projects/*/locations/*/runtimes/*}:stop:*Å
+SwitchRuntime/.google.cloud.notebooks.v1.SwitchRuntimeRequest.google.longrunning.Operation"dÊA
+RuntimeOperationMetadataÚAname‚Óä“8"3/v1/{name=projects/*/locations/*/runtimes/*}:switch:*Â
+ResetRuntime..google.cloud.notebooks.v1.ResetRuntimeRequest.google.longrunning.Operation"cÊA
+RuntimeOperationMetadataÚAname‚Óä“7"2/v1/{name=projects/*/locations/*/runtimes/*}:reset:*È
+UpgradeRuntime0.google.cloud.notebooks.v1.UpgradeRuntimeRequest.google.longrunning.Operation"eÊA
+RuntimeOperationMetadataÚAname‚Óä“9"4/v1/{name=projects/*/locations/*/runtimes/*}:upgrade:*Ô
+ReportRuntimeEvent4.google.cloud.notebooks.v1.ReportRuntimeEventRequest.google.longrunning.Operation"iÊA
+RuntimeOperationMetadataÚAname‚Óä“="8/v1/{name=projects/*/locations/*/runtimes/*}:reportEvent:*þ
+RefreshRuntimeTokenInternal=.google.cloud.notebooks.v1.RefreshRuntimeTokenInternalRequest>.google.cloud.notebooks.v1.RefreshRuntimeTokenInternalResponse"`ÚA
+name,vm_id‚Óä“M"H/v1/{name=projects/*/locations/*/runtimes/*}:refreshRuntimeTokenInternal:*Ý
+DiagnoseRuntime1.google.cloud.notebooks.v1.DiagnoseRuntimeRequest.google.longrunning.Operation"xÊA
+RuntimeOperationMetadataÚAname,diagnostic_config‚Óä“:"5/v1/{name=projects/*/locations/*/runtimes/*}:diagnose:*LÊAnotebooks.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÌ
 com.google.cloud.notebooks.v1BManagedNotebooksProtoPZ;cloud.google.com/go/notebooks/apiv1/notebookspb;notebookspbªGoogle.Cloud.Notebooks.V1ÊGoogle\\Cloud\\Notebooks\\V1êGoogle::Cloud::Notebooks::V1bproto3'
         , true);
 

@@ -71,6 +71,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $error = null;
     /**
+     * An Admin API warning message.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ApiWarning api_warning = 19;</code>
+     */
+    private $api_warning = null;
+    /**
      * The type of the operation. Valid values are:
      * *  `CREATE`
      * *  `DELETE`
@@ -132,6 +138,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string target_project = 15;</code>
      */
     private $target_project = '';
+    /**
+     * The context for acquire SSRS lease operation, if applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 20;</code>
+     */
+    private $acquire_ssrs_lease_context = null;
 
     /**
      * Constructor.
@@ -161,6 +173,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1\OperationErrors $error
      *           If errors occurred during processing of this operation, this field will be
      *           populated.
+     *     @type \Google\Cloud\Sql\V1\ApiWarning $api_warning
+     *           An Admin API warning message.
      *     @type int $operation_type
      *           The type of the operation. Valid values are:
      *           *  `CREATE`
@@ -191,6 +205,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           The URI of this resource.
      *     @type string $target_project
      *           The project ID of the target instance related to this operation.
+     *     @type \Google\Cloud\Sql\V1\AcquireSsrsLeaseContext $acquire_ssrs_lease_context
+     *           The context for acquire SSRS lease operation, if applicable.
      * }
      */
     public function __construct($data = NULL) {
@@ -457,6 +473,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * An Admin API warning message.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ApiWarning api_warning = 19;</code>
+     * @return \Google\Cloud\Sql\V1\ApiWarning|null
+     */
+    public function getApiWarning()
+    {
+        return $this->api_warning;
+    }
+
+    public function hasApiWarning()
+    {
+        return isset($this->api_warning);
+    }
+
+    public function clearApiWarning()
+    {
+        unset($this->api_warning);
+    }
+
+    /**
+     * An Admin API warning message.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.ApiWarning api_warning = 19;</code>
+     * @param \Google\Cloud\Sql\V1\ApiWarning $var
+     * @return $this
+     */
+    public function setApiWarning($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\ApiWarning::class);
+        $this->api_warning = $var;
+
+        return $this;
+    }
+
+    /**
      * The type of the operation. Valid values are:
      * *  `CREATE`
      * *  `DELETE`
@@ -718,6 +770,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->target_project = $var;
+
+        return $this;
+    }
+
+    /**
+     * The context for acquire SSRS lease operation, if applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 20;</code>
+     * @return \Google\Cloud\Sql\V1\AcquireSsrsLeaseContext|null
+     */
+    public function getAcquireSsrsLeaseContext()
+    {
+        return $this->acquire_ssrs_lease_context;
+    }
+
+    public function hasAcquireSsrsLeaseContext()
+    {
+        return isset($this->acquire_ssrs_lease_context);
+    }
+
+    public function clearAcquireSsrsLeaseContext()
+    {
+        unset($this->acquire_ssrs_lease_context);
+    }
+
+    /**
+     * The context for acquire SSRS lease operation, if applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.AcquireSsrsLeaseContext acquire_ssrs_lease_context = 20;</code>
+     * @param \Google\Cloud\Sql\V1\AcquireSsrsLeaseContext $var
+     * @return $this
+     */
+    public function setAcquireSsrsLeaseContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\AcquireSsrsLeaseContext::class);
+        $this->acquire_ssrs_lease_context = $var;
 
         return $this;
     }

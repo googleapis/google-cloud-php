@@ -46,6 +46,27 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string big_query_dataset_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $big_query_dataset_name = '';
+    /**
+     * The user-defined name of the DatasetVersion.
+     * The name can be up to 128 characters long and can consist of any UTF-8
+     * characters.
+     *
+     * Generated from protobuf field <code>string display_name = 7;</code>
+     */
+    private $display_name = '';
+    /**
+     * Required. Output only. Additional information about the DatasetVersion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $metadata = null;
+    /**
+     * Output only. Reference to the public base model last used by the dataset
+     * version. Only set for prompt dataset versions.
+     *
+     * Generated from protobuf field <code>string model_reference = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_reference = '';
 
     /**
      * Constructor.
@@ -64,6 +85,15 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
      *           "overwrite" update happens.
      *     @type string $big_query_dataset_name
      *           Output only. Name of the associated BigQuery dataset.
+     *     @type string $display_name
+     *           The user-defined name of the DatasetVersion.
+     *           The name can be up to 128 characters long and can consist of any UTF-8
+     *           characters.
+     *     @type \Google\Protobuf\Value $metadata
+     *           Required. Output only. Additional information about the DatasetVersion.
+     *     @type string $model_reference
+     *           Output only. Reference to the public base model last used by the dataset
+     *           version. Only set for prompt dataset versions.
      * }
      */
     public function __construct($data = NULL) {
@@ -219,6 +249,100 @@ class DatasetVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->big_query_dataset_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The user-defined name of the DatasetVersion.
+     * The name can be up to 128 characters long and can consist of any UTF-8
+     * characters.
+     *
+     * Generated from protobuf field <code>string display_name = 7;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * The user-defined name of the DatasetVersion.
+     * The name can be up to 128 characters long and can consist of any UTF-8
+     * characters.
+     *
+     * Generated from protobuf field <code>string display_name = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Output only. Additional information about the DatasetVersion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Required. Output only. Additional information about the DatasetVersion.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reference to the public base model last used by the dataset
+     * version. Only set for prompt dataset versions.
+     *
+     * Generated from protobuf field <code>string model_reference = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getModelReference()
+    {
+        return $this->model_reference;
+    }
+
+    /**
+     * Output only. Reference to the public base model last used by the dataset
+     * version. Only set for prompt dataset versions.
+     *
+     * Generated from protobuf field <code>string model_reference = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelReference($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_reference = $var;
 
         return $this;
     }

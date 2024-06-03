@@ -75,6 +75,18 @@ class Processor extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kms_key_name = 8;</code>
      */
     private $kms_key_name = '';
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzs = false;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $satisfies_pzi = false;
 
     /**
      * Constructor.
@@ -105,6 +117,10 @@ class Processor extends \Google\Protobuf\Internal\Message
      *     @type string $kms_key_name
      *           The [KMS key](https://cloud.google.com/security-key-management) used for
      *           encryption and decryption in CMEK scenarios.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
+     *     @type bool $satisfies_pzi
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -362,6 +378,58 @@ class Processor extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzi()
+    {
+        return $this->satisfies_pzi;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzi = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzi($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzi = $var;
 
         return $this;
     }

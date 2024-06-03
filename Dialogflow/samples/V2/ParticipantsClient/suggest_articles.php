@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Participants_SuggestArticles_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dialogflow\V2\ParticipantsClient;
+use Google\Cloud\Dialogflow\V2\Client\ParticipantsClient;
+use Google\Cloud\Dialogflow\V2\SuggestArticlesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 
 /**
@@ -41,10 +42,14 @@ function suggest_articles_sample(string $formattedParent): void
     // Create a client.
     $participantsClient = new ParticipantsClient();
 
+    // Prepare the request message.
+    $request = (new SuggestArticlesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var SuggestArticlesResponse $response */
-        $response = $participantsClient->suggestArticles($formattedParent);
+        $response = $participantsClient->suggestArticles($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

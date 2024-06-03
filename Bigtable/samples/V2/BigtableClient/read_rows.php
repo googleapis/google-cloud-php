@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START bigtable_v2_generated_Bigtable_ReadRows_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
-use Google\Cloud\Bigtable\V2\BigtableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 
 /**
@@ -35,7 +36,8 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
  * atomicity of each row will still be preserved. See the
  * ReadRowsResponse documentation for details.
  *
- * @param string $formattedTableName The unique name of the table from which to read.
+ * @param string $formattedTableName Optional. The unique name of the table from which to read.
+ *
  *                                   Values are of the form
  *                                   `projects/<project>/instances/<instance>/tables/<table>`. Please see
  *                                   {@see BigtableClient::tableName()} for help formatting this field.
@@ -45,10 +47,14 @@ function read_rows_sample(string $formattedTableName): void
     // Create a client.
     $bigtableClient = new BigtableClient();
 
+    // Prepare the request message.
+    $request = (new ReadRowsRequest())
+        ->setTableName($formattedTableName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $bigtableClient->readRows($formattedTableName);
+        $stream = $bigtableClient->readRows($request);
 
         /** @var ReadRowsResponse $element */
         foreach ($stream->readAll() as $element) {

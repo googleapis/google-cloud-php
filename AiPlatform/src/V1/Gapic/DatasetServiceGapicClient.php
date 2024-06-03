@@ -66,6 +66,7 @@ use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsRequest\OrderByAnnotation;
 use Google\Cloud\AIPlatform\V1\SearchDataItemsResponse;
 use Google\Cloud\AIPlatform\V1\UpdateDatasetRequest;
+use Google\Cloud\AIPlatform\V1\UpdateDatasetVersionRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -94,7 +95,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -111,7 +112,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -126,8 +127,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\DatasetServiceClient}.
  */
 class DatasetServiceGapicClient
 {
@@ -136,8 +136,15 @@ class DatasetServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.DatasetService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -568,7 +575,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -585,7 +592,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -645,7 +652,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -662,7 +669,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -947,7 +954,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -964,7 +971,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1191,7 +1198,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1208,7 +1215,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1776,7 +1783,7 @@ class DatasetServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1793,7 +1800,7 @@ class DatasetServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -2062,6 +2069,66 @@ class DatasetServiceGapicClient
         return $this->startCall(
             'UpdateDataset',
             Dataset::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a DatasetVersion.
+     *
+     * Sample code:
+     * ```
+     * $datasetServiceClient = new DatasetServiceClient();
+     * try {
+     *     $datasetVersion = new DatasetVersion();
+     *     $updateMask = new FieldMask();
+     *     $response = $datasetServiceClient->updateDatasetVersion($datasetVersion, $updateMask);
+     * } finally {
+     *     $datasetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param DatasetVersion $datasetVersion Required. The DatasetVersion which replaces the resource on the server.
+     * @param FieldMask      $updateMask     Required. The update mask applies to the resource.
+     *                                       For the `FieldMask` definition, see
+     *                                       [google.protobuf.FieldMask][google.protobuf.FieldMask]. Updatable fields:
+     *
+     *                                       * `display_name`
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\DatasetVersion
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateDatasetVersion(
+        $datasetVersion,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateDatasetVersionRequest();
+        $requestParamHeaders = [];
+        $request->setDatasetVersion($datasetVersion);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'dataset_version.name'
+        ] = $datasetVersion->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateDatasetVersion',
+            DatasetVersion::class,
             $optionalArgs,
             $request
         )->wait();

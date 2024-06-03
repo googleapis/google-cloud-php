@@ -16,6 +16,8 @@ use UnexpectedValueException;
 class SampleMethod
 {
     /**
+     * No sampling.
+     *
      * Generated from protobuf enum <code>SAMPLE_METHOD_UNSPECIFIED = 0;</code>
      */
     const SAMPLE_METHOD_UNSPECIFIED = 0;

@@ -24,16 +24,20 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START secretmanager_v1_generated_SecretManagerService_AddSecretVersion_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\AddSecretVersionRequest;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\SecretManager\V1\SecretVersion;
 
 /**
- * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] containing secret data and attaches
- * it to an existing [Secret][google.cloud.secretmanager.v1.Secret].
+ * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]
+ * containing secret data and attaches it to an existing
+ * [Secret][google.cloud.secretmanager.v1.Secret].
  *
- * @param string $formattedParent The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
- *                                [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;/secrets/*`. Please see
+ * @param string $formattedParent The resource name of the
+ *                                [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+ *                                [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+ *                                `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
  *                                {@see SecretManagerServiceClient::secretName()} for help formatting this field.
  */
 function add_secret_version_sample(string $formattedParent): void
@@ -41,13 +45,16 @@ function add_secret_version_sample(string $formattedParent): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $payload = new SecretPayload();
+    $request = (new AddSecretVersionRequest())
+        ->setParent($formattedParent)
+        ->setPayload($payload);
 
     // Call the API and handle any network failures.
     try {
         /** @var SecretVersion $response */
-        $response = $secretManagerServiceClient->addSecretVersion($formattedParent, $payload);
+        $response = $secretManagerServiceClient->addSecretVersion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

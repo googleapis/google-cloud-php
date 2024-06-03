@@ -19,7 +19,7 @@ class InsertLocalInventoryRequest extends \Google\Protobuf\Internal\Message
      * Required. The account and product where this inventory will be inserted.
      * Format: `accounts/{account}/products/{product}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
@@ -55,7 +55,7 @@ class InsertLocalInventoryRequest extends \Google\Protobuf\Internal\Message
      * Required. The account and product where this inventory will be inserted.
      * Format: `accounts/{account}/products/{product}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -67,7 +67,7 @@ class InsertLocalInventoryRequest extends \Google\Protobuf\Internal\Message
      * Required. The account and product where this inventory will be inserted.
      * Format: `accounts/{account}/products/{product}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

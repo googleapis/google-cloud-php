@@ -16,6 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class StorageMetadataLabel extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Label name.
+     *
      * Generated from protobuf field <code>string key = 1;</code>
      */
     private $key = '';
@@ -27,6 +29,7 @@ class StorageMetadataLabel extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
+     *           Label name.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,6 +38,8 @@ class StorageMetadataLabel extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Label name.
+     *
      * Generated from protobuf field <code>string key = 1;</code>
      * @return string
      */
@@ -44,6 +49,8 @@ class StorageMetadataLabel extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Label name.
+     *
      * Generated from protobuf field <code>string key = 1;</code>
      * @param string $var
      * @return $this

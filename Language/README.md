@@ -17,16 +17,10 @@ entity sentiment analysis, content classification, and syntax analysis. This API
 
 To begin, install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
-Now to install just this component:
+Now install this component:
 
 ```sh
 $ composer require google/cloud-language
-```
-
-Or to install the entire suite of components at once:
-
-```sh
-$ composer require google/cloud
 ```
 
 ### Authentication

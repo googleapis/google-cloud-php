@@ -16,11 +16,12 @@ class Exfiltration
         }
         $pool->internalAddGeneratedFile(
             '
-
-1google/cloud/securitycenter/v1/exfiltration.protogoogle.cloud.securitycenter.v1"Ž
+®
+1google/cloud/securitycenter/v1/exfiltration.protogoogle.cloud.securitycenter.v1"¯
 Exfiltration>
 sources (2-.google.cloud.securitycenter.v1.ExfilResource>
-targets (2-.google.cloud.securitycenter.v1.ExfilResource"1
+targets (2-.google.cloud.securitycenter.v1.ExfilResource
+total_exfiltrated_bytes ("1
 ExfilResource
 name (	
 

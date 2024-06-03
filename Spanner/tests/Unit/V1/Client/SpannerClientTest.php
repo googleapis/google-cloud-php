@@ -384,9 +384,11 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $creatorRole = 'creatorRole-1605962583';
+        $multiplexed = false;
         $expectedResponse = new Session();
         $expectedResponse->setName($name);
         $expectedResponse->setCreatorRole($creatorRole);
+        $expectedResponse->setMultiplexed($multiplexed);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -751,9 +753,11 @@ class SpannerClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $creatorRole = 'creatorRole-1605962583';
+        $multiplexed = false;
         $expectedResponse = new Session();
         $expectedResponse->setName($name2);
         $expectedResponse->setCreatorRole($creatorRole);
+        $expectedResponse->setMultiplexed($multiplexed);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');

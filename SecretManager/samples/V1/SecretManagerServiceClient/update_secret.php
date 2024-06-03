@@ -24,13 +24,14 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START secretmanager_v1_generated_SecretManagerService_UpdateSecret_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecretManager\V1\Replication;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 use Google\Cloud\SecretManager\V1\Secret;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\UpdateSecretRequest;
 use Google\Protobuf\FieldMask;
 
 /**
- * Updates metadata of an existing [Secret][google.cloud.secretmanager.v1.Secret].
+ * Updates metadata of an existing
+ * [Secret][google.cloud.secretmanager.v1.Secret].
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -43,16 +44,17 @@ function update_secret_sample(): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $secretReplication = new Replication();
-    $secret = (new Secret())
-        ->setReplication($secretReplication);
+    // Prepare the request message.
+    $secret = new Secret();
     $updateMask = new FieldMask();
+    $request = (new UpdateSecretRequest())
+        ->setSecret($secret)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var Secret $response */
-        $response = $secretManagerServiceClient->updateSecret($secret, $updateMask);
+        $response = $secretManagerServiceClient->updateSecret($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

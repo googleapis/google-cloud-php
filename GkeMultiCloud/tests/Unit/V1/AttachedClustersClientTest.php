@@ -32,6 +32,7 @@ use Google\Cloud\GkeMultiCloud\V1\AttachedClustersClient;
 use Google\Cloud\GkeMultiCloud\V1\AttachedOidcConfig;
 use Google\Cloud\GkeMultiCloud\V1\AttachedServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\Fleet;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAttachedClusterInstallManifestResponse;
 use Google\Cloud\GkeMultiCloud\V1\ListAttachedClustersResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -348,6 +349,82 @@ class AttachedClustersClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function generateAttachedClusterAgentTokenTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $accessToken = 'accessToken-1938933922';
+        $expiresIn = 833810928;
+        $tokenType = 'tokenType101507520';
+        $expectedResponse = new GenerateAttachedClusterAgentTokenResponse();
+        $expectedResponse->setAccessToken($accessToken);
+        $expectedResponse->setExpiresIn($expiresIn);
+        $expectedResponse->setTokenType($tokenType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedAttachedCluster = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
+        $subjectToken = 'subjectToken454811942';
+        $subjectTokenType = 'subjectTokenType-697160013';
+        $version = 'version351608024';
+        $response = $gapicClient->generateAttachedClusterAgentToken($formattedAttachedCluster, $subjectToken, $subjectTokenType, $version);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.gkemulticloud.v1.AttachedClusters/GenerateAttachedClusterAgentToken', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAttachedCluster();
+        $this->assertProtobufEquals($formattedAttachedCluster, $actualValue);
+        $actualValue = $actualRequestObject->getSubjectToken();
+        $this->assertProtobufEquals($subjectToken, $actualValue);
+        $actualValue = $actualRequestObject->getSubjectTokenType();
+        $this->assertProtobufEquals($subjectTokenType, $actualValue);
+        $actualValue = $actualRequestObject->getVersion();
+        $this->assertProtobufEquals($version, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function generateAttachedClusterAgentTokenExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedAttachedCluster = $gapicClient->attachedClusterName('[PROJECT]', '[LOCATION]', '[ATTACHED_CLUSTER]');
+        $subjectToken = 'subjectToken454811942';
+        $subjectTokenType = 'subjectTokenType-697160013';
+        $version = 'version351608024';
+        try {
+            $gapicClient->generateAttachedClusterAgentToken($formattedAttachedCluster, $subjectToken, $subjectTokenType, $version);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

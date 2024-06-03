@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Instance delete request.
- * Next tag: 7
  *
  * Generated from protobuf message <code>google.cloud.sql.v1.SqlInstancesDeleteRequest</code>
  */

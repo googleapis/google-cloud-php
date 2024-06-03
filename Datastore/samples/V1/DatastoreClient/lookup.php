@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastore_v1_generated_Datastore_Lookup_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Datastore\V1\DatastoreClient;
+use Google\Cloud\Datastore\V1\Client\DatastoreClient;
 use Google\Cloud\Datastore\V1\Key;
+use Google\Cloud\Datastore\V1\LookupRequest;
 use Google\Cloud\Datastore\V1\LookupResponse;
 
 /**
@@ -38,13 +39,16 @@ function lookup_sample(string $projectId): void
     // Create a client.
     $datastoreClient = new DatastoreClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $keys = [new Key()];
+    $request = (new LookupRequest())
+        ->setProjectId($projectId)
+        ->setKeys($keys);
 
     // Call the API and handle any network failures.
     try {
         /** @var LookupResponse $response */
-        $response = $datastoreClient->lookup($projectId, $keys);
+        $response = $datastoreClient->lookup($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

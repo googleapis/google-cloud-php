@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudtasks_v2_generated_CloudTasks_DeleteTask_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Tasks\V2\CloudTasksClient;
+use Google\Cloud\Tasks\V2\Client\CloudTasksClient;
+use Google\Cloud\Tasks\V2\DeleteTaskRequest;
 
 /**
  * Deletes a task.
@@ -42,9 +43,13 @@ function delete_task_sample(string $formattedName): void
     // Create a client.
     $cloudTasksClient = new CloudTasksClient();
 
+    // Prepare the request message.
+    $request = (new DeleteTaskRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $cloudTasksClient->deleteTask($formattedName);
+        $cloudTasksClient->deleteTask($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

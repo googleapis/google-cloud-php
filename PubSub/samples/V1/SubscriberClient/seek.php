@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_Seek_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\SeekRequest;
 use Google\Cloud\PubSub\V1\SeekResponse;
-use Google\Cloud\PubSub\V1\SubscriberClient;
 
 /**
  * Seeks an existing subscription to a point in time or to a given snapshot,
@@ -44,10 +45,14 @@ function seek_sample(string $formattedSubscription): void
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
+    // Prepare the request message.
+    $request = (new SeekRequest())
+        ->setSubscription($formattedSubscription);
+
     // Call the API and handle any network failures.
     try {
         /** @var SeekResponse $response */
-        $response = $subscriberClient->seek($formattedSubscription);
+        $response = $subscriberClient->seek($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

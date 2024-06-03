@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudshell_v1_generated_CloudShellService_GetEnvironment_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Shell\V1\CloudShellServiceClient;
+use Google\Cloud\Shell\V1\Client\CloudShellServiceClient;
 use Google\Cloud\Shell\V1\Environment;
+use Google\Cloud\Shell\V1\GetEnvironmentRequest;
 
 /**
  * Gets an environment. Returns NOT_FOUND if the environment does not exist.
@@ -39,10 +40,14 @@ function get_environment_sample(string $formattedName): void
     // Create a client.
     $cloudShellServiceClient = new CloudShellServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetEnvironmentRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Environment $response */
-        $response = $cloudShellServiceClient->getEnvironment($formattedName);
+        $response = $cloudShellServiceClient->getEnvironment($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

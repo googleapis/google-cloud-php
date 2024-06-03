@@ -45,6 +45,7 @@ use Google\Cloud\Compute\V1\ListXpnHostsProjectsRequest;
 use Google\Cloud\Compute\V1\MoveDiskProjectRequest;
 use Google\Cloud\Compute\V1\MoveInstanceProjectRequest;
 use Google\Cloud\Compute\V1\Project;
+use Google\Cloud\Compute\V1\SetCloudArmorTierProjectRequest;
 use Google\Cloud\Compute\V1\SetCommonInstanceMetadataProjectRequest;
 use Google\Cloud\Compute\V1\SetDefaultNetworkTierProjectRequest;
 use Google\Cloud\Compute\V1\SetUsageExportBucketProjectRequest;
@@ -56,11 +57,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Compute\V1\ProjectsClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface disableXpnHostAsync(DisableXpnHostProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface disableXpnResourceAsync(DisableXpnResourceProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface enableXpnHostAsync(EnableXpnHostProjectRequest $request, array $optionalArgs = [])
@@ -71,6 +67,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface listXpnHostsAsync(ListXpnHostsProjectsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface moveDiskAsync(MoveDiskProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface moveInstanceAsync(MoveInstanceProjectRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface setCloudArmorTierAsync(SetCloudArmorTierProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setCommonInstanceMetadataAsync(SetCommonInstanceMetadataProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setDefaultNetworkTierAsync(SetDefaultNetworkTierProjectRequest $request, array $optionalArgs = [])
  * @method PromiseInterface setUsageExportBucketAsync(SetUsageExportBucketProjectRequest $request, array $optionalArgs = [])
@@ -82,8 +79,15 @@ final class ProjectsClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.compute.v1.Projects';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'compute.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'compute.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -125,8 +129,8 @@ final class ProjectsClient
         return 'rest';
     }
 
-    /** Implements GapicClientTrait::getSupportedTransports. */
-    private static function getSupportedTransports()
+    /** Implements ClientOptionsTrait::supportedTransports. */
+    private static function supportedTransports()
     {
         return [
             'rest',
@@ -158,6 +162,9 @@ final class ProjectsClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
+            'cancelOperationRequest' => null,
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
         ];
     }
 
@@ -487,6 +494,30 @@ final class ProjectsClient
     public function moveInstance(MoveInstanceProjectRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('MoveInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the Cloud Armor tier of the project. To set ENTERPRISE or above the billing account of the project must be subscribed to Cloud Armor Enterprise. See Subscribing to Cloud Armor Enterprise for more information.
+     *
+     * The async variant is {@see ProjectsClient::setCloudArmorTierAsync()} .
+     *
+     * @param SetCloudArmorTierProjectRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setCloudArmorTier(SetCloudArmorTierProjectRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('SetCloudArmorTier', $request, $callOptions)->wait();
     }
 
     /**

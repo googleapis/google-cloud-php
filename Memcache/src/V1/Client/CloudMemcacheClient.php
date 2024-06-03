@@ -75,11 +75,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Memcache\V1\CloudMemcacheClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface applyParametersAsync(ApplyParametersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
@@ -99,8 +94,15 @@ final class CloudMemcacheClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.memcache.v1.CloudMemcache';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'memcache.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'memcache.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -302,6 +304,8 @@ final class CloudMemcacheClient
      *
      * The async variant is {@see CloudMemcacheClient::applyParametersAsync()} .
      *
+     * @example samples/V1/CloudMemcacheClient/apply_parameters.php
+     *
      * @param ApplyParametersRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -325,6 +329,8 @@ final class CloudMemcacheClient
      * Creates a new Instance in a given location.
      *
      * The async variant is {@see CloudMemcacheClient::createInstanceAsync()} .
+     *
+     * @example samples/V1/CloudMemcacheClient/create_instance.php
      *
      * @param CreateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -350,6 +356,8 @@ final class CloudMemcacheClient
      *
      * The async variant is {@see CloudMemcacheClient::deleteInstanceAsync()} .
      *
+     * @example samples/V1/CloudMemcacheClient/delete_instance.php
+     *
      * @param DeleteInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -373,6 +381,8 @@ final class CloudMemcacheClient
      * Gets details of a single Instance.
      *
      * The async variant is {@see CloudMemcacheClient::getInstanceAsync()} .
+     *
+     * @example samples/V1/CloudMemcacheClient/get_instance.php
      *
      * @param GetInstanceRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -398,6 +408,8 @@ final class CloudMemcacheClient
      *
      * The async variant is {@see CloudMemcacheClient::listInstancesAsync()} .
      *
+     * @example samples/V1/CloudMemcacheClient/list_instances.php
+     *
      * @param ListInstancesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -422,6 +434,8 @@ final class CloudMemcacheClient
      *
      * The async variant is {@see CloudMemcacheClient::rescheduleMaintenanceAsync()} .
      *
+     * @example samples/V1/CloudMemcacheClient/reschedule_maintenance.php
+     *
      * @param RescheduleMaintenanceRequest $request     A request to house fields associated with the call.
      * @param array                        $callOptions {
      *     Optional.
@@ -445,6 +459,8 @@ final class CloudMemcacheClient
      * Updates an existing Instance in a given project and location.
      *
      * The async variant is {@see CloudMemcacheClient::updateInstanceAsync()} .
+     *
+     * @example samples/V1/CloudMemcacheClient/update_instance.php
      *
      * @param UpdateInstanceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -473,6 +489,8 @@ final class CloudMemcacheClient
      *
      * The async variant is {@see CloudMemcacheClient::updateParametersAsync()} .
      *
+     * @example samples/V1/CloudMemcacheClient/update_parameters.php
+     *
      * @param UpdateParametersRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -497,6 +515,8 @@ final class CloudMemcacheClient
      *
      * The async variant is {@see CloudMemcacheClient::getLocationAsync()} .
      *
+     * @example samples/V1/CloudMemcacheClient/get_location.php
+     *
      * @param GetLocationRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -520,6 +540,8 @@ final class CloudMemcacheClient
      * Lists information about the supported locations for this service.
      *
      * The async variant is {@see CloudMemcacheClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/CloudMemcacheClient/list_locations.php
      *
      * @param ListLocationsRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

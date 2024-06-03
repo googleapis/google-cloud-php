@@ -1,8 +1,40 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
         'google.cloud.orgpolicy.v2.OrgPolicy' => [
+            'CreateCustomConstraint' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=organizations/*}/customConstraints',
+                'body' => 'custom_constraint',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreatePolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/policies',
@@ -27,6 +59,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteCustomConstraint' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=organizations/*/customConstraints/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeletePolicy' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/policies/*}',
@@ -40,6 +83,17 @@ return [
                         'uriTemplate' => '/v2/{name=organizations/*/policies/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCustomConstraint' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/customConstraints/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -111,6 +165,17 @@ return [
                     ],
                 ],
             ],
+            'ListCustomConstraints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*}/customConstraints',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/policies',
@@ -128,6 +193,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomConstraint' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{custom_constraint.name=organizations/*/customConstraints/*}',
+                'body' => 'custom_constraint',
+                'placeholders' => [
+                    'custom_constraint.name' => [
+                        'getters' => [
+                            'getCustomConstraint',
+                            'getName',
                         ],
                     ],
                 ],

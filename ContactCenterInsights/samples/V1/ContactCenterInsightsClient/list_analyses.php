@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
-use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\Client\ContactCenterInsightsClient;
+use Google\Cloud\ContactCenterInsights\V1\ListAnalysesRequest;
 
 /**
  * Lists analyses.
@@ -39,10 +40,14 @@ function list_analyses_sample(string $formattedParent): void
     // Create a client.
     $contactCenterInsightsClient = new ContactCenterInsightsClient();
 
+    // Prepare the request message.
+    $request = (new ListAnalysesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $contactCenterInsightsClient->listAnalyses($formattedParent);
+        $response = $contactCenterInsightsClient->listAnalyses($request);
 
         /** @var Analysis $element */
         foreach ($response as $element) {

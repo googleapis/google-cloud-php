@@ -36,7 +36,10 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dlp\V2\ActivateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\ByteContentItem;
 use Google\Cloud\Dlp\V2\CancelDlpJobRequest;
+use Google\Cloud\Dlp\V2\ColumnDataProfile;
+use Google\Cloud\Dlp\V2\Connection;
 use Google\Cloud\Dlp\V2\ContentItem;
+use Google\Cloud\Dlp\V2\CreateConnectionRequest;
 use Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
@@ -47,22 +50,28 @@ use Google\Cloud\Dlp\V2\DeidentifyConfig;
 use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
+use Google\Cloud\Dlp\V2\DeleteConnectionRequest;
 use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
 use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\DeleteTableDataProfileRequest;
 use Google\Cloud\Dlp\V2\DiscoveryConfig;
 use Google\Cloud\Dlp\V2\DlpJob;
 use Google\Cloud\Dlp\V2\DlpJobType;
 use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
+use Google\Cloud\Dlp\V2\GetColumnDataProfileRequest;
+use Google\Cloud\Dlp\V2\GetConnectionRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\GetDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetInspectTemplateRequest;
 use Google\Cloud\Dlp\V2\GetJobTriggerRequest;
+use Google\Cloud\Dlp\V2\GetProjectDataProfileRequest;
 use Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest;
+use Google\Cloud\Dlp\V2\GetTableDataProfileRequest;
 use Google\Cloud\Dlp\V2\HybridContentItem;
 use Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest;
 use Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest;
@@ -73,6 +82,10 @@ use Google\Cloud\Dlp\V2\InspectContentResponse;
 use Google\Cloud\Dlp\V2\InspectJobConfig;
 use Google\Cloud\Dlp\V2\InspectTemplate;
 use Google\Cloud\Dlp\V2\JobTrigger;
+use Google\Cloud\Dlp\V2\ListColumnDataProfilesRequest;
+use Google\Cloud\Dlp\V2\ListColumnDataProfilesResponse;
+use Google\Cloud\Dlp\V2\ListConnectionsRequest;
+use Google\Cloud\Dlp\V2\ListConnectionsResponse;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesResponse;
 use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
@@ -85,16 +98,25 @@ use Google\Cloud\Dlp\V2\ListInspectTemplatesRequest;
 use Google\Cloud\Dlp\V2\ListInspectTemplatesResponse;
 use Google\Cloud\Dlp\V2\ListJobTriggersRequest;
 use Google\Cloud\Dlp\V2\ListJobTriggersResponse;
+use Google\Cloud\Dlp\V2\ListProjectDataProfilesRequest;
+use Google\Cloud\Dlp\V2\ListProjectDataProfilesResponse;
 use Google\Cloud\Dlp\V2\ListStoredInfoTypesRequest;
 use Google\Cloud\Dlp\V2\ListStoredInfoTypesResponse;
+use Google\Cloud\Dlp\V2\ListTableDataProfilesRequest;
+use Google\Cloud\Dlp\V2\ListTableDataProfilesResponse;
+use Google\Cloud\Dlp\V2\ProjectDataProfile;
 use Google\Cloud\Dlp\V2\RedactImageRequest;
 use Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig;
 use Google\Cloud\Dlp\V2\RedactImageResponse;
 use Google\Cloud\Dlp\V2\ReidentifyContentRequest;
 use Google\Cloud\Dlp\V2\ReidentifyContentResponse;
 use Google\Cloud\Dlp\V2\RiskAnalysisJobConfig;
+use Google\Cloud\Dlp\V2\SearchConnectionsRequest;
+use Google\Cloud\Dlp\V2\SearchConnectionsResponse;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 use Google\Cloud\Dlp\V2\StoredInfoTypeConfig;
+use Google\Cloud\Dlp\V2\TableDataProfile;
+use Google\Cloud\Dlp\V2\UpdateConnectionRequest;
 use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
@@ -112,7 +134,7 @@ use Google\Protobuf\GPBEmpty;
  * scheduling of data scans on Google Cloud Platform based data sets.
  *
  * To learn more about concepts and find how-to guides see
- * https://cloud.google.com/dlp/docs/.
+ * https://cloud.google.com/sensitive-data-protection/docs/.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -132,8 +154,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Dlp\V2\Client\DlpServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Dlp\V2\Client\DlpServiceClient}.
  */
 class DlpServiceGapicClient
 {
@@ -142,8 +163,15 @@ class DlpServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.privacy.dlp.v2.DlpService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'dlp.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dlp.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -155,6 +183,10 @@ class DlpServiceGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+
+    private static $columnDataProfileNameTemplate;
+
+    private static $connectionNameTemplate;
 
     private static $deidentifyTemplateNameTemplate;
 
@@ -176,15 +208,23 @@ class DlpServiceGapicClient
 
     private static $organizationLocationNameTemplate;
 
+    private static $organizationLocationColumnDataProfileNameTemplate;
+
     private static $organizationLocationDeidentifyTemplateNameTemplate;
 
     private static $organizationLocationInspectTemplateNameTemplate;
 
+    private static $organizationLocationProjectDataProfileNameTemplate;
+
     private static $organizationLocationStoredInfoTypeNameTemplate;
+
+    private static $organizationLocationTableDataProfileNameTemplate;
 
     private static $organizationStoredInfoTypeNameTemplate;
 
     private static $projectNameTemplate;
+
+    private static $projectDataProfileNameTemplate;
 
     private static $projectDeidentifyTemplateNameTemplate;
 
@@ -194,6 +234,8 @@ class DlpServiceGapicClient
 
     private static $projectJobTriggerNameTemplate;
 
+    private static $projectLocationColumnDataProfileNameTemplate;
+
     private static $projectLocationDeidentifyTemplateNameTemplate;
 
     private static $projectLocationDlpJobNameTemplate;
@@ -202,11 +244,17 @@ class DlpServiceGapicClient
 
     private static $projectLocationJobTriggerNameTemplate;
 
+    private static $projectLocationProjectDataProfileNameTemplate;
+
     private static $projectLocationStoredInfoTypeNameTemplate;
+
+    private static $projectLocationTableDataProfileNameTemplate;
 
     private static $projectStoredInfoTypeNameTemplate;
 
     private static $storedInfoTypeNameTemplate;
+
+    private static $tableDataProfileNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -233,6 +281,28 @@ class DlpServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getColumnDataProfileNameTemplate()
+    {
+        if (self::$columnDataProfileNameTemplate == null) {
+            self::$columnDataProfileNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}'
+            );
+        }
+
+        return self::$columnDataProfileNameTemplate;
+    }
+
+    private static function getConnectionNameTemplate()
+    {
+        if (self::$connectionNameTemplate == null) {
+            self::$connectionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/connections/{connection}'
+            );
+        }
+
+        return self::$connectionNameTemplate;
     }
 
     private static function getDeidentifyTemplateNameTemplate()
@@ -345,6 +415,17 @@ class DlpServiceGapicClient
         return self::$organizationLocationNameTemplate;
     }
 
+    private static function getOrganizationLocationColumnDataProfileNameTemplate()
+    {
+        if (self::$organizationLocationColumnDataProfileNameTemplate == null) {
+            self::$organizationLocationColumnDataProfileNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}'
+            );
+        }
+
+        return self::$organizationLocationColumnDataProfileNameTemplate;
+    }
+
     private static function getOrganizationLocationDeidentifyTemplateNameTemplate()
     {
         if (self::$organizationLocationDeidentifyTemplateNameTemplate == null) {
@@ -367,6 +448,17 @@ class DlpServiceGapicClient
         return self::$organizationLocationInspectTemplateNameTemplate;
     }
 
+    private static function getOrganizationLocationProjectDataProfileNameTemplate()
+    {
+        if (self::$organizationLocationProjectDataProfileNameTemplate == null) {
+            self::$organizationLocationProjectDataProfileNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/projectDataProfiles/{project_data_profile}'
+            );
+        }
+
+        return self::$organizationLocationProjectDataProfileNameTemplate;
+    }
+
     private static function getOrganizationLocationStoredInfoTypeNameTemplate()
     {
         if (self::$organizationLocationStoredInfoTypeNameTemplate == null) {
@@ -376,6 +468,17 @@ class DlpServiceGapicClient
         }
 
         return self::$organizationLocationStoredInfoTypeNameTemplate;
+    }
+
+    private static function getOrganizationLocationTableDataProfileNameTemplate()
+    {
+        if (self::$organizationLocationTableDataProfileNameTemplate == null) {
+            self::$organizationLocationTableDataProfileNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/tableDataProfiles/{table_data_profile}'
+            );
+        }
+
+        return self::$organizationLocationTableDataProfileNameTemplate;
     }
 
     private static function getOrganizationStoredInfoTypeNameTemplate()
@@ -396,6 +499,17 @@ class DlpServiceGapicClient
         }
 
         return self::$projectNameTemplate;
+    }
+
+    private static function getProjectDataProfileNameTemplate()
+    {
+        if (self::$projectDataProfileNameTemplate == null) {
+            self::$projectDataProfileNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/projectDataProfiles/{project_data_profile}'
+            );
+        }
+
+        return self::$projectDataProfileNameTemplate;
     }
 
     private static function getProjectDeidentifyTemplateNameTemplate()
@@ -442,6 +556,17 @@ class DlpServiceGapicClient
         return self::$projectJobTriggerNameTemplate;
     }
 
+    private static function getProjectLocationColumnDataProfileNameTemplate()
+    {
+        if (self::$projectLocationColumnDataProfileNameTemplate == null) {
+            self::$projectLocationColumnDataProfileNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/columnDataProfiles/{column_data_profile}'
+            );
+        }
+
+        return self::$projectLocationColumnDataProfileNameTemplate;
+    }
+
     private static function getProjectLocationDeidentifyTemplateNameTemplate()
     {
         if (self::$projectLocationDeidentifyTemplateNameTemplate == null) {
@@ -486,6 +611,17 @@ class DlpServiceGapicClient
         return self::$projectLocationJobTriggerNameTemplate;
     }
 
+    private static function getProjectLocationProjectDataProfileNameTemplate()
+    {
+        if (self::$projectLocationProjectDataProfileNameTemplate == null) {
+            self::$projectLocationProjectDataProfileNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/projectDataProfiles/{project_data_profile}'
+            );
+        }
+
+        return self::$projectLocationProjectDataProfileNameTemplate;
+    }
+
     private static function getProjectLocationStoredInfoTypeNameTemplate()
     {
         if (self::$projectLocationStoredInfoTypeNameTemplate == null) {
@@ -495,6 +631,17 @@ class DlpServiceGapicClient
         }
 
         return self::$projectLocationStoredInfoTypeNameTemplate;
+    }
+
+    private static function getProjectLocationTableDataProfileNameTemplate()
+    {
+        if (self::$projectLocationTableDataProfileNameTemplate == null) {
+            self::$projectLocationTableDataProfileNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/tableDataProfiles/{table_data_profile}'
+            );
+        }
+
+        return self::$projectLocationTableDataProfileNameTemplate;
     }
 
     private static function getProjectStoredInfoTypeNameTemplate()
@@ -519,10 +666,23 @@ class DlpServiceGapicClient
         return self::$storedInfoTypeNameTemplate;
     }
 
+    private static function getTableDataProfileNameTemplate()
+    {
+        if (self::$tableDataProfileNameTemplate == null) {
+            self::$tableDataProfileNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/tableDataProfiles/{table_data_profile}'
+            );
+        }
+
+        return self::$tableDataProfileNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'columnDataProfile' => self::getColumnDataProfileNameTemplate(),
+                'connection' => self::getConnectionNameTemplate(),
                 'deidentifyTemplate' => self::getDeidentifyTemplateNameTemplate(),
                 'discoveryConfig' => self::getDiscoveryConfigNameTemplate(),
                 'dlpJob' => self::getDlpJobNameTemplate(),
@@ -533,26 +693,75 @@ class DlpServiceGapicClient
                 'organizationDeidentifyTemplate' => self::getOrganizationDeidentifyTemplateNameTemplate(),
                 'organizationInspectTemplate' => self::getOrganizationInspectTemplateNameTemplate(),
                 'organizationLocation' => self::getOrganizationLocationNameTemplate(),
+                'organizationLocationColumnDataProfile' => self::getOrganizationLocationColumnDataProfileNameTemplate(),
                 'organizationLocationDeidentifyTemplate' => self::getOrganizationLocationDeidentifyTemplateNameTemplate(),
                 'organizationLocationInspectTemplate' => self::getOrganizationLocationInspectTemplateNameTemplate(),
+                'organizationLocationProjectDataProfile' => self::getOrganizationLocationProjectDataProfileNameTemplate(),
                 'organizationLocationStoredInfoType' => self::getOrganizationLocationStoredInfoTypeNameTemplate(),
+                'organizationLocationTableDataProfile' => self::getOrganizationLocationTableDataProfileNameTemplate(),
                 'organizationStoredInfoType' => self::getOrganizationStoredInfoTypeNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectDataProfile' => self::getProjectDataProfileNameTemplate(),
                 'projectDeidentifyTemplate' => self::getProjectDeidentifyTemplateNameTemplate(),
                 'projectDlpJob' => self::getProjectDlpJobNameTemplate(),
                 'projectInspectTemplate' => self::getProjectInspectTemplateNameTemplate(),
                 'projectJobTrigger' => self::getProjectJobTriggerNameTemplate(),
+                'projectLocationColumnDataProfile' => self::getProjectLocationColumnDataProfileNameTemplate(),
                 'projectLocationDeidentifyTemplate' => self::getProjectLocationDeidentifyTemplateNameTemplate(),
                 'projectLocationDlpJob' => self::getProjectLocationDlpJobNameTemplate(),
                 'projectLocationInspectTemplate' => self::getProjectLocationInspectTemplateNameTemplate(),
                 'projectLocationJobTrigger' => self::getProjectLocationJobTriggerNameTemplate(),
+                'projectLocationProjectDataProfile' => self::getProjectLocationProjectDataProfileNameTemplate(),
                 'projectLocationStoredInfoType' => self::getProjectLocationStoredInfoTypeNameTemplate(),
+                'projectLocationTableDataProfile' => self::getProjectLocationTableDataProfileNameTemplate(),
                 'projectStoredInfoType' => self::getProjectStoredInfoTypeNameTemplate(),
                 'storedInfoType' => self::getStoredInfoTypeNameTemplate(),
+                'tableDataProfile' => self::getTableDataProfileNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * column_data_profile resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $columnDataProfile
+     *
+     * @return string The formatted column_data_profile resource.
+     */
+    public static function columnDataProfileName(
+        $organization,
+        $location,
+        $columnDataProfile
+    ) {
+        return self::getColumnDataProfileNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'column_data_profile' => $columnDataProfile,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a connection
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     *
+     * @return string The formatted connection resource.
+     */
+    public static function connectionName($project, $location, $connection)
+    {
+        return self::getConnectionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+        ]);
     }
 
     /**
@@ -736,6 +945,30 @@ class DlpServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_column_data_profile resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $columnDataProfile
+     *
+     * @return string The formatted organization_location_column_data_profile resource.
+     */
+    public static function organizationLocationColumnDataProfileName(
+        $organization,
+        $location,
+        $columnDataProfile
+    ) {
+        return self::getOrganizationLocationColumnDataProfileNameTemplate()->render(
+            [
+                'organization' => $organization,
+                'location' => $location,
+                'column_data_profile' => $columnDataProfile,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_location_deidentify_template resource.
      *
      * @param string $organization
@@ -784,6 +1017,30 @@ class DlpServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_project_data_profile resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $projectDataProfile
+     *
+     * @return string The formatted organization_location_project_data_profile resource.
+     */
+    public static function organizationLocationProjectDataProfileName(
+        $organization,
+        $location,
+        $projectDataProfile
+    ) {
+        return self::getOrganizationLocationProjectDataProfileNameTemplate()->render(
+            [
+                'organization' => $organization,
+                'location' => $location,
+                'project_data_profile' => $projectDataProfile,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_location_stored_info_type resource.
      *
      * @param string $organization
@@ -802,6 +1059,30 @@ class DlpServiceGapicClient
                 'organization' => $organization,
                 'location' => $location,
                 'stored_info_type' => $storedInfoType,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_table_data_profile resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $tableDataProfile
+     *
+     * @return string The formatted organization_location_table_data_profile resource.
+     */
+    public static function organizationLocationTableDataProfileName(
+        $organization,
+        $location,
+        $tableDataProfile
+    ) {
+        return self::getOrganizationLocationTableDataProfileNameTemplate()->render(
+            [
+                'organization' => $organization,
+                'location' => $location,
+                'table_data_profile' => $tableDataProfile,
             ]
         );
     }
@@ -837,6 +1118,28 @@ class DlpServiceGapicClient
     {
         return self::getProjectNameTemplate()->render([
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_data_profile resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $projectDataProfile
+     *
+     * @return string The formatted project_data_profile resource.
+     */
+    public static function projectDataProfileName(
+        $organization,
+        $location,
+        $projectDataProfile
+    ) {
+        return self::getProjectDataProfileNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'project_data_profile' => $projectDataProfile,
         ]);
     }
 
@@ -909,6 +1212,28 @@ class DlpServiceGapicClient
         return self::getProjectJobTriggerNameTemplate()->render([
             'project' => $project,
             'job_trigger' => $jobTrigger,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_column_data_profile resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $columnDataProfile
+     *
+     * @return string The formatted project_location_column_data_profile resource.
+     */
+    public static function projectLocationColumnDataProfileName(
+        $project,
+        $location,
+        $columnDataProfile
+    ) {
+        return self::getProjectLocationColumnDataProfileNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'column_data_profile' => $columnDataProfile,
         ]);
     }
 
@@ -1004,6 +1329,30 @@ class DlpServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_project_data_profile resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $projectDataProfile
+     *
+     * @return string The formatted project_location_project_data_profile resource.
+     */
+    public static function projectLocationProjectDataProfileName(
+        $project,
+        $location,
+        $projectDataProfile
+    ) {
+        return self::getProjectLocationProjectDataProfileNameTemplate()->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'project_data_profile' => $projectDataProfile,
+            ]
+        );
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_stored_info_type resource.
      *
      * @param string $project
@@ -1021,6 +1370,28 @@ class DlpServiceGapicClient
             'project' => $project,
             'location' => $location,
             'stored_info_type' => $storedInfoType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_table_data_profile resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $tableDataProfile
+     *
+     * @return string The formatted project_location_table_data_profile resource.
+     */
+    public static function projectLocationTableDataProfileName(
+        $project,
+        $location,
+        $tableDataProfile
+    ) {
+        return self::getProjectLocationTableDataProfileNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'table_data_profile' => $tableDataProfile,
         ]);
     }
 
@@ -1059,9 +1430,33 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * table_data_profile resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $tableDataProfile
+     *
+     * @return string The formatted table_data_profile resource.
+     */
+    public static function tableDataProfileName(
+        $organization,
+        $location,
+        $tableDataProfile
+    ) {
+        return self::getTableDataProfileNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'table_data_profile' => $tableDataProfile,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - columnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
+     * - connection: projects/{project}/locations/{location}/connections/{connection}
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
@@ -1072,22 +1467,30 @@ class DlpServiceGapicClient
      * - organizationDeidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - organizationInspectTemplate: organizations/{organization}/inspectTemplates/{inspect_template}
      * - organizationLocation: organizations/{organization}/locations/{location}
+     * - organizationLocationColumnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
      * - organizationLocationDeidentifyTemplate: organizations/{organization}/locations/{location}/deidentifyTemplates/{deidentify_template}
      * - organizationLocationInspectTemplate: organizations/{organization}/locations/{location}/inspectTemplates/{inspect_template}
+     * - organizationLocationProjectDataProfile: organizations/{organization}/locations/{location}/projectDataProfiles/{project_data_profile}
      * - organizationLocationStoredInfoType: organizations/{organization}/locations/{location}/storedInfoTypes/{stored_info_type}
+     * - organizationLocationTableDataProfile: organizations/{organization}/locations/{location}/tableDataProfiles/{table_data_profile}
      * - organizationStoredInfoType: organizations/{organization}/storedInfoTypes/{stored_info_type}
      * - project: projects/{project}
+     * - projectDataProfile: organizations/{organization}/locations/{location}/projectDataProfiles/{project_data_profile}
      * - projectDeidentifyTemplate: projects/{project}/deidentifyTemplates/{deidentify_template}
      * - projectDlpJob: projects/{project}/dlpJobs/{dlp_job}
      * - projectInspectTemplate: projects/{project}/inspectTemplates/{inspect_template}
      * - projectJobTrigger: projects/{project}/jobTriggers/{job_trigger}
+     * - projectLocationColumnDataProfile: projects/{project}/locations/{location}/columnDataProfiles/{column_data_profile}
      * - projectLocationDeidentifyTemplate: projects/{project}/locations/{location}/deidentifyTemplates/{deidentify_template}
      * - projectLocationDlpJob: projects/{project}/locations/{location}/dlpJobs/{dlp_job}
      * - projectLocationInspectTemplate: projects/{project}/locations/{location}/inspectTemplates/{inspect_template}
      * - projectLocationJobTrigger: projects/{project}/locations/{location}/jobTriggers/{job_trigger}
+     * - projectLocationProjectDataProfile: projects/{project}/locations/{location}/projectDataProfiles/{project_data_profile}
      * - projectLocationStoredInfoType: projects/{project}/locations/{location}/storedInfoTypes/{stored_info_type}
+     * - projectLocationTableDataProfile: projects/{project}/locations/{location}/tableDataProfiles/{table_data_profile}
      * - projectStoredInfoType: projects/{project}/storedInfoTypes/{stored_info_type}
      * - storedInfoType: organizations/{organization}/storedInfoTypes/{stored_info_type}
+     * - tableDataProfile: organizations/{organization}/locations/{location}/tableDataProfiles/{table_data_profile}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -1242,8 +1645,11 @@ class DlpServiceGapicClient
      * Starts asynchronous cancellation on a long-running DlpJob. The server
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
-     * See https://cloud.google.com/dlp/docs/inspecting-storage and
-     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * and
+     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -1289,10 +1695,66 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Create a Connection to an external data source.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $connection = new Connection();
+     *     $response = $dlpServiceClient->createConnection($formattedParent, $connection);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. Parent resource name in the format:
+     *                                 `projects/{project}/locations/{location}`.
+     * @param Connection $connection   Required. The connection resource.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\Connection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createConnection(
+        $parent,
+        $connection,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setConnection($connection);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateConnection',
+            Connection::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a DeidentifyTemplate for reusing frequently used configuration
      * for de-identifying content, images, and storage.
-     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
-     * more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -1310,7 +1772,7 @@ class DlpServiceGapicClient
      *
      *                                               The format of this value varies depending on the scope of the request
      *                                               (project or organization) and whether you have [specified a processing
-     *                                               location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                                               location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                                               + Projects scope, location specified:<br/>
      *                                               `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1453,8 +1915,11 @@ class DlpServiceGapicClient
 
     /**
      * Creates a new job to inspect storage or calculate risk metrics.
-     * See https://cloud.google.com/dlp/docs/inspecting-storage and
-     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * and
+     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * to learn more.
      *
      * When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
      * system will automatically choose what detectors to run. By default this may
@@ -1475,7 +1940,7 @@ class DlpServiceGapicClient
      *
      *                             The format of this value varies depending on whether you have [specified a
      *                             processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                             + Projects scope, location specified:<br/>
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1553,7 +2018,9 @@ class DlpServiceGapicClient
     /**
      * Creates an InspectTemplate for reusing frequently used configuration
      * for inspecting content, images, and storage.
-     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -1571,7 +2038,7 @@ class DlpServiceGapicClient
      *
      *                                         The format of this value varies depending on the scope of the request
      *                                         (project or organization) and whether you have [specified a processing
-     *                                         location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                                         location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                                         + Projects scope, location specified:<br/>
      *                                         `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1643,7 +2110,9 @@ class DlpServiceGapicClient
     /**
      * Creates a job trigger to run DLP actions such as scanning storage for
      * sensitive information on a set schedule.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -1661,7 +2130,7 @@ class DlpServiceGapicClient
      *
      *                                 The format of this value varies depending on whether you have [specified a
      *                                 processing
-     *                                 location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                                 location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                                 + Projects scope, location specified:<br/>
      *                                 `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1728,8 +2197,9 @@ class DlpServiceGapicClient
 
     /**
      * Creates a pre-built stored infoType to be used for inspection.
-     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
-     * learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -1747,7 +2217,7 @@ class DlpServiceGapicClient
      *
      *                                           The format of this value varies depending on the scope of the request
      *                                           (project or organization) and whether you have [specified a processing
-     *                                           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                                           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                                           + Projects scope, location specified:<br/>
      *                                           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1819,8 +2289,9 @@ class DlpServiceGapicClient
     /**
      * De-identifies potentially sensitive info from a ContentItem.
      * This method has limits on input size and output size.
-     * See https://cloud.google.com/dlp/docs/deidentify-sensitive-data to
-     * learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
+     * to learn more.
      *
      * When no InfoTypes or CustomInfoTypes are specified in this request, the
      * system will automatically choose what detectors to run. By default this may
@@ -1844,7 +2315,7 @@ class DlpServiceGapicClient
      *
      *           The format of this value varies depending on whether you have [specified a
      *           processing
-     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *           + Projects scope, location specified:<br/>
      *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1949,9 +2420,57 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Delete a Connection.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $dlpServiceClient->deleteConnection($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the Connection to be deleted, in the format:
+     *                             `projects/{project}/locations/{location}/connections/{connection}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteConnection($name, array $optionalArgs = [])
+    {
+        $request = new DeleteConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteConnection',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Deletes a DeidentifyTemplate.
-     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
-     * more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2050,8 +2569,11 @@ class DlpServiceGapicClient
      * Deletes a long-running DlpJob. This method indicates that the client is
      * no longer interested in the DlpJob result. The job will be canceled if
      * possible.
-     * See https://cloud.google.com/dlp/docs/inspecting-storage and
-     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * and
+     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2098,7 +2620,9 @@ class DlpServiceGapicClient
 
     /**
      * Deletes an InspectTemplate.
-     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2147,7 +2671,9 @@ class DlpServiceGapicClient
 
     /**
      * Deletes a job trigger.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2195,8 +2721,9 @@ class DlpServiceGapicClient
 
     /**
      * Deletes a stored infoType.
-     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
-     * learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2244,6 +2771,53 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Delete a TableDataProfile. Will not prevent the profile from being
+     * regenerated if the table is still included in a discovery configuration.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->tableDataProfileName('[ORGANIZATION]', '[LOCATION]', '[TABLE_DATA_PROFILE]');
+     *     $dlpServiceClient->deleteTableDataProfile($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name of the table data profile.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteTableDataProfile($name, array $optionalArgs = [])
+    {
+        $request = new DeleteTableDataProfileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteTableDataProfile',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Finish a running hybrid DlpJob. Triggers the finalization steps and running
      * of any enabled actions that have not yet run.
      *
@@ -2258,7 +2832,7 @@ class DlpServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the DlpJob resource to be cancelled.
+     * @param string $name         Required. The name of the DlpJob resource to be finished.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2291,9 +2865,108 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Gets a column data profile.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->columnDataProfileName('[ORGANIZATION]', '[LOCATION]', '[COLUMN_DATA_PROFILE]');
+     *     $response = $dlpServiceClient->getColumnDataProfile($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name, for example
+     *                             `organizations/12345/locations/us/columnDataProfiles/53234423`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\ColumnDataProfile
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getColumnDataProfile($name, array $optionalArgs = [])
+    {
+        $request = new GetColumnDataProfileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetColumnDataProfile',
+            ColumnDataProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get a Connection by name.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $response = $dlpServiceClient->getConnection($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name in the format:
+     *                             `projects/{project}/locations/{location}/connections/{connection}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\Connection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getConnection($name, array $optionalArgs = [])
+    {
+        $request = new GetConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetConnection',
+            Connection::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets a DeidentifyTemplate.
-     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
-     * more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2393,8 +3066,11 @@ class DlpServiceGapicClient
 
     /**
      * Gets the latest state of a long-running DlpJob.
-     * See https://cloud.google.com/dlp/docs/inspecting-storage and
-     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * and
+     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2443,7 +3119,9 @@ class DlpServiceGapicClient
 
     /**
      * Gets an InspectTemplate.
-     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2494,7 +3172,9 @@ class DlpServiceGapicClient
 
     /**
      * Gets a job trigger.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2543,9 +3223,59 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Gets a project data profile.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->projectDataProfileName('[ORGANIZATION]', '[LOCATION]', '[PROJECT_DATA_PROFILE]');
+     *     $response = $dlpServiceClient->getProjectDataProfile($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name, for example
+     *                             `organizations/12345/locations/us/projectDataProfiles/53234423`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\ProjectDataProfile
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getProjectDataProfile($name, array $optionalArgs = [])
+    {
+        $request = new GetProjectDataProfileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProjectDataProfile',
+            ProjectDataProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets a stored infoType.
-     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
-     * learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2589,6 +3319,55 @@ class DlpServiceGapicClient
         return $this->startCall(
             'GetStoredInfoType',
             StoredInfoType::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a table data profile.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->tableDataProfileName('[ORGANIZATION]', '[LOCATION]', '[TABLE_DATA_PROFILE]');
+     *     $response = $dlpServiceClient->getTableDataProfile($formattedName);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Resource name, for example
+     *                             `organizations/12345/locations/us/tableDataProfiles/53234423`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\TableDataProfile
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getTableDataProfile($name, array $optionalArgs = [])
+    {
+        $request = new GetTableDataProfileRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetTableDataProfile',
+            TableDataProfile::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2716,8 +3495,10 @@ class DlpServiceGapicClient
      * system will automatically choose what detectors to run. By default this may
      * be all types, but may change over time as detectors are updated.
      *
-     * For how to guides, see https://cloud.google.com/dlp/docs/inspecting-images
-     * and https://cloud.google.com/dlp/docs/inspecting-text,
+     * For how to guides, see
+     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-images
+     * and
+     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-text,
      *
      * Sample code:
      * ```
@@ -2737,7 +3518,7 @@ class DlpServiceGapicClient
      *
      *           The format of this value varies depending on whether you have [specified a
      *           processing
-     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *           + Projects scope, location specified:<br/>
      *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -2814,9 +3595,232 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Lists column data profiles for an organization.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listColumnDataProfiles($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listColumnDataProfiles($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the organization or project, for
+     *                             example `organizations/433245324/locations/europe` or
+     *                             `projects/project-id/locations/asia`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $orderBy
+     *           Comma separated list of fields to order by, followed by `asc` or `desc`
+     *           postfix. This list is case insensitive. The default sorting order is
+     *           ascending. Redundant space characters are insignificant. Only one order
+     *           field at a time is allowed.
+     *
+     *           Examples:
+     *           * `project_id asc`
+     *           * `table_id`
+     *           * `sensitivity_level desc`
+     *
+     *           Supported fields are:
+     *
+     *           - `project_id`: The Google Cloud project ID.
+     *           - `dataset_id`: The ID of a BigQuery dataset.
+     *           - `table_id`: The ID of a BigQuery table.
+     *           - `sensitivity_level`: How sensitive the data in a column is, at most.
+     *           - `data_risk_level`: How much risk is associated with this data.
+     *           - `profile_last_generated`: When the profile was last updated in epoch
+     *           seconds.
+     *     @type string $filter
+     *           Allows filtering.
+     *
+     *           Supported syntax:
+     *
+     *           * Filter expressions are made up of one or more restrictions.
+     *           * Restrictions can be combined by `AND` or `OR` logical operators. A
+     *           sequence of restrictions implicitly uses `AND`.
+     *           * A restriction has the form of `{field} {operator} {value}`.
+     *           * Supported fields/values:
+     *           - `table_data_profile_name` - The name of the related table data
+     *           profile.
+     *           - `project_id` - The Google Cloud project ID. (REQUIRED)
+     *           - `dataset_id` - The BigQuery dataset ID. (REQUIRED)
+     *           - `table_id` - The BigQuery table ID. (REQUIRED)
+     *           - `field_id` - The ID of the BigQuery field.
+     *           - `info_type` - The infotype detected in the resource.
+     *           - `sensitivity_level` - HIGH|MEDIUM|LOW
+     *           - `data_risk_level`: How much risk is associated with this data.
+     *           - `status_code` - an RPC status code as defined in
+     *           https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
+     *           * The operator must be `=` for project_id, dataset_id, and table_id. Other
+     *           filters also support `!=`.
+     *
+     *           Examples:
+     *
+     *           * project_id = 12345 AND status_code = 1
+     *           * project_id = 12345 AND sensitivity_level = HIGH
+     *           * project_id = 12345 AND info_type = STREET_ADDRESS
+     *
+     *           The length of this field should be no more than 500 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listColumnDataProfiles($parent, array $optionalArgs = [])
+    {
+        $request = new ListColumnDataProfilesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListColumnDataProfiles',
+            $optionalArgs,
+            ListColumnDataProfilesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists Connections in a parent.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listConnections($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listConnections($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent name, for example:
+     *                             `projects/project-id/locations/global`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. Supported field/value: `state` - MISSING|AVAILABLE|ERROR
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listConnections($parent, array $optionalArgs = [])
+    {
+        $request = new ListConnectionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListConnections',
+            $optionalArgs,
+            ListConnectionsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists DeidentifyTemplates.
-     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
-     * more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -2845,7 +3849,7 @@ class DlpServiceGapicClient
      *
      *                             The format of this value varies depending on the scope of the request
      *                             (project or organization) and whether you have [specified a processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                             + Projects scope, location specified:<br/>
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -3040,8 +4044,11 @@ class DlpServiceGapicClient
 
     /**
      * Lists DlpJobs that match the specified filter in the request.
-     * See https://cloud.google.com/dlp/docs/inspecting-storage and
-     * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * and
+     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -3070,7 +4077,7 @@ class DlpServiceGapicClient
      *
      *                             The format of this value varies depending on whether you have [specified a
      *                             processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                             + Projects scope, location specified:<br/>
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -3198,8 +4205,9 @@ class DlpServiceGapicClient
 
     /**
      * Returns a list of the sensitive information types that DLP API
-     * supports. See https://cloud.google.com/dlp/docs/infotypes-reference to
-     * learn more.
+     * supports. See
+     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -3276,7 +4284,9 @@ class DlpServiceGapicClient
 
     /**
      * Lists InspectTemplates.
-     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -3305,7 +4315,7 @@ class DlpServiceGapicClient
      *
      *                             The format of this value varies depending on the scope of the request
      *                             (project or organization) and whether you have [specified a processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                             + Projects scope, location specified:<br/>
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -3397,7 +4407,9 @@ class DlpServiceGapicClient
 
     /**
      * Lists job triggers.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -3426,7 +4438,7 @@ class DlpServiceGapicClient
      *
      *                             The format of this value varies depending on whether you have [specified a
      *                             processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                             + Projects scope, location specified:<br/>
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -3551,9 +4563,134 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Lists project data profiles for an organization.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listProjectDataProfiles($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listProjectDataProfiles($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. organizations/{org_id}/locations/{loc_id}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $orderBy
+     *           Comma separated list of fields to order by, followed by `asc` or `desc`
+     *           postfix. This list is case insensitive. The default sorting order is
+     *           ascending. Redundant space characters are insignificant. Only one order
+     *           field at a time is allowed.
+     *
+     *           Examples:
+     *           * `project_id`
+     *           * `sensitivity_level desc`
+     *
+     *           Supported fields are:
+     *
+     *           - `project_id`: Google Cloud project ID
+     *           - `sensitivity_level`: How sensitive the data in a project is, at most.
+     *           - `data_risk_level`: How much risk is associated with this data.
+     *           - `profile_last_generated`: When the profile was last updated in epoch
+     *           seconds.
+     *     @type string $filter
+     *           Allows filtering.
+     *
+     *           Supported syntax:
+     *
+     *           * Filter expressions are made up of one or more restrictions.
+     *           * Restrictions can be combined by `AND` or `OR` logical operators. A
+     *           sequence of restrictions implicitly uses `AND`.
+     *           * A restriction has the form of `{field} {operator} {value}`.
+     *           * Supported fields/values:
+     *           - `sensitivity_level` - HIGH|MODERATE|LOW
+     *           - `data_risk_level` - HIGH|MODERATE|LOW
+     *           - `status_code` - an RPC status code as defined in
+     *           https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
+     *           * The operator must be `=` or `!=`.
+     *
+     *           Examples:
+     *
+     *           * `project_id = 12345 AND status_code = 1`
+     *           * `project_id = 12345 AND sensitivity_level = HIGH`
+     *
+     *           The length of this field should be no more than 500 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listProjectDataProfiles($parent, array $optionalArgs = [])
+    {
+        $request = new ListProjectDataProfilesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProjectDataProfiles',
+            $optionalArgs,
+            ListProjectDataProfilesResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Lists stored infoTypes.
-     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
-     * learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -3582,7 +4719,7 @@ class DlpServiceGapicClient
      *
      *                             The format of this value varies depending on the scope of the request
      *                             (project or organization) and whether you have [specified a processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                             + Projects scope, location specified:<br/>
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -3670,10 +4807,148 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Lists table data profiles for an organization.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->listTableDataProfiles($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->listTableDataProfiles($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Resource name of the organization or project, for
+     *                             example `organizations/433245324/locations/europe` or
+     *                             `projects/project-id/locations/asia`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $orderBy
+     *           Comma separated list of fields to order by, followed by `asc` or `desc`
+     *           postfix. This list is case insensitive. The default sorting order is
+     *           ascending. Redundant space characters are insignificant. Only one order
+     *           field at a time is allowed.
+     *
+     *           Examples:
+     *           * `project_id asc`
+     *           * `table_id`
+     *           * `sensitivity_level desc`
+     *
+     *           Supported fields are:
+     *
+     *           - `project_id`: The Google Cloud project ID.
+     *           - `dataset_id`: The ID of a BigQuery dataset.
+     *           - `table_id`: The ID of a BigQuery table.
+     *           - `sensitivity_level`: How sensitive the data in a table is, at most.
+     *           - `data_risk_level`: How much risk is associated with this data.
+     *           - `profile_last_generated`: When the profile was last updated in epoch
+     *           seconds.
+     *           - `last_modified`: The last time the resource was modified.
+     *           - `resource_visibility`: Visibility restriction for this resource.
+     *           - `row_count`: Number of rows in this resource.
+     *     @type string $filter
+     *           Allows filtering.
+     *
+     *           Supported syntax:
+     *
+     *           * Filter expressions are made up of one or more restrictions.
+     *           * Restrictions can be combined by `AND` or `OR` logical operators. A
+     *           sequence of restrictions implicitly uses `AND`.
+     *           * A restriction has the form of `{field} {operator} {value}`.
+     *           * Supported fields/values:
+     *           - `project_id` - The Google Cloud project ID.
+     *           - `dataset_id` - The BigQuery dataset ID.
+     *           - `table_id` - The ID of the BigQuery table.
+     *           - `sensitivity_level` - HIGH|MODERATE|LOW
+     *           - `data_risk_level` - HIGH|MODERATE|LOW
+     *           - `resource_visibility`: PUBLIC|RESTRICTED
+     *           - `status_code` - an RPC status code as defined in
+     *           https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
+     *           * The operator must be `=` or `!=`.
+     *
+     *           Examples:
+     *
+     *           * `project_id = 12345 AND status_code = 1`
+     *           * `project_id = 12345 AND sensitivity_level = HIGH`
+     *           * `project_id = 12345 AND resource_visibility = PUBLIC`
+     *
+     *           The length of this field should be no more than 500 characters.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listTableDataProfiles($parent, array $optionalArgs = [])
+    {
+        $request = new ListTableDataProfilesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListTableDataProfiles',
+            $optionalArgs,
+            ListTableDataProfilesResponse::class,
+            $request
+        );
+    }
+
+    /**
      * Redacts potentially sensitive info from an image.
      * This method has limits on input size, processing time, and output size.
-     * See https://cloud.google.com/dlp/docs/redacting-sensitive-data-images to
-     * learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
+     * to learn more.
      *
      * When no InfoTypes or CustomInfoTypes are specified in this request, the
      * system will automatically choose what detectors to run. By default this may
@@ -3697,7 +4972,7 @@ class DlpServiceGapicClient
      *
      *           The format of this value varies depending on whether you have [specified a
      *           processing
-     *           location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *           + Projects scope, location specified:<br/>
      *           `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -3778,7 +5053,7 @@ class DlpServiceGapicClient
     /**
      * Re-identifies content that has been de-identified.
      * See
-     * https://cloud.google.com/dlp/docs/pseudonymization#re-identification_in_free_text_code_example
+     * https://cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
      * to learn more.
      *
      * Sample code:
@@ -3796,7 +5071,7 @@ class DlpServiceGapicClient
      *
      *                             The format of this value varies depending on whether you have [specified a
      *                             processing
-     *                             location](https://cloud.google.com/dlp/docs/specifying-location):
+     *                             location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                             + Projects scope, location specified:<br/>
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -3901,9 +5176,155 @@ class DlpServiceGapicClient
     }
 
     /**
+     * Searches for Connections in a parent.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedParent = $dlpServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dlpServiceClient->searchConnections($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dlpServiceClient->searchConnections($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Parent name, typically an organization, without location.
+     *                             For example: `organizations/12345678`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. Supported field/value: - `state` - MISSING|AVAILABLE|ERROR
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchConnections($parent, array $optionalArgs = [])
+    {
+        $request = new SearchConnectionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'SearchConnections',
+            $optionalArgs,
+            SearchConnectionsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Update a Connection.
+     *
+     * Sample code:
+     * ```
+     * $dlpServiceClient = new DlpServiceClient();
+     * try {
+     *     $formattedName = $dlpServiceClient->connectionName('[PROJECT]', '[LOCATION]', '[CONNECTION]');
+     *     $connection = new Connection();
+     *     $response = $dlpServiceClient->updateConnection($formattedName, $connection);
+     * } finally {
+     *     $dlpServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string     $name         Required. Resource name in the format:
+     *                                 `projects/{project}/locations/{location}/connections/{connection}`.
+     * @param Connection $connection   Required. The connection with new values for the relevant fields.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. Mask to control which fields get updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dlp\V2\Connection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateConnection(
+        $name,
+        $connection,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setConnection($connection);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateConnection',
+            Connection::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates the DeidentifyTemplate.
-     * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
-     * more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -4030,7 +5451,9 @@ class DlpServiceGapicClient
 
     /**
      * Updates the InspectTemplate.
-     * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -4093,7 +5516,9 @@ class DlpServiceGapicClient
 
     /**
      * Updates a job trigger.
-     * See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * to learn more.
      *
      * Sample code:
      * ```
@@ -4156,8 +5581,9 @@ class DlpServiceGapicClient
     /**
      * Updates the stored infoType by creating a new version. The existing version
      * will continue to be used until the new version is ready.
-     * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
-     * learn more.
+     * See
+     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * to learn more.
      *
      * Sample code:
      * ```

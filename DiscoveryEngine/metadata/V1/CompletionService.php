@@ -18,10 +18,13 @@ class CompletionService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Discoveryengine\V1\ImportConfig::initOnce();
+        \GPBMetadata\Google\Cloud\Discoveryengine\V1\PurgeConfig::initOnce();
+        \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-’	
-8google/cloud/discoveryengine/v1/completion_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"ø
+œ
+8google/cloud/discoveryengine/v1/completion_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/discoveryengine/v1/import_config.proto2google/cloud/discoveryengine/v1/purge_config.proto#google/longrunning/operations.proto"ø
 CompleteQueryRequestD
 
 data_store (	B0‡A˙A*
@@ -29,15 +32,21 @@ data_store (	B0‡A˙A*
 query (	B‡A
 query_model (	
 user_pseudo_id (	 
-include_tail_suggestions ("ø
+include_tail_suggestions ("‡
 CompleteQueryResponsea
 query_suggestions (2F.google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion
-tail_match_triggered (%
+tail_match_triggered (F
 QuerySuggestion
 
-suggestion (	2ä
+suggestion (	
+completable_field_paths (	2’
+
 CompletionService†
-CompleteQuery5.google.cloud.discoveryengine.v1.CompleteQueryRequest6.google.cloud.discoveryengine.v1.CompleteQueryResponse"üÇ”‰ìòB/v1/{data_store=projects/*/locations/*/dataStores/*}:completeQueryZRP/v1/{data_store=projects/*/locations/*/collections/*/dataStores/*}:completeQueryR Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBâ
+CompleteQuery5.google.cloud.discoveryengine.v1.CompleteQueryRequest6.google.cloud.discoveryengine.v1.CompleteQueryResponse"üÇ”‰ìòB/v1/{data_store=projects/*/locations/*/dataStores/*}:completeQueryZRP/v1/{data_store=projects/*/locations/*/collections/*/dataStores/*}:completeQueryÂ
+ImportSuggestionDenyListEntriesG.google.cloud.discoveryengine.v1.ImportSuggestionDenyListEntriesRequest.google.longrunning.Operation"Ÿ Aí
+Ggoogle.cloud.discoveryengine.v1.ImportSuggestionDenyListEntriesResponseGgoogle.cloud.discoveryengine.v1.ImportSuggestionDenyListEntriesMetadataÇ”‰ìº"_/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/suggestionDenyListEntries:import:*ZV"Q/v1/{parent=projects/*/locations/*/dataStores/*}/suggestionDenyListEntries:import:*‡
+PurgeSuggestionDenyListEntriesF.google.cloud.discoveryengine.v1.PurgeSuggestionDenyListEntriesRequest.google.longrunning.Operation"÷ Aê
+Fgoogle.cloud.discoveryengine.v1.PurgeSuggestionDenyListEntriesResponseFgoogle.cloud.discoveryengine.v1.PurgeSuggestionDenyListEntriesMetadataÇ”‰ìª"^/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/suggestionDenyListEntries:purge:*ZV"Q/v1/{parent=projects/*/locations/*/dataStores/**}/suggestionDenyListEntries:purge:*R Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBâ
 #com.google.cloud.discoveryengine.v1BCompletionServiceProtoPZMcloud.google.com/go/discoveryengine/apiv1/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINE™Google.Cloud.DiscoveryEngine.V1 Google\\Cloud\\DiscoveryEngine\\V1Í"Google::Cloud::DiscoveryEngine::V1bproto3'
         , true);
 

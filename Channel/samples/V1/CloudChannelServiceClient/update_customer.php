@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudchannel_v1_generated_CloudChannelService_UpdateCustomer_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
+use Google\Cloud\Channel\V1\Client\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
+use Google\Cloud\Channel\V1\UpdateCustomerRequest;
 use Google\Type\PostalAddress;
 
 /**
@@ -52,17 +53,19 @@ function update_customer_sample(string $customerOrgDisplayName, string $customer
     // Create a client.
     $cloudChannelServiceClient = new CloudChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $customerOrgPostalAddress = new PostalAddress();
     $customer = (new Customer())
         ->setOrgDisplayName($customerOrgDisplayName)
         ->setOrgPostalAddress($customerOrgPostalAddress)
         ->setDomain($customerDomain);
+    $request = (new UpdateCustomerRequest())
+        ->setCustomer($customer);
 
     // Call the API and handle any network failures.
     try {
         /** @var Customer $response */
-        $response = $cloudChannelServiceClient->updateCustomer($customer);
+        $response = $cloudChannelServiceClient->updateCustomer($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

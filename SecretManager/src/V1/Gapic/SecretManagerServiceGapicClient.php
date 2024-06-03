@@ -87,9 +87,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient}.
  */
 class SecretManagerServiceGapicClient
 {
@@ -98,8 +96,15 @@ class SecretManagerServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.secretmanager.v1.SecretManagerService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'secretmanager.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'secretmanager.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -112,7 +117,17 @@ class SecretManagerServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $locationNameTemplate;
+
     private static $projectNameTemplate;
+
+    private static $projectLocationSecretNameTemplate;
+
+    private static $projectLocationSecretSecretVersionNameTemplate;
+
+    private static $projectSecretNameTemplate;
+
+    private static $projectSecretSecretVersionNameTemplate;
 
     private static $secretNameTemplate;
 
@@ -141,6 +156,15 @@ class SecretManagerServiceGapicClient
         ];
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (self::$locationNameTemplate == null) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -148,6 +172,42 @@ class SecretManagerServiceGapicClient
         }
 
         return self::$projectNameTemplate;
+    }
+
+    private static function getProjectLocationSecretNameTemplate()
+    {
+        if (self::$projectLocationSecretNameTemplate == null) {
+            self::$projectLocationSecretNameTemplate = new PathTemplate('projects/{project}/locations/{location}/secrets/{secret}');
+        }
+
+        return self::$projectLocationSecretNameTemplate;
+    }
+
+    private static function getProjectLocationSecretSecretVersionNameTemplate()
+    {
+        if (self::$projectLocationSecretSecretVersionNameTemplate == null) {
+            self::$projectLocationSecretSecretVersionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}');
+        }
+
+        return self::$projectLocationSecretSecretVersionNameTemplate;
+    }
+
+    private static function getProjectSecretNameTemplate()
+    {
+        if (self::$projectSecretNameTemplate == null) {
+            self::$projectSecretNameTemplate = new PathTemplate('projects/{project}/secrets/{secret}');
+        }
+
+        return self::$projectSecretNameTemplate;
+    }
+
+    private static function getProjectSecretSecretVersionNameTemplate()
+    {
+        if (self::$projectSecretSecretVersionNameTemplate == null) {
+            self::$projectSecretSecretVersionNameTemplate = new PathTemplate('projects/{project}/secrets/{secret}/versions/{secret_version}');
+        }
+
+        return self::$projectSecretSecretVersionNameTemplate;
     }
 
     private static function getSecretNameTemplate()
@@ -181,7 +241,12 @@ class SecretManagerServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectLocationSecret' => self::getProjectLocationSecretNameTemplate(),
+                'projectLocationSecretSecretVersion' => self::getProjectLocationSecretSecretVersionNameTemplate(),
+                'projectSecret' => self::getProjectSecretNameTemplate(),
+                'projectSecretSecretVersion' => self::getProjectSecretSecretVersionNameTemplate(),
                 'secret' => self::getSecretNameTemplate(),
                 'secretVersion' => self::getSecretVersionNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
@@ -189,6 +254,23 @@ class SecretManagerServiceGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
     }
 
     /**
@@ -203,6 +285,82 @@ class SecretManagerServiceGapicClient
     {
         return self::getProjectNameTemplate()->render([
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_secret resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $secret
+     *
+     * @return string The formatted project_location_secret resource.
+     */
+    public static function projectLocationSecretName($project, $location, $secret)
+    {
+        return self::getProjectLocationSecretNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'secret' => $secret,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_secret_secret_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted project_location_secret_secret_version resource.
+     */
+    public static function projectLocationSecretSecretVersionName($project, $location, $secret, $secretVersion)
+    {
+        return self::getProjectLocationSecretSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_secret resource.
+     *
+     * @param string $project
+     * @param string $secret
+     *
+     * @return string The formatted project_secret resource.
+     */
+    public static function projectSecretName($project, $secret)
+    {
+        return self::getProjectSecretNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_secret_secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted project_secret_secret_version resource.
+     */
+    public static function projectSecretSecretVersionName($project, $secret, $secretVersion)
+    {
+        return self::getProjectSecretSecretVersionNameTemplate()->render([
+            'project' => $project,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
         ]);
     }
 
@@ -263,7 +421,12 @@ class SecretManagerServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
+     * - projectLocationSecret: projects/{project}/locations/{location}/secrets/{secret}
+     * - projectLocationSecretSecretVersion: projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}
+     * - projectSecret: projects/{project}/secrets/{secret}
+     * - projectSecretSecretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - secret: projects/{project}/secrets/{secret}
      * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - topic: projects/{project}/topics/{topic}
@@ -364,7 +527,8 @@ class SecretManagerServiceGapicClient
     }
 
     /**
-     * Accesses a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. This call returns the secret data.
+     * Accesses a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * This call returns the secret data.
      *
      * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -380,11 +544,15 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
+     * @param string $name         Required. The resource name of the
+     *                             [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *                             `projects/&#42;/secrets/&#42;/versions/*` or
+     *                             `projects/&#42;/locations/&#42;/secrets/&#42;/versions/*`.
      *
-     *                             `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
-     *                             created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *                             `projects/&#42;/secrets/&#42;/versions/latest` or
+     *                             `projects/&#42;/locations/&#42;/secrets/&#42;/versions/latest` is an alias to the most
+     *                             recently created
+     *                             [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -410,8 +578,9 @@ class SecretManagerServiceGapicClient
     }
 
     /**
-     * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] containing secret data and attaches
-     * it to an existing [Secret][google.cloud.secretmanager.v1.Secret].
+     * Creates a new [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]
+     * containing secret data and attaches it to an existing
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * Sample code:
      * ```
@@ -425,9 +594,12 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string        $parent       Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
-     *                                    [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format `projects/&#42;/secrets/*`.
-     * @param SecretPayload $payload      Required. The secret payload of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * @param string        $parent       Required. The resource name of the
+     *                                    [Secret][google.cloud.secretmanager.v1.Secret] to associate with the
+     *                                    [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *                                    `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`.
+     * @param SecretPayload $payload      Required. The secret payload of the
+     *                                    [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * @param array         $optionalArgs {
      *     Optional.
      *
@@ -454,7 +626,8 @@ class SecretManagerServiceGapicClient
     }
 
     /**
-     * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Sample code:
      * ```
@@ -470,13 +643,15 @@ class SecretManagerServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the project to associate with the
-     *                             [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`.
+     *                             [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`
+     *                             or `projects/&#42;/locations/*`.
      * @param string $secretId     Required. This must be unique within the project.
      *
      *                             A secret ID is a string with a maximum length of 255 characters and can
      *                             contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
      *                             underscore (`_`) characters.
-     * @param Secret $secret       Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial field values.
+     * @param Secret $secret       Required. A [Secret][google.cloud.secretmanager.v1.Secret] with initial
+     *                             field values.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -517,15 +692,16 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
+     * @param string $name         Required. The resource name of the
+     *                             [Secret][google.cloud.secretmanager.v1.Secret] to delete in the format
      *                             `projects/&#42;/secrets/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $etag
-     *           Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The request succeeds if it matches
-     *           the etag of the currently stored secret object. If the etag is omitted,
-     *           the request succeeds.
+     *           Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The
+     *           request succeeds if it matches the etag of the currently stored secret
+     *           object. If the etag is omitted, the request succeeds.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -552,9 +728,10 @@ class SecretManagerServiceGapicClient
     /**
      * Destroys a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
-     * [DESTROYED][google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED] and irrevocably destroys the
-     * secret data.
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * [DESTROYED][google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED]
+     * and irrevocably destroys the secret data.
      *
      * Sample code:
      * ```
@@ -567,15 +744,18 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to destroy in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
+     * @param string $name         Required. The resource name of the
+     *                             [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to destroy in
+     *                             the format `projects/&#42;/secrets/&#42;/versions/*` or
+     *                             `projects/&#42;/locations/&#42;/secrets/&#42;/versions/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $etag
-     *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
-     *           the etag of the currently stored secret version object. If the etag is
-     *           omitted, the request succeeds.
+     *           Optional. Etag of the
+     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request
+     *           succeeds if it matches the etag of the currently stored secret version
+     *           object. If the etag is omitted, the request succeeds.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -604,7 +784,8 @@ class SecretManagerServiceGapicClient
     /**
      * Disables a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
      * [DISABLED][google.cloud.secretmanager.v1.SecretVersion.State.DISABLED].
      *
      * Sample code:
@@ -618,15 +799,18 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to disable in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
+     * @param string $name         Required. The resource name of the
+     *                             [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to disable in
+     *                             the format `projects/&#42;/secrets/&#42;/versions/*` or
+     *                             `projects/&#42;/locations/&#42;/secrets/&#42;/versions/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $etag
-     *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
-     *           the etag of the currently stored secret version object. If the etag is
-     *           omitted, the request succeeds.
+     *           Optional. Etag of the
+     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request
+     *           succeeds if it matches the etag of the currently stored secret version
+     *           object. If the etag is omitted, the request succeeds.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -655,7 +839,8 @@ class SecretManagerServiceGapicClient
     /**
      * Enables a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
+     * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to
      * [ENABLED][google.cloud.secretmanager.v1.SecretVersion.State.ENABLED].
      *
      * Sample code:
@@ -669,15 +854,18 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to enable in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
+     * @param string $name         Required. The resource name of the
+     *                             [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] to enable in
+     *                             the format `projects/&#42;/secrets/&#42;/versions/*` or
+     *                             `projects/&#42;/locations/&#42;/secrets/&#42;/versions/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $etag
-     *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
-     *           the etag of the currently stored secret version object. If the etag is
-     *           omitted, the request succeeds.
+     *           Optional. Etag of the
+     *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request
+     *           succeeds if it matches the etag of the currently stored secret version
+     *           object. If the etag is omitted, the request succeeds.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -765,7 +953,9 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;/secrets/*`.
+     * @param string $name         Required. The resource name of the
+     *                             [Secret][google.cloud.secretmanager.v1.Secret], in the format
+     *                             `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -791,7 +981,8 @@ class SecretManagerServiceGapicClient
     }
 
     /**
-     * Gets metadata for a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * Gets metadata for a
+     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
      * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
@@ -807,11 +998,15 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     *                             `projects/&#42;/secrets/&#42;/versions/*`.
+     * @param string $name         Required. The resource name of the
+     *                             [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
+     *                             `projects/&#42;/secrets/&#42;/versions/*` or
+     *                             `projects/&#42;/locations/&#42;/secrets/&#42;/versions/*`.
      *
-     *                             `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
-     *                             created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *                             `projects/&#42;/secrets/&#42;/versions/latest` or
+     *                             `projects/&#42;/locations/&#42;/secrets/&#42;/versions/latest` is an alias to the most
+     *                             recently created
+     *                             [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -837,8 +1032,8 @@ class SecretManagerServiceGapicClient
     }
 
     /**
-     * Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This call does not return secret
-     * data.
+     * Lists [SecretVersions][google.cloud.secretmanager.v1.SecretVersion]. This
+     * call does not return secret data.
      *
      * Sample code:
      * ```
@@ -863,9 +1058,10 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the [Secret][google.cloud.secretmanager.v1.Secret] associated with the
-     *                             [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in the format
-     *                             `projects/&#42;/secrets/*`.
+     * @param string $parent       Required. The resource name of the
+     *                             [Secret][google.cloud.secretmanager.v1.Secret] associated with the
+     *                             [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] to list, in
+     *                             the format `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -944,7 +1140,8 @@ class SecretManagerServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the project associated with the
-     *                             [Secrets][google.cloud.secretmanager.v1.Secret], in the format `projects/*`.
+     *                             [Secrets][google.cloud.secretmanager.v1.Secret], in the format `projects/*`
+     *                             or `projects/&#42;/locations/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1000,8 +1197,10 @@ class SecretManagerServiceGapicClient
      * Sets the access control policy on the specified secret. Replaces any
      * existing policy.
      *
-     * Permissions on [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced according
-     * to the policy set on the associated [Secret][google.cloud.secretmanager.v1.Secret].
+     * Permissions on
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] are enforced
+     * according to the policy set on the associated
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * Sample code:
      * ```
@@ -1109,7 +1308,8 @@ class SecretManagerServiceGapicClient
     }
 
     /**
-     * Updates metadata of an existing [Secret][google.cloud.secretmanager.v1.Secret].
+     * Updates metadata of an existing
+     * [Secret][google.cloud.secretmanager.v1.Secret].
      *
      * Sample code:
      * ```
@@ -1123,7 +1323,8 @@ class SecretManagerServiceGapicClient
      * }
      * ```
      *
-     * @param Secret    $secret       Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
+     * @param Secret    $secret       Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field
+     *                                values.
      * @param FieldMask $updateMask   Required. Specifies the fields to be updated.
      * @param array     $optionalArgs {
      *     Optional.

@@ -17,16 +17,16 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the `Target` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes after the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was
@@ -63,7 +63,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name of the `Target` to delete. Format should be
-     *                     projects/{project_id}/locations/{location_name}/targets/{target_name}. Please see
+     *                     `projects/{project_id}/locations/{location_name}/targets/{target_name}`. Please see
      *                     {@see CloudDeployClient::targetName()} for help formatting this field.
      *
      * @return \Google\Cloud\Deploy\V1\DeleteTargetRequest
@@ -84,12 +84,12 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the `Target` to delete. Format should be
-     *           projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     *           `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *     @type string $request_id
      *           Optional. A request ID to identify requests. Specify a unique request ID
-     *           so that if you must retry your request, the server will know to ignore
-     *           the request if it has already been completed. The server will guarantee
-     *           that for at least 60 minutes after the first request.
+     *           so that if you must retry your request, the server knows to ignore the
+     *           request if it has already been completed. The server guarantees that for
+     *           at least 60 minutes after the first request.
      *           For example, consider a situation where you make an initial request and the
      *           request times out. If you make the request again with the same request ID,
      *           the server can check if original operation with the same request ID was
@@ -116,7 +116,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `Target` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -128,7 +128,7 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the `Target` to delete. Format should be
-     * projects/{project_id}/locations/{location_name}/targets/{target_name}.
+     * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -144,9 +144,9 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes after the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was
@@ -165,9 +165,9 @@ class DeleteTargetRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A request ID to identify requests. Specify a unique request ID
-     * so that if you must retry your request, the server will know to ignore
-     * the request if it has already been completed. The server will guarantee
-     * that for at least 60 minutes after the first request.
+     * so that if you must retry your request, the server knows to ignore the
+     * request if it has already been completed. The server guarantees that for
+     * at least 60 minutes after the first request.
      * For example, consider a situation where you make an initial request and the
      * request times out. If you make the request again with the same request ID,
      * the server can check if original operation with the same request ID was

@@ -19,7 +19,8 @@ class Notification extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the notification.
      * Format:
-     * organizations/{organization}/locations/{location}/notifications/{notification}.
+     * organizations/{organization}/locations/{location}/notifications/{notification}
+     * or projects/{project}/locations/{location}/notifications/{notification}.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -58,7 +59,8 @@ class Notification extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the notification.
      *           Format:
-     *           organizations/{organization}/locations/{location}/notifications/{notification}.
+     *           organizations/{organization}/locations/{location}/notifications/{notification}
+     *           or projects/{project}/locations/{location}/notifications/{notification}.
      *     @type \Google\Cloud\AdvisoryNotifications\V1\Subject $subject
      *           The subject line of the notification.
      *     @type array<\Google\Cloud\AdvisoryNotifications\V1\Message>|\Google\Protobuf\Internal\RepeatedField $messages
@@ -77,7 +79,8 @@ class Notification extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the notification.
      * Format:
-     * organizations/{organization}/locations/{location}/notifications/{notification}.
+     * organizations/{organization}/locations/{location}/notifications/{notification}
+     * or projects/{project}/locations/{location}/notifications/{notification}.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -90,7 +93,8 @@ class Notification extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the notification.
      * Format:
-     * organizations/{organization}/locations/{location}/notifications/{notification}.
+     * organizations/{organization}/locations/{location}/notifications/{notification}
+     * or projects/{project}/locations/{location}/notifications/{notification}.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

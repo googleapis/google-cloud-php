@@ -25,9 +25,29 @@
                                 "checkCompatibility"
                             ]
                         },
+                        "CreateAudienceExport": {
+                            "methods": [
+                                "createAudienceExport"
+                            ]
+                        },
+                        "GetAudienceExport": {
+                            "methods": [
+                                "getAudienceExport"
+                            ]
+                        },
                         "GetMetadata": {
                             "methods": [
                                 "getMetadata"
+                            ]
+                        },
+                        "ListAudienceExports": {
+                            "methods": [
+                                "listAudienceExports"
+                            ]
+                        },
+                        "QueryAudienceExport": {
+                            "methods": [
+                                "queryAudienceExport"
                             ]
                         },
                         "RunPivotReport": {

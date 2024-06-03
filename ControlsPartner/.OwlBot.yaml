@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/cloudcontrolspartner/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/ControlsPartner/$1/$2
+api-name: ControlsPartner

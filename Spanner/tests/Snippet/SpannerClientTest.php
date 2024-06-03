@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
+use Google\Cloud\Spanner\PgOid;
 use Google\Cloud\Spanner\PgJsonb;
 use Prophecy\Argument;
 
@@ -261,6 +262,7 @@ class SpannerClientTest extends SnippetTestCase
             [Numeric::class, 'numeric'],
             [PgNumeric::class, 'pgNumeric'],
             [PgJsonB::class, 'pgJsonb'],
+            [PgOid::class, 'pgOid'],
         ];
     }
 
@@ -297,5 +299,19 @@ class SpannerClientTest extends SnippetTestCase
         $snippet->addLocal('spanner', $this->client);
         $res = $snippet->invoke('batch');
         $this->assertInstanceOf(BatchClient::class, $res->returnVal());
+    }
+
+    public function testClassWithDirectedRead()
+    {
+        $snippet = $this->snippetFromClass(SpannerClient::class, 2);
+        $res = $snippet->invoke('spanner');
+        $this->assertInstanceOf(SpannerClient::class, $res->returnVal());
+    }
+
+    public function testClassWithLar()
+    {
+        $snippet = $this->snippetFromClass(SpannerClient::class, 3);
+        $res = $snippet->invoke('spanner');
+        $this->assertInstanceOf(SpannerClient::class, $res->returnVal());
     }
 }

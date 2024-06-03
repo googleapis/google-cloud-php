@@ -32,11 +32,19 @@ use Google\Cloud\DiscoveryEngine\V1beta\UserEvent;
 /**
  * Makes a recommendation, which requires a contextual user event.
  *
- * @param string $formattedServingConfig Full resource name of the format:
+ * @param string $formattedServingConfig Full resource name of a
+ *                                       [ServingConfig][google.cloud.discoveryengine.v1beta.ServingConfig]:
+ *                                       `projects/&#42;/locations/global/collections/&#42;/engines/&#42;/servingConfigs/*`, or
  *                                       `projects/&#42;/locations/global/collections/&#42;/dataStores/&#42;/servingConfigs/*`
  *
- *                                       Before you can request recommendations from your model, you must create at
- *                                       least one serving config  for it. Please see
+ *                                       One default serving config is created along with your recommendation engine
+ *                                       creation. The engine ID is used as the ID of the default serving
+ *                                       config. For example, for Engine
+ *                                       `projects/&#42;/locations/global/collections/&#42;/engines/my-engine`, you can use
+ *                                       `projects/&#42;/locations/global/collections/&#42;/engines/my-engine/servingConfigs/my-engine`
+ *                                       for your
+ *                                       [RecommendationService.Recommend][google.cloud.discoveryengine.v1beta.RecommendationService.Recommend]
+ *                                       requests. Please see
  *                                       {@see RecommendationServiceClient::servingConfigName()} for help formatting this field.
  * @param string $userEventEventType     User event type. Allowed values are:
  *

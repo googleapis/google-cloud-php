@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START networkconnectivity_v1_generated_HubService_AcceptHubSpoke_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\NetworkConnectivity\V1\AcceptHubSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\AcceptHubSpokeResponse;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -43,10 +44,15 @@ function accept_hub_spoke_sample(string $formattedName, string $formattedSpokeUr
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new AcceptHubSpokeRequest())
+        ->setName($formattedName)
+        ->setSpokeUri($formattedSpokeUri);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $hubServiceClient->acceptHubSpoke($formattedName, $formattedSpokeUri);
+        $response = $hubServiceClient->acceptHubSpoke($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

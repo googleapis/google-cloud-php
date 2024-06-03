@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\PgJsonb;
+use Google\Cloud\Spanner\PgOid;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
@@ -61,14 +62,27 @@ class SpannerClientTest extends TestCase
 
     private $client;
     private $connection;
+    private $directedReadOptionsIncludeReplicas;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->getConnStub();
+        $this->directedReadOptionsIncludeReplicas = [
+            'includeReplicas' => [
+                'replicaSelections' => [
+                    'location' => 'us-central1',
+                    'type' => 'READ_WRITE',
+                    'autoFailoverDisabled' => false
+                ]
+            ]
+        ];
         $this->client = TestHelpers::stub(SpannerClient::class, [
-            ['projectId' => self::PROJECT]
+            [
+                'projectId' => self::PROJECT,
+                'directedReadOptions' => $this->directedReadOptionsIncludeReplicas
+            ]
         ]);
     }
 
@@ -420,6 +434,12 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(PgJsonb::class, $objVal);
     }
 
+    public function testPgOid()
+    {
+        $oidVal = $this->client->pgOid('123');
+        $this->assertInstanceOf(PgOid::class, $oidVal);
+    }
+
     public function testInt64()
     {
         $i64 = $this->client->int64('123');
@@ -443,5 +463,14 @@ class SpannerClientTest extends TestCase
         $instance = $this->prophesize(Instance::class);
         $instance->database(Argument::any(), ['databaseRole' => 'Reader'])->shouldBeCalled();
         $this->client->connect($instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
+    }
+
+    public function testSpannerClientWithDirectedRead()
+    {
+        $instance = $this->client->instance('testInstance');
+        $this->assertEquals(
+            $instance->directedReadOptions(),
+            $this->directedReadOptionsIncludeReplicas
+        );
     }
 }

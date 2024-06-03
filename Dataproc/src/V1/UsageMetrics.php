@@ -31,6 +31,20 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 shuffle_storage_gb_seconds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $shuffle_storage_gb_seconds = 0;
+    /**
+     * Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
+     * [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing)).
+     *
+     * Generated from protobuf field <code>int64 milli_accelerator_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $milli_accelerator_seconds = 0;
+    /**
+     * Optional. Accelerator type being used, if any
+     *
+     * Generated from protobuf field <code>string accelerator_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $accelerator_type = '';
 
     /**
      * Constructor.
@@ -46,6 +60,12 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
      *           Optional. Shuffle storage usage in (`GB` x `seconds`) (see
      *           [Dataproc Serverless pricing]
      *           (https://cloud.google.com/dataproc-serverless/pricing)).
+     *     @type int|string $milli_accelerator_seconds
+     *           Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
+     *           [Dataproc Serverless pricing]
+     *           (https://cloud.google.com/dataproc-serverless/pricing)).
+     *     @type string $accelerator_type
+     *           Optional. Accelerator type being used, if any
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +129,62 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->shuffle_storage_gb_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
+     * [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing)).
+     *
+     * Generated from protobuf field <code>int64 milli_accelerator_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMilliAcceleratorSeconds()
+    {
+        return $this->milli_accelerator_seconds;
+    }
+
+    /**
+     * Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
+     * [Dataproc Serverless pricing]
+     * (https://cloud.google.com/dataproc-serverless/pricing)).
+     *
+     * Generated from protobuf field <code>int64 milli_accelerator_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMilliAcceleratorSeconds($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->milli_accelerator_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Accelerator type being used, if any
+     *
+     * Generated from protobuf field <code>string accelerator_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAcceleratorType()
+    {
+        return $this->accelerator_type;
+    }
+
+    /**
+     * Optional. Accelerator type being used, if any
+     *
+     * Generated from protobuf field <code>string accelerator_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAcceleratorType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->accelerator_type = $var;
 
         return $this;
     }

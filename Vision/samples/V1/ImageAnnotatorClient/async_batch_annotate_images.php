@@ -26,8 +26,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
+use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse;
-use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
 use Google\Cloud\Vision\V1\OutputConfig;
 use Google\Rpc\Status;
 
@@ -53,14 +54,17 @@ function async_batch_annotate_images_sample(): void
     // Create a client.
     $imageAnnotatorClient = new ImageAnnotatorClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requests = [new AnnotateImageRequest()];
     $outputConfig = new OutputConfig();
+    $request = (new AsyncBatchAnnotateImagesRequest())
+        ->setRequests($requests)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $imageAnnotatorClient->asyncBatchAnnotateImages($requests, $outputConfig);
+        $response = $imageAnnotatorClient->asyncBatchAnnotateImages($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START automl_v1_generated_AutoMl_ListDatasets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Client\AutoMlClient;
 use Google\Cloud\AutoMl\V1\Dataset;
+use Google\Cloud\AutoMl\V1\ListDatasetsRequest;
 
 /**
  * Lists datasets in a project.
@@ -39,10 +40,14 @@ function list_datasets_sample(string $formattedParent): void
     // Create a client.
     $autoMlClient = new AutoMlClient();
 
+    // Prepare the request message.
+    $request = (new ListDatasetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $autoMlClient->listDatasets($formattedParent);
+        $response = $autoMlClient->listDatasets($request);
 
         /** @var Dataset $element */
         foreach ($response as $element) {

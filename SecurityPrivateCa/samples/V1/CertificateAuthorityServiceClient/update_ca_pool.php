@@ -27,7 +27,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Security\PrivateCA\V1\CaPool;
 use Google\Cloud\Security\PrivateCA\V1\CaPool\Tier;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\UpdateCaPoolRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -43,15 +44,18 @@ function update_ca_pool_sample(int $caPoolTier): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $caPool = (new CaPool())
         ->setTier($caPoolTier);
     $updateMask = new FieldMask();
+    $request = (new UpdateCaPoolRequest())
+        ->setCaPool($caPool)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $certificateAuthorityServiceClient->updateCaPool($caPool, $updateMask);
+        $response = $certificateAuthorityServiceClient->updateCaPool($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

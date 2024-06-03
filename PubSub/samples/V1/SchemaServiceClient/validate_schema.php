@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_SchemaService_ValidateSchema_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\PubSub\V1\Client\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\Schema;
-use Google\Cloud\PubSub\V1\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\ValidateSchemaRequest;
 use Google\Cloud\PubSub\V1\ValidateSchemaResponse;
 
 /**
@@ -42,14 +43,17 @@ function validate_schema_sample(string $formattedParent, string $schemaName): vo
     // Create a client.
     $schemaServiceClient = new SchemaServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $schema = (new Schema())
         ->setName($schemaName);
+    $request = (new ValidateSchemaRequest())
+        ->setParent($formattedParent)
+        ->setSchema($schema);
 
     // Call the API and handle any network failures.
     try {
         /** @var ValidateSchemaResponse $response */
-        $response = $schemaServiceClient->validateSchema($formattedParent, $schema);
+        $response = $schemaServiceClient->validateSchema($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

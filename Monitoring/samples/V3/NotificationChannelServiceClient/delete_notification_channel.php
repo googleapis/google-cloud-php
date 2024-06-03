@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_NotificationChannelService_DeleteNotificationChannel_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\Client\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\DeleteNotificationChannelRequest;
 
 /**
  * Deletes a notification channel.
@@ -44,9 +45,13 @@ function delete_notification_channel_sample(string $formattedName): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteNotificationChannelRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $notificationChannelServiceClient->deleteNotificationChannel($formattedName);
+        $notificationChannelServiceClient->deleteNotificationChannel($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -50,11 +50,11 @@ page_token (	
 next_page_token (	?
 metadata (2-.google.cloud.talent.v4beta1.ResponseMetadata2 
 TenantService¦
-CreateTenant0.google.cloud.talent.v4beta1.CreateTenantRequest#.google.cloud.talent.v4beta1.Tenant"?‚Óä“)"$/v4beta1/{parent=projects/*}/tenants:*ÚAparent,tenant”
-	GetTenant-.google.cloud.talent.v4beta1.GetTenantRequest#.google.cloud.talent.v4beta1.Tenant"3‚Óä“&$/v4beta1/{name=projects/*/tenants/*}ÚAname¦
-UpdateTenant0.google.cloud.talent.v4beta1.UpdateTenantRequest#.google.cloud.talent.v4beta1.Tenant"?‚Óä“02+/v4beta1/{tenant.name=projects/*/tenants/*}:*ÚAtenant
-DeleteTenant0.google.cloud.talent.v4beta1.DeleteTenantRequest.google.protobuf.Empty"3‚Óä“&*$/v4beta1/{name=projects/*/tenants/*}ÚAname§
-ListTenants/.google.cloud.talent.v4beta1.ListTenantsRequest0.google.cloud.talent.v4beta1.ListTenantsResponse"5‚Óä“&$/v4beta1/{parent=projects/*}/tenantsÚAparentlÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBv
+CreateTenant0.google.cloud.talent.v4beta1.CreateTenantRequest#.google.cloud.talent.v4beta1.Tenant"?ÚAparent,tenant‚Óä“)"$/v4beta1/{parent=projects/*}/tenants:*”
+	GetTenant-.google.cloud.talent.v4beta1.GetTenantRequest#.google.cloud.talent.v4beta1.Tenant"3ÚAname‚Óä“&$/v4beta1/{name=projects/*/tenants/*}¦
+UpdateTenant0.google.cloud.talent.v4beta1.UpdateTenantRequest#.google.cloud.talent.v4beta1.Tenant"?ÚAtenant‚Óä“02+/v4beta1/{tenant.name=projects/*/tenants/*}:*
+DeleteTenant0.google.cloud.talent.v4beta1.DeleteTenantRequest.google.protobuf.Empty"3ÚAname‚Óä“&*$/v4beta1/{name=projects/*/tenants/*}§
+ListTenants/.google.cloud.talent.v4beta1.ListTenantsRequest0.google.cloud.talent.v4beta1.ListTenantsResponse"5ÚAparent‚Óä“&$/v4beta1/{parent=projects/*}/tenantslÊAjobs.googleapis.comÒAShttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/jobsBv
 com.google.cloud.talent.v4beta1BTenantServiceProtoPZ7cloud.google.com/go/talent/apiv4beta1/talentpb;talentpb¢CTSbproto3'
         , true);
 

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datastream_v1_generated_Datastream_GetConnectionProfile_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Datastream\V1\Client\DatastreamClient;
 use Google\Cloud\Datastream\V1\ConnectionProfile;
-use Google\Cloud\Datastream\V1\DatastreamClient;
+use Google\Cloud\Datastream\V1\GetConnectionProfileRequest;
 
 /**
  * Use this method to get details about a connection profile.
@@ -38,10 +39,14 @@ function get_connection_profile_sample(string $formattedName): void
     // Create a client.
     $datastreamClient = new DatastreamClient();
 
+    // Prepare the request message.
+    $request = (new GetConnectionProfileRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var ConnectionProfile $response */
-        $response = $datastreamClient->getConnectionProfile($formattedName);
+        $response = $datastreamClient->getConnectionProfile($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

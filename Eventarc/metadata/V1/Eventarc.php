@@ -137,33 +137,33 @@ page_token (	"˜
 api_version (	BàA2Ï
 Eventarc™
 
-GetTrigger+.google.cloud.eventarc.v1.GetTriggerRequest!.google.cloud.eventarc.v1.Trigger";‚Óä“.,/v1/{name=projects/*/locations/*/triggers/*}ÚAname¬
-ListTriggers-.google.cloud.eventarc.v1.ListTriggersRequest..google.cloud.eventarc.v1.ListTriggersResponse"=‚Óä“.,/v1/{parent=projects/*/locations/*}/triggersÚAparentØ
-CreateTrigger..google.cloud.eventarc.v1.CreateTriggerRequest.google.longrunning.Operation"x‚Óä“7",/v1/{parent=projects/*/locations/*}/triggers:triggerÚAparent,trigger,trigger_idÊA
-TriggerOperationMetadataé
-UpdateTrigger..google.cloud.eventarc.v1.UpdateTriggerRequest.google.longrunning.Operation"ˆ‚Óä“?24/v1/{trigger.name=projects/*/locations/*/triggers/*}:triggerÚA!trigger,update_mask,allow_missingÊA
-TriggerOperationMetadataÈ
-DeleteTrigger..google.cloud.eventarc.v1.DeleteTriggerRequest.google.longrunning.Operation"h‚Óä“.*,/v1/{name=projects/*/locations/*/triggers/*}ÚAname,allow_missingÊA
-TriggerOperationMetadata™
+GetTrigger+.google.cloud.eventarc.v1.GetTriggerRequest!.google.cloud.eventarc.v1.Trigger";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/triggers/*}¬
+ListTriggers-.google.cloud.eventarc.v1.ListTriggersRequest..google.cloud.eventarc.v1.ListTriggersResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/triggersØ
+CreateTrigger..google.cloud.eventarc.v1.CreateTriggerRequest.google.longrunning.Operation"xÊA
+TriggerOperationMetadataÚAparent,trigger,trigger_id‚Óä“7",/v1/{parent=projects/*/locations/*}/triggers:triggeré
+UpdateTrigger..google.cloud.eventarc.v1.UpdateTriggerRequest.google.longrunning.Operation"ˆÊA
+TriggerOperationMetadataÚA!trigger,update_mask,allow_missing‚Óä“?24/v1/{trigger.name=projects/*/locations/*/triggers/*}:triggerÈ
+DeleteTrigger..google.cloud.eventarc.v1.DeleteTriggerRequest.google.longrunning.Operation"hÊA
+TriggerOperationMetadataÚAname,allow_missing‚Óä“.*,/v1/{name=projects/*/locations/*/triggers/*}™
 
-GetChannel+.google.cloud.eventarc.v1.GetChannelRequest!.google.cloud.eventarc.v1.Channel";‚Óä“.,/v1/{name=projects/*/locations/*/channels/*}ÚAname¬
-ListChannels-.google.cloud.eventarc.v1.ListChannelsRequest..google.cloud.eventarc.v1.ListChannelsResponse"=‚Óä“.,/v1/{parent=projects/*/locations/*}/channelsÚAparentØ
-CreateChannel..google.cloud.eventarc.v1.CreateChannelRequest.google.longrunning.Operation"x‚Óä“7",/v1/{parent=projects/*/locations/*}/channels:channelÚAparent,channel,channel_idÊA
-ChannelOperationMetadataÚ
-UpdateChannel..google.cloud.eventarc.v1.UpdateChannelRequest.google.longrunning.Operation"z‚Óä“?24/v1/{channel.name=projects/*/locations/*/channels/*}:channelÚAchannel,update_maskÊA
-ChannelOperationMetadataº
-DeleteChannel..google.cloud.eventarc.v1.DeleteChannelRequest.google.longrunning.Operation"Z‚Óä“.*,/v1/{name=projects/*/locations/*/channels/*}ÚAnameÊA
-ChannelOperationMetadata
-GetProvider,.google.cloud.eventarc.v1.GetProviderRequest".google.cloud.eventarc.v1.Provider"<‚Óä“/-/v1/{name=projects/*/locations/*/providers/*}ÚAname°
-ListProviders..google.cloud.eventarc.v1.ListProvidersRequest/.google.cloud.eventarc.v1.ListProvidersResponse">‚Óä“/-/v1/{parent=projects/*/locations/*}/providersÚAparentÁ
-GetChannelConnection5.google.cloud.eventarc.v1.GetChannelConnectionRequest+.google.cloud.eventarc.v1.ChannelConnection"E‚Óä“86/v1/{name=projects/*/locations/*/channelConnections/*}ÚAnameÔ
-ListChannelConnections7.google.cloud.eventarc.v1.ListChannelConnectionsRequest8.google.cloud.eventarc.v1.ListChannelConnectionsResponse"G‚Óä“86/v1/{parent=projects/*/locations/*}/channelConnectionsÚAparent¢
-CreateChannelConnection8.google.cloud.eventarc.v1.CreateChannelConnectionRequest.google.longrunning.Operation"­‚Óä“L"6/v1/{parent=projects/*/locations/*}/channelConnections:channel_connectionÚA/parent,channel_connection,channel_connection_idÊA&
-ChannelConnectionOperationMetadataâ
-DeleteChannelConnection8.google.cloud.eventarc.v1.DeleteChannelConnectionRequest.google.longrunning.Operation"n‚Óä“8*6/v1/{name=projects/*/locations/*/channelConnections/*}ÚAnameÊA&
-ChannelConnectionOperationMetadataÆ
-GetGoogleChannelConfig7.google.cloud.eventarc.v1.GetGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"D‚Óä“75/v1/{name=projects/*/locations/*/googleChannelConfig}ÚAname—
-UpdateGoogleChannelConfig:.google.cloud.eventarc.v1.UpdateGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"‚Óä“d2K/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}:google_channel_configÚA!google_channel_config,update_maskKÊAeventarc.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB½
+GetChannel+.google.cloud.eventarc.v1.GetChannelRequest!.google.cloud.eventarc.v1.Channel";ÚAname‚Óä“.,/v1/{name=projects/*/locations/*/channels/*}¬
+ListChannels-.google.cloud.eventarc.v1.ListChannelsRequest..google.cloud.eventarc.v1.ListChannelsResponse"=ÚAparent‚Óä“.,/v1/{parent=projects/*/locations/*}/channelsØ
+CreateChannel..google.cloud.eventarc.v1.CreateChannelRequest.google.longrunning.Operation"xÊA
+ChannelOperationMetadataÚAparent,channel,channel_id‚Óä“7",/v1/{parent=projects/*/locations/*}/channels:channelÚ
+UpdateChannel..google.cloud.eventarc.v1.UpdateChannelRequest.google.longrunning.Operation"zÊA
+ChannelOperationMetadataÚAchannel,update_mask‚Óä“?24/v1/{channel.name=projects/*/locations/*/channels/*}:channelº
+DeleteChannel..google.cloud.eventarc.v1.DeleteChannelRequest.google.longrunning.Operation"ZÊA
+ChannelOperationMetadataÚAname‚Óä“.*,/v1/{name=projects/*/locations/*/channels/*}
+GetProvider,.google.cloud.eventarc.v1.GetProviderRequest".google.cloud.eventarc.v1.Provider"<ÚAname‚Óä“/-/v1/{name=projects/*/locations/*/providers/*}°
+ListProviders..google.cloud.eventarc.v1.ListProvidersRequest/.google.cloud.eventarc.v1.ListProvidersResponse">ÚAparent‚Óä“/-/v1/{parent=projects/*/locations/*}/providersÁ
+GetChannelConnection5.google.cloud.eventarc.v1.GetChannelConnectionRequest+.google.cloud.eventarc.v1.ChannelConnection"EÚAname‚Óä“86/v1/{name=projects/*/locations/*/channelConnections/*}Ô
+ListChannelConnections7.google.cloud.eventarc.v1.ListChannelConnectionsRequest8.google.cloud.eventarc.v1.ListChannelConnectionsResponse"GÚAparent‚Óä“86/v1/{parent=projects/*/locations/*}/channelConnections¢
+CreateChannelConnection8.google.cloud.eventarc.v1.CreateChannelConnectionRequest.google.longrunning.Operation"­ÊA&
+ChannelConnectionOperationMetadataÚA/parent,channel_connection,channel_connection_id‚Óä“L"6/v1/{parent=projects/*/locations/*}/channelConnections:channel_connectionâ
+DeleteChannelConnection8.google.cloud.eventarc.v1.DeleteChannelConnectionRequest.google.longrunning.Operation"nÊA&
+ChannelConnectionOperationMetadataÚAname‚Óä“8*6/v1/{name=projects/*/locations/*/channelConnections/*}Æ
+GetGoogleChannelConfig7.google.cloud.eventarc.v1.GetGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"DÚAname‚Óä“75/v1/{name=projects/*/locations/*/googleChannelConfig}—
+UpdateGoogleChannelConfig:.google.cloud.eventarc.v1.UpdateGoogleChannelConfigRequest-.google.cloud.eventarc.v1.GoogleChannelConfig"ÚA!google_channel_config,update_mask‚Óä“d2K/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}:google_channel_configKÊAeventarc.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB½
 com.google.cloud.eventarc.v1BEventarcProtoPZ8cloud.google.com/go/eventarc/apiv1/eventarcpb;eventarcpbªGoogle.Cloud.Eventarc.V1ÊGoogle\\Cloud\\Eventarc\\V1êGoogle::Cloud::Eventarc::V1bproto3'
         , true);
 

@@ -60,6 +60,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>double fraction_leaf_nodes_to_search_override = 5;</code>
      */
     private $fraction_leaf_nodes_to_search_override = 0.0;
+    protected $ranking;
 
     /**
      * Constructor.
@@ -67,6 +68,8 @@ class Query extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query\RRF $rrf
+     *           Optional. Represents RRF algorithm that combines search results.
      *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint $datapoint
      *           Required. The datapoint/vector whose nearest neighbors should be searched
      *           for.
@@ -96,6 +99,37 @@ class Query extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\MatchService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Represents RRF algorithm that combines search results.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FindNeighborsRequest.Query.RRF rrf = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query\RRF|null
+     */
+    public function getRrf()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasRrf()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. Represents RRF algorithm that combines search results.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FindNeighborsRequest.Query.RRF rrf = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query\RRF $var
+     * @return $this
+     */
+    public function setRrf($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query\RRF::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
     }
 
     /**
@@ -264,6 +298,14 @@ class Query extends \Google\Protobuf\Internal\Message
         $this->fraction_leaf_nodes_to_search_override = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRanking()
+    {
+        return $this->whichOneof("ranking");
     }
 
 }

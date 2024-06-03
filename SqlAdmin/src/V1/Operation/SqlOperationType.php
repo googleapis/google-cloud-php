@@ -245,6 +245,27 @@ class SqlOperationType
      * Generated from protobuf enum <code>SWITCHOVER = 39;</code>
      */
     const SWITCHOVER = 39;
+    /**
+     * Acquire a lease for the setup of SQL Server Reporting Services (SSRS).
+     *
+     * Generated from protobuf enum <code>ACQUIRE_SSRS_LEASE = 42;</code>
+     */
+    const ACQUIRE_SSRS_LEASE = 42;
+    /**
+     * Release a lease for the setup of SQL Server Reporting Services (SSRS).
+     *
+     * Generated from protobuf enum <code>RELEASE_SSRS_LEASE = 43;</code>
+     */
+    const RELEASE_SSRS_LEASE = 43;
+    /**
+     * Reconfigures old primary after a promote replica operation. Effect of a
+     * promote operation to the old primary is executed in this operation,
+     * asynchronously from the promote replica operation executed to the
+     * replica.
+     *
+     * Generated from protobuf enum <code>RECONFIGURE_OLD_PRIMARY = 44;</code>
+     */
+    const RECONFIGURE_OLD_PRIMARY = 44;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -286,6 +307,9 @@ class SqlOperationType
         self::AUTO_RESTART => 'AUTO_RESTART',
         self::REENCRYPT => 'REENCRYPT',
         self::SWITCHOVER => 'SWITCHOVER',
+        self::ACQUIRE_SSRS_LEASE => 'ACQUIRE_SSRS_LEASE',
+        self::RELEASE_SSRS_LEASE => 'RELEASE_SSRS_LEASE',
+        self::RECONFIGURE_OLD_PRIMARY => 'RECONFIGURE_OLD_PRIMARY',
     ];
 
     public static function name($value)

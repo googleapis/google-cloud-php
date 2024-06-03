@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Subnetwork;
 use UnexpectedValueException;
 
 /**
- * The purpose of the resource. This field can be either PRIVATE, REGIONAL_MANAGED_PROXY, PRIVATE_SERVICE_CONNECT, or INTERNAL_HTTPS_LOAD_BALANCER. PRIVATE is the default purpose for user-created subnets or subnets that are automatically created in auto mode networks. A subnet with purpose set to REGIONAL_MANAGED_PROXY is a user-created subnetwork that is reserved for regional Envoy-based load balancers. A subnet with purpose set to PRIVATE_SERVICE_CONNECT is used to publish services using Private Service Connect. A subnet with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a proxy-only subnet that can be used only by regional internal HTTP(S) load balancers. Note that REGIONAL_MANAGED_PROXY is the preferred setting for all regional Envoy load balancers. If unspecified, the subnet purpose defaults to PRIVATE. The enableFlowLogs field isn't supported if the subnet purpose field is set to REGIONAL_MANAGED_PROXY.
+ * The purpose of the resource. This field can be either PRIVATE, GLOBAL_MANAGED_PROXY, REGIONAL_MANAGED_PROXY, PRIVATE_SERVICE_CONNECT, or PRIVATE is the default purpose for user-created subnets or subnets that are automatically created in auto mode networks. Subnets with purpose set to GLOBAL_MANAGED_PROXY or REGIONAL_MANAGED_PROXY are user-created subnetworks that are reserved for Envoy-based load balancers. A subnet with purpose set to PRIVATE_SERVICE_CONNECT is used to publish services using Private Service Connect. If unspecified, the subnet purpose defaults to PRIVATE. The enableFlowLogs field isn't supported if the subnet purpose field is set to GLOBAL_MANAGED_PROXY or REGIONAL_MANAGED_PROXY.
  *
  * Protobuf type <code>google.cloud.compute.v1.Subnetwork.Purpose</code>
  */
@@ -20,7 +20,13 @@ class Purpose
      */
     const UNDEFINED_PURPOSE = 0;
     /**
-     * Subnet reserved for Internal HTTP(S) Load Balancing.
+     * Subnet reserved for Global Envoy-based Load Balancing.
+     *
+     * Generated from protobuf enum <code>GLOBAL_MANAGED_PROXY = 236463602;</code>
+     */
+    const GLOBAL_MANAGED_PROXY = 236463602;
+    /**
+     * Subnet reserved for Internal HTTP(S) Load Balancing. This is a legacy purpose, please use REGIONAL_MANAGED_PROXY instead.
      *
      * Generated from protobuf enum <code>INTERNAL_HTTPS_LOAD_BALANCER = 248748889;</code>
      */
@@ -31,6 +37,12 @@ class Purpose
      * Generated from protobuf enum <code>PRIVATE = 403485027;</code>
      */
     const PBPRIVATE = 403485027;
+    /**
+     * Subnetwork used as source range for Private NAT Gateways.
+     *
+     * Generated from protobuf enum <code>PRIVATE_NAT = 367764517;</code>
+     */
+    const PRIVATE_NAT = 367764517;
     /**
      * Regular user created or automatically created subnet.
      *
@@ -44,7 +56,7 @@ class Purpose
      */
     const PRIVATE_SERVICE_CONNECT = 48134724;
     /**
-     * Subnetwork used for Regional Internal/External HTTP(S) Load Balancing.
+     * Subnetwork used for Regional Envoy-based Load Balancing.
      *
      * Generated from protobuf enum <code>REGIONAL_MANAGED_PROXY = 153049966;</code>
      */
@@ -52,8 +64,10 @@ class Purpose
 
     private static $valueToName = [
         self::UNDEFINED_PURPOSE => 'UNDEFINED_PURPOSE',
+        self::GLOBAL_MANAGED_PROXY => 'GLOBAL_MANAGED_PROXY',
         self::INTERNAL_HTTPS_LOAD_BALANCER => 'INTERNAL_HTTPS_LOAD_BALANCER',
         self::PBPRIVATE => 'PRIVATE',
+        self::PRIVATE_NAT => 'PRIVATE_NAT',
         self::PRIVATE_RFC_1918 => 'PRIVATE_RFC_1918',
         self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
         self::REGIONAL_MANAGED_PROXY => 'REGIONAL_MANAGED_PROXY',

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datacatalog_v1_generated_DataCatalog_SearchCatalog_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\DataCatalog\V1\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\Client\DataCatalogClient;
+use Google\Cloud\DataCatalog\V1\SearchCatalogRequest;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope;
 use Google\Cloud\DataCatalog\V1\SearchCatalogResult;
 
@@ -64,13 +65,16 @@ function search_catalog_sample(string $query): void
     // Create a client.
     $dataCatalogClient = new DataCatalogClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $scope = new Scope();
+    $request = (new SearchCatalogRequest())
+        ->setScope($scope)
+        ->setQuery($query);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $dataCatalogClient->searchCatalog($scope, $query);
+        $response = $dataCatalogClient->searchCatalog($request);
 
         /** @var SearchCatalogResult $element */
         foreach ($response as $element) {

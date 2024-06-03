@@ -40,8 +40,8 @@ use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
  * `datalineage.events.get` permission. The project provided in the URL
  * is used for Billing and Quota.
  *
- * @param string $formattedParent The project and location you want search in the format `projects/&#42;/locations/*`
- *                                Please see {@see LineageClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The project and location you want search in. Please see
+ *                                {@see LineageClient::locationName()} for help formatting this field.
  */
 function search_links_sample(string $formattedParent): void
 {

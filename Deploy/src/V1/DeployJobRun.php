@@ -18,7 +18,7 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is
      * used to deploy. Format is
-     * projects/{project}/locations/{location}/builds/{build}.
+     * `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -58,7 +58,7 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
      *     @type string $build
      *           Output only. The resource name of the Cloud Build `Build` object that is
      *           used to deploy. Format is
-     *           projects/{project}/locations/{location}/builds/{build}.
+     *           `projects/{project}/locations/{location}/builds/{build}`.
      *     @type int $failure_cause
      *           Output only. The reason the deploy failed. This will always be unspecified
      *           while the deploy is in progress or if it succeeded.
@@ -78,7 +78,7 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is
      * used to deploy. Format is
-     * projects/{project}/locations/{location}/builds/{build}.
+     * `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class DeployJobRun extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is
      * used to deploy. Format is
-     * projects/{project}/locations/{location}/builds/{build}.
+     * `projects/{project}/locations/{location}/builds/{build}`.
      *
      * Generated from protobuf field <code>string build = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

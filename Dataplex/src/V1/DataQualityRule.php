@@ -25,7 +25,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      * Optional. Rows with `null` values will automatically fail a rule, unless
      * `ignore_null` is `true`. In that case, such `null` rows are trivially
      * considered passing.
-     * This field is only valid for row-level type rules.
+     * This field is only valid for the following type of rules:
+     * * RangeExpectation
+     * * RegexExpectation
+     * * SetExpectation
+     * * UniquenessExpectation
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -95,13 +99,20 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\TableConditionExpectation $table_condition_expectation
      *           Aggregate rule which evaluates whether the provided expression is true
      *           for a table.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $sql_assertion
+     *           Aggregate rule which evaluates the number of rows returned for the
+     *           provided statement.
      *     @type string $column
      *           Optional. The unnested column which this rule is evaluated against.
      *     @type bool $ignore_null
      *           Optional. Rows with `null` values will automatically fail a rule, unless
      *           `ignore_null` is `true`. In that case, such `null` rows are trivially
      *           considered passing.
-     *           This field is only valid for row-level type rules.
+     *           This field is only valid for the following type of rules:
+     *           * RangeExpectation
+     *           * RegexExpectation
+     *           * SetExpectation
+     *           * UniquenessExpectation
      *     @type string $dimension
      *           Required. The dimension a rule belongs to. Results are also aggregated at
      *           the dimension level. Supported dimensions are **["COMPLETENESS",
@@ -389,6 +400,39 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Aggregate rule which evaluates the number of rows returned for the
+     * provided statement.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.SqlAssertion sql_assertion = 202;</code>
+     * @return \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion|null
+     */
+    public function getSqlAssertion()
+    {
+        return $this->readOneof(202);
+    }
+
+    public function hasSqlAssertion()
+    {
+        return $this->hasOneof(202);
+    }
+
+    /**
+     * Aggregate rule which evaluates the number of rows returned for the
+     * provided statement.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.SqlAssertion sql_assertion = 202;</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $var
+     * @return $this
+     */
+    public function setSqlAssertion($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion::class);
+        $this->writeOneof(202, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. The unnested column which this rule is evaluated against.
      *
      * Generated from protobuf field <code>string column = 500 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -418,7 +462,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      * Optional. Rows with `null` values will automatically fail a rule, unless
      * `ignore_null` is `true`. In that case, such `null` rows are trivially
      * considered passing.
-     * This field is only valid for row-level type rules.
+     * This field is only valid for the following type of rules:
+     * * RangeExpectation
+     * * RegexExpectation
+     * * SetExpectation
+     * * UniquenessExpectation
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -432,7 +480,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      * Optional. Rows with `null` values will automatically fail a rule, unless
      * `ignore_null` is `true`. In that case, such `null` rows are trivially
      * considered passing.
-     * This field is only valid for row-level type rules.
+     * This field is only valid for the following type of rules:
+     * * RangeExpectation
+     * * RegexExpectation
+     * * SetExpectation
+     * * UniquenessExpectation
      *
      * Generated from protobuf field <code>bool ignore_null = 501 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

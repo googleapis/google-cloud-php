@@ -24,13 +24,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_GetStoredInfoType_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 
 /**
  * Gets a stored infoType.
- * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
- * learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+ * to learn more.
  *
  * @param string $formattedName Resource name of the organization and storedInfoType to be read,
  *                              for example `organizations/433245324/storedInfoTypes/432452342` or
@@ -42,10 +44,14 @@ function get_stored_info_type_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetStoredInfoTypeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var StoredInfoType $response */
-        $response = $dlpServiceClient->getStoredInfoType($formattedName);
+        $response = $dlpServiceClient->getStoredInfoType($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

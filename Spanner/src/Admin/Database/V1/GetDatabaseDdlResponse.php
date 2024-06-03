@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
+ * The response for
+ * [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.GetDatabaseDdlResponse</code>
  */
@@ -22,6 +23,16 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string statements = 1;</code>
      */
     private $statements;
+    /**
+     * Proto descriptors stored in the database.
+     * Contains a protobuf-serialized
+     * [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     * For more details, see protobuffer [self
+     * description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *
+     * Generated from protobuf field <code>bytes proto_descriptors = 2;</code>
+     */
+    private $proto_descriptors = '';
 
     /**
      * Constructor.
@@ -32,6 +43,12 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $statements
      *           A list of formatted DDL statements defining the schema of the database
      *           specified in the request.
+     *     @type string $proto_descriptors
+     *           Proto descriptors stored in the database.
+     *           Contains a protobuf-serialized
+     *           [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     *           For more details, see protobuffer [self
+     *           description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +80,40 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->statements = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Proto descriptors stored in the database.
+     * Contains a protobuf-serialized
+     * [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     * For more details, see protobuffer [self
+     * description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *
+     * Generated from protobuf field <code>bytes proto_descriptors = 2;</code>
+     * @return string
+     */
+    public function getProtoDescriptors()
+    {
+        return $this->proto_descriptors;
+    }
+
+    /**
+     * Proto descriptors stored in the database.
+     * Contains a protobuf-serialized
+     * [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto).
+     * For more details, see protobuffer [self
+     * description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).
+     *
+     * Generated from protobuf field <code>bytes proto_descriptors = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtoDescriptors($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->proto_descriptors = $var;
 
         return $this;
     }

@@ -103,9 +103,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient} to use
- * the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\BigQuery\AnalyticsHub\V1\Client\AnalyticsHubServiceClient}.
  */
 class AnalyticsHubServiceGapicClient
 {
@@ -114,8 +112,15 @@ class AnalyticsHubServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.bigquery.analyticshub.v1.AnalyticsHubService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'analyticshub.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'analyticshub.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -138,6 +143,8 @@ class AnalyticsHubServiceGapicClient
     private static $locationNameTemplate;
 
     private static $subscriptionNameTemplate;
+
+    private static $tableNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -226,6 +233,17 @@ class AnalyticsHubServiceGapicClient
         return self::$subscriptionNameTemplate;
     }
 
+    private static function getTableNameTemplate()
+    {
+        if (self::$tableNameTemplate == null) {
+            self::$tableNameTemplate = new PathTemplate(
+                'projects/{project}/datasets/{dataset}/tables/{table}'
+            );
+        }
+
+        return self::$tableNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -235,6 +253,7 @@ class AnalyticsHubServiceGapicClient
                 'listing' => self::getListingNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'subscription' => self::getSubscriptionNameTemplate(),
+                'table' => self::getTableNameTemplate(),
             ];
         }
 
@@ -339,6 +358,25 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a table
+     * resource.
+     *
+     * @param string $project
+     * @param string $dataset
+     * @param string $table
+     *
+     * @return string The formatted table resource.
+     */
+    public static function tableName($project, $dataset, $table)
+    {
+        return self::getTableNameTemplate()->render([
+            'project' => $project,
+            'dataset' => $dataset,
+            'table' => $table,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -347,6 +385,7 @@ class AnalyticsHubServiceGapicClient
      * - listing: projects/{project}/locations/{location}/dataExchanges/{data_exchange}/listings/{listing}
      * - location: projects/{project}/locations/{location}
      * - subscription: projects/{project}/locations/{location}/subscriptions/{subscription}
+     * - table: projects/{project}/datasets/{dataset}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -1404,7 +1443,7 @@ class AnalyticsHubServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1421,7 +1460,7 @@ class AnalyticsHubServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -1595,7 +1634,7 @@ class AnalyticsHubServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -1612,7 +1651,7 @@ class AnalyticsHubServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)

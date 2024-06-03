@@ -56,6 +56,13 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     private $location_hint = null;
     /**
+     * Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
+     * Check the MaintenanceInterval enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string maintenance_interval = 403368049;</code>
+     */
+    private $maintenance_interval = null;
+    /**
      * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
      * Check the MaintenancePolicy enum for the list of possible values.
      *
@@ -129,6 +136,9 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *           [Output Only] The type of the resource. Always compute#nodeGroup for node group.
      *     @type string $location_hint
      *           An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
+     *     @type string $maintenance_interval
+     *           Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
+     *           Check the MaintenanceInterval enum for the list of possible values.
      *     @type string $maintenance_policy
      *           Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
      *           Check the MaintenancePolicy enum for the list of possible values.
@@ -399,6 +409,44 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location_hint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
+     * Check the MaintenanceInterval enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string maintenance_interval = 403368049;</code>
+     * @return string
+     */
+    public function getMaintenanceInterval()
+    {
+        return isset($this->maintenance_interval) ? $this->maintenance_interval : '';
+    }
+
+    public function hasMaintenanceInterval()
+    {
+        return isset($this->maintenance_interval);
+    }
+
+    public function clearMaintenanceInterval()
+    {
+        unset($this->maintenance_interval);
+    }
+
+    /**
+     * Specifies the frequency of planned maintenance events. The accepted values are: `AS_NEEDED` and `RECURRENT`.
+     * Check the MaintenanceInterval enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string maintenance_interval = 403368049;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMaintenanceInterval($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->maintenance_interval = $var;
 
         return $this;
     }

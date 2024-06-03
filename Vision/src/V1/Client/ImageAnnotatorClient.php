@@ -60,11 +60,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Vision\V1\ImageAnnotatorClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface asyncBatchAnnotateFilesAsync(AsyncBatchAnnotateFilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface asyncBatchAnnotateImagesAsync(AsyncBatchAnnotateImagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface batchAnnotateFilesAsync(BatchAnnotateFilesRequest $request, array $optionalArgs = [])
@@ -78,8 +73,15 @@ final class ImageAnnotatorClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.vision.v1.ImageAnnotator';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'vision.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'vision.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -269,6 +271,8 @@ final class ImageAnnotatorClient
      * The async variant is {@see ImageAnnotatorClient::asyncBatchAnnotateFilesAsync()}
      * .
      *
+     * @example samples/V1/ImageAnnotatorClient/async_batch_annotate_files.php
+     *
      * @param AsyncBatchAnnotateFilesRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -302,6 +306,8 @@ final class ImageAnnotatorClient
      * The async variant is
      * {@see ImageAnnotatorClient::asyncBatchAnnotateImagesAsync()} .
      *
+     * @example samples/V1/ImageAnnotatorClient/async_batch_annotate_images.php
+     *
      * @param AsyncBatchAnnotateImagesRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -332,6 +338,8 @@ final class ImageAnnotatorClient
      *
      * The async variant is {@see ImageAnnotatorClient::batchAnnotateFilesAsync()} .
      *
+     * @example samples/V1/ImageAnnotatorClient/batch_annotate_files.php
+     *
      * @param BatchAnnotateFilesRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
@@ -355,6 +363,8 @@ final class ImageAnnotatorClient
      * Run image detection and annotation for a batch of images.
      *
      * The async variant is {@see ImageAnnotatorClient::batchAnnotateImagesAsync()} .
+     *
+     * @example samples/V1/ImageAnnotatorClient/batch_annotate_images.php
      *
      * @param BatchAnnotateImagesRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

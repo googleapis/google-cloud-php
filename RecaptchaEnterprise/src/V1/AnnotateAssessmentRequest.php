@@ -31,18 +31,24 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      */
     private $annotation = 0;
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the
-     * Event.
+     * Optional. Reasons for the annotation that are assigned to the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reasons;
     /**
-     * Optional. Unique stable hashed user identifier to apply to the assessment.
-     * This is an alternative to setting the hashed_account_id in
-     * CreateAssessment, for example when the account identifier is not yet known
-     * in the initial request. It is recommended that the identifier is hashed
-     * using hmac-sha256 with stable secret.
+     * Optional. A stable account identifier to apply to the assessment. This is
+     * an alternative to setting `account_id` in `CreateAssessment`, for example
+     * when a stable account identifier is not yet known in the initial request.
+     *
+     * Generated from protobuf field <code>string account_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $account_id = '';
+    /**
+     * Optional. A stable hashed account identifier to apply to the assessment.
+     * This is an alternative to setting `hashed_account_id` in
+     * `CreateAssessment`, for example when a stable account identifier is not yet
+     * known in the initial request.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -89,14 +95,16 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *           be left empty to provide reasons that apply to an event without concluding
      *           whether the event is legitimate or fraudulent.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reasons
-     *           Optional. Optional reasons for the annotation that will be assigned to the
-     *           Event.
+     *           Optional. Reasons for the annotation that are assigned to the event.
+     *     @type string $account_id
+     *           Optional. A stable account identifier to apply to the assessment. This is
+     *           an alternative to setting `account_id` in `CreateAssessment`, for example
+     *           when a stable account identifier is not yet known in the initial request.
      *     @type string $hashed_account_id
-     *           Optional. Unique stable hashed user identifier to apply to the assessment.
-     *           This is an alternative to setting the hashed_account_id in
-     *           CreateAssessment, for example when the account identifier is not yet known
-     *           in the initial request. It is recommended that the identifier is hashed
-     *           using hmac-sha256 with stable secret.
+     *           Optional. A stable hashed account identifier to apply to the assessment.
+     *           This is an alternative to setting `hashed_account_id` in
+     *           `CreateAssessment`, for example when a stable account identifier is not yet
+     *           known in the initial request.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionEvent $transaction_event
      *           Optional. If the assessment is part of a payment transaction, provide
      *           details on payment lifecycle events that occur in the transaction.
@@ -166,8 +174,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the
-     * Event.
+     * Optional. Reasons for the annotation that are assigned to the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -178,8 +185,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the
-     * Event.
+     * Optional. Reasons for the annotation that are assigned to the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
@@ -194,11 +200,40 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique stable hashed user identifier to apply to the assessment.
-     * This is an alternative to setting the hashed_account_id in
-     * CreateAssessment, for example when the account identifier is not yet known
-     * in the initial request. It is recommended that the identifier is hashed
-     * using hmac-sha256 with stable secret.
+     * Optional. A stable account identifier to apply to the assessment. This is
+     * an alternative to setting `account_id` in `CreateAssessment`, for example
+     * when a stable account identifier is not yet known in the initial request.
+     *
+     * Generated from protobuf field <code>string account_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAccountId()
+    {
+        return $this->account_id;
+    }
+
+    /**
+     * Optional. A stable account identifier to apply to the assessment. This is
+     * an alternative to setting `account_id` in `CreateAssessment`, for example
+     * when a stable account identifier is not yet known in the initial request.
+     *
+     * Generated from protobuf field <code>string account_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAccountId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->account_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A stable hashed account identifier to apply to the assessment.
+     * This is an alternative to setting `hashed_account_id` in
+     * `CreateAssessment`, for example when a stable account identifier is not yet
+     * known in the initial request.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -209,11 +244,10 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique stable hashed user identifier to apply to the assessment.
-     * This is an alternative to setting the hashed_account_id in
-     * CreateAssessment, for example when the account identifier is not yet known
-     * in the initial request. It is recommended that the identifier is hashed
-     * using hmac-sha256 with stable secret.
+     * Optional. A stable hashed account identifier to apply to the assessment.
+     * This is an alternative to setting `hashed_account_id` in
+     * `CreateAssessment`, for example when a stable account identifier is not yet
+     * known in the initial request.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

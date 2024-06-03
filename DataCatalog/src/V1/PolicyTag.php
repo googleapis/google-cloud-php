@@ -24,10 +24,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class PolicyTag extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name of this policy tag in the URL format.
+     * Identifier. Resource name of this policy tag in the URL format.
      * The policy tag manager generates unique taxonomy IDs and policy tag IDs.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     private $name = '';
     /**
@@ -72,7 +72,7 @@ class PolicyTag extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name of this policy tag in the URL format.
+     *           Identifier. Resource name of this policy tag in the URL format.
      *           The policy tag manager generates unique taxonomy IDs and policy tag IDs.
      *     @type string $display_name
      *           Required. User-defined name of this policy tag.
@@ -100,10 +100,10 @@ class PolicyTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of this policy tag in the URL format.
+     * Identifier. Resource name of this policy tag in the URL format.
      * The policy tag manager generates unique taxonomy IDs and policy tag IDs.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -112,10 +112,10 @@ class PolicyTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of this policy tag in the URL format.
+     * Identifier. Resource name of this policy tag in the URL format.
      * The policy tag manager generates unique taxonomy IDs and policy tag IDs.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

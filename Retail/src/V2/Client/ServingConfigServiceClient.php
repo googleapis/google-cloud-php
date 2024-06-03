@@ -54,12 +54,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Retail\V2\ServingConfigServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface addControlAsync(AddControlRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createServingConfigAsync(CreateServingConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteServingConfigAsync(DeleteServingConfigRequest $request, array $optionalArgs = [])
@@ -76,8 +70,15 @@ final class ServingConfigServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.retail.v2.ServingConfigService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'retail.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'retail.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -256,6 +257,8 @@ final class ServingConfigServiceClient
      *
      * The async variant is {@see ServingConfigServiceClient::addControlAsync()} .
      *
+     * @example samples/V2/ServingConfigServiceClient/add_control.php
+     *
      * @param AddControlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -285,6 +288,8 @@ final class ServingConfigServiceClient
      * The async variant is
      * {@see ServingConfigServiceClient::createServingConfigAsync()} .
      *
+     * @example samples/V2/ServingConfigServiceClient/create_serving_config.php
+     *
      * @param CreateServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -312,6 +317,8 @@ final class ServingConfigServiceClient
      * The async variant is
      * {@see ServingConfigServiceClient::deleteServingConfigAsync()} .
      *
+     * @example samples/V2/ServingConfigServiceClient/delete_serving_config.php
+     *
      * @param DeleteServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -337,6 +344,8 @@ final class ServingConfigServiceClient
      * The async variant is {@see ServingConfigServiceClient::getServingConfigAsync()}
      * .
      *
+     * @example samples/V2/ServingConfigServiceClient/get_serving_config.php
+     *
      * @param GetServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -361,6 +370,8 @@ final class ServingConfigServiceClient
      *
      * The async variant is
      * {@see ServingConfigServiceClient::listServingConfigsAsync()} .
+     *
+     * @example samples/V2/ServingConfigServiceClient/list_serving_configs.php
      *
      * @param ListServingConfigsRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
@@ -389,6 +400,8 @@ final class ServingConfigServiceClient
      *
      * The async variant is {@see ServingConfigServiceClient::removeControlAsync()} .
      *
+     * @example samples/V2/ServingConfigServiceClient/remove_control.php
+     *
      * @param RemoveControlRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -413,6 +426,8 @@ final class ServingConfigServiceClient
      *
      * The async variant is
      * {@see ServingConfigServiceClient::updateServingConfigAsync()} .
+     *
+     * @example samples/V2/ServingConfigServiceClient/update_serving_config.php
      *
      * @param UpdateServingConfigRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {

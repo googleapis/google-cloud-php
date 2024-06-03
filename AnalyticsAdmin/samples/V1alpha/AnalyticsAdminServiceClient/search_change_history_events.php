@@ -23,8 +23,9 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_SearchChangeHistoryEvents_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 use Google\Analytics\Admin\V1alpha\ChangeHistoryEvent;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
@@ -33,18 +34,22 @@ use Google\ApiCore\PagedListResponse;
  * specified set of filters.
  *
  * @param string $formattedAccount The account resource for which to return change history
- *                                 resources. Please see
- *                                 {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
+ *                                 resources. Format: accounts/{account} Example: "accounts/100"
+ *                                 Please see {@see AnalyticsAdminServiceClient::accountName()} for help formatting this field.
  */
 function search_change_history_events_sample(string $formattedAccount): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new SearchChangeHistoryEventsRequest())
+        ->setAccount($formattedAccount);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->searchChangeHistoryEvents($formattedAccount);
+        $response = $analyticsAdminServiceClient->searchChangeHistoryEvents($request);
 
         /** @var ChangeHistoryEvent $element */
         foreach ($response as $element) {

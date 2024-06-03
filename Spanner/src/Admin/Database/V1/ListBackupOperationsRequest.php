@@ -35,7 +35,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *      for [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] is
+     *      for
+     *      [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *      is
      *      `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
      *      `metadata.&#64;type` must be specified first if filtering on metadata
@@ -50,14 +52,15 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `done:true` - The operation is complete.
      *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *      `metadata.database:prod` - Returns operations where:
-     *      * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     *      * The database the backup was taken from has a name containing the
-     *      string "prod".
+     *      * The operation's metadata type is
+     *      [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *      * The source database name of backup contains the string "prod".
      *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *     `(metadata.name:howl) AND` \
      *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
-     *     * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *     * The operation's metadata type is
+     *     [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *     * The backup name contains the string "howl".
      *     * The operation started before 2018-03-28T14:50:00Z.
      *     * The operation resulted in an error.
@@ -65,9 +68,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.source_backup:test) AND` \
      *     `(metadata.progress.start_time < \"2022-01-18T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
-     *     * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
-     *     * The source backup of the copied backup name contains the string
-     *     "test".
+     *     * The operation's metadata type is
+     *     [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
+     *     * The source backup name contains the string "test".
      *     * The operation started before 2022-01-18T14:50:00Z.
      *     * The operation resulted in an error.
      *   * `((metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
@@ -77,12 +80,13 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.source_backup:test_bkp)) AND` \
      *     `(error:*)` - Returns operations where:
      *     * The operation's metadata matches either of criteria:
-     *       * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] AND the
-     *       database the backup was taken from has name containing string
+     *       * The operation's metadata type is
+     *       [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *       AND the source database name of the backup contains the string
      *       "test_db"
-     *       * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata] AND the
-     *       backup the backup was copied from has name containing string
-     *       "test_bkp"
+     *       * The operation's metadata type is
+     *       [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata]
+     *       AND the source backup name contains the string "test_bkp"
      *     * The operation resulted in an error.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -98,8 +102,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListBackupOperationsResponse.next_page_token]
-     * from a previous [ListBackupOperationsResponse][google.spanner.admin.database.v1.ListBackupOperationsResponse] to the
-     * same `parent` and with the same `filter`.
+     * from a previous
+     * [ListBackupOperationsResponse][google.spanner.admin.database.v1.ListBackupOperationsResponse]
+     * to the same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -141,7 +146,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *             * `name` - The name of the long-running operation
      *             * `done` - False if the operation is in progress, else true.
      *             * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *                for [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] is
+     *                for
+     *                [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *                is
      *                `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`.
      *             * `metadata.<field_name>` - any field in metadata.value.
      *                `metadata.&#64;type` must be specified first if filtering on metadata
@@ -156,14 +163,15 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *             * `done:true` - The operation is complete.
      *             * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *                `metadata.database:prod` - Returns operations where:
-     *                * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     *                * The database the backup was taken from has a name containing the
-     *                string "prod".
+     *                * The operation's metadata type is
+     *                [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *                * The source database name of backup contains the string "prod".
      *             * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *               `(metadata.name:howl) AND` \
      *               `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *               `(error:*)` - Returns operations where:
-     *               * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *               * The operation's metadata type is
+     *               [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *               * The backup name contains the string "howl".
      *               * The operation started before 2018-03-28T14:50:00Z.
      *               * The operation resulted in an error.
@@ -171,9 +179,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *               `(metadata.source_backup:test) AND` \
      *               `(metadata.progress.start_time < \"2022-01-18T14:50:00Z\") AND` \
      *               `(error:*)` - Returns operations where:
-     *               * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
-     *               * The source backup of the copied backup name contains the string
-     *               "test".
+     *               * The operation's metadata type is
+     *               [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
+     *               * The source backup name contains the string "test".
      *               * The operation started before 2022-01-18T14:50:00Z.
      *               * The operation resulted in an error.
      *             * `((metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
@@ -183,12 +191,13 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *               `(metadata.source_backup:test_bkp)) AND` \
      *               `(error:*)` - Returns operations where:
      *               * The operation's metadata matches either of criteria:
-     *                 * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] AND the
-     *                 database the backup was taken from has name containing string
+     *                 * The operation's metadata type is
+     *                 [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *                 AND the source database name of the backup contains the string
      *                 "test_db"
-     *                 * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata] AND the
-     *                 backup the backup was copied from has name containing string
-     *                 "test_bkp"
+     *                 * The operation's metadata type is
+     *                 [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata]
+     *                 AND the source backup name contains the string "test_bkp"
      *               * The operation resulted in an error.
      *     @type int $page_size
      *           Number of operations to be returned in the response. If 0 or
@@ -196,8 +205,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
      *           [next_page_token][google.spanner.admin.database.v1.ListBackupOperationsResponse.next_page_token]
-     *           from a previous [ListBackupOperationsResponse][google.spanner.admin.database.v1.ListBackupOperationsResponse] to the
-     *           same `parent` and with the same `filter`.
+     *           from a previous
+     *           [ListBackupOperationsResponse][google.spanner.admin.database.v1.ListBackupOperationsResponse]
+     *           to the same `parent` and with the same `filter`.
      * }
      */
     public function __construct($data = NULL) {
@@ -245,7 +255,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *      for [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] is
+     *      for
+     *      [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *      is
      *      `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
      *      `metadata.&#64;type` must be specified first if filtering on metadata
@@ -260,14 +272,15 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `done:true` - The operation is complete.
      *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *      `metadata.database:prod` - Returns operations where:
-     *      * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     *      * The database the backup was taken from has a name containing the
-     *      string "prod".
+     *      * The operation's metadata type is
+     *      [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *      * The source database name of backup contains the string "prod".
      *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *     `(metadata.name:howl) AND` \
      *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
-     *     * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *     * The operation's metadata type is
+     *     [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *     * The backup name contains the string "howl".
      *     * The operation started before 2018-03-28T14:50:00Z.
      *     * The operation resulted in an error.
@@ -275,9 +288,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.source_backup:test) AND` \
      *     `(metadata.progress.start_time < \"2022-01-18T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
-     *     * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
-     *     * The source backup of the copied backup name contains the string
-     *     "test".
+     *     * The operation's metadata type is
+     *     [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
+     *     * The source backup name contains the string "test".
      *     * The operation started before 2022-01-18T14:50:00Z.
      *     * The operation resulted in an error.
      *   * `((metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
@@ -287,12 +300,13 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.source_backup:test_bkp)) AND` \
      *     `(error:*)` - Returns operations where:
      *     * The operation's metadata matches either of criteria:
-     *       * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] AND the
-     *       database the backup was taken from has name containing string
+     *       * The operation's metadata type is
+     *       [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *       AND the source database name of the backup contains the string
      *       "test_db"
-     *       * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata] AND the
-     *       backup the backup was copied from has name containing string
-     *       "test_bkp"
+     *       * The operation's metadata type is
+     *       [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata]
+     *       AND the source backup name contains the string "test_bkp"
      *     * The operation resulted in an error.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -315,7 +329,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *      for [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] is
+     *      for
+     *      [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *      is
      *      `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
      *      `metadata.&#64;type` must be specified first if filtering on metadata
@@ -330,14 +346,15 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `done:true` - The operation is complete.
      *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *      `metadata.database:prod` - Returns operations where:
-     *      * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     *      * The database the backup was taken from has a name containing the
-     *      string "prod".
+     *      * The operation's metadata type is
+     *      [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *      * The source database name of backup contains the string "prod".
      *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *     `(metadata.name:howl) AND` \
      *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
-     *     * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *     * The operation's metadata type is
+     *     [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *     * The backup name contains the string "howl".
      *     * The operation started before 2018-03-28T14:50:00Z.
      *     * The operation resulted in an error.
@@ -345,9 +362,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.source_backup:test) AND` \
      *     `(metadata.progress.start_time < \"2022-01-18T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
-     *     * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
-     *     * The source backup of the copied backup name contains the string
-     *     "test".
+     *     * The operation's metadata type is
+     *     [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
+     *     * The source backup name contains the string "test".
      *     * The operation started before 2022-01-18T14:50:00Z.
      *     * The operation resulted in an error.
      *   * `((metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
@@ -357,12 +374,13 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.source_backup:test_bkp)) AND` \
      *     `(error:*)` - Returns operations where:
      *     * The operation's metadata matches either of criteria:
-     *       * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] AND the
-     *       database the backup was taken from has name containing string
+     *       * The operation's metadata type is
+     *       [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]
+     *       AND the source database name of the backup contains the string
      *       "test_db"
-     *       * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata] AND the
-     *       backup the backup was copied from has name containing string
-     *       "test_bkp"
+     *       * The operation's metadata type is
+     *       [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata]
+     *       AND the source backup name contains the string "test_bkp"
      *     * The operation resulted in an error.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -408,8 +426,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListBackupOperationsResponse.next_page_token]
-     * from a previous [ListBackupOperationsResponse][google.spanner.admin.database.v1.ListBackupOperationsResponse] to the
-     * same `parent` and with the same `filter`.
+     * from a previous
+     * [ListBackupOperationsResponse][google.spanner.admin.database.v1.ListBackupOperationsResponse]
+     * to the same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -422,8 +441,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListBackupOperationsResponse.next_page_token]
-     * from a previous [ListBackupOperationsResponse][google.spanner.admin.database.v1.ListBackupOperationsResponse] to the
-     * same `parent` and with the same `filter`.
+     * from a previous
+     * [ListBackupOperationsResponse][google.spanner.admin.database.v1.ListBackupOperationsResponse]
+     * to the same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

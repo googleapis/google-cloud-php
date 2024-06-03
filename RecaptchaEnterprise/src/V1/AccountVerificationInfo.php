@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Endpoints that can be used for identity verification.
+     * Optional. Endpoints that can be used for identity verification.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo endpoints = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo endpoints = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $endpoints;
     /**
-     * Language code preference for the verification message, set as a IETF BCP 47
-     * language code.
+     * Optional. Language code preference for the verification message, set as a
+     * IETF BCP 47 language code.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
     /**
@@ -36,7 +36,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
     private $latest_verification_result = 0;
     /**
      * Username of the account that is being verified. Deprecated. Customers
-     * should now provide the hashed account ID field in Event.
+     * should now provide the `account_id` field in `event.user_info`.
      *
      * Generated from protobuf field <code>string username = 2 [deprecated = true];</code>
      * @deprecated
@@ -50,15 +50,15 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\EndpointVerificationInfo>|\Google\Protobuf\Internal\RepeatedField $endpoints
-     *           Endpoints that can be used for identity verification.
+     *           Optional. Endpoints that can be used for identity verification.
      *     @type string $language_code
-     *           Language code preference for the verification message, set as a IETF BCP 47
-     *           language code.
+     *           Optional. Language code preference for the verification message, set as a
+     *           IETF BCP 47 language code.
      *     @type int $latest_verification_result
      *           Output only. Result of the latest account verification challenge.
      *     @type string $username
      *           Username of the account that is being verified. Deprecated. Customers
-     *           should now provide the hashed account ID field in Event.
+     *           should now provide the `account_id` field in `event.user_info`.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,9 +67,9 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Endpoints that can be used for identity verification.
+     * Optional. Endpoints that can be used for identity verification.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo endpoints = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo endpoints = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEndpoints()
@@ -78,9 +78,9 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Endpoints that can be used for identity verification.
+     * Optional. Endpoints that can be used for identity verification.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo endpoints = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo endpoints = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\RecaptchaEnterprise\V1\EndpointVerificationInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -93,10 +93,10 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Language code preference for the verification message, set as a IETF BCP 47
-     * language code.
+     * Optional. Language code preference for the verification message, set as a
+     * IETF BCP 47 language code.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -105,10 +105,10 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Language code preference for the verification message, set as a IETF BCP 47
-     * language code.
+     * Optional. Language code preference for the verification message, set as a
+     * IETF BCP 47 language code.
      *
-     * Generated from protobuf field <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -148,7 +148,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Username of the account that is being verified. Deprecated. Customers
-     * should now provide the hashed account ID field in Event.
+     * should now provide the `account_id` field in `event.user_info`.
      *
      * Generated from protobuf field <code>string username = 2 [deprecated = true];</code>
      * @return string
@@ -162,7 +162,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Username of the account that is being verified. Deprecated. Customers
-     * should now provide the hashed account ID field in Event.
+     * should now provide the `account_id` field in `event.user_info`.
      *
      * Generated from protobuf field <code>string username = 2 [deprecated = true];</code>
      * @param string $var

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START monitoring_v3_generated_NotificationChannelService_CreateNotificationChannel_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Monitoring\V3\Client\NotificationChannelServiceClient;
+use Google\Cloud\Monitoring\V3\CreateNotificationChannelRequest;
 use Google\Cloud\Monitoring\V3\NotificationChannel;
-use Google\Cloud\Monitoring\V3\NotificationChannelServiceClient;
 
 /**
  * Creates a new notification channel, representing a single notification
@@ -52,16 +53,16 @@ function create_notification_channel_sample(string $name): void
     // Create a client.
     $notificationChannelServiceClient = new NotificationChannelServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $notificationChannel = new NotificationChannel();
+    $request = (new CreateNotificationChannelRequest())
+        ->setName($name)
+        ->setNotificationChannel($notificationChannel);
 
     // Call the API and handle any network failures.
     try {
         /** @var NotificationChannel $response */
-        $response = $notificationChannelServiceClient->createNotificationChannel(
-            $name,
-            $notificationChannel
-        );
+        $response = $notificationChannelServiceClient->createNotificationChannel($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

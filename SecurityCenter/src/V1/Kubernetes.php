@@ -63,6 +63,12 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.AccessReview access_reviews = 6;</code>
      */
     private $access_reviews;
+    /**
+     * Kubernetes objects related to the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Object objects = 7;</code>
+     */
+    private $objects;
 
     /**
      * Constructor.
@@ -94,6 +100,8 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\AccessReview>|\Google\Protobuf\Internal\RepeatedField $access_reviews
      *           Provides information on any Kubernetes access reviews (privilege checks)
      *           relevant to the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Object>|\Google\Protobuf\Internal\RepeatedField $objects
+     *           Kubernetes objects related to the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,6 +285,32 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Kubernetes\AccessReview::class);
         $this->access_reviews = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Kubernetes objects related to the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Object objects = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getObjects()
+    {
+        return $this->objects;
+    }
+
+    /**
+     * Kubernetes objects related to the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Object objects = 7;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Object>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setObjects($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Kubernetes\Object::class);
+        $this->objects = $arr;
 
         return $this;
     }

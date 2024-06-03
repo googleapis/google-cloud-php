@@ -27,10 +27,11 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AutoMl\V1\BatchPredictInputConfig;
 use Google\Cloud\AutoMl\V1\BatchPredictOutputConfig;
+use Google\Cloud\AutoMl\V1\BatchPredictRequest;
 use Google\Cloud\AutoMl\V1\BatchPredictResult;
+use Google\Cloud\AutoMl\V1\Client\PredictionServiceClient;
 use Google\Cloud\AutoMl\V1\GcsDestination;
 use Google\Cloud\AutoMl\V1\GcsSource;
-use Google\Cloud\AutoMl\V1\PredictionServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -70,7 +71,7 @@ function batch_predict_sample(
     // Create a client.
     $predictionServiceClient = new PredictionServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $inputConfigGcsSourceInputUris = [$inputConfigGcsSourceInputUrisElement,];
     $inputConfigGcsSource = (new GcsSource())
         ->setInputUris($inputConfigGcsSourceInputUris);
@@ -80,11 +81,15 @@ function batch_predict_sample(
         ->setOutputUriPrefix($outputConfigGcsDestinationOutputUriPrefix);
     $outputConfig = (new BatchPredictOutputConfig())
         ->setGcsDestination($outputConfigGcsDestination);
+    $request = (new BatchPredictRequest())
+        ->setName($formattedName)
+        ->setInputConfig($inputConfig)
+        ->setOutputConfig($outputConfig);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $predictionServiceClient->batchPredict($formattedName, $inputConfig, $outputConfig);
+        $response = $predictionServiceClient->batchPredict($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

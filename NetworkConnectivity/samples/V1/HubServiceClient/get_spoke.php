@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START networkconnectivity_v1_generated_HubService_GetSpoke_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\Client\HubServiceClient;
+use Google\Cloud\NetworkConnectivity\V1\GetSpokeRequest;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
 
 /**
@@ -38,10 +39,14 @@ function get_spoke_sample(string $formattedName): void
     // Create a client.
     $hubServiceClient = new HubServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetSpokeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Spoke $response */
-        $response = $hubServiceClient->getSpoke($formattedName);
+        $response = $hubServiceClient->getSpoke($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

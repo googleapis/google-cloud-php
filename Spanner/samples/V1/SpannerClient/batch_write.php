@@ -25,10 +25,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START spanner_v1_generated_Spanner_BatchWrite_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup;
 use Google\Cloud\Spanner\V1\BatchWriteResponse;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\Mutation;
-use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Batches the supplied mutation groups in a collection of efficient
@@ -55,16 +56,19 @@ function batch_write_sample(string $formattedSession): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $mutationGroupsMutations = [new Mutation()];
     $mutationGroup = (new MutationGroup())
         ->setMutations($mutationGroupsMutations);
     $mutationGroups = [$mutationGroup,];
+    $request = (new BatchWriteRequest())
+        ->setSession($formattedSession)
+        ->setMutationGroups($mutationGroups);
 
     // Call the API and handle any network failures.
     try {
         /** @var ServerStream $stream */
-        $stream = $spannerClient->batchWrite($formattedSession, $mutationGroups);
+        $stream = $spannerClient->batchWrite($request);
 
         /** @var BatchWriteResponse $element */
         foreach ($stream->readAll() as $element) {

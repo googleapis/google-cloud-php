@@ -52,11 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Logging\V2\MetricsServiceV2Client} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface createLogMetricAsync(CreateLogMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteLogMetricAsync(DeleteLogMetricRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLogMetricAsync(GetLogMetricRequest $request, array $optionalArgs = [])
@@ -71,8 +66,15 @@ final class MetricsServiceV2Client
     /** The name of the service. */
     private const SERVICE_NAME = 'google.logging.v2.MetricsServiceV2';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'logging.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'logging.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -241,6 +243,8 @@ final class MetricsServiceV2Client
      *
      * The async variant is {@see MetricsServiceV2Client::createLogMetricAsync()} .
      *
+     * @example samples/V2/MetricsServiceV2Client/create_log_metric.php
+     *
      * @param CreateLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -265,6 +269,8 @@ final class MetricsServiceV2Client
      *
      * The async variant is {@see MetricsServiceV2Client::deleteLogMetricAsync()} .
      *
+     * @example samples/V2/MetricsServiceV2Client/delete_log_metric.php
+     *
      * @param DeleteLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -286,6 +292,8 @@ final class MetricsServiceV2Client
      * Gets a logs-based metric.
      *
      * The async variant is {@see MetricsServiceV2Client::getLogMetricAsync()} .
+     *
+     * @example samples/V2/MetricsServiceV2Client/get_log_metric.php
      *
      * @param GetLogMetricRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -311,6 +319,8 @@ final class MetricsServiceV2Client
      *
      * The async variant is {@see MetricsServiceV2Client::listLogMetricsAsync()} .
      *
+     * @example samples/V2/MetricsServiceV2Client/list_log_metrics.php
+     *
      * @param ListLogMetricsRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
      *     Optional.
@@ -334,6 +344,8 @@ final class MetricsServiceV2Client
      * Creates or updates a logs-based metric.
      *
      * The async variant is {@see MetricsServiceV2Client::updateLogMetricAsync()} .
+     *
+     * @example samples/V2/MetricsServiceV2Client/update_log_metric.php
      *
      * @param UpdateLogMetricRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {

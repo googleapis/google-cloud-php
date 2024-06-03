@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_Contexts_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Dialogflow\V2\ContextsClient;
+use Google\Cloud\Dialogflow\V2\Client\ContextsClient;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
 /**
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $contextsClient = new ContextsClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $contextsClient->listLocations();
+        $response = $contextsClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

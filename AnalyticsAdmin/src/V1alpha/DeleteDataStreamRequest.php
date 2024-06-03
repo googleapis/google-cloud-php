@@ -24,6 +24,21 @@ class DeleteDataStreamRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the DataStream to delete.
+     *                     Example format: properties/1234/dataStreams/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::dataStreamName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DeleteDataStreamRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,13 +24,16 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START secretmanager_v1_generated_SecretManagerService_GetSecret_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\GetSecretRequest;
 use Google\Cloud\SecretManager\V1\Secret;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
 
 /**
  * Gets metadata for a given [Secret][google.cloud.secretmanager.v1.Secret].
  *
- * @param string $formattedName The resource name of the [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/&#42;/secrets/*`. Please see
+ * @param string $formattedName The resource name of the
+ *                              [Secret][google.cloud.secretmanager.v1.Secret], in the format
+ *                              `projects/&#42;/secrets/*` or `projects/&#42;/locations/&#42;/secrets/*`. Please see
  *                              {@see SecretManagerServiceClient::secretName()} for help formatting this field.
  */
 function get_secret_sample(string $formattedName): void
@@ -38,10 +41,14 @@ function get_secret_sample(string $formattedName): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetSecretRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Secret $response */
-        $response = $secretManagerServiceClient->getSecret($formattedName);
+        $response = $secretManagerServiceClient->getSecret($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -182,18 +182,18 @@ class Component
         $this->repoName = preg_replace('/\.git$/', '', $repoName); // Strip trailing ".git"
         $this->description = $composerJson['description'];
 
-        $repoMetadataPath = $this->path . '/.repo-metadata.json';
-        if (!file_exists($repoMetadataPath)) {
-            throw new RuntimeException(
-                sprintf('repo metadata not found for component "%s"', $this->name)
-            );
+        $repoMetadataPath = self::ROOT_DIR . '/.repo-metadata-full.json';
+        $repoMetadataFullJson = json_decode(file_get_contents($repoMetadataPath), true);
+        if (!$repoMetadataFullJson) {
+            throw new RuntimeException('Invalid .repo-metadata-full.json');
         }
-        $repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true);
-        if (!$repoMetadataJson) {
-            throw new RuntimeException(
-                sprintf('Invalid .repo-metadata.json for component "%s"', $this->name)
-            );
+        if (!isset($repoMetadataFullJson[$this->name])) {
+            throw new RuntimeException(sprintf(
+                'repo metadata for component "%s" not found in .repo-metadata-full.json',
+                $this->name
+            ));
         }
+        $repoMetadataJson = $repoMetadataFullJson[$this->name];
         if (empty($repoMetadataJson['release_level'])) {
             throw new RuntimeException(sprintf(
                 'repo metadata does not contain "release_level" for component "%s"',
@@ -268,6 +268,9 @@ class Component
         $paths = array_map(fn ($file) => $file->getRelativePathname(), iterator_to_array($result));
         $paths = array_reverse(array_values($paths));
         usort($paths, [$this, 'versionCompare']);
+        if (empty($paths)) {
+            $paths = [''];
+        }
         return $paths;
     }
 

@@ -33,7 +33,7 @@ use Google\Cloud\Deploy\V1\Target;
  * Lists Targets in a given project and location.
  *
  * @param string $formattedParent The parent, which owns this collection of targets. Format must be
- *                                projects/{project_id}/locations/{location_name}. Please see
+ *                                `projects/{project_id}/locations/{location_name}`. Please see
  *                                {@see CloudDeployClient::locationName()} for help formatting this field.
  */
 function list_targets_sample(string $formattedParent): void

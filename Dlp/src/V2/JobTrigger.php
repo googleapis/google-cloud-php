@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains a configuration to make dlp api calls on a repeating basis.
- * See https://cloud.google.com/dlp/docs/concepts-job-triggers to learn more.
+ * Contains a configuration to make API calls on a repeating basis.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers
+ * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.JobTrigger</code>
  */

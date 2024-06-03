@@ -54,6 +54,16 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ProcessOptions process_options = 7;</code>
      */
     private $process_options = null;
+    /**
+     * Optional. The labels with user-defined metadata for the request.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
     protected $source;
 
     /**
@@ -111,6 +121,12 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
      *           the form of `{document_field_name}` or `pages.{page_field_name}`.
      *     @type \Google\Cloud\DocumentAI\V1\ProcessOptions $process_options
      *           Inference-time options for the process API
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The labels with user-defined metadata for the request.
+     *           Label keys and values can be no longer than 63 characters
+     *           (Unicode codepoints) and can only contain lowercase letters, numeric
+     *           characters, underscores, and dashes. International characters are allowed.
+     *           Label values are optional. Label keys must start with a letter.
      * }
      */
     public function __construct($data = NULL) {
@@ -357,6 +373,40 @@ class ProcessRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\ProcessOptions::class);
         $this->process_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The labels with user-defined metadata for the request.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. The labels with user-defined metadata for the request.
+     * Label keys and values can be no longer than 63 characters
+     * (Unicode codepoints) and can only contain lowercase letters, numeric
+     * characters, underscores, and dashes. International characters are allowed.
+     * Label values are optional. Label keys must start with a letter.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

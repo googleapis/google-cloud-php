@@ -73,11 +73,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Spanner\V1\SpannerClient} for the stable implementation
- *
- * @experimental
- *
  * @method PromiseInterface batchCreateSessionsAsync(BatchCreateSessionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface beginTransactionAsync(BeginTransactionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface commitAsync(CommitRequest $request, array $optionalArgs = [])
@@ -100,8 +95,15 @@ final class SpannerClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.spanner.v1.Spanner';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'spanner.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'spanner.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -278,6 +280,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::batchCreateSessionsAsync()} .
      *
+     * @example samples/V1/SpannerClient/batch_create_sessions.php
+     *
      * @param BatchCreateSessionsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -314,6 +318,8 @@ final class SpannerClient
      * mutation's table. We recommend structuring your mutation groups to be
      * idempotent to avoid this issue.
      *
+     * @example samples/V1/SpannerClient/batch_write.php
+     *
      * @param BatchWriteRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -333,11 +339,14 @@ final class SpannerClient
 
     /**
      * Begins a new transaction. This step can often be skipped:
-     * [Read][google.spanner.v1.Spanner.Read], [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
+     * [Read][google.spanner.v1.Spanner.Read],
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
      * [Commit][google.spanner.v1.Spanner.Commit] can begin a new transaction as a
      * side-effect.
      *
      * The async variant is {@see SpannerClient::beginTransactionAsync()} .
+     *
+     * @example samples/V1/SpannerClient/begin_transaction.php
      *
      * @param BeginTransactionRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
@@ -375,6 +384,8 @@ final class SpannerClient
      * state of things as they are now.
      *
      * The async variant is {@see SpannerClient::commitAsync()} .
+     *
+     * @example samples/V1/SpannerClient/commit.php
      *
      * @param CommitRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -418,6 +429,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::createSessionAsync()} .
      *
+     * @example samples/V1/SpannerClient/create_session.php
+     *
      * @param CreateSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -444,6 +457,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::deleteSessionAsync()} .
      *
+     * @example samples/V1/SpannerClient/delete_session.php
+     *
      * @param DeleteSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -467,14 +482,17 @@ final class SpannerClient
      * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].
      *
      * Statements are executed in sequential order. A request can succeed even if
-     * a statement fails. The [ExecuteBatchDmlResponse.status][google.spanner.v1.ExecuteBatchDmlResponse.status] field in the
-     * response provides information about the statement that failed. Clients must
-     * inspect this field to determine whether an error occurred.
+     * a statement fails. The
+     * [ExecuteBatchDmlResponse.status][google.spanner.v1.ExecuteBatchDmlResponse.status]
+     * field in the response provides information about the statement that failed.
+     * Clients must inspect this field to determine whether an error occurred.
      *
      * Execution stops after the first failed statement; the remaining statements
      * are not executed.
      *
      * The async variant is {@see SpannerClient::executeBatchDmlAsync()} .
+     *
+     * @example samples/V1/SpannerClient/execute_batch_dml.php
      *
      * @param ExecuteBatchDmlRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -503,12 +521,16 @@ final class SpannerClient
      *
      * Operations inside read-write transactions might return `ABORTED`. If
      * this occurs, the application should restart the transaction from
-     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+     * details.
      *
      * Larger result sets can be fetched in streaming fashion by calling
-     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] instead.
+     * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql]
+     * instead.
      *
      * The async variant is {@see SpannerClient::executeSqlAsync()} .
+     *
+     * @example samples/V1/SpannerClient/execute_sql.php
      *
      * @param ExecuteSqlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -530,11 +552,13 @@ final class SpannerClient
     }
 
     /**
-     * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the result
-     * set as a stream. Unlike [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there
-     * is no limit on the size of the returned result set. However, no
-     * individual row in the result set can exceed 100 MiB, and no
-     * column value can exceed 10 MiB.
+     * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the
+     * result set as a stream. Unlike
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there is no limit on
+     * the size of the returned result set. However, no individual row in the
+     * result set can exceed 100 MiB, and no column value can exceed 10 MiB.
+     *
+     * @example samples/V1/SpannerClient/execute_streaming_sql.php
      *
      * @param ExecuteSqlRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -560,6 +584,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::getSessionAsync()} .
      *
+     * @example samples/V1/SpannerClient/get_session.php
+     *
      * @param GetSessionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -584,6 +610,8 @@ final class SpannerClient
      *
      * The async variant is {@see SpannerClient::listSessionsAsync()} .
      *
+     * @example samples/V1/SpannerClient/list_sessions.php
+     *
      * @param ListSessionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -606,10 +634,11 @@ final class SpannerClient
     /**
      * Creates a set of partition tokens that can be used to execute a query
      * operation in parallel.  Each of the returned partition tokens can be used
-     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to specify a subset
-     * of the query result to read.  The same session and read-only transaction
-     * must be used by the PartitionQueryRequest used to create the
-     * partition tokens and the ExecuteSqlRequests that use the partition tokens.
+     * by [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql] to
+     * specify a subset of the query result to read.  The same session and
+     * read-only transaction must be used by the PartitionQueryRequest used to
+     * create the partition tokens and the ExecuteSqlRequests that use the
+     * partition tokens.
      *
      * Partition tokens become invalid when the session used to create them
      * is deleted, is idle for too long, begins a new transaction, or becomes too
@@ -617,6 +646,8 @@ final class SpannerClient
      * the whole operation must be restarted from the beginning.
      *
      * The async variant is {@see SpannerClient::partitionQueryAsync()} .
+     *
+     * @example samples/V1/SpannerClient/partition_query.php
      *
      * @param PartitionQueryRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -640,12 +671,13 @@ final class SpannerClient
     /**
      * Creates a set of partition tokens that can be used to execute a read
      * operation in parallel.  Each of the returned partition tokens can be used
-     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a subset of the read
-     * result to read.  The same session and read-only transaction must be used by
-     * the PartitionReadRequest used to create the partition tokens and the
-     * ReadRequests that use the partition tokens.  There are no ordering
-     * guarantees on rows returned among the returned partition tokens, or even
-     * within each individual StreamingRead call issued with a partition_token.
+     * by [StreamingRead][google.spanner.v1.Spanner.StreamingRead] to specify a
+     * subset of the read result to read.  The same session and read-only
+     * transaction must be used by the PartitionReadRequest used to create the
+     * partition tokens and the ReadRequests that use the partition tokens.  There
+     * are no ordering guarantees on rows returned among the returned partition
+     * tokens, or even within each individual StreamingRead call issued with a
+     * partition_token.
      *
      * Partition tokens become invalid when the session used to create them
      * is deleted, is idle for too long, begins a new transaction, or becomes too
@@ -653,6 +685,8 @@ final class SpannerClient
      * the whole operation must be restarted from the beginning.
      *
      * The async variant is {@see SpannerClient::partitionReadAsync()} .
+     *
+     * @example samples/V1/SpannerClient/partition_read.php
      *
      * @param PartitionReadRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -676,19 +710,22 @@ final class SpannerClient
     /**
      * Reads rows from the database using key lookups and scans, as a
      * simple key/value style alternative to
-     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be used to
-     * return a result set larger than 10 MiB; if the read matches more
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be
+     * used to return a result set larger than 10 MiB; if the read matches more
      * data than that, the read fails with a `FAILED_PRECONDITION`
      * error.
      *
      * Reads inside read-write transactions might return `ABORTED`. If
      * this occurs, the application should restart the transaction from
-     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more details.
+     * the beginning. See [Transaction][google.spanner.v1.Transaction] for more
+     * details.
      *
      * Larger result sets can be yielded in streaming fashion by calling
      * [StreamingRead][google.spanner.v1.Spanner.StreamingRead] instead.
      *
      * The async variant is {@see SpannerClient::readAsync()} .
+     *
+     * @example samples/V1/SpannerClient/read.php
      *
      * @param ReadRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -712,14 +749,17 @@ final class SpannerClient
     /**
      * Rolls back a transaction, releasing any locks it holds. It is a good
      * idea to call this for any transaction that includes one or more
-     * [Read][google.spanner.v1.Spanner.Read] or [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and
-     * ultimately decides not to commit.
+     * [Read][google.spanner.v1.Spanner.Read] or
+     * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] requests and ultimately
+     * decides not to commit.
      *
      * `Rollback` returns `OK` if it successfully aborts the transaction, the
      * transaction was already aborted, or the transaction is not
      * found. `Rollback` never returns `ABORTED`.
      *
      * The async variant is {@see SpannerClient::rollbackAsync()} .
+     *
+     * @example samples/V1/SpannerClient/rollback.php
      *
      * @param RollbackRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -739,11 +779,13 @@ final class SpannerClient
     }
 
     /**
-     * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set as a
-     * stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no limit on the
-     * size of the returned result set. However, no individual row in
+     * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set
+     * as a stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no
+     * limit on the size of the returned result set. However, no individual row in
      * the result set can exceed 100 MiB, and no column value can exceed
      * 10 MiB.
+     *
+     * @example samples/V1/SpannerClient/streaming_read.php
      *
      * @param ReadRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {

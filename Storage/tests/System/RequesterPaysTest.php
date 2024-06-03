@@ -374,7 +374,8 @@ class RequesterPaysTest extends StorageTestCase
     public function testUploadMethodsWithUserProject(callable $call)
     {
         $bucket = self::$requesterClient->bucket(self::$bucketName, true);
-        $call($bucket);
+        $objectName = $call($bucket);
+        $this->assertTrue($bucket->object($objectName)->exists());
     }
 
     public function uploadMethods()
@@ -382,16 +383,20 @@ class RequesterPaysTest extends StorageTestCase
         return [
             'resumable-upload' => [
                 function (Bucket $bucket) {
+                    $name = uniqid(self::TESTING_PREFIX);
                     $bucket->getResumableUploader(self::$content, [
-                        'name' => uniqid(self::TESTING_PREFIX)
+                        'name' => $name
                     ])->upload();
+                    return $name;
                 },
             ],
             'streamable-upload' => [
                 function (Bucket $bucket) {
+                    $name = uniqid(self::TESTING_PREFIX);
                     $bucket->getStreamableUploader(self::$content, [
-                        'name' => uniqid(self::TESTING_PREFIX)
+                        'name' => $name
                     ])->upload();
+                    return $name;
                 },
             ],
         ];

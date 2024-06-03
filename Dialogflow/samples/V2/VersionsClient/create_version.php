@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_Versions_CreateVersion_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\VersionsClient;
+use Google\Cloud\Dialogflow\V2\CreateVersionRequest;
 use Google\Cloud\Dialogflow\V2\Version;
-use Google\Cloud\Dialogflow\V2\VersionsClient;
 
 /**
  * Creates an agent version.
@@ -44,13 +45,16 @@ function create_version_sample(string $formattedParent): void
     // Create a client.
     $versionsClient = new VersionsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $version = new Version();
+    $request = (new CreateVersionRequest())
+        ->setParent($formattedParent)
+        ->setVersion($version);
 
     // Call the API and handle any network failures.
     try {
         /** @var Version $response */
-        $response = $versionsClient->createVersion($formattedParent, $version);
+        $response = $versionsClient->createVersion($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

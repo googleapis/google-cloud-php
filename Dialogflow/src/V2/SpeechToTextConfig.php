@@ -31,13 +31,26 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      */
     private $speech_model_variant = 0;
     /**
-     * Which Speech model to select. Select the model best suited to your domain
-     * to get best results. If a model is not explicitly specified, then a default
-     * model is used.
+     * Which Speech model to select. Select the
+     * model best suited to your domain to get best results. If a model is not
+     * explicitly specified, then Dialogflow auto-selects a model based on other
+     * parameters in the SpeechToTextConfig and Agent settings.
+     * If enhanced speech model is enabled for the agent and an enhanced
+     * version of the specified model for the language does not exist, then the
+     * speech is recognized using the standard version of the specified model.
      * Refer to
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search
+     * Leave this field unspecified to use
+     * [Agent Speech
+     * settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
+     * for model selection.
      *
      * Generated from protobuf field <code>string model = 2;</code>
      */
@@ -67,13 +80,26 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           the specified model for the language does not exist, then it would emit an
      *           error.
      *     @type string $model
-     *           Which Speech model to select. Select the model best suited to your domain
-     *           to get best results. If a model is not explicitly specified, then a default
-     *           model is used.
+     *           Which Speech model to select. Select the
+     *           model best suited to your domain to get best results. If a model is not
+     *           explicitly specified, then Dialogflow auto-selects a model based on other
+     *           parameters in the SpeechToTextConfig and Agent settings.
+     *           If enhanced speech model is enabled for the agent and an enhanced
+     *           version of the specified model for the language does not exist, then the
+     *           speech is recognized using the standard version of the specified model.
      *           Refer to
      *           [Cloud Speech API
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      *           for more details.
+     *           If you specify a model, the following models typically have the best
+     *           performance:
+     *           - phone_call (best for Agent Assist and telephony)
+     *           - latest_short (best for Dialogflow non-telephony)
+     *           - command_and_search
+     *           Leave this field unspecified to use
+     *           [Agent Speech
+     *           settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
+     *           for model selection.
      *     @type bool $use_timeout_based_endpointing
      *           Use timeout based endpointing, interpreting endpointer sensitivy as
      *           seconds of timeout value.
@@ -127,13 +153,26 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which Speech model to select. Select the model best suited to your domain
-     * to get best results. If a model is not explicitly specified, then a default
-     * model is used.
+     * Which Speech model to select. Select the
+     * model best suited to your domain to get best results. If a model is not
+     * explicitly specified, then Dialogflow auto-selects a model based on other
+     * parameters in the SpeechToTextConfig and Agent settings.
+     * If enhanced speech model is enabled for the agent and an enhanced
+     * version of the specified model for the language does not exist, then the
+     * speech is recognized using the standard version of the specified model.
      * Refer to
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search
+     * Leave this field unspecified to use
+     * [Agent Speech
+     * settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
+     * for model selection.
      *
      * Generated from protobuf field <code>string model = 2;</code>
      * @return string
@@ -144,13 +183,26 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which Speech model to select. Select the model best suited to your domain
-     * to get best results. If a model is not explicitly specified, then a default
-     * model is used.
+     * Which Speech model to select. Select the
+     * model best suited to your domain to get best results. If a model is not
+     * explicitly specified, then Dialogflow auto-selects a model based on other
+     * parameters in the SpeechToTextConfig and Agent settings.
+     * If enhanced speech model is enabled for the agent and an enhanced
+     * version of the specified model for the language does not exist, then the
+     * speech is recognized using the standard version of the specified model.
      * Refer to
      * [Cloud Speech API
      * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
      * for more details.
+     * If you specify a model, the following models typically have the best
+     * performance:
+     * - phone_call (best for Agent Assist and telephony)
+     * - latest_short (best for Dialogflow non-telephony)
+     * - command_and_search
+     * Leave this field unspecified to use
+     * [Agent Speech
+     * settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
+     * for model selection.
      *
      * Generated from protobuf field <code>string model = 2;</code>
      * @param string $var

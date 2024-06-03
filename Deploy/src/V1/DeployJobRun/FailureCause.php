@@ -35,7 +35,7 @@ class FailureCause
      */
     const EXECUTION_FAILED = 2;
     /**
-     * The deploy build did not complete within the alloted time.
+     * The deploy job run did not complete within the alloted time.
      *
      * Generated from protobuf enum <code>DEADLINE_EXCEEDED = 3;</code>
      */
@@ -54,6 +54,12 @@ class FailureCause
      * Generated from protobuf enum <code>CLOUD_BUILD_REQUEST_FAILED = 5;</code>
      */
     const CLOUD_BUILD_REQUEST_FAILED = 5;
+    /**
+     * The deploy operation had a feature configured that is not supported.
+     *
+     * Generated from protobuf enum <code>DEPLOY_FEATURE_NOT_SUPPORTED = 6;</code>
+     */
+    const DEPLOY_FEATURE_NOT_SUPPORTED = 6;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
@@ -62,6 +68,7 @@ class FailureCause
         self::DEADLINE_EXCEEDED => 'DEADLINE_EXCEEDED',
         self::MISSING_RESOURCES_FOR_CANARY => 'MISSING_RESOURCES_FOR_CANARY',
         self::CLOUD_BUILD_REQUEST_FAILED => 'CLOUD_BUILD_REQUEST_FAILED',
+        self::DEPLOY_FEATURE_NOT_SUPPORTED => 'DEPLOY_FEATURE_NOT_SUPPORTED',
     ];
 
     public static function name($value)

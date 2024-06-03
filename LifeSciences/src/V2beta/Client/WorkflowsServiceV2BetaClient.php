@@ -52,8 +52,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * This class is currently experimental and may be subject to changes.
- *
  * @experimental
  *
  * @method PromiseInterface runPipelineAsync(RunPipelineRequest $request, array $optionalArgs = [])
@@ -67,8 +65,15 @@ final class WorkflowsServiceV2BetaClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.lifesciences.v2beta.WorkflowsServiceV2Beta';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'lifesciences.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'lifesciences.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;

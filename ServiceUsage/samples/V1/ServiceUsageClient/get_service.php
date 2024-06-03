@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START serviceusage_v1_generated_ServiceUsage_GetService_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\ServiceUsage\V1\Client\ServiceUsageClient;
+use Google\Cloud\ServiceUsage\V1\GetServiceRequest;
 use Google\Cloud\ServiceUsage\V1\Service;
-use Google\Cloud\ServiceUsage\V1\ServiceUsageClient;
 
 /**
  * Returns the service configuration and enabled state for a given service.
@@ -41,10 +42,13 @@ function get_service_sample(): void
     // Create a client.
     $serviceUsageClient = new ServiceUsageClient();
 
+    // Prepare the request message.
+    $request = new GetServiceRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Service $response */
-        $response = $serviceUsageClient->getService();
+        $response = $serviceUsageClient->getService($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

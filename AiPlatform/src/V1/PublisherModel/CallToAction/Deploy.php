@@ -44,11 +44,25 @@ class Deploy extends \Google\Protobuf\Internal\Message
      */
     private $artifact_uri = '';
     /**
+     * Optional. The name of the deploy task (e.g., "text to image
+     * generation").
+     *
+     * Generated from protobuf field <code>optional string deploy_task_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $deploy_task_name = null;
+    /**
      * Required. The title of the regional resource reference.
      *
      * Generated from protobuf field <code>string title = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $title = '';
+    /**
+     * Optional. The signed URI for ephemeral Cloud Storage access to model
+     * artifact.
+     *
+     * Generated from protobuf field <code>string public_artifact_uri = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $public_artifact_uri = '';
     protected $prediction_resources;
 
     /**
@@ -78,8 +92,14 @@ class Deploy extends \Google\Protobuf\Internal\Message
      *     @type string $artifact_uri
      *           Optional. The path to the directory containing the Model artifact and
      *           any of its supporting files.
+     *     @type string $deploy_task_name
+     *           Optional. The name of the deploy task (e.g., "text to image
+     *           generation").
      *     @type string $title
      *           Required. The title of the regional resource reference.
+     *     @type string $public_artifact_uri
+     *           Optional. The signed URI for ephemeral Cloud Storage access to model
+     *           artifact.
      * }
      */
     public function __construct($data = NULL) {
@@ -319,6 +339,44 @@ class Deploy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The name of the deploy task (e.g., "text to image
+     * generation").
+     *
+     * Generated from protobuf field <code>optional string deploy_task_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDeployTaskName()
+    {
+        return isset($this->deploy_task_name) ? $this->deploy_task_name : '';
+    }
+
+    public function hasDeployTaskName()
+    {
+        return isset($this->deploy_task_name);
+    }
+
+    public function clearDeployTaskName()
+    {
+        unset($this->deploy_task_name);
+    }
+
+    /**
+     * Optional. The name of the deploy task (e.g., "text to image
+     * generation").
+     *
+     * Generated from protobuf field <code>optional string deploy_task_name = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDeployTaskName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deploy_task_name = $var;
+
+        return $this;
+    }
+
+    /**
      * Required. The title of the regional resource reference.
      *
      * Generated from protobuf field <code>string title = 8 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -340,6 +398,34 @@ class Deploy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The signed URI for ephemeral Cloud Storage access to model
+     * artifact.
+     *
+     * Generated from protobuf field <code>string public_artifact_uri = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPublicArtifactUri()
+    {
+        return $this->public_artifact_uri;
+    }
+
+    /**
+     * Optional. The signed URI for ephemeral Cloud Storage access to model
+     * artifact.
+     *
+     * Generated from protobuf field <code>string public_artifact_uri = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPublicArtifactUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->public_artifact_uri = $var;
 
         return $this;
     }

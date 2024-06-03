@@ -1,4 +1,24 @@
 <?php
+/*
+ * Copyright 2024 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
 
 return [
     'interfaces' => [
@@ -18,9 +38,32 @@ return [
                     'deployment_id',
                 ],
             ],
+            'CreatePreview' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/previews',
+                'body' => 'preview',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteDeployment' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deployments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeletePreview' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/previews/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -64,6 +107,18 @@ return [
                     ],
                 ],
             ],
+            'ExportPreviewResult' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/previews/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ExportRevisionStatefile' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/deployments/*/revisions/*}:exportState',
@@ -87,6 +142,17 @@ return [
                     ],
                 ],
             ],
+            'GetPreview' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/previews/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetResource' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deployments/*/revisions/*/resources/*}',
@@ -101,6 +167,17 @@ return [
             'GetRevision' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deployments/*/revisions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTerraformVersion' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/terraformVersions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -132,6 +209,17 @@ return [
                     ],
                 ],
             ],
+            'ListPreviews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/previews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListResources' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/deployments/*/revisions/*}/resources',
@@ -146,6 +234,17 @@ return [
             'ListRevisions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/deployments/*}/revisions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTerraformVersions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/terraformVersions',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

@@ -26,6 +26,23 @@ class DeleteSubpropertyEventFilterRequest extends \Google\Protobuf\Internal\Mess
     private $name = '';
 
     /**
+     * @param string $name Required. Resource name of the subproperty event filter to delete.
+     *                     Format:
+     *                     properties/property_id/subpropertyEventFilters/subproperty_event_filter
+     *                     Example: properties/123/subpropertyEventFilters/456
+     *                     Please see {@see AnalyticsAdminServiceClient::subpropertyEventFilterName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DeleteSubpropertyEventFilterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

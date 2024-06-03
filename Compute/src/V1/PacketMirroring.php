@@ -41,7 +41,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     private $enable = null;
     /**
-     * Filter for mirrored traffic. If unspecified, all traffic is mirrored.
+     * Filter for mirrored traffic. If unspecified, all IPv4 traffic is mirrored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringFilter filter = 336120696;</code>
      */
@@ -111,7 +111,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *           Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network. The default is TRUE.
      *           Check the Enable enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\PacketMirroringFilter $filter
-     *           Filter for mirrored traffic. If unspecified, all traffic is mirrored.
+     *           Filter for mirrored traffic. If unspecified, all IPv4 traffic is mirrored.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -282,7 +282,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter for mirrored traffic. If unspecified, all traffic is mirrored.
+     * Filter for mirrored traffic. If unspecified, all IPv4 traffic is mirrored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringFilter filter = 336120696;</code>
      * @return \Google\Cloud\Compute\V1\PacketMirroringFilter|null
@@ -303,7 +303,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter for mirrored traffic. If unspecified, all traffic is mirrored.
+     * Filter for mirrored traffic. If unspecified, all IPv4 traffic is mirrored.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringFilter filter = 336120696;</code>
      * @param \Google\Cloud\Compute\V1\PacketMirroringFilter $var

@@ -31,25 +31,63 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      */
     private $assignees;
     /**
-     * Identifier that's used to track the given finding in the external system.
+     * The identifier that's used to track the finding's corresponding case in the
+     * external system.
      *
      * Generated from protobuf field <code>string external_uid = 3;</code>
      */
     private $external_uid = '';
     /**
-     * Most recent status of the corresponding finding's ticket/tracker in the
-     * external system.
+     * The most recent status of the finding's corresponding case, as reported by
+     * the external system.
      *
      * Generated from protobuf field <code>string status = 4;</code>
      */
     private $status = '';
     /**
-     * The most recent time when the corresponding finding's ticket/tracker was
-     * updated in the external system.
+     * The time when the case was last updated, as reported by the external
+     * system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp external_system_update_time = 5;</code>
      */
     private $external_system_update_time = null;
+    /**
+     * The link to the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>string case_uri = 6;</code>
+     */
+    private $case_uri = '';
+    /**
+     * The priority of the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>string case_priority = 7;</code>
+     */
+    private $case_priority = '';
+    /**
+     * The SLA of the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_sla = 9;</code>
+     */
+    private $case_sla = null;
+    /**
+     * The time when the case was created, as reported by the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_create_time = 10;</code>
+     */
+    private $case_create_time = null;
+    /**
+     * The time when the case was closed, as reported by the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_close_time = 11;</code>
+     */
+    private $case_close_time = null;
+    /**
+     * Information about the ticket, if any, that is being used to track the
+     * resolution of the issue that is identified by this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ExternalSystem.TicketInfo ticket_info = 8;</code>
+     */
+    private $ticket_info = null;
 
     /**
      * Constructor.
@@ -65,13 +103,27 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $assignees
      *           References primary/secondary etc assignees in the external system.
      *     @type string $external_uid
-     *           Identifier that's used to track the given finding in the external system.
-     *     @type string $status
-     *           Most recent status of the corresponding finding's ticket/tracker in the
+     *           The identifier that's used to track the finding's corresponding case in the
      *           external system.
+     *     @type string $status
+     *           The most recent status of the finding's corresponding case, as reported by
+     *           the external system.
      *     @type \Google\Protobuf\Timestamp $external_system_update_time
-     *           The most recent time when the corresponding finding's ticket/tracker was
-     *           updated in the external system.
+     *           The time when the case was last updated, as reported by the external
+     *           system.
+     *     @type string $case_uri
+     *           The link to the finding's corresponding case in the external system.
+     *     @type string $case_priority
+     *           The priority of the finding's corresponding case in the external system.
+     *     @type \Google\Protobuf\Timestamp $case_sla
+     *           The SLA of the finding's corresponding case in the external system.
+     *     @type \Google\Protobuf\Timestamp $case_create_time
+     *           The time when the case was created, as reported by the external system.
+     *     @type \Google\Protobuf\Timestamp $case_close_time
+     *           The time when the case was closed, as reported by the external system.
+     *     @type \Google\Cloud\SecurityCenter\V1\ExternalSystem\TicketInfo $ticket_info
+     *           Information about the ticket, if any, that is being used to track the
+     *           resolution of the issue that is identified by this finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -138,7 +190,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier that's used to track the given finding in the external system.
+     * The identifier that's used to track the finding's corresponding case in the
+     * external system.
      *
      * Generated from protobuf field <code>string external_uid = 3;</code>
      * @return string
@@ -149,7 +202,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier that's used to track the given finding in the external system.
+     * The identifier that's used to track the finding's corresponding case in the
+     * external system.
      *
      * Generated from protobuf field <code>string external_uid = 3;</code>
      * @param string $var
@@ -164,8 +218,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Most recent status of the corresponding finding's ticket/tracker in the
-     * external system.
+     * The most recent status of the finding's corresponding case, as reported by
+     * the external system.
      *
      * Generated from protobuf field <code>string status = 4;</code>
      * @return string
@@ -176,8 +230,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Most recent status of the corresponding finding's ticket/tracker in the
-     * external system.
+     * The most recent status of the finding's corresponding case, as reported by
+     * the external system.
      *
      * Generated from protobuf field <code>string status = 4;</code>
      * @param string $var
@@ -192,8 +246,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The most recent time when the corresponding finding's ticket/tracker was
-     * updated in the external system.
+     * The time when the case was last updated, as reported by the external
+     * system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp external_system_update_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -214,8 +268,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The most recent time when the corresponding finding's ticket/tracker was
-     * updated in the external system.
+     * The time when the case was last updated, as reported by the external
+     * system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp external_system_update_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -225,6 +279,204 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->external_system_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The link to the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>string case_uri = 6;</code>
+     * @return string
+     */
+    public function getCaseUri()
+    {
+        return $this->case_uri;
+    }
+
+    /**
+     * The link to the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>string case_uri = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCaseUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->case_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * The priority of the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>string case_priority = 7;</code>
+     * @return string
+     */
+    public function getCasePriority()
+    {
+        return $this->case_priority;
+    }
+
+    /**
+     * The priority of the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>string case_priority = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCasePriority($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->case_priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * The SLA of the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_sla = 9;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCaseSla()
+    {
+        return $this->case_sla;
+    }
+
+    public function hasCaseSla()
+    {
+        return isset($this->case_sla);
+    }
+
+    public function clearCaseSla()
+    {
+        unset($this->case_sla);
+    }
+
+    /**
+     * The SLA of the finding's corresponding case in the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_sla = 9;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCaseSla($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->case_sla = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time when the case was created, as reported by the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_create_time = 10;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCaseCreateTime()
+    {
+        return $this->case_create_time;
+    }
+
+    public function hasCaseCreateTime()
+    {
+        return isset($this->case_create_time);
+    }
+
+    public function clearCaseCreateTime()
+    {
+        unset($this->case_create_time);
+    }
+
+    /**
+     * The time when the case was created, as reported by the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_create_time = 10;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCaseCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->case_create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time when the case was closed, as reported by the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_close_time = 11;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCaseCloseTime()
+    {
+        return $this->case_close_time;
+    }
+
+    public function hasCaseCloseTime()
+    {
+        return isset($this->case_close_time);
+    }
+
+    public function clearCaseCloseTime()
+    {
+        unset($this->case_close_time);
+    }
+
+    /**
+     * The time when the case was closed, as reported by the external system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp case_close_time = 11;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCaseCloseTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->case_close_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Information about the ticket, if any, that is being used to track the
+     * resolution of the issue that is identified by this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ExternalSystem.TicketInfo ticket_info = 8;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\ExternalSystem\TicketInfo|null
+     */
+    public function getTicketInfo()
+    {
+        return $this->ticket_info;
+    }
+
+    public function hasTicketInfo()
+    {
+        return isset($this->ticket_info);
+    }
+
+    public function clearTicketInfo()
+    {
+        unset($this->ticket_info);
+    }
+
+    /**
+     * Information about the ticket, if any, that is being used to track the
+     * resolution of the issue that is identified by this finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ExternalSystem.TicketInfo ticket_info = 8;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\ExternalSystem\TicketInfo $var
+     * @return $this
+     */
+    public function setTicketInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\ExternalSystem\TicketInfo::class);
+        $this->ticket_info = $var;
 
         return $this;
     }

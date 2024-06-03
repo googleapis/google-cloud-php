@@ -28,7 +28,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 
 /**
- * Retrieves the list of all InstanceTemplates resources, regional and global, available to the specified project.
+ * Retrieves the list of all InstanceTemplates resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the `returnPartialSuccess` parameter to `true`.
  *
  * @param string $project Name of the project scoping this request.
  */

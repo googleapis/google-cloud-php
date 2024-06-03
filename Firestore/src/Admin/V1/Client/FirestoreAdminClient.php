@@ -35,23 +35,38 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Firestore\Admin\V1\Backup;
+use Google\Cloud\Firestore\Admin\V1\BackupSchedule;
+use Google\Cloud\Firestore\Admin\V1\CreateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\CreateIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\Database;
+use Google\Cloud\Firestore\Admin\V1\DeleteBackupRequest;
+use Google\Cloud\Firestore\Admin\V1\DeleteBackupScheduleRequest;
+use Google\Cloud\Firestore\Admin\V1\DeleteDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\Field;
 use Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata;
+use Google\Cloud\Firestore\Admin\V1\GetBackupRequest;
+use Google\Cloud\Firestore\Admin\V1\GetBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\GetDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\GetFieldRequest;
 use Google\Cloud\Firestore\Admin\V1\GetIndexRequest;
 use Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest;
 use Google\Cloud\Firestore\Admin\V1\Index;
 use Google\Cloud\Firestore\Admin\V1\IndexOperationMetadata;
+use Google\Cloud\Firestore\Admin\V1\ListBackupSchedulesRequest;
+use Google\Cloud\Firestore\Admin\V1\ListBackupSchedulesResponse;
+use Google\Cloud\Firestore\Admin\V1\ListBackupsRequest;
+use Google\Cloud\Firestore\Admin\V1\ListBackupsResponse;
 use Google\Cloud\Firestore\Admin\V1\ListDatabasesRequest;
 use Google\Cloud\Firestore\Admin\V1\ListDatabasesResponse;
 use Google\Cloud\Firestore\Admin\V1\ListFieldsRequest;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesRequest;
+use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseMetadata;
+use Google\Cloud\Firestore\Admin\V1\RestoreDatabaseRequest;
+use Google\Cloud\Firestore\Admin\V1\UpdateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest;
 use Google\LongRunning\Operation;
@@ -95,23 +110,27 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\Firestore\Admin\V1\FirestoreAdminClient} for the stable
- * implementation
- *
- * @experimental
- *
+ * @method PromiseInterface createBackupScheduleAsync(CreateBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createDatabaseAsync(CreateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteBackupScheduleAsync(DeleteBackupScheduleRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface deleteDatabaseAsync(DeleteDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface exportDocumentsAsync(ExportDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface getBackupScheduleAsync(GetBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getFieldAsync(GetFieldRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface importDocumentsAsync(ImportDocumentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listBackupSchedulesAsync(ListBackupSchedulesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listDatabasesAsync(ListDatabasesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listFieldsAsync(ListFieldsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface restoreDatabaseAsync(RestoreDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface updateBackupScheduleAsync(UpdateBackupScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateDatabaseAsync(UpdateDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateFieldAsync(UpdateFieldRequest $request, array $optionalArgs = [])
  */
@@ -123,8 +142,15 @@ final class FirestoreAdminClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.firestore.admin.v1.FirestoreAdmin';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'firestore.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'firestore.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -186,6 +212,44 @@ final class FirestoreAdminClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a backup
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     */
+    public static function backupName(string $project, string $location, string $backup): string
+    {
+        return self::getPathTemplate('backup')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_schedule resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $backupSchedule
+     *
+     * @return string The formatted backup_schedule resource.
+     */
+    public static function backupScheduleName(string $project, string $database, string $backupSchedule): string
+    {
+        return self::getPathTemplate('backupSchedule')->render([
+            'project' => $project,
+            'database' => $database,
+            'backup_schedule' => $backupSchedule,
+        ]);
     }
 
     /**
@@ -267,6 +331,23 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -285,10 +366,13 @@ final class FirestoreAdminClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - backup: projects/{project}/locations/{location}/backups/{backup}
+     * - backupSchedule: projects/{project}/databases/{database}/backupSchedules/{backup_schedule}
      * - collectionGroup: projects/{project}/databases/{database}/collectionGroups/{collection}
      * - database: projects/{project}/databases/{database}
      * - field: projects/{project}/databases/{database}/collectionGroups/{collection}/fields/{field}
      * - index: projects/{project}/databases/{database}/collectionGroups/{collection}/indexes/{index}
+     * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -382,9 +466,39 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Creates a backup schedule on a database.
+     * At most two backup schedules can be configured on a database, one daily
+     * backup schedule and one weekly backup schedule.
+     *
+     * The async variant is {@see FirestoreAdminClient::createBackupScheduleAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/create_backup_schedule.php
+     *
+     * @param CreateBackupScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createBackupSchedule(CreateBackupScheduleRequest $request, array $callOptions = []): BackupSchedule
+    {
+        return $this->startApiCall('CreateBackupSchedule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Create a database.
      *
      * The async variant is {@see FirestoreAdminClient::createDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/create_database.php
      *
      * @param CreateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -414,6 +528,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::createIndexAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/create_index.php
+     *
      * @param CreateIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -434,9 +550,85 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Deletes a backup.
+     *
+     * The async variant is {@see FirestoreAdminClient::deleteBackupAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/delete_backup.php
+     *
+     * @param DeleteBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackup(DeleteBackupRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a backup schedule.
+     *
+     * The async variant is {@see FirestoreAdminClient::deleteBackupScheduleAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/delete_backup_schedule.php
+     *
+     * @param DeleteBackupScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackupSchedule(DeleteBackupScheduleRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteBackupSchedule', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a database.
+     *
+     * The async variant is {@see FirestoreAdminClient::deleteDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/delete_database.php
+     *
+     * @param DeleteDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDatabase(DeleteDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a composite index.
      *
      * The async variant is {@see FirestoreAdminClient::deleteIndexAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/delete_index.php
      *
      * @param DeleteIndexRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -470,6 +662,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::exportDocumentsAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/export_documents.php
+     *
      * @param ExportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -490,9 +684,63 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Gets information about a backup.
+     *
+     * The async variant is {@see FirestoreAdminClient::getBackupAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_backup.php
+     *
+     * @param GetBackupRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Backup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
+    {
+        return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a backup schedule.
+     *
+     * The async variant is {@see FirestoreAdminClient::getBackupScheduleAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_backup_schedule.php
+     *
+     * @param GetBackupScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackupSchedule(GetBackupScheduleRequest $request, array $callOptions = []): BackupSchedule
+    {
+        return $this->startApiCall('GetBackupSchedule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets information about a database.
      *
      * The async variant is {@see FirestoreAdminClient::getDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_database.php
      *
      * @param GetDatabaseRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -518,6 +766,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::getFieldAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/get_field.php
+     *
      * @param GetFieldRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
      *     Optional.
@@ -541,6 +791,8 @@ final class FirestoreAdminClient
      * Gets a composite index.
      *
      * The async variant is {@see FirestoreAdminClient::getIndexAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/get_index.php
      *
      * @param GetIndexRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -570,6 +822,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::importDocumentsAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/import_documents.php
+     *
      * @param ImportDocumentsRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -590,9 +844,63 @@ final class FirestoreAdminClient
     }
 
     /**
+     * List backup schedules.
+     *
+     * The async variant is {@see FirestoreAdminClient::listBackupSchedulesAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/list_backup_schedules.php
+     *
+     * @param ListBackupSchedulesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ListBackupSchedulesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackupSchedules(ListBackupSchedulesRequest $request, array $callOptions = []): ListBackupSchedulesResponse
+    {
+        return $this->startApiCall('ListBackupSchedules', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all the backups.
+     *
+     * The async variant is {@see FirestoreAdminClient::listBackupsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/list_backups.php
+     *
+     * @param ListBackupsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ListBackupsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackups(ListBackupsRequest $request, array $callOptions = []): ListBackupsResponse
+    {
+        return $this->startApiCall('ListBackups', $request, $callOptions)->wait();
+    }
+
+    /**
      * List all the databases in the project.
      *
      * The async variant is {@see FirestoreAdminClient::listDatabasesAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/list_databases.php
      *
      * @param ListDatabasesRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -621,9 +929,12 @@ final class FirestoreAdminClient
      * only supports listing fields that have been explicitly overridden. To issue
      * this query, call
      * [FirestoreAdmin.ListFields][google.firestore.admin.v1.FirestoreAdmin.ListFields]
-     * with the filter set to `indexConfig.usesAncestorConfig:false` .
+     * with the filter set to `indexConfig.usesAncestorConfig:false` or
+     * `ttlConfig:*`.
      *
      * The async variant is {@see FirestoreAdminClient::listFieldsAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/list_fields.php
      *
      * @param ListFieldsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -649,6 +960,8 @@ final class FirestoreAdminClient
      *
      * The async variant is {@see FirestoreAdminClient::listIndexesAsync()} .
      *
+     * @example samples/V1/FirestoreAdminClient/list_indexes.php
+     *
      * @param ListIndexesRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -669,9 +982,79 @@ final class FirestoreAdminClient
     }
 
     /**
+     * Creates a new database by restoring from an existing backup.
+     *
+     * The new database must be in the same cloud region or multi-region location
+     * as the existing backup. This behaves similar to
+     * [FirestoreAdmin.CreateDatabase][google.firestore.admin.v1.CreateDatabase]
+     * except instead of creating a new empty database, a new database is created
+     * with the database type, index configuration, and documents from an existing
+     * backup.
+     *
+     * The [long-running operation][google.longrunning.Operation] can be used to
+     * track the progress of the restore, with the Operation's
+     * [metadata][google.longrunning.Operation.metadata] field type being the
+     * [RestoreDatabaseMetadata][google.firestore.admin.v1.RestoreDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] type is the
+     * [Database][google.firestore.admin.v1.Database] if the restore was
+     * successful. The new database is not readable or writeable until the LRO has
+     * completed.
+     *
+     * The async variant is {@see FirestoreAdminClient::restoreDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/restore_database.php
+     *
+     * @param RestoreDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function restoreDatabase(RestoreDatabaseRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('RestoreDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a backup schedule.
+     *
+     * The async variant is {@see FirestoreAdminClient::updateBackupScheduleAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/update_backup_schedule.php
+     *
+     * @param UpdateBackupScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackupSchedule(UpdateBackupScheduleRequest $request, array $callOptions = []): BackupSchedule
+    {
+        return $this->startApiCall('UpdateBackupSchedule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates a database.
      *
      * The async variant is {@see FirestoreAdminClient::updateDatabaseAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/update_database.php
      *
      * @param UpdateDatabaseRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -711,6 +1094,8 @@ final class FirestoreAdminClient
      * `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/*`.
      *
      * The async variant is {@see FirestoreAdminClient::updateFieldAsync()} .
+     *
+     * @example samples/V1/FirestoreAdminClient/update_field.php
      *
      * @param UpdateFieldRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {

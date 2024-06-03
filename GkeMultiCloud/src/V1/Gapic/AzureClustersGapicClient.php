@@ -37,7 +37,9 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GkeMultiCloud\V1\AzureClient;
 use Google\Cloud\GkeMultiCloud\V1\AzureCluster;
+use Google\Cloud\GkeMultiCloud\V1\AzureJsonWebKeys;
 use Google\Cloud\GkeMultiCloud\V1\AzureNodePool;
+use Google\Cloud\GkeMultiCloud\V1\AzureOpenIdConfig;
 use Google\Cloud\GkeMultiCloud\V1\AzureServerConfig;
 use Google\Cloud\GkeMultiCloud\V1\CreateAzureClientRequest;
 use Google\Cloud\GkeMultiCloud\V1\CreateAzureClusterRequest;
@@ -47,9 +49,13 @@ use Google\Cloud\GkeMultiCloud\V1\DeleteAzureClusterRequest;
 use Google\Cloud\GkeMultiCloud\V1\DeleteAzureNodePoolRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAzureAccessTokenRequest;
 use Google\Cloud\GkeMultiCloud\V1\GenerateAzureAccessTokenResponse;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAzureClusterAgentTokenRequest;
+use Google\Cloud\GkeMultiCloud\V1\GenerateAzureClusterAgentTokenResponse;
 use Google\Cloud\GkeMultiCloud\V1\GetAzureClientRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAzureClusterRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAzureJsonWebKeysRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAzureNodePoolRequest;
+use Google\Cloud\GkeMultiCloud\V1\GetAzureOpenIdConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\GetAzureServerConfigRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAzureClientsRequest;
 use Google\Cloud\GkeMultiCloud\V1\ListAzureClientsResponse;
@@ -111,9 +117,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient} to use the new
- * surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\GkeMultiCloud\V1\Client\AzureClustersClient}.
  */
 class AzureClustersGapicClient
 {
@@ -122,8 +126,15 @@ class AzureClustersGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.gkemulticloud.v1.AzureClusters';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'gkemulticloud.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'gkemulticloud.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -761,7 +772,8 @@ class AzureClustersGapicClient
      * @param string        $parent          Required. The [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
      *                                       resource where this node pool will be created.
      *
-     *                                       Location names are formatted as `projects/<project-id>/locations/<region>`.
+     *                                       `AzureCluster` names are formatted as
+     *                                       `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *
      *                                       See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                                       for more details on Google Cloud resource names.
@@ -999,6 +1011,11 @@ class AzureClustersGapicClient
      *
      *           If the provided etag does not match the current etag of the cluster,
      *           the request will fail and an ABORTED error will be returned.
+     *     @type bool $ignoreErrors
+     *           Optional. If set to true, the deletion of
+     *           [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster] resource will
+     *           succeed even if errors occur during deleting in cluster resources. Using
+     *           this parameter may result in orphaned resources in the cluster.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1025,6 +1042,10 @@ class AzureClustersGapicClient
 
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
+        }
+
+        if (isset($optionalArgs['ignoreErrors'])) {
+            $request->setIgnoreErrors($optionalArgs['ignoreErrors']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1113,6 +1134,11 @@ class AzureClustersGapicClient
      *
      *           If the provided ETag does not match the current etag of the node pool,
      *           the request will fail and an ABORTED error will be returned.
+     *     @type bool $ignoreErrors
+     *           Optional. If set to true, the deletion of
+     *           [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource will
+     *           succeed even if errors occur during deleting in node pool resources. Using
+     *           this parameter may result in orphaned resources in the node pool.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1139,6 +1165,10 @@ class AzureClustersGapicClient
 
         if (isset($optionalArgs['etag'])) {
             $request->setEtag($optionalArgs['etag']);
+        }
+
+        if (isset($optionalArgs['ignoreErrors'])) {
+            $request->setIgnoreErrors($optionalArgs['ignoreErrors']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1175,7 +1205,7 @@ class AzureClustersGapicClient
      *                             authenticate to.
      *
      *                             `AzureCluster` names are formatted as
-     *                             `projects/<project-id>/locations/<region>/AzureClusters/<cluster-id>`.
+     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`.
      *
      *                             See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *                             for more details on Google Cloud resource names.
@@ -1209,6 +1239,106 @@ class AzureClustersGapicClient
         return $this->startCall(
             'GenerateAzureAccessToken',
             GenerateAzureAccessTokenResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Generates an access token for a cluster agent.
+     *
+     * Sample code:
+     * ```
+     * $azureClustersClient = new AzureClustersClient();
+     * try {
+     *     $formattedAzureCluster = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+     *     $subjectToken = 'subject_token';
+     *     $subjectTokenType = 'subject_token_type';
+     *     $version = 'version';
+     *     $response = $azureClustersClient->generateAzureClusterAgentToken($formattedAzureCluster, $subjectToken, $subjectTokenType, $version);
+     * } finally {
+     *     $azureClustersClient->close();
+     * }
+     * ```
+     *
+     * @param string $azureCluster     Required.
+     * @param string $subjectToken     Required.
+     * @param string $subjectTokenType Required.
+     * @param string $version          Required.
+     * @param array  $optionalArgs     {
+     *     Optional.
+     *
+     *     @type string $nodePoolId
+     *           Optional.
+     *     @type string $grantType
+     *           Optional.
+     *     @type string $audience
+     *           Optional.
+     *     @type string $scope
+     *           Optional.
+     *     @type string $requestedTokenType
+     *           Optional.
+     *     @type string $options
+     *           Optional.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\GenerateAzureClusterAgentTokenResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function generateAzureClusterAgentToken(
+        $azureCluster,
+        $subjectToken,
+        $subjectTokenType,
+        $version,
+        array $optionalArgs = []
+    ) {
+        $request = new GenerateAzureClusterAgentTokenRequest();
+        $requestParamHeaders = [];
+        $request->setAzureCluster($azureCluster);
+        $request->setSubjectToken($subjectToken);
+        $request->setSubjectTokenType($subjectTokenType);
+        $request->setVersion($version);
+        $requestParamHeaders['azure_cluster'] = $azureCluster;
+        if (isset($optionalArgs['nodePoolId'])) {
+            $request->setNodePoolId($optionalArgs['nodePoolId']);
+        }
+
+        if (isset($optionalArgs['grantType'])) {
+            $request->setGrantType($optionalArgs['grantType']);
+        }
+
+        if (isset($optionalArgs['audience'])) {
+            $request->setAudience($optionalArgs['audience']);
+        }
+
+        if (isset($optionalArgs['scope'])) {
+            $request->setScope($optionalArgs['scope']);
+        }
+
+        if (isset($optionalArgs['requestedTokenType'])) {
+            $request->setRequestedTokenType(
+                $optionalArgs['requestedTokenType']
+            );
+        }
+
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GenerateAzureClusterAgentToken',
+            GenerateAzureClusterAgentTokenResponse::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1330,6 +1460,57 @@ class AzureClustersGapicClient
     }
 
     /**
+     * Gets the public component of the cluster signing keys in
+     * JSON Web Key format.
+     *
+     * Sample code:
+     * ```
+     * $azureClustersClient = new AzureClustersClient();
+     * try {
+     *     $formattedAzureCluster = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+     *     $response = $azureClustersClient->getAzureJsonWebKeys($formattedAzureCluster);
+     * } finally {
+     *     $azureClustersClient->close();
+     * }
+     * ```
+     *
+     * @param string $azureCluster Required. The AzureCluster, which owns the JsonWebKeys.
+     *                             Format:
+     *                             `projects/<project-id>/locations/<region>/azureClusters/<cluster-id>`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\AzureJsonWebKeys
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAzureJsonWebKeys($azureCluster, array $optionalArgs = [])
+    {
+        $request = new GetAzureJsonWebKeysRequest();
+        $requestParamHeaders = [];
+        $request->setAzureCluster($azureCluster);
+        $requestParamHeaders['azure_cluster'] = $azureCluster;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAzureJsonWebKeys',
+            AzureJsonWebKeys::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Describes a specific
      * [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool] resource.
      *
@@ -1381,6 +1562,62 @@ class AzureClustersGapicClient
         return $this->startCall(
             'GetAzureNodePool',
             AzureNodePool::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets the OIDC discovery document for the cluster.
+     * See the
+     * [OpenID Connect Discovery 1.0
+     * specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+     * for details.
+     *
+     * Sample code:
+     * ```
+     * $azureClustersClient = new AzureClustersClient();
+     * try {
+     *     $formattedAzureCluster = $azureClustersClient->azureClusterName('[PROJECT]', '[LOCATION]', '[AZURE_CLUSTER]');
+     *     $response = $azureClustersClient->getAzureOpenIdConfig($formattedAzureCluster);
+     * } finally {
+     *     $azureClustersClient->close();
+     * }
+     * ```
+     *
+     * @param string $azureCluster Required. The AzureCluster, which owns the OIDC discovery document.
+     *                             Format:
+     *                             projects/<project-id>/locations/<region>/azureClusters/<cluster-id>
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\GkeMultiCloud\V1\AzureOpenIdConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAzureOpenIdConfig(
+        $azureCluster,
+        array $optionalArgs = []
+    ) {
+        $request = new GetAzureOpenIdConfigRequest();
+        $requestParamHeaders = [];
+        $request->setAzureCluster($azureCluster);
+        $requestParamHeaders['azure_cluster'] = $azureCluster;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAzureOpenIdConfig',
+            AzureOpenIdConfig::class,
             $optionalArgs,
             $request
         )->wait();
@@ -1749,6 +1986,7 @@ class AzureClustersGapicClient
      *                                   *   `control_plane.vm_size`.
      *                                   *   `annotations`.
      *                                   *   `authorization.admin_users`.
+     *                                   *   `authorization.admin_groups`.
      *                                   *   `control_plane.root_volume.size_gib`.
      *                                   *   `azure_services_authentication`.
      *                                   *   `azure_services_authentication.tenant_id`.
@@ -1853,6 +2091,8 @@ class AzureClustersGapicClient
      *                                     *   `autoscaling.min_node_count`.
      *                                     *   `autoscaling.max_node_count`.
      *                                     *   `config.ssh_config.authorized_key`.
+     *                                     *   `management.auto_repair`.
+     *                                     *   `management`.
      * @param array         $optionalArgs  {
      *     Optional.
      *

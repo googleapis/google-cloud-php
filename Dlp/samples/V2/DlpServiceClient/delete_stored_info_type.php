@@ -24,12 +24,14 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dlp_v2_generated_DlpService_DeleteStoredInfoType_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Dlp\V2\DlpServiceClient;
+use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
+use Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest;
 
 /**
  * Deletes a stored infoType.
- * See https://cloud.google.com/dlp/docs/creating-stored-infotypes to
- * learn more.
+ * See
+ * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+ * to learn more.
  *
  * @param string $formattedName Resource name of the organization and storedInfoType to be
  *                              deleted, for example `organizations/433245324/storedInfoTypes/432452342` or
@@ -41,9 +43,13 @@ function delete_stored_info_type_sample(string $formattedName): void
     // Create a client.
     $dlpServiceClient = new DlpServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteStoredInfoTypeRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $dlpServiceClient->deleteStoredInfoType($formattedName);
+        $dlpServiceClient->deleteStoredInfoType($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

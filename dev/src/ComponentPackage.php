@@ -92,12 +92,28 @@ class ComponentPackage
         return '';
     }
 
-    public function getApiShortname(): string
+    public function getBaseUri(): string
     {
-        $sa = $this->getServiceAddress();
-        return substr($sa, 0, strpos($sa, '.'));
+        if (file_exists($this->path . 'Connection/Rest.php')) {
+            $connection = $this->getClassFromFile($this->path . 'Connection/Rest.php');
+            if (defined($connection . '::DEFAULT_API_ENDPOINT')) {
+                return constant($connection . '::DEFAULT_API_ENDPOINT');
+            }
+            if (defined($connection . '::BASE_URI')) {
+                return constant($connection . '::BASE_URI');
+            }
+        }
+        return '';
     }
 
+    public function getApiShortname(): string
+    {
+        if ($sa = $this->getServiceAddress()) {
+            return substr($sa, 0, strpos($sa, '.'));
+        }
+        $parts = parse_url($this->getBaseUri());
+        return substr($parts['host'] ?? '', 0, strpos($parts['host'] ?? '', '.'));
+    }
 
     private function getV1GapicClientFiles(): array
     {
@@ -121,12 +137,12 @@ class ComponentPackage
     private function getClassFromFile(string $filePath): string
     {
         foreach ($this->component->getNamespaces() as $namespace => $dir) {
-            $gapicClientClass = str_replace($this->component->getPath() . '/' . $dir, $namespace, $filePath);
-            $gapicClientClass = str_replace(['/', '.php'], ['\\', ''], $gapicClientClass);
-            if (class_exists($gapicClientClass)) {
-                return $gapicClientClass;
+            $className = str_replace($this->component->getPath() . '/' . $dir, $namespace, $filePath);
+            $className = str_replace(['/', '.php'], ['\\', ''], $className);
+            if (class_exists($className)) {
+                return $className;
             }
         }
-        throw new \Exception('No GAPIC client found in ' . $filePath);
+        throw new \Exception('No class found in ' . $filePath);
     }
 }

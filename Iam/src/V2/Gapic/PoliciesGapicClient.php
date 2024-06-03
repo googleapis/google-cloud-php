@@ -85,8 +85,7 @@ use Google\LongRunning\Operation;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Iam\V2\Client\PoliciesClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Iam\V2\Client\PoliciesClient}.
  */
 class PoliciesGapicClient
 {
@@ -95,8 +94,15 @@ class PoliciesGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.iam.v2.Policies';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'iam.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'iam.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

@@ -34,12 +34,16 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      * this field. The elements of the repeated paths field can only include these
      * fields from
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
-     *  *   `description`.
      *  *   `annotations`.
-     *  *   `platform_version`.
+     *  *   `authorization.admin_groups`.
      *  *   `authorization.admin_users`.
+     *  *   `binary_authorization.evaluation_mode`.
+     *  *   `description`.
      *  *   `logging_config.component_config.enable_components`.
      *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `platform_version`.
+     *  *   `proxy_config.kubernetes_secret.name`.
+     *  *   `proxy_config.kubernetes_secret.namespace`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,12 +58,16 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *                                                                        fields from
      *                                                                        [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
      *
-     *                                                                        *   `description`.
      *                                                                        *   `annotations`.
-     *                                                                        *   `platform_version`.
+     *                                                                        *   `authorization.admin_groups`.
      *                                                                        *   `authorization.admin_users`.
+     *                                                                        *   `binary_authorization.evaluation_mode`.
+     *                                                                        *   `description`.
      *                                                                        *   `logging_config.component_config.enable_components`.
      *                                                                        *   `monitoring_config.managed_prometheus_config.enabled`.
+     *                                                                        *   `platform_version`.
+     *                                                                        *   `proxy_config.kubernetes_secret.name`.
+     *                                                                        *   `proxy_config.kubernetes_secret.namespace`.
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\UpdateAttachedClusterRequest
      *
@@ -89,12 +97,16 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      *           this field. The elements of the repeated paths field can only include these
      *           fields from
      *           [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
-     *            *   `description`.
      *            *   `annotations`.
-     *            *   `platform_version`.
+     *            *   `authorization.admin_groups`.
      *            *   `authorization.admin_users`.
+     *            *   `binary_authorization.evaluation_mode`.
+     *            *   `description`.
      *            *   `logging_config.component_config.enable_components`.
      *            *   `monitoring_config.managed_prometheus_config.enabled`.
+     *            *   `platform_version`.
+     *            *   `proxy_config.kubernetes_secret.name`.
+     *            *   `proxy_config.kubernetes_secret.namespace`.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,12 +185,16 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      * this field. The elements of the repeated paths field can only include these
      * fields from
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
-     *  *   `description`.
      *  *   `annotations`.
-     *  *   `platform_version`.
+     *  *   `authorization.admin_groups`.
      *  *   `authorization.admin_users`.
+     *  *   `binary_authorization.evaluation_mode`.
+     *  *   `description`.
      *  *   `logging_config.component_config.enable_components`.
      *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `platform_version`.
+     *  *   `proxy_config.kubernetes_secret.name`.
+     *  *   `proxy_config.kubernetes_secret.namespace`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -203,12 +219,16 @@ class UpdateAttachedClusterRequest extends \Google\Protobuf\Internal\Message
      * this field. The elements of the repeated paths field can only include these
      * fields from
      * [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]:
-     *  *   `description`.
      *  *   `annotations`.
-     *  *   `platform_version`.
+     *  *   `authorization.admin_groups`.
      *  *   `authorization.admin_users`.
+     *  *   `binary_authorization.evaluation_mode`.
+     *  *   `description`.
      *  *   `logging_config.component_config.enable_components`.
      *  *   `monitoring_config.managed_prometheus_config.enabled`.
+     *  *   `platform_version`.
+     *  *   `proxy_config.kubernetes_secret.name`.
+     *  *   `proxy_config.kubernetes_secret.namespace`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

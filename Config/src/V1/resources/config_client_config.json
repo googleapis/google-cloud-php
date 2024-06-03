@@ -25,7 +25,17 @@
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
+                "CreatePreview": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
                 "DeleteDeployment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
+                "DeletePreview": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
@@ -45,12 +55,22 @@
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default"
                 },
+                "ExportPreviewResult": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
                 "ExportRevisionStatefile": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
                 "GetDeployment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "GetPreview": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default"
@@ -65,6 +85,11 @@
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default"
                 },
+                "GetTerraformVersion": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
                 "ImportStatefile": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
@@ -75,12 +100,22 @@
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default"
                 },
+                "ListPreviews": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
                 "ListResources": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default"
                 },
                 "ListRevisions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "idempotent",
+                    "retry_params_name": "default"
+                },
+                "ListTerraformVersions": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "idempotent",
                     "retry_params_name": "default"

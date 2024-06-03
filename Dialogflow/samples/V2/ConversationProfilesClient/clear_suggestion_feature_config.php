@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START dialogflow_v2_generated_ConversationProfiles_ClearSuggestionFeatureConfig_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigRequest;
+use Google\Cloud\Dialogflow\V2\Client\ConversationProfilesClient;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
-use Google\Cloud\Dialogflow\V2\ConversationProfilesClient;
 use Google\Cloud\Dialogflow\V2\Participant\Role;
 use Google\Cloud\Dialogflow\V2\SuggestionFeature\Type;
 use Google\Rpc\Status;
@@ -59,14 +60,16 @@ function clear_suggestion_feature_config_sample(
     // Create a client.
     $conversationProfilesClient = new ConversationProfilesClient();
 
+    // Prepare the request message.
+    $request = (new ClearSuggestionFeatureConfigRequest())
+        ->setConversationProfile($conversationProfile)
+        ->setParticipantRole($participantRole)
+        ->setSuggestionFeatureType($suggestionFeatureType);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationProfilesClient->clearSuggestionFeatureConfig(
-            $conversationProfile,
-            $participantRole,
-            $suggestionFeatureType
-        );
+        $response = $conversationProfilesClient->clearSuggestionFeatureConfig($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

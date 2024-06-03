@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -53,8 +54,9 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     *           which to execute the request. The format is:
+     *           Required. The
+     *           [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     *           to execute the request. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $query
      *           Required. The query in the [Monitoring Query
@@ -74,8 +76,9 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -87,8 +90,9 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
-     * which to execute the request. The format is:
+     * Required. The
+     * [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+     * to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>

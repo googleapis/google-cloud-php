@@ -58,6 +58,7 @@ class StructTypeTest extends SnippetTestCase
 
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
+        $instance->directedReadOptions()->willReturn([]);
 
         $session = $this->prophesize(Session::class);
         $session->info()

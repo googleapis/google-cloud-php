@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START datacatalog_v1_generated_PolicyTagManager_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\DataCatalog\V1\PolicyTagManagerClient;
+use Google\Cloud\DataCatalog\V1\Client\PolicyTagManagerClient;
 use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 
 /**
  * Sets the IAM policy for a policy tag or a taxonomy.
@@ -38,13 +39,16 @@ function set_iam_policy_sample(string $resource): void
     // Create a client.
     $policyTagManagerClient = new PolicyTagManagerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $policyTagManagerClient->setIamPolicy($resource, $policy);
+        $response = $policyTagManagerClient->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -224,6 +224,67 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>LOCAL_INFILE_OFF = 35;</code>
      */
     const LOCAL_INFILE_OFF = 35;
+    /**
+     * This code instructs customers to turn on point-in-time recovery manually
+     * for the instance after promoting the Cloud SQL for PostgreSQL instance.
+     *
+     * Generated from protobuf enum <code>TURN_ON_PITR_AFTER_PROMOTE = 36;</code>
+     */
+    const TURN_ON_PITR_AFTER_PROMOTE = 36;
+    /**
+     * The minor version of replica database is incompatible with the source.
+     *
+     * Generated from protobuf enum <code>INCOMPATIBLE_DATABASE_MINOR_VERSION = 37;</code>
+     */
+    const INCOMPATIBLE_DATABASE_MINOR_VERSION = 37;
+    /**
+     * This warning message indicates that Cloud SQL uses the maximum number of
+     * subscriptions to migrate data from the source to the destination.
+     *
+     * Generated from protobuf enum <code>SOURCE_MAX_SUBSCRIPTIONS = 38;</code>
+     */
+    const SOURCE_MAX_SUBSCRIPTIONS = 38;
+    /**
+     * Unable to verify definers on the source for MySQL.
+     *
+     * Generated from protobuf enum <code>UNABLE_TO_VERIFY_DEFINERS = 39;</code>
+     */
+    const UNABLE_TO_VERIFY_DEFINERS = 39;
+    /**
+     * If a time out occurs while the subscription counts are calculated, then
+     * this value is set to 1. Otherwise, this value is set to 2.
+     *
+     * Generated from protobuf enum <code>SUBSCRIPTION_CALCULATION_STATUS = 40;</code>
+     */
+    const SUBSCRIPTION_CALCULATION_STATUS = 40;
+    /**
+     * Count of subscriptions needed to sync source data for PostgreSQL
+     * database.
+     *
+     * Generated from protobuf enum <code>PG_SUBSCRIPTION_COUNT = 41;</code>
+     */
+    const PG_SUBSCRIPTION_COUNT = 41;
+    /**
+     * Final parallel level that is used to do migration.
+     *
+     * Generated from protobuf enum <code>PG_SYNC_PARALLEL_LEVEL = 42;</code>
+     */
+    const PG_SYNC_PARALLEL_LEVEL = 42;
+    /**
+     * The disk size of the replica instance is smaller than the data size of
+     * the source instance.
+     *
+     * Generated from protobuf enum <code>INSUFFICIENT_DISK_SIZE = 43;</code>
+     */
+    const INSUFFICIENT_DISK_SIZE = 43;
+    /**
+     * The data size of the source instance is greater than 1 TB, the number of
+     * cores of the replica instance is less than 8, and the memory of the
+     * replica is less than 32 GB.
+     *
+     * Generated from protobuf enum <code>INSUFFICIENT_MACHINE_TIER = 44;</code>
+     */
+    const INSUFFICIENT_MACHINE_TIER = 44;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -262,6 +323,15 @@ class SqlExternalSyncSettingErrorType
         self::UNSUPPORTED_DATABASE_SETTINGS => 'UNSUPPORTED_DATABASE_SETTINGS',
         self::MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE => 'MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE',
         self::LOCAL_INFILE_OFF => 'LOCAL_INFILE_OFF',
+        self::TURN_ON_PITR_AFTER_PROMOTE => 'TURN_ON_PITR_AFTER_PROMOTE',
+        self::INCOMPATIBLE_DATABASE_MINOR_VERSION => 'INCOMPATIBLE_DATABASE_MINOR_VERSION',
+        self::SOURCE_MAX_SUBSCRIPTIONS => 'SOURCE_MAX_SUBSCRIPTIONS',
+        self::UNABLE_TO_VERIFY_DEFINERS => 'UNABLE_TO_VERIFY_DEFINERS',
+        self::SUBSCRIPTION_CALCULATION_STATUS => 'SUBSCRIPTION_CALCULATION_STATUS',
+        self::PG_SUBSCRIPTION_COUNT => 'PG_SUBSCRIPTION_COUNT',
+        self::PG_SYNC_PARALLEL_LEVEL => 'PG_SYNC_PARALLEL_LEVEL',
+        self::INSUFFICIENT_DISK_SIZE => 'INSUFFICIENT_DISK_SIZE',
+        self::INSUFFICIENT_MACHINE_TIER => 'INSUFFICIENT_MACHINE_TIER',
     ];
 
     public static function name($value)

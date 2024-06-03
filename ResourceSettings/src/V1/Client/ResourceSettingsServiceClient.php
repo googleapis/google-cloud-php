@@ -61,12 +61,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\ResourceSettings\V1\ResourceSettingsServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
  * @method PromiseInterface getSettingAsync(GetSettingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSettingsAsync(ListSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateSettingAsync(UpdateSettingRequest $request, array $optionalArgs = [])
@@ -79,8 +73,15 @@ final class ResourceSettingsServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.resourcesettings.v1.ResourceSettingsService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'resourcesettings.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'resourcesettings.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -286,6 +287,8 @@ final class ResourceSettingsServiceClient
      *
      * The async variant is {@see ResourceSettingsServiceClient::getSettingAsync()} .
      *
+     * @example samples/V1/ResourceSettingsServiceClient/get_setting.php
+     *
      * @param GetSettingRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -309,6 +312,8 @@ final class ResourceSettingsServiceClient
      * Lists all the settings that are available on the Cloud resource `parent`.
      *
      * The async variant is {@see ResourceSettingsServiceClient::listSettingsAsync()} .
+     *
+     * @example samples/V1/ResourceSettingsServiceClient/list_settings.php
      *
      * @param ListSettingsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -349,6 +354,8 @@ final class ResourceSettingsServiceClient
      *
      * The async variant is {@see ResourceSettingsServiceClient::updateSettingAsync()}
      * .
+     *
+     * @example samples/V1/ResourceSettingsServiceClient/update_setting.php
      *
      * @param UpdateSettingRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {

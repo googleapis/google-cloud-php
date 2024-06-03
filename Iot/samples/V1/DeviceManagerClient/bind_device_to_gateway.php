@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudiot_v1_generated_DeviceManager_BindDeviceToGateway_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Iot\V1\BindDeviceToGatewayRequest;
 use Google\Cloud\Iot\V1\BindDeviceToGatewayResponse;
-use Google\Cloud\Iot\V1\DeviceManagerClient;
+use Google\Cloud\Iot\V1\Client\DeviceManagerClient;
 
 /**
  * Associates the device with the gateway.
@@ -47,10 +48,16 @@ function bind_device_to_gateway_sample(
     // Create a client.
     $deviceManagerClient = new DeviceManagerClient();
 
+    // Prepare the request message.
+    $request = (new BindDeviceToGatewayRequest())
+        ->setParent($formattedParent)
+        ->setGatewayId($gatewayId)
+        ->setDeviceId($deviceId);
+
     // Call the API and handle any network failures.
     try {
         /** @var BindDeviceToGatewayResponse $response */
-        $response = $deviceManagerClient->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
+        $response = $deviceManagerClient->bindDeviceToGateway($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

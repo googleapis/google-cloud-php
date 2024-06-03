@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Security\PrivateCA\V1\CaPool;
-use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\Client\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\ListCaPoolsRequest;
 
 /**
  * Lists [CaPools][google.cloud.security.privateca.v1.CaPool].
@@ -41,10 +42,14 @@ function list_ca_pools_sample(string $formattedParent): void
     // Create a client.
     $certificateAuthorityServiceClient = new CertificateAuthorityServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListCaPoolsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $certificateAuthorityServiceClient->listCaPools($formattedParent);
+        $response = $certificateAuthorityServiceClient->listCaPools($request);
 
         /** @var CaPool $element */
         foreach ($response as $element) {

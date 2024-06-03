@@ -23,7 +23,8 @@
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_ListSearchAds360Links_sync]
-use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
+use Google\Analytics\Admin\V1alpha\ListSearchAds360LinksRequest;
 use Google\Analytics\Admin\V1alpha\SearchAds360Link;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
@@ -39,10 +40,14 @@ function list_search_ads360_links_sample(string $formattedParent): void
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSearchAds360LinksRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $analyticsAdminServiceClient->listSearchAds360Links($formattedParent);
+        $response = $analyticsAdminServiceClient->listSearchAds360Links($request);
 
         /** @var SearchAds360Link $element */
         foreach ($response as $element) {

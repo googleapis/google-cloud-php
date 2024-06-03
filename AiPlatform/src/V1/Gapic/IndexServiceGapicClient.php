@@ -76,7 +76,7 @@ use Google\Protobuf\FieldMask;
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $operationResponse->getError();
  *         // handleError($error)
@@ -93,7 +93,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     if ($newOperationResponse->operationSucceeded()) {
  *         $result = $newOperationResponse->getResult();
- *     // doSomethingWith($result)
+ *         // doSomethingWith($result)
  *     } else {
  *         $error = $newOperationResponse->getError();
  *         // handleError($error)
@@ -108,8 +108,7 @@ use Google\Protobuf\FieldMask;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\AIPlatform\V1\Client\IndexServiceClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\AIPlatform\V1\Client\IndexServiceClient}.
  */
 class IndexServiceGapicClient
 {
@@ -118,8 +117,15 @@ class IndexServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.IndexService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -427,7 +433,7 @@ class IndexServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -444,7 +450,7 @@ class IndexServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -775,7 +781,7 @@ class IndexServiceGapicClient
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
@@ -792,7 +798,7 @@ class IndexServiceGapicClient
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
      *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $newOperationResponse->getError();
      *         // handleError($error)
@@ -866,6 +872,14 @@ class IndexServiceGapicClient
      *
      *     @type IndexDatapoint[] $datapoints
      *           A list of datapoints to be created/updated.
+     *     @type FieldMask $updateMask
+     *           Optional. Update mask is used to specify the fields to be overwritten in
+     *           the datapoints by the update. The fields specified in the update_mask are
+     *           relative to each IndexDatapoint inside datapoints, not the full request.
+     *
+     *           Updatable fields:
+     *
+     *           * Use `all_restricts` to update both restricts and numeric_restricts.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -884,6 +898,10 @@ class IndexServiceGapicClient
         $requestParamHeaders['index'] = $index;
         if (isset($optionalArgs['datapoints'])) {
             $request->setDatapoints($optionalArgs['datapoints']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

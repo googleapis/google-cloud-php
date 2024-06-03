@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START pubsub_v1_generated_Subscriber_ModifyAckDeadline_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\PubSub\V1\SubscriberClient;
+use Google\Cloud\PubSub\V1\Client\SubscriberClient;
+use Google\Cloud\PubSub\V1\ModifyAckDeadlineRequest;
 
 /**
  * Modifies the ack deadline for a specific message. This method is useful
@@ -44,7 +45,8 @@ use Google\Cloud\PubSub\V1\SubscriberClient;
  *                                      delivery to another subscriber client. This typically results in an
  *                                      increase in the rate of message redeliveries (that is, duplicates).
  *                                      The minimum deadline you can specify is 0 seconds.
- *                                      The maximum deadline you can specify is 600 seconds (10 minutes).
+ *                                      The maximum deadline you can specify in a single request is 600 seconds
+ *                                      (10 minutes).
  */
 function modify_ack_deadline_sample(
     string $formattedSubscription,
@@ -54,12 +56,16 @@ function modify_ack_deadline_sample(
     // Create a client.
     $subscriberClient = new SubscriberClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $ackIds = [$ackIdsElement,];
+    $request = (new ModifyAckDeadlineRequest())
+        ->setSubscription($formattedSubscription)
+        ->setAckIds($ackIds)
+        ->setAckDeadlineSeconds($ackDeadlineSeconds);
 
     // Call the API and handle any network failures.
     try {
-        $subscriberClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+        $subscriberClient->modifyAckDeadline($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

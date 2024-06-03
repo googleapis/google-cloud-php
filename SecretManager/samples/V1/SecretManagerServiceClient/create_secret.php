@@ -24,15 +24,17 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START secretmanager_v1_generated_SecretManagerService_CreateSecret_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\SecretManager\V1\Replication;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Google\Cloud\SecretManager\V1\CreateSecretRequest;
 use Google\Cloud\SecretManager\V1\Secret;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
 
 /**
- * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+ * Creates a new [Secret][google.cloud.secretmanager.v1.Secret] containing no
+ * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
  *
  * @param string $formattedParent The resource name of the project to associate with the
- *                                [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`. Please see
+ *                                [Secret][google.cloud.secretmanager.v1.Secret], in the format `projects/*`
+ *                                or `projects/&#42;/locations/*`. Please see
  *                                {@see SecretManagerServiceClient::projectName()} for help formatting this field.
  * @param string $secretId        This must be unique within the project.
  *
@@ -45,15 +47,17 @@ function create_secret_sample(string $formattedParent, string $secretId): void
     // Create a client.
     $secretManagerServiceClient = new SecretManagerServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
-    $secretReplication = new Replication();
-    $secret = (new Secret())
-        ->setReplication($secretReplication);
+    // Prepare the request message.
+    $secret = new Secret();
+    $request = (new CreateSecretRequest())
+        ->setParent($formattedParent)
+        ->setSecretId($secretId)
+        ->setSecret($secret);
 
     // Call the API and handle any network failures.
     try {
         /** @var Secret $response */
-        $response = $secretManagerServiceClient->createSecret($formattedParent, $secretId, $secret);
+        $response = $secretManagerServiceClient->createSecret($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

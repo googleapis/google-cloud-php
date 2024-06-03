@@ -176,7 +176,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $operational_status = null;
     /**
-     * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
+     * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of a PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
      * Generated from protobuf field <code>optional string pairing_key = 439695464;</code>
      */
@@ -188,7 +188,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $partner_asn = null;
     /**
-     * Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
+     * Informational metadata about Partner attachments from Partners to display to customers. Output only for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
      */
@@ -326,11 +326,11 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values: - OS_ACTIVE: The attachment has been turned up and is ready to use. - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete.
      *           Check the OperationalStatus enum for the list of possible values.
      *     @type string $pairing_key
-     *           [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
+     *           [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of a PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *     @type int|string $partner_asn
      *           Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata $partner_metadata
-     *           Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
+     *           Informational metadata about Partner attachments from Partners to display to customers. Output only for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentPrivateInfo $private_interconnect_info
      *           [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
      *     @type string $region
@@ -1268,7 +1268,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
+     * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of a PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
      * Generated from protobuf field <code>optional string pairing_key = 439695464;</code>
      * @return string
@@ -1289,7 +1289,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
+     * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of a PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
      * Generated from protobuf field <code>optional string pairing_key = 439695464;</code>
      * @param string $var
@@ -1340,7 +1340,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
+     * Informational metadata about Partner attachments from Partners to display to customers. Output only for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata|null
@@ -1361,7 +1361,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
+     * Informational metadata about Partner attachments from Partners to display to customers. Output only for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata $var

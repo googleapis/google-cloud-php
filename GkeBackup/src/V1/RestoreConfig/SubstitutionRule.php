@@ -18,25 +18,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class SubstitutionRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (Filtering parameter) Any resource subject to substitution must be
-     * contained within one of the listed Kubernetes Namespace in the Backup.
+     * Optional. (Filtering parameter) Any resource subject to substitution must
+     * be contained within one of the listed Kubernetes Namespace in the Backup.
      * If this field is not provided, no namespace filtering will be performed
      * (all resources in all Namespaces, including all cluster-scoped resources,
      * will be candidates for substitution).
      * To mix cluster-scoped and namespaced resources in the same rule, use an
      * empty string ("") as one of the target namespaces.
      *
-     * Generated from protobuf field <code>repeated string target_namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string target_namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $target_namespaces;
     /**
-     * (Filtering parameter) Any resource subject to substitution must belong to
-     * one of the listed "types".
-     * If this field is not provided, no type filtering will be performed (all
-     * resources of all types matching previous filtering parameters will be
-     * candidates for substitution).
+     * Optional. (Filtering parameter) Any resource subject to substitution must
+     * belong to one of the listed "types". If this field is not provided, no
+     * type filtering will be performed (all resources of all types matching
+     * previous filtering parameters will be candidates for substitution).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $target_group_kinds;
     /**
@@ -52,7 +51,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      */
     private $target_json_path = '';
     /**
-     * (Filtering parameter) This is a [regular expression]
+     * Optional. (Filtering parameter) This is a [regular expression]
      * (https://en.wikipedia.org/wiki/Regular_expression)
      * that is compared against the fields matched by the target_json_path
      * expression (and must also have passed the previous filters).
@@ -62,15 +61,16 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * substitution. Note that an empty (e.g., "", rather than unspecified)
      * value for this field will only match empty fields.
      *
-     * Generated from protobuf field <code>string original_value_pattern = 4;</code>
+     * Generated from protobuf field <code>string original_value_pattern = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $original_value_pattern = '';
     /**
-     * This is the new value to set for any fields that pass the filtering and
-     * selection criteria. To remove a value from a Kubernetes resource, either
-     * leave this field unspecified, or set it to the empty string ("").
+     * Optional. This is the new value to set for any fields that pass the
+     * filtering and selection criteria. To remove a value from a Kubernetes
+     * resource, either leave this field unspecified, or set it to the empty
+     * string ("").
      *
-     * Generated from protobuf field <code>string new_value = 5;</code>
+     * Generated from protobuf field <code>string new_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $new_value = '';
 
@@ -81,19 +81,18 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_namespaces
-     *           (Filtering parameter) Any resource subject to substitution must be
-     *           contained within one of the listed Kubernetes Namespace in the Backup.
+     *           Optional. (Filtering parameter) Any resource subject to substitution must
+     *           be contained within one of the listed Kubernetes Namespace in the Backup.
      *           If this field is not provided, no namespace filtering will be performed
      *           (all resources in all Namespaces, including all cluster-scoped resources,
      *           will be candidates for substitution).
      *           To mix cluster-scoped and namespaced resources in the same rule, use an
      *           empty string ("") as one of the target namespaces.
      *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $target_group_kinds
-     *           (Filtering parameter) Any resource subject to substitution must belong to
-     *           one of the listed "types".
-     *           If this field is not provided, no type filtering will be performed (all
-     *           resources of all types matching previous filtering parameters will be
-     *           candidates for substitution).
+     *           Optional. (Filtering parameter) Any resource subject to substitution must
+     *           belong to one of the listed "types". If this field is not provided, no
+     *           type filtering will be performed (all resources of all types matching
+     *           previous filtering parameters will be candidates for substitution).
      *     @type string $target_json_path
      *           Required. This is a [JSONPath]
      *           (https://kubernetes.io/docs/reference/kubectl/jsonpath/)
@@ -103,7 +102,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *           substitution) as well as a field identifier (identifies exactly which
      *           fields out of the candidate resources will be modified).
      *     @type string $original_value_pattern
-     *           (Filtering parameter) This is a [regular expression]
+     *           Optional. (Filtering parameter) This is a [regular expression]
      *           (https://en.wikipedia.org/wiki/Regular_expression)
      *           that is compared against the fields matched by the target_json_path
      *           expression (and must also have passed the previous filters).
@@ -113,9 +112,10 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *           substitution. Note that an empty (e.g., "", rather than unspecified)
      *           value for this field will only match empty fields.
      *     @type string $new_value
-     *           This is the new value to set for any fields that pass the filtering and
-     *           selection criteria. To remove a value from a Kubernetes resource, either
-     *           leave this field unspecified, or set it to the empty string ("").
+     *           Optional. This is the new value to set for any fields that pass the
+     *           filtering and selection criteria. To remove a value from a Kubernetes
+     *           resource, either leave this field unspecified, or set it to the empty
+     *           string ("").
      * }
      */
     public function __construct($data = NULL) {
@@ -124,15 +124,15 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) Any resource subject to substitution must be
-     * contained within one of the listed Kubernetes Namespace in the Backup.
+     * Optional. (Filtering parameter) Any resource subject to substitution must
+     * be contained within one of the listed Kubernetes Namespace in the Backup.
      * If this field is not provided, no namespace filtering will be performed
      * (all resources in all Namespaces, including all cluster-scoped resources,
      * will be candidates for substitution).
      * To mix cluster-scoped and namespaced resources in the same rule, use an
      * empty string ("") as one of the target namespaces.
      *
-     * Generated from protobuf field <code>repeated string target_namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string target_namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTargetNamespaces()
@@ -141,15 +141,15 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) Any resource subject to substitution must be
-     * contained within one of the listed Kubernetes Namespace in the Backup.
+     * Optional. (Filtering parameter) Any resource subject to substitution must
+     * be contained within one of the listed Kubernetes Namespace in the Backup.
      * If this field is not provided, no namespace filtering will be performed
      * (all resources in all Namespaces, including all cluster-scoped resources,
      * will be candidates for substitution).
      * To mix cluster-scoped and namespaced resources in the same rule, use an
      * empty string ("") as one of the target namespaces.
      *
-     * Generated from protobuf field <code>repeated string target_namespaces = 1;</code>
+     * Generated from protobuf field <code>repeated string target_namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -162,13 +162,12 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) Any resource subject to substitution must belong to
-     * one of the listed "types".
-     * If this field is not provided, no type filtering will be performed (all
-     * resources of all types matching previous filtering parameters will be
-     * candidates for substitution).
+     * Optional. (Filtering parameter) Any resource subject to substitution must
+     * belong to one of the listed "types". If this field is not provided, no
+     * type filtering will be performed (all resources of all types matching
+     * previous filtering parameters will be candidates for substitution).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTargetGroupKinds()
@@ -177,13 +176,12 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) Any resource subject to substitution must belong to
-     * one of the listed "types".
-     * If this field is not provided, no type filtering will be performed (all
-     * resources of all types matching previous filtering parameters will be
-     * candidates for substitution).
+     * Optional. (Filtering parameter) Any resource subject to substitution must
+     * belong to one of the listed "types". If this field is not provided, no
+     * type filtering will be performed (all resources of all types matching
+     * previous filtering parameters will be candidates for substitution).
      *
-     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -234,7 +232,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) This is a [regular expression]
+     * Optional. (Filtering parameter) This is a [regular expression]
      * (https://en.wikipedia.org/wiki/Regular_expression)
      * that is compared against the fields matched by the target_json_path
      * expression (and must also have passed the previous filters).
@@ -244,7 +242,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * substitution. Note that an empty (e.g., "", rather than unspecified)
      * value for this field will only match empty fields.
      *
-     * Generated from protobuf field <code>string original_value_pattern = 4;</code>
+     * Generated from protobuf field <code>string original_value_pattern = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOriginalValuePattern()
@@ -253,7 +251,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (Filtering parameter) This is a [regular expression]
+     * Optional. (Filtering parameter) This is a [regular expression]
      * (https://en.wikipedia.org/wiki/Regular_expression)
      * that is compared against the fields matched by the target_json_path
      * expression (and must also have passed the previous filters).
@@ -263,7 +261,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * substitution. Note that an empty (e.g., "", rather than unspecified)
      * value for this field will only match empty fields.
      *
-     * Generated from protobuf field <code>string original_value_pattern = 4;</code>
+     * Generated from protobuf field <code>string original_value_pattern = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -276,11 +274,12 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is the new value to set for any fields that pass the filtering and
-     * selection criteria. To remove a value from a Kubernetes resource, either
-     * leave this field unspecified, or set it to the empty string ("").
+     * Optional. This is the new value to set for any fields that pass the
+     * filtering and selection criteria. To remove a value from a Kubernetes
+     * resource, either leave this field unspecified, or set it to the empty
+     * string ("").
      *
-     * Generated from protobuf field <code>string new_value = 5;</code>
+     * Generated from protobuf field <code>string new_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getNewValue()
@@ -289,11 +288,12 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is the new value to set for any fields that pass the filtering and
-     * selection criteria. To remove a value from a Kubernetes resource, either
-     * leave this field unspecified, or set it to the empty string ("").
+     * Optional. This is the new value to set for any fields that pass the
+     * filtering and selection criteria. To remove a value from a Kubernetes
+     * resource, either leave this field unspecified, or set it to the empty
+     * string ("").
      *
-     * Generated from protobuf field <code>string new_value = 5;</code>
+     * Generated from protobuf field <code>string new_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -74,6 +74,17 @@ class ColumnSchema extends \Google\Protobuf\Internal\Message
      */
     private $subcolumns;
     /**
+     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+     * the type is RANGE, this field is required. Possible values for the field
+     * element type of a RANGE include:
+     * * DATE
+     * * DATETIME
+     * * TIMESTAMP
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ColumnSchema.FieldElementType range_element_type = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $range_element_type = null;
+    /**
      * Optional. Garbage collection policy for the column or column family.
      * Applies to systems like Cloud Bigtable.
      *
@@ -115,6 +126,13 @@ class ColumnSchema extends \Google\Protobuf\Internal\Message
      *           sub-columns.
      *     @type \Google\Cloud\DataCatalog\V1\ColumnSchema\LookerColumnSpec $looker_column_spec
      *           Looker specific column info of this column.
+     *     @type \Google\Cloud\DataCatalog\V1\ColumnSchema\FieldElementType $range_element_type
+     *           Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+     *           the type is RANGE, this field is required. Possible values for the field
+     *           element type of a RANGE include:
+     *           * DATE
+     *           * DATETIME
+     *           * TIMESTAMP
      *     @type string $gc_rule
      *           Optional. Garbage collection policy for the column or column family.
      *           Applies to systems like Cloud Bigtable.
@@ -378,6 +396,52 @@ class ColumnSchema extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\ColumnSchema\LookerColumnSpec::class);
         $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+     * the type is RANGE, this field is required. Possible values for the field
+     * element type of a RANGE include:
+     * * DATE
+     * * DATETIME
+     * * TIMESTAMP
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ColumnSchema.FieldElementType range_element_type = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DataCatalog\V1\ColumnSchema\FieldElementType|null
+     */
+    public function getRangeElementType()
+    {
+        return $this->range_element_type;
+    }
+
+    public function hasRangeElementType()
+    {
+        return isset($this->range_element_type);
+    }
+
+    public function clearRangeElementType()
+    {
+        unset($this->range_element_type);
+    }
+
+    /**
+     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If
+     * the type is RANGE, this field is required. Possible values for the field
+     * element type of a RANGE include:
+     * * DATE
+     * * DATETIME
+     * * TIMESTAMP
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ColumnSchema.FieldElementType range_element_type = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DataCatalog\V1\ColumnSchema\FieldElementType $var
+     * @return $this
+     */
+    public function setRangeElementType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\ColumnSchema\FieldElementType::class);
+        $this->range_element_type = $var;
 
         return $this;
     }

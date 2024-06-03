@@ -193,6 +193,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.alloydb.v1beta.Cluster.PrimaryConfig primary_config = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $primary_config = null;
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $satisfies_pzs = false;
     protected $source;
 
     /**
@@ -284,6 +290,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Cross Region replication config specific to SECONDARY cluster.
      *     @type \Google\Cloud\AlloyDb\V1beta\Cluster\PrimaryConfig $primary_config
      *           Output only. Cross Region replication config specific to PRIMARY cluster.
+     *     @type bool $satisfies_pzs
+     *           Output only. Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -1173,6 +1181,32 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AlloyDb\V1beta\Cluster\PrimaryConfig::class);
         $this->primary_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Output only. Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

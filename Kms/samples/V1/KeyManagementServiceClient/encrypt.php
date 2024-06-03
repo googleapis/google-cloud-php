@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START cloudkms_v1_generated_KeyManagementService_Encrypt_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Kms\V1\Client\KeyManagementServiceClient;
+use Google\Cloud\Kms\V1\EncryptRequest;
 use Google\Cloud\Kms\V1\EncryptResponse;
-use Google\Cloud\Kms\V1\KeyManagementServiceClient;
 
 /**
  * Encrypts data, so that it can only be recovered by a call to
@@ -57,10 +58,15 @@ function encrypt_sample(string $name, string $plaintext): void
     // Create a client.
     $keyManagementServiceClient = new KeyManagementServiceClient();
 
+    // Prepare the request message.
+    $request = (new EncryptRequest())
+        ->setName($name)
+        ->setPlaintext($plaintext);
+
     // Call the API and handle any network failures.
     try {
         /** @var EncryptResponse $response */
-        $response = $keyManagementServiceClient->encrypt($name, $plaintext);
+        $response = $keyManagementServiceClient->encrypt($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -7,6 +7,8 @@ namespace Google\Cloud\NetApp\V1;
 use UnexpectedValueException;
 
 /**
+ * AccessType is an enum of all the supported access types for a volume.
+ *
  * Protobuf type <code>google.cloud.netapp.v1.AccessType</code>
  */
 class AccessType

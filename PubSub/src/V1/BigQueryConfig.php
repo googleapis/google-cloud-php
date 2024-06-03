@@ -16,37 +16,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class BigQueryConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the table to which to write data, of the form
+     * Optional. The name of the table to which to write data, of the form
      * {projectId}.{datasetId}.{tableId}
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $table = '';
     /**
-     * When true, use the topic's schema as the columns to write to in BigQuery,
-     * if it exists.
+     * Optional. When true, use the topic's schema as the columns to write to in
+     * BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+     * enabled at the same time.
      *
-     * Generated from protobuf field <code>bool use_topic_schema = 2;</code>
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $use_topic_schema = false;
     /**
-     * When true, write the subscription name, message_id, publish_time,
+     * Optional. When true, write the subscription name, message_id, publish_time,
      * attributes, and ordering_key to additional columns in the table. The
      * subscription name, message_id, and publish_time fields are put in their own
      * columns while all other message properties (other than data) are written to
      * a JSON object in the attributes column.
      *
-     * Generated from protobuf field <code>bool write_metadata = 3;</code>
+     * Generated from protobuf field <code>bool write_metadata = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $write_metadata = false;
     /**
-     * When true and use_topic_schema is true, any fields that are a part of the
-     * topic schema that are not part of the BigQuery table schema are dropped
-     * when writing to BigQuery. Otherwise, the schemas must be kept in sync and
-     * any messages with extra fields are not written and remain in the
+     * Optional. When true and use_topic_schema is true, any fields that are a
+     * part of the topic schema that are not part of the BigQuery table schema are
+     * dropped when writing to BigQuery. Otherwise, the schemas must be kept in
+     * sync and any messages with extra fields are not written and remain in the
      * subscription's backlog.
      *
-     * Generated from protobuf field <code>bool drop_unknown_fields = 4;</code>
+     * Generated from protobuf field <code>bool drop_unknown_fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $drop_unknown_fields = false;
     /**
@@ -56,6 +57,25 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Optional. When true, use the BigQuery table's schema as the columns to
+     * write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+     * enabled at the same time.
+     *
+     * Generated from protobuf field <code>bool use_table_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $use_table_schema = false;
+    /**
+     * Optional. The service account to use to write to BigQuery. The subscription
+     * creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub [service
+     * agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $service_account_email = '';
 
     /**
      * Constructor.
@@ -64,26 +84,38 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $table
-     *           The name of the table to which to write data, of the form
+     *           Optional. The name of the table to which to write data, of the form
      *           {projectId}.{datasetId}.{tableId}
      *     @type bool $use_topic_schema
-     *           When true, use the topic's schema as the columns to write to in BigQuery,
-     *           if it exists.
+     *           Optional. When true, use the topic's schema as the columns to write to in
+     *           BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+     *           enabled at the same time.
      *     @type bool $write_metadata
-     *           When true, write the subscription name, message_id, publish_time,
+     *           Optional. When true, write the subscription name, message_id, publish_time,
      *           attributes, and ordering_key to additional columns in the table. The
      *           subscription name, message_id, and publish_time fields are put in their own
      *           columns while all other message properties (other than data) are written to
      *           a JSON object in the attributes column.
      *     @type bool $drop_unknown_fields
-     *           When true and use_topic_schema is true, any fields that are a part of the
-     *           topic schema that are not part of the BigQuery table schema are dropped
-     *           when writing to BigQuery. Otherwise, the schemas must be kept in sync and
-     *           any messages with extra fields are not written and remain in the
+     *           Optional. When true and use_topic_schema is true, any fields that are a
+     *           part of the topic schema that are not part of the BigQuery table schema are
+     *           dropped when writing to BigQuery. Otherwise, the schemas must be kept in
+     *           sync and any messages with extra fields are not written and remain in the
      *           subscription's backlog.
      *     @type int $state
      *           Output only. An output-only field that indicates whether or not the
      *           subscription can receive messages.
+     *     @type bool $use_table_schema
+     *           Optional. When true, use the BigQuery table's schema as the columns to
+     *           write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+     *           enabled at the same time.
+     *     @type string $service_account_email
+     *           Optional. The service account to use to write to BigQuery. The subscription
+     *           creator or updater that specifies this field must have
+     *           `iam.serviceAccounts.actAs` permission on the service account. If not
+     *           specified, the Pub/Sub [service
+     *           agent](https://cloud.google.com/iam/docs/service-agents),
+     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,10 +124,10 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the table to which to write data, of the form
+     * Optional. The name of the table to which to write data, of the form
      * {projectId}.{datasetId}.{tableId}
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getTable()
@@ -104,10 +136,10 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the table to which to write data, of the form
+     * Optional. The name of the table to which to write data, of the form
      * {projectId}.{datasetId}.{tableId}
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -120,10 +152,11 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, use the topic's schema as the columns to write to in BigQuery,
-     * if it exists.
+     * Optional. When true, use the topic's schema as the columns to write to in
+     * BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+     * enabled at the same time.
      *
-     * Generated from protobuf field <code>bool use_topic_schema = 2;</code>
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUseTopicSchema()
@@ -132,10 +165,11 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, use the topic's schema as the columns to write to in BigQuery,
-     * if it exists.
+     * Optional. When true, use the topic's schema as the columns to write to in
+     * BigQuery, if it exists. `use_topic_schema` and `use_table_schema` cannot be
+     * enabled at the same time.
      *
-     * Generated from protobuf field <code>bool use_topic_schema = 2;</code>
+     * Generated from protobuf field <code>bool use_topic_schema = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -148,13 +182,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, write the subscription name, message_id, publish_time,
+     * Optional. When true, write the subscription name, message_id, publish_time,
      * attributes, and ordering_key to additional columns in the table. The
      * subscription name, message_id, and publish_time fields are put in their own
      * columns while all other message properties (other than data) are written to
      * a JSON object in the attributes column.
      *
-     * Generated from protobuf field <code>bool write_metadata = 3;</code>
+     * Generated from protobuf field <code>bool write_metadata = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getWriteMetadata()
@@ -163,13 +197,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, write the subscription name, message_id, publish_time,
+     * Optional. When true, write the subscription name, message_id, publish_time,
      * attributes, and ordering_key to additional columns in the table. The
      * subscription name, message_id, and publish_time fields are put in their own
      * columns while all other message properties (other than data) are written to
      * a JSON object in the attributes column.
      *
-     * Generated from protobuf field <code>bool write_metadata = 3;</code>
+     * Generated from protobuf field <code>bool write_metadata = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -182,13 +216,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true and use_topic_schema is true, any fields that are a part of the
-     * topic schema that are not part of the BigQuery table schema are dropped
-     * when writing to BigQuery. Otherwise, the schemas must be kept in sync and
-     * any messages with extra fields are not written and remain in the
+     * Optional. When true and use_topic_schema is true, any fields that are a
+     * part of the topic schema that are not part of the BigQuery table schema are
+     * dropped when writing to BigQuery. Otherwise, the schemas must be kept in
+     * sync and any messages with extra fields are not written and remain in the
      * subscription's backlog.
      *
-     * Generated from protobuf field <code>bool drop_unknown_fields = 4;</code>
+     * Generated from protobuf field <code>bool drop_unknown_fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getDropUnknownFields()
@@ -197,13 +231,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true and use_topic_schema is true, any fields that are a part of the
-     * topic schema that are not part of the BigQuery table schema are dropped
-     * when writing to BigQuery. Otherwise, the schemas must be kept in sync and
-     * any messages with extra fields are not written and remain in the
+     * Optional. When true and use_topic_schema is true, any fields that are a
+     * part of the topic schema that are not part of the BigQuery table schema are
+     * dropped when writing to BigQuery. Otherwise, the schemas must be kept in
+     * sync and any messages with extra fields are not written and remain in the
      * subscription's backlog.
      *
-     * Generated from protobuf field <code>bool drop_unknown_fields = 4;</code>
+     * Generated from protobuf field <code>bool drop_unknown_fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -239,6 +273,72 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\BigQueryConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When true, use the BigQuery table's schema as the columns to
+     * write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+     * enabled at the same time.
+     *
+     * Generated from protobuf field <code>bool use_table_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseTableSchema()
+    {
+        return $this->use_table_schema;
+    }
+
+    /**
+     * Optional. When true, use the BigQuery table's schema as the columns to
+     * write to in BigQuery. `use_table_schema` and `use_topic_schema` cannot be
+     * enabled at the same time.
+     *
+     * Generated from protobuf field <code>bool use_table_schema = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseTableSchema($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_table_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The service account to use to write to BigQuery. The subscription
+     * creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub [service
+     * agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccountEmail()
+    {
+        return $this->service_account_email;
+    }
+
+    /**
+     * Optional. The service account to use to write to BigQuery. The subscription
+     * creator or updater that specifies this field must have
+     * `iam.serviceAccounts.actAs` permission on the service account. If not
+     * specified, the Pub/Sub [service
+     * agent](https://cloud.google.com/iam/docs/service-agents),
+     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *
+     * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccountEmail($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account_email = $var;
 
         return $this;
     }

@@ -24,13 +24,15 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START spanner_v1_generated_Spanner_BeginTransaction_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\Transaction;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
  * Begins a new transaction. This step can often be skipped:
- * [Read][google.spanner.v1.Spanner.Read], [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
+ * [Read][google.spanner.v1.Spanner.Read],
+ * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
  * [Commit][google.spanner.v1.Spanner.Commit] can begin a new transaction as a
  * side-effect.
  *
@@ -42,13 +44,16 @@ function begin_transaction_sample(string $formattedSession): void
     // Create a client.
     $spannerClient = new SpannerClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $options = new TransactionOptions();
+    $request = (new BeginTransactionRequest())
+        ->setSession($formattedSession)
+        ->setOptions($options);
 
     // Call the API and handle any network failures.
     try {
         /** @var Transaction $response */
-        $response = $spannerClient->beginTransaction($formattedSession, $options);
+        $response = $spannerClient->beginTransaction($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

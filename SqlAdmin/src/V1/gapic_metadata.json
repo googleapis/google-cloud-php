@@ -139,6 +139,11 @@
                 "grpc": {
                     "libraryClient": "SqlInstancesServiceGapicClient",
                     "rpcs": {
+                        "AcquireSsrsLease": {
+                            "methods": [
+                                "acquireSsrsLease"
+                            ]
+                        },
                         "AddServerCa": {
                             "methods": [
                                 "addServerCa"
@@ -157,6 +162,11 @@
                         "Delete": {
                             "methods": [
                                 "delete"
+                            ]
+                        },
+                        "Demote": {
+                            "methods": [
+                                "demote"
                             ]
                         },
                         "DemoteMaster": {
@@ -229,6 +239,11 @@
                                 "reencrypt"
                             ]
                         },
+                        "ReleaseSsrsLease": {
+                            "methods": [
+                                "releaseSsrsLease"
+                            ]
+                        },
                         "RescheduleMaintenance": {
                             "methods": [
                                 "rescheduleMaintenance"
@@ -272,6 +287,11 @@
                         "StopReplica": {
                             "methods": [
                                 "stopReplica"
+                            ]
+                        },
+                        "Switchover": {
+                            "methods": [
+                                "switchover"
                             ]
                         },
                         "TruncateLog": {

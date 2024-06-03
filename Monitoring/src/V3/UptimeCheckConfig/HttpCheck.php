@@ -50,6 +50,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     /**
      * The authentication information. Optional when creating an HTTP check;
      * defaults to empty.
+     * Do not set both `auth_method` and `auth_info`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication auth_info = 4;</code>
      */
@@ -138,6 +139,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.PingConfig ping_config = 12;</code>
      */
     private $ping_config = null;
+    protected $auth_method;
 
     /**
      * Constructor.
@@ -164,6 +166,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication $auth_info
      *           The authentication information. Optional when creating an HTTP check;
      *           defaults to empty.
+     *           Do not set both `auth_method` and `auth_info`.
      *     @type bool $mask_headers
      *           Boolean specifying whether to encrypt the header information.
      *           Encryption should be specified for any headers related to authentication
@@ -216,6 +219,10 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *           pass if the HTTP status code is 200-299.
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\PingConfig $ping_config
      *           Contains information needed to add pings to an HTTP check.
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ServiceAgentAuthentication $service_agent_authentication
+     *           If specified, Uptime will generate and attach an OIDC JWT token for the
+     *           Monitoring service agent service account as an `Authorization` header
+     *           in the HTTP request when probing.
      * }
      */
     public function __construct($data = NULL) {
@@ -346,6 +353,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     /**
      * The authentication information. Optional when creating an HTTP check;
      * defaults to empty.
+     * Do not set both `auth_method` and `auth_info`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication auth_info = 4;</code>
      * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication|null
@@ -368,6 +376,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     /**
      * The authentication information. Optional when creating an HTTP check;
      * defaults to empty.
+     * Do not set both `auth_method` and `auth_info`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication auth_info = 4;</code>
      * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication $var
@@ -669,6 +678,49 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
         $this->ping_config = $var;
 
         return $this;
+    }
+
+    /**
+     * If specified, Uptime will generate and attach an OIDC JWT token for the
+     * Monitoring service agent service account as an `Authorization` header
+     * in the HTTP request when probing.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication service_agent_authentication = 14;</code>
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ServiceAgentAuthentication|null
+     */
+    public function getServiceAgentAuthentication()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasServiceAgentAuthentication()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * If specified, Uptime will generate and attach an OIDC JWT token for the
+     * Monitoring service agent service account as an `Authorization` header
+     * in the HTTP request when probing.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.ServiceAgentAuthentication service_agent_authentication = 14;</code>
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ServiceAgentAuthentication $var
+     * @return $this
+     */
+    public function setServiceAgentAuthentication($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ServiceAgentAuthentication::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthMethod()
+    {
+        return $this->whichOneof("auth_method");
     }
 
 }

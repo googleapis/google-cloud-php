@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,8 +98,7 @@ use Google\Protobuf\Timestamp;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\PubSub\V1\Client\SubscriberClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\PubSub\V1\Client\SubscriberClient}.
  */
 class SubscriberGapicClient
 {
@@ -108,8 +107,15 @@ class SubscriberGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.pubsub.v1.Subscriber';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'pubsub.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'pubsub.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -524,7 +530,7 @@ class SubscriberGapicClient
      *     Optional.
      *
      *     @type array $labels
-     *           See [Creating and managing
+     *           Optional. See [Creating and managing
      *           labels](https://cloud.google.com/pubsub/docs/labels).
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -590,20 +596,20 @@ class SubscriberGapicClient
      *     Optional.
      *
      *     @type PushConfig $pushConfig
-     *           If push delivery is used with this subscription, this field is
+     *           Optional. If push delivery is used with this subscription, this field is
      *           used to configure it.
      *     @type BigQueryConfig $bigqueryConfig
-     *           If delivery to BigQuery is used with this subscription, this field is
-     *           used to configure it.
-     *     @type CloudStorageConfig $cloudStorageConfig
-     *           If delivery to Google Cloud Storage is used with this subscription, this
+     *           Optional. If delivery to BigQuery is used with this subscription, this
      *           field is used to configure it.
+     *     @type CloudStorageConfig $cloudStorageConfig
+     *           Optional. If delivery to Google Cloud Storage is used with this
+     *           subscription, this field is used to configure it.
      *     @type int $ackDeadlineSeconds
-     *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
-     *           the subscriber to acknowledge receipt before resending the message. In the
-     *           interval after the message is delivered and before it is acknowledged, it
-     *           is considered to be _outstanding_. During that time period, the
-     *           message will not be redelivered (on a best-effort basis).
+     *           Optional. The approximate amount of time (on a best-effort basis) Pub/Sub
+     *           waits for the subscriber to acknowledge receipt before resending the
+     *           message. In the interval after the message is delivered and before it is
+     *           acknowledged, it is considered to be _outstanding_. During that time
+     *           period, the message will not be redelivered (on a best-effort basis).
      *
      *           For pull subscriptions, this value is used as the initial value for the ack
      *           deadline. To override this value for a given message, call
@@ -620,67 +626,67 @@ class SubscriberGapicClient
      *           If the subscriber never acknowledges the message, the Pub/Sub
      *           system will eventually redeliver the message.
      *     @type bool $retainAckedMessages
-     *           Indicates whether to retain acknowledged messages. If true, then
+     *           Optional. Indicates whether to retain acknowledged messages. If true, then
      *           messages are not expunged from the subscription's backlog, even if they are
      *           acknowledged, until they fall out of the `message_retention_duration`
      *           window. This must be true if you would like to [`Seek` to a timestamp]
      *           (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
      *           the past to replay previously-acknowledged messages.
      *     @type Duration $messageRetentionDuration
-     *           How long to retain unacknowledged messages in the subscription's backlog,
-     *           from the moment a message is published.
-     *           If `retain_acked_messages` is true, then this also configures the retention
-     *           of acknowledged messages, and thus configures how far back in time a `Seek`
-     *           can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-     *           minutes.
+     *           Optional. How long to retain unacknowledged messages in the subscription's
+     *           backlog, from the moment a message is published. If `retain_acked_messages`
+     *           is true, then this also configures the retention of acknowledged messages,
+     *           and thus configures how far back in time a `Seek` can be done. Defaults to
+     *           7 days. Cannot be more than 7 days or less than 10 minutes.
      *     @type array $labels
-     *           See [Creating and managing
+     *           Optional. See [Creating and managing
      *           labels](https://cloud.google.com/pubsub/docs/labels).
      *     @type bool $enableMessageOrdering
-     *           If true, messages published with the same `ordering_key` in `PubsubMessage`
-     *           will be delivered to the subscribers in the order in which they
-     *           are received by the Pub/Sub system. Otherwise, they may be delivered in
-     *           any order.
+     *           Optional. If true, messages published with the same `ordering_key` in
+     *           `PubsubMessage` will be delivered to the subscribers in the order in which
+     *           they are received by the Pub/Sub system. Otherwise, they may be delivered
+     *           in any order.
      *     @type ExpirationPolicy $expirationPolicy
-     *           A policy that specifies the conditions for this subscription's expiration.
-     *           A subscription is considered active as long as any connected subscriber is
-     *           successfully consuming messages from the subscription or is issuing
-     *           operations on the subscription. If `expiration_policy` is not set, a
-     *           *default policy* with `ttl` of 31 days will be used. The minimum allowed
+     *           Optional. A policy that specifies the conditions for this subscription's
+     *           expiration. A subscription is considered active as long as any connected
+     *           subscriber is successfully consuming messages from the subscription or is
+     *           issuing operations on the subscription. If `expiration_policy` is not set,
+     *           a *default policy* with `ttl` of 31 days will be used. The minimum allowed
      *           value for `expiration_policy.ttl` is 1 day. If `expiration_policy` is set,
      *           but `expiration_policy.ttl` is not set, the subscription never expires.
      *     @type string $filter
-     *           An expression written in the Pub/Sub [filter
+     *           Optional. An expression written in the Pub/Sub [filter
      *           language](https://cloud.google.com/pubsub/docs/filtering). If non-empty,
      *           then only `PubsubMessage`s whose `attributes` field matches the filter are
      *           delivered on this subscription. If empty, then no messages are filtered
      *           out.
      *     @type DeadLetterPolicy $deadLetterPolicy
-     *           A policy that specifies the conditions for dead lettering messages in
-     *           this subscription. If dead_letter_policy is not set, dead lettering
-     *           is disabled.
+     *           Optional. A policy that specifies the conditions for dead lettering
+     *           messages in this subscription. If dead_letter_policy is not set, dead
+     *           lettering is disabled.
      *
-     *           The Cloud Pub/Sub service account associated with this subscriptions's
+     *           The Pub/Sub service account associated with this subscriptions's
      *           parent project (i.e.,
      *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
      *           permission to Acknowledge() messages on this subscription.
      *     @type RetryPolicy $retryPolicy
-     *           A policy that specifies how Pub/Sub retries message delivery for this
-     *           subscription.
+     *           Optional. A policy that specifies how Pub/Sub retries message delivery for
+     *           this subscription.
      *
      *           If not set, the default retry policy is applied. This generally implies
      *           that messages will be retried as soon as possible for healthy subscribers.
      *           RetryPolicy will be triggered on NACKs or acknowledgement deadline
      *           exceeded events for a given message.
      *     @type bool $detached
-     *           Indicates whether the subscription is detached from its topic. Detached
-     *           subscriptions don't receive messages from their topic and don't retain any
-     *           backlog. `Pull` and `StreamingPull` requests will return
+     *           Optional. Indicates whether the subscription is detached from its topic.
+     *           Detached subscriptions don't receive messages from their topic and don't
+     *           retain any backlog. `Pull` and `StreamingPull` requests will return
      *           FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
      *           the endpoint will not be made.
      *     @type bool $enableExactlyOnceDelivery
-     *           If true, Pub/Sub provides the following guarantees for the delivery of
-     *           a message with a given value of `message_id` on this subscription:
+     *           Optional. If true, Pub/Sub provides the following guarantees for the
+     *           delivery of a message with a given value of `message_id` on this
+     *           subscription:
      *
      *           * The message sent to a subscriber is guaranteed not to be resent
      *           before the message's acknowledgement deadline expires.
@@ -1131,7 +1137,8 @@ class SubscriberGapicClient
      *                                     delivery to another subscriber client. This typically results in an
      *                                     increase in the rate of message redeliveries (that is, duplicates).
      *                                     The minimum deadline you can specify is 0 seconds.
-     *                                     The maximum deadline you can specify is 600 seconds (10 minutes).
+     *                                     The maximum deadline you can specify in a single request is 600 seconds
+     *                                     (10 minutes).
      * @param array    $optionalArgs       {
      *     Optional.
      *
@@ -1289,7 +1296,7 @@ class SubscriberGapicClient
      *     Optional.
      *
      *     @type Timestamp $time
-     *           The time to seek to.
+     *           Optional. The time to seek to.
      *           Messages retained in the subscription that were published before this
      *           time are marked as acknowledged, and messages retained in the
      *           subscription that were published after this time are marked as
@@ -1301,9 +1308,9 @@ class SubscriberGapicClient
      *           creation time), only retained messages will be marked as unacknowledged,
      *           and already-expunged messages will not be restored.
      *     @type string $snapshot
-     *           The snapshot to seek to. The snapshot's topic must be the same as that of
-     *           the provided subscription.
-     *           Format is `projects/{project}/snapshots/{snap}`.
+     *           Optional. The snapshot to seek to. The snapshot's topic must be the same
+     *           as that of the provided subscription. Format is
+     *           `projects/{project}/snapshots/{snap}`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1403,7 +1410,8 @@ class SubscriberGapicClient
     }
 
     /**
-     * Updates an existing snapshot. Snapshots are used in
+     * Updates an existing snapshot by updating the fields specified in the update
+     * mask. Snapshots are used in
      * [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations,
      * which allow you to manage message acknowledgments in bulk. That is, you can
      * set the acknowledgment state of messages in an existing subscription to the
@@ -1450,8 +1458,9 @@ class SubscriberGapicClient
     }
 
     /**
-     * Updates an existing subscription. Note that certain properties of a
-     * subscription, such as its topic, are not modifiable.
+     * Updates an existing subscription by updating the fields specified in the
+     * update mask. Note that certain properties of a subscription, such as its
+     * topic, are not modifiable.
      *
      * Sample code:
      * ```

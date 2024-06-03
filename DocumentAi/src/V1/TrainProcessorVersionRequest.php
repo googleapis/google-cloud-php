@@ -80,6 +80,8 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions $custom_document_extraction_options
      *           Options to control Custom Document Extraction (CDE) Processor.
+     *     @type \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\FoundationModelTuningOptions $foundation_model_tuning_options
+     *           Options to control foundation model tuning of a processor.
      *     @type string $parent
      *           Required. The parent (project, location and processor) to create the new
      *           version for. Format:
@@ -129,6 +131,37 @@ class TrainProcessorVersionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\CustomDocumentExtractionOptions::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Options to control foundation model tuning of a processor.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.FoundationModelTuningOptions foundation_model_tuning_options = 12;</code>
+     * @return \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\FoundationModelTuningOptions|null
+     */
+    public function getFoundationModelTuningOptions()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasFoundationModelTuningOptions()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Options to control foundation model tuning of a processor.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.TrainProcessorVersionRequest.FoundationModelTuningOptions foundation_model_tuning_options = 12;</code>
+     * @param \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\FoundationModelTuningOptions $var
+     * @return $this
+     */
+    public function setFoundationModelTuningOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest\FoundationModelTuningOptions::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

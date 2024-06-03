@@ -36,8 +36,9 @@ class FileType
      *   dat, dot, eml,, epbub, ged, go, h, hh, hpp, hxx, h++, hs, html, htm,
      *   mkd, markdown, m, ml, mli, perl, pl, plist, pm, php, phtml, pht,
      *   properties, py, pyw, rb, rbw, rs, rss,  rc, scala, sh, sql, swift, tex,
-     *   shtml, shtm, xhtml, lhs, ics, ini, java, js, json, kix, kml, ocaml, md,
-     *   txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd, yml, yaml.
+     *   shtml, shtm, xhtml, lhs, ics, ini, java, js, json, jsonl, kix, kml,
+     *   ocaml, md, txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd,
+     *   yml, yaml.
      *
      * Generated from protobuf enum <code>TEXT_FILE = 2;</code>
      */

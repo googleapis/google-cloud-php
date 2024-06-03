@@ -76,6 +76,36 @@ class Target
      * Generated from protobuf enum <code>SERVERLESS_NEG = 9;</code>
      */
     const SERVERLESS_NEG = 9;
+    /**
+     * Target is a Cloud Storage bucket.
+     *
+     * Generated from protobuf enum <code>STORAGE_BUCKET = 10;</code>
+     */
+    const STORAGE_BUCKET = 10;
+    /**
+     * Target is a private network. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>PRIVATE_NETWORK = 11;</code>
+     */
+    const PRIVATE_NETWORK = 11;
+    /**
+     * Target is a Cloud Function. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>CLOUD_FUNCTION = 12;</code>
+     */
+    const CLOUD_FUNCTION = 12;
+    /**
+     * Target is a App Engine service version. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>APP_ENGINE_VERSION = 13;</code>
+     */
+    const APP_ENGINE_VERSION = 13;
+    /**
+     * Target is a Cloud Run revision. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>CLOUD_RUN_REVISION = 14;</code>
+     */
+    const CLOUD_RUN_REVISION = 14;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -88,6 +118,11 @@ class Target
         self::PSC_GOOGLE_API => 'PSC_GOOGLE_API',
         self::PSC_VPC_SC => 'PSC_VPC_SC',
         self::SERVERLESS_NEG => 'SERVERLESS_NEG',
+        self::STORAGE_BUCKET => 'STORAGE_BUCKET',
+        self::PRIVATE_NETWORK => 'PRIVATE_NETWORK',
+        self::CLOUD_FUNCTION => 'CLOUD_FUNCTION',
+        self::APP_ENGINE_VERSION => 'APP_ENGINE_VERSION',
+        self::CLOUD_RUN_REVISION => 'CLOUD_RUN_REVISION',
     ];
 
     public static function name($value)

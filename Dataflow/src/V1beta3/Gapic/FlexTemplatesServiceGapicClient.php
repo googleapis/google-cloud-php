@@ -53,11 +53,9 @@ use Google\Cloud\Dataflow\V1beta3\LaunchFlexTemplateResponse;
  * }
  * ```
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Dataflow\V1beta3\Client\FlexTemplatesServiceClient} to use the new
- * surface.
- *
  * @experimental
+ *
+ * @deprecated Please use the new service client {@see \Google\Cloud\Dataflow\V1beta3\Client\FlexTemplatesServiceClient}.
  */
 class FlexTemplatesServiceGapicClient
 {
@@ -66,8 +64,15 @@ class FlexTemplatesServiceGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.dataflow.v1beta3.FlexTemplatesService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'dataflow.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'dataflow.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;

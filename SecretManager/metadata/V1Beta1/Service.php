@@ -87,18 +87,18 @@ total_size ("[
 name (	B2àAúA,
 *secretmanager.googleapis.com/SecretVersion2ƒ
 SecretManagerService©
-ListSecrets0.google.cloud.secrets.v1beta1.ListSecretsRequest1.google.cloud.secrets.v1beta1.ListSecretsResponse"5‚Óä“&$/v1beta1/{parent=projects/*}/secretsÚAparent·
-CreateSecret1.google.cloud.secrets.v1beta1.CreateSecretRequest$.google.cloud.secrets.v1beta1.Secret"N‚Óä“."$/v1beta1/{parent=projects/*}/secrets:secretÚAparent,secret_id,secretÅ
-AddSecretVersion5.google.cloud.secrets.v1beta1.AddSecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"M‚Óä“6"1/v1beta1/{parent=projects/*/secrets/*}:addVersion:*ÚAparent,payload–
-	GetSecret..google.cloud.secrets.v1beta1.GetSecretRequest$.google.cloud.secrets.v1beta1.Secret"3‚Óä“&$/v1beta1/{name=projects/*/secrets/*}ÚAname¹
-UpdateSecret1.google.cloud.secrets.v1beta1.UpdateSecretRequest$.google.cloud.secrets.v1beta1.Secret"P‚Óä“52+/v1beta1/{secret.name=projects/*/secrets/*}:secretÚAsecret,update_maskŽ
-DeleteSecret1.google.cloud.secrets.v1beta1.DeleteSecretRequest.google.protobuf.Empty"3‚Óä“&*$/v1beta1/{name=projects/*/secrets/*}ÚAnameÉ
-ListSecretVersions7.google.cloud.secrets.v1beta1.ListSecretVersionsRequest8.google.cloud.secrets.v1beta1.ListSecretVersionsResponse"@‚Óä“1//v1beta1/{parent=projects/*/secrets/*}/versionsÚAparent¶
-GetSecretVersion5.google.cloud.secrets.v1beta1.GetSecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion">‚Óä“1//v1beta1/{name=projects/*/secrets/*/versions/*}ÚAnameÑ
-AccessSecretVersion8.google.cloud.secrets.v1beta1.AccessSecretVersionRequest9.google.cloud.secrets.v1beta1.AccessSecretVersionResponse"E‚Óä“86/v1beta1/{name=projects/*/secrets/*/versions/*}:accessÚAnameÉ
-DisableSecretVersion9.google.cloud.secrets.v1beta1.DisableSecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"I‚Óä“<"7/v1beta1/{name=projects/*/secrets/*/versions/*}:disable:*ÚAnameÆ
-EnableSecretVersion8.google.cloud.secrets.v1beta1.EnableSecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"H‚Óä“;"6/v1beta1/{name=projects/*/secrets/*/versions/*}:enable:*ÚAnameÉ
-DestroySecretVersion9.google.cloud.secrets.v1beta1.DestroySecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"I‚Óä“<"7/v1beta1/{name=projects/*/secrets/*/versions/*}:destroy:*ÚAname‹
+ListSecrets0.google.cloud.secrets.v1beta1.ListSecretsRequest1.google.cloud.secrets.v1beta1.ListSecretsResponse"5ÚAparent‚Óä“&$/v1beta1/{parent=projects/*}/secrets·
+CreateSecret1.google.cloud.secrets.v1beta1.CreateSecretRequest$.google.cloud.secrets.v1beta1.Secret"NÚAparent,secret_id,secret‚Óä“."$/v1beta1/{parent=projects/*}/secrets:secretÅ
+AddSecretVersion5.google.cloud.secrets.v1beta1.AddSecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"MÚAparent,payload‚Óä“6"1/v1beta1/{parent=projects/*/secrets/*}:addVersion:*–
+	GetSecret..google.cloud.secrets.v1beta1.GetSecretRequest$.google.cloud.secrets.v1beta1.Secret"3ÚAname‚Óä“&$/v1beta1/{name=projects/*/secrets/*}¹
+UpdateSecret1.google.cloud.secrets.v1beta1.UpdateSecretRequest$.google.cloud.secrets.v1beta1.Secret"PÚAsecret,update_mask‚Óä“52+/v1beta1/{secret.name=projects/*/secrets/*}:secretŽ
+DeleteSecret1.google.cloud.secrets.v1beta1.DeleteSecretRequest.google.protobuf.Empty"3ÚAname‚Óä“&*$/v1beta1/{name=projects/*/secrets/*}É
+ListSecretVersions7.google.cloud.secrets.v1beta1.ListSecretVersionsRequest8.google.cloud.secrets.v1beta1.ListSecretVersionsResponse"@ÚAparent‚Óä“1//v1beta1/{parent=projects/*/secrets/*}/versions¶
+GetSecretVersion5.google.cloud.secrets.v1beta1.GetSecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion">ÚAname‚Óä“1//v1beta1/{name=projects/*/secrets/*/versions/*}Ñ
+AccessSecretVersion8.google.cloud.secrets.v1beta1.AccessSecretVersionRequest9.google.cloud.secrets.v1beta1.AccessSecretVersionResponse"EÚAname‚Óä“86/v1beta1/{name=projects/*/secrets/*/versions/*}:accessÉ
+DisableSecretVersion9.google.cloud.secrets.v1beta1.DisableSecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"IÚAname‚Óä“<"7/v1beta1/{name=projects/*/secrets/*/versions/*}:disable:*Æ
+EnableSecretVersion8.google.cloud.secrets.v1beta1.EnableSecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"HÚAname‚Óä“;"6/v1beta1/{name=projects/*/secrets/*/versions/*}:enable:*É
+DestroySecretVersion9.google.cloud.secrets.v1beta1.DestroySecretVersionRequest+.google.cloud.secrets.v1beta1.SecretVersion"IÚAname‚Óä“<"7/v1beta1/{name=projects/*/secrets/*/versions/*}:destroy:*‹
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"@‚Óä“:"5/v1beta1/{resource=projects/*/secrets/*}:setIamPolicy:*ˆ
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"=‚Óä“75/v1beta1/{resource=projects/*/secrets/*}:getIamPolicy±
 TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"F‚Óä“@";/v1beta1/{resource=projects/*/secrets/*}:testIamPermissions:*PÊAsecretmanager.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBï

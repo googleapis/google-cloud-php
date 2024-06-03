@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START datacatalog_v1_generated_PolicyTagManager_ListPolicyTags_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\DataCatalog\V1\Client\PolicyTagManagerClient;
+use Google\Cloud\DataCatalog\V1\ListPolicyTagsRequest;
 use Google\Cloud\DataCatalog\V1\PolicyTag;
-use Google\Cloud\DataCatalog\V1\PolicyTagManagerClient;
 
 /**
  * Lists all policy tags in a taxonomy.
@@ -39,10 +40,14 @@ function list_policy_tags_sample(string $formattedParent): void
     // Create a client.
     $policyTagManagerClient = new PolicyTagManagerClient();
 
+    // Prepare the request message.
+    $request = (new ListPolicyTagsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $policyTagManagerClient->listPolicyTags($formattedParent);
+        $response = $policyTagManagerClient->listPolicyTags($request);
 
         /** @var PolicyTag $element */
         foreach ($response as $element) {

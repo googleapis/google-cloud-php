@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memcache_v1_generated_CloudMemcache_ListInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Memcache\V1\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\Client\CloudMemcacheClient;
 use Google\Cloud\Memcache\V1\Instance;
+use Google\Cloud\Memcache\V1\ListInstancesRequest;
 
 /**
  * Lists Instances in a given location.
@@ -41,10 +42,14 @@ function list_instances_sample(string $formattedParent): void
     // Create a client.
     $cloudMemcacheClient = new CloudMemcacheClient();
 
+    // Prepare the request message.
+    $request = (new ListInstancesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $cloudMemcacheClient->listInstances($formattedParent);
+        $response = $cloudMemcacheClient->listInstances($request);
 
         /** @var Instance $element */
         foreach ($response as $element) {

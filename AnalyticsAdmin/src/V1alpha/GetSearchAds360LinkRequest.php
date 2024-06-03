@@ -24,6 +24,21 @@ class GetSearchAds360LinkRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
 
     /**
+     * @param string $name Required. The name of the SearchAds360Link to get.
+     *                     Example format: properties/1234/SearchAds360Link/5678
+     *                     Please see {@see AnalyticsAdminServiceClient::searchAds360LinkName()} for help formatting this field.
+     *
+     * @return \Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

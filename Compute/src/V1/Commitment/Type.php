@@ -24,6 +24,14 @@ class Type
      */
     const ACCELERATOR_OPTIMIZED = 280848403;
     /**
+     * Generated from protobuf enum <code>ACCELERATOR_OPTIMIZED_A3 = 158574526;</code>
+     */
+    const ACCELERATOR_OPTIMIZED_A3 = 158574526;
+    /**
+     * Generated from protobuf enum <code>ACCELERATOR_OPTIMIZED_A3_MEGA = 156517459;</code>
+     */
+    const ACCELERATOR_OPTIMIZED_A3_MEGA = 156517459;
+    /**
      * Generated from protobuf enum <code>COMPUTE_OPTIMIZED = 158349023;</code>
      */
     const COMPUTE_OPTIMIZED = 158349023;
@@ -35,6 +43,14 @@ class Type
      * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_C3 = 428004784;</code>
      */
     const COMPUTE_OPTIMIZED_C3 = 428004784;
+    /**
+     * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_C3D = 383246484;</code>
+     */
+    const COMPUTE_OPTIMIZED_C3D = 383246484;
+    /**
+     * Generated from protobuf enum <code>COMPUTE_OPTIMIZED_H3 = 428004939;</code>
+     */
+    const COMPUTE_OPTIMIZED_H3 = 428004939;
     /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE = 299793543;</code>
      */
@@ -52,6 +68,10 @@ class Type
      */
     const GENERAL_PURPOSE_N2D = 232471400;
     /**
+     * Generated from protobuf enum <code>GENERAL_PURPOSE_N4 = 301912158;</code>
+     */
+    const GENERAL_PURPOSE_N4 = 301912158;
+    /**
      * Generated from protobuf enum <code>GENERAL_PURPOSE_T2D = 232477166;</code>
      */
     const GENERAL_PURPOSE_T2D = 232477166;
@@ -68,6 +88,10 @@ class Type
      */
     const MEMORY_OPTIMIZED_M3 = 276301372;
     /**
+     * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z3 = 316796085;</code>
+     */
+    const STORAGE_OPTIMIZED_Z3 = 316796085;
+    /**
      * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 437714322;</code>
      */
     const TYPE_UNSPECIFIED = 437714322;
@@ -75,17 +99,23 @@ class Type
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::ACCELERATOR_OPTIMIZED => 'ACCELERATOR_OPTIMIZED',
+        self::ACCELERATOR_OPTIMIZED_A3 => 'ACCELERATOR_OPTIMIZED_A3',
+        self::ACCELERATOR_OPTIMIZED_A3_MEGA => 'ACCELERATOR_OPTIMIZED_A3_MEGA',
         self::COMPUTE_OPTIMIZED => 'COMPUTE_OPTIMIZED',
         self::COMPUTE_OPTIMIZED_C2D => 'COMPUTE_OPTIMIZED_C2D',
         self::COMPUTE_OPTIMIZED_C3 => 'COMPUTE_OPTIMIZED_C3',
+        self::COMPUTE_OPTIMIZED_C3D => 'COMPUTE_OPTIMIZED_C3D',
+        self::COMPUTE_OPTIMIZED_H3 => 'COMPUTE_OPTIMIZED_H3',
         self::GENERAL_PURPOSE => 'GENERAL_PURPOSE',
         self::GENERAL_PURPOSE_E2 => 'GENERAL_PURPOSE_E2',
         self::GENERAL_PURPOSE_N2 => 'GENERAL_PURPOSE_N2',
         self::GENERAL_PURPOSE_N2D => 'GENERAL_PURPOSE_N2D',
+        self::GENERAL_PURPOSE_N4 => 'GENERAL_PURPOSE_N4',
         self::GENERAL_PURPOSE_T2D => 'GENERAL_PURPOSE_T2D',
         self::GRAPHICS_OPTIMIZED => 'GRAPHICS_OPTIMIZED',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
         self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
+        self::STORAGE_OPTIMIZED_Z3 => 'STORAGE_OPTIMIZED_Z3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];
 

@@ -7,9 +7,8 @@ namespace Google\Cloud\TextToSpeech\V1\CustomVoiceParams;
 use UnexpectedValueException;
 
 /**
- * The usage of the synthesized audio. You must report your honest and
- * correct usage of the service as it's regulated by contract and will cause
- * significant difference in billing.
+ * Deprecated. The usage of the synthesized audio. Usage does not affect
+ * billing.
  *
  * Protobuf type <code>google.cloud.texttospeech.v1.CustomVoiceParams.ReportedUsage</code>
  */

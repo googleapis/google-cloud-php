@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START recommender_v1_generated_Recommender_MarkRecommendationFailed_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Recommender\V1\Client\RecommenderClient;
+use Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest;
 use Google\Cloud\Recommender\V1\Recommendation;
-use Google\Cloud\Recommender\V1\RecommenderClient;
 
 /**
  * Marks the Recommendation State as Failed. Users can use this method to
@@ -49,10 +50,15 @@ function mark_recommendation_failed_sample(string $formattedName, string $etag):
     // Create a client.
     $recommenderClient = new RecommenderClient();
 
+    // Prepare the request message.
+    $request = (new MarkRecommendationFailedRequest())
+        ->setName($formattedName)
+        ->setEtag($etag);
+
     // Call the API and handle any network failures.
     try {
         /** @var Recommendation $response */
-        $response = $recommenderClient->markRecommendationFailed($formattedName, $etag);
+        $response = $recommenderClient->markRecommendationFailed($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

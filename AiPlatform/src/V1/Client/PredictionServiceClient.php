@@ -25,6 +25,7 @@
 namespace Google\Cloud\AIPlatform\V1\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PagedListResponse;
@@ -35,11 +36,19 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\Content;
+use Google\Cloud\AIPlatform\V1\DirectPredictRequest;
+use Google\Cloud\AIPlatform\V1\DirectPredictResponse;
+use Google\Cloud\AIPlatform\V1\DirectRawPredictRequest;
+use Google\Cloud\AIPlatform\V1\DirectRawPredictResponse;
 use Google\Cloud\AIPlatform\V1\ExplainRequest;
 use Google\Cloud\AIPlatform\V1\ExplainResponse;
+use Google\Cloud\AIPlatform\V1\GenerateContentRequest;
+use Google\Cloud\AIPlatform\V1\GenerateContentResponse;
 use Google\Cloud\AIPlatform\V1\PredictRequest;
 use Google\Cloud\AIPlatform\V1\PredictResponse;
 use Google\Cloud\AIPlatform\V1\RawPredictRequest;
+use Google\Cloud\AIPlatform\V1\StreamRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\StreamingPredictRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -62,13 +71,10 @@ use GuzzleHttp\Promise\PromiseInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This class is currently experimental and may be subject to changes. See {@see
- * \Google\Cloud\AIPlatform\V1\PredictionServiceClient} for the stable
- * implementation
- *
- * @experimental
- *
+ * @method PromiseInterface directPredictAsync(DirectPredictRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface directRawPredictAsync(DirectRawPredictRequest $request, array $optionalArgs = [])
  * @method PromiseInterface explainAsync(ExplainRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface generateContentAsync(GenerateContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface predictAsync(PredictRequest $request, array $optionalArgs = [])
  * @method PromiseInterface rawPredictAsync(RawPredictRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -85,8 +91,15 @@ final class PredictionServiceClient
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.aiplatform.v1.PredictionService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     private const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'aiplatform.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     private const DEFAULT_SERVICE_PORT = 443;
@@ -97,6 +110,7 @@ final class PredictionServiceClient
     /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
 
     private static function getClientDefaults()
@@ -275,6 +289,60 @@ final class PredictionServiceClient
     }
 
     /**
+     * Perform an unary online prediction request to a gRPC model server for
+     * Vertex first-party products and frameworks.
+     *
+     * The async variant is {@see PredictionServiceClient::directPredictAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/direct_predict.php
+     *
+     * @param DirectPredictRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DirectPredictResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function directPredict(DirectPredictRequest $request, array $callOptions = []): DirectPredictResponse
+    {
+        return $this->startApiCall('DirectPredict', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Perform an unary online prediction request to a gRPC model server for
+     * custom containers.
+     *
+     * The async variant is {@see PredictionServiceClient::directRawPredictAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/direct_raw_predict.php
+     *
+     * @param DirectRawPredictRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DirectRawPredictResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function directRawPredict(DirectRawPredictRequest $request, array $callOptions = []): DirectRawPredictResponse
+    {
+        return $this->startApiCall('DirectRawPredict', $request, $callOptions)->wait();
+    }
+
+    /**
      * Perform an online explanation.
      *
      * If
@@ -308,6 +376,32 @@ final class PredictionServiceClient
     public function explain(ExplainRequest $request, array $callOptions = []): ExplainResponse
     {
         return $this->startApiCall('Explain', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Generate content with multimodal inputs.
+     *
+     * The async variant is {@see PredictionServiceClient::generateContentAsync()} .
+     *
+     * @example samples/V1/PredictionServiceClient/generate_content.php
+     *
+     * @param GenerateContentRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GenerateContentResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function generateContent(GenerateContentRequest $request, array $callOptions = []): GenerateContentResponse
+    {
+        return $this->startApiCall('GenerateContent', $request, $callOptions)->wait();
     }
 
     /**
@@ -393,6 +487,137 @@ final class PredictionServiceClient
     public function serverStreamingPredict(StreamingPredictRequest $request, array $callOptions = []): ServerStream
     {
         return $this->startApiCall('ServerStreamingPredict', $request, $callOptions);
+    }
+
+    /**
+     * Perform a streaming online prediction request to a gRPC model server for
+     * Vertex first-party products and frameworks.
+     *
+     * @example samples/V1/PredictionServiceClient/stream_direct_predict.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamDirectPredict(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamDirectPredict', null, $callOptions);
+    }
+
+    /**
+     * Perform a streaming online prediction request to a gRPC model server for
+     * custom containers.
+     *
+     * @example samples/V1/PredictionServiceClient/stream_direct_raw_predict.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamDirectRawPredict(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamDirectRawPredict', null, $callOptions);
+    }
+
+    /**
+     * Generate content with multimodal inputs with streaming support.
+     *
+     * @example samples/V1/PredictionServiceClient/stream_generate_content.php
+     *
+     * @param GenerateContentRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamGenerateContent(GenerateContentRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('StreamGenerateContent', $request, $callOptions);
+    }
+
+    /**
+     * Perform a streaming online prediction with an arbitrary HTTP payload.
+     *
+     * @example samples/V1/PredictionServiceClient/stream_raw_predict.php
+     *
+     * @param StreamRawPredictRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamRawPredict(StreamRawPredictRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('StreamRawPredict', $request, $callOptions);
+    }
+
+    /**
+     * Perform a streaming online prediction request for Vertex first-party
+     * products and frameworks.
+     *
+     * @example samples/V1/PredictionServiceClient/streaming_predict.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamingPredict(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamingPredict', null, $callOptions);
+    }
+
+    /**
+     * Perform a streaming online prediction request through gRPC.
+     *
+     * @example samples/V1/PredictionServiceClient/streaming_raw_predict.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamingRawPredict(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamingRawPredict', null, $callOptions);
     }
 
     /**

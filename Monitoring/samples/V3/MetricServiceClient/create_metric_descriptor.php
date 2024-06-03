@@ -25,17 +25,20 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START monitoring_v3_generated_MetricService_CreateMetricDescriptor_sync]
 use Google\ApiCore\ApiException;
 use Google\Api\MetricDescriptor;
-use Google\Cloud\Monitoring\V3\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
+use Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest;
 
 /**
  * Creates a new metric descriptor.
- * The creation is executed asynchronously and callers may check the returned
- * operation to track its progress.
+ * The creation is executed asynchronously.
  * User-created metric descriptors define
  * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
+ * The metric descriptor is updated if it already exists,
+ * except that metric labels are never removed.
  *
- * @param string $name The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
- *                     which to execute the request. The format is:
+ * @param string $name The
+ *                     [project](https://cloud.google.com/monitoring/api/v3#project_name) on which
+ *                     to execute the request. The format is:
  *                     4
  *                     projects/[PROJECT_ID_OR_NUMBER]
  */
@@ -44,13 +47,16 @@ function create_metric_descriptor_sample(string $name): void
     // Create a client.
     $metricServiceClient = new MetricServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $metricDescriptor = new MetricDescriptor();
+    $request = (new CreateMetricDescriptorRequest())
+        ->setName($name)
+        ->setMetricDescriptor($metricDescriptor);
 
     // Call the API and handle any network failures.
     try {
         /** @var MetricDescriptor $response */
-        $response = $metricServiceClient->createMetricDescriptor($name, $metricDescriptor);
+        $response = $metricServiceClient->createMetricDescriptor($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

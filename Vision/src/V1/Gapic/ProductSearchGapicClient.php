@@ -73,16 +73,18 @@ use Google\Protobuf\GPBEmpty;
  * Service Description: Manages Products and ProductSets of reference images for use in product
  * search. It uses the following resource model:
  *
- * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet] resources, named
- * `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way to put different
- * products into groups to limit identification.
+ * - The API has a collection of [ProductSet][google.cloud.vision.v1.ProductSet]
+ * resources, named `projects/&#42;/locations/&#42;/productSets/*`, which acts as a way
+ * to put different products into groups to limit identification.
  *
  * In parallel,
  *
- * - The API has a collection of [Product][google.cloud.vision.v1.Product] resources, named
+ * - The API has a collection of [Product][google.cloud.vision.v1.Product]
+ * resources, named
  * `projects/&#42;/locations/&#42;/products/*`
  *
- * - Each [Product][google.cloud.vision.v1.Product] has a collection of [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
+ * - Each [Product][google.cloud.vision.v1.Product] has a collection of
+ * [ReferenceImage][google.cloud.vision.v1.ReferenceImage] resources, named
  * `projects/&#42;/locations/&#42;/products/&#42;/referenceImages/*`
  *
  * This class provides the ability to make remote calls to the backing service through method
@@ -104,8 +106,7 @@ use Google\Protobuf\GPBEmpty;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * This service has a new (beta) implementation. See {@see
- * \Google\Cloud\Vision\V1\Client\ProductSearchClient} to use the new surface.
+ * @deprecated Please use the new service client {@see \Google\Cloud\Vision\V1\Client\ProductSearchClient}.
  */
 class ProductSearchGapicClient
 {
@@ -114,8 +115,15 @@ class ProductSearchGapicClient
     /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.vision.v1.ProductSearch';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     *
+     * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
+     */
     const SERVICE_ADDRESS = 'vision.googleapis.com';
+
+    /** The address template of the service. */
+    private const SERVICE_ADDRESS_TEMPLATE = 'vision.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
@@ -686,7 +694,8 @@ class ProductSearchGapicClient
      * }
      * ```
      *
-     * @param string         $parent         Required. Resource name of the product in which to create the reference image.
+     * @param string         $parent         Required. Resource name of the product in which to create the reference
+     *                                       image.
      *
      *                                       Format is
      *                                       `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
@@ -1067,8 +1076,8 @@ class ProductSearchGapicClient
      * Asynchronous API that imports a list of reference images to specified
      * product sets based on a list of image information.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
-     * progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+     * used to keep track of the progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      * `Operation.response` contains `ImportProductSetsResponse`. (results)
      *
@@ -1516,8 +1525,8 @@ class ProductSearchGapicClient
      * ProductSet, you must wait until the PurgeProducts operation has finished
      * for that ProductSet.
      *
-     * The [google.longrunning.Operation][google.longrunning.Operation] API can be used to keep track of the
-     * progress and results of the request.
+     * The [google.longrunning.Operation][google.longrunning.Operation] API can be
+     * used to keep track of the progress and results of the request.
      * `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      *
      * Sample code:
@@ -1633,7 +1642,8 @@ class ProductSearchGapicClient
      *
      *                             Format is:
      *                             `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param string $product      Required. The resource name for the Product to be removed from this ProductSet.
+     * @param string $product      Required. The resource name for the Product to be removed from this
+     *                             ProductSet.
      *
      *                             Format is:
      *                             `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`

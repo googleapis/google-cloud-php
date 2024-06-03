@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START dialogflow_v2_generated_ConversationModels_GetConversationModelEvaluation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Dialogflow\V2\Client\ConversationModelsClient;
 use Google\Cloud\Dialogflow\V2\ConversationModelEvaluation;
-use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
+use Google\Cloud\Dialogflow\V2\GetConversationModelEvaluationRequest;
 
 /**
  * Gets an evaluation of conversation model.
@@ -39,10 +40,14 @@ function get_conversation_model_evaluation_sample(string $name): void
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
+    // Prepare the request message.
+    $request = (new GetConversationModelEvaluationRequest())
+        ->setName($name);
+
     // Call the API and handle any network failures.
     try {
         /** @var ConversationModelEvaluation $response */
-        $response = $conversationModelsClient->getConversationModelEvaluation($name);
+        $response = $conversationModelsClient->getConversationModelEvaluation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

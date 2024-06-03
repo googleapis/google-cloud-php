@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START apigateway_v1_generated_ApiGatewayService_CreateGateway_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\ApiGateway\V1\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\Client\ApiGatewayServiceClient;
+use Google\Cloud\ApiGateway\V1\CreateGatewayRequest;
 use Google\Cloud\ApiGateway\V1\Gateway;
 use Google\Rpc\Status;
 
@@ -49,14 +50,18 @@ function create_gateway_sample(
     // Create a client.
     $apiGatewayServiceClient = new ApiGatewayServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $gateway = (new Gateway())
         ->setApiConfig($formattedGatewayApiConfig);
+    $request = (new CreateGatewayRequest())
+        ->setParent($formattedParent)
+        ->setGatewayId($gatewayId)
+        ->setGateway($gateway);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $apiGatewayServiceClient->createGateway($formattedParent, $gatewayId, $gateway);
+        $response = $apiGatewayServiceClient->createGateway($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

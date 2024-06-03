@@ -210,6 +210,7 @@ class MachineImagesClientTest extends GeneratedTest
         $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $satisfiesPzi = false;
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $sourceInstance = 'sourceInstance-677426119';
@@ -222,6 +223,7 @@ class MachineImagesClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSourceInstance($sourceInstance);

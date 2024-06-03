@@ -19,6 +19,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Search serving config, such as
+     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * or
      * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
@@ -49,9 +51,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     protected $image_query = null;
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
-     * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * to return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
@@ -81,19 +86,53 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $offset = 0;
     /**
+     * Specs defining dataStores to filter on in a search call and configurations
+     * for those dataStores. This is only considered for engines with multiple
+     * dataStores use case. For single dataStore within an engine, they should
+     * use the specs at the top level.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     */
+    private $data_store_specs;
+    /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the documents being filtered. Filter
      * expression is case-sensitive.
      * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * Filtering in Vertex AI Search is done by mapping the LHS filter key to a
+     * key property defined in the Vertex AI Search backend -- this mapping is
+     * defined by the customer in their schema. For example a media customer might
+     * have a field 'name' in their schema. In this case the filter would look
+     * like this: filter --> name:'ANY("king kong")'
+     * For more information about filtering including syntax and filter
+     * operators, see
+     * [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      *
      * Generated from protobuf field <code>string filter = 7;</code>
      */
     protected $filter = '';
     /**
+     * The default filter that is applied when a user performs a search without
+     * checking any filters on the search page.
+     * The filter applied to every search request when quality improvement such as
+     * query expansion is needed. In the case a query does not have a sufficient
+     * amount of results this filter will be used to determine whether or not to
+     * enable the query expansion flow. The original filter will still be used for
+     * the query expanded search.
+     * This field is strongly recommended to achieve high search quality.
+     * For more information about filter syntax, see
+     * [SearchRequest.filter][google.cloud.discoveryengine.v1beta.SearchRequest.filter].
+     *
+     * Generated from protobuf field <code>string canonical_filter = 29;</code>
+     */
+    protected $canonical_filter = '';
+    /**
      * The order in which documents are returned. Documents can be ordered by
      * a field in an [Document][google.cloud.discoveryengine.v1beta.Document]
      * object. Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
+     * For more information on ordering for retail search, see
+     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -118,6 +157,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     private $facet_specs;
     /**
      * Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.BoostSpec boost_spec = 10;</code>
      */
@@ -127,9 +168,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * For public website search only, supported values are:
      * * `user_country_code`: string. Default empty. If set to non-empty, results
      *    are restricted or boosted based on the location provided.
+     *    For example, `user_country_code: "au"`
+     *    For available codes see [Country
+     *    Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes)
      * * `search_type`: double. Default empty. Enables non-webpage searching
-     *   depending on the value. The only valid non-default value is 1,
-     *   which enables image searching.
+     *    depending on the value. The only valid non-default value is 1,
+     *    which enables image searching.
+     *    For example, `search_type: 1`
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 11;</code>
      */
@@ -173,18 +218,21 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Uses the provided embedding to do additional semantic document retrieval.
      * The retrieval is based on the dot product of
-     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
-     * embedding that is provided in
-     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
-     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
-     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.vector][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.vector]
+     * and the document embedding that is provided in
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path].
+     * If
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path]
+     * is not provided, it will use
+     * [ServingConfig.EmbeddingConfig.field_path][google.cloud.discoveryengine.v1beta.ServingConfig.embedding_config].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
      */
     protected $embedding_spec = null;
     /**
      * The ranking expression controls the customized ranking on retrieval
-     * documents. This overrides [ServingConfig.ranking_expression][].
+     * documents. This overrides
+     * [ServingConfig.ranking_expression][google.cloud.discoveryengine.v1beta.ServingConfig.ranking_expression].
      * The ranking expression is a single function or multiple functions that are
      * joint by "+".
      *   * ranking_expression = function, { " + ", function };
@@ -241,6 +289,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $serving_config
      *           Required. The resource name of the Search serving config, such as
+     *           `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     *           or
      *           `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
      *           This field is used to identify the serving configuration name, set
      *           of models used to make the search.
@@ -255,9 +305,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           Raw image query.
      *     @type int $page_size
      *           Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
-     *           to return. If unspecified, defaults to a reasonable value. The maximum
-     *           allowed value is 100. Values above 100 are coerced to 100.
-     *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *           to return. The maximum allowed value depends on the data type. Values above
+     *           the maximum value are coerced to the maximum value.
+     *           * Websites with basic indexing: Default `10`, Maximum `25`.
+     *           * Websites with advanced indexing: Default `25`, Maximum `50`.
+     *           * Other: Default `50`, Maximum `100`.
+     *           If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *     @type string $page_token
      *           A page token received from a previous
      *           [SearchService.Search][google.cloud.discoveryengine.v1beta.SearchService.Search]
@@ -274,16 +327,42 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           [page_token][google.cloud.discoveryengine.v1beta.SearchRequest.page_token]
      *           is unset.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     *     @type array<\Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *           Specs defining dataStores to filter on in a search call and configurations
+     *           for those dataStores. This is only considered for engines with multiple
+     *           dataStores use case. For single dataStore within an engine, they should
+     *           use the specs at the top level.
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the documents being filtered. Filter
      *           expression is case-sensitive.
      *           If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     *           Filtering in Vertex AI Search is done by mapping the LHS filter key to a
+     *           key property defined in the Vertex AI Search backend -- this mapping is
+     *           defined by the customer in their schema. For example a media customer might
+     *           have a field 'name' in their schema. In this case the filter would look
+     *           like this: filter --> name:'ANY("king kong")'
+     *           For more information about filtering including syntax and filter
+     *           operators, see
+     *           [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     *     @type string $canonical_filter
+     *           The default filter that is applied when a user performs a search without
+     *           checking any filters on the search page.
+     *           The filter applied to every search request when quality improvement such as
+     *           query expansion is needed. In the case a query does not have a sufficient
+     *           amount of results this filter will be used to determine whether or not to
+     *           enable the query expansion flow. The original filter will still be used for
+     *           the query expanded search.
+     *           This field is strongly recommended to achieve high search quality.
+     *           For more information about filter syntax, see
+     *           [SearchRequest.filter][google.cloud.discoveryengine.v1beta.SearchRequest.filter].
      *     @type string $order_by
      *           The order in which documents are returned. Documents can be ordered by
      *           a field in an [Document][google.cloud.discoveryengine.v1beta.Document]
      *           object. Leave it unset if ordered by relevance. `order_by` expression is
      *           case-sensitive.
+     *           For more information on ordering for retail search, see
+     *           [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
      *           If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\UserInfo $user_info
      *           Information about the end user.
@@ -296,14 +375,20 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           error is returned.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\BoostSpec $boost_spec
      *           Boost specification to boost certain documents.
+     *           For more information on boosting, see
+     *           [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional search parameters.
      *           For public website search only, supported values are:
      *           * `user_country_code`: string. Default empty. If set to non-empty, results
      *              are restricted or boosted based on the location provided.
+     *              For example, `user_country_code: "au"`
+     *              For available codes see [Country
+     *              Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes)
      *           * `search_type`: double. Default empty. Enables non-webpage searching
-     *             depending on the value. The only valid non-default value is 1,
-     *             which enables image searching.
+     *              depending on the value. The only valid non-default value is 1,
+     *              which enables image searching.
+     *              For example, `search_type: 1`
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\QueryExpansionSpec $query_expansion_spec
      *           The query expansion specification that specifies the conditions under which
      *           query expansion occurs.
@@ -327,14 +412,17 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec $embedding_spec
      *           Uses the provided embedding to do additional semantic document retrieval.
      *           The retrieval is based on the dot product of
-     *           [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
-     *           embedding that is provided in
-     *           [SearchRequest.embedding_spec.embedding_vectors.field_path][].
-     *           If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
-     *           provided, it will use [ServingConfig.embedding_config.field_paths][].
+     *           [SearchRequest.EmbeddingSpec.EmbeddingVector.vector][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.vector]
+     *           and the document embedding that is provided in
+     *           [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path].
+     *           If
+     *           [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path]
+     *           is not provided, it will use
+     *           [ServingConfig.EmbeddingConfig.field_path][google.cloud.discoveryengine.v1beta.ServingConfig.embedding_config].
      *     @type string $ranking_expression
      *           The ranking expression controls the customized ranking on retrieval
-     *           documents. This overrides [ServingConfig.ranking_expression][].
+     *           documents. This overrides
+     *           [ServingConfig.ranking_expression][google.cloud.discoveryengine.v1beta.ServingConfig.ranking_expression].
      *           The ranking expression is a single function or multiple functions that are
      *           joint by "+".
      *             * ranking_expression = function, { " + ", function };
@@ -379,6 +467,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Search serving config, such as
+     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * or
      * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
@@ -393,6 +483,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Search serving config, such as
+     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * or
      * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
@@ -505,9 +597,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
-     * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * to return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @return int
@@ -519,9 +614,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
-     * to return. If unspecified, defaults to a reasonable value. The maximum
-     * allowed value is 100. Values above 100 are coerced to 100.
-     * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
+     * to return. The maximum allowed value depends on the data type. Values above
+     * the maximum value are coerced to the maximum value.
+     * * Websites with basic indexing: Default `10`, Maximum `25`.
+     * * Websites with advanced indexing: Default `25`, Maximum `50`.
+     * * Other: Default `50`, Maximum `100`.
+     * If this field is negative, an  `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @param int $var
@@ -612,10 +710,50 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specs defining dataStores to filter on in a search call and configurations
+     * for those dataStores. This is only considered for engines with multiple
+     * dataStores use case. For single dataStore within an engine, they should
+     * use the specs at the top level.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDataStoreSpecs()
+    {
+        return $this->data_store_specs;
+    }
+
+    /**
+     * Specs defining dataStores to filter on in a search call and configurations
+     * for those dataStores. This is only considered for engines with multiple
+     * dataStores use case. For single dataStore within an engine, they should
+     * use the specs at the top level.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1beta.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
+     * @param array<\Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDataStoreSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\DataStoreSpec::class);
+        $this->data_store_specs = $arr;
+
+        return $this;
+    }
+
+    /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the documents being filtered. Filter
      * expression is case-sensitive.
      * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * Filtering in Vertex AI Search is done by mapping the LHS filter key to a
+     * key property defined in the Vertex AI Search backend -- this mapping is
+     * defined by the customer in their schema. For example a media customer might
+     * have a field 'name' in their schema. In this case the filter would look
+     * like this: filter --> name:'ANY("king kong")'
+     * For more information about filtering including syntax and filter
+     * operators, see
+     * [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      *
      * Generated from protobuf field <code>string filter = 7;</code>
      * @return string
@@ -630,6 +768,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * predicate from one or more fields of the documents being filtered. Filter
      * expression is case-sensitive.
      * If this field is unrecognizable, an  `INVALID_ARGUMENT`  is returned.
+     * Filtering in Vertex AI Search is done by mapping the LHS filter key to a
+     * key property defined in the Vertex AI Search backend -- this mapping is
+     * defined by the customer in their schema. For example a media customer might
+     * have a field 'name' in their schema. In this case the filter would look
+     * like this: filter --> name:'ANY("king kong")'
+     * For more information about filtering including syntax and filter
+     * operators, see
+     * [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      *
      * Generated from protobuf field <code>string filter = 7;</code>
      * @param string $var
@@ -644,10 +790,56 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The default filter that is applied when a user performs a search without
+     * checking any filters on the search page.
+     * The filter applied to every search request when quality improvement such as
+     * query expansion is needed. In the case a query does not have a sufficient
+     * amount of results this filter will be used to determine whether or not to
+     * enable the query expansion flow. The original filter will still be used for
+     * the query expanded search.
+     * This field is strongly recommended to achieve high search quality.
+     * For more information about filter syntax, see
+     * [SearchRequest.filter][google.cloud.discoveryengine.v1beta.SearchRequest.filter].
+     *
+     * Generated from protobuf field <code>string canonical_filter = 29;</code>
+     * @return string
+     */
+    public function getCanonicalFilter()
+    {
+        return $this->canonical_filter;
+    }
+
+    /**
+     * The default filter that is applied when a user performs a search without
+     * checking any filters on the search page.
+     * The filter applied to every search request when quality improvement such as
+     * query expansion is needed. In the case a query does not have a sufficient
+     * amount of results this filter will be used to determine whether or not to
+     * enable the query expansion flow. The original filter will still be used for
+     * the query expanded search.
+     * This field is strongly recommended to achieve high search quality.
+     * For more information about filter syntax, see
+     * [SearchRequest.filter][google.cloud.discoveryengine.v1beta.SearchRequest.filter].
+     *
+     * Generated from protobuf field <code>string canonical_filter = 29;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCanonicalFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->canonical_filter = $var;
+
+        return $this;
+    }
+
+    /**
      * The order in which documents are returned. Documents can be ordered by
      * a field in an [Document][google.cloud.discoveryengine.v1beta.Document]
      * object. Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
+     * For more information on ordering for retail search, see
+     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -663,6 +855,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Document][google.cloud.discoveryengine.v1beta.Document]
      * object. Leave it unset if ordered by relevance. `order_by` expression is
      * case-sensitive.
+     * For more information on ordering for retail search, see
+     * [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order)
      * If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
      *
      * Generated from protobuf field <code>string order_by = 8;</code>
@@ -751,6 +945,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.BoostSpec boost_spec = 10;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\BoostSpec|null
@@ -772,6 +968,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Boost specification to boost certain documents.
+     * For more information on boosting, see
+     * [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.BoostSpec boost_spec = 10;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\BoostSpec $var
@@ -790,9 +988,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * For public website search only, supported values are:
      * * `user_country_code`: string. Default empty. If set to non-empty, results
      *    are restricted or boosted based on the location provided.
+     *    For example, `user_country_code: "au"`
+     *    For available codes see [Country
+     *    Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes)
      * * `search_type`: double. Default empty. Enables non-webpage searching
-     *   depending on the value. The only valid non-default value is 1,
-     *   which enables image searching.
+     *    depending on the value. The only valid non-default value is 1,
+     *    which enables image searching.
+     *    For example, `search_type: 1`
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 11;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -807,9 +1009,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * For public website search only, supported values are:
      * * `user_country_code`: string. Default empty. If set to non-empty, results
      *    are restricted or boosted based on the location provided.
+     *    For example, `user_country_code: "au"`
+     *    For available codes see [Country
+     *    Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes)
      * * `search_type`: double. Default empty. Enables non-webpage searching
-     *   depending on the value. The only valid non-default value is 1,
-     *   which enables image searching.
+     *    depending on the value. The only valid non-default value is 1,
+     *    which enables image searching.
+     *    For example, `search_type: 1`
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> params = 11;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -984,11 +1190,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Uses the provided embedding to do additional semantic document retrieval.
      * The retrieval is based on the dot product of
-     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
-     * embedding that is provided in
-     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
-     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
-     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.vector][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.vector]
+     * and the document embedding that is provided in
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path].
+     * If
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path]
+     * is not provided, it will use
+     * [ServingConfig.EmbeddingConfig.field_path][google.cloud.discoveryengine.v1beta.ServingConfig.embedding_config].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
      * @return \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec|null
@@ -1011,11 +1219,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Uses the provided embedding to do additional semantic document retrieval.
      * The retrieval is based on the dot product of
-     * [SearchRequest.embedding_spec.embedding_vectors.vector][] and the document
-     * embedding that is provided in
-     * [SearchRequest.embedding_spec.embedding_vectors.field_path][].
-     * If [SearchRequest.embedding_spec.embedding_vectors.field_path][] is not
-     * provided, it will use [ServingConfig.embedding_config.field_paths][].
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.vector][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.vector]
+     * and the document embedding that is provided in
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path].
+     * If
+     * [SearchRequest.EmbeddingSpec.EmbeddingVector.field_path][google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec.EmbeddingVector.field_path]
+     * is not provided, it will use
+     * [ServingConfig.EmbeddingConfig.field_path][google.cloud.discoveryengine.v1beta.ServingConfig.embedding_config].
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.SearchRequest.EmbeddingSpec embedding_spec = 23;</code>
      * @param \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\EmbeddingSpec $var
@@ -1031,7 +1241,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The ranking expression controls the customized ranking on retrieval
-     * documents. This overrides [ServingConfig.ranking_expression][].
+     * documents. This overrides
+     * [ServingConfig.ranking_expression][google.cloud.discoveryengine.v1beta.ServingConfig.ranking_expression].
      * The ranking expression is a single function or multiple functions that are
      * joint by "+".
      *   * ranking_expression = function, { " + ", function };
@@ -1059,7 +1270,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The ranking expression controls the customized ranking on retrieval
-     * documents. This overrides [ServingConfig.ranking_expression][].
+     * documents. This overrides
+     * [ServingConfig.ranking_expression][google.cloud.discoveryengine.v1beta.ServingConfig.ranking_expression].
      * The ranking expression is a single function or multiple functions that are
      * joint by "+".
      *   * ranking_expression = function, { " + ", function };

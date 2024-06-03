@@ -48,8 +48,8 @@ class RecordErrorType
      */
     const INVALID_EMBEDDING_ID = 5;
     /**
-     * The size of the embedding vectors does not match with the specified
-     * dimension.
+     * The size of the dense embedding vectors does not match with the
+     * specified dimension.
      *
      * Generated from protobuf enum <code>EMBEDDING_SIZE_MISMATCH = 6;</code>
      */
@@ -60,6 +60,67 @@ class RecordErrorType
      * Generated from protobuf enum <code>NAMESPACE_MISSING = 7;</code>
      */
     const NAMESPACE_MISSING = 7;
+    /**
+     * Generic catch-all error. Only used for validation failure where the
+     * root cause cannot be easily retrieved programmatically.
+     *
+     * Generated from protobuf enum <code>PARSING_ERROR = 8;</code>
+     */
+    const PARSING_ERROR = 8;
+    /**
+     * There are multiple restricts with the same `namespace` value.
+     *
+     * Generated from protobuf enum <code>DUPLICATE_NAMESPACE = 9;</code>
+     */
+    const DUPLICATE_NAMESPACE = 9;
+    /**
+     * Numeric restrict has operator specified in datapoint.
+     *
+     * Generated from protobuf enum <code>OP_IN_DATAPOINT = 10;</code>
+     */
+    const OP_IN_DATAPOINT = 10;
+    /**
+     * Numeric restrict has multiple values specified.
+     *
+     * Generated from protobuf enum <code>MULTIPLE_VALUES = 11;</code>
+     */
+    const MULTIPLE_VALUES = 11;
+    /**
+     * Numeric restrict has invalid numeric value specified.
+     *
+     * Generated from protobuf enum <code>INVALID_NUMERIC_VALUE = 12;</code>
+     */
+    const INVALID_NUMERIC_VALUE = 12;
+    /**
+     * File is not in UTF_8 format.
+     *
+     * Generated from protobuf enum <code>INVALID_ENCODING = 13;</code>
+     */
+    const INVALID_ENCODING = 13;
+    /**
+     * Error parsing sparse dimensions field.
+     *
+     * Generated from protobuf enum <code>INVALID_SPARSE_DIMENSIONS = 14;</code>
+     */
+    const INVALID_SPARSE_DIMENSIONS = 14;
+    /**
+     * Token restrict value is invalid.
+     *
+     * Generated from protobuf enum <code>INVALID_TOKEN_VALUE = 15;</code>
+     */
+    const INVALID_TOKEN_VALUE = 15;
+    /**
+     * Invalid sparse embedding.
+     *
+     * Generated from protobuf enum <code>INVALID_SPARSE_EMBEDDING = 16;</code>
+     */
+    const INVALID_SPARSE_EMBEDDING = 16;
+    /**
+     * Invalid dense embedding.
+     *
+     * Generated from protobuf enum <code>INVALID_EMBEDDING = 17;</code>
+     */
+    const INVALID_EMBEDDING = 17;
 
     private static $valueToName = [
         self::ERROR_TYPE_UNSPECIFIED => 'ERROR_TYPE_UNSPECIFIED',
@@ -70,6 +131,16 @@ class RecordErrorType
         self::INVALID_EMBEDDING_ID => 'INVALID_EMBEDDING_ID',
         self::EMBEDDING_SIZE_MISMATCH => 'EMBEDDING_SIZE_MISMATCH',
         self::NAMESPACE_MISSING => 'NAMESPACE_MISSING',
+        self::PARSING_ERROR => 'PARSING_ERROR',
+        self::DUPLICATE_NAMESPACE => 'DUPLICATE_NAMESPACE',
+        self::OP_IN_DATAPOINT => 'OP_IN_DATAPOINT',
+        self::MULTIPLE_VALUES => 'MULTIPLE_VALUES',
+        self::INVALID_NUMERIC_VALUE => 'INVALID_NUMERIC_VALUE',
+        self::INVALID_ENCODING => 'INVALID_ENCODING',
+        self::INVALID_SPARSE_DIMENSIONS => 'INVALID_SPARSE_DIMENSIONS',
+        self::INVALID_TOKEN_VALUE => 'INVALID_TOKEN_VALUE',
+        self::INVALID_SPARSE_EMBEDDING => 'INVALID_SPARSE_EMBEDDING',
+        self::INVALID_EMBEDDING => 'INVALID_EMBEDDING',
     ];
 
     public static function name($value)
