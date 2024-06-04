@@ -1,0 +1,350 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.accounts.v1beta",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Accounts\\V1beta",
+    "services": {
+        "AccountTaxService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AccountTaxServiceGapicClient",
+                    "rpcs": {
+                        "GetAccountTax": {
+                            "methods": [
+                                "getAccountTax"
+                            ]
+                        },
+                        "ListAccountTax": {
+                            "methods": [
+                                "listAccountTax"
+                            ]
+                        },
+                        "UpdateAccountTax": {
+                            "methods": [
+                                "updateAccountTax"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AccountIssueService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AccountIssueServiceGapicClient",
+                    "rpcs": {
+                        "ListAccountIssues": {
+                            "methods": [
+                                "listAccountIssues"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UserService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UserServiceGapicClient",
+                    "rpcs": {
+                        "CreateUser": {
+                            "methods": [
+                                "createUser"
+                            ]
+                        },
+                        "DeleteUser": {
+                            "methods": [
+                                "deleteUser"
+                            ]
+                        },
+                        "GetUser": {
+                            "methods": [
+                                "getUser"
+                            ]
+                        },
+                        "ListUsers": {
+                            "methods": [
+                                "listUsers"
+                            ]
+                        },
+                        "UpdateUser": {
+                            "methods": [
+                                "updateUser"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AccountsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AccountsServiceGapicClient",
+                    "rpcs": {
+                        "CreateAndConfigureAccount": {
+                            "methods": [
+                                "createAndConfigureAccount"
+                            ]
+                        },
+                        "DeleteAccount": {
+                            "methods": [
+                                "deleteAccount"
+                            ]
+                        },
+                        "GetAccount": {
+                            "methods": [
+                                "getAccount"
+                            ]
+                        },
+                        "ListAccounts": {
+                            "methods": [
+                                "listAccounts"
+                            ]
+                        },
+                        "ListSubAccounts": {
+                            "methods": [
+                                "listSubAccounts"
+                            ]
+                        },
+                        "UpdateAccount": {
+                            "methods": [
+                                "updateAccount"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "BusinessIdentityService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BusinessIdentityServiceGapicClient",
+                    "rpcs": {
+                        "GetBusinessIdentity": {
+                            "methods": [
+                                "getBusinessIdentity"
+                            ]
+                        },
+                        "UpdateBusinessIdentity": {
+                            "methods": [
+                                "updateBusinessIdentity"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "BusinessInfoService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BusinessInfoServiceGapicClient",
+                    "rpcs": {
+                        "GetBusinessInfo": {
+                            "methods": [
+                                "getBusinessInfo"
+                            ]
+                        },
+                        "UpdateBusinessInfo": {
+                            "methods": [
+                                "updateBusinessInfo"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EmailPreferencesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EmailPreferencesServiceGapicClient",
+                    "rpcs": {
+                        "GetEmailPreferences": {
+                            "methods": [
+                                "getEmailPreferences"
+                            ]
+                        },
+                        "UpdateEmailPreferences": {
+                            "methods": [
+                                "updateEmailPreferences"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "HomepageService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "HomepageServiceGapicClient",
+                    "rpcs": {
+                        "ClaimHomepage": {
+                            "methods": [
+                                "claimHomepage"
+                            ]
+                        },
+                        "GetHomepage": {
+                            "methods": [
+                                "getHomepage"
+                            ]
+                        },
+                        "UnclaimHomepage": {
+                            "methods": [
+                                "unclaimHomepage"
+                            ]
+                        },
+                        "UpdateHomepage": {
+                            "methods": [
+                                "updateHomepage"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "OnlineReturnPolicyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OnlineReturnPolicyServiceGapicClient",
+                    "rpcs": {
+                        "GetOnlineReturnPolicy": {
+                            "methods": [
+                                "getOnlineReturnPolicy"
+                            ]
+                        },
+                        "ListOnlineReturnPolicies": {
+                            "methods": [
+                                "listOnlineReturnPolicies"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProgramsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProgramsServiceGapicClient",
+                    "rpcs": {
+                        "DisableProgram": {
+                            "methods": [
+                                "disableProgram"
+                            ]
+                        },
+                        "EnableProgram": {
+                            "methods": [
+                                "enableProgram"
+                            ]
+                        },
+                        "GetProgram": {
+                            "methods": [
+                                "getProgram"
+                            ]
+                        },
+                        "ListPrograms": {
+                            "methods": [
+                                "listPrograms"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RegionsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionsServiceGapicClient",
+                    "rpcs": {
+                        "CreateRegion": {
+                            "methods": [
+                                "createRegion"
+                            ]
+                        },
+                        "DeleteRegion": {
+                            "methods": [
+                                "deleteRegion"
+                            ]
+                        },
+                        "GetRegion": {
+                            "methods": [
+                                "getRegion"
+                            ]
+                        },
+                        "ListRegions": {
+                            "methods": [
+                                "listRegions"
+                            ]
+                        },
+                        "UpdateRegion": {
+                            "methods": [
+                                "updateRegion"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ShippingSettingsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ShippingSettingsServiceGapicClient",
+                    "rpcs": {
+                        "GetShippingSettings": {
+                            "methods": [
+                                "getShippingSettings"
+                            ]
+                        },
+                        "InsertShippingSettings": {
+                            "methods": [
+                                "insertShippingSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TermsOfServiceService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TermsOfServiceServiceGapicClient",
+                    "rpcs": {
+                        "AcceptTermsOfService": {
+                            "methods": [
+                                "acceptTermsOfService"
+                            ]
+                        },
+                        "GetTermsOfService": {
+                            "methods": [
+                                "getTermsOfService"
+                            ]
+                        },
+                        "RetrieveLatestTermsOfService": {
+                            "methods": [
+                                "retrieveLatestTermsOfService"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TermsOfServiceAgreementStateService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TermsOfServiceAgreementStateServiceGapicClient",
+                    "rpcs": {
+                        "GetTermsOfServiceAgreementState": {
+                            "methods": [
+                                "getTermsOfServiceAgreementState"
+                            ]
+                        },
+                        "RetrieveForApplicationTermsOfServiceAgreementState": {
+                            "methods": [
+                                "retrieveForApplicationTermsOfServiceAgreementState"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
