@@ -301,15 +301,16 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     private $write_endpoint = null;
     /**
-     * Optional. The pair of a primary instance and disaster recovery (DR)
-     * replica. A DR replica is a cross-region replica that you designate for
-     * failover in the event that the primary instance has regional failure.
+     * Optional. A primary instance and disaster recovery (DR) replica pair.
+     * A DR replica is a cross-region replica that you designate
+     * for failover in the event that the primary instance
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $replication_cluster = null;
     /**
-     * Gemini configuration.
+     * Gemini instance configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.GeminiInstanceConfig gemini_config = 55;</code>
      */
@@ -440,11 +441,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type string $write_endpoint
      *           Output only. The dns name of the primary instance in a replication group.
      *     @type \Google\Cloud\Sql\V1\ReplicationCluster $replication_cluster
-     *           Optional. The pair of a primary instance and disaster recovery (DR)
-     *           replica. A DR replica is a cross-region replica that you designate for
-     *           failover in the event that the primary instance has regional failure.
+     *           Optional. A primary instance and disaster recovery (DR) replica pair.
+     *           A DR replica is a cross-region replica that you designate
+     *           for failover in the event that the primary instance
+     *           experiences regional failure. Only applicable to MySQL.
      *     @type \Google\Cloud\Sql\V1\GeminiInstanceConfig $gemini_config
-     *           Gemini configuration.
+     *           Gemini instance configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -1886,9 +1888,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The pair of a primary instance and disaster recovery (DR)
-     * replica. A DR replica is a cross-region replica that you designate for
-     * failover in the event that the primary instance has regional failure.
+     * Optional. A primary instance and disaster recovery (DR) replica pair.
+     * A DR replica is a cross-region replica that you designate
+     * for failover in the event that the primary instance
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Sql\V1\ReplicationCluster|null
@@ -1909,9 +1912,10 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The pair of a primary instance and disaster recovery (DR)
-     * replica. A DR replica is a cross-region replica that you designate for
-     * failover in the event that the primary instance has regional failure.
+     * Optional. A primary instance and disaster recovery (DR) replica pair.
+     * A DR replica is a cross-region replica that you designate
+     * for failover in the event that the primary instance
+     * experiences regional failure. Only applicable to MySQL.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.ReplicationCluster replication_cluster = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Sql\V1\ReplicationCluster $var
@@ -1926,7 +1930,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Gemini configuration.
+     * Gemini instance configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.GeminiInstanceConfig gemini_config = 55;</code>
      * @return \Google\Cloud\Sql\V1\GeminiInstanceConfig|null
@@ -1947,7 +1951,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Gemini configuration.
+     * Gemini instance configuration.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.GeminiInstanceConfig gemini_config = 55;</code>
      * @param \Google\Cloud\Sql\V1\GeminiInstanceConfig $var

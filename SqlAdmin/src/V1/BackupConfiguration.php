@@ -74,7 +74,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
     private $transaction_log_retention_days = null;
     /**
      * Output only. This value contains the storage location of transactional logs
-     * for the database for point-in-time recovery.
+     * used to perform point-in-time recovery (PITR) for the database.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupConfiguration.TransactionalLogStorageState transactional_log_storage_state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -109,7 +109,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      *           restore, from 1-7.
      *     @type int $transactional_log_storage_state
      *           Output only. This value contains the storage location of transactional logs
-     *           for the database for point-in-time recovery.
+     *           used to perform point-in-time recovery (PITR) for the database.
      * }
      */
     public function __construct($data = NULL) {
@@ -558,7 +558,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. This value contains the storage location of transactional logs
-     * for the database for point-in-time recovery.
+     * used to perform point-in-time recovery (PITR) for the database.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupConfiguration.TransactionalLogStorageState transactional_log_storage_state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -580,7 +580,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. This value contains the storage location of transactional logs
-     * for the database for point-in-time recovery.
+     * used to perform point-in-time recovery (PITR) for the database.
      *
      * Generated from protobuf field <code>optional .google.cloud.sql.v1.BackupConfiguration.TransactionalLogStorageState transactional_log_storage_state = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

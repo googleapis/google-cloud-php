@@ -80,12 +80,12 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * For SQL Server:
      * * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false`
      * * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true`
-     * The value of `ssl_mode` gets priority over the value of `require_ssl`. For
-     * example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`,
-     * the `ssl_mode=ENCRYPTED_ONLY` means only accept SSL connections, while the
-     * `require_ssl=false` means accept both non-SSL and SSL connections. MySQL
-     * and PostgreSQL databases respect `ssl_mode` in this case and accept only
-     * SSL connections.
+     * The value of `ssl_mode` has priority over the value of `require_ssl`.
+     * For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and
+     * `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL
+     * connections, while `require_ssl=false` means accept both non-SSL
+     * and SSL connections. In this case, MySQL and PostgreSQL databases respect
+     * `ssl_mode` and accepts only SSL connections.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.IpConfiguration.SslMode ssl_mode = 8;</code>
      */
@@ -144,12 +144,12 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *           For SQL Server:
      *           * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false`
      *           * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true`
-     *           The value of `ssl_mode` gets priority over the value of `require_ssl`. For
-     *           example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`,
-     *           the `ssl_mode=ENCRYPTED_ONLY` means only accept SSL connections, while the
-     *           `require_ssl=false` means accept both non-SSL and SSL connections. MySQL
-     *           and PostgreSQL databases respect `ssl_mode` in this case and accept only
-     *           SSL connections.
+     *           The value of `ssl_mode` has priority over the value of `require_ssl`.
+     *           For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and
+     *           `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL
+     *           connections, while `require_ssl=false` means accept both non-SSL
+     *           and SSL connections. In this case, MySQL and PostgreSQL databases respect
+     *           `ssl_mode` and accepts only SSL connections.
      *     @type \Google\Cloud\Sql\V1\PscConfig $psc_config
      *           PSC settings for this instance.
      * }
@@ -489,12 +489,12 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * For SQL Server:
      * * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false`
      * * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true`
-     * The value of `ssl_mode` gets priority over the value of `require_ssl`. For
-     * example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`,
-     * the `ssl_mode=ENCRYPTED_ONLY` means only accept SSL connections, while the
-     * `require_ssl=false` means accept both non-SSL and SSL connections. MySQL
-     * and PostgreSQL databases respect `ssl_mode` in this case and accept only
-     * SSL connections.
+     * The value of `ssl_mode` has priority over the value of `require_ssl`.
+     * For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and
+     * `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL
+     * connections, while `require_ssl=false` means accept both non-SSL
+     * and SSL connections. In this case, MySQL and PostgreSQL databases respect
+     * `ssl_mode` and accepts only SSL connections.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.IpConfiguration.SslMode ssl_mode = 8;</code>
      * @return int
@@ -515,12 +515,12 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * For SQL Server:
      * * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false`
      * * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true`
-     * The value of `ssl_mode` gets priority over the value of `require_ssl`. For
-     * example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`,
-     * the `ssl_mode=ENCRYPTED_ONLY` means only accept SSL connections, while the
-     * `require_ssl=false` means accept both non-SSL and SSL connections. MySQL
-     * and PostgreSQL databases respect `ssl_mode` in this case and accept only
-     * SSL connections.
+     * The value of `ssl_mode` has priority over the value of `require_ssl`.
+     * For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and
+     * `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL
+     * connections, while `require_ssl=false` means accept both non-SSL
+     * and SSL connections. In this case, MySQL and PostgreSQL databases respect
+     * `ssl_mode` and accepts only SSL connections.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.IpConfiguration.SslMode ssl_mode = 8;</code>
      * @param int $var
