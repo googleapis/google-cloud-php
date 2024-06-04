@@ -41,8 +41,9 @@ class SettingMetadata extends \Google\Protobuf\Internal\Message
      */
     private $data_type = 0;
     /**
-     * The value provided by [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value] if no setting value is
-     * explicitly set.
+     * The value provided by
+     * [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value]
+     * if no setting value is explicitly set.
      * Note: not all settings have a default value.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value default_value = 5;</code>
@@ -65,8 +66,9 @@ class SettingMetadata extends \Google\Protobuf\Internal\Message
      *     @type int $data_type
      *           The data type for this setting.
      *     @type \Google\Cloud\ResourceSettings\V1\Value $default_value
-     *           The value provided by [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value] if no setting value is
-     *           explicitly set.
+     *           The value provided by
+     *           [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value]
+     *           if no setting value is explicitly set.
      *           Note: not all settings have a default value.
      * }
      */
@@ -182,8 +184,9 @@ class SettingMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value provided by [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value] if no setting value is
-     * explicitly set.
+     * The value provided by
+     * [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value]
+     * if no setting value is explicitly set.
      * Note: not all settings have a default value.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value default_value = 5;</code>
@@ -205,8 +208,9 @@ class SettingMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value provided by [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value] if no setting value is
-     * explicitly set.
+     * The value provided by
+     * [Setting.effective_value][google.cloud.resourcesettings.v1.Setting.effective_value]
+     * if no setting value is explicitly set.
      * Note: not all settings have a default value.
      *
      * Generated from protobuf field <code>.google.cloud.resourcesettings.v1.Value default_value = 5;</code>

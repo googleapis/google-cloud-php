@@ -7,8 +7,9 @@ namespace Google\Cloud\ResourceSettings\V1\SettingMetadata;
 use UnexpectedValueException;
 
 /**
- * The data type for setting values of this setting. See [Value][google.cloud.resourcesettings.v1.Value] for more
- * details on the available data types.
+ * The data type for setting values of this setting. See
+ * [Value][google.cloud.resourcesettings.v1.Value] for more details on the
+ * available data types.
  *
  * Protobuf type <code>google.cloud.resourcesettings.v1.SettingMetadata.DataType</code>
  */
