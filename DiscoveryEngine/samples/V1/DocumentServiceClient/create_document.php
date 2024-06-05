@@ -35,7 +35,7 @@ use Google\Cloud\DiscoveryEngine\V1\Document;
  *                                `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}`. Please see
  *                                {@see DocumentServiceClient::branchName()} for help formatting this field.
  * @param string $documentId      The ID to use for the
- *                                [Document][google.cloud.discoveryengine.v1.Document], which will become the
+ *                                [Document][google.cloud.discoveryengine.v1.Document], which becomes the
  *                                final component of the
  *                                [Document.name][google.cloud.discoveryengine.v1.Document.name].
  *

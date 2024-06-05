@@ -15,6 +15,17 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class ResourceRuntime extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Output only. URIs for user to connect to the Cluster.
+     * Example:
+     * {
+     *   "RAY_HEAD_NODE_INTERNAL_IP": "head-node-IP:10001"
+     *   "RAY_DASHBOARD_URI": "ray-dashboard-address:8888"
+     * }
+     *
+     * Generated from protobuf field <code>map<string, string> access_uris = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $access_uris;
 
     /**
      * Constructor.
@@ -22,11 +33,54 @@ class ResourceRuntime extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type array|\Google\Protobuf\Internal\MapField $access_uris
+     *           Output only. URIs for user to connect to the Cluster.
+     *           Example:
+     *           {
+     *             "RAY_HEAD_NODE_INTERNAL_IP": "head-node-IP:10001"
+     *             "RAY_DASHBOARD_URI": "ray-dashboard-address:8888"
+     *           }
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Aiplatform\V1\PersistentResource::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Output only. URIs for user to connect to the Cluster.
+     * Example:
+     * {
+     *   "RAY_HEAD_NODE_INTERNAL_IP": "head-node-IP:10001"
+     *   "RAY_DASHBOARD_URI": "ray-dashboard-address:8888"
+     * }
+     *
+     * Generated from protobuf field <code>map<string, string> access_uris = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAccessUris()
+    {
+        return $this->access_uris;
+    }
+
+    /**
+     * Output only. URIs for user to connect to the Cluster.
+     * Example:
+     * {
+     *   "RAY_HEAD_NODE_INTERNAL_IP": "head-node-IP:10001"
+     *   "RAY_DASHBOARD_URI": "ray-dashboard-address:8888"
+     * }
+     *
+     * Generated from protobuf field <code>map<string, string> access_uris = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAccessUris($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->access_uris = $arr;
+
+        return $this;
     }
 
 }

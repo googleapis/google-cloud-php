@@ -24,7 +24,6 @@ namespace Google\Cloud\Storage\Control\Tests\Unit\V2\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Storage\Control\V2\Client\StorageControlClient;
@@ -43,6 +42,7 @@ use Google\Cloud\Storage\Control\V2\ListManagedFoldersResponse;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

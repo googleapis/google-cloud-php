@@ -70,6 +70,13 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeatureOnlineStore.DedicatedServingEndpoint dedicated_serving_endpoint = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $dedicated_serving_endpoint = null;
+    /**
+     * Optional. Customer-managed encryption key spec for data storage. If set,
+     * online store will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $encryption_spec = null;
     protected $storage_type;
 
     /**
@@ -113,6 +120,9 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\DedicatedServingEndpoint $dedicated_serving_endpoint
      *           Optional. The dedicated serving endpoint for this FeatureOnlineStore, which
      *           is different from common Vertex service endpoint.
+     *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
+     *           Optional. Customer-managed encryption key spec for data storage. If set,
+     *           online store will be secured by this key.
      * }
      */
     public function __construct($data = NULL) {
@@ -424,6 +434,44 @@ class FeatureOnlineStore extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\FeatureOnlineStore\DedicatedServingEndpoint::class);
         $this->dedicated_serving_endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Customer-managed encryption key spec for data storage. If set,
+     * online store will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Optional. Customer-managed encryption key spec for data storage. If set,
+     * online store will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }

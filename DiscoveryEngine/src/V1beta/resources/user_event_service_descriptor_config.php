@@ -69,6 +69,7 @@ return [
             'templateMap' => [
                 'dataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',
                 'document' => 'projects/{project}/locations/{location}/dataStores/{data_store}/branches/{branch}/documents/{document}',
+                'engine' => 'projects/{project}/locations/{location}/collections/{collection}/engines/{engine}',
                 'projectLocationCollectionDataStore' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}',
                 'projectLocationCollectionDataStoreBranchDocument' => 'projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/branches/{branch}/documents/{document}',
                 'projectLocationDataStore' => 'projects/{project}/locations/{location}/dataStores/{data_store}',

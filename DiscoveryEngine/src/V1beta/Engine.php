@@ -80,7 +80,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * The restriction of the Engine industry vertical is based on
      * [DataStore][google.cloud.discoveryengine.v1beta.DataStore]: If unspecified,
      * default to `GENERIC`. Vertical on Engine has to match vertical of the
-     * DataStore liniked to the engine.
+     * DataStore linked to the engine.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.IndustryVertical industry_vertical = 16;</code>
      */
@@ -156,7 +156,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      *           The restriction of the Engine industry vertical is based on
      *           [DataStore][google.cloud.discoveryengine.v1beta.DataStore]: If unspecified,
      *           default to `GENERIC`. Vertical on Engine has to match vertical of the
-     *           DataStore liniked to the engine.
+     *           DataStore linked to the engine.
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\Engine\CommonConfig $common_config
      *           Common config spec that specifies the metadata of the engine.
      * }
@@ -506,7 +506,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * The restriction of the Engine industry vertical is based on
      * [DataStore][google.cloud.discoveryengine.v1beta.DataStore]: If unspecified,
      * default to `GENERIC`. Vertical on Engine has to match vertical of the
-     * DataStore liniked to the engine.
+     * DataStore linked to the engine.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.IndustryVertical industry_vertical = 16;</code>
      * @return int
@@ -521,7 +521,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * The restriction of the Engine industry vertical is based on
      * [DataStore][google.cloud.discoveryengine.v1beta.DataStore]: If unspecified,
      * default to `GENERIC`. Vertical on Engine has to match vertical of the
-     * DataStore liniked to the engine.
+     * DataStore linked to the engine.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.IndustryVertical industry_vertical = 16;</code>
      * @param int $var

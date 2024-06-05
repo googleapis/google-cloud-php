@@ -1,5 +1,1130 @@
 # Changelog
 
+## 0.247.0
+
+<details><summary>google/cloud-access-approval 1.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/access-context-manager 0.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-advisorynotifications 0.8.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.39.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* An existing message `Segment` is removed
+* An existing message `GroundingAttribution` is removed
+* An existing field `grounding_attributions` is removed from message `.google.cloud.aiplatform.v1beta1.GroundingMetadata`
+* An existing field `disable_attribution` is removed from message `.google.cloud.aiplatform.v1beta1.GoogleSearchRetrieval`
+
+### Features
+
+* Add dataplex_config to MetadataStore ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add direct_notebook_source to NotebookExecutionJob ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add encryption_spec to FeatureOnlineStore ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add encryption_spec to NotebookRuntimeTemplate ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add encryption_spec, service_account, disable_container_logging to DeploymentResourcePool ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add idle_shutdown_config, encryption_spec, satisfies_pzs, satisfies_pzi to NotebookRuntime ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add INVALID_SPARSE_DIMENSIONS, INVALID_SPARSE_EMBEDDING, INVALID_EMBEDDING to NearestNeighborSearchOperationMetadata.RecordError ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add model_reference to Dataset ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add model_reference to DatasetVersion ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add more fields in FindNeighborsRequest.Query ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add RaySpec to PersistentResource ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add sparse_distance to FindNeighborsResponse.Neighbor ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add sparse_embedding to IndexDatapoint ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add sparse_vectors_count to IndexStats ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add struct_value to FeatureValue ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add tool_config to GenerateContentRequest ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add UpdateNotebookRuntimeTemplate to NotebookService ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add valid_sparse_record_count, invalid_sparse_record_count to NearestNeighborSearchOperationMetadata.ContentValidationStats ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* Add ValueType.STRUCT to Feature ([#7351](https://github.com/googleapis/google-cloud-php/issues/7351)) ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+
+
+### Bug Fixes
+
+* An existing field `disable_attribution` is removed from message `.google.cloud.aiplatform.v1beta1.GoogleSearchRetrieval` ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* An existing field `grounding_attributions` is removed from message `.google.cloud.aiplatform.v1beta1.GroundingMetadata` ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* An existing message `GroundingAttribution` is removed ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* An existing message `Segment` is removed ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+
+
+### Documentation
+
+* A comment for enum value `EMBEDDING_SIZE_MISMATCH` in enum `RecordErrorType` is changed ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* A comment for field `exec` in message `.google.cloud.aiplatform.v1beta1.Probe` is changed ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* A comment for field `feature_vector` in message `.google.cloud.aiplatform.v1beta1.IndexDatapoint` is changed ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+* A comment for field `vectors_count` in message `.google.cloud.aiplatform.v1beta1.IndexStats` is changed ([e81f6dc](https://github.com/googleapis/google-cloud-php/commit/e81f6dc8e27a8cd4d969b6f38d432b658a4b8518))
+
+</details>
+
+<details><summary>google/cloud-alloydb 0.10.3</summary>
+
+
+
+</details>
+
+<details><summary>google/analytics-admin 0.22.5</summary>
+
+
+
+</details>
+
+<details><summary>google/analytics-data 0.17.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-api-gateway 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-api-keys 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 1.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 0.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apphub 0.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-chat 0.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-meet 0.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-asset 1.16.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.11.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-automl 1.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 0.16.9</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 0.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 1.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 0.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.8.5</summary>
+
+
+
+### Documentation
+
+* Update OAuth links in `CreateTransferConfigRequest` and `UpdateTransferConfigRequest` ([#7349](https://github.com/googleapis/google-cloud-php/issues/7349)) ([42677a2](https://github.com/googleapis/google-cloud-php/commit/42677a2d20e019203bd62d03c888ca0d154ef848))
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.10.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.32.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing 1.9.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 1.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.8.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 0.16.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.7.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 1.9.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-compute 1.18.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 0.8.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.9.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.30.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.5.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-core 1.58.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.10.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 0.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.6.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataform 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.16.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.13.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.11.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore 1.29.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.8.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastream 1.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-debugger 1.8.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-deploy 0.19.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.12.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.3.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 0.11.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dlp 1.15.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dms 1.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.13.0</summary>
+
+
+
+### Features
+
+* Make Layout Parser generally available in V1 ([#7350](https://github.com/googleapis/google-cloud-php/issues/7350)) ([c396919](https://github.com/googleapis/google-cloud-php/commit/c3969193b69760d37e87c1749d6029fc782fbc00))
+
+</details>
+
+<details><summary>google/cloud-domains 0.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 0.3.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.22.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.6.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 1.5.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 1.43.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-functions 1.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons 0.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-game-servers 1.2.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.9.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/grafeas 0.10.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iam 0.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 1.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iap 1.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ids 0.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iot 1.7.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 1.22.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-language 0.32.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 1.30.2</summary>
+
+
+
+</details>
+
+<details><summary>google/longrunning 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managed-identities 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memcache 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.10.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-netapp 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 1.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-management 1.7.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-security 0.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.7.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-optimization 0.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 1.6.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-osconfig 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.9.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policysimulator 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 1.3.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-profiler 1.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.2.0</summary>
+
+
+
+### Features
+
+* Add service_account_email for export subscriptions ([#7353](https://github.com/googleapis/google-cloud-php/issues/7353)) ([f86b038](https://github.com/googleapis/google-cloud-php/commit/f86b038cbcd587411c598d6c15ebecda2190fa09))
+
+</details>
+
+<details><summary>google/cloud-quotas 0.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 0.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.12.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.7.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommender 1.11.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-redis 1.9.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.8.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-resource-settings 1.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-retail 1.6.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-run 0.9.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.10.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.15.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-center 1.28.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 1.7.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-control 1.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-directory 1.3.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-servicehealth 0.1.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-management 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-usage 1.3.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-shell 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-css 0.2.7</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 0.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 0.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 0.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 1.79.0</summary>
+
+
+
+### Features
+
+* **spanner:** Add PG.OID type support for parameterized queries ([#6788](https://github.com/googleapis/google-cloud-php/issues/6788)) ([273683d](https://github.com/googleapis/google-cloud-php/commit/273683d22dce24ac7500e9744d939832ed337bb2))
+
+</details>
+
+<details><summary>google/cloud-speech 1.18.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.17.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-control 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storageinsights 0.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 1.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-support 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-talent 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tasks 1.14.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-telcoautomation 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.8.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tpu 1.4.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 1.8.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 1.17.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.15.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.7.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.9.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.10.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 1.9.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.6.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 0.5.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vpc-access 1.3.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.8.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workflows 0.5.5</summary>
+
+
+
+</details>
+
 ## 0.246.0
 
 <details><summary>google/cloud-bigtable 1.32.0</summary>

@@ -22,13 +22,13 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. If true, ignore safety checks when deleting the app profile.
      *
      * Generated from protobuf field <code>bool ignore_warnings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ignore_warnings = false;
+    protected $ignore_warnings = false;
 
     /**
      * @param string $name Required. The unique name of the app profile to be deleted. Values are of

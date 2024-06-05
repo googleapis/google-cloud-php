@@ -22,7 +22,7 @@ class StreamPartition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowRange row_range = 1;</code>
      */
-    private $row_range = null;
+    protected $row_range = null;
 
     /**
      * Constructor.

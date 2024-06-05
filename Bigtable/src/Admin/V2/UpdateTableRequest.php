@@ -22,7 +22,7 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = null;
+    protected $table = null;
     /**
      * Required. The list of fields to update.
      * A mask specifying which fields (e.g. `change_stream_config`) in the `table`
@@ -37,7 +37,7 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Bigtable\Admin\V2\Table $table      Required. The table to update.

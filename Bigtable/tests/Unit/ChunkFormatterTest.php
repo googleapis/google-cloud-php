@@ -17,9 +17,12 @@
 
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
-use Google\ApiCore\ServerStream;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\Exception\BigtableDataOperationException;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk as ReadRowsResponse_CellChunk;
 use Google\Protobuf\StringValue;
@@ -36,17 +39,21 @@ class ChunkFormatterTest extends TestCase
     use ProphecyTrait;
 
     const TABLE_NAME = 'test-table';
-    private $serverStream;
     private $chunkFormatter;
+    private $gapicClient;
+    private $readRowsRequest;
+    private $transport;
 
     public function setUp(): void
     {
-        $this->serverStream = $this->prophesize(ServerStream::class);
+        $this->transport = $this->createTransport();
+        $this->gapicClient = $this->createClient([
+            'transport' => $this->transport,
+        ]);
+        $this->readRowsRequest = new ReadRowsRequest(['table_name' => self::TABLE_NAME]);
         $this->chunkFormatter = new ChunkFormatter(
-            function () {
-                return $this->serverStream->reveal();
-            },
-            self::TABLE_NAME,
+            $this->gapicClient,
+            $this->readRowsRequest,
             []
         );
     }
@@ -56,12 +63,13 @@ class ChunkFormatterTest extends TestCase
         $this->expectException(BigtableDataOperationException::class);
         $this->expectExceptionMessage('A row key must be set.');
 
+        // Add a mock response to our transport
         $readRowsResponse = new ReadRowsResponse;
         $chunk = new ReadRowsResponse_CellChunk();
         $readRowsResponse->setChunks([$chunk]);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -80,9 +88,11 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
+        // Execute the test
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 '0' => [
@@ -108,9 +118,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setRowKey('rk1');
         $chunk->setResetRow(true);
         $readRowsResponse->setChunks([$chunk]);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -123,9 +134,10 @@ class ChunkFormatterTest extends TestCase
         $chunk = new ReadRowsResponse_CellChunk();
         $chunk->setRowKey('rk1');
         $readRowsResponse->setChunks([$chunk]);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -141,9 +153,10 @@ class ChunkFormatterTest extends TestCase
         $stringValue->setValue('cf1');
         $chunk->setFamilyName($stringValue);
         $readRowsResponse->setChunks([$chunk]);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -164,9 +177,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setValueSize(10);
         $chunk->setCommitRow(true);
         $readRowsResponse->setChunks([$chunk]);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -198,9 +212,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setQualifier($bytesValue);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -220,9 +235,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -255,9 +271,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -290,9 +307,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
             $data => [
@@ -325,9 +343,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -361,9 +380,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -397,9 +417,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setValue('Value1');
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -425,9 +446,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -453,9 +475,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -481,9 +504,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -509,9 +533,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -536,9 +561,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setRowKey('rk2');
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -566,9 +592,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setFamilyName($stringValue);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -601,9 +628,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -625,9 +653,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $this->assertEquals([], $rows);
     }
@@ -657,9 +686,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -704,9 +734,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -750,9 +781,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -796,9 +828,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -842,9 +875,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -871,9 +905,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -902,9 +937,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -931,9 +967,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -960,9 +997,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
@@ -985,9 +1023,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setResetRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $this->assertEquals([], $rows);
     }
@@ -1012,9 +1051,10 @@ class ChunkFormatterTest extends TestCase
         $chunk->setCommitRow(true);
         $chunks[] = $chunk;
         $readRowsResponse->setChunks($chunks);
-        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
-            $this->arrayAsGenerator([$readRowsResponse])
-        );
+        
+        // Add a mock response to our transport
+        $this->transport->addResponse($readRowsResponse);
+
         $rows = iterator_to_array($this->chunkFormatter->readAll());
         $expectedRows = [
                 'rk1' => [
@@ -1030,10 +1070,23 @@ class ChunkFormatterTest extends TestCase
         $this->assertEquals($expectedRows, $rows);
     }
 
-    private function arrayAsGenerator(array $array)
+    private function createTransport($deserialize = null)
     {
-        foreach ($array as $item) {
-            yield $item;
-        }
+        return new MockTransport($deserialize);
+    }
+
+    /** @return CredentialsWrapper */
+    private function createCredentials()
+    {
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+    }
+
+    /** @return BigtableClient */
+    private function createClient(array $options = [])
+    {
+        $options += [
+            'credentials' => $this->createCredentials(),
+        ];
+        return new BigtableClient($options);
     }
 }

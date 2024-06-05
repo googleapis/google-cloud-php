@@ -110,6 +110,7 @@ final class PredictionServiceClient
     /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
 
     private static function getClientDefaults()

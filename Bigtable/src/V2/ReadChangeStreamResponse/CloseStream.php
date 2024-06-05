@@ -39,7 +39,7 @@ class CloseStream extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 1;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * If non-empty, contains the information needed to resume reading their
      * associated partitions.

@@ -22,7 +22,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The id of the table to create and restore to. This
      * table must not already exist. The `table_id` appended to
@@ -31,7 +31,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
     protected $source;
 
     /**

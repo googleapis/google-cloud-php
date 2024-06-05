@@ -52,6 +52,9 @@ use GuzzleHttp\Promise\PromiseInterface;
  * resource is not in a Cloud Organization.
  * For all requests, returns a `google.rpc.Status` with
  * `google.rpc.Code.INVALID_ARGUMENT` if the request is malformed.
+ * (== deprecation_description Resource Settings is deprecated. As of November
+ * 7, 2023, no organizations will be onboarded for any of the enabled settings,
+ * and the service will be shut down on October 1, 2024. ==)
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -60,6 +63,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
+ *
+ * @deprecated This class will be removed in the next major version update.
  *
  * @method PromiseInterface getSettingAsync(GetSettingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listSettingsAsync(ListSettingsRequest $request, array $optionalArgs = [])

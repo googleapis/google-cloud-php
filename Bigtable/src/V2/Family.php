@@ -26,7 +26,7 @@ class Family extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Must not be empty. Sorted in order of increasing "qualifier".
      *

@@ -22,7 +22,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      */
     protected $facet_key = null;
     /**
-     * Maximum of facet values that should be returned for this facet. If
+     * Maximum facet values that are returned for this facet. If
      * unspecified, defaults to 20. The maximum allowed value is 300. Values
      * above 300 are coerced to 300.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
@@ -94,7 +94,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1beta\SearchRequest\FacetSpec\FacetKey $facet_key
      *           Required. The facet key specification.
      *     @type int $limit
-     *           Maximum of facet values that should be returned for this facet. If
+     *           Maximum facet values that are returned for this facet. If
      *           unspecified, defaults to 20. The maximum allowed value is 300. Values
      *           above 300 are coerced to 300.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
@@ -188,7 +188,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum of facet values that should be returned for this facet. If
+     * Maximum facet values that are returned for this facet. If
      * unspecified, defaults to 20. The maximum allowed value is 300. Values
      * above 300 are coerced to 300.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.
@@ -202,7 +202,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum of facet values that should be returned for this facet. If
+     * Maximum facet values that are returned for this facet. If
      * unspecified, defaults to 20. The maximum allowed value is 300. Values
      * above 300 are coerced to 300.
      * If this field is negative, an  `INVALID_ARGUMENT`  is returned.

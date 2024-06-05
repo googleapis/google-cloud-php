@@ -24,7 +24,6 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1\Client\DocumentServiceClient;
@@ -39,6 +38,7 @@ use Google\Cloud\DiscoveryEngine\V1\ListDocumentsResponse;
 use Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsRequest;
 use Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsResponse;
 use Google\Cloud\DiscoveryEngine\V1\UpdateDocumentRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

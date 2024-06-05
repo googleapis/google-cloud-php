@@ -21,7 +21,7 @@ class GenerateInitialChangeStreamPartitionsResponse extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>.google.bigtable.v2.StreamPartition partition = 1;</code>
      */
-    private $partition = null;
+    protected $partition = null;
 
     /**
      * Constructor.

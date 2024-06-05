@@ -17,12 +17,15 @@
 
 namespace Google\Cloud\Bigtable\Tests\Snippet;
 
+use Google\ApiCore\Serializer;
 use \Google\ApiCore\ServerStream;
 use Google\Cloud\Bigtable\ChunkFormatter;
 use Google\Cloud\Bigtable\Table;
-use Google\Cloud\Bigtable\V2\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\Client\BigtableClient as TableClient;
+use Google\Cloud\Bigtable\V2\ReadRowsRequest;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -47,6 +50,7 @@ class ChunkFormatterTest extends SnippetTestCase
             Table::class,
             [
                 $this->bigtableClient->reveal(),
+                new Serializer(),
                 self::TABLE_NAME
             ]
         );
@@ -63,11 +67,13 @@ class ChunkFormatterTest extends SnippetTestCase
         $this->serverStream->readAll()
             ->shouldBeCalled()
             ->willReturn([]);
-        $this->bigtableClient->readRows(self::TABLE_NAME, [])
-            ->shouldBeCalled()
-            ->willReturn(
-                $this->serverStream->reveal()
-            );
+        $this->bigtableClient->readRows(
+            Argument::type(ReadRowsRequest::class),
+            Argument::type('array')
+        )->shouldBeCalled()
+        ->willReturn(
+            $this->serverStream->reveal()
+        );
         $snippet->addLocal('table', $this->table);
         $res = $snippet->invoke('formatter');
         $this->assertInstanceOf(ChunkFormatter::class, $res->returnVal());

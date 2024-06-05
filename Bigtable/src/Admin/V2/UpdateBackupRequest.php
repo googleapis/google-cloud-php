@@ -24,7 +24,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup backup = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $backup = null;
+    protected $backup = null;
     /**
      * Required. A mask specifying which fields (e.g. `expire_time`) in the
      * Backup resource should be updated. This mask is relative to the Backup
@@ -34,7 +34,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Bigtable\Admin\V2\Backup $backup     Required. The backup to update. `backup.name`, and the fields to be updated

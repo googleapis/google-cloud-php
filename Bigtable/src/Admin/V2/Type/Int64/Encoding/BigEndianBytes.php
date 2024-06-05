@@ -27,7 +27,7 @@ class BigEndianBytes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type.Bytes bytes_type = 1;</code>
      */
-    private $bytes_type = null;
+    protected $bytes_type = null;
 
     /**
      * Constructor.

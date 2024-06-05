@@ -23,14 +23,14 @@ class FullReadStatsView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.ReadIterationStats read_iteration_stats = 1;</code>
      */
-    private $read_iteration_stats = null;
+    protected $read_iteration_stats = null;
     /**
      * Request latency stats describe the time taken to complete a request, from
      * the server side.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RequestLatencyStats request_latency_stats = 2;</code>
      */
-    private $request_latency_stats = null;
+    protected $request_latency_stats = null;
 
     /**
      * Constructor.

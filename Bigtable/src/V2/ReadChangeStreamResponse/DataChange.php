@@ -25,14 +25,14 @@ class DataChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.ReadChangeStreamResponse.DataChange.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * The cluster where the mutation was applied.
      * Not set when `type` is `GARBAGE_COLLECTION`.
      *
      * Generated from protobuf field <code>string source_cluster_id = 2;</code>
      */
-    private $source_cluster_id = '';
+    protected $source_cluster_id = '';
     /**
      * The row key for all mutations that are part of this `DataChange`.
      * If the `DataChange` is chunked across multiple messages, then this field
@@ -40,13 +40,13 @@ class DataChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes row_key = 3;</code>
      */
-    private $row_key = '';
+    protected $row_key = '';
     /**
      * The timestamp at which the mutation was applied on the Bigtable server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 4;</code>
      */
-    private $commit_timestamp = null;
+    protected $commit_timestamp = null;
     /**
      * A value that lets stream consumers reconstruct Bigtable's
      * conflict resolution semantics.
@@ -58,7 +58,7 @@ class DataChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 tiebreaker = 5;</code>
      */
-    private $tiebreaker = 0;
+    protected $tiebreaker = 0;
     /**
      * The mutations associated with this change to the partition.
      * May contain complete mutations or chunks of a multi-message chunked
@@ -73,14 +73,14 @@ class DataChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool done = 8;</code>
      */
-    private $done = false;
+    protected $done = false;
     /**
      * An encoded position for this stream's partition to restart reading from.
      * This token is for the StreamPartition from the request.
      *
      * Generated from protobuf field <code>string token = 9;</code>
      */
-    private $token = '';
+    protected $token = '';
     /**
      * An estimate of the commit timestamp that is usually lower than or equal
      * to any timestamp for a record that will be delivered in the future on the
@@ -91,7 +91,7 @@ class DataChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp estimated_low_watermark = 10;</code>
      */
-    private $estimated_low_watermark = null;
+    protected $estimated_low_watermark = null;
 
     /**
      * Constructor.

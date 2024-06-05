@@ -20,7 +20,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes row_key = 1;</code>
      */
-    private $row_key = '';
+    protected $row_key = '';
     /**
      * Required. Changes to be atomically applied to the specified row.
      * Mutations are applied in order, meaning that earlier mutations can be

@@ -22,14 +22,14 @@ class PingAndWarmRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 2;</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
 
     /**
      * @param string $name Required. The unique name of the instance to check permissions for as well

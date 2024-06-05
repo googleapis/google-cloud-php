@@ -33,7 +33,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
      * to return. If unspecified, defaults to 100. The maximum allowed value is
-     * 1000. Values above 1000 will be coerced to 1000.
+     * 1000. Values above 1000 are set to 1000.
      * If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -94,7 +94,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
      *           to return. If unspecified, defaults to 100. The maximum allowed value is
-     *           1000. Values above 1000 will be coerced to 1000.
+     *           1000. Values above 1000 are set to 1000.
      *           If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     @type string $page_token
      *           A page token
@@ -156,7 +156,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
      * to return. If unspecified, defaults to 100. The maximum allowed value is
-     * 1000. Values above 1000 will be coerced to 1000.
+     * 1000. Values above 1000 are set to 1000.
      * If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -170,7 +170,7 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of [Document][google.cloud.discoveryengine.v1beta.Document]s
      * to return. If unspecified, defaults to 100. The maximum allowed value is
-     * 1000. Values above 1000 will be coerced to 1000.
+     * 1000. Values above 1000 are set to 1000.
      * If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>

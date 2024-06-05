@@ -61,6 +61,7 @@ use Google\Cloud\AIPlatform\V1\StreamingRawPredictRequest;
 use Google\Cloud\AIPlatform\V1\StreamingRawPredictResponse;
 use Google\Cloud\AIPlatform\V1\Tensor;
 use Google\Cloud\AIPlatform\V1\Tool;
+use Google\Cloud\AIPlatform\V1\ToolConfig;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -123,6 +124,7 @@ class PredictionServiceGapicClient
     /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
 
     private static $endpointNameTemplate;
@@ -651,6 +653,9 @@ class PredictionServiceGapicClient
      *           A `Tool` is a piece of code that enables the system to interact with
      *           external systems to perform an action, or set of actions, outside of
      *           knowledge and scope of the model.
+     *     @type ToolConfig $toolConfig
+     *           Optional. Tool config. This config is shared for all tools provided in the
+     *           request.
      *     @type SafetySetting[] $safetySettings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
@@ -679,6 +684,10 @@ class PredictionServiceGapicClient
 
         if (isset($optionalArgs['tools'])) {
             $request->setTools($optionalArgs['tools']);
+        }
+
+        if (isset($optionalArgs['toolConfig'])) {
+            $request->setToolConfig($optionalArgs['toolConfig']);
         }
 
         if (isset($optionalArgs['safetySettings'])) {
@@ -1097,6 +1106,9 @@ class PredictionServiceGapicClient
      *           A `Tool` is a piece of code that enables the system to interact with
      *           external systems to perform an action, or set of actions, outside of
      *           knowledge and scope of the model.
+     *     @type ToolConfig $toolConfig
+     *           Optional. Tool config. This config is shared for all tools provided in the
+     *           request.
      *     @type SafetySetting[] $safetySettings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
@@ -1126,6 +1138,10 @@ class PredictionServiceGapicClient
 
         if (isset($optionalArgs['tools'])) {
             $request->setTools($optionalArgs['tools']);
+        }
+
+        if (isset($optionalArgs['toolConfig'])) {
+            $request->setToolConfig($optionalArgs['toolConfig']);
         }
 
         if (isset($optionalArgs['safetySettings'])) {

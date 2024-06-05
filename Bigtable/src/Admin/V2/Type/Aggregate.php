@@ -25,7 +25,7 @@ class Aggregate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type input_type = 1;</code>
      */
-    private $input_type = null;
+    protected $input_type = null;
     /**
      * Output only. Type that holds the internal accumulator state for the
      * `Aggregate`. This is a function of the `input_type` and `aggregator`
@@ -33,7 +33,7 @@ class Aggregate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Type state_type = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $state_type = null;
+    protected $state_type = null;
     protected $aggregator;
 
     /**

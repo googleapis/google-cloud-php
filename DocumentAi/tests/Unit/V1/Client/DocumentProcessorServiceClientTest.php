@@ -244,6 +244,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $defaultProcessorVersion = 'defaultProcessorVersion1185902509';
         $processEndpoint = 'processEndpoint-178717339';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Processor();
         $expectedResponse->setName($name);
         $expectedResponse->setType($type);
@@ -251,6 +253,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setDefaultProcessorVersion($defaultProcessorVersion);
         $expectedResponse->setProcessEndpoint($processEndpoint);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1182,6 +1186,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $defaultProcessorVersion = 'defaultProcessorVersion1185902509';
         $processEndpoint = 'processEndpoint-178717339';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new Processor();
         $expectedResponse->setName($name2);
         $expectedResponse->setType($type);
@@ -1189,6 +1195,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse->setDefaultProcessorVersion($defaultProcessorVersion);
         $expectedResponse->setProcessEndpoint($processEndpoint);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
@@ -1325,12 +1333,16 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $kmsKeyName = 'kmsKeyName2094986649';
         $kmsKeyVersionName = 'kmsKeyVersionName-1734350176';
         $googleManaged = false;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new ProcessorVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setKmsKeyName($kmsKeyName);
         $expectedResponse->setKmsKeyVersionName($kmsKeyVersionName);
         $expectedResponse->setGoogleManaged($googleManaged);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');

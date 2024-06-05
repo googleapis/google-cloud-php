@@ -23,13 +23,13 @@ class CheckConsistencyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The token created using GenerateConsistencyToken for the Table.
      *
      * Generated from protobuf field <code>string consistency_token = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $consistency_token = '';
+    protected $consistency_token = '';
     protected $mode;
 
     /**

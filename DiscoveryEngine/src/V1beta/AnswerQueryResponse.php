@@ -37,6 +37,12 @@ class AnswerQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1beta.Session session = 2;</code>
      */
     protected $session = null;
+    /**
+     * A global unique ID used for logging.
+     *
+     * Generated from protobuf field <code>string answer_query_token = 3;</code>
+     */
+    protected $answer_query_token = '';
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class AnswerQueryResponse extends \Google\Protobuf\Internal\Message
      *           It will be only available when session field is set and valid in the
      *           [AnswerQueryRequest][google.cloud.discoveryengine.v1beta.AnswerQueryRequest]
      *           request.
+     *     @type string $answer_query_token
+     *           A global unique ID used for logging.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +155,32 @@ class AnswerQueryResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1beta\Session::class);
         $this->session = $var;
+
+        return $this;
+    }
+
+    /**
+     * A global unique ID used for logging.
+     *
+     * Generated from protobuf field <code>string answer_query_token = 3;</code>
+     * @return string
+     */
+    public function getAnswerQueryToken()
+    {
+        return $this->answer_query_token;
+    }
+
+    /**
+     * A global unique ID used for logging.
+     *
+     * Generated from protobuf field <code>string answer_query_token = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAnswerQueryToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->answer_query_token = $var;
 
         return $this;
     }

@@ -20,7 +20,7 @@ class ReadModifyWriteRowResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Row row = 1;</code>
      */
-    private $row = null;
+    protected $row = null;
 
     /**
      * Constructor.

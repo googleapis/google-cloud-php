@@ -21,7 +21,7 @@ class CheckAndMutateRowResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool predicate_matched = 1;</code>
      */
-    private $predicate_matched = false;
+    protected $predicate_matched = false;
 
     /**
      * Constructor.
