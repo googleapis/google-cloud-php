@@ -30,12 +30,10 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Redis\Cluster\V1\CertificateAuthority;
 use Google\Cloud\Redis\Cluster\V1\Client\CloudRedisClusterClient;
 use Google\Cloud\Redis\Cluster\V1\Cluster;
 use Google\Cloud\Redis\Cluster\V1\CreateClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\DeleteClusterRequest;
-use Google\Cloud\Redis\Cluster\V1\GetClusterCertificateAuthorityRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersResponse;
@@ -105,16 +103,12 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $sizeGb = 2105542105;
         $shardCount = 495377042;
-        $preciseSizeGb = 1.3422684e8;
-        $deletionProtectionEnabled = true;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setSizeGb($sizeGb);
         $expectedResponse->setShardCount($shardCount);
-        $expectedResponse->setPreciseSizeGb($preciseSizeGb);
-        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -377,16 +371,12 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $sizeGb = 2105542105;
         $shardCount = 495377042;
-        $preciseSizeGb = 1.3422684e8;
-        $deletionProtectionEnabled = true;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setSizeGb($sizeGb);
         $expectedResponse->setShardCount($shardCount);
-        $expectedResponse->setPreciseSizeGb($preciseSizeGb);
-        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
@@ -429,74 +419,6 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $request = (new GetClusterRequest())->setName($formattedName);
         try {
             $gapicClient->getCluster($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getClusterCertificateAuthorityTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $expectedResponse = new CertificateAuthority();
-        $expectedResponse->setName($name2);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterCertificateAuthorityRequest())->setName($formattedName);
-        $response = $gapicClient->getClusterCertificateAuthority($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.cloud.redis.cluster.v1.CloudRedisCluster/GetClusterCertificateAuthority',
-            $actualFuncCall
-        );
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getClusterCertificateAuthorityExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
-        $request = (new GetClusterCertificateAuthorityRequest())->setName($formattedName);
-        try {
-            $gapicClient->getClusterCertificateAuthority($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -605,16 +527,12 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $sizeGb = 2105542105;
         $shardCount = 495377042;
-        $preciseSizeGb = 1.3422684e8;
-        $deletionProtectionEnabled = true;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setSizeGb($sizeGb);
         $expectedResponse->setShardCount($shardCount);
-        $expectedResponse->setPreciseSizeGb($preciseSizeGb);
-        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -885,16 +803,12 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $replicaCount = 564075208;
         $sizeGb = 2105542105;
         $shardCount = 495377042;
-        $preciseSizeGb = 1.3422684e8;
-        $deletionProtectionEnabled = true;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setSizeGb($sizeGb);
         $expectedResponse->setShardCount($shardCount);
-        $expectedResponse->setPreciseSizeGb($preciseSizeGb);
-        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

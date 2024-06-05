@@ -63,8 +63,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $transit_encryption_mode = 0;
     /**
-     * Output only. Redis memory size in GB for the entire cluster rounded up to
-     * the next integer.
+     * Output only. Redis memory size in GB for the entire cluster.
      *
      * Generated from protobuf field <code>optional int32 size_gb = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -103,45 +102,6 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.Cluster.StateInfo state_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state_info = null;
-    /**
-     * Optional. The type of a redis node in the cluster. NodeType determines the
-     * underlying machine-type of a redis node.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.NodeType node_type = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $node_type = 0;
-    /**
-     * Optional. Persistence config (RDB, AOF) for the cluster.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ClusterPersistenceConfig persistence_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $persistence_config = null;
-    /**
-     * Optional. Key/Value pairs of customer overrides for mutable Redis Configs
-     *
-     * Generated from protobuf field <code>map<string, string> redis_configs = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $redis_configs;
-    /**
-     * Output only. Precise value of redis memory size in GB for the entire
-     * cluster.
-     *
-     * Generated from protobuf field <code>optional double precise_size_gb = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    protected $precise_size_gb = null;
-    /**
-     * Optional. This config will be used to determine how the customer wants us
-     * to distribute cluster resources within the region.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ZoneDistributionConfig zone_distribution_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $zone_distribution_config = null;
-    /**
-     * Optional. The delete operation will fail when the value is set to true.
-     *
-     * Generated from protobuf field <code>optional bool deletion_protection_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $deletion_protection_enabled = null;
 
     /**
      * Constructor.
@@ -169,8 +129,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Optional. The in-transit encryption for the Redis cluster.
      *           If not provided, encryption  is disabled for the cluster.
      *     @type int $size_gb
-     *           Output only. Redis memory size in GB for the entire cluster rounded up to
-     *           the next integer.
+     *           Output only. Redis memory size in GB for the entire cluster.
      *     @type int $shard_count
      *           Required. Number of shards for the Redis cluster.
      *     @type array<\Google\Cloud\Redis\Cluster\V1\PscConfig>|\Google\Protobuf\Internal\RepeatedField $psc_configs
@@ -185,21 +144,6 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           accessing the cluster.
      *     @type \Google\Cloud\Redis\Cluster\V1\Cluster\StateInfo $state_info
      *           Output only. Additional information about the current state of the cluster.
-     *     @type int $node_type
-     *           Optional. The type of a redis node in the cluster. NodeType determines the
-     *           underlying machine-type of a redis node.
-     *     @type \Google\Cloud\Redis\Cluster\V1\ClusterPersistenceConfig $persistence_config
-     *           Optional. Persistence config (RDB, AOF) for the cluster.
-     *     @type array|\Google\Protobuf\Internal\MapField $redis_configs
-     *           Optional. Key/Value pairs of customer overrides for mutable Redis Configs
-     *     @type float $precise_size_gb
-     *           Output only. Precise value of redis memory size in GB for the entire
-     *           cluster.
-     *     @type \Google\Cloud\Redis\Cluster\V1\ZoneDistributionConfig $zone_distribution_config
-     *           Optional. This config will be used to determine how the customer wants us
-     *           to distribute cluster resources within the region.
-     *     @type bool $deletion_protection_enabled
-     *           Optional. The delete operation will fail when the value is set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -420,8 +364,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Redis memory size in GB for the entire cluster rounded up to
-     * the next integer.
+     * Output only. Redis memory size in GB for the entire cluster.
      *
      * Generated from protobuf field <code>optional int32 size_gb = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -442,8 +385,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Redis memory size in GB for the entire cluster rounded up to
-     * the next integer.
+     * Output only. Redis memory size in GB for the entire cluster.
      *
      * Generated from protobuf field <code>optional int32 size_gb = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -611,208 +553,6 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Redis\Cluster\V1\Cluster\StateInfo::class);
         $this->state_info = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The type of a redis node in the cluster. NodeType determines the
-     * underlying machine-type of a redis node.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.NodeType node_type = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int
-     */
-    public function getNodeType()
-    {
-        return $this->node_type;
-    }
-
-    /**
-     * Optional. The type of a redis node in the cluster. NodeType determines the
-     * underlying machine-type of a redis node.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.NodeType node_type = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setNodeType($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Redis\Cluster\V1\NodeType::class);
-        $this->node_type = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Persistence config (RDB, AOF) for the cluster.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ClusterPersistenceConfig persistence_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Redis\Cluster\V1\ClusterPersistenceConfig|null
-     */
-    public function getPersistenceConfig()
-    {
-        return $this->persistence_config;
-    }
-
-    public function hasPersistenceConfig()
-    {
-        return isset($this->persistence_config);
-    }
-
-    public function clearPersistenceConfig()
-    {
-        unset($this->persistence_config);
-    }
-
-    /**
-     * Optional. Persistence config (RDB, AOF) for the cluster.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ClusterPersistenceConfig persistence_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Redis\Cluster\V1\ClusterPersistenceConfig $var
-     * @return $this
-     */
-    public function setPersistenceConfig($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Redis\Cluster\V1\ClusterPersistenceConfig::class);
-        $this->persistence_config = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Key/Value pairs of customer overrides for mutable Redis Configs
-     *
-     * Generated from protobuf field <code>map<string, string> redis_configs = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\MapField
-     */
-    public function getRedisConfigs()
-    {
-        return $this->redis_configs;
-    }
-
-    /**
-     * Optional. Key/Value pairs of customer overrides for mutable Redis Configs
-     *
-     * Generated from protobuf field <code>map<string, string> redis_configs = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array|\Google\Protobuf\Internal\MapField $var
-     * @return $this
-     */
-    public function setRedisConfigs($var)
-    {
-        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
-        $this->redis_configs = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Output only. Precise value of redis memory size in GB for the entire
-     * cluster.
-     *
-     * Generated from protobuf field <code>optional double precise_size_gb = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return float
-     */
-    public function getPreciseSizeGb()
-    {
-        return isset($this->precise_size_gb) ? $this->precise_size_gb : 0.0;
-    }
-
-    public function hasPreciseSizeGb()
-    {
-        return isset($this->precise_size_gb);
-    }
-
-    public function clearPreciseSizeGb()
-    {
-        unset($this->precise_size_gb);
-    }
-
-    /**
-     * Output only. Precise value of redis memory size in GB for the entire
-     * cluster.
-     *
-     * Generated from protobuf field <code>optional double precise_size_gb = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param float $var
-     * @return $this
-     */
-    public function setPreciseSizeGb($var)
-    {
-        GPBUtil::checkDouble($var);
-        $this->precise_size_gb = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. This config will be used to determine how the customer wants us
-     * to distribute cluster resources within the region.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ZoneDistributionConfig zone_distribution_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Redis\Cluster\V1\ZoneDistributionConfig|null
-     */
-    public function getZoneDistributionConfig()
-    {
-        return $this->zone_distribution_config;
-    }
-
-    public function hasZoneDistributionConfig()
-    {
-        return isset($this->zone_distribution_config);
-    }
-
-    public function clearZoneDistributionConfig()
-    {
-        unset($this->zone_distribution_config);
-    }
-
-    /**
-     * Optional. This config will be used to determine how the customer wants us
-     * to distribute cluster resources within the region.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.ZoneDistributionConfig zone_distribution_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Redis\Cluster\V1\ZoneDistributionConfig $var
-     * @return $this
-     */
-    public function setZoneDistributionConfig($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Redis\Cluster\V1\ZoneDistributionConfig::class);
-        $this->zone_distribution_config = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The delete operation will fail when the value is set to true.
-     *
-     * Generated from protobuf field <code>optional bool deletion_protection_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return bool
-     */
-    public function getDeletionProtectionEnabled()
-    {
-        return isset($this->deletion_protection_enabled) ? $this->deletion_protection_enabled : false;
-    }
-
-    public function hasDeletionProtectionEnabled()
-    {
-        return isset($this->deletion_protection_enabled);
-    }
-
-    public function clearDeletionProtectionEnabled()
-    {
-        unset($this->deletion_protection_enabled);
-    }
-
-    /**
-     * Optional. The delete operation will fail when the value is set to true.
-     *
-     * Generated from protobuf field <code>optional bool deletion_protection_enabled = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setDeletionProtectionEnabled($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->deletion_protection_enabled = $var;
 
         return $this;
     }

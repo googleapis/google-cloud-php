@@ -84,17 +84,6 @@ return [
                     ],
                 ],
             ],
-            'GetClusterCertificateAuthority' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/certificateAuthority}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListClusters' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',

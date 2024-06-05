@@ -93,18 +93,6 @@ return [
                     ],
                 ],
             ],
-            'GetClusterCertificateAuthority' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Redis\Cluster\V1\CertificateAuthority',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListClusters' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -160,7 +148,6 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
-                'certificateAuthority' => 'projects/{project}/locations/{location}/clusters/{cluster}/certificateAuthority',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'location' => 'projects/{project}/locations/{location}',
             ],

@@ -37,11 +37,9 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\Redis\Cluster\V1\CertificateAuthority;
 use Google\Cloud\Redis\Cluster\V1\Cluster;
 use Google\Cloud\Redis\Cluster\V1\CreateClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\DeleteClusterRequest;
-use Google\Cloud\Redis\Cluster\V1\GetClusterCertificateAuthorityRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersRequest;
 use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
@@ -84,7 +82,6 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @method PromiseInterface createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface deleteClusterAsync(DeleteClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
- * @method PromiseInterface getClusterCertificateAuthorityAsync(GetClusterCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface updateClusterAsync(UpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
@@ -189,25 +186,6 @@ final class CloudRedisClusterClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a
-     * certificate_authority resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $cluster
-     *
-     * @return string The formatted certificate_authority resource.
-     */
-    public static function certificateAuthorityName(string $project, string $location, string $cluster): string
-    {
-        return self::getPathTemplate('certificateAuthority')->render([
-            'project' => $project,
-            'location' => $location,
-            'cluster' => $cluster,
-        ]);
-    }
-
-    /**
      * Formats a string containing the fully-qualified path to represent a cluster
      * resource.
      *
@@ -247,7 +225,6 @@ final class CloudRedisClusterClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - certificateAuthority: projects/{project}/locations/{location}/clusters/{cluster}/certificateAuthority
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - location: projects/{project}/locations/{location}
      *
@@ -425,35 +402,6 @@ final class CloudRedisClusterClient
     public function getCluster(GetClusterRequest $request, array $callOptions = []): Cluster
     {
         return $this->startApiCall('GetCluster', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets the details of certificate authority information for Redis cluster.
-     *
-     * The async variant is
-     * {@see CloudRedisClusterClient::getClusterCertificateAuthorityAsync()} .
-     *
-     * @example samples/V1/CloudRedisClusterClient/get_cluster_certificate_authority.php
-     *
-     * @param GetClusterCertificateAuthorityRequest $request     A request to house fields associated with the call.
-     * @param array                                 $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return CertificateAuthority
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getClusterCertificateAuthority(
-        GetClusterCertificateAuthorityRequest $request,
-        array $callOptions = []
-    ): CertificateAuthority {
-        return $this->startApiCall('GetClusterCertificateAuthority', $request, $callOptions)->wait();
     }
 
     /**
