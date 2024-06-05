@@ -34,6 +34,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
@@ -403,7 +404,7 @@ class Instance
             'createInstance',
             $data,
             $optionalArgs,
-            GetInstanceRequest::class,
+            CreateInstanceRequest::class,
             $this->name
         );
 

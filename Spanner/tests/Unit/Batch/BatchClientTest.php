@@ -32,7 +32,6 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
@@ -47,7 +46,6 @@ class BatchClientTest extends TestCase
     use OperationRefreshTrait;
     use ProphecyTrait;
     use RequestHandlingTestTrait;
-    use StubCreationTrait;
     use TimeTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
@@ -56,12 +54,10 @@ class BatchClientTest extends TestCase
 
     private $requestHandler;
     private $serializer;
-    private $connection;
     private $client;
 
     public function setUp(): void
     {
-        $this->connection = $this->getConnStub();
         $this->requestHandler = $this->getRequestHandlerStub();
         $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(BatchClient::class, [

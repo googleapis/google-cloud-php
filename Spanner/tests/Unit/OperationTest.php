@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\Database;
@@ -32,16 +31,10 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\CommitResponse;
-use Google\Cloud\Spanner\V1\OperationClient;
-use Google\Cloud\Spanner\V1\ReadRequest;
-use Google\Cloud\Spanner\V1\ReadResponse;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
@@ -52,7 +45,6 @@ class OperationTest extends TestCase
     use GrpcTestTrait;
     use ProphecyTrait;
     use RequestHandlingTestTrait;
-    use StubCreationTrait;
 
     const SESSION = 'my-session-id';
     const TRANSACTION = 'my-transaction-id';
@@ -60,7 +52,6 @@ class OperationTest extends TestCase
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
-    private $connection;
     private $operation;
     private $session;
     private $requestHandler;

@@ -248,9 +248,7 @@ class Backup
             'parent' => $newBackup->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($newBackup->name)['backup'],
             'sourceBackup' => $this->fullyQualifiedBackupName($this->name),
-            'expireTime' => new Timestamp(
-                $this->formatTimestampForApi($expireTime->format('Y-m-d\TH:i:s.u\Z'))
-            )
+            'expireTime' => $this->formatTimestampForApi($expireTime->format('Y-m-d\TH:i:s.u\Z'))
         ];
 
         $res = $this->createAndSendRequest(

@@ -30,7 +30,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -53,7 +52,6 @@ class TransactionTest extends TestCase
     use ProphecyTrait;
     use RequestHandlingTestTrait;
     use ResultGeneratorTrait;
-    use StubCreationTrait;
     use TimeTrait;
 
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
@@ -66,7 +64,6 @@ class TransactionTest extends TestCase
     const TRANSACTION_TAG = 'my-transaction-tag';
     const REQUEST_TAG = 'my-request-tag';
 
-    private $connection;
     private $instance;
     private $session;
     private $database;
@@ -82,7 +79,6 @@ class TransactionTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
         $this->requestHandler = $this->getRequestHandlerStub();
         $this->serializer = $this->getSerializer();
         $this->operation = new Operation(

@@ -44,7 +44,6 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -59,7 +58,6 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\LongRunning\Client\OperationsClient;
 
 /**
  * @group spanner
@@ -72,7 +70,6 @@ class DatabaseTest extends TestCase
     use ProphecyTrait;
     use RequestHandlingTestTrait;
     use ResultGeneratorTrait;
-    use StubCreationTrait;
 
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';

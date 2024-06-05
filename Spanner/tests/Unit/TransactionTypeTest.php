@@ -19,13 +19,11 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
@@ -33,14 +31,12 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Snapshot;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
-use Google\Cloud\Spanner\V1\CreateSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\RollbackRequest;
@@ -64,7 +60,6 @@ class TransactionTypeTest extends TestCase
     use ProphecyTrait;
     use ResultTestTrait;
     use RequestHandlingTestTrait;
-    use StubCreationTrait;
     use TimeTrait;
 
     const PROJECT = 'my-project';
@@ -73,7 +68,6 @@ class TransactionTypeTest extends TestCase
     const TRANSACTION = 'my-transaction';
     const SESSION = 'my-session';
 
-    private $connection;
     private $requestHandler;
     private $serializer;
     private $timestamp;
@@ -84,7 +78,6 @@ class TransactionTypeTest extends TestCase
 
         $this->timestamp = (new Timestamp(\DateTime::createFromFormat('U', time()), 500000005))->formatAsString();
 
-        $this->connection = $this->getConnStub();
         $this->requestHandler = $this->getRequestHandlerStub();
         $this->serializer = $this->getSerializer();
         $this->mockSendRequest(
