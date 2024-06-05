@@ -25,6 +25,11 @@
                                 "getCluster"
                             ]
                         },
+                        "GetClusterCertificateAuthority": {
+                            "methods": [
+                                "getClusterCertificateAuthority"
+                            ]
+                        },
                         "ListClusters": {
                             "methods": [
                                 "listClusters"
