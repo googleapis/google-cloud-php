@@ -690,7 +690,7 @@ class SpannerClient
     public function instances(array $options = [])
     {
         list($data, $optionalArgs) = $this->splitOptionalArgs($options);
-        $data += ['filter' => null, 'parent' => InstanceAdminClient::projectName($this->projectId)];
+        $data += ['filter' => '', 'parent' => InstanceAdminClient::projectName($this->projectId)];
 
         $resultLimit = $this->pluck('resultLimit', $data, false);
         return new ItemIterator(

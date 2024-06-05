@@ -967,7 +967,7 @@ class Instance
             'name' => $this->name,
             'displayName' => InstanceAdminClient::parseName($this->name)['instance'],
             'labels' => [],
-            'config' => $config ? $config->name() : null
+            'config' => $config ? $config->name() : ''
         ];
     }
 }
