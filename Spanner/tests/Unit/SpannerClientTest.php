@@ -266,7 +266,10 @@ class SpannerClientTest extends TestCase
                     return false;
                 }
     
-                if ($message['instance']['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) {
+                if ($message['instance']['config'] !== InstanceAdminClient::instanceConfigName(
+                    self::PROJECT,
+                    self::CONFIG
+                )) {
                     return false;
                 }
 
@@ -298,15 +301,21 @@ class SpannerClientTest extends TestCase
             'createInstance',
             function ($args) {
                 $message = $this->serializer->encodeMessage($args);
-                if ($message['instance']['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
+                if ($message['instance']['name'] !== InstanceAdminClient::instanceName(
+                    self::PROJECT,
+                    self::INSTANCE
+                )) {
                     return false;
                 }
-    
-                if ($message['instance']['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) {
+                if ($message['instance']['config'] !== InstanceAdminClient::instanceConfigName(
+                    self::PROJECT,
+                    self::CONFIG
+                )) {
                     return false;
                 }
 
-                return isset($message['instance']['processingUnits']) && $message['instance']['processingUnits'] === 2000;
+                return isset($message['instance']['processingUnits'])
+                    && $message['instance']['processingUnits'] === 2000;
             },
             $this->getOperationResponseMock()
         );

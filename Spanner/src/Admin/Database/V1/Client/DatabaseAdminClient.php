@@ -382,11 +382,7 @@ final class DatabaseAdminClient
         $options = $options + $this->getDefaultEmulatorConfig();
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        // TODO: [Remove this] Added this here for demonstrating the
-        // generated code changes for V2 OperationsClient usage.
-        $this->operationsClient = $this->createOperationsClient(
-            $clientOptions + ['operationsClientClass' => OperationsClient::class]
-        );
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /** Handles execution of the async variants for each documented method. */
