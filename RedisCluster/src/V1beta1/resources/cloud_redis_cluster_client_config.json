@@ -1,6 +1,6 @@
 {
     "interfaces": {
-        "google.cloud.redis.cluster.v1.CloudRedisCluster": {
+        "google.cloud.redis.cluster.v1beta1.CloudRedisCluster": {
             "retry_codes": {
                 "no_retry_codes": [],
                 "no_retry_1_codes": []
@@ -37,11 +37,6 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "GetCluster": {
-                    "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
-                "GetClusterCertificateAuthority": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

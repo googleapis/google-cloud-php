@@ -2,8 +2,8 @@
     "schema": "1.0",
     "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
     "language": "php",
-    "protoPackage": "google.cloud.redis.cluster.v1",
-    "libraryPackage": "Google\\Cloud\\Redis\\Cluster\\V1",
+    "protoPackage": "google.cloud.redis.cluster.v1beta1",
+    "libraryPackage": "Google\\Cloud\\Redis\\Cluster\\V1beta1",
     "services": {
         "CloudRedisCluster": {
             "clients": {
@@ -23,11 +23,6 @@
                         "GetCluster": {
                             "methods": [
                                 "getCluster"
-                            ]
-                        },
-                        "GetClusterCertificateAuthority": {
-                            "methods": [
-                                "getClusterCertificateAuthority"
                             ]
                         },
                         "ListClusters": {

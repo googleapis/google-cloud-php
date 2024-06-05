@@ -22,10 +22,10 @@
 
 return [
     'interfaces' => [
-        'google.cloud.redis.cluster.v1.CloudRedisCluster' => [
+        'google.cloud.redis.cluster.v1beta1.CloudRedisCluster' => [
             'CreateCluster' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1\Cluster',
+                    'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1beta1\Cluster',
                     'metadataReturnType' => '\Google\Protobuf\Any',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -63,7 +63,7 @@ return [
             ],
             'UpdateCluster' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1\Cluster',
+                    'operationReturnType' => '\Google\Cloud\Redis\Cluster\V1beta1\Cluster',
                     'metadataReturnType' => '\Google\Protobuf\Any',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -83,19 +83,7 @@ return [
             ],
             'GetCluster' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Redis\Cluster\V1\Cluster',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetClusterCertificateAuthority' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Redis\Cluster\V1\CertificateAuthority',
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1beta1\Cluster',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -115,7 +103,7 @@ return [
                     'resourcesGetMethod' => 'getClusters',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Redis\Cluster\V1\ListClustersResponse',
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1beta1\ListClustersResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -160,7 +148,6 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
-                'certificateAuthority' => 'projects/{project}/locations/{location}/clusters/{cluster}/certificateAuthority',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'location' => 'projects/{project}/locations/{location}',
             ],
