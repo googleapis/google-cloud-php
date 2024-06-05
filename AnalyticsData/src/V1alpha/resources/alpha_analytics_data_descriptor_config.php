@@ -42,6 +42,25 @@ return [
                     ],
                 ],
             ],
+            'CreateReportTask' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Analytics\Data\V1alpha\ReportTask',
+                    'metadataReturnType' => '\Google\Analytics\Data\V1alpha\ReportTaskMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRecurringAudienceList' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Data\V1alpha\RecurringAudienceList',
@@ -69,6 +88,18 @@ return [
             'GetRecurringAudienceList' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Data\V1alpha\RecurringAudienceList',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReportTask' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Data\V1alpha\ReportTask',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -118,9 +149,41 @@ return [
                     ],
                 ],
             ],
+            'ListReportTasks' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getReportTasks',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Analytics\Data\V1alpha\ListReportTasksResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'QueryAudienceList' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Data\V1alpha\QueryAudienceListResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryReportTask' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Data\V1alpha\QueryReportTaskResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -158,6 +221,7 @@ return [
                 'audienceList' => 'properties/{property}/audienceLists/{audience_list}',
                 'property' => 'properties/{property}',
                 'recurringAudienceList' => 'properties/{property}/recurringAudienceLists/{recurring_audience_list}',
+                'reportTask' => 'properties/{property}/reportTasks/{report_task}',
             ],
         ],
     ],

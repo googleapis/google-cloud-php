@@ -17,7 +17,7 @@ class Answer extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Fully qualified name
-     * `project/&#42;&#47;locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -92,7 +92,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. Fully qualified name
-     *           `project/&#42;&#47;locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
+     *           `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
      *     @type int $state
      *           The state of the answer generation.
      *     @type string $answer_text
@@ -123,7 +123,7 @@ class Answer extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `project/&#42;&#47;locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -135,7 +135,7 @@ class Answer extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `project/&#42;&#47;locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

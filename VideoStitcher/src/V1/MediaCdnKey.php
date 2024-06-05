@@ -27,6 +27,13 @@ class MediaCdnKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string key_name = 2;</code>
      */
     private $key_name = '';
+    /**
+     * Optional. If set, the URL will be signed using the Media CDN token.
+     * Otherwise, the URL would be signed using the standard Media CDN signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.MediaCdnKey.TokenConfig token_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $token_config = null;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class MediaCdnKey extends \Google\Protobuf\Internal\Message
      *           Input only. 64-byte ed25519 private key for this Media CDN key.
      *     @type string $key_name
      *           The keyset name of the Media CDN key.
+     *     @type \Google\Cloud\Video\Stitcher\V1\MediaCdnKey\TokenConfig $token_config
+     *           Optional. If set, the URL will be signed using the Media CDN token.
+     *           Otherwise, the URL would be signed using the standard Media CDN signature.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,44 @@ class MediaCdnKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set, the URL will be signed using the Media CDN token.
+     * Otherwise, the URL would be signed using the standard Media CDN signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.MediaCdnKey.TokenConfig token_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Video\Stitcher\V1\MediaCdnKey\TokenConfig|null
+     */
+    public function getTokenConfig()
+    {
+        return $this->token_config;
+    }
+
+    public function hasTokenConfig()
+    {
+        return isset($this->token_config);
+    }
+
+    public function clearTokenConfig()
+    {
+        unset($this->token_config);
+    }
+
+    /**
+     * Optional. If set, the URL will be signed using the Media CDN token.
+     * Otherwise, the URL would be signed using the standard Media CDN signature.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.MediaCdnKey.TokenConfig token_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Video\Stitcher\V1\MediaCdnKey\TokenConfig $var
+     * @return $this
+     */
+    public function setTokenConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\MediaCdnKey\TokenConfig::class);
+        $this->token_config = $var;
 
         return $this;
     }

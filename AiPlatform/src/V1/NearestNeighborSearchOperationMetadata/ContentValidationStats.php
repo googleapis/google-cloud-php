@@ -39,6 +39,18 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.RecordError partial_errors = 4;</code>
      */
     private $partial_errors;
+    /**
+     * Number of sparse records in this file that were successfully processed.
+     *
+     * Generated from protobuf field <code>int64 valid_sparse_record_count = 5;</code>
+     */
+    private $valid_sparse_record_count = 0;
+    /**
+     * Number of sparse records in this file we skipped due to validate errors.
+     *
+     * Generated from protobuf field <code>int64 invalid_sparse_record_count = 6;</code>
+     */
+    private $invalid_sparse_record_count = 0;
 
     /**
      * Constructor.
@@ -56,6 +68,10 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      *           The detail information of the partial failures encountered for those
      *           invalid records that couldn't be parsed.
      *           Up to 50 partial errors will be reported.
+     *     @type int|string $valid_sparse_record_count
+     *           Number of sparse records in this file that were successfully processed.
+     *     @type int|string $invalid_sparse_record_count
+     *           Number of sparse records in this file we skipped due to validate errors.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,6 +183,58 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError::class);
         $this->partial_errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Number of sparse records in this file that were successfully processed.
+     *
+     * Generated from protobuf field <code>int64 valid_sparse_record_count = 5;</code>
+     * @return int|string
+     */
+    public function getValidSparseRecordCount()
+    {
+        return $this->valid_sparse_record_count;
+    }
+
+    /**
+     * Number of sparse records in this file that were successfully processed.
+     *
+     * Generated from protobuf field <code>int64 valid_sparse_record_count = 5;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setValidSparseRecordCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->valid_sparse_record_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of sparse records in this file we skipped due to validate errors.
+     *
+     * Generated from protobuf field <code>int64 invalid_sparse_record_count = 6;</code>
+     * @return int|string
+     */
+    public function getInvalidSparseRecordCount()
+    {
+        return $this->invalid_sparse_record_count;
+    }
+
+    /**
+     * Number of sparse records in this file we skipped due to validate errors.
+     *
+     * Generated from protobuf field <code>int64 invalid_sparse_record_count = 6;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setInvalidSparseRecordCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->invalid_sparse_record_count = $var;
 
         return $this;
     }

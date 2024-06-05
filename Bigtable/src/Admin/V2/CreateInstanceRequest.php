@@ -21,7 +21,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The ID to be used when referring to the new instance within its
      * project, e.g., just `myinstance` rather than
@@ -29,14 +29,14 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_id = '';
+    protected $instance_id = '';
     /**
      * Required. The instance to create.
      * Fields marked `OutputOnly` must be left blank.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * Required. The clusters to be created within the instance, mapped by desired
      * cluster ID, e.g., just `mycluster` rather than

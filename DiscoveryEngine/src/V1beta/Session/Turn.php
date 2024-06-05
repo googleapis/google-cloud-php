@@ -24,6 +24,8 @@ class Turn extends \Google\Protobuf\Internal\Message
     protected $query = null;
     /**
      * The resource name of the answer to the user query.
+     * Only set if the answer generation (/answer API call) happened in this
+     * turn.
      *
      * Generated from protobuf field <code>string answer = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -39,6 +41,8 @@ class Turn extends \Google\Protobuf\Internal\Message
      *           The user query.
      *     @type string $answer
      *           The resource name of the answer to the user query.
+     *           Only set if the answer generation (/answer API call) happened in this
+     *           turn.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,6 +88,8 @@ class Turn extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the answer to the user query.
+     * Only set if the answer generation (/answer API call) happened in this
+     * turn.
      *
      * Generated from protobuf field <code>string answer = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -95,6 +101,8 @@ class Turn extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the answer to the user query.
+     * Only set if the answer generation (/answer API call) happened in this
+     * turn.
      *
      * Generated from protobuf field <code>string answer = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var

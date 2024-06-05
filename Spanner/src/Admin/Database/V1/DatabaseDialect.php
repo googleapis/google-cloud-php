@@ -21,7 +21,7 @@ class DatabaseDialect
      */
     const DATABASE_DIALECT_UNSPECIFIED = 0;
     /**
-     * Google standard SQL.
+     * GoogleSQL supported SQL.
      *
      * Generated from protobuf enum <code>GOOGLE_STANDARD_SQL = 1;</code>
      */

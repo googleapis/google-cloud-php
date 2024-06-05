@@ -201,6 +201,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateNotebookRuntimeTemplate' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate',
+                'headerParams' => [
+                    [
+                        'keyName' => 'notebook_runtime_template.name',
+                        'fieldAccessors' => [
+                            'getNotebookRuntimeTemplate',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',

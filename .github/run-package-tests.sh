@@ -45,11 +45,11 @@ FAILED_FILE=$(mktemp -d)/failed
 for DIR in ${DIRS}; do {
     cp ${DIR}/composer.json ${DIR}/composer-local.json
     # Update composer to use local packages
-    for i in BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos; do
+    for i in BigQuery,cloud-bigquery Core,cloud-core Logging,cloud-logging PubSub,cloud-pubsub Storage,cloud-storage ShoppingCommonProtos,shopping-common-protos GeoCommonProtos,geo-common-protos,0.1; do
         IFS=","; set -- $i;
         if grep -q "\"google/$2\":" ${DIR}/composer.json; then
             # determine local package version
-            if [ "$STRICT" = "true" ]; then VERSION=$(cat $1/VERSION); else VERSION="1.100"; fi
+            if [ "$STRICT" = "true" ]; then VERSION=$(cat $1/VERSION); elif [ -z "$3" ]; then VERSION="1.100"; else VERSION=$3; fi
             echo "Use local package $1 as google/$2:$VERSION in $DIR"
             # "canonical: false" ensures composer will try to install from packagist when the "--prefer-lowest" flag is set.
             composer config repositories.$2 -d ${DIR} "{\"type\": \"path\", \"url\": \"../$1\", \"options\":{\"versions\":{\"google/$2\":\"$VERSION\"}},\"canonical\":false}"

@@ -22,7 +22,7 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $table_name = '';
+    protected $table_name = '';
     /**
      * Optional. The unique name of the AuthorizedView from which to sample row
      * keys.
@@ -31,14 +31,14 @@ class SampleRowKeysRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorized_view_name = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $authorized_view_name = '';
+    protected $authorized_view_name = '';
     /**
      * This value specifies routing for replication. If not specified, the
      * "default" application profile will be used.
      *
      * Generated from protobuf field <code>string app_profile_id = 2;</code>
      */
-    private $app_profile_id = '';
+    protected $app_profile_id = '';
 
     /**
      * @param string $tableName Optional. The unique name of the table from which to sample row keys.

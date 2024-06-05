@@ -20,10 +20,13 @@ class EncryptionType
      */
     const ENCRYPTION_TYPE_UNSPECIFIED = 0;
     /**
-     * This is the default option for [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup]
-     * when [encryption_config][google.spanner.admin.database.v1.CopyBackupEncryptionConfig] is not specified.
-     * For example, if the source backup is using `Customer_Managed_Encryption`,
-     * the backup will be using the same Cloud KMS key as the source backup.
+     * This is the default option for
+     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup]
+     * when
+     * [encryption_config][google.spanner.admin.database.v1.CopyBackupEncryptionConfig]
+     * is not specified. For example, if the source backup is using
+     * `Customer_Managed_Encryption`, the backup will be using the same Cloud
+     * KMS key as the source backup.
      *
      * Generated from protobuf enum <code>USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION = 1;</code>
      */
@@ -35,8 +38,8 @@ class EncryptionType
      */
     const GOOGLE_DEFAULT_ENCRYPTION = 2;
     /**
-     * Use customer managed encryption. If specified, `kms_key_name`
-     * must contain a valid Cloud KMS key.
+     * Use customer managed encryption. If specified, either `kms_key_name` or
+     * `kms_key_names` must contain valid Cloud KMS key(s).
      *
      * Generated from protobuf enum <code>CUSTOMER_MANAGED_ENCRYPTION = 3;</code>
      */

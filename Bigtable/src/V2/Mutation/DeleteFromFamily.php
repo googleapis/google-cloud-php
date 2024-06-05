@@ -21,7 +21,7 @@ class DeleteFromFamily extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string family_name = 1;</code>
      */
-    private $family_name = '';
+    protected $family_name = '';
 
     /**
      * Constructor.

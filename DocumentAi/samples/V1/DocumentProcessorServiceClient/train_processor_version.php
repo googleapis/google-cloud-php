@@ -36,8 +36,9 @@ use Google\Rpc\Status;
  * Operation metadata is returned as
  * [TrainProcessorVersionMetadata][google.cloud.documentai.v1.TrainProcessorVersionMetadata].
  *
- * @param string $formattedParent The parent (project, location and processor) to create the new version for.
- *                                Format: `projects/{project}/locations/{location}/processors/{processor}`. Please see
+ * @param string $formattedParent The parent (project, location and processor) to create the new
+ *                                version for. Format:
+ *                                `projects/{project}/locations/{location}/processors/{processor}`. Please see
  *                                {@see DocumentProcessorServiceClient::processorName()} for help formatting this field.
  */
 function train_processor_version_sample(string $formattedParent): void

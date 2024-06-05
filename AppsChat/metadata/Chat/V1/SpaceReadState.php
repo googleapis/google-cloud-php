@@ -20,7 +20,7 @@ class SpaceReadState
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-è
+ö
 %google/chat/v1/space_read_state.protogoogle.chat.v1google/api/resource.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"¼
 SpaceReadState
 name (	7
@@ -31,8 +31,8 @@ class SpaceReadState
 "chat.googleapis.com/SpaceReadState"’
 UpdateSpaceReadStateRequest=
 space_read_state (2.google.chat.v1.SpaceReadStateBàA4
-update_mask (2.google.protobuf.FieldMaskBàABž
-com.google.chat.v1BSpaceReadStateProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpbªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
+update_mask (2.google.protobuf.FieldMaskBàAB¬
+com.google.chat.v1BSpaceReadStateProtoPZ,cloud.google.com/go/chat/apiv1/chatpb;chatpb¢DYNAPIProtoªGoogle.Apps.Chat.V1ÊGoogle\\Apps\\Chat\\V1êGoogle::Apps::Chat::V1bproto3'
         , true);
 
         static::$is_initialized = true;

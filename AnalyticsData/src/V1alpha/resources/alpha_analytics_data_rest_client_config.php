@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'CreateReportTask' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/reportTasks',
+                'body' => 'report_task',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetAudienceList' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/audienceLists/*}',
@@ -61,6 +73,17 @@ return [
             'GetRecurringAudienceList' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/recurringAudienceLists/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReportTask' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/reportTasks/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -91,9 +114,32 @@ return [
                     ],
                 ],
             ],
+            'ListReportTasks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/reportTasks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'QueryAudienceList' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{name=properties/*/audienceLists/*}:query',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryReportTask' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/reportTasks/*}:query',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

@@ -37,6 +37,13 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool scheduled_backup_enabled = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scheduled_backup_enabled = null;
+    /**
+     * Output only. Total size of all backups in a chain in bytes = baseline
+     * backup size + sum(incremental backup size).
+     *
+     * Generated from protobuf field <code>optional int64 backup_chain_bytes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $backup_chain_bytes = null;
 
     /**
      * Constructor.
@@ -54,6 +61,9 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $scheduled_backup_enabled
      *           Optional. When set to true, scheduled backup is enabled on the volume.
      *           This field should be nil when there's no backup policy attached.
+     *     @type int|string $backup_chain_bytes
+     *           Output only. Total size of all backups in a chain in bytes = baseline
+     *           backup size + sum(incremental backup size).
      * }
      */
     public function __construct($data = NULL) {
@@ -153,6 +163,44 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->scheduled_backup_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total size of all backups in a chain in bytes = baseline
+     * backup size + sum(incremental backup size).
+     *
+     * Generated from protobuf field <code>optional int64 backup_chain_bytes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getBackupChainBytes()
+    {
+        return isset($this->backup_chain_bytes) ? $this->backup_chain_bytes : 0;
+    }
+
+    public function hasBackupChainBytes()
+    {
+        return isset($this->backup_chain_bytes);
+    }
+
+    public function clearBackupChainBytes()
+    {
+        unset($this->backup_chain_bytes);
+    }
+
+    /**
+     * Output only. Total size of all backups in a chain in bytes = baseline
+     * backup size + sum(incremental backup size).
+     *
+     * Generated from protobuf field <code>optional int64 backup_chain_bytes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setBackupChainBytes($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->backup_chain_bytes = $var;
 
         return $this;
     }

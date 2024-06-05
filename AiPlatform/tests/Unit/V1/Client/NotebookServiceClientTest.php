@@ -42,6 +42,7 @@ use Google\Cloud\AIPlatform\V1\NotebookRuntime;
 use Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeResponse;
+use Google\Cloud\AIPlatform\V1\UpdateNotebookRuntimeTemplateRequest;
 use Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeRequest;
 use Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeResponse;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -56,6 +57,7 @@ use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -117,6 +119,8 @@ class NotebookServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $isUpgradable = true;
         $version = 'version351608024';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new NotebookRuntime();
         $expectedResponse->setName($name);
         $expectedResponse->setRuntimeUser($runtimeUser);
@@ -126,6 +130,8 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setIsUpgradable($isUpgradable);
         $expectedResponse->setVersion($version);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -647,6 +653,8 @@ class NotebookServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $isUpgradable = true;
         $version = 'version351608024';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new NotebookRuntime();
         $expectedResponse->setName($name2);
         $expectedResponse->setRuntimeUser($runtimeUser);
@@ -656,6 +664,8 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setIsUpgradable($isUpgradable);
         $expectedResponse->setVersion($version);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->notebookRuntimeName('[PROJECT]', '[LOCATION]', '[NOTEBOOK_RUNTIME]');
@@ -1045,6 +1055,90 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateNotebookRuntimeTemplateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $isDefault = true;
+        $serviceAccount = 'serviceAccount-1948028253';
+        $etag = 'etag3123477';
+        $expectedResponse = new NotebookRuntimeTemplate();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setIsDefault($isDefault);
+        $expectedResponse->setServiceAccount($serviceAccount);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $notebookRuntimeTemplate = new NotebookRuntimeTemplate();
+        $notebookRuntimeTemplateDisplayName = 'notebookRuntimeTemplateDisplayName-1609642794';
+        $notebookRuntimeTemplate->setDisplayName($notebookRuntimeTemplateDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateNotebookRuntimeTemplateRequest())
+            ->setNotebookRuntimeTemplate($notebookRuntimeTemplate)
+            ->setUpdateMask($updateMask);
+        $response = $gapicClient->updateNotebookRuntimeTemplate($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.NotebookService/UpdateNotebookRuntimeTemplate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getNotebookRuntimeTemplate();
+        $this->assertProtobufEquals($notebookRuntimeTemplate, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateNotebookRuntimeTemplateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $notebookRuntimeTemplate = new NotebookRuntimeTemplate();
+        $notebookRuntimeTemplateDisplayName = 'notebookRuntimeTemplateDisplayName-1609642794';
+        $notebookRuntimeTemplate->setDisplayName($notebookRuntimeTemplateDisplayName);
+        $updateMask = new FieldMask();
+        $request = (new UpdateNotebookRuntimeTemplateRequest())
+            ->setNotebookRuntimeTemplate($notebookRuntimeTemplate)
+            ->setUpdateMask($updateMask);
+        try {
+            $gapicClient->updateNotebookRuntimeTemplate($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1527,6 +1621,8 @@ class NotebookServiceClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $isUpgradable = true;
         $version = 'version351608024';
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
         $expectedResponse = new NotebookRuntime();
         $expectedResponse->setName($name);
         $expectedResponse->setRuntimeUser($runtimeUser);
@@ -1536,6 +1632,8 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setIsUpgradable($isUpgradable);
         $expectedResponse->setVersion($version);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

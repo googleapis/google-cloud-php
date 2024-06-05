@@ -33,7 +33,7 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
     protected $schema = null;
     /**
      * Required. The ID to use for the
-     * [Schema][google.cloud.discoveryengine.v1beta.Schema], which will become the
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema], which becomes the
      * final component of the
      * [Schema.name][google.cloud.discoveryengine.v1beta.Schema.name].
      * This field should conform to
@@ -51,7 +51,7 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
      * @param \Google\Cloud\DiscoveryEngine\V1beta\Schema $schema   Required. The [Schema][google.cloud.discoveryengine.v1beta.Schema] to
      *                                                              create.
      * @param string                                      $schemaId Required. The ID to use for the
-     *                                                              [Schema][google.cloud.discoveryengine.v1beta.Schema], which will become the
+     *                                                              [Schema][google.cloud.discoveryengine.v1beta.Schema], which becomes the
      *                                                              final component of the
      *                                                              [Schema.name][google.cloud.discoveryengine.v1beta.Schema.name].
      *
@@ -85,7 +85,7 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
      *           create.
      *     @type string $schema_id
      *           Required. The ID to use for the
-     *           [Schema][google.cloud.discoveryengine.v1beta.Schema], which will become the
+     *           [Schema][google.cloud.discoveryengine.v1beta.Schema], which becomes the
      *           final component of the
      *           [Schema.name][google.cloud.discoveryengine.v1beta.Schema.name].
      *           This field should conform to
@@ -166,7 +166,7 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID to use for the
-     * [Schema][google.cloud.discoveryengine.v1beta.Schema], which will become the
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema], which becomes the
      * final component of the
      * [Schema.name][google.cloud.discoveryengine.v1beta.Schema.name].
      * This field should conform to
@@ -183,7 +183,7 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID to use for the
-     * [Schema][google.cloud.discoveryengine.v1beta.Schema], which will become the
+     * [Schema][google.cloud.discoveryengine.v1beta.Schema], which becomes the
      * final component of the
      * [Schema.name][google.cloud.discoveryengine.v1beta.Schema.name].
      * This field should conform to

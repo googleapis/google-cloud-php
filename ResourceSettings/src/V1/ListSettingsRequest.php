@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Cloud resource that parents the setting. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that parents the setting. Must be in one of
+     * the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
@@ -46,8 +46,8 @@ class ListSettingsRequest extends \Google\Protobuf\Internal\Message
     private $view = 0;
 
     /**
-     * @param string $parent Required. The Cloud resource that parents the setting. Must be in one of the
-     *                       following forms:
+     * @param string $parent Required. The Cloud resource that parents the setting. Must be in one of
+     *                       the following forms:
      *
      *                       * `projects/{project_number}`
      *                       * `projects/{project_id}`
@@ -71,8 +71,8 @@ class ListSettingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The Cloud resource that parents the setting. Must be in one of the
-     *           following forms:
+     *           Required. The Cloud resource that parents the setting. Must be in one of
+     *           the following forms:
      *           * `projects/{project_number}`
      *           * `projects/{project_id}`
      *           * `folders/{folder_id}`
@@ -91,8 +91,8 @@ class ListSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud resource that parents the setting. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that parents the setting. Must be in one of
+     * the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`
@@ -107,8 +107,8 @@ class ListSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud resource that parents the setting. Must be in one of the
-     * following forms:
+     * Required. The Cloud resource that parents the setting. Must be in one of
+     * the following forms:
      * * `projects/{project_number}`
      * * `projects/{project_id}`
      * * `folders/{folder_id}`

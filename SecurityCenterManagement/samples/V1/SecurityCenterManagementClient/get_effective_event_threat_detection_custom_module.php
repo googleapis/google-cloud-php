@@ -41,9 +41,9 @@ use Google\Cloud\SecurityCenterManagement\V1\GetEffectiveEventThreatDetectionCus
  *
  *                              Its format is:
  *
- *                              * "organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
- *                              * "folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}".
- *                              * "projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}". Please see
+ *                              * `organizations/{organization}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+ *                              * `folders/{folder}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`.
+ *                              * `projects/{project}/locations/{location}/effectiveEventThreatDetectionCustomModules/{effective_event_threat_detection_custom_module}`. Please see
  *                              {@see SecurityCenterManagementClient::effectiveEventThreatDetectionCustomModuleName()} for help formatting this field.
  */
 function get_effective_event_threat_detection_custom_module_sample(string $formattedName): void

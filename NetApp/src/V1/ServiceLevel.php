@@ -37,12 +37,19 @@ class ServiceLevel
      * Generated from protobuf enum <code>STANDARD = 3;</code>
      */
     const STANDARD = 3;
+    /**
+     * Flex service level.
+     *
+     * Generated from protobuf enum <code>FLEX = 4;</code>
+     */
+    const FLEX = 4;
 
     private static $valueToName = [
         self::SERVICE_LEVEL_UNSPECIFIED => 'SERVICE_LEVEL_UNSPECIFIED',
         self::PREMIUM => 'PREMIUM',
         self::EXTREME => 'EXTREME',
         self::STANDARD => 'STANDARD',
+        self::FLEX => 'FLEX',
     ];
 
     public static function name($value)

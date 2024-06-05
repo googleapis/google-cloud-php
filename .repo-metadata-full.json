@@ -549,6 +549,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "clouddeploy"
     },
+    "DeveloperConnect": {
+        "language": "php",
+        "distribution_name": "google/cloud-developerconnect",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-developerconnect/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "developerconnect"
+    },
     "Dialogflow": {
         "language": "php",
         "distribution_name": "google/cloud-dialogflow",
@@ -687,6 +695,12 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "gameservices"
     },
+    "GeoCommonProtos": {
+        "distribution_name": "google/geo-common-protos",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/geo-common-protos/latest",
+        "library_type": "CORE"
+    },
     "GkeBackup": {
         "language": "php",
         "distribution_name": "google/cloud-gke-backup",
@@ -824,6 +838,22 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-managed-identities/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "managedidentities"
+    },
+    "MapsFleetEngine": {
+        "language": "php",
+        "distribution_name": "google/maps-fleetengine",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/maps-fleetengine/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "fleetengine"
+    },
+    "MapsFleetEngineDelivery": {
+        "language": "php",
+        "distribution_name": "google/maps-fleetengine-delivery",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/maps-fleetengine-delivery/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "fleetengine"
     },
     "MediaTranslation": {
         "language": "php",

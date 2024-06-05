@@ -7,27 +7,27 @@ namespace Google\Cloud\Sql\V1\SqlInstancesVerifyExternalSyncSettingsRequest;
 use UnexpectedValueException;
 
 /**
- * MigrationType decides if the migration is a physical file based migration
- * or logical migration
+ * MigrationType determines whether the migration is a physical file-based
+ * migration or a logical dump file-based migration.
  *
  * Protobuf type <code>google.cloud.sql.v1.SqlInstancesVerifyExternalSyncSettingsRequest.MigrationType</code>
  */
 class MigrationType
 {
     /**
-     * Default value is logical migration
+     * Default value is a logical dump file-based migration
      *
      * Generated from protobuf enum <code>MIGRATION_TYPE_UNSPECIFIED = 0;</code>
      */
     const MIGRATION_TYPE_UNSPECIFIED = 0;
     /**
-     * Logical Migrations
+     * Logical dump file-based migration
      *
      * Generated from protobuf enum <code>LOGICAL = 1;</code>
      */
     const LOGICAL = 1;
     /**
-     * Physical file based Migrations
+     * Physical file-based migration
      *
      * Generated from protobuf enum <code>PHYSICAL = 2;</code>
      */

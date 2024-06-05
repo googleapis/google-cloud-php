@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2024 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ namespace Google\Cloud\Bigtable\Admin\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -61,7 +61,9 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
+use Grpc\ChannelCredentials;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -182,6 +184,25 @@ final class BigtableInstanceAdminClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**
@@ -377,6 +398,7 @@ final class BigtableInstanceAdminClient
      */
     public function __construct(array $options = [])
     {
+        $options = $this->setDefaultEmulatorConfig($options);
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
@@ -971,5 +993,24 @@ final class BigtableInstanceAdminClient
     public function updateInstance(Instance $request, array $callOptions = []): Instance
     {
         return $this->startApiCall('UpdateInstance', $request, $callOptions)->wait();
+    }
+
+    /** Configure the gapic configuration to use a service emulator. */
+    private function setDefaultEmulatorConfig(array $options): array
+    {
+        $emulatorHost = getenv('BIGTABLE_EMULATOR_HOST');
+        if (empty($emulatorHost)) {
+            return $options;
+        }
+
+        if ($scheme = parse_url($emulatorHost, PHP_URL_SCHEME)) {
+            $search = $scheme . '://';
+            $emulatorHost = str_replace($search, '', $emulatorHost);
+        }
+
+        $options['apiEndpoint'] ??= $emulatorHost;
+        $options['transportConfig']['grpc']['stubOpts']['credentials'] ??= ChannelCredentials::createInsecure();
+        $options['credentials'] ??= new InsecureCredentialsWrapper();
+        return $options;
     }
 }

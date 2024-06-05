@@ -152,6 +152,12 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double predicted_conversions_change_fraction = 19;</code>
      */
     protected $predicted_conversions_change_fraction = null;
+    /**
+     * The predicted effectiveness of applying the price suggestion, bucketed.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.PriceInsightsProductView.Effectiveness effectiveness = 22;</code>
+     */
+    protected $effectiveness = 0;
 
     /**
      * Constructor.
@@ -216,6 +222,8 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
      *           Predicted change in conversions as a fraction after introducing the
      *           suggested price compared to current active price. For example, 0.05 is a 5%
      *           predicted increase in conversions).
+     *     @type int $effectiveness
+     *           The predicted effectiveness of applying the price suggestion, bucketed.
      * }
      */
     public function __construct($data = NULL) {
@@ -941,6 +949,32 @@ class PriceInsightsProductView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->predicted_conversions_change_fraction = $var;
+
+        return $this;
+    }
+
+    /**
+     * The predicted effectiveness of applying the price suggestion, bucketed.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.PriceInsightsProductView.Effectiveness effectiveness = 22;</code>
+     * @return int
+     */
+    public function getEffectiveness()
+    {
+        return $this->effectiveness;
+    }
+
+    /**
+     * The predicted effectiveness of applying the price suggestion, bucketed.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.reports.v1beta.PriceInsightsProductView.Effectiveness effectiveness = 22;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEffectiveness($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1beta\PriceInsightsProductView\Effectiveness::class);
+        $this->effectiveness = $var;
 
         return $this;
     }

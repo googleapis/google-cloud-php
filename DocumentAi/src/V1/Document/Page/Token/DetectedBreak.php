@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Detected break at the end of a [Token][google.cloud.documentai.v1.Document.Page.Token].
+ * Detected break at the end of a
+ * [Token][google.cloud.documentai.v1.Document.Page.Token].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.Page.Token.DetectedBreak</code>
  */

@@ -43,8 +43,9 @@ use Google\Apps\Chat\V1\Membership;
  *
  * @param string $formattedName Resource name of the membership to retrieve.
  *
- *                              To get the app's own membership, you can optionally use
- *                              `spaces/{space}/members/app`.
+ *                              To get the app's own membership [by using user
+ *                              authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
+ *                              you can optionally use `spaces/{space}/members/app`.
  *
  *                              Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
  *

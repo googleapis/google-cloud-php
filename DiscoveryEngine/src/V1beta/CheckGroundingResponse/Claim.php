@@ -46,6 +46,19 @@ class Claim extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated int32 citation_indices = 4;</code>
      */
     private $citation_indices;
+    /**
+     * Indicates that this claim required grounding check. When the system
+     * decided this claim doesn't require attribution/grounding check, this
+     * field will be set to false. In that case, no grounding check was done for
+     * the claim and therefore
+     * [citation_indices][google.cloud.discoveryengine.v1beta.CheckGroundingResponse.Claim.citation_indices],
+     * and
+     * [anti_citation_indices][google.cloud.discoveryengine.v1beta.CheckGroundingResponse.Claim.anti_citation_indices]
+     * should not be returned.
+     *
+     * Generated from protobuf field <code>optional bool grounding_check_required = 6;</code>
+     */
+    protected $grounding_check_required = null;
 
     /**
      * Constructor.
@@ -68,6 +81,15 @@ class Claim extends \Google\Protobuf\Internal\Message
      *           cited_chunks[1], cited_chunks[3], cited_chunks[4] are the facts cited
      *           supporting for the claim. A citation to a fact indicates that the claim
      *           is supported by the fact.
+     *     @type bool $grounding_check_required
+     *           Indicates that this claim required grounding check. When the system
+     *           decided this claim doesn't require attribution/grounding check, this
+     *           field will be set to false. In that case, no grounding check was done for
+     *           the claim and therefore
+     *           [citation_indices][google.cloud.discoveryengine.v1beta.CheckGroundingResponse.Claim.citation_indices],
+     *           and
+     *           [anti_citation_indices][google.cloud.discoveryengine.v1beta.CheckGroundingResponse.Claim.anti_citation_indices]
+     *           should not be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,6 +231,56 @@ class Claim extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
         $this->citation_indices = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Indicates that this claim required grounding check. When the system
+     * decided this claim doesn't require attribution/grounding check, this
+     * field will be set to false. In that case, no grounding check was done for
+     * the claim and therefore
+     * [citation_indices][google.cloud.discoveryengine.v1beta.CheckGroundingResponse.Claim.citation_indices],
+     * and
+     * [anti_citation_indices][google.cloud.discoveryengine.v1beta.CheckGroundingResponse.Claim.anti_citation_indices]
+     * should not be returned.
+     *
+     * Generated from protobuf field <code>optional bool grounding_check_required = 6;</code>
+     * @return bool
+     */
+    public function getGroundingCheckRequired()
+    {
+        return isset($this->grounding_check_required) ? $this->grounding_check_required : false;
+    }
+
+    public function hasGroundingCheckRequired()
+    {
+        return isset($this->grounding_check_required);
+    }
+
+    public function clearGroundingCheckRequired()
+    {
+        unset($this->grounding_check_required);
+    }
+
+    /**
+     * Indicates that this claim required grounding check. When the system
+     * decided this claim doesn't require attribution/grounding check, this
+     * field will be set to false. In that case, no grounding check was done for
+     * the claim and therefore
+     * [citation_indices][google.cloud.discoveryengine.v1beta.CheckGroundingResponse.Claim.citation_indices],
+     * and
+     * [anti_citation_indices][google.cloud.discoveryengine.v1beta.CheckGroundingResponse.Claim.anti_citation_indices]
+     * should not be returned.
+     *
+     * Generated from protobuf field <code>optional bool grounding_check_required = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setGroundingCheckRequired($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->grounding_check_required = $var;
 
         return $this;
     }

@@ -20,20 +20,20 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $app_profile = null;
+    protected $app_profile = null;
     /**
      * Required. The subset of app profile fields which should be replaced.
      * If unset, all fields will be replaced.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
     /**
      * If true, ignore safety checks when updating the app profile.
      *
      * Generated from protobuf field <code>bool ignore_warnings = 3;</code>
      */
-    private $ignore_warnings = false;
+    protected $ignore_warnings = false;
 
     /**
      * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile $appProfile Required. The app profile which will (partially) replace the current value.

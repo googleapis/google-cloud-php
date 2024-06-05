@@ -18,8 +18,14 @@ class Export extends \Google\Protobuf\Internal\Message
 {
     /**
      * Store all table and column profiles in an existing table or a new table
-     * in an existing dataset. Each re-generation will result in a new row in
-     * BigQuery.
+     * in an existing dataset. Each re-generation will result in new rows in
+     * BigQuery. Data is inserted using [streaming
+     * insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
+     * and so data may be in the buffer for a period of time after the profile
+     * has finished. The Pub/Sub notification is sent before the streaming
+     * buffer is guaranteed to be written, so data may not be instantly
+     * visible to queries by the time your topic receives the Pub/Sub
+     * notification.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable profile_table = 1;</code>
      */
@@ -33,8 +39,14 @@ class Export extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $profile_table
      *           Store all table and column profiles in an existing table or a new table
-     *           in an existing dataset. Each re-generation will result in a new row in
-     *           BigQuery.
+     *           in an existing dataset. Each re-generation will result in new rows in
+     *           BigQuery. Data is inserted using [streaming
+     *           insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
+     *           and so data may be in the buffer for a period of time after the profile
+     *           has finished. The Pub/Sub notification is sent before the streaming
+     *           buffer is guaranteed to be written, so data may not be instantly
+     *           visible to queries by the time your topic receives the Pub/Sub
+     *           notification.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,8 +56,14 @@ class Export extends \Google\Protobuf\Internal\Message
 
     /**
      * Store all table and column profiles in an existing table or a new table
-     * in an existing dataset. Each re-generation will result in a new row in
-     * BigQuery.
+     * in an existing dataset. Each re-generation will result in new rows in
+     * BigQuery. Data is inserted using [streaming
+     * insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
+     * and so data may be in the buffer for a period of time after the profile
+     * has finished. The Pub/Sub notification is sent before the streaming
+     * buffer is guaranteed to be written, so data may not be instantly
+     * visible to queries by the time your topic receives the Pub/Sub
+     * notification.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable profile_table = 1;</code>
      * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
@@ -67,8 +85,14 @@ class Export extends \Google\Protobuf\Internal\Message
 
     /**
      * Store all table and column profiles in an existing table or a new table
-     * in an existing dataset. Each re-generation will result in a new row in
-     * BigQuery.
+     * in an existing dataset. Each re-generation will result in new rows in
+     * BigQuery. Data is inserted using [streaming
+     * insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert)
+     * and so data may be in the buffer for a period of time after the profile
+     * has finished. The Pub/Sub notification is sent before the streaming
+     * buffer is guaranteed to be written, so data may not be instantly
+     * visible to queries by the time your topic receives the Pub/Sub
+     * notification.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable profile_table = 1;</code>
      * @param \Google\Cloud\Dlp\V2\BigQueryTable $var

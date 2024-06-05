@@ -200,6 +200,27 @@ return [
                     ],
                 ],
             ],
+            'GetSecurityCenterService' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/securityCenterServices/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/securityCenterServices/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/securityCenterServices/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSecurityHealthAnalyticsCustomModule' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/securityHealthAnalyticsCustomModules/*}',
@@ -326,6 +347,27 @@ return [
                     ],
                 ],
             ],
+            'ListSecurityCenterServices' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/securityCenterServices',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/locations/*}/securityCenterServices',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/securityCenterServices',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSecurityHealthAnalyticsCustomModules' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/securityHealthAnalyticsCustomModules',
@@ -397,6 +439,40 @@ return [
                     'event_threat_detection_custom_module.name' => [
                         'getters' => [
                             'getEventThreatDetectionCustomModule',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSecurityCenterService' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{security_center_service.name=projects/*/locations/*/securityCenterServices/*}',
+                'body' => 'security_center_service',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_center_service.name=folders/*/locations/*/securityCenterServices/*}',
+                        'body' => 'security_center_service',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_center_service.name=organizations/*/locations/*/securityCenterServices/*}',
+                        'body' => 'security_center_service',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
+                    ],
+                ],
+                'placeholders' => [
+                    'security_center_service.name' => [
+                        'getters' => [
+                            'getSecurityCenterService',
                             'getName',
                         ],
                     ],

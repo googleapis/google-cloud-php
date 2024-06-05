@@ -19,9 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Set this field true if users want Batch to help fetch drivers from a
-     * third party location and install them for GPUs specified in
-     * policy.accelerators or instance_template on their behalf. Default is
+     * Set this field true if you want Batch to help fetch drivers from a third
+     * party location and install them for GPUs specified in
+     * `policy.accelerators` or `instance_template` on your behalf. Default is
      * false.
      * For Container-Optimized Image cases, Batch will install the
      * accelerator driver following milestones of
@@ -47,9 +47,9 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      *           Named the field as 'instance_template' instead of 'template' to avoid
      *           c++ keyword conflict.
      *     @type bool $install_gpu_drivers
-     *           Set this field true if users want Batch to help fetch drivers from a
-     *           third party location and install them for GPUs specified in
-     *           policy.accelerators or instance_template on their behalf. Default is
+     *           Set this field true if you want Batch to help fetch drivers from a third
+     *           party location and install them for GPUs specified in
+     *           `policy.accelerators` or `instance_template` on your behalf. Default is
      *           false.
      *           For Container-Optimized Image cases, Batch will install the
      *           accelerator driver following milestones of
@@ -130,9 +130,9 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set this field true if users want Batch to help fetch drivers from a
-     * third party location and install them for GPUs specified in
-     * policy.accelerators or instance_template on their behalf. Default is
+     * Set this field true if you want Batch to help fetch drivers from a third
+     * party location and install them for GPUs specified in
+     * `policy.accelerators` or `instance_template` on your behalf. Default is
      * false.
      * For Container-Optimized Image cases, Batch will install the
      * accelerator driver following milestones of
@@ -149,9 +149,9 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set this field true if users want Batch to help fetch drivers from a
-     * third party location and install them for GPUs specified in
-     * policy.accelerators or instance_template on their behalf. Default is
+     * Set this field true if you want Batch to help fetch drivers from a third
+     * party location and install them for GPUs specified in
+     * `policy.accelerators` or `instance_template` on your behalf. Default is
      * false.
      * For Container-Optimized Image cases, Batch will install the
      * accelerator driver following milestones of

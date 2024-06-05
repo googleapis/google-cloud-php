@@ -24,7 +24,6 @@ namespace Google\Cloud\DiscoveryEngine\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DiscoveryEngine\V1beta\Client\DataStoreServiceClient;
@@ -35,6 +34,7 @@ use Google\Cloud\DiscoveryEngine\V1beta\GetDataStoreRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListDataStoresRequest;
 use Google\Cloud\DiscoveryEngine\V1beta\ListDataStoresResponse;
 use Google\Cloud\DiscoveryEngine\V1beta\UpdateDataStoreRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

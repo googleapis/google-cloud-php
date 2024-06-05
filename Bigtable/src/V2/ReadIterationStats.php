@@ -23,26 +23,26 @@ class ReadIterationStats extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 rows_seen_count = 1;</code>
      */
-    private $rows_seen_count = 0;
+    protected $rows_seen_count = 0;
     /**
      * The rows returned as part of the request.
      *
      * Generated from protobuf field <code>int64 rows_returned_count = 2;</code>
      */
-    private $rows_returned_count = 0;
+    protected $rows_returned_count = 0;
     /**
      * The cells seen (scanned) as part of the request. This includes the count of
      * cells returned, as captured below.
      *
      * Generated from protobuf field <code>int64 cells_seen_count = 3;</code>
      */
-    private $cells_seen_count = 0;
+    protected $cells_seen_count = 0;
     /**
      * The cells returned as part of the request.
      *
      * Generated from protobuf field <code>int64 cells_returned_count = 4;</code>
      */
-    private $cells_returned_count = 0;
+    protected $cells_returned_count = 0;
 
     /**
      * Constructor.

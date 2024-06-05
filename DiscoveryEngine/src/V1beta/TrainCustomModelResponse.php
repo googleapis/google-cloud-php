@@ -48,6 +48,12 @@ class TrainCustomModelResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, double> metrics = 4;</code>
      */
     private $metrics;
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     *
+     * Generated from protobuf field <code>string model_name = 5;</code>
+     */
+    protected $model_name = '';
 
     /**
      * Constructor.
@@ -70,6 +76,8 @@ class TrainCustomModelResponse extends \Google\Protobuf\Internal\Message
      *            * **ready**: The model is ready for serving.
      *     @type array|\Google\Protobuf\Internal\MapField $metrics
      *           The metrics of the trained model.
+     *     @type string $model_name
+     *           Fully qualified name of the CustomTuningModel.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +209,32 @@ class TrainCustomModelResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::DOUBLE);
         $this->metrics = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     *
+     * Generated from protobuf field <code>string model_name = 5;</code>
+     * @return string
+     */
+    public function getModelName()
+    {
+        return $this->model_name;
+    }
+
+    /**
+     * Fully qualified name of the CustomTuningModel.
+     *
+     * Generated from protobuf field <code>string model_name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_name = $var;
 
         return $this;
     }

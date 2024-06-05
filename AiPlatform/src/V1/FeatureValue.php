@@ -47,6 +47,8 @@ class FeatureValue extends \Google\Protobuf\Internal\Message
      *           A list of string type feature value.
      *     @type string $bytes_value
      *           Bytes feature value.
+     *     @type \Google\Cloud\AIPlatform\V1\StructValue $struct_value
+     *           A struct type feature value.
      *     @type \Google\Cloud\AIPlatform\V1\FeatureValue\Metadata $metadata
      *           Metadata of feature value.
      * }
@@ -331,6 +333,37 @@ class FeatureValue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * A struct type feature value.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StructValue struct_value = 15;</code>
+     * @return \Google\Cloud\AIPlatform\V1\StructValue|null
+     */
+    public function getStructValue()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasStructValue()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * A struct type feature value.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StructValue struct_value = 15;</code>
+     * @param \Google\Cloud\AIPlatform\V1\StructValue $var
+     * @return $this
+     */
+    public function setStructValue($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\StructValue::class);
+        $this->writeOneof(15, $var);
 
         return $this;
     }

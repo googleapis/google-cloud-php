@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.41.3';
+    const VERSION = '1.42.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -292,6 +292,8 @@ class StorageClient
      *           set in conjunction. For more information, see
      *           [Bucket Locations](https://cloud.google.com/storage/docs/locations).
      *           **Defaults to** `"US"`.
+     *     @type array $hierarchicalNamespace The hierarchical namespace configuration
+     *           on this bucket.
      *     @type array $customPlacementConfig The bucket's dual regions. For more
      *           information, see
      *           [Bucket Locations](https://cloud.google.com/storage/docs/locations).

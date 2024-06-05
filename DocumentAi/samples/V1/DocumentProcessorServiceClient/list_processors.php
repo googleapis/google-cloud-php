@@ -32,8 +32,8 @@ use Google\Cloud\DocumentAI\V1\Processor;
 /**
  * Lists all processors which belong to this project.
  *
- * @param string $formattedParent The parent (project and location) which owns this collection of Processors.
- *                                Format: `projects/{project}/locations/{location}`
+ * @param string $formattedParent The parent (project and location) which owns this collection of
+ *                                Processors. Format: `projects/{project}/locations/{location}`
  *                                Please see {@see DocumentProcessorServiceClient::locationName()} for help formatting this field.
  */
 function list_processors_sample(string $formattedParent): void

@@ -22,7 +22,7 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The name by which the new table should be referred to within the
      * parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
@@ -30,13 +30,13 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table_id = '';
+    protected $table_id = '';
     /**
      * Required. The Table to create.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $table = null;
+    protected $table = null;
     /**
      * The optional list of row keys that will be used to initially split the
      * table into several tablets (tablets are similar to HBase regions).

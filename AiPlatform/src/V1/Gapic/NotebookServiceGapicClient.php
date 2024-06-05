@@ -49,6 +49,7 @@ use Google\Cloud\AIPlatform\V1\ListNotebookRuntimesResponse;
 use Google\Cloud\AIPlatform\V1\NotebookRuntime;
 use Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate;
 use Google\Cloud\AIPlatform\V1\StartNotebookRuntimeRequest;
+use Google\Cloud\AIPlatform\V1\UpdateNotebookRuntimeTemplateRequest;
 use Google\Cloud\AIPlatform\V1\UpgradeNotebookRuntimeRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
@@ -1261,6 +1262,67 @@ class NotebookServiceGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates a NotebookRuntimeTemplate.
+     *
+     * Sample code:
+     * ```
+     * $notebookServiceClient = new NotebookServiceClient();
+     * try {
+     *     $notebookRuntimeTemplate = new NotebookRuntimeTemplate();
+     *     $updateMask = new FieldMask();
+     *     $response = $notebookServiceClient->updateNotebookRuntimeTemplate($notebookRuntimeTemplate, $updateMask);
+     * } finally {
+     *     $notebookServiceClient->close();
+     * }
+     * ```
+     *
+     * @param NotebookRuntimeTemplate $notebookRuntimeTemplate Required. The NotebookRuntimeTemplate to update.
+     * @param FieldMask               $updateMask              Required. The update mask applies to the resource.
+     *                                                         For the `FieldMask` definition, see
+     *                                                         [google.protobuf.FieldMask][google.protobuf.FieldMask]. Input format:
+     *                                                         `{paths: "${updated_filed}"}` Updatable fields:
+     *
+     *                                                         * `encryption_spec.kms_key_name`
+     * @param array                   $optionalArgs            {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\NotebookRuntimeTemplate
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateNotebookRuntimeTemplate(
+        $notebookRuntimeTemplate,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateNotebookRuntimeTemplateRequest();
+        $requestParamHeaders = [];
+        $request->setNotebookRuntimeTemplate($notebookRuntimeTemplate);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'notebook_runtime_template.name'
+        ] = $notebookRuntimeTemplate->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateNotebookRuntimeTemplate',
+            NotebookRuntimeTemplate::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 

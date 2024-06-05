@@ -27,7 +27,6 @@ namespace Google\Cloud\Storage\Control\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
@@ -48,6 +47,7 @@ use Google\Cloud\Storage\Control\V2\ListManagedFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -160,6 +160,25 @@ final class StorageControlClient
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a bucket
      * resource.
      *
@@ -210,7 +229,7 @@ final class StorageControlClient
         return self::getPathTemplate('managedFolder')->render([
             'project' => $project,
             'bucket' => $bucket,
-            'managedFolder' => $managedFolder,
+            'managed_folder' => $managedFolder,
         ]);
     }
 
@@ -237,7 +256,7 @@ final class StorageControlClient
      * Template: Pattern
      * - bucket: projects/{project}/buckets/{bucket}
      * - folder: projects/{project}/buckets/{bucket}/folders/{folder=**}
-     * - managedFolder: projects/{project}/buckets/{bucket}/managedFolders/{managedFolder=**}
+     * - managedFolder: projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}
      * - storageLayout: projects/{project}/buckets/{bucket}/storageLayout
      *
      * The optional $template argument can be supplied to specify a particular pattern,

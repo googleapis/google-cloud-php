@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class CommonConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The name of the company, business or entity that is associated
-     * with the engine. Setting this may help improve LLM related features.
+     * The name of the company, business or entity that is associated with the
+     * engine. Setting this may help improve LLM related features.
      *
-     * Generated from protobuf field <code>string company_name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string company_name = 1;</code>
      */
     protected $company_name = '';
 
@@ -30,8 +30,8 @@ class CommonConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $company_name
-     *           Immutable. The name of the company, business or entity that is associated
-     *           with the engine. Setting this may help improve LLM related features.
+     *           The name of the company, business or entity that is associated with the
+     *           engine. Setting this may help improve LLM related features.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,10 +40,10 @@ class CommonConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The name of the company, business or entity that is associated
-     * with the engine. Setting this may help improve LLM related features.
+     * The name of the company, business or entity that is associated with the
+     * engine. Setting this may help improve LLM related features.
      *
-     * Generated from protobuf field <code>string company_name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string company_name = 1;</code>
      * @return string
      */
     public function getCompanyName()
@@ -52,10 +52,10 @@ class CommonConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The name of the company, business or entity that is associated
-     * with the engine. Setting this may help improve LLM related features.
+     * The name of the company, business or entity that is associated with the
+     * engine. Setting this may help improve LLM related features.
      *
-     * Generated from protobuf field <code>string company_name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string company_name = 1;</code>
      * @param string $var
      * @return $this
      */

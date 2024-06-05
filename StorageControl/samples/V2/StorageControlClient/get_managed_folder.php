@@ -69,7 +69,7 @@ function callSample(): void
     $formattedName = StorageControlClient::managedFolderName(
         '[PROJECT]',
         '[BUCKET]',
-        '[MANAGEDFOLDER]'
+        '[MANAGED_FOLDER]'
     );
 
     get_managed_folder_sample($formattedName);

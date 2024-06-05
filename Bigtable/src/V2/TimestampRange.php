@@ -20,13 +20,13 @@ class TimestampRange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 start_timestamp_micros = 1;</code>
      */
-    private $start_timestamp_micros = 0;
+    protected $start_timestamp_micros = 0;
     /**
      * Exclusive upper bound. If left empty, interpreted as infinity.
      *
      * Generated from protobuf field <code>int64 end_timestamp_micros = 2;</code>
      */
-    private $end_timestamp_micros = 0;
+    protected $end_timestamp_micros = 0;
 
     /**
      * Constructor.

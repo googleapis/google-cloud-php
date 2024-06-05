@@ -24,7 +24,7 @@ class AuthorizedView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The etag for this AuthorizedView.
      * If this is provided on update, it must match the server's etag. The server
@@ -32,7 +32,7 @@ class AuthorizedView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 3;</code>
      */
-    private $etag = '';
+    protected $etag = '';
     /**
      * Set to true to make the AuthorizedView protected against deletion.
      * The parent Table and containing Instance cannot be deleted if an
@@ -40,7 +40,7 @@ class AuthorizedView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool deletion_protection = 4;</code>
      */
-    private $deletion_protection = false;
+    protected $deletion_protection = false;
     protected $authorized_view;
 
     /**

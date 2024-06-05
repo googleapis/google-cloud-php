@@ -27,7 +27,7 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * @param string $name Required. The unique name of the snapshot to be deleted.
