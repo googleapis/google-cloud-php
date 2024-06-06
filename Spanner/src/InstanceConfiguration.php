@@ -42,7 +42,7 @@ use Google\ApiCore\ValidationException;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => $projectId]);
  *
  * $configuration = $spanner->instanceConfiguration('regional-europe-west');
  * ```

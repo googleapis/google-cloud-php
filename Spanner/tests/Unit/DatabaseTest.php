@@ -17,13 +17,11 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\ApiCore\OperationResponse;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\Snippet\Fixtures;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
@@ -2388,20 +2386,5 @@ class DatabaseTest extends TestCase
                 'resultSets' => [['metadata' => ['transaction' => ['id' => self::TRANSACTION]]]]
             ]
         );
-    }
-
-    private function getOperationResponseMock()
-    {
-        $operation = $this->serializer->decodeMessage(
-            new \Google\LongRunning\Operation(),
-            ['metadata' => [
-                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
-            ]]
-        );
-        $operationResponse = $this->prophesize(OperationResponse::class);
-        $operationResponse->getLastProtoResponse()->willReturn($operation);
-        $operationResponse->isDone()->willReturn(false);
-        $operationResponse->getError()->willReturn(null);
-        return $operationResponse;
     }
 }

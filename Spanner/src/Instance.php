@@ -49,7 +49,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => $projectId]);
  *
  * $instance = $spanner->instance('my-instance');
  * ```

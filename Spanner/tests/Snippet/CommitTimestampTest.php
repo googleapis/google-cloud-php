@@ -23,7 +23,8 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\SpannerClient;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
+use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Prophecy\Argument;
 
 /**
@@ -33,12 +34,17 @@ use Prophecy\Argument;
 class CommitTimestampTest extends SnippetTestCase
 {
     use GrpcTestTrait;
-    use StubCreationTrait;
+    use RequestHandlingTestTrait;
 
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
+    private $requestHandler;
+    private $serializer;
+
     public function setUp(): void
     {
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
         $this->checkAndSkipGrpcTests();
     }
 
@@ -46,26 +52,42 @@ class CommitTimestampTest extends SnippetTestCase
     {
         $id = 'abc';
 
-        $client = TestHelpers::stub(SpannerClient::class);
-        $conn = $this->getConnStub();
-        $conn->createSession(Argument::any())
-            ->willReturn([
-                'name' => self::SESSION
-            ]);
+        $client = TestHelpers::stub(SpannerClient::class, [], ['requestHandler', 'serializer']);
 
+        $this->mockSendRequest(
+            GapicSpannerClient::class,
+            'createSession',
+            null,
+            ['name' => self::SESSION]
+        );
+        $this->mockSendRequest(
+            GapicSpannerClient::class,
+            'deleteSession',
+            null,
+            null
+        );
         $mutation = [
             'insert' => [
                 'table' => 'myTable',
                 'columns' => ['id', 'commitTimestamp'],
-                'values' => [$id, CommitTimestamp::SPECIAL_VALUE]
+                'values' => [[$id, CommitTimestamp::SPECIAL_VALUE]]
             ]
         ];
+        $this->mockSendRequest(
+            GapicSpannerClient::class,
+            'commit',
+            function ($args) use ($mutation) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals($message['mutations'][0], $mutation);
+                return true;
+            },
+            [
+                'commitTimestamp' => \DateTime::createFromFormat('U', (string) time())->format(Timestamp::FORMAT)
+            ]
+        );
 
-        $conn->commit(Argument::withEntry('mutations', [$mutation]))->shouldBeCalled()->willReturn([
-            'commitTimestamp' => \DateTime::createFromFormat('U', (string) time())->format(Timestamp::FORMAT)
-        ]);
-
-        $client->___setProperty('connection', $conn->reveal());
+        $client->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $client->___setProperty('serializer', $this->serializer);
 
         $snippet = $this->snippetFromClass(CommitTimestamp::class);
         $snippet->addLocal('id', $id);

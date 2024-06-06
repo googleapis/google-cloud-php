@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests;
 
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\RequestHandler;
@@ -92,5 +93,20 @@ trait RequestHandlingTestTrait
                 return $this->formatTimestampFromApi($v);
             }
         ]);
+    }
+
+    private function getOperationResponseMock()
+    {
+        $operation = $this->serializer->decodeMessage(
+            new \Google\LongRunning\Operation(),
+            ['metadata' => [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
+            ]]
+        );
+        $operationResponse = $this->prophesize(OperationResponse::class);
+        $operationResponse->getLastProtoResponse()->willReturn($operation);
+        $operationResponse->isDone()->willReturn(false);
+        $operationResponse->getError()->willReturn(null);
+        return $operationResponse;
     }
 }
