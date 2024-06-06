@@ -54,7 +54,6 @@ class ComponentInfoCommand extends Command
         'api_versions',
         'release_level',
         'migration_mode',
-        'proto_path',
         'api_shortname',
     ];
 
@@ -75,6 +74,9 @@ class ComponentInfoCommand extends Command
             ->addOption('filter', '', InputOption::VALUE_REQUIRED,
                 'Comma-separated list of key-value filters. Supported operators are "=", "!=", "~=", and "!~=".'
                 . "\nExample: `--filter 'release_level=preview,migration_mode~=NEW_SURFACE_ONLY,migration_mode!~=MIGRATING'`'"
+            )
+            ->addOption('sort', '', InputOption::VALUE_REQUIRED,
+                'field to sort by (with optional ASC/DESC suffix. e.g. "component_name DESC"'
             )
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
             ->addOption(
@@ -127,6 +129,19 @@ class ComponentInfoCommand extends Command
                 }
             }
             $rows = array_merge($rows, $componentRows);
+        }
+
+        if ($sort = $input->getOption('sort')) {
+            list($field, $order) = explode(' ', $sort) + [1 => 'ASC'];
+            usort($rows, function ($a, $b) use ($field) {
+                return match ($field) {
+                    'package_version' => version_compare($a[$field], $b[$field]),
+                    default => strcmp($a[$field], $b[$field]),
+                };
+            });
+            if ($order === 'DESC') {
+                $rows = array_reverse($rows);
+            }
         }
 
         // output the component data
