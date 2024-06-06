@@ -919,6 +919,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "networksecurity"
     },
+    "NetworkServices": {
+        "language": "php",
+        "distribution_name": "google/cloud-networkservices",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-networkservices/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "networkservices"
+    },
     "Notebooks": {
         "language": "php",
         "distribution_name": "google/cloud-notebooks",
