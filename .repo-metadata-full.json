@@ -161,6 +161,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "automl"
     },
+    "BackupDr": {
+        "language": "php",
+        "distribution_name": "google/cloud-backupdr",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-backupdr/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "backupdr"
+    },
     "BareMetalSolution": {
         "language": "php",
         "distribution_name": "google/cloud-bare-metal-solution",
