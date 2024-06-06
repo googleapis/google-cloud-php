@@ -33,10 +33,10 @@ class ComponentPackage
  \* Updates to the above are reflected here through a refresh process#';
     private string $path;
 
-    private const MIGRATION_V1 = 'v1';
-    private const MIGRATION_V2 = 'v2';
-    private const MIGRATION_V1_AND_V2 = 'v1 and v2';
-    private const MIGRATION_NA = 'n/a';
+    private const MIGRATION_V1 = 'PRE_MIGRATION_SURFACE_ONLY';
+    private const MIGRATION_V2 = 'NEW_SURFACE_ONLY';
+    private const MIGRATION_V1_AND_V2 = 'MIGRATING';
+    private const MIGRATION_NA = 'MIGRATION_MODE_UNSPECIFIED';
 
     public function __construct(private Component $component, private string $name)
     {
