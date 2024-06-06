@@ -74,7 +74,7 @@ class ComponentInfoCommand extends Command
             ))
             ->addOption('filter', '', InputOption::VALUE_REQUIRED,
                 'Comma-separated list of key-value filters. Supported operators are "=", "!=", "~=", and "!~=".'
-                . "\nExample: `--filter release_level='preview,migration_mode~=NEW_SURFACE_ONLY,migration_mode!~=MIGRATIMNG'`'"
+                . "\nExample: `--filter release_level='preview,migration_mode~=NEW_SURFACE_ONLY,migration_mode!~=MIGRATING'`'"
             )
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
             ->addOption(
