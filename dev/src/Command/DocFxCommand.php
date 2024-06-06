@@ -241,7 +241,10 @@ class DocFxCommand extends Command
                     $isGenerated ? OutputInterface::VERBOSITY_VERBOSE : OutputInterface::VERBOSITY_NORMAL
                 );
                 // generated classes are allowed to have broken xrefs
-                $valid = !$isGenerated && $valid;
+                if ($isGenerated) {
+                    continue;
+                }
+                $valid = false;
             }
         }
         if (!$valid) {
