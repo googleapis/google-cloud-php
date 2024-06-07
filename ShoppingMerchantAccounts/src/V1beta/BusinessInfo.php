@@ -29,9 +29,9 @@ class BusinessInfo extends \Google\Protobuf\Internal\Message
      */
     protected $address = null;
     /**
-     * Optional. The phone number of the business.
+     * Output only. The phone number of the business.
      *
-     * Generated from protobuf field <code>optional .google.type.PhoneNumber phone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.type.PhoneNumber phone = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $phone = null;
     /**
@@ -59,7 +59,7 @@ class BusinessInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\PostalAddress $address
      *           Optional. The address of the business.
      *     @type \Google\Type\PhoneNumber $phone
-     *           Optional. The phone number of the business.
+     *           Output only. The phone number of the business.
      *     @type int $phone_verification_state
      *           Output only. The phone verification state of the business.
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\CustomerService $customer_service
@@ -136,9 +136,9 @@ class BusinessInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The phone number of the business.
+     * Output only. The phone number of the business.
      *
-     * Generated from protobuf field <code>optional .google.type.PhoneNumber phone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.type.PhoneNumber phone = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Type\PhoneNumber|null
      */
     public function getPhone()
@@ -157,9 +157,9 @@ class BusinessInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The phone number of the business.
+     * Output only. The phone number of the business.
      *
-     * Generated from protobuf field <code>optional .google.type.PhoneNumber phone = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.type.PhoneNumber phone = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Type\PhoneNumber $var
      * @return $this
      */
