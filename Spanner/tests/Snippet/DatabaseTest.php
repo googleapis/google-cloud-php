@@ -1026,12 +1026,13 @@ class DatabaseTest extends SnippetTestCase
         $this->requestHandler
             ->addClientObject(Argument::any(), Argument::any())
             ->willReturn(null);
-        $this->mockSendRequest(
-            OperationsClient::class,
-            'listOperations',
-            null,
-            [$this->getOperationResponseMock()]
-        );
+        $this->requestHandler
+            ->sendRequest(
+                Argument::any(),
+                'listOperations',
+                Argument::cetera()
+            )
+            ->willReturn([$this->getOperationResponseMock()]);
 
         $this->database->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->database->___setProperty('serializer', $this->serializer);

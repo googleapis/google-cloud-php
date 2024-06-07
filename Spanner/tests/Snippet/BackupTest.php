@@ -59,7 +59,11 @@ class BackupTest extends SnippetTestCase
 
         $this->requestHandler = $this->getRequestHandlerStub();
         $this->serializer = $this->getSerializer();
-        $this->client = TestHelpers::stub(SpannerClient::class, [], ['requestHandler', 'serializer']);
+        $this->client = TestHelpers::stub(
+            SpannerClient::class,
+            ['projectId' => 'my-project'],
+            ['requestHandler', 'serializer']
+        );
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->client->___setProperty('serializer', $this->serializer);
         $this->expireTime = new \DateTime("+ 7 hours");

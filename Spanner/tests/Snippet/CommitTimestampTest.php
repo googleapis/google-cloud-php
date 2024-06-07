@@ -52,7 +52,11 @@ class CommitTimestampTest extends SnippetTestCase
     {
         $id = 'abc';
 
-        $client = TestHelpers::stub(SpannerClient::class, [], ['requestHandler', 'serializer']);
+        $client = TestHelpers::stub(
+            SpannerClient::class,
+            ['projectId' => 'my-project'],
+            ['requestHandler', 'serializer']
+        );
 
         $this->mockSendRequest(
             GapicSpannerClient::class,
