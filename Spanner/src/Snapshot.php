@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Serializer;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
@@ -39,6 +41,16 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 class Snapshot implements TransactionalReadInterface
 {
     use SnapshotTrait;
+
+    /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @param Operation $operation The Operation instance.

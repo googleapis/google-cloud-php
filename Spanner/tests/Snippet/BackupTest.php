@@ -292,12 +292,13 @@ class BackupTest extends SnippetTestCase
         $this->requestHandler
             ->addClientObject(Argument::any(), Argument::any())
             ->willReturn(null);
-        $this->mockSendRequest(
-            OperationsClient::class,
-            'listOperations',
-            null,
-            [$this->getOperationResponseMock()]
-        );
+        $this->requestHandler
+            ->sendRequest(
+                Argument::any(),
+                'listOperations',
+                Argument::cetera()
+            )
+            ->willReturn([$this->getOperationResponseMock()]);
 
         $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
         $this->backup->___setProperty('serializer', $this->serializer);

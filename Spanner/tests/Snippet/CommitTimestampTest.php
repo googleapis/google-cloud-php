@@ -54,7 +54,7 @@ class CommitTimestampTest extends SnippetTestCase
 
         $client = TestHelpers::stub(
             SpannerClient::class,
-            ['projectId' => 'my-project'],
+            [['projectId' => 'my-project']],
             ['requestHandler', 'serializer']
         );
 
