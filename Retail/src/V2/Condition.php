@@ -36,6 +36,15 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Condition.TimeRange active_time_range = 3;</code>
      */
     private $active_time_range;
+    /**
+     * Used to support browse uses cases.
+     * A list (up to 10 entries) of categories or departments.
+     * The format should be the same as
+     * [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
+     *
+     * Generated from protobuf field <code>repeated string page_categories = 4;</code>
+     */
+    private $page_categories;
 
     /**
      * Constructor.
@@ -51,6 +60,11 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Retail\V2\Condition\TimeRange>|\Google\Protobuf\Internal\RepeatedField $active_time_range
      *           Range of time(s) specifying when Condition is active.
      *           Condition true if any time range matches.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $page_categories
+     *           Used to support browse uses cases.
+     *           A list (up to 10 entries) of categories or departments.
+     *           The format should be the same as
+     *           [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
      * }
      */
     public function __construct($data = NULL) {
@@ -114,6 +128,38 @@ class Condition extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\Condition\TimeRange::class);
         $this->active_time_range = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Used to support browse uses cases.
+     * A list (up to 10 entries) of categories or departments.
+     * The format should be the same as
+     * [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
+     *
+     * Generated from protobuf field <code>repeated string page_categories = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPageCategories()
+    {
+        return $this->page_categories;
+    }
+
+    /**
+     * Used to support browse uses cases.
+     * A list (up to 10 entries) of categories or departments.
+     * The format should be the same as
+     * [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
+     *
+     * Generated from protobuf field <code>repeated string page_categories = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPageCategories($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->page_categories = $arr;
 
         return $this;
     }

@@ -21,14 +21,15 @@ class ProductService
         \GPBMetadata\Google\Cloud\Retail\V2\Common::initOnce();
         \GPBMetadata\Google\Cloud\Retail\V2\ImportConfig::initOnce();
         \GPBMetadata\Google\Cloud\Retail\V2\Product::initOnce();
+        \GPBMetadata\Google\Cloud\Retail\V2\PurgeConfig::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Õ,
-,google/cloud/retail/v2/product_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto$google/cloud/retail/v2/product.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"œ
+”/
+,google/cloud/retail/v2/product_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto$google/cloud/retail/v2/product.proto)google/cloud/retail/v2/purge_config.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"œ
 CreateProductRequest4
 parent (	B$àAúA
 retail.googleapis.com/Branch5
@@ -97,14 +98,16 @@ page_token (	
 remove_time (2.google.protobuf.Timestamp
 allow_missing ("!
 RemoveFulfillmentPlacesMetadata"!
-RemoveFulfillmentPlacesResponse2®
+RemoveFulfillmentPlacesResponse2Â
 ProductServiceÏ
 CreateProduct,.google.cloud.retail.v2.CreateProductRequest.google.cloud.retail.v2.Product"oÚAparent,product,product_id‚Óä“M"B/v2/{parent=projects/*/locations/*/catalogs/*/branches/*}/products:product¬
 
 GetProduct).google.cloud.retail.v2.GetProductRequest.google.cloud.retail.v2.Product"RÚAname‚Óä“EC/v2/{name=projects/*/locations/*/catalogs/*/branches/*/products/**}¾
 ListProducts+.google.cloud.retail.v2.ListProductsRequest,.google.cloud.retail.v2.ListProductsResponse"SÚAparent‚Óä“DB/v2/{parent=projects/*/locations/*/catalogs/*/branches/*}/productsÒ
 UpdateProduct,.google.cloud.retail.v2.UpdateProductRequest.google.cloud.retail.v2.Product"rÚAproduct,update_mask‚Óä“V2K/v2/{product.name=projects/*/locations/*/catalogs/*/branches/*/products/**}:product©
-DeleteProduct,.google.cloud.retail.v2.DeleteProductRequest.google.protobuf.Empty"RÚAname‚Óä“E*C/v2/{name=projects/*/locations/*/catalogs/*/branches/*/products/**}Ž
+DeleteProduct,.google.cloud.retail.v2.DeleteProductRequest.google.protobuf.Empty"RÚAname‚Óä“E*C/v2/{name=projects/*/locations/*/catalogs/*/branches/*/products/**}‘
+PurgeProducts,.google.cloud.retail.v2.PurgeProductsRequest.google.longrunning.Operation"²ÊA\\
+,google.cloud.retail.v2.PurgeProductsResponse,google.cloud.retail.v2.PurgeProductsMetadata‚Óä“M"H/v2/{parent=projects/*/locations/*/catalogs/*/branches/*}/products:purge:*Ž
 ImportProducts-.google.cloud.retail.v2.ImportProductsRequest.google.longrunning.Operation"­ÊAV
 -google.cloud.retail.v2.ImportProductsResponse%google.cloud.retail.v2.ImportMetadata‚Óä“N"I/v2/{parent=projects/*/locations/*/catalogs/*/branches/*}/products:import:*´
 SetInventory+.google.cloud.retail.v2.SetInventoryRequest.google.longrunning.Operation"×ÊAZ

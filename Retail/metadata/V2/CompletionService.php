@@ -23,8 +23,8 @@ class CompletionService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˝
-/google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"›
+´
+/google/cloud/retail/v2/completion_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto#google/longrunning/operations.proto"É
 CompleteQueryRequest6
 catalog (	B%‡A˙A
 retail.googleapis.com/Catalog
@@ -34,13 +34,14 @@ visitor_id (	
 language_codes (	
 device_type (	
 dataset (	
-max_suggestions (
+max_suggestions ($
+enable_attribute_suggestions	 (
 entity
- (	"Ö
+ (	"ç
 CompleteQueryResponseZ
 completion_results (2>.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult
-attribution_token (	_
-recent_search_results (2@.google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResultÊ
+attribution_token (	c
+recent_search_results (2@.google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResultBÊ
 CompletionResult
 
 suggestion (	b
@@ -48,9 +49,9 @@ suggestion (	b
 attributes (2N.google.cloud.retail.v2.CompleteQueryResponse.CompletionResult.AttributesEntryZ
 AttributesEntry
 key (	6
-value (2\'.google.cloud.retail.v2.CustomAttribute:8+
+value (2\'.google.cloud.retail.v2.CustomAttribute:8/
 RecentSearchResult
-recent_search (	2≤
+recent_search (	:2≤
 CompletionService≥
 CompleteQuery,.google.cloud.retail.v2.CompleteQueryRequest-.google.cloud.retail.v2.CompleteQueryResponse"EÇ”‰ì?=/v2/{catalog=projects/*/locations/*/catalogs/*}:completeQueryõ
 ImportCompletionData3.google.cloud.retail.v2.ImportCompletionDataRequest.google.longrunning.Operation"Æ A\\
