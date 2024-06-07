@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Serializer;
 use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\RequestHandler;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
@@ -46,7 +48,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  *
@@ -80,6 +82,16 @@ class Transaction implements TransactionalReadInterface
      * @var bool
      */
     private $isRetry = false;
+
+    /**
+     * @var RequestHandler
+     */
+    private $requestHandler;
+
+    /**
+     * @var Serializer
+     */
+    private Serializer $serializer;
 
     /**
      * @param Operation $operation The Operation instance.

@@ -212,4 +212,38 @@ trait RequestTrait
         $args['headers'][$this->resourcePrefixHeader] = [$value];
         return $args;
     }
+
+    private function deserializeOperationArray($operation)
+    {
+        if (isset($operation['metadata'])) {
+            $operation['metadata'] =
+                $this->deserializeMessageArray($operation['metadata']) +
+                ['typeUrl' => $operation['metadata']['typeUrl']];
+        }
+
+        if (isset($operation['response']) and isset($operation['response']['typeUrl'])) {
+            $operation['response'] = $this->deserializeMessageArray($operation['response']);
+        }
+
+        return $operation;
+    }
+
+    private function deserializeMessageArray($message)
+    {
+        $mapper = null;
+        foreach ($this->getLROResponseMappers() as $responseMapper) {
+            if ($responseMapper['typeUrl'] == $message['typeUrl']) {
+                $mapper = $responseMapper;
+                break;
+            }
+        }
+        if (is_null($mapper)) {
+            return $message;
+        }
+
+        $className = $mapper['message'];
+        $response = new $className;
+        $response->mergeFromString($message['value']);
+        return $this->serializer->encodeMessage($response);
+    }
 }

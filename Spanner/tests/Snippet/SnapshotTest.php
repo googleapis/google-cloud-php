@@ -25,7 +25,7 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -37,18 +37,20 @@ class SnapshotTest extends SnippetTestCase
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ProphecyTrait;
-    use StubCreationTrait;
+    use RequestHandlingTestTrait;
 
     const TRANSACTION = 'my-transaction';
 
-    private $connection;
+    private $requestHandler;
+    private $serializer;
     private $snapshot;
 
     public function setUp(): void
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->getConnStub();
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
 

@@ -64,7 +64,7 @@ class AdminTest extends SpannerTestCase
             'processingUnits' => $processingUnits,
         ]);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
         $op->pollUntilComplete();
 
         $instance = $client->instance(self::INSTANCE_NAME);
@@ -204,7 +204,7 @@ class AdminTest extends SpannerTestCase
         $replicas[array_rand($replicas)]['defaultLeaderLocation'] = true;
         $op = $customConfiguration->create($baseConfig, $replicas);
 
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
         $op->pollUntilComplete();
 
         $this->assertTrue($customConfiguration->exists());

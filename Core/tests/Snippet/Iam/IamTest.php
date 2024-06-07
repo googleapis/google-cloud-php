@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Snippet\Iam;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\SpannerClient;
@@ -55,7 +56,7 @@ class IamTest extends SnippetTestCase
         ]);
         $res = $snippet->invoke('iam');
 
-        $this->assertInstanceOf(Iam::class, $res->returnVal());
+        $this->assertInstanceOf(IamManager::class, $res->returnVal());
     }
 
     public function testPolicy()

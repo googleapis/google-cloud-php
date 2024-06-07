@@ -31,7 +31,7 @@ use Google\Cloud\Spanner\V1\TypeAnnotationCode;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $pgNumeric = $spanner->pgNumeric('99999999999999999999999999999999999999.000000999999999');
  * ```

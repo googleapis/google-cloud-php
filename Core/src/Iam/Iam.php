@@ -34,7 +34,7 @@ namespace Google\Cloud\Core\Iam;
  *
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $instance = $spanner->instance('my-new-instance');
  *
  * $iam = $instance->iam();

@@ -29,7 +29,6 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
@@ -51,7 +50,6 @@ class BatchSnapshotTest extends TestCase
     use RequestHandlingTestTrait;
     use ProphecyTrait;
     use ResultGeneratorTrait;
-    use StubCreationTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
@@ -61,7 +59,6 @@ class BatchSnapshotTest extends TestCase
     private $serializer;
     private $session;
     private $timestamp;
-    private $connection;
     private $snapshot;
     public function setUp(): void
     {
@@ -75,7 +72,6 @@ class BatchSnapshotTest extends TestCase
 
         $this->timestamp = new Timestamp(new \DateTime());
 
-        $this->connection = $this->getConnStub();
         $this->serializer = $this->getSerializer();
         $this->requestHandler = $this->getRequestHandlerStub();
         $this->snapshot = TestHelpers::stub(BatchSnapshot::class, [

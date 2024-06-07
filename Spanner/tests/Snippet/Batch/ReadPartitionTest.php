@@ -24,8 +24,9 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 
 /**
@@ -38,12 +39,14 @@ class ReadPartitionTest extends SnippetTestCase
     use PartitionSharedSnippetTestTrait {
         provideGetters as private getters;
     }
-    use StubCreationTrait;
+    use RequestHandlingTestTrait;
 
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
     const TRANSACTION = 'transaction-id';
 
+    private $requestHandler;
+    private $serializer;
     private $className = ReadPartition::class;
     private $time;
     private $table;
@@ -54,6 +57,8 @@ class ReadPartitionTest extends SnippetTestCase
     {
         $this->checkAndSkipGrpcTests();
 
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
         $this->time = time();
         $this->table = 'table';
         $this->keySet = new KeySet(['all' => true]);
@@ -63,29 +68,37 @@ class ReadPartitionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $connection = $this->getConnStub();
-        $connection->createSession(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'name' => self::SESSION
-            ]);
-        $connection->beginTransaction(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'createSession',
+            null,
+            ['name' => self::SESSION]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'beginTransaction',
+            null,
+            [
                 'id' => self::TRANSACTION,
                 'readTimestamp' => \DateTime::createFromFormat('U', (string) $this->time)->format(Timestamp::FORMAT)
-            ]);
-        $connection->partitionRead(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
+            ]
+        );
+        $this->mockSendRequest(
+            SpannerClient::class,
+            'partitionRead',
+            null,
+            [
                 'partitions' => [
                     ['partitionToken' => 'foo']
                 ]
-            ]);
+            ]
+        );
 
         $client = TestHelpers::stub(BatchClient::class, [
-            new Operation($connection->reveal(), false),
+            new Operation($this->requestHandler->reveal(), $this->serializer, false),
             self::DATABASE
+        ], [
+            'operation'
         ]);
 
         $snippet = $this->snippetFromClass(ReadPartition::class);

@@ -83,7 +83,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * use Google\Cloud\Spanner\Session\CacheSessionPool;
  * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $cache = new FilesystemAdapter();
  * $sessionPool = new CacheSessionPool($cache);
  *
@@ -111,7 +111,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * use Google\Cloud\Spanner\Session\CacheSessionPool;
  * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $cache = new FilesystemAdapter();
  * $sessionPool = new CacheSessionPool($cache, [
  *     'databaseRole' => 'Reader'

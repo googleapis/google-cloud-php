@@ -46,6 +46,11 @@ trait LongRunningOperationTrait
     private $lroResponseMapper;
 
     /**
+     * @var array
+     */
+    private $lroCallables;
+
+    /**
      * Populate required LRO properties.
      *
      * @param RequestHandler The request handler that is responsible for sending a request
@@ -82,7 +87,7 @@ trait LongRunningOperationTrait
      * @param string $operationName The Long Running Operation name.
      * @param array $lroResponseMappers A list of mappers for deserializing operation results.
      * @param array $info [optional] The operation data.
-     * @return LongRunningOperationManger
+     * @return LongRunningOperationManager
      */
     public function resumeOperation($operationName, array $info = [])
     {

@@ -1239,7 +1239,7 @@ class Operation
     public function __debugInfo()
     {
         return [
-            'requestHandler' => $this->requestHandler,
+            'requestHandler' => get_class($this->requestHandler),
         ];
     }
 }

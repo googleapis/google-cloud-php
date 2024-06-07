@@ -28,7 +28,7 @@ use Psr\Http\Message\StreamInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $bytes = $spanner->bytes('hello world');
  * ```

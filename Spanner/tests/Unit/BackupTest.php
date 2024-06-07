@@ -17,22 +17,16 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\Iam\Iam;
-use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LongRunningOperationManager;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Backup;
-use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
-use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -45,6 +39,7 @@ class BackupTest extends TestCase
 {
     use GrpcTestTrait;
     use ProphecyTrait;
+    use RequestHandlingTestTrait;
 
     const PROJECT_ID = 'test-project';
     const INSTANCE = 'instance-name';
@@ -52,10 +47,10 @@ class BackupTest extends TestCase
     const BACKUP = 'backup-name';
     const COPIED_BACKUP = 'new-backup-name';
 
-    private $connection;
+    private $requestHandler;
+    private $serializer;
     private $instance;
     private $database;
-    private $lro;
     private $lroCallables;
     private $expireTime;
     private $createTime;
@@ -67,7 +62,8 @@ class BackupTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->requestHandler = $this->getRequestHandlerStub();
+        $this->serializer = $this->getSerializer();
         $this->instance = $this->prophesize(Instance::class);
         $this->database = $this->prophesize(Database::class);
         $this->database->name()->willReturn(
@@ -75,22 +71,21 @@ class BackupTest extends TestCase
         );
         $this->instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE));
         $this->instance->database(Argument::any())->willReturn($this->database);
-        $this->lro = $this->prophesize(LongRunningConnectionInterface::class);
         $this->lroCallables = [];
         $this->expireTime = new \DateTime("+ 7 hours");
         $this->createTime = $this->expireTime;
         $this->versionTime = new \DateTime("- 2 hours");
 
         $args=[
-           $this->connection->reveal(),
+           $this->requestHandler->reveal(),
+           $this->serializer,
            $this->instance->reveal(),
-           $this->lro->reveal(),
            $this->lroCallables,
            self::PROJECT_ID,
            self::BACKUP
         ];
         $props = [
-            'instance', 'connection'
+            'instance', 'requestHandler', 'serializer'
         ];
         $this->backup = TestHelpers::stub(Backup::class, $args, $props);
 
@@ -111,51 +106,83 @@ class BackupTest extends TestCase
 
     public function testCreate()
     {
-        $this->connection->createBackup(Argument::allOf(
-            Argument::withEntry('instance', InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE)),
-            Argument::withEntry('backupId', self::BACKUP),
-            Argument::withEntry('backup', [
-                'database' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::INSTANCE, self::DATABASE),
-                'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z'),
-            ]),
-            Argument::withEntry('versionTime', $this->versionTime->format('Y-m-d\TH:i:s.u\Z'))
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'createBackup',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['parent'],
+                    InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE)
+                );
+                $this->assertEquals($message['backupId'], self::BACKUP);
+                $this->assertEquals(
+                    $message['backup']['database'],
+                    DatabaseAdminClient::databaseName(self::PROJECT_ID, self::INSTANCE, self::DATABASE)
+                );
+                $this->assertEquals(
+                    $message['backup']['expireTime'],
+                    $this->expireTime->format('Y-m-d\TH:i:s.u\Z')
+                );
+                $this->assertEquals(
+                    $message['backup']['versionTime'],
+                    $this->versionTime->format('Y-m-d\TH:i:s.u\Z')
+                );
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
         $op = $this->backup->create(self::DATABASE, $this->expireTime, [
             'versionTime' => $this->versionTime,
         ]);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     public function testCreateCopy()
     {
-        $this->connection->copyBackup(Argument::allOf(
-            Argument::withEntry('instance', InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE)),
-            Argument::withEntry('backupId', self::COPIED_BACKUP),
-            Argument::withKey('sourceBackupId'),
-            Argument::withEntry('expireTime', $this->expireTime->format('Y-m-d\TH:i:s.u\Z'))
-        ))
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'my-operation'
-            ]);
-
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'copyBackup',
+            function ($args) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['parent'],
+                    InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE)
+                );
+                $this->assertEquals($message['backupId'], self::COPIED_BACKUP);
+                $this->assertArrayHasKey('sourceBackup', $message);
+                $this->assertEquals(
+                    $message['expireTime'],
+                    $this->expireTime->format('Y-m-d\TH:i:s.u\Z')
+                );
+                return true;
+            },
+            $this->getOperationResponseMock()
+        );
         $op = $this->backup->createCopy($this->copiedBackup, $this->expireTime);
-        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $this->assertInstanceOf(LongRunningOperationManager::class, $op);
     }
 
     public function testDelete()
     {
-        $this->connection->deleteBackup(Argument::withEntry('name', $this->backup->name()))
-            ->shouldBeCalled();
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'deleteBackup',
+            function ($args) {
+                $this->assertEquals(
+                    $args->getName(),
+                    $this->backup->name()
+                );
+                return true;
+            },
+            null
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $this->backup->delete();
     }
@@ -169,11 +196,18 @@ class BackupTest extends TestCase
             'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.u\Z')
         ];
 
-        $this->connection->getBackup(Argument::withEntry('name', $this->backup->name()))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($res);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getBackup',
+            function ($args) {
+                $this->assertEquals($args->getName(), $this->backup->name());
+                return true;
+            },
+            $res
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $info = $this->backup->info();
 
@@ -192,11 +226,18 @@ class BackupTest extends TestCase
             'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.u\Z')
         ];
 
-        $this->connection->getBackup(Argument::withEntry('name', $this->backup->name()))
-            ->shouldBeCalled()
-            ->willReturn($res);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getBackup',
+            function ($args) {
+                $this->assertEquals($args->getName(), $this->backup->name());
+                return true;
+            },
+            $res
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $info = $this->backup->reload();
 
@@ -208,11 +249,18 @@ class BackupTest extends TestCase
         $res = [
             'state' => Backup::STATE_READY
         ];
-        $this->connection->getBackup(Argument::withEntry('name', $this->backup->name()))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($res);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getBackup',
+            function ($args) {
+                $this->assertEquals($args->getName(), $this->backup->name());
+                return true;
+            },
+            $res
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $this->assertEquals(Backup::STATE_READY, $this->backup->state());
 
@@ -222,11 +270,18 @@ class BackupTest extends TestCase
 
     public function testExists()
     {
-        $this->connection->getBackup(Argument::withEntry('name', $this->backup->name()))
-            ->shouldBeCalled()
-            ->willReturn([]);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'getBackup',
+            function ($args) {
+                $this->assertEquals($args->getName(), $this->backup->name());
+                return true;
+            },
+            []
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $this->assertTrue($this->backup->exists());
     }
@@ -235,19 +290,44 @@ class BackupTest extends TestCase
     {
         $res = ['name' => 'foo', 'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z')];
 
-        $this->connection->updateBackup(Argument::allOf(
-            Argument::withEntry('backup', [
-                'name' => $this->backup->name(),
-                'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z')
-            ]),
-            Argument::withEntry('updateMask', ['paths' => ['expire_time']])
-        ))
-            ->shouldBeCalled()
-            ->willReturn($res);
+        $this->mockSendRequest(
+            DatabaseAdminClient::class,
+            'updateBackup',
+            function ($args) use ($res) {
+                $message = $this->serializer->encodeMessage($args);
+                $this->assertEquals(
+                    $message['backup']['name'],
+                    $this->backup->name()
+                );
+                $this->assertEquals(
+                    $message['backup']['expireTime'],
+                    $this->expireTime->format('Y-m-d\TH:i:s.u\Z')
+                );
+                $this->assertEquals($message['updateMask'], ['paths' => ['expire_time']]);
+                return $res;
+            },
+            $res
+        );
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->backup->___setProperty('requestHandler', $this->requestHandler->reveal());
+        $this->backup->___setProperty('serializer', $this->serializer);
 
         $info = $this->backup->updateExpireTime($this->expireTime);
         $this->assertEquals($res, $info);
+    }
+
+    private function getOperationResponseMock()
+    {
+        $operation = $this->serializer->decodeMessage(
+            new \Google\LongRunning\Operation(),
+            ['metadata' => [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata'
+            ]]
+        );
+        $operationResponse = $this->prophesize(OperationResponse::class);
+        $operationResponse->getLastProtoResponse()->willReturn($operation);
+        $operationResponse->isDone()->willReturn(false);
+        $operationResponse->getError()->willReturn(null);
+        return $operationResponse;
     }
 }
