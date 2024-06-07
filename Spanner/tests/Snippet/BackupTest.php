@@ -61,7 +61,7 @@ class BackupTest extends SnippetTestCase
         $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(
             SpannerClient::class,
-            ['projectId' => 'my-project'],
+            [['projectId' => 'my-project']],
             ['requestHandler', 'serializer']
         );
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());

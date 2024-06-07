@@ -171,7 +171,7 @@ class BatchClientTest extends SnippetTestCase
                 $this->assertEquals($message['session'], self::SESSION);
                 return true;
             },
-            [
+            $this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -185,7 +185,7 @@ class BatchClientTest extends SnippetTestCase
                     ]
                 ],
                 'values' => [0]
-            ]
+            ])
         );
         $this->mockSendRequest(
             SpannerClient::class,
