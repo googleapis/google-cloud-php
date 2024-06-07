@@ -204,7 +204,7 @@ class AddComponentCommand extends Command
         ksort($repoMetadataFull);
         file_put_contents(
             $repoMetadataFullPath,
-            json_encode($repoMetadataFull, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+            json_encode($repoMetadataFull, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL
         );
 
         // Write composer file
