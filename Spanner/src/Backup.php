@@ -42,7 +42,7 @@ use DateTimeInterface;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  *
  * $backup = $spanner->instance('my-instance')->backup('my-backup');
  * ```

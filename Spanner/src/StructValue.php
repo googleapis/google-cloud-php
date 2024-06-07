@@ -40,7 +40,7 @@ namespace Google\Cloud\Spanner;
  * use Google\Cloud\Spanner\StructType;
  * use Google\Cloud\Spanner\StructValue;
  *
- * $spanner = new SpannerClient();
+ * $spanner = new SpannerClient(['projectId' => 'my-project']);
  * $database = $spanner->connect('my-instance', 'my-database');
  *
  * $res = $database->execute('SELECT * FROM UNNEST(ARRAY(SELECT @structParam))', [
