@@ -38,6 +38,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * $language = new LanguageClient();
  * ```
+ * @deprecated See {@see \Google\Cloud\Language\V2\Client\LanguageServiceClient}.
  */
 class LanguageClient
 {

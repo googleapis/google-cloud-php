@@ -112,6 +112,7 @@ use Google\Cloud\Core\CallTrait;
  *
  *     @return string|null
  * }
+ * @deprecated See {@see \Google\Cloud\Language\V2\Client\LanguageServiceClient}.
  */
 class Annotation
 {
