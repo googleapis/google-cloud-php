@@ -32,7 +32,6 @@ use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\RequestHandlingTestTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -79,6 +78,8 @@ class TransactionalReadMethodsTest extends SnippetTestCase
             ->willReturn([
                 'databaseName' => 'database'
             ]);
+        $this->session->name()
+            ->willReturn('sessionName');
         $this->operation = $this->prophesize(Operation::class);
     }
 
@@ -515,11 +516,11 @@ class TransactionalReadMethodsTest extends SnippetTestCase
 
     private function setupBatch()
     {
-        $sessData = SpannerGapicClient::parseName(self::SESSION, 'session');
+        $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session->name()->willReturn(self::SESSION);
         $this->session->info()->willReturn($sessData + [
             'name' => self::SESSION,
-            'databaseName' => SpannerGapicClient::databaseName(
+            'databaseName' => SpannerClient::databaseName(
                 self::PROJECT,
                 self::INSTANCE,
                 self::DATABASE
