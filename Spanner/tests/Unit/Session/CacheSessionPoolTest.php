@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Unit\Session;
 
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Testing\Lock\MockValues;
-use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;

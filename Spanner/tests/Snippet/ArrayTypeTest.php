@@ -101,29 +101,6 @@ class ArrayTypeTest extends SnippetTestCase
             'foo', 'bar', null
         ];
 
-        // $this->connection->executeStreamingSql(Argument::allOf(
-        //     Argument::withEntry('sql', 'SELECT @arrayParam as arrayValue'),
-        //     Argument::withEntry('params', [
-        //         'arrayParam' => $values
-        //     ]),
-        //     Argument::withEntry('paramTypes', [
-        //         'arrayParam' => $field
-        //     ])
-        // ))->shouldBeCalled()->willReturn($this->resultGenerator([
-        //     'metadata' => [
-        //         'rowType' => [
-        //             'fields' => [
-        //                 [
-        //                     'name' => 'arrayValue',
-        //                     'type' => $field
-        //                 ]
-        //             ]
-        //         ]
-        //     ],
-        //     'values' => [$values]
-        // ]));
-
-        // $this->refreshOperation($this->database, $this->connection->reveal());
         $this->mockSendRequest(
             SpannerClient::class,
             'executeStreamingSql',

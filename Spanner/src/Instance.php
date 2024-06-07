@@ -610,7 +610,6 @@ class Instance
      */
     public function database($name, array $options = [])
     {
-        # TODO: Remove the connection related objects
         return new Database(
             $this->requestHandler,
             $this->serializer,
@@ -808,7 +807,6 @@ class Instance
      */
     public function backupOperations(array $options = [])
     {
-        // @TODO: Add a better logic for the database name here.
         return $this->database($this->name)->backupOperations($options);
     }
 

@@ -136,7 +136,6 @@ class SpannerClient
         DatabaseAdminClient::class
     ];
 
-    # TODO: Remove the connection related objects
     /**
      * @var RequestHandler
      */
