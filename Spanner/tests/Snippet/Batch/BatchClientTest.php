@@ -58,7 +58,7 @@ class BatchClientTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();;
+        $this->serializer = $this->getSerializer();
         $this->client = TestHelpers::stub(BatchClient::class, [
             new Operation($this->requestHandler->reveal(), $this->serializer, false),
             self::DATABASE

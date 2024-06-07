@@ -73,7 +73,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
         parent::setUpBeforeClass();
 
         $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();;
+        $this->serializer = $this->getSerializer();
         $this->session = $this->prophesize(Session::class);
         $this->session->info()
             ->willReturn([

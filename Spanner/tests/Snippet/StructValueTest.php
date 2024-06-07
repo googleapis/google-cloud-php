@@ -77,7 +77,7 @@ class StructValueTest extends SnippetTestCase
             ->willReturn(null);
 
         $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();;
+        $this->serializer = $this->getSerializer();
         $this->database = TestHelpers::stub(Database::class, [
             $this->requestHandler->reveal(),
             $this->serializer,

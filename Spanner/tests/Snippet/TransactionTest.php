@@ -59,7 +59,7 @@ class TransactionTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();;
+        $this->serializer = $this->getSerializer();
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
         $session->info()
@@ -445,7 +445,7 @@ class TransactionTest extends SnippetTestCase
 
     public function testRollback()
     {
-        $this->mockSendRequest(SpannerClient::class,'rollback', null, null);
+        $this->mockSendRequest(SpannerClient::class, 'rollback', null, null);
 
         $this->refreshOperation(
             $this->transaction,

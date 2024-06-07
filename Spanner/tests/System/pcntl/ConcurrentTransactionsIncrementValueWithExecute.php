@@ -34,15 +34,16 @@ $callable = function ($dbName, $tableName, $id) use ($tmpFile) {
 $delay = 2000;
 $retryLimit = 3;
 if ($childPID1 = pcntl_fork()) {
+    usleep($delay);
 
     $callable($dbName, $tableName, $id);
 
     while (pcntl_waitpid($childPID1, $status1, WNOHANG) == 0 && $retryLimit) {
-        usleep($delay);
+        usleep(2 * $delay);
         $retryLimit--;
     }
 } else {
-    usleep($delay);
+    usleep(2 * $delay);
 
     $callable($dbName, $tableName, $id);
 

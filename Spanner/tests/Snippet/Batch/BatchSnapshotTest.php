@@ -61,7 +61,7 @@ class BatchSnapshotTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();;
+        $this->serializer = $this->getSerializer();
 
         $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session = $this->prophesize(Session::class);

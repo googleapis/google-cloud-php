@@ -49,7 +49,7 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->requestHandler = $this->getRequestHandlerStub();
-        $this->serializer = $this->getSerializer();;
+        $this->serializer = $this->getSerializer();
         $this->config = TestHelpers::stub(InstanceConfiguration::class, [
             $this->requestHandler->reveal(),
             $this->serializer,

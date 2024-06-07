@@ -827,7 +827,8 @@ class DatabaseTest extends SnippetTestCase
                 return isset($message['params'])
                     && isset($message['paramTypes'])
                     && $message['paramTypes']['emptyArrayOfIntegers']['code'] === Database::TYPE_ARRAY
-                    && $message['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] === Database::TYPE_INT64;
+                    && $message['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code']
+                        === Database::TYPE_INT64;
             },
             $this->resultGeneratorData([
                 'metadata' => [

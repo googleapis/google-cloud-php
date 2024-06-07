@@ -102,7 +102,7 @@ class SpannerClientTest extends SnippetTestCase
                     ['name' => 'projects/my-awesome-projects/instanceConfigs/foo'],
                     ['name' => 'projects/my-awesome-projects/instanceConfigs/bar'],
                 ]
-            ] 
+            ]
         );
 
         $this->client->___setProperty('requestHandler', $this->requestHandler->reveal());
