@@ -96,7 +96,7 @@ class CommitTimestampTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(CommitTimestamp::class);
         $snippet->addLocal('id', $id);
         $snippet->addLocal('spanner', $client);
-        $snippet->replace('$spanner = new SpannerClient();', '');
+        $snippet->replace("\$spanner = new SpannerClient(['projectId' => 'my-project']);", '');
 
         $snippet->invoke();
     }
