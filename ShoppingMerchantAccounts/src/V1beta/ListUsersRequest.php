@@ -17,7 +17,7 @@ class ListUsersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of users.
-     * Format: `accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -42,7 +42,7 @@ class ListUsersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The parent, which owns this collection of users.
-     *                       Format: `accounts/{account}
+     *                       Format: `accounts/{account}`
      *                       Please see {@see UserServiceClient::accountName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Accounts\V1beta\ListUsersRequest
@@ -63,7 +63,7 @@ class ListUsersRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of users.
-     *           Format: `accounts/{account}
+     *           Format: `accounts/{account}`
      *     @type int $page_size
      *           Optional. The maximum number of users to return. The service may return
      *           fewer than this value. If unspecified, at most 50 users will be returned.
@@ -82,7 +82,7 @@ class ListUsersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of users.
-     * Format: `accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -94,7 +94,7 @@ class ListUsersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of users.
-     * Format: `accounts/{account}
+     * Format: `accounts/{account}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
