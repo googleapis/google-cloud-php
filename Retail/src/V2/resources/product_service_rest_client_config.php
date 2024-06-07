@@ -107,6 +107,18 @@ return [
                     ],
                 ],
             ],
+            'PurgeProducts' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*/branches/*}/products:purge',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RemoveFulfillmentPlaces' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{product=projects/*/locations/*/catalogs/*/branches/*/products/**}:removeFulfillmentPlaces',
