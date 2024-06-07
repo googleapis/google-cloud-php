@@ -31,11 +31,18 @@ class Mode
      * Generated from protobuf enum <code>BASIC = 2;</code>
      */
     const BASIC = 2;
+    /**
+     * Applies the Security Posture off cluster Enterprise level features.
+     *
+     * Generated from protobuf enum <code>ENTERPRISE = 3;</code>
+     */
+    const ENTERPRISE = 3;
 
     private static $valueToName = [
         self::MODE_UNSPECIFIED => 'MODE_UNSPECIFIED',
         self::DISABLED => 'DISABLED',
         self::BASIC => 'BASIC',
+        self::ENTERPRISE => 'ENTERPRISE',
     ];
 
     public static function name($value)

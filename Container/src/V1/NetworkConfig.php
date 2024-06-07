@@ -110,6 +110,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     private $enable_fqdn_network_policy = null;
     /**
      * Specify the details of in-transit encryption.
+     * Now named inter-node transparent encryption.
      *
      * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig in_transit_encryption_config = 20;</code>
      */
@@ -170,6 +171,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           Whether FQDN Network Policy is enabled on this cluster.
      *     @type int $in_transit_encryption_config
      *           Specify the details of in-transit encryption.
+     *           Now named inter-node transparent encryption.
      *     @type bool $enable_cilium_clusterwide_network_policy
      *           Whether CiliumClusterwideNetworkPolicy is enabled on this cluster.
      * }
@@ -609,6 +611,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Specify the details of in-transit encryption.
+     * Now named inter-node transparent encryption.
      *
      * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig in_transit_encryption_config = 20;</code>
      * @return int
@@ -630,6 +633,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Specify the details of in-transit encryption.
+     * Now named inter-node transparent encryption.
      *
      * Generated from protobuf field <code>optional .google.container.v1.InTransitEncryptionConfig in_transit_encryption_config = 20;</code>
      * @param int $var

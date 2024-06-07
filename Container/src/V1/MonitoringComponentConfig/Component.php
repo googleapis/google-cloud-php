@@ -79,6 +79,18 @@ class Component
      * Generated from protobuf enum <code>STATEFULSET = 12;</code>
      */
     const STATEFULSET = 12;
+    /**
+     * CADVISOR
+     *
+     * Generated from protobuf enum <code>CADVISOR = 13;</code>
+     */
+    const CADVISOR = 13;
+    /**
+     * KUBELET
+     *
+     * Generated from protobuf enum <code>KUBELET = 14;</code>
+     */
+    const KUBELET = 14;
 
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
@@ -92,6 +104,8 @@ class Component
         self::DAEMONSET => 'DAEMONSET',
         self::DEPLOYMENT => 'DEPLOYMENT',
         self::STATEFULSET => 'STATEFULSET',
+        self::CADVISOR => 'CADVISOR',
+        self::KUBELET => 'KUBELET',
     ];
 
     public static function name($value)

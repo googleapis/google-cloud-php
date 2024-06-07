@@ -27,6 +27,19 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 3;</code>
      */
     private $logging_config = null;
+    /**
+     * Parameters for containerd customization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 4;</code>
+     */
+    private $containerd_config = null;
+    /**
+     * NodeKubeletConfig controls the defaults for new node-pools.
+     * Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig node_kubelet_config = 6;</code>
+     */
+    private $node_kubelet_config = null;
 
     /**
      * Constructor.
@@ -38,6 +51,11 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
      *           GCFS (Google Container File System, also known as Riptide) options.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
      *           Logging configuration for node pools.
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig $containerd_config
+     *           Parameters for containerd customization.
+     *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $node_kubelet_config
+     *           NodeKubeletConfig controls the defaults for new node-pools.
+     *           Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +131,80 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
         $this->logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for containerd customization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 4;</code>
+     * @return \Google\Cloud\Container\V1\ContainerdConfig|null
+     */
+    public function getContainerdConfig()
+    {
+        return $this->containerd_config;
+    }
+
+    public function hasContainerdConfig()
+    {
+        return isset($this->containerd_config);
+    }
+
+    public function clearContainerdConfig()
+    {
+        unset($this->containerd_config);
+    }
+
+    /**
+     * Parameters for containerd customization.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ContainerdConfig containerd_config = 4;</code>
+     * @param \Google\Cloud\Container\V1\ContainerdConfig $var
+     * @return $this
+     */
+    public function setContainerdConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ContainerdConfig::class);
+        $this->containerd_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * NodeKubeletConfig controls the defaults for new node-pools.
+     * Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig node_kubelet_config = 6;</code>
+     * @return \Google\Cloud\Container\V1\NodeKubeletConfig|null
+     */
+    public function getNodeKubeletConfig()
+    {
+        return $this->node_kubelet_config;
+    }
+
+    public function hasNodeKubeletConfig()
+    {
+        return isset($this->node_kubelet_config);
+    }
+
+    public function clearNodeKubeletConfig()
+    {
+        unset($this->node_kubelet_config);
+    }
+
+    /**
+     * NodeKubeletConfig controls the defaults for new node-pools.
+     * Currently only `insecure_kubelet_readonly_port_enabled` can be set here.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig node_kubelet_config = 6;</code>
+     * @param \Google\Cloud\Container\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setNodeKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig::class);
+        $this->node_kubelet_config = $var;
 
         return $this;
     }
