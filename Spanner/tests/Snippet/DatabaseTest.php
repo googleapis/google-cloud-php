@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
-use Google\LongRunning\OperationsClient;
+use Google\LongRunning\Client\OperationsClient;
 use Google\Cloud\Core\Iam\IamManager;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperationManager;

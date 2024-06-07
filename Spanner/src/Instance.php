@@ -102,20 +102,6 @@ class Instance
 
     const DEFAULT_NODE_COUNT = 1;
 
-    # TODO: Remove the connection related objects
-    /**
-     * @var RequestHandler
-     * @internal
-     * The request handler that is responsible for sending a request and
-     * serializing responses into relevant classes.
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
     /**
      * @var RequestHandler
      * @internal

@@ -153,16 +153,6 @@ class SpannerClient
     private $projectId;
 
     /**
-     * @var RequestHandler
-     */
-    private $requestHandler;
-
-    /**
-     * @var Serializer
-     */
-    private Serializer $serializer;
-
-    /**
      * @var bool
      */
     private $returnInt64AsObject;
